@@ -45,6 +45,7 @@ const FALLBACK = {
   "das-energi-2027": "official art not fetched yet; tile owed before the flip",
   "dwp-2026": "official art not fetched yet; tile owed before the flip",
   "edc-thailand-2026": "official art not fetched yet; tile owed before the flip",
+  "tomorrowland-thailand-2026": "official art not fetched yet; tile owed before the flip",
   "kappa-futurfestival-2027": "official art not fetched yet; tile owed before the flip",
   "ultra-europe-2027": "official art not fetched yet; tile owed before the flip",
   "awakenings-2027": "official art not fetched yet; tile owed before the flip",

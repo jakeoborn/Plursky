@@ -814,6 +814,130 @@ const FESTIVALS_REGISTRY = [
     region:    "North America",
   },
   {
+    // ── Tomorrowland Winter 2027 — Alpe d'Huez, France ──
+    // Added 2026-11-11 as a gated preview. Dates from winter.tomorrowland.com,
+    // read 2026-11-11: "MARCH 20–27, 2027 | ALPE D'HUEZ, FRANCE". No 2027
+    // lineup yet.
+    config: {
+      id:        "tomorrowland-winter-2027",
+      officialEvent: { website: "https://winter.tomorrowland.com/", observedAt: "2026-11-11" },
+      name:      "Tomorrowland Winter 2027",
+      shortName: "Tomorrowland Winter",
+      brand:     "Tomorrowland",
+      tagline:   "A week of music in the French Alps",
+      location:  "Alpe d'Huez, France",
+      locationShort: "Alpe d'Huez",
+      dates:     "Mar 20–27, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://winter.tomorrowland.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#93c5fd",
+    emoji:     "🏔️",
+    region:    "Europe",
+  },
+  {
+    // ── Tomorrowland Brasil 2027 — Itu, São Paulo, Brazil ──
+    // Added 2026-11-11 as a gated preview. Dates from brasil.tomorrowland.com,
+    // read 2026-11-11: "April 30 - May 2, 2027 | Itu - São Paulo, Brazil".
+    // The site's text names no venue, so none is loaded here.
+    config: {
+      id:        "tomorrowland-brasil-2027",
+      officialEvent: { website: "https://brasil.tomorrowland.com/", observedAt: "2026-11-11" },
+      name:      "Tomorrowland Brasil 2027",
+      shortName: "Tomorrowland Brasil",
+      brand:     "Tomorrowland",
+      tagline:   "Three days of Tomorrowland in São Paulo state",
+      location:  "Itu, Brazil",
+      locationShort: "Itu",
+      dates:     "Apr 30–May 2, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://brasil.tomorrowland.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#22c55e",
+    emoji:     "🦜",
+    region:    "Latin America",
+  },
+  {
+    // ── Primavera Sound Barcelona 2027 — Parc del Fòrum, Barcelona ──
+    // Added 2026-11-11 as a gated preview. Dates from primaverasound.com's
+    // early-bird page, read 2026-11-11: "Primavera Sound Barcelona will
+    // celebrate the main days of its 25th edition from 3rd to 5th June at
+    // Parc del Fòrum." Loaded as the three main days; the city shows around
+    // them are not. No full 2027 lineup read yet.
+    config: {
+      id:        "primavera-sound-2027",
+      officialEvent: { website: "https://www.primaverasound.com/en/barcelona", observedAt: "2026-11-11" },
+      name:      "Primavera Sound Barcelona 2027",
+      shortName: "Primavera Sound",
+      brand:     "Primavera Sound",
+      tagline:   "The 25th edition by the sea",
+      location:  "Parc del Fòrum · Barcelona, Spain",
+      locationShort: "Parc del Fòrum",
+      dates:     "Jun 3–5, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.primaverasound.com/en/barcelona", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#f472b6",
+    emoji:     "🌊",
+    region:    "Europe",
+  },
+  {
+    // ── Boom Festival 2027 — Idanha-a-Nova, Portugal ──
+    // Added 2026-11-11 as a gated preview. Dates from boomfestival.org's own
+    // home page text as a web search indexed it on 2026-11-11: "18-25 July
+    // 2027 Full Moon Idanha-a-nova lake - Portugal" (the page itself renders
+    // the line client-side, so a direct read did not return it; re-check
+    // before any flip). The site says 2027 tickets are sold out.
+    config: {
+      id:        "boom-festival-2027",
+      officialEvent: { website: "https://www.boomfestival.org/", observedAt: "2026-11-11" },
+      name:      "Boom Festival 2027",
+      shortName: "Boom",
+      brand:     "Boom Festival",
+      tagline:   "Thirty years by the lake under a full moon",
+      location:  "Idanha-a-Nova, Portugal",
+      locationShort: "Idanha-a-Nova",
+      dates:     "Jul 18–25, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.boomfestival.org/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#f59e0b",
+    emoji:     "🌕",
+    region:    "Europe",
+  },
+  {
+    // ── Sziget 2027 — Budapest, Hungary ──
+    // Added 2026-11-11 as a gated preview. Dates from szigetfestival.com's
+    // festival-info page, read 2026-11-11: "Sziget Festival 2027 is ON from
+    // 10–14 August – Tuesday to Saturday". No 2027 lineup yet.
+    config: {
+      id:        "sziget-2027",
+      officialEvent: { website: "https://szigetfestival.com/en/festival-info", observedAt: "2026-11-11" },
+      name:      "Sziget 2027",
+      shortName: "Sziget",
+      brand:     "Sziget Festival",
+      tagline:   "Five days on the Island of Freedom",
+      location:  "Budapest, Hungary",
+      locationShort: "Budapest",
+      dates:     "Aug 10–14, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://szigetfestival.com/en/festival-info", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ef4444",
+    emoji:     "🏝️",
+    region:    "Europe",
+  },
+  {
     // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
     // Flip 2026-09-11: stage + set time per act come from the Lost Lands app
     // schedule (app v10.0.0, as captured 2026-09-10); the SCHEDULE block
@@ -4726,6 +4850,7 @@ const _WAVE1_IDS = [
   "sunset-on-the-river-2027",
   "dwp-2026",
   "edc-thailand-2026",
+  "tomorrowland-thailand-2026",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {

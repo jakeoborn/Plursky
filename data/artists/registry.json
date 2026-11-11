@@ -247,6 +247,21 @@
   "links": []
  },
  {
+  "key": "22-bullets",
+  "name": "22 Bullets",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-22-bullets"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "23-skidoo-and-the-secret-agency",
   "name": "23 SKIDOO & THE SECRET AGENCY",
   "aliases": [],
@@ -1479,6 +1494,21 @@
   "links": []
  },
  {
+  "key": "adamk",
+  "name": "AdamK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-adamk"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "adela",
   "name": "Adéla",
   "aliases": [
@@ -1810,6 +1840,7 @@
    "edc-orlando-2026:ecf3",
    "ultra-miami-2026:ul120",
    "dwp-2026:dwp-afrojack",
+   "tomorrowland-thailand-2026:tmlth-afrojack",
    "beyond-wonderland-socal-2013:d1:madhatter-s-castle:0030:afrojack",
    "edc-las-vegas-2025:d2:kinetic-field:2206:afrojack",
    "edc-orlando-2019:d2:kineticfield:2023:afrojack",
@@ -1818,7 +1849,7 @@
    "escape-halloween-2017:d2:slaughterhouse:2145:afrojack"
   ],
   "firstSeen": "2013-03-16",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -1941,19 +1972,20 @@
  },
  {
   "key": "agents-of-time",
-  "name": "Agents of Time",
+  "name": "Agents Of Time",
   "aliases": [
-   "Agents Of Time"
+   "Agents of Time"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "dwp-2026:dwp-agents-of-time",
+   "tomorrowland-thailand-2026:tmlth-agents-of-time",
    "nocturnal-wonderland-2021:d2:owloch-grove:1930:agents-of-time"
   ],
   "firstSeen": "2021-09-19",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -2259,6 +2291,7 @@
   "billings": [
    "edc-orlando-2026:ecs3",
    "ultra-miami-2026:ul52",
+   "tomorrowland-thailand-2026:tmlth-alan-walker",
    "edc-las-vegas-2022:d1:kinetic-field:2331:alan-walker",
    "edc-orlando-2017:d2:kineticfield:1652:alan-walker",
    "edc-orlando-2021:d3:kinetic-field:2004:alan-walker",
@@ -2268,7 +2301,7 @@
    "nocturnal-wonderland-2019:d1:wolves-den:2200:alan-walker"
   ],
   "firstSeen": "2017-10-28",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -3356,6 +3389,7 @@
    "escape-halloween-2026:esc-alok-d2",
    "sunset-on-the-river-2027:sotr-alok",
    "dwp-2026:dwp-alok",
+   "tomorrowland-thailand-2026:tmlth-alok",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2155:alok",
    "edc-las-vegas-2022:d3:kinetic-field:2309:alok",
    "edc-las-vegas-2025:d1:kinetic-field:2100:alok",
@@ -3597,6 +3631,7 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-aly-and-fila-and-billy-gillies",
+   "tomorrowland-thailand-2026:tmlth-aly-and-fila",
    "beyond-wonderland-socal-2012:d1:queen-s-domain:2015:aly-and-fila",
    "dreamstate-socal-2016:d1:the-dream:2200:aly-and-fila",
    "dreamstate-socal-2019:d1:the-dream:0100:aly-and-fila",
@@ -3608,7 +3643,7 @@
    "nocturnal-wonderland-2011:d1:labyrinth:0100:aly-and-fila"
   ],
   "firstSeen": "2011-09-23",
-  "lastSeen": "2026-11-20",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -3788,6 +3823,21 @@
   "links": []
  },
  {
+  "key": "amber-broos",
+  "name": "Amber Broos",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-amber-broos-b2b-space-92"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "amber-mark",
   "name": "Amber Mark",
   "aliases": [
@@ -3858,12 +3908,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-ameme-b2b-honeyluv",
    "edc-las-vegas-2025:d2:stereo-bloom:0145:ameme",
    "edc-las-vegas-2025:d3:ubuntu:2330:one-tribe-presents-ameme-b2b-baron",
    "edc-orlando-2024:d2:stereo-bloom:2015:ameme-b2b-honeyluv"
   ],
   "firstSeen": "2024-11-09",
-  "lastSeen": "2025-05-18",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -4021,17 +4072,20 @@
  },
  {
   "key": "amy-wiles",
-  "name": "AMY WILES",
-  "aliases": [],
+  "name": "Amy Wiles",
+  "aliases": [
+   "AMY WILES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-amy-wiles",
    "dreamstate-socal-2023:d2:the-dream:1600:amy-wiles",
    "dreamstate-socal-2025:d1:the-vision:1900:amy-wiles"
   ],
   "firstSeen": "2023-11-18",
-  "lastSeen": "2025-11-21",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -4065,6 +4119,21 @@
   ],
   "firstSeen": "2026-06-19",
   "lastSeen": "2026-10-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "an-ka",
+  "name": "An!ka",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-anika"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -4433,11 +4502,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-andromedik",
    "edc-las-vegas-2025:d1:basspod:1900:andromedik",
    "edc-orlando-2025:d2:circuitgrounds:1600:andromedik"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2025-11-08",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -4730,6 +4800,21 @@
   ],
   "firstSeen": "2017-11-10",
   "lastSeen": "2017-11-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "angemi",
+  "name": "Angemi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-angemi"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -5078,12 +5163,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-apashe",
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:0030:apashe",
    "edc-las-vegas-2025:d1:basspod:2330:apashe",
    "edc-orlando-2025:d2:circuitgrounds:2000:apashe"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2026-06-27",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -5508,8 +5594,10 @@
  },
  {
   "key": "artbat",
-  "name": "ARTBAT",
-  "aliases": [],
+  "name": "Artbat",
+  "aliases": [
+   "ARTBAT"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -5517,12 +5605,14 @@
    "ultra-miami-2026:ul118",
    "dreamstate-socal-2026:dssc-artbat",
    "dwp-2026:dwp-artbat",
+   "tomorrowland-thailand-2026:tmlth-artbat",
+   "tomorrowland-thailand-2026:tmlth-artbat-b2b-r3hab",
    "edc-las-vegas-2025:d3:kinetic-field:2200:artbat-b2b-morten",
    "edc-orlando-2019:d1:neongarden:1430:artbat",
    "escape-halloween-2021:d1:sewer-district:2230:artbat"
   ],
   "firstSeen": "2019-11-08",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -5539,6 +5629,21 @@
   ],
   "firstSeen": "2025-06-07",
   "lastSeen": "2025-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "arten",
+  "name": "Arten",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-arten"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -7710,12 +7815,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-bassjackers",
    "beyond-wonderland-socal-2013:d1:queen-s-domain:1930:bassjackers",
    "nocturnal-wonderland-2011:d2:queen-s-grounds:1700:bassjackers",
    "nocturnal-wonderland-2012:d2:queen-s-grounds:2235:bassjackers"
   ],
   "firstSeen": "2011-09-24",
-  "lastSeen": "2013-03-16",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -9037,6 +9143,21 @@
   "links": []
  },
  {
+  "key": "bibi-seck",
+  "name": "Bibi Seck",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-bibi-seck"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bicep",
   "name": "Bicep",
   "aliases": [
@@ -10063,27 +10184,31 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-blastoyz-b2b-whiteno1se",
    "dreamstate-socal-2019:d2:the-sequence:2300:blastoyz",
    "edc-las-vegas-2024:d1:quantum-valley:0100:blastoyz",
    "edc-orlando-2023:d3:stereo-bloom:2300:blastoyz"
   ],
   "firstSeen": "2019-11-23",
-  "lastSeen": "2024-05-17",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
  {
   "key": "blazy",
-  "name": "BLAZY",
-  "aliases": [],
+  "name": "Blazy",
+  "aliases": [
+   "BLAZY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-blazy",
    "dreamstate-socal-2025:d1:the-sequence:1900:blazy"
   ],
   "firstSeen": "2025-11-21",
-  "lastSeen": "2025-11-21",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -11280,6 +11405,21 @@
   "links": []
  },
  {
+  "key": "botcash",
+  "name": "Botcash",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-botcash"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bou",
   "name": "Bou",
   "aliases": [
@@ -11846,11 +11986,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-brennan-heart",
    "beyond-wonderland-socal-2026:d1:cheshire-woods:0000:brennan-heart",
    "escape-halloween-2025:d1:feeding-grounds:2300:brennan-heart"
   ],
   "firstSeen": "2025-10-31",
-  "lastSeen": "2026-03-27",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -13141,6 +13282,7 @@
   "key": "camelphat",
   "name": "CamelPhat",
   "aliases": [
+   "Camelphat",
    "CAMELPHAT"
   ],
   "kind": "performer",
@@ -13148,6 +13290,7 @@
   "projects": [],
   "billings": [
    "edc-thailand-2026:edcth-camelphat",
+   "tomorrowland-thailand-2026:tmlth-camelphat",
    "edc-orlando-2019:d3:neongarden:1700:camelphat",
    "edc-orlando-2022:d1:neon-garden:2100:camelphat",
    "lollapalooza-2019:d4:perry-s:untimed:camelphat",
@@ -13201,6 +13344,21 @@
   ],
   "firstSeen": "2018-10-07",
   "lastSeen": "2018-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "camila-jun",
+  "name": "Camila Jun",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-camila-jun"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -13426,6 +13584,21 @@
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "capoon",
+  "name": "Capoon",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-capoon"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -13764,6 +13937,21 @@
   ],
   "firstSeen": "2022-10-07",
   "lastSeen": "2022-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carly-wilford",
+  "name": "Carly Wilford",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-carly-wilford"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -16511,6 +16699,21 @@
   "links": []
  },
  {
+  "key": "claudine",
+  "name": "CLAUDINE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-claudine"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "clawz",
   "name": "Clawz",
   "aliases": [
@@ -16874,6 +17077,21 @@
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2025-11-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "coco-bevan",
+  "name": "Coco Bevan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-coco-bevan"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -17832,6 +18050,7 @@
   "billings": [
    "edc-lv-2026:q6",
    "dwp-2026:dwp-cosmic-gate",
+   "tomorrowland-thailand-2026:tmlth-cosmic-gate",
    "dreamstate-socal-2016:d1:the-dream:0000:cosmic-gate",
    "dreamstate-socal-2023:d2:the-dream:2000:cosmic-gate",
    "edc-las-vegas-2022:d1:quantum-valley:0215:cosmic-gate",
@@ -18919,6 +19138,7 @@
    "edc-lv-2026:w17",
    "ultra-miami-2026:ul97",
    "edc-thailand-2026:edcth-da-tweekaz",
+   "tomorrowland-thailand-2026:tmlth-da-tweekaz",
    "edc-las-vegas-2022:d2:wasteland:0030:da-tweekaz",
    "edc-las-vegas-2024:d3:wasteland:0130:da-tweekaz",
    "edc-las-vegas-2025:d3:wasteland:0130:da-tweekaz",
@@ -19002,6 +19222,21 @@
   ],
   "firstSeen": "2013-08-03",
   "lastSeen": "2013-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dadoo",
+  "name": "DaDoo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-dadoo"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -21269,6 +21504,21 @@
   "links": []
  },
  {
+  "key": "dennis-gold",
+  "name": "Dennis Gold",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-dennis-gold"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "denzel-curry",
   "name": "Denzel Curry",
   "aliases": [],
@@ -21969,9 +22219,9 @@
  },
  {
   "key": "dimitri-vegas-and-like-mike",
-  "name": "Dimitri Vegas and Like Mike",
+  "name": "Dimitri Vegas & Like Mike",
   "aliases": [
-   "Dimitri Vegas & Like Mike",
+   "Dimitri Vegas and Like Mike",
    "DIMITRI VEGAS & LIKE MIKE"
   ],
   "kind": "performer",
@@ -21979,12 +22229,28 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-dimitri-vegas-and-like-mike-d1",
+   "tomorrowland-thailand-2026:tmlth-dimitri-vegas-and-like-mike",
    "beyond-wonderland-socal-2012:d1:caterpillars-garden:1830:dimitri-vegas-and-like-mike",
    "edc-orlando-2017:d2:kineticfield:2002:dimitri-vegas-and-like-mike",
    "nocturnal-wonderland-2012:d2:queen-s-grounds:1730:dimitri-vegas-and-like-mike"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2026-10-30",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dino-lenny",
+  "name": "Dino Lenny",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-dino-lenny"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -22665,6 +22931,22 @@
   "links": []
  },
  {
+  "key": "dj-boring",
+  "name": "DJ Boring",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-dj-boring",
+   "tomorrowland-thailand-2026:tmlth-dj-boring-b2b-luuk-van-dijk"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-cassandra",
   "name": "DJ Cassandra",
   "aliases": [],
@@ -23265,6 +23547,22 @@
   "links": []
  },
  {
+  "key": "dj-licious",
+  "name": "DJ Licious",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-dj-licious-d1",
+   "tomorrowland-thailand-2026:tmlth-dj-licious-d2"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-m-a-d-e",
   "name": "DJ M.A.D.E.",
   "aliases": [],
@@ -23443,6 +23741,21 @@
   "links": []
  },
  {
+  "key": "dj-sally",
+  "name": "DJ Sally",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-dj-sally"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-security",
   "name": "DJ Security",
   "aliases": [],
@@ -23594,11 +23907,12 @@
    "edc-lv-2026:n3",
    "edc-lv-2026:b21",
    "escape-halloween-2026:esc-dj-tennis-d1",
+   "tomorrowland-thailand-2026:tmlth-dj-tennis",
    "edc-orlando-2019:d1:neongarden:1800:tiga-b2b-dj-tennis",
    "escape-halloween-2017:d2:cannibals-tea-party:2000:dj-tennis"
   ],
   "firstSeen": "2017-10-28",
-  "lastSeen": "2026-10-30",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -25109,6 +25423,21 @@
   "links": []
  },
  {
+  "key": "dubvision",
+  "name": "Dubvision",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-dubvision"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "duck-sauce",
   "name": "Duck Sauce",
   "aliases": [],
@@ -25394,10 +25723,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-dvbbs",
    "lollapalooza-2017:d4:perry-s:1900:dvbbs"
   ],
   "firstSeen": "2017-08-06",
-  "lastSeen": "2017-08-06",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -26356,6 +26686,21 @@
   "links": []
  },
  {
+  "key": "elfigo",
+  "name": "Elfigo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-elfigo"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "eli-and-fur",
   "name": "Eli & Fur",
   "aliases": [
@@ -26368,6 +26713,7 @@
    "edc-lv-2026:q25",
    "arc-2026:arc-eli-and-fur-b2b-cristoph-midway-d1",
    "dwp-2026:dwp-eli-and-fur",
+   "tomorrowland-thailand-2026:tmlth-eli-and-fur-b2b-yotto",
    "dreamstate-socal-2025:d2:the-dream:1840:eli-and-fur",
    "nocturnal-wonderland-2018:d1:sunken-garden:2330:eli-and-fur",
    "nocturnal-wonderland-2021:d2:owloch-grove:2230:eli-and-fur"
@@ -28447,6 +28793,8 @@
   ],
   "billings": [
    "dreamstate-socal-2026:dssc-ferry-corsten-and-marsh",
+   "tomorrowland-thailand-2026:tmlth-ferry-corsten",
+   "tomorrowland-thailand-2026:tmlth-ferry-corsten-b2b-marsh",
    "dreamstate-socal-2019:d1:the-dream:0000:ferry-corsten",
    "dreamstate-socal-2023:d2:the-dream:2100:ferry-corsten",
    "dreamstate-socal-2025:d2:the-dream:1940:ferry-corsten",
@@ -28455,7 +28803,7 @@
    "edc-orlando-2022:d1:stereo-bloom:2030:ferry-corsten"
   ],
   "firstSeen": "2019-11-22",
-  "lastSeen": "2026-11-20",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -28698,6 +29046,21 @@
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "firaga",
+  "name": "Firaga",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-firaga"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -29388,6 +29751,7 @@
   "billings": [
    "lost-lands-2026:lls21",
    "countdown-nye-2026:cdny-flosstradamus",
+   "tomorrowland-thailand-2026:tmlth-flosstradamus-b2b-yellow-claw",
    "acl-2015:d1:miller-lite:1900:flosstradamus",
    "acl-2015:d4:miller-lite:1900:flosstradamus",
    "escape-halloween-2017:d1:ghouls-graveyard:0100:flosstradamus",
@@ -30477,6 +30841,7 @@
    "edc-lv-2026:k22",
    "edc-thailand-2026:edcth-funk-tribu",
    "edc-thailand-2026:edcth-afem-syko-b2b-funk-tribu",
+   "tomorrowland-thailand-2026:tmlth-funk-tribu",
    "dreamstate-socal-2024:d1:the-void:1900:funk-tribu",
    "edc-las-vegas-2025:d2:quantum-valley:0030:funk-tribu",
    "edc-las-vegas-2025:d3:neon-garden:0000:funk-tribu-b2b-tta",
@@ -31684,6 +32049,21 @@
   "links": []
  },
  {
+  "key": "ghost-rider",
+  "name": "Ghost Rider",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-ghost-rider"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ghostemane",
   "name": "Ghostemane",
   "aliases": [],
@@ -32486,18 +32866,20 @@
   "key": "goldfish",
   "name": "GoldFish",
   "aliases": [
+   "Goldfish",
    "GOLDFISH"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-goldfish",
    "acl-2017:d3:tito-s-handmade-vodka:1615:goldfish",
    "acl-2017:d6:tito-s-handmade-vodka:untimed:goldfish",
    "nocturnal-wonderland-2017:d1:labyrinth:2105:goldfish"
   ],
   "firstSeen": "2017-09-15",
-  "lastSeen": "2017-10-15",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -34210,19 +34592,23 @@
  },
  {
   "key": "halo",
-  "name": "HALO",
+  "name": "Halo",
   "aliases": [
-   "HALÕ"
+   "HALO",
+   "HALÕ",
+   "HALŌ"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul49",
-   "dwp-2026:dwp-halo"
+   "dwp-2026:dwp-halo",
+   "tomorrowland-thailand-2026:tmlth-halo-d1",
+   "tomorrowland-thailand-2026:tmlth-halo-d3"
   ],
   "firstSeen": "2026-03-28",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -34388,6 +34774,7 @@
    "hard-summer-2026:hs1-hannah-laing",
    "dreamstate-socal-2026:dssc-hannah-laing-and-marie-vaunt",
    "edc-thailand-2026:edcth-hannah-laing",
+   "tomorrowland-thailand-2026:tmlth-hannah-laing",
    "edc-las-vegas-2024:d2:stereo-bloom:2100:hannah-laing",
    "edc-las-vegas-2024:d2:rynobus:2300:hannah-laing",
    "edc-las-vegas-2025:d2:quantum-valley:2330:hannah-laing",
@@ -35072,6 +35459,36 @@
   ],
   "firstSeen": "2026-06-07",
   "lastSeen": "2026-06-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "henri-bergmann",
+  "name": "Henri Bergmann",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-henri-bergmann"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "henri-pfr",
+  "name": "Henri PFR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-henri-pfr"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -35778,15 +36195,32 @@
   "links": []
  },
  {
+  "key": "honey-gee",
+  "name": "Honey Gee",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-honey-gee"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "honeyluv",
   "name": "HoneyLuv",
   "aliases": [
-   "HONEYLUV"
+   "HONEYLUV",
+   "Honeyluv"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-ameme-b2b-honeyluv",
    "edc-las-vegas-2022:d2:stereo-bloom:2100:honeyluv",
    "edc-las-vegas-2024:d3:stereo-bloom:0145:honeyluv",
    "edc-orlando-2023:d2:stereo-bloom:1830:honeyluv",
@@ -35795,7 +36229,7 @@
    "escape-halloween-2022:d2:sanitarium:1715:honeyluv"
   ],
   "firstSeen": "2022-05-21",
-  "lastSeen": "2024-11-09",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -36503,6 +36937,21 @@
   "links": []
  },
  {
+  "key": "hyalyte",
+  "name": "Hyalyte",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-hyalyte"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hybrid-minds",
   "name": "Hybrid Minds",
   "aliases": [],
@@ -36749,6 +37198,7 @@
    "escape-halloween-2026:esc-ian-asher-d2",
    "lights-all-night-2026:lan-ian-asher",
    "dwp-2026:dwp-ian-asher",
+   "tomorrowland-thailand-2026:tmlth-ian-asher",
    "beyond-wonderland-socal-2026:d1:queen-s-domain:1740:ian-asher",
    "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1500:ian-asher-b2b-wuki"
   ],
@@ -37301,6 +37751,7 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-infected-mushroom",
+   "tomorrowland-thailand-2026:tmlth-infected-mushroom",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:2300:infected-mushroom",
    "dreamstate-socal-2016:d1:the-sequence:0000:infected-mushroom-psytrance-dj-set",
    "dreamstate-socal-2023:d1:the-sequence:0000:infected-mushroom",
@@ -37308,7 +37759,7 @@
    "edc-orlando-2017:d1:neongarden:1830:infected-mushroom-dj-set"
   ],
   "firstSeen": "2016-11-25",
-  "lastSeen": "2026-11-20",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -38007,6 +38458,21 @@
   ],
   "firstSeen": "2019-08-04",
   "lastSeen": "2019-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "j-nana",
+  "name": "J-Nana",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-j-nana"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -38916,6 +39382,23 @@
   "links": []
  },
  {
+  "key": "jan-v",
+  "name": "Jan V",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-jan-v-d1",
+   "tomorrowland-thailand-2026:tmlth-jan-v-d2",
+   "tomorrowland-thailand-2026:tmlth-jan-v-d3"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jane-ellen-bryant",
   "name": "Jane Ellen Bryant",
   "aliases": [],
@@ -39570,6 +40053,23 @@
   "links": []
  },
  {
+  "key": "jelle-dk",
+  "name": "Jelle DK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-jelle-dk-d1",
+   "tomorrowland-thailand-2026:tmlth-jelle-dk-d2",
+   "tomorrowland-thailand-2026:tmlth-jelle-dk-d3"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jelly-roll",
   "name": "Jelly Roll",
   "aliases": [],
@@ -39695,6 +40195,23 @@
   ],
   "firstSeen": "2023-11-17",
   "lastSeen": "2024-05-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jerrooo",
+  "name": "Jerrooo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-jerrooo-d1",
+   "tomorrowland-thailand-2026:tmlth-jerrooo-d2",
+   "tomorrowland-thailand-2026:tmlth-jerrooo-d3"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -39989,6 +40506,21 @@
   ],
   "firstSeen": "2025-08-03",
   "lastSeen": "2026-12-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jijie",
+  "name": "Jijie",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-jijie"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -40619,6 +41151,21 @@
   "links": []
  },
  {
+  "key": "john-newman",
+  "name": "John Newman",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-john-newman"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "john-o-callaghan",
   "name": "John O'Callaghan",
   "aliases": [
@@ -40999,6 +41546,21 @@
   "links": []
  },
  {
+  "key": "jonnie-b",
+  "name": "Jonnie B",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-jonnie-b"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jonny-atom",
   "name": "JONNY ATOM",
   "aliases": [],
@@ -41115,10 +41677,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul84"
+   "ultra-miami-2026:ul84",
+   "tomorrowland-thailand-2026:tmlth-joris-voorn-b2b-krystal-klear"
   ],
   "firstSeen": "2026-03-28",
-  "lastSeen": "2026-03-28",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -41424,6 +41987,21 @@
   "links": []
  },
  {
+  "key": "joulie",
+  "name": "JOULIE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-joulie"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jovigibs",
   "name": "Jovigibs",
   "aliases": [],
@@ -41435,6 +42013,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jowaves",
+  "name": "JoWaves",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-jowaves"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -42855,6 +43448,21 @@
   "links": []
  },
  {
+  "key": "karty",
+  "name": "KARTY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-karty"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kas-st",
   "name": "KAS:ST",
   "aliases": [],
@@ -43764,12 +44372,14 @@
   "billings": [
    "edc-lv-2026:cg25",
    "arc-2026:arc-chris-avantgarde-b2b-kevin-de-vries-grid-d3",
+   "tomorrowland-thailand-2026:tmlth-kevin-de-vries",
+   "tomorrowland-thailand-2026:tmlth-kevin-de-vries-b2b-morten",
    "edc-las-vegas-2024:d2:stereo-bloom:0030:kevin-de-vries",
    "edc-las-vegas-2024:d3:quantum-valley:0215:kevin-de-vries",
    "edc-orlando-2025:d1:neongarden:1930:kevin-de-vries"
   ],
   "firstSeen": "2024-05-18",
-  "lastSeen": "2026-09-06",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -44970,11 +45580,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-kolsch",
    "edc-orlando-2022:d1:neon-garden:1930:kolsch",
    "escape-halloween-2019:d1:sewer-district:2000:kolsch"
   ],
   "firstSeen": "2019-10-25",
-  "lastSeen": "2022-11-11",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -45357,6 +45968,36 @@
   ],
   "firstSeen": "2022-10-28",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kryder",
+  "name": "Kryder",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-kryder"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "krystal-klear",
+  "name": "Krystal Klear",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-joris-voorn-b2b-krystal-klear"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -46142,10 +46783,11 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:k1",
-   "ultra-miami-2026:ul36"
+   "ultra-miami-2026:ul36",
+   "tomorrowland-thailand-2026:tmlth-laidback-luke"
   ],
   "firstSeen": "2026-03-27",
-  "lastSeen": "2026-05-15",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -47267,6 +47909,21 @@
   "links": []
  },
  {
+  "key": "lennert-wolfs",
+  "name": "Lennert Wolfs",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-lennert-wolfs"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lennon-stella",
   "name": "Lennon Stella",
   "aliases": [],
@@ -47960,6 +48617,7 @@
    "edc-lv-2026:cg18",
    "ultra-miami-2026:ul12",
    "dwp-2026:dwp-lilly-palmer",
+   "tomorrowland-thailand-2026:tmlth-lilly-palmer",
    "beyond-wonderland-socal-2026:d2:the-looking-glass:2130:lilly-palmer",
    "dreamstate-socal-2025:d2:the-void:0000:lilly-palmer",
    "edc-las-vegas-2024:d1:neon-garden:2200:lilly-palmer"
@@ -48146,11 +48804,12 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:cg19",
+   "tomorrowland-thailand-2026:tmlth-linska",
    "edc-las-vegas-2025:d1:stereo-bloom:1900:linska",
    "hard-summer-2025:d2:hard-stage:1500:linska"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2026-05-17",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -48887,6 +49546,21 @@
   "links": []
  },
  {
+  "key": "lonskii",
+  "name": "Lonskii",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-lonskii"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "loofy",
   "name": "LOOFY",
   "aliases": [],
@@ -48898,6 +49572,21 @@
   ],
   "firstSeen": "2025-11-08",
   "lastSeen": "2025-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lora-matia",
+  "name": "Lora Matia",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-lora-matia"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -49055,6 +49744,7 @@
   "projects": [],
   "billings": [
    "sunset-on-the-river-2027:sotr-lost-frequencies",
+   "tomorrowland-thailand-2026:tmlth-lost-frequencies",
    "edc-las-vegas-2024:d3:kinetic-field:2100:lost-frequencies",
    "edc-orlando-2024:d1:kinetic-field:1632:lost-frequencies",
    "escape-halloween-2024:d1:the-grimm:1945:lost-frequencies"
@@ -49496,6 +50186,21 @@
   ],
   "firstSeen": "2026-03-27",
   "lastSeen": "2026-03-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lucas-and-steve",
+  "name": "Lucas & Steve",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-lucas-and-steve"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -50088,6 +50793,21 @@
   "links": []
  },
  {
+  "key": "luna-and-lenthe",
+  "name": "Luna & Lenthe",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-luna-and-lenthe"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "luna-luna",
   "name": "LUNA LUNA",
   "aliases": [],
@@ -50207,11 +50927,13 @@
    "edc-lv-2026:s3",
    "hard-summer-2026:hs1-dj-seinfeld-b2b-luuk-van-dijk",
    "arc-2026:arc-luuk-van-dijk-b2b-sidney-charles-midway-d2",
+   "tomorrowland-thailand-2026:tmlth-dj-boring-b2b-luuk-van-dijk",
+   "tomorrowland-thailand-2026:tmlth-luuk-van-dijk",
    "edc-orlando-2025:d1:stereobloom:1630:luuk-van-dijk",
    "edc-orlando-2025:d1:casabacardi:2130:luuk-van-dijk"
   ],
   "firstSeen": "2025-11-07",
-  "lastSeen": "2026-09-05",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -50694,16 +51416,19 @@
  },
  {
   "key": "mad-maxx",
-  "name": "MAD MAXX",
-  "aliases": [],
+  "name": "Mad Maxx",
+  "aliases": [
+   "MAD MAXX"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-mad-maxx-b2b-stryker",
    "dreamstate-socal-2025:d1:the-sequence:1700:mad-maxx"
   ],
   "firstSeen": "2025-11-21",
-  "lastSeen": "2025-11-21",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -51257,6 +51982,21 @@
   "links": []
  },
  {
+  "key": "makasi",
+  "name": "Makasi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-makasi"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "makeshift-prodigy",
   "name": "Makeshift Prodigy",
   "aliases": [],
@@ -51535,15 +52275,18 @@
  {
   "key": "mandy",
   "name": "Mandy",
-  "aliases": [],
+  "aliases": [
+   "MANDY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-mandy",
    "edc-las-vegas-2024:d3:wasteland:2130:mandy"
   ],
   "firstSeen": "2024-05-19",
-  "lastSeen": "2024-05-19",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -51651,6 +52394,21 @@
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2022-05-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "manuals",
+  "name": "Manuals",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-manuals"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -52528,10 +53286,12 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-ferry-corsten-and-marsh",
+   "tomorrowland-thailand-2026:tmlth-ferry-corsten-b2b-marsh",
+   "tomorrowland-thailand-2026:tmlth-marsh",
    "edc-las-vegas-2024:d3:quantum-valley:2300:marsh"
   ],
   "firstSeen": "2024-05-19",
-  "lastSeen": "2026-11-20",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -52620,6 +53380,7 @@
    "edc-orlando-2026:ecu25",
    "ultra-miami-2026:ul6",
    "edc-thailand-2026:edcth-martin-garrix",
+   "tomorrowland-thailand-2026:tmlth-martin-garrix",
    "acl-2017:d1:homeaway:1915:martin-garrix",
    "acl-2017:d4:homeaway:untimed:martin-garrix",
    "edc-las-vegas-2024:d3:circuit-grounds:0015:martin-garrix",
@@ -52944,6 +53705,21 @@
   ],
   "firstSeen": "2024-05-17",
   "lastSeen": "2024-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "matisse-and-sadko",
+  "name": "Matisse & Sadko",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-matisse-and-sadko"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -53297,6 +54073,21 @@
   "links": []
  },
  {
+  "key": "mattn",
+  "name": "MATTN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-mattn"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "matty-ralph",
   "name": "Matty Ralph",
   "aliases": [
@@ -53534,6 +54325,21 @@
   "links": []
  },
  {
+  "key": "maxi-meraki",
+  "name": "Maxi Meraki",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-maxi-meraki"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "maximiano",
   "name": "Maximiano",
   "aliases": [],
@@ -53623,6 +54429,21 @@
   ],
   "firstSeen": "2013-03-16",
   "lastSeen": "2013-03-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "maysaa",
+  "name": "Maysaa",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-maysaa"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -53765,6 +54586,21 @@
   ],
   "firstSeen": "2022-10-16",
   "lastSeen": "2022-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "meaghan",
+  "name": "Meaghan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-meaghan"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -54000,6 +54836,21 @@
   "links": []
  },
  {
+  "key": "meguru",
+  "name": "Meguru",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-meguru"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "megusta",
   "name": "Megusta",
   "aliases": [],
@@ -54092,6 +54943,21 @@
   ],
   "firstSeen": "2026-12-31",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "meltmode",
+  "name": "Meltmode",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-meltmode"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -54200,6 +55066,21 @@
   ],
   "firstSeen": "2023-11-12",
   "lastSeen": "2023-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "merow",
+  "name": "Merow",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-merow"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -54839,6 +55720,21 @@
   "links": []
  },
  {
+  "key": "mike-bond",
+  "name": "Mike Bond",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-mike-bond"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mike-d-5d",
   "name": "MIKE D 5D",
   "aliases": [],
@@ -55141,10 +56037,11 @@
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul134",
+   "tomorrowland-thailand-2026:tmlth-mind-against",
    "edc-las-vegas-2024:d3:quantum-valley:0330:mind-against"
   ],
   "firstSeen": "2024-05-19",
-  "lastSeen": "2026-03-29",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -55374,6 +56271,7 @@
    "ultra-miami-2026:ul17",
    "outside-lands-2026:os125",
    "edc-thailand-2026:edcth-miss-monique",
+   "tomorrowland-thailand-2026:tmlth-miss-monique",
    "dreamstate-socal-2025:d2:the-dream:2140:miss-monique",
    "edc-las-vegas-2025:d3:quantum-valley:2300:miss-monique",
    "edc-orlando-2022:d2:kinetic-field:1430:miss-monique",
@@ -56615,13 +57513,14 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-morten-d1",
+   "tomorrowland-thailand-2026:tmlth-kevin-de-vries-b2b-morten",
    "edc-las-vegas-2025:d3:kinetic-field:2200:artbat-b2b-morten",
    "edc-orlando-2021:d1:kinetic-field:1610:morten",
    "edc-orlando-2021:d1:corona-electric-beach:2200:morten",
    "edc-orlando-2024:d2:kinetic-field:1632:morten"
   ],
   "firstSeen": "2021-11-12",
-  "lastSeen": "2026-10-30",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -57678,9 +58577,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-thailand-2026:edcth-nakadia"
+   "edc-thailand-2026:edcth-nakadia",
+   "tomorrowland-thailand-2026:tmlth-nakadia"
   ],
-  "firstSeen": "2026-12-19",
+  "firstSeen": "2026-12-12",
   "lastSeen": "2026-12-19",
   "photo": null,
   "links": []
@@ -58244,6 +59144,21 @@
   "links": []
  },
  {
+  "key": "neon",
+  "name": "Neon",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-neon"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "neon-black",
   "name": "Neon Black",
   "aliases": [],
@@ -58351,10 +59266,11 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-nervo-d1",
+   "tomorrowland-thailand-2026:tmlth-nervo",
    "beyond-wonderland-socal-2012:d1:caterpillars-garden:2045:nervo"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2026-10-30",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -58399,6 +59315,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-netsky",
    "beyond-wonderland-socal-2012:d1:chess-village:0100:netsky",
    "edc-las-vegas-2025:d2:basspod:0230:netsky",
    "edc-orlando-2024:d2:circuit-grounds:1755:netsky",
@@ -58407,7 +59324,7 @@
    "nocturnal-wonderland-2018:d1:labyrinth:2300:netsky-dj-set"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2025-05-17",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -58877,13 +59794,14 @@
    "edc-lv-2026:c29",
    "edc-orlando-2026:ecs29",
    "arc-2026:arc-nico-moreno-expansions-d2",
+   "tomorrowland-thailand-2026:tmlth-nico-moreno",
    "beyond-wonderland-socal-2026:d2:the-looking-glass:0030:nico-moreno",
    "edc-las-vegas-2025:d3:neon-garden:0300:nico-moreno-b2b-i-hate-models",
    "edc-orlando-2025:d3:neongarden:2230:nico-moreno",
    "hard-summer-2025:d2:green-stage:2100:nico-moreno"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -59860,6 +60778,21 @@
   "links": []
  },
  {
+  "key": "nome",
+  "name": "NOME.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-nome"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "noms",
   "name": "NOMS",
   "aliases": [],
@@ -60173,17 +61106,20 @@
  },
  {
   "key": "novah",
-  "name": "NOVAH",
-  "aliases": [],
+  "name": "Novah",
+  "aliases": [
+   "NOVAH"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-novah",
    "beyond-wonderland-socal-2026:d2:the-looking-glass:2000:novah",
    "dreamstate-socal-2025:d2:the-void:2300:novah"
   ],
   "firstSeen": "2025-11-22",
-  "lastSeen": "2026-03-28",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -60292,6 +61228,21 @@
   ],
   "firstSeen": "2022-10-29",
   "lastSeen": "2022-10-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nuttrix",
+  "name": "Nuttrix",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-nuttrix"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -61243,6 +62194,21 @@
   "links": []
  },
  {
+  "key": "onfaya",
+  "name": "Onfaya",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-onfaya"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "onlynumbers",
   "name": "Onlynumbers",
   "aliases": [],
@@ -61364,10 +62330,11 @@
   "projects": [],
   "billings": [
    "hard-summer-2026:hs2-oppidan",
+   "tomorrowland-thailand-2026:tmlth-oppidan",
    "edc-las-vegas-2025:d2:cosmic-meadow:2000:oppidan"
   ],
   "firstSeen": "2025-05-17",
-  "lastSeen": "2026-08-02",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -62156,6 +63123,21 @@
   ],
   "firstSeen": "2026-07-04",
   "lastSeen": "2026-07-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "palmera",
+  "name": "Palmera",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-palmera"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -63185,10 +64167,11 @@
    "hard-summer-2026:hs1-pegassi",
    "arc-2026:arc-pegassi-area909-d1",
    "dreamstate-socal-2026:dssc-pegassi",
+   "tomorrowland-thailand-2026:tmlth-pegassi",
    "escape-halloween-2025:d1:the-warehouse:2100:pegassi"
   ],
   "firstSeen": "2025-10-31",
-  "lastSeen": "2026-11-20",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -63483,6 +64466,21 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "petra",
+  "name": "PETRA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-petra"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -64060,6 +65058,21 @@
   ],
   "firstSeen": "2026-10-30",
   "lastSeen": "2026-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pixzy",
+  "name": "Pixzy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-pixzy"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -65169,6 +66182,21 @@
   "links": []
  },
  {
+  "key": "puffer-p",
+  "name": "Puffer P",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-puffer-p"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pujol",
   "name": "Pujol",
   "aliases": [],
@@ -65674,6 +66702,21 @@
   "links": []
  },
  {
+  "key": "quintino",
+  "name": "Quintino",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-quintino"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "quix",
   "name": "QUIX",
   "aliases": [],
@@ -65748,6 +66791,8 @@
    "nocturnal-wonderland-2026:nw-r3hab",
    "countdown-nye-2026:cdny-r3hab",
    "dwp-2026:dwp-r3hab",
+   "tomorrowland-thailand-2026:tmlth-r3hab",
+   "tomorrowland-thailand-2026:tmlth-artbat-b2b-r3hab",
    "beyond-wonderland-socal-2013:d1:madhatter-s-castle:2230:r3hab",
    "edc-orlando-2019:d3:kineticfield:1819:r3hab",
    "edc-orlando-2021:d1:kinetic-field:2111:afrojack-b2b-r3hab",
@@ -66076,6 +67121,21 @@
   ],
   "firstSeen": "2021-10-09",
   "lastSeen": "2021-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "raiden",
+  "name": "Raiden",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-raiden"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -66416,6 +67476,21 @@
   "links": []
  },
  {
+  "key": "rave-republic",
+  "name": "Rave Republic",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-rave-republic"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ravenscoon",
   "name": "Ravenscoon",
   "aliases": [],
@@ -66576,19 +67651,21 @@
   "key": "rayray",
   "name": "RayRay",
   "aliases": [
+   "Rayray",
    "RAYRAY"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-rayray",
    "edc-las-vegas-2025:d1:beatbox-art-car:0230:rayray",
    "edc-las-vegas-2025:d2:wasteland:0330:rayray",
    "edc-orlando-2024:d2:kinetic-field:1432:rayray",
    "escape-halloween-2024:d2:the-grimm:1600:rayray"
   ],
   "firstSeen": "2024-10-26",
-  "lastSeen": "2025-05-17",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -66674,6 +67751,21 @@
   ],
   "firstSeen": "2021-09-19",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rebeca-ark",
+  "name": "Rebeca Ark",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-rebeca-ark"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -68075,6 +69167,21 @@
   "links": []
  },
  {
+  "key": "riviere",
+  "name": "Riviere",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-riviere"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rivka-m",
   "name": "Rivka M",
   "aliases": [],
@@ -68652,6 +69759,21 @@
   "links": []
  },
  {
+  "key": "romeo-blanco",
+  "name": "Romeo Blanco",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-romeo-blanco"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "romes",
   "name": "ROMES",
   "aliases": [],
@@ -68844,6 +69966,21 @@
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2022-05-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "row1",
+  "name": "Row1",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-row1"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -69625,14 +70762,17 @@
  },
  {
   "key": "sabai",
-  "name": "SABAI",
-  "aliases": [],
+  "name": "Sabai",
+  "aliases": [
+   "SABAI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "nocturnal-wonderland-2026:nw-sabai",
-   "edc-thailand-2026:edcth-sabai"
+   "edc-thailand-2026:edcth-sabai",
+   "tomorrowland-thailand-2026:tmlth-sabai"
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-12-18",
@@ -69868,6 +71008,21 @@
   ],
   "firstSeen": "2017-08-04",
   "lastSeen": "2017-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "saint-ludo",
+  "name": "Saint Ludo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-saint-ludo"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -71431,6 +72586,21 @@
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2026-03-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "semsei",
+  "name": "Semsei",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-semsei"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -74251,6 +75421,21 @@
   "links": []
  },
  {
+  "key": "sm1le",
+  "name": "Sm1le",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-sm1le"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sm6",
   "name": "SM6",
   "aliases": [],
@@ -74783,11 +75968,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-solardo",
    "edc-orlando-2019:d3:neongarden:1530:solardo",
    "nocturnal-wonderland-2019:d2:sunken-garden:2200:camelphat-b2b-solardo"
   ],
   "firstSeen": "2019-09-15",
-  "lastSeen": "2019-11-10",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -74995,6 +76181,21 @@
   ],
   "firstSeen": "2019-11-22",
   "lastSeen": "2023-11-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "somnia",
+  "name": "Somnia",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-somnia"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -75527,11 +76728,12 @@
    "turbulences"
   ],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-amber-broos-b2b-space-92",
    "dreamstate-socal-2025:d2:the-void:2200:space-92",
    "edc-orlando-2024:d3:kinetic-field:1432:space-92"
   ],
   "firstSeen": "2024-11-10",
-  "lastSeen": "2025-11-22",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -76542,6 +77744,7 @@
    "ultra-miami-2026:ul53",
    "escape-halloween-2026:esc-steve-aoki-d1",
    "decadence-arizona-2026:daz-steve-aoki",
+   "tomorrowland-thailand-2026:tmlth-steve-aoki",
    "beyond-wonderland-socal-2012:d1:caterpillars-garden:0045:steve-aoki",
    "edc-las-vegas-2024:d1:kinetic-field:0413:steve-aoki",
    "edc-orlando-2019:d1:kineticfield:2112:steve-aoki",
@@ -76910,6 +78113,21 @@
   "links": []
  },
  {
+  "key": "stryker",
+  "name": "Stryker",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-mad-maxx-b2b-stryker"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "stumpi",
   "name": "Stumpi",
   "aliases": [],
@@ -77040,6 +78258,7 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:w26",
+   "tomorrowland-thailand-2026:tmlth-sub-zero-project",
    "beyond-wonderland-socal-2026:d1:cheshire-woods:2300:sub-zero-project",
    "edc-las-vegas-2022:d3:wasteland:0230:sub-zero-project",
    "edc-las-vegas-2024:d2:wasteland:0030:sub-zero-project",
@@ -77048,7 +78267,7 @@
    "escape-halloween-2022:d1:sanitarium:2200:sub-zero-project"
   ],
   "firstSeen": "2019-10-25",
-  "lastSeen": "2026-05-17",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -77956,16 +79175,19 @@
  },
  {
   "key": "swedish-house-mafia",
-  "name": "SWEDISH HOUSE MAFIA",
-  "aliases": [],
+  "name": "Swedish House Mafia",
+  "aliases": [
+   "SWEDISH HOUSE MAFIA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "portola-2026:pt2-swedish-house-mafia"
+   "portola-2026:pt2-swedish-house-mafia",
+   "tomorrowland-thailand-2026:tmlth-swedish-house-mafia"
   ],
   "firstSeen": "2026-09-27",
-  "lastSeen": "2026-09-27",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -78178,6 +79400,21 @@
   ],
   "firstSeen": "2025-11-22",
   "lastSeen": "2026-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ta-rek",
+  "name": "TA:REK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-ta-rek"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -82909,6 +84146,21 @@
   "links": []
  },
  {
+  "key": "third-party",
+  "name": "Third Party",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-third-party"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "thirty-seconds-to-mars",
   "name": "THIRTY SECONDS TO MARS",
   "aliases": [],
@@ -83245,6 +84497,21 @@
   ],
   "firstSeen": "2019-11-08",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tiger-drama",
+  "name": "Tiger Drama",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-tiger-drama"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -84506,6 +85773,21 @@
   ],
   "firstSeen": "2024-11-23",
   "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tripical-note",
+  "name": "Tripical Note",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-tripical-note"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -86287,10 +87569,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-vegas",
    "dreamstate-socal-2024:d1:the-sequence:2000:vegas"
   ],
   "firstSeen": "2024-11-22",
-  "lastSeen": "2024-11-22",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -86528,6 +87811,21 @@
   "links": []
  },
  {
+  "key": "vicky-kroon",
+  "name": "Vicky Kroon",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-vicky-kroon"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "victor-calderone",
   "name": "Victor Calderone",
   "aliases": [],
@@ -86735,6 +88033,7 @@
   "billings": [
    "ultra-miami-2026:ul11",
    "dreamstate-socal-2026:dssc-vini-vici",
+   "tomorrowland-thailand-2026:tmlth-vini-vici",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:0100:vini-vici",
    "dreamstate-socal-2016:d2:the-sequence:2100:vini-vici",
    "dreamstate-socal-2019:d2:the-sequence:2200:vini-vici",
@@ -86746,7 +88045,7 @@
    "edc-orlando-2024:d3:stereo-bloom:1745:vini-vici-sunset-set"
   ],
   "firstSeen": "2016-11-26",
-  "lastSeen": "2026-11-20",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -88210,10 +89509,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dwp-2026:dwp-whisnu-santika"
+   "dwp-2026:dwp-whisnu-santika",
+   "tomorrowland-thailand-2026:tmlth-whisnu-santika"
   ],
   "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -88265,6 +89565,21 @@
   ],
   "firstSeen": "2015-08-01",
   "lastSeen": "2015-08-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "whiteno1se",
+  "name": "WHITENO1SE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-blastoyz-b2b-whiteno1se"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -89407,6 +90722,21 @@
   "links": []
  },
  {
+  "key": "wukong",
+  "name": "Wukong",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-wukong"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wunderhorse",
   "name": "Wunderhorse",
   "aliases": [],
@@ -89528,10 +90858,11 @@
    "outside-lands-2026:os122",
    "hard-summer-2026:hs1-x-club-b2b-atrip",
    "arc-2026:arc-nia-archives-b2b-x-club-area909-d3",
+   "tomorrowland-thailand-2026:tmlth-x-club",
    "edc-las-vegas-2025:d1:bionic-jungle:0230:x-club"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2026-09-06",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -89659,6 +90990,21 @@
   "links": []
  },
  {
+  "key": "xenia-dia",
+  "name": "Xenia Dia",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-xenia-dia"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "xijaro-and-pitch",
   "name": "XiJaro & Pitch",
   "aliases": [],
@@ -89736,6 +91082,21 @@
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2022-10-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "xy",
+  "name": "XY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-xy"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -89987,6 +91348,8 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-flosstradamus-b2b-yellow-claw",
+   "tomorrowland-thailand-2026:tmlth-yellow-claw",
    "edc-las-vegas-2022:d2:cosmic-meadow:0130:yellow-claw",
    "edc-las-vegas-2025:d1:cosmic-meadow:0315:yellow-claw",
    "edc-orlando-2019:d1:kineticfield:2010:yellow-claw",
@@ -89994,7 +91357,7 @@
    "nocturnal-wonderland-2022:d1:wolves-den:2200:yellow-claw"
   ],
   "firstSeen": "2016-07-31",
-  "lastSeen": "2025-05-16",
+  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -90280,12 +91643,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-thailand-2026:tmlth-eli-and-fur-b2b-yotto",
    "edc-las-vegas-2024:d3:quantum-valley:0000:yotto",
    "edc-orlando-2019:d1:neongarden:1600:yotto",
    "edc-orlando-2023:d2:stereo-bloom:2215:yotto"
   ],
   "firstSeen": "2019-11-08",
-  "lastSeen": "2024-05-19",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -90322,6 +91686,21 @@
   ],
   "firstSeen": "2026-12-30",
   "lastSeen": "2026-12-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "youna",
+  "name": "Youna",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-youna"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -90440,6 +91819,21 @@
   "links": []
  },
  {
+  "key": "yukio",
+  "name": "Yukio",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-yukio"
+  ],
+  "firstSeen": "2026-12-13",
+  "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "yultron",
   "name": "Yultron",
   "aliases": [
@@ -90520,6 +91914,21 @@
   ],
   "firstSeen": "2023-10-08",
   "lastSeen": "2023-10-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "yves-v",
+  "name": "Yves V",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-thailand-2026:tmlth-yves-v"
+  ],
+  "firstSeen": "2026-12-12",
+  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },

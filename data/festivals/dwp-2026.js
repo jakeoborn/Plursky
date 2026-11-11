@@ -113,6 +113,7 @@
     mapMode: "real",
     mapPrintsStageNames: false,
     mapArtIsGeoregistered: false,
+    setTimesProvisional: true,
   };
 
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};

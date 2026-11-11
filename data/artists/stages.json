@@ -3303,6 +3303,101 @@
     }
    ]
   },
+  "tomorrowland-thailand": {
+   "lineages": [
+    {
+     "id": "tomorrowland-thailand:mainstage",
+     "names": [
+      {
+       "printed": "Mainstage",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:freedom-by-budweiser",
+     "names": [
+      {
+       "printed": "Freedom by Budweiser",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:crystal-garden-by-anker",
+     "names": [
+      {
+       "printed": "Crystal Garden by Anker",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:codex",
+     "names": [
+      {
+       "printed": "Codex",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:core",
+     "names": [
+      {
+       "printed": "CORE",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:papillon",
+     "names": [
+      {
+       "printed": "Papillon",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:moose-bar",
+     "names": [
+      {
+       "printed": "Moose Bar",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "ultra-miami": {
    "lineages": [
     {
