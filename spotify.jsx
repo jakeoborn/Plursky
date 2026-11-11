@@ -6942,37 +6942,24 @@ function MemoriesScreen({ state, setState }) {
     if ((batch && batch.done < batch.total) || _scanBusy(scan) || _scanBusy(pastScan)) return;
     setPastScan({ phase: "access" });
     try {
-      const access = await PS.requestAccess();
-      const limited = access?.status === "limited";
-      if (access?.status !== "authorized" && !limited) { setPastScan({ phase: "denied" }); return; }
-      setPastScan({ phase: "scanning" });
-      // The library index and the festival-year calendar; either alone still
-      // scans what it knows, and neither means there is nothing to look for.
-      const [index, calendar] = await Promise.all([
-        _histFetch("index.json").catch(() => null),
-        _histFetch("scan-calendar.json").catch(() => null),
-      ]);
-      if (!index && !calendar) throw new Error("past festival lists unavailable");
-      const targets = _histScanTargets(index, null, calendar);
-      const seen = _scanSeenRead();
-      const found = [];
-      let already = 0;
-      for (const [i, t] of targets.entries()) {
-        if (i % 10 === 0) setPastScan({ phase: "scanning", checked: i, years: targets.length });
-        const assets = [];
-        for (const r of _scanQueryRanges(t.cfg)) {
-          const res = await PS.scan({ startMs: r.startMs, endMs: r.endMs });
-          assets.push(...(res?.assets || []));
-        }
-        const onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
-        if (!onSite.length) continue;
-        const ds = _histDataSet(t.inLibrary ? await _histFetch(`editions/${t.entry.id}.json`) : null, t.cfg);
-        const pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
-        already += pick.already;
-        if (pick.keep.length) found.push({ t, ds, keep: pick.keep });
+      // The first-run scan step already asked for access and looked through
+      // the library; take what it found instead of asking twice.
+      const handed = _pastScanHandoffTake();
+      let limited, found, already, years;
+      if (handed) {
+        ({ limited, found, already, years } = handed);
+      } else {
+        const access = await PS.requestAccess();
+        limited = access?.status === "limited";
+        if (access?.status !== "authorized" && !limited) { setPastScan({ phase: "denied" }); return; }
+        setPastScan({ phase: "scanning" });
+        // The library index and the festival-year calendar; either alone still
+        // scans what it knows, and neither means there is nothing to look for.
+        ({ found, already, years } = await _pastScanFind(PS,
+          (checked, n) => setPastScan({ phase: "scanning", checked, years: n })));
       }
       const total = found.reduce((n, f) => n + f.keep.length, 0);
-      if (!total) { setPastScan({ phase: "none", already, limited, editions: targets.length }); return; }
+      if (!total) { setPastScan({ phase: "none", already, limited, editions: years }); return; }
       let imported = 0, unreadable = 0, done = 0;
       const byEdition = [];
       for (const f of found) {
@@ -7001,6 +6988,17 @@ function MemoriesScreen({ state, setState }) {
       setPastScan({ phase: "error" });
     }
   };
+  // Arriving from the first-run scan step with something found: import it
+  // now, on the card the user can watch.
+  // The screen may already be open underneath it, so it also listens.
+  const scanPastRef = React.useRef(handleScanPast);
+  scanPastRef.current = handleScanPast;
+  React.useEffect(() => {
+    const onHandoff = () => { if (window._pastScanHandoff) scanPastRef.current(); };
+    onHandoff();
+    window.addEventListener("plursky:past-scan-handoff", onHandoff);
+    return () => window.removeEventListener("plursky:past-scan-handoff", onHandoff);
+  }, []);
   const _pastScanMessage = (st) => {
     if (!st) return null;
     const limitedNote = st.limited ? "Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";

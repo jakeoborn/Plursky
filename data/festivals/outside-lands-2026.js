@@ -253,6 +253,7 @@
 
   const CONFIG = {
     id: "outside-lands-2026",
+    officialEvent: { website: "https://www.sfoutsidelands.com/", observedAt: "2026-11-11" },
     // No mapSource: sfoutsidelands.com/info returns 404 as of 2026-09-24 and no
     // other first-party page on the post-festival site carries a map.
     // No hours field: held (see SOURCE hours above).

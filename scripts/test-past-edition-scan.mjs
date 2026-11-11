@@ -310,8 +310,8 @@ try {
   for (const f of base.fails) console.log(`  ✗  ${f}`);
   const mut = (key, from, to) => ({ ...SRC, [key]: SRC[key].replace(from, to) });
   const MUTANTS = [
-    ["GPS gate removed", mut("spotify", "assets.filter(a => _histAssetOnSite(a, t.cfg))", "assets.filter(a => true)")],
-    ["festival-year calendar ignored", mut("spotify", "_histScanTargets(index, null, calendar)", "_histScanTargets(index, null, null)")],
+    ["GPS gate removed", mut("photoTag", "assets.filter(a => _histAssetOnSite(a, t.cfg))", "assets.filter(a => true)")],
+    ["festival-year calendar ignored", mut("photoTag", "_histScanTargets(index, null, calendar)", "_histScanTargets(index, null, null)")],
     ["edition data set not passed to the matcher", mut("spotify", "_matchArtistForPhoto(meta, savedIds, attendedIds, opts.ds || undefined)", "_matchArtistForPhoto(meta, savedIds, attendedIds)")],
     ["edition page lists every moment", mut("photoTag", "m.festivalId === editionId", "m.festivalId")],
     ["reconciler flags past stamps", mut("spotify", 'if (m.festivalStampSource === "past-edition") continue;', "")],

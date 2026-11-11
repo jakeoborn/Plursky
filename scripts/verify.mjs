@@ -2427,6 +2427,17 @@ for (const [script, label] of [
   }
 }
 {
+  console.log("▸ Onboarding scan gate — a new user's first screen scans photos and videos; found → Memories imports, nothing found → next festival");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-onboarding-scan.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Onboarding scan failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
   console.log("▸ Shazam reasons gate — library clips say why they failed, stale path retried from IndexedDB, never the mic");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-shazam-reasons.mjs"],
