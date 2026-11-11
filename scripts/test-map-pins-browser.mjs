@@ -14,6 +14,10 @@
 //      coordinate, and nothing goes to Supabase.
 //   D8 the Layers toggle empties the source; on again restores it.
 //   D9 no GPS anywhere → empty source, the map otherwise unchanged, no errors.
+//   D10 accuracy rings (SPEC-192 ws1): one ground circle per pin with a recorded
+//      accuracy, of exactly that radius around its own fix; precise solid,
+//      coarse (C, 250 m) dashed; drawn under every pin layer; the Layers
+//      toggle empties them with the pins.
 //   P  timing: map "load" and pins-drawn with 0 vs 300 pins (printed, and a
 //      loose ceiling so a pathological regression fails).
 import { chromium } from "playwright";
@@ -43,7 +47,7 @@ const BASE = `http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=map`;
 // Fixture coordinates: distinctive digits so a leak is greppable in any URL or body.
 const A = { lat: 28.5291731, lng: -81.4048917, acc: 8 };     // two shots ~3 m apart
 const B = { lat: 28.5291953, lng: -81.4048702, acc: 12 };
-const C = { lat: 28.5323377, lng: -81.4021991, acc: 25 };    // ~450 m away
+const C = { lat: 28.5323377, lng: -81.4021991, acc: 250 };   // ~450 m away, a coarse fix
 const LEAKS = ["28.529", "81.404", "28.532", "81.402", "5291731", "4048917", "5323377"];
 
 function haversineM(a, b) {
@@ -140,6 +144,21 @@ try {
       // D1
       const ids = await page.evaluate(() => window.__plurskyRealMap.getSource("my-moments").serialize().data.features.map(f => f.properties.id).sort());
       check(JSON.stringify(ids) === '["m_a","m_b","m_c"]', `D1 pins = the three tagged GPS items, no placeholder for m_nogps, none for m_untagged (got ${ids.join(",")})`);
+      // D10: accuracy rings.
+      const acc = await page.evaluate(() => {
+        const m = window.__plurskyRealMap, d = m.getSource("my-moments-acc")?.serialize?.().data;
+        const order = (m.getStyle().layers || []).map(l => l.id);
+        return { rings: (d?.features || []).map(f => ({ id: f.properties.id, acc: f.properties.acc, ring: f.geometry.coordinates[0] })), order,
+          dash: m.getPaintProperty("my-moments-acc-line-coarse", "line-dasharray") || null, solidDash: m.getPaintProperty("my-moments-acc-line", "line-dasharray") || null };
+      });
+      const rb = Object.fromEntries(acc.rings.map(r => [r.id, r]));
+      check(Object.keys(rb).sort().join() === "m_a,m_b,m_c" && rb.m_a.acc === "precise" && rb.m_b.acc === "precise" && rb.m_c.acc === "coarse", `D10 one ring per pin, classed by the tagger's line (${acc.rings.map(r => r.id + ":" + r.acc).join(",")})`);
+      const fxr = { m_a: A, m_b: B, m_c: C };
+      const radOk = ["m_a", "m_b", "m_c"].every(id => rb[id] && rb[id].ring.every(([lng, lat]) => Math.abs(haversineM(fxr[id], { lat, lng }) - fxr[id].acc) / fxr[id].acc < 0.01));
+      check(radOk, "D10b each ring is its own recorded radius around its own fix (±1%)");
+      const iTop = Math.min(...["my-moments-cluster", "my-moments-point", "my-moments-count"].map(id => acc.order.indexOf(id)).filter(i => i >= 0));
+      check(["my-moments-acc-fill", "my-moments-acc-line", "my-moments-acc-line-coarse"].every(id => { const i = acc.order.indexOf(id); return i >= 0 && i < iTop; }), "D10c the rings draw under every pin layer");
+      check(Array.isArray(acc.dash) && !acc.solidDash, "D10d coarse rings are dashed, precise solid");
       // D3 + D2: at the opening zoom A and B (3 m apart) share one cluster.
       const z0 = await camera(page);
       const openClusters = await page.evaluate(() => window.__plurskyRealMap.queryRenderedFeatures({ layers: ["my-moments-cluster"] }).map(f => f.properties.point_count));
@@ -202,6 +221,7 @@ try {
       await page.evaluate(() => [...document.querySelectorAll('[role="button"]')].find(e => e.innerText.trim() === "My photos & videos")?.click());
       await page.waitForTimeout(400);
       check((await srcCount(page)) === 0, "D8 turning the row off empties the pin source at once");
+      check(await page.evaluate(() => (window.__plurskyRealMap.getSource("my-moments-acc")?.serialize?.().data?.features || []).length) === 0, "D10e …and its accuracy rings");
       check(await page.evaluate(() => localStorage.getItem("plursky_map_mypins")) === "0", "D8 the choice is remembered");
       await page.goto(BASE, { waitUntil: "domcontentloaded" });
       await page.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid, FID, { timeout: 60000 });
