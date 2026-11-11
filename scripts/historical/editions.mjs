@@ -8,6 +8,8 @@
 
 import { slug } from "./lib.mjs";
 
+const TML_THREE_WEEKEND_LABELS = ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
+  "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday", "Weekend 3 · Friday", "Weekend 3 · Saturday", "Weekend 3 · Sunday"];
 const ACL_WEEKEND_LABELS = ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
   "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"];
 
@@ -130,6 +132,24 @@ export const EDITIONS = {
     dayLabels: ACL_WEEKEND_LABELS },
   "acl-2019": { festivalId: "acl", name: "Austin City Limits 2019", year: 2019,
     timezone: "America/Chicago", rolloverHour: 6, method: "official_sources", dates: [["2019-10-04", "Friday"], ["2019-10-05", "Saturday"], ["2019-10-06", "Sunday"], ["2019-10-11", "Friday"], ["2019-10-12", "Saturday"], ["2019-10-13", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  // Tomorrowland: the official timetable page prints every stage and set of
+  // both weekends (tml-schedule.mjs, format "tml-stages"), read from one
+  // archived capture per year; the Thursday Gathering is not a festival day.
+  "tomorrowland-2017": { festivalId: "tomorrowland", name: "Tomorrowland 2017", year: 2017,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2017-07-21", "Friday"], ["2017-07-22", "Saturday"], ["2017-07-23", "Sunday"], ["2017-07-28", "Friday"], ["2017-07-29", "Saturday"], ["2017-07-30", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "tomorrowland-2018": { festivalId: "tomorrowland", name: "Tomorrowland 2018", year: 2018,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2018-07-20", "Friday"], ["2018-07-21", "Saturday"], ["2018-07-22", "Sunday"], ["2018-07-27", "Friday"], ["2018-07-28", "Saturday"], ["2018-07-29", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "tomorrowland-2019": { festivalId: "tomorrowland", name: "Tomorrowland 2019", year: 2019,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2019-07-19", "Friday"], ["2019-07-20", "Saturday"], ["2019-07-21", "Sunday"], ["2019-07-26", "Friday"], ["2019-07-27", "Saturday"], ["2019-07-28", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "tomorrowland-2022": { festivalId: "tomorrowland", name: "Tomorrowland 2022", year: 2022,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2022-07-15", "Friday"], ["2022-07-16", "Saturday"], ["2022-07-17", "Sunday"], ["2022-07-22", "Friday"], ["2022-07-23", "Saturday"], ["2022-07-24", "Sunday"], ["2022-07-29", "Friday"], ["2022-07-30", "Saturday"], ["2022-07-31", "Sunday"]],
+    dayLabels: TML_THREE_WEEKEND_LABELS },
+  "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
   // Escape: no single archived source covers most years. Each day lists its
   // sources (an archived official page, or an official graphic re-hosted by

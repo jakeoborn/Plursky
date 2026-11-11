@@ -1,0 +1,414 @@
+{
+  "id": "tomorrowland-2017",
+  "method": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2017-07-21",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "archivedUrl": "https://web.archive.org/web/20170724084939/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "captureTimestamp": "20170724084939",
+          "printed": "Friday 21 July 2017",
+          "sha256": "424f40d18edce51c96922c158577b5da632db4319ede329fefeb8b1f53377ce9",
+          "bytes": 1764763,
+          "rows": 154,
+          "format": "tml-stages",
+          "stages": 16
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2017-07-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "archivedUrl": "https://web.archive.org/web/20170724084939/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "captureTimestamp": "20170724084939",
+          "printed": "Saturday 22 July 2017",
+          "sha256": "424f40d18edce51c96922c158577b5da632db4319ede329fefeb8b1f53377ce9",
+          "bytes": 1764763,
+          "rows": 142,
+          "format": "tml-stages",
+          "stages": 16
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2017-07-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "archivedUrl": "https://web.archive.org/web/20170724084939/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "captureTimestamp": "20170724084939",
+          "printed": "Sunday 23 July 2017",
+          "sha256": "424f40d18edce51c96922c158577b5da632db4319ede329fefeb8b1f53377ce9",
+          "bytes": 1764763,
+          "rows": 134,
+          "format": "tml-stages",
+          "stages": 16
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2017-07-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "archivedUrl": "https://web.archive.org/web/20170724084939/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "captureTimestamp": "20170724084939",
+          "printed": "Friday 28 July 2017",
+          "sha256": "424f40d18edce51c96922c158577b5da632db4319ede329fefeb8b1f53377ce9",
+          "bytes": 1764763,
+          "rows": 147,
+          "format": "tml-stages",
+          "stages": 16
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2017-07-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "archivedUrl": "https://web.archive.org/web/20170724084939/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "captureTimestamp": "20170724084939",
+          "printed": "Saturday 29 July 2017",
+          "sha256": "424f40d18edce51c96922c158577b5da632db4319ede329fefeb8b1f53377ce9",
+          "bytes": 1764763,
+          "rows": 159,
+          "format": "tml-stages",
+          "stages": 16
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2017-07-30",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "archivedUrl": "https://web.archive.org/web/20170724084939/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+          "captureTimestamp": "20170724084939",
+          "printed": "Sunday 30 July 2017",
+          "sha256": "424f40d18edce51c96922c158577b5da632db4319ede329fefeb8b1f53377ce9",
+          "bytes": 1764763,
+          "rows": 143,
+          "format": "tml-stages",
+          "stages": 16
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "Nruth",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "14:00",
+      "end": "14:45",
+      "billing": "Stu Bru contest",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "14:45",
+      "end": "15:30",
+      "billing": "Jules Dime",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "15:30",
+      "end": "16:15",
+      "billing": "Thang",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "16:15",
+      "end": "17:00",
+      "billing": "Daniel Bovie",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "17:00",
+      "end": "17:45",
+      "billing": "Mathy",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "17:45",
+      "end": "18:30",
+      "billing": "Goldfox",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "18:30",
+      "end": "19:15",
+      "billing": "Prinz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "19:15",
+      "end": "20:00",
+      "billing": "Discobar Galaxie",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "20:00",
+      "end": "20:45",
+      "billing": "Neon",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "20:45",
+      "end": "21:30",
+      "billing": "Mystique",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "21:30",
+      "end": "22:15",
+      "billing": "Romeo Blanco",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "22:15",
+      "end": "23:15",
+      "billing": "Sem Thomasson",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "23:15",
+      "end": "00:15",
+      "billing": "Surprise Act",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-20",
+      "stage": "The Gathering",
+      "start": "00:15",
+      "end": "01:00",
+      "billing": "Yves V",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "Zaman",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "14:00",
+      "end": "14:45",
+      "billing": "Beaver T & Pinch",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "14:45",
+      "end": "15:30",
+      "billing": "JackJazz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "15:30",
+      "end": "16:15",
+      "billing": "Joyhauser vs Decoy",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "16:15",
+      "end": "17:00",
+      "billing": "DiMaro LIMITED",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "17:00",
+      "end": "17:45",
+      "billing": "Kid Noize",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "17:45",
+      "end": "18:30",
+      "billing": "Prinz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "18:30",
+      "end": "19:15",
+      "billing": "Siege",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "19:15",
+      "end": "20:00",
+      "billing": "The Oddword",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "20:00",
+      "end": "20:45",
+      "billing": "Henri PFR",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "20:45",
+      "end": "21:30",
+      "billing": "Double Pleasure",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "21:30",
+      "end": "22:15",
+      "billing": "Lost Frequencies",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "22:15",
+      "end": "23:00",
+      "billing": "JETFIRE",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "23:00",
+      "end": "00:00",
+      "billing": "Coone",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2017-07-27",
+      "stage": "The Gathering",
+      "start": "00:00",
+      "end": "01:00",
+      "billing": "Regi",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    }
+  ],
+  "offDays": [
+    {
+      "date": "2017-07-20",
+      "printed": "Thursday 20 July 2017",
+      "archivedUrl": "https://web.archive.org/web/20170724084939/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+      "captureTimestamp": "20170724084939",
+      "sets": 15
+    },
+    {
+      "date": "2017-07-27",
+      "printed": "Thursday 27 July 2017",
+      "archivedUrl": "https://web.archive.org/web/20170724084939/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-22-july-2017",
+      "captureTimestamp": "20170724084939",
+      "sets": 15
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Monstercat",
+      "start": "23:00",
+      "end": "00:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}
