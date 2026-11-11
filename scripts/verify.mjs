@@ -1684,6 +1684,15 @@ const REGISTRATION_TOL_M = 25;
     }
     return c;
   };
+  // OSM park boundaries, verify-only (SPEC-192 ws2, 2026-11-11). For a
+  // festival with measured anchors but no surveyed festival footprint, the
+  // park the festival is held in is still a real, sourced outline, and an
+  // anchor outside it is wrong. Deliberately NOT venue.footprint: the app
+  // reads that for the opening camera, the offline pack and the 3D mask, and
+  // a park is bigger than the grounds (Zilker is 397 acres; ACL uses a
+  // corner). The app never loads this file. See its _about.
+  const PARK_BOUNDARIES = JSON.parse(readFileSync(join(ROOT, "map-sources", "osm-park-boundaries.json"), "utf8")).boundaries;
+  const parkUsed = new Set();
   console.log("▸ Venue footprint gate — anchors must fall inside the real venue");
   let fpHard = 0, fpChecked = 0, fpWaived = 0, fpArmed = 0, fpUnbounded = 0, fpReal = 0;
   for (const f of REG) {
@@ -1718,6 +1727,19 @@ const REGISTRATION_TOL_M = 25;
     if (poly?.length && an.length && cfg.venue?.footprintInferred) {
       fpUnbounded++;
       console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), footprint INFERRED (not surveyed) — UNGUARDED by this gate`);
+      continue;
+    }
+    if (!poly?.length && an.length && PARK_BOUNDARIES[cfg.id]) {
+      const pb = PARK_BOUNDARIES[cfg.id];
+      parkUsed.add(cfg.id);
+      const outPark = an.filter(a => !inside(a.lat, a.lng, pb.ring)).map(a => a.stageId);
+      fpChecked++;
+      if (outPark.length) {
+        fpHard++;
+        console.log(`  ✗  ${cfg.id.padEnd(22)} ${outPark.length}/${an.length} anchor(s) OUTSIDE ${pb.name} (OSM ${pb.osm}): ${outPark.join(", ")}`);
+      } else {
+        console.log(`  ok ${cfg.id.padEnd(22)} all ${an.length} anchors inside ${pb.name} (OSM ${pb.osm}) — park boundary, not a festival footprint`);
+      }
       continue;
     }
     if (!poly?.length && an.length) {
@@ -1781,6 +1803,12 @@ const REGISTRATION_TOL_M = 25;
     }
   }
   if (!fpChecked && !fpArmed && !fpUnbounded && !fpReal) console.log("  (no festival declares venue.footprint yet)");
+  for (const id of Object.keys(PARK_BOUNDARIES)) {
+    if (!parkUsed.has(id)) {
+      console.log(`  ✗  ${id.padEnd(22)} park boundary is STALE — the festival is gone, has a surveyed footprint now, or has no anchors. Remove it from map-sources/osm-park-boundaries.json.`);
+      fpHard++;
+    }
+  }
   if (fpHard) fail(`${fpHard} festival(s) failed the venue footprint gate — see above`);
   if (fpWaived) console.log(`  ${fpWaived} festival(s) waived pending ground truth — see notes above`);
   if (fpReal) console.log(`  ${fpReal} festival(s) on a real basemap — anchors not applicable`);
