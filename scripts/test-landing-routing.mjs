@@ -377,7 +377,13 @@ try {
   const finishOnboarding = async (page, pick) => {
     const inDialog = await page.evaluate((sel) => !!document.querySelector(sel), DLG);
     check(inDialog, 'onboarding: the wizard dialog is on screen before the harness drives it');
-    // Three story pages, then the festival list.
+    // The scan screen (on the web it points to the app), three story pages,
+    // then the festival list.
+    await page.evaluate((sel) => {
+      const d = document.querySelector(sel); if (!d) return;
+      d.querySelector('[data-onb-scan-skip]')?.click();
+    }, DLG);
+    await sleep(300);
     await page.evaluate((sel) => {
       const d = document.querySelector(sel); if (!d) return;
       const b = [...d.querySelectorAll('button')].find(e => (e.textContent || '').trim() === 'Skip');
@@ -412,7 +418,7 @@ try {
       __onboarding: '1', active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
     }});
     const t0 = await text(page);
-    check(/plan the night|where are you raving|1 of 3/i.test(t0),
+    check(/find your festival memories|plan the night|where are you raving|1 of 3/i.test(t0),
       `onboarding: first run shows the wizard (saw ${JSON.stringify(t0.slice(0, 60))})`);
     await finishOnboarding(page, null);   // "Continue with EDC Las Vegas"
     const t = await text(page);
@@ -465,6 +471,11 @@ try {
       return e.config.name;
     }, isPlus);
     check(!!marked, `onboarding (${label}): the fixture marked a row preview-only`);
+    await page.evaluate((sel) => {
+      const d = document.querySelector(sel); if (!d) return;
+      d.querySelector('[data-onb-scan-skip]')?.click();
+    }, DLG);
+    await sleep(300);
     await page.evaluate((sel) => {
       const d = document.querySelector(sel); if (!d) return;
       const b = [...d.querySelectorAll('button')].find(e => (e.textContent || '').trim() === 'Skip');
