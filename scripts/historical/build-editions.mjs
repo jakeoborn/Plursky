@@ -126,10 +126,13 @@ export function buildLineupEdition(id, rows, ledger) {
   return {
     id, festivalId: ed.festivalId, name: ed.name, year: ed.year, timezone: ed.timezone, rolloverHour: ed.rolloverHour,
     completeness: "lineup_only",
+    // The page printed no days, so no artist carries one (validate.mjs).
+    ...(ed.undated && { undated: true }),
     days: ed.dates.map(([date, weekday], i) => ({ day: i + 1, date, label: ed.dayLabels?.[i] || weekday })),
     stages, artists, sets: [],
     provenance: { extractionMethod: ed.method, official: ledger.official,
       captures: [{ page: "lineup", archivedUrl: ledger.archivedUrl, captureTimestamp: ledger.chosen, sha256: ledger.sha256 }] },
+    ...(ed.notes && { notes: ed.notes }),
   };
 }
 

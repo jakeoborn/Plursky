@@ -63,6 +63,22 @@ export const LINEUP_EDITIONS = {
   "nocturnal-wonderland-2015": { url: "https://nocturnalwonderland.com/experience/lineup/", title: "LINEUP | Nocturnal" },
   "nocturnal-wonderland-2016": { url: "https://nocturnalwonderland.com/experience/lineup/", title: "Nocturnal 2016" },
   "beyond-wonderland-socal-2016": { url: "https://socal.beyondwonderland.com/experience/lineup/", title: "Beyond SoCal" },
+  "edc-orlando-2015": { url: "https://orlando.electricdaisycarnival.com/experience/lineup/", title: "EDC Orlando 2015" },
+  // Undated pages (editions.mjs `undated`): the lineup was printed only
+  // alphabetically, or only as the page's artist_data list, with no By Day
+  // tab, so nothing on the page dates it but its title. 2017's title names
+  // no year ("LINEUP - EDC Las Vegas"), so its 2017 captures are read only up
+  // to `until`, two weeks after the festival, after which the page may
+  // already be next year's (see provesEdition).
+  // An undated page cannot date the edition, so `datesPage` names the
+  // festival's own home page captured just before it, whose <title> printed
+  // the dates ("EDC Las Vegas | June 17–19, 2016 | …"); the ledger records it.
+  "edc-las-vegas-2016": { url: "https://lasvegas.electricdaisycarnival.com/experience/lineup/", title: "EDC Las Vegas 2016",
+    datesPage: ["20160616022834", "https://lasvegas.electricdaisycarnival.com/"] },
+  "edc-las-vegas-2017": { url: "https://lasvegas.electricdaisycarnival.com/experience/lineup/", title: "LINEUP - EDC Las Vegas", until: "20170702",
+    datesPage: ["20170615125312", "https://lasvegas.electricdaisycarnival.com/"] },
+  "edc-orlando-2016": { url: "https://orlando.electricdaisycarnival.com/experience/lineup/", title: "EDC Orlando 2016",
+    datesPage: ["20161104192722", "https://orlando.electricdaisycarnival.com/"] },
 };
 
 const ENTITIES = { "&amp;": "&", "&#038;": "&", "&quot;": '"', "&#039;": "'", "&#8216;": "‘", "&#8217;": "’",
@@ -87,7 +103,21 @@ export function parseLineupPage(html) {
     }
     return { tab: names[i] || `tab ${i + 1}`, groups: groups.filter(g => g.acts.length) };
   });
-  return { title, tabs: tabs.length ? tabs : performerTabs(html) };
+  return { title, tabs: tabs.length ? tabs : performerTabs(html).length ? performerTabs(html) : artistDataTabs(html) };
+}
+
+// The 2016 and 2017 sites that printed no tabs carried the lineup only as a
+// script variable, `var artist_data = {"artists":[{"name":…,"image":…,
+// "link":…}]}`, which the page drew as one alphabetical grid. It is read as
+// an Alphabetical tab, every name in the order the page listed it; it has no
+// days, so it proves only an `undated` edition.
+function artistDataTabs(html) {
+  const m = /var artist_data = (\{.*?\});\s*$/m.exec(html);
+  if (!m) return [];
+  let data;
+  try { data = JSON.parse(m[1]); } catch { return []; }
+  const acts = (data.artists || []).map(a => text(a.name || "")).filter(Boolean);
+  return acts.length ? [{ tab: "Alphabetical", groups: [{ head: null, acts }] }] : [];
 }
 
 // The 2015 and 2016 sites (/experience/lineup/) printed each billing once as
@@ -113,8 +143,17 @@ const tab = (page, name) => page.tabs.find(t => t.tab.toLowerCase() === name);
 
 // Whether a parsed page is this edition: its title names it and its By Day
 // headers are exactly the edition's dates. Returns the evidence either way.
+// An `undated` edition's page printed no days at all, so it is proven by its
+// title alone, and only by a page with no By Day tab: a page that dates its
+// lineup must prove the dates. A title that names no year is accepted only
+// with `until`, at most two weeks after the festival (captures after it are
+// not read), which test-historical-editions checks.
 export function provesEdition(page, id) {
   const ed = EDITIONS[id], want = LINEUP_EDITIONS[id];
+  if (ed.undated) {
+    const titled = page.title.includes(want.title), byDay = !!tab(page, "by day");
+    return { valid: titled && !byDay && !!tab(page, "alphabetical"), titled, dated: false, undated: !byDay, days: [] };
+  }
   const days = (tab(page, "by day")?.groups || []).map(g => ({ head: g.head, date: datedLabel(g.head, ed.year) }));
   // A site that never updated its <title> (Beyond SoCal's 2022 page reads
   // "… 2023" over March 25/26 2022 day tabs) is accepted only under the exact
@@ -122,6 +161,16 @@ export function provesEdition(page, id) {
   const titled = page.title.includes(want.title) || (!!want.staleTitle && page.title === want.staleTitle);
   const dated = days.length === ed.dates.length && days.every((d, i) => d.date === ed.dates[i][0]);
   return { valid: titled && dated, titled, dated, days: days.map(d => `${d.head}${d.date ? "" : " ✗"}`) };
+}
+
+// The dates a home page's <title> printed as a range ("June 17–19, 2016",
+// "November 4 – 5, 2016"), as ISO dates, or [] if it printed none.
+const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+export function printedRange(title) {
+  const m = /\b([A-Z][a-z]+) (\d{1,2})\s*[–-]\s*(\d{1,2}), (\d{4})\b/.exec(title || "");
+  const mo = m ? MONTHS.indexOf(m[1].toLowerCase()) + 1 : 0;
+  if (!mo || +m[3] <= +m[2]) return [];
+  return Array.from({ length: m[3] - m[2] + 1 }, (_, i) => `${m[4]}-${String(mo).padStart(2, "0")}-${String(+m[2] + i).padStart(2, "0")}`);
 }
 
 // Parsed page → sheet rows (one per billing and appearance) + cross-tab findings.
@@ -164,7 +213,9 @@ export function lineupRows(page, id) {
     const days = byDay.get(b) || [], stages = byStage.get(b) || [];
     const where = [A.get(b) ? `alphabetical ×${A.get(b)}` : "not alphabetical", `days ${days.join("+") || "none"}`,
       stageTab ? `stages ${stages.join(" + ") || "none"}` : null].filter(Boolean).join("; ");
-    if (!A.get(b) || !days.length || (stageTab && !stages.length) || (stageTab && stages.length !== days.length))
+    // An undated page has no days to miss; a name it listed twice is listed
+    // once here, and the ledger says so.
+    if (ed.undated ? A.get(b) > 1 : !A.get(b) || !days.length || (stageTab && !stages.length) || (stageTab && stages.length !== days.length))
       findings.push(`${b}: ${where}`);
     let apps;
     const hinted = stageDay.get(b) || [];
@@ -197,7 +248,8 @@ export async function extract(id) {
   // An edition whose lineup page stayed up past New Year (Countdown NYE, held
   // on December 30 and 31) names a wider window; the rest read their year.
   const [from, to] = want.window || [`${ed.year}0101`, `${ed.year}1231`];
-  const caps = await listCaptures(want.url.replace(/^https?:\/\//, ""), from, to);
+  const caps = (await listCaptures(want.url.replace(/^https?:\/\//, ""), from, to))
+    .filter(c => !want.until || c.timestamp.slice(0, 8) <= want.until);
   const considered = [];
   for (const c of caps) {
     let got;
@@ -224,6 +276,17 @@ export async function extract(id) {
     return { ledger, rows: [] };
   }
   const chosen = valid[valid.length - 1];
+  // An undated edition's dates come from its home page's title, which must
+  // print exactly the edition's dates; otherwise nothing dates it.
+  let datesPrinted;
+  if (ed.undated) {
+    if (!want.datesPage) throw new Error(`${id}: an undated edition needs a datesPage`);
+    const [ts, url] = want.datesPage, home = await fetchCapture(ts, url);
+    const title = text((/<title>([^<]*)/.exec(home.text) || [])[1] || "");
+    datesPrinted = { archivedUrl: home.archivedUrl, captureTimestamp: home.captureTimestamp, sha256: home.sha256, title };
+    if (JSON.stringify(printedRange(title)) !== JSON.stringify(ed.dates.map(([d]) => d)))
+      throw new Error(`${id}: the home page title "${title}" does not print ${ed.dates.map(([d]) => d).join(", ")}`);
+  }
   const laterUnfiled = considered.filter(c => c.notFiled && c.captureTimestamp > chosen.captureTimestamp);
   if (laterUnfiled.length) {
     ledger.blocked = `relay did not file ${laterUnfiled.map(c => c.captureTimestamp).join(", ")}, later than the latest valid capture ${chosen.captureTimestamp}`;
@@ -235,6 +298,7 @@ export async function extract(id) {
     // Relayed bytes are the fetching client's copy of the id_ capture; their
     // hash is of that copy, not of a direct Wayback response.
     ...(chosen.via ? { relayedVia: chosen.via } : {}),
+    ...(datesPrinted && { datesPrinted }),
     tabs: chosen.parsed.tabs, stageOrder: chosen.parsed.stageOrder, crossTab: chosen.parsed.findings,
     considered: considered.map(({ parsed, ...c }) => ({ ...c,
       diffVsChosen: c === chosen || !c.valid ? undefined : diffLineups(chosen.parsed, parsed) })),
