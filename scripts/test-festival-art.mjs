@@ -52,6 +52,11 @@ const FALLBACK = {
   "parookaville-2027": "official art not fetched yet; tile owed before the flip",
   "electric-love-2027": "official art not fetched yet; tile owed before the flip",
   "bass-coast-2027": "official art not fetched yet; tile owed before the flip",
+  "tomorrowland-winter-2027": "official art not fetched yet; tile owed before the flip",
+  "tomorrowland-brasil-2027": "official art not fetched yet; tile owed before the flip",
+  "primavera-sound-2027": "official art not fetched yet; tile owed before the flip",
+  "boom-festival-2027": "official art not fetched yet; tile owed before the flip",
+  "sziget-2027": "official art not fetched yet; tile owed before the flip",
   "forbidden-kingdom-2027": "official art not fetched yet; tile owed before the flip",
 };
 // Sat Oct 17, 4 pm ET: III Points is live, so all three chip kinds are on the page.
