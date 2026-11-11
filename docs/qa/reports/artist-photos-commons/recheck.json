@@ -1,300 +1,5855 @@
 {
- "ranAt": "2026-11-11T11:09:56.179Z",
+ "ranAt": "2026-11-11T11:26:37.978Z",
  "scope": "recheck",
- "checked": 1194,
- "dropped": 48,
+ "checked": 1168,
+ "dropped": 1,
  "byReason": {
-  "no-music-item": 40,
-  "no-item": 8
+  "held": 1
  },
  "rows": [
   {
-   "artist": "Adam Scott",
-   "wikidata": "Q201842",
-   "reason": "no-music-item",
-   "asset": "artist-photos/adam-scott.webp"
+   "artist": "Nero",
+   "wikidata": "Q1413",
+   "reason": "held",
+   "asset": "artist-photos/nero.webp",
+   "description": "fifth and last Roman Emperor of Julio-Claudian dynasty (54–68)"
+  }
+ ],
+ "kept": [
+  {
+   "artist": "Zeds Dead",
+   "wikidata": "Q3005564",
+   "description": "Canadian electronic music duo"
   },
   {
-   "artist": "arman.",
-   "wikidata": "Q875164",
-   "reason": "no-music-item",
-   "asset": "artist-photos/arman.webp"
+   "artist": "070 SHAKE",
+   "wikidata": "Q54861040",
+   "description": "American rapper and singer"
   },
   {
-   "artist": "ARYA",
-   "wikidata": "Q901649",
-   "reason": "no-music-item",
-   "asset": "artist-photos/arya.webp"
+   "artist": "10,000 Maniacs",
+   "wikidata": "Q163819",
+   "description": "US musicial group; alternative rock band"
+  },
+  {
+   "artist": "100 GECS",
+   "wikidata": "Q67556784",
+   "description": "American hyperpop musical duo"
+  },
+  {
+   "artist": "2hollis",
+   "wikidata": "Q127977668",
+   "description": "American rapper and singer"
+  },
+  {
+   "artist": "3LAU",
+   "wikidata": "Q16148031",
+   "description": "American DJ and electronic music producer"
+  },
+  {
+   "artist": "4 Strings",
+   "wikidata": "Q238267",
+   "description": "band"
+  },
+  {
+   "artist": "5 Seconds of Summer",
+   "wikidata": "Q4641147",
+   "description": "Australian pop rock band"
+  },
+  {
+   "artist": "6LACK",
+   "wikidata": "Q27886640",
+   "description": "American singer-songwriter and rapper (born 1992)"
+  },
+  {
+   "artist": "A$AP Ferg",
+   "wikidata": "Q15648254",
+   "description": "American rapper (born 1988)"
+  },
+  {
+   "artist": "A$AP Rocky",
+   "wikidata": "Q129910",
+   "description": "American rapper (born 1988)"
+  },
+  {
+   "artist": "A.J. Croce",
+   "wikidata": "Q4647901",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "A R I Z O N A",
+   "wikidata": "Q28606306",
+   "description": "American pop rock band"
+  },
+  {
+   "artist": "A Thousand Horses",
+   "wikidata": "Q19864280",
+   "description": "American country music group"
+  },
+  {
+   "artist": "A-Trak",
+   "wikidata": "Q277976",
+   "description": "Canadian DJ and record producer"
+  },
+  {
+   "artist": "Abhi The Nomad",
+   "wikidata": "Q113195586",
+   "description": "Indian rapper, singer, and songwriter"
+  },
+  {
+   "artist": "Above & Beyond",
+   "wikidata": "Q323187",
+   "description": "British electronic trio"
+  },
+  {
+   "artist": "Absolutely",
+   "wikidata": "Q133639851",
+   "description": "British singer, songwriter, producer"
+  },
+  {
+   "artist": "Ace Ventura",
+   "wikidata": "Q135932234",
+   "description": ""
+  },
+  {
+   "artist": "Adam Beyer",
+   "wikidata": "Q261641",
+   "description": "Swedish disc jockey and music producer"
+  },
+  {
+   "artist": "Adia Victoria",
+   "wikidata": "Q24005919",
+   "description": "American singer and songwriter"
+  },
+  {
+   "artist": "Adventure Club",
+   "wikidata": "Q549196",
+   "description": "Canadian electronic music duo"
+  },
+  {
+   "artist": "AFI",
+   "wikidata": "Q292061",
+   "description": "American punk rock band"
+  },
+  {
+   "artist": "AJR",
+   "wikidata": "Q16154058",
+   "description": "American indie pop band"
+  },
+  {
+   "artist": "AK1200",
+   "wikidata": "Q4652137",
+   "description": "DJ and record producer"
+  },
+  {
+   "artist": "Alabama Shakes",
+   "wikidata": "Q1933051",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Alan Fitzpatrick",
+   "wikidata": "Q19959454",
+   "description": "English tech house music producer and disc jockey"
+  },
+  {
+   "artist": "ALANIS MORISSETTE",
+   "wikidata": "Q130742",
+   "description": "Canadian-American singer (born 1974)"
+  },
+  {
+   "artist": "Albert Hammond Jr.",
+   "wikidata": "Q597936",
+   "description": "American rock musician"
+  },
+  {
+   "artist": "Aldo Nova",
+   "wikidata": "Q717638",
+   "description": "Canadian musician"
+  },
+  {
+   "artist": "Alejandro Escovedo",
+   "wikidata": "Q974936",
+   "description": "American musician"
+  },
+  {
+   "artist": "Alessia Cara",
+   "wikidata": "Q20090091",
+   "description": "Italian-Canadian singer, songwriter and actress"
+  },
+  {
+   "artist": "Alex M.O.R.P.H.",
+   "wikidata": "Q106025",
+   "description": "German DJ"
+  },
+  {
+   "artist": "Alex Warren",
+   "wikidata": "Q121842162",
+   "description": "American singer-songwriter, YouTuber and influencer"
+  },
+  {
+   "artist": "ALI SETHI",
+   "wikidata": "Q20979380",
+   "description": "Pakistani musician and writer (born 1984)"
+  },
+  {
+   "artist": "Alice Merton",
+   "wikidata": "Q29016765",
+   "description": "German-Canadian singer-songwriter (born 1993)"
+  },
+  {
+   "artist": "ALIYAH'S INTERLUDE",
+   "wikidata": "Q123230271",
+   "description": "American social media personality"
+  },
+  {
+   "artist": "All Time Low",
+   "wikidata": "Q909731",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Allan Rayman",
+   "wikidata": "Q29035316",
+   "description": "musical artist"
+  },
+  {
+   "artist": "ALLISON PONTHIER",
+   "wikidata": "Q108655440",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "ALPHA 9",
+   "wikidata": "Q715890",
+   "description": "Russian DJ and producer"
+  },
+  {
+   "artist": "ALPHABET ROCKERS",
+   "wikidata": "Q131926903",
+   "description": "American children's music group"
+  },
+  {
+   "artist": "alt-J",
+   "wikidata": "Q47996",
+   "description": "English indie rock band"
+  },
+  {
+   "artist": "Alvvays",
+   "wikidata": "Q17437642",
+   "description": "Canadian indie pop band"
+  },
+  {
+   "artist": "Aly & Fila",
+   "wikidata": "Q449985",
+   "description": "Egyptian trance music production duo from Cairo"
+  },
+  {
+   "artist": "AMAARAE",
+   "wikidata": "Q72516952",
+   "description": "American- Ghanaian singer-songwriter"
+  },
+  {
+   "artist": "Amanda Shires",
+   "wikidata": "Q4739762",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Amason",
+   "wikidata": "Q15944662",
+   "description": "Swedish musical band"
+  },
+  {
+   "artist": "Amber Mark",
+   "wikidata": "Q76995134",
+   "description": "American singer"
+  },
+  {
+   "artist": "Amelie Lens",
+   "wikidata": "Q27902902",
+   "description": "Belgian DJ and record producer (born 1990)"
+  },
+  {
+   "artist": "Amen Dunes",
+   "wikidata": "Q24077684",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "American Aquarium",
+   "wikidata": "Q16970749",
+   "description": "Alternative country band"
+  },
+  {
+   "artist": "AMIRA ELFEKY",
+   "wikidata": "Q133818873",
+   "description": "American singer and songwriter"
+  },
+  {
+   "artist": "Amy Shark",
+   "wikidata": "Q28530098",
+   "description": "Australian singer-songwriter"
+  },
+  {
+   "artist": "Anabel Englund",
+   "wikidata": "Q58501689",
+   "description": "American singer and songwriter"
+  },
+  {
+   "artist": "Anderson East",
+   "wikidata": "Q19665390",
+   "description": "American musician"
+  },
+  {
+   "artist": "Andra Day",
+   "wikidata": "Q21004826",
+   "description": "American singer"
+  },
+  {
+   "artist": "Andrew Bayer",
+   "wikidata": "Q23710573",
+   "description": "American DJ and producer (born 1987)"
+  },
+  {
+   "artist": "Andrew Bird",
+   "wikidata": "Q503783",
+   "description": "American singer, musician and multi-instrumentalist (born 1973)"
+  },
+  {
+   "artist": "Andrew Rayel",
+   "wikidata": "Q1095397",
+   "description": "Moldovan DJ"
+  },
+  {
+   "artist": "Andromedik",
+   "wikidata": "Q124027031",
+   "description": "Belgian DJ and music producer"
+  },
+  {
+   "artist": "Andy C",
+   "wikidata": "Q387288",
+   "description": "English musician"
+  },
+  {
+   "artist": "Anetha",
+   "wikidata": "Q60832463",
+   "description": "French DJ and producer"
+  },
+  {
+   "artist": "Anfisa Letyago",
+   "wikidata": "Q108201194",
+   "description": "Russian/Italian DJ and record producer"
+  },
+  {
+   "artist": "Angel Olsen",
+   "wikidata": "Q6462653",
+   "description": "American indie pop singer-songwriter"
+  },
+  {
+   "artist": "Angerfist",
+   "wikidata": "Q318760",
+   "description": "Dutch hardcore techno musician"
+  },
+  {
+   "artist": "ANYMA",
+   "wikidata": "Q99678050",
+   "description": "Italian musician, DJ and record producer (born 1988)"
+  },
+  {
+   "artist": "Apashe",
+   "wikidata": "Q59459300",
+   "description": "Belgian music producer"
+  },
+  {
+   "artist": "Arctic Monkeys",
+   "wikidata": "Q170599",
+   "description": "English musical group; rock band"
+  },
+  {
+   "artist": "Arkells",
+   "wikidata": "Q2861571",
+   "description": "Canadian rock band"
+  },
+  {
+   "artist": "ARLO PARKS",
+   "wikidata": "Q79097672",
+   "description": "British singer"
+  },
+  {
+   "artist": "Armand Van Helden",
+   "wikidata": "Q437559",
+   "description": "American musician, DJ, record producer and composer"
+  },
+  {
+   "artist": "Armani White",
+   "wikidata": "Q113953210",
+   "description": "American rapper (born 1996)"
+  },
+  {
+   "artist": "Armin van Buuren",
+   "wikidata": "Q62617",
+   "description": "Dutch DJ and record producer (born 1976)"
+  },
+  {
+   "artist": "Armnhmr",
+   "wikidata": "Q122570791",
+   "description": "American music production duo"
+  },
+  {
+   "artist": "ARTY",
+   "wikidata": "Q715890",
+   "description": "Russian DJ and producer"
+  },
+  {
+   "artist": "Arum Rae",
+   "wikidata": "Q26258465",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Ásgeir",
+   "wikidata": "Q8077002",
+   "description": "Icelandic musician"
+  },
+  {
+   "artist": "Asha Banks",
+   "wikidata": "Q113336396",
+   "description": "English actress and singer"
+  },
+  {
+   "artist": "Ashley Cleveland",
+   "wikidata": "Q4805393",
+   "description": "American singer, songwriter"
+  },
+  {
+   "artist": "Astrix",
+   "wikidata": "Q2292862",
+   "description": "Israeli psychedelic trance DJ"
+  },
+  {
+   "artist": "ATB",
+   "wikidata": "Q77002",
+   "description": "German DJ and electronic music producer"
+  },
+  {
+   "artist": "Atlas Genius",
+   "wikidata": "Q4816806",
+   "description": "Australian musical group; alternative rock band from Adelaide, South Australia"
+  },
+  {
+   "artist": "Atmozfears",
+   "wikidata": "Q13430882",
+   "description": "Dutch hardstyle musician; former trio"
+  },
+  {
+   "artist": "Atoms For Peace",
+   "wikidata": "Q2666532",
+   "description": "English-American experimental rock band"
+  },
+  {
+   "artist": "Au5",
+   "wikidata": "Q58040765",
+   "description": "American music producer"
+  },
+  {
+   "artist": "Audien",
+   "wikidata": "Q16146616",
+   "description": "American DJ, record producer and musician"
+  },
+  {
+   "artist": "Audrey Hobert",
+   "wikidata": "Q134452289",
+   "description": "American singer and songwriter"
+  },
+  {
+   "artist": "Audrey Nuna",
+   "wikidata": "Q105538243",
+   "description": "South Korean-American singer and rapper"
+  },
+  {
+   "artist": "Autre Ne Veut",
+   "wikidata": "Q16150375",
+   "description": "American singer"
+  },
+  {
+   "artist": "Awolnation",
+   "wikidata": "Q66413",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Baauer",
+   "wikidata": "Q4671711",
+   "description": "American DJ and record producer (born 1989)"
+  },
+  {
+   "artist": "BABY J",
+   "wikidata": "Q11142250",
+   "description": "South Korean singer"
+  },
+  {
+   "artist": "Baby Jesus",
+   "wikidata": "Q62107457",
+   "description": "American rapper (born 1991)"
+  },
+  {
+   "artist": "Bad Nerves",
+   "wikidata": "Q136378455",
+   "description": "Punk rock band from Essex"
+  },
+  {
+   "artist": "Bad Suns",
+   "wikidata": "Q17514497",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "BADBADNOTGOOD",
+   "wikidata": "Q4840142",
+   "description": "Canadian instrumental group"
+  },
+  {
+   "artist": "Bahamas",
+   "wikidata": "Q4842324",
+   "description": "Canadian singer-songwriter"
+  },
+  {
+   "artist": "Band of Horses",
+   "wikidata": "Q806235",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Banks & Steelz",
+   "wikidata": "Q26397888",
+   "description": "musical project of Wu-Tang's RZA and Interpol's Paul Banks"
+  },
+  {
+   "artist": "Basia Bulat",
+   "wikidata": "Q2886780",
+   "description": "Canadian singer"
+  },
+  {
+   "artist": "BASS DRUM OF DEATH",
+   "wikidata": "Q4867915",
+   "description": "US musical group"
+  },
+  {
+   "artist": "Bassnectar",
+   "wikidata": "Q4868181",
+   "description": "American DJ and music producer"
+  },
+  {
+   "artist": "Bea Miller",
+   "wikidata": "Q16240326",
+   "description": "American singer"
+  },
+  {
+   "artist": "beabadoobee",
+   "wikidata": "Q66817366",
+   "description": "British singer"
+  },
+  {
+   "artist": "Bear Hands",
+   "wikidata": "Q15052989",
+   "description": "American post-punk and indie rock band"
+  },
+  {
+   "artist": "Beats Antique",
+   "wikidata": "Q4877283",
+   "description": "American-based experimental music group"
+  },
+  {
+   "artist": "Beck",
+   "wikidata": "Q11901",
+   "description": "American musician (born 1970)"
+  },
+  {
+   "artist": "BECKY HILL",
+   "wikidata": "Q16236194",
+   "description": "British singer (born 1994)"
+  },
+  {
+   "artist": "Bella Kay",
+   "wikidata": "Q138337412",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Ben Böhmer",
+   "wikidata": "Q52160540",
+   "description": "German DJ"
+  },
+  {
+   "artist": "Ben Howard",
+   "wikidata": "Q816518",
+   "description": "English singer and songwriter"
+  },
+  {
+   "artist": "BENEE",
+   "wikidata": "Q61749159",
+   "description": "New Zealand singer-songwriter"
+  },
+  {
+   "artist": "Benjamin Booker",
+   "wikidata": "Q17305706",
+   "description": "American musician"
+  },
+  {
+   "artist": "Benny Benassi",
+   "wikidata": "Q311842",
+   "description": "Italian DJ, record producer and remixer"
+  },
+  {
+   "artist": "BENSON BOONE",
+   "wikidata": "Q110008128",
+   "description": "American singer"
+  },
+  {
+   "artist": "Bibi Bourelly",
+   "wikidata": "Q21037966",
+   "description": "German singer and songwriter"
+  },
+  {
+   "artist": "BIG BOI",
+   "wikidata": "Q371202",
+   "description": "American rapper and record producer"
+  },
+  {
+   "artist": "Big Daddy Kane",
+   "wikidata": "Q535972",
+   "description": "American rapper"
+  },
+  {
+   "artist": "BIG GIGANTIC",
+   "wikidata": "Q4905764",
+   "description": "American instrumental band"
+  },
+  {
+   "artist": "Big Thief",
+   "wikidata": "Q28228836",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Big Wild",
+   "wikidata": "Q29917279",
+   "description": "American DJ and record producer"
+  },
+  {
+   "artist": "BIGXTHAPLUG",
+   "wikidata": "Q124750337",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Bill Patrick",
+   "wikidata": "Q135311811",
+   "description": "American DJ, photographer and creator of the photo book In Between"
+  },
+  {
+   "artist": "Billie Marten",
+   "wikidata": "Q22056270",
+   "description": "British singer-songwriter"
+  },
+  {
+   "artist": "Billy Idol",
+   "wikidata": "Q73437",
+   "description": "English singer"
+  },
+  {
+   "artist": "Billy Strings",
+   "wikidata": "Q52004084",
+   "description": "American musician"
+  },
+  {
+   "artist": "Binary Finary",
+   "wikidata": "Q863504",
+   "description": "band"
+  },
+  {
+   "artist": "Bishop Briggs",
+   "wikidata": "Q24207153",
+   "description": "English singer and songwriter"
+  },
+  {
+   "artist": "Black Coffee",
+   "wikidata": "Q16215736",
+   "description": "South African DJ and record producer"
+  },
+  {
+   "artist": "BLACK PUMAS",
+   "wikidata": "Q76668702",
+   "description": "American musical group; Austin, Texas based psychedelic rock band"
+  },
+  {
+   "artist": "Black Sun Empire",
+   "wikidata": "Q158442",
+   "description": "Dutch band"
+  },
+  {
+   "artist": "Black Tiger Sex Machine",
+   "wikidata": "Q22906792",
+   "description": "Canadian industrial music band"
+  },
+  {
+   "artist": "Blackberry Smoke",
+   "wikidata": "Q4035173",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Blackchild",
+   "wikidata": "Q727151",
+   "description": "American record producer and rapper"
+  },
+  {
+   "artist": "BLADEE",
+   "wikidata": "Q55433897",
+   "description": "Swedish rapper (born 1994)"
+  },
+  {
+   "artist": "Blank Range",
+   "wikidata": "Q22073564",
+   "description": "US rock group"
+  },
+  {
+   "artist": "Blastoyz",
+   "wikidata": "Q118682168",
+   "description": "Israeli psytrance music artist"
+  },
+  {
+   "artist": "BLOND:ISH",
+   "wikidata": "Q19667739",
+   "description": "Canadian DJ and music producer"
+  },
+  {
+   "artist": "Blood Orange",
+   "wikidata": "Q2311177",
+   "description": "British musician (born 1985)"
+  },
+  {
+   "artist": "BÔA",
+   "wikidata": "Q232449",
+   "description": "South Korean singer, actress and songwriter (1986-)"
+  },
+  {
+   "artist": "BoDeans",
+   "wikidata": "Q887304",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Bomba Estéreo",
+   "wikidata": "Q887911",
+   "description": "Colombian band"
+  },
+  {
+   "artist": "Bombino",
+   "wikidata": "Q891919",
+   "description": "Nigerien Tuareg singer-songwriter and guitarist"
+  },
+  {
+   "artist": "BONES UK",
+   "wikidata": "Q28340958",
+   "description": "Rock band from Camden Town, London"
+  },
+  {
+   "artist": "Bonobo",
+   "wikidata": "Q707967",
+   "description": "British musician, producer and DJ"
+  },
+  {
+   "artist": "Booker T. Jones",
+   "wikidata": "Q703767",
+   "description": "American musician"
+  },
+  {
+   "artist": "BOOMBOX CARTEL",
+   "wikidata": "Q53341957",
+   "description": "Electronic music producers"
+  },
+  {
+   "artist": "Borgore",
+   "wikidata": "Q50674",
+   "description": "Israeli DJ and record producer"
+  },
+  {
+   "artist": "Boris Brejcha",
+   "wikidata": "Q27666713",
+   "description": "German DJ and music producer"
+  },
+  {
+   "artist": "BØRNS",
+   "wikidata": "Q19873750",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "BOSSMAN DLOW",
+   "wikidata": "Q125145666",
+   "description": "American rapper (born 1998)"
+  },
+  {
+   "artist": "Brand New",
+   "wikidata": "Q897754",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Brandi Carlile",
+   "wikidata": "Q164060",
+   "description": "American alternative country and folk rock singer-songwriter (born 1981)"
+  },
+  {
+   "artist": "Brandi Cyrus",
+   "wikidata": "Q17312598",
+   "description": "American actress and singer"
+  },
+  {
+   "artist": "Brennan Heart",
+   "wikidata": "Q909017",
+   "description": "Dutch DJ and hardstyle producer"
+  },
+  {
+   "artist": "Brett Dennen",
+   "wikidata": "Q648640",
+   "description": "American musician"
+  },
+  {
+   "artist": "Briston Maroney",
+   "wikidata": "Q65643395",
+   "description": "American singer, songwriter, and guitarist"
+  },
+  {
+   "artist": "Brittany Howard",
+   "wikidata": "Q19572136",
+   "description": "American singer"
+  },
+  {
+   "artist": "BRITTNEY SPENCER",
+   "wikidata": "Q111031703",
+   "description": "American musical artist (born 1988)"
+  },
+  {
+   "artist": "BROCKHAMPTON",
+   "wikidata": "Q30612260",
+   "description": "American hip-hop boyband"
+  },
+  {
+   "artist": "Broken Bells",
+   "wikidata": "Q925677",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Broods",
+   "wikidata": "Q15379163",
+   "description": "New Zealand musical duo"
+  },
+  {
+   "artist": "Brothers Osborne",
+   "wikidata": "Q16208058",
+   "description": "American country music group"
+  },
+  {
+   "artist": "Bryan Kearney",
+   "wikidata": "Q4980192",
+   "description": "Irish disc jockey and trance music producer"
+  },
+  {
+   "artist": "Buckcherry",
+   "wikidata": "Q430224",
+   "description": "American hard rock band"
+  },
+  {
+   "artist": "Buju Banton",
+   "wikidata": "Q560642",
+   "description": "Jamaican musician"
+  },
+  {
+   "artist": "BUNT.",
+   "wikidata": "Q57447106",
+   "description": "German DJ"
+  },
+  {
+   "artist": "CA7RIEL & PACO AMOROSO",
+   "wikidata": "Q84042159",
+   "description": "Argentina experimental urban music duo"
+  },
+  {
+   "artist": "CAMILA CABELLO",
+   "wikidata": "Q18810940",
+   "description": "Cuban-Mexican-American singer"
+  },
+  {
+   "artist": "Candlebox",
+   "wikidata": "Q1033047",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Cannons",
+   "wikidata": "Q105080423",
+   "description": "American indie pop band"
+  },
+  {
+   "artist": "Capital Cities",
+   "wikidata": "Q5035696",
+   "description": "American pop band"
+  },
+  {
+   "artist": "Car Seat Headrest",
+   "wikidata": "Q22080761",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Cardi B",
+   "wikidata": "Q29033668",
+   "description": "American rapper (born 1992)"
+  },
+  {
+   "artist": "Carín León",
+   "wikidata": "Q97014977",
+   "description": "Mexican Singer, songwriter"
+  },
+  {
+   "artist": "Carl Cox",
+   "wikidata": "Q319719",
+   "description": "British house and techno DJ producer"
+  },
+  {
+   "artist": "Carl Craig",
+   "wikidata": "Q962197",
+   "description": "American music producer"
+  },
+  {
+   "artist": "CARLY RAE JEPSEN",
+   "wikidata": "Q52583",
+   "description": "Canadian singer (born 1985)"
+  },
+  {
+   "artist": "Caroline Rose",
+   "wikidata": "Q55397080",
+   "description": "American singer"
+  },
+  {
+   "artist": "CARTER VAIL",
+   "wikidata": "Q126209756",
+   "description": "internet creator and singer-songwriter"
+  },
+  {
+   "artist": "Cash Cash",
+   "wikidata": "Q1047317",
+   "description": "American electronic dance music band"
+  },
+  {
+   "artist": "CASSANDRA JENKINS",
+   "wikidata": "Q105635611",
+   "description": "American singer and musician"
+  },
+  {
+   "artist": "Catfish and the Bottlemen",
+   "wikidata": "Q16825909",
+   "description": "Welsh/English rock band"
+  },
+  {
+   "artist": "CAUTIOUS CLAY",
+   "wikidata": "Q65589640",
+   "description": "American singer, songwriter, and record producer"
+  },
+  {
+   "artist": "Cedric Gervais",
+   "wikidata": "Q5057106",
+   "description": "French DJ and record producer"
+  },
+  {
+   "artist": "CHACHI",
+   "wikidata": "Q16223891",
+   "description": "German-American rapper"
+  },
+  {
+   "artist": "Chairlift",
+   "wikidata": "Q762601",
+   "description": "American synth pop band"
+  },
+  {
+   "artist": "Chance The Rapper",
+   "wikidata": "Q12470060",
+   "description": "American rapper, singer and record producer (born 1993)"
+  },
+  {
+   "artist": "Chanel West Coast",
+   "wikidata": "Q5071540",
+   "description": "American television personality, rapper and singer"
+  },
+  {
+   "artist": "Charley Crockett",
+   "wikidata": "Q61731634",
+   "description": "American singer and songwriter"
+  },
+  {
+   "artist": "Charlie Wilson",
+   "wikidata": "Q1067043",
+   "description": "American singer and musician (born 1953)"
+  },
+  {
+   "artist": "Charlotte OC",
+   "wikidata": "Q17811849",
+   "description": "British musician"
+  },
+  {
+   "artist": "Chase & Status",
+   "wikidata": "Q1067983",
+   "description": "British electronic music band"
+  },
+  {
+   "artist": "Chase B",
+   "wikidata": "Q118134638",
+   "description": "American DJ and record producer"
+  },
+  {
+   "artist": "Cherry Glazerr",
+   "wikidata": "Q28457035",
+   "description": "American rock band"
+  },
+  {
+   "artist": "CHET FAKER",
+   "wikidata": "Q5094088",
+   "description": "Australian singer, songwriter"
+  },
+  {
+   "artist": "CHICANE",
+   "wikidata": "Q76913",
+   "description": "English musician, DJ, composer, songwriter and record producer"
+  },
+  {
+   "artist": "Chris Lake",
+   "wikidata": "Q958543",
+   "description": "British musician"
+  },
+  {
+   "artist": "CHRIS LIEBING",
+   "wikidata": "Q67372",
+   "description": "German club DJ"
+  },
+  {
+   "artist": "Chris Stapleton",
+   "wikidata": "Q5108148",
+   "description": "American country musician"
+  },
+  {
+   "artist": "Chris Stussy",
+   "wikidata": "Q125928984",
+   "description": "musical artist"
+  },
+  {
+   "artist": "CHRISTONE \"KINGFISH\" INGRAM",
+   "wikidata": "Q54861657",
+   "description": "American blues guitarist and singer"
+  },
+  {
+   "artist": "Christopher Cross",
+   "wikidata": "Q445438",
+   "description": "American singer-songwriter (born 1951)"
+  },
+  {
+   "artist": "Christopher Lawrence",
+   "wikidata": "Q33465",
+   "description": "American DJ"
+  },
+  {
+   "artist": "Chromeo",
+   "wikidata": "Q1087706",
+   "description": "Canadian musical duo"
+  },
+  {
+   "artist": "CHVRCHES",
+   "wikidata": "Q5118436",
+   "description": "Scottish synthpop group"
+  },
+  {
+   "artist": "CIGARETTES AFTER SEX",
+   "wikidata": "Q25349372",
+   "description": "American band"
+  },
+  {
+   "artist": "CIMAFUNK",
+   "wikidata": "Q106209391",
+   "description": "Cuban musician"
+  },
+  {
+   "artist": "Cirez D",
+   "wikidata": "Q155141",
+   "description": "Swedish DJ and record producer (born 1976)"
+  },
+  {
+   "artist": "City and Colour",
+   "wikidata": "Q1094052",
+   "description": "Canadian musical group; side project of Dallas Green"
+  },
+  {
+   "artist": "Claire Rosinkranz",
+   "wikidata": "Q112741332",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "CLAIRO",
+   "wikidata": "Q52433533",
+   "description": "American singer-songwriter (born 1998)"
+  },
+  {
+   "artist": "Claptone",
+   "wikidata": "Q32541800",
+   "description": "German DJ and producer duo"
+  },
+  {
+   "artist": "Classixx",
+   "wikidata": "Q4993385",
+   "description": "American production and DJ duo"
+  },
+  {
+   "artist": "cleopatrick",
+   "wikidata": "Q60753978",
+   "description": "Canadian rock duo"
+  },
+  {
+   "artist": "Clipse",
+   "wikidata": "Q744772",
+   "description": "American hip hop duo from Virginia"
+  },
+  {
+   "artist": "CMAT",
+   "wikidata": "Q97579029",
+   "description": "Irish musician"
+  },
+  {
+   "artist": "Code Black",
+   "wikidata": "Q13472456",
+   "description": "Australian DJ and music producer"
+  },
+  {
+   "artist": "COI LERAY",
+   "wikidata": "Q106376206",
+   "description": "American rapper and singer (born 1997)"
+  },
+  {
+   "artist": "COLBY ACUFF",
+   "wikidata": "Q122781212",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Cold War Kids",
+   "wikidata": "Q1107911",
+   "description": "band"
+  },
+  {
+   "artist": "Colony House",
+   "wikidata": "Q18330910",
+   "description": "indie rock quartet from Franklin, Tennessee"
+  },
+  {
+   "artist": "Common",
+   "wikidata": "Q286022",
+   "description": "American rapper and actor (born 1972)"
+  },
+  {
+   "artist": "CONAN GRAY",
+   "wikidata": "Q65214814",
+   "description": "American singer-songwriter Mateo's boyfriend"
+  },
+  {
+   "artist": "Confidence Man",
+   "wikidata": "Q56276615",
+   "description": "Australian electro pop band from Queensland"
+  },
+  {
+   "artist": "Connor Price",
+   "wikidata": "Q3687084",
+   "description": "Canadian actor"
+  },
+  {
+   "artist": "Conor Oberst",
+   "wikidata": "Q550900",
+   "description": "American musician"
+  },
+  {
+   "artist": "Coone",
+   "wikidata": "Q922397",
+   "description": "Belgian producer, musician and DJ"
+  },
+  {
+   "artist": "Corinne Bailey Rae",
+   "wikidata": "Q231472",
+   "description": "British singer"
+  },
+  {
+   "artist": "CORY HENRY",
+   "wikidata": "Q23664218",
+   "description": "American jazz and gospel musician"
+  },
+  {
+   "artist": "Cosmic Gate",
+   "wikidata": "Q312112",
+   "description": "German DJ duo"
+  },
+  {
+   "artist": "Court Yard Hounds",
+   "wikidata": "Q5178291",
+   "description": "US musical group"
+  },
+  {
+   "artist": "Cuco",
+   "wikidata": "Q66551093",
+   "description": "Mexican-American singer-songwriter"
+  },
+  {
+   "artist": "Cults",
+   "wikidata": "Q2612153",
+   "description": "American indie band"
+  },
+  {
+   "artist": "Curtis Harding",
+   "wikidata": "Q45059763",
+   "description": "American soul singer and songwriter"
+  },
+  {
+   "artist": "Cut Copy",
+   "wikidata": "Q573168",
+   "description": "Australian electronic music group"
+  },
+  {
+   "artist": "D’Arcy Drollinger",
+   "wikidata": "Q24565290",
+   "description": "American actor, writer, musician, director, producer & choreographer"
+  },
+  {
+   "artist": "DAMIANO DAVID",
+   "wikidata": "Q57415344",
+   "description": "Italian singer-songwriter"
+  },
+  {
+   "artist": "Damon Sharpe",
+   "wikidata": "Q5212883",
+   "description": "American songwriter"
+  },
+  {
+   "artist": "Dan Croll",
+   "wikidata": "Q4166246",
+   "description": "English singer-songwriter"
+  },
+  {
+   "artist": "DANIELLE PONDER",
+   "wikidata": "Q121421519",
+   "description": "American singer and lawyer"
+  },
+  {
+   "artist": "Danny Avila",
+   "wikidata": "Q5799013",
+   "description": "Spanish DJ and musician"
+  },
+  {
+   "artist": "DANNY BYRD",
+   "wikidata": "Q506026",
+   "description": "British DJ, record producer, musician"
+  },
+  {
+   "artist": "Darude",
+   "wikidata": "Q360591",
+   "description": "Finnish DJ, music producer and composer"
+  },
+  {
+   "artist": "DATSIK",
+   "wikidata": "Q1998551",
+   "description": "Canadian DJ, musician, and dubstep producer"
+  },
+  {
+   "artist": "David Byrne",
+   "wikidata": "Q336640",
+   "description": "Scottish-American musician (born 1952)"
+  },
+  {
+   "artist": "David Lee Roth",
+   "wikidata": "Q313992",
+   "description": "American singer"
+  },
+  {
+   "artist": "Dawes",
+   "wikidata": "Q373954",
+   "description": "American folk rock band"
+  },
+  {
+   "artist": "Dawn and Hawkes",
+   "wikidata": "Q18712183",
+   "description": "US musical group"
+  },
+  {
+   "artist": "Dayglow",
+   "wikidata": "Q105277210",
+   "description": "American singer (born 1999)"
+  },
+  {
+   "artist": "deadmau5",
+   "wikidata": "Q49009",
+   "description": "Canadian electronic dance music producer (born 1981)"
+  },
+  {
+   "artist": "Deap Vally",
+   "wikidata": "Q5246801",
+   "description": "American rock duo, formed in Los Angeles"
+  },
+  {
+   "artist": "Death Cab for Cutie",
+   "wikidata": "Q16414",
+   "description": "American rock band"
+  },
+  {
+   "artist": "DEATH GRIPS",
+   "wikidata": "Q3020722",
+   "description": "American experimental hip-hop group"
+  },
+  {
+   "artist": "DEATHBYROMY",
+   "wikidata": "Q117475435",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Deborah De Luca",
+   "wikidata": "Q28053409",
+   "description": "Italian DJ and techno producer"
+  },
+  {
+   "artist": "Dee Jay Silver",
+   "wikidata": "Q140006165",
+   "description": "American disc jockey (born 1974)"
+  },
+  {
+   "artist": "Deer Tick",
+   "wikidata": "Q1182489",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Del Water Gap",
+   "wikidata": "Q111203209",
+   "description": "American band and solo project of S. Holden Jaffe"
+  },
+  {
+   "artist": "Delacey",
+   "wikidata": "Q105200127",
+   "description": "American singer and songwriter"
+  },
+  {
+   "artist": "Delta Heavy",
+   "wikidata": "Q16864855",
+   "description": "British DJ and production duo"
+  },
+  {
+   "artist": "Delta Rae",
+   "wikidata": "Q5254728",
+   "description": "American folk rock band"
+  },
+  {
+   "artist": "Dennis Cruz",
+   "wikidata": "Q130677389",
+   "description": "dj and music producer"
+  },
+  {
+   "artist": "Denzel Curry",
+   "wikidata": "Q17517049",
+   "description": "American rapper from Florida (born 1995)"
+  },
+  {
+   "artist": "Depeche Mode",
+   "wikidata": "Q482964",
+   "description": "British band"
+  },
+  {
+   "artist": "DERMOT KENNEDY",
+   "wikidata": "Q61983346",
+   "description": "Irish singer-songwriter"
+  },
+  {
+   "artist": "Derrick Carter",
+   "wikidata": "Q3023973",
+   "description": "American house producer and DJ (born 1969)"
+  },
+  {
+   "artist": "Desert Noises",
+   "wikidata": "Q19630469",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Die Antwoord",
+   "wikidata": "Q23376",
+   "description": "South African rap-rave group"
+  },
+  {
+   "artist": "Die Spitz",
+   "wikidata": "Q136822842",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Dieselboy",
+   "wikidata": "Q3027518",
+   "description": "American DJ and producer"
+  },
+  {
+   "artist": "Dillon Francis",
+   "wikidata": "Q5276931",
+   "description": "American DJ and record producer"
+  },
+  {
+   "artist": "Dimension",
+   "wikidata": "Q112913243",
+   "description": "English DJ, record producer, songwriter, musician and sound engineer"
+  },
+  {
+   "artist": "Dimitri Vegas",
+   "wikidata": "Q12308641",
+   "description": "Belgian DJ and record producer"
+  },
+  {
+   "artist": "Diplo",
+   "wikidata": "Q533781",
+   "description": "American DJ and record producer (born 1978)"
+  },
+  {
+   "artist": "Dirtyphonics",
+   "wikidata": "Q3029750",
+   "description": "French electronic music band"
+  },
+  {
+   "artist": "Disco Fries",
+   "wikidata": "Q16954438",
+   "description": "American production team"
+  },
+  {
+   "artist": "Disturbed",
+   "wikidata": "Q131366",
+   "description": "American heavy metal band"
+  },
+  {
+   "artist": "Divine Fits",
+   "wikidata": "Q5284089",
+   "description": "American/Canadian indie rock band"
+  },
+  {
+   "artist": "Dizzy",
+   "wikidata": "Q118727763",
+   "description": "Swedish rapper"
+  },
+  {
+   "artist": "DJ Heather",
+   "wikidata": "Q111047933",
+   "description": "American dj"
+  },
+  {
+   "artist": "DJ Icey",
+   "wikidata": "Q5205343",
+   "description": "American musician"
+  },
+  {
+   "artist": "DJ Isaac",
+   "wikidata": "Q2530924",
+   "description": "Dutch record producer and club DJ"
+  },
+  {
+   "artist": "DJ Mandy",
+   "wikidata": "Q67088038",
+   "description": ""
+  },
+  {
+   "artist": "DJ Minx",
+   "wikidata": "Q105094912",
+   "description": "musical artist"
+  },
+  {
+   "artist": "DJ Tennis",
+   "wikidata": "Q65558243",
+   "description": "Italian musician"
+  },
+  {
+   "artist": "Doc Brown",
+   "wikidata": "Q5287024",
+   "description": "British comedian, actor, screenwriter, voiceover artist and former rapper"
+  },
+  {
+   "artist": "DOECHII",
+   "wikidata": "Q106629186",
+   "description": "American rapper and singer"
+  },
+  {
+   "artist": "Dom Dolla",
+   "wikidata": "Q58007869",
+   "description": "Australian house music producer"
+  },
+  {
+   "artist": "Dominic Fike",
+   "wikidata": "Q61906153",
+   "description": "American musician (born 1995)"
+  },
+  {
+   "artist": "Domo Genesis",
+   "wikidata": "Q4249819",
+   "description": "American rapper and DJ (born 1991)"
+  },
+  {
+   "artist": "DON DIABLO",
+   "wikidata": "Q2464558",
+   "description": "Dutch DJ and record producer"
+  },
+  {
+   "artist": "Don Felder",
+   "wikidata": "Q704399",
+   "description": "American rock musician"
+  },
+  {
+   "artist": "Donald Glaude",
+   "wikidata": "Q5294423",
+   "description": "American musician"
+  },
+  {
+   "artist": "Donna Missal",
+   "wikidata": "Q60895918",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "DOPE LEMON",
+   "wikidata": "Q2849821",
+   "description": "Australian singer-songwriter"
+  },
+  {
+   "artist": "Dora Jar",
+   "wikidata": "Q110929580",
+   "description": "American bedroom pop musician"
+  },
+  {
+   "artist": "DR. DOG",
+   "wikidata": "Q1253851",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Drake",
+   "wikidata": "Q33240",
+   "description": "Canadian-American rapper, singer-songwriter, and actor (born 1986)"
+  },
+  {
+   "artist": "Drew Holcomb & The Neighbors",
+   "wikidata": "Q96210270",
+   "description": "American music band"
+  },
+  {
+   "artist": "DROELOE",
+   "wikidata": "Q57950965",
+   "description": "Dutch musical project"
+  },
+  {
+   "artist": "DUA SALEH",
+   "wikidata": "Q84766127",
+   "description": "singer"
+  },
+  {
+   "artist": "Duck Sauce",
+   "wikidata": "Q1165307",
+   "description": "DJ duo"
+  },
+  {
+   "artist": "Duke Dumont",
+   "wikidata": "Q9637045",
+   "description": "English DJ and record producer"
+  },
+  {
+   "artist": "Durand Jones & The Indications",
+   "wikidata": "Q98280682",
+   "description": "American soul group"
+  },
+  {
+   "artist": "DUSTIN KENSRUE",
+   "wikidata": "Q1028899",
+   "description": "American musician"
+  },
+  {
+   "artist": "Dwight Yoakam",
+   "wikidata": "Q713099",
+   "description": "American country singer-songwriter, actor, and film director"
+  },
+  {
+   "artist": "Eagles of Death Metal",
+   "wikidata": "Q1276886",
+   "description": "American rock band"
+  },
+  {
+   "artist": "EARLY JAMES",
+   "wikidata": "Q89442693",
+   "description": "musical artist"
+  },
+  {
+   "artist": "Eats Everything",
+   "wikidata": "Q16220899",
+   "description": "English DJ (born 1980)"
+  },
+  {
+   "artist": "Echo & The Bunnymen",
+   "wikidata": "Q925641",
+   "description": "English post-punk band"
+  },
+  {
+   "artist": "Echosmith",
+   "wikidata": "Q15044343",
+   "description": "American rock and indie pop band"
+  },
+  {
+   "artist": "Ed Sheeran",
+   "wikidata": "Q47447",
+   "description": "English singer-songwriter (born 1991)"
+  },
+  {
+   "artist": "Eddie Halliwell",
+   "wikidata": "Q125887603",
+   "description": "British hard dance disc jockey and record producer"
+  },
+  {
+   "artist": "EDX",
+   "wikidata": "Q1274384",
+   "description": "Swiss disc jockey and musician"
+  },
+  {
+   "artist": "Elderbrook",
+   "wikidata": "Q44613326",
+   "description": "British musician"
+  },
+  {
+   "artist": "Electric Guest",
+   "wikidata": "Q1653349",
+   "description": "American musical group"
+  },
+  {
+   "artist": "Electric Six",
+   "wikidata": "Q545536",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Elephante",
+   "wikidata": "Q27998922",
+   "description": "American DJ and music producer"
+  },
+  {
+   "artist": "Eliot Sumner",
+   "wikidata": "Q262772",
+   "description": "British musician"
+  },
+  {
+   "artist": "Elle King",
+   "wikidata": "Q5364665",
+   "description": "American singer, songwriter, and actress"
+  },
+  {
+   "artist": "ELLEN ALLIEN",
+   "wikidata": "Q60760",
+   "description": "German electronic musician and music producer"
+  },
+  {
+   "artist": "ELYANNA",
+   "wikidata": "Q108124205",
+   "description": "Palestinian-born singer-songwriter and composer of Chilean origin"
+  },
+  {
+   "artist": "Emily Wolfe",
+   "wikidata": "Q23761354",
+   "description": "American musician"
+  },
+  {
+   "artist": "Eminem",
+   "wikidata": "Q5608",
+   "description": "American rapper, record producer and actor"
+  },
+  {
+   "artist": "EmiSunshine",
+   "wikidata": "Q21063602",
+   "description": "American musician"
+  },
+  {
+   "artist": "EMPRESS OF",
+   "wikidata": "Q20684061",
+   "description": "American singer-songwriter (born 1989)"
+  },
+  {
+   "artist": "Eric Church",
+   "wikidata": "Q975911",
+   "description": "American country singer"
+  },
+  {
+   "artist": "Eric Prydz",
+   "wikidata": "Q155141",
+   "description": "Swedish DJ and record producer (born 1976)"
+  },
+  {
+   "artist": "ERIC TESSMER",
+   "wikidata": "Q64853178",
+   "description": "American guitarist"
+  },
+  {
+   "artist": "ERYKAH BADU",
+   "wikidata": "Q223875",
+   "description": "American singer-songwriter (born 1971)"
+  },
+  {
+   "artist": "Ethel Cain",
+   "wikidata": "Q105581073",
+   "description": "American singer-songwriter, born 1998"
+  },
+  {
+   "artist": "Evan Giia",
+   "wikidata": "Q107297510",
+   "description": "American singer"
+  },
+  {
+   "artist": "EYEDRESS",
+   "wikidata": "Q29534117",
+   "description": "Filipino musician"
+  },
+  {
+   "artist": "Faouzia",
+   "wikidata": "Q56281603",
+   "description": "Moroccan-Canadian musician, singer and songwriter"
+  },
+  {
+   "artist": "FATBOY SLIM",
+   "wikidata": "Q272619",
+   "description": "British musician (born 1963)"
+  },
+  {
+   "artist": "Father John Misty",
+   "wikidata": "Q6107266",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Faye Webster",
+   "wikidata": "Q64010780",
+   "description": "American folk singer and photographer"
+  },
+  {
+   "artist": "Fcukers",
+   "wikidata": "Q130223625",
+   "description": "American electronic band"
+  },
+  {
+   "artist": "FEID",
+   "wikidata": "Q29649988",
+   "description": "Colombian singer, songwriter, and record producer (born 1992)"
+  },
+  {
+   "artist": "Felix Da Housecat",
+   "wikidata": "Q518662",
+   "description": "American DJ and record producer"
+  },
+  {
+   "artist": "Ferry Corsten",
+   "wikidata": "Q311157",
+   "description": "Dutch trance producer and DJ (born 1973)"
+  },
+  {
+   "artist": "Fickle Friends",
+   "wikidata": "Q24895505",
+   "description": "English band"
+  },
+  {
+   "artist": "FIDLAR",
+   "wikidata": "Q4038524",
+   "description": "band from Los Angeles, California, US"
+  },
+  {
+   "artist": "Fightmaster",
+   "wikidata": "Q93767201",
+   "description": "American actor and musician"
+  },
+  {
+   "artist": "FINNEAS",
+   "wikidata": "Q20029978",
+   "description": "American musician and actor (born 1997)"
+  },
+  {
+   "artist": "FIREBEATZ",
+   "wikidata": "Q15917429",
+   "description": "Dutch musical group; electronica duo"
+  },
+  {
+   "artist": "First Aid Kit",
+   "wikidata": "Q975437",
+   "description": "Swedish musical group; sibling duo"
+  },
+  {
+   "artist": "Fitz & The Tantrums",
+   "wikidata": "Q3746211",
+   "description": "American band"
+  },
+  {
+   "artist": "FLETCHER",
+   "wikidata": "Q61996247",
+   "description": "American actress, singer, and songwriter"
+  },
+  {
+   "artist": "Flight Facilities",
+   "wikidata": "Q3793151",
+   "description": "Australian electronic producer duo"
+  },
+  {
+   "artist": "Flora Cash",
+   "wikidata": "Q58032719",
+   "description": "Swedish-American indie pop duo"
+  },
+  {
+   "artist": "Florence + The Machine",
+   "wikidata": "Q217360",
+   "description": "English indie rock band"
+  },
+  {
+   "artist": "Flosstradamus",
+   "wikidata": "Q5461990",
+   "description": "American electronic musician"
+  },
+  {
+   "artist": "Flume",
+   "wikidata": "Q4038837",
+   "description": "Australian music producer"
+  },
+  {
+   "artist": "Flux Pavilion",
+   "wikidata": "Q20926",
+   "description": "English dubstep producer and DJ"
+  },
+  {
+   "artist": "Foals",
+   "wikidata": "Q728958",
+   "description": "British indie rock band"
+  },
+  {
+   "artist": "Foo Fighters",
+   "wikidata": "Q483718",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Foster The People",
+   "wikidata": "Q61113",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Foxygen",
+   "wikidata": "Q5477342",
+   "description": "indie rock duo from Westlake Village, California"
+  },
+  {
+   "artist": "Foy Vance",
+   "wikidata": "Q5477365",
+   "description": "Irish singer-songwriter"
+  },
+  {
+   "artist": "FRANCES FOREVER",
+   "wikidata": "Q105104714",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Frankie Bones",
+   "wikidata": "Q4141264",
+   "description": "American DJ"
+  },
+  {
+   "artist": "Freddie Gibbs",
+   "wikidata": "Q1246237",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Freddy Jones Band",
+   "wikidata": "Q5496876",
+   "description": "musical artist"
+  },
+  {
+   "artist": "Frightened Rabbit",
+   "wikidata": "Q1464866",
+   "description": "Scottish indie rock band active 2003–2018"
+  },
+  {
+   "artist": "Frontliner",
+   "wikidata": "Q2682241",
+   "description": "Dutch Hardstyle DJ and Record Producer"
+  },
+  {
+   "artist": "Frost Children",
+   "wikidata": "Q117018188",
+   "description": "American hyperpop duo"
+  },
+  {
+   "artist": "FUJII KAZE",
+   "wikidata": "Q84803821",
+   "description": "Japanese singer-songwriter"
+  },
+  {
+   "artist": "fun.",
+   "wikidata": "Q838984",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "FUTURE ISLANDS",
+   "wikidata": "Q3091284",
+   "description": "American synthpop band"
+  },
+  {
+   "artist": "FYÜTCH",
+   "wikidata": "Q5427433",
+   "description": "rapper"
+  },
+  {
+   "artist": "G-Eazy",
+   "wikidata": "Q5511893",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Gabriel & Dresden",
+   "wikidata": "Q1488859",
+   "description": "American electronic music duo"
+  },
+  {
+   "artist": "Gaia",
+   "wikidata": "Q89375508",
+   "description": "Italian singer-songwriter"
+  },
+  {
+   "artist": "Gallant",
+   "wikidata": "Q22004445",
+   "description": "singer"
+  },
+  {
+   "artist": "Galo",
+   "wikidata": "Q111590078",
+   "description": "Salvadoran singer, author and composer"
+  },
+  {
+   "artist": "Gammer",
+   "wikidata": "Q3095041",
+   "description": "British DJ and music producer"
+  },
+  {
+   "artist": "Gang of Youths",
+   "wikidata": "Q22080817",
+   "description": "Australian musical group; alternative rock band from Sydney based in London"
+  },
+  {
+   "artist": "Gary Clark Jr.",
+   "wikidata": "Q1153310",
+   "description": "American blues musician"
+  },
+  {
+   "artist": "Geese",
+   "wikidata": "Q110565450",
+   "description": "American rock band"
+  },
+  {
+   "artist": "GENESIS OWUSU",
+   "wikidata": "Q70855114",
+   "description": "Ghanaian-Australian singer"
+  },
+  {
+   "artist": "George Ezra",
+   "wikidata": "Q15459513",
+   "description": "English singer-songwriter"
+  },
+  {
+   "artist": "GEORGE STRAIT",
+   "wikidata": "Q366584",
+   "description": "American country music singer (born 1952)"
+  },
+  {
+   "artist": "Gesaffelstein",
+   "wikidata": "Q381562",
+   "description": "French DJ, record producer and composer (born 1985)"
+  },
+  {
+   "artist": "Getter",
+   "wikidata": "Q27914910",
+   "description": "American electronic music producer and DJ"
+  },
+  {
+   "artist": "GG MAGREE",
+   "wikidata": "Q64743664",
+   "description": "Australian musician"
+  },
+  {
+   "artist": "Ghastly",
+   "wikidata": "Q28373766",
+   "description": "American electronic music producer and DJ"
+  },
+  {
+   "artist": "Ghostface Killah",
+   "wikidata": "Q323463",
+   "description": "American rapper (born 1970)"
+  },
+  {
+   "artist": "GIGI PEREZ",
+   "wikidata": "Q130235359",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "GIRL IN RED",
+   "wikidata": "Q62140662",
+   "description": "Norwegian musician (born 1999)"
+  },
+  {
+   "artist": "GLAIVE",
+   "wikidata": "Q100978614",
+   "description": "American musician (born 2005)"
+  },
+  {
+   "artist": "Glass Animals",
+   "wikidata": "Q16839267",
+   "description": "English indie rock band"
+  },
+  {
+   "artist": "GloRilla",
+   "wikidata": "Q114132368",
+   "description": "American rapper"
+  },
+  {
+   "artist": "GMS",
+   "wikidata": "Q1547848",
+   "description": "Dutch music duo"
+  },
+  {
+   "artist": "Golden Child",
+   "wikidata": "Q30007238",
+   "description": "South Korean boy band"
+  },
+  {
+   "artist": "Goldfinger",
+   "wikidata": "Q1064319",
+   "description": "American punk band"
+  },
+  {
+   "artist": "Goldie Boutilier",
+   "wikidata": "Q6380134",
+   "description": "Canadian singer-songwriter"
+  },
+  {
+   "artist": "GOODNIGHT, TEXAS",
+   "wikidata": "Q5583504",
+   "description": "US musical group"
+  },
+  {
+   "artist": "Gorillaz",
+   "wikidata": "Q189991",
+   "description": "British virtual band"
+  },
+  {
+   "artist": "Grace Ives",
+   "wikidata": "Q112712642",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Grace Mitchell",
+   "wikidata": "Q24005286",
+   "description": "American singer"
+  },
+  {
+   "artist": "Grace VanderWaal",
+   "wikidata": "Q26897673",
+   "description": "American singer-songwriter (born 2004)"
+  },
+  {
+   "artist": "GRACIE ABRAMS",
+   "wikidata": "Q106301562",
+   "description": "American singer-songwriter (born 1999)"
+  },
+  {
+   "artist": "Gramatik",
+   "wikidata": "Q14623663",
+   "description": "Slovenian record producer"
+  },
+  {
+   "artist": "Greensky Bluegrass",
+   "wikidata": "Q5604524",
+   "description": "American musical group; bluegrass band"
+  },
+  {
+   "artist": "GREGORY ALAN ISAKOV",
+   "wikidata": "Q3266712",
+   "description": "South African musician"
+  },
+  {
+   "artist": "Gregory Porter",
+   "wikidata": "Q3116385",
+   "description": "American jazz vocalist, songwriter, and actor"
+  },
+  {
+   "artist": "GRETA VAN FLEET",
+   "wikidata": "Q30636835",
+   "description": "American rock band from Frankenmuth, Michigan"
+  },
+  {
+   "artist": "Grimes",
+   "wikidata": "Q117970",
+   "description": "Canadian musician, singer, record producer and music video director (born 1988)"
+  },
+  {
+   "artist": "Groove Armada",
+   "wikidata": "Q117522",
+   "description": "British electronic music duo"
+  },
+  {
+   "artist": "Grouplove",
+   "wikidata": "Q1153346",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Gryffin",
+   "wikidata": "Q27956380",
+   "description": "American musician"
+  },
+  {
+   "artist": "Guns N’ Roses",
+   "wikidata": "Q11895",
+   "description": "American rock band"
+  },
+  {
+   "artist": "GUS DAPPERTON",
+   "wikidata": "Q51858412",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Haerts",
+   "wikidata": "Q16840758",
+   "description": "German indie pop music duo"
+  },
+  {
+   "artist": "HAIM",
+   "wikidata": "Q868810",
+   "description": "American pop rock band"
+  },
+  {
+   "artist": "Halestorm",
+   "wikidata": "Q935503",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Haliene",
+   "wikidata": "Q3194919",
+   "description": "American pop singer"
+  },
+  {
+   "artist": "Hamilton Leithauser",
+   "wikidata": "Q17037824",
+   "description": "American musician"
+  },
+  {
+   "artist": "HANA",
+   "wikidata": "Q2066647",
+   "description": "American singer"
+  },
+  {
+   "artist": "HARDY",
+   "wikidata": "Q63341424",
+   "description": "American country singer"
+  },
+  {
+   "artist": "Harper O'Neill",
+   "wikidata": "Q141174807",
+   "description": "American singer-songwriter from Dallas, Texas USA"
+  },
+  {
+   "artist": "Hayla",
+   "wikidata": "Q118256148",
+   "description": "British electronic singer, songwriter"
+  },
+  {
+   "artist": "HAYWYRE",
+   "wikidata": "Q24286784",
+   "description": "American music producer"
+  },
+  {
+   "artist": "HEARTLESS BASTARDS",
+   "wikidata": "Q5692913",
+   "description": "American garage rock band"
+  },
+  {
+   "artist": "Helena Hauff",
+   "wikidata": "Q28312805",
+   "description": "German DJ"
+  },
+  {
+   "artist": "Hemlocke Springs",
+   "wikidata": "Q115483976",
+   "description": "American singer"
+  },
+  {
+   "artist": "HERMANOS GUTIÉRREZ",
+   "wikidata": "Q117025323",
+   "description": "Swiss Latin band"
+  },
+  {
+   "artist": "HI-LO",
+   "wikidata": "Q16667903",
+   "description": "Dutch DJ and record producer"
+  },
+  {
+   "artist": "High Vis",
+   "wikidata": "Q123700163",
+   "description": "English rock band"
+  },
+  {
+   "artist": "Highly Suspect",
+   "wikidata": "Q20527609",
+   "description": "American rock band"
+  },
+  {
+   "artist": "HINDS",
+   "wikidata": "Q19540128",
+   "description": "Spanish indie rock band"
+  },
+  {
+   "artist": "Holly Humberstone",
+   "wikidata": "Q96217225",
+   "description": "British singer (born 1999)"
+  },
+  {
+   "artist": "Holly Williams",
+   "wikidata": "Q293149",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "HOLYCHILD",
+   "wikidata": "Q19880303",
+   "description": "American indie pop duo"
+  },
+  {
+   "artist": "Hot Mulligan",
+   "wikidata": "Q65121355",
+   "description": "American emo band"
+  },
+  {
+   "artist": "Hozier",
+   "wikidata": "Q16233232",
+   "description": "Irish musician and singer"
+  },
+  {
+   "artist": "HUDSON WESTBROOK",
+   "wikidata": "Q134125831",
+   "description": "American singer"
+  },
+  {
+   "artist": "Hundred Waters",
+   "wikidata": "Q16845562",
+   "description": "American band from Florida"
+  },
+  {
+   "artist": "i-dle",
+   "wikidata": "Q51885404",
+   "description": "South Korean girl group"
+  },
+  {
+   "artist": "I Hate Models",
+   "wikidata": "Q124450041",
+   "description": "French techno DJ producer"
+  },
+  {
+   "artist": "IAMDDB",
+   "wikidata": "Q60401547",
+   "description": "musician"
+  },
+  {
+   "artist": "ICE CUBE",
+   "wikidata": "Q173637",
+   "description": "American rapper and actor"
+  },
+  {
+   "artist": "Icona Pop",
+   "wikidata": "Q808703",
+   "description": "Swedish DJ duo"
+  },
+  {
+   "artist": "Ida Engberg",
+   "wikidata": "Q14847912",
+   "description": "Swedish techno DJ (born 1984)"
+  },
+  {
+   "artist": "IDK",
+   "wikidata": "Q28967759",
+   "description": "British-American rapper, singer, songwriter, and record producer"
+  },
+  {
+   "artist": "IDKHOW",
+   "wikidata": "Q50841782",
+   "description": "American pop/rock musical duo"
+  },
+  {
+   "artist": "IDLES",
+   "wikidata": "Q39070668",
+   "description": "British post-punk band"
+  },
+  {
+   "artist": "Iggy Azalea",
+   "wikidata": "Q2748803",
+   "description": "Australian rapper (born 1990)"
+  },
+  {
+   "artist": "Illenium",
+   "wikidata": "Q27662462",
+   "description": "American musician, DJ, producer, and songwriter (born 1990)"
+  },
+  {
+   "artist": "Imanbek",
+   "wikidata": "Q83688261",
+   "description": "Kazakh record producer"
+  },
+  {
+   "artist": "Imelda May",
+   "wikidata": "Q260354",
+   "description": "Irish singer"
+  },
+  {
+   "artist": "Infected Mushroom",
+   "wikidata": "Q548994",
+   "description": "Israeli psytrance/electronica duo"
+  },
+  {
+   "artist": "Ingrid Andress",
+   "wikidata": "Q71746387",
+   "description": "American country singer"
+  },
+  {
+   "artist": "INJI",
+   "wikidata": "Q120984163",
+   "description": "Turkish singer-songwriter (born 2001)"
+  },
+  {
+   "artist": "ISAIAH RASHAD",
+   "wikidata": "Q16199520",
+   "description": "American rapper from Tennessee"
+  },
+  {
+   "artist": "ISRAEL NASH",
+   "wikidata": "Q2598662",
+   "description": "American singer-songwriter and singer"
+  },
+  {
+   "artist": "Ja Rule",
+   "wikidata": "Q309843",
+   "description": "American rapper, singer and actor"
+  },
+  {
+   "artist": "JACK BEATS",
+   "wikidata": "Q7205605",
+   "description": "English electronic-music duo"
+  },
+  {
+   "artist": "Jack Garratt",
+   "wikidata": "Q21618845",
+   "description": "British singer-songwriter, multi-instrumentalist and record producer"
+  },
+  {
+   "artist": "Jackie Venson",
+   "wikidata": "Q21063218",
+   "description": "American singer, songwriter and musician"
+  },
+  {
+   "artist": "JACOB BANKS",
+   "wikidata": "Q16995276",
+   "description": "British musician"
+  },
+  {
+   "artist": "JADE BIRD",
+   "wikidata": "Q42517649",
+   "description": "British singer"
+  },
+  {
+   "artist": "Jake Bugg",
+   "wikidata": "Q1320912",
+   "description": "English singer-songwriter (born 1994)"
+  },
+  {
+   "artist": "JAKE WESLEY ROGERS",
+   "wikidata": "Q107313703",
+   "description": "American pop musician and songwriter"
+  },
+  {
+   "artist": "James Bay",
+   "wikidata": "Q17811637",
+   "description": "British singer-songwriter"
+  },
+  {
+   "artist": "James Blake",
+   "wikidata": "Q350362",
+   "description": "English singer-songwriter (born 1988)"
+  },
+  {
+   "artist": "James Hype",
+   "wikidata": "Q47472388",
+   "description": "English DJ and record producer"
+  },
+  {
+   "artist": "James Vincent McMorrow",
+   "wikidata": "Q3161463",
+   "description": "Irish singer-songwriter"
+  },
+  {
+   "artist": "Jamestown Revival",
+   "wikidata": "Q20684229",
+   "description": "American musical duo"
+  },
+  {
+   "artist": "Jamila Woods",
+   "wikidata": "Q23761865",
+   "description": "American singer"
+  },
+  {
+   "artist": "Janelle Monáe",
+   "wikidata": "Q234356",
+   "description": "American singer and actress (born 1985)"
+  },
+  {
+   "artist": "Jauz",
+   "wikidata": "Q28053503",
+   "description": "American DJ and music producer"
+  },
+  {
+   "artist": "JAZMINE SULLIVAN",
+   "wikidata": "Q267070",
+   "description": "American singer"
+  },
+  {
+   "artist": "Jazz Cartier",
+   "wikidata": "Q20630682",
+   "description": "Canadian rapper"
+  },
+  {
+   "artist": "Jean Dawson",
+   "wikidata": "Q113375223",
+   "description": "Mexican-American singer-songwriter and rapper"
+  },
+  {
+   "artist": "JEEZY",
+   "wikidata": "Q342447",
+   "description": "American rapper (born 1977)"
+  },
+  {
+   "artist": "JEFFREY SUTORIUS",
+   "wikidata": "Q56246452",
+   "description": "Dj and producer"
+  },
+  {
+   "artist": "Jelly Roll",
+   "wikidata": "Q6176881",
+   "description": "American rapper (born 1984)"
+  },
+  {
+   "artist": "Jennie",
+   "wikidata": "Q26262599",
+   "description": "South Korean singer-songwriter and rapper (born 1996)"
+  },
+  {
+   "artist": "Jenny Lewis",
+   "wikidata": "Q435968",
+   "description": "American musician and actress"
+  },
+  {
+   "artist": "JENSEN MCRAE",
+   "wikidata": "Q106464283",
+   "description": "American singer-songwriter and poet (born 1997)"
+  },
+  {
+   "artist": "JESS GLYNNE",
+   "wikidata": "Q15744507",
+   "description": "British singer (born 1989)"
+  },
+  {
+   "artist": "Jess Williamson",
+   "wikidata": "Q65743087",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Jesse Welles",
+   "wikidata": "Q30599643",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Jessie Murph",
+   "wikidata": "Q122157373",
+   "description": "American singer (born 2004)"
+  },
+  {
+   "artist": "JESSIE WARE",
+   "wikidata": "Q218042",
+   "description": "British singer"
+  },
+  {
+   "artist": "Jhené Aiko",
+   "wikidata": "Q15929781",
+   "description": "American singer-songwriter (born 1988)"
+  },
+  {
+   "artist": "Jimmy Cliff",
+   "wikidata": "Q109063",
+   "description": "Jamaican musician (1944–2025)"
+  },
+  {
+   "artist": "Jimmy Eat World",
+   "wikidata": "Q642988",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Jimmy Page",
+   "wikidata": "Q165467",
+   "description": "English guitarist (born 1944)"
+  },
+  {
+   "artist": "Jinx",
+   "wikidata": "Q3501691",
+   "description": "Croatian musical group; pop band"
+  },
+  {
+   "artist": "JOANIE LEEDS",
+   "wikidata": "Q6205698",
+   "description": "American musician"
+  },
+  {
+   "artist": "Joel Corry",
+   "wikidata": "Q67172196",
+   "description": "English DJ, producer and television personality"
+  },
+  {
+   "artist": "JOEY VALENCE & BRAE",
+   "wikidata": "Q120068486",
+   "description": "American hip-hop duo, consisting of singers Joseph Bertolino and Braedan Lugue"
+  },
+  {
+   "artist": "Johan Gielen",
+   "wikidata": "Q716946",
+   "description": "Belgian DJ"
+  },
+  {
+   "artist": "JON BATISTE",
+   "wikidata": "Q6272528",
+   "description": "American musician and singer (b. 1986)"
+  },
+  {
+   "artist": "Jon Batiste and Stay Human",
+   "wikidata": "Q20685658",
+   "description": "American jazz band"
+  },
+  {
+   "artist": "Jon Pardi",
+   "wikidata": "Q6271354",
+   "description": "American country singer"
+  },
+  {
+   "artist": "JONAS BLUE",
+   "wikidata": "Q22246459",
+   "description": "British DJ and music producer"
+  },
+  {
+   "artist": "Jorn van Deynhoven",
+   "wikidata": "Q16216521",
+   "description": "Dutch DJ and record producer"
+  },
+  {
+   "artist": "José González",
+   "wikidata": "Q315107",
+   "description": "Swedish-Argentine singer-songwriter"
+  },
+  {
+   "artist": "Joseph Capriati",
+   "wikidata": "Q16844889",
+   "description": "Italian musician"
+  },
+  {
+   "artist": "JOY OLADOKUN",
+   "wikidata": "Q97630757",
+   "description": "American singer-songwriter and folk musician"
+  },
+  {
+   "artist": "JOYRYDE",
+   "wikidata": "Q5398138",
+   "description": "British DJ and music producer"
+  },
+  {
+   "artist": "Joywave",
+   "wikidata": "Q18153761",
+   "description": "American indie rock band from Rochester, New York"
+  },
+  {
+   "artist": "JP Saxe",
+   "wikidata": "Q86009464",
+   "description": "Canadian singer and musician"
+  },
+  {
+   "artist": "JPEGMAFIA",
+   "wikidata": "Q50415953",
+   "description": "American rapper and record producer (born 1989)"
+  },
+  {
+   "artist": "JR JR",
+   "wikidata": "Q1157840",
+   "description": "American indie-pop band"
+  },
+  {
+   "artist": "JT",
+   "wikidata": "Q106747932",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Juanes",
+   "wikidata": "Q43189",
+   "description": "Colombian musician (born 1972)"
+  },
+  {
+   "artist": "Judah & the Lion",
+   "wikidata": "Q16850984",
+   "description": "American alternative and folk band"
+  },
+  {
+   "artist": "Judge Jules",
+   "wikidata": "Q1710967",
+   "description": "British musician"
+  },
+  {
+   "artist": "JUDY BLANK",
+   "wikidata": "Q20020005",
+   "description": "Dutch singer-Songwriter"
+  },
+  {
+   "artist": "Julia Jacklin",
+   "wikidata": "Q27573883",
+   "description": "Australian singer-songwriter"
+  },
+  {
+   "artist": "Julia Wolf",
+   "wikidata": "Q136653809",
+   "description": "American singer"
+  },
+  {
+   "artist": "JULY TALK",
+   "wikidata": "Q6310677",
+   "description": "Canadian alternative rock band"
+  },
+  {
+   "artist": "Jungle",
+   "wikidata": "Q17405943",
+   "description": "British rock music group"
+  },
+  {
+   "artist": "Justine Skye",
+   "wikidata": "Q21062706",
+   "description": "American singer"
+  },
+  {
+   "artist": "JXDN",
+   "wikidata": "Q98714287",
+   "description": "American singer, songwriter and TikTok personality"
+  },
+  {
+   "artist": "Jyoty",
+   "wikidata": "Q135298172",
+   "description": "indian-Dutch musical artist"
+  },
+  {
+   "artist": "K.Flay",
+   "wikidata": "Q6322943",
+   "description": "American singer"
+  },
+  {
+   "artist": "Kacey Musgraves",
+   "wikidata": "Q2783855",
+   "description": "American singer (born 1988)"
+  },
+  {
+   "artist": "Kaleo",
+   "wikidata": "Q16851422",
+   "description": "Icelandic rock band"
+  },
+  {
+   "artist": "Kali Uchis",
+   "wikidata": "Q19004484",
+   "description": "American singer-songwriter (born 1994)"
+  },
+  {
+   "artist": "Karen Elson",
+   "wikidata": "Q2076087",
+   "description": "British model and musician"
+  },
+  {
+   "artist": "KAROL G",
+   "wikidata": "Q22001324",
+   "description": "Colombian singer and songwriter"
+  },
+  {
+   "artist": "Kat Dahlia",
+   "wikidata": "Q6374952",
+   "description": "American singer and rapper"
+  },
+  {
+   "artist": "KATIE PRUITT",
+   "wikidata": "Q86475154",
+   "description": "American singer-songwriter and producer"
+  },
+  {
+   "artist": "Kaytranada",
+   "wikidata": "Q17153342",
+   "description": "Haitian-Canadian DJ and record producer"
+  },
+  {
+   "artist": "Kehlani",
+   "wikidata": "Q20657541",
+   "description": "American singer-songwriter (born 1995)"
+  },
+  {
+   "artist": "KENNY BEATS",
+   "wikidata": "Q65580480",
+   "description": "American music producer (born 1991)"
+  },
+  {
+   "artist": "KENNY MASON",
+   "wikidata": "Q111856925",
+   "description": "American rapper"
+  },
+  {
+   "artist": "KEVIN ABSTRACT",
+   "wikidata": "Q21004712",
+   "description": "American rapper and singer"
+  },
+  {
+   "artist": "Kevin Garrett",
+   "wikidata": "Q21286615",
+   "description": "American musician"
+  },
+  {
+   "artist": "KEVIN KAARL",
+   "wikidata": "Q110261472",
+   "description": "Mexican singer"
+  },
+  {
+   "artist": "KEVIN MORBY",
+   "wikidata": "Q15615094",
+   "description": "American musician"
+  },
+  {
+   "artist": "KEY GLOCK",
+   "wikidata": "Q70235526",
+   "description": "American rapper"
+  },
+  {
+   "artist": "KEYS N KRATES",
+   "wikidata": "Q16852093",
+   "description": "Canadian electronic music band"
+  },
+  {
+   "artist": "Khalid",
+   "wikidata": "Q28816483",
+   "description": "American singer (born 1998)"
+  },
+  {
+   "artist": "KHROME",
+   "wikidata": "Q97570572",
+   "description": ""
+  },
+  {
+   "artist": "Khruangbin",
+   "wikidata": "Q54555985",
+   "description": "American psychedelia band from Texas"
+  },
+  {
+   "artist": "Kill The Noise",
+   "wikidata": "Q557415",
+   "description": "American DJ and record producer"
+  },
+  {
+   "artist": "Kim Gordon",
+   "wikidata": "Q240570",
+   "description": "American musician and artist, most known as co-founding member of Sonic Youth (born 1953)"
+  },
+  {
+   "artist": "King Princess",
+   "wikidata": "Q55006878",
+   "description": "American musician"
+  },
+  {
+   "artist": "Klangkuenstler",
+   "wikidata": "Q111655138",
+   "description": "German record producer and DJ"
+  },
+  {
+   "artist": "Kobosil",
+   "wikidata": "Q113698510",
+   "description": "German techno DJ and record producer"
+  },
+  {
+   "artist": "Kodaline",
+   "wikidata": "Q2482563",
+   "description": "Irish rock band"
+  },
+  {
+   "artist": "Koffee",
+   "wikidata": "Q60926853",
+   "description": "Jamaican singer-songwriter, rapper, DJ and guitarist"
+  },
+  {
+   "artist": "Kölsch",
+   "wikidata": "Q3816143",
+   "description": "Danish record producer and DJ from Copenhagen"
+  },
+  {
+   "artist": "KONGOS",
+   "wikidata": "Q6429225",
+   "description": "South African band"
+  },
+  {
+   "artist": "Koo Koo Kanga Roo",
+   "wikidata": "Q16858516",
+   "description": "American kids' comedy disco duo"
+  },
+  {
+   "artist": "Kream",
+   "wikidata": "Q27916259",
+   "description": "Norwegian sibling DJ duo"
+  },
+  {
+   "artist": "Krewella",
+   "wikidata": "Q72349",
+   "description": "American band"
+  },
+  {
+   "artist": "KT Tunstall",
+   "wikidata": "Q230601",
+   "description": "Scottish singer-songwriter and guitarist (born 1975)"
+  },
+  {
+   "artist": "KUNGS",
+   "wikidata": "Q23826199",
+   "description": "French DJ and record producer"
+  },
+  {
+   "artist": "KUTSKI",
+   "wikidata": "Q6448538",
+   "description": "Hardcore DJ"
+  },
+  {
+   "artist": "kwn",
+   "wikidata": "Q134966312",
+   "description": "British rapper and singer-songwriter"
+  },
+  {
+   "artist": "Kygo",
+   "wikidata": "Q16845512",
+   "description": "Norwegian DJ and music producer"
+  },
+  {
+   "artist": "L'IMPÉRATRICE",
+   "wikidata": "Q48754425",
+   "description": "French pop and nu-disco band"
+  },
+  {
+   "artist": "La Femme",
+   "wikidata": "Q13038522",
+   "description": "French musical group; rock band"
+  },
+  {
+   "artist": "Labrinth",
+   "wikidata": "Q48959",
+   "description": "British singer, rapper and record producer"
+  },
+  {
+   "artist": "Lake Street Dive",
+   "wikidata": "Q16065508",
+   "description": "American band founded in 2004 in Boston, Massachusetts"
+  },
+  {
+   "artist": "Lana Del Rey",
+   "wikidata": "Q37150",
+   "description": "American singer-songwriter (born 1985)"
+  },
+  {
+   "artist": "LANDON BARKER",
+   "wikidata": "Q115626511",
+   "description": "American musician and social media personality"
+  },
+  {
+   "artist": "LARRY JUNE",
+   "wikidata": "Q27975347",
+   "description": "American rapper"
+  },
+  {
+   "artist": "LAUNDRY DAY",
+   "wikidata": "Q104855140",
+   "description": "American pop-rock band"
+  },
+  {
+   "artist": "Lauren Daigle",
+   "wikidata": "Q18685595",
+   "description": "American singer and songwriter (born 1991)"
+  },
+  {
+   "artist": "Lauren Sanderson",
+   "wikidata": "Q90785738",
+   "description": "American musician"
+  },
+  {
+   "artist": "LEANN RIMES",
+   "wikidata": "Q120533",
+   "description": "American singer and actress (born 1982)"
+  },
+  {
+   "artist": "Lee Foss",
+   "wikidata": "Q12324127",
+   "description": "American DJ and record producer"
+  },
+  {
+   "artist": "Lemaitre",
+   "wikidata": "Q15052758",
+   "description": "Norwegian indie electronic band"
+  },
+  {
+   "artist": "Len Faki",
+   "wikidata": "Q1817211",
+   "description": "Turkish-German DJ and record producer (born 2000)"
+  },
+  {
+   "artist": "Leon Bridges",
+   "wikidata": "Q19364967",
+   "description": "American soul singer and songwriter"
+  },
+  {
+   "artist": "Lewis Del Mar",
+   "wikidata": "Q24259944",
+   "description": "American Experimental pop duo"
+  },
+  {
+   "artist": "Lexa Gates",
+   "wikidata": "Q125436157",
+   "description": "American singer-songwriter, rapper, and producer"
+  },
+  {
+   "artist": "LIDO",
+   "wikidata": "Q6543718",
+   "description": "Norwegian musician, record producer, singer, and songwriter"
+  },
+  {
+   "artist": "LIDO PIMIENTA",
+   "wikidata": "Q33026662",
+   "description": "Colombian-Canadian musician and singer-songwriter"
+  },
+  {
+   "artist": "Light Asylum",
+   "wikidata": "Q16960730",
+   "description": "Musical group from Brooklynn"
+  },
+  {
+   "artist": "LIL' LOUIS",
+   "wikidata": "Q507618",
+   "description": "American house-music producer and DJ"
+  },
+  {
+   "artist": "LIL NAS X",
+   "wikidata": "Q62591281",
+   "description": "American rapper, singer and songwriter (born 1999)"
+  },
+  {
+   "artist": "LIL YACHTY",
+   "wikidata": "Q23772141",
+   "description": "American rapper, singer-songwriter and record producer (born 1997)"
+  },
+  {
+   "artist": "Lilly Palmer",
+   "wikidata": "Q124439719",
+   "description": "German DJ and music producer"
+  },
+  {
+   "artist": "Lily Allen",
+   "wikidata": "Q58735",
+   "description": "British singer and actress"
+  },
+  {
+   "artist": "Lincoln Durham",
+   "wikidata": "Q23760766",
+   "description": "musical artist"
+  },
+  {
+   "artist": "Lion Babe",
+   "wikidata": "Q20684511",
+   "description": "American music duo"
+  },
+  {
+   "artist": "Little Green Cars",
+   "wikidata": "Q13232253",
+   "description": "Irish band"
+  },
+  {
+   "artist": "Little Simz",
+   "wikidata": "Q6547427",
+   "description": "British rapper"
+  },
+  {
+   "artist": "Live",
+   "wikidata": "Q165714",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Living Colour",
+   "wikidata": "Q1478077",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Liz Cooper & The Stampede",
+   "wikidata": "Q48699549",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Liza Anne",
+   "wikidata": "Q21665807",
+   "description": "American musician"
+  },
+  {
+   "artist": "Lizzo",
+   "wikidata": "Q16232225",
+   "description": "American singer and rapper (born 1988)"
+  },
+  {
+   "artist": "Local Natives",
+   "wikidata": "Q2613632",
+   "description": "American musical group; indie rock band"
+  },
+  {
+   "artist": "Loco Dice",
+   "wikidata": "Q1867690",
+   "description": "German-Tunisian DJ and electronic music producer"
+  },
+  {
+   "artist": "Lord Huron",
+   "wikidata": "Q6679405",
+   "description": "American indie folk band"
+  },
+  {
+   "artist": "Lost Frequencies",
+   "wikidata": "Q18857432",
+   "description": "Belgian DJ and record producer (born 1993)"
+  },
+  {
+   "artist": "Loud Luxury",
+   "wikidata": "Q48697885",
+   "description": "Canadian musical duo"
+  },
+  {
+   "artist": "Louis Tomlinson",
+   "wikidata": "Q3624971",
+   "description": "English singer and songwriter"
+  },
+  {
+   "artist": "lovelytheband",
+   "wikidata": "Q48699526",
+   "description": "American musical group"
+  },
+  {
+   "artist": "LUCA LUSH",
+   "wikidata": "Q41435635",
+   "description": "musical artist"
+  },
+  {
+   "artist": "Lucie Silvas",
+   "wikidata": "Q241989",
+   "description": "British singer"
+  },
+  {
+   "artist": "Lucky Diaz and the Family Jam Band",
+   "wikidata": "Q56280990",
+   "description": "Children's musical group"
+  },
+  {
+   "artist": "LUDACRIS",
+   "wikidata": "Q193676",
+   "description": "American rapper and actor (born 1977)"
+  },
+  {
+   "artist": "Luis Coronel",
+   "wikidata": "Q17486480",
+   "description": "singer"
+  },
+  {
+   "artist": "Lukas Nelson & Promise of the Real",
+   "wikidata": "Q6701696",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Luke Combs",
+   "wikidata": "Q23884740",
+   "description": "American country singer"
+  },
+  {
+   "artist": "Luke Winslow-King",
+   "wikidata": "Q21285662",
+   "description": "American singer-songwriter, guitarist and bandleader"
+  },
+  {
+   "artist": "Mac DeMarco",
+   "wikidata": "Q14517",
+   "description": "Canadian musician"
+  },
+  {
+   "artist": "Maceo Plex",
+   "wikidata": "Q16661959",
+   "description": "American electronic music producer and DJ"
+  },
+  {
+   "artist": "Madeon",
+   "wikidata": "Q1355154",
+   "description": "French DJ and electronic music producer"
+  },
+  {
+   "artist": "Madison Beer",
+   "wikidata": "Q15059490",
+   "description": "American singer (born 1999)"
+  },
+  {
+   "artist": "MADISON CUNNINGHAM",
+   "wikidata": "Q90422576",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "MAGDALENA BAY",
+   "wikidata": "Q97123456",
+   "description": "American musical group; synth-pop duo"
+  },
+  {
+   "artist": "Maggie Koerner",
+   "wikidata": "Q64877536",
+   "description": "American singer/songwriter"
+  },
+  {
+   "artist": "MAGGIE ROGERS",
+   "wikidata": "Q28769131",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "MAGGIE ROSE",
+   "wikidata": "Q6730304",
+   "description": "American singer"
+  },
+  {
+   "artist": "Mahalia",
+   "wikidata": "Q29189033",
+   "description": "British singer"
+  },
+  {
+   "artist": "MAJOR.",
+   "wikidata": "Q37320664",
+   "description": "American musician"
+  },
+  {
+   "artist": "Major Lazer",
+   "wikidata": "Q2604214",
+   "description": "Jamaican-American electronic music band"
+  },
+  {
+   "artist": "Malaa",
+   "wikidata": "Q48976227",
+   "description": "French DJ and record producer"
+  },
+  {
+   "artist": "MALCOLM TODD",
+   "wikidata": "Q133336769",
+   "description": "American musician (born 2003)"
+  },
+  {
+   "artist": "Manchester Orchestra",
+   "wikidata": "Q3544284",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Manics",
+   "wikidata": "Q217025",
+   "description": "Welsh rock band"
+  },
+  {
+   "artist": "MARC REBILLET",
+   "wikidata": "Q64996108",
+   "description": "American improvisational musician"
+  },
+  {
+   "artist": "Marc Scibilia",
+   "wikidata": "Q6755868",
+   "description": "Rock and folk musician"
+  },
+  {
+   "artist": "MARCUS MUMFORD",
+   "wikidata": "Q25554",
+   "description": "British musician (born 1987)"
+  },
+  {
+   "artist": "Maren Morris",
+   "wikidata": "Q21622122",
+   "description": "American country singer"
+  },
+  {
+   "artist": "Margaret Glaspy",
+   "wikidata": "Q24886765",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Margo Price",
+   "wikidata": "Q22073688",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Mariah the Scientist",
+   "wikidata": "Q84356665",
+   "description": "American singer (born 1997)"
+  },
+  {
+   "artist": "Marian Hill",
+   "wikidata": "Q20858093",
+   "description": "American musical duo"
+  },
+  {
+   "artist": "MARINA",
+   "wikidata": "Q234174",
+   "description": "British singer"
+  },
+  {
+   "artist": "MARK AMBOR",
+   "wikidata": "Q123899629",
+   "description": "American singer-songwriter of Armenian origin"
+  },
+  {
+   "artist": "MARTEN HØRGER",
+   "wikidata": "Q22947113",
+   "description": ""
+  },
+  {
+   "artist": "MASEGO",
+   "wikidata": "Q55622353",
+   "description": "Jamaican musician"
+  },
+  {
+   "artist": "Mat Zo",
+   "wikidata": "Q1229914",
+   "description": "British DJ"
+  },
+  {
+   "artist": "MATTIEL",
+   "wikidata": "Q72759626",
+   "description": "American musician"
+  },
+  {
+   "artist": "Mau P",
+   "wikidata": "Q68837280",
+   "description": "Dutch DJ and record producer"
+  },
+  {
+   "artist": "MAUDE LATOUR",
+   "wikidata": "Q113133789",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Max Frost",
+   "wikidata": "Q16729112",
+   "description": "American indie rock musician"
+  },
+  {
+   "artist": "Max Jury",
+   "wikidata": "Q27063853",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Mednas",
+   "wikidata": "Q6807244",
+   "description": "Moroccan DJ and record producer"
+  },
+  {
+   "artist": "Meg Myers",
+   "wikidata": "Q6808002",
+   "description": "American singer-songwriter and musician"
+  },
+  {
+   "artist": "Mega Ran",
+   "wikidata": "Q7291909",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Megan Thee Stallion",
+   "wikidata": "Q59268408",
+   "description": "American rapper, singer and songwriter"
+  },
+  {
+   "artist": "MELANIE C",
+   "wikidata": "Q151830",
+   "description": "British pop singer (born 1974)"
+  },
+  {
+   "artist": "Menno de Jong",
+   "wikidata": "Q1241387",
+   "description": "Dutch DJ"
+  },
+  {
+   "artist": "Mestiza",
+   "wikidata": "Q132976053",
+   "description": "Spanish musical duo"
+  },
+  {
+   "artist": "Methyl Ethel",
+   "wikidata": "Q30069921",
+   "description": "Australian art rock band from Perth"
+  },
+  {
+   "artist": "MICKEY GUYTON",
+   "wikidata": "Q18921828",
+   "description": "American country singer"
+  },
+  {
+   "artist": "Micro",
+   "wikidata": "Q11233166",
+   "description": "Japanese singer-songwriter"
+  },
+  {
+   "artist": "Middle Kids",
+   "wikidata": "Q48697943",
+   "description": "Australian musical group; indie rock band"
+  },
+  {
+   "artist": "Midland",
+   "wikidata": "Q30603462",
+   "description": "American musical group; country music band"
+  },
+  {
+   "artist": "MIHALIS SAFRAS",
+   "wikidata": "Q6845227",
+   "description": "Greek DJ and record producer"
+  },
+  {
+   "artist": "Mikaela Davis",
+   "wikidata": "Q122852380",
+   "description": "harpist"
+  },
+  {
+   "artist": "MIKE WILL MADE-IT",
+   "wikidata": "Q6849262",
+   "description": "American music producer, rapper and singer (born 1989)"
+  },
+  {
+   "artist": "Mikky Ekko",
+   "wikidata": "Q3857519",
+   "description": "American singer-songwriter and record producer"
+  },
+  {
+   "artist": "MILEY CYRUS",
+   "wikidata": "Q4235",
+   "description": "American singer, actress, and television personality (born 1992)"
+  },
+  {
+   "artist": "Milky Chance",
+   "wikidata": "Q14623684",
+   "description": "German electronic-infused indie pop band based in Kassel"
+  },
+  {
+   "artist": "Milo Greene",
+   "wikidata": "Q6860315",
+   "description": "American indie pop band"
+  },
+  {
+   "artist": "MIMI WEBB",
+   "wikidata": "Q106613064",
+   "description": "British singer"
+  },
+  {
+   "artist": "Mind Enterprises",
+   "wikidata": "Q138030988",
+   "description": "Italian music duo"
+  },
+  {
+   "artist": "Mindi Abair",
+   "wikidata": "Q441677",
+   "description": "American smooth jazz saxophonist"
+  },
+  {
+   "artist": "MISS K8",
+   "wikidata": "Q17425403",
+   "description": "Ukrainian disc jockey"
+  },
+  {
+   "artist": "Miss Monique",
+   "wikidata": "Q111208579",
+   "description": "Ukrainian techno and progressive house DJ"
+  },
+  {
+   "artist": "Mister G",
+   "wikidata": "Q6880126",
+   "description": "children's musician"
+  },
+  {
+   "artist": "MisterWives",
+   "wikidata": "Q18608997",
+   "description": "American indie pop band"
+  },
+  {
+   "artist": "MJ LENDERMAN",
+   "wikidata": "Q118994568",
+   "description": "American musician"
+  },
+  {
+   "artist": "MK.GEE",
+   "wikidata": "Q112323444",
+   "description": "American singer-songwriter and music producer"
+  },
+  {
+   "artist": "ML Buch",
+   "wikidata": "Q126902082",
+   "description": "Danish musician and producer (born 1987)"
+  },
+  {
+   "artist": "Modest Mouse",
+   "wikidata": "Q431355",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Modestep",
+   "wikidata": "Q1860033",
+   "description": "English dubstep duo"
+  },
+  {
+   "artist": "Molly Burch",
+   "wikidata": "Q29016909",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Momma",
+   "wikidata": "Q104862095",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Monaleo",
+   "wikidata": "Q108825023",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Mondo Cozmo",
+   "wikidata": "Q6289221",
+   "description": "American musician"
+  },
+  {
+   "artist": "Monika Kruse",
+   "wikidata": "Q71376",
+   "description": "German techno DJ and music producer"
+  },
+  {
+   "artist": "Monsieur Periné",
+   "wikidata": "Q15712185",
+   "description": "Colombian musical group"
+  },
+  {
+   "artist": "MOON TAXI",
+   "wikidata": "Q15044510",
+   "description": "American alt-rock band"
+  },
+  {
+   "artist": "MORGAN WADE",
+   "wikidata": "Q109106357",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Moses Sumney",
+   "wikidata": "Q45844539",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Mother Mother",
+   "wikidata": "Q2739716",
+   "description": "Canadian musical group"
+  },
+  {
+   "artist": "MOVEMENTS",
+   "wikidata": "Q47524494",
+   "description": "American post-hardcore band"
+  },
+  {
+   "artist": "MS MR",
+   "wikidata": "Q1267478",
+   "description": "American pop rock band"
+  },
+  {
+   "artist": "MSTRKRFT",
+   "wikidata": "Q1811235",
+   "description": "Canadian electronic music duo"
+  },
+  {
+   "artist": "Muddy Magnolias",
+   "wikidata": "Q24895516",
+   "description": "US musical group"
+  },
+  {
+   "artist": "Muerte",
+   "wikidata": "Q20747498",
+   "description": "Belgian musical group"
+  },
+  {
+   "artist": "Mumford & Sons",
+   "wikidata": "Q953918",
+   "description": "British folk rock band"
+  },
+  {
+   "artist": "Murphy's Law",
+   "wikidata": "Q1953822",
+   "description": "American hardcore band"
+  },
+  {
+   "artist": "MUST DIE!",
+   "wikidata": "Q17306320",
+   "description": "American electronic musician"
+  },
+  {
+   "artist": "Mustard",
+   "wikidata": "Q15941115",
+   "description": "American record producer (born 1990)"
+  },
+  {
+   "artist": "MUTEMATH",
+   "wikidata": "Q926269",
+   "description": "American alternative rock band"
+  },
+  {
+   "artist": "MXM",
+   "wikidata": "Q33644200",
+   "description": "South Korean musical duo"
+  },
+  {
+   "artist": "Myles Smith",
+   "wikidata": "Q126076580",
+   "description": "British singer"
+  },
+  {
+   "artist": "Naked Giants",
+   "wikidata": "Q60787557",
+   "description": "American rock music group"
+  },
+  {
+   "artist": "NANÉ",
+   "wikidata": "Q100347166",
+   "description": "Romanian rapper"
+  },
+  {
+   "artist": "NAOMI SCOTT",
+   "wikidata": "Q254894",
+   "description": "British actress and singer (born 1993)"
+  },
+  {
+   "artist": "Natalia Lafourcade",
+   "wikidata": "Q3298047",
+   "description": "Mexican singer-songwriter"
+  },
+  {
+   "artist": "Natalie Prass",
+   "wikidata": "Q18913336",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Nate Ruess",
+   "wikidata": "Q2760347",
+   "description": "American singer"
+  },
+  {
+   "artist": "Nebula",
+   "wikidata": "Q1319254",
+   "description": "American stoner rock band"
+  },
+  {
+   "artist": "Neon Black",
+   "wikidata": "Q594166",
+   "description": "American musician"
+  },
+  {
+   "artist": "NESSA BARRETT",
+   "wikidata": "Q107413717",
+   "description": "American singer"
+  },
+  {
+   "artist": "Netsky",
+   "wikidata": "Q44399",
+   "description": "Belgian DJ and drum n' bass record producer"
+  },
+  {
+   "artist": "Nettspend",
+   "wikidata": "Q125255581",
+   "description": "American rapper (born 2007)"
+  },
+  {
+   "artist": "NEWDAD",
+   "wikidata": "Q109975983",
+   "description": "Irish rock band"
+  },
+  {
+   "artist": "Nezza",
+   "wikidata": "Q134996844",
+   "description": "American singer (born 1995)"
+  },
+  {
+   "artist": "NF",
+   "wikidata": "Q19571648",
+   "description": "American rapper from Michigan"
+  },
+  {
+   "artist": "Nghtmre",
+   "wikidata": "Q28056193",
+   "description": "American DJ and producer"
+  },
+  {
+   "artist": "Nia Archives",
+   "wikidata": "Q115955868",
+   "description": "English record producer, DJ and songwriter"
+  },
+  {
+   "artist": "Nicky Romero",
+   "wikidata": "Q260214",
+   "description": "Dutch DJ, record producer and remixer"
+  },
+  {
+   "artist": "Nico Moreno",
+   "wikidata": "Q135474848",
+   "description": "DJ"
+  },
+  {
+   "artist": "NICO VEGA",
+   "wikidata": "Q7028847",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Nicole Atkins",
+   "wikidata": "Q3300166",
+   "description": "singer-songwriter"
+  },
+  {
+   "artist": "Nicole Moudaber",
+   "wikidata": "Q16732919",
+   "description": "Lebanese businesswoman and musician"
+  },
+  {
+   "artist": "Nifra",
+   "wikidata": "Q15138301",
+   "description": "Slovak disc jockey and record producer"
+  },
+  {
+   "artist": "Nikki Lane",
+   "wikidata": "Q19668846",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Nilüfer Yanya",
+   "wikidata": "Q51138872",
+   "description": "Turkish-British musician (born 1996)"
+  },
+  {
+   "artist": "Ninajirachi",
+   "wikidata": "Q77201716",
+   "description": "Australian electronic DJ and producer"
+  },
+  {
+   "artist": "Noah and the Whale",
+   "wikidata": "Q1811037",
+   "description": "British indie rock band"
+  },
+  {
+   "artist": "Noah Cyrus",
+   "wikidata": "Q54868",
+   "description": "American singer and actress"
+  },
+  {
+   "artist": "NOAH KAHAN",
+   "wikidata": "Q53832755",
+   "description": "American singer-songwriter (born 1997)"
+  },
+  {
+   "artist": "Noga Erez",
+   "wikidata": "Q40856678",
+   "description": "Musician and producer"
+  },
+  {
+   "artist": "Noisia",
+   "wikidata": "Q47227",
+   "description": "Dutch electronic music band from Groningen"
+  },
+  {
+   "artist": "Noname",
+   "wikidata": "Q20684992",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Nora En Pure",
+   "wikidata": "Q21484134",
+   "description": "South African-Swiss DJ and record producer"
+  },
+  {
+   "artist": "NORAH JONES",
+   "wikidata": "Q549981",
+   "description": "American musician (born 1979)"
+  },
+  {
+   "artist": "Not for Radio",
+   "wikidata": "Q136479092",
+   "description": "American musician"
+  },
+  {
+   "artist": "Nothing But Thieves",
+   "wikidata": "Q20684996",
+   "description": "British rock band"
+  },
+  {
+   "artist": "Notion",
+   "wikidata": "Q90416955",
+   "description": "American record producer"
+  },
+  {
+   "artist": "OCEAN ALLEY",
+   "wikidata": "Q47509361",
+   "description": "Australian modern reggae fusion group"
+  },
+  {
+   "artist": "ODESZA",
+   "wikidata": "Q15964414",
+   "description": "American electronic music duo"
+  },
+  {
+   "artist": "Of Monsters and Men",
+   "wikidata": "Q509702",
+   "description": "Icelandic folk-rock band"
+  },
+  {
+   "artist": "Oh Wonder",
+   "wikidata": "Q21452721",
+   "description": "English alt-pop duo"
+  },
+  {
+   "artist": "Oklou",
+   "wikidata": "Q64746371",
+   "description": "French singer-songwriter"
+  },
+  {
+   "artist": "Old 97's",
+   "wikidata": "Q3881496",
+   "description": "American country rock band"
+  },
+  {
+   "artist": "Oliver Heldens",
+   "wikidata": "Q16667903",
+   "description": "Dutch DJ and record producer"
+  },
+  {
+   "artist": "Olivia Dean",
+   "wikidata": "Q108106738",
+   "description": "British singer"
+  },
+  {
+   "artist": "OLIVIA LUNNY",
+   "wikidata": "Q104870352",
+   "description": "Canadian singer and songwriter"
+  },
+  {
+   "artist": "Olympe",
+   "wikidata": "Q15140735",
+   "description": "French pop singer"
+  },
+  {
+   "artist": "OMAH LAY",
+   "wikidata": "Q106558182",
+   "description": "Nigerian singer"
+  },
+  {
+   "artist": "OMAR APOLLO",
+   "wikidata": "Q65675682",
+   "description": "American singer-songwriter (born 1997)"
+  },
+  {
+   "artist": "Ookay",
+   "wikidata": "Q26406018",
+   "description": "American DJ and music producer"
+  },
+  {
+   "artist": "ORION SUN",
+   "wikidata": "Q107404523",
+   "description": "American singer"
+  },
+  {
+   "artist": "ORKIDEA",
+   "wikidata": "Q505081",
+   "description": "Finnish DJ"
+  },
+  {
+   "artist": "ORLA GARTLAND",
+   "wikidata": "Q15556718",
+   "description": "Irish singer-songwriter and guitarist"
+  },
+  {
+   "artist": "Orville Peck",
+   "wikidata": "Q64729746",
+   "description": "Canadian musician"
+  },
+  {
+   "artist": "OTOBOKE BEAVER",
+   "wikidata": "Q30935263",
+   "description": "punk-rock band from Japan"
+  },
+  {
+   "artist": "Outkast",
+   "wikidata": "Q472595",
+   "description": "American hip hop duo"
+  },
+  {
+   "artist": "Ozomatli",
+   "wikidata": "Q678338",
+   "description": "American band"
+  },
+  {
+   "artist": "Paco Osuna",
+   "wikidata": "Q2045748",
+   "description": "Spanish disc jockey"
+  },
+  {
+   "artist": "PAN-POT",
+   "wikidata": "Q2048748",
+   "description": "German DJs and music producers"
+  },
+  {
+   "artist": "PANDA BEAR",
+   "wikidata": "Q2096837",
+   "description": "American musician"
+  },
+  {
+   "artist": "Panic Shack",
+   "wikidata": "Q116783016",
+   "description": "Punk musical group from Cardiff"
+  },
+  {
+   "artist": "Paolo Nutini",
+   "wikidata": "Q313704",
+   "description": "Scottish musician"
+  },
+  {
+   "artist": "Paris Paloma",
+   "wikidata": "Q119586368",
+   "description": "British singer-songwriter"
+  },
+  {
+   "artist": "Parquet Courts",
+   "wikidata": "Q16740568",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Partiboi69",
+   "wikidata": "Q98140164",
+   "description": "Australian musician"
+  },
+  {
+   "artist": "Passion Pit",
+   "wikidata": "Q1784022",
+   "description": "American electropop band"
+  },
+  {
+   "artist": "Patrick Topping",
+   "wikidata": "Q20687412",
+   "description": "British DJ"
+  },
+  {
+   "artist": "Paul Cauthen",
+   "wikidata": "Q68866747",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "PAUL KELLY",
+   "wikidata": "Q952656",
+   "description": "Australian rock music singer-songwriter, guitarist, and harmonica player, born 1955"
+  },
+  {
+   "artist": "Paul McCartney",
+   "wikidata": "Q2599",
+   "description": "English musician and member of the Beatles (born 1942)"
+  },
+  {
+   "artist": "Paul Oakenfold",
+   "wikidata": "Q321339",
+   "description": "British DJ and electronic music producer (born 1963)"
+  },
+  {
+   "artist": "Paul van Dyk",
+   "wikidata": "Q77034",
+   "description": "German DJ and trance music producer"
+  },
+  {
+   "artist": "Pearl Charles",
+   "wikidata": "Q57306179",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Peggy Gou",
+   "wikidata": "Q64158576",
+   "description": "South Korean DJ, music producer, singer and fashion designer (born 1991)"
+  },
+  {
+   "artist": "Pete Yorn",
+   "wikidata": "Q939105",
+   "description": "American musician"
+  },
+  {
+   "artist": "Phantogram",
+   "wikidata": "Q4046815",
+   "description": "American electronic rock duo"
+  },
+  {
+   "artist": "PHOEBE BRIDGERS",
+   "wikidata": "Q24883319",
+   "description": "American musician (born 1994)"
+  },
+  {
+   "artist": "Phoenix",
+   "wikidata": "Q1045752",
+   "description": "French indie pop band"
+  },
+  {
+   "artist": "Pierce the Veil",
+   "wikidata": "Q1169219",
+   "description": "post-hardcore band"
+  },
+  {
+   "artist": "Pinback",
+   "wikidata": "Q1455399",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Pink Sweat$",
+   "wikidata": "Q60688836",
+   "description": "American R&B singer"
+  },
+  {
+   "artist": "PinkPantheress",
+   "wikidata": "Q107570416",
+   "description": "British singer-songwriter"
+  },
+  {
+   "artist": "Playboi Carti",
+   "wikidata": "Q27671080",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Poi Dog Pondering",
+   "wikidata": "Q7207811",
+   "description": "American band"
+  },
+  {
+   "artist": "Poliça",
+   "wikidata": "Q977253",
+   "description": "American synth-pop band"
+  },
+  {
+   "artist": "POLO & PAN",
+   "wikidata": "Q28495756",
+   "description": "French electronic music band"
+  },
+  {
+   "artist": "POLO G",
+   "wikidata": "Q62953486",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Porter Robinson",
+   "wikidata": "Q21084",
+   "description": "American DJ, singer and record producer (born 1992)"
+  },
+  {
+   "artist": "Portugal. The Man",
+   "wikidata": "Q606879",
+   "description": "American rock band"
+  },
+  {
+   "artist": "PRETTY LIGHTS",
+   "wikidata": "Q370375",
+   "description": "American electronic music artist"
+  },
+  {
+   "artist": "Pretty Pink",
+   "wikidata": "Q20752262",
+   "description": "German DJ and record producer"
+  },
+  {
+   "artist": "PRINCESS NOKIA",
+   "wikidata": "Q16235152",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Pryda",
+   "wikidata": "Q155141",
+   "description": "Swedish DJ and record producer (born 1976)"
+  },
+  {
+   "artist": "Pumarosa",
+   "wikidata": "Q111693580",
+   "description": "British musical group"
+  },
+  {
+   "artist": "Quadeca",
+   "wikidata": "Q59161718",
+   "description": "American YouTuber and rapper (born 2000)"
+  },
+  {
+   "artist": "QUARTERS OF CHANGE",
+   "wikidata": "Q126029281",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Quest",
+   "wikidata": "Q18224151",
+   "description": "Puerto Rican rapper"
+  },
+  {
+   "artist": "QVEEN HERBY",
+   "wikidata": "Q44304560",
+   "description": "American rapper, singer and songwriter"
+  },
+  {
+   "artist": "R3hab",
+   "wikidata": "Q3414998",
+   "description": "Dutch-Moroccan DJ and record producer"
+  },
+  {
+   "artist": "Ra Ra Riot",
+   "wikidata": "Q3928454",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Rachel Chinouriri",
+   "wikidata": "Q111317463",
+   "description": "English singer-songwriter"
+  },
+  {
+   "artist": "Racing Mount Pleasant",
+   "wikidata": "Q135005389",
+   "description": "American indie band"
+  },
+  {
+   "artist": "Radical Redemption",
+   "wikidata": "Q33692845",
+   "description": "musical artist"
+  },
+  {
+   "artist": "Radio Radio",
+   "wikidata": "Q686416",
+   "description": "Canadian electro hip-hop band"
+  },
+  {
+   "artist": "Rainbow Kitten Surprise",
+   "wikidata": "Q65090692",
+   "description": "American rock band"
+  },
+  {
+   "artist": "RATBOYS",
+   "wikidata": "Q21074270",
+   "description": "indie rock band from Chicago, Illinois, U.S."
+  },
+  {
+   "artist": "Raury",
+   "wikidata": "Q19363198",
+   "description": "American musician"
+  },
+  {
+   "artist": "Ravyn Lenae",
+   "wikidata": "Q28962463",
+   "description": "American singer"
+  },
+  {
+   "artist": "RAYE",
+   "wikidata": "Q28071144",
+   "description": "British singer-songwriter"
+  },
+  {
+   "artist": "Rayland Baxter",
+   "wikidata": "Q19560050",
+   "description": "Country singer"
+  },
+  {
+   "artist": "Real Estate",
+   "wikidata": "Q782763",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Rebelution",
+   "wikidata": "Q3421778",
+   "description": "reggae music band"
+  },
+  {
+   "artist": "Rebūke",
+   "wikidata": "Q10650079",
+   "description": "Swedish musical group"
+  },
+  {
+   "artist": "Red Hot Chili Peppers",
+   "wikidata": "Q10708",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Red Jumpsuit Apparatus",
+   "wikidata": "Q869693",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Reignwolf",
+   "wikidata": "Q30632658",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Reinier Zonneveld",
+   "wikidata": "Q109450915",
+   "description": "Dutch DJ and record producer (born 1991)"
+  },
+  {
+   "artist": "REMI WOLF",
+   "wikidata": "Q98445880",
+   "description": "American singer, songwriter and record producer"
+  },
+  {
+   "artist": "RENEÉ RAPP",
+   "wikidata": "Q64733275",
+   "description": "American actress and singer"
+  },
+  {
+   "artist": "Residente",
+   "wikidata": "Q2062208",
+   "description": "Puerto Rican rapper"
+  },
+  {
+   "artist": "Rev Run",
+   "wikidata": "Q742642",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Rey Pila",
+   "wikidata": "Q6107342",
+   "description": "Mexican musical group; rock band"
+  },
+  {
+   "artist": "Rezz",
+   "wikidata": "Q35487701",
+   "description": "Canadian DJ and record producer"
+  },
+  {
+   "artist": "Rhiannon Giddens",
+   "wikidata": "Q7320514",
+   "description": "American musician (born 1977)"
+  },
+  {
+   "artist": "Rhye",
+   "wikidata": "Q6540184",
+   "description": "Canadian R&B musical project"
+  },
+  {
+   "artist": "RIIZE",
+   "wikidata": "Q121075203",
+   "description": "South Korean musical group; boy band"
+  },
+  {
+   "artist": "RINA SAWAYAMA",
+   "wikidata": "Q28840001",
+   "description": "Japanese singer"
+  },
+  {
+   "artist": "Riot",
+   "wikidata": "Q1408267",
+   "description": "American heavy metal band"
+  },
+  {
+   "artist": "Riot Ten",
+   "wikidata": "Q37467126",
+   "description": "American DJ and record producer"
+  },
+  {
+   "artist": "Ritmo",
+   "wikidata": "Q135023275",
+   "description": ""
+  },
+  {
+   "artist": "RL Grime",
+   "wikidata": "Q16234136",
+   "description": "American record producer"
+  },
+  {
+   "artist": "Robbie Rivera",
+   "wikidata": "Q776897",
+   "description": "Puerto Rican DJ"
+  },
+  {
+   "artist": "ROBERT GLASPER",
+   "wikidata": "Q1370642",
+   "description": "American jazz pianist, composer and record producer"
+  },
+  {
+   "artist": "Robert Hood",
+   "wikidata": "Q582813",
+   "description": "American minimal techno musician"
+  },
+  {
+   "artist": "Robyn",
+   "wikidata": "Q229445",
+   "description": "Swedish singer (born 1979)"
+  },
+  {
+   "artist": "ROGER SANCHEZ",
+   "wikidata": "Q714423",
+   "description": "American DJ, remixer and record producer of Dominican descent"
+  },
+  {
+   "artist": "Roman Flügel",
+   "wikidata": "Q2164562",
+   "description": "German DJ and record producer"
+  },
+  {
+   "artist": "Ron Gallo",
+   "wikidata": "Q30315658",
+   "description": "American singer"
+  },
+  {
+   "artist": "ROSALÍA",
+   "wikidata": "Q28843759",
+   "description": "Spanish singer-songwriter (born 1992)"
+  },
+  {
+   "artist": "ROSSY",
+   "wikidata": "Q4027440",
+   "description": "singer and songwriter from Madagascar generally considered the most popular Malagasy artist of the 1990s"
+  },
+  {
+   "artist": "ROYAL & THE SERPENT",
+   "wikidata": "Q105443414",
+   "description": "American singer and songwriter"
+  },
+  {
+   "artist": "Royal Blood",
+   "wikidata": "Q16632343",
+   "description": "British rock duo"
+  },
+  {
+   "artist": "Rude Boy",
+   "wikidata": "Q7147741",
+   "description": "Dutch musician"
+  },
+  {
+   "artist": "Ruen Brothers",
+   "wikidata": "Q124459272",
+   "description": "americana band from Scunthorpe, England"
+  },
+  {
+   "artist": "Rüfüs Du Sol",
+   "wikidata": "Q16875193",
+   "description": "Australian music band"
+  },
+  {
+   "artist": "Rusko",
+   "wikidata": "Q974298",
+   "description": "English musician"
+  },
+  {
+   "artist": "Russell Dickerson",
+   "wikidata": "Q24572267",
+   "description": "American country singer-songwriter"
+  },
+  {
+   "artist": "Ruston Kelly",
+   "wikidata": "Q61814989",
+   "description": "American country music singer-songwriter"
+  },
+  {
+   "artist": "Ryan Adams",
+   "wikidata": "Q437970",
+   "description": "American musician (born 1974)"
+  },
+  {
+   "artist": "Ryan Beatty",
+   "wikidata": "Q7383866",
+   "description": "American singer (born 1995)"
+  },
+  {
+   "artist": "Ryn Weaver",
+   "wikidata": "Q19325230",
+   "description": "American singer"
+  },
+  {
+   "artist": "S.G. Goodman",
+   "wikidata": "Q99675031",
+   "description": "American singer songwriter"
+  },
+  {
+   "artist": "SABRINA CLAUDIO",
+   "wikidata": "Q39058258",
+   "description": "American singer and songwriter"
+  },
+  {
+   "artist": "SAEED YOUNAN",
+   "wikidata": "Q12334333",
+   "description": "American disc jockey"
+  },
+  {
+   "artist": "SahBabii",
+   "wikidata": "Q39086692",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Saint Motel",
+   "wikidata": "Q7401935",
+   "description": "American musical group; indie-pop band"
+  },
+  {
+   "artist": "SALVATORE GANACCI",
+   "wikidata": "Q23882773",
+   "description": "Swedish DJ, record producer and composer"
+  },
+  {
+   "artist": "Sam Dew",
+   "wikidata": "Q20685408",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Sam Smith",
+   "wikidata": "Q15123969",
+   "description": "British singer-songwriter (born 1992)"
+  },
+  {
+   "artist": "San Holo",
+   "wikidata": "Q21621487",
+   "description": "Dutch DJ (born 1990)"
+  },
+  {
+   "artist": "(Sandy) Alex G",
+   "wikidata": "Q20709155",
+   "description": "multi-instrumentalist, singer, and songwriter from Philadelphia"
+  },
+  {
+   "artist": "SANTIGOLD",
+   "wikidata": "Q240343",
+   "description": "American singer"
+  },
+  {
+   "artist": "Sara Landry",
+   "wikidata": "Q123146576",
+   "description": "American DJ and music producer"
+  },
+  {
+   "artist": "SARAH KINSLEY",
+   "wikidata": "Q113252257",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Sarz",
+   "wikidata": "Q20685445",
+   "description": "Nigerian record producer and musician"
+  },
+  {
+   "artist": "Savannah Conley",
+   "wikidata": "Q58009269",
+   "description": "American folk, country, and pop music singer-songwriter"
+  },
+  {
+   "artist": "ScHoolboy Q",
+   "wikidata": "Q168633",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Sean Paul",
+   "wikidata": "Q20781862",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Sean Tyas",
+   "wikidata": "Q693671",
+   "description": "American musician"
+  },
+  {
+   "artist": "Sebastian Ingrosso",
+   "wikidata": "Q20717",
+   "description": "Swedish DJ and music producer"
+  },
+  {
+   "artist": "Sébastien Tellier",
+   "wikidata": "Q370711",
+   "description": "club DJ from France (1975-)"
+  },
+  {
+   "artist": "SG LEWIS",
+   "wikidata": "Q60426261",
+   "description": "British musician"
+  },
+  {
+   "artist": "SHAED",
+   "wikidata": "Q60643444",
+   "description": "American musical group"
+  },
+  {
+   "artist": "Shakey Graves",
+   "wikidata": "Q19663917",
+   "description": "Americana musician from Austin, Texas"
+  },
+  {
+   "artist": "Shandon Sahm",
+   "wikidata": "Q18473178",
+   "description": "American musician"
+  },
+  {
+   "artist": "Sharon Van Etten",
+   "wikidata": "Q14538",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Shawn Mendes",
+   "wikidata": "Q17198340",
+   "description": "Canadian singer"
+  },
+  {
+   "artist": "Sheppard",
+   "wikidata": "Q16739933",
+   "description": "Australian indie pop band"
+  },
+  {
+   "artist": "SHERMANOLOGY",
+   "wikidata": "Q20993828",
+   "description": "Dutch DJ"
+  },
+  {
+   "artist": "Shinyribs",
+   "wikidata": "Q24759170",
+   "description": "US musical group"
+  },
+  {
+   "artist": "Shovels & Rope",
+   "wikidata": "Q7502880",
+   "description": "American music group"
+  },
+  {
+   "artist": "Showtek",
+   "wikidata": "Q1067714",
+   "description": "Dutch electronic dance band"
+  },
+  {
+   "artist": "Shpongle",
+   "wikidata": "Q1134411",
+   "description": "British band"
+  },
+  {
+   "artist": "Shuggie Otis",
+   "wikidata": "Q939121",
+   "description": "American singer-songwriter, recording artist, and multi-instrumentalist"
+  },
+  {
+   "artist": "Shy FX",
+   "wikidata": "Q720649",
+   "description": "record producer"
+  },
+  {
+   "artist": "Sidekicks",
+   "wikidata": "Q751502",
+   "description": "English psychedelic rock band"
+  },
+  {
+   "artist": "Sienna Spiro",
+   "wikidata": "Q131631266",
+   "description": "British singer-songwriter and record producer"
+  },
+  {
+   "artist": "Sierra Ferrell",
+   "wikidata": "Q110877092",
+   "description": "American singer-songwriter (born 1988)"
+  },
+  {
+   "artist": "Sigrid",
+   "wikidata": "Q28864768",
+   "description": "Norwegian singer"
+  },
+  {
+   "artist": "Silversun Pickups",
+   "wikidata": "Q312275",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Sir Sly",
+   "wikidata": "Q16217394",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Sister Hazel",
+   "wikidata": "Q1968924",
+   "description": "American band"
+  },
+  {
+   "artist": "Sister Sparrow & The Dirty Birds",
+   "wikidata": "Q7531191",
+   "description": "American soul and rock band"
+  },
+  {
+   "artist": "Six Sex",
+   "wikidata": "Q133452011",
+   "description": "Argentine singer and songwriter"
+  },
+  {
+   "artist": "Skepta",
+   "wikidata": "Q164446",
+   "description": "British-Nigerian rapper and record producer"
+  },
+  {
+   "artist": "SKIP MARLEY",
+   "wikidata": "Q21621948",
+   "description": "Jamaican singer and songwriter"
+  },
+  {
+   "artist": "Skream",
+   "wikidata": "Q734062",
+   "description": "English DJ and Dubstep musician"
+  },
+  {
+   "artist": "SKRILLA",
+   "wikidata": "Q131140212",
+   "description": "American rapper (born 1999)"
+  },
+  {
+   "artist": "SKYE",
+   "wikidata": "Q139868",
+   "description": "French singer-songwriter"
+  },
+  {
+   "artist": "SKYLER DAY",
+   "wikidata": "Q7537849",
+   "description": "American actress and singer"
+  },
+  {
+   "artist": "SLOPPY JANE",
+   "wikidata": "Q110269436",
+   "description": "American avant-garde rock band"
+  },
+  {
+   "artist": "SLUSHII",
+   "wikidata": "Q25714017",
+   "description": "American DJ and music producer (born 1997)"
+  },
+  {
+   "artist": "Smino",
+   "wikidata": "Q26209487",
+   "description": "American rapper and singer"
+  },
+  {
+   "artist": "Smith Westerns",
+   "wikidata": "Q1338886",
+   "description": "band"
+  },
+  {
+   "artist": "SNÕÕPER",
+   "wikidata": "Q120655251",
+   "description": "American punk band"
+  },
+  {
+   "artist": "SoFaygo",
+   "wikidata": "Q106583774",
+   "description": "American rapper and singer from Georgia"
+  },
+  {
+   "artist": "SOFIA CAMARA",
+   "wikidata": "Q135766417",
+   "description": "Portuguese musician"
+  },
+  {
+   "artist": "Solya",
+   "wikidata": "Q140133752",
+   "description": "American singer-songwriter, born 2006"
+  },
+  {
+   "artist": "SOMETHING CORPORATE",
+   "wikidata": "Q1543137",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Son Little",
+   "wikidata": "Q21189773",
+   "description": "American singer"
+  },
+  {
+   "artist": "Songhoy Blues",
+   "wikidata": "Q23541226",
+   "description": "Malian music band"
+  },
+  {
+   "artist": "Sons of Bill",
+   "wikidata": "Q7562293",
+   "description": "US musical group"
+  },
+  {
+   "artist": "Sons Of Fathers",
+   "wikidata": "Q68866747",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Sosa",
+   "wikidata": "Q127362",
+   "description": "American rapper and record producer"
+  },
+  {
+   "artist": "Soul Asylum",
+   "wikidata": "Q512312",
+   "description": "American rock band"
+  },
+  {
+   "artist": "SOULWAX",
+   "wikidata": "Q1288216",
+   "description": "Belgian electronic music band"
+  },
+  {
+   "artist": "Sound Rush",
+   "wikidata": "Q65169266",
+   "description": "Dutch hardstyle duo"
+  },
+  {
+   "artist": "SOUTH ARCADE",
+   "wikidata": "Q131762147",
+   "description": "English pop-punk band"
+  },
+  {
+   "artist": "SPILL TAB",
+   "wikidata": "Q115948567",
+   "description": "musical artist"
+  },
+  {
+   "artist": "Spin Doctors",
+   "wikidata": "Q909483",
+   "description": "American rock band"
+  },
+  {
+   "artist": "SPINALL",
+   "wikidata": "Q21063945",
+   "description": "Nigerian disc jockey, record producer, songwriter, label executive, and media personality"
+  },
+  {
+   "artist": "Spoon",
+   "wikidata": "Q1155915",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Squirrel Flower",
+   "wikidata": "Q86959387",
+   "description": "American musician (born 1996)"
+  },
+  {
+   "artist": "ST. LUCIA",
+   "wikidata": "Q16204945",
+   "description": "South African singer and musician"
+  },
+  {
+   "artist": "St. Paul and the Broken Bones",
+   "wikidata": "Q17108875",
+   "description": "American soul band"
+  },
+  {
+   "artist": "St. Vincent",
+   "wikidata": "Q238795",
+   "description": "American musician (born 1982)"
+  },
+  {
+   "artist": "STAR BANDZ",
+   "wikidata": "Q126917882",
+   "description": "American rapper (born 2008)"
+  },
+  {
+   "artist": "State Champs",
+   "wikidata": "Q17063207",
+   "description": "American pop punk band from Albany, New York, formed in 2010"
+  },
+  {
+   "artist": "Steelism",
+   "wikidata": "Q30524772",
+   "description": "American instrumental band"
+  },
+  {
+   "artist": "Stella Lefty",
+   "wikidata": "Q139917009",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Stephen Marley",
+   "wikidata": "Q468677",
+   "description": "Jamaican American reggae musician"
+  },
+  {
+   "artist": "STEPHEN SANCHEZ",
+   "wikidata": "Q113023532",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Steve Angello",
+   "wikidata": "Q20715",
+   "description": "Greek-Swedish DJ and record producer"
+  },
+  {
+   "artist": "Stray Kids",
+   "wikidata": "Q46134670",
+   "description": "South Korean boy band"
+  },
+  {
+   "artist": "Sturgill Simpson",
+   "wikidata": "Q16736403",
+   "description": "American singer"
+  },
+  {
+   "artist": "Sub Focus",
+   "wikidata": "Q1848854",
+   "description": "English DJ and music producer (born 1982)"
+  },
+  {
+   "artist": "Sub Zero Project",
+   "wikidata": "Q55073852",
+   "description": "Dutch hardstyle producer & DJ"
+  },
+  {
+   "artist": "Sudan Archives",
+   "wikidata": "Q55634161",
+   "description": "American musician"
+  },
+  {
+   "artist": "Sultan + Shepard",
+   "wikidata": "Q7636582",
+   "description": "Canadian electronic music duo"
+  },
+  {
+   "artist": "Sunflower Bean",
+   "wikidata": "Q24912264",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Sunn O)))",
+   "wikidata": "Q594855",
+   "description": "American drone metal band"
+  },
+  {
+   "artist": "Suzanne Grzanna",
+   "wikidata": "Q132730667",
+   "description": "American singer and saxophonist"
+  },
+  {
+   "artist": "SWEDISH HOUSE MAFIA",
+   "wikidata": "Q20709",
+   "description": "Swedish electronic music group"
+  },
+  {
+   "artist": "Sylvan Esso",
+   "wikidata": "Q17388812",
+   "description": "American duo"
+  },
+  {
+   "artist": "Tag Team",
+   "wikidata": "Q9081459",
+   "description": "American hip hop pop rap duo"
+  },
+  {
+   "artist": "TAI VERDES",
+   "wikidata": "Q109426057",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Talla 2XLC",
+   "wikidata": "Q78252",
+   "description": "German DJ and record producer from Frankfurt"
+  },
+  {
+   "artist": "Tame Impala",
+   "wikidata": "Q9619",
+   "description": "Australian musical group; psychedelic rock musical project"
+  },
+  {
+   "artist": "TAMINO",
+   "wikidata": "Q30301517",
+   "description": "Belgian-Egyptian singer"
+  },
+  {
+   "artist": "Tank and The Bangas",
+   "wikidata": "Q30593184",
+   "description": "American musical group"
+  },
+  {
+   "artist": "TANYA TUCKER",
+   "wikidata": "Q463983",
+   "description": "American country singer (born 1958)"
+  },
+  {
+   "artist": "Tash Sultana",
+   "wikidata": "Q27671324",
+   "description": "Australian musician"
+  },
+  {
+   "artist": "Tate McRae",
+   "wikidata": "Q95129121",
+   "description": "Canadian pop singer"
+  },
+  {
+   "artist": "Tchami",
+   "wikidata": "Q17151338",
+   "description": "French DJ and record producer"
+  },
+  {
+   "artist": "Teddy Pain",
+   "wikidata": "Q221155",
+   "description": "American singer, songwriter, and record producer (born 1984)"
+  },
+  {
+   "artist": "TEDDY SWIMS",
+   "wikidata": "Q105542333",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "TEEZO TOUCHDOWN",
+   "wikidata": "Q111394891",
+   "description": "American rapper and singer"
+  },
+  {
+   "artist": "Temples",
+   "wikidata": "Q14832136",
+   "description": "English rock band"
+  },
+  {
+   "artist": "Ten Fé",
+   "wikidata": "Q56757496",
+   "description": "British band"
+  },
+  {
+   "artist": "TENILLE ARTS",
+   "wikidata": "Q78159813",
+   "description": "Canadian singer"
+  },
+  {
+   "artist": "Testpilot",
+   "wikidata": "Q49009",
+   "description": "Canadian electronic dance music producer (born 1981)"
+  },
+  {
+   "artist": "Thao & the Get Down Stay Down",
+   "wikidata": "Q1015241",
+   "description": "American folk rock band"
+  },
+  {
+   "artist": "THAT MEXICAN OT",
+   "wikidata": "Q122637522",
+   "description": "American rapper (born 1999)"
+  },
+  {
+   "artist": "The Amazons",
+   "wikidata": "Q28754328",
+   "description": "British rock band"
+  },
+  {
+   "artist": "The Army, The Navy",
+   "wikidata": "Q131686933",
+   "description": "American musical duo"
+  },
+  {
+   "artist": "The Avett Brothers",
+   "wikidata": "Q123320",
+   "description": "American folk-rock band"
+  },
+  {
+   "artist": "The Band CAMINO",
+   "wikidata": "Q107241193",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Beths",
+   "wikidata": "Q60752980",
+   "description": "New Zealand indie-pop band"
+  },
+  {
+   "artist": "The Black Angels",
+   "wikidata": "Q1232771",
+   "description": "American psychedelic rock band"
+  },
+  {
+   "artist": "The Blessed Madonna",
+   "wikidata": "Q60736200",
+   "description": "American DJ and producer (born 1977)"
+  },
+  {
+   "artist": "The Blind Boys of Alabama",
+   "wikidata": "Q2092670",
+   "description": "gospel group from Alabama, United States (founded 1939)"
+  },
+  {
+   "artist": "The Breeders",
+   "wikidata": "Q1332134",
+   "description": "American alternative rock band"
+  },
+  {
+   "artist": "The Bright Light Social Hour",
+   "wikidata": "Q7720118",
+   "description": "American band"
+  },
+  {
+   "artist": "The Chain Gang of 1974",
+   "wikidata": "Q7721988",
+   "description": "musical artist"
+  },
+  {
+   "artist": "The Comet Is Coming",
+   "wikidata": "Q21585350",
+   "description": "British band"
+  },
+  {
+   "artist": "The Coronas",
+   "wikidata": "Q1058492",
+   "description": "Irish band"
+  },
+  {
+   "artist": "The Cure",
+   "wikidata": "Q484427",
+   "description": "British band"
+  },
+  {
+   "artist": "The Districts",
+   "wikidata": "Q19879329",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Front Bottoms",
+   "wikidata": "Q7735357",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Gaslight Anthem",
+   "wikidata": "Q573067",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Glitch Mob",
+   "wikidata": "Q771912",
+   "description": "electronic music group from Los Angeles"
+  },
+  {
+   "artist": "The GROWLERS",
+   "wikidata": "Q3521167",
+   "description": "American musical group; indie rock band"
+  },
+  {
+   "artist": "The Head and the Heart",
+   "wikidata": "Q2076097",
+   "description": "American indie folk band"
+  },
+  {
+   "artist": "THE HU",
+   "wikidata": "Q60582604",
+   "description": "Mongolian folk rock band"
+  },
+  {
+   "artist": "The James Hunter Six",
+   "wikidata": "Q125241468",
+   "description": ""
+  },
+  {
+   "artist": "The Japanese House",
+   "wikidata": "Q28739912",
+   "description": "Indie pop project from Buckinghamshire fronted by multi-instrumentalist Amber Bain"
+  },
+  {
+   "artist": "The Jayhawks",
+   "wikidata": "Q1508351",
+   "description": "American country and rock band"
+  },
+  {
+   "artist": "The Jon Spencer Blues Explosion",
+   "wikidata": "Q1417601",
+   "description": "American rock and roll band"
+  },
+  {
+   "artist": "The Joy Formidable",
+   "wikidata": "Q953993",
+   "description": "Welsh alternative rock band"
+  },
+  {
+   "artist": "The Juliana Theory",
+   "wikidata": "Q1280360",
+   "description": "American emo and rock duo band"
+  },
+  {
+   "artist": "The Killers",
+   "wikidata": "Q220730",
+   "description": "American musical group; rock band"
+  },
+  {
+   "artist": "The Lemon Twigs",
+   "wikidata": "Q27858268",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Lonely Biscuits",
+   "wikidata": "Q7748110",
+   "description": "American indie band"
+  },
+  {
+   "artist": "THE LUMINEERS",
+   "wikidata": "Q496101",
+   "description": "American folk rock band"
+  },
+  {
+   "artist": "The Maccabees",
+   "wikidata": "Q174627",
+   "description": "English indie rock band"
+  },
+  {
+   "artist": "The Marcus King Band",
+   "wikidata": "Q28403222",
+   "description": "American blues rock band based in South Carolina"
+  },
+  {
+   "artist": "THE MARÍAS",
+   "wikidata": "Q85807852",
+   "description": "American band"
+  },
+  {
+   "artist": "The Martinez Brothers",
+   "wikidata": "Q20687342",
+   "description": "American duo of disc jockeys, music producers, and remixers"
+  },
+  {
+   "artist": "THE MIDNIGHT",
+   "wikidata": "Q48700546",
+   "description": "American musical duo"
+  },
+  {
+   "artist": "The Mountain Goats",
+   "wikidata": "Q145515",
+   "description": "American indie folk band"
+  },
+  {
+   "artist": "The Mowgli's",
+   "wikidata": "Q15052766",
+   "description": "band"
+  },
+  {
+   "artist": "The Naked And Famous",
+   "wikidata": "Q1970633",
+   "description": "New Zealand indie rock band"
+  },
+  {
+   "artist": "The National",
+   "wikidata": "Q1142566",
+   "description": "American musical group; indie rock band"
+  },
+  {
+   "artist": "THE NATIONAL PARKS",
+   "wikidata": "Q28457445",
+   "description": "American folk band from Utah"
+  },
+  {
+   "artist": "The Neighbourhood",
+   "wikidata": "Q7753383",
+   "description": "American rock band"
+  },
+  {
+   "artist": "THE NIGHTOWLS",
+   "wikidata": "Q20858158",
+   "description": "American soul/R&B band"
+  },
+  {
+   "artist": "The Nude Party",
+   "wikidata": "Q106611133",
+   "description": "American indie rock and folk band"
+  },
+  {
+   "artist": "The Ocean Blue",
+   "wikidata": "Q7754662",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Okee Dokee Brothers",
+   "wikidata": "Q7754781",
+   "description": "American music duo"
+  },
+  {
+   "artist": "The Orwells",
+   "wikidata": "Q7755435",
+   "description": "American rock band"
+  },
+  {
+   "artist": "THE PAPER KITES",
+   "wikidata": "Q15052869",
+   "description": "Australian indie-rock-folk band"
+  },
+  {
+   "artist": "The Preatures",
+   "wikidata": "Q16873323",
+   "description": "Australian rock band"
+  },
+  {
+   "artist": "The Prodigy",
+   "wikidata": "Q7256860",
+   "description": "English electronic dance music group"
+  },
+  {
+   "artist": "The Prototypes",
+   "wikidata": "Q22909361",
+   "description": "British drum & bass duo"
+  },
+  {
+   "artist": "THE RACONTEURS",
+   "wikidata": "Q912909",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Replacements",
+   "wikidata": "Q1066024",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Revivalists",
+   "wikidata": "Q16929773",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Revolution",
+   "wikidata": "Q519725",
+   "description": "American band led by Prince"
+  },
+  {
+   "artist": "The Rosebuds",
+   "wikidata": "Q7761573",
+   "description": "American indie rock band from Raleigh, North Carolina, United States"
+  },
+  {
+   "artist": "The Score",
+   "wikidata": "Q21189752",
+   "description": "American musical group; rock band"
+  },
+  {
+   "artist": "The Shelters",
+   "wikidata": "Q23772257",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Smashing Pumpkins",
+   "wikidata": "Q184217",
+   "description": "American alternative rock band"
+  },
+  {
+   "artist": "The Story So Far",
+   "wikidata": "Q7766730",
+   "description": "American pop punk band"
+  },
+  {
+   "artist": "The Strokes",
+   "wikidata": "Q211583",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Struts",
+   "wikidata": "Q17587679",
+   "description": "British glam rock band"
+  },
+  {
+   "artist": "The Temper Trap",
+   "wikidata": "Q690404",
+   "description": "Australian band"
+  },
+  {
+   "artist": "THE TESKEY BROTHERS",
+   "wikidata": "Q65122368",
+   "description": "Australian musical group; blues rock band"
+  },
+  {
+   "artist": "The Thrillseekers",
+   "wikidata": "Q328453",
+   "description": "English DJ and record producer"
+  },
+  {
+   "artist": "THE VENTURES",
+   "wikidata": "Q770732",
+   "description": "American musical group; instrumental rock band"
+  },
+  {
+   "artist": "The Verve Pipe",
+   "wikidata": "Q7772228",
+   "description": "American alternative rock band"
+  },
+  {
+   "artist": "THE WALKMEN",
+   "wikidata": "Q1850330",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "The Weather Station",
+   "wikidata": "Q20687557",
+   "description": "Canadian musical group"
+  },
+  {
+   "artist": "The Weeks",
+   "wikidata": "Q7774150",
+   "description": "American rock band"
+  },
+  {
+   "artist": "The Wind and The Wave",
+   "wikidata": "Q18156909",
+   "description": "consert"
+  },
+  {
+   "artist": "The Wombats",
+   "wikidata": "Q1347289",
+   "description": "British band"
+  },
+  {
+   "artist": "Third Eye Blind",
+   "wikidata": "Q1155385",
+   "description": "American rock band"
+  },
+  {
+   "artist": "THIRTY SECONDS TO MARS",
+   "wikidata": "Q40585",
+   "description": "American rock band from California"
+  },
+  {
+   "artist": "Three 6 Mafia",
+   "wikidata": "Q1027165",
+   "description": "American hip-hop group"
+  },
+  {
+   "artist": "Thunderpussy",
+   "wikidata": "Q56290619",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Tierra Whack",
+   "wikidata": "Q56292576",
+   "description": "American rapper"
+  },
+  {
+   "artist": "Tiga",
+   "wikidata": "Q725341",
+   "description": "Canadian DJ and musician"
+  },
+  {
+   "artist": "Timmy Trumpet",
+   "wikidata": "Q7806850",
+   "description": "Australian DJ and record producer"
+  },
+  {
+   "artist": "TKAY MAIDZA",
+   "wikidata": "Q19666630",
+   "description": "Australian rapper and singer-songwriter"
+  },
+  {
+   "artist": "TODD TERRY",
+   "wikidata": "Q1253645",
+   "description": "American DJ, record producer and composer"
+  },
+  {
+   "artist": "TOKiMONSTA",
+   "wikidata": "Q16957577",
+   "description": "American disc jockey and record producer"
+  },
+  {
+   "artist": "TOM ODELL",
+   "wikidata": "Q4027095",
+   "description": "English singer and songwriter (born 1990)"
+  },
+  {
+   "artist": "Toman",
+   "wikidata": "Q134367438",
+   "description": "Dutch DJ and music producer"
+  },
+  {
+   "artist": "TONY JUNIOR",
+   "wikidata": "Q17332887",
+   "description": "Dutch disc jockey and record producer"
+  },
+  {
+   "artist": "Too $hort",
+   "wikidata": "Q158223",
+   "description": "American rapper"
+  },
+  {
+   "artist": "TOOSII",
+   "wikidata": "Q106725126",
+   "description": "American rapper from New York"
+  },
+  {
+   "artist": "TOPAZ JONES",
+   "wikidata": "Q114267567",
+   "description": "American rapper and singer"
+  },
+  {
+   "artist": "Tor Miller",
+   "wikidata": "Q19667496",
+   "description": "musical artist"
+  },
+  {
+   "artist": "Toro Y Moi",
+   "wikidata": "Q1590013",
+   "description": "American singer-songwriter and producer (born 1986)"
+  },
+  {
+   "artist": "TOTALLY ENORMOUS EXTINCT DINOSAURS",
+   "wikidata": "Q7828198",
+   "description": "British musician, producer, and singer"
+  },
+  {
+   "artist": "Tove Lo",
+   "wikidata": "Q15948790",
+   "description": "Swedish singer"
+  },
+  {
+   "artist": "Trace",
+   "wikidata": "Q749426",
+   "description": "Dutch musical group"
+  },
+  {
+   "artist": "Tracy Bonham",
+   "wikidata": "Q2957248",
+   "description": "American musician"
+  },
+  {
+   "artist": "Trampled By Turtles",
+   "wikidata": "Q3537022",
+   "description": "American folk band from Minnesota"
+  },
+  {
+   "artist": "TRAVIS SCOTT",
+   "wikidata": "Q13605596",
+   "description": "American rapper, singer and record producer"
+  },
+  {
+   "artist": "Tritonal",
+   "wikidata": "Q4051786",
+   "description": "American trance music duo from Austin, Texas"
+  },
+  {
+   "artist": "TRIXIE MATTEL",
+   "wikidata": "Q23905339",
+   "description": "American drag queen"
+  },
+  {
+   "artist": "Trouble",
+   "wikidata": "Q2062170",
+   "description": "American doom metal band"
+  },
+  {
+   "artist": "TroyBoi",
+   "wikidata": "Q26214698",
+   "description": "British DJ, record producer and musician"
+  },
+  {
+   "artist": "Tucker Beathard",
+   "wikidata": "Q23887725",
+   "description": "American country musician"
+  },
+  {
+   "artist": "tUnE-yArDs",
+   "wikidata": "Q2120656",
+   "description": "American music project"
+  },
+  {
+   "artist": "Turnover",
+   "wikidata": "Q18719132",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Turnpike Troubadours",
+   "wikidata": "Q7856100",
+   "description": "American country music band"
+  },
+  {
+   "artist": "Twenty One Pilots",
+   "wikidata": "Q7857806",
+   "description": "American musical duo"
+  },
+  {
+   "artist": "Twin Forks",
+   "wikidata": "Q16744049",
+   "description": "folk rock band from Florida, United States"
+  },
+  {
+   "artist": "Twin Shadow",
+   "wikidata": "Q605129",
+   "description": "American musician"
+  },
+  {
+   "artist": "Two Door Cinema Club",
+   "wikidata": "Q777302",
+   "description": "Northern Irish musical group"
+  },
+  {
+   "artist": "tyDi",
+   "wikidata": "Q288904",
+   "description": "Australian musician"
+  },
+  {
+   "artist": "TYLA YAWEH",
+   "wikidata": "Q61978150",
+   "description": "American rapper and singer"
+  },
+  {
+   "artist": "Tyler Childers",
+   "wikidata": "Q41278078",
+   "description": "American singer and songwriter (born 1991)"
+  },
+  {
+   "artist": "Tyler Hubbard",
+   "wikidata": "Q20740966",
+   "description": "American singer"
+  },
+  {
+   "artist": "TYLER, THE CREATOR",
+   "wikidata": "Q167635",
+   "description": "American rapper (born 1991)"
+  },
+  {
+   "artist": "UCast",
+   "wikidata": "Q17513738",
+   "description": "Belarusian musician"
+  },
+  {
+   "artist": "Uncle Waffles",
+   "wikidata": "Q109406884",
+   "description": "Swazi DJ"
+  },
+  {
+   "artist": "Underscores",
+   "wikidata": "Q110852201",
+   "description": "American musician"
+  },
+  {
+   "artist": "Unknown Mortal Orchestra",
+   "wikidata": "Q7896966",
+   "description": "American and New Zealand rock band"
+  },
+  {
+   "artist": "Valentino Khan",
+   "wikidata": "Q22005805",
+   "description": "American DJ and music producer"
+  },
+  {
+   "artist": "Valerie June",
+   "wikidata": "Q7911294",
+   "description": "American singer, songwriter, and multi-instrumentalist from Memphis, Tennessee, United States"
+  },
+  {
+   "artist": "Vance Joy",
+   "wikidata": "Q15044005",
+   "description": "Australian singer-songwriter"
+  },
+  {
+   "artist": "Vanessa Zamora",
+   "wikidata": "Q19004550",
+   "description": "Mexican singer-songwriter from Tijuana"
+  },
+  {
+   "artist": "VÉRITÉ",
+   "wikidata": "Q20880877",
+   "description": "American singer"
+  },
+  {
+   "artist": "Vertical Horizon",
+   "wikidata": "Q2061582",
+   "description": "American alternative rock band"
+  },
+  {
+   "artist": "Viagra Boys",
+   "wikidata": "Q60970146",
+   "description": "Swedish band"
+  },
+  {
+   "artist": "Vic Mensa",
+   "wikidata": "Q16235952",
+   "description": "American rapper and singer"
+  },
+  {
+   "artist": "Vieze Asbak",
+   "wikidata": "Q124337632",
+   "description": "music producer from the Netherlands"
+  },
+  {
+   "artist": "Vince Staples",
+   "wikidata": "Q16235863",
+   "description": "American rapper (born 1993)"
+  },
+  {
+   "artist": "Vintage Trouble",
+   "wikidata": "Q7932854",
+   "description": "American band"
+  },
+  {
+   "artist": "Violeta",
+   "wikidata": "Q123504010",
+   "description": "Spanish singer and journalist"
+  },
+  {
+   "artist": "Virtual Riot",
+   "wikidata": "Q17125764",
+   "description": "German electronic music producer"
+  },
+  {
+   "artist": "VLAD HOLIDAY",
+   "wikidata": "Q29452206",
+   "description": "musical artist"
+  },
+  {
+   "artist": "Vulfpeck",
+   "wikidata": "Q17091147",
+   "description": "American musical group"
+  },
+  {
+   "artist": "W&W",
+   "wikidata": "Q1891477",
+   "description": "Dutch musical group; progressive house producer duo"
+  },
+  {
+   "artist": "Walk Off The Earth",
+   "wikidata": "Q373962",
+   "description": "Canadian indie pop band"
+  },
+  {
+   "artist": "WALK THE MOON",
+   "wikidata": "Q3653206",
+   "description": "American pop/rock band"
+  },
+  {
+   "artist": "Wallows",
+   "wikidata": "Q55184769",
+   "description": "American alternative rock band"
+  },
+  {
+   "artist": "WALT DISCO",
+   "wikidata": "Q137842967",
+   "description": "Scottish musical group"
+  },
+  {
+   "artist": "WASIA PROJECT",
+   "wikidata": "Q111865044",
+   "description": "Asian-British music band"
+  },
+  {
+   "artist": "Wasted Penguinz",
+   "wikidata": "Q2547746",
+   "description": "duo from Helsingborg, Sweden"
+  },
+  {
+   "artist": "Waxahatchee",
+   "wikidata": "Q7975703",
+   "description": "American indie singer-songwriter"
+  },
+  {
+   "artist": "Waylon Wyatt",
+   "wikidata": "Q136352160",
+   "description": "musical artist"
+  },
+  {
+   "artist": "Welshly Arms",
+   "wikidata": "Q28452843",
+   "description": "American band"
+  },
+  {
+   "artist": "Wet Leg",
+   "wikidata": "Q107475751",
+   "description": "British indie rock band"
+  },
+  {
+   "artist": "Weyes Blood",
+   "wikidata": "Q26924937",
+   "description": "American musician (born 1988)"
+  },
+  {
+   "artist": "Whethan",
+   "wikidata": "Q28748039",
+   "description": "American DJ and producer"
+  },
+  {
+   "artist": "Whiskey Myers",
+   "wikidata": "Q7993887",
+   "description": "rock band"
+  },
+  {
+   "artist": "White Denim",
+   "wikidata": "Q4053105",
+   "description": "American rock band"
+  },
+  {
+   "artist": "White Reaper",
+   "wikidata": "Q22026280",
+   "description": "American garage punk band from Louisville, Kentucky"
+  },
+  {
+   "artist": "WHOMADEWHO",
+   "wikidata": "Q1545212",
+   "description": "Danish experimental pop band"
+  },
+  {
+   "artist": "Widowspeak",
+   "wikidata": "Q7998825",
+   "description": "American indie dream rock band from Brooklyn, New York City"
+  },
+  {
+   "artist": "Wilco",
+   "wikidata": "Q637771",
+   "description": "American alternative rock band"
+  },
+  {
+   "artist": "Wild Belle",
+   "wikidata": "Q8000526",
+   "description": "American musical group; sibling duo"
+  },
+  {
+   "artist": "Wild Cub",
+   "wikidata": "Q17148786",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Wild Nothing",
+   "wikidata": "Q4019781",
+   "description": "American musical group"
+  },
+  {
+   "artist": "Wilderado",
+   "wikidata": "Q65044474",
+   "description": "American indie folk band"
+  },
+  {
+   "artist": "Wildstylez",
+   "wikidata": "Q1395589",
+   "description": "Dutch hardstyle DJ and record producer"
+  },
+  {
+   "artist": "Wiley",
+   "wikidata": "Q936479",
+   "description": "English rapper and record producer"
+  },
+  {
+   "artist": "Willie Nelson",
+   "wikidata": "Q206112",
+   "description": "American country musician (born 1933)"
+  },
+  {
+   "artist": "WIZTHEMC",
+   "wikidata": "Q116754008",
+   "description": "South African-German musician"
+  },
+  {
+   "artist": "Wolf Alice",
+   "wikidata": "Q8029799",
+   "description": "British alternative rock band"
+  },
+  {
+   "artist": "Wrabel",
+   "wikidata": "Q15844825",
+   "description": "American singer, songwriter, musician"
+  },
+  {
+   "artist": "Wuki",
+   "wikidata": "Q36065176",
+   "description": "American musician, record producer, and DJ"
+  },
+  {
+   "artist": "X Ambassadors",
+   "wikidata": "Q15963313",
+   "description": "American rock band from Ithaca, New York"
+  },
+  {
+   "artist": "XAVIERSOBASED",
+   "wikidata": "Q122731572",
+   "description": "American rapper"
+  },
+  {
+   "artist": "XDINARY HEROES",
+   "wikidata": "Q109579414",
+   "description": "South Korean band"
+  },
+  {
+   "artist": "Xilent",
+   "wikidata": "Q8044430",
+   "description": "Polish DJ and record producer"
+  },
+  {
+   "artist": "Xilla",
+   "wikidata": "Q141554101",
+   "description": "American dubstep DJ and producer"
+  },
+  {
+   "artist": "Yard Act",
+   "wikidata": "Q110269845",
+   "description": "British post-punk band from Leeds"
+  },
+  {
+   "artist": "YEAH YEAH YEAHS",
+   "wikidata": "Q641858",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Years & Years",
+   "wikidata": "Q18608591",
+   "description": "solo music project of Olly Alexander"
+  },
+  {
+   "artist": "Yellow Claw",
+   "wikidata": "Q15613707",
+   "description": "Dutch electronic music band"
+  },
+  {
+   "artist": "YOASOBI",
+   "wikidata": "Q95688943",
+   "description": "Japanese musical duo"
+  },
+  {
+   "artist": "Yoji Biomehanika",
+   "wikidata": "Q709234",
+   "description": "Japanese trance/hard trance DJ"
+  },
+  {
+   "artist": "Yolanda Be Cool",
+   "wikidata": "Q1058926",
+   "description": "Australian music duo"
+  },
+  {
+   "artist": "Yotto",
+   "wikidata": "Q23664961",
+   "description": "Finnish disc jockey"
+  },
+  {
+   "artist": "¥ØU$UK€ ¥UK1MAT$U",
+   "wikidata": "Q125789914",
+   "description": "Japanese DJ and producer (1979-)"
+  },
+  {
+   "artist": "Young & Sick",
+   "wikidata": "Q8057878",
+   "description": "music and art project"
+  },
+  {
+   "artist": "Young The Giant",
+   "wikidata": "Q2499094",
+   "description": "American indie rock band"
+  },
+  {
+   "artist": "Yousuke Yukimatsu",
+   "wikidata": "Q125789914",
+   "description": "Japanese DJ and producer (1979-)"
+  },
+  {
+   "artist": "Yungblud",
+   "wikidata": "Q47500295",
+   "description": "British musician (born 1997)"
+  },
+  {
+   "artist": "YVES TUMOR",
+   "wikidata": "Q56486752",
+   "description": "American musician"
+  },
+  {
+   "artist": "Z-Trip",
+   "wikidata": "Q3700448",
+   "description": "American DJ"
+  },
+  {
+   "artist": "Zack Fox",
+   "wikidata": "Q66187282",
+   "description": "American rapper and comedian"
+  },
+  {
+   "artist": "ZELLA DAY",
+   "wikidata": "Q19867501",
+   "description": "American singer-songwriter"
+  },
+  {
+   "artist": "Zhu",
+   "wikidata": "Q17649109",
+   "description": "American DJ and electronic music producer"
+  },
+  {
+   "artist": "ZOE KO",
+   "wikidata": "Q123413872",
+   "description": "American musician"
   },
   {
    "artist": "Barry Can't Swim",
    "wikidata": "Q124098371",
-   "reason": "no-music-item",
-   "asset": "artist-photos/barry-can-t-swim.webp"
+   "description": "Scottish musician and producer"
   },
   {
    "artist": "Bayonne",
    "wikidata": "Q23542737",
-   "reason": "no-music-item",
-   "asset": "artist-photos/bayonne.webp"
-  },
-  {
-   "artist": "CØNTRA",
-   "wikidata": "Q42429948",
-   "reason": "no-music-item",
-   "asset": "artist-photos/contra.webp"
-  },
-  {
-   "artist": "Corbu",
-   "wikidata": "Q4724",
-   "reason": "no-music-item",
-   "asset": "artist-photos/corbu.webp"
+   "description": "musician from Austin, Texas"
   },
   {
    "artist": "CORTIS",
    "wikidata": "Q135668928",
-   "reason": "no-music-item",
-   "asset": "artist-photos/cortis.webp"
+   "description": "South Korean boy group"
   },
   {
    "artist": "Djo",
    "wikidata": "Q27064031",
-   "reason": "no-item",
-   "asset": "artist-photos/djo.webp"
-  },
-  {
-   "artist": "DUA LIPA",
-   "wikidata": "Q28128723",
-   "reason": "no-music-item",
-   "asset": "artist-photos/dua-lipa.webp"
-  },
-  {
-   "artist": "EGGY",
-   "wikidata": "Q5410760",
-   "reason": "no-music-item",
-   "asset": "artist-photos/eggy.webp"
+   "description": "American actor and musician (born 1992)"
   },
   {
    "artist": "ERIC SLICK",
    "wikidata": "Q51336785",
-   "reason": "no-music-item",
-   "asset": "artist-photos/eric-slick.webp"
+   "description": "American singer, songwriter and drummer (born 1987)"
   },
   {
    "artist": "FKJ",
    "wikidata": "Q30457256",
-   "reason": "no-item",
-   "asset": "artist-photos/fkj.webp"
+   "description": "French multi-instrumentalist, singer, and musician"
   },
   {
    "artist": "GELLI HAHA",
    "wikidata": "Q135431515",
-   "reason": "no-music-item",
-   "asset": "artist-photos/gelli-haha.webp"
-  },
-  {
-   "artist": "Girlfriend",
-   "wikidata": "Q18733030",
-   "reason": "no-music-item",
-   "asset": "artist-photos/girlfriend.webp"
-  },
-  {
-   "artist": "HUXLEY",
-   "wikidata": "Q184366",
-   "reason": "no-music-item",
-   "asset": "artist-photos/huxley.webp"
+   "description": "American singer"
   },
   {
    "artist": "Idriss D",
    "wikidata": "Q110396410",
-   "reason": "no-music-item",
-   "asset": "artist-photos/idriss-d.webp"
-  },
-  {
-   "artist": "Inbal",
-   "wikidata": "Q1665209",
-   "reason": "no-music-item",
-   "asset": "artist-photos/inbal.webp"
+   "description": "Algerian DJ based in Italy"
   },
   {
    "artist": "Injury Reserve",
    "wikidata": "Q24075128",
-   "reason": "no-music-item",
-   "asset": "artist-photos/injury-reserve.webp"
-  },
-  {
-   "artist": "James Kennedy",
-   "wikidata": "Q355133",
-   "reason": "no-music-item",
-   "asset": "artist-photos/james-kennedy.webp"
+   "description": "American band"
   },
   {
    "artist": "Japanese Breakfast",
    "wikidata": "Q28104185",
-   "reason": "no-music-item",
-   "asset": "artist-photos/japanese-breakfast.webp"
-  },
-  {
-   "artist": "Joseph",
-   "wikidata": "Q128267",
-   "reason": "no-music-item",
-   "asset": "artist-photos/joseph.webp"
-  },
-  {
-   "artist": "Kassel",
-   "wikidata": "Q515553",
-   "reason": "no-music-item",
-   "asset": "artist-photos/kassel.webp"
+   "description": "American solo musical project"
   },
   {
    "artist": "KATSEYE",
    "wikidata": "Q123480242",
-   "reason": "no-music-item",
-   "asset": "artist-photos/katseye.webp"
-  },
-  {
-   "artist": "Koa",
-   "wikidata": "Q108678151",
-   "reason": "no-item",
-   "asset": "artist-photos/koa.webp"
+   "description": "Los Angeles-based girl group"
   },
   {
    "artist": "LP Giobbi",
    "wikidata": "Q123348009",
-   "reason": "no-music-item",
-   "asset": "artist-photos/lp-giobbi.webp"
-  },
-  {
-   "artist": "Lydia B Kollins",
-   "wikidata": "Q131386749",
-   "reason": "no-music-item",
-   "asset": "artist-photos/lydia-b-kollins.webp"
+   "description": "American DJ and producer"
   },
   {
    "artist": "Michael Bibi",
    "wikidata": "Q115631706",
-   "reason": "no-music-item",
-   "asset": "artist-photos/michael-bibi.webp"
+   "description": "electronic musician and DJ"
   },
   {
    "artist": "Moon Boots",
    "wikidata": "Q66846517",
-   "reason": "no-music-item",
-   "asset": "artist-photos/moon-boots.webp"
+   "description": "American DJ and music producer"
   },
   {
    "artist": "O.A.R.",
    "wikidata": "Q1975153",
-   "reason": "no-item",
-   "asset": "artist-photos/o-a-r.webp"
+   "description": "American rock band"
   },
   {
    "artist": "Olly James",
    "wikidata": "Q56377659",
-   "reason": "no-music-item",
-   "asset": "artist-photos/olly-james.webp"
+   "description": "English DJ and producer"
   },
   {
    "artist": "Ownboss",
    "wikidata": "Q112075901",
-   "reason": "no-music-item",
-   "asset": "artist-photos/ownboss.webp"
+   "description": "Brazilian DJ and music producer"
   },
   {
    "artist": "P!NK",
    "wikidata": "Q160009",
-   "reason": "no-item",
-   "asset": "artist-photos/p-nk.webp"
-  },
-  {
-   "artist": "Panteros666",
-   "wikidata": "Q110147631",
-   "reason": "no-music-item",
-   "asset": "artist-photos/panteros666.webp"
-  },
-  {
-   "artist": "Q",
-   "wikidata": "Q193645",
-   "reason": "no-item",
-   "asset": "artist-photos/q.webp"
+   "description": "American singer, songwriter, and actress (born 1979)"
   },
   {
    "artist": "SB19",
    "wikidata": "Q75905366",
-   "reason": "no-music-item",
-   "asset": "artist-photos/sb19.webp"
-  },
-  {
-   "artist": "SJ",
-   "wikidata": "Q239693",
-   "reason": "no-item",
-   "asset": "artist-photos/sj.webp"
-  },
-  {
-   "artist": "Skepsis",
-   "wikidata": "Q141244850",
-   "reason": "no-music-item",
-   "asset": "artist-photos/skepsis.webp"
+   "description": "Filipino musical group; boy band"
   },
   {
    "artist": "Sodown",
    "wikidata": "Q55633386",
-   "reason": "no-music-item",
-   "asset": "artist-photos/sodown.webp"
-  },
-  {
-   "artist": "Spencer Ludwig",
-   "wikidata": "Q26702487",
-   "reason": "no-music-item",
-   "asset": "artist-photos/spencer-ludwig.webp"
-  },
-  {
-   "artist": "STEREOTYPE",
-   "wikidata": "Q108130146",
-   "reason": "no-music-item",
-   "asset": "artist-photos/stereotype.webp"
-  },
-  {
-   "artist": "STEVEN SPENCE",
-   "wikidata": "Q20685637",
-   "reason": "no-music-item",
-   "asset": "artist-photos/steven-spence.webp"
-  },
-  {
-   "artist": "Suki Waterhouse",
-   "wikidata": "Q16235151",
-   "reason": "no-music-item",
-   "asset": "artist-photos/suki-waterhouse.webp"
+   "description": "American electronic music producer, musician and DJ"
   },
   {
    "artist": "Sunday (1994)",
    "wikidata": "Q134287184",
-   "reason": "no-music-item",
-   "asset": "artist-photos/sunday-1994.webp"
+   "description": "pop band based in Los Angeles, California"
   },
   {
    "artist": "Thundercat",
    "wikidata": "Q15285290",
-   "reason": "no-music-item",
-   "asset": "artist-photos/thundercat.webp"
-  },
-  {
-   "artist": "YDG",
-   "wikidata": "Q489604",
-   "reason": "no-item",
-   "asset": "artist-photos/ydg.webp"
-  },
-  {
-   "artist": "ZEP",
-   "wikidata": "Q123066",
-   "reason": "no-music-item",
-   "asset": "artist-photos/zep.webp"
-  },
-  {
-   "artist": "Zero",
-   "wikidata": "Q2142",
-   "reason": "no-music-item",
-   "asset": "artist-photos/zero.webp"
+   "description": "American musician and singer-songwriter (born 1984)"
   }
  ]
 }

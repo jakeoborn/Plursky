@@ -12209,22 +12209,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q594166",
     "url": "./artist-photos/neon-black.webp"
   },
-  "nero": {
-    "artist": "Nero",
-    "author": "Jastrow",
-    "source": "commons",
-    "license": "Public-Domain",
-    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nero_Palatino_Inv618.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:20:23.866Z",
-    "allowExport": false,
-    "asset": "artist-photos/nero.webp",
-    "sha256": "ca843f461974a96d5eed29dbd9bb2cbbaf45364c53ead3c2bbaf8ba578032e3e",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q1413",
-    "url": "./artist-photos/nero.webp"
-  },
   "nessa-barrett": {
     "artist": "NESSA BARRETT",
     "author": "Vg283",
