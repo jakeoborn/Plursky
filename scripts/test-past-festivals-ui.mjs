@@ -315,7 +315,7 @@ try {
   await page.getByRole("button", { name: "Back" }).click();
   failEdition = "hard-summer-2025";
   await page.evaluate(() => { for (const k of Object.keys(_histCache)) if (k.includes("hard-summer")) delete _histCache[k]; });
-  await page.getByRole("button", { name: /^HARD Summer/ }).click();
+  await page.getByRole("button", { name: /^HARD Summer .*\b2025\b/ }).click();
   await page.getByRole("button", { name: "Try again" }).waitFor({ timeout: 10000 });
   failEdition = null;
   await page.getByRole("button", { name: "Try again" }).click();

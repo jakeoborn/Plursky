@@ -16,7 +16,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { EDITIONS, dropReason } from "./editions.mjs";
+import { EDITIONS, dropReason, lineupDropReason } from "./editions.mjs";
 import { slug } from "./lib.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -107,7 +107,7 @@ export function buildLineupEdition(id, rows, ledger) {
   const ed = EDITIONS[id];
   const stages = [], artists = [];
   for (const r of rows) {
-    if (dropReason(r.artist, r.stage)) continue;
+    if (lineupDropReason(r.artist, r.stage)) continue;
     let a = artists.find(x => x.name === r.artist);
     if (!a) artists.push(a = { id: `${id}:${slug(r.artist)}`, name: r.artist, key: artistKey(r.artist), performers: performerKeys(r.artist), appearances: [] });
     let stageId;
@@ -135,7 +135,7 @@ export function buildLineupEdition(id, rows, ledger) {
 
 // Printed lineup rows the library does not keep, with the reason.
 export const droppedLineupRows = rows => rows.flatMap(r => {
-  const why = dropReason(r.artist, r.stage);
+  const why = lineupDropReason(r.artist, r.stage);
   return why ? [{ day: +r.day || null, stage: r.stage || null, billing: r.artist, ...why }] : [];
 });
 
