@@ -136,12 +136,13 @@ export async function importGather(id, dir) {
     }
     const date = ed.dates[+r.day - 1]?.[0];
     if (r.date !== date) throw new Error(`row ${r.artist}: day ${r.day} is ${r.date}, the edition says ${date}`);
-    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }) }); continue; }
+    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }) }); continue; }
     const hits = rc.sources.map((s, i) => [s, i]).filter(([s]) => (r.source_ref || "").includes(s.match)
       && (!s.when?.stage || new RegExp(s.when.stage).test(r.stage)) && (!s.when?.stageNot || !new RegExp(s.when.stageNot).test(r.stage)));
     if (hits.length !== 1) throw new Error(`row d${r.day} ${r.stage} ${r.start} ${r.artist}: ${hits.length} sources match its source_ref`);
     const [s, i] = hits[0];
-    if (!r.start || !r.end) throw new Error(`row ${r.artist}: blank time (no openEnd convention for gather rows yet)`);
+    // Only a day the edition registry marks untimed may carry blank times.
+    if ((!r.start || !r.end) && !(ed.untimedDays || []).includes(+r.day)) throw new Error(`row ${r.artist}: blank time (no openEnd convention for gather rows yet)`);
     bySource.get(i).push({ day: +r.day, stage: stageFor(s, r.stage), start: r.start, end: r.end, artist: r.artist, source: s.match, note: r.note || "" });
   }
 
@@ -157,6 +158,16 @@ export async function importGather(id, dir) {
       if (cap.captureTimestamp !== s.captureTimestamp) throw new Error(`${s.url}: Wayback served ${cap.captureTimestamp}, not ${s.captureTimestamp}`);
       const agree = (day, parsed) => {
         const mine = got.filter(r => r.day === day);
+        // An untimed day lists an act once per stage: a second set by the same
+        // act on the same stage is an excluded repeat, and the sheet must
+        // exclude exactly the page's second and later sets, one for one.
+        if ((ed.untimedDays || []).includes(day)) {
+          const seen = new Set(), later = [];
+          parsed = parsed.filter(x => { const k = `${x.stage}|${x.artist}`; if (!seen.has(k)) { seen.add(k); return true; } later.push(x); return false; });
+          const k = x => [x.stage, x.start, x.artist ?? x.billing].join("|");
+          const pageRep = later.map(k).sort().join("\n"), sheetRep = excluded.filter(x => x.day === day && x.repeat).map(k).sort().join("\n");
+          if (pageRep !== sheetRep) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${later.length} repeat set(s) on an untimed day, the sheet excludes others\n  page: ${pageRep}\n  sheet: ${sheetRep}`);
+        } else if (excluded.some(x => x.day === day && x.repeat)) throw new Error(`day ${day}: a repeat set is excluded, but the day is timed`);
         const want = mine.map(rowKey).sort(), have = parsed.map(x => ({ day, ...sheetRow(day, x) })).map(rowKey).sort();
         const missing = want.filter(k => !have.includes(k)), extra = have.filter(k => !want.includes(k));
         if (missing.length || extra.length) throw new Error(`${s.url} @${s.captureTimestamp}: the archived page and the reviewed sheet disagree\n  sheet only: ${missing.join("\n  ")}\n  page only: ${extra.join("\n  ")}`);
@@ -188,7 +199,10 @@ export async function importGather(id, dir) {
         for (const d of page.days) {
           const day = dayOf(d.date), tab = page.tabs.find(t => t.date === d.date);
           if (tab?.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day}'s tab prints "${tab?.label}", the receipt says "${s.printed[day]}"`);
-          if (!d.timed) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} cannot be read off its hour axis (untimed days are not supported for gather rows)`);
+          // A day the page itself cannot read (a misprinted range on it, as on
+          // Lollapalooza 2013's Saturday) ships untimed, and only when the
+          // edition registry says so; the misprints are kept in the ledger.
+          if (!d.timed && !(ed.untimedDays || []).includes(day)) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} cannot be read off its hour axis, and the edition does not list it as untimed`);
           // A block printed twice (once off the axis) is one set: the sheet
           // must exclude its second row as a duplicate, one for one.
           const dupKey = x => [x.stage, x.artist ?? x.billing].join("|");
@@ -198,7 +212,10 @@ export async function importGather(id, dir) {
           const excludedHere = excluded.filter(x => x.day === day && x.canceled).map(key).sort();
           if (cancelled.join("\n") !== excludedHere.join("\n")) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${cancelled.length} cancelled block(s), the sheet excludes ${excludedHere.length} as cancelled\n  page: ${cancelled.join("\n  page: ")}\n  sheet: ${excludedHere.join("\n  sheet: ")}`);
           agree(day, d.sets.filter(x => !x.canceled).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
-          Object.assign(ledgerDays[day - 1].sources.at(-1), { meridiem: "printed hour axis",
+          const misprints = d.sets.filter(x => x.rangeMismatch).map(x => `${x.stage}: ${x.artist} ${x.printed}`);
+          if (!d.timed && !misprints.length) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is unreadable for no reason the parser can name`);
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { meridiem: d.timed ? "printed hour axis" : "unreadable: a printed range disagrees with its block",
+            ...(misprints.length && { misprints }),
             axis: `${d.axis.labels[0]} … ${d.axis.labels.at(-1)}`, emPerMinute: Math.round(page.scale * 1e4) / 1e4,
             ...(cancelled.length && { cancelled: cancelled.length }), ...(dups.length && { duplicateBlocks: dups.length }),
             ...((ed.untimedDays || []).includes(day) && { timesConfirmed: false }) });
