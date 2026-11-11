@@ -1,0 +1,36 @@
+{
+  "id": "hard-summer-2018",
+  "method": "official_lineup_html",
+  "official": "https://www.hardsummer.com/lineup/",
+  "chosen": "20180425085500",
+  "archivedUrl": "https://web.archive.org/web/20180425085500/https://www.hardsummer.com/lineup/",
+  "sha256": "78718d82f62c969354796c765e8892ca690228cffdcebf529efe4d00f3a1a7bc",
+  "title": "Lineup – HARD Summer 2018",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 82",
+    "By Day 82"
+  ],
+  "stageOrder": [],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20180425085500",
+      "archivedUrl": "https://web.archive.org/web/20180425085500/https://www.hardsummer.com/lineup/",
+      "sha256": "78718d82f62c969354796c765e8892ca690228cffdcebf529efe4d00f3a1a7bc",
+      "bytes": 588642,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2018",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 04",
+        "Sunday, August 05"
+      ],
+      "billings": 82,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

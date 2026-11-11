@@ -2083,6 +2083,29 @@ function MapScreen({ state, setState }) {
   });
   // Every meet target is built through _meetTargetFor (#313 item 7), and an
   // existing one is re-built when the map on screen changes.
+  // SPEC-178: your tagged photos and videos as pins at their capture GPS, on
+  // the real map only (the drawn map is poster art; a GPS fix placed on it is
+  // an estimate, and the lock is "no estimate"). On by default, a Layers row
+  // turns it off. Read from the on-device store; nothing here syncs or sends.
+  const [showMyPins, setShowMyPins] = React.useState(() => {
+    try { return localStorage.getItem("plursky_map_mypins") !== "0"; } catch { return true; }
+  });
+  const [myMoments, setMyMoments] = React.useState(_mapMyMoments);
+  React.useEffect(() => {
+    const on = () => setMyMoments(_mapMyMoments());
+    window.addEventListener("plursky-moments-change", on);
+    return () => window.removeEventListener("plursky-moments-change", on);
+  }, []);
+  const photoPins = React.useMemo(
+    () => (useRealMap && showMyPins ? _momentPinsFor(myMoments, FESTIVAL_CONFIG.id) : _NO_PINS),
+    [useRealMap, showMyPins, myMoments]);
+  const [pinView, setPinView] = React.useState(null); // { moments, index }
+  const openPinned = React.useCallback((ids) => {
+    const want = new Set(ids || []);
+    const items = myMoments.filter(m => want.has(m.id))
+      .sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")) || (a.createdAt || 0) - (b.createdAt || 0));
+    if (items.length) setPinView({ moments: items, index: 0 });
+  }, [myMoments]);
   const setMeet = (t) => setMeetTarget(_meetTargetFor(t, useRealMap));
   React.useEffect(() => { setMeetTarget(t => _meetTargetFor(t, useRealMap)); }, [useRealMap]);
   // What the maps may draw: a text-only target has no position.
@@ -2702,6 +2725,8 @@ function MapScreen({ state, setState }) {
                 { id: "amenity", label: "Amenity key", active: amenityKey,
                   onToggle: () => { setAmenityKey(v => !v); setAmenityFilter(null); } },
                 { id: "labels", label: "Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
+                ...(useRealMap ? [{ id: "mypins", label: "My photos & videos", active: showMyPins,
+                  onToggle: () => setShowMyPins(v => { try { localStorage.setItem("plursky_map_mypins", v ? "0" : "1"); } catch {} return !v; }) }] : []),
                 ...(REAL_MAP_ONLY ? [] : [{ id: "realmap", label: "Real map",  active: useRealMap,
                   onToggle: () => {
                     const v = !useRealMap;
@@ -3174,6 +3199,7 @@ function MapScreen({ state, setState }) {
             showAmenities={searchSheetExpanded || amenityKey || mapCat === "water" || mapCat === "med"}
             amenityFilter={mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null}
             controlRef={realMapCtl} onViewChange={setRealView}
+            photoPins={photoPins} onPhotoPin={openPinned}
             crewFriends={crewFriends}
             saved={state.saved}
             showHeat={showHeat}
@@ -3533,6 +3559,25 @@ function MapScreen({ state, setState }) {
 
       {meetupsOpen && (
         <MeetupsSheet onClose={() => setMeetupsOpen(false)} />
+      )}
+
+      {pinView && typeof MomentLightbox === "function" && (
+        <MomentLightbox
+          moments={pinView.moments}
+          index={pinView.index}
+          showNight
+          onClose={() => setPinView(null)}
+          onIndexChange={(i) => setPinView(v => v ? { ...v, index: i } : v)}
+          onArtistClick={(id) => { setPinView(null); setState({ ...state, tab: "home", artist: id }); }}
+          onUpdate={(mom, patch) => {
+            try {
+              const all = _readMoments();
+              for (const n of Object.keys(all)) all[n] = (all[n] || []).map(m => m.id === mom.id ? { ...m, ...patch } : m);
+              _writeMoments(all);
+              setPinView(v => v ? { ...v, moments: v.moments.map(m => m.id === mom.id ? { ...m, ...patch } : m) } : v);
+            } catch {}
+          }}
+        />
       )}
     </Screen>
   );
@@ -4320,6 +4365,145 @@ function _validGps(g) {
   return !!g && Number.isFinite(g.lat) && Number.isFinite(g.lng)
     && Math.abs(g.lat) <= 90 && Math.abs(g.lng) <= 180;
 }
+// SPEC-178: your own tagged photos and videos, pinned at their capture GPS.
+// Locked: no GPS = no pin. Never a stage position, a poster x/y, a jitter or
+// any other estimate; an item without a valid fix is simply absent. Pure and
+// on-device: the coordinates only ever reach MapLibre's in-memory source.
+function _momentPinsFor(moments, festivalId) {
+  const out = [];
+  for (const m of moments || []) {
+    if (!m || !m.id || !m.artistId) continue;
+    if (festivalId && m.festivalId && m.festivalId !== festivalId) continue;
+    const g = m.parsedGps;
+    if (!_validGps(g) || (g.lat === 0 && g.lng === 0)) continue;
+    out.push({
+      id: m.id, lat: g.lat, lng: g.lng,
+      accM: Number.isFinite(m.gpsAccM) ? m.gpsAccM : null,
+      kind: m.kind === "video" ? "video" : "photo",
+    });
+  }
+  return out;
+}
+// GeoJSON for the clustered pin source. Properties carry the moment id and
+// kind only; the tag is looked up on tap from the on-device store.
+function _momentPinsGeoJson(pins) {
+  return {
+    type: "FeatureCollection",
+    features: (pins || []).map(p => ({
+      type: "Feature",
+      geometry: { type: "Point", coordinates: [p.lng, p.lat] },
+      properties: { id: p.id, kind: p.kind },
+    })),
+  };
+}
+const _NO_PINS = Object.freeze([]);
+// The active festival's moments, flattened, from the on-device store.
+function _mapMyMoments() {
+  try {
+    if (typeof _readMoments !== "function" || typeof _activeMoments !== "function") return [];
+    const all = _activeMoments(_readMoments());
+    const out = [];
+    for (const n of Object.keys(all)) for (const m of (all[n] || [])) if (m) out.push(m);
+    return out;
+  } catch { return []; }
+}
+const MOMENT_PIN_SOURCE = "my-moments";
+const MOMENT_PIN_CLUSTER = "my-moments-cluster";
+const MOMENT_PIN_POINT = "my-moments-point";
+const MOMENT_PIN_COUNT = "my-moments-count";
+// Adds the clustered pin source + layers once per style. A tap NEVER moves the
+// camera: easing to a cluster would fetch basemap tiles around where the photo
+// was taken, and a tile URL is a location. A single pin opens its item; a
+// cluster opens its items (up to 200, newest order is the caller's job).
+// A white count on a transparent ground, 2x for crisp edges. Returns the
+// ImageData MapLibre's addImage takes, or null where no canvas exists.
+function _momentPinCountImage(label) {
+  try {
+    const text = String(label).slice(0, 5);
+    const c = document.createElement("canvas");
+    const w = 28 * 2 + text.length * 8 * 2, h = 28 * 2;
+    c.width = w; c.height = h;
+    const g = c.getContext("2d");
+    g.fillStyle = "#ffffff";
+    g.font = "700 26px -apple-system, system-ui, 'Helvetica Neue', Arial, sans-serif";
+    g.textAlign = "center"; g.textBaseline = "middle";
+    g.fillText(text, w / 2, h / 2 + 1);
+    return g.getImageData(0, 0, w, h);
+  } catch { return null; }
+}
+function _addMomentPinLayers(map, pins, onTap) {
+  if (!map.getSource(MOMENT_PIN_SOURCE)) {
+    map.addSource(MOMENT_PIN_SOURCE, {
+      type: "geojson", data: _momentPinsGeoJson(pins),
+      // A GeoJSON source tiles to z18 by default, and clusters only break
+      // below the source's maxzoom: two shots metres apart then never split,
+      // at any zoom (measured: still one cluster at z22). 22 = the map's max.
+      maxzoom: 22, cluster: true, clusterRadius: 36, clusterMaxZoom: 21,
+    });
+  }
+  if (!map.getLayer(MOMENT_PIN_CLUSTER)) {
+    map.addLayer({
+      id: MOMENT_PIN_CLUSTER, type: "circle", source: MOMENT_PIN_SOURCE,
+      filter: ["has", "point_count"],
+      paint: {
+        "circle-color": "#e85d2e",
+        "circle-radius": ["step", ["get", "point_count"], 16, 10, 19, 50, 23],
+        "circle-stroke-width": 2, "circle-stroke-color": "#ffffff",
+      },
+    });
+  }
+  if (!map.getLayer(MOMENT_PIN_POINT)) {
+    map.addLayer({
+      id: MOMENT_PIN_POINT, type: "circle", source: MOMENT_PIN_SOURCE,
+      filter: ["!", ["has", "point_count"]],
+      paint: {
+        "circle-color": ["match", ["get", "kind"], "video", "#7c3aed", "#e85d2e"],
+        "circle-radius": 9,
+        "circle-stroke-width": 2, "circle-stroke-color": "#ffffff",
+      },
+    });
+  }
+  // The cluster's count, drawn as an image: the satellite style has no glyphs,
+  // so a text layer would need a font from the network or render nothing
+  // (measured: the live style carries no text-font). Icons are painted on a
+  // canvas on demand (styleimagemissing) in the app's own font; no request.
+  if (!map.getLayer(MOMENT_PIN_COUNT)) {
+    map.addLayer({
+      id: MOMENT_PIN_COUNT, type: "symbol", source: MOMENT_PIN_SOURCE,
+      filter: ["has", "point_count"],
+      layout: { "icon-image": ["concat", "plur-pin-n-", ["get", "point_count_abbreviated"]], "icon-allow-overlap": true, "icon-ignore-placement": true },
+    });
+  }
+  if (!map.__plurPinImages) {
+    map.__plurPinImages = true;
+    map.on("styleimagemissing", (e) => {
+      const id = e && e.id;
+      if (typeof id !== "string" || id.indexOf("plur-pin-n-") !== 0 || map.hasImage(id)) return;
+      const img = _momentPinCountImage(id.slice("plur-pin-n-".length));
+      if (img) { try { map.addImage(id, img, { pixelRatio: 2 }); } catch {} }
+    });
+  }
+  // Listeners live on the map, not the style, so they survive setStyle():
+  // bind them once per map or a style swap would double every tap.
+  if (map.__plurMomentTaps || typeof onTap !== "function") return;
+  map.__plurMomentTaps = true;
+  map.on("click", MOMENT_PIN_POINT, (e) => {
+    const f = e.features && e.features[0];
+    if (f && f.properties && f.properties.id) onTap([f.properties.id]);
+  });
+  map.on("click", MOMENT_PIN_CLUSTER, (e) => {
+    const f = e.features && e.features[0];
+    const src = map.getSource(MOMENT_PIN_SOURCE);
+    if (!f || !src) return;
+    Promise.resolve(src.getClusterLeaves(f.properties.cluster_id, 200, 0))
+      .then((leaves) => { const ids = (leaves || []).map(l => l.properties && l.properties.id).filter(Boolean); if (ids.length) onTap(ids); })
+      .catch(() => {});
+  });
+  for (const id of [MOMENT_PIN_POINT, MOMENT_PIN_CLUSTER]) {
+    map.on("mouseenter", id, () => { map.getCanvas().style.cursor = "pointer"; });
+    map.on("mouseleave", id, () => { map.getCanvas().style.cursor = ""; });
+  }
+}
 function _lngLatOf(p) {
   const g = p && p.gps;
   if (_validGps(g)) return { lat: g.lat, lng: g.lng };
@@ -4452,7 +4636,7 @@ function RealMap({
   compass = false, compassHeading = 0,
   selected, meetMode = false, meetTarget, onPickStage, onMapClick,
   onFatal, amenities = [], showAmenities = false, amenityFilter = null,
-  controlRef, onViewChange,
+  controlRef, onViewChange, photoPins = _NO_PINS, onPhotoPin,
 }) {
   const containerRef = React.useRef(null);
   const mapRef = React.useRef(null);
@@ -4485,6 +4669,8 @@ function RealMap({
   const showLabelsRef = React.useRef(showLabels);
   const onPickStageRef = React.useRef(onPickStage);
   const onMapClickRef = React.useRef(onMapClick);
+  const photoPinsRef = React.useRef(photoPins);
+  const onPhotoPinRef = React.useRef(onPhotoPin);
   const meetModeRef = React.useRef(meetMode);
   const [loaded, setLoaded] = React.useState(false);
   const [err, setErr] = React.useState(null);
@@ -4570,6 +4756,13 @@ function RealMap({
   }, [showAmenities, amenityFilter, meetMode, _applyAmenityVisibility]);
 
   React.useEffect(() => { onPickStageRef.current = onPickStage; }, [onPickStage]);
+  React.useEffect(() => { onPhotoPinRef.current = onPhotoPin; }, [onPhotoPin]);
+  // New pins → setData on the existing source. Never moves the camera.
+  React.useEffect(() => {
+    photoPinsRef.current = photoPins;
+    const src = mapRef.current && mapRef.current.getSource(MOMENT_PIN_SOURCE);
+    if (src) { try { src.setData(_momentPinsGeoJson(photoPins)); } catch {} }
+  }, [photoPins]);
   React.useEffect(() => { onMapClickRef.current  = onMapClick;  }, [onMapClick]);
   React.useEffect(() => { meetModeRef.current    = meetMode;    }, [meetMode]);
 
@@ -5256,7 +5449,7 @@ function RealMap({
         // 125 styledata in 2 s on III Points and on ACL). The style never
         // settles, so map "load" never fires and the avatar, stage and
         // landmark markers it adds never appear, while the GPU churns.
-        const _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route"].filter((id) => map.getLayer(id));
+        const _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route", MOMENT_PIN_CLUSTER, MOMENT_PIN_POINT, MOMENT_PIN_COUNT].filter((id) => map.getLayer(id));
         const _order = (() => { try { return (map.getStyle().layers || []).map((l) => l.id); } catch { return []; } })();
         const _tail = _order.slice(_order.length - _top.length);
         if (_top.some((id, i) => _tail[i] !== id)) _top.forEach((id) => {
@@ -5294,13 +5487,19 @@ function RealMap({
             },
           });
         }
+        // SPEC-178: your tagged photos and videos at their capture GPS. A
+        // clustered in-memory GeoJSON source: the coordinates go to MapLibre
+        // and nowhere else (no request carries them; the camera never moves
+        // to them, so no extra tile is fetched for where you stood).
+        _safeLayer(MOMENT_PIN_SOURCE, () => _addMomentPinLayers(map, photoPinsRef.current, (ids) => { if (onPhotoPinRef.current) onPhotoPinRef.current(ids); }));
         // Hide basemap text labels (Speedway Boulevard, Las Vegas Motor
         // Speedway, etc.) so they don't render *through* our opaque clip
         // mask. MapLibre renders symbol/text layers in a separate pass
         // that ignores fill layers above them, so this is the only fix.
+        // The moment-pin count is ours and sits above the mask, so it stays.
         try {
           (map.getStyle().layers || []).forEach((lyr) => {
-            if (lyr.type === "symbol") map.setLayoutProperty(lyr.id, "visibility", "none");
+            if (lyr.type === "symbol" && lyr.id !== MOMENT_PIN_COUNT) map.setLayoutProperty(lyr.id, "visibility", "none");
           });
         } catch {}
 
@@ -5510,7 +5709,7 @@ function RealMap({
       map.on("click", (e) => {
         if (!meetModeRef.current || !onMapClickRef.current) return;
         // Skip if a stage was clicked — the stages-3d layer handler covers it.
-        const hits = map.queryRenderedFeatures(e.point, { layers: ["stages-3d"] });
+        const hits = map.queryRenderedFeatures(e.point, { layers: ["stages-3d", MOMENT_PIN_POINT, MOMENT_PIN_CLUSTER].filter((id) => map.getLayer(id)) });
         if (hits && hits.length) return;
         const ll = e.lngLat;
         const xy = mapToGps && (typeof gpsToMap === "function") ? gpsToMap(ll.lat, ll.lng) : null;

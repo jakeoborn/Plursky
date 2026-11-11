@@ -48,13 +48,32 @@ async function politeFetch(url) {
 export const rawUrl = (timestamp, url) => `https://web.archive.org/web/${timestamp}id_/${url}`;
 export const viewUrl = (timestamp, url) => `https://web.archive.org/web/${timestamp}/${url}`;
 
+// Relay mode. Some research machines cannot reach the Wayback Machine
+// directly; there a fetching client (a scraping service) reads the same CDX
+// query and the same raw `id_` captures, and scripts/historical/relay-ingest.mjs
+// files them into CACHE_DIR exactly as this module would have, with the
+// served timestamp checked and `via` recorded. With PLURSKY_WAYBACK_RELAY=1
+// nothing is fetched here: a listing or capture that was not relayed is an
+// error, never a guess.
+export const RELAY = process.env.PLURSKY_WAYBACK_RELAY === "1";
+
+export const cdxQuery = (url, from, to) => `https://web.archive.org/cdx/search/cdx?url=${encodeURIComponent(url)}&from=${from}&to=${to}`
+  + `&filter=statuscode:200&collapse=digest&fl=timestamp,original,digest,length&output=json`;
+export const cdxCacheFile = q => join(CACHE_DIR, "cdx", sha256(q).slice(0, 24) + ".json");
+
 // Captures of `url` between `from` and `to` (YYYYMMDD), HTTP 200 only.
 export async function listCaptures(url, from, to) {
-  const q = `https://web.archive.org/cdx/search/cdx?url=${encodeURIComponent(url)}&from=${from}&to=${to}`
-    + `&filter=statuscode:200&collapse=digest&fl=timestamp,original,digest,length&output=json`;
-  const r = await politeFetch(q);
-  if (!r.ok) throw new Error(`CDX ${r.status} for ${url}`);
-  const rows = await r.json();
+  const q = cdxQuery(url, from, to);
+  let rows;
+  if (RELAY) {
+    const f = cdxCacheFile(q);
+    if (!existsSync(f)) throw new Error(`relay: no CDX listing filed for ${q}`);
+    rows = JSON.parse(readFileSync(f, "utf8")).rows;
+  } else {
+    const r = await politeFetch(q);
+    if (!r.ok) throw new Error(`CDX ${r.status} for ${url}`);
+    rows = await r.json();
+  }
   return rows.slice(1).map(([timestamp, original, digest, length]) => ({ timestamp, original, digest, length: +length }));
 }
 
@@ -82,6 +101,7 @@ export async function fetchCapture(timestamp, url, { binary = false } = {}) {
     }
   }
   if (!rec) {
+    if (RELAY) throw new Error(`relay: capture ${timestamp} of ${url} was not filed`);
     const r = await politeFetch(rawUrl(timestamp, url));
     if (!r.ok) throw new Error(`${rawUrl(timestamp, url)} → HTTP ${r.status}`);
     buf = Buffer.from(await r.arrayBuffer());

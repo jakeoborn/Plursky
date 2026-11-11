@@ -2,7 +2,7 @@
 // Returns a list of problems; empty means valid. Used by the verify gate
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
-import { EDITIONS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
+import { EDITIONS, KEPT_STAGES, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
 import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, undatedOwnPost, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
@@ -18,11 +18,14 @@ export const OFFICIAL_HOSTS = {
   // ruling, SPEC-182, 2026-11-06); the image must still be embedded on an
   // archived official page and carry its hash and review entry.
   "acl": ["aclfestival.com", "cdn.prod.website-files.com", "assets-global.website-files.com"],
-  "beyond-wonderland-socal": ["socal.beyondwonderland.com"],
+  // The 2012 and 2013 SoCal lineups lived on the root domain (lineup.php).
+  "beyond-wonderland-socal": ["socal.beyondwonderland.com", "beyondwonderland.com"],
   "beyond-wonderland-gorge": ["pnw.beyondwonderland.com"],
   "escape-halloween": ["escapehalloween.com"],
   "edc-orlando": ["orlando.electricdaisycarnival.com"],
+  "edc-mexico": ["mexico.electricdaisycarnival.com"],
   "nocturnal-wonderland": ["nocturnalwonderland.com"],
+  "countdown-nye": ["countdownnye.com"],
   "dreamstate-socal": ["dreamstateusa.com"],
 };
 
@@ -71,6 +74,17 @@ const strings = x => typeof x === "string" ? [x, ...x.split(":").slice(1)]
   : x && typeof x === "object" ? Object.values(x).flatMap(strings) : [];
 
 // `dropped` is ledger/<id>.json's record of the printed rows the build left out.
+// A year-end edition (New Year's Eve) is often only captured in the first
+// days of January: a capture from the next year counts only when it falls
+// within 31 days after the edition's last day.
+function earlyNextYear(ts, e) {
+  const last = (e.days || []).map(d => d.date).sort().pop();
+  if (!last || !ts.startsWith(String(e.year + 1))) return false;
+  const cap = Date.UTC(+ts.slice(0, 4), +ts.slice(4, 6) - 1, +ts.slice(6, 8));
+  const end = Date.parse(last + "T00:00:00Z");
+  return cap > end && cap - end <= 31 * 864e5;
+}
+
 export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   const p = [];
   const meta = EDITIONS[e.id];
@@ -123,7 +137,7 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     const url = c.archivedUrl || c.pageArchivedUrl;
     const where = c.day ? `day ${c.day}` : `${c.page || "?"} page`;
     const ts = officialArchive(url, e.festivalId, e.year, p, `${e.id} ${where}`);
-    if (ts && !ts.startsWith(String(e.year))) p.push(`${e.id} ${where}: page capture ${ts} is not from ${e.year}`);
+    if (ts && !ts.startsWith(String(e.year)) && !earlyNextYear(ts, e)) p.push(`${e.id} ${where}: page capture ${ts} is not from ${e.year}`);
     if (c.imageArchivedUrl) officialArchive(c.imageArchivedUrl, e.festivalId, e.year, p, `${e.id} ${where} graphic`);
     if (!/^[0-9a-f]{64}$/.test(c.sha256 || "")) p.push(`${e.id} ${where}: artifact hash missing`);
   }
@@ -145,7 +159,12 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   // event, a stage or an id). The ledger holds them as the audit trail.
   if ("events" in e) p.push(`${e.id}: carries an events list; operational rows are dropped, not stored`);
   const hit = new Set();
+  // A stage the founder ruled to keep as printed (KEPT_STAGES) is not checked
+  // by its name or the slug its ids carry; every billing on it, and every
+  // other edition, still is (the set check below).
+  const kept = new Set(e.stages.filter(s => (KEPT_STAGES[e.id] || []).includes(s.name)).flatMap(s => [s.name, s.id.split(":").pop()]));
   for (const x of strings({ stages: e.stages, artists: e.artists, sets: e.sets, events: e.events })) {
+    if (kept.has(x)) continue;
     // Each string is tried as a billing and as a stage name.
     const why = dropReason(x, x);
     if (why && !hit.has(x)) { hit.add(x); p.push(`${e.id}: dropped ${why.category} "${x}" appears in the edition`); }

@@ -1,0 +1,82 @@
+{
+  "id": "escape-halloween-2023",
+  "method": "official_lineup_html",
+  "official": "https://escapehalloween.com/lineup/",
+  "chosen": "20231128130635",
+  "archivedUrl": "https://web.archive.org/web/20231128130635/https://escapehalloween.com/lineup/",
+  "sha256": "d5389ef1fa224a8caefbb8dd48cb74ef7cf34863008a02fae0d731b54497598d",
+  "title": "Lineup – Escape Halloween 2023",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 89",
+    "By Day 89",
+    "By Stage 89"
+  ],
+  "stageOrder": [
+    "The Grimm",
+    "Feeding Grounds",
+    "Sanitarium",
+    "Sewer District",
+    "Wicked Woods"
+  ],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20230208200709",
+      "archivedUrl": "https://web.archive.org/web/20230208200709/https://escapehalloween.com/lineup/",
+      "sha256": "4a46c6be5f59c0a19ab2784f0da1eec0d047d2d3e8dab4c37cc96f1c988a74f0",
+      "bytes": 74592,
+      "via": "firecrawl",
+      "title": "Lineup – Escape Halloween 2023",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20230220053645",
+      "archivedUrl": "https://web.archive.org/web/20230220053645/https://escapehalloween.com/lineup/",
+      "sha256": "b187f00c50c91be1c0f302056e3e4e9fae5f61ff55aaebfa0c8d1542575cf984",
+      "bytes": 74592,
+      "via": "firecrawl",
+      "title": "Lineup – Escape Halloween 2023",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20230529224022",
+      "archivedUrl": "https://web.archive.org/web/20230529224022/https://escapehalloween.com/lineup/",
+      "sha256": "f2c698701bea9b6da8905a79dca397c1ba93b13d77dda8785c4bd35e22566ae0",
+      "bytes": 73624,
+      "via": "firecrawl",
+      "title": "Lineup – Escape Halloween 2023",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20231128130635",
+      "archivedUrl": "https://web.archive.org/web/20231128130635/https://escapehalloween.com/lineup/",
+      "sha256": "d5389ef1fa224a8caefbb8dd48cb74ef7cf34863008a02fae0d731b54497598d",
+      "bytes": 157125,
+      "via": "firecrawl",
+      "title": "Lineup – Escape Halloween 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, October 27",
+        "Saturday, October 28"
+      ],
+      "billings": 89,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

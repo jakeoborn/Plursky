@@ -193,6 +193,84 @@ export const EDITIONS = {
   "beyond-wonderland-socal-2025": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2025", year: 2025,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2025-03-28", "Friday"], ["2025-03-29", "Saturday"]] },
+  "beyond-wonderland-socal-2022": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2022", year: 2022,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2022-03-25", "Friday"], ["2022-03-26", "Saturday"]] },
+  "beyond-wonderland-socal-2024": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2024", year: 2024,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2024-03-22", "Friday"], ["2024-03-23", "Saturday"]] },
+  "nocturnal-wonderland-2023": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2023", year: 2023,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2023-09-16", "Saturday"], ["2023-09-17", "Sunday"]] },
+  "hard-summer-2018": { festivalId: "hard-summer", name: "HARD Summer 2018", year: 2018,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2018-08-04", "Saturday"], ["2018-08-05", "Sunday"]] },
+  "hard-summer-2019": { festivalId: "hard-summer", name: "HARD Summer 2019", year: 2019,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2019-08-03", "Saturday"], ["2019-08-04", "Sunday"]] },
+  "hard-summer-2022": { festivalId: "hard-summer", name: "HARD Summer 2022", year: 2022,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2022-07-29", "Friday"], ["2022-07-30", "Saturday"], ["2022-07-31", "Sunday"]] },
+  "hard-summer-2023": { festivalId: "hard-summer", name: "HARD Summer 2023", year: 2023,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2023-08-05", "Saturday"], ["2023-08-06", "Sunday"]] },
+  "hard-summer-2024": { festivalId: "hard-summer", name: "HARD Summer 2024", year: 2024,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2024-08-03", "Saturday"], ["2024-08-04", "Sunday"]] },
+  "escape-halloween-2023": { festivalId: "escape-halloween", name: "Escape Halloween 2023", year: 2023,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2023-10-27", "Friday"], ["2023-10-28", "Saturday"]] },
+  "edc-las-vegas-2019": { festivalId: "edc-lv", name: "EDC Las Vegas 2019", year: 2019,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2019-05-17", "Friday"], ["2019-05-18", "Saturday"], ["2019-05-19", "Sunday"]] },
+  "edc-las-vegas-2021": { festivalId: "edc-lv", name: "EDC Las Vegas 2021", year: 2021,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2021-10-22", "Friday"], ["2021-10-23", "Saturday"], ["2021-10-24", "Sunday"]] },
+  "edc-las-vegas-2023": { festivalId: "edc-lv", name: "EDC Las Vegas 2023", year: 2023,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2023-05-19", "Friday"], ["2023-05-20", "Saturday"], ["2023-05-21", "Sunday"]] },
+  "edc-orlando-2018": { festivalId: "edc-orlando", name: "EDC Orlando 2018", year: 2018,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2018-11-09", "Friday"], ["2018-11-10", "Saturday"]] },
+  "edc-mexico-2020": { festivalId: "edc-mexico", name: "EDC Mexico 2020", year: 2020,
+    timezone: "America/Mexico_City", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2020-02-28", "Friday"], ["2020-02-29", "Saturday"], ["2020-03-01", "Sunday"]] },
+  "beyond-wonderland-socal-2019": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2019", year: 2019,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2019-03-22", "Friday"], ["2019-03-23", "Saturday"]] },
+  "countdown-nye-2022": { festivalId: "countdown-nye", name: "Countdown NYE 2022", year: 2022,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2022-12-30", "Friday"], ["2022-12-31", "Saturday"]] },
+  "countdown-nye-2023": { festivalId: "countdown-nye", name: "Countdown NYE 2023", year: 2023,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2023-12-30", "Saturday"], ["2023-12-31", "Sunday"]] },
+  "escape-halloween-2015": { festivalId: "escape-halloween", name: "Escape Halloween 2015", year: 2015,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-10-30", "Friday"], ["2015-10-31", "Saturday"]] },
+  "nocturnal-wonderland-2015": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2015", year: 2015,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-09-04", "Friday"], ["2015-09-05", "Saturday"], ["2015-09-06", "Sunday"]] },
+  "nocturnal-wonderland-2016": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2016", year: 2016,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-09-02", "Friday"], ["2016-09-03", "Saturday"], ["2016-09-04", "Sunday"]] },
+  "beyond-wonderland-socal-2016": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2016", year: 2016,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-03-18", "Friday"], ["2016-03-19", "Saturday"]] },
+  "nocturnal-wonderland-2011": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2011", year: 2011,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
+    dates: [["2011-09-23", "Friday"], ["2011-09-24", "Saturday"]] },
+  "beyond-wonderland-socal-2012": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2012", year: 2012,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
+    dates: [["2012-03-17", "Saturday"]] },
+  "nocturnal-wonderland-2012": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2012", year: 2012,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
+    dates: [["2012-09-21", "Friday"], ["2012-09-22", "Saturday"]] },
+  "nocturnal-wonderland-2013": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2013", year: 2013,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
+    dates: [["2013-09-21", "Saturday"]] },
+  "beyond-wonderland-socal-2013": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2013", year: 2013,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
+    dates: [["2013-03-16", "Saturday"]] },
 };
 
 // Rows the official schedule prints that are NOT part of the library (founder
@@ -232,6 +310,18 @@ export const DROP_RULES = [
     reason: "unnamed slot: no performer was billed" },
 ];
 
+// Stage names kept exactly as printed although a drop rule's words match them.
+// In 2012 and 2013 Insomniac's lineup.php pages printed "Discovery Project" as
+// a whole stage of named, billed DJs (Danny Avila, Dr. Fresch, Crizzly), not
+// as an unnamed contest slot. Jake's ruling, 2026-11-10: keep the stage and
+// its sets. Only the stage name is exempt: a bare "Discovery Project" billing
+// is still an unnamed slot, on this stage or any other.
+export const KEPT_STAGES = {
+  "nocturnal-wonderland-2012": ["Discovery Project"],
+  "nocturnal-wonderland-2013": ["Discovery Project"],
+  "beyond-wonderland-socal-2013": ["Discovery Project"],
+};
+
 // Non-music activities (talks, bingo, drag shows, classes, food, podcast
 // tapings, brand activations), billed exactly as printed. The Bonus Tracks
 // stage rule already drops them where they were printed; this list keeps the
@@ -267,6 +357,15 @@ const ACTIVITY_REASON = "non-music Bonus Tracks activity";
 // Why a printed row (billing on stage) is dropped, or null if it is a set.
 // Compared case-folded and by slug, so an id segment or a re-cased billing
 // is caught too.
+// A past edition's lineup page (no stage, no time) that prints a bare
+// "Discovery Project" is the contest slot before its winner was named, as on
+// a printed stage: in the library it is an unnamed slot. The live lineup's
+// stageless entry stays (dropReason alone leaves it).
+export function lineupDropReason(billing, stage = "") {
+  return dropReason(billing, stage) || (!String(stage).trim() && /^discovery project$/i.test(String(billing).trim())
+    ? { category: "unnamed-slot", reason: "unnamed slot: no performer was billed" } : null);
+}
+
 export function dropReason(billing, stage = "") {
   const name = String(billing).trim(), st = String(stage).trim();
   const hits = (re, x) => re.test(x) || re.test(x.replace(/-/g, " "));

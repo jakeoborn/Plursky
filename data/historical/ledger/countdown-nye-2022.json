@@ -1,0 +1,74 @@
+{
+  "id": "countdown-nye-2022",
+  "method": "official_lineup_html",
+  "official": "https://countdownnye.com/lineup/",
+  "chosen": "20230101052439",
+  "archivedUrl": "https://web.archive.org/web/20230101052439/https://countdownnye.com/lineup/",
+  "sha256": "49fb941ca5c924f542fe007f8b1bc15b89966cf2fb3a9b100ab09384343ea9e5",
+  "title": "Lineup – Countdown NYE 2022",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 76",
+    "By Day 76"
+  ],
+  "stageOrder": [],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20220811045345",
+      "archivedUrl": "https://web.archive.org/web/20220811045345/https://countdownnye.com/lineup/",
+      "sha256": "a7705baa0e40d42e57d2450239058327870970b0544046af773a1a9b8a99b7f7",
+      "bytes": 52944,
+      "via": "firecrawl",
+      "title": "Lineup – Countdown NYE 2022",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20221205003227",
+      "archivedUrl": "https://web.archive.org/web/20221205003227/https://countdownnye.com/lineup/",
+      "sha256": "a18176fd33ab6fe0782af594f7e3d08d7ad0c7939a8eb3ab5ec3346d14d0ae40",
+      "bytes": 97129,
+      "via": "firecrawl",
+      "title": "Lineup – Countdown NYE 2022",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, December 30",
+        "Saturday, December 31"
+      ],
+      "billings": 75,
+      "diffVsChosen": [
+        "added by the final: Craze",
+        "added by the final: Kasto",
+        "added by the final: KLAXX",
+        "added by the final: SLANDER B2B Sullivan King",
+        "removed by the final: Craze B2B ZEKE BEATS",
+        "removed by the final: DJ Snake",
+        "removed by the final: One True God"
+      ]
+    },
+    {
+      "captureTimestamp": "20230101052439",
+      "archivedUrl": "https://web.archive.org/web/20230101052439/https://countdownnye.com/lineup/",
+      "sha256": "49fb941ca5c924f542fe007f8b1bc15b89966cf2fb3a9b100ab09384343ea9e5",
+      "bytes": 97354,
+      "via": "firecrawl",
+      "title": "Lineup – Countdown NYE 2022",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, December 30",
+        "Saturday, December 31"
+      ],
+      "billings": 76,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}
