@@ -1,0 +1,77 @@
+{
+  "id": "countdown-nye-2023",
+  "method": "official_lineup_html",
+  "official": "https://countdownnye.com/lineup/",
+  "chosen": "20240104235746",
+  "archivedUrl": "https://web.archive.org/web/20240104235746/https://countdownnye.com/lineup/",
+  "sha256": "042b36a78e1e5c301c0334a9e100ffb5a03d143334633adf885b10d001c1b12b",
+  "title": "Lineup – Countdown NYE 2023",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 88",
+    "By Day 88",
+    "By Stage 88"
+  ],
+  "stageOrder": [
+    "Mothership",
+    "Nebula",
+    "Area 51",
+    "Twilight Zone",
+    "Galactik Gate"
+  ],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20231106142033",
+      "archivedUrl": "https://web.archive.org/web/20231106142033/https://countdownnye.com/lineup/",
+      "sha256": "c24405452d1a015d1847ec158b77f5a0d0bd1c6bdc2731b2398533692ba0fe53",
+      "bytes": 92896,
+      "via": "firecrawl",
+      "title": "Lineup – Countdown NYE 2023",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20231204090329",
+      "archivedUrl": "https://web.archive.org/web/20231204090329/https://countdownnye.com/lineup/",
+      "sha256": "3e51ecd7aaf888cf5527693644a063aa3ee01171653cbcbd08e7005dbf553869",
+      "bytes": 121111,
+      "via": "firecrawl",
+      "title": "Lineup – Countdown NYE 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, December 30",
+        "Sunday, December 31"
+      ],
+      "billings": 87,
+      "diffVsChosen": [
+        "added by the final: Audien (House Set)",
+        "added by the final: Malixe",
+        "removed by the final: Discovery Project"
+      ]
+    },
+    {
+      "captureTimestamp": "20240104235746",
+      "archivedUrl": "https://web.archive.org/web/20240104235746/https://countdownnye.com/lineup/",
+      "sha256": "042b36a78e1e5c301c0334a9e100ffb5a03d143334633adf885b10d001c1b12b",
+      "bytes": 149622,
+      "via": "firecrawl",
+      "title": "Lineup – Countdown NYE 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, December 30",
+        "Sunday, December 31"
+      ],
+      "billings": 88,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

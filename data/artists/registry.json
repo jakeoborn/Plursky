@@ -134,9 +134,11 @@
   "billings": [
    "edc-las-vegas-2022:d3:parliament-art-car:2245:12th-planet",
    "edc-orlando-2022:d1:circuit-grounds:1815:12th-planet",
+   "nocturnal-wonderland-2011:d1:sunken-garden:0100:12th-planet",
+   "nocturnal-wonderland-2012:d2:sunken-garden:2330:12th-planet",
    "nocturnal-wonderland-2021:d1:labyrinth:2100:12th-planet"
   ],
-  "firstSeen": "2021-09-18",
+  "firstSeen": "2011-09-23",
   "lastSeen": "2022-11-11",
   "photo": null,
   "links": []
@@ -154,6 +156,21 @@
   ],
   "firstSeen": "2019-11-08",
   "lastSeen": "2019-11-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "16-bit-lolitas",
+  "name": "16 Bit Lolitas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:upside-down-room:1600:16-bit-lolitas"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
   "photo": null,
   "links": []
  },
@@ -1026,9 +1043,10 @@
    "dreamstate-socal-2019:d2:the-dream:2300:above-and-beyond",
    "dreamstate-socal-2024:d2:the-dream:2200:above-and-beyond",
    "edc-orlando-2019:d2:kineticfield:2245:above-and-beyond",
-   "edc-orlando-2022:d3:kinetic-field:1735:above-and-beyond-sunset-set"
+   "edc-orlando-2022:d3:kinetic-field:1735:above-and-beyond-sunset-set",
+   "nocturnal-wonderland-2012:d1:alice-s-house:0000:above-and-beyond"
   ],
-  "firstSeen": "2019-11-09",
+  "firstSeen": "2012-09-21",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -1237,9 +1255,10 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d1:rynobus:2300:adam-auburn",
-   "edc-orlando-2019:d2:kineticfield:1300:adam-auburn"
+   "edc-orlando-2019:d2:kineticfield:1300:adam-auburn",
+   "nocturnal-wonderland-2013:d1:labyrinth:1500:adam-auburn"
   ],
-  "firstSeen": "2019-11-09",
+  "firstSeen": "2013-09-21",
   "lastSeen": "2022-05-20",
   "photo": null,
   "links": []
@@ -1257,12 +1276,13 @@
   ],
   "billings": [
    "ultra-miami-2026:ul75",
+   "beyond-wonderland-socal-2012:d1:cheshire-woods:2130:adam-beyer",
    "edc-las-vegas-2022:d3:neon-garden:0100:adam-beyer",
    "edc-las-vegas-2024:d1:neon-garden:0100:adam-beyer",
    "edc-orlando-2019:d2:neongarden:2200:adam-beyer",
    "edc-orlando-2025:d1:neongarden:2230:adam-beyer-b2b-layton-giordani"
   ],
-  "firstSeen": "2019-11-09",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -1686,13 +1706,14 @@
   "billings": [
    "edc-orlando-2026:ecf3",
    "ultra-miami-2026:ul120",
+   "beyond-wonderland-socal-2013:d1:madhatter-s-castle:0030:afrojack",
    "edc-las-vegas-2025:d2:kinetic-field:2206:afrojack",
    "edc-orlando-2019:d2:kineticfield:2023:afrojack",
    "edc-orlando-2021:d1:kinetic-field:2111:afrojack-b2b-r3hab",
    "edc-orlando-2022:d1:kinetic-field:1950:afrojack",
    "escape-halloween-2017:d2:slaughterhouse:2145:afrojack"
   ],
-  "firstSeen": "2017-10-28",
+  "firstSeen": "2013-03-16",
   "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
@@ -2377,9 +2398,11 @@
    "edc-orlando-2024:d3:circuit-grounds:1730:alesso-sunset-set",
    "escape-halloween-2019:d2:the-grimm:0030:alesso",
    "escape-halloween-2022:d1:the-grimm:2205:alesso",
-   "escape-halloween-2025:d2:the-big-top:2330:alesso"
+   "escape-halloween-2025:d2:the-big-top:2330:alesso",
+   "nocturnal-wonderland-2011:d2:alice-s-house:1930:alesso",
+   "nocturnal-wonderland-2012:d1:labyrinth:2300:alesso"
   ],
-  "firstSeen": "2019-10-26",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -2451,6 +2474,21 @@
   "links": []
  },
  {
+  "key": "alex-gaudino",
+  "name": "Alex Gaudino",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:madhatter-s-castle:1930:alex-gaudino"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alex-kennon",
   "name": "Alex Kennon",
   "aliases": [],
@@ -2492,6 +2530,21 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "alex-sibley-and-crunch-theory",
+  "name": "Alex Sibley & Crunch Theory",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:discovery-project:1600:alex-sibley-and-crunch-theory"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -3108,6 +3161,21 @@
   "links": []
  },
  {
+  "key": "alpine",
+  "name": "Alpine",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:discovery-project:1545:alpine"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alt-1",
   "name": "ALT_1",
   "aliases": [],
@@ -3256,22 +3324,25 @@
   "key": "aly-and-fila",
   "name": "Aly & Fila",
   "aliases": [
-   "ALY & FILA"
+   "ALY & FILA",
+   "Aly and Fila"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-aly-and-fila-and-billy-gillies",
+   "beyond-wonderland-socal-2012:d1:queen-s-domain:2015:aly-and-fila",
    "dreamstate-socal-2016:d1:the-dream:2200:aly-and-fila",
    "dreamstate-socal-2019:d1:the-dream:0100:aly-and-fila",
    "dreamstate-socal-2023:d1:the-dream:2055:aly-and-fila",
    "dreamstate-socal-2024:d2:the-dream:1815:aly-and-fila",
    "edc-las-vegas-2022:d2:quantum-valley:0030:aly-and-fila",
    "edc-las-vegas-2024:d2:quantum-valley:0230:aly-and-fila",
-   "edc-orlando-2017:d1:neongarden:2130:aly-and-fila"
+   "edc-orlando-2017:d1:neongarden:2130:aly-and-fila",
+   "nocturnal-wonderland-2011:d1:labyrinth:0100:aly-and-fila"
   ],
-  "firstSeen": "2016-11-25",
+  "firstSeen": "2011-09-23",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -3673,6 +3744,21 @@
   "links": []
  },
  {
+  "key": "an21-and-max-vangeli",
+  "name": "AN21 and Max Vangeli",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:madhatter-s-castle:2300:an21-and-max-vangeli"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ana-tijoux",
   "name": "Ana Tijoux",
   "aliases": [],
@@ -4030,10 +4116,27 @@
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2255:andy-c",
    "edc-las-vegas-2025:d1:basspod:2230:andy-c",
    "edc-orlando-2019:d2:circuitgrounds:2000:andy-c",
+   "nocturnal-wonderland-2012:d1:sunken-garden:2300:andy-c",
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:2300:andy-c",
    "nocturnal-wonderland-2022:d2:labyrinth:2100:andy-c"
   ],
-  "firstSeen": "2019-11-09",
+  "firstSeen": "2012-09-21",
   "lastSeen": "2026-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "andy-c-alive",
+  "name": "Andy C: Alive",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:chess-village:2350:andy-c-alive"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -4259,6 +4362,21 @@
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2025-10-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "angger-dimas",
+  "name": "Angger Dimas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:queen-s-grounds:1830:angger-dimas"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -4840,6 +4958,7 @@
    "ultra-miami-2026:ul13",
    "ultra-miami-2026:ul14",
    "ultra-miami-2026:ul56",
+   "beyond-wonderland-socal-2012:d1:queen-s-domain:0000:armin-van-buuren",
    "dreamstate-socal-2023:d2:the-dream:2340:armin-van-buuren",
    "dreamstate-socal-2024:d1:the-dream:2315:armin-van-buuren",
    "edc-las-vegas-2022:d3:kinetic-field:0257:armin-van-buuren",
@@ -4850,7 +4969,7 @@
    "edc-orlando-2023:d2:kinetic-field:2114:armin-van-buuren",
    "edc-orlando-2025:d1:kineticfield:2223:armin-van-buuren"
   ],
-  "firstSeen": "2017-11-11",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2026-05-17",
   "photo": null,
   "links": []
@@ -4900,6 +5019,21 @@
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2026-09-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "art-department",
+  "name": "Art Department",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:cheshire-woods:0015:art-department"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -4970,15 +5104,21 @@
  },
  {
   "key": "arty",
-  "name": "ARTY",
-  "aliases": [],
+  "name": "Arty",
+  "aliases": [
+   "ARTY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d1:kineticfield:1428:arty"
+   "beyond-wonderland-socal-2012:d1:queen-s-domain:2130:arty",
+   "beyond-wonderland-socal-2013:d1:madhatter-s-castle:2130:arty",
+   "edc-orlando-2019:d1:kineticfield:1428:arty",
+   "nocturnal-wonderland-2011:d1:labyrinth:2130:arty",
+   "nocturnal-wonderland-2012:d2:labyrinth:2130:arty"
   ],
-  "firstSeen": "2019-11-08",
+  "firstSeen": "2011-09-23",
   "lastSeen": "2019-11-08",
   "photo": null,
   "links": []
@@ -5195,6 +5335,21 @@
   "links": []
  },
  {
+  "key": "astronomar",
+  "name": "Astronomar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:wide-awake-art-car:2200:astronomar"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "atb",
   "name": "ATB",
   "aliases": [],
@@ -5202,12 +5357,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2012:d1:madhatter-s-castle:0030:atb",
    "dreamstate-socal-2016:d2:the-dream:2200:atb",
    "edc-las-vegas-2022:d3:quantum-valley:0200:atb",
    "edc-orlando-2022:d1:stereo-bloom:2200:atb",
-   "edc-orlando-2024:d3:stereo-bloom:2245:atb"
+   "edc-orlando-2024:d3:stereo-bloom:2245:atb",
+   "nocturnal-wonderland-2012:d2:alice-s-house:2300:atb"
   ],
-  "firstSeen": "2016-11-26",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2024-11-10",
   "photo": null,
   "links": []
@@ -5448,6 +5605,21 @@
   "links": []
  },
  {
+  "key": "audio-rock",
+  "name": "Audio Rock",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:discovery-project:0030:audio-rock"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "audiofreq",
   "name": "Audiofreq",
   "aliases": [
@@ -5594,6 +5766,21 @@
   ],
   "firstSeen": "2024-11-22",
   "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "autoerotique",
+  "name": "AutoErotique",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:caterpillars-garden:1930:autoerotique"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -5787,6 +5974,21 @@
   "links": []
  },
  {
+  "key": "avicii",
+  "name": "Avicii",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:alice-s-house:2200:avicii"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2011-09-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "avira",
   "name": "AVIRA",
   "aliases": [],
@@ -5846,6 +6048,21 @@
   ],
   "firstSeen": "2026-07-03",
   "lastSeen": "2026-07-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "axwell",
+  "name": "Axwell",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:labyrinth:0030:axwell"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -6745,6 +6962,21 @@
   "links": []
  },
  {
+  "key": "bass-kleph",
+  "name": "Bass Kleph",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:queen-s-grounds:0000:bass-kleph"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bassett",
   "name": "Bassett",
   "aliases": [],
@@ -6756,6 +6988,23 @@
   ],
   "firstSeen": "2026-03-29",
   "lastSeen": "2026-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassjackers",
+  "name": "Bassjackers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:queen-s-domain:1930:bassjackers",
+   "nocturnal-wonderland-2011:d2:queen-s-grounds:1700:bassjackers",
+   "nocturnal-wonderland-2012:d2:queen-s-grounds:2235:bassjackers"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -7640,9 +7889,11 @@
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2055:benny-benassi",
    "edc-las-vegas-2024:d2:kinetic-field:2100:benny-benassi",
    "edc-orlando-2024:d1:kinetic-field:1853:oliver-heldens-b2b-benny-benassi",
-   "escape-halloween-2021:d2:the-grimm:2045:benny-benassi"
+   "escape-halloween-2021:d2:the-grimm:2045:benny-benassi",
+   "nocturnal-wonderland-2012:d2:labyrinth:2230:benny-benassi",
+   "nocturnal-wonderland-2013:d1:labyrinth:0000:benny-benassi"
   ],
-  "firstSeen": "2021-10-30",
+  "firstSeen": "2012-09-22",
   "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
@@ -8317,6 +8568,21 @@
   "links": []
  },
  {
+  "key": "bingo-players",
+  "name": "Bingo Players",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:labyrinth:2300:bingo-players"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bioweapon",
   "name": "Bioweapon",
   "aliases": [],
@@ -8756,6 +9022,21 @@
   ],
   "firstSeen": "2024-05-19",
   "lastSeen": "2024-05-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "blake-jarrell",
+  "name": "Blake Jarrell",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:madhatter-s-castle:1730:blake-jarrell"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -9592,9 +9873,10 @@
    "edc-las-vegas-2024:d1:house-of-dunkin:0200:bones",
    "edc-las-vegas-2025:d2:blacklight-bar:2200:bones",
    "escape-halloween-2022:d2:sanitarium:1600:bones",
+   "nocturnal-wonderland-2012:d1:wide-awake-art-car:1815:bones",
    "nocturnal-wonderland-2017:d1:sunken-garden:1700:bones"
   ],
-  "firstSeen": "2017-09-15",
+  "firstSeen": "2012-09-21",
   "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
@@ -9725,6 +10007,21 @@
   ],
   "firstSeen": "2015-10-04",
   "lastSeen": "2015-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "boom-jinx",
+  "name": "Boom Jinx",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:alice-s-house:1800:boom-jinx"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -10361,6 +10658,21 @@
   "links": []
  },
  {
+  "key": "breakage",
+  "name": "Breakage",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:sunken-garden:2330:breakage"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "breaking-cadence",
   "name": "Breaking Cadence",
   "aliases": [],
@@ -10577,6 +10889,21 @@
   ],
   "firstSeen": "2026-08-09",
   "lastSeen": "2026-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bro-safari",
+  "name": "Bro Safari",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:2000:bro-safari"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
   "photo": null,
   "links": []
  },
@@ -11023,6 +11350,21 @@
   "links": []
  },
  {
+  "key": "bunny-of-ritm",
+  "name": "Bunny Of RITM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:labyrinth:1700:bunny-of-ritm"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2011-09-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bunny-rabbit-in-the-moon",
   "name": "Bunny (Rabbit in the Moon)",
   "aliases": [
@@ -11438,15 +11780,18 @@
  },
  {
   "key": "calyx-and-teebee",
-  "name": "CALYX & TEEBEE",
-  "aliases": [],
+  "name": "Calyx & Teebee",
+  "aliases": [
+   "CALYX & TEEBEE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d2:circuitgrounds:1600:calyx-and-teebee"
+   "edc-orlando-2019:d2:circuitgrounds:1600:calyx-and-teebee",
+   "nocturnal-wonderland-2011:d1:sunken-garden:0000:calyx-and-teebee"
   ],
-  "firstSeen": "2019-11-09",
+  "firstSeen": "2011-09-23",
   "lastSeen": "2019-11-09",
   "photo": null,
   "links": []
@@ -11544,6 +11889,36 @@
   ],
   "firstSeen": "2018-10-07",
   "lastSeen": "2018-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "camo-and-krooked",
+  "name": "Camo and Krooked",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:chess-village:2000:camo-and-krooked"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "camo-and-krooked-w-dynamite-mc",
+  "name": "Camo & Krooked w/ Dynamite MC",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:chess-village:0000:camo-and-krooked-w-dynamite-mc"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -11958,6 +12333,21 @@
   "links": []
  },
  {
+  "key": "carlin-and-fil",
+  "name": "Carlin & Fil",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:discovery-project:1830:carlin-and-fil"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "carlita",
   "name": "Carlita",
   "aliases": [
@@ -12045,6 +12435,21 @@
   ],
   "firstSeen": "2022-10-07",
   "lastSeen": "2022-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carnage",
+  "name": "Carnage",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:0000:carnage"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
   "photo": null,
   "links": []
  },
@@ -12541,9 +12946,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2024:d3:kinetic-field:1532:cedric-gervais"
+   "edc-orlando-2024:d3:kinetic-field:1532:cedric-gervais",
+   "nocturnal-wonderland-2012:d1:labyrinth:1915:cedric-gervais"
   ],
-  "firstSeen": "2024-11-10",
+  "firstSeen": "2012-09-21",
   "lastSeen": "2024-11-10",
   "photo": null,
   "links": []
@@ -13852,25 +14258,29 @@
    "edc-orlando-2019:d3:circuitgrounds:1920:chris-lake",
    "edc-orlando-2022:d3:kinetic-field:2120:chris-lake",
    "edc-orlando-2025:d1:kineticfield:2105:chris-lake",
-   "escape-halloween-2019:d2:psycho-circus:2230:chris-lake"
+   "escape-halloween-2019:d2:psycho-circus:2230:chris-lake",
+   "nocturnal-wonderland-2012:d2:labyrinth:1830:chris-lake"
   ],
-  "firstSeen": "2019-10-26",
+  "firstSeen": "2012-09-22",
   "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
  {
   "key": "chris-liebing",
-  "name": "CHRIS LIEBING",
-  "aliases": [],
+  "name": "Chris Liebing",
+  "aliases": [
+   "CHRIS LIEBING"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2012:d1:cheshire-woods:2000:chris-liebing",
    "escape-halloween-2017:d2:cannibals-tea-party:2300:chris-liebing",
    "escape-halloween-2019:d2:sewer-district:2300:chris-liebing-b2b-charlotte-de-witte"
   ],
-  "firstSeen": "2017-10-28",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2019-10-26",
   "photo": null,
   "links": []
@@ -14136,9 +14546,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-lv-2026:k1"
+   "edc-lv-2026:k1",
+   "beyond-wonderland-socal-2013:d1:queen-s-domain:2230:chuckie"
   ],
-  "firstSeen": "2026-05-15",
+  "firstSeen": "2013-03-16",
   "lastSeen": "2026-05-15",
   "photo": null,
   "links": []
@@ -14335,6 +14746,21 @@
   ],
   "firstSeen": "2023-11-11",
   "lastSeen": "2023-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "circuit",
+  "name": "Circuit",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:sunken-garden:1700:circuit-b2b-whizard-w-mc-xyz"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -14590,6 +15016,21 @@
   "links": []
  },
  {
+  "key": "clinton-vansciver",
+  "name": "Clinton VanSciver",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:discovery-project:1500:clinton-vansciver"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "clips-x-ahoy",
   "name": "CLIPS X AHOY",
   "aliases": [],
@@ -14745,6 +15186,21 @@
   ],
   "firstSeen": "2026-08-02",
   "lastSeen": "2026-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "clutch",
+  "name": "Clutch",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:sunken-garden:1500:clutch"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -15719,10 +16175,26 @@
    "edc-las-vegas-2025:d2:quantum-valley:2230:cosmic-gate",
    "edc-orlando-2019:d3:kineticfield:1717:cosmic-gate",
    "edc-orlando-2021:d2:stereo-bloom:2015:cosmic-gate",
-   "edc-orlando-2024:d3:stereo-bloom:2015:cosmic-gate"
+   "edc-orlando-2024:d3:stereo-bloom:2015:cosmic-gate",
+   "nocturnal-wonderland-2012:d1:alice-s-house:2100:cosmic-gate"
   ],
-  "firstSeen": "2016-11-25",
+  "firstSeen": "2012-09-21",
   "lastSeen": "2026-05-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cosmic-gate-feat-emma-hewitt",
+  "name": "Cosmic Gate feat. Emma Hewitt",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:labyrinth:2300:cosmic-gate-feat-emma-hewitt"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -16080,9 +16552,13 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llf10",
-   "edc-orlando-2017:d1:circuitgrounds:1900:crizzly"
+   "beyond-wonderland-socal-2012:d1:chess-village:1630:crizzly",
+   "beyond-wonderland-socal-2013:d1:chess-village:2200:crizzly",
+   "beyond-wonderland-socal-2013:d1:discovery-project:0000:crizzly",
+   "edc-orlando-2017:d1:circuitgrounds:1900:crizzly",
+   "nocturnal-wonderland-2012:d2:sunken-garden:2045:crizzly"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2026-09-18",
   "photo": null,
   "links": []
@@ -16258,10 +16734,11 @@
   ],
   "billings": [
    "edc-lv-2026:bp30",
+   "beyond-wonderland-socal-2013:d1:chess-village:2000:culture-shock",
    "edc-las-vegas-2024:d2:meta-phoenix:0130:culture-shock",
    "escape-halloween-2017:d1:ghouls-graveyard:1800:culture-shock"
   ],
-  "firstSeen": "2017-10-27",
+  "firstSeen": "2013-03-16",
   "lastSeen": "2026-05-15",
   "photo": null,
   "links": []
@@ -16530,6 +17007,21 @@
   ],
   "firstSeen": "2025-08-03",
   "lastSeen": "2026-03-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "d-ramirez",
+  "name": "D.Ramirez",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:alice-s-house:1800:d-ramirez"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2011-09-23",
   "photo": null,
   "links": []
  },
@@ -16865,15 +17357,20 @@
  },
  {
   "key": "damian-lazarus",
-  "name": "DAMIAN LAZARUS",
-  "aliases": [],
+  "name": "Damian Lazarus",
+  "aliases": [
+   "DAMIAN LAZARUS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "arc-2026:arc-vintage-culture-b2b-damian-lazarus-expansions-d4"
+   "arc-2026:arc-vintage-culture-b2b-damian-lazarus-expansions-d4",
+   "beyond-wonderland-socal-2013:d1:cheshire-woods:1900:damian-lazarus",
+   "nocturnal-wonderland-2012:d2:upside-down-room:1800:damian-lazarus",
+   "nocturnal-wonderland-2013:d1:alice-s-house:0030:damian-lazarus"
   ],
-  "firstSeen": "2026-09-07",
+  "firstSeen": "2012-09-22",
   "lastSeen": "2026-09-07",
   "photo": null,
   "links": []
@@ -17152,9 +17649,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2025:d3:kinetic-field:1954:danny-avila"
+   "edc-las-vegas-2025:d3:kinetic-field:1954:danny-avila",
+   "nocturnal-wonderland-2012:d2:queen-s-grounds:1630:danny-avila",
+   "nocturnal-wonderland-2012:d2:discovery-project:2100:danny-avila"
   ],
-  "firstSeen": "2025-05-18",
+  "firstSeen": "2012-09-22",
   "lastSeen": "2025-05-18",
   "photo": null,
   "links": []
@@ -17253,6 +17752,21 @@
   "links": []
  },
  {
+  "key": "danny-tenaglia",
+  "name": "Danny Tenaglia",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:upside-down-room:0030:danny-tenaglia"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "danny-time",
   "name": "Danny Time",
   "aliases": [],
@@ -17330,6 +17844,23 @@
   ],
   "firstSeen": "2025-08-02",
   "lastSeen": "2025-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "darin-epsilon",
+  "name": "Darin Epsilon",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:madhatter-s-castle:1600:darin-epsilon",
+   "nocturnal-wonderland-2012:d2:alice-s-house:1500:darin-epsilon",
+   "nocturnal-wonderland-2013:d1:sunken-garden:1500:darin-epsilon"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2013-09-21",
   "photo": null,
   "links": []
  },
@@ -17463,9 +17994,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-dash-berlin"
+   "dreamstate-socal-2026:dssc-dash-berlin",
+   "beyond-wonderland-socal-2013:d1:madhatter-s-castle:2330:dash-berlin",
+   "nocturnal-wonderland-2012:d2:alice-s-house:0030:dash-berlin",
+   "nocturnal-wonderland-2013:d1:sunken-garden:0100:dash-berlin"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2012-09-22",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -17503,15 +18037,18 @@
  },
  {
   "key": "datsik",
-  "name": "DATSIK",
-  "aliases": [],
+  "name": "Datsik",
+  "aliases": [
+   "DATSIK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2017:d1:ghouls-graveyard:0000:datsik"
+   "escape-halloween-2017:d1:ghouls-graveyard:0000:datsik",
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:0100:datsik"
   ],
-  "firstSeen": "2017-10-27",
+  "firstSeen": "2013-09-21",
   "lastSeen": "2017-10-27",
   "photo": null,
   "links": []
@@ -17608,6 +18145,21 @@
   "links": []
  },
  {
+  "key": "davey-dave",
+  "name": "Davey Dave",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:caterpillars-garden:1600:davey-dave"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "davi",
   "name": "Daví",
   "aliases": [],
@@ -17698,9 +18250,10 @@
   "projects": [],
   "billings": [
    "edc-orlando-2026:ecf12",
+   "beyond-wonderland-socal-2013:d1:queen-s-domain:2330:david-guetta",
    "edc-las-vegas-2024:d1:kinetic-field:0300:david-guetta"
   ],
-  "firstSeen": "2024-05-17",
+  "firstSeen": "2013-03-16",
   "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
@@ -17798,6 +18351,25 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "david-steven",
+  "name": "David Steven",
+  "aliases": [
+   "DAVID STEVEN"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:queen-s-domain:1730:david-steven",
+   "nocturnal-wonderland-2012:d2:labyrinth:1500:david-steven",
+   "nocturnal-wonderland-2013:d1:labyrinth:1700:david-steven"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2013-09-21",
   "photo": null,
   "links": []
  },
@@ -18352,6 +18924,22 @@
   "links": []
  },
  {
+  "key": "deco",
+  "name": "Deco",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:sunken-garden:1630:deco",
+   "nocturnal-wonderland-2012:d2:sunken-garden:1600:deco"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dee-jay-silver",
   "name": "Dee Jay Silver",
   "aliases": [],
@@ -18489,6 +19077,21 @@
   "links": []
  },
  {
+  "key": "deformaty",
+  "name": "Deformaty",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:discovery-project:1900:deformaty"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "deftones",
   "name": "Deftones",
   "aliases": [],
@@ -18581,10 +19184,11 @@
   "billings": [
    "edc-lv-2026:bp6",
    "lost-lands-2026:lls17",
+   "beyond-wonderland-socal-2013:d1:chess-village:0100:delta-heavy",
    "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:2350:delta-heavy",
    "edc-las-vegas-2022:d2:basspod:2230:delta-heavy-b2b-koven-b2b-muzz"
   ],
-  "firstSeen": "2022-05-21",
+  "firstSeen": "2013-03-16",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -18666,6 +19270,21 @@
   ],
   "firstSeen": "2021-11-14",
   "lastSeen": "2024-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "deniz-koyu",
+  "name": "Deniz Koyu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:labyrinth:1730:deniz-koyu"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
   "photo": null,
   "links": []
  },
@@ -19326,8 +19945,9 @@
  },
  {
   "key": "dimitri-vegas-and-like-mike",
-  "name": "Dimitri Vegas & Like Mike",
+  "name": "Dimitri Vegas and Like Mike",
   "aliases": [
+   "Dimitri Vegas & Like Mike",
    "DIMITRI VEGAS & LIKE MIKE"
   ],
   "kind": "performer",
@@ -19335,9 +19955,11 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-dimitri-vegas-and-like-mike-d1",
-   "edc-orlando-2017:d2:kineticfield:2002:dimitri-vegas-and-like-mike"
+   "beyond-wonderland-socal-2012:d1:caterpillars-garden:1830:dimitri-vegas-and-like-mike",
+   "edc-orlando-2017:d2:kineticfield:2002:dimitri-vegas-and-like-mike",
+   "nocturnal-wonderland-2012:d2:queen-s-grounds:1730:dimitri-vegas-and-like-mike"
   ],
-  "firstSeen": "2017-11-11",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
@@ -19419,6 +20041,22 @@
   "links": []
  },
  {
+  "key": "dirty-south",
+  "name": "Dirty South",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:madhatter-s-castle:2130:dirty-south",
+   "nocturnal-wonderland-2011:d1:alice-s-house:2000:dirty-south"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dirtyphonics",
   "name": "Dirtyphonics",
   "aliases": [],
@@ -19426,10 +20064,26 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:lls18"
+   "lost-lands-2026:lls18",
+   "nocturnal-wonderland-2012:d1:sunken-garden:0030:dirtyphonics"
   ],
-  "firstSeen": "2026-09-19",
+  "firstSeen": "2012-09-21",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dirtyphonics-live",
+  "name": "Dirtyphonics live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:sunken-garden:0030:dirtyphonics-live"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -20379,6 +21033,21 @@
   "links": []
  },
  {
+  "key": "dj-hype",
+  "name": "DJ Hype",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:1900:dj-hype"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-hyperactive",
   "name": "DJ HYPERACTIVE",
   "aliases": [],
@@ -20537,6 +21206,21 @@
   "links": []
  },
  {
+  "key": "dj-m-a-d-e",
+  "name": "DJ M.A.D.E.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:discovery-project:2000:dj-m-a-d-e"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-mandy",
   "name": "DJ Mandy",
   "aliases": [],
@@ -20648,6 +21332,21 @@
   ],
   "firstSeen": "2026-08-08",
   "lastSeen": "2026-08-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-oscure",
+  "name": "DJ Oscure",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:wide-awake-art-car:2230:dj-oscure"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -20865,6 +21564,21 @@
   ],
   "firstSeen": "2024-10-25",
   "lastSeen": "2024-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-tory-tee",
+  "name": "DJ Tory Tee",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:discovery-project:1630:dj-tory-tee"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
   "photo": null,
   "links": []
  },
@@ -21558,9 +22272,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "nocturnal-wonderland-2012:d1:sunken-garden:2200:downlink",
    "nocturnal-wonderland-2021:d1:labyrinth:2200:modestep-b2b-downlink-dnb-set"
   ],
-  "firstSeen": "2021-09-18",
+  "firstSeen": "2012-09-21",
   "lastSeen": "2021-09-18",
   "photo": null,
   "links": []
@@ -21629,12 +22344,13 @@
    "escape-halloween-2026:esc-dr-fresch-d2",
    "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:2325:dr-fresch",
    "lollapalooza-2025:d3:perry-s:1645:dr-fresch",
+   "nocturnal-wonderland-2013:d1:discovery-project:2130:dr-fresch",
    "nocturnal-wonderland-2017:d2:wolves-den:2045:dr-fresch",
    "nocturnal-wonderland-2019:d2:wolves-den:1730:dr-fresch",
    "nocturnal-wonderland-2021:d2:labyrinth:2100:dr-fresch",
    "nocturnal-wonderland-2022:d1:wolves-den:2000:dr-fresch"
   ],
-  "firstSeen": "2017-09-16",
+  "firstSeen": "2013-09-21",
   "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
@@ -21654,6 +22370,21 @@
   ],
   "firstSeen": "2025-11-09",
   "lastSeen": "2026-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dr-lektroluv",
+  "name": "Dr. Lektroluv",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:caterpillars-garden:1630:dr-lektroluv"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -21963,6 +22694,22 @@
   "links": []
  },
  {
+  "key": "droog",
+  "name": "Droog",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:upside-down-room:1500:droog",
+   "nocturnal-wonderland-2012:d2:upside-down-room:1500:droog"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "droptopgundam",
   "name": "DROPTOPGUNDAM",
   "aliases": [],
@@ -22009,6 +22756,21 @@
   ],
   "firstSeen": "2021-10-30",
   "lastSeen": "2025-11-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dskotek",
+  "name": "DSKOTEK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:discovery-project:2000:dskotek"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -22078,6 +22840,21 @@
   "links": []
  },
  {
+  "key": "dub-fx",
+  "name": "Dub FX",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:sunken-garden:1940:dub-fx"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dubdogz",
   "name": "Dubdogz",
   "aliases": [],
@@ -22104,10 +22881,11 @@
   "projects": [],
   "billings": [
    "arc-2026:arc-nicole-moudaber-b2b-paco-osuna-b2b-dubfire-midway-d2",
+   "beyond-wonderland-socal-2012:d1:cheshire-woods:2300:dubfire",
    "edc-orlando-2022:d3:neon-garden:2030:dubfire-b2b-ilario-alicante",
    "escape-halloween-2019:d1:sewer-district:2310:dubfire-b2b-nicole-moudaber-b2b-paco-osuna"
   ],
-  "firstSeen": "2019-10-25",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2026-09-05",
   "photo": null,
   "links": []
@@ -22778,6 +23556,21 @@
   "links": []
  },
  {
+  "key": "ed-rush-and-optical",
+  "name": "Ed Rush & Optical",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:chess-village:2100:ed-rush-and-optical"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ed-rush-optical",
   "name": "Ed Rush + Optical",
   "aliases": [],
@@ -22849,6 +23642,21 @@
   ],
   "firstSeen": "2026-11-20",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "eddie-thoneick",
+  "name": "Eddie Thoneick",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:queen-s-grounds:2000:eddie-thoneick"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -22931,9 +23739,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d2:kineticfield:1400:edx"
+   "beyond-wonderland-socal-2012:d1:madhatter-s-castle:1830:edx",
+   "edc-orlando-2019:d2:kineticfield:1400:edx",
+   "nocturnal-wonderland-2012:d1:labyrinth:1815:edx",
+   "nocturnal-wonderland-2013:d1:sunken-garden:1800:edx"
   ],
-  "firstSeen": "2019-11-09",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2019-11-09",
   "photo": null,
   "links": []
@@ -24555,9 +25366,10 @@
    "edc-orlando-2023:d2:circuit-grounds:2300:excision",
    "edc-orlando-2025:d2:circuitgrounds:2300:excision",
    "escape-halloween-2019:d1:psycho-circus:0100:excision",
+   "nocturnal-wonderland-2013:d1:labyrinth:1900:excision",
    "nocturnal-wonderland-2017:d2:wolves-den:0045:excision"
   ],
-  "firstSeen": "2017-09-16",
+  "firstSeen": "2013-09-21",
   "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
@@ -24871,6 +25683,21 @@
   "links": []
  },
  {
+  "key": "fareoh",
+  "name": "Fareoh",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:queen-s-grounds:1500:fareoh"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "farmer-s-wife",
   "name": "FARMER'S WIFE",
   "aliases": [],
@@ -24903,16 +25730,19 @@
  },
  {
   "key": "fatboy-slim",
-  "name": "FATBOY SLIM",
-  "aliases": [],
+  "name": "Fatboy Slim",
+  "aliases": [
+   "FATBOY SLIM"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "portola-2026:pt1-fatboy-slim",
-   "escape-halloween-2024:d1:wicked-woods:0030:fatboy-slim"
+   "escape-halloween-2024:d1:wicked-woods:0030:fatboy-slim",
+   "nocturnal-wonderland-2013:d1:labyrinth:2200:fatboy-slim"
   ],
-  "firstSeen": "2024-10-25",
+  "firstSeen": "2013-09-21",
   "lastSeen": "2026-09-26",
   "photo": null,
   "links": []
@@ -24995,6 +25825,25 @@
   "links": []
  },
  {
+  "key": "fedde-le-grand",
+  "name": "Fedde le Grand",
+  "aliases": [
+   "Fedde Le Grand"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:alice-s-house:0000:fedde-le-grand",
+   "nocturnal-wonderland-2012:d1:labyrinth:2130:fedde-le-grand",
+   "nocturnal-wonderland-2013:d1:labyrinth:2000:fedde-le-grand"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fee",
   "name": "FEE$",
   "aliases": [],
@@ -25006,6 +25855,22 @@
   ],
   "firstSeen": "2026-06-19",
   "lastSeen": "2026-06-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fei-fei",
+  "name": "Fei Fei",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:queen-s-domain:1600:fei-fei",
+   "nocturnal-wonderland-2011:d1:labyrinth:1500:fei-fei"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -25024,6 +25889,21 @@
   ],
   "firstSeen": "2025-06-07",
   "lastSeen": "2025-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "felix-cartal",
+  "name": "Felix Cartal",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:caterpillars-garden:2200:felix-cartal"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -25384,16 +26264,19 @@
  },
  {
   "key": "firebeatz",
-  "name": "FIREBEATZ",
-  "aliases": [],
+  "name": "Firebeatz",
+  "aliases": [
+   "FIREBEATZ"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-orlando-2017:d2:kineticfield:1456:firebeatz",
-   "escape-halloween-2017:d2:ghouls-graveyard:1800:firebeatz"
+   "escape-halloween-2017:d2:ghouls-graveyard:1800:firebeatz",
+   "nocturnal-wonderland-2013:d1:labyrinth:1800:firebeatz"
   ],
-  "firstSeen": "2017-10-28",
+  "firstSeen": "2013-09-21",
   "lastSeen": "2017-11-11",
   "photo": null,
   "links": []
@@ -25713,6 +26596,21 @@
   ],
   "firstSeen": "2016-09-30",
   "lastSeen": "2016-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "flinch",
+  "name": "Flinch",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:sunken-garden:1900:flinch"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -26316,6 +27214,21 @@
   "links": []
  },
  {
+  "key": "frackture",
+  "name": "Frackture",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:discovery-project:1700:frackture"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "frances-forever",
   "name": "FRANCES FOREVER",
   "aliases": [],
@@ -26328,6 +27241,22 @@
   ],
   "firstSeen": "2021-10-02",
   "lastSeen": "2021-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "francesca-lombardo",
+  "name": "Francesca Lombardo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:cheshire-woods:1600:francesca-lombardo",
+   "nocturnal-wonderland-2013:d1:alice-s-house:1500:francesca-lombardo"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-09-21",
   "photo": null,
   "links": []
  },
@@ -26460,6 +27389,21 @@
   ],
   "firstSeen": "2026-09-04",
   "lastSeen": "2026-09-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fred-v-and-grafix-w-dynamite-mc",
+  "name": "Fred V & Grafix w/ Dynamite MC",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:chess-village:1900:fred-v-and-grafix-w-dynamite-mc"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -26871,6 +27815,21 @@
   "links": []
  },
  {
+  "key": "funkagenda",
+  "name": "Funkagenda",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:labyrinth:1630:funkagenda"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "funtcase",
   "name": "Funtcase",
   "aliases": [
@@ -26901,6 +27860,7 @@
   "projects": [],
   "billings": [
    "edc-orlando-2026:ecs16",
+   "beyond-wonderland-socal-2012:d1:chess-village:1600:fury",
    "edc-las-vegas-2022:d1:forest-house-art-car:2245:fallen-b2b-richter-b2b-fury-b2b-nightstalker-with-mc-dino-mc-xyz",
    "edc-las-vegas-2022:d2:basspod:1900:fury-b2b-nightstalker-with-mc-dino",
    "edc-las-vegas-2025:d2:basspod:1900:fury-with-mc-dino",
@@ -26909,9 +27869,10 @@
    "edc-orlando-2021:d2:circuit-grounds:1300:fury-mc-dino",
    "edc-orlando-2023:d2:circuit-grounds:1300:fury-with-mc-dino",
    "edc-orlando-2024:d2:circuit-grounds:1300:fury-with-mc-dino",
-   "edc-orlando-2025:d2:circuitgrounds:1300:fury-mc-dino"
+   "edc-orlando-2025:d2:circuitgrounds:1300:fury-mc-dino",
+   "nocturnal-wonderland-2012:d1:sunken-garden:1700:fury"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
@@ -26928,6 +27889,21 @@
   ],
   "firstSeen": "2022-11-12",
   "lastSeen": "2022-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fury-w-mc-dino",
+  "name": "Fury w/ MC Dino",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:chess-village:1600:fury-w-mc-dino"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -27143,9 +28119,10 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2019:d2:the-dream:2000:gabriel-and-dresden",
-   "edc-las-vegas-2022:d1:quantum-valley:0000:gabriel-and-dresden"
+   "edc-las-vegas-2022:d1:quantum-valley:0000:gabriel-and-dresden",
+   "nocturnal-wonderland-2011:d2:alice-s-house:2030:gabriel-and-dresden"
   ],
-  "firstSeen": "2019-11-23",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2022-05-20",
   "photo": null,
   "links": []
@@ -27405,15 +28382,17 @@
   ],
   "billings": [
    "edc-lv-2026:q7",
+   "beyond-wonderland-socal-2012:d1:queen-s-domain:2245:gareth-emery",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:0000:gareth-emery",
    "dreamstate-socal-2016:d1:the-dream:0100:gareth-emery",
    "dreamstate-socal-2019:d1:the-dream:2300:gareth-emery",
    "dreamstate-socal-2023:d1:the-dream:2255:gareth-emery",
    "edc-orlando-2017:d1:neongarden:2230:gareth-emery",
    "edc-orlando-2022:d3:kinetic-field:1911:gareth-emery",
-   "edc-orlando-2024:d3:stereo-bloom:2130:gareth-emery"
+   "edc-orlando-2024:d3:stereo-bloom:2130:gareth-emery",
+   "nocturnal-wonderland-2011:d1:labyrinth:2300:gareth-emery"
   ],
-  "firstSeen": "2016-11-25",
+  "firstSeen": "2011-09-23",
   "lastSeen": "2026-05-15",
   "photo": null,
   "links": []
@@ -28384,6 +29363,21 @@
   "links": []
  },
  {
+  "key": "glenn-morrison",
+  "name": "Glenn Morrison",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:alice-s-house:1500:glenn-morrison"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "glorilla",
   "name": "GloRilla",
   "aliases": [
@@ -28934,6 +29928,21 @@
   "links": []
  },
  {
+  "key": "gosteffects",
+  "name": "Gosteffects",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:discovery-project:2300:gosteffects"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "goth-babe",
   "name": "GOTH BABE",
   "aliases": [],
@@ -29359,14 +30368,17 @@
    "arc-2026:arc-green-velvet-b2b-josh-baker-grid-d4",
    "decadence-colorado-2026:dec-green-velvet",
    "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:2045:green-velvet",
+   "beyond-wonderland-socal-2012:d1:cheshire-woods:1830:green-velvet",
    "edc-las-vegas-2024:d3:kinetic-field:0413:john-summit-b2b-green-velvet",
    "edc-orlando-2017:d2:neongarden:2030:green-velvet",
    "edc-orlando-2019:d3:neongarden:2130:green-velvet",
    "edc-orlando-2025:d3:kineticfield:1726:green-velvet-b2b-alok-sunset-set",
    "escape-halloween-2017:d1:cannibals-tea-party:2230:green-velvet",
-   "escape-halloween-2021:d1:sewer-district:1930:green-velvet"
+   "escape-halloween-2021:d1:sewer-district:1930:green-velvet",
+   "nocturnal-wonderland-2011:d2:upside-down-room:2030:green-velvet",
+   "nocturnal-wonderland-2013:d1:alice-s-house:2130:green-velvet"
   ],
-  "firstSeen": "2017-10-27",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
@@ -29790,6 +30802,21 @@
   "links": []
  },
  {
+  "key": "gui-boratto",
+  "name": "Gui Boratto",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:upside-down-room:2200:gui-boratto"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "gumthewrapper",
   "name": "GumtheWrapper",
   "aliases": [],
@@ -29879,6 +30906,21 @@
   ],
   "firstSeen": "2019-10-26",
   "lastSeen": "2019-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gutter-brothers",
+  "name": "Gutter Brothers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:discovery-project:2300:gutter-brothers"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -30400,9 +31442,10 @@
   "billings": [
    "edc-lv-2026:k14",
    "edc-orlando-2026:ecu13",
-   "ultra-miami-2026:ul55"
+   "ultra-miami-2026:ul55",
+   "beyond-wonderland-socal-2012:d1:madhatter-s-castle:2030:hardwell"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
@@ -30958,6 +32001,21 @@
   "links": []
  },
  {
+  "key": "heroes-x-villains",
+  "name": "Heroes x Villains",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:1700:heroes-x-villains"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hershe",
   "name": "Hershe",
   "aliases": [
@@ -31077,6 +32135,36 @@
   ],
   "firstSeen": "2021-10-30",
   "lastSeen": "2026-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "high-contrast",
+  "name": "High Contrast",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:chess-village:2230:high-contrast"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "high-contrast-w-dynamite-mc",
+  "name": "High Contrast w/ Dynamite MC",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:chess-village:2300:high-contrast-w-dynamite-mc"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -32399,6 +33487,21 @@
   "links": []
  },
  {
+  "key": "icicle",
+  "name": "Icicle",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:sunken-garden:2000:icicle"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2011-09-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "icona-pop",
   "name": "Icona Pop",
   "aliases": [],
@@ -32836,6 +33939,21 @@
   "links": []
  },
  {
+  "key": "indo",
+  "name": "IndO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:discovery-project:2300:indo"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "infected-mushroom",
   "name": "Infected Mushroom",
   "aliases": [
@@ -32891,6 +34009,21 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "infinity-ink-live",
+  "name": "Infinity Ink live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:alice-s-house:1830:infinity-ink-live"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
   "photo": null,
   "links": []
  },
@@ -33850,6 +34983,21 @@
   "links": []
  },
  {
+  "key": "jaguar-skills",
+  "name": "Jaguar Skills",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:sunken-garden:2200:jaguar-skills"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2011-09-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jai-malano",
   "name": "Jai Malano",
   "aliases": [],
@@ -34032,6 +35180,21 @@
   "links": []
  },
  {
+  "key": "james-egbert",
+  "name": "James Egbert",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:queen-s-grounds:1500:james-egbert"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "james-hype",
   "name": "James Hype",
   "aliases": [
@@ -34133,10 +35296,26 @@
    "edc-orlando-2017:d2:neongarden:2200:jamie-jones",
    "edc-orlando-2023:d1:neon-garden:2200:jamie-jones",
    "escape-halloween-2017:d1:cannibals-tea-party:2345:jamie-jones",
-   "escape-halloween-2017:d1:cannibals-tea-party:0100:jamie-jones-b2b-joseph-capriati"
+   "escape-halloween-2017:d1:cannibals-tea-party:0100:jamie-jones-b2b-joseph-capriati",
+   "nocturnal-wonderland-2012:d2:upside-down-room:1900:jamie-jones"
   ],
-  "firstSeen": "2017-10-27",
+  "firstSeen": "2012-09-22",
   "lastSeen": "2026-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jamie-jones-and-seth-troxler",
+  "name": "Jamie Jones and Seth Troxler",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:madhatter-s-castle:1730:jamie-jones-and-seth-troxler"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -35327,6 +36506,21 @@
   "links": []
  },
  {
+  "key": "joachim-garraud",
+  "name": "Joachim Garraud",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:queen-s-grounds:1830:joachim-garraud"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "joanie-leeds",
   "name": "JOANIE LEEDS",
   "aliases": [],
@@ -35359,6 +36553,23 @@
   ],
   "firstSeen": "2024-10-26",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "joaquin-bamaca",
+  "name": "Joaquin Bamaca",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:queen-s-domain:1600:joaquin-bamaca",
+   "nocturnal-wonderland-2011:d2:labyrinth:1500:joaquin-bamaca",
+   "nocturnal-wonderland-2012:d1:labyrinth:1700:joaquin-bamaca"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -35595,6 +36806,37 @@
   "links": []
  },
  {
+  "key": "john-dahlback",
+  "name": "John Dahlbäck",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:labyrinth:1930:john-dahlback"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "john-digweed",
+  "name": "John Digweed",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:cheshire-woods:0030:john-digweed",
+   "nocturnal-wonderland-2012:d2:upside-down-room:2300:john-digweed"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "john-kelley",
   "name": "John Kelley",
   "aliases": [],
@@ -35651,12 +36893,13 @@
    "key4050"
   ],
   "billings": [
+   "beyond-wonderland-socal-2012:d1:queen-s-domain:1900:john-o-callaghan",
    "dreamstate-socal-2016:d2:the-dream:2000:john-o-callaghan",
    "dreamstate-socal-2024:d1:the-dream:1815:john-o-callaghan",
    "dreamstate-socal-2025:d2:the-vision:2300:john-o-callaghan",
    "edc-las-vegas-2022:d1:quantum-valley:0330:john-o-callaghan"
   ],
-  "firstSeen": "2016-11-26",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
@@ -36779,6 +38022,21 @@
   "links": []
  },
  {
+  "key": "julian-jordan",
+  "name": "Julian Jordan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:madhatter-s-castle:1830:julian-jordan"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "julianna-joy",
   "name": "Julianna Joy",
   "aliases": [],
@@ -37028,6 +38286,21 @@
   "links": []
  },
  {
+  "key": "jupit3r",
+  "name": "Jupit3r",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:wide-awake-art-car:1930:jupit3r"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "just-a-gent",
   "name": "JUST A GENT",
   "aliases": [],
@@ -37087,9 +38360,10 @@
    "beyond-wonderland-gorge-2026:d2:queen-s-valley:1800:justin-jay",
    "edc-las-vegas-2024:d1:bionic-jungle:0400:justin-jay",
    "escape-halloween-2024:d2:the-cauldron:2045:justin-jay",
-   "escape-halloween-2025:d1:the-warehouse:2330:justin-jay"
+   "escape-halloween-2025:d1:the-warehouse:2330:justin-jay",
+   "nocturnal-wonderland-2012:d1:wide-awake-art-car:2000:justin-jay"
   ],
-  "firstSeen": "2024-05-17",
+  "firstSeen": "2012-09-21",
   "lastSeen": "2026-06-28",
   "photo": null,
   "links": []
@@ -37823,9 +39097,10 @@
    "edc-orlando-2019:d1:kineticfield:1725:kaskade-sunset",
    "edc-orlando-2021:d1:kinetic-field:2233:kaskade",
    "edc-orlando-2023:d1:kinetic-field:2232:kaskade",
-   "edc-orlando-2024:d1:kinetic-field:2114:kaskade-b2b-alison-wonderland"
+   "edc-orlando-2024:d1:kinetic-field:2114:kaskade-b2b-alison-wonderland",
+   "nocturnal-wonderland-2011:d2:alice-s-house:0000:kaskade"
   ],
-  "firstSeen": "2013-10-04",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
@@ -38780,6 +40055,21 @@
   "links": []
  },
  {
+  "key": "khemehk",
+  "name": "Khemehk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:discovery-project:2200:khemehk"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "khiva",
   "name": "Khiva",
   "aliases": [],
@@ -39059,10 +40349,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:2200:kill-the-noise",
    "nocturnal-wonderland-2018:d2:labyrinth:2210:kill-the-noise",
    "nocturnal-wonderland-2021:d2:sunken-garden:2200:kill-the-noise"
   ],
-  "firstSeen": "2018-09-15",
+  "firstSeen": "2013-09-21",
   "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
@@ -39981,9 +41272,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu25"
+   "lost-lands-2026:llu25",
+   "nocturnal-wonderland-2013:d1:labyrinth:2100:krewella"
   ],
-  "firstSeen": "2026-09-20",
+  "firstSeen": "2013-09-21",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -40179,6 +41471,21 @@
   "links": []
  },
  {
+  "key": "kundo",
+  "name": "Kundo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:discovery-project:0000:kundo"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kungs",
   "name": "KUNGS",
   "aliases": [],
@@ -40348,9 +41655,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2016:d1:the-dream:2100:kyau-and-albert"
+   "dreamstate-socal-2016:d1:the-dream:2100:kyau-and-albert",
+   "nocturnal-wonderland-2011:d2:labyrinth:1830:kyau-and-albert"
   ],
-  "firstSeen": "2016-11-25",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2016-11-25",
   "photo": null,
   "links": []
@@ -41351,6 +42659,21 @@
   "links": []
  },
  {
+  "key": "lauro-martins",
+  "name": "Lauro Martins",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:discovery-project:1500:lauro-martins"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lavern",
   "name": "Lavern",
   "aliases": [
@@ -41413,6 +42736,24 @@
   ],
   "firstSeen": "2024-11-09",
   "lastSeen": "2024-11-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "layo-and-bushwacka",
+  "name": "Layo & Bushwacka",
+  "aliases": [
+   "Layo and Bushwacka!"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:cheshire-woods:1700:layo-and-bushwacka",
+   "nocturnal-wonderland-2011:d2:upside-down-room:1800:layo-and-bushwacka"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -41553,6 +42894,22 @@
   ],
   "firstSeen": "2026-11-20",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lee-burridge",
+  "name": "Lee Burridge",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:upside-down-room:2300:lee-burridge",
+   "nocturnal-wonderland-2013:d1:alice-s-house:2300:lee-burridge"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2013-09-21",
   "photo": null,
   "links": []
  },
@@ -42124,6 +43481,21 @@
   "links": []
  },
  {
+  "key": "libk",
+  "name": "LIBK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:discovery-project:2000:libk"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lick",
   "name": "Lick",
   "aliases": [],
@@ -42569,6 +43941,21 @@
   "links": []
  },
  {
+  "key": "lisa-lashes",
+  "name": "Lisa Lashes",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:labyrinth:1700:lisa-lashes"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lisa-loeb",
   "name": "Lisa Loeb",
   "aliases": [],
@@ -42616,6 +44003,21 @@
   ],
   "firstSeen": "2013-10-05",
   "lastSeen": "2013-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "little-boots",
+  "name": "Little Boots",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:queen-s-grounds:0000:little-boots"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
   "photo": null,
   "links": []
  },
@@ -42915,9 +44317,10 @@
   "projects": [],
   "billings": [
    "edc-orlando-2017:d1:circuitgrounds:1800:dc-breaks-b2b-loadstar",
+   "nocturnal-wonderland-2011:d2:sunken-garden:2230:loadstar",
    "nocturnal-wonderland-2019:d2:labyrinth:1645:loadstar"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2019-09-15",
   "photo": null,
   "links": []
@@ -43045,6 +44448,21 @@
   ],
   "firstSeen": "2019-09-15",
   "lastSeen": "2021-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lone-mtn-and-buddha",
+  "name": "Lone MTN & Buddha",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:discovery-project:2100:lone-mtn-and-buddha"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -44623,9 +46041,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "hard-summer-2026:hs1-maceo-plex"
+   "hard-summer-2026:hs1-maceo-plex",
+   "beyond-wonderland-socal-2013:d1:cheshire-woods:2230:maceo-plex"
   ],
-  "firstSeen": "2026-08-01",
+  "firstSeen": "2013-03-16",
   "lastSeen": "2026-08-01",
   "photo": null,
   "links": []
@@ -45118,6 +46537,21 @@
   ],
   "firstSeen": "2016-10-09",
   "lastSeen": "2016-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "magnetic-man",
+  "name": "Magnetic Man",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:chess-village:2120:magnetic-man"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -45638,6 +47072,22 @@
   "links": []
  },
  {
+  "key": "manufactured-superstars",
+  "name": "Manufactured Superstars",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:alice-s-house:1700:manufactured-superstars",
+   "nocturnal-wonderland-2012:d1:labyrinth:1715:manufactured-superstars"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2012-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mar-t",
   "name": "MAR-T",
   "aliases": [],
@@ -45813,9 +47263,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-marco-v"
+   "dreamstate-socal-2026:dssc-marco-v",
+   "nocturnal-wonderland-2011:d1:labyrinth:1830:marco-v"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2011-09-23",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -46164,9 +47615,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2021:d2:sanitarium:2130:mark-knight"
+   "escape-halloween-2021:d2:sanitarium:2130:mark-knight",
+   "nocturnal-wonderland-2011:d2:upside-down-room:0030:mark-knight",
+   "nocturnal-wonderland-2012:d2:upside-down-room:2030:mark-knight"
   ],
-  "firstSeen": "2021-10-30",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2021-10-30",
   "photo": null,
   "links": []
@@ -46283,12 +47736,29 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2013:d1:queen-s-domain:2130:markus-schulz",
    "dreamstate-socal-2024:d1:the-dream:2045:markus-schulz",
    "edc-las-vegas-2024:d1:quantum-valley:0000:markus-schulz",
-   "edc-orlando-2021:d2:stereo-bloom:2245:markus-schulz"
+   "edc-orlando-2021:d2:stereo-bloom:2245:markus-schulz",
+   "nocturnal-wonderland-2013:d1:sunken-garden:0000:markus-schulz"
   ],
-  "firstSeen": "2021-11-13",
+  "firstSeen": "2013-03-16",
   "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "marky",
+  "name": "Marky",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:sunken-garden:2300:marky"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2011-09-23",
   "photo": null,
   "links": []
  },
@@ -46576,6 +48046,36 @@
   "links": []
  },
  {
+  "key": "martin-solveig",
+  "name": "Martin Solveig",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:sunken-garden:2300:martin-solveig"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "martyparty",
+  "name": "MartyParty",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:sunken-garden:1830:martyparty"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2011-09-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "marvin-delgado",
   "name": "Marvin Delgado",
   "aliases": [],
@@ -46767,9 +48267,10 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d3:quantum-valley:2200:mat-zo",
+   "nocturnal-wonderland-2012:d1:alice-s-house:2230:mat-zo",
    "nocturnal-wonderland-2019:d2:parliament-art-car:2155:mat-zo-dnb-set"
   ],
-  "firstSeen": "2019-09-15",
+  "firstSeen": "2012-09-21",
   "lastSeen": "2022-05-22",
   "photo": null,
   "links": []
@@ -46833,6 +48334,21 @@
   ],
   "firstSeen": "2023-11-12",
   "lastSeen": "2023-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "matrix-and-futurebound",
+  "name": "Matrix & Futurebound",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:chess-village:1800:matrix-and-futurebound"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -47421,6 +48937,21 @@
   "links": []
  },
  {
+  "key": "maya-jane-coles",
+  "name": "Maya Jane Coles",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:cheshire-woods:2045:maya-jane-coles"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "maz",
   "name": "Maz",
   "aliases": [],
@@ -47432,6 +48963,21 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "maztek",
+  "name": "Maztek",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:1500:maztek"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
   "photo": null,
   "links": []
  },
@@ -47544,6 +49090,22 @@
   ],
   "firstSeen": "2022-10-16",
   "lastSeen": "2022-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mediks",
+  "name": "Mediks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:sunken-garden:1800:mediks",
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:1600:mediks-b2b-shimon"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2013-09-21",
   "photo": null,
   "links": []
  },
@@ -48201,6 +49763,21 @@
   "links": []
  },
  {
+  "key": "michael-woods",
+  "name": "Michael Woods",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:alice-s-house:1730:michael-woods"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "michigander",
   "name": "MICHIGANDER",
   "aliases": [],
@@ -48579,6 +50156,21 @@
   ],
   "firstSeen": "2018-09-15",
   "lastSeen": "2021-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mikey-velazquez",
+  "name": "Mikey Velazquez",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:wide-awake-art-car:1800:mikey-velazquez"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -49043,6 +50635,21 @@
   "links": []
  },
  {
+  "key": "mistajam",
+  "name": "MistaJam",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:chess-village:1800:mistajam"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mister-g",
   "name": "Mister G",
   "aliases": [
@@ -49113,6 +50720,21 @@
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2025-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mitchell-claxton",
+  "name": "Mitchell Claxton",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:discovery-project:2200:mitchell-claxton"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
   "photo": null,
   "links": []
  },
@@ -49495,6 +51117,21 @@
   "links": []
  },
  {
+  "key": "moguai",
+  "name": "Moguai",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:caterpillars-garden:1730:moguai"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "moksi",
   "name": "MOKSI",
   "aliases": [],
@@ -49776,6 +51413,21 @@
   "links": []
  },
  {
+  "key": "monstergetdown",
+  "name": "Monstergetdown",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:discovery-project:1845:monstergetdown"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "montclair",
   "name": "Montclair",
   "aliases": [],
@@ -49979,6 +51631,22 @@
   ],
   "firstSeen": "2018-09-15",
   "lastSeen": "2026-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "morgan-page",
+  "name": "Morgan Page",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:alice-s-house:1830:morgan-page",
+   "nocturnal-wonderland-2012:d1:labyrinth:2015:morgan-page"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -50277,9 +51945,10 @@
    "dreamstate-socal-2023:d2:the-vision:1600:mr-brooks",
    "dreamstate-socal-2024:d1:the-dream:1300:mr-brooks",
    "edc-las-vegas-2022:d1:quantum-valley:1900:mr-brooks",
-   "edc-las-vegas-2025:d1:quantum-valley:1900:mr-brooks"
+   "edc-las-vegas-2025:d1:quantum-valley:1900:mr-brooks",
+   "nocturnal-wonderland-2012:d1:discovery-project:2200:mr-brooks"
   ],
-  "firstSeen": "2016-11-26",
+  "firstSeen": "2012-09-21",
   "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
@@ -50450,6 +52119,21 @@
   ],
   "firstSeen": "2017-09-16",
   "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mstrex",
+  "name": "MSTREX",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:discovery-project:1700:mstrex"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -50843,6 +52527,36 @@
   ],
   "firstSeen": "2024-10-06",
   "lastSeen": "2026-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "myon-and-shane54",
+  "name": "Myon & Shane54",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:sunken-garden:1700:myon-and-shane54"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "myon-and-shane54-with-aruna",
+  "name": "Myon & Shane54 with Aruna",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:alice-s-house:1800:myon-and-shane54-with-aruna"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
   "photo": null,
   "links": []
  },
@@ -51524,6 +53238,21 @@
   "links": []
  },
  {
+  "key": "neon-indian",
+  "name": "Neon Indian",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:queen-s-grounds:1950:neon-indian"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "neotek",
   "name": "Neotek",
   "aliases": [],
@@ -51575,14 +53304,17 @@
  {
   "key": "nervo",
   "name": "Nervo",
-  "aliases": [],
+  "aliases": [
+   "NERVO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2026:esc-nervo-d1"
+   "escape-halloween-2026:esc-nervo-d1",
+   "beyond-wonderland-socal-2012:d1:caterpillars-garden:2045:nervo"
   ],
-  "firstSeen": "2026-10-30",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
@@ -51628,12 +53360,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2012:d1:chess-village:0100:netsky",
    "edc-las-vegas-2025:d2:basspod:0230:netsky",
    "edc-orlando-2024:d2:circuit-grounds:1755:netsky",
    "escape-halloween-2024:d2:sewer-district:2145:netsky",
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:2100:netsky",
    "nocturnal-wonderland-2018:d1:labyrinth:2300:netsky-dj-set"
   ],
-  "firstSeen": "2018-09-14",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
@@ -52017,9 +53751,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul50"
+   "ultra-miami-2026:ul50",
+   "nocturnal-wonderland-2011:d1:alice-s-house:1600:nicky-romero"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2011-09-23",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -52172,9 +53907,10 @@
    "escape-halloween-2017:d2:cannibals-tea-party:0030:nicole-moudaber",
    "escape-halloween-2019:d1:sewer-district:2310:dubfire-b2b-nicole-moudaber-b2b-paco-osuna",
    "escape-halloween-2021:d1:sewer-district:0000:loco-dice-b2b-nicole-moudaber",
-   "escape-halloween-2025:d1:the-cage:2100:nicole-moudaber-b2b-ilario-alicante"
+   "escape-halloween-2025:d1:the-cage:2100:nicole-moudaber-b2b-ilario-alicante",
+   "nocturnal-wonderland-2012:d2:upside-down-room:1700:nicole-moudaber"
   ],
-  "firstSeen": "2017-10-28",
+  "firstSeen": "2012-09-22",
   "lastSeen": "2026-09-05",
   "photo": null,
   "links": []
@@ -53086,6 +54822,36 @@
   "links": []
  },
  {
+  "key": "norin-and-rad",
+  "name": "Norin & Rad",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:alice-s-house:1900:norin-and-rad"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "norman-doray",
+  "name": "Norman Doray",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:madhatter-s-castle:1630:norman-doray"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "norse",
   "name": "NORSE",
   "aliases": [],
@@ -53250,6 +55016,21 @@
   ],
   "firstSeen": "2025-11-22",
   "lastSeen": "2026-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "novaspace",
+  "name": "NOVASPACE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:discovery-project:1800:novaspace"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -54379,6 +56160,21 @@
   "links": []
  },
  {
+  "key": "orbital",
+  "name": "Orbital",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:queen-s-grounds:2115:orbital"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "organissimo",
   "name": "Organissimo",
   "aliases": [],
@@ -54406,6 +56202,21 @@
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2017-10-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "original-sin-w-mc-armanni-reign",
+  "name": "Original Sin w/ MC Armanni Reign",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:sunken-garden:2030:original-sin-w-mc-armanni-reign"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -55455,6 +57266,21 @@
   "links": []
  },
  {
+  "key": "party-ghost",
+  "name": "Party Ghost",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:discovery-project:2100:party-ghost"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "party-shirt",
   "name": "PARTY SHIRT",
   "aliases": [],
@@ -55914,6 +57740,21 @@
   ],
   "firstSeen": "2021-10-02",
   "lastSeen": "2021-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "peacetreaty",
+  "name": "PeaceTreaty",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:queen-s-grounds:0100:peacetreaty"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -56791,6 +58632,21 @@
   "links": []
  },
  {
+  "key": "planet-of-the-drums",
+  "name": "Planet of the Drums",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:sunken-garden:2200:planet-of-the-drums"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "plastik-funk",
   "name": "Plastik Funk",
   "aliases": [],
@@ -56880,6 +58736,21 @@
   ],
   "firstSeen": "2022-10-16",
   "lastSeen": "2022-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pleasurekraft",
+  "name": "Pleasurekraft",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:upside-down-room:1930:pleasurekraft"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -57224,9 +59095,10 @@
    "acl-2024:d1:miller-lite:1910:porter-robinson",
    "edc-las-vegas-2022:d1:kinetic-field:0139:porter-robinson-dj-set",
    "edc-orlando-2025:d1:kineticfield:1726:porter-robinson-sunset-dj-set",
-   "escape-halloween-2025:d2:the-big-top:0045:porter-robinson-dj-set"
+   "escape-halloween-2025:d2:the-big-top:0045:porter-robinson-dj-set",
+   "nocturnal-wonderland-2013:d1:labyrinth:0100:porter-robinson"
   ],
-  "firstSeen": "2022-05-20",
+  "firstSeen": "2013-09-21",
   "lastSeen": "2026-05-15",
   "photo": null,
   "links": []
@@ -57377,16 +59249,19 @@
  },
  {
   "key": "pretty-lights",
-  "name": "PRETTY LIGHTS",
-  "aliases": [],
+  "name": "Pretty Lights",
+  "aliases": [
+   "PRETTY LIGHTS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2024:d2:honda:2010:pretty-lights",
-   "acl-2024:d5:honda:2010:pretty-lights"
+   "acl-2024:d5:honda:2010:pretty-lights",
+   "nocturnal-wonderland-2012:d2:labyrinth:2330:pretty-lights"
   ],
-  "firstSeen": "2024-10-05",
+  "firstSeen": "2012-09-22",
   "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
@@ -57453,6 +59328,21 @@
   ],
   "firstSeen": "2022-10-09",
   "lastSeen": "2022-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "prince-club",
+  "name": "Prince Club",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:wide-awake-art-car:2100:prince-club"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -58242,13 +60132,15 @@
    "ultra-miami-2026:ul116",
    "nocturnal-wonderland-2026:nw-r3hab",
    "countdown-nye-2026:cdny-r3hab",
+   "beyond-wonderland-socal-2013:d1:madhatter-s-castle:2230:r3hab",
    "edc-orlando-2019:d3:kineticfield:1819:r3hab",
    "edc-orlando-2021:d1:kinetic-field:2111:afrojack-b2b-r3hab",
    "escape-halloween-2017:d2:ghouls-graveyard:1915:r3hab",
    "escape-halloween-2025:d2:the-big-top:2100:kshmr-b2b-r3hab",
+   "nocturnal-wonderland-2012:d2:labyrinth:2030:r3hab",
    "nocturnal-wonderland-2022:d2:wolves-den:2045:r3hab"
   ],
-  "firstSeen": "2017-10-28",
+  "firstSeen": "2012-09-22",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -58541,6 +60433,21 @@
   ],
   "firstSeen": "2024-10-26",
   "lastSeen": "2024-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "raiz",
+  "name": "Raíz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:cheshire-woods:1600:raiz"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -59039,6 +60946,21 @@
   ],
   "firstSeen": "2021-09-19",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rebecca-and-fiona",
+  "name": "Rebecca and Fiona",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:madhatter-s-castle:1930:rebecca-and-fiona"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-03-16",
   "photo": null,
   "links": []
  },
@@ -61176,6 +63098,21 @@
   "links": []
  },
  {
+  "key": "royksopp",
+  "name": "Röyksopp",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:queen-s-grounds:0100:royksopp"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "roz",
   "name": "RØZ",
   "aliases": [],
@@ -61315,9 +63252,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2012:d1:wide-awake-art-car:2100:ruff-hauser",
+   "beyond-wonderland-socal-2013:d1:discovery-project:0100:ruff-hauser",
    "edc-las-vegas-2022:d2:boombox-art-car:2215:ruff-hauser-b2b-roy-wilkins"
   ],
-  "firstSeen": "2022-05-21",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2022-05-21",
   "photo": null,
   "links": []
@@ -61572,6 +63511,21 @@
   "links": []
  },
  {
+  "key": "rykr",
+  "name": "RYKR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:discovery-project:1930:rykr"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ryman",
   "name": "Ryman",
   "aliases": [],
@@ -61676,6 +63630,21 @@
   ],
   "firstSeen": "2025-10-04",
   "lastSeen": "2025-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "s-p-y",
+  "name": "S.P.Y",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:sunken-garden:2100:s-p-y"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2011-09-23",
   "photo": null,
   "links": []
  },
@@ -62391,6 +64360,21 @@
   "links": []
  },
  {
+  "key": "sander-van-doorn",
+  "name": "Sander van Doorn",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:sunken-garden:2100:sander-van-doorn"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sandy-alex-g",
   "name": "(Sandy) Alex G",
   "aliases": [],
@@ -62696,6 +64680,21 @@
   ],
   "firstSeen": "2019-10-11",
   "lastSeen": "2019-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "savoy",
+  "name": "Savoy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:queen-s-grounds:2230:savoy"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -63124,9 +65123,11 @@
    "dreamstate-socal-2026:dssc-darren-porter-and-sean-tyas",
    "dreamstate-socal-2023:d2:the-void:1900:sean-tyas",
    "dreamstate-socal-2024:d2:the-vision:2000:sean-tyas",
-   "edc-orlando-2019:d3:stereobloom:1700:sean-tyas"
+   "edc-orlando-2019:d3:stereobloom:1700:sean-tyas",
+   "nocturnal-wonderland-2011:d2:labyrinth:2000:sean-tyas",
+   "nocturnal-wonderland-2012:d2:alice-s-house:1700:sean-tyas"
   ],
-  "firstSeen": "2019-11-10",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -63169,9 +65170,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul57"
+   "ultra-miami-2026:ul57",
+   "nocturnal-wonderland-2011:d2:alice-s-house:2200:sebastian-ingrosso",
+   "nocturnal-wonderland-2012:d2:labyrinth:0030:sebastian-ingrosso"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -63493,6 +65496,21 @@
   "links": []
  },
  {
+  "key": "seven8seven",
+  "name": "Seven8Seven",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:discovery-project:0100:seven8seven"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sf-cowboy",
   "name": "SF COWBOY",
   "aliases": [],
@@ -63564,6 +65582,21 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "shae-b",
+  "name": "Shae B",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:wide-awake-art-car:1700:shae-b"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -64030,6 +66063,21 @@
   "links": []
  },
  {
+  "key": "shimon",
+  "name": "Shimon",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:1600:mediks-b2b-shimon"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "shingo-nakamura",
   "name": "Shingo Nakamura",
   "aliases": [
@@ -64180,6 +66228,21 @@
   "links": []
  },
  {
+  "key": "shogun",
+  "name": "Shogun",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:queen-s-domain:1630:shogun"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "shooks",
   "name": "SHOOKS",
   "aliases": [],
@@ -64235,9 +66298,11 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-showtek-hardstyle-set-d1",
-   "edc-las-vegas-2025:d3:wasteland:0030:showtek-hardstyle-set"
+   "edc-las-vegas-2025:d3:wasteland:0030:showtek-hardstyle-set",
+   "nocturnal-wonderland-2011:d2:labyrinth:0100:showtek",
+   "nocturnal-wonderland-2012:d2:alice-s-house:2130:showtek"
   ],
-  "firstSeen": "2025-05-18",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
@@ -64466,6 +66531,21 @@
   "links": []
  },
  {
+  "key": "sidney-samson",
+  "name": "Sidney Samson",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:caterpillars-garden:2315:sidney-samson"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "siegel",
   "name": "Siegel",
   "aliases": [],
@@ -64553,9 +66633,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llf45"
+   "lost-lands-2026:llf45",
+   "nocturnal-wonderland-2011:d2:sunken-garden:1930:sigma"
   ],
-  "firstSeen": "2026-09-18",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2026-09-18",
   "photo": null,
   "links": []
@@ -64847,9 +66928,11 @@
    "dreamstate-socal-2026:dssc-john-askew-and-simon-patterson",
    "dreamstate-socal-2016:d2:the-vision:0100:simon-patterson",
    "edc-orlando-2017:d1:neongarden:2000:simon-patterson",
-   "edc-orlando-2019:d3:stereobloom:2245:simon-patterson"
+   "edc-orlando-2019:d3:stereobloom:2245:simon-patterson",
+   "nocturnal-wonderland-2011:d2:labyrinth:2130:simon-patterson",
+   "nocturnal-wonderland-2012:d2:alice-s-house:1900:simon-patterson"
   ],
-  "firstSeen": "2016-11-26",
+  "firstSeen": "2011-09-24",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -65232,6 +67315,21 @@
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2025-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "skeptiks",
+  "name": "Skeptiks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:sunken-garden:2000:skeptiks"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -65655,6 +67753,21 @@
   "links": []
  },
  {
+  "key": "slogun-and-ioh",
+  "name": "Slogun & iOh",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:discovery-project:2245:slogun-and-ioh"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "slooze",
   "name": "SLOOZE",
   "aliases": [],
@@ -65904,6 +68017,21 @@
   ],
   "firstSeen": "2019-09-14",
   "lastSeen": "2024-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "snareophobe-and-starfighterz",
+  "name": "Snareophobe & Starfighterz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:sunken-garden:1500:snareophobe-and-starfighterz"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
   "photo": null,
   "links": []
  },
@@ -66830,6 +68958,21 @@
   "links": []
  },
  {
+  "key": "soundprank",
+  "name": "Soundprank",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:alice-s-house:1700:soundprank"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sounds-del-mar",
   "name": "Sounds del Mar",
   "aliases": [],
@@ -67644,15 +69787,18 @@
  },
  {
   "key": "state-of-mind",
-  "name": "STATE OF MIND",
-  "aliases": [],
+  "name": "State of Mind",
+  "aliases": [
+   "STATE OF MIND"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2013:d1:chess-village:1700:state-of-mind",
    "escape-halloween-2017:d1:ghouls-graveyard:1700:state-of-mind"
   ],
-  "firstSeen": "2017-10-27",
+  "firstSeen": "2013-03-16",
   "lastSeen": "2017-10-27",
   "photo": null,
   "links": []
@@ -67833,9 +69979,10 @@
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul57",
+   "beyond-wonderland-socal-2013:d1:queen-s-domain:0045:steve-angello",
    "beyond-wonderland-socal-2026:d1:queen-s-domain:2340:steve-angello"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2013-03-16",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -67858,11 +70005,12 @@
    "ultra-miami-2026:ul34",
    "ultra-miami-2026:ul53",
    "escape-halloween-2026:esc-steve-aoki-d1",
+   "beyond-wonderland-socal-2012:d1:caterpillars-garden:0045:steve-aoki",
    "edc-las-vegas-2024:d1:kinetic-field:0413:steve-aoki",
    "edc-orlando-2019:d1:kineticfield:2112:steve-aoki",
    "edc-orlando-2024:d2:kinetic-field:2006:dimitri-vegas-b2b-steve-aoki"
   ],
-  "firstSeen": "2019-11-08",
+  "firstSeen": "2012-03-17",
   "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
@@ -67898,6 +70046,21 @@
   "links": []
  },
  {
+  "key": "steve-huerta",
+  "name": "Steve Huerta",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:wide-awake-art-car:1730:steve-huerta"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "steve-leclair",
   "name": "Steve Leclair",
   "aliases": [],
@@ -67924,6 +70087,21 @@
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "steve-prior",
+  "name": "Steve Prior",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:discovery-project:1800:steve-prior"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
   "photo": null,
   "links": []
  },
@@ -68319,6 +70497,24 @@
   "links": []
  },
  {
+  "key": "subb-an",
+  "name": "Subb-an",
+  "aliases": [
+   "Subb-An"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:cheshire-woods:1700:subb-an",
+   "nocturnal-wonderland-2013:d1:alice-s-house:1700:subb-an"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "subcoder",
   "name": "SUBCODER",
   "aliases": [],
@@ -68360,6 +70556,21 @@
   ],
   "firstSeen": "2024-05-17",
   "lastSeen": "2024-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "subfocus-dj-set",
+  "name": "Subfocus dj set",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:sunken-garden:0045:subfocus-dj-set"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
   "photo": null,
   "links": []
  },
@@ -68661,6 +70872,22 @@
   "links": []
  },
  {
+  "key": "sunnery-james-and-ryan-marciano",
+  "name": "Sunnery James & Ryan Marciano",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d1:alice-s-house:1900:sunnery-james-and-ryan-marciano",
+   "nocturnal-wonderland-2013:d1:sunken-garden:2000:sunnery-james-and-ryan-marciano"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sunny-black",
   "name": "Sunny Black",
   "aliases": [],
@@ -68792,6 +71019,21 @@
   ],
   "firstSeen": "2022-11-12",
   "lastSeen": "2022-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "super8-and-tab",
+  "name": "Super8 & Tab",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:alice-s-house:2000:super8-and-tab"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -69854,6 +72096,21 @@
   "links": []
  },
  {
+  "key": "tc",
+  "name": "TC",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:sunken-garden:2130:tc"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tc-superstar",
   "name": "TC SUPERSTAR",
   "aliases": [],
@@ -70763,6 +73020,21 @@
   ],
   "firstSeen": "2019-10-11",
   "lastSeen": "2025-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-beat-kidz",
+  "name": "The Beat Kidz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:discovery-project:1900:the-beat-kidz"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -72021,9 +74293,10 @@
    "edc-las-vegas-2025:d2:neon-garden:0030:the-martinez-brothers-b2b-loco-dice",
    "edc-orlando-2021:d1:neon-garden:2100:the-martinez-brothers-b2b-michael-bibi",
    "edc-orlando-2024:d2:neon-garden:2230:the-martinez-brothers",
-   "escape-halloween-2025:d1:the-cage:0030:the-martinez-brothers"
+   "escape-halloween-2025:d1:the-cage:0030:the-martinez-brothers",
+   "nocturnal-wonderland-2013:d1:alice-s-house:2000:the-martinez-brothers"
   ],
-  "firstSeen": "2021-11-12",
+  "firstSeen": "2013-09-21",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -72509,9 +74782,10 @@
   "projects": [],
   "billings": [
    "escape-halloween-2019:d1:psycho-circus:2000:the-prototypes",
-   "escape-halloween-2022:d1:feeding-grounds:1950:the-prototypes"
+   "escape-halloween-2022:d1:feeding-grounds:1950:the-prototypes",
+   "nocturnal-wonderland-2012:d1:sunken-garden:2100:the-prototypes"
   ],
-  "firstSeen": "2019-10-25",
+  "firstSeen": "2012-09-21",
   "lastSeen": "2022-10-28",
   "photo": null,
   "links": []
@@ -73559,6 +75833,21 @@
   "links": []
  },
  {
+  "key": "thomas-gold",
+  "name": "Thomas Gold",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:sunken-garden:2200:thomas-gold"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "thomas-kelly",
   "name": "THOMAS KELLY",
   "aliases": [],
@@ -73665,6 +75954,21 @@
   ],
   "firstSeen": "2022-11-11",
   "lastSeen": "2022-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tiefshwarz",
+  "name": "Tiefshwarz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:upside-down-room:1700:tiefshwarz"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -74828,6 +77132,37 @@
   "links": []
  },
  {
+  "key": "treasure-fingers",
+  "name": "Treasure Fingers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:madhatter-s-castle:1600:treasure-fingers"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "trent-cantrelle",
+  "name": "Trent Cantrelle",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:queen-s-domain:1830:trent-cantrelle",
+   "nocturnal-wonderland-2011:d1:alice-s-house:1500:trent-cantrelle"
+  ],
+  "firstSeen": "2011-09-23",
+  "lastSeen": "2013-03-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tres-mortimer",
   "name": "TRÈS MORTIMER",
   "aliases": [],
@@ -75062,10 +77397,26 @@
    "edc-las-vegas-2022:d1:boombox-art-car:0415:trouble",
    "edc-las-vegas-2022:d3:boombox-art-car:0415:trouble",
    "edc-las-vegas-2024:d2:meta-phoenix:1900:trouble",
-   "edc-las-vegas-2025:d2:blacklight-bar:0415:trouble"
+   "edc-las-vegas-2025:d2:blacklight-bar:0415:trouble",
+   "nocturnal-wonderland-2011:d1:sunken-garden:1500:trouble"
   ],
-  "firstSeen": "2022-05-20",
+  "firstSeen": "2011-09-23",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "troy-kurtz",
+  "name": "Troy Kurtz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d1:wide-awake-art-car:2300:troy-kurtz"
+  ],
+  "firstSeen": "2012-09-21",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -75726,6 +78077,21 @@
   "links": []
  },
  {
+  "key": "tydi",
+  "name": "tyDi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:alice-s-house:1600:tydi"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tykni",
   "name": "TYKNI",
   "aliases": [],
@@ -75994,6 +78360,22 @@
   "links": []
  },
  {
+  "key": "umek",
+  "name": "Umek",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2013:d1:queen-s-domain:2030:umek",
+   "nocturnal-wonderland-2013:d1:sunken-garden:1900:umek"
+  ],
+  "firstSeen": "2013-03-16",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "uncle-jumbo",
   "name": "UNCLE JUMBO",
   "aliases": [],
@@ -76152,6 +78534,22 @@
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "urulu",
+  "name": "Urulu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:wide-awake-art-car:1600:urulu",
+   "nocturnal-wonderland-2012:d1:wide-awake-art-car:1900:urulu"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-09-21",
   "photo": null,
   "links": []
  },
@@ -76711,6 +79109,21 @@
   "links": []
  },
  {
+  "key": "vibeshock",
+  "name": "Vibeshock",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:discovery-project:2015:vibeshock"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vic-mensa",
   "name": "Vic Mensa",
   "aliases": [],
@@ -76722,6 +79135,21 @@
   ],
   "firstSeen": "2014-10-05",
   "lastSeen": "2014-10-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "victor-calderone",
+  "name": "Victor Calderone",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:upside-down-room:2130:victor-calderone"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
   "photo": null,
   "links": []
  },
@@ -77384,9 +79812,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d3:kineticfield:1924:w-and-w"
+   "beyond-wonderland-socal-2013:d1:madhatter-s-castle:2030:w-and-w",
+   "edc-orlando-2019:d3:kineticfield:1924:w-and-w",
+   "nocturnal-wonderland-2011:d1:labyrinth:2000:w-and-w",
+   "nocturnal-wonderland-2012:d2:alice-s-house:2000:w-and-w"
   ],
-  "firstSeen": "2019-11-10",
+  "firstSeen": "2011-09-23",
   "lastSeen": "2019-11-10",
   "photo": null,
   "links": []
@@ -78335,6 +80766,21 @@
   "links": []
  },
  {
+  "key": "whizard-w-mc-xyz",
+  "name": "Whizard w/ MC XYZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:sunken-garden:1700:circuit-b2b-whizard-w-mc-xyz"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "who-is-hush",
   "name": "WHO IS HUSH",
   "aliases": [],
@@ -78960,6 +81406,21 @@
   "links": []
  },
  {
+  "key": "wippenberg",
+  "name": "Wippenberg",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2011:d2:alice-s-house:1615:wippenberg"
+  ],
+  "firstSeen": "2011-09-24",
+  "lastSeen": "2011-09-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wire-and-nail",
   "name": "Wire & Nail",
   "aliases": [],
@@ -79031,6 +81492,21 @@
   ],
   "firstSeen": "2021-10-09",
   "lastSeen": "2021-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wobs",
+  "name": "Wobs",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2012:d1:wide-awake-art-car:1630:wobs"
+  ],
+  "firstSeen": "2012-03-17",
+  "lastSeen": "2012-03-17",
   "photo": null,
   "links": []
  },
@@ -79555,6 +82031,21 @@
   "links": []
  },
  {
+  "key": "xilent",
+  "name": "Xilent",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2013:d1:queen-s-grounds:1800:xilent"
+  ],
+  "firstSeen": "2013-09-21",
+  "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "xilla",
   "name": "Xilla",
   "aliases": [],
@@ -79878,6 +82369,21 @@
   ],
   "firstSeen": "2026-08-02",
   "lastSeen": "2026-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "yobill",
+  "name": "YOBILL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2012:d2:discovery-project:1715:yobill"
+  ],
+  "firstSeen": "2012-09-22",
+  "lastSeen": "2012-09-22",
   "photo": null,
   "links": []
  },
