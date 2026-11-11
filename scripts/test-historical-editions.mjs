@@ -559,8 +559,9 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   // Only the lines that name the historical library: the artist-photo ledger's build
   // step is a different ledger, and a blanket /ledger/ refused it (2026-10-03).
   const bldHist = bld.split("\n").filter(l => /historical/.test(l)).join("\n");
-  ok(/'data\/historical\/index\.json'/.test(bld) && /'historical', 'editions'/.test(bld) && !/sheets|ledger|'review'/.test(bldHist),
-    "build.mjs must ship data/historical/index.json and editions/*.json only (sheets, ledgers and review manifests stay out of the app)");
+  ok(/'data\/historical\/index\.json'/.test(bld) && /'historical', 'editions'/.test(bld) && /'data\/historical\/scan-calendar\.json'/.test(bld)
+    && !/sheets|ledger|'review'|scan-calendar\/|\.tsv/.test(bldHist),
+    "build.mjs must ship data/historical/index.json, editions/*.json and scan-calendar.json only (sheets, ledgers, review manifests and TSV sources stay out of the app)");
   const walk = d => readdirSync(d, { withFileTypes: true }).flatMap(x => x.isDirectory() ? walk(join(d, x.name)) : [join(d, x.name)]);
   const art = walk(H("")).filter(f => /\.(png|jpe?g|webp|gif|svg|html?)$/i.test(f));
   ok(!art.length, `archived creative assets must never be committed: ${art.join(", ")}`);
