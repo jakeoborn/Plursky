@@ -1,1 +1,1 @@
-{ "args": ["--recheck"] }
+{ "args": ["--names", "docs/qa/reports/artist-photos-commons/recheck.json"] }

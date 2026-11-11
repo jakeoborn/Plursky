@@ -33,6 +33,7 @@
 //   node scripts/find-commons-photos.mjs --festival <id>  one festival module
 //   --limit N       first N artists only      --dry-run   report, write nothing
 //   --recheck       re-hold every pipeline row to the current match rules
+//   --names <file>  find again the artists listed in a run report's rows
 //   --width N       thumbnail width (480)     --report <path.json>
 import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -55,8 +56,19 @@ export const MUSIC_IDS = ['P434', 'P1953', 'P1902', 'P2850', 'P3192', 'P1728', '
 // producer, singer, composer, singer-songwriter, rapper) or a musical group.
 // (+ songwriter, vocalist)
 export const MUSIC_OCC = ['Q130857', 'Q639669', 'Q183945', 'Q177220', 'Q36834', 'Q488205', 'Q2252262', 'Q855091', 'Q753110', 'Q2643890'];
-// musical group, musical ensemble, rock band, musical duo
-export const MUSIC_GROUP = ['Q215380', 'Q2088357', 'Q5741069', 'Q9212979'];
+// musical group, musical ensemble, rock band, musical duo, girl group, boy band
+export const MUSIC_GROUP = ['Q215380', 'Q2088357', 'Q5741069', 'Q9212979', 'Q641066', 'Q216337'];
+// Or the item's own English description says it is a musical act ("British DJ
+// and record producer", "American indie pop band"). Wikidata types many acts
+// as a "musical project", a pseudonym or a human with no occupation, so the
+// description catches what the type lists miss. Anything that describes a
+// work, a place, an organisation or a fictional character never counts.
+export const MUSIC_DESC = /\b(dj|disc jockey|musician|singer|rapper|record producer|music producer|songwriter|composer|vocalist|drummer|guitarist|bassist|pianist|keyboardist|band|musical (duo|trio|group|act|project|ensemble)|(girl|boy|pop|rock|idol|vocal|hip[- ]hop|electronic|music) (group|duo|trio)|duo|trio)\b/i;
+export const NOT_ACT_DESC = /\b(fictional|character|album|song|single|ep by|film|series|episode|venue|hall|festival|record label|label|building|club|street|town|city|village|river|company|brand|software|video game|genre|instrument|family name|given name|surname|comedy)\b/i;
+// Items a person found to be the wrong face. Never used, whatever the rules
+// say (data/artist-photos/hold.json).
+const HOLD_FILE = join(ROOT, 'data/artist-photos/hold.json');
+export const loadHold = () => { try { return new Set(JSON.parse(readFileSync(HOLD_FILE, 'utf8')).wikidata || []); } catch { return new Set(); } };
 const HUMAN = 'Q5';
 
 // Commons LicenseShortName → ledger license id. Anything else is skipped.
@@ -105,24 +117,31 @@ const claimIds = (ent, p) => ((ent.claims || {})[p] || [])
   .map(c => c.mainsnak.datavalue.value);
 const label = ent => (ent.labels && ent.labels.en && ent.labels.en.value) || '';
 const aliases = ent => Object.values(ent.aliases || {}).flat().map(a => a.value);
+const describe = ent => (ent.descriptions && ent.descriptions.en && ent.descriptions.en.value) || '';
 
 // Rule 1 for one item.
 export function namesBilling(billing, ent) {
   const key = artistKey(billing);
   if (artistKey(label(ent)) === key) return true;
-  return key.replace(/-/g, '').length >= 4 && aliases(ent).some(n => artistKey(n) === key);
+  // "O.A.R. (band)": a label's own disambiguation does not change the name.
+  if (artistKey(label(ent).replace(/\s*\([^)]*\)\s*$/, '')) === key) return true;
+  // An alias of three letters or more (P!nk, Djo, FKJ). One or two letters
+  // ("Q", "SJ") name too many things to stand for anyone.
+  return key.replace(/-/g, '').length >= 3 && aliases(ent).some(n => artistKey(n) === key);
 }
 // Rule 2 for one item.
 export function isMusicAct(ent) {
   const qids = p => claimIds(ent, p).map(v => v && v.id).filter(Boolean);
   const kinds = qids('P31');
   if (kinds.some(q => MUSIC_GROUP.includes(q))) return true;
-  return kinds.includes(HUMAN) && qids('P106').some(q => MUSIC_OCC.includes(q));
+  if (kinds.includes(HUMAN) && qids('P106').some(q => MUSIC_OCC.includes(q))) return true;
+  const d = describe(ent);
+  return MUSIC_DESC.test(d) && !NOT_ACT_DESC.test(d);
 }
 
 // The match rule (1-3 above), pure so the gate can test it.
-export function pickEntity(billing, entities) {
-  const named = entities.filter(e => e && !e.missing && namesBilling(billing, e));
+export function pickEntity(billing, entities, hold = new Set()) {
+  const named = entities.filter(e => e && !e.missing && !hold.has(e.id) && namesBilling(billing, e));
   if (!named.length) return { entity: null, reason: 'no-item' };
   const ok = named.filter(isMusicAct);
   if (ok.length !== 1) return { entity: null, reason: ok.length ? 'ambiguous' : 'no-music-item' };
@@ -171,6 +190,11 @@ const WD = 'https://www.wikidata.org/w/api.php';
 const COMMONS = 'https://commons.wikimedia.org/w/api.php';
 
 function loadArtists(args) {
+  if (args.names) {
+    // A run report's rows (e.g. recheck.json): find these artists again.
+    const rows = JSON.parse(readFileSync(join(ROOT, args.names), 'utf8')).rows || [];
+    return [...new Set(rows.map(r => r.artist))].map(name => ({ key: artistKey(name), name }));
+  }
   if (args.festival) {
     globalThis.window = globalThis.window || globalThis;
     window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
@@ -197,8 +221,9 @@ function parseArgs(argv) {
     else if (v === '--width') a.width = +argv[++i];
     else if (v === '--report') a.report = argv[++i];
     else if (v === '--recheck') a.recheck = true;
+    else if (v === '--names') a.names = argv[++i];
   }
-  if (!a.all && !a.festival && !a.recheck) throw new Error('pass --all, --festival <id> or --recheck');
+  if (!a.all && !a.festival && !a.recheck && !a.names) throw new Error('pass --all, --festival <id>, --names <report.json> or --recheck');
   return a;
 }
 
@@ -211,15 +236,15 @@ async function recheck(args) {
   if (args.gap) GAP = args.gap;
   const ents = new Map(), ids = [...new Set(pipeline.map(r => r.wikidata))];
   for (let i = 0; i < ids.length; i += 50) {
-    const j = await api(WD, { action: 'wbgetentities', ids: ids.slice(i, i + 50).join('|'), props: 'labels|aliases|claims', languages: 'en' });
+    const j = await api(WD, { action: 'wbgetentities', ids: ids.slice(i, i + 50).join('|'), props: 'labels|aliases|claims|descriptions', languages: 'en' });
     for (const [id, e] of Object.entries(j.entities || {})) ents.set(id, e);
   }
-  const dropped = [];
+  const dropped = [], hold = loadHold();
   for (const r of pipeline) {
     const e = ents.get(r.wikidata);
     if (!e || e.missing === '') continue;   // not fetched: leave it, report nothing
-    const reason = !namesBilling(r.artist, e) ? 'no-item' : !isMusicAct(e) ? 'no-music-item' : null;
-    if (reason) dropped.push({ artist: r.artist, wikidata: r.wikidata, reason, asset: r.asset });
+    const reason = hold.has(r.wikidata) ? 'held' : !namesBilling(r.artist, e) ? 'no-item' : !isMusicAct(e) ? 'no-music-item' : null;
+    if (reason) dropped.push({ artist: r.artist, wikidata: r.wikidata, reason, asset: r.asset, description: describe(e) });
   }
   const gone = new Set(dropped.map(d => d.asset));
   if (!args.dry) {
@@ -245,7 +270,7 @@ async function main() {
   // A billing that names several acts never gets one face.
   artists = artists.filter(a => !/\sb[23]b\s|\s[x×]\s|\spresents\s|\svs\.?\s/i.test(a.name));
   if (args.gap) GAP = args.gap;
-  const skips = {}, added = [];
+  const skips = {}, added = [], hold = loadHold();
   const skip = (a, reason, extra = {}) => { (skips[reason] ||= []).push({ artist: a.name, ...extra }); };
 
   // 1. Search each billing (the API has no batch search). ~5 requests/s.
@@ -257,15 +282,15 @@ async function main() {
   // 2. Fetch every candidate item, 50 per request.
   const ids = [...new Set([...cands.values()].flat())], ents = new Map();
   for (let i = 0; i < ids.length; i += 50) {
-    const j = await api(WD, { action: 'wbgetentities', ids: ids.slice(i, i + 50).join('|'), props: 'labels|aliases|claims', languages: 'en' });
+    const j = await api(WD, { action: 'wbgetentities', ids: ids.slice(i, i + 50).join('|'), props: 'labels|aliases|claims|descriptions', languages: 'en' });
     for (const [id, e] of Object.entries(j.entities || {})) ents.set(id, e);
   }
   // 3. Apply the match rule.
   const matched = [];
   for (const a of artists) {
-    const r = pickEntity(a.name, (cands.get(a.key) || []).map(id => ents.get(id)));
+    const r = pickEntity(a.name, (cands.get(a.key) || []).map(id => ents.get(id)), hold);
     if (!r.entity) { skip(a, r.reason, r.qid ? { wikidata: r.qid } : {}); continue; }
-    matched.push({ a, qid: r.entity.id, file: r.image });
+    matched.push({ a, qid: r.entity.id, file: r.image, description: describe(r.entity) });
   }
   // 4. Read each file's license and author from Commons, 50 per request.
   const info = new Map();
@@ -275,7 +300,7 @@ async function main() {
     const norm = new Map((j.query?.normalized || []).map(n => [n.to, n.from]));
     for (const p of Object.values(j.query?.pages || {})) info.set((norm.get(p.title) || p.title).replace(/^File:/, ''), p);
   }
-  const imgDir = join(ROOT, 'artist-photos');
+  const imgDir = join(ROOT, 'artist-photos'), descs = new Map();
   mkdirSync(imgDir, { recursive: true });
   for (const m of matched) {
     const page = info.get(m.file) || info.get(m.file.replace(/_/g, ' '));
@@ -289,7 +314,7 @@ async function main() {
     if (!author) { skip(m.a, 'no-usable-credit', { wikidata: m.qid }); continue; }
     const sourceUrl = 'https://commons.wikimedia.org/wiki/File:' + encodeURIComponent(page.title.replace(/^File:/, '').replace(/ /g, '_')).replace(/%2C/g, ',').replace(/%28/g, '(').replace(/%29/g, ')');
     const asset = 'artist-photos/' + m.a.key + '.webp';
-    if (args.dry) { added.push({ artist: m.a.name, wikidata: m.qid, license: lic.license, author, sourceUrl }); continue; }
+    if (args.dry) { added.push({ artist: m.a.name, wikidata: m.qid, license: lic.license, author, sourceUrl, description: m.description }); continue; }
     const res = await wmFetch(ii.thumburl).catch(() => null);
     if (!res) { skip(m.a, 'download-failed', { wikidata: m.qid }); continue; }
     const tmp = join(imgDir, '.' + m.a.key + '.src');
@@ -305,6 +330,7 @@ async function main() {
       changes: `Wikimedia ${args.width}px thumbnail, converted to WebP. Display may crop and overlay.`,
       wikidata: m.qid,
     });
+    descs.set(m.a.name, m.description);
   }
   if (!args.dry) writeFileSync(LEDGER, JSON.stringify([...ledger, ...added], null, 2) + '\n');
   const report = {
@@ -312,7 +338,7 @@ async function main() {
     total: all.length, offset: from, nextOffset: to < all.length ? to : null,
     considered: artists.length, added: added.length,
     skipped: Object.fromEntries(Object.entries(skips).map(([k, v]) => [k, v.length])),
-    addedRows: added.map(r => ({ artist: r.artist, wikidata: r.wikidata, license: r.license, author: r.author })),
+    addedRows: added.map(r => ({ artist: r.artist, wikidata: r.wikidata, license: r.license, author: r.author, description: r.description || descs.get(r.artist) || '' })),
     skips,
   };
   if (args.report) { mkdirSync(dirname(join(ROOT, args.report)), { recursive: true }); writeFileSync(join(ROOT, args.report), JSON.stringify(report, null, 1) + '\n'); }

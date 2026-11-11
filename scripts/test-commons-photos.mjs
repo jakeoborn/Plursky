@@ -9,8 +9,9 @@ let checks = 0;
 const ok = (v, m) => { checks++; assert.ok(v, m); };
 const eq = (a, b, m) => { checks++; assert.deepEqual(a, b, m); };
 const snak = v => ({ rank: 'normal', mainsnak: { snaktype: 'value', datavalue: { value: v } } });
-const ent = (id, label, claims = {}, aliases = []) => ({
+const ent = (id, label, claims = {}, aliases = [], description) => ({
   id, labels: { en: { value: label } }, aliases: { en: aliases.map(value => ({ value })) },
+  ...(description ? { descriptions: { en: { value: description } } } : {}),
   claims: Object.fromEntries(Object.entries(claims).map(([p, vs]) => [p, vs.map(snak)])),
 });
 const person = { P31: [{ id: 'Q5' }], P106: [{ id: 'Q639669' }] };
@@ -43,6 +44,20 @@ eq(pickEntity('Q', [ent('Q23', 'Quincy Jones', music, ['Q'])]).reason, 'no-item'
 eq(pickEntity('Duo Act', [ent('Q24', 'Duo Act', { P31: [{ id: 'Q9212979' }], P18: ['Duo.jpg'] })]).image, 'Duo.jpg', 'a musical duo counts');
 ok(isMusicAct(ent('Q25', 'X', music)) && !isMusicAct(ent('Q26', 'X', { P434: ['m'] })), 'a music id alone is not a musical act');
 ok(namesBilling('Kasbo', ent('Q27', 'Kasbo')) && !namesBilling('Kasbo', ent('Q28', 'Other', {}, ['Kasb'])), 'label match, near alias refused');
+
+// The recheck's over-correction: real acts Wikidata types loosely.
+const img = { P18: ['Face.jpg'] };
+eq(pickEntity('Michael Bibi', [ent('Q30', 'Michael Bibi', { P31: [{ id: 'Q5' }], ...img }, [], 'British DJ and record producer')]).image, 'Face.jpg', 'a human described as a DJ counts');
+eq(pickEntity('Japanese Breakfast', [ent('Q31', 'Japanese Breakfast', { P31: [{ id: 'Q99' }], ...img }, [], 'American indie pop band')]).image, 'Face.jpg', 'a project described as a band counts');
+eq(pickEntity('KATSEYE', [ent('Q32', 'Katseye', { P31: [{ id: 'Q641066' }], ...img })]).image, 'Face.jpg', 'a girl group counts');
+eq(pickEntity('P!NK', [ent('Q33', 'Pink', { ...person, ...img }, ['P!nk'])]).image, 'Face.jpg', 'a three-letter alias matches');
+eq(pickEntity('O.A.R.', [ent('Q34', 'O.A.R. (band)', { P31: [{ id: 'Q5741069' }], ...img })]).image, 'Face.jpg', "a label's own disambiguation is ignored");
+eq(pickEntity('Nero', [ent('Q35', 'Nero', { P31: [{ id: 'Q5' }], ...img }, [], 'Roman emperor from 54 to 68')]).reason, 'no-music-item', 'an emperor is still refused');
+eq(pickEntity('Zero', [ent('Q36', 'Zero', img, [], 'fictional singer in an anime series')]).reason, 'no-music-item', 'a fictional singer by description is refused');
+eq(pickEntity('Twin Peaks', [ent('Q37', 'Twin Peaks', img, [], 'American comedy duo')]).reason, 'no-music-item', 'a comedy duo is refused');
+eq(pickEntity('Pulse', [ent('Q38', 'Pulse', img, [], 'song by an American band')]).reason, 'no-music-item', 'a song is refused');
+eq(pickEntity('Adam Scott', [ent('Q39', 'Adam Scott', { P31: [{ id: 'Q5' }], P106: [{ id: 'Q33999' }], ...img }, [], 'American actor')]).reason, 'no-music-item', 'an actor namesake is refused');
+eq(pickEntity('Corbu', [ent('Q4724', 'Corbu', { ...person, ...img })], new Set(['Q4724'])).reason, 'no-item', 'a held item is never used');
 
 // Licenses: only the ledger's allow-list, with its canonical https URL.
 eq(mapLicense('CC BY-SA 4.0'), { license: 'CC-BY-SA-4.0', licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/' }, 'BY-SA 4.0');

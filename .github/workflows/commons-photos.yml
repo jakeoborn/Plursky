@@ -49,7 +49,7 @@ jobs:
           echo "ARGS=$ARGS" >> "$GITHUB_ENV"
           OFF=$(echo "$ARGS" | sed -n 's/.*--offset \([0-9]*\).*/\1/p')
           REPORT="docs/qa/reports/artist-photos-commons/last-run${OFF:+-$OFF}.json"
-          case "$ARGS" in *--recheck*) REPORT="docs/qa/reports/artist-photos-commons/recheck.json";; esac
+          case "$ARGS" in *--recheck*) REPORT="docs/qa/reports/artist-photos-commons/recheck.json";; *--names*) REPORT="docs/qa/reports/artist-photos-commons/restore.json";; esac
           echo "REPORT=$REPORT" >> "$GITHUB_ENV"
           node scripts/find-commons-photos.mjs $ARGS --report "$REPORT"
       - name: Ledger still validates

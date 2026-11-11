@@ -1,0 +1,4 @@
+{
+  "note": "Wikidata items found to be the wrong face for a billed artist (Nov 2026 spot check). find-commons-photos.mjs never uses these, and --recheck drops any row that points at one.",
+  "wikidata": ["Q1413", "Q123066", "Q4724", "Q2142", "Q108678151", "Q1665209", "Q193645", "Q239693", "Q901649", "Q489604"]
+}
