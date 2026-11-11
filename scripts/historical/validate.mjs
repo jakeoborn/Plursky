@@ -11,6 +11,7 @@ export const OFFICIAL_HOSTS = {
   "governors-ball": ["governorsballmusicfestival.com", "cdn.prod.website-files.com"],
   "lollapalooza": ["lollapalooza.com", "cdn.prod.website-files.com"],
   "hard-summer": ["hardsummer.com"],
+  "electric-forest": ["electricforestfestival.com", "electricforest.com"],
   "edc-lv": ["lasvegas.electricdaisycarnival.com"],
   // assets-global.website-files.com is the same Webflow CDN under its older
   // hostname: every archived 2022 aclfestival.com/schedule capture embeds the
@@ -27,6 +28,7 @@ export const OFFICIAL_HOSTS = {
   "nocturnal-wonderland": ["nocturnalwonderland.com"],
   "countdown-nye": ["countdownnye.com"],
   "dreamstate-socal": ["dreamstateusa.com"],
+  "tomorrowland": ["tomorrowland.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -331,6 +333,17 @@ function officialSources(e, meta, p) {
       if (ts && !(ts.startsWith(String(e.year)) || ts.startsWith(String(e.year + 1)))) p.push(`${tag}: page capture ${ts} is not from ${e.year} or the year after`);
       if (ts && ts !== c.captureTimestamp) p.push(`${tag}: captureTimestamp ${c.captureTimestamp} ≠ the archived URL's ${ts}`);
       if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
+    }
+    // A stage printed two ways carried onto one name: only case, spacing and
+    // a leading "The" may change, and the target must be a stage it shows.
+    if (c.kind === "page" || c.kind === "graphic") {
+      const fold = x => String(x).replace(/^the\s+/i, "").replace(/\s+/g, "").toLowerCase();
+      for (const [from, to] of Object.entries(c.stagesAs || {})) {
+        if (fold(from) !== fold(to)) p.push(`${tag}: stagesAs "${from}" → "${to}" renames the stage; only case, spacing and a leading "The" may differ`);
+        if (!e.stages.some(st => st.name === to)) p.push(`${tag}: stagesAs maps "${from}" onto "${to}", which is not a stage of the edition`);
+      }
+    }
+    if (c.kind === "page") {
     } else if (c.kind === "graphic") {
       const host = hostOf(c.imageUrl);
       const official = (OFFICIAL_HOSTS[e.festivalId] || []).some(h => host === h || host.endsWith("." + h));
@@ -354,11 +367,6 @@ function officialSources(e, meta, p) {
         p.push(`${tag}: the graphic's header "${c.printed}" does not print ${weekdayOf(date)} ${date}`);
       // A styled stage name carried onto the edition's other printing: only
       // case and spacing may change, and the target must be a stage it shows.
-      const fold = x => String(x).replace(/\s+/g, "").toLowerCase();
-      for (const [from, to] of Object.entries(c.stagesAs || {})) {
-        if (fold(from) !== fold(to)) p.push(`${tag}: stagesAs "${from}" → "${to}" renames the stage; only case and spacing may differ`);
-        if (!e.stages.some(st => st.name === to)) p.push(`${tag}: stagesAs maps "${from}" onto "${to}", which is not a stage of the edition`);
-      }
     } else p.push(`${tag}: source kind "${c.kind}" is neither page nor graphic`);
   }
   for (const [i] of meta.dates.entries()) if (!e.provenance.captures.some(c => c.day === i + 1)) p.push(`${e.id} day ${i + 1}: no source`);

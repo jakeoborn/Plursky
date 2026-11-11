@@ -8564,10 +8564,13 @@ function _PhotoPin({
   var rot = _idHash(m.id) % 17 - 8;
   var extra = cluster.items.length - 1;
   var SIZE = cluster.items.length > 1 ? 52 : 46;
+  var acc = cluster.acc;
+  var accSay = acc === "unknown" ? ", location accuracy unknown" : acc === "coarse" ? ", rough location" : "";
   return React.createElement("button", {
     onClick: () => onTap && onTap(cluster),
     "data-moment-ids": cluster.items.map(x => x.id).join(","),
-    "aria-label": cluster.items.length === 1 ? m.kind === "video" ? "Video" : "Photo" : `${cluster.items.length} moments`,
+    "data-acc": acc || undefined,
+    "aria-label": (cluster.items.length === 1 ? m.kind === "video" ? "Video" : "Photo" : `${cluster.items.length} moments`) + accSay,
     style: {
       position: "absolute",
       left: cluster.x + "%",
@@ -8587,7 +8590,7 @@ function _PhotoPin({
       height: "100%",
       borderRadius: 10,
       overflow: "hidden",
-      border: `2px solid ${ring}`,
+      border: `2px ${acc === "unknown" ? "dotted" : acc === "coarse" ? "dashed" : "solid"} ${ring}`,
       background: url ? "var(--paper)" : "var(--paper-2)",
       boxShadow: "0 3px 9px rgba(var(--shade-rgb),0.5)"
     }
@@ -8645,6 +8648,7 @@ function _lensFix(m) {
     lng: g.lng
   };
 }
+var _LENS_RING_CAP = 60;
 var _LENS_FAR_M = 3000;
 var _LENS_MIN_SPAN_M = 40;
 function _gpsLensLayout(moments, opts) {
@@ -8668,9 +8672,13 @@ function _gpsLensLayout(moments, opts) {
   }
   var empty = {
     clusters: [],
+    rings: [],
+    ringsCut: 0,
     hidden: 0,
     noGps,
     far: 0,
+    coarse: 0,
+    unknownAcc: 0,
     mPerPct: 0
   };
   if (!fixes.length) return empty;
@@ -8692,11 +8700,14 @@ function _gpsLensLayout(moments, opts) {
       far++;
       continue;
     }
+    var acc = photoFixAccM(f.m);
     pts.push({
       m: f.m,
       t: f.t,
       e,
-      n
+      n,
+      acc,
+      cls: photoFixAccClass(acc)
     });
   }
   if (!pts.length) return {
@@ -8708,10 +8719,11 @@ function _gpsLensLayout(moments, opts) {
     minN = Infinity,
     maxN = -Infinity;
   for (var p of pts) {
-    minE = Math.min(minE, p.e);
-    maxE = Math.max(maxE, p.e);
-    minN = Math.min(minN, p.n);
-    maxN = Math.max(maxN, p.n);
+    var r = p.cls === "precise" ? p.acc : 0;
+    minE = Math.min(minE, p.e - r);
+    maxE = Math.max(maxE, p.e + r);
+    minN = Math.min(minN, p.n - r);
+    maxN = Math.max(maxN, p.n + r);
   }
   var span = Math.max(maxE - minE, maxN - minN, _LENS_MIN_SPAN_M);
   var scale = (100 - 2 * pad) / span;
@@ -8740,16 +8752,42 @@ function _gpsLensLayout(moments, opts) {
       x: head.x,
       y: head.y,
       face: head.m,
-      items: group.map(g => g.m)
+      acc: head.cls,
+      items: group.map(g => g.m),
+      pts: group
     });
   }
   var visible = clusters.slice(0, cap);
   var hidden = clusters.slice(cap).reduce((n, c) => n + c.items.length, 0);
+  var rings = [];
+  var ringsCut = 0;
+  for (var c of visible) for (var _p2 of c.pts) {
+    if (_p2.cls === "unknown") continue;
+    if (rings.length >= _LENS_RING_CAP) {
+      ringsCut++;
+      continue;
+    }
+    rings.push({
+      id: _p2.m.id,
+      x: _p2.x,
+      y: _p2.y,
+      r: _p2.acc * scale,
+      accM: _p2.acc,
+      cls: _p2.cls
+    });
+  }
+  for (var _c of visible) delete _c.pts;
+  var coarse = pts.filter(p => p.cls === "coarse").length,
+    unknownAcc = pts.filter(p => p.cls === "unknown").length;
   return {
     clusters: visible,
+    rings,
+    ringsCut,
     hidden,
     noGps,
     far,
+    coarse,
+    unknownAcc,
     mPerPct: 1 / scale
   };
 }
@@ -8771,13 +8809,17 @@ function MemoriesPhotoMapLens({
 }) {
   var {
     clusters,
+    rings,
+    ringsCut,
     hidden,
     noGps,
     far,
+    coarse,
+    unknownAcc,
     mPerPct
   } = React.useMemo(() => _gpsLensLayout(moments), [moments]);
   var bar = _lensScaleBar(mPerPct);
-  var notes = (hidden > 0 || noGps > 0 || far > 0) && React.createElement("div", {
+  var notes = (hidden > 0 || noGps > 0 || far > 0 || coarse > 0 || unknownAcc > 0 || ringsCut > 0) && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 8.5,
@@ -8790,7 +8832,13 @@ function MemoriesPhotoMapLens({
       flexWrap: "wrap",
       gap: 10
     }
-  }, hidden > 0 && React.createElement("span", null, "+", hidden, " MORE CLUSTERED"), noGps > 0 && React.createElement("span", null, noGps, " WITHOUT GPS NOT SHOWN"), far > 0 && React.createElement("span", null, far, " FAR FROM THE REST NOT SHOWN"));
+  }, hidden > 0 && React.createElement("span", null, "+", hidden, " MORE CLUSTERED"), noGps > 0 && React.createElement("span", null, noGps, " WITHOUT GPS NOT SHOWN"), far > 0 && React.createElement("span", null, far, " FAR FROM THE REST NOT SHOWN"), coarse > 0 && React.createElement("span", {
+    "data-gps-lens-note": "coarse"
+  }, coarse, " ROUGH FIX (OVER ", STAGE_FIX_PHOTO.maxAccM, " M), DASHED"), ringsCut > 0 && React.createElement("span", {
+    "data-gps-lens-note": "rings-cut"
+  }, ringsCut, " MORE ACCURACY ", ringsCut === 1 ? "RING" : "RINGS", " NOT DRAWN"), unknownAcc > 0 && React.createElement("span", {
+    "data-gps-lens-note": "unknown"
+  }, unknownAcc, " NO ACCURACY RECORDED, DOTTED"));
   if (!clusters.length) {
     return React.createElement("div", {
       style: {
@@ -8830,7 +8878,26 @@ function MemoriesPhotoMapLens({
       border: "1px solid var(--line)",
       background: "var(--paper-2)"
     }
-  }, clusters.map((c, i) => React.createElement(_PhotoPin, {
+  }, rings.map(g => React.createElement("span", {
+    key: "ring-" + g.id,
+    "data-gps-lens-ring": g.id,
+    "data-acc": g.cls,
+    "data-acc-m": g.accM,
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      left: g.x - g.r + "%",
+      top: g.y - g.r + "%",
+      width: 2 * g.r + "%",
+      height: 2 * g.r + "%",
+      borderRadius: "50%",
+      boxSizing: "border-box",
+      pointerEvents: "none",
+      zIndex: 1,
+      border: g.cls === "precise" ? "1.5px solid color-mix(in srgb, var(--acc) 70%, transparent)" : "1.5px dashed color-mix(in srgb, var(--acc) 60%, transparent)",
+      background: g.cls === "precise" ? "color-mix(in srgb, var(--acc) 13%, transparent)" : "color-mix(in srgb, var(--acc) 6%, transparent)"
+    }
+  })), clusters.map((c, i) => React.createElement(_PhotoPin, {
     key: c.face.id || i,
     cluster: c,
     onTap: onPinTap
@@ -10083,50 +10150,36 @@ function MemoriesScreen({
       phase: "access"
     });
     try {
-      var access = await PS.requestAccess();
-      var limited = access?.status === "limited";
-      if (access?.status !== "authorized" && !limited) {
-        setPastScan({
-          phase: "denied"
-        });
-        return;
-      }
-      setPastScan({
-        phase: "scanning"
-      });
-      var [index, calendar] = await Promise.all([_histFetch("index.json").catch(() => null), _histFetch("scan-calendar.json").catch(() => null)]);
-      if (!index && !calendar) throw new Error("past festival lists unavailable");
-      var targets = _histScanTargets(index, null, calendar);
-      var seen = _scanSeenRead();
-      var found = [];
-      var already = 0;
-      var _loop7 = async function (t) {
-        if (i % 10 === 0) setPastScan({
-          phase: "scanning",
-          checked: i,
-          years: targets.length
-        });
-        var assets = [];
-        for (var r of _scanQueryRanges(t.cfg)) {
-          var res = await PS.scan({
-            startMs: r.startMs,
-            endMs: r.endMs
+      var handed = _pastScanHandoffTake();
+      var limited, found, already, years;
+      if (handed) {
+        ({
+          limited,
+          found,
+          already,
+          years
+        } = handed);
+      } else {
+        var access = await PS.requestAccess();
+        limited = access?.status === "limited";
+        if (access?.status !== "authorized" && !limited) {
+          setPastScan({
+            phase: "denied"
           });
-          assets.push(...(res?.assets || []));
+          return;
         }
-        var onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
-        if (!onSite.length) return 1;
-        var ds = _histDataSet(t.inLibrary ? await _histFetch(`editions/${t.entry.id}.json`) : null, t.cfg);
-        var pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
-        already += pick.already;
-        if (pick.keep.length) found.push({
-          t,
-          ds,
-          keep: pick.keep
+        setPastScan({
+          phase: "scanning"
         });
-      };
-      for (var [i, t] of targets.entries()) {
-        if (await _loop7(t)) continue;
+        ({
+          found,
+          already,
+          years
+        } = await _pastScanFind(PS, (checked, n) => setPastScan({
+          phase: "scanning",
+          checked,
+          years: n
+        })));
       }
       var total = found.reduce((n, f) => n + f.keep.length, 0);
       if (!total) {
@@ -10134,7 +10187,7 @@ function MemoriesScreen({
           phase: "none",
           already,
           limited,
-          editions: targets.length
+          editions: years
         });
         return;
       }
@@ -10144,7 +10197,7 @@ function MemoriesScreen({
       var byEdition = [];
       for (var f of found) {
         var got = 0;
-        var _loop8 = async function () {
+        var _loop7 = async function () {
           setPastScan({
             phase: "importing",
             done,
@@ -10175,7 +10228,7 @@ function MemoriesScreen({
           })?.catch?.(() => {});
         };
         for (var chunk of _scanChunks(f.keep)) {
-          if (await _loop8()) continue;
+          if (await _loop7()) continue;
         }
         if (got) byEdition.push({
           id: f.t.entry.id,
@@ -10198,6 +10251,16 @@ function MemoriesScreen({
       });
     }
   };
+  var scanPastRef = React.useRef(handleScanPast);
+  scanPastRef.current = handleScanPast;
+  React.useEffect(() => {
+    var onHandoff = () => {
+      if (window._pastScanHandoff) scanPastRef.current();
+    };
+    onHandoff();
+    window.addEventListener("plursky:past-scan-handoff", onHandoff);
+    return () => window.removeEventListener("plursky:past-scan-handoff", onHandoff);
+  }, []);
   var _pastScanMessage = st => {
     if (!st) return null;
     var limitedNote = st.limited ? "Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
@@ -13181,12 +13244,12 @@ function _recoverCurrentVideoMomentsFromArchive() {
         changed = true;
       }
     }
-    var _loop9 = function (move) {
+    var _loop8 = function (move) {
       all[move.from] = (all[move.from] || []).filter(m => m !== move.moment);
       all[move.to] = [...(all[move.to] || []), move.moment];
     };
     for (var move of moves) {
-      _loop9(move);
+      _loop8(move);
     }
     if (changed) _writeMoments(all);
   } catch {}
@@ -13264,13 +13327,13 @@ function _reconcileFestivalStamps(moments) {
       }
     }
   }
-  var _loop0 = function (move) {
+  var _loop9 = function (move) {
     moments[move.from] = moments[move.from].filter(x => x !== move.moment);
     if (!moments[move.from].length) delete moments[move.from];
     moments[move.to] = [...(moments[move.to] || []), move.moment];
   };
   for (var move of moves) {
-    _loop0(move);
+    _loop9(move);
   }
   return changed;
 }
@@ -13583,7 +13646,7 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var _loop1 = function (m) {
+  var _loop0 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var {
         fid,
@@ -13606,7 +13669,7 @@ function _aggregateSoundtrack(moments) {
     },
     _ret2;
   for (var m of Object.values(moments)) {
-    _ret2 = _loop1(m);
+    _ret2 = _loop0(m);
     if (_ret2 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
@@ -15679,7 +15742,7 @@ function HeroCards({
     var live = true;
     var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
     (async () => {
-      var _loop10 = async function (a) {
+      var _loop1 = async function (a) {
           var canvas = await _renderHeroCard(a).catch(() => null);
           if (!live || !canvas) return 0;
           var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -15696,7 +15759,7 @@ function HeroCards({
         },
         _ret3;
       for (var a of want) {
-        _ret3 = await _loop10(a);
+        _ret3 = await _loop1(a);
         if (_ret3 === 0) continue;
       }
     })();
@@ -17684,7 +17747,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop11 = function (rows) {
+  var _loop10 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -17698,7 +17761,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop11(rows);
+    _loop10(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }

@@ -8,6 +8,8 @@
 
 import { slug } from "./lib.mjs";
 
+const TML_THREE_WEEKEND_LABELS = ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
+  "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday", "Weekend 3 · Friday", "Weekend 3 · Saturday", "Weekend 3 · Sunday"];
 const ACL_WEEKEND_LABELS = ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
   "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"];
 
@@ -130,6 +132,32 @@ export const EDITIONS = {
     dayLabels: ACL_WEEKEND_LABELS },
   "acl-2019": { festivalId: "acl", name: "Austin City Limits 2019", year: 2019,
     timezone: "America/Chicago", rolloverHour: 6, method: "official_sources", dates: [["2019-10-04", "Friday"], ["2019-10-05", "Saturday"], ["2019-10-06", "Sunday"], ["2019-10-11", "Friday"], ["2019-10-12", "Saturday"], ["2019-10-13", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  // Tomorrowland: the official timetable page prints every stage and set of
+  // both weekends (tml-schedule.mjs, format "tml-stages"), read from one
+  // archived capture per year; the Thursday Gathering is not a festival day.
+  // Electric Forest's own "Artist Schedule" (set-times.php, All Days view):
+  // every day of the festival on one 15-minute grid, Thursday to Sunday.
+  "electric-forest-2012": { festivalId: "electric-forest", name: "Electric Forest 2012", year: 2012,
+    timezone: "America/Detroit", rolloverHour: 6, method: "official_sources",
+    dates: [["2012-06-28", "Thursday"], ["2012-06-29", "Friday"], ["2012-06-30", "Saturday"], ["2012-07-01", "Sunday"]] },
+  "electric-forest-2013": { festivalId: "electric-forest", name: "Electric Forest 2013", year: 2013,
+    timezone: "America/Detroit", rolloverHour: 6, method: "official_sources",
+    dates: [["2013-06-27", "Thursday"], ["2013-06-28", "Friday"], ["2013-06-29", "Saturday"], ["2013-06-30", "Sunday"]] },
+  "tomorrowland-2017": { festivalId: "tomorrowland", name: "Tomorrowland 2017", year: 2017,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2017-07-21", "Friday"], ["2017-07-22", "Saturday"], ["2017-07-23", "Sunday"], ["2017-07-28", "Friday"], ["2017-07-29", "Saturday"], ["2017-07-30", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "tomorrowland-2018": { festivalId: "tomorrowland", name: "Tomorrowland 2018", year: 2018,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2018-07-20", "Friday"], ["2018-07-21", "Saturday"], ["2018-07-22", "Sunday"], ["2018-07-27", "Friday"], ["2018-07-28", "Saturday"], ["2018-07-29", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "tomorrowland-2019": { festivalId: "tomorrowland", name: "Tomorrowland 2019", year: 2019,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2019-07-19", "Friday"], ["2019-07-20", "Saturday"], ["2019-07-21", "Sunday"], ["2019-07-26", "Friday"], ["2019-07-27", "Saturday"], ["2019-07-28", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "tomorrowland-2022": { festivalId: "tomorrowland", name: "Tomorrowland 2022", year: 2022,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2022-07-15", "Friday"], ["2022-07-16", "Saturday"], ["2022-07-17", "Sunday"], ["2022-07-22", "Friday"], ["2022-07-23", "Saturday"], ["2022-07-24", "Sunday"], ["2022-07-29", "Friday"], ["2022-07-30", "Saturday"], ["2022-07-31", "Sunday"]],
+    dayLabels: TML_THREE_WEEKEND_LABELS },
+  "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
   // Escape: no single archived source covers most years. Each day lists its
   // sources (an archived official page, or an official graphic re-hosted by
@@ -352,7 +380,9 @@ export const DROP_RULES = [
   { category: "show-segment", stage: /^kinetic ?field$/i,
     test: /^(intermezzo\b.*|kinetic (experience|celebration|bloom)\b.*|(natural|kinetic|industrial|spiritual) energy|grow|blossom|pollinate|closing)$/i,
     reason: "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance" },
-  { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|tba|to be announced|coming soon!*)$/i,
+  // Electric Forest 2013 printed contest slots before their winners were
+  // named ("Discovery Project Winner") and a "Secret Set".
+  { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|secret set|tba|to be announced|coming soon!*|discovery project winners?)$/i,
     reason: "unnamed slot: no performer was billed" },
   // A bare "Discovery Project" in a printed stage slot is the contest set
   // before its winner was named (EDC Orlando 2022, 2024). A lineup list's
@@ -408,6 +438,33 @@ export const PRINTED_NON_LATIN = {
 
 const ACTIVITY_REASON = "non-music Bonus Tracks activity";
 
+// Electric Forest's schedule printed its non-music programme in the same
+// stage columns as the sets: classes, workshops, talks, its own hoop troupe
+// and brand experiences. Billed exactly as printed; dropped like ACTIVITIES.
+export const PROGRAMME = {
+  "electric-forest-2012": ["Yoga with KK Ledford wildmoonwisdom", "Hula Hoop Workshop with Luna Breeze", "African Drum Workshop",
+    "Storytelling with Wally Wojak", "Electric Forest Hoop Troupe Showcase", "Kyle Hollingsworth's Brewru Experience"],
+  "electric-forest-2013": ["Love Bomb Yoga Flow with Mary Clare Sweet", "Magic Breath with Mary Clare Sweet", "Cosmic Con with Mary Clare Sweet",
+    "Drum Workshop w/ Kodi", "Luna Breeze's Hula Hoop Workshop", "Hoop Troupe Showcase", "Bell's presents Kyle Hollingsworth's Brewru Experience",
+    "Atmospheric Entertainment by Quixotic"],
+};
+const PROGRAMME_REASON = "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance";
+
+// Entries that print a whole curated event as one block: its title, then
+// several acts and extras ("... Beach Bash / With Music From ... and Very
+// Special Guests! / Featuring a Live Interactive Grafitti Wall"). No one act
+// is the billing, and which names played is not sourced, so the block is
+// not a set. (An event title billing one act is a billing ruling instead.)
+export const EVENT_BLOCKS = {
+  "electric-forest-2012": [
+    "Elm & Oak and Paper Diamond Present The Wagon Wheel Beach Bash / / With Music From Two Fresh Raw Russ and Very Special Guests! / / Featuring a Live Interactive Grafitti Wall",
+    "Prime Social Group Presents Unplugged at the Wagon Wheel Featuring Pierce Fulton and Special Guests With Sets By Tony Desaro, Attak & Karma and more TBA!",
+    "Movement Electric Music Festival Presents a Detroit Dance Party Featuring: / / Chuck Flask & Keith Kemp / / Ataxia / / Secrets",
+    "Wagon Wheel Closing Party Featuring / / Up Until Now / Human Agency / and THE UNSHEATHED!",
+  ],
+};
+const EVENT_BLOCK_REASON = "a curated event printed as one block (an event title with several acts and extras), not one billed performance";
+
 // Why a printed row (billing on stage) is dropped, or null if it is a set.
 // Compared case-folded and by slug, so an id segment or a re-cased billing
 // is caught too.
@@ -427,5 +484,7 @@ export function dropReason(billing, stage = "") {
   for (const r of DROP_RULES) if (r.test && (!r.stage || hits(r.stage, st)) && hits(r.test, name)) return { category: r.category, reason: r.reason };
   const k = slug(name);
   if (k && Object.values(ACTIVITIES).flat().some(a => slug(a) === k)) return { category: "activity", reason: ACTIVITY_REASON };
+  if (k && Object.values(PROGRAMME).flat().some(a => slug(a) === k)) return { category: "activity", reason: PROGRAMME_REASON };
+  if (k && Object.values(EVENT_BLOCKS).flat().some(a => slug(a) === k)) return { category: "event-block", reason: EVENT_BLOCK_REASON };
   return null;
 }

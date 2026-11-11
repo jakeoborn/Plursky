@@ -180,15 +180,256 @@ function OnbCardPreview({
     }
   }))));
 }
+var PLURSKY_APP_STORE_URL = "https://apps.apple.com/us/app/plursky-live/id6768888507";
+function onbScanAvailable() {
+  return !!(window.Capacitor?.isNativePlatform?.() && window.Capacitor?.Plugins?.PhotoScan?.scan);
+}
+function _onbCount(n, one, many) {
+  return `${n.toLocaleString()} ${n === 1 ? one : many}`;
+}
+function _onbFoundLine(sum) {
+  return [sum.photos ? _onbCount(sum.photos, "photo", "photos") : null, sum.videos ? _onbCount(sum.videos, "video", "videos") : null].filter(Boolean).join(" and ");
+}
+function OnbScanArt() {
+  return React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      display: "grid",
+      placeItems: "center"
+    }
+  }, React.createElement("div", {
+    className: "duo-well",
+    style: {
+      width: 120,
+      height: 120,
+      borderRadius: 32,
+      display: "grid",
+      placeItems: "center",
+      color: "var(--acc-ink)"
+    }
+  }, React.createElement("svg", {
+    width: "56",
+    height: "56",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.6",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M4 12 a8 8 0 1 0 2.4-5.7"
+  }), React.createElement("path", {
+    d: "M4 4 v4.5 h4.5"
+  }), React.createElement("path", {
+    d: "M12 8 v4.2 l2.8 1.8"
+  }))));
+}
+function OnbScanStep({
+  native,
+  onFound,
+  onNext
+}) {
+  var [st, setSt] = React.useState(null);
+  var stopped = React.useRef(false);
+  React.useEffect(() => () => {
+    stopped.current = true;
+  }, []);
+  var run = async () => {
+    var PS = window.Capacitor?.Plugins?.PhotoScan;
+    if (!PS?.scan || st) return;
+    setSt({
+      phase: "scanning"
+    });
+    try {
+      var access = await PS.requestAccess();
+      if (stopped.current) return;
+      var limited = access?.status === "limited";
+      if (access?.status !== "authorized" && !limited) {
+        window.plurskyToast?.("Photo access is off. You can scan any time from Memories.");
+        onNext();
+        return;
+      }
+      var res = await _pastScanFind(PS, (checked, years) => {
+        if (stopped.current) throw new Error("skipped");
+        setSt({
+          phase: "scanning",
+          checked,
+          years
+        });
+      });
+      if (stopped.current) return;
+      var sum = _pastScanSummary(res.found);
+      if (!sum.total) {
+        onNext();
+        return;
+      }
+      setSt({
+        phase: "found",
+        result: {
+          ...res,
+          limited
+        },
+        sum
+      });
+    } catch (err) {
+      if (stopped.current) return;
+      console.warn("[onboarding] past scan failed", err);
+      onNext();
+    }
+  };
+  var skip = () => {
+    stopped.current = true;
+    onNext();
+  };
+  var found = st?.phase === "found" ? st : null;
+  var scanning = st?.phase === "scanning";
+  var shown = found ? found.sum.years.slice(0, 5) : [];
+  var more = found ? found.sum.years.length - shown.length : 0;
+  return React.createElement("div", {
+    "data-onb-scan": found ? "found" : scanning ? "scanning" : "ask",
+    style: {
+      flex: 1,
+      minHeight: 0,
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, React.createElement("div", {
+    style: {
+      flex: 1,
+      minHeight: 0,
+      overflowY: "auto",
+      padding: "8px 20px 0",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      animation: "fadeIn .2s"
+    }
+  }, found ? React.createElement("div", {
+    className: "duo-card",
+    style: {
+      padding: "6px 16px"
+    }
+  }, shown.map((y, i) => React.createElement("div", {
+    key: y.id,
+    "data-onb-scan-year": y.id,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      minHeight: 52,
+      borderTop: i ? "1px solid var(--line)" : "none"
+    }
+  }, React.createElement("span", {
+    className: "duo-headline",
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, y.name), React.createElement("span", {
+    className: "duo-data-s duo-ink2"
+  }, y.count.toLocaleString()))), more > 0 && React.createElement("div", {
+    style: {
+      minHeight: 44,
+      display: "flex",
+      alignItems: "center",
+      borderTop: "1px solid var(--line)",
+      font: "400 15px/1.33 var(--f-ui)",
+      color: "var(--ink-2)"
+    }
+  }, `and ${_onbCount(more, "more festival", "more festivals")}`)) : React.createElement(OnbScanArt, null)), React.createElement("div", {
+    style: {
+      padding: "24px 20px 16px"
+    }
+  }, found ? React.createElement(React.Fragment, null, React.createElement("h1", {
+    style: {
+      margin: 0,
+      font: "800 34px/1.15 var(--f-ui)",
+      letterSpacing: "-0.03em"
+    }
+  }, found.sum.years.length > 1 ? `You were there ${found.sum.years.length} times.` : "You were there."), React.createElement("p", {
+    className: "duo-body duo-ink2",
+    style: {
+      margin: "10px 0 24px"
+    }
+  }, `Found ${_onbFoundLine(found.sum)}. Plursky files each one under its festival and set.`), React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 10
+    }
+  }, React.createElement(FieldButton, {
+    "data-onb-scan-add": true,
+    onClick: () => onFound(found.result)
+  }, "Add them to Memories"), React.createElement(FieldButton, {
+    "data-onb-scan-skip": true,
+    kind: "secondary",
+    onClick: skip
+  }, "Not now"))) : React.createElement(React.Fragment, null, React.createElement("h1", {
+    style: {
+      margin: 0,
+      font: "800 34px/1.15 var(--f-ui)",
+      letterSpacing: "-0.03em"
+    }
+  }, "Find your festival memories."), React.createElement("p", {
+    className: "duo-body duo-ink2",
+    style: {
+      margin: "10px 0 12px"
+    }
+  }, native ? "Plursky looks through your photos and videos for every festival you’ve been to since 2010, and sorts them by set." : "The Plursky iPhone app looks through your photos and videos for every festival you’ve been to since 2010, and sorts them by set."), React.createElement("p", {
+    role: scanning ? "status" : undefined,
+    style: {
+      margin: "0 0 24px",
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, scanning ? st.years ? `Checked ${st.checked} of ${st.years} festival years…` : "Looking through your library…" : native ? "Your iPhone will ask once for photo access. Only shots taken at a festival while it was on are added." : "Scanning needs the app. The web keeps your plan and lineup."), React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 10
+    }
+  }, native ? React.createElement(FieldButton, {
+    "data-onb-scan-start": true,
+    onClick: run,
+    disabled: scanning
+  }, scanning ? "Scanning…" : "Scan my photos and videos") : React.createElement("a", {
+    "data-onb-scan-app": true,
+    href: PLURSKY_APP_STORE_URL,
+    target: "_blank",
+    rel: "noopener",
+    style: {
+      width: "100%",
+      minHeight: 52,
+      padding: "0 20px",
+      boxSizing: "border-box",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      background: "var(--acc)",
+      color: "var(--on-acc)",
+      borderRadius: "var(--rad-sm)",
+      textDecoration: "none",
+      boxShadow: "0 10px 28px -12px var(--acc-55)",
+      font: "650 17px/1.3 var(--f-ui)",
+      letterSpacing: "-0.01em"
+    }
+  }, "Get the iPhone app"), React.createElement(FieldButton, {
+    "data-onb-scan-skip": true,
+    kind: "secondary",
+    onClick: skip
+  }, native ? "Skip for now" : "Continue on the web")))));
+}
 function OnboardingModal({
   onDone,
   setState,
   state
 }) {
-  var [page, setPage] = React.useState(0);
+  var native = React.useMemo(() => onbScanAvailable(), []);
+  var [page, setPage] = React.useState("scan");
   var [q, setQ] = React.useState("");
   var heads = React.useMemo(() => _onbHeadliners(3), []);
-  var finish = festId => {
+  var finish = (festId, tab = "home") => {
     try {
       localStorage.setItem("onboarded", ONBOARD_VERSION);
     } catch {}
@@ -201,10 +442,14 @@ function OnboardingModal({
     }
     setState(s => ({
       ...s,
-      tab: "home",
+      tab,
       artist: null
     }));
     onDone();
+  };
+  var addFound = result => {
+    _pastScanHandoffSet(result);
+    finish(null, "memories");
   };
   var PAGES = [{
     title: "Plan the night.",
@@ -226,8 +471,9 @@ function OnboardingModal({
     }),
     plus: "keeps the full weekend in 1080p — no watermark, cloud backup, offline maps."
   }];
-  var story = page < 3;
-  var cur = PAGES[Math.min(page, 2)];
+  var scanFirst = page === "scan";
+  var story = typeof page === "number" && page < 3;
+  var cur = PAGES[story ? page : 2];
   var term = q.trim().toLowerCase();
   var now = Date.now();
   var list = FESTIVALS_REGISTRY.filter(f => (f.config.endMs || 0) >= now).sort((a, b) => (a.config.startMs || 0) - (b.config.startMs || 0)).filter(f => !term || `${f.config.name} ${f.config.location}`.toLowerCase().includes(term));
@@ -257,7 +503,7 @@ function OnboardingModal({
     }
   }, React.createElement("span", {
     className: story ? "duo-data-s duo-ink2" : "duo-label duo-ink3"
-  }, story ? `${page + 1} / 3` : "Almost there"), story && React.createElement("button", {
+  }, scanFirst ? "Welcome" : story ? `${page + 1} / 3` : "Almost there"), story && React.createElement("button", {
     onClick: () => setPage(3),
     style: {
       ...fieldIconBtn,
@@ -267,7 +513,11 @@ function OnboardingModal({
       fontSize: 15,
       fontWeight: 500
     }
-  }, "Skip")), story ? React.createElement(React.Fragment, null, React.createElement("div", {
+  }, "Skip")), scanFirst ? React.createElement(OnbScanStep, {
+    native: native,
+    onFound: addFound,
+    onNext: () => setPage(native ? 3 : 0)
+  }) : story ? React.createElement(React.Fragment, null, React.createElement("div", {
     key: page,
     style: {
       flex: 1,
@@ -317,7 +567,7 @@ function OnboardingModal({
     style: {
       margin: "0 0 12px"
     }
-  }, "Where are you raving?"), React.createElement("input", {
+  }, "Where are you raving next?"), React.createElement("input", {
     value: q,
     onChange: e => setQ(e.target.value),
     placeholder: "Search festivals",
@@ -1539,7 +1789,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v573"
+        version: "v578"
       }));
     } catch {}
   }
@@ -1591,7 +1841,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v573"))
+      }, "Plursky · v578"))
     );
   }
 }

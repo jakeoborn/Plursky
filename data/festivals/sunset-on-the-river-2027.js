@@ -2,7 +2,7 @@
 // SUNSET ON THE RIVER 2027 — Julian B. Lane Riverfront Park · Tampa, FL
 // Feb 20–21, 2027. Sunset Events + Disco Presents. 21+.
 // ═══════════════════════════════════════════════════════════════════════
-// LINEUP-ONLY SCAFFOLD, gated (available: false). First edition under this
+// LINEUP-ONLY, OPEN (available: true, scheduleTBA: true; Jake 2026-11-11: switch on the festivals with a full lineup). Set times still TBA. First edition under this
 // name: the organisers' release calls it the "inaugural edition" of the
 // renamed Sunset Music Festival, moved from Memorial Day weekend to February.
 // No day split, stages, set times, hours or site map are published, so every
@@ -111,6 +111,6 @@
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["sunset-on-the-river-2027"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
-    registry: { available: false, scheduleTBA: true, accent: "#fb923c", emoji: "🌅", region: "North America" },
+    registry: { available: true, scheduleTBA: true, accent: "#fb923c", emoji: "🌅", region: "North America" },
   };
 })();

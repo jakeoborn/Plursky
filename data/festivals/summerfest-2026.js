@@ -685,6 +685,7 @@
 
   const CONFIG = {
     id: "summerfest-2026",
+    officialEvent: { website: "https://www.summerfest.com/", observedAt: "2026-11-11" },
     // The festival's OWN map page, linked (never embedded) by the /f/ page. The page links
     // the "2026 Summerfest Grounds Map"; link the page, never the image.
     mapSource: { url: "https://www.summerfest.com/about/", observedAt: "2026-09-24", mapYear: 2026 },

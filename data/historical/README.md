@@ -38,6 +38,47 @@ Official schedule graphics (Gov Ball, Lolla, ACL …):
     # hand-transcribe footer strips, put the printed header in <id>-dN.note
     node scripts/historical/finalize-review.mjs <edition-id> <review-dir> --reviewer "<who>"
 
+Archived Tomorrowland timetables (2017–2019, 2022, 2023, format `tml-stages`):
+
+    node scripts/historical/gather-tml.mjs <edition-id> <gather-dir> <official-url> <ts> <url> <location|heading>
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+One /en/festival/line-up/stages/<day> page prints every day of every
+weekend, each set with its printed range and its data-start/data-end (which
+must agree). Each heading pairs a stage with that day's host, in an order
+that changed: 2018 and 2019 print the host first ("Holosphere - Freedom
+Stage by Budweiser", `location`), 2022 on print the stage first ("Rose
+Garden - Rampage", `heading`); 2017 prints only the host. The importer holds
+the receipt to the reading that names the fewer stages, and the hosts go in
+the ledger. The Thursday before each weekend (The Gathering) is printed but
+is not a festival day: its sets are excluded as `offDay` rows, by date. A
+stage printed two ways (case, spacing, a leading "The") is carried onto its
+most-printed form with `stageAs`. 2017's only timetable capture is from the
+Monday between the weekends (July 24); every other year's is from the last
+day or after it. 2024 and later have no archived timetable.
+
+Archived Electric Forest artist schedules (2012, 2013, format `ef-grid`):
+
+    node scripts/historical/gather-ef.mjs <edition-id> <gather-dir> <official-url> <ts> <url>
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+The "All Days" view of set-times.php prints a tab per day ("Thursday - June
+28th", no year: the weekday must be the date's own in the edition's year),
+then one grid per day: a 15-minute axis and one column per stage, each artist
+block placed on the axis. A block's top must be its printed start and a single
+block's height its printed length, which settles am and pm across midnight;
+the page is not read if a block is off its start. A block whose height
+disagrees with its printed range is a misprint and is excluded (2013's
+Instrumental Forester), as is an entry that prints no range ("*Forest Stage
+Bar beginning at 2:30pm"). A range ending "Close" or "??" is an open end
+(`openEnd`, end blank). A "format" block holds a curated group or the Silent
+Disco channels, several sets in one block, each inside its span. Yoga,
+workshops, talks, showcases and brand experiences are dropped as `activity`
+(`PROGRAMME` in editions.mjs); 2012's Wagon Wheel event titles that name no
+act are dropped as `event-block`; the Silent Disco is dropped as operational.
+2014's archived pages print a lineup only, and 2024's schedule page has not
+been read yet.
+
 Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, format `acl-grid`):
 
     node scripts/historical/gather-acl-grid.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]

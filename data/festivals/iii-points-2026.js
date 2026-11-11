@@ -921,6 +921,7 @@
 
   const CONFIG = {
     id:        "iii-points-2026",
+    officialEvent: { website: "https://www.iiipoints.com/", observedAt: "2026-11-11" },
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
     // The official lineup-by-day graphic every act's tier comes from (Item 4).

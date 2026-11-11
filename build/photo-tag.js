@@ -2518,6 +2518,79 @@ function _scanSeenAdd(ids) {
   } catch {}
   return trimmed.length;
 }
+async function _pastScanFind(PS, onProgress) {
+  var [index, calendar] = await Promise.all([_histFetch("index.json").catch(() => null), _histFetch("scan-calendar.json").catch(() => null)]);
+  if (!index && !calendar) throw new Error("past festival lists unavailable");
+  var targets = _histScanTargets(index, null, calendar);
+  var seen = _scanSeenRead();
+  var found = [];
+  var already = 0;
+  var _loop8 = async function (t) {
+    if (onProgress && i % 10 === 0) onProgress(i, targets.length);
+    var assets = [];
+    for (var r of _scanQueryRanges(t.cfg)) {
+      var res = await PS.scan({
+        startMs: r.startMs,
+        endMs: r.endMs
+      });
+      assets.push(...(res?.assets || []));
+    }
+    var onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
+    if (!onSite.length) return 1;
+    var ds = _histDataSet(t.inLibrary ? await _histFetch(`editions/${t.entry.id}.json`) : null, t.cfg);
+    var pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
+    already += pick.already;
+    if (pick.keep.length) found.push({
+      t,
+      ds,
+      keep: pick.keep
+    });
+  };
+  for (var [i, t] of targets.entries()) {
+    if (await _loop8(t)) continue;
+  }
+  return {
+    found,
+    already,
+    years: targets.length
+  };
+}
+var _PAST_SCAN_HANDOFF_MS = 10 * 60 * 1000;
+function _pastScanHandoffSet(result) {
+  window._pastScanHandoff = result ? {
+    at: Date.now(),
+    result
+  } : null;
+  if (result) window.dispatchEvent(new Event("plursky:past-scan-handoff"));
+}
+function _pastScanHandoffTake() {
+  var h = window._pastScanHandoff;
+  window._pastScanHandoff = null;
+  return h && Date.now() - h.at < _PAST_SCAN_HANDOFF_MS ? h.result : null;
+}
+function _pastScanSummary(found) {
+  var photos = 0,
+    videos = 0;
+  var years = [];
+  for (var f of found || []) {
+    var v = f.keep.filter(a => a?.mediaType === "video").length;
+    videos += v;
+    photos += f.keep.length - v;
+    years.push({
+      id: f.t.entry.id,
+      name: f.t.entry.name,
+      year: f.t.entry.year,
+      count: f.keep.length
+    });
+  }
+  years.sort((a, b) => (b.year || 0) - (a.year || 0));
+  return {
+    photos,
+    videos,
+    total: photos + videos,
+    years
+  };
+}
 var _SCAN_DIAG_KEY = "plursky_scan_diag_v1";
 var _SCAN_DIAG_SALT_KEY = "plursky_scan_diag_salt_v1";
 var _SCAN_DIAG_MAX_EVENTS = 60;

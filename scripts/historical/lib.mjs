@@ -22,7 +22,12 @@ export const weekdayOf = iso => WEEKDAYS[new Date(iso + "T12:00:00Z").getUTCDay(
 // abbreviation, and a day may carry its ordinal suffix, but only the right one.
 const ordinal = n => n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th";
 export function datedLabel(label, year) {
-  const m = /^(\w+),?\s+(\w+)\s+(\d{1,2})(st|nd|rd|th)?$/i.exec(String(label).trim());
+  // The European order Tomorrowland prints ("Friday 19 July 2019"): the
+  // printed year must be the edition's.
+  const eu = /^(\w+)\s+(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/.exec(String(label).trim());
+  if (eu) return +eu[4] === +year ? datedLabel(`${eu[1]} ${eu[3]} ${eu[2]}`, year) : null;
+  // Electric Forest prints "Thursday - June 28th".
+  const m = /^(\w+)(?:,|\s+-)?\s+(\w+)\s+(\d{1,2})(st|nd|rd|th)?$/i.exec(String(label).trim());
   if (!m) return null;
   if (m[4] && m[4].toLowerCase() !== ordinal(+m[3])) return null;
   const word = m[2].toLowerCase();

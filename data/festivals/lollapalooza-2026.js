@@ -330,6 +330,7 @@
 
   const CONFIG = {
     id: "lollapalooza-2026",
+    officialEvent: { website: "https://www.lollapalooza.com/", observedAt: "2026-11-11" },
     // From the SOURCE note above: lollapalooza.com/schedule graphics, accessed 2026-08-28. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://lollapalooza.com/schedule", observedAt: "2026-08-28", official: true },
     name: "Lollapalooza 2026",

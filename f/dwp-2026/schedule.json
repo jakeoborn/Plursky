@@ -1,0 +1,32 @@
+{
+  "festivalId": "dwp-2026",
+  "source": null,
+  "scheduleHash": "9bca5f208cc03719",
+  "acts": [
+    {"id":"dwp-adnan-veron-x-hbrp","name":"Adnan Veron x HBRP","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-afrojack","name":"Afrojack","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-agents-of-time","name":"Agents of Time","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-alok","name":"Alok","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-angger-dimas","name":"Angger Dimas","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-artbat","name":"ARTBAT","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-axwell-b2b-sebastian-ingrosso","name":"Axwell B2B Sebastian Ingrosso","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-billy-gillies","name":"Billy Gillies","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-cosmic-gate","name":"Cosmic Gate","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-dimension","name":"Dimension","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-dimitri-vegas","name":"Dimitri Vegas","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-eli-and-fur","name":"Eli & Fur","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-ely-oaks","name":"Ely Oaks","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-gil-glaze","name":"Gil Glaze","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-halo","name":"HALO","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-ian-asher","name":"Ian Asher","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-josiah","name":"Josiah","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-lilly-palmer","name":"Lilly Palmer","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-maddix","name":"Maddix","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-marlo","name":"Marlo","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-r3hab","name":"R3hab","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-syber","name":"Syber","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-tye-turner","name":"Tye Turner","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-w-w","name":"W.w","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-whisnu-santika","name":"Whisnu Santika","day":1,"stage":null,"start":"","end":""}
+  ]
+}
