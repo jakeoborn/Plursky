@@ -19377,22 +19377,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q135431515",
     "url": "./artist-photos/gelli-haha.webp"
   },
-  "girlfriend": {
-    "artist": "Girlfriend",
-    "author": "K-POPIT 케이팝잇",
-    "source": "commons",
-    "license": "CC-BY-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:GFriend_at_Incheon_International_Airport,_January_2025.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T11:20:51.725Z",
-    "allowExport": false,
-    "asset": "artist-photos/girlfriend.webp",
-    "sha256": "ad0cb45837b8584b185b0287a93ee3e27a4c60455e887b51bb0de10df7381ecf",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q18733030",
-    "url": "./artist-photos/girlfriend.webp"
-  },
   "idriss-d": {
     "artist": "Idriss D",
     "author": "Idrissdib",
@@ -19424,22 +19408,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q24075128",
     "url": "./artist-photos/injury-reserve.webp"
-  },
-  "james-kennedy": {
-    "artist": "James Kennedy",
-    "author": "KonicRecords",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:James_Kennedy_musician.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T11:21:11.314Z",
-    "allowExport": false,
-    "asset": "artist-photos/james-kennedy.webp",
-    "sha256": "bd7ab58b8448f02e63ab13c9188d76c42e7aa266275b1c78954105c46751709c",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q117816451",
-    "url": "./artist-photos/james-kennedy.webp"
   },
   "japanese-breakfast": {
     "artist": "Japanese Breakfast",
@@ -19616,22 +19584,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q55633386",
     "url": "./artist-photos/sodown.webp"
-  },
-  "steven-spence": {
-    "artist": "STEVEN SPENCE",
-    "author": "Theupsidedown",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Steven_Spence.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T11:22:29.277Z",
-    "allowExport": false,
-    "asset": "artist-photos/steven-spence.webp",
-    "sha256": "84533d1d7a956c78516bdf44b95b10ac32e99099f1dd63e3c16cce9b7ca94e55",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q20685637",
-    "url": "./artist-photos/steven-spence.webp"
   },
   "sunday-1994": {
     "artist": "Sunday (1994)",

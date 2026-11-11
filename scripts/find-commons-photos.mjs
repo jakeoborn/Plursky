@@ -239,10 +239,11 @@ async function recheck(args) {
     const j = await api(WD, { action: 'wbgetentities', ids: ids.slice(i, i + 50).join('|'), props: 'labels|aliases|claims|descriptions', languages: 'en' });
     for (const [id, e] of Object.entries(j.entities || {})) ents.set(id, e);
   }
-  const dropped = [], hold = loadHold();
+  const dropped = [], kept = [], hold = loadHold();
   for (const r of pipeline) {
     const e = ents.get(r.wikidata);
     if (!e || e.missing === '') continue;   // not fetched: leave it, report nothing
+    kept.push({ artist: r.artist, wikidata: r.wikidata, description: describe(e) });
     const reason = hold.has(r.wikidata) ? 'held' : !namesBilling(r.artist, e) ? 'no-item' : !isMusicAct(e) ? 'no-music-item' : null;
     if (reason) dropped.push({ artist: r.artist, wikidata: r.wikidata, reason, asset: r.asset, description: describe(e) });
   }
@@ -252,7 +253,9 @@ async function recheck(args) {
     for (const a of gone) { try { unlinkSync(join(ROOT, a)); } catch {} }
   }
   const report = { ranAt: new Date().toISOString(), scope: 'recheck', checked: pipeline.length, dropped: dropped.length,
-    byReason: dropped.reduce((m, d) => (m[d.reason] = (m[d.reason] || 0) + 1, m), {}), rows: dropped };
+    byReason: dropped.reduce((m, d) => (m[d.reason] = (m[d.reason] || 0) + 1, m), {}), rows: dropped,
+    // Every row's item description, so a person can look the faces over.
+    kept: kept.filter(k => !dropped.some(d => d.wikidata === k.wikidata && d.artist === k.artist)) };
   if (args.report) { mkdirSync(dirname(join(ROOT, args.report)), { recursive: true }); writeFileSync(join(ROOT, args.report), JSON.stringify(report, null, 1) + '\n'); }
   console.log(`[commons] recheck: ${report.checked} pipeline rows, dropped ${report.dropped} ${JSON.stringify(report.byReason)}`);
 }

@@ -18163,21 +18163,6 @@
     "wikidata": "Q135431515"
   },
   {
-    "artist": "Girlfriend",
-    "author": "K-POPIT 케이팝잇",
-    "source": "commons",
-    "license": "CC-BY-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:GFriend_at_Incheon_International_Airport,_January_2025.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T11:20:51.725Z",
-    "allowExport": false,
-    "asset": "artist-photos/girlfriend.webp",
-    "sha256": "ad0cb45837b8584b185b0287a93ee3e27a4c60455e887b51bb0de10df7381ecf",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q18733030"
-  },
-  {
     "artist": "Idriss D",
     "author": "Idrissdib",
     "source": "commons",
@@ -18206,21 +18191,6 @@
     "sha256": "fc2e6fe0d665bfccfe4d93ef1f8512e06fd5f16582190e9154ab00943110d410",
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q24075128"
-  },
-  {
-    "artist": "James Kennedy",
-    "author": "KonicRecords",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:James_Kennedy_musician.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T11:21:11.314Z",
-    "allowExport": false,
-    "asset": "artist-photos/james-kennedy.webp",
-    "sha256": "bd7ab58b8448f02e63ab13c9188d76c42e7aa266275b1c78954105c46751709c",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q117816451"
   },
   {
     "artist": "Japanese Breakfast",
@@ -18386,21 +18356,6 @@
     "sha256": "838b6f2d02994c28dffe661980d2a0fe6a7fffe0c50bc2d3c135b40241daae7f",
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q55633386"
-  },
-  {
-    "artist": "STEVEN SPENCE",
-    "author": "Theupsidedown",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Steven_Spence.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T11:22:29.277Z",
-    "allowExport": false,
-    "asset": "artist-photos/steven-spence.webp",
-    "sha256": "84533d1d7a956c78516bdf44b95b10ac32e99099f1dd63e3c16cce9b7ca94e55",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q20685637"
   },
   {
     "artist": "Sunday (1994)",
