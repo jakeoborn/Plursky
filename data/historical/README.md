@@ -79,6 +79,27 @@ act are dropped as `event-block`; the Silent Disco is dropped as operational.
 2014's archived pages print a lineup only, and 2024's schedule page has not
 been read yet.
 
+Archived Coachella lineup pages (2014, 2015, 2016, format `coachella-cards`):
+
+    node scripts/historical/gather-coachella.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> ...]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+coachella.com/lineup/ prints one card per act, and each card lists that act's
+sets: the date with its year ("Friday, April 15, 2016": the year must be the
+edition's and the weekday the date's own), the start and the stage. It prints
+no end times, so every set is open-ended (`openEnd`, end blank; the app says
+"no end time printed"). 2016's page lists both weekends; 2014's and 2015's
+list one weekend per view (`?weekend=1`, `?weekend=2`), so those editions
+cite two captures, one per weekend, and each day must be printed by exactly
+one of them. The `data-weekend` attribute is not read (2016 marks both
+weekends "1"); the printed date decides the day. An entry printed without its
+time ("Saturday, April 19, 2014 | Gobi") or its stage is excluded as
+incomplete, with what it prints kept in the sheet; a card with no set (a host)
+is kept in the ledger as unscheduled, never as a set. 2017's page is a
+different design (its sets sit in the page's script data, and some carry end
+times) and has its own Set Times page, not read yet. 2014's Weekend 1 view
+lists no Do Lab sets; nothing is added for them.
+
 Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, format `acl-grid`):
 
     node scripts/historical/gather-acl-grid.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]

@@ -1888,6 +1888,46 @@
    ],
    "why": "The printing names a contest and its winner: the winner is the performer; the contest is not an act.",
    "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "J.E.S.+S. (Jackmaster, Eats Everything, Skream & Seth Troxler)",
+   "performers": [
+    {
+     "name": "J.E.S.+S.",
+     "role": "project",
+     "parents": [
+      "Jackmaster",
+      "Eats Everything",
+      "Skream",
+      "Seth Troxler"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as any of them billed alone.",
+   "source": "https://www.coachella.com/lineup/"
+  },
+  {
+   "printed": "Nortec Collective Presents: Bostich + Fussible",
+   "performers": [
+    {
+     "name": "Bostich + Fussible",
+     "role": "performer"
+    }
+   ],
+   "why": "\"Nortec Collective Presents:\" is the banner the set is billed under, not a separate act on stage: the billing counts on Bostich + Fussible, kept whole as printed (never split on \"+\").",
+   "source": "https://www.coachella.com/lineup/"
+  },
+  {
+   "printed": "Doc Martin feat. Sublevel Live",
+   "performers": [
+    {
+     "name": "Doc Martin",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Sublevel Live",
+   "why": "Sublevel is Doc Martin's own party and label, not a person: \"Sublevel Live\" names the set, it is the set tag, and the billing counts on Doc Martin.",
+   "source": "https://www.coachella.com/lineup/"
   }
  ],
  "pending": [
@@ -2273,6 +2313,22 @@
   },
   {
    "key": "a-m-c",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "nas",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "uz",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "zoe",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "rac",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]
