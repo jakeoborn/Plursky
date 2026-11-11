@@ -1,0 +1,550 @@
+{
+  "id": "tomorrowland-2019",
+  "method": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-07-19",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "archivedUrl": "https://web.archive.org/web/20190820010037/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "captureTimestamp": "20190820010037",
+          "printed": "Friday 19 July 2019",
+          "sha256": "bb46d4e6b640a2b045c9e258ce4de5cb97ec2a03badc2b1cdab4c13ee654d28f",
+          "bytes": 1274898,
+          "rows": 142,
+          "format": "tml-stages",
+          "stages": 17,
+          "hosts": {
+            "Freedom Stage by Budweiser": "Eric Prydz presents Holosphere",
+            "Casa Corona": "We Play House",
+            "Rose Garden": "Monstercat",
+            "Q-Dance": "Q-Dance Invites: Into The Wild",
+            "Harbour House": "Radio Ultra Modern",
+            "Rave Cave": "Krankenhaus",
+            "Cage": "Kozzmozz",
+            "L'Orangerie": "Sexy By Nature",
+            "Kara Savi": "Cafeina",
+            "Leaf by JBL": "Lost & Found",
+            "Youphoria": "Anjunabeats",
+            "Atmosphere": "Fuse & Dave Clarke Present",
+            "Core": "Crosstownrebels Present Get Lost",
+            "Garden of Madness": "Diynamic",
+            "Lotus": "STMPD RCRDS"
+          },
+          "emptySlots": 1,
+          "stagesAs": {
+            "The Rose Garden": "Rose Garden",
+            "The Rave Cave": "Rave Cave",
+            "Garden of madness": "Garden of Madness"
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2019-07-20",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "archivedUrl": "https://web.archive.org/web/20190820010037/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "captureTimestamp": "20190820010037",
+          "printed": "Saturday 20 July 2019",
+          "sha256": "bb46d4e6b640a2b045c9e258ce4de5cb97ec2a03badc2b1cdab4c13ee654d28f",
+          "bytes": 1274898,
+          "rows": 149,
+          "format": "tml-stages",
+          "stages": 17,
+          "hosts": {
+            "Freedom Stage by Budweiser": "Shine",
+            "Casa Corona": "Contrair",
+            "Rose Garden": "Bonzai",
+            "Harbour House": "Radio Ultra Modern",
+            "Rave Cave": "Woody Weekend",
+            "Cage": "Glitterbox",
+            "L'Orangerie": "Nina Kraviz",
+            "Kara Savi": "I Love The 90s",
+            "Leaf by JBL": "KETALOCO",
+            "Youphoria": "GV & Friends",
+            "Atmosphere": "Afterlife",
+            "Core": "Dirtybird",
+            "Garden of Madness": "Netsky & Friends",
+            "Lotus": "Lost Frequencies & Friends"
+          },
+          "emptySlots": 1,
+          "stagesAs": {
+            "The Rose Garden": "Rose Garden",
+            "The Rave Cave": "Rave Cave",
+            "Garden of madness": "Garden of Madness"
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2019-07-21",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "archivedUrl": "https://web.archive.org/web/20190820010037/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "captureTimestamp": "20190820010037",
+          "printed": "Sunday 21 July 2019",
+          "sha256": "bb46d4e6b640a2b045c9e258ce4de5cb97ec2a03badc2b1cdab4c13ee654d28f",
+          "bytes": 1274898,
+          "rows": 149,
+          "format": "tml-stages",
+          "stages": 17,
+          "hosts": {
+            "Freedom Stage by Budweiser": "Martin Solveig & Friends",
+            "Casa Corona": "So You Think You Can Funk",
+            "Rose Garden": "Masquerade",
+            "Q-Dance": "Q-Dance Presents: Sunday Funday",
+            "Harbour House": "Radio Ultra Modern",
+            "Rave Cave": "GOOSE DJ's & FRIENDS",
+            "Cage": "Footworxx",
+            "L'Orangerie": "Rampage",
+            "Kara Savi": "Alteza",
+            "Leaf by JBL": "Café Mambo Ibiza",
+            "Youphoria": "Nervonation",
+            "Atmosphere": "KNTXT",
+            "Core": "Cocoon",
+            "Garden of Madness": "Ants",
+            "Lotus": "Smash The House"
+          },
+          "emptySlots": 1,
+          "stagesAs": {
+            "The Rose Garden": "Rose Garden",
+            "The Rave Cave": "Rave Cave",
+            "Garden of madness": "Garden of Madness"
+          }
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2019-07-26",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "archivedUrl": "https://web.archive.org/web/20190820010037/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "captureTimestamp": "20190820010037",
+          "printed": "Friday 26 July 2019",
+          "sha256": "bb46d4e6b640a2b045c9e258ce4de5cb97ec2a03badc2b1cdab4c13ee654d28f",
+          "bytes": 1274898,
+          "rows": 152,
+          "format": "tml-stages",
+          "stages": 17,
+          "hosts": {
+            "Freedom Stage by Budweiser": "Eric Prydz presents Holosphere",
+            "Casa Corona": "Sirkus",
+            "Rose Garden": "Generation Smash",
+            "Q-Dance": "Q-Dance Invites: Get Wack!",
+            "Harbour House": "Radio Ultra Modern",
+            "Rave Cave": "Winterclubbing",
+            "Cage": "Onraad",
+            "L'Orangerie": "Heldeep",
+            "Kara Savi": "Shaqs Fun House",
+            "Leaf by JBL": "Do Not Sit On The Furniture",
+            "Youphoria": "Paradise",
+            "Atmosphere": "Carl Cox invites Space Ibiza",
+            "Core": "Nico Morano & Friends",
+            "Garden of Madness": "V Sessions vs Freak show",
+            "Lotus": "Hexagon"
+          },
+          "emptySlots": 1,
+          "stagesAs": {
+            "The Rose Garden": "Rose Garden",
+            "The Rave Cave": "Rave Cave",
+            "Garden of madness": "Garden of Madness"
+          }
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2019-07-27",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "archivedUrl": "https://web.archive.org/web/20190820010037/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "captureTimestamp": "20190820010037",
+          "printed": "Saturday 27 July 2019",
+          "sha256": "bb46d4e6b640a2b045c9e258ce4de5cb97ec2a03badc2b1cdab4c13ee654d28f",
+          "bytes": 1274898,
+          "rows": 148,
+          "format": "tml-stages",
+          "stages": 17,
+          "hosts": {
+            "Freedom Stage by Budweiser": "Axtone",
+            "Casa Corona": "Floorfiller",
+            "Rose Garden": "Bonzai",
+            "Harbour House": "Radio Ultra Modern",
+            "Rave Cave": "Crystal",
+            "Cage": "Star Warz presents Critical Music",
+            "L'Orangerie": "Psygathering",
+            "Kara Savi": "Future Sound Of Egypt",
+            "Leaf by JBL": "FLOW",
+            "Youphoria": "GV & Friends",
+            "Atmosphere": "Afterlife",
+            "Core": "Spectrum",
+            "Garden of Madness": "Diynamic",
+            "Lotus": "Oscar and The Wolf Presents Infinity"
+          },
+          "emptySlots": 1,
+          "stagesAs": {
+            "The Rose Garden": "Rose Garden",
+            "The Rave Cave": "Rave Cave",
+            "Garden of madness": "Garden of Madness"
+          }
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2019-07-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "archivedUrl": "https://web.archive.org/web/20190820010037/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+          "captureTimestamp": "20190820010037",
+          "printed": "Sunday 28 July 2019",
+          "sha256": "bb46d4e6b640a2b045c9e258ce4de5cb97ec2a03badc2b1cdab4c13ee654d28f",
+          "bytes": 1274898,
+          "rows": 148,
+          "format": "tml-stages",
+          "stages": 17,
+          "hosts": {
+            "Freedom Stage by Budweiser": "A State of Trance",
+            "Casa Corona": "Shomi",
+            "Rose Garden": "Robin Schulz & Friends",
+            "Q-Dance": "Q-Dance Presents: Sunday Funday",
+            "Harbour House": "Radio Ultra Modern",
+            "Rave Cave": "Coincidence",
+            "Cage": "Footworxx",
+            "L'Orangerie": "Age Of Love",
+            "Kara Savi": "Potion",
+            "Leaf by JBL": "Cycle Four",
+            "Youphoria": "Barong Family",
+            "Atmosphere": "Drumcode",
+            "Core": "ELLUM",
+            "Garden of Madness": "Ants",
+            "Lotus": "Smash The House"
+          },
+          "emptySlots": 1,
+          "stagesAs": {
+            "The Rose Garden": "Rose Garden",
+            "The Rave Cave": "Rave Cave",
+            "Garden of madness": "Garden of Madness"
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "Dzeager",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "Fabio Marcs",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "15:00",
+      "end": "15:45",
+      "billing": "JackJazz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "15:45",
+      "end": "16:30",
+      "billing": "Hermanos",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "16:30",
+      "end": "17:15",
+      "billing": "Prinz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "17:15",
+      "end": "18:00",
+      "billing": "Flashback Force",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "18:00",
+      "end": "18:45",
+      "billing": "Mademoiselle Luna",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "18:45",
+      "end": "19:30",
+      "billing": "Maori",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "19:30",
+      "end": "20:15",
+      "billing": "Hiddn",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "20:15",
+      "end": "21:15",
+      "billing": "Double Pleasure",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "21:15",
+      "end": "22:00",
+      "billing": "Romeo Blanco",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "22:00",
+      "end": "22:45",
+      "billing": "Henri PFR",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "22:45",
+      "end": "23:30",
+      "billing": "Regi vs Yves V",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "23:30",
+      "end": "00:15",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-18",
+      "stage": "The Gathering",
+      "start": "00:15",
+      "end": "01:00",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "Shiver",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "Odssey",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "15:00",
+      "end": "15:45",
+      "billing": "Jeroen Delodder",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "15:45",
+      "end": "16:30",
+      "billing": "Prinz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "16:30",
+      "end": "17:15",
+      "billing": "Michael Amani",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "17:15",
+      "end": "18:00",
+      "billing": "Curtis Alto",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "18:00",
+      "end": "18:45",
+      "billing": "Mystique b2b Makasi",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "18:45",
+      "end": "19:30",
+      "billing": "Dj Licious",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "19:30",
+      "end": "20:30",
+      "billing": "Yves Deruyter",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "20:30",
+      "end": "21:15",
+      "billing": "MANDY",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "21:15",
+      "end": "22:00",
+      "billing": "Robert Falcon",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "22:00",
+      "end": "22:45",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "22:45",
+      "end": "23:30",
+      "billing": "Regi vs Yves V",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "23:30",
+      "end": "00:15",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2019-07-25",
+      "stage": "The Gathering",
+      "start": "00:15",
+      "end": "01:00",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    }
+  ],
+  "offDays": [
+    {
+      "date": "2019-07-18",
+      "printed": "Thursday 18 July 2019",
+      "archivedUrl": "https://web.archive.org/web/20190820010037/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+      "captureTimestamp": "20190820010037",
+      "sets": 15
+    },
+    {
+      "date": "2019-07-25",
+      "printed": "Thursday 25 July 2019",
+      "archivedUrl": "https://web.archive.org/web/20190820010037/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2019",
+      "captureTimestamp": "20190820010037",
+      "sets": 15
+    }
+  ],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "Atmosphere",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

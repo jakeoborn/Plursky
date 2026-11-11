@@ -150,11 +150,18 @@ try {
     const t = await page.evaluate(() => ({
       pill: document.querySelector("[data-artist-day-pill]")?.textContent || null,
       card: document.querySelector("[data-artist-set-card]")?.innerText || null,
-      body: document.body.innerText,
+      // Other festivals' published times (ACL and Lollapalooza Kiddie stages in
+      // "Career in our records") are real; only Summerfest 2026's disputed
+      // times must never surface.
+      // Each career row and claim names its billings; text naming none of
+      // Summerfest 2026's is another festival's and is left out.
+      body: [...document.querySelectorAll("[data-career-billing], [data-billings]")]
+        .filter(r => !String(r.dataset.careerBilling || r.dataset.billings).split(/\s+/).some(id => id.startsWith("summerfest-2026")))
+        .reduce((t, r) => t.replace(r.innerText || "", ""), document.body.innerText),
     }));
     check(t.pill === `DAY 4 · ${COPY}`, `L. artist: the day pill reads "DAY 4 · ${COPY}" (got ${JSON.stringify(t.pill)})`);
     check(t.card && t.card.includes(COPY) && !LEGACY.test(t.card) && !/→/.test(t.card), "L. artist: the set card says the words, no time and no range");
-    check(!LEGACY.test(t.body), "L. artist: no legacy time anywhere on the page");
+    { const m = LEGACY.exec(t.body); check(!m, `L. artist: no legacy time anywhere on the page${m ? ` (found "${t.body.slice(Math.max(0, m.index - 80), m.index + 40).replace(/\s+/g, " ")}")` : ""}`); }
     await bctx.close();
   }
 
