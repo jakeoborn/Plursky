@@ -2880,6 +2880,18 @@ function stageFixGate(anchors, fix, atMs, rules) {
   return { ...out, status: "trusted", stageId: d[0].stageId };
 }
 
+// A moment's capture accuracy (metres, the ~68% radius) as recorded, or null
+// when none was. Never defaulted: a missing value stays unknown. Every surface
+// that draws a photo's fix (the Memories lens, the real map) asks these two,
+// so the precise/coarse line is the tagger's own maxAccM, in one place.
+function photoFixAccM(m) {
+  const a = m && m.gpsAccM;
+  return typeof a === "number" && Number.isFinite(a) && a > 0 ? a : null;
+}
+function photoFixAccClass(acc) {
+  if (acc == null) return "unknown";
+  return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";
+}
 // Only measured stage positions (osm / crowd) may fire automatic attendance.
 // A poster read, a provisional pin or a derived point is a guess about where
 // a stage is, and a guess must not mark a set (founder, 2026-10-20).
