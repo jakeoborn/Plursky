@@ -159,7 +159,7 @@ try {
     }));
     check(t.pill === `DAY 4 · ${COPY}`, `L. artist: the day pill reads "DAY 4 · ${COPY}" (got ${JSON.stringify(t.pill)})`);
     check(t.card && t.card.includes(COPY) && !LEGACY.test(t.card) && !/→/.test(t.card), "L. artist: the set card says the words, no time and no range");
-    check(!LEGACY.test(t.body), "L. artist: no legacy time anywhere on the page");
+    { const m = LEGACY.exec(t.body); check(!m, `L. artist: no legacy time anywhere on the page${m ? ` (found "${t.body.slice(Math.max(0, m.index - 80), m.index + 40).replace(/\s+/g, " ")}")` : ""}`); }
     await bctx.close();
   }
 
