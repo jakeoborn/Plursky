@@ -10015,11 +10015,18 @@ function MemoriesScreen({
       setPastScan({
         phase: "scanning"
       });
-      var targets = _histScanTargets(await _histFetch("index.json"));
+      var [index, calendar] = await Promise.all([_histFetch("index.json").catch(() => null), _histFetch("scan-calendar.json").catch(() => null)]);
+      if (!index && !calendar) throw new Error("past festival lists unavailable");
+      var targets = _histScanTargets(index, null, calendar);
       var seen = _scanSeenRead();
       var found = [];
       var already = 0;
       var _loop8 = async function (t) {
+        if (i % 10 === 0) setPastScan({
+          phase: "scanning",
+          checked: i,
+          years: targets.length
+        });
         var assets = [];
         for (var r of _scanQueryRanges(t.cfg)) {
           var res = await PS.scan({
@@ -10030,7 +10037,7 @@ function MemoriesScreen({
         }
         var onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
         if (!onSite.length) return 1;
-        var ds = _histDataSet(await _histFetch(`editions/${t.entry.id}.json`), t.cfg);
+        var ds = _histDataSet(t.inLibrary ? await _histFetch(`editions/${t.entry.id}.json`) : null, t.cfg);
         var pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
         already += pick.already;
         if (pick.keep.length) found.push({
@@ -10039,7 +10046,7 @@ function MemoriesScreen({
           keep: pick.keep
         });
       };
-      for (var t of targets) {
+      for (var [i, t] of targets.entries()) {
         if (await _loop8(t)) continue;
       }
       var total = found.reduce((n, f) => n + f.keep.length, 0);
@@ -10118,7 +10125,8 @@ function MemoriesScreen({
     var alreadyNote = st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : "";
     if (st.phase === "access" || st.phase === "scanning") return {
       busy: true,
-      title: "Looking for photos from past festivals…"
+      title: "Looking for photos from past festivals…",
+      body: st.years ? `Checked ${st.checked} of ${st.years} festival years since 2010.` : null
     };
     if (st.phase === "importing") return {
       busy: true,
@@ -10137,7 +10145,7 @@ function MemoriesScreen({
     };
     if (st.phase === "none") return {
       title: "No new photos from past festivals",
-      body: [alreadyNote || "Nothing in your library was taken on a past festival’s grounds during its set times.", limitedNote].filter(Boolean).join(" ")
+      body: [alreadyNote || "Nothing in your library was taken on a past festival’s grounds while it was on.", limitedNote].filter(Boolean).join(" ")
     };
     if (st.phase === "done") return {
       title: `Imported ${st.imported} from past festivals`,

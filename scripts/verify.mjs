@@ -3627,6 +3627,17 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
     fail(`coverage census failed${detail ? ` — ${detail}` : ""}`);
   }
 }
+{
+  console.log("▸ Scan calendar — every festival year since 2010 the past-photo scan looks for: dated, located, never a canceled year");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-scan-calendar.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 60000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`scan calendar failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
 // Memory index + handoff format: fixture self-tests only. The live --check
 // reads a home-dir memory store and GitHub, so it runs locally at close-out,
 // never in CI.

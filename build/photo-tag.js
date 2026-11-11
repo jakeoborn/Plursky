@@ -2324,15 +2324,36 @@ function _histEditionConfig(entry, family) {
     year: entry.year
   };
 }
-function _histScanTargets(index, setsIn) {
-  return (index && index.editions || []).filter(e => e && e.status !== "canceled").map(e => {
-    var fam = _histFamilyConfig(e.festivalId, setsIn);
-    var cfg = fam ? _histEditionConfig(e, fam) : null;
-    return cfg ? {
-      entry: e,
-      cfg
-    } : null;
-  }).filter(Boolean).sort((a, b) => a.entry.year - b.entry.year || String(a.entry.id).localeCompare(String(b.entry.id)));
+function _histScanTargets(index, setsIn, calendar, nowMs) {
+  var now = typeof nowMs === "number" ? nowMs : Date.now();
+  var lib = new Map();
+  for (var e of index && index.editions || []) if (e && e.id && e.status !== "canceled") lib.set(e.id, e);
+  var out = new Map();
+  for (var c of calendar && calendar.editions || []) {
+    if (!c || !c.id || out.has(c.id) || !c.gps) continue;
+    var libEntry = lib.get(c.id) || null;
+    var cfg = _histEditionConfig(libEntry || c, {
+      gps: c.gps
+    });
+    if (!cfg) continue;
+    cfg.venue = c.venue || null;
+    out.set(c.id, {
+      entry: libEntry || c,
+      cfg,
+      inLibrary: !!libEntry
+    });
+  }
+  for (var _e of lib.values()) {
+    if (out.has(_e.id)) continue;
+    var fam = _histFamilyConfig(_e.festivalId, setsIn);
+    var _cfg = fam ? _histEditionConfig(_e, fam) : null;
+    if (_cfg) out.set(_e.id, {
+      entry: _e,
+      cfg: _cfg,
+      inLibrary: true
+    });
+  }
+  return [...out.values()].filter(t => Object.values(t.cfg.dayDates).some(d => d.midnightUtc <= now)).sort((a, b) => a.entry.year - b.entry.year || String(a.entry.id).localeCompare(String(b.entry.id)));
 }
 function _histAssetOnSite(asset, cfg) {
   var g = cfg?.gps;
@@ -2384,6 +2405,17 @@ function _histEditionMoments(editionId) {
     if (m && m.festivalId === editionId) out.push(m);
   }
   return out.sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")));
+}
+function _histMomentEditionIds() {
+  var all = {};
+  try {
+    all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {};
+  } catch {}
+  var ids = new Set();
+  for (var night of Object.keys(all)) for (var m of Array.isArray(all[night]) ? all[night] : []) {
+    if (m && m.festivalStampSource === "past-edition" && /^[a-z0-9-]+-\d{4}$/.test(m.festivalId || "")) ids.add(m.festivalId);
+  }
+  return ids;
 }
 function _histDataSet(edition, cfg) {
   return {

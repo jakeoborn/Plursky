@@ -185,6 +185,21 @@ function _HistLibrary({ state, setState }) {
   const [res, retry] = useHistorical("index.json");
   const editions = res.status === "ready" ? _histListedEditions(res.data) : [];
   const years = [...new Set(editions.map(e => e.year))].sort((a, b) => b - a);
+  // Years the photo scan filed photos under whose lineup is not in the
+  // library yet (EDC Las Vegas 2019, Das Energi): listed so those photos have
+  // a home. The calendar is only fetched when there is such a year.
+  const photoYears = React.useMemo(() => [..._histMomentEditionIds()], []);
+  const listed = new Set(editions.map(e => e.id));
+  const needCal = res.status === "ready" && photoYears.some(id => !listed.has(id));
+  const [cal, setCal] = React.useState(null);
+  React.useEffect(() => {
+    if (!needCal) return;
+    let live = true;
+    _histFetch("scan-calendar.json").then(d => { if (live) setCal(d); }).catch(() => {});
+    return () => { live = false; };
+  }, [needCal]);
+  const photoOnly = ((cal && cal.editions) || []).filter(e => photoYears.includes(e.id) && !listed.has(e.id))
+    .sort((a, b) => b.year - a.year || a.festivalName.localeCompare(b.festivalName));
   return (
     <Screen>
       <_HistHeader title="Past festivals" sub="Official schedules · archived" onBack={() => _histBack(state, setState)} />
@@ -193,6 +208,24 @@ function _HistLibrary({ state, setState }) {
           Every lineup and set time as each festival printed it. Read-only; nothing here changes your plan.
         </p>
         {res.status !== "ready" && <_HistStatus res={res} retry={retry} what="past festivals" />}
+        {photoOnly.length > 0 && (
+          <section data-photo-only-years style={{ marginTop: 16 }}>
+            <h2 className="duo-sect" style={{ margin: "0 0 4px" }}>Your photos from other years</h2>
+            {photoOnly.map(e => (
+              <button key={e.id} onClick={() => setState(s => ({ ...s, pastEdition: e.id }))} style={{
+                width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 64, padding: "10px 0",
+                background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
+                color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer",
+              }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div className="duo-headline">{e.name}</div>
+                  <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{_histDateRange(e.days)} · lineup not added yet</div>
+                </div>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 L15 12 L9 18"/></svg>
+              </button>
+            ))}
+          </section>
+        )}
         {years.map(y => (
           <section key={y} style={{ marginTop: 16 }}>
             <h2 className="duo-sect" style={{ margin: "0 0 4px" }}>{y}</h2>
@@ -327,8 +360,42 @@ function HistoricalEditionView({ state, setState }) {
   const meta = idx.status === "ready" ? _histListedEditions(idx.data).find(e => e.id === state.pastEdition) : null;
   const back = () => _histBack(state, setState);
   if (idx.status !== "ready") return <Screen><_HistHeader title="Past festivals" onBack={back} /><_HistStatus res={idx} retry={retryIdx} what="past festivals" /></Screen>;
-  if (!meta) return <Screen><_HistHeader title="Past festivals" onBack={back} /><p style={{ margin: "24px 20px", color: "var(--text-2)" }}>That edition isn't in the library.</p></Screen>;
+  if (!meta) return <_HistCalendarYear id={state.pastEdition} back={back} />;
   return <_HistEdition meta={meta} back={back} />;
+}
+
+// A festival year the photo scan knows (data/historical/scan-calendar.json:
+// its dates and venue) but whose lineup is not in the library yet. It shows
+// the photos filed under it; once the lineup is added under the same id
+// ("das-energi-2019"), the full edition page replaces this one and the same
+// photos show there.
+function _HistCalendarYear({ id, back }) {
+  const [cal, retry] = useHistorical("scan-calendar.json");
+  const entry = cal.status === "ready" ? ((cal.data && cal.data.editions) || []).find(e => e.id === id) : null;
+  if (cal.status !== "ready") return <Screen><_HistHeader title="Past festivals" onBack={back} /><_HistStatus res={cal} retry={retry} what="past festivals" /></Screen>;
+  if (!entry) return <Screen><_HistHeader title="Past festivals" onBack={back} /><p style={{ margin: "24px 20px", color: "var(--text-2)" }}>That edition isn't in the library.</p></Screen>;
+  const hasPhotos = _histMomentEditionIds().has(entry.id);
+  return (
+    <Screen>
+      <_HistHeader title={entry.festivalName} sub={String(entry.year)} onBack={back} />
+      <ScrollBody style={{ padding: "8px 20px 94px" }}>
+        <div data-calendar-year={entry.id} style={{ display: "grid", gap: 8 }}>
+          <p data-edition-status style={{ margin: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+            <span style={{ fontWeight: 600, color: "var(--ink)" }}>Past edition</span> · {_histDateRange(entry.days)}{entry.venue ? ` · ${entry.venue}` : ""}
+          </p>
+          <_HistYourPhotos editionId={entry.id} artistName={() => null} />
+          {!hasPhotos && (
+            <p style={{ margin: 0, fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>
+              No photos from this year yet. Scan past festivals in Memories to look for them.
+            </p>
+          )}
+          <p data-calendar-year-note style={{ margin: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)", maxWidth: "60ch" }}>
+            This year's lineup isn't in Plursky yet. Your photos stay filed under {entry.name} and will sit beside its lineup once it's added.
+          </p>
+        </div>
+      </ScrollBody>
+    </Screen>
+  );
 }
 
 function _HistEdition({ meta, back }) {

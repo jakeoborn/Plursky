@@ -6877,11 +6877,19 @@ function MemoriesScreen({ state, setState }) {
       const limited = access?.status === "limited";
       if (access?.status !== "authorized" && !limited) { setPastScan({ phase: "denied" }); return; }
       setPastScan({ phase: "scanning" });
-      const targets = _histScanTargets(await _histFetch("index.json"));
+      // The library index and the festival-year calendar; either alone still
+      // scans what it knows, and neither means there is nothing to look for.
+      const [index, calendar] = await Promise.all([
+        _histFetch("index.json").catch(() => null),
+        _histFetch("scan-calendar.json").catch(() => null),
+      ]);
+      if (!index && !calendar) throw new Error("past festival lists unavailable");
+      const targets = _histScanTargets(index, null, calendar);
       const seen = _scanSeenRead();
       const found = [];
       let already = 0;
-      for (const t of targets) {
+      for (const [i, t] of targets.entries()) {
+        if (i % 10 === 0) setPastScan({ phase: "scanning", checked: i, years: targets.length });
         const assets = [];
         for (const r of _scanQueryRanges(t.cfg)) {
           const res = await PS.scan({ startMs: r.startMs, endMs: r.endMs });
@@ -6889,7 +6897,7 @@ function MemoriesScreen({ state, setState }) {
         }
         const onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
         if (!onSite.length) continue;
-        const ds = _histDataSet(await _histFetch(`editions/${t.entry.id}.json`), t.cfg);
+        const ds = _histDataSet(t.inLibrary ? await _histFetch(`editions/${t.entry.id}.json`) : null, t.cfg);
         const pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
         already += pick.already;
         if (pick.keep.length) found.push({ t, ds, keep: pick.keep });
@@ -6928,13 +6936,14 @@ function MemoriesScreen({ state, setState }) {
     if (!st) return null;
     const limitedNote = st.limited ? "Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
     const alreadyNote = st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : "";
-    if (st.phase === "access" || st.phase === "scanning") return { busy: true, title: "Looking for photos from past festivals…" };
+    if (st.phase === "access" || st.phase === "scanning") return { busy: true, title: "Looking for photos from past festivals…",
+      body: st.years ? `Checked ${st.checked} of ${st.years} festival years since 2010.` : null };
     if (st.phase === "importing") return { busy: true, title: `Importing ${st.done} of ${st.total}…` };
     if (st.phase === "denied") return { tone: "warn", title: "Plursky can’t see your photos", body: "Turn on photo access in Settings, Plursky, Photos, then scan again." };
     if (st.phase === "error") return { tone: "warn", title: "Couldn’t finish the scan", body: "Anything already imported is saved. Past festivals need a connection the first time; scan again to pick up the rest.", retry: true };
     if (st.phase === "none") return {
       title: "No new photos from past festivals",
-      body: [alreadyNote || "Nothing in your library was taken on a past festival’s grounds during its set times.", limitedNote].filter(Boolean).join(" "),
+      body: [alreadyNote || "Nothing in your library was taken on a past festival’s grounds while it was on.", limitedNote].filter(Boolean).join(" "),
     };
     if (st.phase === "done") return {
       title: `Imported ${st.imported} from past festivals`,

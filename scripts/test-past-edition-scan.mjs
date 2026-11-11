@@ -14,7 +14,13 @@
 //   away   3 km from Grant Park, 17:20                     → skipped
 //   nogps  no fix, 17:20                                   → skipped
 //   early  on site, 11:30 (first set 12:00, window 11:45)  → skipped
-// Checks: 2 moments, both stamped lollapalooza-2025 (never the active ACL),
+// and Das Energi 2019 night 1 (Fri 2019-08-16, The Great Saltair, America/
+// Denver), a year whose lineup is not in the library, found through
+// data/historical/scan-calendar.json (Jake 2026-11-11):
+//   das    on site, 22:00 MDT                               → imported
+// Checks: 3 moments, 2 stamped lollapalooza-2025 (never the active ACL) and
+// 1 stamped das-energi-2019 with no act; the Das Energi year opens its own
+// photos page and is listed under "Your photos from other years";
 // the card names the edition and opens its page, the page lists exactly its
 // own photos, overlapping-set guesses are labelled as guesses, and a second
 // scan adds nothing. Pure checks cover the helpers. Mutants on the served
@@ -159,6 +165,10 @@ async function run(browser, build, { shots = false } = {}) {
         ["nogps", at(17, 24), null, null, null],
         ["early", at(11, 30), g.lat, g.lng, 10],
       ];
+      // Das Energi 2019: calendar-only, so it has no edition file and no sets.
+      const cal = await _histFetch("scan-calendar.json");
+      const das = _histScanTargets(index, null, cal).find(x => x.entry.id === "das-energi-2019");
+      if (das && !das.inLibrary) rows.push(["das", das.cfg.dayDates[1].midnightUtc + 22 * 3600000, das.cfg.gps.lat, das.cfg.gps.lng, 10]);
       for (let i = 0; i < rows.length; i++) {
         const [id, createdMs, lat, lng, acc] = rows[i];
         window.__blobs[id] = URL.createObjectURL(await jpeg(i));
@@ -167,7 +177,7 @@ async function run(browser, build, { shots = false } = {}) {
       return window.__lib.length;
     }, ED);
     const lib = await makeLib();
-    t(lib === 5, `fixture: library ${lib}`);
+    t(lib === 6, `fixture: library ${lib} (want 6: Das Energi 2019 must be a calendar-only year)`);
 
     const store = () => page.evaluate(() => JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"));
     const flat = (all) => Object.values(all).flatMap(arr => Array.isArray(arr) ? arr : []);
@@ -197,8 +207,13 @@ async function run(browser, build, { shots = false } = {}) {
     const msg1 = await scanPast("card");
     const m1 = flat(await store());
     const mine = m1.filter(m => m.festivalId === ED);
-    t(/Imported 2 from past festivals/.test(msg1), `scan 1: card says "${msg1.slice(0, 160)}"`);
-    t(m1.length === 2 && mine.length === 2, `scan 1: ${m1.length} moments stored, ${mine.length} stamped ${ED} (want 2 and 2)`);
+    const dasM = m1.filter(m => m.festivalId === "das-energi-2019");
+    t(/Imported 3 from past festivals/.test(msg1), `scan 1: card says "${msg1.slice(0, 160)}"`);
+    t(m1.length === 3 && mine.length === 2, `scan 1: ${m1.length} moments stored, ${mine.length} stamped ${ED} (want 3 and 2)`);
+    t(dasM.length === 1 && dasM[0].festivalStampSource === "past-edition" && !dasM[0].artistId,
+      `scan 1: Das Energi 2019 moments ${JSON.stringify(dasM.map(m => ({ s: m.festivalStampSource, a: m.artistId })))} (want 1, past-edition, no act)`);
+    const dasBtn = page.locator('[data-scan-past-open="das-energi-2019"]');
+    t((await dasBtn.count()) === 1 && /Das Energi 2019 · 1/.test((await dasBtn.textContent()) || ""), "scan 1: no 'Das Energi 2019 · 1' button on the card");
     t(mine.every(m => m.festivalStampSource === "past-edition"), `scan 1: stamp source ${mine.map(m => m.festivalStampSource).join(",")} (want past-edition)`);
     t(mine.every(m => !m.artistId || m.artistId.startsWith(`${ED}:`)), `scan 1: an act from another lineup ${mine.map(m => m.artistId).join(",")}`);
     const tylerMoment = mine.find(m => /[T ]21:3/.test(m.takenAt || "") || m.artistId === `${ED}:tyler-the-creator`);
@@ -242,10 +257,25 @@ async function run(browser, build, { shots = false } = {}) {
     }
     void byId;
 
+    // ── A year with no lineup yet: listed, and its own photos page ───────────
+    await page.goto(`http://127.0.0.1:${PORT}/?tab=past`, { waitUntil: "domcontentloaded" });
+    const other = page.locator("[data-photo-only-years]");
+    await other.waitFor({ timeout: 30000 }).catch(() => {});
+    t((await other.count()) === 1 && /Das Energi 2019/.test((await other.textContent()) || ""), "library: Das Energi 2019 not under 'Your photos from other years'");
+    if (await other.count()) {
+      await other.locator("button").filter({ hasText: "Das Energi 2019" }).first().click();
+      const yr = page.locator('[data-calendar-year="das-energi-2019"]');
+      await yr.waitFor({ timeout: 30000 }).catch(() => {});
+      const dtiles = await yr.locator("[data-edition-photo]").count();
+      const dtext = (await yr.textContent()) || "";
+      t(dtiles === 1 && /The Great Saltair/.test(dtext) && /lineup isn't in Plursky yet/.test(dtext), `calendar year page: ${dtiles} tiles, "${dtext.slice(0, 160)}"`);
+      if (shots && SHOT) await page.screenshot({ path: `${SHOT}/past-scan-calendar-year-393.png` });
+    }
+
     // ── Scan 2: nothing new ────────────────────────────────────────────────
     await page.goto(`http://127.0.0.1:${PORT}/?tab=me`, { waitUntil: "domcontentloaded" });
     await page.waitForFunction(() => window.FESTIVAL_CONFIG?.id === "acl-2026", null, { timeout: 30000 });
-    t((await makeLib()) === 5, "scan 2: library not rebuilt");
+    t((await makeLib()) === 6, "scan 2: library not rebuilt");
     // Let boot-time passes (stamp reconcile, cloud restore) settle first, so
     // the comparison below measures the scan and nothing else.
     const mem = page.locator("[data-me-action=memories]").first();
@@ -257,7 +287,7 @@ async function run(browser, build, { shots = false } = {}) {
     const before = JSON.stringify(await store());
     const msg2 = await scanPast("again");
     const after = JSON.stringify(await store());
-    t(/No new photos from past festivals/.test(msg2) && /2 were already imported/.test(msg2), `scan 2: card says "${msg2.slice(0, 160)}"`);
+    t(/No new photos from past festivals/.test(msg2) && /3 were already imported/.test(msg2), `scan 2: card says "${msg2.slice(0, 160)}"`);
     if (before !== after && process.env.PAST_SCAN_DEBUG) console.log("DEBUG before", before.slice(0, 1500), "\nDEBUG after", after.slice(0, 1500), "\nDEBUG seen", await page.evaluate(() => localStorage.getItem("plursky_scan_seen_v1")));
     t(before === after, "scan 2: the moment store changed");
     t(errs.length === 0, `page errors: ${errs.slice(0, 3).join(" | ")}`);
@@ -281,10 +311,11 @@ try {
   const mut = (key, from, to) => ({ ...SRC, [key]: SRC[key].replace(from, to) });
   const MUTANTS = [
     ["GPS gate removed", mut("spotify", "assets.filter(a => _histAssetOnSite(a, t.cfg))", "assets.filter(a => true)")],
+    ["festival-year calendar ignored", mut("spotify", "_histScanTargets(index, null, calendar)", "_histScanTargets(index, null, null)")],
     ["edition data set not passed to the matcher", mut("spotify", "_matchArtistForPhoto(meta, savedIds, attendedIds, opts.ds || undefined)", "_matchArtistForPhoto(meta, savedIds, attendedIds)")],
     ["edition page lists every moment", mut("photoTag", "m.festivalId === editionId", "m.festivalId")],
     ["reconciler flags past stamps", mut("spotify", 'if (m.festivalStampSource === "past-edition") continue;', "")],
-    ["open-ended closing sets dropped", mut("photoTag", "if (close[_s.day] == null || close[_s.day] <= st) continue;", "continue;")],
+    ["open-ended closing sets dropped", mut("photoTag", /if \(close\[(_s\d*)\.day\] == null \|\| close\[\1\.day\] <= st\) continue;/, "continue;")],
   ];
   let caught = 0;
   for (const [name, build] of MUTANTS) {
