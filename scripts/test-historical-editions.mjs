@@ -559,8 +559,9 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   // Only the lines that name the historical library: the artist-photo ledger's build
   // step is a different ledger, and a blanket /ledger/ refused it (2026-10-03).
   const bldHist = bld.split("\n").filter(l => /historical/.test(l)).join("\n");
-  ok(/'data\/historical\/index\.json'/.test(bld) && /'historical', 'editions'/.test(bld) && !/sheets|ledger|'review'/.test(bldHist),
-    "build.mjs must ship data/historical/index.json and editions/*.json only (sheets, ledgers and review manifests stay out of the app)");
+  ok(/'data\/historical\/index\.json'/.test(bld) && /'historical', 'editions'/.test(bld) && /'data\/historical\/scan-calendar\.json'/.test(bld)
+    && !/sheets|ledger|'review'|scan-calendar\/|\.tsv/.test(bldHist),
+    "build.mjs must ship data/historical/index.json, editions/*.json and scan-calendar.json only (sheets, ledgers, review manifests and TSV sources stay out of the app)");
   const walk = d => readdirSync(d, { withFileTypes: true }).flatMap(x => x.isDirectory() ? walk(join(d, x.name)) : [join(d, x.name)]);
   const art = walk(H("")).filter(f => /\.(png|jpe?g|webp|gif|svg|html?)$/i.test(f));
   ok(!art.length, `archived creative assets must never be committed: ${art.join(", ")}`);
@@ -624,6 +625,18 @@ for (const [printed, date, year, dates, want] of [
     d => d.timed && d.duplicates.length === 1 && d.sets.filter(x => x.artist === "School of Rock").length === 1);
   untimed("a cancelled block is flagged and its billing kept clean", grid({ honda: [...HONDA, block("*canceled* Gone Band", "3:00-4:00", 48, 12)], kids: KIDS }),
     d => d.sets.some(x => x.canceled && x.artist === "Gone Band"));
+  // Lollapalooza 2013 misprints one range (5:30-4:15): the scale is fitted
+  // without it, the misprint is named, and the day ships untimed.
+  untimed("a misprinted range is named and makes its day untimed", grid({ honda: [...HONDA, block("Misprint", "5:30-4:15", 78, 9)], kids: KIDS }),
+    d => !d.timed && d.sets.some(x => x.artist === "Misprint" && x.rangeMismatch) && d.sets.every(x => x.start === ""));
+  ok(day(grid({ honda: HONDA.map(b => b.replace('class="o-session__inner"', 'class="o-session__inner "')), kids: KIDS })).timed,
+    "a block class with a trailing space (Lollapalooza 2017's markup) must still be read");
+  untimed("a block printed twice in the same place is one set", grid({ honda: [...HONDA, HONDA[1]], kids: KIDS }),
+    d => d.timed && d.duplicates.length === 1 && d.sets.filter(x => x.artist === "Evening Act").length === 1);
+  const l13 = editions["lollapalooza-2013"];
+  ok(l13 && l13.days.filter(d => d.untimed).map(d => d.day).join() === "2" && l13.sets.filter(x => x.day === 2).every(x => x.start === null)
+    && l13.sets.filter(x => x.day === 2 && x.artistId === "lollapalooza-2013:school-of-rock").length === 1,
+    "Lollapalooza 2013: the misprinted Saturday ships untimed, with School of Rock's two sets listed once");
 
   // Untimed days, notes and cancelled days are each held by a rule.
   const a17 = editions["acl-2017"], a13 = editions["acl-2013"];

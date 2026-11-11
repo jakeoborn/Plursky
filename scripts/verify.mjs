@@ -2417,6 +2417,17 @@ for (const [script, label] of [
   }
 }
 {
+  console.log("▸ Past-edition scan gate — real app, on-site photos only, filed under their edition, shown on its page, rescan adds nothing");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-past-edition-scan.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 420000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Past-edition scan failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
   console.log("▸ Shazam reasons gate — library clips say why they failed, stale path retried from IndexedDB, never the mic");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-shazam-reasons.mjs"],
@@ -3625,6 +3636,17 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`coverage census failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Scan calendar — every festival year since 2010 the past-photo scan looks for: dated, located, never a canceled year");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-scan-calendar.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 60000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`scan calendar failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 // Memory index + handoff format: fixture self-tests only. The live --check
