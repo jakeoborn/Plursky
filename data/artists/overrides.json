@@ -1731,6 +1731,163 @@
    ],
    "why": "The parenthetical names the project the billed artist plays as: Three Drives is a project with Ton T.B. as its parent (the Tchami x Malaa (No Redemption) rule).",
    "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Funk Ark ft. Frank Mitchell Jr.",
+   "performers": [
+    {
+     "name": "Funk Ark",
+     "role": "performer"
+    },
+    {
+     "name": "Frank Mitchell Jr.",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Break Science featuring Chali 2na",
+   "performers": [
+    {
+     "name": "Break Science",
+     "role": "performer"
+    },
+    {
+     "name": "Chali 2na",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "The Travelin' McCourys featuring Keller Williams",
+   "performers": [
+    {
+     "name": "The Travelin' McCourys",
+     "role": "performer"
+    },
+    {
+     "name": "Keller Williams",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Cosby Sweater ft. Joel Cummins",
+   "performers": [
+    {
+     "name": "Cosby Sweater",
+     "role": "performer"
+    },
+    {
+     "name": "Joel Cummins",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Digital Tape Machine ft. Joel Cummins & Kris Myers of Umphrey's McGee",
+   "performers": [
+    {
+     "name": "Digital Tape Machine",
+     "role": "performer"
+    },
+    {
+     "name": "Joel Cummins",
+     "role": "guest"
+    },
+    {
+     "name": "Kris Myers",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"of Umphrey's McGee\" says which band the guests are from; it is not a name.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "The Infamous Stringdusters with Special Guests",
+   "performers": [
+    {
+     "name": "The Infamous Stringdusters",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing bills the act \"with Special Guests\" / \"w/ Special Guests\": the act is the performer; guests the page does not name are not credited.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "GrizMatik w/ Special Guests",
+   "performers": [
+    {
+     "name": "GrizMatik",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing bills the act \"with Special Guests\" / \"w/ Special Guests\": the act is the performer; guests the page does not name are not credited.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Nobody Beats the Drum (DJ)",
+   "performers": [
+    {
+     "name": "Nobody Beats the Drum",
+     "role": "performer"
+    }
+   ],
+   "setTag": "DJ",
+   "why": "\"(DJ)\" is the set tag: the act's DJ set, beside its live set the same weekend.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Paxahau Presents a Stirring Evening of Live Ambient Aural Exploration with Robert Rich",
+   "performers": [
+    {
+     "name": "Robert Rich",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing names an event (a promoter's presentation or a closing party) and the one act playing it, after \"with\" / \"w/\": that act is the performer; the event's title is not an act.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Tripolee Closing Party w/ Keys N Krates",
+   "performers": [
+    {
+     "name": "Keys N Krates",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing names an event (a promoter's presentation or a closing party) and the one act playing it, after \"with\" / \"w/\": that act is the performer; the event's title is not an act.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "The Untz Challenge III / SPEKTR",
+   "performers": [
+    {
+     "name": "SPEKTR",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing names a contest and its winner: the winner is the performer; the contest is not an act.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Mixcloud Mix Match Winner Prymativ",
+   "performers": [
+    {
+     "name": "Prymativ",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing names a contest and its winner: the winner is the performer; the contest is not an act.",
+   "source": "https://electricforestfestival.com/"
   }
  ],
  "pending": [

@@ -4376,25 +4376,45 @@ function _momentPinsFor(moments, festivalId) {
     if (festivalId && m.festivalId && m.festivalId !== festivalId) continue;
     const g = m.parsedGps;
     if (!_validGps(g) || (g.lat === 0 && g.lng === 0)) continue;
+    const accM = photoFixAccM(m);
     out.push({
       id: m.id, lat: g.lat, lng: g.lng,
-      accM: Number.isFinite(m.gpsAccM) ? m.gpsAccM : null,
+      accM, acc: photoFixAccClass(accM),
       kind: m.kind === "video" ? "video" : "photo",
     });
   }
   return out;
 }
-// GeoJSON for the clustered pin source. Properties carry the moment id and
-// kind only; the tag is looked up on tap from the on-device store.
+// GeoJSON for the clustered pin source. Properties carry the moment id, kind
+// and accuracy class only; the tag is looked up on tap from the on-device store.
 function _momentPinsGeoJson(pins) {
   return {
     type: "FeatureCollection",
     features: (pins || []).map(p => ({
       type: "Feature",
       geometry: { type: "Point", coordinates: [p.lng, p.lat] },
-      properties: { id: p.id, kind: p.kind },
+      properties: { id: p.id, kind: p.kind, acc: p.acc || "unknown" },
     })),
   };
+}
+// SPEC-192 ws1: each pin's capture accuracy as a true-metre circle on the
+// ground (a polygon, so it scales with zoom like the map does), centred on
+// that pin's own fix with its own recorded radius. A pin with no recorded
+// accuracy gets none: no default ring. Own source, never clustered, so a
+// ring always sits on its shot even while the pins are grouped.
+const _ACC_RING_STEPS = 48;
+function _momentAccRingsGeoJson(pins) {
+  const R = 6371008.8, k = Math.PI / 180, features = [];
+  for (const p of pins || []) {
+    if (!(p && p.accM > 0) || p.acc === "unknown") continue;
+    const dLat = p.accM / R / k, dLng = p.accM / (R * Math.cos(p.lat * k)) / k, ring = [];
+    for (let i = 0; i <= _ACC_RING_STEPS; i++) {
+      const a = (2 * Math.PI * (i % _ACC_RING_STEPS)) / _ACC_RING_STEPS;
+      ring.push([p.lng + dLng * Math.cos(a), p.lat + dLat * Math.sin(a)]);
+    }
+    features.push({ type: "Feature", geometry: { type: "Polygon", coordinates: [ring] }, properties: { id: p.id, acc: p.acc, accM: p.accM } });
+  }
+  return { type: "FeatureCollection", features };
 }
 const _NO_PINS = Object.freeze([]);
 // The active festival's moments, flattened, from the on-device store.
@@ -4411,6 +4431,10 @@ const MOMENT_PIN_SOURCE = "my-moments";
 const MOMENT_PIN_CLUSTER = "my-moments-cluster";
 const MOMENT_PIN_POINT = "my-moments-point";
 const MOMENT_PIN_COUNT = "my-moments-count";
+const MOMENT_ACC_SOURCE = "my-moments-acc";
+const MOMENT_ACC_FILL = "my-moments-acc-fill";
+const MOMENT_ACC_LINE = "my-moments-acc-line";
+const MOMENT_ACC_LINE_COARSE = "my-moments-acc-line-coarse";
 // Adds the clustered pin source + layers once per style. A tap NEVER moves the
 // camera: easing to a cluster would fetch basemap tiles around where the photo
 // was taken, and a tile URL is a location. A single pin opens its item; a
@@ -4432,6 +4456,31 @@ function _momentPinCountImage(label) {
   } catch { return null; }
 }
 function _addMomentPinLayers(map, pins, onTap) {
+  // Accuracy rings first, so every pin layer draws on top of them. Precise
+  // (within the tagger's trust line): solid. Coarse: dashed, fainter.
+  if (!map.getSource(MOMENT_ACC_SOURCE)) {
+    map.addSource(MOMENT_ACC_SOURCE, { type: "geojson", data: _momentAccRingsGeoJson(pins), maxzoom: 22 });
+  }
+  if (!map.getLayer(MOMENT_ACC_FILL)) {
+    map.addLayer({
+      id: MOMENT_ACC_FILL, type: "fill", source: MOMENT_ACC_SOURCE,
+      paint: { "fill-color": "#e85d2e", "fill-opacity": ["match", ["get", "acc"], "precise", 0.16, 0.07] },
+    });
+  }
+  if (!map.getLayer(MOMENT_ACC_LINE)) {
+    map.addLayer({
+      id: MOMENT_ACC_LINE, type: "line", source: MOMENT_ACC_SOURCE,
+      filter: ["==", ["get", "acc"], "precise"],
+      paint: { "line-color": "#e85d2e", "line-width": 1.5, "line-opacity": 0.85 },
+    });
+  }
+  if (!map.getLayer(MOMENT_ACC_LINE_COARSE)) {
+    map.addLayer({
+      id: MOMENT_ACC_LINE_COARSE, type: "line", source: MOMENT_ACC_SOURCE,
+      filter: ["==", ["get", "acc"], "coarse"],
+      paint: { "line-color": "#e85d2e", "line-width": 1.5, "line-opacity": 0.7, "line-dasharray": [2, 2] },
+    });
+  }
   if (!map.getSource(MOMENT_PIN_SOURCE)) {
     map.addSource(MOMENT_PIN_SOURCE, {
       type: "geojson", data: _momentPinsGeoJson(pins),
@@ -4459,7 +4508,10 @@ function _addMomentPinLayers(map, pins, onTap) {
       paint: {
         "circle-color": ["match", ["get", "kind"], "video", "#7c3aed", "#e85d2e"],
         "circle-radius": 9,
-        "circle-stroke-width": 2, "circle-stroke-color": "#ffffff",
+        // No recorded accuracy: a hollow-looking pin (dark ring, lighter fill),
+        // so it never reads as a fix as good as a ringed one.
+        "circle-opacity": ["match", ["get", "acc"], "unknown", 0.55, 1],
+        "circle-stroke-width": 2, "circle-stroke-color": ["match", ["get", "acc"], "unknown", "#1f2937", "#ffffff"],
       },
     });
   }
@@ -4762,6 +4814,8 @@ function RealMap({
     photoPinsRef.current = photoPins;
     const src = mapRef.current && mapRef.current.getSource(MOMENT_PIN_SOURCE);
     if (src) { try { src.setData(_momentPinsGeoJson(photoPins)); } catch {} }
+    const acc = mapRef.current && mapRef.current.getSource(MOMENT_ACC_SOURCE);
+    if (acc) { try { acc.setData(_momentAccRingsGeoJson(photoPins)); } catch {} }
   }, [photoPins]);
   React.useEffect(() => { onMapClickRef.current  = onMapClick;  }, [onMapClick]);
   React.useEffect(() => { meetModeRef.current    = meetMode;    }, [meetMode]);
@@ -5449,7 +5503,7 @@ function RealMap({
         // 125 styledata in 2 s on III Points and on ACL). The style never
         // settles, so map "load" never fires and the avatar, stage and
         // landmark markers it adds never appear, while the GPU churns.
-        const _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route", MOMENT_PIN_CLUSTER, MOMENT_PIN_POINT, MOMENT_PIN_COUNT].filter((id) => map.getLayer(id));
+        const _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route", MOMENT_ACC_FILL, MOMENT_ACC_LINE, MOMENT_ACC_LINE_COARSE, MOMENT_PIN_CLUSTER, MOMENT_PIN_POINT, MOMENT_PIN_COUNT].filter((id) => map.getLayer(id));
         const _order = (() => { try { return (map.getStyle().layers || []).map((l) => l.id); } catch { return []; } })();
         const _tail = _order.slice(_order.length - _top.length);
         if (_top.some((id, i) => _tail[i] !== id)) _top.forEach((id) => {

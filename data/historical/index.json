@@ -673,7 +673,7 @@
    ],
    "counts": {
     "stages": 0,
-    "artists": 84,
+    "artists": 83,
     "sets": 0
    }
   },
@@ -1042,7 +1042,7 @@
    ],
    "counts": {
     "stages": 13,
-    "artists": 317,
+    "artists": 316,
     "sets": 0
    }
   },
@@ -1228,7 +1228,7 @@
    ],
    "counts": {
     "stages": 0,
-    "artists": 251,
+    "artists": 250,
     "sets": 0
    }
   },
@@ -1520,6 +1520,78 @@
     "stages": 0,
     "artists": 60,
     "sets": 0
+   }
+  },
+  {
+   "id": "electric-forest-2013",
+   "festivalId": "electric-forest",
+   "festivalName": "Electric Forest",
+   "name": "Electric Forest 2013",
+   "year": 2013,
+   "timezone": "America/Detroit",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-06-27",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2013-06-28",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2013-06-29",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2013-06-30",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 108,
+    "sets": 156
+   }
+  },
+  {
+   "id": "electric-forest-2012",
+   "festivalId": "electric-forest",
+   "festivalName": "Electric Forest",
+   "name": "Electric Forest 2012",
+   "year": 2012,
+   "timezone": "America/Detroit",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-06-28",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2012-06-29",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2012-06-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2012-07-01",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 91,
+    "sets": 102
    }
   },
   {

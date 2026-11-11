@@ -26,7 +26,8 @@ export function datedLabel(label, year) {
   // printed year must be the edition's.
   const eu = /^(\w+)\s+(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/.exec(String(label).trim());
   if (eu) return +eu[4] === +year ? datedLabel(`${eu[1]} ${eu[3]} ${eu[2]}`, year) : null;
-  const m = /^(\w+),?\s+(\w+)\s+(\d{1,2})(st|nd|rd|th)?$/i.exec(String(label).trim());
+  // Electric Forest prints "Thursday - June 28th".
+  const m = /^(\w+)(?:,|\s+-)?\s+(\w+)\s+(\d{1,2})(st|nd|rd|th)?$/i.exec(String(label).trim());
   if (!m) return null;
   if (m[4] && m[4].toLowerCase() !== ordinal(+m[3])) return null;
   const word = m[2].toLowerCase();
