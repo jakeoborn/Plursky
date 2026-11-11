@@ -4869,6 +4869,7 @@
   "billings": [
    "lost-lands-2026:llu4",
    "ultra-miami-2026:ul62",
+   "lights-all-night-2026:lan-armnhmr",
    "beyond-wonderland-gorge-2026:d1:queen-s-valley:2030:armnhmr",
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2355:armnhmr",
    "edc-las-vegas-2022:d1:kinetic-field:2231:armnhmr",
@@ -4881,7 +4882,7 @@
    "nocturnal-wonderland-2018:d1:wolves-den:2005:armnhmr"
   ],
   "firstSeen": "2018-09-14",
-  "lastSeen": "2026-09-20",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -4934,6 +4935,21 @@
   ],
   "firstSeen": "2025-06-07",
   "lastSeen": "2025-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "artifakts",
+  "name": "ARTIFAKTS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lights-all-night-2026:lan-artifakts"
+  ],
+  "firstSeen": "2026-12-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -5274,6 +5290,7 @@
    "edc-lv-2026:bp27",
    "lost-lands-2026:llu5",
    "edc-orlando-2026:ecu5",
+   "lights-all-night-2026:lan-atliens",
    "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:2345:atliens",
    "edc-las-vegas-2022:d3:basspod:0330:atliens",
    "edc-las-vegas-2024:d3:basspod:0030:atliens",
@@ -5285,7 +5302,7 @@
    "escape-halloween-2025:d1:sewer-district:0100:atliens"
   ],
   "firstSeen": "2019-10-25",
-  "lastSeen": "2026-11-08",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -5697,13 +5714,14 @@
    "lost-lands-2026:llu6",
    "edc-orlando-2026:ecs7",
    "lollapalooza-2026:lo63",
+   "lights-all-night-2026:lan-avello",
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1755:avello",
    "edc-orlando-2022:d2:corona-electric-beach:1500:avello",
    "edc-orlando-2022:d3:circuit-grounds:1300:avello",
    "edc-orlando-2023:d1:kinetic-field:1300:avello"
   ],
   "firstSeen": "2022-11-12",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -5886,15 +5904,18 @@
  {
   "key": "azyr",
   "name": "Azyr",
-  "aliases": [],
+  "aliases": [
+   "AZYR"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2026:esc-azyr-d1"
+   "escape-halloween-2026:esc-azyr-d1",
+   "lights-all-night-2026:lan-azyr"
   ],
   "firstSeen": "2026-10-30",
-  "lastSeen": "2026-10-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -7042,6 +7063,21 @@
   ],
   "firstSeen": "2014-10-04",
   "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "beauz",
+  "name": "BEAUZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lights-all-night-2026:lan-beauz"
+  ],
+  "firstSeen": "2026-12-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -11123,6 +11159,21 @@
   "links": []
  },
  {
+  "key": "byorn",
+  "name": "BYORN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lights-all-night-2026:lan-byorn"
+  ],
+  "firstSeen": "2026-12-30",
+  "lastSeen": "2026-12-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bzrp",
   "name": "Bzrp",
   "aliases": [],
@@ -13794,6 +13845,7 @@
   "projects": [],
   "billings": [
    "crssd-fall-2026:crssd-chris-lake-b2b-disclosure",
+   "lights-all-night-2026:lan-chris-lake",
    "acl-2021:d3:miller-lite:1730:chris-lake",
    "acl-2021:d6:miller-lite:1730:chris-lake",
    "edc-las-vegas-2022:d1:circuit-grounds:2330:chris-lake",
@@ -13803,7 +13855,7 @@
    "escape-halloween-2019:d2:psycho-circus:2230:chris-lake"
   ],
   "firstSeen": "2019-10-26",
-  "lastSeen": "2026-09-27",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -15367,6 +15419,21 @@
   ],
   "firstSeen": "2026-03-27",
   "lastSeen": "2026-03-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "conrad-taylor",
+  "name": "Conrad Taylor",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lights-all-night-2026:lan-conrad-taylor"
+  ],
+  "firstSeen": "2026-12-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -18913,11 +18980,12 @@
    "edc-orlando-2026:ecs11",
    "lollapalooza-2026:lo13",
    "lollapalooza-2026:lo23",
+   "lights-all-night-2026:lan-devault",
    "edc-las-vegas-2024:d1:cosmic-meadow:0300:devault",
    "edc-orlando-2021:d1:circuit-grounds:1500:devault"
   ],
   "firstSeen": "2021-11-12",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -20476,10 +20544,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-lv-2026:cg11"
+   "edc-lv-2026:cg11",
+   "lights-all-night-2026:lan-dj-mandy"
   ],
   "firstSeen": "2026-05-16",
-  "lastSeen": "2026-05-16",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -26052,10 +26121,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lights-all-night-2026:lan-fly",
    "nocturnal-wonderland-2022:d1:labyrinth:1500:fly"
   ],
   "firstSeen": "2022-09-17",
-  "lastSeen": "2022-09-17",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -27752,16 +27822,19 @@
  },
  {
   "key": "gg-magree",
-  "name": "GG MAGREE",
-  "aliases": [],
+  "name": "GG Magree",
+  "aliases": [
+   "GG MAGREE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "lights-all-night-2026:lan-gg-magree",
    "escape-halloween-2019:d2:sanitarium:1945:gg-magree"
   ],
   "firstSeen": "2019-10-26",
-  "lastSeen": "2019-10-26",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -29637,6 +29710,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lights-all-night-2026:lan-gryffin",
    "acl-2018:d1:tito-s-handmade-vodka:1730:gryffin",
    "acl-2018:d4:tito-s-handmade-vodka:1730:gryffin",
    "edc-las-vegas-2024:d3:kinetic-field:0031:gryffin",
@@ -29647,7 +29721,7 @@
    "lollapalooza-2025:d4:perry-s:1900:gryffin"
   ],
   "firstSeen": "2018-10-05",
-  "lastSeen": "2025-11-07",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -30894,10 +30968,11 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llw9",
-   "escape-halloween-2026:esc-hershe-d1"
+   "escape-halloween-2026:esc-hershe-d1",
+   "lights-all-night-2026:lan-hershe"
   ],
   "firstSeen": "2026-09-16",
-  "lastSeen": "2026-10-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -30955,6 +31030,21 @@
   ],
   "firstSeen": "2026-05-15",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hhunter",
+  "name": "HHUNTER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lights-all-night-2026:lan-hhunter"
+  ],
+  "firstSeen": "2026-12-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -32081,10 +32171,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llw10"
+   "lost-lands-2026:llw10",
+   "lights-all-night-2026:lan-hydraulix"
   ],
   "firstSeen": "2026-09-16",
-  "lastSeen": "2026-09-16",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -32214,13 +32305,14 @@
    "edc-orlando-2026:ecu15",
    "crssd-fall-2026:crssd-i-hate-models",
    "arc-2026:arc-i-hate-models-expansions-d2",
+   "lights-all-night-2026:lan-i-hate-models",
    "edc-las-vegas-2022:d2:neon-garden:0400:i-hate-models",
    "edc-las-vegas-2025:d3:neon-garden:0300:nico-moreno-b2b-i-hate-models",
    "edc-orlando-2024:d3:neon-garden:2100:i-hate-models",
    "hard-summer-2025:d2:green-stage:1900:i-hate-models"
   ],
   "firstSeen": "2022-05-21",
-  "lastSeen": "2026-11-08",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -32281,11 +32373,12 @@
   "billings": [
    "edc-orlando-2026:ecu16",
    "escape-halloween-2026:esc-ian-asher-d2",
+   "lights-all-night-2026:lan-ian-asher",
    "beyond-wonderland-socal-2026:d1:queen-s-domain:1740:ian-asher",
    "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1500:ian-asher-b2b-wuki"
   ],
   "firstSeen": "2026-03-27",
-  "lastSeen": "2026-11-08",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -35039,10 +35132,11 @@
   "billings": [
    "iii-points-2026:iiip-jigitz",
    "portola-2026:pt1-jigitz",
+   "lights-all-night-2026:lan-jigitz",
    "lollapalooza-2025:d4:perry-s:1245:jigitz"
   ],
   "firstSeen": "2025-08-03",
-  "lastSeen": "2026-10-16",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -35776,6 +35870,7 @@
   "billings": [
    "hard-summer-2026:hs1-jon-casey",
    "escape-halloween-2026:esc-jon-casey-d2",
+   "lights-all-night-2026:lan-jon-casey",
    "edc-las-vegas-2024:d3:basspod:0430:jon-casey",
    "edc-las-vegas-2024:d3:beatbox-boombox-art-car:0000:jon-casey",
    "edc-las-vegas-2025:d1:ubuntu:0400:jon-casey",
@@ -35783,7 +35878,7 @@
    "edc-orlando-2024:d1:circuit-grounds:1610:jon-casey"
   ],
   "firstSeen": "2022-11-12",
-  "lastSeen": "2026-10-31",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -36127,10 +36222,11 @@
    "edc-orlando-2026:ecf18",
    "arc-2026:arc-green-velvet-b2b-josh-baker-grid-d4",
    "arc-2026:arc-josh-baker-expansions-d4",
+   "lights-all-night-2026:lan-josh-baker",
    "edc-las-vegas-2025:d3:bionic-jungle:2330:prospa-b2b-josh-baker"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2026-11-06",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -38430,10 +38526,11 @@
    "iii-points-2026:iiip-kettama",
    "crssd-fall-2026:crssd-kettama",
    "portola-2026:pt1-kettama",
+   "lights-all-night-2026:lan-kettama",
    "edc-orlando-2025:d1:stereobloom:2115:prospa-b2b-kettama"
   ],
   "firstSeen": "2025-11-07",
-  "lastSeen": "2026-10-17",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -41880,6 +41977,7 @@
    "lost-lands-2026:lls53",
    "edc-orlando-2026:ecf22",
    "escape-halloween-2026:esc-level-up-d1",
+   "lights-all-night-2026:lan-level-up",
    "edc-las-vegas-2022:d3:basspod:1950:level-up",
    "edc-las-vegas-2024:d2:basspod:0130:subtronics-b2b-level-up",
    "edc-las-vegas-2025:d2:basspod:0330:level-up",
@@ -41887,7 +41985,7 @@
    "escape-halloween-2024:d1:sewer-district:2100:level-up"
   ],
   "firstSeen": "2022-05-22",
-  "lastSeen": "2026-11-06",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -44323,7 +44421,8 @@
   "billings": [
    "lost-lands-2026:llu13",
    "lollapalooza-2026:lo64",
-   "countdown-nye-2026:cdny-lyny-b2b-peekaboo"
+   "countdown-nye-2026:cdny-lyny-b2b-peekaboo",
+   "lights-all-night-2026:lan-lyny"
   ],
   "firstSeen": "2026-07-31",
   "lastSeen": "2026-12-31",
@@ -44652,10 +44751,11 @@
   "billings": [
    "lost-lands-2026:llw2",
    "lost-lands-2026:llu27",
+   "lights-all-night-2026:lan-mad-dubz-b2b-vktm",
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:1730:mad-dubz"
   ],
   "firstSeen": "2026-06-27",
-  "lastSeen": "2026-09-20",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -44810,10 +44910,11 @@
   "billings": [
    "edc-lv-2026:w29",
    "lost-lands-2026:lls16",
+   "lights-all-night-2026:lan-madgrrl",
    "escape-halloween-2025:d1:feeding-grounds:1800:madgrrl"
   ],
   "firstSeen": "2025-10-31",
-  "lastSeen": "2026-09-19",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -45981,11 +46082,12 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-hannah-laing-and-marie-vaunt",
+   "lights-all-night-2026:lan-marie-vaunt",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:2000:marie-vaunt",
    "edc-las-vegas-2025:d1:quantum-valley:2300:marie-vaunt"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2026-11-20",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -48725,10 +48827,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llh7"
+   "lost-lands-2026:llh7",
+   "lights-all-night-2026:lan-mindset"
   ],
   "firstSeen": "2026-09-17",
-  "lastSeen": "2026-09-17",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -52562,10 +52665,11 @@
   "billings": [
    "lollapalooza-2026:lo33",
    "portola-2026:pt2-ninajirachi",
+   "lights-all-night-2026:lan-ninajirachi",
    "edc-las-vegas-2024:d1:kinetic-field:1900:ninajirachi"
   ],
   "firstSeen": "2024-05-17",
-  "lastSeen": "2026-09-27",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -64332,10 +64436,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul60"
+   "ultra-miami-2026:ul60",
+   "lights-all-night-2026:lan-sidequest"
   ],
   "firstSeen": "2026-03-28",
-  "lastSeen": "2026-03-28",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -65276,10 +65381,11 @@
   ],
   "projects": [],
   "billings": [
-   "edc-orlando-2026:ecs33"
+   "edc-orlando-2026:ecs33",
+   "lights-all-night-2026:lan-skull-machine-black-tiger-sex-machine-x-kai-wachi"
   ],
   "firstSeen": "2026-11-07",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -68303,6 +68409,7 @@
    "lost-lands-2026:lls53",
    "summerfest-2026:su161",
    "countdown-nye-2026:cdny-subtronics",
+   "lights-all-night-2026:lan-subtronics",
    "edc-las-vegas-2022:d2:circuit-grounds:0230:subtronics",
    "edc-las-vegas-2022:d3:basspod:0130:subtronics-b2b-boogie-t",
    "edc-las-vegas-2024:d1:kinetic-field:2318:subtronics",
@@ -70011,8 +70118,9 @@
  },
  {
   "key": "telykast",
-  "name": "TELYKast",
+  "name": "Telykast",
   "aliases": [
+   "TELYKast",
    "TELYKAST"
   ],
   "kind": "performer",
@@ -70020,10 +70128,11 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-telykast-d2",
+   "lights-all-night-2026:lan-telykast",
    "edc-las-vegas-2022:d1:allegiant-rave-hangar:0100:telykast"
   ],
   "firstSeen": "2022-05-20",
-  "lastSeen": "2026-10-31",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -73606,6 +73715,7 @@
   "billings": [
    "edc-lv-2026:cg15",
    "portola-2026:pt2-tiesto",
+   "lights-all-night-2026:lan-tiesto",
    "beyond-wonderland-socal-2026:d1:queen-s-domain:0045:tiesto",
    "dreamstate-socal-2025:d2:the-dream:2345:tiesto-trance-set",
    "edc-las-vegas-2022:d2:kinetic-field:0022:tiesto",
@@ -73619,7 +73729,7 @@
    "escape-halloween-2022:d2:the-grimm:0045:tiesto"
   ],
   "firstSeen": "2017-10-28",
-  "lastSeen": "2026-09-27",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -77029,10 +77139,11 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llf54",
+   "lights-all-night-2026:lan-mad-dubz-b2b-vktm",
    "edc-las-vegas-2024:d1:meta-phoenix:0130:vktm"
   ],
   "firstSeen": "2024-05-17",
-  "lastSeen": "2026-09-18",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -78667,12 +78778,13 @@
   "billings": [
    "edc-lv-2026:c22",
    "lost-lands-2026:llu48",
+   "lights-all-night-2026:lan-william-black",
    "edc-orlando-2021:d3:circuit-grounds:1505:william-black",
    "escape-halloween-2021:d2:the-grimm:1815:william-black",
    "nocturnal-wonderland-2021:d1:wolves-den:1700:william-black"
   ],
   "firstSeen": "2021-09-18",
-  "lastSeen": "2026-09-20",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -79120,6 +79232,21 @@
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wtchcrft",
+  "name": "WTCHCRFT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lights-all-night-2026:lan-wtchcrft"
+  ],
+  "firstSeen": "2026-12-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -79594,6 +79721,7 @@
   "billings": [
    "edc-lv-2026:bp5",
    "escape-halloween-2026:esc-ydg-d1",
+   "lights-all-night-2026:lan-ydg",
    "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:2025:ydg",
    "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:1840:ydg",
    "edc-las-vegas-2025:d3:basspod:2230:ydg",
@@ -79602,7 +79730,7 @@
    "hard-summer-2025:d1:green-stage:1500:ydg"
   ],
   "firstSeen": "2024-11-08",
-  "lastSeen": "2026-10-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -79935,6 +80063,21 @@
    "decadence-colorado-2026:dec-yousuke-yukimatsu"
   ],
   "firstSeen": "2026-03-28",
+  "lastSeen": "2026-12-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "you-uke-yuk1mat-u",
+  "name": "YØU$UKE YUK1MAT$U",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lights-all-night-2026:lan-yousuke-yuk1matsu"
+  ],
+  "firstSeen": "2026-12-30",
   "lastSeen": "2026-12-30",
   "photo": null,
   "links": []

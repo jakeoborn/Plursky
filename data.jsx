@@ -466,6 +466,63 @@ const FESTIVALS_REGISTRY = [
     region:    "North America",
   },
   {
+    // ── Das Energi 2027 — The Great Saltair, Magna UT ──
+    // Added 2026-11-10 as a gated preview. V2 Presents + MASV; the 2026
+    // edition ran Aug 7–9 at The Great Saltair.
+    //
+    // ⛔ NO OFFICIAL 2027 DATES (checked dasenergifestival.com 2026-11-10).
+    // "Aug 6–8, 2027" circulates on a ticket-listing site only, so it is not
+    // used. `dates` stays the literal "Dates TBA" (see Electric Forest 2027
+    // above for why the /f/ page then emits no JSON-LD dates). Replace when
+    // the festival announces them.
+    config: {
+      id:        "das-energi-2027",
+      officialEvent: { website: "https://dasenergifestival.com/", observedAt: "2026-11-10" },
+      name:      "Das Energi 2027",
+      shortName: "Das Energi",
+      brand:     "Das Energi",
+      tagline:   "Three nights on the shore of the Great Salt Lake",
+      location:  "The Great Saltair · Magna, UT",
+      locationShort: "The Great Saltair",
+      dates:     "Dates TBA",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://dasenergifestival.com/", observedAt: "2026-11-10" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#22d3ee",
+    emoji:     "⚡",
+    region:    "North America",
+  },
+  {
+    // ── Forbidden Kingdom 2027 — Central Florida Fairgrounds, Orlando FL ──
+    // Added 2026-11-10 as a gated preview. Dates from Insomniac's own press
+    // release, read 2026-11-10: "next year's edition will take place at the
+    // Central Florida Fairgrounds across three days from April 23-25, 2027",
+    // "100+ artists ... across three days and five stages".
+    // https://press.insomniac.com/blog/forbidden-kingdom-will-return-to-central-florida-fairgrounds-in-2027
+    // No 2027 lineup, set times or map yet. When they publish, this becomes a
+    // data/festivals/ module and scripts/fetch-insomniac-settimes.mjs applies.
+    config: {
+      id:        "forbidden-kingdom-2027",
+      officialEvent: { website: "https://www.forbiddenkingdomfestival.com/", observedAt: "2026-11-10" },
+      name:      "Forbidden Kingdom 2027",
+      shortName: "Forbidden Kingdom",
+      brand:     "Forbidden Kingdom",
+      tagline:   "Three days, five stages in Orlando",
+      location:  "Central Florida Fairgrounds · Orlando, FL",
+      locationShort: "Central Florida Fairgrounds",
+      dates:     "Apr 23–25, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.forbiddenkingdomfestival.com/", observedAt: "2026-11-10" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#a3e635",
+    emoji:     "🐉",
+    region:    "North America",
+  },
+  {
     // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
     // Flip 2026-09-11: stage + set time per act come from the Lost Lands app
     // schedule (app v10.0.0, as captured 2026-09-10); the SCHEDULE block
@@ -4373,6 +4430,7 @@ const _WAVE1_IDS = [
   "dreamstate-socal-2026",
   "decadence-colorado-2026",
   "countdown-nye-2026",
+  "lights-all-night-2026",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {
