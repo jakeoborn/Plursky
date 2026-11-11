@@ -18,6 +18,38 @@ export const EDITIONS = {
   "lollapalooza-2025": { festivalId: "lollapalooza", name: "Lollapalooza 2025", year: 2025,
     timezone: "America/Chicago", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2025-07-31", "Thursday"], ["2025-08-01", "Friday"], ["2025-08-02", "Saturday"], ["2025-08-03", "Sunday"]] },
+  // Lollapalooza 2013-2017 and 2019: the official lollapalooza.com schedule
+  // grid, the same C3 page as ACL's (format "acl-grid"), one archived page per
+  // year, each start read off the page's own hour axis.
+  "lollapalooza-2013": { festivalId: "lollapalooza", name: "Lollapalooza 2013", year: 2013,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2013-08-02", "Friday"], ["2013-08-03", "Saturday"], ["2013-08-04", "Sunday"]],
+    // Saturday prints one range that disagrees with its own block
+    // ("5:30-4:15" on a 75-minute block), so that day cannot be read off its
+    // axis: its lineup ships as printed, without times.
+    untimedDays: [2],
+    notes: [{ asOf: "2026-11-11", days: [2], text: "The official schedule misprints one Saturday set time (Lukas Nelson & P.O.T.R. as 5:30-4:15), so Saturday's set times cannot be confirmed from the page. The lineup is as that page printed it; School of Rock's two Kidzapalooza sets that day are listed once.",
+      source: "https://web.archive.org/web/20131221052257/http://www.lollapalooza.com:80/2013-schedule/" }] },
+  "lollapalooza-2014": { festivalId: "lollapalooza", name: "Lollapalooza 2014", year: 2014,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2014-08-01", "Friday"], ["2014-08-02", "Saturday"], ["2014-08-03", "Sunday"]] },
+  "lollapalooza-2015": { festivalId: "lollapalooza", name: "Lollapalooza 2015", year: 2015,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2015-07-31", "Friday"], ["2015-08-01", "Saturday"], ["2015-08-02", "Sunday"]] },
+  "lollapalooza-2016": { festivalId: "lollapalooza", name: "Lollapalooza 2016", year: 2016,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2016-07-28", "Thursday"], ["2016-07-29", "Friday"], ["2016-07-30", "Saturday"], ["2016-07-31", "Sunday"]] },
+  "lollapalooza-2017": { festivalId: "lollapalooza", name: "Lollapalooza 2017", year: 2017,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2017-08-03", "Thursday"], ["2017-08-04", "Friday"], ["2017-08-05", "Saturday"], ["2017-08-06", "Sunday"]] },
+  "lollapalooza-2019": { festivalId: "lollapalooza", name: "Lollapalooza 2019", year: 2019,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2019-08-01", "Thursday"], ["2019-08-02", "Friday"], ["2019-08-03", "Saturday"], ["2019-08-04", "Sunday"]],
+    // The only archived 2019 grid was captured July 30, before the festival:
+    // its lineup ships, its times do not (as ACL 2017's Weekend 2).
+    untimedDays: [1, 2, 3, 4],
+    notes: [{ asOf: "2026-11-11", days: [1, 2, 3, 4], text: "The only archived 2019 schedule was captured July 30, before the festival, so set times are not confirmed. The lineup is as that page printed it.",
+      source: "https://web.archive.org/web/20190730190925/https://www.lollapalooza.com/schedule/" }] },
   "hard-summer-2025": { festivalId: "hard-summer", name: "HARD Summer 2025", year: 2025,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
     dates: [["2025-08-02", "Saturday"], ["2025-08-03", "Sunday"]] },
@@ -229,6 +261,25 @@ export const EDITIONS = {
   "edc-las-vegas-2023": { festivalId: "edc-lv", name: "EDC Las Vegas 2023", year: 2023,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2023-05-19", "Friday"], ["2023-05-20", "Saturday"], ["2023-05-21", "Sunday"]] },
+  "edc-orlando-2015": { festivalId: "edc-orlando", name: "EDC Orlando 2015", year: 2015,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-11-06", "Friday"], ["2015-11-07", "Saturday"]] },
+  // `undated`: the lineup page printed no days (extract-insomniac-lineup.mjs).
+  "edc-orlando-2016": { festivalId: "edc-orlando", name: "EDC Orlando 2016", year: 2016,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html", undated: true,
+    dates: [["2016-11-04", "Friday"], ["2016-11-05", "Saturday"]],
+    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
+      source: "https://web.archive.org/web/20161204183828/https://orlando.electricdaisycarnival.com/experience/lineup/" }] },
+  "edc-las-vegas-2016": { festivalId: "edc-lv", name: "EDC Las Vegas 2016", year: 2016,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html", undated: true,
+    dates: [["2016-06-17", "Friday"], ["2016-06-18", "Saturday"], ["2016-06-19", "Sunday"]],
+    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
+      source: "https://web.archive.org/web/20161031113516/https://lasvegas.electricdaisycarnival.com/experience/lineup/" }] },
+  "edc-las-vegas-2017": { festivalId: "edc-lv", name: "EDC Las Vegas 2017", year: 2017,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html", undated: true,
+    dates: [["2017-06-16", "Friday"], ["2017-06-17", "Saturday"], ["2017-06-18", "Sunday"]],
+    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
+      source: "https://web.archive.org/web/20170701091308/https://lasvegas.electricdaisycarnival.com/experience/lineup/" }] },
   "edc-orlando-2018": { festivalId: "edc-orlando", name: "EDC Orlando 2018", year: 2018,
     timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2018-11-09", "Friday"], ["2018-11-10", "Saturday"]] },
@@ -350,6 +401,9 @@ export const PRINTED_NON_LATIN = {
   "beyond-wonderland-socal-2026": ["Cntrl Alt DΞLΞTΞ"],
   // Read by eye on the official graphic (review/escape-halloween-2024.json).
   "escape-halloween-2024": ["DAKЯΣD"],
+  // The duo's own Greek lambda, in the page's artist_data list.
+  "edc-las-vegas-2016": ["Axwell Λ Ingrosso"],
+  "edc-las-vegas-2017": ["Axwell Λ Ingrosso"],
 };
 
 const ACTIVITY_REASON = "non-music Bonus Tracks activity";

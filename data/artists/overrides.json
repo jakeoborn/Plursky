@@ -642,6 +642,51 @@
    "source": "https://escapehalloween.com/lineup/set-times/"
   },
   {
+   "printed": "Wankdat (Crankdat + Wooli)",
+   "performers": [
+    {
+     "name": "Wankdat",
+     "role": "project",
+     "parents": [
+      "Crankdat",
+      "Wooli"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://decadencearizona.com/lineup"
+  },
+  {
+   "printed": "Leveltronics (Subtronics B2B Level Up)",
+   "performers": [
+    {
+     "name": "Leveltronics",
+     "role": "project",
+     "parents": [
+      "Subtronics",
+      "Level Up"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the two artists behind the billed project: Leveltronics is a project with Subtronics and Level Up as parents (the Tchami x Malaa (No Redemption) rule, reversed). Both parents are billed on their own elsewhere in the data.",
+   "source": "https://thailand.edc.com/en/lineup/"
+  },
+  {
+   "printed": "Adnan Veron x HBRP",
+   "performers": [
+    {
+     "name": "Adnan Veron",
+     "role": "cobilled"
+    },
+    {
+     "name": "HBRP",
+     "role": "cobilled"
+    }
+   ],
+   "why": "DWP 2026 sells this row as one co-billed set. Both halves are real DJs who release joint mixes (hbrp's SoundCloud, \"Adnan Veron x hbrp Year Mix 2024 (DWP Edition)\"). Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://dwpfest.com/lineup"
+  },
+  {
    "printed": "FURY + MC DINO",
    "performers": [
     {
@@ -930,6 +975,48 @@
    "setTag": "THE CLASSICS",
    "why": "\"THE CLASSICS\" names the set's music, not a person: it is the set tag, and the billing counts on JEFFREY SUTORIUS (the Sian (Techno Classics) rule).",
    "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "Slash feat. Myles Kennedy And The Conspirators",
+   "performers": [
+    {
+     "name": "Slash",
+     "role": "performer"
+    },
+    {
+     "name": "Myles Kennedy And The Conspirators",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. The billed name is a show, kept as printed.",
+   "source": "https://www.lollapalooza.com/"
+  },
+  {
+   "printed": "Big Grams (Big Boi + Phantogram)",
+   "performers": [
+    {
+     "name": "Big Grams",
+     "role": "project",
+     "parents": [
+      "Big Boi",
+      "Phantogram"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the two acts behind the billed project: Big Grams is a project with Big Boi and Phantogram as parents.",
+   "source": "https://www.lollapalooza.com/"
+  },
+  {
+   "printed": "Japanese Breakfast (solo)",
+   "performers": [
+    {
+     "name": "Japanese Breakfast",
+     "role": "performer"
+    }
+   ],
+   "setTag": "solo",
+   "why": "The parenthetical says how the act played that set (a solo set), not who: Japanese Breakfast is the performer and \"solo\" is the set tag.",
+   "source": "https://www.lollapalooza.com/"
   }
  ],
  "pending": [
@@ -1224,6 +1311,54 @@
   {
    "printed": "Heroes x Villains",
    "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Brick + Mortar",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Florence + the Machine",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Frankie + The Studs",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "mo",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "afi",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "m83",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "nf",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "888",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "ajr",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "sza",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "fkj",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "gta",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]
 }

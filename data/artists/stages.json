@@ -2375,6 +2375,198 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "lollapalooza:petrillo",
+     "names": [
+      {
+       "printed": "Petrillo",
+       "editions": [
+        "lollapalooza-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:lake-shore",
+     "names": [
+      {
+       "printed": "Lake Shore",
+       "editions": [
+        "lollapalooza-2013",
+        "lollapalooza-2014",
+        "lollapalooza-2017",
+        "lollapalooza-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:red-bull-sound-select",
+     "names": [
+      {
+       "printed": "Red Bull Sound Select",
+       "editions": [
+        "lollapalooza-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:palladia",
+     "names": [
+      {
+       "printed": "Palladia",
+       "editions": [
+        "lollapalooza-2014",
+        "lollapalooza-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:samsung-galaxy",
+     "names": [
+      {
+       "printed": "Samsung Galaxy",
+       "editions": [
+        "lollapalooza-2014",
+        "lollapalooza-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:pepsi",
+     "names": [
+      {
+       "printed": "Pepsi",
+       "editions": [
+        "lollapalooza-2015",
+        "lollapalooza-2016",
+        "lollapalooza-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:sprint",
+     "names": [
+      {
+       "printed": "Sprint",
+       "editions": [
+        "lollapalooza-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:petrillo-bandshell",
+     "names": [
+      {
+       "printed": "Petrillo Bandshell",
+       "editions": [
+        "lollapalooza-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:perry-s-2",
+     "names": [
+      {
+       "printed": "Perry’s",
+       "editions": [
+        "lollapalooza-2016",
+        "lollapalooza-2017",
+        "lollapalooza-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:samsung",
+     "names": [
+      {
+       "printed": "Samsung",
+       "editions": [
+        "lollapalooza-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:tito-s-handmade-vodka-2",
+     "names": [
+      {
+       "printed": "Tito’s Handmade Vodka",
+       "editions": [
+        "lollapalooza-2017",
+        "lollapalooza-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:grant-park",
+     "names": [
+      {
+       "printed": "Grant Park",
+       "editions": [
+        "lollapalooza-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:american-eagle",
+     "names": [
+      {
+       "printed": "American Eagle",
+       "editions": [
+        "lollapalooza-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:vip-lolla-lounge",
+     "names": [
+      {
+       "printed": "VIP Lolla Lounge",
+       "editions": [
+        "lollapalooza-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

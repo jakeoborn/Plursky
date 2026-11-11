@@ -75,10 +75,12 @@ const festivalArtFiles = existsSync(path.join(root, 'festival-art'))
   : [];
 
 // Past Festivals library (historical.jsx fetches these on demand; never
-// precached). Only the index and the edition files ship: sheets, ledgers and
-// review manifests are build inputs and provenance, not runtime data.
+// precached). Only the index, the edition files and the scan calendar (every
+// festival year's dates and venue, for the past-photo scan) ship: sheets,
+// ledgers, review manifests and the calendar's TSV sources are build inputs
+// and provenance, not runtime data.
 const historicalFiles = existsSync(path.join(root, 'data', 'historical', 'editions'))
-  ? ['data/historical/index.json', ...(await readdir(path.join(root, 'data', 'historical', 'editions')))
+  ? ['data/historical/index.json', 'data/historical/scan-calendar.json', ...(await readdir(path.join(root, 'data', 'historical', 'editions')))
       .filter(f => f.endsWith('.json')).map(f => path.join('data', 'historical', 'editions', f))]
   : [];
 
