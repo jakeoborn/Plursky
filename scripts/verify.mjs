@@ -2961,12 +2961,16 @@ for (const [script, label] of [
 // No GPS = no pin; coordinates never leave the device (cloud backup strips
 // them, no request carries one); a tap opens the item with night/stage/artist
 // and never moves the camera.
+// Memories PHOTOS lens: real GPS only. A moment sits at its own capture fix
+// (one scale, true bearings); no stage fallback, no jitter, no poster x/y.
 // Imported videos: no coordinate leaves the device. The backup uploads a copy
 // with every capture fix redacted (or holds the clip back), and the moments
 // backup drops a video's parsedGps/gpsAccM/heading/headingRef.
 for (const [label, file] of [
   ["Map pins — selection + cloud backup strips coordinates", "scripts/test-map-pins.mjs"],
   ["Map pins — real map: pins, clusters, tap, no coords on the wire", "scripts/test-map-pins-browser.mjs"],
+  ["Memories GPS lens — real fixes only, true scale and bearing, mutations", "scripts/test-memories-gps-lens.mjs"],
+  ["Memories GPS lens — real app: only GPS moments render, empty state, no coords on the wire", "scripts/test-memories-gps-lens-browser.mjs"],
   ["Video GPS strip — every fix redacted, fail closed, moments backup", "scripts/test-video-gps-strip.mjs"],
   ["Video GPS strip — real backup flow, nothing on the wire carries a coordinate", "scripts/test-video-gps-backup-browser.mjs"],
 ]) {

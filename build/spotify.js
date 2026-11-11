@@ -8544,15 +8544,6 @@ function _idHash(id) {
   for (var i = 0; i < s.length; i++) h = Math.imul(h, 31) + s.charCodeAt(i) | 0;
   return h >>> 0;
 }
-function _idJitter(id, amp = 2.6) {
-  var h = _idHash(id);
-  var ang = h % 997 / 997 * Math.PI * 2;
-  var rad = amp * (0.35 + 0.65 * ((h >>> 9) % 991 / 991));
-  return {
-    dx: Math.cos(ang) * rad,
-    dy: Math.sin(ang) * rad
-  };
-}
 function _momentTime(m) {
   if (m && m.takenAt) {
     var t = Date.parse(m.takenAt.replace(" ", "T"));
@@ -8569,12 +8560,14 @@ function _PhotoPin({
     {
       url
     } = thumb;
-  var ring = cluster.stage && cluster.stage.color || "#9aa";
+  var ring = "var(--acc)";
   var rot = _idHash(m.id) % 17 - 8;
   var extra = cluster.items.length - 1;
   var SIZE = cluster.items.length > 1 ? 52 : 46;
   return React.createElement("button", {
     onClick: () => onTap && onTap(cluster),
+    "data-moment-ids": cluster.items.map(x => x.id).join(","),
+    "aria-label": cluster.items.length === 1 ? m.kind === "video" ? "Video" : "Photo" : `${cluster.items.length} moments`,
     style: {
       position: "absolute",
       left: cluster.x + "%",
@@ -8641,157 +8634,150 @@ function _PhotoPin({
     }
   }, "+", extra));
 }
+function _lensFix(m) {
+  var g = m && m.parsedGps;
+  if (!g || typeof g.lat !== "number" || typeof g.lng !== "number") return null;
+  if (!Number.isFinite(g.lat) || !Number.isFinite(g.lng)) return null;
+  if (Math.abs(g.lat) > 90 || Math.abs(g.lng) > 180) return null;
+  if (g.lat === 0 && g.lng === 0) return null;
+  return {
+    lat: g.lat,
+    lng: g.lng
+  };
+}
+var _LENS_FAR_M = 3000;
+var _LENS_MIN_SPAN_M = 40;
+function _gpsLensLayout(moments, opts) {
+  var pad = opts && opts.pad || 14,
+    clusterPct = opts && opts.clusterPct || 6,
+    cap = opts && opts.cap || 24;
+  var fixes = [];
+  var noGps = 0;
+  for (var m of moments || []) {
+    if (!m || !m.photoId) continue;
+    var g = _lensFix(m);
+    if (!g) {
+      noGps++;
+      continue;
+    }
+    fixes.push({
+      m,
+      g,
+      t: _momentTime(m)
+    });
+  }
+  var empty = {
+    clusters: [],
+    hidden: 0,
+    noGps,
+    far: 0,
+    mPerPct: 0
+  };
+  if (!fixes.length) return empty;
+  var med = arr => {
+    var s = arr.slice().sort((a, b) => a - b);
+    return s[Math.floor(s.length / 2)];
+  };
+  var lat0 = med(fixes.map(f => f.g.lat)),
+    lng0 = med(fixes.map(f => f.g.lng));
+  var R = 6371008.8,
+    k = Math.PI / 180,
+    cos0 = Math.cos(lat0 * k);
+  var pts = [];
+  var far = 0;
+  for (var f of fixes) {
+    var e = (f.g.lng - lng0) * k * R * cos0,
+      n = (f.g.lat - lat0) * k * R;
+    if (Math.hypot(e, n) > _LENS_FAR_M) {
+      far++;
+      continue;
+    }
+    pts.push({
+      m: f.m,
+      t: f.t,
+      e,
+      n
+    });
+  }
+  if (!pts.length) return {
+    ...empty,
+    far
+  };
+  var minE = Infinity,
+    maxE = -Infinity,
+    minN = Infinity,
+    maxN = -Infinity;
+  for (var p of pts) {
+    minE = Math.min(minE, p.e);
+    maxE = Math.max(maxE, p.e);
+    minN = Math.min(minN, p.n);
+    maxN = Math.max(maxN, p.n);
+  }
+  var span = Math.max(maxE - minE, maxN - minN, _LENS_MIN_SPAN_M);
+  var scale = (100 - 2 * pad) / span;
+  var ce = (minE + maxE) / 2,
+    cn = (minN + maxN) / 2;
+  for (var _p of pts) {
+    _p.x = 50 + (_p.e - ce) * scale;
+    _p.y = 50 - (_p.n - cn) * scale;
+  }
+  var sorted = pts.slice().sort((a, b) => b.t - a.t);
+  var used = new Array(sorted.length).fill(false);
+  var clusters = [];
+  for (var i = 0; i < sorted.length; i++) {
+    if (used[i]) continue;
+    var head = sorted[i];
+    used[i] = true;
+    var group = [head];
+    for (var j = i + 1; j < sorted.length; j++) {
+      if (used[j]) continue;
+      if (Math.hypot(sorted[j].x - head.x, sorted[j].y - head.y) <= clusterPct) {
+        used[j] = true;
+        group.push(sorted[j]);
+      }
+    }
+    clusters.push({
+      x: head.x,
+      y: head.y,
+      face: head.m,
+      items: group.map(g => g.m)
+    });
+  }
+  var visible = clusters.slice(0, cap);
+  var hidden = clusters.slice(cap).reduce((n, c) => n + c.items.length, 0);
+  return {
+    clusters: visible,
+    hidden,
+    noGps,
+    far,
+    mPerPct: 1 / scale
+  };
+}
+function _lensScaleBar(mPerPct) {
+  if (!(mPerPct > 0)) return null;
+  var maxM = mPerPct * 34;
+  var steps = [5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000];
+  var m = steps[0];
+  for (var s of steps) if (s <= maxM) m = s;
+  return {
+    m,
+    pct: m / mPerPct,
+    label: m >= 1000 ? `${m / 1000} km` : `${m} m`
+  };
+}
 function MemoriesPhotoMapLens({
   moments,
   onPinTap
 }) {
-  var CAP = 24,
-    CLUSTER_R = 6;
   var {
     clusters,
     hidden,
-    unplaced
-  } = React.useMemo(() => {
-    var placed = [];
-    var unplaced = 0;
-    var _loop5 = function (m) {
-        if (!m.photoId) return 0;
-        var xy = null,
-          stageId = null;
-        if (m.parsedGps && typeof gpsToMap === "function") {
-          var p = gpsToMap(m.parsedGps.lat, m.parsedGps.lng);
-          if (p) {
-            xy = {
-              x: p.x,
-              y: p.y
-            };
-            if (typeof _nearestStageId === "function") stageId = _nearestStageId(p.x, p.y);
-          }
-        }
-        if (!xy) {
-          var a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
-          var _stage = a ? STAGES.find(s => s.id === a.stage) : null;
-          if (!_stage || !Number.isFinite(_stage.x) || !Number.isFinite(_stage.y)) {
-            unplaced++;
-            return 0;
-          }
-          var _j = _idJitter(m.id);
-          xy = {
-            x: _stage.x + _j.dx,
-            y: _stage.y + _j.dy
-          };
-          stageId = _stage.id;
-        }
-        if (!stageId && typeof _nearestStageId === "function") stageId = _nearestStageId(xy.x, xy.y);
-        var stage = stageId ? STAGES.find(s => s.id === stageId) : null;
-        placed.push({
-          m,
-          x: xy.x,
-          y: xy.y,
-          stage,
-          t: _momentTime(m)
-        });
-      },
-      _ret2;
-    for (var m of moments || []) {
-      _ret2 = _loop5(m);
-      if (_ret2 === 0) continue;
-    }
-    var sorted = placed.slice().sort((a, b) => b.t - a.t);
-    var used = new Array(sorted.length).fill(false);
-    var clusters = [];
-    for (var i = 0; i < sorted.length; i++) {
-      if (used[i]) continue;
-      var head = sorted[i];
-      used[i] = true;
-      var group = [head];
-      for (var j = i + 1; j < sorted.length; j++) {
-        if (used[j]) continue;
-        if (Math.hypot(sorted[j].x - head.x, sorted[j].y - head.y) <= CLUSTER_R) {
-          used[j] = true;
-          group.push(sorted[j]);
-        }
-      }
-      clusters.push({
-        x: head.x,
-        y: head.y,
-        stage: head.stage,
-        face: head.m,
-        items: group.map(g => g.m)
-      });
-    }
-    var visible = clusters.slice(0, CAP);
-    var hidden = clusters.slice(CAP).reduce((n, c) => n + c.items.length, 0);
-    return {
-      clusters: visible,
-      hidden,
-      unplaced
-    };
-  }, [moments]);
-  if (!clusters.length) {
-    return React.createElement("div", {
-      style: {
-        padding: "28px 14px",
-        textAlign: "center",
-        marginTop: 14,
-        border: "1px dashed var(--line-2)",
-        borderRadius: 14,
-        background: "var(--paper-2)"
-      }
-    }, React.createElement("div", {
-      className: "mono",
-      style: {
-        fontSize: 9,
-        letterSpacing: 1.3,
-        color: "var(--muted)",
-        fontWeight: 700
-      }
-    }, "NOTHING TO MAP YET — IMPORT GPS PHOTOS OR TAG SETS"));
-  }
-  var img = typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.mapImage : null;
-  return React.createElement("div", {
-    style: {
-      marginTop: 14
-    }
-  }, React.createElement("div", {
-    style: {
-      position: "relative",
-      width: "100%",
-      aspectRatio: "1 / 1",
-      borderRadius: 16,
-      overflow: "hidden",
-      border: "1px solid var(--line)",
-      background: "var(--paper)"
-    }
-  }, React.createElement("svg", {
-    viewBox: "0 0 100 100",
-    width: "100%",
-    height: "100%",
-    preserveAspectRatio: "xMidYMid slice",
-    style: {
-      position: "absolute",
-      inset: 0,
-      display: "block"
-    }
-  }, img && React.createElement("image", {
-    href: img,
-    x: "0",
-    y: "0",
-    width: "100",
-    height: "100",
-    preserveAspectRatio: "xMidYMid slice",
-    opacity: "0.6"
-  }), React.createElement("rect", {
-    x: "0",
-    y: "0",
-    width: "100",
-    height: "100",
-    fill: "rgba(8,7,11,0.5)"
-  })), clusters.map((c, i) => React.createElement(_PhotoPin, {
-    key: c.face.id || i,
-    cluster: c,
-    onTap: onPinTap
-  }))), (hidden > 0 || unplaced > 0) && React.createElement("div", {
+    noGps,
+    far,
+    mPerPct
+  } = React.useMemo(() => _gpsLensLayout(moments), [moments]);
+  var bar = _lensScaleBar(mPerPct);
+  var notes = (hidden > 0 || noGps > 0 || far > 0) && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 8.5,
@@ -8804,7 +8790,94 @@ function MemoriesPhotoMapLens({
       flexWrap: "wrap",
       gap: 10
     }
-  }, hidden > 0 && React.createElement("span", null, "+", hidden, " MORE THUMBNAIL", hidden === 1 ? "" : "S", " CLUSTERED"), unplaced > 0 && React.createElement("span", null, "+", unplaced, " UNTAGGED NOT ON THE MAP")));
+  }, hidden > 0 && React.createElement("span", null, "+", hidden, " MORE CLUSTERED"), noGps > 0 && React.createElement("span", null, noGps, " WITHOUT GPS NOT SHOWN"), far > 0 && React.createElement("span", null, far, " FAR FROM THE REST NOT SHOWN"));
+  if (!clusters.length) {
+    return React.createElement("div", {
+      style: {
+        marginTop: 14
+      }
+    }, React.createElement("div", {
+      "data-gps-lens-empty": "1",
+      style: {
+        padding: "28px 14px",
+        textAlign: "center",
+        border: "1px dashed var(--line-2)",
+        borderRadius: 14,
+        background: "var(--paper-2)"
+      }
+    }, React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.3,
+        color: "var(--muted)",
+        fontWeight: 700
+      }
+    }, "NO GPS IN THESE MOMENTS · SHOTS TAKEN WITH LOCATION ON SHOW UP HERE")), notes);
+  }
+  return React.createElement("div", {
+    style: {
+      marginTop: 14
+    }
+  }, React.createElement("div", {
+    "data-gps-lens": "1",
+    style: {
+      position: "relative",
+      width: "100%",
+      aspectRatio: "1 / 1",
+      borderRadius: 16,
+      overflow: "hidden",
+      border: "1px solid var(--line)",
+      background: "var(--paper-2)"
+    }
+  }, clusters.map((c, i) => React.createElement(_PhotoPin, {
+    key: c.face.id || i,
+    cluster: c,
+    onTap: onPinTap
+  }))), React.createElement("div", {
+    style: {
+      position: "relative",
+      height: 22,
+      marginTop: 6
+    }
+  }, bar && React.createElement(React.Fragment, null, React.createElement("span", {
+    "data-gps-lens-bar": bar.m,
+    role: "img",
+    "aria-label": `Scale: ${bar.label}`,
+    style: {
+      position: "absolute",
+      left: 0,
+      top: 4,
+      width: `${bar.pct}%`,
+      height: 3,
+      borderRadius: 2,
+      background: "var(--muted)"
+    }
+  }), React.createElement("span", {
+    className: "mono",
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      left: 0,
+      top: 10,
+      fontSize: 8.5,
+      fontWeight: 700,
+      color: "var(--muted)",
+      letterSpacing: 0.6
+    }
+  }, bar.label)), React.createElement("span", {
+    className: "mono",
+    "aria-label": "North is up",
+    style: {
+      position: "absolute",
+      right: 0,
+      top: 2,
+      fontSize: 9,
+      fontWeight: 800,
+      color: "var(--muted)",
+      letterSpacing: 1
+    }
+  }, "N ↑")), notes);
 }
 function MemoriesMapTab({
   moments,
@@ -9478,7 +9551,7 @@ function MemoriesScreen({
     var allNights = Object.keys(window.FESTIVAL_CONFIG?.dayDates || {}).map(Number).sort((a, b) => a - b);
     var fallbackNight = window.NOW?.day && allNights.includes(window.NOW.day) ? window.NOW.day : allNights[allNights.length - 1] || 1;
     var skippedDupes = 0;
-    var _loop6 = async function (i) {
+    var _loop5 = async function (i) {
       var f = files[i];
       var reading = false;
       try {
@@ -9678,7 +9751,7 @@ function MemoriesScreen({
       });
     };
     for (var i = 0; i < files.length; i++) {
-      if (await _loop6(i)) continue;
+      if (await _loop5(i)) continue;
     }
     _writeMoments(current);
     setAll({
@@ -9945,7 +10018,7 @@ function MemoriesScreen({
       var imported = 0,
         unreadable = 0,
         done = 0;
-      var _loop7 = async function () {
+      var _loop6 = async function () {
         setScan({
           phase: "importing",
           done,
@@ -9974,7 +10047,7 @@ function MemoriesScreen({
         })?.catch?.(() => {});
       };
       for (var chunk of chunks) {
-        if (await _loop7()) continue;
+        if (await _loop6()) continue;
       }
       setScan({
         phase: "done",
@@ -12798,12 +12871,12 @@ function _recoverCurrentVideoMomentsFromArchive() {
         changed = true;
       }
     }
-    var _loop8 = function (move) {
+    var _loop7 = function (move) {
       all[move.from] = (all[move.from] || []).filter(m => m !== move.moment);
       all[move.to] = [...(all[move.to] || []), move.moment];
     };
     for (var move of moves) {
-      _loop8(move);
+      _loop7(move);
     }
     if (changed) _writeMoments(all);
   } catch {}
@@ -12880,13 +12953,13 @@ function _reconcileFestivalStamps(moments) {
       }
     }
   }
-  var _loop9 = function (move) {
+  var _loop8 = function (move) {
     moments[move.from] = moments[move.from].filter(x => x !== move.moment);
     if (!moments[move.from].length) delete moments[move.from];
     moments[move.to] = [...(moments[move.to] || []), move.moment];
   };
   for (var move of moves) {
-    _loop9(move);
+    _loop8(move);
   }
   return changed;
 }
@@ -13199,7 +13272,7 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var _loop0 = function (m) {
+  var _loop9 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var {
         fid,
@@ -13220,10 +13293,10 @@ function _aggregateSoundtrack(moments) {
       songMap[key].count++;
       songMap[key].artists.add(artist.name);
     },
-    _ret3;
+    _ret2;
   for (var m of Object.values(moments)) {
-    _ret3 = _loop0(m);
-    if (_ret3 === 0) continue;
+    _ret2 = _loop9(m);
+    if (_ret2 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
 }
@@ -15295,7 +15368,7 @@ function HeroCards({
     var live = true;
     var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
     (async () => {
-      var _loop1 = async function (a) {
+      var _loop0 = async function (a) {
           var canvas = await _renderHeroCard(a).catch(() => null);
           if (!live || !canvas) return 0;
           var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -15310,10 +15383,10 @@ function HeroCards({
             }
           }));
         },
-        _ret4;
+        _ret3;
       for (var a of want) {
-        _ret4 = await _loop1(a);
-        if (_ret4 === 0) continue;
+        _ret3 = await _loop0(a);
+        if (_ret3 === 0) continue;
       }
     })();
     return () => {
@@ -17300,7 +17373,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop10 = function (rows) {
+  var _loop1 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -17314,7 +17387,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop10(rows);
+    _loop1(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }
