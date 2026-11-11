@@ -38,6 +38,20 @@ Official schedule graphics (Gov Ball, Lolla, ACL …):
     # hand-transcribe footer strips, put the printed header in <id>-dN.note
     node scripts/historical/finalize-review.mjs <edition-id> <review-dir> --reviewer "<who>"
 
+Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, format `acl-grid`):
+
+    node scripts/historical/gather-acl-grid.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+The gather dir stays outside the repo. Each block's am/pm is read off the
+page's own hour axis, and the em-per-minute scale is fitted from the blocks
+themselves. A block whose printed range disagrees with its height (Lolla
+2013's "5:30-4:15") is fitted out and named; its day then cannot be read
+and ships untimed, which the edition must list in `untimedDays` with a note,
+and the ledger keeps the misprint. A block printed twice (off the axis, or
+twice in the same place) is one set; a second set by the same act on the
+same stage of an untimed day is excluded as a repeat and the note says so.
+
 Mixed official sources (`official_sources`, Escape): when no single archive
 covers an edition, each day lists its sources in the ledger. A source is an
 archived official page (Wayback, the festival's own host; a post-event capture
@@ -127,6 +141,20 @@ the day is checked against By Day. On these lineup-only pages a bare
 "Discovery Project" (no stage, no time) is the contest slot before its
 winner was named, so it is dropped as an unnamed slot (`lineupDropReason`);
 the live lineup's stageless entry is unaffected.
+
+Some 2016 and 2017 pages (EDC Las Vegas 2016 and 2017, EDC Orlando 2016)
+printed no days: only an alphabetical list, or only the page's
+`var artist_data` script list. The extractor reads that list as an
+Alphabetical tab. Such an edition is marked `undated` in editions.mjs: it is
+proven by its page title alone and never by a page that has a By Day tab,
+no artist carries a day, a note on the edition says so, and a name the page
+listed twice is one artist (the ledger names it). Nothing on the lineup page
+dates it, so its `datesPage` is the festival's own home page captured just
+before the festival, whose title printed the dates ("EDC Orlando |
+November 4–5, 2016 | Tinker Field"); the extractor refuses the edition if
+those are not exactly its dates, and the ledger keeps the capture. A page
+title that names no year ("LINEUP - EDC Las Vegas") is read only up to
+`until`, at most two weeks after the festival.
 
 Countdown NYE ends on 31 December, so its pages are often only captured in
 early January. A lineup entry can give its own capture `window`, and the

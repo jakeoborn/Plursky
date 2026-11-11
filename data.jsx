@@ -523,6 +523,154 @@ const FESTIVALS_REGISTRY = [
     region:    "North America",
   },
   {
+    // ── Ubbi Dubbi 2027 — Panther Island Pavilion, Fort Worth TX ──
+    // Added 2026-11-11 as a gated preview. Disco Presents. Dates and venue from
+    // ubbidubbifestival.com, read 2026-11-11: "join us April 23 & 24 at Panther
+    // Island Pavilion in Ft. Worth", page title "Ubbi Dubbi Festival 2027".
+    // The 2027 lineup IS announced, but the official site carries it only as a
+    // poster image, and the text press relays read 2026-11-11 name about half
+    // of it. No partial lineup ships: this becomes a data/festivals/ module
+    // once the full list is readable from an official or complete source.
+    config: {
+      id:        "ubbi-dubbi-2027",
+      officialEvent: { website: "https://ubbidubbifestival.com/", observedAt: "2026-11-11" },
+      name:      "Ubbi Dubbi 2027",
+      shortName: "Ubbi Dubbi",
+      brand:     "Ubbi Dubbi",
+      tagline:   "Two days of house and bass in Fort Worth",
+      location:  "Panther Island Pavilion · Fort Worth, TX",
+      locationShort: "Panther Island Pavilion",
+      dates:     "Apr 23–24, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://ubbidubbifestival.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#f472b6",
+    emoji:     "🍭",
+    region:    "North America",
+  },
+  {
+    // ── Movement 2027 — Hart Plaza, Detroit MI ──
+    // Added 2026-11-11 as a gated preview. Dates from movementfestival.com/faqs,
+    // read 2026-11-11: "Movement 2027 will take place Memorial Day Weekend,
+    // starting Saturday, May 29 through Monday, May 31, inside Hart Plaza".
+    // No 2027 lineup yet.
+    config: {
+      id:        "movement-2027",
+      officialEvent: { website: "https://movementfestival.com/", observedAt: "2026-11-11" },
+      name:      "Movement 2027",
+      shortName: "Movement",
+      brand:     "Movement",
+      tagline:   "Memorial Day weekend of techno in downtown Detroit",
+      location:  "Hart Plaza · Detroit, MI",
+      locationShort: "Hart Plaza",
+      dates:     "May 29–31, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://movementfestival.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#94a3b8",
+    emoji:     "🏙️",
+    region:    "North America",
+  },
+  {
+    // ── Shambhala 2027 — Salmo River Ranch, BC ──
+    // Added 2026-11-11 as a gated preview. Dates from the official site's page
+    // title, read 2026-11-11: "July 23-26, 2027 | Salmo River Ranch, BC,
+    // Canada" (shown as sold out). No 2027 lineup yet.
+    config: {
+      id:        "shambhala-2027",
+      officialEvent: { website: "https://www.shambhalamusicfestival.com/", observedAt: "2026-11-11" },
+      name:      "Shambhala 2027",
+      shortName: "Shambhala",
+      brand:     "Shambhala",
+      tagline:   "Four nights on a family farm in the Kootenays",
+      location:  "Salmo River Ranch · BC, Canada",
+      locationShort: "Salmo River Ranch",
+      dates:     "Jul 23–26, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.shambhalamusicfestival.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#4ade80",
+    emoji:     "🌲",
+    region:    "North America",
+  },
+  {
+    // ── Defqon.1 2027 — Biddinghuizen, Netherlands ──
+    // Added 2026-11-11 as a gated preview. Q-dance. defqon1.com redirects to
+    // q-dance.com/l/defqon1-2027, read 2026-11-11: "Defqon.1 Weekend Festival
+    // 2027 | June 24 - 27". No 2027 lineup yet.
+    config: {
+      id:        "defqon1-2027",
+      officialEvent: { website: "https://www.defqon1.com/", observedAt: "2026-11-11" },
+      name:      "Defqon.1 2027",
+      shortName: "Defqon.1",
+      brand:     "Defqon.1",
+      tagline:   "Four days of hardstyle in the Dutch polder",
+      location:  "Biddinghuizen · Netherlands",
+      locationShort: "Biddinghuizen",
+      dates:     "Jun 24–27, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.defqon1.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ef4444",
+    emoji:     "⚔️",
+    region:    "Europe",
+  },
+  {
+    // ── Untold 2027 — Cluj-Napoca, Romania ──
+    // Added 2026-11-11 as a gated preview. Dates from untold.com, read
+    // 2026-11-11: "5-8 August 2027, Cluj-Napoca, Romania". No 2027 lineup yet.
+    config: {
+      id:        "untold-2027",
+      officialEvent: { website: "https://untold.com/", observedAt: "2026-11-11" },
+      name:      "Untold 2027",
+      shortName: "Untold",
+      brand:     "Untold",
+      tagline:   "Four nights in the heart of Transylvania",
+      location:  "Cluj-Napoca, Romania",
+      locationShort: "Cluj-Napoca",
+      dates:     "Aug 5–8, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://untold.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#c084fc",
+    emoji:     "🏰",
+    region:    "Europe",
+  },
+  {
+    // ── Creamfields 2027 — Daresbury, Cheshire UK ──
+    // Added 2026-11-11 as a gated preview. Dates from creamfields.com, read
+    // 2026-11-11: "Thu 26 – Sun 29 August 2027, Daresbury Cheshire". No 2027
+    // lineup yet.
+    config: {
+      id:        "creamfields-2027",
+      officialEvent: { website: "https://www.creamfields.com/", observedAt: "2026-11-11" },
+      name:      "Creamfields 2027",
+      shortName: "Creamfields",
+      brand:     "Creamfields",
+      tagline:   "Bank holiday weekend in the Cheshire fields",
+      location:  "Daresbury · Cheshire, UK",
+      locationShort: "Daresbury",
+      dates:     "Aug 26–29, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.creamfields.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#a855f7",
+    emoji:     "🍦",
+    region:    "Europe",
+  },
+  {
     // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
     // Flip 2026-09-11: stage + set time per act come from the Lost Lands app
     // schedule (app v10.0.0, as captured 2026-09-10); the SCHEDULE block
@@ -4443,6 +4591,8 @@ const _WAVE1_IDS = [
   "decadence-colorado-2026",
   "countdown-nye-2026",
   "lights-all-night-2026",
+  "decadence-arizona-2026",
+  "sunset-on-the-river-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {

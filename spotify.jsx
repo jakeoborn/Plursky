@@ -6482,7 +6482,9 @@ function MemoriesScreen({ state, setState }) {
         const baseMeta = pk ? { ...pk, takenAtSource: "photokit" } : _metaFromFile(f, exif);
         const recovered = _recoverVideoMetaFromArchive(f, fp, baseMeta);
         const meta = recovered?.meta || baseMeta;
-        const matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds) : { artistId: null, night: null, reason: "no_date" };
+        // A past-edition scan names its edition (opts.ds); everything else
+        // resolves the festival from the capture time, as before.
+        const matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds, opts.ds || undefined) : { artistId: null, night: null, reason: "no_date" };
         // v141: never skip — if EXIF/lastModified didn't pick a night, drop
         // into the current festival night untagged. User can re-tag from
         // the moment card later or delete if it doesn't belong.
@@ -6591,6 +6593,12 @@ function MemoriesScreen({ state, setState }) {
           _fingerprint: fp || null,
           _contentSha256: fileSha || null,
         };
+        // A past-edition scan stamps the edition its library scan matched
+        // (on site + in that edition's set hours). No live festival can claim
+        // a past capture time, so _reconcileFestivalStamps must leave it alone
+        // rather than flag it "no-claimant". Only a resolved edition qualifies:
+        // an unresolved one keeps "active-fallback" above.
+        if (opts.ds?.config?.historical && matched.festivalId) moment.festivalStampSource = "past-edition";
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];
@@ -6648,13 +6656,22 @@ function MemoriesScreen({ state, setState }) {
     // say where the files went. (v235)
     const activeFid = window.FESTIVAL_CONFIG?.id || null;
     const elsewhere = landed.filter(r => r.festivalId && r.festivalId !== activeFid);
-    if (elsewhere.length) {
+    // A past-edition scan reports where its photos went on its own card.
+    if (elsewhere.length && !opts.ds?.config?.historical) {
       const byFest = {};
       for (const r of elsewhere) byFest[r.festivalId] = (byFest[r.festivalId] || 0) + 1;
       const label = (id) => window._DATA_SETS?.[id]?.config?.shortName
                          || window._DATA_SETS?.[id]?.config?.name || id;
       const parts = Object.keys(byFest).map(id => `${byFest[id]} to ${label(id)}`);
       window.plurskyToast?.(`Filed by capture date — ${parts.join(", ")}. Switch festivals to see them.`);
+    }
+    // A past-edition scan reports on its own card and its photos live on the
+    // edition's page. The live summary banner and review sheet below read the
+    // ACTIVE festival's lineup and nights, so they would call every past
+    // photo "No set matched" under the wrong weekday. Skip both.
+    if (opts.ds?.config?.historical) {
+      setBatch(null);
+      return settledResults;
     }
     if (landed.length === 0) {
       const failed = failedResults.length;
@@ -6907,6 +6924,103 @@ function MemoriesScreen({ state, setState }) {
     } finally {
       try { _scanDiagLog("scan-end"); } catch {}
     }
+  };
+  // ── Scan past festivals (2026-11-07) ─────────────────────────────────────
+  // Jake: "the photo video scan can do any festival in the past if in users
+  // photo gallery and if in our catalog". Every Past Festivals edition is
+  // asked of the library the way a live festival's nights are, but only a
+  // photo with a fix on that festival's own site is kept (_histAssetOnSite),
+  // and the rest of the pipeline is the live scan's: that edition's set
+  // hours, the matcher on its printed sets, chunked import, the seen-id list.
+  // Each moment is stamped with the edition id, so it stays off the live
+  // festival's screens and shows on the edition's Past Festivals page.
+  const [pastScan, setPastScan] = React.useState(null);
+  const _scanBusy = (st) => !!st && ["access", "scanning", "importing"].includes(st.phase);
+  const handleScanPast = async () => {
+    const PS = window.Capacitor?.Plugins?.PhotoScan;
+    if (!PS?.scan) return;
+    if ((batch && batch.done < batch.total) || _scanBusy(scan) || _scanBusy(pastScan)) return;
+    setPastScan({ phase: "access" });
+    try {
+      const access = await PS.requestAccess();
+      const limited = access?.status === "limited";
+      if (access?.status !== "authorized" && !limited) { setPastScan({ phase: "denied" }); return; }
+      setPastScan({ phase: "scanning" });
+      // The library index and the festival-year calendar; either alone still
+      // scans what it knows, and neither means there is nothing to look for.
+      const [index, calendar] = await Promise.all([
+        _histFetch("index.json").catch(() => null),
+        _histFetch("scan-calendar.json").catch(() => null),
+      ]);
+      if (!index && !calendar) throw new Error("past festival lists unavailable");
+      const targets = _histScanTargets(index, null, calendar);
+      const seen = _scanSeenRead();
+      const found = [];
+      let already = 0;
+      for (const [i, t] of targets.entries()) {
+        if (i % 10 === 0) setPastScan({ phase: "scanning", checked: i, years: targets.length });
+        const assets = [];
+        for (const r of _scanQueryRanges(t.cfg)) {
+          const res = await PS.scan({ startMs: r.startMs, endMs: r.endMs });
+          assets.push(...(res?.assets || []));
+        }
+        const onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
+        if (!onSite.length) continue;
+        const ds = _histDataSet(t.inLibrary ? await _histFetch(`editions/${t.entry.id}.json`) : null, t.cfg);
+        const pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
+        already += pick.already;
+        if (pick.keep.length) found.push({ t, ds, keep: pick.keep });
+      }
+      const total = found.reduce((n, f) => n + f.keep.length, 0);
+      if (!total) { setPastScan({ phase: "none", already, limited, editions: targets.length }); return; }
+      let imported = 0, unreadable = 0, done = 0;
+      const byEdition = [];
+      for (const f of found) {
+        let got = 0;
+        for (const chunk of _scanChunks(f.keep)) {
+          setPastScan({ phase: "importing", done, total });
+          done += chunk.length;
+          const files = [], fileAssets = [];
+          for (const a of chunk) {
+            const file = await _scanExportFile(PS, a, f.t.cfg);
+            if (file) { files.push(file); fileAssets.push(a); } else unreadable++;
+          }
+          if (!files.length) continue;
+          const results = (await processImportedFiles(files, { ds: f.ds })) || [];
+          const failed = new Set(results.filter(r => r.err).map(r => r.fileIndex));
+          _scanSeenAdd(fileAssets.filter((_, k) => !failed.has(k)).map(a => a.id));
+          const n = results.filter(r => r.momentId).length;
+          got += n; imported += n; unreadable += failed.size;
+          for (const file of files) if (!/^video\//.test(file.type)) PS.discard?.({ path: file._scanPath })?.catch?.(() => {});
+        }
+        if (got) byEdition.push({ id: f.t.entry.id, name: f.t.entry.name, count: got });
+      }
+      setPastScan({ phase: "done", imported, unreadable, already, limited, byEdition });
+    } catch (err) {
+      console.warn("[memories] past scan failed", err);
+      setPastScan({ phase: "error" });
+    }
+  };
+  const _pastScanMessage = (st) => {
+    if (!st) return null;
+    const limitedNote = st.limited ? "Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
+    const alreadyNote = st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : "";
+    if (st.phase === "access" || st.phase === "scanning") return { busy: true, title: "Looking for photos from past festivals…",
+      body: st.years ? `Checked ${st.checked} of ${st.years} festival years since 2010.` : null };
+    if (st.phase === "importing") return { busy: true, title: `Importing ${st.done} of ${st.total}…` };
+    if (st.phase === "denied") return { tone: "warn", title: "Plursky can’t see your photos", body: "Turn on photo access in Settings, Plursky, Photos, then scan again." };
+    if (st.phase === "error") return { tone: "warn", title: "Couldn’t finish the scan", body: "Anything already imported is saved. Past festivals need a connection the first time; scan again to pick up the rest.", retry: true };
+    if (st.phase === "none") return {
+      title: "No new photos from past festivals",
+      body: [alreadyNote || "Nothing in your library was taken on a past festival’s grounds while it was on.", limitedNote].filter(Boolean).join(" "),
+    };
+    if (st.phase === "done") return {
+      title: `Imported ${st.imported} from past festivals`,
+      body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", alreadyNote, limitedNote].filter(Boolean).join(" ") || null,
+      editions: st.byEdition || [],
+      retry: !!st.unreadable,
+    };
+    return null;
   };
   const _scanMessage = (st) => {
     if (!st) return null;
@@ -7354,6 +7468,47 @@ function MemoriesScreen({ state, setState }) {
                   )}
                 </div>
               )}
+              {/* Scan past festivals (2026-11-07): every Past Festivals edition,
+                  photos on that festival's grounds only, each filed under its
+                  edition. Same card shape as Scan my weekend. */}
+              {(() => {
+                const pm = _pastScanMessage(pastScan);
+                const pbusy = !!pm?.busy || busy;
+                const ghost = { minHeight: 44, padding: "0 14px", borderRadius: 12, border: "none", cursor: "pointer", background: "var(--paper-3)", color: "var(--ink)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit" };
+                return (
+                  <div style={{ marginTop: 8 }}>
+                    <button onClick={handleScanPast} disabled={pbusy} data-scan-past
+                      className="duo-card" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12, width: "100%", minHeight: 64, padding: "10px 16px", border: "none", color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: pbusy ? "default" : "pointer" }}>
+                      <span aria-hidden="true" className="duo-well" style={{ width: 40, height: 40, flexShrink: 0, display: "grid", placeItems: "center", color: "var(--acc-ink)" }}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12 a8 8 0 1 0 2.4-5.7"/><path d="M4 4 v4.5 h4.5"/><path d="M12 8 v4.2 l2.8 1.8"/></svg>
+                      </span>
+                      <span style={{ flex: "1 1 150px", minWidth: 0 }}>
+                        <span data-fit-words data-fit-min="13" className="duo-headline" style={{ display: "block" }}>Scan past festivals</span>
+                        <span data-fit-words data-fit-min="11" className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>Finds photos from past years you were there</span>
+                      </span>
+                      <span className="duo-body-s" style={{ color: "var(--acc-ink)", fontWeight: 650, fontSize: 15 }}>{pbusy ? "…" : "Scan"}</span>
+                    </button>
+                    {pm && (
+                      <div role="status" data-scan-past-card style={{ marginTop: 8, padding: "12px 14px", borderRadius: 14, background: "var(--paper-2)", border: "1px solid var(--line)" }}>
+                        <div style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600, color: pm.tone === "warn" ? "var(--warn)" : "var(--ink)" }}>{pm.title}</div>
+                        {pm.body && <p style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{pm.body}</p>}
+                        {!pm.busy && (
+                          <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
+                            {(pm.editions || []).map(e => (
+                              <button key={e.id} data-scan-past-open={e.id} style={ghost}
+                                onClick={() => (window._pushNav || (() => {}))({ tab: "past", pastEdition: e.id, pastDirect: true, artist: null })}>
+                                {e.name} · {e.count}
+                              </button>
+                            ))}
+                            {pm.retry && <button onClick={handleScanPast} style={ghost}>Scan again</button>}
+                            <button onClick={() => setPastScan(null)} style={{ ...ghost, background: "transparent", color: "var(--text-2)" }}>Dismiss</button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
               {/* Build 39: one tap opens the share sheet with a privacy-safe
                   summary of the moment store and its recent writes (no
                   photos, names, paths or GPS). Read-only. */}
@@ -8798,6 +8953,10 @@ function _reconcileFestivalStamps(moments) {
     if (!Array.isArray(arr)) continue;
     for (const m of arr) {
       if (!m || !m.festivalId || !m.takenAt) continue;   // no stamp, or no evidence
+      // Filed by "Scan past festivals" under a Past Festivals edition id. Only
+      // live festivals are claimants, so none can ever claim a past capture
+      // time; checking would flag every past photo "no-claimant".
+      if (m.festivalStampSource === "past-edition") continue;
       // A capture time this parser cannot read is NO evidence, not "no festival
       // claims it". _festivalClaimantsFor returns [] for both, and reading the
       // first as the second flagged every unparseable record "no-claimant"

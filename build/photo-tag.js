@@ -2283,6 +2283,149 @@ function _wallClockFromUtcTz(ms, cfg) {
   }
   return _wallClockFromUtc(ms, cfg);
 }
+function _histFamilyConfig(festivalId, setsIn) {
+  var sets = setsIn || window._DATA_SETS || {};
+  for (var id of Object.keys(sets).sort()) {
+    var m = /^(.*)-(\d{4})$/.exec(id);
+    var c = sets[id]?.config;
+    if (m && m[1] === festivalId && c?.gps && c.gps.lat != null && c.gps.lng != null && c.gps.onSiteRadiusMi > 0) return c;
+  }
+  return null;
+}
+function _histMidnightUtc(iso, tz) {
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+  return m ? _zonedWallToUtc(+m[1], +m[2], +m[3], 0, 0, tz) : null;
+}
+function _histEditionConfig(entry, family) {
+  if (!entry?.id || !entry.timezone || !Array.isArray(entry.days) || !entry.days.length || !family?.gps) return null;
+  var dayDates = {};
+  for (var d of entry.days) {
+    var ms = _histMidnightUtc(d.date, entry.timezone);
+    if (typeof ms !== "number") return null;
+    dayDates[d.day] = {
+      midnightUtc: ms,
+      date: d.date,
+      label: d.label || null
+    };
+  }
+  return {
+    id: entry.id,
+    name: entry.name,
+    shortName: entry.name,
+    tz: entry.timezone,
+    dayDates,
+    gps: {
+      lat: family.gps.lat,
+      lng: family.gps.lng,
+      onSiteRadiusMi: family.gps.onSiteRadiusMi
+    },
+    historical: true,
+    festivalId: entry.festivalId,
+    year: entry.year
+  };
+}
+function _histScanTargets(index, setsIn, calendar, nowMs) {
+  var now = typeof nowMs === "number" ? nowMs : Date.now();
+  var lib = new Map();
+  for (var e of index && index.editions || []) if (e && e.id && e.status !== "canceled") lib.set(e.id, e);
+  var out = new Map();
+  for (var c of calendar && calendar.editions || []) {
+    if (!c || !c.id || out.has(c.id) || !c.gps) continue;
+    var libEntry = lib.get(c.id) || null;
+    var cfg = _histEditionConfig(libEntry || c, {
+      gps: c.gps
+    });
+    if (!cfg) continue;
+    cfg.venue = c.venue || null;
+    out.set(c.id, {
+      entry: libEntry || c,
+      cfg,
+      inLibrary: !!libEntry
+    });
+  }
+  for (var _e of lib.values()) {
+    if (out.has(_e.id)) continue;
+    var fam = _histFamilyConfig(_e.festivalId, setsIn);
+    var _cfg = fam ? _histEditionConfig(_e, fam) : null;
+    if (_cfg) out.set(_e.id, {
+      entry: _e,
+      cfg: _cfg,
+      inLibrary: true
+    });
+  }
+  return [...out.values()].filter(t => Object.values(t.cfg.dayDates).some(d => d.midnightUtc <= now)).sort((a, b) => a.entry.year - b.entry.year || String(a.entry.id).localeCompare(String(b.entry.id)));
+}
+function _histAssetOnSite(asset, cfg) {
+  var g = cfg?.gps;
+  var lat = Number(asset?.lat),
+    lng = Number(asset?.lng);
+  if (!g || asset?.lat == null || asset?.lng == null || !isFinite(lat) || !isFinite(lng) || lat === 0 && lng === 0) return false;
+  var acc = Number(asset.acc);
+  var err = asset.acc != null && isFinite(acc) && acc >= 0 ? Math.min(acc, _OFF_VENUE_MARGIN_M) : 0;
+  return _haversineMeters(lat, lng, g.lat, g.lng) - err <= g.onSiteRadiusMi * 1609.34 + _OFF_VENUE_MARGIN_M;
+}
+function _histEditionArtists(edition) {
+  var names = new Map((edition && edition.artists || []).map(a => [a.id, a.name]));
+  var sets = edition && edition.sets || [];
+  var close = {};
+  for (var s of sets) {
+    var e = _hhmmNightMin(s.end);
+    if (s.start && e != null && (close[s.day] == null || e > close[s.day])) close[s.day] = e;
+  }
+  var hhmm = min => `${String(Math.floor(min / 60) % 24).padStart(2, "0")}:${String(min % 60).padStart(2, "0")}`;
+  var out = [];
+  for (var _s2 of sets) {
+    var st = _hhmmNightMin(_s2.start);
+    if (st == null || !_s2.artistId) continue;
+    var end = _s2.end;
+    if (_hhmmNightMin(end) == null) {
+      if (close[_s2.day] == null || close[_s2.day] <= st) continue;
+      end = hhmm(close[_s2.day]);
+    }
+    out.push({
+      id: _s2.artistId,
+      name: names.get(_s2.artistId) || "",
+      day: _s2.day,
+      stage: _s2.stageId || null,
+      start: _s2.start,
+      end,
+      setId: _s2.id,
+      endPrinted: !!_s2.end
+    });
+  }
+  return out;
+}
+function _histEditionMoments(editionId) {
+  var all = {};
+  try {
+    all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {};
+  } catch {}
+  var out = [];
+  for (var night of Object.keys(all)) for (var m of Array.isArray(all[night]) ? all[night] : []) {
+    if (m && m.festivalId === editionId) out.push(m);
+  }
+  return out.sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")));
+}
+function _histMomentEditionIds() {
+  var all = {};
+  try {
+    all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {};
+  } catch {}
+  var ids = new Set();
+  for (var night of Object.keys(all)) for (var m of Array.isArray(all[night]) ? all[night] : []) {
+    if (m && m.festivalStampSource === "past-edition" && /^[a-z0-9-]+-\d{4}$/.test(m.festivalId || "")) ids.add(m.festivalId);
+  }
+  return ids;
+}
+function _histDataSet(edition, cfg) {
+  return {
+    id: cfg.id,
+    config: cfg,
+    artists: _histEditionArtists(edition),
+    amenities: [],
+    resolvedBy: "past-edition-scan"
+  };
+}
 function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
   var cfg = cfgIn || window.FESTIVAL_CONFIG;
   var seen = seenIds instanceof Set ? seenIds : new Set(seenIds || []);

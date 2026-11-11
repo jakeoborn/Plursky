@@ -34,6 +34,14 @@ const FALLBACK = {
   // downloaded from the build environment that scaffolded them. Each needs an
   // official tile in data/festival-art.js before it flips to available.
   "lights-all-night-2026": "official art not fetched yet; tile owed before the flip",
+  "decadence-arizona-2026": "official art not fetched yet; tile owed before the flip",
+  "sunset-on-the-river-2027": "official art not fetched yet; tile owed before the flip",
+  "ubbi-dubbi-2027": "official art not fetched yet; tile owed before the flip",
+  "movement-2027": "official art not fetched yet; tile owed before the flip",
+  "shambhala-2027": "official art not fetched yet; tile owed before the flip",
+  "defqon1-2027": "official art not fetched yet; tile owed before the flip",
+  "untold-2027": "official art not fetched yet; tile owed before the flip",
+  "creamfields-2027": "official art not fetched yet; tile owed before the flip",
   "das-energi-2027": "official art not fetched yet; tile owed before the flip",
   "forbidden-kingdom-2027": "official art not fetched yet; tile owed before the flip",
 };
