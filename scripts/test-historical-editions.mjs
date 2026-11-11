@@ -23,6 +23,7 @@ import { datedLabel, graphicPrints, instant, sameGraphic, to24 } from "./histori
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
 import { parseLineupPage, provesEdition, lineupRows, LINEUP_EDITIONS, printedRange } from "./historical/extract-insomniac-lineup.mjs";
 import { parseAclSchedule, axisMinutes, readAxis } from "./historical/acl-schedule.mjs";
+import { parseTomorrowland, eventDay } from "./historical/tml-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -176,6 +177,32 @@ if (base && edc) {
       `a day-tabs page must come back pane by pane, each set under its own stage and tab: ${JSON.stringify(dt)}`);
     let short = false; try { parseDayTabs(tabs + pane("fri", ["THE DREAM", "TIMELESS"], [[box("UCast", "5:00 PM - 6:00 PM")]])); } catch { short = true; }
     mutations++; ok(short, "mutation not caught: a day-tabs pane with more stage headers than columns");
+    // Tomorrowland's timetable page: every day of both weekends on one page,
+    // stage headings in order, then one performance list per stage. The days
+    // are printed a second time further down; reading stops where an id repeats.
+    const perf = (a, t, d0 = "2019-07-19") => { const [x, y] = t.split(" - "); return `<li class="performance" data-start="${d0}T${x}:00+02:00" data-end="${d0}T${y}:00+02:00">`
+      + (a ? `<span class="performance__artist">${a}</span>` : "") + `<span class="performance__timeslot">${t}</span></li>`; };
+    const tday = (idn, label, heads, lists) => `<div class="eventday" data-eventday-id="${idn}" data-eventday="${label}"><div class="stages">`
+      + heads.map(h => `<div class="stage"><div class="stage__heading"><h4>${h}</h4></div></div>`).join("") + `</div><div class="performances">`
+      + lists.map(l => `<ul class="stage__performances">${l.join("")}</ul>`).join("") + `</div></div>`;
+    const loc = (a, b) => `${a}<span class="stage__location"> - ${b}</span>`;
+    const tml = tday(1, "Thursday 18 July 2019", ["The Gathering"], [[perf("Opening", "20:00 - 21:00", "2019-07-18")]])
+      + tday(2, "Friday 19 July 2019", ["Mainstage", loc("Holosphere", "Freedom Stage")], [[perf("Carl Cox (Daybreak Session)", "12:00 - 13:00"), perf("", "13:00 - 14:00")], [perf("Tom &amp; Jerry", "23:00 - 01:00")]])
+      + `<section>` + tday(1, "Thursday 18 July 2019", [], []);
+    const tp = parseTomorrowland(tml), tf = tp.days[1];
+    ok(tp.days.length === 2 && tp.days[0].date === "2019-07-18" && tf.date === "2019-07-19" && tf.empty.length === 1
+      && JSON.stringify(tf.sets) === JSON.stringify([{ stage: "Mainstage", start: "12:00", end: "13:00", artist: "Carl Cox (Daybreak Session)" }, { stage: "Freedom Stage", start: "23:00", end: "01:00", artist: "Tom & Jerry" }])
+      && tf.stages[1].host === "Holosphere", `a Tomorrowland page must come back day by day, stopping at the repeated days, with the host kept apart: ${JSON.stringify(tp)}`);
+    ok(parseTomorrowland(tml, { stageFrom: "heading" }).days[1].sets[1].stage === "Holosphere", "stageFrom heading must read the stage off the heading");
+    ok(eventDay("The Gathering 19 July 2018")?.weekday === "Thursday" && eventDay("Saturday 19 July 2019") === null, "a day label must name its own weekday (or The Gathering)");
+    let drift = false; try { parseTomorrowland(tml.replace("2019-07-19T12:00", "2019-07-19T12:30")); } catch { drift = true; }
+    mutations++; ok(drift, "mutation not caught: a Tomorrowland set whose data-start disagrees with its printed time");
+    let lists = false; try { parseTomorrowland(tday(2, "Friday 19 July 2019", ["Mainstage", "Cage"], [[perf("A", "12:00 - 13:00")]])); } catch { lists = true; }
+    mutations++; ok(lists, "mutation not caught: a Tomorrowland day with more stage headings than performance lists");
+    ok(datedLabel("Friday 19 July 2019", 2019) === "2019-07-19" && datedLabel("Friday 19 July 2019", 2018) === null, "a European day label must print the edition year");
+    ok(stageFor({ stageAs: { "The Rose Garden": "Rose Garden" } }, "The Rose Garden") === "Rose Garden", "stageAs may drop a leading The");
+    let theRename = false; try { stageFor({ stageAs: { "The Library": "Library Bar" } }, "The Library"); } catch { theRename = true; }
+    mutations++; ok(theRename, "mutation not caught: a stageAs map that renames a stage past its leading The");
     const o23 = editions["edc-orlando-2023"], sa23 = m => m.provenance.captures.find(c => c.stagesAs);
     if (o23) {
       mustFail("a stagesAs map that renames a stage", m => { sa23(m).stagesAs.rynobusARTCAR = "Rynobus"; }, o23, undefined, /renames the stage/);

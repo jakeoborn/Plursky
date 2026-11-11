@@ -1,0 +1,521 @@
+{
+  "id": "tomorrowland-2018",
+  "method": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2018-07-20",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "archivedUrl": "https://web.archive.org/web/20180807143519/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "captureTimestamp": "20180807143519",
+          "printed": "Friday 20 July 2018",
+          "sha256": "95d4112180693ce8b834f58882ff4d2e0847f7bcffafce4d9ad22c8f14569abd",
+          "bytes": 1630718,
+          "rows": 143,
+          "format": "tml-stages",
+          "stages": 16,
+          "hosts": {
+            "Freedom Stage by Budweiser": "Musical Freedom",
+            "Atmosphere": "Drumcode",
+            "Garden of Madness": "Anjunabeats",
+            "Organ of Harmony": "Organ of Harmony",
+            "Core": "Paradise",
+            "Rose Garden": "Monstercat",
+            "Tulip": "Cafeína",
+            "Cage": "Forma.T x Ed Banger",
+            "Youphoria": "Jacked",
+            "Arch": "Age of Love",
+            "Leaf by JBL": "All Day I Dream",
+            "House of Mask by Cubanisto": "We Play House",
+            "Amicorum Spectaculum presents: Theatre Formidable": "Pussy Lounge",
+            "Rave Cave": "Winterclubbing",
+            "Harbour House": "Radio Ultra Modern"
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2018-07-21",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "archivedUrl": "https://web.archive.org/web/20180807143519/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "captureTimestamp": "20180807143519",
+          "printed": "Saturday 21 July 2018",
+          "sha256": "95d4112180693ce8b834f58882ff4d2e0847f7bcffafce4d9ad22c8f14569abd",
+          "bytes": 1630718,
+          "rows": 141,
+          "format": "tml-stages",
+          "stages": 16,
+          "hosts": {
+            "Freedom Stage by Budweiser": "Axtone",
+            "Organ of Harmony": "STMPD RCRDS",
+            "Garden of Madness": "Diynamic",
+            "Atmosphere": "Q-dance",
+            "Amicorum Spectaculum presents: Theatre Formidable": "Theatre Formidable",
+            "Youphoria": "Nervo Nation",
+            "Cage": "Glitterbox",
+            "Tulip": "Trance Classics",
+            "Rose Garden": "Bonzai",
+            "Arch": "Psygathering",
+            "Leaf by JBL": "Abracadabra",
+            "House of Mask by Cubanisto": "Nico Morano & Friends",
+            "Core": "Kozzmozz",
+            "Rave Cave": "Woody Weekend",
+            "Harbour House": "Radio Ultra Modern"
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2018-07-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "archivedUrl": "https://web.archive.org/web/20180807143519/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "captureTimestamp": "20180807143519",
+          "printed": "Sunday 22 July 2018",
+          "sha256": "95d4112180693ce8b834f58882ff4d2e0847f7bcffafce4d9ad22c8f14569abd",
+          "bytes": 1630718,
+          "rows": 138,
+          "format": "tml-stages",
+          "stages": 16,
+          "hosts": {
+            "Freedom Stage by Budweiser": "Smash The House",
+            "Garden of Madness": "Ants",
+            "Atmosphere": "Fuse & Dave Clarke present",
+            "Youphoria": "Cocoon x CDA",
+            "Core": "The Masquerade by Claptone",
+            "Organ of Harmony": "My House",
+            "Amicorum Spectaculum presents: Theatre Formidable": "Trance Energy",
+            "Rose Garden": "Robin Schulz & friends",
+            "Cage": "Loudness",
+            "Tulip": "Thunderdome",
+            "Arch": "Rampage",
+            "House of Mask by Cubanisto": "High On House",
+            "Rave Cave": "Crystal",
+            "Leaf by JBL": "Lost & Found",
+            "Harbour House": "Radio Ultra Modern"
+          }
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2018-07-27",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "archivedUrl": "https://web.archive.org/web/20180807143519/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "captureTimestamp": "20180807143519",
+          "printed": "Friday 27 July 2018",
+          "sha256": "95d4112180693ce8b834f58882ff4d2e0847f7bcffafce4d9ad22c8f14569abd",
+          "bytes": 1630718,
+          "rows": 140,
+          "format": "tml-stages",
+          "stages": 16,
+          "hosts": {
+            "Freedom Stage by Budweiser": "A State of Trance",
+            "Atmosphere": "Pryda",
+            "Organ of Harmony": "Organ of Harmony Live",
+            "Rose Garden": "Netsky and friends",
+            "Core": "Spectrum",
+            "Tulip": "Anjunadeep",
+            "Garden of Madness": "Sexy By Nature",
+            "Amicorum Spectaculum presents: Theatre Formidable": "Pussy Lounge",
+            "Cage": "Onraad",
+            "Arch": "Heldeep",
+            "Youphoria": "V Sessions",
+            "Leaf by JBL": "All Day I Dream",
+            "House of Mask by Cubanisto": "HushHush",
+            "Rave Cave": "Krankenhaus",
+            "Harbour House": "Radio Ultra Modern"
+          }
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2018-07-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "archivedUrl": "https://web.archive.org/web/20180807143519/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "captureTimestamp": "20180807143519",
+          "printed": "Saturday 28 July 2018",
+          "sha256": "95d4112180693ce8b834f58882ff4d2e0847f7bcffafce4d9ad22c8f14569abd",
+          "bytes": 1630718,
+          "rows": 147,
+          "format": "tml-stages",
+          "stages": 16,
+          "hosts": {
+            "Organ of Harmony": "Lost Frequencies & Friends",
+            "Arch": "KNTXT",
+            "Amicorum Spectaculum presents: Theatre Formidable": "Theatre Formidable",
+            "Cage": "Star Warz presents Shogun Audio",
+            "Rose Garden": "Bonzai",
+            "Core": "Crosstownrebels present Get Lost",
+            "Atmosphere": "Q-dance",
+            "Tulip": "Future Sound of Egypt",
+            "Youphoria": "Barong Family",
+            "Leaf by JBL": "Abracadabra",
+            "House of Mask by Cubanisto": "Trybe",
+            "Rave Cave": "Sirkus",
+            "Harbour House": "Radio Ultra Modern"
+          }
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2018-07-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "archivedUrl": "https://web.archive.org/web/20180807143519/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+          "captureTimestamp": "20180807143519",
+          "printed": "Sunday 29 July 2018",
+          "sha256": "95d4112180693ce8b834f58882ff4d2e0847f7bcffafce4d9ad22c8f14569abd",
+          "bytes": 1630718,
+          "rows": 133,
+          "format": "tml-stages",
+          "stages": 16,
+          "hosts": {
+            "Organ of Harmony": "Smash The House",
+            "Garden of Madness": "Ants",
+            "Freedom Stage by Budweiser": "Coone and the Gang",
+            "Youphoria": "Mosaic",
+            "Cage": "Footworxx",
+            "Arch": "VII",
+            "Rose Garden": "Spinnin",
+            "Amicorum Spectaculum presents: Theatre Formidable": "I love the 90's",
+            "Core": "Potion",
+            "Tulip": "Ketaloco",
+            "Rave Cave": "Coincidence",
+            "House of Mask by Cubanisto": "Floorfiller",
+            "Leaf by JBL": "Café Mambo Ibiza",
+            "Harbour House": "Radio Ultra Modern"
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "Proudmich",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "OH-G",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "15:00",
+      "end": "15:45",
+      "billing": "Alex Germys",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "15:45",
+      "end": "16:30",
+      "billing": "Mademoiselle Luna",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "16:30",
+      "end": "17:15",
+      "billing": "Prinz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "17:15",
+      "end": "18:00",
+      "billing": "Goldfox",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "Curtis Alto",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "18:30",
+      "end": "19:15",
+      "billing": "DiMaro & Violinvasion",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "19:15",
+      "end": "20:15",
+      "billing": "Mystique b2b Makasi",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "20:15",
+      "end": "21:00",
+      "billing": "Romeo Blanco",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "21:00",
+      "end": "21:45",
+      "billing": "Double Pleasure",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "21:45",
+      "end": "22:30",
+      "billing": "MATTN",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "22:30",
+      "end": "23:00",
+      "billing": "Cherry Moon Trax",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "23:00",
+      "end": "23:30",
+      "billing": "Mark With a K & Mc Chucky",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "23:30",
+      "end": "00:15",
+      "billing": "Yves V & Regi",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-19",
+      "stage": "The Gathering",
+      "start": "00:15",
+      "end": "01:00",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "DJ Ever-L",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "JackJazz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "15:00",
+      "end": "16:00",
+      "billing": "Axel Haube",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "16:00",
+      "end": "16:45",
+      "billing": "Dominico",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "16:45",
+      "end": "17:30",
+      "billing": "Hermanos",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "17:30",
+      "end": "18:15",
+      "billing": "Prinz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "18:15",
+      "end": "18:45",
+      "billing": "Lowriderz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "18:45",
+      "end": "19:15",
+      "billing": "Mandy",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "19:15",
+      "end": "19:45",
+      "billing": "Kid Noize",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "19:45",
+      "end": "20:30",
+      "billing": "Henri PFR",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "20:30",
+      "end": "21:00",
+      "billing": "Robert Falcon",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "21:00",
+      "end": "21:45",
+      "billing": "Bonzai All Stars",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "21:45",
+      "end": "22:45",
+      "billing": "Regi",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "22:45",
+      "end": "23:30",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "23:30",
+      "end": "00:15",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2018-07-26",
+      "stage": "The Gathering",
+      "start": "00:15",
+      "end": "01:00",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    }
+  ],
+  "offDays": [
+    {
+      "date": "2018-07-19",
+      "printed": "The Gathering 19 July 2018",
+      "archivedUrl": "https://web.archive.org/web/20180807143519/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+      "captureTimestamp": "20180807143519",
+      "sets": 16
+    },
+    {
+      "date": "2018-07-26",
+      "printed": "The Gathering 26 July 2018",
+      "archivedUrl": "https://web.archive.org/web/20180807143519/https://www.tomorrowland.com/en/festival/line-up/stages/saturday-28-july-2018",
+      "captureTimestamp": "20180807143519",
+      "sets": 16
+    }
+  ],
+  "dropped": []
+}
