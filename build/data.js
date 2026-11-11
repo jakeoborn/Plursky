@@ -817,7 +817,7 @@ var FESTIVALS_REGISTRY = [{
     tagline: "Three days of Tomorrowland in São Paulo state",
     location: "Itu, Brazil",
     locationShort: "Itu",
-    dates: "Apr 30–May 2, 2027",
+    dates: "Apr 30, 2027 – May 2, 2027",
     year: 2027,
     print: {
       accent: null,

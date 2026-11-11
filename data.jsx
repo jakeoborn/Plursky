@@ -851,7 +851,7 @@ const FESTIVALS_REGISTRY = [
       tagline:   "Three days of Tomorrowland in São Paulo state",
       location:  "Itu, Brazil",
       locationShort: "Itu",
-      dates:     "Apr 30–May 2, 2027",
+      dates:     "Apr 30, 2027 – May 2, 2027",
       year:      2027,
       // Night Print accent not measured yet (accent null = neutral print).
       print: { accent: null, source: { url: "https://brasil.tomorrowland.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
