@@ -98,6 +98,17 @@ def sha256(path):
 def ties_path(fid): return os.path.join(TIES_DIR, f"{fid}-geo-ties.json")
 
 
+# Everything that decides where the art lands and which pixels it keeps. The
+# in-sample rms can't catch a uniform shift of the ground points (the fit just
+# moves with them), so check() compares this digest, not only the residuals.
+PLACEMENT_KEYS = ("plate", "artBox", "artPolygon", "model", "ties")
+
+
+def inputs_sha256(T):
+    blob = json.dumps({k: T.get(k) for k in PLACEMENT_KEYS}, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(blob.encode()).hexdigest()
+
+
 def solve(T):
     ties = T["ties"]
     frame = Frame(sum(t["lat"] for t in ties) / len(ties), sum(t["lng"] for t in ties) / len(ties))
@@ -173,6 +184,7 @@ def build(fid):
         "looRmsM": round(float(np.sqrt(np.mean(np.square(loo)))), 1) if loo else None,
         "residualsM": {t["name"]: round(float(r), 1) for t, r in zip(T["ties"], res)},
         "checksM": {c["name"]: c["metres"] for c in checks},
+        "inputsSha256": inputs_sha256(T),
         "plateSha256": sha256(os.path.join(ROOT, T["plate"])),
         "sha256": sha256(os.path.join(ROOT, out_rel)),
     }
@@ -196,6 +208,8 @@ def check():
         T = json.load(open(os.path.join(TIES_DIR, f)))
         fid, out = T["festivalId"], T.get("output")
         if not out: print(f"  ✗ {fid}: never built"); bad += 1; continue
+        if out.get("inputsSha256") != inputs_sha256(T):
+            print(f"  ✗ {fid}: ties, art box, polygon, model or plate changed since the build"); bad += 1; continue
         frame, M, res, loo, _ = solve(T)
         if abs(float(np.sqrt((res ** 2).mean())) - out["rmsM"]) > 0.11:
             print(f"  ✗ {fid}: ties changed since the build (rms now {np.sqrt((res ** 2).mean()):.1f} m)"); bad += 1; continue
