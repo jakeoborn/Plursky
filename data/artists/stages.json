@@ -3303,6 +3303,1343 @@
     }
    ]
   },
+  "tomorrowland": {
+   "lineages": [
+    {
+     "id": "tomorrowland:mainstage",
+     "names": [
+      {
+       "printed": "Mainstage",
+       "editions": [
+        "tomorrowland-2017",
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:trance-energy",
+     "names": [
+      {
+       "printed": "Trance Energy",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:elrow",
+     "names": [
+      {
+       "printed": "Elrow",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:my-house",
+     "names": [
+      {
+       "printed": "My House",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:drumcode",
+     "names": [
+      {
+       "printed": "Drumcode",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:v-sessions",
+     "names": [
+      {
+       "printed": "V Sessions",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:super-you-and-me",
+     "names": [
+      {
+       "printed": "Super You&Me",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:toolroom-live",
+     "names": [
+      {
+       "printed": "Toolroom Live",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:monstercat",
+     "names": [
+      {
+       "printed": "Monstercat",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:global-hardcore-nation",
+     "names": [
+      {
+       "printed": "Global Hardcore Nation",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:the-sound-of-belgium",
+     "names": [
+      {
+       "printed": "The Sound of Belgium",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:winterclubbing",
+     "names": [
+      {
+       "printed": "Winterclubbing",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:the-sound-of-tomorrow",
+     "names": [
+      {
+       "printed": "The Sound of Tomorrow",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cubanisto",
+     "names": [
+      {
+       "printed": "Cubanisto",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:rituel-recordings",
+     "names": [
+      {
+       "printed": "Rituel Recordings",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:radio-ultra-modern",
+     "names": [
+      {
+       "printed": "Radio Ultra Modern",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:refune",
+     "names": [
+      {
+       "printed": "Refune",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:stmpd-rcrds",
+     "names": [
+      {
+       "printed": "STMPD RCRDS",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:diynamic",
+     "names": [
+      {
+       "printed": "Diynamic",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:paradise",
+     "names": [
+      {
+       "printed": "Paradise",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:jacked",
+     "names": [
+      {
+       "printed": "Jacked",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:i-love-techno",
+     "names": [
+      {
+       "printed": "I Love Techno",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:q-dance",
+     "names": [
+      {
+       "printed": "Q-dance",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      },
+      {
+       "printed": "Q-Dance",
+       "editions": [
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:bonzai",
+     "names": [
+      {
+       "printed": "Bonzai",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:future-sound-of-egypt",
+     "names": [
+      {
+       "printed": "Future Sound of Egypt",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:forma-t-and-hungry-music",
+     "names": [
+      {
+       "printed": "Forma.T & Hungry Music",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:crystal-events",
+     "names": [
+      {
+       "printed": "Crystal Events",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:all-day-i-dream",
+     "names": [
+      {
+       "printed": "All Day I Dream",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cubanisto-presents-hush-hush",
+     "names": [
+      {
+       "printed": "Cubanisto presents Hush Hush",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:smash-the-house",
+     "names": [
+      {
+       "printed": "Smash The House",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:ants",
+     "names": [
+      {
+       "printed": "ANTS",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:dave-clarke-presents",
+     "names": [
+      {
+       "printed": "Dave Clarke presents",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:claptone",
+     "names": [
+      {
+       "printed": "Claptone",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cda-invites-cocoon",
+     "names": [
+      {
+       "printed": "CDA invites Cocoon",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:versuz",
+     "names": [
+      {
+       "printed": "Versuz",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:robin-schulz-and-friends",
+     "names": [
+      {
+       "printed": "Robin Schulz & friends",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cafeina",
+     "names": [
+      {
+       "printed": "Cafeina",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:footworxx",
+     "names": [
+      {
+       "printed": "Footworxx",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:pussy-lounge",
+     "names": [
+      {
+       "printed": "Pussy Lounge",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:feestgedruis",
+     "names": [
+      {
+       "printed": "Feestgedruis",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:sanctuary",
+     "names": [
+      {
+       "printed": "Sanctuary",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:a-state-of-trance",
+     "names": [
+      {
+       "printed": "A State of Trance",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:sexy-by-nature",
+     "names": [
+      {
+       "printed": "Sexy by Nature",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:dim-mak",
+     "names": [
+      {
+       "printed": "Dim Mak",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:netsky-and-friends",
+     "names": [
+      {
+       "printed": "Netsky & friends",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:kozzmozz",
+     "names": [
+      {
+       "printed": "Kozzmozz",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:we-play-house",
+     "names": [
+      {
+       "printed": "We Play House",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:spinnin-sessions",
+     "names": [
+      {
+       "printed": "Spinnin' Sessions",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:age-of-love",
+     "names": [
+      {
+       "printed": "Age of Love",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:krankenhaus",
+     "names": [
+      {
+       "printed": "Krankenhaus",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:leaf",
+     "names": [
+      {
+       "printed": "Leaf",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:axtone",
+     "names": [
+      {
+       "printed": "Axtone",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:lost-frequencies-and-friends",
+     "names": [
+      {
+       "printed": "Lost Frequencies & friends",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:playdifferently-presents-model-1",
+     "names": [
+      {
+       "printed": "PLAYdifferently presents MODEL 1",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:barong-family",
+     "names": [
+      {
+       "printed": "Barong Family",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:tranceaddict",
+     "names": [
+      {
+       "printed": "Tranceaddict",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:generation-smash",
+     "names": [
+      {
+       "printed": "Generation Smash",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:b2b",
+     "names": [
+      {
+       "printed": "B2B",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:woody-weekend",
+     "names": [
+      {
+       "printed": "Woody Weekend",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cubanisto-presents-ketaloco",
+     "names": [
+      {
+       "printed": "Cubanisto presents Ketaloco",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:pryda",
+     "names": [
+      {
+       "printed": "Pryda",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:potion",
+     "names": [
+      {
+       "printed": "Potion",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cda-presents-mosaic",
+     "names": [
+      {
+       "printed": "CDA presents Mosaic",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:i-love-the-90-s",
+     "names": [
+      {
+       "printed": "I love the 90's",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:heldeep",
+     "names": [
+      {
+       "printed": "Heldeep",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:coone-and-the-gang",
+     "names": [
+      {
+       "printed": "Coone & The Gang",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:star-warz-invites-ram-records",
+     "names": [
+      {
+       "printed": "Star Warz invites RAM Records",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:loudness",
+     "names": [
+      {
+       "printed": "Loudness",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:coincidence",
+     "names": [
+      {
+       "printed": "Coincidence",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:freedom-stage-by-budweiser",
+     "names": [
+      {
+       "printed": "Freedom Stage by Budweiser",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:atmosphere",
+     "names": [
+      {
+       "printed": "Atmosphere",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:garden-of-madness",
+     "names": [
+      {
+       "printed": "Garden of Madness",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:organ-of-harmony",
+     "names": [
+      {
+       "printed": "Organ of Harmony",
+       "editions": [
+        "tomorrowland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:core",
+     "names": [
+      {
+       "printed": "Core",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2023"
+       ]
+      },
+      {
+       "printed": "CORE",
+       "editions": [
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:rose-garden",
+     "names": [
+      {
+       "printed": "Rose Garden",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:tulip",
+     "names": [
+      {
+       "printed": "Tulip",
+       "editions": [
+        "tomorrowland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cage",
+     "names": [
+      {
+       "printed": "Cage",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:youphoria",
+     "names": [
+      {
+       "printed": "Youphoria",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:arch",
+     "names": [
+      {
+       "printed": "Arch",
+       "editions": [
+        "tomorrowland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:leaf-by-jbl",
+     "names": [
+      {
+       "printed": "Leaf by JBL",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019"
+       ]
+      },
+      {
+       "printed": "LEAF by JBL",
+       "editions": [
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:house-of-mask-by-cubanisto",
+     "names": [
+      {
+       "printed": "House of Mask by Cubanisto",
+       "editions": [
+        "tomorrowland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:amicorum-spectaculum-presents-theatre-formidable",
+     "names": [
+      {
+       "printed": "Amicorum Spectaculum presents: Theatre Formidable",
+       "editions": [
+        "tomorrowland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:rave-cave",
+     "names": [
+      {
+       "printed": "Rave Cave",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:harbour-house",
+     "names": [
+      {
+       "printed": "Harbour House",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:casa-corona",
+     "names": [
+      {
+       "printed": "Casa Corona",
+       "editions": [
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:l-orangerie",
+     "names": [
+      {
+       "printed": "L'Orangerie",
+       "editions": [
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:kara-savi",
+     "names": [
+      {
+       "printed": "Kara Savi",
+       "editions": [
+        "tomorrowland-2019",
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:lotus",
+     "names": [
+      {
+       "printed": "Lotus",
+       "editions": [
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:moose-bar",
+     "names": [
+      {
+       "printed": "Moose Bar",
+       "editions": [
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:freedom",
+     "names": [
+      {
+       "printed": "Freedom",
+       "editions": [
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:the-rave-cave",
+     "names": [
+      {
+       "printed": "The Rave Cave",
+       "editions": [
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:crystal-garden",
+     "names": [
+      {
+       "printed": "Crystal Garden",
+       "editions": [
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:the-library",
+     "names": [
+      {
+       "printed": "The Library",
+       "editions": [
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:moosebar",
+     "names": [
+      {
+       "printed": "Moosebar",
+       "editions": [
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:freedom-by-bud",
+     "names": [
+      {
+       "printed": "Freedom by Bud",
+       "editions": [
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:the-rose-garden",
+     "names": [
+      {
+       "printed": "The Rose Garden",
+       "editions": [
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:elixir",
+     "names": [
+      {
+       "printed": "Elixir",
+       "editions": [
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:terra-solis",
+     "names": [
+      {
+       "printed": "Terra Solis",
+       "editions": [
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:rise-by-coke-studio",
+     "names": [
+      {
+       "printed": "Rise by Coke Studio",
+       "editions": [
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "ultra-miami": {
    "lineages": [
     {
