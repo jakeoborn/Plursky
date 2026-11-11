@@ -2231,6 +2231,71 @@ function _scanSeenAdd(ids) {
   return trimmed.length;
 }
 
+// ── Past-festival finder (2026-11-11) ────────────────────────────────────
+// Which past festival years the photo library holds photos and videos from.
+// One function for both doors: Memories' "Scan past festivals" imports what
+// it returns, and the first-run scan step (app.jsx, Jake: "the landing page
+// for a new user should direct them directly to scan as 1st thing") shows
+// the same count before anything is imported. It reads only; nothing is
+// exported, stamped or marked as seen here.
+//   PS          the native PhotoScan plugin (access already granted)
+//   onProgress  (checked, years) every 10 festival years
+// Returns { found: [{ t, ds, keep }], already, years }.
+async function _pastScanFind(PS, onProgress) {
+  const [index, calendar] = await Promise.all([
+    _histFetch("index.json").catch(() => null),
+    _histFetch("scan-calendar.json").catch(() => null),
+  ]);
+  if (!index && !calendar) throw new Error("past festival lists unavailable");
+  const targets = _histScanTargets(index, null, calendar);
+  const seen = _scanSeenRead();
+  const found = [];
+  let already = 0;
+  for (const [i, t] of targets.entries()) {
+    if (onProgress && i % 10 === 0) onProgress(i, targets.length);
+    const assets = [];
+    for (const r of _scanQueryRanges(t.cfg)) {
+      const res = await PS.scan({ startMs: r.startMs, endMs: r.endMs });
+      assets.push(...(res?.assets || []));
+    }
+    const onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
+    if (!onSite.length) continue;
+    const ds = _histDataSet(t.inLibrary ? await _histFetch(`editions/${t.entry.id}.json`) : null, t.cfg);
+    const pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
+    already += pick.already;
+    if (pick.keep.length) found.push({ t, ds, keep: pick.keep });
+  }
+  return { found, already, years: targets.length };
+}
+
+// What the first run found, held for Memories so the import does not ask the
+// library a second time. Same page only (a festival switch reloads and drops
+// it), and only while fresh, since the library can change.
+const _PAST_SCAN_HANDOFF_MS = 10 * 60 * 1000;
+function _pastScanHandoffSet(result) {
+  window._pastScanHandoff = result ? { at: Date.now(), result } : null;
+  // A Memories screen already mounted under the first-run dialog (a link
+  // opened on ?tab=memories) never remounts, so it is told directly.
+  if (result) window.dispatchEvent(new Event("plursky:past-scan-handoff"));
+}
+function _pastScanHandoffTake() {
+  const h = window._pastScanHandoff;
+  window._pastScanHandoff = null;
+  return h && Date.now() - h.at < _PAST_SCAN_HANDOFF_MS ? h.result : null;
+}
+// For a screen: photo and video counts, and the festival years, newest first.
+function _pastScanSummary(found) {
+  let photos = 0, videos = 0;
+  const years = [];
+  for (const f of found || []) {
+    const v = f.keep.filter(a => a?.mediaType === "video").length;
+    videos += v; photos += f.keep.length - v;
+    years.push({ id: f.t.entry.id, name: f.t.entry.name, year: f.t.entry.year, count: f.keep.length });
+  }
+  years.sort((a, b) => (b.year || 0) - (a.year || 0));
+  return { photos, videos, total: photos + videos, years };
+}
+
 // ── Scan diagnostic (build 39) ───────────────────────────────────────────
 // WHY THIS EXISTS: on a real phone a second Scan of ACL left 60 clips under
 // one Charli XCX card, after the first scan had filed 17 across their own
