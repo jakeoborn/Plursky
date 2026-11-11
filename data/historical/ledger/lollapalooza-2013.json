@@ -1,0 +1,93 @@
+{
+  "id": "lollapalooza-2013",
+  "method": "official_sources",
+  "official": "https://www.lollapalooza.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2013-08-02",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.lollapalooza.com:80/2013-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20131221052257/http://www.lollapalooza.com:80/2013-schedule/",
+          "captureTimestamp": "20131221052257",
+          "printed": "Friday Aug 2nd",
+          "sha256": "f980fd106645455e95843dd490f504fe4ea83c55193cceee3f7234c350ec7d64",
+          "bytes": 480865,
+          "rows": 50,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00 am … 10:00 pm",
+          "emPerMinute": 0.0667,
+          "duplicateBlocks": 1
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2013-08-03",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.lollapalooza.com:80/2013-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20131221052257/http://www.lollapalooza.com:80/2013-schedule/",
+          "captureTimestamp": "20131221052257",
+          "printed": "Saturday Aug 3rd",
+          "sha256": "f980fd106645455e95843dd490f504fe4ea83c55193cceee3f7234c350ec7d64",
+          "bytes": 480865,
+          "rows": 48,
+          "format": "acl-grid",
+          "meridiem": "unreadable: a printed range disagrees with its block",
+          "misprints": [
+            "The Grove: Lukas Nelson & P.O.T.R.. 5:30-4:15"
+          ],
+          "axis": "11:00 am … 10:00 pm",
+          "emPerMinute": 0.0667,
+          "timesConfirmed": false
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2013-08-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.lollapalooza.com:80/2013-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20131221052257/http://www.lollapalooza.com:80/2013-schedule/",
+          "captureTimestamp": "20131221052257",
+          "printed": "Sunday Aug 4th",
+          "sha256": "f980fd106645455e95843dd490f504fe4ea83c55193cceee3f7234c350ec7d64",
+          "bytes": 480865,
+          "rows": 49,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00 am … 10:00 pm",
+          "emPerMinute": 0.0667
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Kidzapalooza",
+      "start": "15:15",
+      "end": "15:40",
+      "billing": "The Q Brothers",
+      "reason": "the page prints this block twice; the second copy is not a set",
+      "duplicate": true
+    },
+    {
+      "day": 2,
+      "stage": "Kidzapalooza",
+      "start": "",
+      "end": "",
+      "billing": "School Of Rock",
+      "reason": "a second set by the same act on the same stage; the day is untimed, so the act is listed once",
+      "repeat": true
+    }
+  ],
+  "dropped": []
+}

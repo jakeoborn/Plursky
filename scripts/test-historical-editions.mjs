@@ -21,7 +21,7 @@ import { lineupDropReason, ACTIVITIES, EDITIONS, KEPT_STAGES, dropReason } from 
 import { activeTab, parseDayTabs, stageFor } from "./historical/import-gather.mjs";
 import { datedLabel, graphicPrints, instant, sameGraphic, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
-import { parseLineupPage, provesEdition, lineupRows } from "./historical/extract-insomniac-lineup.mjs";
+import { parseLineupPage, provesEdition, lineupRows, LINEUP_EDITIONS, printedRange } from "./historical/extract-insomniac-lineup.mjs";
 import { parseAclSchedule, axisMinutes, readAxis } from "./historical/acl-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -396,7 +396,14 @@ const MONTH = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST"
 for (const [id, e] of Object.entries(editions)) {
   const led = JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")), rev = reviewFor(id);
   for (const d of e.days) {
-    if (led.method === "official_lineup_html") {
+    if (led.method === "official_lineup_html" && e.undated) {
+      // An undated page printed no days: the festival's own home page, captured
+      // in the edition's year, printed them in its title.
+      const dp = led.datesPrinted, host = new URL(led.official).hostname.replace(/^www\./, "");
+      ok(!!dp && dp.captureTimestamp.startsWith(String(e.year)) && new URL(dp.archivedUrl.replace(/^https:\/\/web\.archive\.org\/web\/\d+\//, "")).hostname.replace(/^www\./, "") === host
+        && printedRange(dp.title)[d.day - 1] === d.date && printedRange(dp.title).length === e.days.length,
+        `${id} day ${d.day}: ${d.date} is not what the festival's ${e.year} home page title printed ("${dp?.title}")`);
+    } else if (led.method === "official_lineup_html") {
       // The chosen capture's own By Day header for this day, as the ledger recorded it.
       const head = led.considered.find(c => c.captureTimestamp === led.chosen)?.days?.[d.day - 1] || "";
       ok(datedLabel(head, e.year) === d.date, `${id} day ${d.day}: ${d.date} is not what the archived lineup's By Day tab printed ("${head}")`);
@@ -484,7 +491,8 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   for (const e of lineups) {
     ok(e.provenance.extractionMethod === "official_lineup_html" && !e.sets.length, `${e.id}: lineup_only must come from a lineup page and carry no sets`);
     ok(!JSON.stringify(e.artists).match(/"(start|end|time)"/), `${e.id}: an artist carries a time`);
-    for (const d of e.days) ok(e.artists.some(a => a.appearances.some(x => x.day === d.day)), `${e.id}: day ${d.day} has no billed artist`);
+    // An undated page printed no days (validate.mjs holds it to that).
+    if (!e.undated) for (const d of e.days) ok(e.artists.some(a => a.appearances.some(x => x.day === d.day)), `${e.id}: day ${d.day} has no billed artist`);
     const led = JSON.parse(readFileSync(H(`ledger/${e.id}.json`), "utf8"));
     ok(led.chosen === led.considered.filter(c => c.valid && c.billings).at(-1)?.captureTimestamp, `${e.id}: the chosen capture is not the latest one that proves the edition`);
     ok(JSON.stringify(e.stages.map(s => s.name)) === JSON.stringify(led.stageOrder || []), `${e.id}: stages are not in the order the By Stage tab printed (${e.stages.map(s => s.name).join(", ")})`);
@@ -528,6 +536,42 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   ok(at("Only Staged") === "|Casa" && findings.some(f => f.startsWith("Only Staged:")), "a billing printed only under a stage keeps its stage, no invented day, and is flagged");
   ok(at("Beta") === "2|" && findings.some(f => f.startsWith("Beta:")), "a billing missing from By Stage keeps its day and is flagged");
   ok(!findings.some(f => f.startsWith("Alpha:")), "a billing every tab agrees on is not flagged");
+
+  // Undated pages (EDC 2016/2017): the lineup only as `var artist_data`, no
+  // tabs and no days. Proven by title alone, and never over a By Day tab.
+  const adata = (title, names) => `<title>${title}</title><script>\n    var artist_data = ${JSON.stringify({ artists: names.map(name => ({ name, image: "x.jpg", link: "y" })) })};\n</script>`;
+  const und = parseLineupPage(adata("LINEUP - EDC Orlando 2016", ["Zed", "Alpha &amp; Beta", "Secret Guest", "Zed"]));
+  ok(JSON.stringify(und.tabs) === JSON.stringify([{ tab: "Alphabetical", groups: [{ head: null, acts: ["Zed", "Alpha & Beta", "Secret Guest", "Zed"] }] }]),
+    `artist_data is read as one Alphabetical tab, every name in page order (got ${JSON.stringify(und.tabs)})`);
+  ok(provesEdition(und, "edc-orlando-2016").valid, "an undated page titled with the edition proves an undated edition");
+  ok(!provesEdition(parseLineupPage(adata("LINEUP - EDC Orlando 2017", ["Zed"])), "edc-orlando-2016").valid, "an undated page titled with another year does not");
+  ok(!provesEdition(und, "edc-orlando-2015").valid, "an undated page never proves a dated edition");
+  ok(!provesEdition(parseLineupPage(page("EDC Orlando 2016", ["Friday, November 11", "Saturday, November 12"])), "edc-orlando-2016").valid,
+    "a page that prints days does not pass as an undated edition: its dates must be proven instead");
+  ok(!parseLineupPage("<title>x</title><script>var artist_data = {broken};</script>").tabs.length, "unparseable artist_data is no lineup");
+  for (const [t, want] of [["EDC Las Vegas | June 17–19, 2016 | Las Vegas Motor Speedway", "2016-06-17,2016-06-18,2016-06-19"],
+    ["EDC Orlando | November 4 – 5, 2016 | Tinker Field", "2016-11-04,2016-11-05"], ["EDC Las Vegas | Las Vegas Motor Speedway", ""],
+    ["EDC | June 19–17, 2016", ""], ["Lineup | Smarch 4–5, 2016", ""]])
+    ok(printedRange(t).join(",") === want, `home page title "${t}" prints ${want || "no dates"} (got ${printedRange(t).join(",") || "none"})`);
+  const ur = lineupRows(und, "edc-orlando-2016");
+  ok(ur.rows.filter(r => r.artist === "Zed").length === 1 && ur.rows.every(r => r.day === "" && r.stage === ""), "a name listed twice is one billing, with no day and no stage");
+  ok(ur.findings.length === 1 && ur.findings[0].startsWith("Zed: alphabetical ×2"), `only the repeated name is a ledger finding on an undated page (got ${ur.findings.join("; ")})`);
+  // A title that names no year proves nothing alone: its captures are read
+  // only up to `until`, at most two weeks after the festival's last day.
+  for (const [id, w] of Object.entries(LINEUP_EDITIONS)) {
+    const ed = EDITIONS[id];
+    if (!ed.undated) { ok(!w.until, `${id}: until is only for an undated edition`); continue; }
+    if (w.title.includes(String(ed.year))) continue;
+    const last = Date.parse(ed.dates.at(-1)[0]), until = w.until && Date.parse(`${w.until.slice(0, 4)}-${w.until.slice(4, 6)}-${w.until.slice(6)}`);
+    ok(until && until >= last && until - last <= 14 * 86400000, `${id}: an undated page whose title names no year needs until within two weeks after the festival`);
+  }
+  const lv17 = editions["edc-las-vegas-2017"];
+  if (lv17) {
+    mustFail("an undated lineup gains a day", m => { m.artists[0].appearances.push({ day: 1 }); }, lv17, undefined, /undated lineup, but an artist carries a day/);
+    mustFail("an undated lineup loses its note", m => { delete m.notes; }, lv17, undefined, /notes differ|printed no days/);
+    mustFail("an undated lineup no longer marked undated", m => { delete m.undated; }, lv17, undefined, /day 1 has no billed artist/);
+    mustFail("a dated lineup marked undated", m => { m.undated = true; }, noc, undefined, /the edition registry says false/);
+  }
 }
 
 // ── 4. isolation from the live app ──
@@ -559,8 +603,9 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   // Only the lines that name the historical library: the artist-photo ledger's build
   // step is a different ledger, and a blanket /ledger/ refused it (2026-10-03).
   const bldHist = bld.split("\n").filter(l => /historical/.test(l)).join("\n");
-  ok(/'data\/historical\/index\.json'/.test(bld) && /'historical', 'editions'/.test(bld) && !/sheets|ledger|'review'/.test(bldHist),
-    "build.mjs must ship data/historical/index.json and editions/*.json only (sheets, ledgers and review manifests stay out of the app)");
+  ok(/'data\/historical\/index\.json'/.test(bld) && /'historical', 'editions'/.test(bld) && /'data\/historical\/scan-calendar\.json'/.test(bld)
+    && !/sheets|ledger|'review'|scan-calendar\/|\.tsv/.test(bldHist),
+    "build.mjs must ship data/historical/index.json, editions/*.json and scan-calendar.json only (sheets, ledgers, review manifests and TSV sources stay out of the app)");
   const walk = d => readdirSync(d, { withFileTypes: true }).flatMap(x => x.isDirectory() ? walk(join(d, x.name)) : [join(d, x.name)]);
   const art = walk(H("")).filter(f => /\.(png|jpe?g|webp|gif|svg|html?)$/i.test(f));
   ok(!art.length, `archived creative assets must never be committed: ${art.join(", ")}`);
@@ -624,6 +669,18 @@ for (const [printed, date, year, dates, want] of [
     d => d.timed && d.duplicates.length === 1 && d.sets.filter(x => x.artist === "School of Rock").length === 1);
   untimed("a cancelled block is flagged and its billing kept clean", grid({ honda: [...HONDA, block("*canceled* Gone Band", "3:00-4:00", 48, 12)], kids: KIDS }),
     d => d.sets.some(x => x.canceled && x.artist === "Gone Band"));
+  // Lollapalooza 2013 misprints one range (5:30-4:15): the scale is fitted
+  // without it, the misprint is named, and the day ships untimed.
+  untimed("a misprinted range is named and makes its day untimed", grid({ honda: [...HONDA, block("Misprint", "5:30-4:15", 78, 9)], kids: KIDS }),
+    d => !d.timed && d.sets.some(x => x.artist === "Misprint" && x.rangeMismatch) && d.sets.every(x => x.start === ""));
+  ok(day(grid({ honda: HONDA.map(b => b.replace('class="o-session__inner"', 'class="o-session__inner "')), kids: KIDS })).timed,
+    "a block class with a trailing space (Lollapalooza 2017's markup) must still be read");
+  untimed("a block printed twice in the same place is one set", grid({ honda: [...HONDA, HONDA[1]], kids: KIDS }),
+    d => d.timed && d.duplicates.length === 1 && d.sets.filter(x => x.artist === "Evening Act").length === 1);
+  const l13 = editions["lollapalooza-2013"];
+  ok(l13 && l13.days.filter(d => d.untimed).map(d => d.day).join() === "2" && l13.sets.filter(x => x.day === 2).every(x => x.start === null)
+    && l13.sets.filter(x => x.day === 2 && x.artistId === "lollapalooza-2013:school-of-rock").length === 1,
+    "Lollapalooza 2013: the misprinted Saturday ships untimed, with School of Rock's two sets listed once");
 
   // Untimed days, notes and cancelled days are each held by a rule.
   const a17 = editions["acl-2017"], a13 = editions["acl-2013"];

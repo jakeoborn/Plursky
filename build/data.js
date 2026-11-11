@@ -442,6 +442,174 @@ var FESTIVALS_REGISTRY = [{
   region: "North America"
 }, {
   config: {
+    id: "ubbi-dubbi-2027",
+    officialEvent: {
+      website: "https://ubbidubbifestival.com/",
+      observedAt: "2026-11-11"
+    },
+    name: "Ubbi Dubbi 2027",
+    shortName: "Ubbi Dubbi",
+    brand: "Ubbi Dubbi",
+    tagline: "Two days of house and bass in Fort Worth",
+    location: "Panther Island Pavilion · Fort Worth, TX",
+    locationShort: "Panther Island Pavilion",
+    dates: "Apr 23–24, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://ubbidubbifestival.com/",
+        observedAt: "2026-11-11"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#f472b6",
+  emoji: "🍭",
+  region: "North America"
+}, {
+  config: {
+    id: "movement-2027",
+    officialEvent: {
+      website: "https://movementfestival.com/",
+      observedAt: "2026-11-11"
+    },
+    name: "Movement 2027",
+    shortName: "Movement",
+    brand: "Movement",
+    tagline: "Memorial Day weekend of techno in downtown Detroit",
+    location: "Hart Plaza · Detroit, MI",
+    locationShort: "Hart Plaza",
+    dates: "May 29–31, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://movementfestival.com/",
+        observedAt: "2026-11-11"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#94a3b8",
+  emoji: "🏙️",
+  region: "North America"
+}, {
+  config: {
+    id: "shambhala-2027",
+    officialEvent: {
+      website: "https://www.shambhalamusicfestival.com/",
+      observedAt: "2026-11-11"
+    },
+    name: "Shambhala 2027",
+    shortName: "Shambhala",
+    brand: "Shambhala",
+    tagline: "Four nights on a family farm in the Kootenays",
+    location: "Salmo River Ranch · BC, Canada",
+    locationShort: "Salmo River Ranch",
+    dates: "Jul 23–26, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.shambhalamusicfestival.com/",
+        observedAt: "2026-11-11"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#4ade80",
+  emoji: "🌲",
+  region: "North America"
+}, {
+  config: {
+    id: "defqon1-2027",
+    officialEvent: {
+      website: "https://www.defqon1.com/",
+      observedAt: "2026-11-11"
+    },
+    name: "Defqon.1 2027",
+    shortName: "Defqon.1",
+    brand: "Defqon.1",
+    tagline: "Four days of hardstyle in the Dutch polder",
+    location: "Biddinghuizen · Netherlands",
+    locationShort: "Biddinghuizen",
+    dates: "Jun 24–27, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.defqon1.com/",
+        observedAt: "2026-11-11"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#ef4444",
+  emoji: "⚔️",
+  region: "Europe"
+}, {
+  config: {
+    id: "untold-2027",
+    officialEvent: {
+      website: "https://untold.com/",
+      observedAt: "2026-11-11"
+    },
+    name: "Untold 2027",
+    shortName: "Untold",
+    brand: "Untold",
+    tagline: "Four nights in the heart of Transylvania",
+    location: "Cluj-Napoca, Romania",
+    locationShort: "Cluj-Napoca",
+    dates: "Aug 5–8, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://untold.com/",
+        observedAt: "2026-11-11"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#c084fc",
+  emoji: "🏰",
+  region: "Europe"
+}, {
+  config: {
+    id: "creamfields-2027",
+    officialEvent: {
+      website: "https://www.creamfields.com/",
+      observedAt: "2026-11-11"
+    },
+    name: "Creamfields 2027",
+    shortName: "Creamfields",
+    brand: "Creamfields",
+    tagline: "Bank holiday weekend in the Cheshire fields",
+    location: "Daresbury · Cheshire, UK",
+    locationShort: "Daresbury",
+    dates: "Aug 26–29, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.creamfields.com/",
+        observedAt: "2026-11-11"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#a855f7",
+  emoji: "🍦",
+  region: "Europe"
+}, {
+  config: {
     id: "lost-lands-2026",
     scheduleSource: {
       url: "https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts",
@@ -3690,7 +3858,7 @@ var UNPLACED_STAGE = {
   color: "#8a8580",
   size: 1
 };
-var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026"];
+var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027"];
 var _WAVE1 = typeof window !== "undefined" && window.PLURSKY_FESTIVALS || {};
 for (var _id of _WAVE1_IDS) {
   var _f = _WAVE1[_id];

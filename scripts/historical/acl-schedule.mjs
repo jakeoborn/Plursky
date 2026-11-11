@@ -70,7 +70,7 @@ export function parseAclSchedule(html) {
     const blocks = seg.split(/<div class="(?:session-wrapper|o-session)" style="/).slice(1);
     for (const b of blocks) {
       const top = /^top:\s*([\d.]+)em/.exec(b)?.[1];
-      const height = /class="(?:session|o-session__inner)"[^>]*style="height:\s*([\d.]+)em/.exec(b)?.[1];
+      const height = /class="(?:session|o-session__inner)\s*"[^>]*style="height:\s*([\d.]+)em/.exec(b)?.[1];
       const title = /<p class="(?:o-)?session__title[^"]*">([\s\S]*?)<\/p>/.exec(b)?.[1];
       const time = /<p class="(?:o-)?session__time">([\s\S]*?)<\/p>/.exec(b)?.[1];
       if (title === undefined || time === undefined) continue;
@@ -86,22 +86,43 @@ export function parseAclSchedule(html) {
   // Page scale: a least-squares fit of block height = scale × printed duration
   // + a constant border (the duration needs no meridiem). Needs two distinct
   // durations; otherwise there is no scale and every day is untimed.
-  const pts = raw.map(r => {
+  const dur = r => {
     const [a, z] = r.printed.split(/\s*[-–]\s*/).map(hm);
     if (!a || !z || r.height === null) return null;
     let d = (z[0] * 60 + z[1]) - (a[0] * 60 + a[1]);
     while (d <= 0) d += 12 * 60;
-    return [d, r.height];
-  }).filter(Boolean);
-  const n = pts.length, sx = pts.reduce((s, p) => s + p[0], 0), sy = pts.reduce((s, p) => s + p[1], 0);
-  const sxx = pts.reduce((s, p) => s + p[0] * p[0], 0), sxy = pts.reduce((s, p) => s + p[0] * p[1], 0);
-  const den = n * sxx - sx * sx;
-  const scale = n >= 2 && den > 0 ? (n * sxy - sx * sy) / den : null;
+    return d;
+  };
+  const fit = pts => {
+    const n = pts.length, sx = pts.reduce((s, p) => s + p[0], 0), sy = pts.reduce((s, p) => s + p[1], 0);
+    const sxx = pts.reduce((s, p) => s + p[0] * p[0], 0), sxy = pts.reduce((s, p) => s + p[0] * p[1], 0);
+    const den = n * sxx - sx * sx;
+    if (!(n >= 2 && den > 0)) return null;
+    const scale = (n * sxy - sx * sy) / den;
+    return { scale, border: (sy - scale * sx) / n };
+  };
+  // A block whose printed range disagrees with its own drawn height (a
+  // misprint such as "5:30-4:15" on a 75-minute block) says nothing about the
+  // page's scale: it is left out of the fit, and its row cannot be read.
+  // Pages with no such block fit exactly as before.
+  const pts = raw.map(r => { const d = dur(r); return d === null ? null : [d, r.height, r]; }).filter(Boolean);
+  let f = fit(pts);
+  const misfit = p => f && Math.abs(p[1] - (f.scale * p[0] + f.border)) / f.scale > TOLERANCE_MIN;
+  const bad = new Set();
+  if (f && pts.some(misfit)) {
+    const median = [...pts.map(p => p[1] / p[0])].sort((x, y) => x - y)[Math.floor(pts.length / 2)];
+    f = { scale: median, border: 0 };
+    for (const p of pts) if (misfit(p)) bad.add(p[2]);
+    f = fit(pts.filter(p => !bad.has(p[2])));
+    for (const p of pts) if (misfit(p)) bad.add(p[2]);
+  }
+  const scale = f?.scale ?? null;
   const days = [...new Set(raw.map(r => r.date))].map(date => {
     const rows = raw.filter(r => r.date === date);
     const sets = rows.map(r => {
       const [a, z] = r.printed.split(/\s*[-–]\s*/).map(hm);
       if (!r.axis || !scale || r.top === null || !a || !z) return { ...r, start: "", end: "", meridiem: null };
+      if (bad.has(r)) return { ...r, start: "", end: "", meridiem: null, rangeMismatch: true };
       const at = r.axis.start + r.top / scale;
       // A block placed outside the printed axis proves nothing about its time.
       if (at < r.axis.start - TOLERANCE_MIN || at > r.axis.start + r.axis.labels.length * 60 + TOLERANCE_MIN)
@@ -115,8 +136,12 @@ export function parseAclSchedule(html) {
     });
     // An off-axis block that repeats an on-axis block of the same column
     // (same billing, same printed range) is a duplicate, reported apart.
-    const dupOf = s => s.offAxis && sets.some(o => o !== s && o.meridiem === "axis" && o.location === s.location
-      && o.artist === s.artist && o.printed === s.printed);
+    // So is a second block drawn at the same place in the same column with the
+    // same billing and range (Lollapalooza 2013 prints two session entries for
+    // one Kidzapalooza set): the first is kept.
+    const same = (o, s) => o.location === s.location && o.artist === s.artist && o.printed === s.printed;
+    const dupOf = s => (s.offAxis && sets.some(o => o !== s && o.meridiem === "axis" && same(o, s)))
+      || sets.slice(0, sets.indexOf(s)).some(o => same(o, s) && o.top === s.top && !o.offAxis);
     const duplicates = sets.filter(dupOf), kept = sets.filter(s => !dupOf(s));
     // Any other unreadable row makes the whole day untimed: a day is read on one axis.
     const timed = kept.every(s => s.meridiem === "axis");

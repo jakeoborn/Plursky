@@ -1987,6 +1987,169 @@ function _wallClockFromUtcTz(ms, cfg) {
   return _wallClockFromUtc(ms, cfg);
 }
 
+// ── Past editions in the library (2026-11-07) ────────────────────────────
+// Jake: "the photo video scan can do any festival in the past if in users
+// photo gallery and if in our catalog". The Past Festivals catalog
+// (data/historical) carries each edition's days, zone and printed sets, so a
+// past edition becomes a scan target shaped like a live festival: the same
+// night windows, set-hour filter and matcher run on it. Its photos are
+// stamped with the EDITION id ("lollapalooza-2024"), which keeps them off the
+// live festival's screens (_activeMoments) and puts them on that edition's
+// Past Festivals page.
+//
+// GPS is REQUIRED here, unlike the live scan. The live scan runs for the
+// festival the person picked; a catalog-wide scan would otherwise import every
+// photo taken anywhere on ~40 past festival weekends. Only a fix inside the
+// festival's own footprint (its live config's gps + onSiteRadiusMi) plus
+// _OFF_VENUE_MARGIN_M counts, the fix's own error allowed up to that margin. A
+// festival with no live config has no footprint and is not scanned, and a
+// venue that moved fails closed: a missed photo, never a wrong festival.
+
+// The live config of an edition's festival ("lollapalooza" → the
+// lollapalooza-2026 config), or null when it has no sourced footprint.
+function _histFamilyConfig(festivalId, setsIn) {
+  const sets = setsIn || window._DATA_SETS || {};
+  for (const id of Object.keys(sets).sort()) {
+    const m = /^(.*)-(\d{4})$/.exec(id);
+    const c = sets[id]?.config;
+    if (m && m[1] === festivalId && c?.gps && c.gps.lat != null && c.gps.lng != null && c.gps.onSiteRadiusMi > 0) return c;
+  }
+  return null;
+}
+
+// Local midnight of an ISO date in an IANA zone, as a UTC instant.
+function _histMidnightUtc(iso, tz) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+  return m ? _zonedWallToUtc(+m[1], +m[2], +m[3], 0, 0, tz) : null;
+}
+
+// A catalog index entry → a festival config the scan and matcher read. Each
+// printed day is its own night (ACL's Weekend 2 days are days 4-6), so there
+// is no weekend shift.
+function _histEditionConfig(entry, family) {
+  if (!entry?.id || !entry.timezone || !Array.isArray(entry.days) || !entry.days.length || !family?.gps) return null;
+  const dayDates = {};
+  for (const d of entry.days) {
+    const ms = _histMidnightUtc(d.date, entry.timezone);
+    if (typeof ms !== "number") return null;
+    dayDates[d.day] = { midnightUtc: ms, date: d.date, label: d.label || null };
+  }
+  return { id: entry.id, name: entry.name, shortName: entry.name, tz: entry.timezone, dayDates,
+           gps: { lat: family.gps.lat, lng: family.gps.lng, onSiteRadiusMi: family.gps.onSiteRadiusMi },
+           historical: true, festivalId: entry.festivalId, year: entry.year };
+}
+
+// Every festival year the library scan can look for, oldest first.
+//
+// Jake 2026-11-11: "ensure the scan of the photos and videos can do any
+// festival we have and past years specifically like edc 2019 or the times I
+// went to das in the past". The library only holds years whose lineup has
+// been read, so the scan also walks data/historical/scan-calendar.json: every
+// festival year since 2010 with sourced dates and a located venue
+// (scripts/historical/build-scan-calendar.mjs). Each year carries its OWN
+// venue's footprint, so a festival that moved (HARD Summer: Auto Club
+// Speedway in 2016, Hollywood Park in 2024) is looked for where it was that
+// year. A year in the library uses the library's printed days and sets; a
+// calendar-only year is matched on its dates and place alone, and its photos
+// are stamped with the same id ("das-energi-2019") its lineup page will use.
+// Canceled years are not in the calendar; a year that has not started yet is
+// not scanned.
+function _histScanTargets(index, setsIn, calendar, nowMs) {
+  const now = typeof nowMs === "number" ? nowMs : Date.now();
+  const lib = new Map();
+  for (const e of (index && index.editions) || []) if (e && e.id && e.status !== "canceled") lib.set(e.id, e);
+  const out = new Map();
+  for (const c of (calendar && calendar.editions) || []) {
+    if (!c || !c.id || out.has(c.id) || !c.gps) continue;
+    const libEntry = lib.get(c.id) || null;
+    const cfg = _histEditionConfig(libEntry || c, { gps: c.gps });
+    if (!cfg) continue;
+    cfg.venue = c.venue || null;
+    out.set(c.id, { entry: libEntry || c, cfg, inLibrary: !!libEntry });
+  }
+  // A library year the calendar has no located venue for still scans on its
+  // festival's live footprint, as before.
+  for (const e of lib.values()) {
+    if (out.has(e.id)) continue;
+    const fam = _histFamilyConfig(e.festivalId, setsIn);
+    const cfg = fam ? _histEditionConfig(e, fam) : null;
+    if (cfg) out.set(e.id, { entry: e, cfg, inLibrary: true });
+  }
+  return [...out.values()]
+    .filter(t => Object.values(t.cfg.dayDates).some(d => d.midnightUtc <= now))
+    .sort((a, b) => (a.entry.year - b.entry.year) || String(a.entry.id).localeCompare(String(b.entry.id)));
+}
+
+// Is this asset's fix inside the edition's footprint? No fix = no.
+function _histAssetOnSite(asset, cfg) {
+  const g = cfg?.gps;
+  const lat = Number(asset?.lat), lng = Number(asset?.lng);
+  if (!g || asset?.lat == null || asset?.lng == null || !isFinite(lat) || !isFinite(lng) || (lat === 0 && lng === 0)) return false;
+  const acc = Number(asset.acc);
+  const err = asset.acc != null && isFinite(acc) && acc >= 0 ? Math.min(acc, _OFF_VENUE_MARGIN_M) : 0;
+  return _haversineMeters(lat, lng, g.lat, g.lng) - err <= g.onSiteRadiusMi * 1609.34 + _OFF_VENUE_MARGIN_M;
+}
+
+// An edition's printed sets → the act rows the scan and matcher read. A
+// closing set printed with a start only has no end to match against, so for
+// MATCHING it runs to the latest end the same day prints (the festival's own
+// close); it is never shown, and a day with no later printed end drops it. A
+// set with no printed start ("Time not confirmed") is not timed at all.
+function _histEditionArtists(edition) {
+  const names = new Map(((edition && edition.artists) || []).map(a => [a.id, a.name]));
+  const sets = (edition && edition.sets) || [];
+  const close = {};
+  for (const s of sets) {
+    const e = _hhmmNightMin(s.end);
+    if (s.start && e != null && (close[s.day] == null || e > close[s.day])) close[s.day] = e;
+  }
+  const hhmm = (min) => `${String(Math.floor(min / 60) % 24).padStart(2, "0")}:${String(min % 60).padStart(2, "0")}`;
+  const out = [];
+  for (const s of sets) {
+    const st = _hhmmNightMin(s.start);
+    if (st == null || !s.artistId) continue;
+    let end = s.end;
+    if (_hhmmNightMin(end) == null) {
+      if (close[s.day] == null || close[s.day] <= st) continue;
+      end = hhmm(close[s.day]);
+    }
+    out.push({ id: s.artistId, name: names.get(s.artistId) || "", day: s.day, stage: s.stageId || null,
+               start: s.start, end, setId: s.id, endPrinted: !!s.end });
+  }
+  return out;
+}
+
+// The data set processImportedFiles matches a past edition's photos against.
+// The moments a past-edition scan filed under one edition, oldest first.
+// Lives here, not in historical.jsx: the archive module never touches storage.
+function _histEditionMoments(editionId) {
+  let all = {};
+  try { all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {}; } catch {}
+  const out = [];
+  for (const night of Object.keys(all)) for (const m of (Array.isArray(all[night]) ? all[night] : [])) {
+    if (m && m.festivalId === editionId) out.push(m);
+  }
+  return out.sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")));
+}
+
+// Which festival years hold a moment from a past-edition scan, so the
+// Past Festivals list can offer a year whose lineup is not in the library yet.
+function _histMomentEditionIds() {
+  let all = {};
+  try { all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {}; } catch {}
+  const ids = new Set();
+  for (const night of Object.keys(all)) for (const m of (Array.isArray(all[night]) ? all[night] : [])) {
+    if (m && m.festivalStampSource === "past-edition" && /^[a-z0-9-]+-\d{4}$/.test(m.festivalId || "")) ids.add(m.festivalId);
+  }
+  return ids;
+}
+
+// A calendar-only year has no edition file: no sets, so every night is
+// scanned in full and the matcher tags the festival year, not an artist.
+function _histDataSet(edition, cfg) {
+  return { id: cfg.id, config: cfg, artists: _histEditionArtists(edition), amenities: [], resolvedBy: "past-edition-scan" };
+}
+
 // Which of the returned assets to import: inside a night's set-time window,
 // not imported by an earlier scan, oldest first. Everything else is counted
 // by why, so the screen can say what it skipped instead of a bare "nothing":

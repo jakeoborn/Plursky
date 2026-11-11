@@ -103,6 +103,7 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   // official page of the edition's year. An untimed day must be covered by a
   // note that names it, and a cancelled day by an edition-wide note.
   if (JSON.stringify(e.notes || null) !== JSON.stringify(meta.notes || null)) p.push(`${e.id}: notes differ from the edition registry`);
+  if (!!e.undated !== !!meta.undated) p.push(`${e.id}: undated is ${!!e.undated}, the edition registry says ${!!meta.undated}`);
   for (const n of e.notes || []) {
     if (!DAY.test(n.asOf || "")) p.push(`${e.id}: a note has no asOf date`);
     if (!n.text) p.push(`${e.id}: a note has no text`);
@@ -297,6 +298,12 @@ function validateLineup(e, { expected, dropped }, stageIds) {
     }
   }
   for (const st of e.stages) if (!used.has(st.id)) p.push(`${e.id}: stage ${st.name} is on no artist's appearance`);
+  // An undated lineup page printed no days: no artist may carry one, and the
+  // edition must say so in a note. Any other lineup edition dates every day.
+  if (e.undated) {
+    if (e.artists.some(a => (a.appearances || []).some(x => "day" in x))) p.push(`${e.id}: undated lineup, but an artist carries a day`);
+    if (!(e.notes || []).some(n => /printed no days/.test(n.text))) p.push(`${e.id}: undated lineup without a note saying the page printed no days`);
+  } else for (const d of e.days) if (!e.artists.some(a => (a.appearances || []).some(x => x.day === d.day))) p.push(`${e.id}: day ${d.day} has no billed artist`);
   if (!expected) return p.concat(`${e.id}: no locked expected counts`);
   if (expected.artists !== e.artists.length) p.push(`${e.id}: ${e.artists.length} artists, locked ${expected.artists}`);
   if (expected.stages !== e.stages.length) p.push(`${e.id}: ${e.stages.length} stages, locked ${expected.stages}`);
