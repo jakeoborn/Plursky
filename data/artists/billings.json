@@ -64615,6 +64615,946 @@
   "mainStage": null
  },
  {
+  "id": "lights-all-night-2026:lan-armnhmr",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ARMNHMR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armnhmr",
+    "role": "performer"
+   }
+  ],
+  "act": "armnhmr",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-artifakts",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ARTIFAKTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "artifakts",
+    "role": "performer"
+   }
+  ],
+  "act": "artifakts",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-atliens",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ATLiens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "atliens",
+    "role": "performer"
+   }
+  ],
+  "act": "atliens",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-avello",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "AVELLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "avello",
+    "role": "performer"
+   }
+  ],
+  "act": "avello",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-azyr",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "AZYR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "azyr",
+    "role": "performer"
+   }
+  ],
+  "act": "azyr",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-beauz",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BEAUZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beauz",
+    "role": "performer"
+   }
+  ],
+  "act": "beauz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-byorn",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BYORN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "byorn",
+    "role": "performer"
+   }
+  ],
+  "act": "byorn",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-chris-lake",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Chris Lake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lake",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lake",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-conrad-taylor",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Conrad Taylor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "conrad-taylor",
+    "role": "performer"
+   }
+  ],
+  "act": "conrad-taylor",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-devault",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Devault",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "devault",
+    "role": "performer"
+   }
+  ],
+  "act": "devault",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-dj-mandy",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Mandy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-mandy",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-mandy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-fly",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "FLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fly",
+    "role": "performer"
+   }
+  ],
+  "act": "fly",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-gg-magree",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "GG Magree",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gg-magree",
+    "role": "performer"
+   }
+  ],
+  "act": "gg-magree",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-gryffin",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Gryffin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gryffin",
+    "role": "performer"
+   }
+  ],
+  "act": "gryffin",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-hershe",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Hershe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hershe",
+    "role": "performer"
+   }
+  ],
+  "act": "hershe",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-hhunter",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "HHUNTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hhunter",
+    "role": "performer"
+   }
+  ],
+  "act": "hhunter",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-hydraulix",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Hydraulix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hydraulix",
+    "role": "performer"
+   }
+  ],
+  "act": "hydraulix",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-i-hate-models",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "I Hate Models",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "i-hate-models",
+    "role": "performer"
+   }
+  ],
+  "act": "i-hate-models",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-ian-asher",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ian Asher",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ian-asher",
+    "role": "performer"
+   }
+  ],
+  "act": "ian-asher",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-jigitz",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JIGITZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jigitz",
+    "role": "performer"
+   }
+  ],
+  "act": "jigitz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-jon-casey",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jon Casey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jon-casey",
+    "role": "performer"
+   }
+  ],
+  "act": "jon-casey",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-josh-baker",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Josh Baker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "josh-baker",
+    "role": "performer"
+   }
+  ],
+  "act": "josh-baker",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-kettama",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "KETTAMA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kettama",
+    "role": "performer"
+   }
+  ],
+  "act": "kettama",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-level-up",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Level Up",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "level-up",
+    "role": "performer"
+   }
+  ],
+  "act": "level-up",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-lyny",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LYNY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lyny",
+    "role": "performer"
+   }
+  ],
+  "act": "lyny",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-mad-dubz-b2b-vktm",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mad Dubz b2b VKTM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mad-dubz",
+    "role": "b2b"
+   },
+   {
+    "key": "vktm",
+    "role": "b2b"
+   }
+  ],
+  "act": "mad-dubz-b2b-vktm",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-madgrrl",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MADGRRL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madgrrl",
+    "role": "performer"
+   }
+  ],
+  "act": "madgrrl",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-marie-vaunt",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Marie Vaunt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marie-vaunt",
+    "role": "performer"
+   }
+  ],
+  "act": "marie-vaunt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-mindset",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mindset",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mindset",
+    "role": "performer"
+   }
+  ],
+  "act": "mindset",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-ninajirachi",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ninajirachi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ninajirachi",
+    "role": "performer"
+   }
+  ],
+  "act": "ninajirachi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-sidequest",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sidequest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sidequest",
+    "role": "performer"
+   }
+  ],
+  "act": "sidequest",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-skull-machine-black-tiger-sex-machine-x-kai-wachi",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Skull Machine (Black Tiger Sex Machine x Kai Wachi)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skull-machine",
+    "role": "project"
+   }
+  ],
+  "act": "skull-machine-black-tiger-sex-machine-x-kai-wachi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-subtronics",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Subtronics",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subtronics",
+    "role": "performer"
+   }
+  ],
+  "act": "subtronics",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-telykast",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Telykast",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "telykast",
+    "role": "performer"
+   }
+  ],
+  "act": "telykast",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-tiesto",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tiësto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiesto",
+    "role": "performer"
+   }
+  ],
+  "act": "tiesto",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-william-black",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "William Black",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "william-black",
+    "role": "performer"
+   }
+  ],
+  "act": "william-black",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-wtchcrft",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "WTCHCRFT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wtchcrft",
+    "role": "performer"
+   }
+  ],
+  "act": "wtchcrft",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-ydg",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "YDG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ydg",
+    "role": "performer"
+   }
+  ],
+  "act": "ydg",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lights-all-night-2026:lan-yousuke-yuk1matsu",
+  "source": "live",
+  "festivalId": "lights-all-night-2026",
+  "festivalBrand": "lights-all-night",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "YØU$UKE YUK1MAT$U",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "you-uke-yuk1mat-u",
+    "role": "performer"
+   }
+  ],
+  "act": "you-uke-yuk1mat-u",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "acl-2013:d1:amd:1200:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2013",
