@@ -10,11 +10,15 @@
 //
 // HOW A PHOTO IS TIED TO THE RIGHT PERSON. A wrong face is worse than
 // initials, so a match has to clear every rule, or the artist keeps initials:
-//   1. the Wikidata item's English label or an alias has the SAME artist key
-//      as the billing (data/artist-key.js), not a fuzzy match;
-//   2. the item carries a music-database identifier (MusicBrainz, Discogs,
-//      Spotify, Apple Music, Last.fm, Beatport, SoundCloud), so it is a
-//      musical act and not a namesake;
+//   1. the Wikidata item's English label has the SAME artist key as the
+//      billing (data/artist-key.js), not a fuzzy match. An alias counts only
+//      for a key of 4+ characters ("Q" is an alias of Quincy Jones, "SJ" of
+//      Super Junior; neither is that act);
+//   2. the item is a musical act: a human (P31 Q5) with a music occupation
+//      (DJ, musician, singer, rapper, producer...), or a musical group. A
+//      music-database id alone is not enough: an emperor, an architect and
+//      an orchestra hall all carry MusicBrainz ids (the Nov 2026 catalog
+//      run's spot check), and a fictional character can be a "singer";
 //   3. exactly ONE search result clears 1 and 2. Two is ambiguous: skipped;
 //   4. it has an image, the Commons file's license maps onto the ledger's
 //      allow-list, and its author credit fits the 32-character credit line.
@@ -28,6 +32,7 @@
 //   node scripts/find-commons-photos.mjs --all            every registry artist
 //   node scripts/find-commons-photos.mjs --festival <id>  one festival module
 //   --limit N       first N artists only      --dry-run   report, write nothing
+//   --recheck       re-hold every pipeline row to the current match rules
 //   --width N       thumbnail width (480)     --report <path.json>
 import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -48,8 +53,11 @@ const UA = 'ArtistPhotoLedgerBot/1.0 (openly licensed artist portraits; low rate
 export const MUSIC_IDS = ['P434', 'P1953', 'P1902', 'P2850', 'P3192', 'P1728', 'P2722', 'P3040', 'P3283', 'P2373'];
 // Or the item says what it is: a music occupation (DJ, musician, record
 // producer, singer, composer, singer-songwriter, rapper) or a musical group.
-export const MUSIC_OCC = ['Q130857', 'Q639669', 'Q183945', 'Q177220', 'Q36834', 'Q488205', 'Q2252262', 'Q855091'];
-export const MUSIC_GROUP = ['Q215380', 'Q2088357', 'Q5741069'];
+// (+ songwriter, vocalist)
+export const MUSIC_OCC = ['Q130857', 'Q639669', 'Q183945', 'Q177220', 'Q36834', 'Q488205', 'Q2252262', 'Q855091', 'Q753110', 'Q2643890'];
+// musical group, musical ensemble, rock band, musical duo
+export const MUSIC_GROUP = ['Q215380', 'Q2088357', 'Q5741069', 'Q9212979'];
+const HUMAN = 'Q5';
 
 // Commons LicenseShortName → ledger license id. Anything else is skipped.
 const LICENSE_MAP = new Map([
@@ -95,20 +103,28 @@ const claimIds = (ent, p) => ((ent.claims || {})[p] || [])
   .filter(c => c.rank !== 'deprecated' && c.mainsnak && c.mainsnak.snaktype === 'value')
   .sort((a, b) => (b.rank === 'preferred') - (a.rank === 'preferred'))
   .map(c => c.mainsnak.datavalue.value);
-const names = ent => [
-  ...Object.values(ent.labels || {}).map(l => l.value),
-  ...Object.values(ent.aliases || {}).flat().map(a => a.value),
-];
+const label = ent => (ent.labels && ent.labels.en && ent.labels.en.value) || '';
+const aliases = ent => Object.values(ent.aliases || {}).flat().map(a => a.value);
+
+// Rule 1 for one item.
+export function namesBilling(billing, ent) {
+  const key = artistKey(billing);
+  if (artistKey(label(ent)) === key) return true;
+  return key.replace(/-/g, '').length >= 4 && aliases(ent).some(n => artistKey(n) === key);
+}
+// Rule 2 for one item.
+export function isMusicAct(ent) {
+  const qids = p => claimIds(ent, p).map(v => v && v.id).filter(Boolean);
+  const kinds = qids('P31');
+  if (kinds.some(q => MUSIC_GROUP.includes(q))) return true;
+  return kinds.includes(HUMAN) && qids('P106').some(q => MUSIC_OCC.includes(q));
+}
 
 // The match rule (1-3 above), pure so the gate can test it.
 export function pickEntity(billing, entities) {
-  const key = artistKey(billing);
-  const named = entities.filter(e => e && !e.missing && names(e).some(n => artistKey(n) === key));
+  const named = entities.filter(e => e && !e.missing && namesBilling(billing, e));
   if (!named.length) return { entity: null, reason: 'no-item' };
-  const qids = (e, p) => claimIds(e, p).map(v => v && v.id).filter(Boolean);
-  const ok = named.filter(e => MUSIC_IDS.some(p => claimIds(e, p).length)
-    || qids(e, 'P106').some(q => MUSIC_OCC.includes(q))
-    || qids(e, 'P31').some(q => MUSIC_GROUP.includes(q)));
+  const ok = named.filter(isMusicAct);
   if (ok.length !== 1) return { entity: null, reason: ok.length ? 'ambiguous' : 'no-music-item' };
   const image = claimIds(ok[0], 'P18')[0];
   return image ? { entity: ok[0], image } : { entity: null, reason: 'no-image', qid: ok[0].id };
@@ -180,13 +196,45 @@ function parseArgs(argv) {
     else if (v === '--gap') a.gap = +argv[++i];
     else if (v === '--width') a.width = +argv[++i];
     else if (v === '--report') a.report = argv[++i];
+    else if (v === '--recheck') a.recheck = true;
   }
-  if (!a.all && !a.festival) throw new Error('pass --all or --festival <id>');
+  if (!a.all && !a.festival && !a.recheck) throw new Error('pass --all, --festival <id> or --recheck');
   return a;
+}
+
+// --recheck: hold every pipeline row already in the ledger to the current
+// rules 1 and 2, by its recorded Wikidata item, and drop (row and asset) any
+// that no longer clears them. Hand-reviewed rows are never touched.
+async function recheck(args) {
+  const ledger = JSON.parse(readFileSync(LEDGER, 'utf8'));
+  const pipeline = ledger.filter(r => /^Commons pipeline/.test(r.reviewedBy || '') && r.wikidata);
+  if (args.gap) GAP = args.gap;
+  const ents = new Map(), ids = [...new Set(pipeline.map(r => r.wikidata))];
+  for (let i = 0; i < ids.length; i += 50) {
+    const j = await api(WD, { action: 'wbgetentities', ids: ids.slice(i, i + 50).join('|'), props: 'labels|aliases|claims', languages: 'en' });
+    for (const [id, e] of Object.entries(j.entities || {})) ents.set(id, e);
+  }
+  const dropped = [];
+  for (const r of pipeline) {
+    const e = ents.get(r.wikidata);
+    if (!e || e.missing === '') continue;   // not fetched: leave it, report nothing
+    const reason = !namesBilling(r.artist, e) ? 'no-item' : !isMusicAct(e) ? 'no-music-item' : null;
+    if (reason) dropped.push({ artist: r.artist, wikidata: r.wikidata, reason, asset: r.asset });
+  }
+  const gone = new Set(dropped.map(d => d.asset));
+  if (!args.dry) {
+    writeFileSync(LEDGER, JSON.stringify(ledger.filter(r => !gone.has(r.asset) || !/^Commons pipeline/.test(r.reviewedBy || '')), null, 2) + '\n');
+    for (const a of gone) { try { unlinkSync(join(ROOT, a)); } catch {} }
+  }
+  const report = { ranAt: new Date().toISOString(), scope: 'recheck', checked: pipeline.length, dropped: dropped.length,
+    byReason: dropped.reduce((m, d) => (m[d.reason] = (m[d.reason] || 0) + 1, m), {}), rows: dropped };
+  if (args.report) { mkdirSync(dirname(join(ROOT, args.report)), { recursive: true }); writeFileSync(join(ROOT, args.report), JSON.stringify(report, null, 1) + '\n'); }
+  console.log(`[commons] recheck: ${report.checked} pipeline rows, dropped ${report.dropped} ${JSON.stringify(report.byReason)}`);
 }
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  if (args.recheck) return recheck(args);
   const ledger = JSON.parse(readFileSync(LEDGER, 'utf8'));
   const have = new Set(ledger.map(r => artistKey(r.artist)));
   // Slice the stable source order first, so --offset means the same artists

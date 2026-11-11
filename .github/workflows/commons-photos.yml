@@ -48,8 +48,10 @@ jobs:
           case "$ARGS" in *[\;\&\|\`\$\(\)\<\>]*) echo "unexpected characters in args"; exit 1;; esac
           echo "ARGS=$ARGS" >> "$GITHUB_ENV"
           OFF=$(echo "$ARGS" | sed -n 's/.*--offset \([0-9]*\).*/\1/p')
-          echo "REPORT=docs/qa/reports/artist-photos-commons/last-run${OFF:+-$OFF}.json" >> "$GITHUB_ENV"
-          node scripts/find-commons-photos.mjs $ARGS --report "docs/qa/reports/artist-photos-commons/last-run${OFF:+-$OFF}.json"
+          REPORT="docs/qa/reports/artist-photos-commons/last-run${OFF:+-$OFF}.json"
+          case "$ARGS" in *--recheck*) REPORT="docs/qa/reports/artist-photos-commons/recheck.json";; esac
+          echo "REPORT=$REPORT" >> "$GITHUB_ENV"
+          node scripts/find-commons-photos.mjs $ARGS --report "$REPORT"
       - name: Ledger still validates
         run: node scripts/build-artist-photo-ledger.mjs
       - name: Commit results to this branch
