@@ -1,0 +1,300 @@
+{
+ "ranAt": "2026-11-11T11:09:56.179Z",
+ "scope": "recheck",
+ "checked": 1194,
+ "dropped": 48,
+ "byReason": {
+  "no-music-item": 40,
+  "no-item": 8
+ },
+ "rows": [
+  {
+   "artist": "Adam Scott",
+   "wikidata": "Q201842",
+   "reason": "no-music-item",
+   "asset": "artist-photos/adam-scott.webp"
+  },
+  {
+   "artist": "arman.",
+   "wikidata": "Q875164",
+   "reason": "no-music-item",
+   "asset": "artist-photos/arman.webp"
+  },
+  {
+   "artist": "ARYA",
+   "wikidata": "Q901649",
+   "reason": "no-music-item",
+   "asset": "artist-photos/arya.webp"
+  },
+  {
+   "artist": "Barry Can't Swim",
+   "wikidata": "Q124098371",
+   "reason": "no-music-item",
+   "asset": "artist-photos/barry-can-t-swim.webp"
+  },
+  {
+   "artist": "Bayonne",
+   "wikidata": "Q23542737",
+   "reason": "no-music-item",
+   "asset": "artist-photos/bayonne.webp"
+  },
+  {
+   "artist": "CØNTRA",
+   "wikidata": "Q42429948",
+   "reason": "no-music-item",
+   "asset": "artist-photos/contra.webp"
+  },
+  {
+   "artist": "Corbu",
+   "wikidata": "Q4724",
+   "reason": "no-music-item",
+   "asset": "artist-photos/corbu.webp"
+  },
+  {
+   "artist": "CORTIS",
+   "wikidata": "Q135668928",
+   "reason": "no-music-item",
+   "asset": "artist-photos/cortis.webp"
+  },
+  {
+   "artist": "Djo",
+   "wikidata": "Q27064031",
+   "reason": "no-item",
+   "asset": "artist-photos/djo.webp"
+  },
+  {
+   "artist": "DUA LIPA",
+   "wikidata": "Q28128723",
+   "reason": "no-music-item",
+   "asset": "artist-photos/dua-lipa.webp"
+  },
+  {
+   "artist": "EGGY",
+   "wikidata": "Q5410760",
+   "reason": "no-music-item",
+   "asset": "artist-photos/eggy.webp"
+  },
+  {
+   "artist": "ERIC SLICK",
+   "wikidata": "Q51336785",
+   "reason": "no-music-item",
+   "asset": "artist-photos/eric-slick.webp"
+  },
+  {
+   "artist": "FKJ",
+   "wikidata": "Q30457256",
+   "reason": "no-item",
+   "asset": "artist-photos/fkj.webp"
+  },
+  {
+   "artist": "GELLI HAHA",
+   "wikidata": "Q135431515",
+   "reason": "no-music-item",
+   "asset": "artist-photos/gelli-haha.webp"
+  },
+  {
+   "artist": "Girlfriend",
+   "wikidata": "Q18733030",
+   "reason": "no-music-item",
+   "asset": "artist-photos/girlfriend.webp"
+  },
+  {
+   "artist": "HUXLEY",
+   "wikidata": "Q184366",
+   "reason": "no-music-item",
+   "asset": "artist-photos/huxley.webp"
+  },
+  {
+   "artist": "Idriss D",
+   "wikidata": "Q110396410",
+   "reason": "no-music-item",
+   "asset": "artist-photos/idriss-d.webp"
+  },
+  {
+   "artist": "Inbal",
+   "wikidata": "Q1665209",
+   "reason": "no-music-item",
+   "asset": "artist-photos/inbal.webp"
+  },
+  {
+   "artist": "Injury Reserve",
+   "wikidata": "Q24075128",
+   "reason": "no-music-item",
+   "asset": "artist-photos/injury-reserve.webp"
+  },
+  {
+   "artist": "James Kennedy",
+   "wikidata": "Q355133",
+   "reason": "no-music-item",
+   "asset": "artist-photos/james-kennedy.webp"
+  },
+  {
+   "artist": "Japanese Breakfast",
+   "wikidata": "Q28104185",
+   "reason": "no-music-item",
+   "asset": "artist-photos/japanese-breakfast.webp"
+  },
+  {
+   "artist": "Joseph",
+   "wikidata": "Q128267",
+   "reason": "no-music-item",
+   "asset": "artist-photos/joseph.webp"
+  },
+  {
+   "artist": "Kassel",
+   "wikidata": "Q515553",
+   "reason": "no-music-item",
+   "asset": "artist-photos/kassel.webp"
+  },
+  {
+   "artist": "KATSEYE",
+   "wikidata": "Q123480242",
+   "reason": "no-music-item",
+   "asset": "artist-photos/katseye.webp"
+  },
+  {
+   "artist": "Koa",
+   "wikidata": "Q108678151",
+   "reason": "no-item",
+   "asset": "artist-photos/koa.webp"
+  },
+  {
+   "artist": "LP Giobbi",
+   "wikidata": "Q123348009",
+   "reason": "no-music-item",
+   "asset": "artist-photos/lp-giobbi.webp"
+  },
+  {
+   "artist": "Lydia B Kollins",
+   "wikidata": "Q131386749",
+   "reason": "no-music-item",
+   "asset": "artist-photos/lydia-b-kollins.webp"
+  },
+  {
+   "artist": "Michael Bibi",
+   "wikidata": "Q115631706",
+   "reason": "no-music-item",
+   "asset": "artist-photos/michael-bibi.webp"
+  },
+  {
+   "artist": "Moon Boots",
+   "wikidata": "Q66846517",
+   "reason": "no-music-item",
+   "asset": "artist-photos/moon-boots.webp"
+  },
+  {
+   "artist": "O.A.R.",
+   "wikidata": "Q1975153",
+   "reason": "no-item",
+   "asset": "artist-photos/o-a-r.webp"
+  },
+  {
+   "artist": "Olly James",
+   "wikidata": "Q56377659",
+   "reason": "no-music-item",
+   "asset": "artist-photos/olly-james.webp"
+  },
+  {
+   "artist": "Ownboss",
+   "wikidata": "Q112075901",
+   "reason": "no-music-item",
+   "asset": "artist-photos/ownboss.webp"
+  },
+  {
+   "artist": "P!NK",
+   "wikidata": "Q160009",
+   "reason": "no-item",
+   "asset": "artist-photos/p-nk.webp"
+  },
+  {
+   "artist": "Panteros666",
+   "wikidata": "Q110147631",
+   "reason": "no-music-item",
+   "asset": "artist-photos/panteros666.webp"
+  },
+  {
+   "artist": "Q",
+   "wikidata": "Q193645",
+   "reason": "no-item",
+   "asset": "artist-photos/q.webp"
+  },
+  {
+   "artist": "SB19",
+   "wikidata": "Q75905366",
+   "reason": "no-music-item",
+   "asset": "artist-photos/sb19.webp"
+  },
+  {
+   "artist": "SJ",
+   "wikidata": "Q239693",
+   "reason": "no-item",
+   "asset": "artist-photos/sj.webp"
+  },
+  {
+   "artist": "Skepsis",
+   "wikidata": "Q141244850",
+   "reason": "no-music-item",
+   "asset": "artist-photos/skepsis.webp"
+  },
+  {
+   "artist": "Sodown",
+   "wikidata": "Q55633386",
+   "reason": "no-music-item",
+   "asset": "artist-photos/sodown.webp"
+  },
+  {
+   "artist": "Spencer Ludwig",
+   "wikidata": "Q26702487",
+   "reason": "no-music-item",
+   "asset": "artist-photos/spencer-ludwig.webp"
+  },
+  {
+   "artist": "STEREOTYPE",
+   "wikidata": "Q108130146",
+   "reason": "no-music-item",
+   "asset": "artist-photos/stereotype.webp"
+  },
+  {
+   "artist": "STEVEN SPENCE",
+   "wikidata": "Q20685637",
+   "reason": "no-music-item",
+   "asset": "artist-photos/steven-spence.webp"
+  },
+  {
+   "artist": "Suki Waterhouse",
+   "wikidata": "Q16235151",
+   "reason": "no-music-item",
+   "asset": "artist-photos/suki-waterhouse.webp"
+  },
+  {
+   "artist": "Sunday (1994)",
+   "wikidata": "Q134287184",
+   "reason": "no-music-item",
+   "asset": "artist-photos/sunday-1994.webp"
+  },
+  {
+   "artist": "Thundercat",
+   "wikidata": "Q15285290",
+   "reason": "no-music-item",
+   "asset": "artist-photos/thundercat.webp"
+  },
+  {
+   "artist": "YDG",
+   "wikidata": "Q489604",
+   "reason": "no-item",
+   "asset": "artist-photos/ydg.webp"
+  },
+  {
+   "artist": "ZEP",
+   "wikidata": "Q123066",
+   "reason": "no-music-item",
+   "asset": "artist-photos/zep.webp"
+  },
+  {
+   "artist": "Zero",
+   "wikidata": "Q2142",
+   "reason": "no-music-item",
+   "asset": "artist-photos/zero.webp"
+  }
+ ]
+}

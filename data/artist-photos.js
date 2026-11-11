@@ -1249,22 +1249,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q261641",
     "url": "./artist-photos/adam-beyer.webp"
   },
-  "adam-scott": {
-    "artist": "Adam Scott",
-    "author": "Gage Skidmore",
-    "source": "commons",
-    "license": "CC-BY-SA-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Adam_Scott_by_Gage_Skidmore_2.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:21:04.320Z",
-    "allowExport": false,
-    "asset": "artist-photos/adam-scott.webp",
-    "sha256": "3bfd9bbe2e66248d0fd45d52855d510d5681759defad2e018ac937a011c111f1",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q201842",
-    "url": "./artist-photos/adam-scott.webp"
-  },
   "adia-victoria": {
     "artist": "Adia Victoria",
     "author": "Andy Witchger",
@@ -2081,22 +2065,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q79097672",
     "url": "./artist-photos/arlo-parks.webp"
   },
-  "arman": {
-    "artist": "arman.",
-    "author": "Herman van Swanevelt (1603-1655)",
-    "source": "commons",
-    "license": "Public-Domain",
-    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Herman_van_Swanevelt.png",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:26:42.533Z",
-    "allowExport": false,
-    "asset": "artist-photos/arman.webp",
-    "sha256": "b946142c8a87cab06dd9bfa141289c7003d1c1f3097f68cb5f7646a05e0be4c2",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q875164",
-    "url": "./artist-photos/arman.webp"
-  },
   "armand-van-helden": {
     "artist": "Armand Van Helden",
     "author": "de:user:Jerinho",
@@ -2192,22 +2160,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q26258465",
     "url": "./artist-photos/arum-rae.webp"
-  },
-  "arya": {
-    "artist": "ARYA",
-    "author": "Bollywood Hungama",
-    "source": "commons",
-    "license": "CC-BY-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arya_viewing_CCL_match,_India.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:27:27.958Z",
-    "allowExport": false,
-    "asset": "artist-photos/arya.webp",
-    "sha256": "6db32448df1962e9fea905c93763f12c459f762784f66cb25c1fcf31b4d47d50",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q901649",
-    "url": "./artist-photos/arya.webp"
   },
   "asgeir": {
     "artist": "Ásgeir",
@@ -2577,22 +2529,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q26397888",
     "url": "./artist-photos/banks-and-steelz.webp"
   },
-  "barry-can-t-swim": {
-    "artist": "Barry Can't Swim",
-    "author": "Raph_PH",
-    "source": "commons",
-    "license": "CC-BY-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Glasto24_28_300624_(14_of_545)_(53836759932)_(cropped).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:30:04.054Z",
-    "allowExport": false,
-    "asset": "artist-photos/barry-can-t-swim.webp",
-    "sha256": "f9f43557b7c56c4d41346aaffaf4d7708a9e3ae5a53600c2e17173991d2618c6",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q124098371",
-    "url": "./artist-photos/barry-can-t-swim.webp"
-  },
   "basia-bulat": {
     "artist": "Basia Bulat",
     "author": "John Benson from Madison WI",
@@ -2640,22 +2576,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q4868181",
     "url": "./artist-photos/bassnectar.webp"
-  },
-  "bayonne": {
-    "artist": "Bayonne",
-    "author": "Pooneh Ghana",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bayonne_by_Pooneh_Ghana.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:30:30.078Z",
-    "allowExport": false,
-    "asset": "artist-photos/bayonne.webp",
-    "sha256": "7ea860fc060959c386763fbd89651fd76433546998bd9ad3097c4fcae9274e7e",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q23542737",
-    "url": "./artist-photos/bayonne.webp"
   },
   "bea-miller": {
     "artist": "Bea Miller",
@@ -4657,22 +4577,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q550900",
     "url": "./artist-photos/conor-oberst.webp"
   },
-  "contra": {
-    "artist": "CØNTRA",
-    "author": "Natalie Wynn",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Natalie_Wynn_(ContraPoints)_portrait_1_(cropped).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:44:09.394Z",
-    "allowExport": false,
-    "asset": "artist-photos/contra.webp",
-    "sha256": "7d0971b246c9a1e0ee73626188d217648d405bff4ba3d3896bc6c63734aa4f66",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q42429948",
-    "url": "./artist-photos/contra.webp"
-  },
   "coone": {
     "artist": "Coone",
     "author": "MarloesHendrickx",
@@ -4689,22 +4593,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q922397",
     "url": "./artist-photos/coone.webp"
   },
-  "corbu": {
-    "artist": "Corbu",
-    "author": "Joop van Bilsen for Anefo",
-    "source": "commons",
-    "license": "CC0-1.0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Le_Corbusier_(1964).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:44:22.388Z",
-    "allowExport": false,
-    "asset": "artist-photos/corbu.webp",
-    "sha256": "258c203319e66482e35370a832f4726f6c7d6756dbe4291ef5521ef325af4ec8",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q4724",
-    "url": "./artist-photos/corbu.webp"
-  },
   "corinne-bailey-rae": {
     "artist": "Corinne Bailey Rae",
     "author": "Ludovic ETIENNE",
@@ -4720,22 +4608,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q231472",
     "url": "./artist-photos/corinne-bailey-rae.webp"
-  },
-  "cortis": {
-    "artist": "CORTIS",
-    "author": "TV10",
-    "source": "commons",
-    "license": "CC-BY-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:CORTIS_Dior_PhotoCall_1.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:44:35.381Z",
-    "allowExport": false,
-    "asset": "artist-photos/cortis.webp",
-    "sha256": "d0be90af895b07e2d16a122eccd061aa5e6484df5a292fb4330605bf922fa42c",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q135668928",
-    "url": "./artist-photos/cortis.webp"
   },
   "cory-henry": {
     "artist": "CORY HENRY",
@@ -5649,22 +5521,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q65558243",
     "url": "./artist-photos/dj-tennis.webp"
   },
-  "djo": {
-    "artist": "Djo",
-    "author": "PhilipRomano",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:JoeKeery-byPhilipRomano3.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:50:59.067Z",
-    "allowExport": false,
-    "asset": "artist-photos/djo.webp",
-    "sha256": "06dfcfa176d87c827d0ca79683a784321e8b1924f4f03ec2fe484b15b7451f22",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q27064031",
-    "url": "./artist-photos/djo.webp"
-  },
   "doc-brown": {
     "artist": "Doc Brown",
     "author": "Anthony Keiler",
@@ -5905,22 +5761,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q57950965",
     "url": "./artist-photos/droeloe.webp"
   },
-  "dua-lipa": {
-    "artist": "DUA LIPA",
-    "author": "Warner Music New Zealand",
-    "source": "commons",
-    "license": "CC-BY-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dua_Lipa_%E2%80%93_Dua_Lipa_cover_art.png",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:52:43.102Z",
-    "allowExport": false,
-    "asset": "artist-photos/dua-lipa.webp",
-    "sha256": "a528d157393b50a41a810703ad9aa12912c15592f1ea83e4c88f12ceb95382ca",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q28128723",
-    "url": "./artist-photos/dua-lipa.webp"
-  },
   "dua-saleh": {
     "artist": "DUA SALEH",
     "author": "Stay Tuned",
@@ -6145,22 +5985,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q1274384",
     "url": "./artist-photos/edx.webp"
   },
-  "eggy": {
-    "artist": "EGGY",
-    "author": "DreferComm",
-    "source": "commons",
-    "license": "CC-BY-SA-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Munamies_It%C3%A4keskus_Helsinki_21_touko_2011.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:54:20.675Z",
-    "allowExport": false,
-    "asset": "artist-photos/eggy.webp",
-    "sha256": "e01531313f0522acd369da16b21cc89a5585265a956d51cc50aa6fa8032dae32",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q5410760",
-    "url": "./artist-photos/eggy.webp"
-  },
   "elderbrook": {
     "artist": "Elderbrook",
     "author": "Krists Luhaers",
@@ -6384,22 +6208,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q155141",
     "url": "./artist-photos/eric-prydz.webp"
-  },
-  "eric-slick": {
-    "artist": "ERIC SLICK",
-    "author": "Morgan NOTI",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_photo_of_Dr._Dog's_Eric_Slick_in_front_of_wall.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:55:58.205Z",
-    "allowExport": false,
-    "asset": "artist-photos/eric-slick.webp",
-    "sha256": "77eabd67031913b6b7872c7cad5cce2c0aaebb048b36fb47ca5e86eaf8499bb3",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q51336785",
-    "url": "./artist-photos/eric-slick.webp"
   },
   "eric-tessmer": {
     "artist": "ERIC TESSMER",
@@ -6720,22 +6528,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q3746211",
     "url": "./artist-photos/fitz-and-the-tantrums.webp"
-  },
-  "fkj": {
-    "artist": "FKJ",
-    "author": "Jishnuchakrabortyimages",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fkj_india_2018.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T05:48:55.151Z",
-    "allowExport": false,
-    "asset": "artist-photos/fkj.webp",
-    "sha256": "d8f7272184aedc8065af4ee5f0a6c3a9c1f964ed7e746ca7e07b90b1752dac5d",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q30457256",
-    "url": "./artist-photos/fkj.webp"
   },
   "fletcher": {
     "artist": "FLETCHER",
@@ -7249,22 +7041,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q110565450",
     "url": "./artist-photos/geese.webp"
   },
-  "gelli-haha": {
-    "artist": "GELLI HAHA",
-    "author": "Hibachrach",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gelli_Haha_at_the_Brick_and_Mortar_Music_Hall_2026-03-26_(cropped).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T05:52:29.765Z",
-    "allowExport": false,
-    "asset": "artist-photos/gelli-haha.webp",
-    "sha256": "55ccd19fd4a09fefc4c5140c1da21ebcc63bf7a7b4746aaa10489727fad5f46b",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q135431515",
-    "url": "./artist-photos/gelli-haha.webp"
-  },
   "genesis-owusu": {
     "artist": "GENESIS OWUSU",
     "author": "Bruce Baker",
@@ -7424,22 +7200,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q62140662",
     "url": "./artist-photos/girl-in-red.webp"
-  },
-  "girlfriend": {
-    "artist": "Girlfriend",
-    "author": "K-POPIT 케이팝잇",
-    "source": "commons",
-    "license": "CC-BY-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:GFriend_at_Incheon_International_Airport,_January_2025.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T05:53:41.251Z",
-    "allowExport": false,
-    "asset": "artist-photos/girlfriend.webp",
-    "sha256": "ad0cb45837b8584b185b0287a93ee3e27a4c60455e887b51bb0de10df7381ecf",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q18733030",
-    "url": "./artist-photos/girlfriend.webp"
   },
   "glaive": {
     "artist": "GLAIVE",
@@ -8225,22 +7985,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q16845562",
     "url": "./artist-photos/hundred-waters.webp"
   },
-  "huxley": {
-    "artist": "HUXLEY",
-    "author": "Lock & Whitfield",
-    "source": "commons",
-    "license": "Public-Domain",
-    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:T.H.Huxley(Woodburytype).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T05:59:06.392Z",
-    "allowExport": false,
-    "asset": "artist-photos/huxley.webp",
-    "sha256": "ea59c7f37a1749be7a6dc8c8a2a5fbc71fd8a1d9d6915ea61fb406026b6863d9",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q184366",
-    "url": "./artist-photos/huxley.webp"
-  },
   "i-dle": {
     "artist": "i-dle",
     "author": "K-POPIT 케이팝잇",
@@ -8385,22 +8129,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q39070668",
     "url": "./artist-photos/idles.webp"
   },
-  "idriss-d": {
-    "artist": "Idriss D",
-    "author": "Idrissdib",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Idriss_D_.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:00:11.487Z",
-    "allowExport": false,
-    "asset": "artist-photos/idriss-d.webp",
-    "sha256": "d2d756f0934fd207df1f68362ca23ba8263fee91ecfd322f97757147d2518cde",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q110396410",
-    "url": "./artist-photos/idriss-d.webp"
-  },
   "iggy-azalea": {
     "artist": "Iggy Azalea",
     "author": "Eva Rinaldi",
@@ -8465,22 +8193,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q260354",
     "url": "./artist-photos/imelda-may.webp"
   },
-  "inbal": {
-    "artist": "Inbal",
-    "author": "Gabrieldrogba11",
-    "source": "commons",
-    "license": "CC-BY-SA-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Instituto_Nacional_de_Bellas_Artes_y_Literatura.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:00:43.913Z",
-    "allowExport": false,
-    "asset": "artist-photos/inbal.webp",
-    "sha256": "1fc6d93a4d90bf066ee38c65e2aab0ede890f8954aa0924ef35cc9c3b9aeb411",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q1665209",
-    "url": "./artist-photos/inbal.webp"
-  },
   "infected-mushroom": {
     "artist": "Infected Mushroom",
     "author": "maxim303",
@@ -8528,22 +8240,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q120984163",
     "url": "./artist-photos/inji.webp"
-  },
-  "injury-reserve": {
-    "artist": "Injury Reserve",
-    "author": "The Come Up Show from Canada",
-    "source": "commons",
-    "license": "CC-BY-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Injury_Reserve_(The_Come_Up_Show)_(35079647356).png",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:01:09.931Z",
-    "allowExport": false,
-    "asset": "artist-photos/injury-reserve.webp",
-    "sha256": "fc2e6fe0d665bfccfe4d93ef1f8512e06fd5f16582190e9154ab00943110d410",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q24075128",
-    "url": "./artist-photos/injury-reserve.webp"
   },
   "isaiah-rashad": {
     "artist": "ISAIAH RASHAD",
@@ -8753,22 +8449,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q47472388",
     "url": "./artist-photos/james-hype.webp"
   },
-  "james-kennedy": {
-    "artist": "James Kennedy",
-    "author": "Super Festivals",
-    "source": "commons",
-    "license": "CC-BY-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jamie_Kennedy_Photo_Op_GalaxyCon_San_Jose_2025.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:02:40.987Z",
-    "allowExport": false,
-    "asset": "artist-photos/james-kennedy.webp",
-    "sha256": "c7a22ff00ff2d27cbb9b77d2b94fe112b07f0f16ec07a51b231062bee0051dc7",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q355133",
-    "url": "./artist-photos/james-kennedy.webp"
-  },
   "james-vincent-mcmorrow": {
     "artist": "James Vincent McMorrow",
     "author": "p_a_h",
@@ -8832,22 +8512,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q234356",
     "url": "./artist-photos/janelle-monae.webp"
-  },
-  "japanese-breakfast": {
-    "artist": "Japanese Breakfast",
-    "author": "David Lee",
-    "source": "commons",
-    "license": "CC-BY-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Japanese_Breakfast_at_Day_In_Day_Out_Festival_02.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:03:13.463Z",
-    "allowExport": false,
-    "asset": "artist-photos/japanese-breakfast.webp",
-    "sha256": "99c14246e4425694bc5863486e9fb223cce1c9c518b0c0880d59a8289c147589",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q28104185",
-    "url": "./artist-photos/japanese-breakfast.webp"
   },
   "jauz": {
     "artist": "Jauz",
@@ -9329,22 +8993,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q315107",
     "url": "./artist-photos/jose-gonzalez.webp"
   },
-  "joseph": {
-    "artist": "Joseph",
-    "author": "M0tty",
-    "source": "commons",
-    "license": "CC-BY-SA-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Scuola_veneta_-_Altare_di_San_Giuseppe,_gi%C3%A0_di_San_Marco_-_Santi_Giovanni_e_Paolo.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:06:35.083Z",
-    "allowExport": false,
-    "asset": "artist-photos/joseph.webp",
-    "sha256": "4486f10ab1a16cee38699ebacef0d0fca7f3094775d67e13584f71f29b589d9b",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q128267",
-    "url": "./artist-photos/joseph.webp"
-  },
   "joseph-capriati": {
     "artist": "Joseph Capriati",
     "author": "Redimension Music Label",
@@ -9745,22 +9393,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q22001324",
     "url": "./artist-photos/karol-g.webp"
   },
-  "kassel": {
-    "artist": "Kassel",
-    "author": "Joannes Meyssens",
-    "source": "commons",
-    "license": "Public-Domain",
-    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Portrait_of_Jan_van_Kessel_(I).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:09:24.166Z",
-    "allowExport": false,
-    "asset": "artist-photos/kassel.webp",
-    "sha256": "8176452c940b9041577b23b71b57d8dc708efc3b7c5b99e7254e2097961fb87d",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q515553",
-    "url": "./artist-photos/kassel.webp"
-  },
   "kat-dahlia": {
     "artist": "Kat Dahlia",
     "author": "Eric Longden",
@@ -9792,22 +9424,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q86475154",
     "url": "./artist-photos/katie-pruitt.webp"
-  },
-  "katseye": {
-    "artist": "KATSEYE",
-    "author": "Warmtoned",
-    "source": "commons",
-    "license": "CC-BY-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Katseye_at_Wango_Tango_2025_(cropped).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:09:43.610Z",
-    "allowExport": false,
-    "asset": "artist-photos/katseye.webp",
-    "sha256": "b9a9c6f0e2a2dbcce5776b45f7a36320471f2c1402a6ca4e62e7f0ec73904a36",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q123480242",
-    "url": "./artist-photos/katseye.webp"
   },
   "kaytranada": {
     "artist": "Kaytranada",
@@ -10080,22 +9696,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q111655138",
     "url": "./artist-photos/klangkuenstler.webp"
-  },
-  "koa": {
-    "artist": "Koa",
-    "author": "StrangeTraveler",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christmas_Concert_of_the_Athens_State_Orchestra_(18-12-2016).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:11:40.682Z",
-    "allowExport": false,
-    "asset": "artist-photos/koa.webp",
-    "sha256": "a50bafe6dbf9f670c268830dfd34fd994117a502dc1073e0a9601ec7249a8f50",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q108678151",
-    "url": "./artist-photos/koa.webp"
   },
   "kobosil": {
     "artist": "Kobosil",
@@ -10961,22 +10561,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q48699526",
     "url": "./artist-photos/lovelytheband.webp"
   },
-  "lp-giobbi": {
-    "artist": "LP Giobbi",
-    "author": "Vbrunophotog",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Leah_Chisholm_at_SXSW_2025.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:17:38.308Z",
-    "allowExport": false,
-    "asset": "artist-photos/lp-giobbi.webp",
-    "sha256": "7b4d8e0b641399204d00faa94c4e63620b4c0b95cc2af63bb4d2b4e4c5ad516d",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q123348009",
-    "url": "./artist-photos/lp-giobbi.webp"
-  },
   "luca-lush": {
     "artist": "LUCA LUSH",
     "author": "Perkuprightmeow",
@@ -11104,22 +10688,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q21285662",
     "url": "./artist-photos/luke-winslow-king.webp"
-  },
-  "lydia-b-kollins": {
-    "artist": "Lydia B Kollins",
-    "author": "Piigless",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lydia_B_Kollins_in_April_2026.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:18:36.855Z",
-    "allowExport": false,
-    "asset": "artist-photos/lydia-b-kollins.webp",
-    "sha256": "9ac9e0ff5448a7ded7a45d636b3b1f8638708ffd6a5a97fe61bb16b62c67e9ea",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q131386749",
-    "url": "./artist-photos/lydia-b-kollins.webp"
   },
   "mac-demarco": {
     "artist": "Mac DeMarco",
@@ -11793,22 +11361,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q30069921",
     "url": "./artist-photos/methyl-ethel.webp"
   },
-  "michael-bibi": {
-    "artist": "Michael Bibi",
-    "author": "Giacomo Russello",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:20220703_ilmuretto_bibi-1079.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:23:16.448Z",
-    "allowExport": false,
-    "asset": "artist-photos/michael-bibi.webp",
-    "sha256": "b003892b01e213b2a74f31116404d0e591bbee27a597deaab366c83874a1ac3e",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q115631706",
-    "url": "./artist-photos/michael-bibi.webp"
-  },
   "mickey-guyton": {
     "artist": "MICKEY GUYTON",
     "author": "U.S. Department of State",
@@ -12272,22 +11824,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q15712185",
     "url": "./artist-photos/monsieur-perine.webp"
-  },
-  "moon-boots": {
-    "artist": "Moon Boots",
-    "author": "Peter Dougherty",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Moon_Boots_music_2019.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:26:31.516Z",
-    "allowExport": false,
-    "asset": "artist-photos/moon-boots.webp",
-    "sha256": "88003c1ab4f339c9a62206d8a4f40c2ca7504253deb82d028d5e3d296ef95d08",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q66846517",
-    "url": "./artist-photos/moon-boots.webp"
   },
   "moon-taxi": {
     "artist": "MOON TAXI",
@@ -13137,22 +12673,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q90416955",
     "url": "./artist-photos/notion.webp"
   },
-  "o-a-r": {
-    "artist": "O.A.R.",
-    "author": "Darry2385",
-    "source": "commons",
-    "license": "CC-BY-SA-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:OARlive.JPG",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:23:32.430Z",
-    "allowExport": false,
-    "asset": "artist-photos/o-a-r.webp",
-    "sha256": "83dd34e8532e06f002dd8735242cbaf6ec5f0c7b4db7ec88164959f1aafea678",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q1975153",
-    "url": "./artist-photos/o-a-r.webp"
-  },
   "ocean-alley": {
     "artist": "OCEAN ALLEY",
     "author": "Nathan Gunn",
@@ -13296,22 +12816,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q104870352",
     "url": "./artist-photos/olivia-lunny.webp"
-  },
-  "olly-james": {
-    "artist": "Olly James",
-    "author": "Joel Kampelmacher",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:IMG_1987_Olly_at_the_beach.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:24:37.457Z",
-    "allowExport": false,
-    "asset": "artist-photos/olly-james.webp",
-    "sha256": "351a5a3997fdab7ad2f61933fc3bcc5f6dc4f80250422efa0ad3d6b2db29aaf1",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q56377659",
-    "url": "./artist-photos/olly-james.webp"
   },
   "olympe": {
     "artist": "Olympe",
@@ -13473,22 +12977,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q472595",
     "url": "./artist-photos/outkast.webp"
   },
-  "ownboss": {
-    "artist": "Ownboss",
-    "author": "Fernandos Soares",
-    "source": "commons",
-    "license": "Public-Domain",
-    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:%C3%96wnboss.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:25:48.982Z",
-    "allowExport": false,
-    "asset": "artist-photos/ownboss.webp",
-    "sha256": "ae6753c19a9ab61f23387cc749dfc5fdbe7a54f2fd490a413c8dac99d04e6818",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q112075901",
-    "url": "./artist-photos/ownboss.webp"
-  },
   "ozomatli": {
     "artist": "Ozomatli",
     "author": "Richard Anderson",
@@ -13504,22 +12992,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q678338",
     "url": "./artist-photos/ozomatli.webp"
-  },
-  "p-nk": {
-    "artist": "P!NK",
-    "author": "Andemaya",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pink_2019-07-27_Munich_(cropped).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:26:02.027Z",
-    "allowExport": false,
-    "asset": "artist-photos/p-nk.webp",
-    "sha256": "8cd4210bbc2c1a74434e7a8a0d14ac7c7b350d7c44b5912fa126e9d91d0a4ac4",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q160009",
-    "url": "./artist-photos/p-nk.webp"
   },
   "paco-osuna": {
     "artist": "Paco Osuna",
@@ -13584,22 +13056,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q116783016",
     "url": "./artist-photos/panic-shack.webp"
-  },
-  "panteros666": {
-    "artist": "Panteros666",
-    "author": "Lounard d'acier",
-    "source": "commons",
-    "license": "CC0-1.0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Panteros666.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:26:34.541Z",
-    "allowExport": false,
-    "asset": "artist-photos/panteros666.webp",
-    "sha256": "b0bfbc7ab61c5dbdee5fe8a47a7ee8dc7e8180d19d76bf703bbed7e4c7bb1df6",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q110147631",
-    "url": "./artist-photos/panteros666.webp"
   },
   "paolo-nutini": {
     "artist": "Paolo Nutini",
@@ -14128,22 +13584,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q111693580",
     "url": "./artist-photos/pumarosa.webp"
-  },
-  "q": {
-    "artist": "Q",
-    "author": "Canadian Film Centre",
-    "source": "commons",
-    "license": "CC-BY-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Quincy_Jones_May_2014.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:30:15.596Z",
-    "allowExport": false,
-    "asset": "artist-photos/q.webp",
-    "sha256": "9e92c89eac74cc32e61e2fc44a3fb939cff3c2d0302689704a0775bf0ce72127",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q193645",
-    "url": "./artist-photos/q.webp"
   },
   "quadeca": {
     "artist": "Quadeca",
@@ -15297,22 +14737,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q58009269",
     "url": "./artist-photos/savannah-conley.webp"
   },
-  "sb19": {
-    "artist": "SB19",
-    "author": "TV Ten Asia",
-    "source": "commons",
-    "license": "CC-BY-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:SB19_at_the_Billboard_K_Power_100,_August_27_2024.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:38:10.236Z",
-    "allowExport": false,
-    "asset": "artist-photos/sb19.webp",
-    "sha256": "33dc633e2077be3d9bc16c832a35d10cdf4022b533baccff45a0249044768a1c",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q75905366",
-    "url": "./artist-photos/sb19.webp"
-  },
   "schoolboy-q": {
     "artist": "ScHoolboy Q",
     "author": "Anna Hanks",
@@ -15761,38 +15185,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q133452011",
     "url": "./artist-photos/six-sex.webp"
   },
-  "sj": {
-    "artist": "SJ",
-    "author": "LG전자",
-    "source": "commons",
-    "license": "CC-BY-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Super_Junior_for_LG_Optimus_(Crop).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:41:18.829Z",
-    "allowExport": false,
-    "asset": "artist-photos/sj.webp",
-    "sha256": "8c2347213a19e24c69897b5db81ed6b119f50a126f2fe4e75151a50fe47805d0",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q239693",
-    "url": "./artist-photos/sj.webp"
-  },
-  "skepsis": {
-    "artist": "Skepsis",
-    "author": "FormantAudio",
-    "source": "commons",
-    "license": "CC-BY-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tyler-Johnston-Kent-Formant-Portrait-01-2025.webp",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:41:25.331Z",
-    "allowExport": false,
-    "asset": "artist-photos/skepsis.webp",
-    "sha256": "9eb9f8676f1d540482ec063bd4d594ca958aab0948378e76ce93e1aadc418445",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q141244850",
-    "url": "./artist-photos/skepsis.webp"
-  },
   "skepta": {
     "artist": "Skepta",
     "author": "Batiste Safont",
@@ -15968,22 +15360,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q120655251",
     "url": "./artist-photos/snooper.webp"
-  },
-  "sodown": {
-    "artist": "Sodown",
-    "author": "Szango",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:SoDOwn.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:42:43.351Z",
-    "allowExport": false,
-    "asset": "artist-photos/sodown.webp",
-    "sha256": "838b6f2d02994c28dffe661980d2a0fe6a7fffe0c50bc2d3c135b40241daae7f",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q55633386",
-    "url": "./artist-photos/sodown.webp"
   },
   "sofaygo": {
     "artist": "SoFaygo",
@@ -16192,22 +15568,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q131762147",
     "url": "./artist-photos/south-arcade.webp"
-  },
-  "spencer-ludwig": {
-    "artist": "Spencer Ludwig",
-    "author": "StadiumMusicEnterprise",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Josh_Stevens_and_Spencer_Ludwig_of_Capital_Cities_writing_at_Studio_City_Sound,_Ca_2015.JPG",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:44:14.385Z",
-    "allowExport": false,
-    "asset": "artist-photos/spencer-ludwig.webp",
-    "sha256": "5092a12afac167299f43f7f9b98e4fe7c9c31486c2cad602ed56599e5ff9108c",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q26702487",
-    "url": "./artist-photos/spencer-ludwig.webp"
   },
   "spill-tab": {
     "artist": "SPILL TAB",
@@ -16433,22 +15793,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q113023532",
     "url": "./artist-photos/stephen-sanchez.webp"
   },
-  "stereotype": {
-    "artist": "STEREOTYPE",
-    "author": "High Up Entertainment",
-    "source": "commons",
-    "license": "Public-Domain",
-    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:StayC_-_Stereotype_poster.png",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:45:51.945Z",
-    "allowExport": false,
-    "asset": "artist-photos/stereotype.webp",
-    "sha256": "24bc966e58c8d0acbfa57170eea41ee469d0b9694916ba5d17b9422ef70bcbe2",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q108130146",
-    "url": "./artist-photos/stereotype.webp"
-  },
   "steve-angello": {
     "artist": "Steve Angello",
     "author": "Web Summit",
@@ -16464,22 +15808,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q20715",
     "url": "./artist-photos/steve-angello.webp"
-  },
-  "steven-spence": {
-    "artist": "STEVEN SPENCE",
-    "author": "Theupsidedown",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Steven_Spence.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:46:04.910Z",
-    "allowExport": false,
-    "asset": "artist-photos/steven-spence.webp",
-    "sha256": "84533d1d7a956c78516bdf44b95b10ac32e99099f1dd63e3c16cce9b7ca94e55",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q20685637",
-    "url": "./artist-photos/steven-spence.webp"
   },
   "stray-kids": {
     "artist": "Stray Kids",
@@ -16561,22 +15889,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q55634161",
     "url": "./artist-photos/sudan-archives.webp"
   },
-  "suki-waterhouse": {
-    "artist": "Suki Waterhouse",
-    "author": "Xfranksun",
-    "source": "commons",
-    "license": "CC-BY-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Suki_Waterhouse_2015_(crop).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:46:43.955Z",
-    "allowExport": false,
-    "asset": "artist-photos/suki-waterhouse.webp",
-    "sha256": "53f7531b327e22f3f71d4f648390f957c94ff0080b8a6a5eec13248963a585cb",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q16235151",
-    "url": "./artist-photos/suki-waterhouse.webp"
-  },
   "sultan-shepard": {
     "artist": "Sultan + Shepard",
     "author": "Shawn Tron",
@@ -16592,22 +15904,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q7636582",
     "url": "./artist-photos/sultan-shepard.webp"
-  },
-  "sunday-1994": {
-    "artist": "Sunday (1994)",
-    "author": "Justin Higuchi",
-    "source": "commons",
-    "license": "CC-BY-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sunday_(1994)_%40_The_Echo_09_23_2024_(54229211621).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:46:56.947Z",
-    "allowExport": false,
-    "asset": "artist-photos/sunday-1994.webp",
-    "sha256": "14351d824aa44db0c78b0b6fe1c3bf8ef535bf9dab16c267e95dd9af67585695",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q134287184",
-    "url": "./artist-photos/sunday-1994.webp"
   },
   "sunflower-bean": {
     "artist": "Sunflower Bean",
@@ -18193,22 +17489,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q1027165",
     "url": "./artist-photos/three-6-mafia.webp"
   },
-  "thundercat": {
-    "artist": "Thundercat",
-    "author": "FifthLegend",
-    "source": "commons",
-    "license": "CC-BY-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thundercat_(41418816450)_(cropped).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:57:47.228Z",
-    "allowExport": false,
-    "asset": "artist-photos/thundercat.webp",
-    "sha256": "ba974c8875a161381b954c948f27effef5adde271eadf5de275a5590e9e26ba1",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q15285290",
-    "url": "./artist-photos/thundercat.webp"
-  },
   "thunderpussy": {
     "artist": "Thunderpussy",
     "author": "David Lee",
@@ -19697,22 +18977,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q110269845",
     "url": "./artist-photos/yard-act.webp"
   },
-  "ydg": {
-    "artist": "YDG",
-    "author": "acrofan.com",
-    "source": "commons",
-    "license": "CC-BY-SA-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Yang_Dong-geun_from_acrofan.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T11:01:14.320Z",
-    "allowExport": false,
-    "asset": "artist-photos/ydg.webp",
-    "sha256": "76ca8ca4bede89e0f45c48b12948d04d41564369e834dd414e83cc60716d66cc",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q489604",
-    "url": "./artist-photos/ydg.webp"
-  },
   "yeah-yeah-yeahs": {
     "artist": "YEAH YEAH YEAHS",
     "author": "Max Knies from New York City",
@@ -19968,38 +19232,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q19867501",
     "url": "./artist-photos/zella-day.webp"
-  },
-  "zep": {
-    "artist": "ZEP",
-    "author": "Selbymay",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:SM8_1852m.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T11:03:04.890Z",
-    "allowExport": false,
-    "asset": "artist-photos/zep.webp",
-    "sha256": "9bcfd767638ff0477144dbcd9812eb725a7f13c73c6330ed5a52f96907c852ce",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q123066",
-    "url": "./artist-photos/zep.webp"
-  },
-  "zero": {
-    "artist": "Zero",
-    "author": "LostplanetKD73",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NYCC_2018_pics_27.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T11:03:11.377Z",
-    "allowExport": false,
-    "asset": "artist-photos/zero.webp",
-    "sha256": "094039853ab2bf5bb84d73b97397c0288c9d7356ef02b5f6cb56361d26cb15ae",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q2142",
-    "url": "./artist-photos/zero.webp"
   },
   "zhu": {
     "artist": "Zhu",
