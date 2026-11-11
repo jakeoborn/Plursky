@@ -694,16 +694,19 @@
  },
  {
   "key": "a-hundred-drums",
-  "name": "A HUNDRED DRUMS",
-  "aliases": [],
+  "name": "A Hundred Drums",
+  "aliases": [
+   "A HUNDRED DRUMS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "decadence-arizona-2026:daz-a-hundred-drums-b2b-zen-selekta",
    "edc-orlando-2025:d2:circuitgrounds:1400:a-hundred-drums"
   ],
   "firstSeen": "2025-11-08",
-  "lastSeen": "2025-11-08",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -1248,6 +1251,7 @@
   "billings": [
    "edc-orlando-2026:ecs2",
    "countdown-nye-2026:cdny-acraze",
+   "sunset-on-the-river-2027:sotr-acraze",
    "edc-las-vegas-2022:d1:kinetic-field:2130:acraze",
    "edc-las-vegas-2022:d1:cosmic-meadow:1800:acraze",
    "edc-las-vegas-2024:d2:kinetic-field:0413:acraze-b2b-kream",
@@ -1257,7 +1261,7 @@
    "edc-orlando-2022:d1:kinetic-field:1847:acraze"
   ],
   "firstSeen": "2019-11-08",
-  "lastSeen": "2026-12-31",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -2506,6 +2510,7 @@
    "ultra-miami-2026:ul6",
    "decadence-colorado-2026:dec-alesso",
    "countdown-nye-2026:cdny-alesso",
+   "sunset-on-the-river-2027:sotr-alesso",
    "edc-las-vegas-2022:d2:circuit-grounds:2300:alesso",
    "edc-las-vegas-2024:d3:kinetic-field:2318:alesso",
    "edc-las-vegas-2025:d1:kinetic-field:0031:alesso",
@@ -2520,7 +2525,7 @@
    "nocturnal-wonderland-2012:d1:labyrinth:2300:alesso"
   ],
   "firstSeen": "2011-09-24",
-  "lastSeen": "2026-12-31",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -3296,6 +3301,7 @@
   "billings": [
    "edc-orlando-2026:ecu3",
    "escape-halloween-2026:esc-alok-d2",
+   "sunset-on-the-river-2027:sotr-alok",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2155:alok",
    "edc-las-vegas-2022:d3:kinetic-field:2309:alok",
    "edc-las-vegas-2025:d1:kinetic-field:2100:alok",
@@ -3305,7 +3311,7 @@
    "escape-halloween-2019:d2:the-grimm:2000:alok"
   ],
   "firstSeen": "2019-10-26",
-  "lastSeen": "2026-11-08",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -4656,11 +4662,12 @@
   "projects": [],
   "billings": [
    "nocturnal-wonderland-2026:nw-angrybaby",
+   "sunset-on-the-river-2027:sotr-angrybaby",
    "beyond-wonderland-gorge-2026:d1:queen-s-valley:1830:angrybaby",
    "escape-halloween-2025:d1:the-big-top:1755:angrybaby"
   ],
   "firstSeen": "2025-10-31",
-  "lastSeen": "2026-09-20",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -6556,13 +6563,14 @@
    "edc-orlando-2026:ecf5",
    "portola-2026:pt2-azzecca",
    "arc-2026:arc-azzecca-grid-d1",
+   "decadence-arizona-2026:daz-azzecca",
    "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:1945:azzecca",
    "edc-las-vegas-2024:d3:stereo-bloom:2130:azzecca",
    "edc-orlando-2023:d3:neon-garden:1430:azzecca",
    "lollapalooza-2025:d1:dollapalooza:1400:azzecca"
   ],
   "firstSeen": "2023-11-12",
-  "lastSeen": "2026-11-06",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -7995,16 +8003,19 @@
  },
  {
   "key": "beauz",
-  "name": "BEAUZ",
-  "aliases": [],
+  "name": "Beauz",
+  "aliases": [
+   "BEAUZ"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lights-all-night-2026:lan-beauz"
+   "lights-all-night-2026:lan-beauz",
+   "decadence-arizona-2026:daz-beauz"
   ],
   "firstSeen": "2026-12-30",
-  "lastSeen": "2026-12-30",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -8258,13 +8269,14 @@
    "iii-points-2026:iiip-beltran-b2b-ben-sterling",
    "portola-2026:pt1-beltran-b2b-ben-sterling",
    "arc-2026:arc-beltran-expansions-d3",
+   "decadence-arizona-2026:daz-beltran",
    "edc-las-vegas-2025:d2:neon-garden:2200:beltran",
    "edc-las-vegas-2025:d3:bionic-jungle:0330:ben-sterling-b2b-beltran",
    "edc-orlando-2024:d2:neon-garden:1800:beltran",
    "edc-orlando-2025:d2:neongarden:2115:beltran"
   ],
   "firstSeen": "2024-11-09",
-  "lastSeen": "2026-10-16",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -11504,6 +11516,21 @@
   "links": []
  },
  {
+  "key": "brayden-terzo",
+  "name": "Brayden Terzo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "decadence-arizona-2026:daz-brayden-terzo"
+  ],
+  "firstSeen": "2026-12-31",
+  "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "braydon-terzo",
   "name": "Braydon Terzo",
   "aliases": [],
@@ -12433,8 +12460,10 @@
  },
  {
   "key": "bunt",
-  "name": "BUNT.",
-  "aliases": [],
+  "name": "Bunt.",
+  "aliases": [
+   "BUNT."
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -12442,6 +12471,7 @@
    "edc-lv-2026:c16",
    "acl-2026:af41",
    "countdown-nye-2026:cdny-bunt",
+   "decadence-arizona-2026:daz-bunt",
    "lollapalooza-2025:d2:perry-s:1615:bunt"
   ],
   "firstSeen": "2025-08-01",
@@ -14090,6 +14120,21 @@
   "links": []
  },
  {
+  "key": "cece",
+  "name": "CECE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "decadence-arizona-2026:daz-cece"
+  ],
+  "firstSeen": "2026-12-30",
+  "lastSeen": "2026-12-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cedric-gervais",
   "name": "Cedric Gervais",
   "aliases": [],
@@ -15524,6 +15569,7 @@
   "billings": [
    "crssd-fall-2026:crssd-chris-lake-b2b-disclosure",
    "lights-all-night-2026:lan-chris-lake",
+   "decadence-arizona-2026:daz-chris-lake",
    "acl-2021:d3:miller-lite:1730:chris-lake",
    "acl-2021:d6:miller-lite:1730:chris-lake",
    "edc-las-vegas-2022:d1:circuit-grounds:2330:chris-lake",
@@ -17362,13 +17408,14 @@
   "billings": [
    "ultra-miami-2026:ul96",
    "escape-halloween-2026:esc-coone-b2b-dj-isaac-d1",
+   "decadence-arizona-2026:daz-coone",
    "beyond-wonderland-socal-2026:d1:cheshire-woods:2200:coone",
    "edc-orlando-2021:d1:stereo-bloom:2200:coone",
    "escape-halloween-2017:d1:chopping-block:2200:coone",
    "escape-halloween-2019:d1:sanitarium:2200:coone"
   ],
   "firstSeen": "2017-10-27",
-  "lastSeen": "2026-10-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -17774,7 +17821,8 @@
   "parents": [],
   "projects": [
    "dog-eat-dog",
-   "shakedat"
+   "shakedat",
+   "wankdat"
   ],
   "billings": [
    "lost-lands-2026:llu2",
@@ -18763,6 +18811,21 @@
   ],
   "firstSeen": "2024-10-13",
   "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "daily-bread",
+  "name": "daily bread",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "decadence-arizona-2026:daz-daily-bread"
+  ],
+  "firstSeen": "2026-12-31",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -21890,13 +21953,14 @@
   "projects": [],
   "billings": [
    "crssd-fall-2026:crssd-chris-lake-b2b-disclosure",
+   "decadence-arizona-2026:daz-disclosure-dj-set",
    "acl-2015:d1:honda:2000:disclosure",
    "acl-2015:d4:honda:2000:disclosure",
    "lollapalooza-2013:d1:the-grove:1800:disclosure",
    "lollapalooza-2016:d3:bud-light:2030:disclosure"
   ],
   "firstSeen": "2013-08-02",
-  "lastSeen": "2026-09-27",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -21947,6 +22011,7 @@
    "outside-lands-2026:os99",
    "iii-points-2026:iiip-disco-lines",
    "escape-halloween-2026:esc-disco-lines-d2",
+   "sunset-on-the-river-2027:sotr-disco-lines",
    "acl-2025:d3:miller-lite:1715:disco-lines",
    "acl-2025:d6:miller-lite:1715:disco-lines",
    "edc-las-vegas-2025:d3:cosmic-meadow:0430:disco-lines",
@@ -21956,7 +22021,7 @@
    "nocturnal-wonderland-2022:d2:wolves-den:1645:disco-lines"
   ],
   "firstSeen": "2022-09-18",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -22996,10 +23061,11 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:cg11",
-   "lights-all-night-2026:lan-dj-mandy"
+   "lights-all-night-2026:lan-dj-mandy",
+   "sunset-on-the-river-2027:sotr-dj-mandy"
   ],
   "firstSeen": "2026-05-16",
-  "lastSeen": "2026-12-30",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -23969,6 +24035,21 @@
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "donk",
+  "name": "DONK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "decadence-arizona-2026:daz-donk"
+  ],
+  "firstSeen": "2026-12-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -26064,6 +26145,7 @@
    "edc-lv-2026:n7",
    "ultra-miami-2026:ul74",
    "lollapalooza-2026:lo158",
+   "decadence-arizona-2026:daz-eli-brown",
    "edc-las-vegas-2024:d2:circuit-grounds:0215:eli-brown-b2b-hi-lo",
    "edc-las-vegas-2024:d2:stereo-bloom:2315:eli-brown",
    "edc-las-vegas-2025:d1:circuit-grounds:0330:eli-brown",
@@ -26075,7 +26157,7 @@
    "nocturnal-wonderland-2019:d2:sunken-garden:1900:eli-brown"
   ],
   "firstSeen": "2019-09-15",
-  "lastSeen": "2026-08-02",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -27035,16 +27117,19 @@
  },
  {
   "key": "ero808",
-  "name": "ero808",
-  "aliases": [],
+  "name": "Ero808",
+  "aliases": [
+   "ero808"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2026:esc-ero808-d2"
+   "escape-halloween-2026:esc-ero808-d2",
+   "decadence-arizona-2026:daz-ero808"
   ],
   "firstSeen": "2026-10-31",
-  "lastSeen": "2026-10-31",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -28010,6 +28095,21 @@
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2022-05-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "felix-mun",
+  "name": "Felix Mün",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "decadence-arizona-2026:daz-felix-mun"
+  ],
+  "firstSeen": "2026-12-31",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -32337,6 +32437,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "decadence-arizona-2026:daz-gorgon-city",
    "edc-las-vegas-2025:d1:kinetic-field:0413:gorgon-city",
    "edc-orlando-2019:d3:neongarden:1830:gorgon-city",
    "edc-orlando-2023:d3:neon-garden:2030:gorgon-city",
@@ -32344,7 +32445,7 @@
    "escape-halloween-2019:d2:psycho-circus:2100:gorgon-city-b2b-nora-en-pure"
   ],
   "firstSeen": "2019-10-26",
-  "lastSeen": "2025-11-07",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -36258,6 +36359,7 @@
    "crssd-fall-2026:crssd-i-hate-models",
    "arc-2026:arc-i-hate-models-expansions-d2",
    "lights-all-night-2026:lan-i-hate-models",
+   "decadence-arizona-2026:daz-i-hate-models",
    "edc-las-vegas-2022:d2:neon-garden:0400:i-hate-models",
    "edc-las-vegas-2025:d3:neon-garden:0300:nico-moreno-b2b-i-hate-models",
    "edc-orlando-2024:d3:neon-garden:2100:i-hate-models",
@@ -37311,6 +37413,7 @@
   "billings": [
    "ultra-miami-2026:ul69",
    "decadence-colorado-2026:dec-isoxo",
+   "decadence-arizona-2026:daz-isoxo",
    "lollapalooza-2025:d2:perry-s:1900:isoxo"
   ],
   "firstSeen": "2025-08-01",
@@ -39712,10 +39815,11 @@
   "billings": [
    "lost-lands-2026:llf24",
    "edc-orlando-2026:ecs19",
-   "nocturnal-wonderland-2026:nw-jkyl-and-hyde-b2b-nikita-the-wicked"
+   "nocturnal-wonderland-2026:nw-jkyl-and-hyde-b2b-nikita-the-wicked",
+   "decadence-arizona-2026:daz-jkyl-and-hyde"
   ],
   "firstSeen": "2026-09-18",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -40027,6 +40131,21 @@
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "john-anthony",
+  "name": "John Anthony",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sunset-on-the-river-2027:sotr-john-anthony"
+  ],
+  "firstSeen": "2027-02-20",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -43177,10 +43296,11 @@
    "crssd-fall-2026:crssd-kettama",
    "portola-2026:pt1-kettama",
    "lights-all-night-2026:lan-kettama",
+   "decadence-arizona-2026:daz-kettama",
    "edc-orlando-2025:d1:stereobloom:2115:prospa-b2b-kettama"
   ],
   "firstSeen": "2025-11-07",
-  "lastSeen": "2026-12-30",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -45174,6 +45294,21 @@
   "links": []
  },
  {
+  "key": "kyefi",
+  "name": "Kyefi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sunset-on-the-river-2027:sotr-kyefi"
+  ],
+  "firstSeen": "2027-02-20",
+  "lastSeen": "2027-02-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kygo",
   "name": "Kygo",
   "aliases": [],
@@ -46833,11 +46968,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "sunset-on-the-river-2027:sotr-leondis",
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1600:leondis",
    "edc-orlando-2022:d1:rynobus:1700:leondis"
   ],
   "firstSeen": "2022-11-11",
-  "lastSeen": "2026-03-27",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -46994,6 +47130,7 @@
    "acl-2026:as10",
    "iii-points-2026:iiip-levity-b2b-taiki-nulight",
    "decadence-colorado-2026:dec-levity",
+   "decadence-arizona-2026:daz-levity",
    "edc-las-vegas-2025:d3:basspod:2130:levity",
    "lollapalooza-2025:d3:perry-s:1815:levity"
   ],
@@ -48473,12 +48610,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "sunset-on-the-river-2027:sotr-lost-frequencies",
    "edc-las-vegas-2024:d3:kinetic-field:2100:lost-frequencies",
    "edc-orlando-2024:d1:kinetic-field:1632:lost-frequencies",
    "escape-halloween-2024:d1:the-grimm:1945:lost-frequencies"
   ],
   "firstSeen": "2024-05-19",
-  "lastSeen": "2024-11-08",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -49422,10 +49560,11 @@
    "edc-orlando-2026:ecs42",
    "iii-points-2026:iiip-max-dean-b2b-luke-dean",
    "arc-2026:arc-max-dean-b2b-luke-dean-expansions-d1",
+   "decadence-arizona-2026:daz-max-dean-b2b-luke-dean",
    "edc-orlando-2025:d1:stereobloom:1730:luke-dean-b2b-ranger-trucco-sunset-set"
   ],
   "firstSeen": "2025-11-07",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -49704,7 +49843,8 @@
    "lost-lands-2026:llu13",
    "lollapalooza-2026:lo64",
    "countdown-nye-2026:cdny-lyny-b2b-peekaboo",
-   "lights-all-night-2026:lan-lyny"
+   "lights-all-night-2026:lan-lyny",
+   "decadence-arizona-2026:daz-lyny"
   ],
   "firstSeen": "2026-07-31",
   "lastSeen": "2026-12-31",
@@ -52233,6 +52373,21 @@
   "links": []
  },
  {
+  "key": "masquerade",
+  "name": "Masquerade",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "decadence-arizona-2026:daz-masquerade"
+  ],
+  "firstSeen": "2026-12-30",
+  "lastSeen": "2026-12-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "massano",
   "name": "Massano",
   "aliases": [],
@@ -52810,10 +52965,11 @@
   "billings": [
    "edc-lv-2026:s7",
    "iii-points-2026:iiip-max-dean-b2b-luke-dean",
-   "arc-2026:arc-max-dean-b2b-luke-dean-expansions-d1"
+   "arc-2026:arc-max-dean-b2b-luke-dean-expansions-d1",
+   "decadence-arizona-2026:daz-max-dean-b2b-luke-dean"
   ],
   "firstSeen": "2026-05-15",
-  "lastSeen": "2026-10-17",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -53469,6 +53625,21 @@
   ],
   "firstSeen": "2024-05-17",
   "lastSeen": "2025-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mellizos",
+  "name": "Mellizos",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "decadence-arizona-2026:daz-mellizos"
+  ],
+  "firstSeen": "2026-12-31",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -60493,6 +60664,7 @@
    "edc-lv-2026:s12",
    "lollapalooza-2026:lo114",
    "escape-halloween-2026:esc-omnom-d2",
+   "sunset-on-the-river-2027:sotr-omnom",
    "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:2130:omnom",
    "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:2200:omnom",
    "edc-las-vegas-2025:d1:stereo-bloom:2215:omnom",
@@ -60502,7 +60674,7 @@
    "escape-halloween-2024:d1:casa-bacardi:2300:omnom"
   ],
   "firstSeen": "2019-11-09",
-  "lastSeen": "2026-10-31",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -62094,10 +62266,11 @@
   ],
   "billings": [
    "nocturnal-wonderland-2026:nw-patrick-topping",
+   "decadence-arizona-2026:daz-patrick-topping",
    "edc-orlando-2021:d1:neon-garden:1600:patrick-topping"
   ],
   "firstSeen": "2021-11-12",
-  "lastSeen": "2026-09-19",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -63711,17 +63884,20 @@
  },
  {
   "key": "polo-and-pan",
-  "name": "POLO & PAN",
-  "aliases": [],
+  "name": "Polo & Pan",
+  "aliases": [
+   "POLO & PAN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "decadence-arizona-2026:daz-polo-and-pan",
    "acl-2025:d3:miller-lite:1915:polo-and-pan",
    "acl-2025:d6:miller-lite:1915:polo-and-pan"
   ],
   "firstSeen": "2025-10-05",
-  "lastSeen": "2025-10-12",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -64636,6 +64812,21 @@
   "links": []
  },
  {
+  "key": "pushman",
+  "name": "Pushman",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sunset-on-the-river-2027:sotr-pushman"
+  ],
+  "firstSeen": "2027-02-20",
+  "lastSeen": "2027-02-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pvris",
   "name": "PVRIS",
   "aliases": [],
@@ -65501,6 +65692,21 @@
   ],
   "firstSeen": "2023-10-08",
   "lastSeen": "2023-10-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "randy-perez",
+  "name": "Randy Perez",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "decadence-arizona-2026:daz-randy-perez"
+  ],
+  "firstSeen": "2026-12-31",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -67723,10 +67929,11 @@
    "edc-lv-2026:c3",
    "edc-orlando-2026:ecs31",
    "iii-points-2026:iiip-roddy-lima",
-   "arc-2026:arc-discip-b2b-roddy-lima-midway-d2"
+   "arc-2026:arc-discip-b2b-roddy-lima-midway-d2",
+   "decadence-arizona-2026:daz-roddy-lima"
   ],
   "firstSeen": "2026-05-15",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -68222,7 +68429,8 @@
    "edc-lv-2026:cg12",
    "lollapalooza-2026:lo65",
    "hard-summer-2026:hs1-rz",
-   "countdown-nye-2026:cdny-rz"
+   "countdown-nye-2026:cdny-rz",
+   "decadence-arizona-2026:daz-roz"
   ],
   "firstSeen": "2026-05-16",
   "lastSeen": "2026-12-31",
@@ -68570,16 +68778,19 @@
  },
  {
   "key": "ruze",
-  "name": "RUZE",
-  "aliases": [],
+  "name": "Ruze",
+  "aliases": [
+   "RUZE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "decadence-arizona-2026:daz-ruze",
    "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:1745:ruze"
   ],
   "firstSeen": "2026-06-28",
-  "lastSeen": "2026-06-28",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -73084,6 +73295,7 @@
   "billings": [
    "lost-lands-2026:lls50",
    "edc-orlando-2026:ecu33",
+   "decadence-arizona-2026:daz-slander",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2355:slander",
    "edc-las-vegas-2024:d1:cosmic-meadow:0020:slander",
    "edc-las-vegas-2025:d2:kinetic-field:0147:illenium-b2b-slander",
@@ -73096,7 +73308,7 @@
    "lollapalooza-2017:d4:perry-s:1630:slander"
   ],
   "firstSeen": "2017-08-06",
-  "lastSeen": "2026-11-08",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -74410,6 +74622,7 @@
   "billings": [
    "iii-points-2026:iiip-sosa",
    "escape-halloween-2026:esc-joseph-capriati-b2b-sosa-d1",
+   "decadence-arizona-2026:daz-sosa",
    "edc-las-vegas-2024:d3:stereo-bloom:0245:sosa",
    "edc-las-vegas-2025:d1:cosmic-meadow:1730:sosa-b2b-classmatic",
    "edc-las-vegas-2025:d2:neon-garden:2045:sosa",
@@ -74417,7 +74630,7 @@
    "hard-summer-2025:d1:pink-stage:2030:sosa"
   ],
   "firstSeen": "2024-05-19",
-  "lastSeen": "2026-10-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -75468,6 +75681,21 @@
   "links": []
  },
  {
+  "key": "starjunk95",
+  "name": "Starjunk95",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "decadence-arizona-2026:daz-starjunk95"
+  ],
+  "firstSeen": "2026-12-31",
+  "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "state-champs",
   "name": "State Champs",
   "aliases": [],
@@ -75704,6 +75932,7 @@
    "ultra-miami-2026:ul34",
    "ultra-miami-2026:ul53",
    "escape-halloween-2026:esc-steve-aoki-d1",
+   "decadence-arizona-2026:daz-steve-aoki",
    "beyond-wonderland-socal-2012:d1:caterpillars-garden:0045:steve-aoki",
    "edc-las-vegas-2024:d1:kinetic-field:0413:steve-aoki",
    "edc-orlando-2019:d1:kineticfield:2112:steve-aoki",
@@ -75711,7 +75940,7 @@
    "lollapalooza-2013:d1:perry-s:2045:steve-aoki"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -76369,6 +76598,21 @@
   ],
   "firstSeen": "2023-10-14",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sueno",
+  "name": "Sueno",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sunset-on-the-river-2027:sotr-sueno"
+  ],
+  "firstSeen": "2027-02-20",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -82777,11 +83021,12 @@
   "projects": [],
   "billings": [
    "countdown-nye-2026:cdny-tokimonsta",
+   "sunset-on-the-river-2027:sotr-tokimonsta",
    "edc-las-vegas-2025:d3:cosmic-meadow:2100:tokimonsta",
    "edc-las-vegas-2025:d3:metaphoenix:0030:tokimonsta"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2026-12-31",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -82877,6 +83122,21 @@
   ],
   "firstSeen": "2017-10-14",
   "lastSeen": "2017-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tommy-phillips",
+  "name": "Tommy Phillips",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "decadence-arizona-2026:daz-tommy-phillips"
+  ],
+  "firstSeen": "2026-12-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -86459,13 +86719,17 @@
   "name": "Wankdat",
   "aliases": [],
   "kind": "performer",
-  "parents": [],
+  "parents": [
+   "crankdat",
+   "wooli"
+  ],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul131"
+   "ultra-miami-2026:ul131",
+   "decadence-arizona-2026:daz-wankdat"
   ],
   "firstSeen": "2026-03-29",
-  "lastSeen": "2026-03-29",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -86918,19 +87182,21 @@
  },
  {
   "key": "wes-mills",
-  "name": "wes mills",
+  "name": "Wes Mills",
   "aliases": [
+   "wes mills",
    "WES MILLS"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "sunset-on-the-river-2027:sotr-wes-mills",
    "edc-las-vegas-2025:d1:forest-house:0100:wes-mills",
    "escape-halloween-2025:d1:the-warehouse:1700:wes-mills"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2025-10-31",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -87003,6 +87269,7 @@
   "billings": [
    "edc-lv-2026:c4",
    "lollapalooza-2026:lo154",
+   "sunset-on-the-river-2027:sotr-westend",
    "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:2000:westend",
    "edc-las-vegas-2022:d1:cosmic-meadow:1700:westend-b2b-lucati",
    "edc-las-vegas-2022:d1:stereo-bloom:0215:westend-b2b-black-v-neck",
@@ -87014,7 +87281,7 @@
    "nocturnal-wonderland-2022:d1:sunken-garden:1900:westend"
   ],
   "firstSeen": "2021-11-14",
-  "lastSeen": "2026-08-02",
+  "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
  },
@@ -88240,7 +88507,9 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "wankdat"
+  ],
   "billings": [
    "edc-lv-2026:k23",
    "edc-lv-2026:cg6",
@@ -89786,10 +90055,11 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llh12",
+   "decadence-arizona-2026:daz-a-hundred-drums-b2b-zen-selekta",
    "escape-halloween-2025:d1:sewer-district:1645:zen-selekta"
   ],
   "firstSeen": "2025-10-31",
-  "lastSeen": "2026-09-17",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },
@@ -90011,6 +90281,7 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls61",
+   "decadence-arizona-2026:daz-zomboy",
    "edc-las-vegas-2022:d3:basspod:0230:zomboy",
    "edc-las-vegas-2024:d1:basspod:0030:zomboy",
    "edc-orlando-2017:d1:circuitgrounds:2200:zomboy",
@@ -90021,7 +90292,7 @@
    "nocturnal-wonderland-2019:d2:labyrinth:2300:zomboy"
   ],
   "firstSeen": "2017-09-16",
-  "lastSeen": "2026-09-19",
+  "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
@@ -90084,6 +90355,21 @@
   ],
   "firstSeen": "2026-09-04",
   "lastSeen": "2026-09-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "zuze",
+  "name": "ZUZE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "decadence-arizona-2026:daz-zuze"
+  ],
+  "firstSeen": "2026-12-30",
+  "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
  },

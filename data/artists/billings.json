@@ -65555,6 +65555,1334 @@
   "mainStage": null
  },
  {
+  "id": "decadence-arizona-2026:daz-a-hundred-drums-b2b-zen-selekta",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "A Hundred Drums B2B Zen Selekta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-hundred-drums",
+    "role": "b2b"
+   },
+   {
+    "key": "zen-selekta",
+    "role": "b2b"
+   }
+  ],
+  "act": "a-hundred-drums-b2b-zen-selekta",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-azzecca",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Azzecca",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "azzecca",
+    "role": "performer"
+   }
+  ],
+  "act": "azzecca",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-chris-lake",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Chris Lake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lake",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lake",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-coone",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Coone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coone",
+    "role": "performer"
+   }
+  ],
+  "act": "coone",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-eli-brown",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Eli Brown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eli-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "eli-brown",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-gorgon-city",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Gorgon City",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gorgon-city",
+    "role": "performer"
+   }
+  ],
+  "act": "gorgon-city",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-i-hate-models",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "I Hate Models",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "i-hate-models",
+    "role": "performer"
+   }
+  ],
+  "act": "i-hate-models",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-masquerade",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Masquerade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "masquerade",
+    "role": "performer"
+   }
+  ],
+  "act": "masquerade",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-max-dean-b2b-luke-dean",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Max Dean B2B Luke Dean",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "max-dean",
+    "role": "b2b"
+   },
+   {
+    "key": "luke-dean",
+    "role": "b2b"
+   }
+  ],
+  "act": "max-dean-b2b-luke-dean",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-polo-and-pan",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Polo & Pan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "polo-and-pan",
+    "role": "performer"
+   }
+  ],
+  "act": "polo-and-pan",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-roz",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RØZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roz",
+    "role": "performer"
+   }
+  ],
+  "act": "roz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-ruze",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ruze",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruze",
+    "role": "performer"
+   }
+  ],
+  "act": "ruze",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-slander",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Slander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slander",
+    "role": "performer"
+   }
+  ],
+  "act": "slander",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-sosa",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SOSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sosa",
+    "role": "performer"
+   }
+  ],
+  "act": "sosa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-tommy-phillips",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tommy Phillips",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tommy-phillips",
+    "role": "performer"
+   }
+  ],
+  "act": "tommy-phillips",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-wankdat",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Wankdat (Crankdat + Wooli)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wankdat",
+    "role": "project"
+   }
+  ],
+  "act": "wankdat-crankdat-wooli",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-cece",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CECE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cece",
+    "role": "performer"
+   }
+  ],
+  "act": "cece",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-donk",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DONK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "donk",
+    "role": "performer"
+   }
+  ],
+  "act": "donk",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-zuze",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-30",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ZUZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zuze",
+    "role": "performer"
+   }
+  ],
+  "act": "zuze",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-beauz",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Beauz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beauz",
+    "role": "performer"
+   }
+  ],
+  "act": "beauz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-beltran",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Beltran",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beltran",
+    "role": "performer"
+   }
+  ],
+  "act": "beltran",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-brayden-terzo",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Brayden Terzo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brayden-terzo",
+    "role": "performer"
+   }
+  ],
+  "act": "brayden-terzo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-bunt",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bunt.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bunt",
+    "role": "performer"
+   }
+  ],
+  "act": "bunt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-daily-bread",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "daily bread",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daily-bread",
+    "role": "performer"
+   }
+  ],
+  "act": "daily-bread",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-disclosure-dj-set",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Disclosure (DJ Set)",
+  "setTag": "DJ Set",
+  "performers": [
+   {
+    "key": "disclosure",
+    "role": "performer"
+   }
+  ],
+  "act": "disclosure",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-ero808",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ero808",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ero808",
+    "role": "performer"
+   }
+  ],
+  "act": "ero808",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-isoxo",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ISOxo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isoxo",
+    "role": "performer"
+   }
+  ],
+  "act": "isoxo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-jkyl-and-hyde",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jkyl & Hyde",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jkyl-and-hyde",
+    "role": "performer"
+   }
+  ],
+  "act": "jkyl-and-hyde",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-kettama",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "KETTAMA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kettama",
+    "role": "performer"
+   }
+  ],
+  "act": "kettama",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-levity",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Levity",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "levity",
+    "role": "performer"
+   }
+  ],
+  "act": "levity",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-lyny",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LYNY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lyny",
+    "role": "performer"
+   }
+  ],
+  "act": "lyny",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-mellizos",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mellizos",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mellizos",
+    "role": "performer"
+   }
+  ],
+  "act": "mellizos",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-patrick-topping",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Patrick Topping",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "patrick-topping",
+    "role": "performer"
+   }
+  ],
+  "act": "patrick-topping",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-roddy-lima",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Roddy Lima",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roddy-lima",
+    "role": "performer"
+   }
+  ],
+  "act": "roddy-lima",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-starjunk95",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Starjunk95",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "starjunk95",
+    "role": "performer"
+   }
+  ],
+  "act": "starjunk95",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-steve-aoki",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Steve Aoki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steve-aoki",
+    "role": "performer"
+   }
+  ],
+  "act": "steve-aoki",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-zomboy",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Zomboy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zomboy",
+    "role": "performer"
+   }
+  ],
+  "act": "zomboy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-felix-mun",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Felix Mün",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "felix-mun",
+    "role": "performer"
+   }
+  ],
+  "act": "felix-mun",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "decadence-arizona-2026:daz-randy-perez",
+  "source": "live",
+  "festivalId": "decadence-arizona-2026",
+  "festivalBrand": "decadence-arizona",
+  "year": 2026,
+  "date": "2026-12-31",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Randy Perez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "randy-perez",
+    "role": "performer"
+   }
+  ],
+  "act": "randy-perez",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-acraze",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ACRAZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "acraze",
+    "role": "performer"
+   }
+  ],
+  "act": "acraze",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-alesso",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Alesso",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alesso",
+    "role": "performer"
+   }
+  ],
+  "act": "alesso",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-alok",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ALOK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alok",
+    "role": "performer"
+   }
+  ],
+  "act": "alok",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-angrybaby",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Angrybaby",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angrybaby",
+    "role": "performer"
+   }
+  ],
+  "act": "angrybaby",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-disco-lines",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Disco Lines",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disco-lines",
+    "role": "performer"
+   }
+  ],
+  "act": "disco-lines",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-dj-mandy",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Mandy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-mandy",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-mandy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-john-anthony",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "John Anthony",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-anthony",
+    "role": "performer"
+   }
+  ],
+  "act": "john-anthony",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-kyefi",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kyefi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kyefi",
+    "role": "performer"
+   }
+  ],
+  "act": "kyefi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-leondis",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Leondis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leondis",
+    "role": "performer"
+   }
+  ],
+  "act": "leondis",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-lost-frequencies",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lost Frequencies",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lost-frequencies",
+    "role": "performer"
+   }
+  ],
+  "act": "lost-frequencies",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-omnom",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "OMNOM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omnom",
+    "role": "performer"
+   }
+  ],
+  "act": "omnom",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-pushman",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Pushman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pushman",
+    "role": "performer"
+   }
+  ],
+  "act": "pushman",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-sueno",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sueno",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sueno",
+    "role": "performer"
+   }
+  ],
+  "act": "sueno",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-tokimonsta",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "TOKiMONSTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tokimonsta",
+    "role": "performer"
+   }
+  ],
+  "act": "tokimonsta",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-westend",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Westend",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "westend",
+    "role": "performer"
+   }
+  ],
+  "act": "westend",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "sunset-on-the-river-2027:sotr-wes-mills",
+  "source": "live",
+  "festivalId": "sunset-on-the-river-2027",
+  "festivalBrand": "sunset-on-the-river",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Wes Mills",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wes-mills",
+    "role": "performer"
+   }
+  ],
+  "act": "wes-mills",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "acl-2013:d1:amd:1200:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2013",
