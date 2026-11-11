@@ -39,6 +39,7 @@ import { sheetRow } from "./extract-insomniac.mjs";
 import { readSheet } from "./build-editions.mjs";
 import { parseAclSchedule } from "./acl-schedule.mjs";
 import { parseTomorrowland } from "./tml-schedule.mjs";
+import { parseElectricForest } from "./ef-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
@@ -149,14 +150,18 @@ export async function importGather(id, dir) {
     }
     const date = ed.dates[+r.day - 1]?.[0];
     if (r.date !== date) throw new Error(`row ${r.artist}: day ${r.day} is ${r.date}, the edition says ${date}`);
-    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }) }); continue; }
+    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }) }); continue; }
     const hits = rc.sources.map((s, i) => [s, i]).filter(([s]) => (r.source_ref || "").includes(s.match)
       && (!s.when?.stage || new RegExp(s.when.stage).test(r.stage)) && (!s.when?.stageNot || !new RegExp(s.when.stageNot).test(r.stage)));
     if (hits.length !== 1) throw new Error(`row d${r.day} ${r.stage} ${r.start} ${r.artist}: ${hits.length} sources match its source_ref`);
     const [s, i] = hits[0];
     // Only a day the edition registry marks untimed may carry blank times.
-    if ((!r.start || !r.end) && !(ed.untimedDays || []).includes(+r.day)) throw new Error(`row ${r.artist}: blank time (no openEnd convention for gather rows yet)`);
-    bySource.get(i).push({ day: +r.day, stage: stageFor(s, r.stage), start: r.start, end: r.end, artist: r.artist, source: s.match, note: r.note || "" });
+    // An open end (openEnd 1: a start and no end) only where the source's
+    // own page prints one ("2:15am - Close"), checked against the page below.
+    const open = r.openEnd === "1";
+    if (open && (!r.start || r.end || s.format !== "ef-grid")) throw new Error(`row ${r.artist}: openEnd needs a start, a blank end and a page that prints open ends`);
+    if ((!r.start || (!r.end && !open)) && !(ed.untimedDays || []).includes(+r.day)) throw new Error(`row ${r.artist}: blank time`);
+    bySource.get(i).push({ day: +r.day, stage: stageFor(s, r.stage), start: r.start, end: r.end, artist: r.artist, ...(open && { openEnd: "1" }), source: s.match, note: r.note || "" });
   }
 
   const ledgerDays = ed.dates.map(([date], i) => ({ day: i + 1, date, sources: [] }));
@@ -273,6 +278,32 @@ export async function importGather(id, dir) {
         if (stray.length) throw new Error(`${s.url} @${s.captureTimestamp}: off-day rows on ${[...new Set(stray.map(x => x.date))].join(", ")}, a date the page does not print`);
         for (const date of off) offDayLedger.push({ date, printed: page.days.find(d => d.date === date).label, archivedUrl: cap.archivedUrl,
           captureTimestamp: cap.captureTimestamp, sets: page.days.find(d => d.date === date).sets.length });
+      } else if (s.format === "ef-grid") {
+        // One page prints every day on its own 15-minute grid
+        // (ef-schedule.mjs: each block's place checks its printed time). Every
+        // day it prints is the edition's and is cited; an entry printed with
+        // no time, or whose range disagrees with its block, must be an
+        // excluded row of that day, one for one.
+        const page = parseElectricForest(cap.text, { year: ed.year });
+        const dayOf = date => ed.dates.findIndex(([d]) => d === date) + 1;
+        const printedDays = page.days.map(d => dayOf(d.date));
+        if (printedDays.some(d => d < 1)) throw new Error(`${s.url} @${s.captureTimestamp}: prints a day that is not the edition's (${page.days.map(d => d.date).join(", ")})`);
+        if (printedDays.join() !== days.join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints days ${printedDays.join(",")}, the sheet cites it for ${days.join(",")}`);
+        for (const d of page.days) {
+          const day = dayOf(d.date);
+          if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day}'s tab prints "${d.label}", the receipt says "${s.printed[day]}"`);
+          for (const [flag, list, k] of [["untimed", d.untimed, x => [x.stage, x.artist ?? x.billing].join("|")],
+            ["misprint", d.misprints, x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|")]]) {
+            const pg = list.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x[flag]).map(k).sort().join("\n");
+            if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${list.length} ${flag} entr(ies), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+          }
+          agree(day, d.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          const groups = [...new Set(d.sets.filter(x => x.group).map(x => x.group))];
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { stages: d.stages.length, axis: d.axis, blocksOnGrid: d.placed,
+            ...(d.sets.some(x => x.openEnd) && { openEnded: d.sets.filter(x => x.openEnd).length }), ...(groups.length && { groups }),
+            ...(d.untimed.length && { untimed: d.untimed.map(x => `${x.artist}: ${x.printed}`) }),
+            ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.misprint}`) }) });
+        }
       } else if (s.format === "day-tabs") {
         // Every day is on the page; each day's rows must equal its own pane.
         const panes = parseDayTabs(cap.text);
