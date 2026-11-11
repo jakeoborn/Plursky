@@ -10150,50 +10150,36 @@ function MemoriesScreen({
       phase: "access"
     });
     try {
-      var access = await PS.requestAccess();
-      var limited = access?.status === "limited";
-      if (access?.status !== "authorized" && !limited) {
-        setPastScan({
-          phase: "denied"
-        });
-        return;
-      }
-      setPastScan({
-        phase: "scanning"
-      });
-      var [index, calendar] = await Promise.all([_histFetch("index.json").catch(() => null), _histFetch("scan-calendar.json").catch(() => null)]);
-      if (!index && !calendar) throw new Error("past festival lists unavailable");
-      var targets = _histScanTargets(index, null, calendar);
-      var seen = _scanSeenRead();
-      var found = [];
-      var already = 0;
-      var _loop7 = async function (t) {
-        if (i % 10 === 0) setPastScan({
-          phase: "scanning",
-          checked: i,
-          years: targets.length
-        });
-        var assets = [];
-        for (var r of _scanQueryRanges(t.cfg)) {
-          var res = await PS.scan({
-            startMs: r.startMs,
-            endMs: r.endMs
+      var handed = _pastScanHandoffTake();
+      var limited, found, already, years;
+      if (handed) {
+        ({
+          limited,
+          found,
+          already,
+          years
+        } = handed);
+      } else {
+        var access = await PS.requestAccess();
+        limited = access?.status === "limited";
+        if (access?.status !== "authorized" && !limited) {
+          setPastScan({
+            phase: "denied"
           });
-          assets.push(...(res?.assets || []));
+          return;
         }
-        var onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
-        if (!onSite.length) return 1;
-        var ds = _histDataSet(t.inLibrary ? await _histFetch(`editions/${t.entry.id}.json`) : null, t.cfg);
-        var pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
-        already += pick.already;
-        if (pick.keep.length) found.push({
-          t,
-          ds,
-          keep: pick.keep
+        setPastScan({
+          phase: "scanning"
         });
-      };
-      for (var [i, t] of targets.entries()) {
-        if (await _loop7(t)) continue;
+        ({
+          found,
+          already,
+          years
+        } = await _pastScanFind(PS, (checked, n) => setPastScan({
+          phase: "scanning",
+          checked,
+          years: n
+        })));
       }
       var total = found.reduce((n, f) => n + f.keep.length, 0);
       if (!total) {
@@ -10201,7 +10187,7 @@ function MemoriesScreen({
           phase: "none",
           already,
           limited,
-          editions: targets.length
+          editions: years
         });
         return;
       }
@@ -10211,7 +10197,7 @@ function MemoriesScreen({
       var byEdition = [];
       for (var f of found) {
         var got = 0;
-        var _loop8 = async function () {
+        var _loop7 = async function () {
           setPastScan({
             phase: "importing",
             done,
@@ -10242,7 +10228,7 @@ function MemoriesScreen({
           })?.catch?.(() => {});
         };
         for (var chunk of _scanChunks(f.keep)) {
-          if (await _loop8()) continue;
+          if (await _loop7()) continue;
         }
         if (got) byEdition.push({
           id: f.t.entry.id,
@@ -10265,6 +10251,9 @@ function MemoriesScreen({
       });
     }
   };
+  React.useEffect(() => {
+    if (window._pastScanHandoff) handleScanPast();
+  }, []);
   var _pastScanMessage = st => {
     if (!st) return null;
     var limitedNote = st.limited ? "Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
@@ -13248,12 +13237,12 @@ function _recoverCurrentVideoMomentsFromArchive() {
         changed = true;
       }
     }
-    var _loop9 = function (move) {
+    var _loop8 = function (move) {
       all[move.from] = (all[move.from] || []).filter(m => m !== move.moment);
       all[move.to] = [...(all[move.to] || []), move.moment];
     };
     for (var move of moves) {
-      _loop9(move);
+      _loop8(move);
     }
     if (changed) _writeMoments(all);
   } catch {}
@@ -13331,13 +13320,13 @@ function _reconcileFestivalStamps(moments) {
       }
     }
   }
-  var _loop0 = function (move) {
+  var _loop9 = function (move) {
     moments[move.from] = moments[move.from].filter(x => x !== move.moment);
     if (!moments[move.from].length) delete moments[move.from];
     moments[move.to] = [...(moments[move.to] || []), move.moment];
   };
   for (var move of moves) {
-    _loop0(move);
+    _loop9(move);
   }
   return changed;
 }
@@ -13650,7 +13639,7 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var _loop1 = function (m) {
+  var _loop0 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var {
         fid,
@@ -13673,7 +13662,7 @@ function _aggregateSoundtrack(moments) {
     },
     _ret2;
   for (var m of Object.values(moments)) {
-    _ret2 = _loop1(m);
+    _ret2 = _loop0(m);
     if (_ret2 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
@@ -15746,7 +15735,7 @@ function HeroCards({
     var live = true;
     var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
     (async () => {
-      var _loop10 = async function (a) {
+      var _loop1 = async function (a) {
           var canvas = await _renderHeroCard(a).catch(() => null);
           if (!live || !canvas) return 0;
           var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -15763,7 +15752,7 @@ function HeroCards({
         },
         _ret3;
       for (var a of want) {
-        _ret3 = await _loop10(a);
+        _ret3 = await _loop1(a);
         if (_ret3 === 0) continue;
       }
     })();
@@ -17751,7 +17740,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop11 = function (rows) {
+  var _loop10 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -17765,7 +17754,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop11(rows);
+    _loop10(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }

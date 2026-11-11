@@ -377,7 +377,13 @@ try {
   const finishOnboarding = async (page, pick) => {
     const inDialog = await page.evaluate((sel) => !!document.querySelector(sel), DLG);
     check(inDialog, 'onboarding: the wizard dialog is on screen before the harness drives it');
-    // Three story pages, then the festival list.
+    // The scan screen (on the web it points to the app), three story pages,
+    // then the festival list.
+    await page.evaluate((sel) => {
+      const d = document.querySelector(sel); if (!d) return;
+      d.querySelector('[data-onb-scan-skip]')?.click();
+    }, DLG);
+    await sleep(300);
     await page.evaluate((sel) => {
       const d = document.querySelector(sel); if (!d) return;
       const b = [...d.querySelectorAll('button')].find(e => (e.textContent || '').trim() === 'Skip');
@@ -465,6 +471,11 @@ try {
       return e.config.name;
     }, isPlus);
     check(!!marked, `onboarding (${label}): the fixture marked a row preview-only`);
+    await page.evaluate((sel) => {
+      const d = document.querySelector(sel); if (!d) return;
+      d.querySelector('[data-onb-scan-skip]')?.click();
+    }, DLG);
+    await sleep(300);
     await page.evaluate((sel) => {
       const d = document.querySelector(sel); if (!d) return;
       const b = [...d.querySelectorAll('button')].find(e => (e.textContent || '').trim() === 'Skip');
