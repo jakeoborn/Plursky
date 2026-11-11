@@ -2274,6 +2274,9 @@ async function _pastScanFind(PS, onProgress) {
 const _PAST_SCAN_HANDOFF_MS = 10 * 60 * 1000;
 function _pastScanHandoffSet(result) {
   window._pastScanHandoff = result ? { at: Date.now(), result } : null;
+  // A Memories screen already mounted under the first-run dialog (a link
+  // opened on ?tab=memories) never remounts, so it is told directly.
+  if (result) window.dispatchEvent(new Event("plursky:past-scan-handoff"));
 }
 function _pastScanHandoffTake() {
   const h = window._pastScanHandoff;

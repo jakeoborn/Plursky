@@ -42,7 +42,7 @@ const SHOT = process.env.ONB_SCAN_SHOT || "";
 const DLG = '[role=dialog][aria-label="Welcome to Plursky"]';
 const APP_STORE = "https://apps.apple.com/us/app/plursky-live/id6768888507";
 
-async function scenario(browser, build, { name, native = true, access = "authorized", lib = "full", shots = false }, t) {
+async function scenario(browser, build, { name, native = true, access = "authorized", lib = "full", path = "/", shots = false }, t) {
   const ctx = await browser.newContext({ viewport: { width: 393, height: 852 }, timezoneId: "America/Chicago" });
   try {
     await wireVendor(ctx);
@@ -82,7 +82,7 @@ async function scenario(browser, build, { name, native = true, access = "authori
     const page = await ctx.newPage();
     const errs = [];
     page.on("pageerror", e => errs.push(String(e)));
-    await page.goto(`http://127.0.0.1:${PORT}/`, { waitUntil: "domcontentloaded" });
+    await page.goto(`http://127.0.0.1:${PORT}${path}`, { waitUntil: "domcontentloaded" });
     await page.waitForFunction(() => window.FESTIVAL_CONFIG?.id === "acl-2026" && Array.isArray(window.ARTISTS) && window.ARTISTS.length > 0, null, { timeout: 30000 });
     await page.locator(DLG).waitFor({ timeout: 20000 });
     const first = await page.evaluate((sel) => document.querySelector(sel)?.querySelector("[data-onb-scan]")?.getAttribute("data-onb-scan") || null, DLG);
@@ -146,7 +146,7 @@ async function scenario(browser, build, { name, native = true, access = "authori
     }
 
     await page.locator("[data-onb-scan-start]").click();
-    if (name === "found") {
+    if (name.startsWith("found")) {
       await page.locator('[data-onb-scan="found"]').waitFor({ timeout: 120000 }).catch(() => {});
       const txt = await dlgText();
       const years = await page.$$eval("[data-onb-scan-year]", els => els.map(e => e.getAttribute("data-onb-scan-year")));
@@ -156,7 +156,7 @@ async function scenario(browser, build, { name, native = true, access = "authori
       t(stored === 0, `${name}: something was imported before "Add them to Memories" (${stored} nights)`);
       const w = await page.evaluate(() => document.documentElement.scrollWidth);
       t(w <= 393, `${name}: found screen scrolls sideways (${w})`);
-      await shot("found");
+      await shot(name);
       await page.locator("[data-onb-scan-add]").click();
       await page.waitForFunction(() => /Imported \d+ from past|No new photos from past|Couldn.t finish/.test(document.querySelector("[data-scan-past-card]")?.textContent || ""), null, { timeout: 120000 }).catch(() => {});
       const card = (await page.locator("[data-scan-past-card]").textContent().catch(() => "")) || "";
@@ -167,7 +167,7 @@ async function scenario(browser, build, { name, native = true, access = "authori
       const moments = await page.evaluate(() => Object.values(JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}")).flat());
       const ids = moments.map(m => m.festivalId).sort().join(",");
       t(ids === "das-energi-2019,lollapalooza-2025,lollapalooza-2025", `${name}: moments filed under ${ids}`);
-      await shot("imported");
+      await shot(`${name}-imported`);
       // Pure: a video counts as a video.
       const line = await page.evaluate(() => {
         const s = _pastScanSummary([{ t: { entry: { id: "a-2019", name: "A 2019", year: 2019 } }, keep: [{ mediaType: "image" }, { mediaType: "video" }] },
@@ -190,17 +190,22 @@ async function scenario(browser, build, { name, native = true, access = "authori
   }
 }
 
-async function run(browser, build, { shots = false } = {}) {
+// found-on-memories: a fresh install opened from a ?tab=memories link. The
+// Memories screen is already mounted under the welcome dialog, so it does not
+// remount when "Add them to Memories" closes it, and must still import.
+const SCENARIOS = [
+  { name: "found" },
+  { name: "found-on-memories", path: "/?tab=memories" },
+  { name: "empty", lib: "empty" },
+  { name: "denied", access: "denied" },
+  { name: "skip" },
+  { name: "web", native: false },
+];
+async function run(browser, build, { shots = false, only = null } = {}) {
   const fails = [];
   let n = 0;
   const t = (ok, msg) => { n++; if (!ok) fails.push(msg); };
-  for (const sc of [
-    { name: "found" },
-    { name: "empty", lib: "empty" },
-    { name: "denied", access: "denied" },
-    { name: "skip" },
-    { name: "web", native: false },
-  ]) await scenario(browser, build, { ...sc, shots }, t);
+  for (const sc of SCENARIOS) if (!only || only.includes(sc.name)) await scenario(browser, build, { ...sc, shots }, t);
   return { n, fails };
 }
 
@@ -214,16 +219,19 @@ try {
   const base = await run(browser, SRC, { shots: true });
   for (const f of base.fails) console.log(`  ✗  ${f}`);
   const mut = (key, from, to) => ({ ...SRC, [key]: SRC[key].replace(from, to) });
+  // Each mutant runs only the scenario that should catch it, so the gate stays
+  // inside its time budget.
   const MUTANTS = [
-    ["story first, scan not first", mut("app", 'React.useState("scan")', "React.useState(0)")],
-    ["nothing found leaves the user on the scan screen", mut("app", /if \(!sum\.total\) \{\s*onNext\(\);\s*return;\s*\}/, "if (!sum.total) { return; }")],
-    ["Memories ignores what the first run found", mut("spotify", "var handed = _pastScanHandoffTake();", "var handed = null;")],
-    ["Memories does not import on arrival", mut("spotify", "if (window._pastScanHandoff) handleScanPast();", "if (false) handleScanPast();")],
+    ["story first, scan not first", mut("app", 'React.useState("scan")', "React.useState(0)"), ["skip"]],
+    ["nothing found leaves the user on the scan screen", mut("app", /if \(!sum\.total\) \{\s*onNext\(\);\s*return;\s*\}/, "if (!sum.total) { return; }"), ["empty"]],
+    ["Memories ignores what the first run found", mut("spotify", "var handed = _pastScanHandoffTake();", "var handed = null;"), ["found"]],
+    ["Memories does not import on arrival", mut("spotify", /onHandoff\(\);\s*window\.addEventListener/, "window.addEventListener"), ["found"]],
+    ["an open Memories screen is not told", mut("photoTag", 'if (result) window.dispatchEvent(new Event("plursky:past-scan-handoff"));', ""), ["found-on-memories"]],
   ];
   let caught = 0;
-  for (const [name, build] of MUTANTS) {
+  for (const [name, build, only] of MUTANTS) {
     if (JSON.stringify(build) === JSON.stringify(SRC)) { console.log(`  ✗  mutant "${name}" did not land (pattern stale)`); continue; }
-    const r = await run(browser, build);
+    const r = await run(browser, build, { only });
     if (r.fails.length) { caught++; console.log(`  · mutant "${name}" caught: ${r.fails[0].slice(0, 140)}`); } else console.log(`  ✗  mutant "${name}" survived`);
   }
   console.log(`  onboarding scan: ${base.n} checks, ${caught}/${MUTANTS.length} mutants caught`);

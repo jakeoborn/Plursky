@@ -10251,8 +10251,15 @@ function MemoriesScreen({
       });
     }
   };
+  var scanPastRef = React.useRef(handleScanPast);
+  scanPastRef.current = handleScanPast;
   React.useEffect(() => {
-    if (window._pastScanHandoff) handleScanPast();
+    var onHandoff = () => {
+      if (window._pastScanHandoff) scanPastRef.current();
+    };
+    onHandoff();
+    window.addEventListener("plursky:past-scan-handoff", onHandoff);
+    return () => window.removeEventListener("plursky:past-scan-handoff", onHandoff);
   }, []);
   var _pastScanMessage = st => {
     if (!st) return null;

@@ -6990,8 +6990,14 @@ function MemoriesScreen({ state, setState }) {
   };
   // Arriving from the first-run scan step with something found: import it
   // now, on the card the user can watch.
+  // The screen may already be open underneath it, so it also listens.
+  const scanPastRef = React.useRef(handleScanPast);
+  scanPastRef.current = handleScanPast;
   React.useEffect(() => {
-    if (window._pastScanHandoff) handleScanPast();
+    const onHandoff = () => { if (window._pastScanHandoff) scanPastRef.current(); };
+    onHandoff();
+    window.addEventListener("plursky:past-scan-handoff", onHandoff);
+    return () => window.removeEventListener("plursky:past-scan-handoff", onHandoff);
   }, []);
   const _pastScanMessage = (st) => {
     if (!st) return null;

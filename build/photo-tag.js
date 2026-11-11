@@ -2561,6 +2561,7 @@ function _pastScanHandoffSet(result) {
     at: Date.now(),
     result
   } : null;
+  if (result) window.dispatchEvent(new Event("plursky:past-scan-handoff"));
 }
 function _pastScanHandoffTake() {
   var h = window._pastScanHandoff;
