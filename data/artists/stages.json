@@ -598,6 +598,71 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:madhatter-s-castle",
+     "names": [
+      {
+       "printed": "Madhatter's Castle",
+       "editions": [
+        "beyond-wonderland-socal-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:chess-village",
+     "names": [
+      {
+       "printed": "Chess Village",
+       "editions": [
+        "beyond-wonderland-socal-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:caterpillars-garden",
+     "names": [
+      {
+       "printed": "Caterpillars Garden",
+       "editions": [
+        "beyond-wonderland-socal-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:wide-awake-art-car",
+     "names": [
+      {
+       "printed": "Wide Awake Art Car",
+       "editions": [
+        "beyond-wonderland-socal-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:discovery-project",
+     "names": [
+      {
+       "printed": "Discovery Project",
+       "editions": [
+        "beyond-wonderland-socal-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -2674,6 +2739,72 @@
           }
          ]
         }
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:alice-s-house",
+     "names": [
+      {
+       "printed": "Alice's House",
+       "editions": [
+        "nocturnal-wonderland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:queen-s-grounds",
+     "names": [
+      {
+       "printed": "Queen's Grounds",
+       "editions": [
+        "nocturnal-wonderland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:upside-down-room",
+     "names": [
+      {
+       "printed": "Upside Down Room",
+       "editions": [
+        "nocturnal-wonderland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:wide-awake-art-car",
+     "names": [
+      {
+       "printed": "Wide Awake Art Car",
+       "editions": [
+        "nocturnal-wonderland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:discovery-project",
+     "names": [
+      {
+       "printed": "Discovery Project",
+       "editions": [
+        "nocturnal-wonderland-2012",
+        "nocturnal-wonderland-2013"
        ]
       }
      ],

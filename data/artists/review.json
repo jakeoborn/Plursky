@@ -112,6 +112,34 @@
   "why": "Left as printed (ACL 2021 grids, both Fridays): whether VINYL RANCH names the set, a venue or a separate act is not sourced, so it is neither split off as a set tag nor credited to anyone else."
  },
  {
+  "id": "beyond-wonderland-socal-2013:d1:chess-village:0000:camo-and-krooked-w-dynamite-mc",
+  "printed": "Camo & Krooked w/ Dynamite MC",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "beyond-wonderland-socal-2013:d1:chess-village:2300:high-contrast-w-dynamite-mc",
+  "printed": "High Contrast w/ Dynamite MC",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "beyond-wonderland-socal-2013:d1:chess-village:1900:fred-v-and-grafix-w-dynamite-mc",
+  "printed": "Fred V & Grafix w/ Dynamite MC",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "beyond-wonderland-socal-2013:d1:chess-village:1600:fury-w-mc-dino",
+  "printed": "Fury w/ MC Dino",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1900:tinzo-jojo",
   "printed": "Tinzo + Jojo",
   "reason": "\"+\" billing",
@@ -350,6 +378,34 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "nocturnal-wonderland-2011:d2:labyrinth:2300:cosmic-gate-feat-emma-hewitt",
+  "printed": "Cosmic Gate feat. Emma Hewitt",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "nocturnal-wonderland-2011:d2:sunken-garden:2030:original-sin-w-mc-armanni-reign",
+  "printed": "Original Sin w/ MC Armanni Reign",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "nocturnal-wonderland-2012:d2:alice-s-house:1800:myon-and-shane54-with-aruna",
+  "printed": "Myon & Shane54 with Aruna",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "nocturnal-wonderland-2013:d1:queen-s-grounds:1700:heroes-x-villains",
+  "printed": "Heroes x Villains",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "nocturnal-wonderland-2019:d2:labyrinth:1745:ed-rush-optical",
   "printed": "Ed Rush + Optical",
   "reason": "\"+\" billing",
@@ -476,15 +532,29 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
-  "id": "key:d-o-d",
-  "printed": "D.O.D",
+  "id": "key:fly",
+  "printed": "FLY",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Nocturnal Wonderland 2022 and Lights All Night 2026 (from a press relay of the poster). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
+  "id": "key:atb",
+  "printed": "ATB",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
-  "id": "key:atb",
-  "printed": "ATB",
+  "id": "key:edx",
+  "printed": "EDX",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:d-o-d",
+  "printed": "D.O.D",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
