@@ -92,7 +92,7 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 | Shambhala 2027 | `shambhala-2027` | Jul 23–26, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
 | Sziget 2027 | `sziget-2027` | Aug 10–14, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
 | Tomorrowland 2027 | `tomorrowland-2027` | Dates TBA | 0 | 0 | 0 | 0 | page only (no data set) |
-| Tomorrowland Brasil 2027 | `tomorrowland-brasil-2027` | Apr 30–May 2, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
+| Tomorrowland Brasil 2027 | `tomorrowland-brasil-2027` | Apr 30, 2027 – May 2, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
 | Tomorrowland Winter 2027 | `tomorrowland-winter-2027` | Mar 20–27, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
 | Ubbi Dubbi 2027 | `ubbi-dubbi-2027` | Apr 23–24, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
 | Ultra Europe 2027 | `ultra-europe-2027` | Jul 9–11, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
