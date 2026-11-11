@@ -138,6 +138,7 @@
   "billings": [
    "edc-las-vegas-2022:d3:parliament-art-car:2245:12th-planet",
    "edc-orlando-2022:d1:circuit-grounds:1815:12th-planet",
+   "electric-forest-2012:d3:tripolee:2230:12th-planet",
    "nocturnal-wonderland-2011:d1:sunken-garden:0100:12th-planet",
    "nocturnal-wonderland-2012:d2:sunken-garden:2330:12th-planet",
    "nocturnal-wonderland-2021:d1:labyrinth:2100:12th-planet",
@@ -294,21 +295,6 @@
   ],
   "firstSeen": "2017-08-05",
   "lastSeen": "2019-10-12",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "22-bullets",
-  "name": "22 Bullets",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-22-bullets"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -517,10 +503,11 @@
   "projects": [],
   "billings": [
    "edc-orlando-2019:d1:kineticfield:1624:3lau",
+   "electric-forest-2013:d3:sherwood-court:2130:3lau",
    "lollapalooza-2017:d2:perry-s:1800:3lau",
    "nocturnal-wonderland-2021:d2:wolves-den:2100:3lau"
   ],
-  "firstSeen": "2017-08-04",
+  "firstSeen": "2013-06-29",
   "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
@@ -1076,13 +1063,29 @@
    "edc-las-vegas-2022:d3:cosmic-meadow:0330:a-trak-b2b-craze",
    "edc-orlando-2017:d1:kineticfield:2112:diplo-b2b-a-trak",
    "edc-orlando-2017:d2:corona-electric-beach:2030:a-trak",
+   "electric-forest-2013:d3:tripolee:0145:a-trak",
    "lollapalooza-2017:d1:perry-s:1745:a-trak",
    "nocturnal-wonderland-2021:d1:sunken-garden:2200:a-trak",
    "tomorrowland-2019:d2:garden-of-madness:2100:a-trak",
    "tomorrowland-2022:d5:kara-savi:1900:a-trak"
   ],
-  "firstSeen": "2017-08-03",
+  "firstSeen": "2013-06-29",
   "lastSeen": "2022-07-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "a-tribe-called-red",
+  "name": "A Tribe Called Red",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:tripolee:1830:a-tribe-called-red"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
   "photo": null,
   "links": []
  },
@@ -1369,6 +1372,7 @@
    "dreamstate-socal-2024:d2:the-dream:2200:above-and-beyond",
    "edc-orlando-2019:d2:kineticfield:2245:above-and-beyond",
    "edc-orlando-2022:d3:kinetic-field:1735:above-and-beyond-sunset-set",
+   "electric-forest-2013:d3:sherwood-court:2330:above-and-beyond",
    "lollapalooza-2014:d1:perry-s:1745:above-and-beyond",
    "nocturnal-wonderland-2012:d1:alice-s-house:0000:above-and-beyond",
    "tomorrowland-2018:d1:garden-of-madness:2200:above-and-beyond",
@@ -1826,11 +1830,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-adamk",
    "tomorrowland-2023:d1:the-library:1200:adamk"
   ],
   "firstSeen": "2023-07-21",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-21",
   "photo": null,
   "links": []
  },
@@ -2133,13 +2136,14 @@
    "escape-halloween-2026:esc-adventure-club-d2",
    "edc-las-vegas-2024:d1:basspod:0330:adventure-club",
    "edc-orlando-2019:d1:circuitgrounds:1725:adventure-club-b2b-bear-grillz-sunset",
+   "electric-forest-2012:d4:tripolee:1445:adventure-club",
    "escape-halloween-2024:d2:sewer-district:2300:adventure-club",
    "lollapalooza-2013:d2:perry-s:untimed:adventure-club",
    "lollapalooza-2016:d4:perry-s:1900:adventure-club",
    "nocturnal-wonderland-2022:d1:wolves-den:2100:adventure-club",
    "tomorrowland-2023:d2:youphoria:2300:adventure-club"
   ],
-  "firstSeen": "2013-08-03",
+  "firstSeen": "2012-07-01",
   "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
@@ -2303,7 +2307,6 @@
    "edc-orlando-2026:ecf3",
    "ultra-miami-2026:ul120",
    "dwp-2026:dwp-afrojack",
-   "tomorrowland-thailand-2026:tmlth-afrojack",
    "beyond-wonderland-socal-2013:d1:madhatter-s-castle:0030:afrojack",
    "edc-las-vegas-2025:d2:kinetic-field:2206:afrojack",
    "edc-orlando-2019:d2:kineticfield:2023:afrojack",
@@ -2324,7 +2327,7 @@
    "tomorrowland-2023:d6:the-library:2100:afrojack"
   ],
   "firstSeen": "2013-03-16",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -2346,6 +2349,21 @@
   ],
   "firstSeen": "2023-11-12",
   "lastSeen": "2024-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "afrolicious",
+  "name": "Afrolicious",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:tripolee:1830:afrolicious"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
   "photo": null,
   "links": []
  },
@@ -2486,7 +2504,6 @@
   "projects": [],
   "billings": [
    "dwp-2026:dwp-agents-of-time",
-   "tomorrowland-thailand-2026:tmlth-agents-of-time",
    "nocturnal-wonderland-2021:d2:owloch-grove:1930:agents-of-time",
    "tomorrowland-2017:d6:cda-presents-mosaic:1630:agents-of-time-live",
    "tomorrowland-2019:d2:atmosphere:1700:agents-of-time-live",
@@ -2494,7 +2511,7 @@
    "tomorrowland-2023:d1:freedom-by-bud:1630:agents-of-time-live"
   ],
   "firstSeen": "2017-07-30",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -2980,7 +2997,6 @@
   "billings": [
    "edc-orlando-2026:ecs3",
    "ultra-miami-2026:ul52",
-   "tomorrowland-thailand-2026:tmlth-alan-walker",
    "edc-las-vegas-2022:d1:kinetic-field:2331:alan-walker",
    "edc-orlando-2017:d2:kineticfield:1652:alan-walker",
    "edc-orlando-2021:d3:kinetic-field:2004:alan-walker",
@@ -2993,7 +3009,7 @@
    "tomorrowland-2022:d4:mainstage:2145:alan-walker"
   ],
   "firstSeen": "2017-07-30",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
  },
@@ -4247,7 +4263,6 @@
    "escape-halloween-2026:esc-alok-d2",
    "sunset-on-the-river-2027:sotr-alok",
    "dwp-2026:dwp-alok",
-   "tomorrowland-thailand-2026:tmlth-alok",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2155:alok",
    "edc-las-vegas-2022:d3:kinetic-field:2309:alok",
    "edc-las-vegas-2025:d1:kinetic-field:2100:alok",
@@ -4493,9 +4508,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2012:d2:tripolee:2000:alvin-risk",
    "lollapalooza-2013:d3:perry-s:1300:alvin-risk"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2012-06-29",
   "lastSeen": "2013-08-04",
   "photo": null,
   "links": []
@@ -4576,7 +4592,6 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-aly-and-fila-and-billy-gillies",
-   "tomorrowland-thailand-2026:tmlth-aly-and-fila",
    "beyond-wonderland-socal-2012:d1:queen-s-domain:2015:aly-and-fila",
    "dreamstate-socal-2016:d1:the-dream:2200:aly-and-fila",
    "dreamstate-socal-2019:d1:the-dream:0100:aly-and-fila",
@@ -4597,7 +4612,7 @@
    "tomorrowland-2022:d7:kara-savi:1930:aly-and-fila"
   ],
   "firstSeen": "2011-09-23",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
  },
@@ -4850,14 +4865,13 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-amber-broos-b2b-space-92",
    "tomorrowland-2022:d3:freedom:1630:amber-broos",
    "tomorrowland-2022:d6:freedom:1730:amber-broos",
    "tomorrowland-2023:d2:mainstage:1925:amber-broos",
    "tomorrowland-2023:d4:freedom-by-bud:1630:amber-broos"
   ],
   "firstSeen": "2022-07-17",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2023-07-28",
   "photo": null,
   "links": []
  },
@@ -5007,7 +5021,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-ameme-b2b-honeyluv",
    "edc-las-vegas-2025:d2:stereo-bloom:0145:ameme",
    "edc-las-vegas-2025:d3:ubuntu:2330:one-tribe-presents-ameme-b2b-baron",
    "edc-orlando-2024:d2:stereo-bloom:2015:ameme-b2b-honeyluv",
@@ -5015,7 +5028,7 @@
    "tomorrowland-2023:d4:core:1630:ameme"
   ],
   "firstSeen": "2023-07-22",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2025-05-18",
   "photo": null,
   "links": []
  },
@@ -5212,7 +5225,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-amy-wiles",
    "dreamstate-socal-2023:d2:the-dream:1600:amy-wiles",
    "dreamstate-socal-2025:d1:the-vision:1900:amy-wiles",
    "tomorrowland-2018:d1:garden-of-madness:1200:amy-wiles",
@@ -5220,7 +5232,7 @@
    "tomorrowland-2023:d5:crystal-garden:1500:amy-wiles-b2b-leena-punks"
   ],
   "firstSeen": "2018-07-20",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -5269,21 +5281,6 @@
   ],
   "firstSeen": "2026-06-19",
   "lastSeen": "2026-10-02",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "an-ka",
-  "name": "An!ka",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-anika"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -5345,6 +5342,21 @@
   ],
   "firstSeen": "2026-12-18",
   "lastSeen": "2026-12-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ana-sia",
+  "name": "Ana Sia",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:tripolee:2100:ana-sia"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
   "photo": null,
   "links": []
  },
@@ -5791,7 +5803,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-andromedik",
    "edc-las-vegas-2025:d1:basspod:1900:andromedik",
    "edc-orlando-2025:d2:circuitgrounds:1600:andromedik",
    "tomorrowland-2022:d1:rose-garden:1400:andromedik",
@@ -5800,7 +5811,7 @@
    "tomorrowland-2023:d6:mainstage:1530:andromedik"
   ],
   "firstSeen": "2022-07-15",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2025-11-08",
   "photo": null,
   "links": []
  },
@@ -6137,7 +6148,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-angemi",
    "tomorrowland-2017:d2:mainstage:1700:angemi",
    "tomorrowland-2017:d3:smash-the-house:1530:angemi",
    "tomorrowland-2018:d5:mainstage:1550:angemi",
@@ -6145,7 +6155,7 @@
    "tomorrowland-2022:d3:the-library:1900:angemi"
   ],
   "firstSeen": "2017-07-22",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2022-07-17",
   "photo": null,
   "links": []
  },
@@ -6619,7 +6629,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-apashe",
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:0030:apashe",
    "edc-las-vegas-2025:d1:basspod:2330:apashe",
    "edc-orlando-2025:d2:circuitgrounds:2000:apashe",
@@ -6627,7 +6636,7 @@
    "tomorrowland-2022:d1:rose-garden:1900:apashe"
   ],
   "firstSeen": "2017-07-22",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-06-27",
   "photo": null,
   "links": []
  },
@@ -7196,10 +7205,8 @@
  },
  {
   "key": "artbat",
-  "name": "Artbat",
-  "aliases": [
-   "ARTBAT"
-  ],
+  "name": "ARTBAT",
+  "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -7207,8 +7214,6 @@
    "ultra-miami-2026:ul118",
    "dreamstate-socal-2026:dssc-artbat",
    "dwp-2026:dwp-artbat",
-   "tomorrowland-thailand-2026:tmlth-artbat",
-   "tomorrowland-thailand-2026:tmlth-artbat-b2b-r3hab",
    "edc-las-vegas-2025:d3:kinetic-field:2200:artbat-b2b-morten",
    "edc-orlando-2019:d1:neongarden:1430:artbat",
    "escape-halloween-2021:d1:sewer-district:2230:artbat",
@@ -7218,7 +7223,7 @@
    "tomorrowland-2022:d9:mainstage:1940:artbat"
   ],
   "firstSeen": "2019-07-20",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -7235,21 +7240,6 @@
   ],
   "firstSeen": "2025-06-07",
   "lastSeen": "2025-08-03",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "arten",
-  "name": "Arten",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-arten"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -8244,10 +8234,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "beyond-wonderland-socal-2012:d1:caterpillars-garden:1930:autoerotique"
+   "beyond-wonderland-socal-2012:d1:caterpillars-garden:1930:autoerotique",
+   "electric-forest-2012:d2:tripolee:2115:autoerotique"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2012-03-17",
+  "lastSeen": "2012-06-29",
   "photo": null,
   "links": []
  },
@@ -9032,11 +9023,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2013:d2:tripolee:2100:baauer",
    "escape-halloween-2017:d2:chopping-block:2215:baauer",
    "escape-halloween-2021:d2:psycho-circus:1945:baauer",
    "lollapalooza-2017:d1:perry-s:1900:baauer"
   ],
-  "firstSeen": "2017-08-03",
+  "firstSeen": "2013-06-28",
   "lastSeen": "2021-10-30",
   "photo": null,
   "links": []
@@ -9606,6 +9598,21 @@
   ],
   "firstSeen": "2017-07-21",
   "lastSeen": "2017-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "balkan-beat-box",
+  "name": "Balkan Beat Box",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:sherwood-court:1900:balkan-beat-box"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
   "photo": null,
   "links": []
  },
@@ -10224,7 +10231,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-bassjackers",
    "beyond-wonderland-socal-2013:d1:queen-s-domain:1930:bassjackers",
    "nocturnal-wonderland-2011:d2:queen-s-grounds:1700:bassjackers",
    "nocturnal-wonderland-2012:d2:queen-s-grounds:2235:bassjackers",
@@ -10243,7 +10249,7 @@
    "tomorrowland-2023:d6:the-rose-garden:2300:bassjackers"
   ],
   "firstSeen": "2011-09-24",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2023-07-30",
   "photo": null,
   "links": []
  },
@@ -10257,9 +10263,10 @@
   "billings": [
    "acl-2015:d2:homeaway:1930:bassnectar",
    "acl-2015:d5:homeaway:1930:bassnectar",
+   "electric-forest-2012:d4:ranch-arena:2300:bassnectar",
    "lollapalooza-2015:d3:bud-light:2100:bassnectar"
   ],
-  "firstSeen": "2015-08-02",
+  "firstSeen": "2012-07-01",
   "lastSeen": "2015-10-10",
   "photo": null,
   "links": []
@@ -10695,6 +10702,21 @@
   "links": []
  },
  {
+  "key": "beard-o-bees",
+  "name": "Beard-o-Bees",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:forest-stage:1900:beard-o-bees"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bears-and-lions",
   "name": "Bears & Lions",
   "aliases": [],
@@ -10766,9 +10788,11 @@
   "projects": [],
   "billings": [
    "acl-2014:d2:sculpture:1830:beats-antique",
-   "acl-2014:d5:zilker:1830:beats-antique"
+   "acl-2014:d5:zilker:1830:beats-antique",
+   "electric-forest-2012:d1:sherwood-court:0030:beats-antique",
+   "electric-forest-2013:d4:sherwood-court:0015:beats-antique"
   ],
-  "firstSeen": "2014-10-04",
+  "firstSeen": "2012-06-28",
   "lastSeen": "2014-10-11",
   "photo": null,
   "links": []
@@ -11524,6 +11548,7 @@
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2055:benny-benassi",
    "edc-las-vegas-2024:d2:kinetic-field:2100:benny-benassi",
    "edc-orlando-2024:d1:kinetic-field:1853:oliver-heldens-b2b-benny-benassi",
+   "electric-forest-2013:d1:ranch-arena:0000:benny-benassi",
    "escape-halloween-2021:d2:the-grimm:2045:benny-benassi",
    "nocturnal-wonderland-2012:d2:labyrinth:2230:benny-benassi",
    "nocturnal-wonderland-2013:d1:labyrinth:0000:benny-benassi",
@@ -11704,6 +11729,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bestfriends",
+  "name": "Bestfriends",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:tripolee:1445:bestfriends"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
   "photo": null,
   "links": []
  },
@@ -11908,21 +11948,6 @@
   "links": []
  },
  {
-  "key": "bibi-seck",
-  "name": "Bibi Seck",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-bibi-seck"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
-  "photo": null,
-  "links": []
- },
- {
   "key": "bicep",
   "name": "Bicep",
   "aliases": [
@@ -12054,6 +12079,21 @@
   "links": []
  },
  {
+  "key": "big-freedia",
+  "name": "Big Freedia",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:tripolee:1845:big-freedia"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "big-gigantic",
   "name": "Big Gigantic",
   "aliases": [
@@ -12065,9 +12105,10 @@
   "billings": [
    "acl-2022:d1:tito-s-handmade-vodka:1800:big-gigantic",
    "acl-2022:d5:tito-s-handmade-vodka:1815:big-gigantic",
+   "electric-forest-2012:d4:sherwood-court:0030:big-gigantic",
    "lollapalooza-2016:d3:perry-s:1900:big-gigantic"
   ],
-  "firstSeen": "2016-07-30",
+  "firstSeen": "2012-07-01",
   "lastSeen": "2022-10-15",
   "photo": null,
   "links": []
@@ -13083,7 +13124,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-blastoyz-b2b-whiteno1se",
    "dreamstate-socal-2019:d2:the-sequence:2300:blastoyz",
    "edc-las-vegas-2024:d1:quantum-valley:0100:blastoyz",
    "edc-orlando-2023:d3:stereo-bloom:2300:blastoyz",
@@ -13093,25 +13133,22 @@
    "tomorrowland-2023:d4:youphoria:1945:blastoyz"
   ],
   "firstSeen": "2017-07-29",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2024-05-17",
   "photo": null,
   "links": []
  },
  {
   "key": "blazy",
-  "name": "Blazy",
-  "aliases": [
-   "BLAZY"
-  ],
+  "name": "BLAZY",
+  "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-blazy",
    "dreamstate-socal-2025:d1:the-sequence:1900:blazy"
   ],
   "firstSeen": "2025-11-21",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -14389,6 +14426,21 @@
   "links": []
  },
  {
+  "key": "boombox",
+  "name": "BoomBox",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:sherwood-court:1945:boombox"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "boombox-cartel",
   "name": "Boombox Cartel",
   "aliases": [
@@ -14466,11 +14518,12 @@
   "billings": [
    "lost-lands-2026:llf7",
    "edc-las-vegas-2022:d2:basspod:0230:borgore",
+   "electric-forest-2012:d1:ranch-arena:2030:borgore",
    "escape-halloween-2019:d1:psycho-circus:0000:borgore",
    "lollapalooza-2017:d4:perry-s:1745:borgore",
    "tomorrowland-2017:d4:dim-mak:1930:borgore"
   ],
-  "firstSeen": "2017-07-28",
+  "firstSeen": "2012-06-28",
   "lastSeen": "2026-09-18",
   "photo": null,
   "links": []
@@ -14658,21 +14711,6 @@
   ],
   "firstSeen": "2017-09-16",
   "lastSeen": "2017-09-16",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "botcash",
-  "name": "Botcash",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-botcash"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -15280,9 +15318,11 @@
   "projects": [],
   "billings": [
    "acl-2016:d3:tito-s-handmade-vodka:1530:break-science",
-   "acl-2016:d6:tito-s-handmade-vodka:1530:break-science"
+   "acl-2016:d6:tito-s-handmade-vodka:1530:break-science",
+   "electric-forest-2012:d2:sherwood-court:1845:break-science-featuring-chali-2na",
+   "electric-forest-2013:d2:sherwood-court:1900:break-science"
   ],
-  "firstSeen": "2016-10-02",
+  "firstSeen": "2012-06-29",
   "lastSeen": "2016-10-09",
   "photo": null,
   "links": []
@@ -15391,7 +15431,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-brennan-heart",
    "beyond-wonderland-socal-2026:d1:cheshire-woods:0000:brennan-heart",
    "escape-halloween-2025:d1:feeding-grounds:2300:brennan-heart",
    "tomorrowland-2017:d2:q-dance:2100:brennan-heart",
@@ -15406,7 +15445,7 @@
    "tomorrowland-2023:d6:the-library:2300:brennan-heart"
   ],
   "firstSeen": "2017-07-22",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
  },
@@ -15439,6 +15478,21 @@
   ],
   "firstSeen": "2023-07-30",
   "lastSeen": "2023-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "brenton-duvall",
+  "name": "Brenton Duvall",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:wagon-wheel:2100:brenton-duvall"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
   "photo": null,
   "links": []
  },
@@ -16073,6 +16127,21 @@
   ],
   "firstSeen": "2017-10-08",
   "lastSeen": "2017-10-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "brothers-past",
+  "name": "Brothers Past",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:tripolee:1615:brothers-past"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
   "photo": null,
   "links": []
  },
@@ -17146,7 +17215,6 @@
   "projects": [],
   "billings": [
    "edc-thailand-2026:edcth-camelphat",
-   "tomorrowland-thailand-2026:tmlth-camelphat",
    "edc-orlando-2019:d3:neongarden:1700:camelphat",
    "edc-orlando-2022:d1:neon-garden:2100:camelphat",
    "lollapalooza-2019:d4:perry-s:untimed:camelphat",
@@ -17205,21 +17273,6 @@
   ],
   "firstSeen": "2018-10-07",
   "lastSeen": "2018-10-07",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "camila-jun",
-  "name": "Camila Jun",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-camila-jun"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -17459,7 +17512,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-capoon",
    "tomorrowland-2018:d5:garden-of-madness:1500:capoon",
    "tomorrowland-2022:d2:core:1300:capoon",
    "tomorrowland-2022:d8:core:1600:capoon",
@@ -17467,7 +17519,7 @@
    "tomorrowland-2023:d5:core:1530:capoon"
   ],
   "firstSeen": "2018-07-28",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-29",
   "photo": null,
   "links": []
  },
@@ -17875,21 +17927,6 @@
   ],
   "firstSeen": "2022-10-07",
   "lastSeen": "2022-10-07",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "carly-wilford",
-  "name": "Carly Wilford",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-carly-wilford"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -18697,6 +18734,24 @@
   "links": []
  },
  {
+  "key": "cello-joe",
+  "name": "Cello Joe",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:the-observatory:0115:cello-joe",
+   "electric-forest-2013:d2:the-observatory:2245:cello-joe",
+   "electric-forest-2013:d3:the-observatory:2045:cello-joe",
+   "electric-forest-2013:d4:the-observatory:1830:cello-joe"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "celo",
   "name": "Celo",
   "aliases": [
@@ -18902,6 +18957,21 @@
   ],
   "firstSeen": "2016-07-30",
   "lastSeen": "2016-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chali-2na",
+  "name": "Chali 2na",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:sherwood-court:1845:break-science-featuring-chali-2na"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
   "photo": null,
   "links": []
  },
@@ -19941,10 +20011,11 @@
    "acl-2013:d5:bmi:1830:cherub",
    "acl-2015:d1:miller-lite:1500:cherub",
    "acl-2015:d4:miller-lite:1500:cherub",
+   "electric-forest-2012:d2:tripolee:1500:cherub",
    "lollapalooza-2013:d2:perry-s:untimed:cherub",
    "lollapalooza-2016:d2:bud-light:1645:cherub"
   ],
-  "firstSeen": "2013-08-03",
+  "firstSeen": "2012-06-29",
   "lastSeen": "2016-07-29",
   "photo": null,
   "links": []
@@ -20659,6 +20730,21 @@
   "links": []
  },
  {
+  "key": "christian-rich",
+  "name": "Christian Rich",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:forest-stage:1745:christian-rich"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "christian82",
   "name": "Christian82",
   "aliases": [],
@@ -20781,6 +20867,21 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chromatics",
+  "name": "Chromatics",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:tripolee:1730:chromatics"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
   "photo": null,
   "links": []
  },
@@ -21395,21 +21496,6 @@
   "links": []
  },
  {
-  "key": "claudine",
-  "name": "CLAUDINE",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-claudine"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
-  "photo": null,
-  "links": []
- },
- {
   "key": "clawz",
   "name": "Clawz",
   "aliases": [
@@ -21549,6 +21635,21 @@
   ],
   "firstSeen": "2018-07-22",
   "lastSeen": "2018-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "clockwork",
+  "name": "Clockwork",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:tripolee:2215:clockwork"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
   "photo": null,
   "links": []
  },
@@ -21852,21 +21953,6 @@
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2025-11-09",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "coco-bevan",
-  "name": "Coco Bevan",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-coco-bevan"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -22281,6 +22367,22 @@
   "links": []
  },
  {
+  "key": "collaboraction",
+  "name": "Collaboraction",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:forest-stage:2215:collaboraction",
+   "electric-forest-2012:d2:forest-stage:1400:collaboraction"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "collider-live",
   "name": "Collider Live",
   "aliases": [],
@@ -22495,6 +22597,21 @@
   "links": []
  },
  {
+  "key": "congo-sanchez",
+  "name": "Congo Sanchez",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:tripolee:1800:congo-sanchez"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "connan-mockasin",
   "name": "Connan Mockasin",
   "aliases": [],
@@ -22617,6 +22734,21 @@
   ],
   "firstSeen": "2017-07-21",
   "lastSeen": "2019-07-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "conspirator",
+  "name": "Conspirator",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:sherwood-court:2100:conspirator"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
   "photo": null,
   "links": []
  },
@@ -22975,6 +23107,21 @@
   "links": []
  },
  {
+  "key": "cosby-sweater",
+  "name": "Cosby Sweater",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:forest-stage:1745:cosby-sweater-ft-joel-cummins"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cosmic",
   "name": "Cosmic",
   "aliases": [
@@ -23005,7 +23152,6 @@
   "billings": [
    "edc-lv-2026:q6",
    "dwp-2026:dwp-cosmic-gate",
-   "tomorrowland-thailand-2026:tmlth-cosmic-gate",
    "dreamstate-socal-2016:d1:the-dream:0000:cosmic-gate",
    "dreamstate-socal-2023:d2:the-dream:2000:cosmic-gate",
    "edc-las-vegas-2022:d1:quantum-valley:0215:cosmic-gate",
@@ -23362,9 +23508,10 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls13",
-   "edc-las-vegas-2022:d3:cosmic-meadow:0330:a-trak-b2b-craze"
+   "edc-las-vegas-2022:d3:cosmic-meadow:0330:a-trak-b2b-craze",
+   "electric-forest-2013:d3:tripolee:2000:craze"
   ],
-  "firstSeen": "2022-05-22",
+  "firstSeen": "2013-06-29",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -23552,6 +23699,7 @@
    "beyond-wonderland-socal-2013:d1:chess-village:2200:crizzly",
    "beyond-wonderland-socal-2013:d1:discovery-project:0000:crizzly",
    "edc-orlando-2017:d1:circuitgrounds:1900:crizzly",
+   "electric-forest-2012:d2:wagon-wheel:0315:crizzly",
    "lollapalooza-2014:d3:perry-s:1400:crizzly",
    "lollapalooza-2019:d3:tito-s-handmade-vodka:untimed:crizzly",
    "nocturnal-wonderland-2012:d2:sunken-garden:2045:crizzly"
@@ -24426,7 +24574,6 @@
    "edc-lv-2026:w17",
    "ultra-miami-2026:ul97",
    "edc-thailand-2026:edcth-da-tweekaz",
-   "tomorrowland-thailand-2026:tmlth-da-tweekaz",
    "edc-las-vegas-2022:d2:wasteland:0030:da-tweekaz",
    "edc-las-vegas-2024:d3:wasteland:0130:da-tweekaz",
    "edc-las-vegas-2025:d3:wasteland:0130:da-tweekaz",
@@ -24519,10 +24666,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2012:d3:tripolee:0015:dada-life",
    "lollapalooza-2013:d2:perry-s:untimed:dada-life",
    "tomorrowland-2022:d3:rose-garden:1900:dada-life"
   ],
-  "firstSeen": "2013-08-03",
+  "firstSeen": "2012-06-30",
   "lastSeen": "2022-07-17",
   "photo": null,
   "links": []
@@ -24544,21 +24692,6 @@
   ],
   "firstSeen": "2018-07-28",
   "lastSeen": "2023-07-30",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "dadoo",
-  "name": "DaDoo",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-dadoo"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -25123,9 +25256,10 @@
    "iii-points-2026:iiip-danny-brown",
    "acl-2017:d3:honda:1415:danny-brown",
    "acl-2017:d6:honda:untimed:danny-brown",
+   "electric-forest-2013:d3:tripolee:0045:danny-brown",
    "lollapalooza-2016:d1:petrillo-bandshell:1600:danny-brown"
   ],
-  "firstSeen": "2016-07-28",
+  "firstSeen": "2013-06-29",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -25604,6 +25738,21 @@
   "links": []
  },
  {
+  "key": "das-racist",
+  "name": "Das Racist",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:tripolee:2000:das-racist"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dash-berlin",
   "name": "Dash Berlin",
   "aliases": [],
@@ -25662,10 +25811,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2012:d2:tripolee:0100:datsik",
    "escape-halloween-2017:d1:ghouls-graveyard:0000:datsik",
    "nocturnal-wonderland-2013:d1:queen-s-grounds:0100:datsik"
   ],
-  "firstSeen": "2013-09-21",
+  "firstSeen": "2012-06-29",
   "lastSeen": "2017-10-27",
   "photo": null,
   "links": []
@@ -27376,6 +27526,22 @@
   "links": []
  },
  {
+  "key": "delhi-2-dublin",
+  "name": "Delhi 2 Dublin",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:forest-stage:1830:delhi-2-dublin",
+   "electric-forest-2013:d4:the-observatory:0000:delhi-2-dublin"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "delta-heavy",
   "name": "Delta Heavy",
   "aliases": [],
@@ -27666,21 +27832,6 @@
   ],
   "firstSeen": "2018-07-22",
   "lastSeen": "2026-11-07",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "dennis-gold",
-  "name": "Dennis Gold",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-dennis-gold"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -28490,6 +28641,21 @@
   "links": []
  },
  {
+  "key": "digital-tape-machine",
+  "name": "Digital Tape Machine",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:sherwood-court:2100:digital-tape-machine-ft-joel-cummins-and-kris-myers-of-umphrey-s-mcgee"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "diiv",
   "name": "DIIV",
   "aliases": [],
@@ -28691,7 +28857,6 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-dimitri-vegas-and-like-mike-d1",
-   "tomorrowland-thailand-2026:tmlth-dimitri-vegas-and-like-mike",
    "beyond-wonderland-socal-2012:d1:caterpillars-garden:1830:dimitri-vegas-and-like-mike",
    "edc-orlando-2017:d2:kineticfield:2002:dimitri-vegas-and-like-mike",
    "nocturnal-wonderland-2012:d2:queen-s-grounds:1730:dimitri-vegas-and-like-mike",
@@ -28715,7 +28880,7 @@
    "tomorrowland-2023:d5:mainstage:2235:dimitri-vegas-and-like-mike"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -28762,7 +28927,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-dino-lenny",
    "tomorrowland-2017:d6:cda-presents-mosaic:1530:dino-lenny",
    "tomorrowland-2018:d6:youphoria:1430:dino-lenny",
    "tomorrowland-2019:d6:core:1630:dino-lenny",
@@ -28772,7 +28936,7 @@
    "tomorrowland-2023:d4:core:1800:dino-lenny"
   ],
   "firstSeen": "2017-07-30",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-28",
   "photo": null,
   "links": []
  },
@@ -29259,6 +29423,21 @@
   "links": []
  },
  {
+  "key": "dispatch",
+  "name": "Dispatch",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:ranch-arena:1945:dispatch"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "distant-matter",
   "name": "Distant Matter",
   "aliases": [],
@@ -29435,6 +29614,24 @@
   ],
   "firstSeen": "2017-07-23",
   "lastSeen": "2024-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dixon-s-violin",
+  "name": "Dixon's Violin",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:forest-stage:1900:dixon-s-violin",
+   "electric-forest-2012:d3:forest-stage:1730:dixon-s-violin",
+   "electric-forest-2013:d1:the-observatory:1715:dixon-s-violin",
+   "electric-forest-2013:d4:the-observatory:0115:dixon-s-violin"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -29647,21 +29844,17 @@
  },
  {
   "key": "dj-boring",
-  "name": "DJ Boring",
-  "aliases": [
-   "DJ BORING"
-  ],
+  "name": "DJ BORING",
+  "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-dj-boring",
-   "tomorrowland-thailand-2026:tmlth-dj-boring-b2b-luuk-van-dijk",
    "tomorrowland-2022:d8:core:1800:dj-boring",
    "tomorrowland-2023:d3:core:2230:dj-boring"
   ],
   "firstSeen": "2022-07-30",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2023-07-23",
   "photo": null,
   "links": []
  },
@@ -30626,8 +30819,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-dj-licious-d1",
-   "tomorrowland-thailand-2026:tmlth-dj-licious-d2",
    "tomorrowland-2017:d6:potion:1330:dj-licious",
    "tomorrowland-2018:d4:garden-of-madness:1530:dj-licious",
    "tomorrowland-2019:d2:mainstage:1450:dj-licious",
@@ -30641,7 +30832,7 @@
    "tomorrowland-2023:d6:terra-solis:1600:dj-licious"
   ],
   "firstSeen": "2017-07-30",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2023-07-30",
   "photo": null,
   "links": []
  },
@@ -31078,21 +31269,6 @@
   "links": []
  },
  {
-  "key": "dj-sally",
-  "name": "DJ Sally",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-dj-sally"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
-  "photo": null,
-  "links": []
- },
- {
   "key": "dj-security",
   "name": "DJ Security",
   "aliases": [],
@@ -31222,6 +31398,22 @@
   "links": []
  },
  {
+  "key": "dj-solo",
+  "name": "DJ SOLO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:wagon-wheel:2100:dj-solo",
+   "electric-forest-2012:d4:forest-stage:1730:dj-solo"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-some",
   "name": "Dj SOME",
   "aliases": [],
@@ -31294,14 +31486,13 @@
    "edc-lv-2026:n3",
    "edc-lv-2026:b21",
    "escape-halloween-2026:esc-dj-tennis-d1",
-   "tomorrowland-thailand-2026:tmlth-dj-tennis",
    "edc-orlando-2019:d1:neongarden:1800:tiga-b2b-dj-tennis",
    "escape-halloween-2017:d2:cannibals-tea-party:2000:dj-tennis",
    "tomorrowland-2022:d7:core:2100:dj-tennis",
    "tomorrowland-2023:d6:core:2000:dj-tennis"
   ],
   "firstSeen": "2017-10-28",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -31976,6 +32167,21 @@
   "links": []
  },
  {
+  "key": "doldrums",
+  "name": "Doldrums",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:tripolee:1715:doldrums"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dolf",
   "name": "DOLF",
   "aliases": [],
@@ -32416,6 +32622,21 @@
   ],
   "firstSeen": "2022-11-12",
   "lastSeen": "2025-10-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dopapod",
+  "name": "Dopapod",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:forest-stage:1445:dopapod"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -33102,6 +33323,21 @@
   "links": []
  },
  {
+  "key": "drfameus",
+  "name": "DrFameus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:wagon-wheel:2330:drfameus"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "drigao-and-iamgunz",
   "name": "DRIGAO & IAMGUNZ",
   "aliases": [],
@@ -33496,14 +33732,13 @@
    "metafo4r"
   ],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-dubvision",
    "tomorrowland-2018:d1:youphoria:1500:dubvision",
    "tomorrowland-2019:d1:lotus:1615:dubvision-b2b-raiden",
    "tomorrowland-2022:d4:the-library:1700:dubvision",
    "tomorrowland-2023:d2:the-library:1930:dubvision"
   ],
   "firstSeen": "2018-07-20",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2023-07-22",
   "photo": null,
   "links": []
  },
@@ -33646,6 +33881,22 @@
   ],
   "firstSeen": "2014-08-02",
   "lastSeen": "2026-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dumptruck-butterlips",
+  "name": "Dumptruck Butterlips",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:forest-stage:2000:dumptruck-butterlips",
+   "electric-forest-2012:d3:forest-stage:1530:dumptruck-butterlips"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-30",
   "photo": null,
   "links": []
  },
@@ -33811,6 +34062,23 @@
   "links": []
  },
  {
+  "key": "dustin-thomas",
+  "name": "Dustin Thomas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:forest-stage:1630:dustin-thomas",
+   "electric-forest-2013:d2:the-observatory:2115:dustin-thomas",
+   "electric-forest-2013:d3:the-observatory:0130:dustin-thomas"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dustycloud",
   "name": "Dustycloud",
   "aliases": [],
@@ -33864,13 +34132,13 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-dvbbs",
+   "electric-forest-2013:d3:forest-stage:2145:dvbbs",
    "lollapalooza-2017:d4:perry-s:1900:dvbbs",
    "tomorrowland-2017:d1:super-you-and-me:2000:dvbbs",
    "tomorrowland-2017:d6:smash-the-house:2300:dvbbs"
   ],
-  "firstSeen": "2017-07-21",
-  "lastSeen": "2026-12-12",
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2017-08-06",
   "photo": null,
   "links": []
  },
@@ -34738,6 +35006,21 @@
   "links": []
  },
  {
+  "key": "eelrack",
+  "name": "Eelrack",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:tripolee:1945:eelrack"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "eera",
   "name": "EERA",
   "aliases": [],
@@ -35123,6 +35406,21 @@
   "links": []
  },
  {
+  "key": "elephant-revival",
+  "name": "Elephant Revival",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d4:sherwood-court:1415:elephant-revival"
+  ],
+  "firstSeen": "2012-07-01",
+  "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "elephante",
   "name": "Elephante",
   "aliases": [],
@@ -35156,21 +35454,6 @@
   "links": []
  },
  {
-  "key": "elfigo",
-  "name": "Elfigo",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-elfigo"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
-  "photo": null,
-  "links": []
- },
- {
   "key": "eli-and-fur",
   "name": "Eli & Fur",
   "aliases": [
@@ -35183,7 +35466,6 @@
    "edc-lv-2026:q25",
    "arc-2026:arc-eli-and-fur-b2b-cristoph-midway-d1",
    "dwp-2026:dwp-eli-and-fur",
-   "tomorrowland-thailand-2026:tmlth-eli-and-fur-b2b-yotto",
    "dreamstate-socal-2025:d2:the-dream:1840:eli-and-fur",
    "nocturnal-wonderland-2018:d1:sunken-garden:2330:eli-and-fur",
    "nocturnal-wonderland-2021:d2:owloch-grove:2230:eli-and-fur",
@@ -35363,6 +35645,21 @@
   ],
   "firstSeen": "2022-09-17",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "eliot-lipp",
+  "name": "Eliot Lipp",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:tripolee:1815:eliot-lipp"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -35699,6 +35996,21 @@
   "links": []
  },
  {
+  "key": "emancipator",
+  "name": "Emancipator",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:sherwood-court:2045:emancipator"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "emei",
   "name": "Emei",
   "aliases": [
@@ -36000,9 +36312,10 @@
    "lollapalooza-2026:lo9",
    "outside-lands-2026:os100",
    "acl-2025:d1:miller-lite:1900:empire-of-the-sun",
-   "acl-2025:d4:miller-lite:1900:empire-of-the-sun"
+   "acl-2025:d4:miller-lite:1900:empire-of-the-sun",
+   "electric-forest-2013:d3:ranch-arena:0045:empire-of-the-sun"
   ],
-  "firstSeen": "2025-10-03",
+  "firstSeen": "2013-06-29",
   "lastSeen": "2026-08-09",
   "photo": null,
   "links": []
@@ -36149,6 +36462,22 @@
   ],
   "firstSeen": "2018-07-20",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "eoto",
+  "name": "EOTO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:sherwood-court:2245:eoto",
+   "electric-forest-2013:d1:sherwood-court:2245:eoto"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2013-06-27",
   "photo": null,
   "links": []
  },
@@ -36412,6 +36741,21 @@
   ],
   "firstSeen": "2021-10-03",
   "lastSeen": "2021-10-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "eskmo",
+  "name": "Eskmo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:tripolee:1930:eskmo"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -37826,10 +38170,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "beyond-wonderland-socal-2012:d1:caterpillars-garden:2200:felix-cartal"
+   "beyond-wonderland-socal-2012:d1:caterpillars-garden:2200:felix-cartal",
+   "electric-forest-2012:d2:tripolee:2230:felix-cartal"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2012-03-17",
+  "lastSeen": "2012-06-29",
   "photo": null,
   "links": []
  },
@@ -37911,6 +38256,21 @@
   "links": []
  },
  {
+  "key": "femi-kuti-and-the-positive-force",
+  "name": "Femi Kuti and the Positive Force",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:ranch-arena:1645:femi-kuti-and-the-positive-force"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fenky",
   "name": "Fenky",
   "aliases": [],
@@ -37987,8 +38347,6 @@
   ],
   "billings": [
    "dreamstate-socal-2026:dssc-ferry-corsten-and-marsh",
-   "tomorrowland-thailand-2026:tmlth-ferry-corsten",
-   "tomorrowland-thailand-2026:tmlth-ferry-corsten-b2b-marsh",
    "dreamstate-socal-2019:d1:the-dream:0000:ferry-corsten",
    "dreamstate-socal-2023:d2:the-dream:2100:ferry-corsten",
    "dreamstate-socal-2025:d2:the-dream:1940:ferry-corsten",
@@ -38001,7 +38359,7 @@
    "tomorrowland-2019:d5:kara-savi:1800:ferry-corsten"
   ],
   "firstSeen": "2017-07-21",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
  },
@@ -38361,7 +38719,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-firaga",
    "tomorrowland-2017:d5:b2b:1900:firaga",
    "tomorrowland-2019:d3:kara-savi:1230:firaga",
    "tomorrowland-2019:d5:l-orangerie:1930:firaga",
@@ -38370,7 +38727,7 @@
    "tomorrowland-2023:d4:youphoria:1430:firaga"
   ],
   "firstSeen": "2017-07-29",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2023-07-28",
   "photo": null,
   "links": []
  },
@@ -39216,16 +39573,16 @@
   "billings": [
    "lost-lands-2026:lls21",
    "countdown-nye-2026:cdny-flosstradamus",
-   "tomorrowland-thailand-2026:tmlth-flosstradamus-b2b-yellow-claw",
    "acl-2015:d1:miller-lite:1900:flosstradamus",
    "acl-2015:d4:miller-lite:1900:flosstradamus",
+   "electric-forest-2013:d3:tripolee:2330:flosstradamus",
    "escape-halloween-2017:d1:ghouls-graveyard:0100:flosstradamus",
    "escape-halloween-2022:d2:feeding-grounds:2245:flosstradamus",
    "lollapalooza-2014:d3:perry-s:1730:flosstradamus",
    "lollapalooza-2016:d1:perry-s:2030:flosstradamus",
    "nocturnal-wonderland-2021:d1:labyrinth:2300:flosstradamus"
   ],
-  "firstSeen": "2014-08-03",
+  "firstSeen": "2013-06-29",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -39900,6 +40257,21 @@
   "links": []
  },
  {
+  "key": "frank-mitchell-jr",
+  "name": "Frank Mitchell Jr.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:tripolee:2030:funk-ark-ft-frank-mitchell-jr"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "frank-turner-and-the-sleeping-souls",
   "name": "Frank Turner & The Sleeping Souls",
   "aliases": [],
@@ -39928,6 +40300,21 @@
   ],
   "firstSeen": "2017-07-30",
   "lastSeen": "2026-03-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "franki-chan",
+  "name": "Franki Chan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:tripolee:1430:franki-chan"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
   "photo": null,
   "links": []
  },
@@ -40690,6 +41077,21 @@
   "links": []
  },
  {
+  "key": "fruit-bats",
+  "name": "Fruit Bats",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:sherwood-court:1430:fruit-bats"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fuga",
   "name": "Fuga",
   "aliases": [],
@@ -40769,6 +41171,21 @@
   "links": []
  },
  {
+  "key": "funk-ark",
+  "name": "Funk Ark",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:tripolee:2030:funk-ark-ft-frank-mitchell-jr"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "funk-assault",
   "name": "Funk Assault",
   "aliases": [],
@@ -40813,7 +41230,6 @@
    "edc-lv-2026:k22",
    "edc-thailand-2026:edcth-funk-tribu",
    "edc-thailand-2026:edcth-afem-syko-b2b-funk-tribu",
-   "tomorrowland-thailand-2026:tmlth-funk-tribu",
    "dreamstate-socal-2024:d1:the-void:1900:funk-tribu",
    "edc-las-vegas-2025:d2:quantum-valley:0030:funk-tribu",
    "edc-las-vegas-2025:d3:neon-garden:0000:funk-tribu-b2b-tta",
@@ -41059,6 +41475,21 @@
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2022-05-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "future-rock",
+  "name": "Future Rock",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:sherwood-court:1900:future-rock"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -41640,10 +42071,11 @@
    "acl-2015:d4:homeaway:1900:gary-clark-jr",
    "acl-2019:d2:american-express:1800:gary-clark-jr",
    "acl-2019:d5:american-express:1800:gary-clark-jr",
+   "electric-forest-2012:d2:ranch-arena:1515:gary-clark-jr",
    "lollapalooza-2015:d1:sprint:1845:gary-clark-jr",
    "lollapalooza-2019:d3:t-mobile:untimed:gary-clark-jr"
   ],
-  "firstSeen": "2015-07-31",
+  "firstSeen": "2012-06-29",
   "lastSeen": "2019-10-12",
   "photo": null,
   "links": []
@@ -42442,11 +42874,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-ghost-rider",
    "tomorrowland-2022:d4:kara-savi:2345:ghost-rider"
   ],
   "firstSeen": "2022-07-22",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2022-07-22",
   "photo": null,
   "links": []
  },
@@ -42477,6 +42908,21 @@
   "billings": [],
   "firstSeen": null,
   "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ghostland-observatory",
+  "name": "Ghostland Observatory",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:ranch-arena:0000:ghostland-observatory"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
   "photo": null,
   "links": []
  },
@@ -42743,6 +43189,21 @@
   "links": []
  },
  {
+  "key": "girl-talk",
+  "name": "Girl Talk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:ranch-arena:0045:girl-talk"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "girl-tones",
   "name": "GIRL TONES",
   "aliases": [],
@@ -43003,6 +43464,21 @@
   ],
   "firstSeen": "2024-10-06",
   "lastSeen": "2025-07-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "glass-candy",
+  "name": "Glass Candy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:tripolee:2115:glass-candy"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
   "photo": null,
   "links": []
  },
@@ -43428,20 +43904,18 @@
   "key": "goldfish",
   "name": "GoldFish",
   "aliases": [
-   "Goldfish",
    "GOLDFISH"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-goldfish",
    "acl-2017:d3:tito-s-handmade-vodka:1615:goldfish",
    "acl-2017:d6:tito-s-handmade-vodka:untimed:goldfish",
    "nocturnal-wonderland-2017:d1:labyrinth:2105:goldfish"
   ],
   "firstSeen": "2017-09-15",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2017-10-15",
   "photo": null,
   "links": []
  },
@@ -44161,10 +44635,11 @@
   "billings": [
    "acl-2014:d3:miller-lite:1500:gramatik",
    "acl-2014:d6:miller-lite:1500:gramatik",
+   "electric-forest-2012:d4:tripolee:1830:gramatik",
    "lollapalooza-2014:d2:perry-s:1630:gramatik",
    "lollapalooza-2017:d2:perry-s:1915:gramatik"
   ],
-  "firstSeen": "2014-08-02",
+  "firstSeen": "2012-07-01",
   "lastSeen": "2017-08-04",
   "photo": null,
   "links": []
@@ -44402,9 +44877,10 @@
   "projects": [],
   "billings": [
    "acl-2013:d2:zilker-tent:1730:greensky-bluegrass",
-   "acl-2013:d5:zilker-tent:1730:greensky-bluegrass"
+   "acl-2013:d5:zilker-tent:1730:greensky-bluegrass",
+   "electric-forest-2013:d4:ranch-arena:1500:greensky-bluegrass"
   ],
-  "firstSeen": "2013-10-05",
+  "firstSeen": "2013-06-30",
   "lastSeen": "2013-10-12",
   "photo": null,
   "links": []
@@ -44672,11 +45148,27 @@
    "acl-2019:d3:t-mobile:1900:griz",
    "acl-2019:d6:t-mobile:1900:griz",
    "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:0100:griz",
+   "electric-forest-2012:d2:wagon-wheel:2215:griz",
    "lollapalooza-2013:d2:perry-s:untimed:griz",
    "lollapalooza-2016:d2:perry-s:1915:griz"
   ],
-  "firstSeen": "2013-08-03",
+  "firstSeen": "2012-06-29",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "grizmatik",
+  "name": "GrizMatik",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:sherwood-court:2100:grizmatik-w-special-guests"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
   "photo": null,
   "links": []
  },
@@ -45639,23 +46131,19 @@
  },
  {
   "key": "halo",
-  "name": "Halo",
+  "name": "HALO",
   "aliases": [
-   "HALO",
-   "HALÕ",
-   "HALŌ"
+   "HALÕ"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul49",
-   "dwp-2026:dwp-halo",
-   "tomorrowland-thailand-2026:tmlth-halo-d1",
-   "tomorrowland-thailand-2026:tmlth-halo-d3"
+   "dwp-2026:dwp-halo"
   ],
   "firstSeen": "2026-03-28",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -45852,7 +46340,6 @@
    "hard-summer-2026:hs1-hannah-laing",
    "dreamstate-socal-2026:dssc-hannah-laing-and-marie-vaunt",
    "edc-thailand-2026:edcth-hannah-laing",
-   "tomorrowland-thailand-2026:tmlth-hannah-laing",
    "edc-las-vegas-2024:d2:stereo-bloom:2100:hannah-laing",
    "edc-las-vegas-2024:d2:rynobus:2300:hannah-laing",
    "edc-las-vegas-2025:d2:quantum-valley:2330:hannah-laing",
@@ -46454,10 +46941,11 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d3:wasteland:0130:headhunterz",
+   "electric-forest-2013:d1:tripolee:0045:headhunterz",
    "escape-halloween-2019:d1:sanitarium:2300:headhunterz",
    "tomorrowland-2022:d1:the-library:0000:headhunterz"
   ],
-  "firstSeen": "2019-10-25",
+  "firstSeen": "2013-06-27",
   "lastSeen": "2022-07-15",
   "photo": null,
   "links": []
@@ -46685,6 +47173,21 @@
   "links": []
  },
  {
+  "key": "helicopter-showdown",
+  "name": "Helicopter Showdown",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:tripolee:1715:helicopter-showdown"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hell-on-heels",
   "name": "Hell On Heels",
   "aliases": [],
@@ -46760,21 +47263,6 @@
   "links": []
  },
  {
-  "key": "henri-bergmann",
-  "name": "Henri Bergmann",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-henri-bergmann"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
-  "photo": null,
-  "links": []
- },
- {
   "key": "henri-pfr",
   "name": "Henri PFR",
   "aliases": [],
@@ -46782,7 +47270,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-henri-pfr",
    "tomorrowland-2017:d2:mainstage:1600:henri-pfr",
    "tomorrowland-2017:d5:lost-frequencies-and-friends:1800:henri-pfr",
    "tomorrowland-2018:d3:freedom-stage-by-budweiser:1530:henri-pfr",
@@ -46794,7 +47281,7 @@
    "tomorrowland-2023:d4:the-library:1900:henri-pfr"
   ],
   "firstSeen": "2017-07-22",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2023-07-28",
   "photo": null,
   "links": []
  },
@@ -47590,6 +48077,21 @@
   "links": []
  },
  {
+  "key": "holy-ghost",
+  "name": "Holy Ghost!",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:sherwood-court:2300:holy-ghost"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "holy-goof",
   "name": "Holy Goof",
   "aliases": [],
@@ -47708,32 +48210,15 @@
   "links": []
  },
  {
-  "key": "honey-gee",
-  "name": "Honey Gee",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-honey-gee"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
-  "photo": null,
-  "links": []
- },
- {
   "key": "honeyluv",
   "name": "HoneyLuv",
   "aliases": [
-   "HONEYLUV",
-   "Honeyluv"
+   "HONEYLUV"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-ameme-b2b-honeyluv",
    "edc-las-vegas-2022:d2:stereo-bloom:2100:honeyluv",
    "edc-las-vegas-2024:d3:stereo-bloom:0145:honeyluv",
    "edc-orlando-2023:d2:stereo-bloom:1830:honeyluv",
@@ -47743,7 +48228,7 @@
    "tomorrowland-2023:d1:crystal-garden:1500:honeyluv"
   ],
   "firstSeen": "2022-05-21",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2024-11-09",
   "photo": null,
   "links": []
  },
@@ -48068,6 +48553,21 @@
   "links": []
  },
  {
+  "key": "hottub",
+  "name": "HOTTUB",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:tripolee:1500:hottub"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "houndmouth",
   "name": "Houndmouth",
   "aliases": [],
@@ -48299,6 +48799,21 @@
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2022-05-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "human-agency",
+  "name": "Human Agency",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:wagon-wheel:2330:human-agency"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
   "photo": null,
   "links": []
  },
@@ -48577,11 +49092,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-hyalyte",
    "tomorrowland-2023:d1:elixir:1930:hyalyte"
   ],
   "firstSeen": "2023-07-21",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2023-07-21",
   "photo": null,
   "links": []
  },
@@ -48863,7 +49377,6 @@
    "escape-halloween-2026:esc-ian-asher-d2",
    "lights-all-night-2026:lan-ian-asher",
    "dwp-2026:dwp-ian-asher",
-   "tomorrowland-thailand-2026:tmlth-ian-asher",
    "beyond-wonderland-socal-2026:d1:queen-s-domain:1740:ian-asher",
    "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1500:ian-asher-b2b-wuki"
   ],
@@ -49512,7 +50025,6 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-infected-mushroom",
-   "tomorrowland-thailand-2026:tmlth-infected-mushroom",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:2300:infected-mushroom",
    "dreamstate-socal-2016:d1:the-sequence:0000:infected-mushroom-psytrance-dj-set",
    "dreamstate-socal-2023:d1:the-sequence:0000:infected-mushroom",
@@ -49523,7 +50035,7 @@
    "tomorrowland-2022:d9:youphoria:2230:infected-mushroom"
   ],
   "firstSeen": "2016-11-25",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
  },
@@ -49850,6 +50362,21 @@
   ],
   "firstSeen": "2026-12-31",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "inspired-flight",
+  "name": "Inspired Flight",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d4:forest-stage:1845:inspired-flight"
+  ],
+  "firstSeen": "2012-07-01",
+  "lastSeen": "2012-07-01",
   "photo": null,
   "links": []
  },
@@ -50183,6 +50710,21 @@
   "links": []
  },
  {
+  "key": "ivan-neville-s-dumpstaphunk",
+  "name": "Ivan Neville's Dumpstaphunk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d4:sherwood-court:1745:ivan-neville-s-dumpstaphunk"
+  ],
+  "firstSeen": "2012-07-01",
+  "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ivarr",
   "name": "Ivarr",
   "aliases": [],
@@ -50397,21 +50939,6 @@
   ],
   "firstSeen": "2019-08-04",
   "lastSeen": "2019-08-04",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "j-nana",
-  "name": "J-Nana",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-j-nana"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -51570,16 +52097,13 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-jan-v-d1",
-   "tomorrowland-thailand-2026:tmlth-jan-v-d2",
-   "tomorrowland-thailand-2026:tmlth-jan-v-d3",
    "tomorrowland-2019:d3:moose-bar:2200:jan-v",
    "tomorrowland-2022:d2:moosebar:1200:jan-v",
    "tomorrowland-2022:d7:moosebar:2000:jan-v",
    "tomorrowland-2023:d2:moosebar:1200:thierry-vonderwarth-b2b-jan-v"
   ],
   "firstSeen": "2019-07-21",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-22",
   "photo": null,
   "links": []
  },
@@ -52490,6 +53014,21 @@
   "links": []
  },
  {
+  "key": "jeff-austin-and-friends",
+  "name": "Jeff Austin & Friends",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:ranch-arena:1545:jeff-austin-and-friends"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jeffrey-sutorius",
   "name": "JEFFREY SUTORIUS",
   "aliases": [],
@@ -52512,9 +53051,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-jelle-dk-d1",
-   "tomorrowland-thailand-2026:tmlth-jelle-dk-d2",
-   "tomorrowland-thailand-2026:tmlth-jelle-dk-d3",
    "tomorrowland-2019:d2:moose-bar:1600:jelle-dk",
    "tomorrowland-2019:d4:moose-bar:2100:jelle-dk",
    "tomorrowland-2019:d5:moose-bar:1400:jelle-dk",
@@ -52524,7 +53060,7 @@
    "tomorrowland-2023:d1:moosebar:1200:jelle-dk"
   ],
   "firstSeen": "2019-07-20",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-21",
   "photo": null,
   "links": []
  },
@@ -52841,23 +53377,6 @@
   ],
   "firstSeen": "2022-07-15",
   "lastSeen": "2022-07-15",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "jerrooo",
-  "name": "Jerrooo",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-jerrooo-d1",
-   "tomorrowland-thailand-2026:tmlth-jerrooo-d2",
-   "tomorrowland-thailand-2026:tmlth-jerrooo-d3"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -53215,21 +53734,6 @@
   ],
   "firstSeen": "2025-08-03",
   "lastSeen": "2026-12-30",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "jijie",
-  "name": "Jijie",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-jijie"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -53727,6 +54231,22 @@
   "links": []
  },
  {
+  "key": "joel-cummins",
+  "name": "Joel Cummins",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:sherwood-court:2100:digital-tape-machine-ft-joel-cummins-and-kris-myers-of-umphrey-s-mcgee",
+   "electric-forest-2013:d1:forest-stage:1745:cosby-sweater-ft-joel-cummins"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "joeri-and-neon",
   "name": "Joeri & Neon",
   "aliases": [],
@@ -54076,12 +54596,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-john-newman",
    "tomorrowland-2023:d3:the-library:2000:john-newman",
    "tomorrowland-2023:d5:mainstage:1925:john-newman"
   ],
   "firstSeen": "2023-07-23",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2023-07-29",
   "photo": null,
   "links": []
  },
@@ -54565,21 +55084,6 @@
   "links": []
  },
  {
-  "key": "jonnie-b",
-  "name": "Jonnie B",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-jonnie-b"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
-  "photo": null,
-  "links": []
- },
- {
   "key": "jonny-atom",
   "name": "JONNY ATOM",
   "aliases": [],
@@ -54759,7 +55263,6 @@
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul84",
-   "tomorrowland-thailand-2026:tmlth-joris-voorn-b2b-krystal-klear",
    "tomorrowland-2017:d1:elrow:2300:joris-voorn",
    "tomorrowland-2017:d5:mainstage:1200:joris-voorn",
    "tomorrowland-2018:d1:mainstage:1950:joris-voorn",
@@ -54774,7 +55277,7 @@
    "tomorrowland-2023:d4:freedom-by-bud:2100:joris-voorn"
   ],
   "firstSeen": "2017-07-21",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
  },
@@ -55129,21 +55632,6 @@
   "links": []
  },
  {
-  "key": "joulie",
-  "name": "JOULIE",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-joulie"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
-  "photo": null,
-  "links": []
- },
- {
   "key": "jovigibs",
   "name": "Jovigibs",
   "aliases": [],
@@ -55155,21 +55643,6 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "jowaves",
-  "name": "JoWaves",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-jowaves"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -56032,6 +56505,21 @@
   ],
   "firstSeen": "2017-09-15",
   "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "just-blaze",
+  "name": "Just Blaze",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:tripolee:2115:just-blaze"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
   "photo": null,
   "links": []
  },
@@ -57029,6 +57517,21 @@
   "links": []
  },
  {
+  "key": "karl-denson-s-tiny-universe",
+  "name": "Karl Denson's Tiny Universe",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d4:ranch-arena:1500:karl-denson-s-tiny-universe"
+  ],
+  "firstSeen": "2012-07-01",
+  "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "karma",
   "name": "KARMÅ",
   "aliases": [],
@@ -57090,21 +57593,6 @@
   ],
   "firstSeen": "2021-10-03",
   "lastSeen": "2021-10-10",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "karty",
-  "name": "KARTY",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-karty"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -57787,6 +58275,21 @@
   "links": []
  },
  {
+  "key": "keller-williams",
+  "name": "Keller Williams",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d4:ranch-arena:1700:the-travelin-mccourys-featuring-keller-williams"
+  ],
+  "firstSeen": "2012-07-01",
+  "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "keltek",
   "name": "Keltek",
   "aliases": [
@@ -58151,8 +58654,6 @@
   "billings": [
    "edc-lv-2026:cg25",
    "arc-2026:arc-chris-avantgarde-b2b-kevin-de-vries-grid-d3",
-   "tomorrowland-thailand-2026:tmlth-kevin-de-vries",
-   "tomorrowland-thailand-2026:tmlth-kevin-de-vries-b2b-morten",
    "edc-las-vegas-2024:d2:stereo-bloom:0030:kevin-de-vries",
    "edc-las-vegas-2024:d3:quantum-valley:0215:kevin-de-vries",
    "edc-orlando-2025:d1:neongarden:1930:kevin-de-vries",
@@ -58163,7 +58664,7 @@
    "tomorrowland-2023:d6:crystal-garden:1900:kevin-de-vries"
   ],
   "firstSeen": "2019-07-20",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-09-06",
   "photo": null,
   "links": []
  },
@@ -58344,11 +58845,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2013:d4:tripolee:0030:tripolee-closing-party-w-keys-n-krates",
    "lollapalooza-2013:d1:perry-s:1300:keys-n-krates",
    "nocturnal-wonderland-2017:d2:labyrinth:0100:keys-n-krates",
    "tomorrowland-2017:d4:dim-mak:1830:keys-n-krates"
   ],
-  "firstSeen": "2013-08-02",
+  "firstSeen": "2013-06-30",
   "lastSeen": "2017-09-16",
   "photo": null,
   "links": []
@@ -58924,13 +59426,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2013:d2:tripolee:2330:kill-the-noise",
    "lollapalooza-2013:d3:perry-s:1515:kill-the-noise",
    "nocturnal-wonderland-2013:d1:queen-s-grounds:2200:kill-the-noise",
    "nocturnal-wonderland-2018:d2:labyrinth:2210:kill-the-noise",
    "nocturnal-wonderland-2021:d2:sunken-garden:2200:kill-the-noise",
    "tomorrowland-2019:d1:rose-garden:2000:seven-lions-b2b-kill-the-noise"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2013-06-28",
   "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
@@ -59545,9 +60048,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2013:d3:sherwood-court:0115:knife-party",
    "lollapalooza-2013:d3:perry-s:2025:knife-party"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2013-06-29",
   "lastSeen": "2013-08-04",
   "photo": null,
   "links": []
@@ -59835,7 +60339,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-kolsch",
    "edc-orlando-2022:d1:neon-garden:1930:kolsch",
    "escape-halloween-2019:d1:sewer-district:2000:kolsch",
    "tomorrowland-2017:d3:ants:2230:kolsch",
@@ -59852,7 +60355,7 @@
    "tomorrowland-2023:d4:mainstage:2040:kolsch"
   ],
   "firstSeen": "2017-07-23",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-28",
   "photo": null,
   "links": []
  },
@@ -60321,13 +60824,14 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llu25",
+   "electric-forest-2013:d2:tripolee:0200:krewella",
    "lollapalooza-2014:d2:perry-s:2030:krewella",
    "nocturnal-wonderland-2013:d1:labyrinth:2100:krewella",
    "tomorrowland-2017:d1:monstercat:2200:krewella",
    "tomorrowland-2018:d2:youphoria:2330:krewella",
    "tomorrowland-2022:d6:youphoria:2030:krewella"
   ],
-  "firstSeen": "2013-09-21",
+  "firstSeen": "2013-06-28",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -60347,6 +60851,21 @@
   ],
   "firstSeen": "2017-07-28",
   "lastSeen": "2023-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kris-myers",
+  "name": "Kris Myers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:sherwood-court:2100:digital-tape-machine-ft-joel-cummins-and-kris-myers-of-umphrey-s-mcgee"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
   "photo": null,
   "links": []
  },
@@ -60499,7 +61018,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-kryder",
    "tomorrowland-2017:d5:axtone:1730:kryder",
    "tomorrowland-2018:d2:freedom-stage-by-budweiser:0000:kryder",
    "tomorrowland-2019:d5:freedom-stage-by-budweiser:1530:kryder",
@@ -60507,7 +61025,7 @@
    "tomorrowland-2022:d6:crystal-garden:1630:b-jones-b2b-kryder"
   ],
   "firstSeen": "2017-07-29",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2022-07-24",
   "photo": null,
   "links": []
  },
@@ -60534,11 +61052,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-joris-voorn-b2b-krystal-klear",
    "tomorrowland-2023:d1:core:1900:krystal-klear"
   ],
   "firstSeen": "2023-07-21",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-21",
   "photo": null,
   "links": []
  },
@@ -61551,7 +62068,6 @@
   "billings": [
    "edc-lv-2026:k1",
    "ultra-miami-2026:ul36",
-   "tomorrowland-thailand-2026:tmlth-laidback-luke",
    "tomorrowland-2017:d1:super-you-and-me:2100:laidback-luke",
    "tomorrowland-2017:d1:super-you-and-me:2200:laidback-luke-b2b-secret-superhero",
    "tomorrowland-2017:d6:heldeep:2300:laidback-luke",
@@ -61562,7 +62078,7 @@
    "tomorrowland-2022:d9:rose-garden:1900:laidback-luke"
   ],
   "firstSeen": "2017-07-21",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-05-15",
   "photo": null,
   "links": []
  },
@@ -61703,6 +62219,21 @@
   ],
   "firstSeen": "2013-08-02",
   "lastSeen": "2013-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lance-herbstrong",
+  "name": "Lance Herbstrong",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:forest-stage:2330:lance-herbstrong"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -62497,6 +63028,21 @@
   "links": []
  },
  {
+  "key": "le-castle-vania",
+  "name": "Le Castle Vania",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:tripolee:2045:le-castle-vania"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "le-shuuk",
   "name": "Le Shuuk",
   "aliases": [],
@@ -62958,11 +63504,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-lennert-wolfs",
    "tomorrowland-2023:d4:the-library:1300:lennert-wolfs"
   ],
   "firstSeen": "2023-07-28",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2023-07-28",
   "photo": null,
   "links": []
  },
@@ -63272,9 +63817,10 @@
   "billings": [
    "acl-2014:d3:sculpture:1800:lettuce",
    "acl-2014:d6:zilker:1800:lettuce",
+   "electric-forest-2013:d3:ranch-arena:1800:lettuce",
    "lollapalooza-2016:d2:petrillo-bandshell:1545:lettuce"
   ],
-  "firstSeen": "2014-10-05",
+  "firstSeen": "2013-06-29",
   "lastSeen": "2016-07-29",
   "photo": null,
   "links": []
@@ -63927,7 +64473,6 @@
    "edc-lv-2026:cg18",
    "ultra-miami-2026:ul12",
    "dwp-2026:dwp-lilly-palmer",
-   "tomorrowland-thailand-2026:tmlth-lilly-palmer",
    "beyond-wonderland-socal-2026:d2:the-looking-glass:2130:lilly-palmer",
    "dreamstate-socal-2025:d2:the-void:0000:lilly-palmer",
    "edc-las-vegas-2024:d1:neon-garden:2200:lilly-palmer",
@@ -64147,12 +64692,11 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:cg19",
-   "tomorrowland-thailand-2026:tmlth-linska",
    "edc-las-vegas-2025:d1:stereo-bloom:1900:linska",
    "hard-summer-2025:d2:hard-stage:1500:linska"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-05-17",
   "photo": null,
   "links": []
  },
@@ -64958,21 +65502,6 @@
   "links": []
  },
  {
-  "key": "lonskii",
-  "name": "Lonskii",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-lonskii"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
-  "photo": null,
-  "links": []
- },
- {
   "key": "loofy",
   "name": "LOOFY",
   "aliases": [],
@@ -65014,21 +65543,6 @@
   ],
   "firstSeen": "2022-07-29",
   "lastSeen": "2022-07-29",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "lora-matia",
-  "name": "Lora Matia",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-lora-matia"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -65263,7 +65777,6 @@
   "projects": [],
   "billings": [
    "sunset-on-the-river-2027:sotr-lost-frequencies",
-   "tomorrowland-thailand-2026:tmlth-lost-frequencies",
    "edc-las-vegas-2024:d3:kinetic-field:2100:lost-frequencies",
    "edc-orlando-2024:d1:kinetic-field:1632:lost-frequencies",
    "escape-halloween-2024:d1:the-grimm:1945:lost-frequencies",
@@ -65458,6 +65971,21 @@
   "links": []
  },
  {
+  "key": "lotus",
+  "name": "Lotus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:sherwood-court:0030:lotus"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lotusoph",
   "name": "Lotusoph",
   "aliases": [],
@@ -65643,6 +66171,21 @@
   "links": []
  },
  {
+  "key": "love-in-the-circus",
+  "name": "Love in the Circus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:forest-stage:2000:love-in-the-circus"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "love-spells",
   "name": "Love Spells",
   "aliases": [],
@@ -65768,18 +66311,21 @@
  {
   "key": "lowriderz",
   "name": "Lowriderz",
-  "aliases": [],
+  "aliases": [
+   "LowRIDERz"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2013:d4:forest-stage:1945:lowriderz",
    "tomorrowland-2017:d3:pussy-lounge:1430:lowriderz",
    "tomorrowland-2017:d6:coone-and-the-gang:1430:lowriderz",
    "tomorrowland-2018:d1:rose-garden:1700:lowriderz",
    "tomorrowland-2018:d4:amicorum-spectaculum-presents-theatre-formidable:1545:lowriderz",
    "tomorrowland-2018:d5:youphoria:1300:lowriderz"
   ],
-  "firstSeen": "2017-07-23",
+  "firstSeen": "2013-06-30",
   "lastSeen": "2018-07-28",
   "photo": null,
   "links": []
@@ -65926,7 +66472,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-lucas-and-steve",
    "tomorrowland-2017:d1:mainstage:1500:lucas-and-steve",
    "tomorrowland-2017:d4:spinnin-sessions:1800:lucas-and-steve",
    "tomorrowland-2018:d2:mainstage:1750:lucas-and-steve",
@@ -65937,7 +66482,7 @@
    "tomorrowland-2023:d4:the-library:1800:lucas-and-steve"
   ],
   "firstSeen": "2017-07-21",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-28",
   "photo": null,
   "links": []
  },
@@ -66517,6 +67062,21 @@
   "links": []
  },
  {
+  "key": "luke-the-knife",
+  "name": "Luke the Knife",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:forest-stage:0000:luke-the-knife"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "luke-winslow-king",
   "name": "Luke Winslow-King",
   "aliases": [],
@@ -66614,11 +67174,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-luna-and-lenthe",
    "tomorrowland-2023:d5:terra-solis:1200:luna-and-lenthe"
   ],
   "firstSeen": "2023-07-29",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-29",
   "photo": null,
   "links": []
  },
@@ -66805,14 +67364,12 @@
    "edc-lv-2026:s3",
    "hard-summer-2026:hs1-dj-seinfeld-b2b-luuk-van-dijk",
    "arc-2026:arc-luuk-van-dijk-b2b-sidney-charles-midway-d2",
-   "tomorrowland-thailand-2026:tmlth-dj-boring-b2b-luuk-van-dijk",
-   "tomorrowland-thailand-2026:tmlth-luuk-van-dijk",
    "edc-orlando-2025:d1:stereobloom:1630:luuk-van-dijk",
    "edc-orlando-2025:d1:casabacardi:2130:luuk-van-dijk",
    "tomorrowland-2019:d5:leaf-by-jbl:1700:luuk-van-dijk"
   ],
   "firstSeen": "2019-07-27",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2026-09-05",
   "photo": null,
   "links": []
  },
@@ -66920,6 +67477,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lynx",
+  "name": "Lynx",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:forest-stage:1715:lynx"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -67462,12 +68034,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-mad-maxx-b2b-stryker",
    "dreamstate-socal-2025:d1:the-sequence:1700:mad-maxx",
    "tomorrowland-2022:d5:youphoria:2115:mad-maxx"
   ],
   "firstSeen": "2022-07-23",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -67603,10 +68174,11 @@
    "ultra-miami-2026:ul88",
    "acl-2021:d6:miller-lite:1930:madeon",
    "edc-las-vegas-2022:d1:cosmic-meadow:2250:madeon-dj-set",
+   "electric-forest-2013:d1:ranch-arena:2215:madeon",
    "escape-halloween-2017:d1:slaughterhouse:2200:madeon",
    "lollapalooza-2019:d3:american-eagle:untimed:madeon"
   ],
-  "firstSeen": "2017-10-27",
+  "firstSeen": "2013-06-27",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -68241,10 +68813,11 @@
    "acl-2016:d1:honda:2015:major-lazer",
    "acl-2016:d4:honda:2015:major-lazer",
    "acl-2023:d1:american-express:1810:major-lazer",
+   "electric-forest-2012:d3:tripolee:0200:major-lazer",
    "lollapalooza-2013:d3:perry-s:1900:major-lazer",
    "lollapalooza-2016:d2:bud-light:2030:major-lazer"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2012-06-30",
   "lastSeen": "2026-07-31",
   "photo": null,
   "links": []
@@ -68303,11 +68876,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-makasi",
    "tomorrowland-2019:d2:youphoria:1400:makasi"
   ],
   "firstSeen": "2019-07-20",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2019-07-20",
   "photo": null,
   "links": []
  },
@@ -68709,7 +69281,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-mandy",
    "edc-las-vegas-2024:d3:wasteland:2130:mandy",
    "tomorrowland-2018:d6:freedom-stage-by-budweiser:1200:mandy",
    "tomorrowland-2019:d3:q-dance:1700:mandy",
@@ -68721,7 +69292,7 @@
    "tomorrowland-2023:d6:youphoria:1600:mandy"
   ],
   "firstSeen": "2018-07-29",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2024-05-19",
   "photo": null,
   "links": []
  },
@@ -68778,9 +69349,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2013:d3:forest-stage:1745:manic-focus",
    "lollapalooza-2019:d4:perry-s:untimed:manic-focus"
   ],
-  "firstSeen": "2019-08-04",
+  "firstSeen": "2013-06-29",
   "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
@@ -68860,21 +69432,6 @@
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2022-05-22",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "manuals",
-  "name": "Manuals",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-manuals"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -69917,6 +70474,21 @@
   "links": []
  },
  {
+  "key": "marley-s-music-uprising",
+  "name": "Marley's Music Uprising",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:the-observatory:1830:marley-s-music-uprising"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "marlie",
   "name": "Marlie",
   "aliases": [],
@@ -70102,14 +70674,12 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-ferry-corsten-and-marsh",
-   "tomorrowland-thailand-2026:tmlth-ferry-corsten-b2b-marsh",
-   "tomorrowland-thailand-2026:tmlth-marsh",
    "edc-las-vegas-2024:d3:quantum-valley:2300:marsh",
    "tomorrowland-2022:d1:kara-savi:1900:marsh",
    "tomorrowland-2023:d1:rise-by-coke-studio:2230:marsh"
   ],
   "firstSeen": "2022-07-15",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
  },
@@ -70205,7 +70775,6 @@
    "edc-orlando-2026:ecu25",
    "ultra-miami-2026:ul6",
    "edc-thailand-2026:edcth-martin-garrix",
-   "tomorrowland-thailand-2026:tmlth-martin-garrix",
    "acl-2017:d1:homeaway:1915:martin-garrix",
    "acl-2017:d4:homeaway:untimed:martin-garrix",
    "edc-las-vegas-2024:d3:circuit-grounds:0015:martin-garrix",
@@ -70844,7 +71413,6 @@
    "dubvision-x-matisse-and-sadko"
   ],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-matisse-and-sadko",
    "tomorrowland-2017:d2:stmpd-rcrds:1600:matisse-and-sadko",
    "tomorrowland-2018:d2:organ-of-harmony:1900:matisse-and-sadko",
    "tomorrowland-2022:d1:mainstage:1530:matisse-and-sadko",
@@ -70852,7 +71420,7 @@
    "tomorrowland-2023:d4:mainstage:1530:matisse-and-sadko"
   ],
   "firstSeen": "2017-07-22",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-28",
   "photo": null,
   "links": []
  },
@@ -71278,7 +71846,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-mattn",
    "tomorrowland-2017:d3:smash-the-house:1630:mattn",
    "tomorrowland-2017:d6:mainstage:1600:mattn",
    "tomorrowland-2018:d3:freedom-stage-by-budweiser:2130:mattn",
@@ -71292,7 +71859,7 @@
    "tomorrowland-2023:d6:the-library:2000:mattn"
   ],
   "firstSeen": "2017-07-23",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-30",
   "photo": null,
   "links": []
  },
@@ -71581,20 +72148,19 @@
  },
  {
   "key": "maxi-meraki",
-  "name": "Maxi Meraki",
+  "name": "maxi Meraki",
   "aliases": [
-   "maxi Meraki"
+   "Maxi Meraki"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-maxi-meraki",
    "tomorrowland-2022:d7:freedom:1200:maxi-meraki",
    "tomorrowland-2023:d1:freedom-by-bud:1200:maxi-meraki"
   ],
   "firstSeen": "2022-07-29",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-21",
   "photo": null,
   "links": []
  },
@@ -71761,21 +72327,6 @@
   ],
   "firstSeen": "2013-03-16",
   "lastSeen": "2019-07-26",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "maysaa",
-  "name": "Maysaa",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-maysaa"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -72183,11 +72734,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-meaghan",
    "tomorrowland-2023:d4:the-library:1200:meaghan"
   ],
   "firstSeen": "2023-07-28",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2023-07-28",
   "photo": null,
   "links": []
  },
@@ -72488,21 +73038,6 @@
   "links": []
  },
  {
-  "key": "meguru",
-  "name": "Meguru",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-meguru"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
-  "photo": null,
-  "links": []
- },
- {
   "key": "megusta",
   "name": "Megusta",
   "aliases": [],
@@ -72612,21 +73147,6 @@
   ],
   "firstSeen": "2026-12-31",
   "lastSeen": "2026-12-31",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "meltmode",
-  "name": "Meltmode",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-meltmode"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -72809,12 +73329,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-merow",
    "tomorrowland-2023:d2:youphoria:1300:merow",
    "tomorrowland-2023:d5:youphoria:1430:merow"
   ],
   "firstSeen": "2023-07-22",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-29",
   "photo": null,
   "links": []
  },
@@ -73325,6 +73844,21 @@
   "links": []
  },
  {
+  "key": "michal-menert",
+  "name": "Michal Menert",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:tripolee:2215:michal-menert"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "michenlo",
   "name": "Michenlo",
   "aliases": [],
@@ -73544,6 +74078,21 @@
   "links": []
  },
  {
+  "key": "midnite",
+  "name": "Midnite",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:ranch-arena:1730:midnite"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mighty-oaks",
   "name": "Mighty Oaks",
   "aliases": [],
@@ -73733,21 +74282,6 @@
   ],
   "firstSeen": "2014-10-04",
   "lastSeen": "2014-10-04",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "mike-bond",
-  "name": "Mike Bond",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-mike-bond"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -74123,6 +74657,21 @@
   "links": []
  },
  {
+  "key": "milkman",
+  "name": "Milkman",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:tripolee:1830:milkman"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "milky-chance",
   "name": "Milky Chance",
   "aliases": [],
@@ -74217,6 +74766,21 @@
   "links": []
  },
  {
+  "key": "mim0sa",
+  "name": "MiM0SA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d4:tripolee:2000:mim0sa"
+  ],
+  "firstSeen": "2012-07-01",
+  "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mimi",
   "name": "MIMI",
   "aliases": [],
@@ -74271,7 +74835,6 @@
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul134",
-   "tomorrowland-thailand-2026:tmlth-mind-against",
    "edc-las-vegas-2024:d3:quantum-valley:0330:mind-against",
    "tomorrowland-2018:d3:atmosphere:1630:mind-against",
    "tomorrowland-2018:d5:garden-of-madness:2000:mind-against",
@@ -74282,7 +74845,7 @@
    "tomorrowland-2023:d4:core:2300:mind-against"
   ],
   "firstSeen": "2018-07-22",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
  },
@@ -74411,6 +74974,21 @@
   ],
   "firstSeen": "2026-05-16",
   "lastSeen": "2026-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "minnesota",
+  "name": "Minnesota",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:tripolee:1845:minnesota"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
   "photo": null,
   "links": []
  },
@@ -74562,7 +75140,6 @@
    "ultra-miami-2026:ul17",
    "outside-lands-2026:os125",
    "edc-thailand-2026:edcth-miss-monique",
-   "tomorrowland-thailand-2026:tmlth-miss-monique",
    "dreamstate-socal-2025:d2:the-dream:2140:miss-monique",
    "edc-las-vegas-2025:d3:quantum-valley:2300:miss-monique",
    "edc-orlando-2022:d2:kinetic-field:1430:miss-monique",
@@ -75801,6 +76378,23 @@
   "links": []
  },
  {
+  "key": "moon-hooch",
+  "name": "Moon Hooch",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:tripolee:1500:moon-hooch",
+   "electric-forest-2013:d3:the-observatory:0030:moon-hooch",
+   "electric-forest-2013:d4:the-observatory:2200:moon-hooch"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "moon-taxi",
   "name": "MOON TAXI",
   "aliases": [],
@@ -75844,6 +76438,24 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "moonrise-nation",
+  "name": "Moonrise Nation",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:forest-stage:1515:moonrise-nation",
+   "electric-forest-2013:d2:the-observatory:2015:moonrise-nation",
+   "electric-forest-2013:d3:the-observatory:1700:moonrise-nation",
+   "electric-forest-2013:d4:the-observatory:2115:moonrise-nation"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -75926,11 +76538,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2013:d1:ranch-arena:2030:morgan-page",
    "nocturnal-wonderland-2011:d2:alice-s-house:1830:morgan-page",
    "nocturnal-wonderland-2012:d1:labyrinth:2015:morgan-page"
   ],
   "firstSeen": "2011-09-24",
-  "lastSeen": "2012-09-21",
+  "lastSeen": "2013-06-27",
   "photo": null,
   "links": []
  },
@@ -75999,6 +76612,21 @@
   "links": []
  },
  {
+  "key": "morning-teleportation",
+  "name": "Morning Teleportation",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:sherwood-court:1415:morning-teleportation"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "morpei",
   "name": "Morpei",
   "aliases": [],
@@ -76024,7 +76652,6 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-morten-d1",
-   "tomorrowland-thailand-2026:tmlth-kevin-de-vries-b2b-morten",
    "edc-las-vegas-2025:d3:kinetic-field:2200:artbat-b2b-morten",
    "edc-orlando-2021:d1:kinetic-field:1610:morten",
    "edc-orlando-2021:d1:corona-electric-beach:2200:morten",
@@ -76034,7 +76661,7 @@
    "tomorrowland-2022:d4:mainstage:1735:morten"
   ],
   "firstSeen": "2017-07-28",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -76904,6 +77531,22 @@
   "links": []
  },
  {
+  "key": "munson-meeks",
+  "name": "Munson Meeks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:forest-stage:2300:munson-meeks",
+   "electric-forest-2013:d2:the-observatory:0230:munson-meeks"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mura-masa",
   "name": "Mura Masa",
   "aliases": [],
@@ -77139,6 +77782,21 @@
   ],
   "firstSeen": "2016-07-30",
   "lastSeen": "2017-10-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mutrix",
+  "name": "Mutrix",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:tripolee:1700:mutrix"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -77580,6 +78238,21 @@
   "links": []
  },
  {
+  "key": "nadis-warriors",
+  "name": "Nadis Warriors",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:forest-stage:1830:nadis-warriors"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "naethan",
   "name": "Naethan",
   "aliases": [],
@@ -77593,6 +78266,21 @@
   ],
   "firstSeen": "2019-07-27",
   "lastSeen": "2023-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nahko-and-medicine-for-the-people",
+  "name": "Nahko and Medicine for the People",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:sherwood-court:1800:nahko-and-medicine-for-the-people"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
   "photo": null,
   "links": []
  },
@@ -77619,10 +78307,9 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-thailand-2026:edcth-nakadia",
-   "tomorrowland-thailand-2026:tmlth-nakadia"
+   "edc-thailand-2026:edcth-nakadia"
   ],
-  "firstSeen": "2026-12-12",
+  "firstSeen": "2026-12-19",
   "lastSeen": "2026-12-19",
   "photo": null,
   "links": []
@@ -78013,6 +78700,22 @@
   "links": []
  },
  {
+  "key": "nathaniel-rateliff",
+  "name": "Nathaniel Rateliff",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:forest-stage:2115:nathaniel-rateliff",
+   "electric-forest-2012:d2:sherwood-court:1545:nathaniel-rateliff"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nathaniel-rateliff-and-the-night-sweats",
   "name": "Nathaniel Rateliff & The Night Sweats",
   "aliases": [
@@ -78361,7 +79064,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-neon",
    "tomorrowland-2018:d4:arch:1400:neon",
    "tomorrowland-2018:d6:core:1200:neon",
    "tomorrowland-2019:d1:freedom-stage-by-budweiser:1230:neon",
@@ -78372,7 +79074,7 @@
    "tomorrowland-2023:d4:crystal-garden:1200:neon"
   ],
   "firstSeen": "2018-07-27",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-28",
   "photo": null,
   "links": []
  },
@@ -78529,8 +79231,8 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-nervo-d1",
-   "tomorrowland-thailand-2026:tmlth-nervo",
    "beyond-wonderland-socal-2012:d1:caterpillars-garden:2045:nervo",
+   "electric-forest-2013:d4:tripolee:2315:nervo",
    "tomorrowland-2017:d2:mainstage:1900:nervo",
    "tomorrowland-2017:d6:mainstage:2100:nervo",
    "tomorrowland-2018:d2:youphoria:2100:nervo",
@@ -78543,7 +79245,7 @@
    "tomorrowland-2023:d5:mainstage:1825:nervo"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -78603,7 +79305,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-netsky",
    "beyond-wonderland-socal-2012:d1:chess-village:0100:netsky",
    "edc-las-vegas-2025:d2:basspod:0230:netsky",
    "edc-orlando-2024:d2:circuit-grounds:1755:netsky",
@@ -78621,7 +79322,7 @@
    "tomorrowland-2023:d5:the-library:0000:netsky"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
  },
@@ -79056,6 +79757,21 @@
   "links": []
  },
  {
+  "key": "nick-catchdubs",
+  "name": "Nick Catchdubs",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:tripolee:1845:nick-catchdubs"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nick-garcia",
   "name": "Nick Garcia",
   "aliases": [],
@@ -79170,6 +79886,21 @@
   "links": []
  },
  {
+  "key": "nickodemus",
+  "name": "Nickodemus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:tripolee:2240:nickodemus"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nicky-elisabeth",
   "name": "Nicky Elisabeth",
   "aliases": [],
@@ -79280,14 +80011,13 @@
    "edc-lv-2026:c29",
    "edc-orlando-2026:ecs29",
    "arc-2026:arc-nico-moreno-expansions-d2",
-   "tomorrowland-thailand-2026:tmlth-nico-moreno",
    "beyond-wonderland-socal-2026:d2:the-looking-glass:0030:nico-moreno",
    "edc-las-vegas-2025:d3:neon-garden:0300:nico-moreno-b2b-i-hate-models",
    "edc-orlando-2025:d3:neongarden:2230:nico-moreno",
    "hard-summer-2025:d2:green-stage:2100:nico-moreno"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
  },
@@ -79507,6 +80237,21 @@
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nigel-hall-band",
+  "name": "Nigel Hall Band",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:forest-stage:0200:nigel-hall-band"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
   "photo": null,
   "links": []
  },
@@ -80025,6 +80770,21 @@
   "links": []
  },
  {
+  "key": "nit-grit",
+  "name": "Nit GriT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:tripolee:1730:nit-grit"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nitepunk",
   "name": "Nitepunk",
   "aliases": [
@@ -80179,6 +80939,21 @@
   "links": []
  },
  {
+  "key": "no-regular-play",
+  "name": "No Regular Play",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:forest-stage:0100:no-regular-play"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "no-requests",
   "name": "NO REQUESTS",
   "aliases": [],
@@ -80307,6 +81082,22 @@
   "links": []
  },
  {
+  "key": "nobody-beats-the-drum",
+  "name": "Nobody Beats the Drum",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:forest-stage:2130:nobody-beats-the-drum-dj",
+   "electric-forest-2012:d4:tripolee:1715:nobody-beats-the-drum"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nobro",
   "name": "NOBRO",
   "aliases": [],
@@ -80414,9 +81205,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2013:d2:tripolee:0045:noisia",
    "escape-halloween-2021:d1:psycho-circus:2200:noisia"
   ],
-  "firstSeen": "2021-10-29",
+  "firstSeen": "2013-06-28",
   "lastSeen": "2021-10-29",
   "photo": null,
   "links": []
@@ -80476,21 +81268,6 @@
   ],
   "firstSeen": "2019-11-09",
   "lastSeen": "2026-06-27",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "nome",
-  "name": "NOME.",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-nome"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -80898,13 +81675,27 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-novah",
    "beyond-wonderland-socal-2026:d2:the-looking-glass:2000:novah",
    "dreamstate-socal-2025:d2:the-void:2300:novah",
    "tomorrowland-2023:d5:cage:1200:novah"
   ],
   "firstSeen": "2023-07-29",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "novalima",
+  "name": "Novalima",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:tripolee:2140:novalima"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
   "photo": null,
   "links": []
  },
@@ -81077,21 +81868,6 @@
   ],
   "firstSeen": "2017-07-29",
   "lastSeen": "2017-07-29",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "nuttrix",
-  "name": "Nuttrix",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-nuttrix"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -81759,6 +82535,21 @@
   "links": []
  },
  {
+  "key": "oliver",
+  "name": "OLIVER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:tripolee:2215:oliver"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "oliver-hazard",
   "name": "OLIVER HAZARD",
   "aliases": [],
@@ -82363,21 +83154,6 @@
   "links": []
  },
  {
-  "key": "onfaya",
-  "name": "Onfaya",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-onfaya"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
-  "photo": null,
-  "links": []
- },
- {
   "key": "onlynumbers",
   "name": "Onlynumbers",
   "aliases": [],
@@ -82524,11 +83300,10 @@
   "projects": [],
   "billings": [
    "hard-summer-2026:hs2-oppidan",
-   "tomorrowland-thailand-2026:tmlth-oppidan",
    "edc-las-vegas-2025:d2:cosmic-meadow:2000:oppidan"
   ],
   "firstSeen": "2025-05-17",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-08-02",
   "photo": null,
   "links": []
  },
@@ -82559,6 +83334,21 @@
   ],
   "firstSeen": "2012-09-22",
   "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "orchard-lounge",
+  "name": "Orchard Lounge",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:forest-stage:2315:orchard-lounge"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
   "photo": null,
   "links": []
  },
@@ -83596,21 +84386,6 @@
   "links": []
  },
  {
-  "key": "palmera",
-  "name": "Palmera",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-palmera"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
-  "photo": null,
-  "links": []
- },
- {
   "key": "pamb-and-harsh",
   "name": "Pamb & Harsh",
   "aliases": [],
@@ -83811,6 +84586,21 @@
   "links": []
  },
  {
+  "key": "papadosio",
+  "name": "Papadosio",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d4:sherwood-court:1600:papadosio"
+  ],
+  "firstSeen": "2012-07-01",
+  "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "paper-diamond",
   "name": "Paper Diamond",
   "aliases": [],
@@ -83819,9 +84609,10 @@
   "projects": [],
   "billings": [
    "acl-2013:d3:bud-light:1500:paper-diamond",
+   "electric-forest-2012:d2:sherwood-court:2200:paper-diamond",
    "lollapalooza-2017:d1:perry-s:1430:paper-diamond"
   ],
-  "firstSeen": "2013-10-06",
+  "firstSeen": "2012-06-29",
   "lastSeen": "2017-08-03",
   "photo": null,
   "links": []
@@ -84173,6 +84964,21 @@
   "links": []
  },
  {
+  "key": "party-supplies",
+  "name": "Party Supplies",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:tripolee:1630:party-supplies"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "partyfriex",
   "name": "Partyfriex",
   "aliases": [],
@@ -84272,9 +85078,10 @@
    "acl-2013:d2:amd:1800:passion-pit",
    "acl-2013:d5:lady-bird:1800:passion-pit",
    "acl-2025:d3:tito-s-handmade-vodka:1830:passion-pit",
-   "acl-2025:d6:tito-s-handmade-vodka:1830:passion-pit"
+   "acl-2025:d6:tito-s-handmade-vodka:1830:passion-pit",
+   "electric-forest-2013:d2:sherwood-court:0100:passion-pit"
   ],
-  "firstSeen": "2013-10-05",
+  "firstSeen": "2013-06-28",
   "lastSeen": "2026-06-18",
   "photo": null,
   "links": []
@@ -84485,6 +85292,21 @@
   ],
   "firstSeen": "2017-07-22",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "paul-basic",
+  "name": "Paul Basic",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:wagon-wheel:0045:paul-basic"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
   "photo": null,
   "links": []
  },
@@ -84980,11 +85802,10 @@
    "hard-summer-2026:hs1-pegassi",
    "arc-2026:arc-pegassi-area909-d1",
    "dreamstate-socal-2026:dssc-pegassi",
-   "tomorrowland-thailand-2026:tmlth-pegassi",
    "escape-halloween-2025:d1:the-warehouse:2100:pegassi"
   ],
   "firstSeen": "2025-10-31",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
  },
@@ -85456,21 +86277,6 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "petra",
-  "name": "PETRA",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-petra"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -85959,6 +86765,21 @@
   "links": []
  },
  {
+  "key": "pictureplane",
+  "name": "Pictureplane",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:tripolee:1615:pictureplane"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pierce-the-veil",
   "name": "Pierce the Veil",
   "aliases": [
@@ -86037,6 +86858,21 @@
   ],
   "firstSeen": "2026-07-03",
   "lastSeen": "2026-07-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pigs-on-the-wing",
+  "name": "Pigs on the Wing",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:sherwood-court:1715:pigs-on-the-wing"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
   "photo": null,
   "links": []
  },
@@ -86317,21 +87153,6 @@
   ],
   "firstSeen": "2026-10-30",
   "lastSeen": "2026-10-30",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "pixzy",
-  "name": "Pixzy",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-pixzy"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -87114,6 +87935,7 @@
   "billings": [
    "acl-2024:d2:honda:2010:pretty-lights",
    "acl-2024:d5:honda:2010:pretty-lights",
+   "electric-forest-2013:d4:ranch-arena:2300:pretty-lights",
    "nocturnal-wonderland-2012:d2:labyrinth:2330:pretty-lights"
   ],
   "firstSeen": "2012-09-22",
@@ -87578,6 +88400,21 @@
   "links": []
  },
  {
+  "key": "prymativ",
+  "name": "Prymativ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:forest-stage:1645:mixcloud-mix-match-winner-prymativ"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "psycho-boys-club",
   "name": "Psycho Boys Club",
   "aliases": [],
@@ -87678,21 +88515,6 @@
   ],
   "firstSeen": "2019-07-26",
   "lastSeen": "2019-07-26",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "puffer-p",
-  "name": "Puffer P",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-puffer-p"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -88368,7 +89190,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-quintino",
    "tomorrowland-2017:d1:v-sessions:1800:quintino",
    "tomorrowland-2017:d6:smash-the-house:1730:quintino",
    "tomorrowland-2018:d2:youphoria:2000:quintino",
@@ -88383,7 +89204,7 @@
    "tomorrowland-2023:d3:the-library:2100:quintino"
   ],
   "firstSeen": "2017-07-21",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2023-07-23",
   "photo": null,
   "links": []
  },
@@ -88399,6 +89220,25 @@
   ],
   "firstSeen": "2017-09-16",
   "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "quixotic",
+  "name": "Quixotic",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:forest-stage:2300:quixotic",
+   "electric-forest-2012:d2:forest-stage:2200:quixotic",
+   "electric-forest-2013:d1:forest-stage:0045:quixotic",
+   "electric-forest-2013:d2:forest-stage:2130:quixotic",
+   "electric-forest-2013:d3:forest-stage:0030:quixotic"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2013-06-29",
   "photo": null,
   "links": []
  },
@@ -88430,6 +89270,21 @@
   ],
   "firstSeen": "2019-07-27",
   "lastSeen": "2019-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "r-d",
+  "name": "R/D",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:wagon-wheel:0100:r-d"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
   "photo": null,
   "links": []
  },
@@ -88507,8 +89362,6 @@
    "nocturnal-wonderland-2026:nw-r3hab",
    "countdown-nye-2026:cdny-r3hab",
    "dwp-2026:dwp-r3hab",
-   "tomorrowland-thailand-2026:tmlth-r3hab",
-   "tomorrowland-thailand-2026:tmlth-artbat-b2b-r3hab",
    "beyond-wonderland-socal-2013:d1:madhatter-s-castle:2230:r3hab",
    "edc-orlando-2019:d3:kineticfield:1819:r3hab",
    "edc-orlando-2021:d1:kinetic-field:2111:afrojack-b2b-r3hab",
@@ -88960,12 +89813,26 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-raiden",
    "tomorrowland-2017:d4:sexy-by-nature:1230:raiden",
    "tomorrowland-2019:d1:lotus:1615:dubvision-b2b-raiden"
   ],
   "firstSeen": "2017-07-28",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2019-07-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "railroad-earth",
+  "name": "Railroad Earth",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:ranch-arena:1515:railroad-earth"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
   "photo": null,
   "links": []
  },
@@ -89495,21 +90362,6 @@
   "links": []
  },
  {
-  "key": "rave-republic",
-  "name": "Rave Republic",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-rave-republic"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
-  "photo": null,
-  "links": []
- },
- {
   "key": "ravenscoon",
   "name": "Ravenscoon",
   "aliases": [],
@@ -89575,6 +90427,21 @@
   ],
   "firstSeen": "2017-07-22",
   "lastSeen": "2019-07-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "raw-russ",
+  "name": "Raw Russ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:tripolee:1345:raw-russ"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
   "photo": null,
   "links": []
  },
@@ -89705,14 +90572,12 @@
   "key": "rayray",
   "name": "RayRay",
   "aliases": [
-   "Rayray",
    "RAYRAY"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-rayray",
    "edc-las-vegas-2025:d1:beatbox-art-car:0230:rayray",
    "edc-las-vegas-2025:d2:wasteland:0330:rayray",
    "edc-orlando-2024:d2:kinetic-field:1432:rayray",
@@ -89722,7 +90587,7 @@
    "tomorrowland-2022:d4:rose-garden:2000:rayray"
   ],
   "firstSeen": "2018-07-28",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
  },
@@ -89902,21 +90767,6 @@
   ],
   "firstSeen": "2017-07-22",
   "lastSeen": "2017-07-22",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "rebeca-ark",
-  "name": "Rebeca Ark",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-rebeca-ark"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -90405,6 +91255,21 @@
   "links": []
  },
  {
+  "key": "reggie-watts",
+  "name": "Reggie Watts",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:ranch-arena:1900:reggie-watts"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "regi",
   "name": "Regi",
   "aliases": [],
@@ -90749,6 +91614,21 @@
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2024-05-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "reptar",
+  "name": "Reptar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:sherwood-court:1715:reptar"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -91259,13 +92139,14 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-richie-hawtin-d2",
+   "electric-forest-2012:d4:tripolee:2145:richie-hawtin",
    "tomorrowland-2017:d5:playdifferently-presents-model-1:2330:richie-hawtin",
    "tomorrowland-2018:d1:atmosphere:2130:richie-hawtin",
    "tomorrowland-2018:d6:atmosphere:2100:richie-hawtin",
    "tomorrowland-2019:d3:atmosphere:2230:richie-hawtin",
    "tomorrowland-2019:d6:atmosphere:2030:richie-hawtin"
   ],
-  "firstSeen": "2017-07-29",
+  "firstSeen": "2012-07-01",
   "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
@@ -91875,21 +92756,6 @@
   "links": []
  },
  {
-  "key": "riviere",
-  "name": "Riviere",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-riviere"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
-  "photo": null,
-  "links": []
- },
- {
   "key": "rivka-m",
   "name": "Rivka M",
   "aliases": [],
@@ -91934,12 +92800,13 @@
    "acl-2019:d4:t-mobile:1830:rl-grime",
    "edc-las-vegas-2025:d1:cosmic-meadow:2315:rl-grime",
    "edc-orlando-2019:d3:kineticfield:2026:rl-grime",
+   "electric-forest-2013:d1:tripolee:2330:rl-grime",
    "escape-halloween-2019:d2:the-grimm:2300:rl-grime",
    "escape-halloween-2025:d2:sewer-district:0045:rl-grime",
    "lollapalooza-2015:d2:perry-s:1630:rl-grime",
    "lollapalooza-2019:d3:perry-s:untimed:rl-grime"
   ],
-  "firstSeen": "2015-08-01",
+  "firstSeen": "2013-06-27",
   "lastSeen": "2026-08-02",
   "photo": null,
   "links": []
@@ -92040,6 +92907,21 @@
   "links": []
  },
  {
+  "key": "rob-garza",
+  "name": "Rob Garza",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:tripolee:0050:rob-garza"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rob-gee",
   "name": "Rob Gee",
   "aliases": [
@@ -92119,6 +93001,24 @@
   "links": []
  },
  {
+  "key": "robbiefitzsimmons",
+  "name": "robbieFITZSIMMONS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:the-observatory:2215:robbiefitzsimmons",
+   "electric-forest-2013:d2:the-observatory:1830:robbiefitzsimmons",
+   "electric-forest-2013:d3:the-observatory:1945:robbiefitzsimmons",
+   "electric-forest-2013:d4:the-observatory:1545:robbiefitzsimmons"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "robert-abigail",
   "name": "Robert Abigail",
   "aliases": [],
@@ -92151,14 +93051,17 @@
  {
   "key": "robert-delong",
   "name": "Robert Delong",
-  "aliases": [],
+  "aliases": [
+   "Robert DeLong"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2013:d4:tripolee:1545:robert-delong",
    "lollapalooza-2013:d1:lake-shore:1215:robert-delong"
   ],
-  "firstSeen": "2013-08-02",
+  "firstSeen": "2013-06-30",
   "lastSeen": "2013-08-02",
   "photo": null,
   "links": []
@@ -92255,6 +93158,21 @@
   ],
   "firstSeen": "2026-06-25",
   "lastSeen": "2026-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "robert-rich",
+  "name": "Robert Rich",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:forest-stage:2330:paxahau-presents-a-stirring-evening-of-live-ambient-aural-exploration-with-robert-rich"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
   "photo": null,
   "links": []
  },
@@ -92686,13 +93604,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-romeo-blanco",
    "tomorrowland-2022:d3:rose-garden:1500:romeo-blanco",
    "tomorrowland-2022:d9:rose-garden:1500:romeo-blanco",
    "tomorrowland-2023:d6:the-rose-garden:1600:romeo-blanco"
   ],
   "firstSeen": "2022-07-17",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2023-07-30",
   "photo": null,
   "links": []
  },
@@ -92876,6 +93793,29 @@
   "links": []
  },
  {
+  "key": "rosin-coven",
+  "name": "Rosin Coven",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:forest-stage:2030:rosin-coven",
+   "electric-forest-2013:d1:the-observatory:1815:rosin-coven",
+   "electric-forest-2013:d2:forest-stage:2015:rosin-coven",
+   "electric-forest-2013:d2:the-observatory:1745:rosin-coven",
+   "electric-forest-2013:d2:the-observatory:2345:rosin-coven",
+   "electric-forest-2013:d3:forest-stage:1630:rosin-coven",
+   "electric-forest-2013:d3:the-observatory:1530:rosin-coven",
+   "electric-forest-2013:d3:the-observatory:0230:rosin-coven",
+   "electric-forest-2013:d4:the-observatory:1415:rosin-coven"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rossi",
   "name": "Rossi.",
   "aliases": [],
@@ -92935,21 +93875,6 @@
   ],
   "firstSeen": "2017-07-22",
   "lastSeen": "2017-07-22",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "row1",
-  "name": "Row1",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-row1"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -93442,6 +94367,22 @@
   "links": []
  },
  {
+  "key": "russ-liquid",
+  "name": "Russ Liquid",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:the-observatory:2130:russ-liquid",
+   "electric-forest-2013:d4:forest-stage:2215:russ-liquid"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "russell-dickerson",
   "name": "Russell Dickerson",
   "aliases": [],
@@ -93847,17 +94788,14 @@
  },
  {
   "key": "sabai",
-  "name": "Sabai",
-  "aliases": [
-   "SABAI"
-  ],
+  "name": "SABAI",
+  "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "nocturnal-wonderland-2026:nw-sabai",
-   "edc-thailand-2026:edcth-sabai",
-   "tomorrowland-thailand-2026:tmlth-sabai"
+   "edc-thailand-2026:edcth-sabai"
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-12-18",
@@ -94108,21 +95046,6 @@
   ],
   "firstSeen": "2017-08-04",
   "lastSeen": "2017-08-04",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "saint-ludo",
-  "name": "Saint Ludo",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-saint-ludo"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -94469,6 +95392,22 @@
   "links": []
  },
  {
+  "key": "sam-klass",
+  "name": "Sam Klass",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:forest-stage:1900:sam-klass",
+   "electric-forest-2013:d4:the-observatory:1630:sam-klass"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sam-paganini",
   "name": "Sam Paganini",
   "aliases": [],
@@ -94624,6 +95563,21 @@
   ],
   "firstSeen": "2025-08-03",
   "lastSeen": "2026-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "samo-sound-boy",
+  "name": "Samo Sound Boy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:forest-stage:2300:samo-sound-boy"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
   "photo": null,
   "links": []
  },
@@ -94958,15 +95912,18 @@
  },
  {
   "key": "santigold",
-  "name": "SANTIGOLD",
-  "aliases": [],
+  "name": "Santigold",
+  "aliases": [
+   "SANTIGOLD"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2024:d4:tito-s-handmade-vodka:1830:santigold"
+   "acl-2024:d4:tito-s-handmade-vodka:1830:santigold",
+   "electric-forest-2012:d3:ranch-arena:1730:santigold"
   ],
-  "firstSeen": "2024-10-11",
+  "firstSeen": "2012-06-30",
   "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
@@ -96136,6 +97093,21 @@
   "links": []
  },
  {
+  "key": "see-i",
+  "name": "See-I",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:tripolee:2340:see-i"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "seeing-double",
   "name": "Seeing Double",
   "aliases": [],
@@ -96337,21 +97309,6 @@
   ],
   "firstSeen": "2017-07-23",
   "lastSeen": "2019-07-21",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "semsei",
-  "name": "Semsei",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-semsei"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -97766,6 +98723,21 @@
   ],
   "firstSeen": "2019-11-22",
   "lastSeen": "2019-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "shreddie-mercury",
+  "name": "Shreddie Mercury",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:forest-stage:2100:shreddie-mercury"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -99947,21 +100919,6 @@
   "links": []
  },
  {
-  "key": "sm1le",
-  "name": "Sm1le",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-sm1le"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
-  "photo": null,
-  "links": []
- },
- {
   "key": "sm6",
   "name": "SM6",
   "aliases": [],
@@ -100560,7 +101517,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-solardo",
    "edc-orlando-2019:d3:neongarden:1530:solardo",
    "nocturnal-wonderland-2019:d2:sunken-garden:2200:camelphat-b2b-solardo",
    "tomorrowland-2018:d3:garden-of-madness:1800:solardo",
@@ -100571,7 +101527,7 @@
    "tomorrowland-2023:d1:crystal-garden:2030:solardo"
   ],
   "firstSeen": "2018-07-22",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2023-07-21",
   "photo": null,
   "links": []
  },
@@ -100828,11 +101784,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-somnia",
    "tomorrowland-2019:d5:l-orangerie:1500:somnia"
   ],
   "firstSeen": "2019-07-27",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2019-07-27",
   "photo": null,
   "links": []
  },
@@ -101487,12 +102442,11 @@
    "turbulences"
   ],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-amber-broos-b2b-space-92",
    "dreamstate-socal-2025:d2:the-void:2200:space-92",
    "edc-orlando-2024:d3:kinetic-field:1432:space-92"
   ],
   "firstSeen": "2024-11-10",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -101754,6 +102708,21 @@
   "billings": [],
   "firstSeen": null,
   "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "spektr",
+  "name": "SPEKTR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d4:forest-stage:1630:the-untz-challenge-iii-spektr"
+  ],
+  "firstSeen": "2012-07-01",
+  "lastSeen": "2012-07-01",
   "photo": null,
   "links": []
  },
@@ -102754,11 +103723,11 @@
    "ultra-miami-2026:ul53",
    "escape-halloween-2026:esc-steve-aoki-d1",
    "decadence-arizona-2026:daz-steve-aoki",
-   "tomorrowland-thailand-2026:tmlth-steve-aoki",
    "beyond-wonderland-socal-2012:d1:caterpillars-garden:0045:steve-aoki",
    "edc-las-vegas-2024:d1:kinetic-field:0413:steve-aoki",
    "edc-orlando-2019:d1:kineticfield:2112:steve-aoki",
    "edc-orlando-2024:d2:kinetic-field:2006:dimitri-vegas-b2b-steve-aoki",
+   "electric-forest-2012:d2:tripolee:0215:steve-aoki",
    "lollapalooza-2013:d1:perry-s:2045:steve-aoki",
    "tomorrowland-2017:d1:mainstage:0000:steve-aoki",
    "tomorrowland-2017:d4:dim-mak:2030:steve-aoki",
@@ -103294,11 +104263,26 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-mad-maxx-b2b-stryker",
    "tomorrowland-2022:d5:youphoria:1615:stryker"
   ],
   "firstSeen": "2022-07-23",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2022-07-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sts9",
+  "name": "STS9",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:sherwood-court:0000:sts9",
+   "electric-forest-2012:d3:sherwood-court:0000:sts9"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-30",
   "photo": null,
   "links": []
  },
@@ -103464,7 +104448,6 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:w26",
-   "tomorrowland-thailand-2026:tmlth-sub-zero-project",
    "beyond-wonderland-socal-2026:d1:cheshire-woods:2300:sub-zero-project",
    "edc-las-vegas-2022:d3:wasteland:0230:sub-zero-project",
    "edc-las-vegas-2024:d2:wasteland:0030:sub-zero-project",
@@ -103478,7 +104461,7 @@
    "tomorrowland-2022:d7:youphoria:1730:sub-zero-project"
   ],
   "firstSeen": "2017-07-30",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2026-05-17",
   "photo": null,
   "links": []
  },
@@ -103685,6 +104668,21 @@
   ],
   "firstSeen": "2019-09-14",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "suckerpunch",
+  "name": "SuckerPunch",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:ranch-arena:1845:suckerpunch"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
   "photo": null,
   "links": []
  },
@@ -104136,6 +105134,27 @@
   ],
   "firstSeen": "2022-11-12",
   "lastSeen": "2022-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "super-tall-paul",
+  "name": "Super Tall Paul",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:the-observatory:1900:super-tall-paul",
+   "electric-forest-2013:d1:the-observatory:2130:super-tall-paul",
+   "electric-forest-2013:d1:the-observatory:0015:super-tall-paul",
+   "electric-forest-2013:d2:the-observatory:1400:super-tall-paul",
+   "electric-forest-2013:d2:the-observatory:0030:super-tall-paul",
+   "electric-forest-2013:d3:the-observatory:1445:super-tall-paul",
+   "electric-forest-2013:d4:the-observatory:1745:super-tall-paul"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -104646,19 +105665,16 @@
  },
  {
   "key": "swedish-house-mafia",
-  "name": "Swedish House Mafia",
-  "aliases": [
-   "SWEDISH HOUSE MAFIA"
-  ],
+  "name": "SWEDISH HOUSE MAFIA",
+  "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "portola-2026:pt2-swedish-house-mafia",
-   "tomorrowland-thailand-2026:tmlth-swedish-house-mafia"
+   "portola-2026:pt2-swedish-house-mafia"
   ],
   "firstSeen": "2026-09-27",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-09-27",
   "photo": null,
   "links": []
  },
@@ -104978,21 +105994,6 @@
   ],
   "firstSeen": "2025-11-22",
   "lastSeen": "2026-05-16",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "ta-rek",
-  "name": "TA:REK",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-ta-rek"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -107313,6 +108314,21 @@
   "links": []
  },
  {
+  "key": "the-coop",
+  "name": "The Coop",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:sherwood-court:1730:the-coop"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-coronas",
   "name": "The Coronas",
   "aliases": [],
@@ -107325,6 +108341,21 @@
   ],
   "firstSeen": "2018-10-05",
   "lastSeen": "2018-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-crane-wives",
+  "name": "The Crane Wives",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d4:tripolee:1345:the-crane-wives"
+  ],
+  "firstSeen": "2012-07-01",
+  "lastSeen": "2012-07-01",
   "photo": null,
   "links": []
  },
@@ -107624,6 +108655,21 @@
   "links": []
  },
  {
+  "key": "the-floozies",
+  "name": "The Floozies",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:tripolee:1430:the-floozies"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-frights",
   "name": "The Frights",
   "aliases": [],
@@ -107670,6 +108716,31 @@
   ],
   "firstSeen": "2016-07-30",
   "lastSeen": "2022-10-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-fungineers",
+  "name": "The Fungineers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:the-observatory:2045:the-fungineers",
+   "electric-forest-2013:d1:the-observatory:2345:the-fungineers",
+   "electric-forest-2013:d2:forest-stage:1400:the-fungineers",
+   "electric-forest-2013:d2:the-observatory:1700:the-fungineers",
+   "electric-forest-2013:d2:the-observatory:1930:the-fungineers",
+   "electric-forest-2013:d3:forest-stage:1515:the-fungineers",
+   "electric-forest-2013:d3:the-observatory:1400:the-fungineers",
+   "electric-forest-2013:d4:forest-stage:1330:the-fungineers",
+   "electric-forest-2013:d4:the-observatory:1500:the-fungineers",
+   "electric-forest-2013:d4:the-observatory:2030:the-fungineers",
+   "electric-forest-2013:d4:the-observatory:2300:the-fungineers"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -107998,6 +109069,22 @@
   "links": []
  },
  {
+  "key": "the-infamous-stringdusters",
+  "name": "The Infamous Stringdusters",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:forest-stage:1800:the-infamous-stringdusters",
+   "electric-forest-2012:d3:ranch-arena:1515:the-infamous-stringdusters-with-special-guests"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-james-hunter-six",
   "name": "The James Hunter Six",
   "aliases": [],
@@ -108196,6 +109283,21 @@
   ],
   "firstSeen": "2018-07-22",
   "lastSeen": "2023-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-knocks",
+  "name": "The Knocks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:wagon-wheel:0200:the-knocks"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
   "photo": null,
   "links": []
  },
@@ -108443,6 +109545,21 @@
   "links": []
  },
  {
+  "key": "the-m-machine",
+  "name": "The M Machine",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d4:tripolee:1600:the-m-machine"
+  ],
+  "firstSeen": "2012-07-01",
+  "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-maccabees",
   "name": "The Maccabees",
   "aliases": [],
@@ -108493,6 +109610,21 @@
   ],
   "firstSeen": "2026-07-04",
   "lastSeen": "2026-07-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-main-squeeze",
+  "name": "The Main Squeeze",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:sherwood-court:1615:the-main-squeeze"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
   "photo": null,
   "links": []
  },
@@ -108884,6 +110016,21 @@
   "links": []
  },
  {
+  "key": "the-nth-power",
+  "name": "The Nth Power",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:forest-stage:1600:the-nth-power"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-nude-party",
   "name": "The Nude Party",
   "aliases": [],
@@ -109044,6 +110191,21 @@
   "links": []
  },
  {
+  "key": "the-pimps-of-joytime",
+  "name": "The Pimps of Joytime",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:ranch-arena:1715:the-pimps-of-joytime"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-point",
   "name": "THE POINT.",
   "aliases": [],
@@ -109055,6 +110217,21 @@
   ],
   "firstSeen": "2025-10-12",
   "lastSeen": "2025-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-polish-ambassador",
+  "name": "The Polish Ambassador",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:tripolee:1945:the-polish-ambassador"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
   "photo": null,
   "links": []
  },
@@ -109605,6 +110782,22 @@
   "links": []
  },
  {
+  "key": "the-soul-rebels",
+  "name": "The Soul Rebels",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:sherwood-court:1715:the-soul-rebels",
+   "electric-forest-2012:d2:forest-stage:1430:the-soul-rebels"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-space-brothers",
   "name": "The Space Brothers",
   "aliases": [],
@@ -109656,6 +110849,21 @@
   "links": []
  },
  {
+  "key": "the-stepkids",
+  "name": "The Stepkids",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d3:forest-stage:2030:the-stepkids"
+  ],
+  "firstSeen": "2013-06-29",
+  "lastSeen": "2013-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-story-so-far",
   "name": "The Story So Far",
   "aliases": [],
@@ -109668,6 +110876,26 @@
   ],
   "firstSeen": "2026-07-31",
   "lastSeen": "2026-08-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-string-cheese-incident",
+  "name": "The String Cheese Incident",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:ranch-arena:2000:the-string-cheese-incident",
+   "electric-forest-2012:d3:ranch-arena:2000:the-string-cheese-incident",
+   "electric-forest-2012:d4:ranch-arena:1845:the-string-cheese-incident",
+   "electric-forest-2013:d2:ranch-arena:2230:the-string-cheese-incident",
+   "electric-forest-2013:d3:ranch-arena:2030:the-string-cheese-incident",
+   "electric-forest-2013:d4:ranch-arena:1845:the-string-cheese-incident"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -109912,6 +111140,21 @@
   "links": []
  },
  {
+  "key": "the-travelin-mccourys",
+  "name": "The Travelin' McCourys",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d4:ranch-arena:1700:the-travelin-mccourys-featuring-keller-williams"
+  ],
+  "firstSeen": "2012-07-01",
+  "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-vaccines",
   "name": "the vaccines",
   "aliases": [],
@@ -110104,6 +111347,21 @@
   ],
   "firstSeen": "2013-10-05",
   "lastSeen": "2013-10-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-werks",
+  "name": "The Werks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:sherwood-court:1915:the-werks"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
   "photo": null,
   "links": []
  },
@@ -110367,9 +111625,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2012:d2:ranch-arena:0030:thievery-corporation",
    "lollapalooza-2013:d1:petrillo:1715:thievery-corporation"
   ],
-  "firstSeen": "2013-08-02",
+  "firstSeen": "2012-06-29",
   "lastSeen": "2013-08-02",
   "photo": null,
   "links": []
@@ -110434,13 +111693,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-third-party",
    "tomorrowland-2017:d1:v-sessions:1700:third-party",
    "tomorrowland-2022:d5:mainstage:1630:third-party",
    "tomorrowland-2023:d6:the-rose-garden:1800:third-party"
   ],
   "firstSeen": "2017-07-21",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2023-07-30",
   "photo": null,
   "links": []
  },
@@ -110649,6 +111907,21 @@
   "links": []
  },
  {
+  "key": "thriftworks",
+  "name": "Thriftworks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:tripolee:1330:thriftworks"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "throttle",
   "name": "Throttle",
   "aliases": [],
@@ -110664,6 +111937,21 @@
   ],
   "firstSeen": "2017-07-30",
   "lastSeen": "2023-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "thunderball",
+  "name": "Thunderball",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:tripolee:1930:thunderball"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
   "photo": null,
   "links": []
  },
@@ -110889,21 +112177,6 @@
   ],
   "firstSeen": "2018-07-27",
   "lastSeen": "2026-10-17",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "tiger-drama",
-  "name": "Tiger Drama",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-tiger-drama"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
   "photo": null,
   "links": []
  },
@@ -111868,9 +113141,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2013:d4:tripolee:2200:tommy-trash",
    "tomorrowland-2017:d2:refune:2230:tommy-trash"
   ],
-  "firstSeen": "2017-07-22",
+  "firstSeen": "2013-06-30",
   "lastSeen": "2017-07-22",
   "photo": null,
   "links": []
@@ -112588,10 +113862,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "beyond-wonderland-socal-2012:d1:madhatter-s-castle:1600:treasure-fingers"
+   "beyond-wonderland-socal-2012:d1:madhatter-s-castle:1600:treasure-fingers",
+   "electric-forest-2013:d3:tripolee:1730:treasure-fingers"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2012-03-17",
+  "lastSeen": "2013-06-29",
   "photo": null,
   "links": []
  },
@@ -112734,21 +114009,6 @@
   ],
   "firstSeen": "2024-11-23",
   "lastSeen": "2024-11-23",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "tripical-note",
-  "name": "Tripical Note",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-tripical-note"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -112928,9 +114188,10 @@
   "billings": [
    "acl-2014:d2:honda:1430:trombone-shorty-and-orleans-avenue",
    "acl-2014:d5:honda:1430:trombone-shorty-and-orleans-avenue",
+   "electric-forest-2013:d2:ranch-arena:1730:trombone-shorty-and-orleans-avenue",
    "lollapalooza-2014:d3:bud-light:1445:trombone-shorty-and-orleans-avenue"
   ],
-  "firstSeen": "2014-08-03",
+  "firstSeen": "2013-06-28",
   "lastSeen": "2014-10-11",
   "photo": null,
   "links": []
@@ -113301,6 +114562,23 @@
   "links": []
  },
  {
+  "key": "tumbleweed-wanderers",
+  "name": "Tumbleweed Wanderers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:sherwood-court:1545:tumbleweed-wanderers",
+   "electric-forest-2013:d3:the-observatory:2300:tumbleweed-wanderers",
+   "electric-forest-2013:d4:the-observatory:1915:tumbleweed-wanderers"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tune-yards",
   "name": "tUnE-yArDs",
   "aliases": [],
@@ -113608,6 +114886,21 @@
   ],
   "firstSeen": "2025-08-02",
   "lastSeen": "2025-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "twiddle",
+  "name": "Twiddle",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d4:sherwood-court:1530:twiddle"
+  ],
+  "firstSeen": "2013-06-30",
+  "lastSeen": "2013-06-30",
   "photo": null,
   "links": []
  },
@@ -114591,6 +115884,21 @@
   "links": []
  },
  {
+  "key": "up-until-now",
+  "name": "Up Until Now",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:forest-stage:1900:up-until-now"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "upgrade",
   "name": "Upgrade",
   "aliases": [],
@@ -115125,6 +116433,22 @@
   "links": []
  },
  {
+  "key": "vau-de-vire-society",
+  "name": "Vau de Vire Society",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:forest-stage:0015:vau-de-vire-society",
+   "electric-forest-2012:d3:forest-stage:0130:vau-de-vire-society"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vavo",
   "name": "VAVO",
   "aliases": [],
@@ -115193,12 +116517,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-vegas",
    "dreamstate-socal-2024:d1:the-sequence:2000:vegas",
    "tomorrowland-2023:d4:youphoria:2100:vegas"
   ],
   "firstSeen": "2023-07-28",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2024-11-22",
   "photo": null,
   "links": []
  },
@@ -115513,21 +116836,6 @@
   "links": []
  },
  {
-  "key": "vicky-kroon",
-  "name": "Vicky Kroon",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-vicky-kroon"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
-  "photo": null,
-  "links": []
- },
- {
   "key": "victor-calderone",
   "name": "Victor Calderone",
   "aliases": [],
@@ -115830,7 +117138,6 @@
   "billings": [
    "ultra-miami-2026:ul11",
    "dreamstate-socal-2026:dssc-vini-vici",
-   "tomorrowland-thailand-2026:tmlth-vini-vici",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:0100:vini-vici",
    "dreamstate-socal-2016:d2:the-sequence:2100:vini-vici",
    "dreamstate-socal-2019:d2:the-sequence:2200:vini-vici",
@@ -115851,7 +117158,7 @@
    "tomorrowland-2023:d1:mainstage:1840:vini-vici"
   ],
   "firstSeen": "2016-11-26",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
  },
@@ -116003,6 +117310,21 @@
   ],
   "firstSeen": "2018-07-29",
   "lastSeen": "2019-07-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "virtual-boy",
+  "name": "Virtual Boy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:forest-stage:2030:virtual-boy"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
   "photo": null,
   "links": []
  },
@@ -116300,6 +117622,36 @@
   ],
   "firstSeen": "2024-10-25",
   "lastSeen": "2024-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vokab-company",
+  "name": "Vokab Company",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d2:tripolee:1600:vokab-company"
+  ],
+  "firstSeen": "2013-06-28",
+  "lastSeen": "2013-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vokab-kompany",
+  "name": "Vokab Kompany",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2013:d1:forest-stage:2200:vokab-kompany"
+  ],
+  "firstSeen": "2013-06-27",
+  "lastSeen": "2013-06-27",
   "photo": null,
   "links": []
  },
@@ -116665,6 +118017,21 @@
   ],
   "firstSeen": "2024-11-09",
   "lastSeen": "2025-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wala",
+  "name": "WALA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d2:forest-stage:1630:wala"
+  ],
+  "firstSeen": "2012-06-29",
+  "lastSeen": "2012-06-29",
   "photo": null,
   "links": []
  },
@@ -117849,11 +119216,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dwp-2026:dwp-whisnu-santika",
-   "tomorrowland-thailand-2026:tmlth-whisnu-santika"
+   "dwp-2026:dwp-whisnu-santika"
   ],
   "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -117933,7 +119299,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-blastoyz-b2b-whiteno1se",
    "tomorrowland-2018:d2:arch:1800:whiteno1se",
    "tomorrowland-2019:d3:kara-savi:1700:whiteno1se",
    "tomorrowland-2019:d5:l-orangerie:1830:whiteno1se",
@@ -117942,7 +119307,7 @@
    "tomorrowland-2023:d4:youphoria:1700:whiteno1se"
   ],
   "firstSeen": "2018-07-21",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2023-07-28",
   "photo": null,
   "links": []
  },
@@ -118906,6 +120271,21 @@
   "links": []
  },
  {
+  "key": "wolfgang-gartner",
+  "name": "Wolfgang Gartner",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:ranch-arena:2215:wolfgang-gartner"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wolfie",
   "name": "Wolfie",
   "aliases": [],
@@ -119308,21 +120688,6 @@
   "links": []
  },
  {
-  "key": "wukong",
-  "name": "Wukong",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-wukong"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
-  "photo": null,
-  "links": []
- },
- {
   "key": "wunderhorse",
   "name": "Wunderhorse",
   "aliases": [],
@@ -119365,6 +120730,21 @@
   ],
   "firstSeen": "2023-11-11",
   "lastSeen": "2023-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wyllys",
+  "name": "Wyllys",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d1:wagon-wheel:2215:wyllys"
+  ],
+  "firstSeen": "2012-06-28",
+  "lastSeen": "2012-06-28",
   "photo": null,
   "links": []
  },
@@ -119444,11 +120824,10 @@
    "outside-lands-2026:os122",
    "hard-summer-2026:hs1-x-club-b2b-atrip",
    "arc-2026:arc-nia-archives-b2b-x-club-area909-d3",
-   "tomorrowland-thailand-2026:tmlth-x-club",
    "edc-las-vegas-2025:d1:bionic-jungle:0230:x-club"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2026-09-06",
   "photo": null,
   "links": []
  },
@@ -119622,21 +121001,6 @@
   "links": []
  },
  {
-  "key": "xenia-dia",
-  "name": "Xenia Dia",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-xenia-dia"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
-  "photo": null,
-  "links": []
- },
- {
   "key": "xijaro-and-pitch",
   "name": "XiJaro & Pitch",
   "aliases": [],
@@ -119715,21 +121079,6 @@
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2023-07-21",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "xy",
-  "name": "XY",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-xy"
-  ],
-  "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
  },
@@ -120030,9 +121379,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2013:d4:sherwood-court:2230:yeasayer",
    "lollapalooza-2016:d1:lakeshore:1530:yeasayer"
   ],
-  "firstSeen": "2016-07-28",
+  "firstSeen": "2013-06-30",
   "lastSeen": "2016-07-28",
   "photo": null,
   "links": []
@@ -120062,8 +121412,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-flosstradamus-b2b-yellow-claw",
-   "tomorrowland-thailand-2026:tmlth-yellow-claw",
    "edc-las-vegas-2022:d2:cosmic-meadow:0130:yellow-claw",
    "edc-las-vegas-2025:d1:cosmic-meadow:0315:yellow-claw",
    "edc-orlando-2019:d1:kineticfield:2010:yellow-claw",
@@ -120078,7 +121426,7 @@
    "tomorrowland-2022:d7:mainstage:1840:yellow-claw"
   ],
   "firstSeen": "2016-07-31",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
  },
@@ -120380,7 +121728,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-eli-and-fur-b2b-yotto",
    "edc-las-vegas-2024:d3:quantum-valley:0000:yotto",
    "edc-orlando-2019:d1:neongarden:1600:yotto",
    "edc-orlando-2023:d2:stereo-bloom:2215:yotto",
@@ -120392,7 +121739,7 @@
    "tomorrowland-2022:d7:freedom:2100:yotto"
   ],
   "firstSeen": "2018-07-27",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2024-05-19",
   "photo": null,
   "links": []
  },
@@ -120429,21 +121776,6 @@
   ],
   "firstSeen": "2026-12-30",
   "lastSeen": "2026-12-30",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "youna",
-  "name": "Youna",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-youna"
-  ],
-  "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
@@ -120641,21 +121973,6 @@
   "links": []
  },
  {
-  "key": "yukio",
-  "name": "Yukio",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "tomorrowland-thailand-2026:tmlth-yukio"
-  ],
-  "firstSeen": "2026-12-13",
-  "lastSeen": "2026-12-13",
-  "photo": null,
-  "links": []
- },
- {
   "key": "yultron",
   "name": "Yultron",
   "aliases": [
@@ -120791,7 +122108,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-yves-v",
    "tomorrowland-2017:d1:v-sessions:2100:yves-v",
    "tomorrowland-2017:d2:mainstage:2000:yves-v",
    "tomorrowland-2018:d3:mainstage:1850:yves-v",
@@ -120805,7 +122121,7 @@
    "tomorrowland-2023:d6:rise-by-coke-studio:1900:yves-v"
   ],
   "firstSeen": "2017-07-21",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2023-07-30",
   "photo": null,
   "links": []
  },
@@ -121097,11 +122413,12 @@
    "edc-las-vegas-2022:d3:parliament-art-car:0415:zeds-dead-after-hours-set",
    "edc-orlando-2022:d1:circuit-grounds:2245:zeds-dead",
    "edc-orlando-2024:d1:circuit-grounds:2245:zeds-dead",
+   "electric-forest-2012:d2:tripolee:2345:zeds-dead",
    "lollapalooza-2017:d4:perry-s:2030:zeds-dead",
    "nocturnal-wonderland-2019:d1:labyrinth:2300:zeds-dead",
    "tomorrowland-2019:d1:rose-garden:2330:zeds-dead"
   ],
-  "firstSeen": "2017-08-06",
+  "firstSeen": "2012-06-29",
   "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
@@ -121490,6 +122807,21 @@
   ],
   "firstSeen": "2017-07-29",
   "lastSeen": "2022-07-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "zoogma",
+  "name": "Zoogma",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2012:d3:sherwood-court:1600:zoogma"
+  ],
+  "firstSeen": "2012-06-30",
+  "lastSeen": "2012-06-30",
   "photo": null,
   "links": []
  },

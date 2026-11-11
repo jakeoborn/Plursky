@@ -12,6 +12,10 @@
 //   B. Cloud backup (_slimMomentsForSync): a moment carrying planted capture
 //      coordinates, accuracy and heading leaves with none of them; the rest of
 //      the record (tag, night, amenity label) is kept so restore still works.
+//   D. Accuracy rings (SPEC-192 ws1): each pin with a recorded accuracy gets a
+//      true-metre circle on its OWN fix with its OWN radius; precise/coarse is
+//      the shared photoFixAccClass (data.jsx, the tagger's maxAccM); no
+//      recorded accuracy = no ring, never a default.
 //   C. Mutations: each must turn a check red, or the check proves nothing.
 import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -32,7 +36,9 @@ function slice(src, startMark, endMark) {
 }
 const PIN_SRC = slice(MAP, "function _validGps(g)", "function _lngLatOf(p)");
 const SLIM_SRC = slice(SB, "const _MOMENT_LOCAL_FIELDS", "// Ceiling on the moments blob");
-const loadPins = (src) => new Function(`${src}; return { _momentPinsFor, _momentPinsGeoJson };`)();
+const DATA = readFileSync(join(ROOT, "data.jsx"), "utf8");
+const TRUST_SRC = slice(DATA, "const STAGE_FIX_PHOTO = {", "// Only measured stage positions (osm / crowd)");
+const loadPins = (src, trust = TRUST_SRC) => new Function(`${trust}\n${src}; return { _momentPinsFor, _momentPinsGeoJson, _momentAccRingsGeoJson };`)();
 const loadSlim = (src) => new Function(`${src}; return _slimMomentsForSync;`)();
 
 // Fixture: real-shaped moments as the import loop writes them (spotify.jsx).
@@ -66,13 +72,61 @@ const fixture = () => [
   ok(gj.type === "FeatureCollection" && gj.features.length === 2, "A7 GeoJSON has one feature per pin");
   const f1 = gj.features.find(f => f.properties.id === "m_gps_photo");
   ok(f1 && f1.geometry.coordinates[0] === LNG && f1.geometry.coordinates[1] === LAT, "A8 GeoJSON is [lng, lat] (MapLibre order)");
-  ok(gj.features.every(f => JSON.stringify(Object.keys(f.properties).sort()) === '["id","kind"]'), "A9 feature properties are id + kind only");
+  ok(gj.features.every(f => JSON.stringify(Object.keys(f.properties).sort()) === '["acc","id","kind"]'), "A9 feature properties are id + kind + accuracy class only");
   // Every tagged item in a GPS-complete fixture gets a pin (the "EVERY" lock).
   const allGps = Array.from({ length: 50 }, (_, i) => ({ id: `m${i}`, artistId: `a${i % 7}`, festivalId: FID, kind: i % 3 ? "photo" : "video", parsedGps: { lat: LAT + i * 1e-5, lng: LNG - i * 1e-5 } }));
   ok(_momentPinsFor(allGps, FID).length === 50, "A10 every tagged item with GPS pins (50 of 50)");
   // No estimate code path: the helper never reads stage/poster/x/y/jitter.
   const body = slice(MAP, "function _momentPinsFor(", "function _momentPinsGeoJson(");
   ok(!/STAGES|\.x\b|\.y\b|_idJitter|mapToGps|gpsToMap|cfg\.gps|FESTIVAL_CONFIG/.test(body), "A11 _momentPinsFor has no stage, poster, jitter or venue fallback");
+}
+
+// ── D. accuracy rings ───────────────────────────────────────────────────
+const hav = (a, b) => { const R = 6371008.8, k = Math.PI / 180, dLat = (b.lat - a.lat) * k, dLng = (b.lng - a.lng) * k; const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * k) * Math.cos(b.lat * k) * Math.sin(dLng / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
+const accFixture = () => [
+  { id: "r_p", artistId: "kaskade", festivalId: FID, kind: "photo", parsedGps: { lat: LAT, lng: LNG }, gpsAccM: 6 },
+  { id: "r_c", artistId: "kaskade", festivalId: FID, kind: "video", parsedGps: { lat: 28.5420001, lng: -81.3990002 }, gpsAccM: 250 },
+  { id: "r_u", artistId: "kaskade", festivalId: FID, kind: "photo", parsedGps: { lat: 28.5402, lng: -81.3979 } },
+  { id: "r_nan", artistId: "kaskade", festivalId: FID, kind: "photo", parsedGps: { lat: 28.5403, lng: -81.3978 }, gpsAccM: NaN },
+  { id: "r_zero", artistId: "kaskade", festivalId: FID, kind: "photo", parsedGps: { lat: 28.5404, lng: -81.3977 }, gpsAccM: 0 },
+  { id: "r_str", artistId: "kaskade", festivalId: FID, kind: "photo", parsedGps: { lat: 28.5405, lng: -81.3976 }, gpsAccM: "12" },
+];
+function ringSuite(api) {
+  const failed = []; const t = (c, n) => { if (!c) failed.push(n); };
+  const pins = api._momentPinsFor(accFixture(), FID);
+  const by = Object.fromEntries(pins.map(p => [p.id, p]));
+  const rings = api._momentAccRingsGeoJson(pins).features;
+  const rb = Object.fromEntries(rings.map(f => [f.properties.id, f]));
+  t(Object.keys(rb).sort().join() === "r_c,r_p", `D1 a ring for each pin with a recorded accuracy, none otherwise (got ${Object.keys(rb).join(",")})`);
+  for (const id of ["r_p", "r_c"]) {
+    const f = rb[id], want = id === "r_p" ? 6 : 250, c = by[id];
+    const ds = f ? f.geometry.coordinates[0].map(([lng, lat]) => hav(c, { lat, lng })) : [];
+    t(!!f && ds.length > 30 && ds.every(d => Math.abs(d - want) / want < 0.01), `D2 ${id}: every ring vertex is ${want} m from its own fix (got ${ds.length ? Math.min(...ds).toFixed(2) + "-" + Math.max(...ds).toFixed(2) : "none"})`);
+    t(!!f && JSON.stringify(f.geometry.coordinates[0][0]) === JSON.stringify(f.geometry.coordinates[0].at(-1)), `D2b ${id}: the ring is closed`);
+  }
+  t(by.r_p?.acc === "precise" && by.r_c?.acc === "coarse" && rb.r_p?.properties.acc === "precise" && rb.r_c?.properties.acc === "coarse", "D3 precise within the tagger's line, coarse past it");
+  t(["r_u", "r_nan", "r_zero", "r_str"].every(id => by[id] && by[id].acc === "unknown" && by[id].accM === null), "D4 missing, NaN, 0 and string accuracy are unknown (accM null), still pinned");
+  t(rings.every(f => JSON.stringify(Object.keys(f.properties).sort()) === '["acc","accM","id"]'), "D5 ring properties are id + class + radius only");
+  return failed;
+}
+{
+  const failed = ringSuite(loadPins(PIN_SRC));
+  for (const f of failed) ok(false, f);
+  ok(!failed.length, "D suite green on the real source");
+  const body = slice(MAP, "function _momentPinsFor(", "function _momentPinsGeoJson(");
+  ok(!/gpsAccM|maxAccM|\b100\b/.test(body) && /photoFixAccM\(/.test(body) && /photoFixAccClass\(/.test(body), "D6 the map restates no accuracy rule: it calls photoFixAccM/photoFixAccClass");
+  const RM = [
+    ["missing accuracy defaulted to a ring", PIN_SRC, TRUST_SRC.replace("&& a > 0 ? a : null;", "&& a > 0 ? a : 10;")],
+    ["ring tighter than captured", PIN_SRC.replace("const dLat = p.accM / R / k, dLng = p.accM / (R", "const dLat = p.accM / 2 / R / k, dLng = p.accM / 2 / (R"), TRUST_SRC],
+    ["ring on a shared centre", PIN_SRC.replace("ring.push([p.lng + dLng * Math.cos(a), p.lat + dLat * Math.sin(a)]);", "ring.push([-81.3987654 + dLng * Math.cos(a), 28.5412345 + dLat * Math.sin(a)]);"), TRUST_SRC],
+    ["coarse drawn as precise", PIN_SRC, TRUST_SRC.replace('return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";', 'return "precise";')],
+  ];
+  for (const [name, src, trust] of RM) {
+    if (src === PIN_SRC && trust === TRUST_SRC) { ok(false, `D setup: mutation "${name}" did not apply`); continue; }
+    const f = ringSuite(loadPins(src, trust));
+    ok(f.length > 0, `D mutation "${name}" turns a ring check red`);
+    if (f.length) console.log(`  · mutation "${name}" caught by: ${f[0]}`);
+  }
 }
 
 // ── B. cloud backup keeps coordinates on the device ─────────────────────

@@ -2693,19 +2693,6 @@
    ]
   },
   {
-   "id": "edc-mexico-2020:secret-set",
-   "name": "Secret Set",
-   "key": "secret-set",
-   "performers": [
-    "secret-set"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
    "id": "edc-mexico-2020:sheco",
    "name": "Sheco",
    "key": "sheco",

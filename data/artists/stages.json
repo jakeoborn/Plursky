@@ -1414,6 +1414,92 @@
     }
    ]
   },
+  "electric-forest": {
+   "lineages": [
+    {
+     "id": "electric-forest:ranch-arena",
+     "names": [
+      {
+       "printed": "Ranch Arena",
+       "editions": [
+        "electric-forest-2012",
+        "electric-forest-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "electric-forest:sherwood-court",
+     "names": [
+      {
+       "printed": "Sherwood Court",
+       "editions": [
+        "electric-forest-2012",
+        "electric-forest-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "electric-forest:tripolee",
+     "names": [
+      {
+       "printed": "Tripolee",
+       "editions": [
+        "electric-forest-2012",
+        "electric-forest-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "electric-forest:forest-stage",
+     "names": [
+      {
+       "printed": "Forest Stage",
+       "editions": [
+        "electric-forest-2012",
+        "electric-forest-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "electric-forest:wagon-wheel",
+     "names": [
+      {
+       "printed": "Wagon Wheel",
+       "editions": [
+        "electric-forest-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "electric-forest:the-observatory",
+     "names": [
+      {
+       "printed": "The Observatory",
+       "editions": [
+        "electric-forest-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "escape-halloween": {
    "lineages": [
     {

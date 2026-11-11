@@ -5727,18 +5727,7 @@ function _lensFix(m) {
   if (g.lat === 0 && g.lng === 0) return null; // null island = an unset fix
   return { lat: g.lat, lng: g.lng };
 }
-// A fix's horizontal accuracy (metres, ~68% radius) as captured, or null when
-// none was recorded. Never defaulted: a missing value stays unknown.
-function _lensAcc(m) {
-  const a = m && m.gpsAccM;
-  return typeof a === "number" && Number.isFinite(a) && a > 0 ? a : null;
-}
-// Same trust line the photo auto-tagger uses (STAGE_FIX_PHOTO in data.jsx):
-// within it a fix is "precise"; past it, "coarse"; no value, "unknown".
-function _lensAccClass(acc) {
-  if (acc == null) return "unknown";
-  return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";
-}
+// Accuracy: photoFixAccM / photoFixAccClass (data.jsx), shared with the map.
 const _LENS_RING_CAP = 60;  // accuracy rings drawn at most
 const _LENS_FAR_M = 3000;   // a fix this far from the rest is another place, not the venue
 const _LENS_MIN_SPAN_M = 40; // one shot, or shots a step apart, still get a readable scale
@@ -5765,8 +5754,8 @@ function _gpsLensLayout(moments, opts) {
   for (const f of fixes) {
     const e = (f.g.lng - lng0) * k * R * cos0, n = (f.g.lat - lat0) * k * R;
     if (Math.hypot(e, n) > _LENS_FAR_M) { far++; continue; }
-    const acc = _lensAcc(f.m);
-    pts.push({ m: f.m, t: f.t, e, n, acc, cls: _lensAccClass(acc) });
+    const acc = photoFixAccM(f.m);
+    pts.push({ m: f.m, t: f.t, e, n, acc, cls: photoFixAccClass(acc) });
   }
   if (!pts.length) return { ...empty, far };
   // Extents include each PRECISE fix's accuracy ring, so a trusted ring is
