@@ -642,6 +642,21 @@
    "source": "https://escapehalloween.com/lineup/set-times/"
   },
   {
+   "printed": "Wankdat (Crankdat + Wooli)",
+   "performers": [
+    {
+     "name": "Wankdat",
+     "role": "project",
+     "parents": [
+      "Crankdat",
+      "Wooli"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://decadencearizona.com/lineup"
+  },
+  {
    "printed": "FURY + MC DINO",
    "performers": [
     {
