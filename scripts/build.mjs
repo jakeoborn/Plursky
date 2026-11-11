@@ -99,9 +99,14 @@ if (!buildFiles.length) {
   process.exit(1);
 }
 
+// Festival map art fitted to its venue (scripts/build-geo-plate.py). The real
+// map loads these by path, so a plate missing here is a map with no art offline.
+const geoPlateFiles = existsSync(path.join(root, 'geo-maps'))
+  ? (await readdir(path.join(root, 'geo-maps'))).filter(f => /\.webp$/i.test(f)).map(f => path.join('geo-maps', f)) : [];
+
 const artistPhotoFiles = existsSync(path.join(root, 'artist-photos'))
   ? (await readdir(path.join(root, 'artist-photos'))).filter(f => /\.(webp|png|jpg)$/.test(f)).map(f => path.join('artist-photos', f)) : [];
-const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles, ...historicalFiles, ...fontFiles, ...artistPhotoFiles])];
+const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles, ...historicalFiles, ...fontFiles, ...geoPlateFiles, ...artistPhotoFiles])];
 for (const file of allFiles) {
   const src = path.join(root, file);
   if (!existsSync(src)) {

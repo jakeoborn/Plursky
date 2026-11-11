@@ -866,6 +866,11 @@ const FESTIVALS_REGISTRY = [
       // scripts/build-edco-map-2026.mjs from the unedited source in
       // map-sources/. It replaces a generated placeholder.
       mapImage: "edco-tinker-2026.webp",
+      // The same art fitted to the ground by its own street ties (not stage
+      // anchors): scripts/build-geo-plate.py over map-sources/edc-orlando-2026-geo-ties.json.
+      // The real map lays this plate down at its bounds; stages stay pending.
+      mapGeoref: { image: "geo-maps/edc-orlando-2026.webp", bounds: [-81.4059882, 28.5347911, -81.397489, 28.5411997], model: "affine",
+                   ties: "map-sources/edc-orlando-2026-geo-ties.json", rmsM: 9.5, looRmsM: 41.3 },
       mapStyle: "image-overlay",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",

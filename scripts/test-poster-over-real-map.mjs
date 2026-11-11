@@ -76,7 +76,8 @@ function load(fid, mapSrc = MAP) {
   return vm.runInContext(`({ id: FESTIVAL_CONFIG.id, DS: _DATA_SETS, tier: POSTER_TIER, affine: MAP_AFFINE,
     realStages: REAL_MAP_STAGES, placed: PLACED_STAGES, posterTierFor, _solveMapAffine, geometryVerifiedFor,
     placesChecked: REAL_MAP_PLACES_CHECKED, realAmenities: REAL_MAP_AMENITIES, amenities: AMENITIES,
-    unchecked: POSTER_OPACITY_UNCHECKED, cfg: FESTIVAL_CONFIG, stagesAll: STAGES,
+    unchecked: POSTER_OPACITY_UNCHECKED, fittedOpacity: POSTER_OPACITY_FITTED, cfg: FESTIVAL_CONFIG, stagesAll: STAGES,
+    artGeorefFor, artGeoref: ART_GEOREF, officialSrc: OFFICIAL_MAP_SRC, maxRms: ARTFIT_MAX_RMS_M,
     _realMapTarget, _meetTargetFor, _groundsLngLats, _showYou, distMiles })`, ctx);
 }
 
@@ -84,9 +85,14 @@ function load(fid, mapSrc = MAP) {
 // evidence per anchor); edit this table in the same PR that registers them.
 const EXPECTED = {
   checked:   ["summerfest-2026", "lollapalooza-2026", "outside-lands-2026"],
-  unchecked: ["edc-lv-2026", "acl-2026", "edc-orlando-2026", "ultra-miami-2026", "governors-ball-2026", "iii-points-2026"],
+  unchecked: ["edc-lv-2026", "acl-2026", "ultra-miami-2026", "governors-ball-2026"],
+  // The festival's own art fitted to the ground by street ties
+  // (scripts/build-geo-plate.py, map-sources/<id>-geo-ties.json). The ART is
+  // placed; stages are not, so these still pin nothing.
+  fitted:    ["edc-orlando-2026", "hard-summer-2026", "iii-points-2026"],
 };
-const expectedTier = id => EXPECTED.checked.includes(id) ? "checked" : EXPECTED.unchecked.includes(id) ? "unchecked" : "none";
+const expectedTier = id => EXPECTED.checked.includes(id) ? "checked" : EXPECTED.unchecked.includes(id) ? "unchecked"
+  : EXPECTED.fitted.includes(id) ? "fitted" : "none";
 
 function fleet(mapSrc) {
   const fails = [];
@@ -102,6 +108,15 @@ function fleet(mapSrc) {
     ok(t === expectedTier(id), `${id}: tier "${t}", expected "${expectedTier(id)}"`);
     ok((t === "checked") === ver, `${id}: "checked" must mean geometryVerifiedFor() passes (tier ${t}, verified ${ver})`);
     if (cfg.mapMode === "real") ok(t === "none", `${id}: mapMode "real" has no art to lay over (tier ${t})`);
+    if (t === "fitted") ok(!!P.artGeorefFor(cfg), `${id}: "fitted" needs a mapGeoref that passes artGeorefFor()`);
+  }
+  // A loose fit never places art: the rms ceiling is the claim "fits within metres".
+  {
+    const g = { image: "geo-maps/x.webp", bounds: [-1, 1, 1, 2], rmsM: 4 };
+    ok(!!P.artGeorefFor({ mapGeoref: g }), "artGeorefFor: control — a tight fit is accepted");
+    ok(!P.artGeorefFor({ mapGeoref: { ...g, rmsM: P.maxRms + 1 } }), `artGeorefFor: a fit looser than ${P.maxRms} m is accepted`);
+    ok(!P.artGeorefFor({ mapGeoref: { ...g, rmsM: undefined } }), "artGeorefFor: a fit with no rms is accepted");
+    ok(!P.artGeorefFor({ mapGeoref: { ...g, bounds: [1, 1, -1, 2] } }), "artGeorefFor: inverted bounds are accepted");
   }
   // The active-festival constants agree with the function (one policy).
   // EDC Orlando is gated (it cannot be the active festival); its tier is pinned above.
@@ -111,6 +126,11 @@ function fleet(mapSrc) {
     ok(A.id === id, `active festival is ${A.id}, not ${id} (a gated id silently loads the default)`);
     ok(A.tier === expectedTier(id), `${id} active: POSTER_TIER "${A.tier}", expected "${expectedTier(id)}"`);
     const checked = expectedTier(id) === "checked";
+    if (expectedTier(id) === "fitted") {
+      ok(A.artGeoref && A.officialSrc === A.artGeoref.image, `${id}: fitted, so the real map lays the fitted plate (src ${A.officialSrc})`);
+    } else {
+      ok(!A.artGeoref && A.officialSrc === A.cfg.mapImage, `${id}: not fitted, so the real map lays the art itself (src ${A.officialSrc})`);
+    }
     ok(A.placesChecked === checked, `${id}: pins placed=${A.placesChecked}, expected ${checked} (only checked geometry places pins)`);
     if (checked) {
       ok(A.realStages.length === A.placed.length && A.placed.length > 0, `${id}: checked, so the real map pins all ${A.placed.length} placed stages (got ${A.realStages.length})`);
@@ -122,6 +142,7 @@ function fleet(mapSrc) {
     }
   }
   ok(P.unchecked > 0 && P.unchecked <= 0.5, `unchecked poster opacity ${P.unchecked} must read as faded (0 < o <= 0.5)`);
+  ok(P.fittedOpacity > P.unchecked && P.fittedOpacity < 1, `fitted art opacity ${P.fittedOpacity} must read stronger than unchecked and keep the ground visible`);
   return fails;
 }
 
@@ -129,12 +150,14 @@ function fleet(mapSrc) {
 const SRC = [
   ["RealMap gets the tier's stages", /stages:\s*REAL_MAP_STAGES/],
   ["RealMap gets the poster only when the tier places it", /officialMap:\s*POSTER_TIER !== "none"/],
-  ["poster opacity follows the tier", /"raster-opacity":\s*POSTER_TIER === "checked"[\s\S]{0,120}POSTER_OPACITY_UNCHECKED/],
+  ["poster opacity follows the tier", /"raster-opacity":\s*POSTER_TIER === "checked"[\s\S]{0,120}POSTER_TIER === "fitted" \? POSTER_OPACITY_FITTED : POSTER_OPACITY_UNCHECKED/],
+  ["fitted art is laid at its own bounds, not the stage affine", /coordinates = ART_GEOREF \? _geoPlateCorners\(ART_GEOREF\) : _officialMapCorners/],
+  ["fitted art places itself without stage anchors", /if \(!MAP_AFFINE && !ART_GEOREF\) return;/],
   ["real map is on unless the user chose \"0\"", /localStorage\.getItem\("plursky_use_realmap"\) !== "0"/],
   ["a failed real map holds for the session", /sessionStorage\.getItem\("plursky_realmap_failed"\) === "1"\) return false/],
   ["a failure does not erase the user's choice", s => !/removeItem\("plursky_use_realmap"\)/.test(s)],
   ["the toggle records both choices", /setItem\("plursky_use_realmap", v \? "1" : "0"\)/],
-  ["posture: unplaced pins on the real map read STAGES PENDING", /REAL_MAP_ONLY \|\| useRealMap && !REAL_MAP_PLACES_CHECKED \? useRealMap && POSTER_TIER === "unchecked" \? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING"/],
+  ["posture: unplaced pins on the real map read STAGES PENDING", /REAL_MAP_ONLY \|\| useRealMap && !REAL_MAP_PLACES_CHECKED \? useRealMap && POSTER_TIER === "fitted" \? "OFFICIAL MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" \? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING"/],
   ["landmarks need checked placement", /SUB_LANDMARKS = REAL_MAP_PLACES_CHECKED \?/],
   ["RealMap gets the checked amenities", /amenities:\s*REAL_MAP_AMENITIES/],
   ["Water/Medical chips follow the map on screen", /has = t => mapAmenities\.some/],
@@ -142,7 +165,7 @@ const SRC = [
   ["a failed overlay is latched off", s => /if \(officialMapFailedRef\.current\) return;/.test(s) && /sourceId === "official-map"\) \{\s*officialMapFailedRef\.current = true;/.test(s)],
   // MapLibre cannot decode SVG (createImageBitmap); six festivals ship SVG art.
   ["an SVG map is rasterised before MapLibre sees it", /toDataURL\("image\/png"\)/],
-  ["the image source loads the rasterised URL", /(?:const|var) src = dims\.url \|\| FESTIVAL_CONFIG\.mapImage/],
+  ["the image source loads the rasterised URL", /(?:const|var) src = dims\.url \|\| OFFICIAL_MAP_SRC/],
   ["both maps get only a placeable meet pin", s => (s.match(/meetTarget:\s*meetPin/g) || []).length === 2],
   ["every meet target is built through _meetTargetFor (only the drawn map's own click sets one raw)", s => (s.match(/setMeetTarget\(\{/g) || []).length === 1 && !/setMeetTarget\(target\)/.test(s) && /setMeet = t => setMeetTarget\(_meetTargetFor\(t, useRealMap\)\)/.test(s)],
   ["GO HERE only where the map can place the stage", /onGoHere:\s*canRouteToStage \? goToStage : null/],
@@ -238,8 +261,12 @@ if (srcFails.length) { failed++; console.log("  ✗  " + srcFails.join("\n  ✗ 
 // Mutations: each must turn the gate red. A mutation that does not apply is a
 // broken gate, not a pass.
 const MUT = [
-  ["tier ignores verification", "return verified ? \"checked\" : \"unchecked\";", "return \"checked\";", "fleet"],
-  ["tier ignores the affine", "!affine) return \"none\";", "false) return \"none\";", "fleet"],
+  ["tier ignores verification", "if (affine && verified) return \"checked\";", "if (affine) return \"checked\";", "fleet"],
+  ["tier ignores the affine", "return affine ? \"unchecked\" : \"none\";", "return \"unchecked\";", "fleet"],
+  ["fitted art ignored", "if (artGeorefFor(cfg)) return \"fitted\";", "", "fleet"],
+  ["a loose fit places art", "g.rmsM <= ARTFIT_MAX_RMS_M", "g.rmsM <= 1e9", "fleet"],
+  ["fitted art placed through the stage affine", "coordinates = ART_GEOREF ? _geoPlateCorners(ART_GEOREF) :", "coordinates = false ? _geoPlateCorners(ART_GEOREF) :", "src"],
+  ["fitted art loads the raw poster", "OFFICIAL_MAP_SRC = ART_GEOREF ? ART_GEOREF.image : FESTIVAL_CONFIG.mapImage;", "OFFICIAL_MAP_SRC = FESTIVAL_CONFIG.mapImage;", "fleet"],
   ["no-affine festivals pin every stage", "REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];", "REAL_MAP_STAGES = PLACED_STAGES;", "fleet"],
   ["unchecked anchors pin stages (the #313 head)", "REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];", "REAL_MAP_STAGES = MAP_AFFINE ? PLACED_STAGES : [];", "fleet"],
   ["placement ignores verification", "REAL_MAP_PLACES_CHECKED = !!MAP_AFFINE && !!MAP_REGISTRATION_SOURCED;", "REAL_MAP_PLACES_CHECKED = !!MAP_AFFINE;", "fleet"],
@@ -252,7 +279,7 @@ const MUT = [
   ["poster whenever there is art", "officialMap: POSTER_TIER !== \"none\"", "officialMap: !!FESTIVAL_CONFIG.mapImage", "src"],
   ["opt-in default restored", "localStorage.getItem(\"plursky_use_realmap\") !== \"0\"", "localStorage.getItem(\"plursky_use_realmap\") === \"1\"", "src"],
   ["landmarks on unchecked anchors", "SUB_LANDMARKS = REAL_MAP_PLACES_CHECKED ?", "SUB_LANDMARKS = MAP_AFFINE ?", "src"],
-  ["SVG handed to MapLibre raw", "src = dims.url || FESTIVAL_CONFIG.mapImage", "src = FESTIVAL_CONFIG.mapImage", "src"],
+  ["SVG handed to MapLibre raw", "src = dims.url || OFFICIAL_MAP_SRC", "src = OFFICIAL_MAP_SRC", "src"],
   ["poster x/y reaches a real-map target", "if (!REAL_MAP_PLACES_CHECKED || !Number.isFinite(p.x)", "if (!Number.isFinite(p.x)", "targets"],
   ["meet target keeps its art position", "if (!t || t.textOnly || !onRealMap || _realMapTarget(t)) return t;", "return t;", "targets"],
   ["grounds ignore the anchors", "return an.length >= 2 ? an.map(a => [a.lng, a.lat]) : [];", "return [];", "targets"],

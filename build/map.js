@@ -545,13 +545,27 @@ var MAP_REGISTRATION_SOURCED = geometryVerifiedFor(FESTIVAL_CONFIG.id, FESTIVAL_
 function readoutHonest(avatar) {
   return geometryVerifiedFor(typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
+var ARTFIT_MAX_RMS_M = 15;
+function artGeorefFor(cfg) {
+  var g = cfg && cfg.mapGeoref;
+  if (!g || typeof g.image !== "string" || !Array.isArray(g.bounds) || g.bounds.length !== 4) return null;
+  var [w, s, e, n] = g.bounds;
+  if (![w, s, e, n].every(Number.isFinite) || !(e > w && n > s)) return null;
+  if (!(Number.isFinite(g.rmsM) && g.rmsM <= ARTFIT_MAX_RMS_M)) return null;
+  return g;
+}
 function posterTierFor(cfg, affine, verified) {
-  if (!cfg || cfg.mapMode === "real" || !affine) return "none";
+  if (!cfg || cfg.mapMode === "real") return "none";
   if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
-  return verified ? "checked" : "unchecked";
+  if (affine && verified) return "checked";
+  if (artGeorefFor(cfg)) return "fitted";
+  return affine ? "unchecked" : "none";
 }
 var POSTER_TIER = posterTierFor(FESTIVAL_CONFIG, MAP_AFFINE, MAP_REGISTRATION_SOURCED);
+var ART_GEOREF = POSTER_TIER === "none" ? null : artGeorefFor(FESTIVAL_CONFIG);
+var OFFICIAL_MAP_SRC = ART_GEOREF ? ART_GEOREF.image : FESTIVAL_CONFIG.mapImage;
 var POSTER_OPACITY_UNCHECKED = 0.35;
+var POSTER_OPACITY_FITTED = 0.82;
 var REAL_MAP_PLACES_CHECKED = !!MAP_AFFINE && !!MAP_REGISTRATION_SOURCED;
 var REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];
 var REAL_MAP_AMENITIES = REAL_MAP_PLACES_CHECKED && typeof AMENITIES !== "undefined" ? AMENITIES : [];
@@ -2730,7 +2744,7 @@ function MapScreen({
   var canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
   var artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
   var artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
-  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
+  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "fitted" ? "OFFICIAL MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
   var mapAmenities = useRealMap ? REAL_MAP_AMENITIES : typeof AMENITIES !== "undefined" ? AMENITIES : [];
   var [realMapNote, setRealMapNote] = React.useState(null);
   var _disableRealMap = why => {
@@ -6421,6 +6435,10 @@ function _officialMapDims(src) {
   });
   return _imgDimsCache[src];
 }
+function _geoPlateCorners(g) {
+  var [w, s, e, n] = g.bounds;
+  return [[w, n], [e, n], [e, s], [w, s]];
+}
 function _officialMapCorners(natW, natH) {
   var e = _officialMapExtent(natW, natH);
   var pt = (x, y) => {
@@ -6989,12 +7007,12 @@ function RealMap({
         });
         var _addOfficialMap = () => {
           if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
-          if (!MAP_AFFINE) return;
+          if (!MAP_AFFINE && !ART_GEOREF) return;
           if (officialMapFailedRef.current) return;
           var dims = officialMapDimsRef.current;
           if (!dims) return;
-          var src = dims.url || FESTIVAL_CONFIG.mapImage;
-          var coordinates = _officialMapCorners(dims.w, dims.h);
+          var src = dims.url || OFFICIAL_MAP_SRC;
+          var coordinates = ART_GEOREF ? _geoPlateCorners(ART_GEOREF) : _officialMapCorners(dims.w, dims.h);
           if (!map.getSource("official-map")) {
             map.addSource("official-map", {
               type: "image",
@@ -7016,7 +7034,7 @@ function RealMap({
                 visibility: officialMapRef.current ? "visible" : "none"
               },
               paint: {
-                "raster-opacity": POSTER_TIER === "checked" ? FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78 : POSTER_OPACITY_UNCHECKED,
+                "raster-opacity": POSTER_TIER === "checked" ? FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78 : POSTER_TIER === "fitted" ? POSTER_OPACITY_FITTED : POSTER_OPACITY_UNCHECKED,
                 "raster-fade-duration": 0,
                 "raster-resampling": "linear"
               }
@@ -7026,7 +7044,7 @@ function RealMap({
         };
         _safeLayer("official-map", _addOfficialMap);
         if (!officialMapDimsRef.current && FESTIVAL_CONFIG.mapImage) {
-          _officialMapDims(FESTIVAL_CONFIG.mapImage).then(d => {
+          _officialMapDims(OFFICIAL_MAP_SRC).then(d => {
             if (cancelled || !d || !mapRef.current) return;
             officialMapDimsRef.current = d;
             _safeLayer("official-map", _addOfficialMap);
@@ -11005,6 +11023,11 @@ Object.assign(window, {
   posterTierFor,
   POSTER_TIER,
   POSTER_OPACITY_UNCHECKED,
+  POSTER_OPACITY_FITTED,
+  artGeorefFor,
+  ART_GEOREF,
+  OFFICIAL_MAP_SRC,
+  _geoPlateCorners,
   REAL_MAP_PLACES_CHECKED,
   REAL_MAP_AMENITIES,
   _realMapTarget,

@@ -527,8 +527,49 @@ if (fdata.length) {
     if (!listed.has(img)) { console.log(`  ✗ ${id.padEnd(26)} renders ${img} — not in sw.js LOCAL`); mbad++; }
     else console.log(`  ok ${id.padEnd(26)} ${img}`);
   }
+  // The real map lays a fitted plate (mapGeoref.image) in place of the art itself.
+  for (const f of PREG) {
+    const cfg = f.config || f;
+    const g = cfg.mapGeoref;
+    if (!g || !g.image) continue;
+    mseen++;
+    if (!listed.has(g.image)) { console.log(`  ✗ ${(cfg.id || "?").padEnd(26)} lays ${g.image} — not in sw.js LOCAL`); mbad++; }
+    else console.log(`  ok ${(cfg.id || "?").padEnd(26)} ${g.image}`);
+  }
   if (mbad) fail(`${mbad} festival(s) render a map plate that is not precached — no offline map on the field`);
   console.log(`  ✓ ${listed.size} LOCAL entr(ies) resolve; ${mseen} map plate(s) precached`);
+
+  // ── Fitted-art gate (Jake, 2026-11-10: each festival's own map "overlaid on
+  // top of the geo coordinates" of its venue). A config's mapGeoref is a copy
+  // of what scripts/build-geo-plate.py measured; it must agree with the ties
+  // file it names, and the ties file must still produce the bytes on disk.
+  // A hand-edited bound or rms would move the art with no measurement behind it.
+  console.log(`▸ Fitted-art gate — every mapGeoref is the build of its ties file`);
+  let gbad = 0, gseen = 0;
+  for (const f of PREG) {
+    const cfg = f.config || f;
+    const g = cfg.mapGeoref, id = cfg.id || "?";
+    if (!g) continue;
+    gseen++;
+    const tp = join(ROOT, g.ties || "");
+    if (!g.ties || !existsSync(tp)) { console.log(`  ✗ ${id.padEnd(26)} names ties ${g.ties} — missing`); gbad++; continue; }
+    const T = JSON.parse(readFileSync(tp, "utf8")), O = T.output || {};
+    const B = O.bounds || {};
+    const why = [];
+    if (T.festivalId !== id) why.push(`ties are for ${T.festivalId}`);
+    if (O.image !== g.image) why.push(`image ${g.image} != built ${O.image}`);
+    if (!Array.isArray(g.bounds) || g.bounds.length !== 4 || [B.w, B.s, B.e, B.n].some((v, i) => Math.abs(v - g.bounds[i]) > 1e-7)) why.push("bounds differ from the build");
+    if (g.rmsM !== O.rmsM || g.looRmsM !== O.looRmsM) why.push(`rms ${g.rmsM}/${g.looRmsM} != built ${O.rmsM}/${O.looRmsM}`);
+    if (g.model !== T.model) why.push(`model ${g.model} != ${T.model}`);
+    if (!(cfg.mapImage && T.plate === cfg.mapImage)) why.push(`fitted plate ${T.plate} is not the festival's mapImage ${cfg.mapImage}`);
+    if (why.length) { console.log(`  ✗ ${id.padEnd(26)} ${why.join("; ")}`); gbad++; }
+    else console.log(`  ok ${id.padEnd(26)} ${T.model} over ${T.ties.length} ties · rms ${O.rmsM} m · leave-one-out ${O.looRmsM} m`);
+  }
+  try {
+    execFileSync("python3", [join(ROOT, "scripts", "build-geo-plate.py"), "check"], { cwd: ROOT, stdio: "inherit" });
+  } catch { gbad++; }
+  if (gbad) fail(`${gbad} fitted map(s) do not match their measured ties — rerun python3 scripts/build-geo-plate.py build <id> and copy its mapGeoref`);
+  console.log(`  ✓ ${gseen} festival map(s) fitted to their venue from measured ties`);
 }
 
 // ── Day-count gate ───────────────────────────────────────────────────────

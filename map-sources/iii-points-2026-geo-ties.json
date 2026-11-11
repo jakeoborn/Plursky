@@ -1,0 +1,146 @@
+{
+  "festivalId": "iii-points-2026",
+  "plate": "iiip-map-2026.webp",
+  "artBox": {
+    "x": 18,
+    "y": 0,
+    "w": 1080,
+    "h": 1116
+  },
+  "model": "homography",
+  "measuredAt": "2026-11-11",
+  "method": "The official III Points 2026 map is oblique art (streets converge), so a homography. Ties are street-band centre crossings read off the plate on a zoomed pixel grid, matched to OpenStreetMap intersection nodes (api.openstreetmap.org map call around Mana Wynwood). Where OSM splits a crossing into several nodes the west-side or mean node is used, as named. Stages are never ties.",
+  "ties": [
+    {
+      "name": "NW 24th St x NW 5th Ave",
+      "px": 269,
+      "py": 615,
+      "lat": 25.7999952,
+      "lng": -80.2031233,
+      "ref": "OSM nodes 99241194, 5756088755 (mean)"
+    },
+    {
+      "name": "NW 23rd St x NW 5th Ave",
+      "px": 500,
+      "py": 622,
+      "lat": 25.799278,
+      "lng": -80.203096,
+      "ref": "OSM nodes 5756084676, 99241193, 99241192 (mean)"
+    },
+    {
+      "name": "NW 22nd St x NW 5th Ave (west leg)",
+      "px": 764,
+      "py": 646,
+      "lat": 25.7981468,
+      "lng": -80.203047,
+      "ref": "OSM node 99133377"
+    },
+    {
+      "name": "NW 24th St x NW 6th Ave",
+      "px": 182,
+      "py": 994,
+      "lat": 25.799915,
+      "lng": -80.2051252,
+      "ref": "OSM node 99203564"
+    },
+    {
+      "name": "NW 23rd St x NW 6th Ave",
+      "px": 446,
+      "py": 999,
+      "lat": 25.7990001,
+      "lng": -80.2051041,
+      "ref": "OSM node 99203562"
+    },
+    {
+      "name": "NW 22nd St x NW 6th Ave",
+      "px": 677,
+      "py": 1019,
+      "lat": 25.798071,
+      "lng": -80.205048,
+      "ref": "OSM node 99133379"
+    }
+  ],
+  "checks": [],
+  "artPolygon": [
+    [
+      55,
+      595
+    ],
+    [
+      330,
+      440
+    ],
+    [
+      470,
+      440
+    ],
+    [
+      500,
+      290
+    ],
+    [
+      640,
+      290
+    ],
+    [
+      700,
+      100
+    ],
+    [
+      840,
+      100
+    ],
+    [
+      820,
+      295
+    ],
+    [
+      945,
+      300
+    ],
+    [
+      1040,
+      640
+    ],
+    [
+      1010,
+      1065
+    ],
+    [
+      140,
+      1065
+    ],
+    [
+      60,
+      780
+    ]
+  ],
+  "output": {
+    "image": "geo-maps/iii-points-2026.webp",
+    "size": [
+      1347,
+      1117
+    ],
+    "metresPerPixel": 0.409,
+    "bounds": {
+      "w": -80.2054892,
+      "s": 25.7966535,
+      "e": -80.2000044,
+      "n": 25.8007702
+    },
+    "rmsM": 5.2,
+    "worstM": 8.3,
+    "looRmsM": 19.2,
+    "residualsM": {
+      "NW 24th St x NW 5th Ave": 5.9,
+      "NW 23rd St x NW 5th Ave": 8.3,
+      "NW 22nd St x NW 5th Ave (west leg)": 3.8,
+      "NW 24th St x NW 6th Ave": 1.0,
+      "NW 23rd St x NW 6th Ave": 4.5,
+      "NW 22nd St x NW 6th Ave": 5.1
+    },
+    "checksM": {},
+    "plateSha256": "4d8f043dbd2f8c173e00430c4983158cad1c88452de8c90ada8fbe3e278269fa",
+    "sha256": "10a9aa945f1f471208340f5a86fcf7e851ec6d19b76d446f539eee0f0ef82dc7"
+  }
+}

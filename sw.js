@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v569';
+﻿const CACHE      = 'plursky-v570';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v569';
+const APP_VER    = 'v570';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -86,6 +86,10 @@ const LOCAL = [
   './edc-map-2026.jpg',
   './edco-tinker-2026.webp',
   './dreamstate-socal-2026-map.webp',
+  // Official map art fitted to each venue (scripts/build-geo-plate.py).
+  './geo-maps/edc-orlando-2026.webp',
+  './geo-maps/hard-summer-2026.webp',
+  './geo-maps/iii-points-2026.webp',
   './artist-photos/afrojack.webp',
   './artist-photos/alan-walker.webp',
   './artist-photos/alesso.webp',

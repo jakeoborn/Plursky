@@ -1,0 +1,85 @@
+{
+  "festivalId": "edc-orlando-2026",
+  "plate": "edco-tinker-2026.webp",
+  "artBox": {
+    "x": 0,
+    "y": 120,
+    "w": 960,
+    "h": 719
+  },
+  "model": "affine",
+  "measuredAt": "2026-10-29",
+  "method": "Reused from map-sources/edco-map-2026-control-points.json: Street intersections the official 2026 map draws, read by eye at 4x on the plate (about +-5 px, at the centre of each drawn road). Their coordinates are the OpenStreetMap nodes recorded for the same four intersections on the 2025 map (api.openstreetmap.org/api/0.6/map, fetched 2026-09-30). Least-squares affine with scripts/georef-map.mjs: rms 9.5 m, worst 11.5 m.",
+  "ties": [
+    {
+      "name": "W Church St x Tampa Ave (NW)",
+      "px": 53,
+      "py": 211,
+      "lat": 28.5401379,
+      "lng": -81.4054887,
+      "ref": "OSM: node shared by West Church Street and Tampa Avenue"
+    },
+    {
+      "name": "W Church St x Rio Grande Ave (N)",
+      "px": 509,
+      "py": 206,
+      "lat": 28.5401883,
+      "lng": -81.4014289,
+      "ref": "OSM: node shared by West Church Street and Rio Grande Avenue"
+    },
+    {
+      "name": "W Anderson St x Nashville Ave (SE)",
+      "px": 767,
+      "py": 680,
+      "lat": 28.5365183,
+      "lng": -81.3992577,
+      "ref": "OSM: node shared by West Anderson Street and Nashville Avenue"
+    },
+    {
+      "name": "Tampa Ave x SR-408 (SW)",
+      "px": 69,
+      "py": 645,
+      "lat": 28.5363673,
+      "lng": -81.4053432,
+      "ref": "OSM: mean of Tampa Avenue's crossings with the two East-West Expressway carriageways"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Camping World Stadium bowl centre",
+      "px": 372,
+      "py": 340,
+      "lat": 28.5390398,
+      "lng": -81.4027504,
+      "ref": "OSM: centre of way 400475584 (Nominatim, 2026-10-29)"
+    }
+  ],
+  "output": {
+    "image": "geo-maps/edc-orlando-2026.webp",
+    "size": [
+      967,
+      826
+    ],
+    "metresPerPixel": 0.86,
+    "bounds": {
+      "w": -81.4059882,
+      "s": 28.5347911,
+      "e": -81.397489,
+      "n": 28.5411997
+    },
+    "rmsM": 9.5,
+    "worstM": 11.5,
+    "looRmsM": 41.3,
+    "residualsM": {
+      "W Church St x Tampa Ave (NW)": 11.5,
+      "W Church St x Rio Grande Ave (N)": 10.8,
+      "W Anderson St x Nashville Ave (SE)": 7.1,
+      "Tampa Ave x SR-408 (SW)": 7.8
+    },
+    "checksM": {
+      "Camping World Stadium bowl centre": 10.7
+    },
+    "plateSha256": "51b377145fda9de0a5639442eddf6207a532fe5922d56e08ea7348043d985e24",
+    "sha256": "be1e0f327d6a316bb8062feffc2d7e059cf34bca11410f7fb20224cdf83b8be7"
+  }
+}

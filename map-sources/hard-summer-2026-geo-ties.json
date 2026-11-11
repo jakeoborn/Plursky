@@ -1,0 +1,101 @@
+{
+  "festivalId": "hard-summer-2026",
+  "plate": "hard-summer-2026.webp",
+  "artBox": {
+    "x": 0,
+    "y": 0,
+    "w": 826,
+    "h": 826
+  },
+  "model": "affine",
+  "measuredAt": "2026-11-11",
+  "method": "Street-centreline intersections read off the official HARD Summer 2026 map art (zoomed pixel grid) and matched to OpenStreetMap intersection nodes (api.openstreetmap.org map call, bbox around Hollywood Park). Stages are never ties.",
+  "ties": [
+    {
+      "name": "S Prairie Ave x E Hardy St",
+      "px": 92,
+      "py": 718,
+      "lat": 33.9490961,
+      "lng": -118.3439271,
+      "ref": "OSM intersection node"
+    },
+    {
+      "name": "District Dr x E Hardy St",
+      "px": 222,
+      "py": 718,
+      "lat": 33.9490963,
+      "lng": -118.3420977,
+      "ref": "OSM intersection node"
+    },
+    {
+      "name": "S Prairie Ave x Pincay Dr",
+      "px": 86,
+      "py": 20,
+      "lat": 33.956778,
+      "lng": -118.3439464,
+      "ref": "OSM intersection node"
+    },
+    {
+      "name": "Pincay Dr x Stadium Dr",
+      "px": 568,
+      "py": 64,
+      "lat": 33.9564398,
+      "lng": -118.3376284,
+      "ref": "OSM intersection node"
+    },
+    {
+      "name": "Stadium Dr x Touchdown Dr",
+      "px": 568,
+      "py": 134,
+      "lat": 33.9556656,
+      "lng": -118.3376238,
+      "ref": "OSM intersection node"
+    }
+  ],
+  "checks": [
+    {
+      "name": "SoFi Stadium (OSM outline mean)",
+      "px": 454,
+      "py": 344,
+      "lat": 33.9534297,
+      "lng": -118.339034
+    },
+    {
+      "name": "Rivers Lake (OSM outline mean)",
+      "px": 461,
+      "py": 647,
+      "lat": 33.9501659,
+      "lng": -118.3388972
+    }
+  ],
+  "output": {
+    "image": "geo-maps/hard-summer-2026.webp",
+    "size": [
+      827,
+      854
+    ],
+    "metresPerPixel": 1.217,
+    "bounds": {
+      "w": -118.3450929,
+      "s": 33.9478585,
+      "e": -118.3342093,
+      "n": 33.957218
+    },
+    "rmsM": 3.8,
+    "worstM": 6.0,
+    "looRmsM": 21.8,
+    "residualsM": {
+      "S Prairie Ave x E Hardy St": 5.8,
+      "District Dr x E Hardy St": 6.0,
+      "S Prairie Ave x Pincay Dr": 1.4,
+      "Pincay Dr x Stadium Dr": 1.0,
+      "Stadium Dr x Touchdown Dr": 0.6
+    },
+    "checksM": {
+      "SoFi Stadium (OSM outline mean)": 15.0,
+      "Rivers Lake (OSM outline mean)": 24.5
+    },
+    "plateSha256": "838c37afcc0d9101d59f5edec1f7e91c0f0b7372faf645f149d28af97fe42696",
+    "sha256": "937258becd6cb32b8202737540043ef80b012606fb715a7d5ad4b4de1f3449a8"
+  }
+}
