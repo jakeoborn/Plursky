@@ -77,5 +77,9 @@
  "lollapalooza-2015": { "stages": 8, "setsPerDay": [50, 50, 51], "droppedPerDay": [0, 0, 1] },
  "lollapalooza-2016": { "stages": 8, "setsPerDay": [47, 48, 47, 47], "droppedPerDay": [0, 0, 0, 1] },
  "lollapalooza-2017": { "stages": 8, "setsPerDay": [47, 47, 48, 48], "droppedPerDay": [0, 0, 0, 1] },
- "lollapalooza-2019": { "stages": 9, "setsPerDay": [50, 51, 51, 49], "droppedPerDay": [0, 0, 0, 1] }
+ "lollapalooza-2019": { "stages": 9, "setsPerDay": [50, 51, 51, 49], "droppedPerDay": [0, 0, 0, 1] },
+ "edc-orlando-2015": { "artists": 60, "stages": 0, "appearancesPerDay": [30, 30], "dropped": 0 },
+ "edc-orlando-2016": { "artists": 62, "stages": 0, "appearancesPerDay": [0, 0], "dropped": 0 },
+ "edc-las-vegas-2016": { "artists": 281, "stages": 0, "appearancesPerDay": [0, 0, 0], "dropped": 1 },
+ "edc-las-vegas-2017": { "artists": 297, "stages": 0, "appearancesPerDay": [0, 0, 0], "dropped": 1 }
 }
