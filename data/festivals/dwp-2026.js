@@ -2,7 +2,7 @@
 // DJAKARTA WAREHOUSE PROJECT 2026 — JIExpo Kemayoran · Jakarta, Indonesia
 // Dec 11–13, 2026. Ismaya.
 // ═══════════════════════════════════════════════════════════════════════
-// LINEUP-ONLY SCAFFOLD, gated (available: false). No day split, stages, set
+// LINEUP-ONLY, OPEN (available: true, scheduleTBA: true; Jake 2026-11-11: switch on the festivals with a full lineup). Set times still TBA. No day split, stages, set
 // times, hours or site map are published, so every act sits unplaced in one
 // TBA bucket.
 //
@@ -113,11 +113,12 @@
     mapMode: "real",
     mapPrintsStageNames: false,
     mapArtIsGeoregistered: false,
+    setTimesProvisional: true,
   };
 
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["dwp-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
-    registry: { available: false, scheduleTBA: true, accent: "#22d3ee", emoji: "🌃", region: "Asia" },
+    registry: { available: true, scheduleTBA: true, accent: "#22d3ee", emoji: "🌃", region: "Asia" },
   };
 })();

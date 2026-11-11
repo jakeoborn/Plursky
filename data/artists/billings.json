@@ -69919,6 +69919,3842 @@
   "mainStage": null
  },
  {
+  "id": "tomorrowland-thailand-2026:tmlth-alan-walker",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Alan Walker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alan-walker",
+    "role": "performer"
+   }
+  ],
+  "act": "alan-walker",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-goldfish",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Goldfish",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldfish",
+    "role": "performer"
+   }
+  ],
+  "act": "goldfish",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-halo-d1",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "HALŌ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "halo",
+    "role": "performer"
+   }
+  ],
+  "act": "halo",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-henri-pfr",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Henri PFR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "henri-pfr",
+    "role": "performer"
+   }
+  ],
+  "act": "henri-pfr",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-john-newman",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "John Newman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-newman",
+    "role": "performer"
+   }
+  ],
+  "act": "john-newman",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-kevin-de-vries",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Kevin de Vries",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kevin-de-vries",
+    "role": "performer"
+   }
+  ],
+  "act": "kevin-de-vries",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-lilly-palmer",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Lilly Palmer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lilly-palmer",
+    "role": "performer"
+   }
+  ],
+  "act": "lilly-palmer",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-martin-garrix",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Martin Garrix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "martin-garrix",
+    "role": "performer"
+   }
+  ],
+  "act": "martin-garrix",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-rave-republic",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Rave Republic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rave-republic",
+    "role": "performer"
+   }
+  ],
+  "act": "rave-republic",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-vini-vici",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Vini Vici",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vini-vici",
+    "role": "performer"
+   }
+  ],
+  "act": "vini-vici",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-youna",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Youna",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "youna",
+    "role": "performer"
+   }
+  ],
+  "act": "youna",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-bassjackers",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Bassjackers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassjackers",
+    "role": "performer"
+   }
+  ],
+  "act": "bassjackers",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-da-tweekaz",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Da Tweekaz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "da-tweekaz",
+    "role": "performer"
+   }
+  ],
+  "act": "da-tweekaz",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-flosstradamus-b2b-yellow-claw",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Flosstradamus b2b Yellow Claw",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flosstradamus",
+    "role": "b2b"
+   },
+   {
+    "key": "yellow-claw",
+    "role": "b2b"
+   }
+  ],
+  "act": "flosstradamus-b2b-yellow-claw",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-honey-gee",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Honey Gee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "honey-gee",
+    "role": "performer"
+   }
+  ],
+  "act": "honey-gee",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-kryder",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Kryder",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kryder",
+    "role": "performer"
+   }
+  ],
+  "act": "kryder",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-mandy",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "MANDY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mandy",
+    "role": "performer"
+   }
+  ],
+  "act": "mandy",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-mike-bond",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Mike Bond",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mike-bond",
+    "role": "performer"
+   }
+  ],
+  "act": "mike-bond",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-raiden",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Raiden",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raiden",
+    "role": "performer"
+   }
+  ],
+  "act": "raiden",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-sm1le",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Sm1le",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sm1le",
+    "role": "performer"
+   }
+  ],
+  "act": "sm1le",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-wukong",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Wukong",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wukong",
+    "role": "performer"
+   }
+  ],
+  "act": "wukong",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-aly-and-fila",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Aly & Fila",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aly-and-fila",
+    "role": "performer"
+   }
+  ],
+  "act": "aly-and-fila",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-amy-wiles",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Amy Wiles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amy-wiles",
+    "role": "performer"
+   }
+  ],
+  "act": "amy-wiles",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-cosmic-gate",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Cosmic Gate",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cosmic-gate",
+    "role": "performer"
+   }
+  ],
+  "act": "cosmic-gate",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-eli-and-fur-b2b-yotto",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Eli & Fur b2b Yotto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eli-and-fur",
+    "role": "b2b"
+   },
+   {
+    "key": "yotto",
+    "role": "b2b"
+   }
+  ],
+  "act": "eli-and-fur-b2b-yotto",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-ferry-corsten",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Ferry Corsten",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ferry-corsten",
+    "role": "performer"
+   }
+  ],
+  "act": "ferry-corsten",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-ferry-corsten-b2b-marsh",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Ferry Corsten b2b Marsh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ferry-corsten",
+    "role": "b2b"
+   },
+   {
+    "key": "marsh",
+    "role": "b2b"
+   }
+  ],
+  "act": "ferry-corsten-b2b-marsh",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jonnie-b",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Jonnie B",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jonnie-b",
+    "role": "performer"
+   }
+  ],
+  "act": "jonnie-b",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-lonskii",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Lonskii",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lonskii",
+    "role": "performer"
+   }
+  ],
+  "act": "lonskii",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-marsh",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Marsh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marsh",
+    "role": "performer"
+   }
+  ],
+  "act": "marsh",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-camelphat",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Camelphat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camelphat",
+    "role": "performer"
+   }
+  ],
+  "act": "camelphat",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-camila-jun",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Camila Jun",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camila-jun",
+    "role": "performer"
+   }
+  ],
+  "act": "camila-jun",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dadoo",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "DaDoo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dadoo",
+    "role": "performer"
+   }
+  ],
+  "act": "dadoo",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dj-licious-d1",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "DJ Licious",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-licious",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-licious",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-elfigo",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Elfigo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elfigo",
+    "role": "performer"
+   }
+  ],
+  "act": "elfigo",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-linska",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Linska",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "linska",
+    "role": "performer"
+   }
+  ],
+  "act": "linska",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-solardo",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Solardo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "solardo",
+    "role": "performer"
+   }
+  ],
+  "act": "solardo",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-claudine",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "CLAUDINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "claudine",
+    "role": "performer"
+   }
+  ],
+  "act": "claudine",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-funk-tribu",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Funk Tribu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "funk-tribu",
+    "role": "performer"
+   }
+  ],
+  "act": "funk-tribu",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-hyalyte",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Hyalyte",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hyalyte",
+    "role": "performer"
+   }
+  ],
+  "act": "hyalyte",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-oppidan",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Oppidan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oppidan",
+    "role": "performer"
+   }
+  ],
+  "act": "oppidan",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-pegassi",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Pegassi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pegassi",
+    "role": "performer"
+   }
+  ],
+  "act": "pegassi",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-saint-ludo",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Saint Ludo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saint-ludo",
+    "role": "performer"
+   }
+  ],
+  "act": "saint-ludo",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-x-club",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "X CLUB.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "x-club",
+    "role": "performer"
+   }
+  ],
+  "act": "x-club",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jijie",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Jijie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jijie",
+    "role": "performer"
+   }
+  ],
+  "act": "jijie",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-lennert-wolfs",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Lennert Wolfs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lennert-wolfs",
+    "role": "performer"
+   }
+  ],
+  "act": "lennert-wolfs",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-makasi",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Makasi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "makasi",
+    "role": "performer"
+   }
+  ],
+  "act": "makasi",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-palmera",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Palmera",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "palmera",
+    "role": "performer"
+   }
+  ],
+  "act": "palmera",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-ta-rek",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "TA:REK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ta-rek",
+    "role": "performer"
+   }
+  ],
+  "act": "ta-rek",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-vicky-kroon",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Vicky Kroon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vicky-kroon",
+    "role": "performer"
+   }
+  ],
+  "act": "vicky-kroon",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jan-v-d1",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Moose Bar",
+  "start": null,
+  "end": null,
+  "printed": "Jan V",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jan-v",
+    "role": "performer"
+   }
+  ],
+  "act": "jan-v",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:moose-bar",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jelle-dk-d1",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Moose Bar",
+  "start": null,
+  "end": null,
+  "printed": "Jelle DK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jelle-dk",
+    "role": "performer"
+   }
+  ],
+  "act": "jelle-dk",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:moose-bar",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jerrooo-d1",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": "Moose Bar",
+  "start": null,
+  "end": null,
+  "printed": "Jerrooo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jerrooo",
+    "role": "performer"
+   }
+  ],
+  "act": "jerrooo",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:moose-bar",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-afrojack",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Afrojack",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "afrojack",
+    "role": "performer"
+   }
+  ],
+  "act": "afrojack",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-artbat",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Artbat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "artbat",
+    "role": "performer"
+   }
+  ],
+  "act": "artbat",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dimitri-vegas-and-like-mike",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Dimitri Vegas & Like Mike",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dimitri-vegas-and-like-mike",
+    "role": "performer"
+   }
+  ],
+  "act": "dimitri-vegas-and-like-mike",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-ian-asher",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Ian Asher",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ian-asher",
+    "role": "performer"
+   }
+  ],
+  "act": "ian-asher",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-karty",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "KARTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "karty",
+    "role": "performer"
+   }
+  ],
+  "act": "karty",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-meaghan",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Meaghan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meaghan",
+    "role": "performer"
+   }
+  ],
+  "act": "meaghan",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-miss-monique",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Miss Monique",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miss-monique",
+    "role": "performer"
+   }
+  ],
+  "act": "miss-monique",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-nervo",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Nervo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nervo",
+    "role": "performer"
+   }
+  ],
+  "act": "nervo",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-riviere",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Riviere",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "riviere",
+    "role": "performer"
+   }
+  ],
+  "act": "riviere",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-steve-aoki",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Steve Aoki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steve-aoki",
+    "role": "performer"
+   }
+  ],
+  "act": "steve-aoki",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-sub-zero-project",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Sub Zero Project",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sub-zero-project",
+    "role": "performer"
+   }
+  ],
+  "act": "sub-zero-project",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-amber-broos-b2b-space-92",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Amber Broos b2b Space 92",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amber-broos",
+    "role": "b2b"
+   },
+   {
+    "key": "space-92",
+    "role": "b2b"
+   }
+  ],
+  "act": "amber-broos-b2b-space-92",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-hannah-laing",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Hannah Laing",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hannah-laing",
+    "role": "performer"
+   }
+  ],
+  "act": "hannah-laing",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-meguru",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Meguru",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meguru",
+    "role": "performer"
+   }
+  ],
+  "act": "meguru",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-nakadia",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Nakadia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nakadia",
+    "role": "performer"
+   }
+  ],
+  "act": "nakadia",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-nico-moreno",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Nico Moreno",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nico-moreno",
+    "role": "performer"
+   }
+  ],
+  "act": "nico-moreno",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-row1",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Row1",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "row1",
+    "role": "performer"
+   }
+  ],
+  "act": "row1",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-xy",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "XY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xy",
+    "role": "performer"
+   }
+  ],
+  "act": "xy",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-blastoyz-b2b-whiteno1se",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Blastoyz b2b WHITENO1SE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blastoyz",
+    "role": "b2b"
+   },
+   {
+    "key": "whiteno1se",
+    "role": "b2b"
+   }
+  ],
+  "act": "blastoyz-b2b-whiteno1se",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-blazy",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Blazy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blazy",
+    "role": "performer"
+   }
+  ],
+  "act": "blazy",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-firaga",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Firaga",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "firaga",
+    "role": "performer"
+   }
+  ],
+  "act": "firaga",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-ghost-rider",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Ghost Rider",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ghost-rider",
+    "role": "performer"
+   }
+  ],
+  "act": "ghost-rider",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-infected-mushroom",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Infected Mushroom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "infected-mushroom",
+    "role": "performer"
+   }
+  ],
+  "act": "infected-mushroom",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-mad-maxx-b2b-stryker",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Mad Maxx b2b Stryker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mad-maxx",
+    "role": "b2b"
+   },
+   {
+    "key": "stryker",
+    "role": "b2b"
+   }
+  ],
+  "act": "mad-maxx-b2b-stryker",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-puffer-p",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Puffer P",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "puffer-p",
+    "role": "performer"
+   }
+  ],
+  "act": "puffer-p",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-somnia",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Somnia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "somnia",
+    "role": "performer"
+   }
+  ],
+  "act": "somnia",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-tripical-note",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Tripical Note",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tripical-note",
+    "role": "performer"
+   }
+  ],
+  "act": "tripical-note",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-vegas",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Vegas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vegas",
+    "role": "performer"
+   }
+  ],
+  "act": "vegas",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-22-bullets",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "22 Bullets",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "22-bullets",
+    "role": "performer"
+   }
+  ],
+  "act": "22-bullets",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dj-sally",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "DJ Sally",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-sally",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-sally",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dubvision",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Dubvision",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dubvision",
+    "role": "performer"
+   }
+  ],
+  "act": "dubvision",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dvbbs",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "DVBBS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dvbbs",
+    "role": "performer"
+   }
+  ],
+  "act": "dvbbs",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-manuals",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Manuals",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "manuals",
+    "role": "performer"
+   }
+  ],
+  "act": "manuals",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-nome",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "NOME.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nome",
+    "role": "performer"
+   }
+  ],
+  "act": "nome",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-petra",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "PETRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "petra",
+    "role": "performer"
+   }
+  ],
+  "act": "petra",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-romeo-blanco",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Romeo Blanco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "romeo-blanco",
+    "role": "performer"
+   }
+  ],
+  "act": "romeo-blanco",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-third-party",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Third Party",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "third-party",
+    "role": "performer"
+   }
+  ],
+  "act": "third-party",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-yves-v",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Yves V",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yves-v",
+    "role": "performer"
+   }
+  ],
+  "act": "yves-v",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-anika",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "An!ka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "an-ka",
+    "role": "performer"
+   }
+  ],
+  "act": "an-ka",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-bibi-seck",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Bibi Seck",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bibi-seck",
+    "role": "performer"
+   }
+  ],
+  "act": "bibi-seck",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dj-boring",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "DJ Boring",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-boring",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-boring",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dj-boring-b2b-luuk-van-dijk",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "DJ Boring b2b Luuk van Dijk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-boring",
+    "role": "b2b"
+   },
+   {
+    "key": "luuk-van-dijk",
+    "role": "b2b"
+   }
+  ],
+  "act": "dj-boring-b2b-luuk-van-dijk",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-luuk-van-dijk",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Luuk van Dijk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luuk-van-dijk",
+    "role": "performer"
+   }
+  ],
+  "act": "luuk-van-dijk",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-meltmode",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Meltmode",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meltmode",
+    "role": "performer"
+   }
+  ],
+  "act": "meltmode",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-mind-against",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Mind Against",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mind-against",
+    "role": "performer"
+   }
+  ],
+  "act": "mind-against",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-arten",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Arten",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arten",
+    "role": "performer"
+   }
+  ],
+  "act": "arten",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-carly-wilford",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Carly Wilford",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carly-wilford",
+    "role": "performer"
+   }
+  ],
+  "act": "carly-wilford",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-coco-bevan",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Coco Bevan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coco-bevan",
+    "role": "performer"
+   }
+  ],
+  "act": "coco-bevan",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dj-licious-d2",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "DJ Licious",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-licious",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-licious",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-rebeca-ark",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Rebeca Ark",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rebeca-ark",
+    "role": "performer"
+   }
+  ],
+  "act": "rebeca-ark",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-semsei",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Semsei",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "semsei",
+    "role": "performer"
+   }
+  ],
+  "act": "semsei",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jan-v-d2",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Moose Bar",
+  "start": null,
+  "end": null,
+  "printed": "Jan V",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jan-v",
+    "role": "performer"
+   }
+  ],
+  "act": "jan-v",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:moose-bar",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jelle-dk-d2",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Moose Bar",
+  "start": null,
+  "end": null,
+  "printed": "Jelle DK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jelle-dk",
+    "role": "performer"
+   }
+  ],
+  "act": "jelle-dk",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:moose-bar",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jerrooo-d2",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-12",
+  "day": 2,
+  "stage": "Moose Bar",
+  "start": null,
+  "end": null,
+  "printed": "Jerrooo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jerrooo",
+    "role": "performer"
+   }
+  ],
+  "act": "jerrooo",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:moose-bar",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-alok",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Alok",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alok",
+    "role": "performer"
+   }
+  ],
+  "act": "alok",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-botcash",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Botcash",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "botcash",
+    "role": "performer"
+   }
+  ],
+  "act": "botcash",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-halo-d3",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Halo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "halo",
+    "role": "performer"
+   }
+  ],
+  "act": "halo",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-kolsch",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Kölsch",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kolsch",
+    "role": "performer"
+   }
+  ],
+  "act": "kolsch",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-lost-frequencies",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Lost Frequencies",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lost-frequencies",
+    "role": "performer"
+   }
+  ],
+  "act": "lost-frequencies",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-mattn",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "MATTN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mattn",
+    "role": "performer"
+   }
+  ],
+  "act": "mattn",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-novah",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Novah",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "novah",
+    "role": "performer"
+   }
+  ],
+  "act": "novah",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-nuttrix",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Nuttrix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nuttrix",
+    "role": "performer"
+   }
+  ],
+  "act": "nuttrix",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-r3hab",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "R3hab",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "r3hab",
+    "role": "performer"
+   }
+  ],
+  "act": "r3hab",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-swedish-house-mafia",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Mainstage",
+  "start": null,
+  "end": null,
+  "printed": "Swedish House Mafia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "swedish-house-mafia",
+    "role": "performer"
+   }
+  ],
+  "act": "swedish-house-mafia",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:mainstage",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-agents-of-time",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Agents Of Time",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "agents-of-time",
+    "role": "performer"
+   }
+  ],
+  "act": "agents-of-time",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-artbat-b2b-r3hab",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Artbat b2b R3hab",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "artbat",
+    "role": "b2b"
+   },
+   {
+    "key": "r3hab",
+    "role": "b2b"
+   }
+  ],
+  "act": "artbat-b2b-r3hab",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-henri-bergmann",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Henri Bergmann",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "henri-bergmann",
+    "role": "performer"
+   }
+  ],
+  "act": "henri-bergmann",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-kevin-de-vries-b2b-morten",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Kevin de Vries b2b MORTEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kevin-de-vries",
+    "role": "b2b"
+   },
+   {
+    "key": "morten",
+    "role": "b2b"
+   }
+  ],
+  "act": "kevin-de-vries-b2b-morten",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-luna-and-lenthe",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Luna & Lenthe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luna-and-lenthe",
+    "role": "performer"
+   }
+  ],
+  "act": "luna-and-lenthe",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-xenia-dia",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Xenia Dia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xenia-dia",
+    "role": "performer"
+   }
+  ],
+  "act": "xenia-dia",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-yukio",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Freedom by Budweiser",
+  "start": null,
+  "end": null,
+  "printed": "Yukio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yukio",
+    "role": "performer"
+   }
+  ],
+  "act": "yukio",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-angemi",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Angemi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angemi",
+    "role": "performer"
+   }
+  ],
+  "act": "angemi",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-brennan-heart",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Brennan Heart",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brennan-heart",
+    "role": "performer"
+   }
+  ],
+  "act": "brennan-heart",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-laidback-luke",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Laidback Luke",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laidback-luke",
+    "role": "performer"
+   }
+  ],
+  "act": "laidback-luke",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-lora-matia",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Lora Matia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lora-matia",
+    "role": "performer"
+   }
+  ],
+  "act": "lora-matia",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-lucas-and-steve",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Lucas & Steve",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucas-and-steve",
+    "role": "performer"
+   }
+  ],
+  "act": "lucas-and-steve",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-matisse-and-sadko",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Matisse & Sadko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matisse-and-sadko",
+    "role": "performer"
+   }
+  ],
+  "act": "matisse-and-sadko",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-quintino",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Quintino",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quintino",
+    "role": "performer"
+   }
+  ],
+  "act": "quintino",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-tiger-drama",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Tiger Drama",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiger-drama",
+    "role": "performer"
+   }
+  ],
+  "act": "tiger-drama",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-whisnu-santika",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Crystal Garden by Anker",
+  "start": null,
+  "end": null,
+  "printed": "Whisnu Santika",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whisnu-santika",
+    "role": "performer"
+   }
+  ],
+  "act": "whisnu-santika",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-andromedik",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Andromedik",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andromedik",
+    "role": "performer"
+   }
+  ],
+  "act": "andromedik",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-apashe",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "APASHE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "apashe",
+    "role": "performer"
+   }
+  ],
+  "act": "apashe",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-j-nana",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "J-Nana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "j-nana",
+    "role": "performer"
+   }
+  ],
+  "act": "j-nana",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-maysaa",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Maysaa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maysaa",
+    "role": "performer"
+   }
+  ],
+  "act": "maysaa",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-merow",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Merow",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "merow",
+    "role": "performer"
+   }
+  ],
+  "act": "merow",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-netsky",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Netsky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "netsky",
+    "role": "performer"
+   }
+  ],
+  "act": "netsky",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-pixzy",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Pixzy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pixzy",
+    "role": "performer"
+   }
+  ],
+  "act": "pixzy",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-rayray",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Rayray",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rayray",
+    "role": "performer"
+   }
+  ],
+  "act": "rayray",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-sabai",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Sabai",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sabai",
+    "role": "performer"
+   }
+  ],
+  "act": "sabai",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-yellow-claw",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Codex",
+  "start": null,
+  "end": null,
+  "printed": "Yellow Claw",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yellow-claw",
+    "role": "performer"
+   }
+  ],
+  "act": "yellow-claw",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:codex",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-ameme-b2b-honeyluv",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "AMÉMÉ b2b Honeyluv",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ameme",
+    "role": "b2b"
+   },
+   {
+    "key": "honeyluv",
+    "role": "b2b"
+   }
+  ],
+  "act": "ameme-b2b-honeyluv",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-capoon",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Capoon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "capoon",
+    "role": "performer"
+   }
+  ],
+  "act": "capoon",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dennis-gold",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Dennis Gold",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dennis-gold",
+    "role": "performer"
+   }
+  ],
+  "act": "dennis-gold",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dino-lenny",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Dino Lenny",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dino-lenny",
+    "role": "performer"
+   }
+  ],
+  "act": "dino-lenny",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-dj-tennis",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "DJ Tennis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-tennis",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-tennis",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-joris-voorn-b2b-krystal-klear",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Joris Voorn b2b Krystal Klear",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joris-voorn",
+    "role": "b2b"
+   },
+   {
+    "key": "krystal-klear",
+    "role": "b2b"
+   }
+  ],
+  "act": "joris-voorn-b2b-krystal-klear",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-maxi-meraki",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "CORE",
+  "start": null,
+  "end": null,
+  "printed": "Maxi Meraki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maxi-meraki",
+    "role": "performer"
+   }
+  ],
+  "act": "maxi-meraki",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:core",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-adamk",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "AdamK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adamk",
+    "role": "performer"
+   }
+  ],
+  "act": "adamk",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-joulie",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "JOULIE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joulie",
+    "role": "performer"
+   }
+  ],
+  "act": "joulie",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jowaves",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "JoWaves",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jowaves",
+    "role": "performer"
+   }
+  ],
+  "act": "jowaves",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-neon",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Neon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neon",
+    "role": "performer"
+   }
+  ],
+  "act": "neon",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-onfaya",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Papillon",
+  "start": null,
+  "end": null,
+  "printed": "Onfaya",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "onfaya",
+    "role": "performer"
+   }
+  ],
+  "act": "onfaya",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:papillon",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jan-v-d3",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Moose Bar",
+  "start": null,
+  "end": null,
+  "printed": "Jan V",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jan-v",
+    "role": "performer"
+   }
+  ],
+  "act": "jan-v",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:moose-bar",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jelle-dk-d3",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Moose Bar",
+  "start": null,
+  "end": null,
+  "printed": "Jelle DK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jelle-dk",
+    "role": "performer"
+   }
+  ],
+  "act": "jelle-dk",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:moose-bar",
+  "mainStage": null
+ },
+ {
+  "id": "tomorrowland-thailand-2026:tmlth-jerrooo-d3",
+  "source": "live",
+  "festivalId": "tomorrowland-thailand-2026",
+  "festivalBrand": "tomorrowland-thailand",
+  "year": 2026,
+  "date": "2026-12-13",
+  "day": 3,
+  "stage": "Moose Bar",
+  "start": null,
+  "end": null,
+  "printed": "Jerrooo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jerrooo",
+    "role": "performer"
+   }
+  ],
+  "act": "jerrooo",
+  "closing": null,
+  "stageLineage": "tomorrowland-thailand:moose-bar",
+  "mainStage": null
+ },
+ {
   "id": "acl-2013:d1:amd:1200:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2013",

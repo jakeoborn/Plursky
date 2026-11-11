@@ -2,7 +2,7 @@
 // LIGHTS ALL NIGHT 2026 — Fair Park · Dallas, TX
 // Dec 30–31, 2026 (16th edition; LAN began NYE 2010). Disco Presents.
 // ═══════════════════════════════════════════════════════════════════════
-// LINEUP-ONLY SCAFFOLD, gated (available: false). No official day split,
+// LINEUP-ONLY, OPEN (available: true, scheduleTBA: true; Jake 2026-11-11: switch on the festivals with a full lineup). Set times still TBA. No official day split,
 // stage assignments, set times or 2026 map are published, so every act is
 // unplaced and untimed in one TBA bucket. Gaps stay empty.
 //
@@ -149,6 +149,6 @@
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["lights-all-night-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
-    registry: { available: false, scheduleTBA: true, accent: "#f59e0b", emoji: "🎇", region: "North America" },
+    registry: { available: true, scheduleTBA: true, accent: "#f59e0b", emoji: "🎇", region: "North America" },
   };
 })();
