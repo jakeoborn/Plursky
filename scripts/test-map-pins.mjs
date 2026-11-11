@@ -37,7 +37,7 @@ function slice(src, startMark, endMark) {
 const PIN_SRC = slice(MAP, "function _validGps(g)", "function _lngLatOf(p)");
 const SLIM_SRC = slice(SB, "const _MOMENT_LOCAL_FIELDS", "// Ceiling on the moments blob");
 const DATA = readFileSync(join(ROOT, "data.jsx"), "utf8");
-const TRUST_SRC = slice(DATA, "const STAGE_FIX_PHOTO = {", "function stageFixGate(");
+const TRUST_SRC = slice(DATA, "const STAGE_FIX_PHOTO = {", "// Only measured stage positions (osm / crowd)");
 const loadPins = (src, trust = TRUST_SRC) => new Function(`${trust}\n${src}; return { _momentPinsFor, _momentPinsGeoJson, _momentAccRingsGeoJson };`)();
 const loadSlim = (src) => new Function(`${src}; return _slimMomentsForSync;`)();
 

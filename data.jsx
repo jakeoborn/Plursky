@@ -2575,18 +2575,6 @@ const STAGE_FIX_ATTEND_SAVER = { maxAgeMs: 120000, maxAccM: 100, maxDistM: 140, 
 // The photo tagger (SPEC-179): the same accuracy, radius and margin, with no
 // freshness rule, because a photo's fix is read at the moment it was taken.
 const STAGE_FIX_PHOTO = { maxAgeMs: Infinity, maxAccM: 100, maxDistM: 140, minMarginM: 35 };
-// A moment's capture accuracy (metres, the ~68% radius) as recorded, or null
-// when none was. Never defaulted: a missing value stays unknown. Every surface
-// that draws a photo's fix (the Memories lens, the real map) asks these two,
-// so the precise/coarse line is the tagger's own maxAccM, in one place.
-function photoFixAccM(m) {
-  const a = m && m.gpsAccM;
-  return typeof a === "number" && Number.isFinite(a) && a > 0 ? a : null;
-}
-function photoFixAccClass(acc) {
-  if (acc == null) return "unknown";
-  return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";
-}
 function stageFixGate(anchors, fix, atMs, rules) {
   if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return { status: fix && fix.denied ? "denied" : "none" };
   const accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
@@ -2601,6 +2589,18 @@ function stageFixGate(anchors, fix, atMs, rules) {
   return { ...out, status: "trusted", stageId: d[0].stageId };
 }
 
+// A moment's capture accuracy (metres, the ~68% radius) as recorded, or null
+// when none was. Never defaulted: a missing value stays unknown. Every surface
+// that draws a photo's fix (the Memories lens, the real map) asks these two,
+// so the precise/coarse line is the tagger's own maxAccM, in one place.
+function photoFixAccM(m) {
+  const a = m && m.gpsAccM;
+  return typeof a === "number" && Number.isFinite(a) && a > 0 ? a : null;
+}
+function photoFixAccClass(acc) {
+  if (acc == null) return "unknown";
+  return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";
+}
 // Only measured stage positions (osm / crowd) may fire automatic attendance.
 // A poster read, a provisional pin or a derived point is a guess about where
 // a stage is, and a guess must not mark a set (founder, 2026-10-20).

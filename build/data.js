@@ -2047,14 +2047,6 @@ var STAGE_FIX_PHOTO = {
   maxDistM: 140,
   minMarginM: 35
 };
-function photoFixAccM(m) {
-  var a = m && m.gpsAccM;
-  return typeof a === "number" && Number.isFinite(a) && a > 0 ? a : null;
-}
-function photoFixAccClass(acc) {
-  if (acc == null) return "unknown";
-  return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";
-}
 function stageFixGate(anchors, fix, atMs, rules) {
   if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return {
     status: fix && fix.denied ? "denied" : "none"
@@ -2094,6 +2086,14 @@ function stageFixGate(anchors, fix, atMs, rules) {
     status: "trusted",
     stageId: d[0].stageId
   };
+}
+function photoFixAccM(m) {
+  var a = m && m.gpsAccM;
+  return typeof a === "number" && Number.isFinite(a) && a > 0 ? a : null;
+}
+function photoFixAccClass(acc) {
+  if (acc == null) return "unknown";
+  return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";
 }
 function attendEvidenceAnchors(cfg) {
   return (typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg && cfg.gpsAnchors || []).filter(a => {

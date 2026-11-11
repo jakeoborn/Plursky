@@ -33,7 +33,7 @@ const TIME_SRC = slice(SP, "function _momentTime(m)", "// One photo/video thumbn
 const LAYOUT_SRC = slice(SP, "function _lensFix(m)", "function MemoriesPhotoMapLens(");
 const LENS_SRC = slice(SP, "// PHOTOS lens: real GPS only.", "// MAP-lens wrapper:");
 const DATA = readFileSync(join(ROOT, "data.jsx"), "utf8");
-const TRUST_SRC = slice(DATA, "const STAGE_FIX_PHOTO = {", "function stageFixGate(");
+const TRUST_SRC = slice(DATA, "const STAGE_FIX_PHOTO = {", "// Only measured stage positions (osm / crowd)");
 const TRUST_M = new Function(`${TRUST_SRC}; return STAGE_FIX_PHOTO.maxAccM;`)();
 const load = (src, trust = TRUST_SRC) => new Function(`${trust}\n${TIME_SRC}\n${src}; return _gpsLensLayout;`)();
 
