@@ -33,8 +33,7 @@ const TIME_SRC = slice(SP, "function _momentTime(m)", "// One photo/video thumbn
 const LAYOUT_SRC = slice(SP, "function _lensFix(m)", "function MemoriesPhotoMapLens(");
 const LENS_SRC = slice(SP, "// PHOTOS lens: real GPS only.", "// MAP-lens wrapper:");
 const DATA = readFileSync(join(ROOT, "data.jsx"), "utf8");
-const TRUST_SRC = (DATA.match(/^const STAGE_FIX_PHOTO = \{[^\n]*\};$/m) || [""])[0];
-if (!TRUST_SRC) throw new Error("STAGE_FIX_PHOTO not found in data.jsx");
+const TRUST_SRC = slice(DATA, "const STAGE_FIX_PHOTO = {", "function stageFixGate(");
 const TRUST_M = new Function(`${TRUST_SRC}; return STAGE_FIX_PHOTO.maxAccM;`)();
 const load = (src, trust = TRUST_SRC) => new Function(`${trust}\n${TIME_SRC}\n${src}; return _gpsLensLayout;`)();
 
@@ -145,18 +144,18 @@ const MUTANTS = [
   const moved = load(LAYOUT_SRC, TRUST_SRC.replace(/maxAccM: \d+/, "maxAccM: 5"));
   const r = moved([mk("m_a", F.a, { gpsAccM: 8 })]).rings[0];
   ok(r && r.cls === "coarse", "A8 the precise/coarse line follows STAGE_FIX_PHOTO.maxAccM (one policy)");
-  ok(!/\b100\b/.test(LAYOUT_SRC.slice(LAYOUT_SRC.indexOf("function _lensAccClass"), LAYOUT_SRC.indexOf("const _LENS_RING_CAP"))), "A8b no restated 100 m threshold in the lens");
+  ok(!/maxAccM|gpsAccM/.test(LAYOUT_SRC) && /photoFixAccClass\(/.test(LAYOUT_SRC), "A8b the lens restates no accuracy rule: it calls photoFixAccM/photoFixAccClass");
 }
 MUTANTS.push(
-  ["missing accuracy defaulted", LAYOUT_SRC.replace("&& a > 0 ? a : null;", "&& a > 0 ? a : 10;")],
+  ["missing accuracy defaulted", LAYOUT_SRC, TRUST_SRC.replace("&& a > 0 ? a : null;", "&& a > 0 ? a : 10;")],
   ["ring on the cluster's fix", LAYOUT_SRC.replace("rings.push({ id: p.m.id, x: p.x, y: p.y,", "rings.push({ id: p.m.id, x: c.x, y: c.y,")],
   ["ring tighter than captured", LAYOUT_SRC.replace("r: p.acc * scale,", "r: p.acc * scale * 0.5,")],
-  ["coarse drawn as precise", LAYOUT_SRC.replace("return acc <= STAGE_FIX_PHOTO.maxAccM ? \"precise\" : \"coarse\";", "return \"precise\";")],
+  ["coarse drawn as precise", LAYOUT_SRC, TRUST_SRC.replace("return acc <= STAGE_FIX_PHOTO.maxAccM ? \"precise\" : \"coarse\";", "return \"precise\";")],
   ["precise rings left out of the extents", LAYOUT_SRC.replace('const r = p.cls === "precise" ? p.acc : 0;', "const r = 0;")],
 );
-for (const [name, src] of MUTANTS) {
-  if (src === LAYOUT_SRC) { ok(false, `M setup: mutation "${name}" did not apply`); continue; }
-  const { failed } = suite(load(src));
+for (const [name, src, trust] of MUTANTS) {
+  if (src === LAYOUT_SRC && (!trust || trust === TRUST_SRC)) { ok(false, `M setup: mutation "${name}" did not apply`); continue; }
+  const { failed } = suite(load(src, trust || TRUST_SRC));
   ok(failed.length > 0, `M mutation "${name}" turns a check red`);
   if (failed.length) console.log(`  · mutation "${name}" caught by: ${failed[0]}`);
 }

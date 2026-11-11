@@ -8648,14 +8648,6 @@ function _lensFix(m) {
     lng: g.lng
   };
 }
-function _lensAcc(m) {
-  var a = m && m.gpsAccM;
-  return typeof a === "number" && Number.isFinite(a) && a > 0 ? a : null;
-}
-function _lensAccClass(acc) {
-  if (acc == null) return "unknown";
-  return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";
-}
 var _LENS_RING_CAP = 60;
 var _LENS_FAR_M = 3000;
 var _LENS_MIN_SPAN_M = 40;
@@ -8707,14 +8699,14 @@ function _gpsLensLayout(moments, opts) {
       far++;
       continue;
     }
-    var acc = _lensAcc(f.m);
+    var acc = photoFixAccM(f.m);
     pts.push({
       m: f.m,
       t: f.t,
       e,
       n,
       acc,
-      cls: _lensAccClass(acc)
+      cls: photoFixAccClass(acc)
     });
   }
   if (!pts.length) return {
