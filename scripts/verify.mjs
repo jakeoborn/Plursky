@@ -1663,6 +1663,11 @@ const REGISTRATION_TOL_M = 25;
       // re-derives the six dependent anchors and manufactures precision
       // nobody measured. They stay put until a real geo source exists.
       stageIds: ["kinetic", "cosmic", "bionic"],
+      // SPEC-192 ws2, option A (2026-11-11): all nine EDC LV positions stay
+      // poster-read and provisional, and this date is when they must be
+      // re-measured: before EDC LV 2027 opens. On it the gate goes red and
+      // someone measures them or re-dates this deliberately, with a reason.
+      recheckBy: "2027-05-01",
       note:
         "3 of 9 anchors sit outside the LVMS oval (kinetic 16 m, cosmic 95 m, " +
         "bionic 152 m). They were derived from poster space, which does not " +
@@ -1733,9 +1738,22 @@ const REGISTRATION_TOL_M = 25;
 
     if (!out.length && !waiver) { console.log(`  ok ${cfg.id.padEnd(22)} all ${an.length} anchors inside`); continue; }
 
+    // A pending waiver carries a re-check date, and the date is the
+    // mechanism: without one it is a warning nobody reads (see the
+    // REGISTRATION_WAIVERS comment above).
+    if (waiver && !/^\d{4}-\d{2}-\d{2}$/.test(waiver.recheckBy || "")) {
+      fpHard++;
+      console.log(`  ✗  ${cfg.id.padEnd(22)} pending waiver has no recheckBy date (YYYY-MM-DD)`);
+      continue;
+    }
+    if (waiver && waiver.recheckBy <= TODAY) {
+      fpHard++;
+      console.log(`  ✗  ${cfg.id.padEnd(22)} pending waiver EXPIRED ${waiver.recheckBy} (today ${TODAY}) — re-measure ${waiver.stageIds.join(", ")} or re-date it deliberately`);
+      continue;
+    }
     if (waiver && !unexcused.length && !stale.length) {
       fpWaived++;
-      console.log(`  !  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")}) — PENDING`);
+      console.log(`  !  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")}) — PENDING, re-check by ${waiver.recheckBy}`);
       console.log(`     ${waiver.note}`);
     } else if (waiver && stale.length) {
       fpHard++;
