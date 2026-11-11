@@ -66883,6 +66883,3042 @@
   "mainStage": null
  },
  {
+  "id": "dwp-2026:dwp-adnan-veron-x-hbrp",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Adnan Veron x HBRP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adnan-veron",
+    "role": "cobilled"
+   },
+   {
+    "key": "hbrp",
+    "role": "cobilled"
+   }
+  ],
+  "act": "adnan-veron-x-hbrp",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-afrojack",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Afrojack",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "afrojack",
+    "role": "performer"
+   }
+  ],
+  "act": "afrojack",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-agents-of-time",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Agents of Time",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "agents-of-time",
+    "role": "performer"
+   }
+  ],
+  "act": "agents-of-time",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-alok",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Alok",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alok",
+    "role": "performer"
+   }
+  ],
+  "act": "alok",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-angger-dimas",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Angger Dimas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angger-dimas",
+    "role": "performer"
+   }
+  ],
+  "act": "angger-dimas",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-artbat",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ARTBAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "artbat",
+    "role": "performer"
+   }
+  ],
+  "act": "artbat",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-axwell-b2b-sebastian-ingrosso",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Axwell B2B Sebastian Ingrosso",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "axwell",
+    "role": "b2b"
+   },
+   {
+    "key": "sebastian-ingrosso",
+    "role": "b2b"
+   }
+  ],
+  "act": "axwell-b2b-sebastian-ingrosso",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-billy-gillies",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Billy Gillies",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billy-gillies",
+    "role": "performer"
+   }
+  ],
+  "act": "billy-gillies",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-cosmic-gate",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cosmic Gate",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cosmic-gate",
+    "role": "performer"
+   }
+  ],
+  "act": "cosmic-gate",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-dimension",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dimension",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dimension",
+    "role": "performer"
+   }
+  ],
+  "act": "dimension",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-dimitri-vegas",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dimitri Vegas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dimitri-vegas",
+    "role": "performer"
+   }
+  ],
+  "act": "dimitri-vegas",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-eli-and-fur",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Eli & Fur",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eli-and-fur",
+    "role": "performer"
+   }
+  ],
+  "act": "eli-and-fur",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-ely-oaks",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ely Oaks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ely-oaks",
+    "role": "performer"
+   }
+  ],
+  "act": "ely-oaks",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-gil-glaze",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Gil Glaze",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gil-glaze",
+    "role": "performer"
+   }
+  ],
+  "act": "gil-glaze",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-halo",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "HALO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "halo",
+    "role": "performer"
+   }
+  ],
+  "act": "halo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-ian-asher",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ian Asher",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ian-asher",
+    "role": "performer"
+   }
+  ],
+  "act": "ian-asher",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-josiah",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Josiah",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "josiah",
+    "role": "performer"
+   }
+  ],
+  "act": "josiah",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-lilly-palmer",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lilly Palmer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lilly-palmer",
+    "role": "performer"
+   }
+  ],
+  "act": "lilly-palmer",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-maddix",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Maddix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maddix",
+    "role": "performer"
+   }
+  ],
+  "act": "maddix",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-marlo",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Marlo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marlo",
+    "role": "performer"
+   }
+  ],
+  "act": "marlo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-r3hab",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "R3hab",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "r3hab",
+    "role": "performer"
+   }
+  ],
+  "act": "r3hab",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-syber",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Syber",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "syber",
+    "role": "performer"
+   }
+  ],
+  "act": "syber",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-tye-turner",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tye Turner",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tye-turner",
+    "role": "performer"
+   }
+  ],
+  "act": "tye-turner",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-w-w",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "W.w",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "w-w",
+    "role": "performer"
+   }
+  ],
+  "act": "w-w",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-whisnu-santika",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Whisnu Santika",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whisnu-santika",
+    "role": "performer"
+   }
+  ],
+  "act": "whisnu-santika",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-and-friends",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "&friends",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "and-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "and-friends",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-above-and-beyond",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Above & Beyond",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "above-and-beyond",
+    "role": "performer"
+   }
+  ],
+  "act": "above-and-beyond",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-adiel-b2b-anne",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Adiel B2B Annē",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adiel",
+    "role": "b2b"
+   },
+   {
+    "key": "anne",
+    "role": "b2b"
+   }
+  ],
+  "act": "adiel-b2b-anne",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-alleycvt",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ALLEYCVT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alleycvt",
+    "role": "performer"
+   }
+  ],
+  "act": "alleycvt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-ana-rova",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ana Rova",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ana-rova",
+    "role": "performer"
+   }
+  ],
+  "act": "ana-rova",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-andy-c",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Andy C",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andy-c",
+    "role": "performer"
+   }
+  ],
+  "act": "andy-c",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-atliens",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ATLiens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "atliens",
+    "role": "performer"
+   }
+  ],
+  "act": "atliens",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-baggi",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Baggi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baggi",
+    "role": "performer"
+   }
+  ],
+  "act": "baggi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-barbara-lago",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Barbara Lago",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "barbara-lago",
+    "role": "performer"
+   }
+  ],
+  "act": "barbara-lago",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-basstripper",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Basstripper",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "basstripper",
+    "role": "performer"
+   }
+  ],
+  "act": "basstripper",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-camelphat",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CamelPhat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camelphat",
+    "role": "performer"
+   }
+  ],
+  "act": "camelphat",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-charlotte-de-witte",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Charlotte de Witte",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charlotte-de-witte",
+    "role": "performer"
+   }
+  ],
+  "act": "charlotte-de-witte",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-coop",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Coop",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coop",
+    "role": "performer"
+   }
+  ],
+  "act": "coop",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-dennett",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dennett",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dennett",
+    "role": "performer"
+   }
+  ],
+  "act": "dennett",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-dom-dolla",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dom Dolla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dom-dolla",
+    "role": "performer"
+   }
+  ],
+  "act": "dom-dolla",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-funk-tribu",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Funk Tribu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "funk-tribu",
+    "role": "performer"
+   }
+  ],
+  "act": "funk-tribu",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-guide",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Guide",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "guide",
+    "role": "performer"
+   }
+  ],
+  "act": "guide",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-hanky",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Hanky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hanky",
+    "role": "performer"
+   }
+  ],
+  "act": "hanky",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-jackie-hollander",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jackie Hollander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jackie-hollander",
+    "role": "performer"
+   }
+  ],
+  "act": "jackie-hollander",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-jwp",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JWP.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jwp",
+    "role": "performer"
+   }
+  ],
+  "act": "jwp",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-kamiko",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kamiko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kamiko",
+    "role": "performer"
+   }
+  ],
+  "act": "kamiko",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-korolova",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Korolova",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "korolova",
+    "role": "performer"
+   }
+  ],
+  "act": "korolova",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-kream",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "KREAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kream",
+    "role": "performer"
+   }
+  ],
+  "act": "kream",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-leveltronics-subtronics-b2b-level-up",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Leveltronics (Subtronics B2B Level Up)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leveltronics",
+    "role": "project"
+   }
+  ],
+  "act": "leveltronics-subtronics-b2b-level-up",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-nghtshift",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Nghtshift",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nghtshift",
+    "role": "performer"
+   }
+  ],
+  "act": "nghtshift",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-noise-mafia-b2b-afem-syko",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Noise Mafia B2B Afem Syko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noise-mafia",
+    "role": "b2b"
+   },
+   {
+    "key": "afem-syko",
+    "role": "b2b"
+   }
+  ],
+  "act": "noise-mafia-b2b-afem-syko",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-odd-mob",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Odd Mob",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odd-mob",
+    "role": "performer"
+   }
+  ],
+  "act": "odd-mob",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-omnom",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "OMNOM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omnom",
+    "role": "performer"
+   }
+  ],
+  "act": "omnom",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-peterblue",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "PETERBLUE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peterblue",
+    "role": "performer"
+   }
+  ],
+  "act": "peterblue",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-pnny-collective",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Pnny Collective",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pnny-collective",
+    "role": "performer"
+   }
+  ],
+  "act": "pnny-collective",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-sabai",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SABAI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sabai",
+    "role": "performer"
+   }
+  ],
+  "act": "sabai",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-vintage-culture",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Vintage Culture",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vintage-culture",
+    "role": "performer"
+   }
+  ],
+  "act": "vintage-culture",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-whomadewho-hybrid-dj-set",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "WhoMadeWho (Hybrid DJ Set)",
+  "setTag": "Hybrid DJ Set",
+  "performers": [
+   {
+    "key": "whomadewho",
+    "role": "performer"
+   }
+  ],
+  "act": "whomadewho",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-wujackers",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-18",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Wujackers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wujackers",
+    "role": "performer"
+   }
+  ],
+  "act": "wujackers",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-afem-syko-b2b-funk-tribu",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Afem Syko B2B Funk Tribu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "afem-syko",
+    "role": "b2b"
+   },
+   {
+    "key": "funk-tribu",
+    "role": "b2b"
+   }
+  ],
+  "act": "afem-syko-b2b-funk-tribu",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-alex-wann",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Alex Wann",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-wann",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-wann",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-alpha-9",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ALPHA 9",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alpha-9",
+    "role": "performer"
+   }
+  ],
+  "act": "alpha-9",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-am-not-joy",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Am Not Joy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "am-not-joy",
+    "role": "performer"
+   }
+  ],
+  "act": "am-not-joy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-andrew-rayel",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Andrew Rayel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrew-rayel",
+    "role": "performer"
+   }
+  ],
+  "act": "andrew-rayel",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-chasewest",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ChaseWest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chasewest",
+    "role": "performer"
+   }
+  ],
+  "act": "chasewest",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-daxson",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Daxson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daxson",
+    "role": "performer"
+   }
+  ],
+  "act": "daxson",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-ekanan",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ekanan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ekanan",
+    "role": "performer"
+   }
+  ],
+  "act": "ekanan",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-giuseppe-ottaviani",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Giuseppe Ottaviani",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giuseppe-ottaviani",
+    "role": "performer"
+   }
+  ],
+  "act": "giuseppe-ottaviani",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-gudfella",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "GUDFELLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gudfella",
+    "role": "performer"
+   }
+  ],
+  "act": "gudfella",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-hannah-laing",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Hannah Laing",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hannah-laing",
+    "role": "performer"
+   }
+  ],
+  "act": "hannah-laing",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-horsegiirl",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "horsegiirL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "horsegiirl",
+    "role": "performer"
+   }
+  ],
+  "act": "horsegiirl",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-i-hate-models",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "I Hate Models",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "i-hate-models",
+    "role": "performer"
+   }
+  ],
+  "act": "i-hate-models",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-jaidee",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jaidee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jaidee",
+    "role": "performer"
+   }
+  ],
+  "act": "jaidee",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-james-hype",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "James Hype",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-hype",
+    "role": "performer"
+   }
+  ],
+  "act": "james-hype",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-kaku",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kaku",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaku",
+    "role": "performer"
+   }
+  ],
+  "act": "kaku",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-kanine-b2b-sota",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kanine B2B Sota",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kanine",
+    "role": "b2b"
+   },
+   {
+    "key": "sota",
+    "role": "b2b"
+   }
+  ],
+  "act": "kanine-b2b-sota",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-kaskade",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kaskade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaskade",
+    "role": "performer"
+   }
+  ],
+  "act": "kaskade",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-kikie",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kikie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kikie",
+    "role": "performer"
+   }
+  ],
+  "act": "kikie",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-marlo",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MaRLo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marlo",
+    "role": "performer"
+   }
+  ],
+  "act": "marlo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-martin-garrix",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Martin Garrix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "martin-garrix",
+    "role": "performer"
+   }
+  ],
+  "act": "martin-garrix",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-mau-p",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mau P",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mau-p",
+    "role": "performer"
+   }
+  ],
+  "act": "mau-p",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-nakadia",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Nakadia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nakadia",
+    "role": "performer"
+   }
+  ],
+  "act": "nakadia",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-omri",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "OMRI.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omri",
+    "role": "performer"
+   }
+  ],
+  "act": "omri",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-paul-van-dyk",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Paul van Dyk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paul-van-dyk",
+    "role": "performer"
+   }
+  ],
+  "act": "paul-van-dyk",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-rafael",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Rafael",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rafael",
+    "role": "performer"
+   }
+  ],
+  "act": "rafael",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-restricted",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Restricted",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "restricted",
+    "role": "performer"
+   }
+  ],
+  "act": "restricted",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-space-92-x-popof-present-turbulences",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Space 92 x Popof Present: Turbulences",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "turbulences",
+    "role": "project"
+   }
+  ],
+  "act": "space-92-x-popof-present-turbulences",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-subtronics-sunset-set",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Subtronics (Sunset Set)",
+  "setTag": "Sunset Set",
+  "performers": [
+   {
+    "key": "subtronics",
+    "role": "performer"
+   }
+  ],
+  "act": "subtronics",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-supergloss",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Supergloss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "supergloss",
+    "role": "performer"
+   }
+  ],
+  "act": "supergloss",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-taiki-nulight",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Taiki Nulight",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taiki-nulight",
+    "role": "performer"
+   }
+  ],
+  "act": "taiki-nulight",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-thanac",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Thanac",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thanac",
+    "role": "performer"
+   }
+  ],
+  "act": "thanac",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-vtss",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-19",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "VTSS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vtss",
+    "role": "performer"
+   }
+  ],
+  "act": "vtss",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-anderex",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Anderex",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anderex",
+    "role": "performer"
+   }
+  ],
+  "act": "anderex",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-bella-claxton-b2b-kyle-starkey",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bella Claxton B2B Kyle Starkey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bella-claxton",
+    "role": "b2b"
+   },
+   {
+    "key": "kyle-starkey",
+    "role": "b2b"
+   }
+  ],
+  "act": "bella-claxton-b2b-kyle-starkey",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-bravery",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bravery",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bravery",
+    "role": "performer"
+   }
+  ],
+  "act": "bravery",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-carta",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Carta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carta",
+    "role": "performer"
+   }
+  ],
+  "act": "carta",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-clara-cuve",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Clara Cuvé",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clara-cuve",
+    "role": "performer"
+   }
+  ],
+  "act": "clara-cuve",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-coone",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Coone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coone",
+    "role": "performer"
+   }
+  ],
+  "act": "coone",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-da-tweekaz",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Da Tweekaz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "da-tweekaz",
+    "role": "performer"
+   }
+  ],
+  "act": "da-tweekaz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-darren-styles",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Darren Styles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darren-styles",
+    "role": "performer"
+   }
+  ],
+  "act": "darren-styles",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-dean-turnley",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dean Turnley",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dean-turnley",
+    "role": "performer"
+   }
+  ],
+  "act": "dean-turnley",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-dj-snake",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Snake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-snake",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-snake",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-fifi",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "FIFI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fifi",
+    "role": "performer"
+   }
+  ],
+  "act": "fifi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-genji",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Genji",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "genji",
+    "role": "performer"
+   }
+  ],
+  "act": "genji",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-green-velvet-b2b-steve-angello",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Green Velvet B2B Steve Angello",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "green-velvet",
+    "role": "b2b"
+   },
+   {
+    "key": "steve-angello",
+    "role": "b2b"
+   }
+  ],
+  "act": "green-velvet-b2b-steve-angello",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-hamdi",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Hamdi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hamdi",
+    "role": "performer"
+   }
+  ],
+  "act": "hamdi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-jamie-jones",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jamie Jones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamie-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "jamie-jones",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-lil-texas",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lil Texas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-texas",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-texas",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-loco-dice",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Loco Dice",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loco-dice",
+    "role": "performer"
+   }
+  ],
+  "act": "loco-dice",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-max-styler",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Max Styler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "max-styler",
+    "role": "performer"
+   }
+  ],
+  "act": "max-styler",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-miss-monique",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Miss Monique",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miss-monique",
+    "role": "performer"
+   }
+  ],
+  "act": "miss-monique",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-mr-sour-b2b-sachi-moki",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mr. Sour B2B Sachi Moki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mr-sour",
+    "role": "b2b"
+   },
+   {
+    "key": "sachi-moki",
+    "role": "b2b"
+   }
+  ],
+  "act": "mr-sour-b2b-sachi-moki",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-omar-plus",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Omar+",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omar",
+    "role": "performer"
+   }
+  ],
+  "act": "omar",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-osmosis-jones",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Osmosis Jones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "osmosis-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "osmosis-jones",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-oxyboy",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Oxyboy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oxyboy",
+    "role": "performer"
+   }
+  ],
+  "act": "oxyboy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-quest",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Quest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quest",
+    "role": "performer"
+   }
+  ],
+  "act": "quest",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-roz",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RØZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roz",
+    "role": "performer"
+   }
+  ],
+  "act": "roz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-showtek-hardstyle-set",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Showtek (Hardstyle Set)",
+  "setTag": "Hardstyle Set",
+  "performers": [
+   {
+    "key": "showtek",
+    "role": "performer"
+   }
+  ],
+  "act": "showtek",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-sickmode",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sickmode",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sickmode",
+    "role": "performer"
+   }
+  ],
+  "act": "sickmode",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-sihk",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sihk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sihk",
+    "role": "performer"
+   }
+  ],
+  "act": "sihk",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-sofi-tukker",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sofi Tukker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sofi-tukker",
+    "role": "performer"
+   }
+  ],
+  "act": "sofi-tukker",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-sundaysundae",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SundaySundae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sundaysundae",
+    "role": "performer"
+   }
+  ],
+  "act": "sundaysundae",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-tiesto",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tiësto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiesto",
+    "role": "performer"
+   }
+  ],
+  "act": "tiesto",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-worship",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Worship",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "worship",
+    "role": "performer"
+   }
+  ],
+  "act": "worship",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-thailand-2026:edcth-yanamaste",
+  "source": "live",
+  "festivalId": "edc-thailand-2026",
+  "festivalBrand": "edc-thailand",
+  "year": 2026,
+  "date": "2026-12-20",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Yanamaste",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yanamaste",
+    "role": "performer"
+   }
+  ],
+  "act": "yanamaste",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "acl-2013:d1:amd:1200:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2013",

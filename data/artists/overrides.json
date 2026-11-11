@@ -657,6 +657,36 @@
    "source": "https://decadencearizona.com/lineup"
   },
   {
+   "printed": "Leveltronics (Subtronics B2B Level Up)",
+   "performers": [
+    {
+     "name": "Leveltronics",
+     "role": "project",
+     "parents": [
+      "Subtronics",
+      "Level Up"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the two artists behind the billed project: Leveltronics is a project with Subtronics and Level Up as parents (the Tchami x Malaa (No Redemption) rule, reversed). Both parents are billed on their own elsewhere in the data.",
+   "source": "https://thailand.edc.com/en/lineup/"
+  },
+  {
+   "printed": "Adnan Veron x HBRP",
+   "performers": [
+    {
+     "name": "Adnan Veron",
+     "role": "cobilled"
+    },
+    {
+     "name": "HBRP",
+     "role": "cobilled"
+    }
+   ],
+   "why": "DWP 2026 sells this row as one co-billed set. Both halves are real DJs who release joint mixes (hbrp's SoundCloud, \"Adnan Veron x hbrp Year Mix 2024 (DWP Edition)\"). Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://dwpfest.com/lineup"
+  },
+  {
    "printed": "FURY + MC DINO",
    "performers": [
     {
