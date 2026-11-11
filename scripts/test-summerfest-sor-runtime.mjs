@@ -150,7 +150,12 @@ try {
     const t = await page.evaluate(() => ({
       pill: document.querySelector("[data-artist-day-pill]")?.textContent || null,
       card: document.querySelector("[data-artist-set-card]")?.innerText || null,
-      body: document.body.innerText,
+      // Other festivals' published times (ACL and Lollapalooza Kiddie stages in
+      // "Career in our records") are real; only Summerfest 2026's disputed
+      // times must never surface.
+      body: [...document.querySelectorAll("[data-career-billing]")]
+        .filter(r => !String(r.dataset.careerBilling).startsWith("summerfest-2026"))
+        .reduce((t, r) => t.replace(r.innerText, ""), document.body.innerText),
     }));
     check(t.pill === `DAY 4 · ${COPY}`, `L. artist: the day pill reads "DAY 4 · ${COPY}" (got ${JSON.stringify(t.pill)})`);
     check(t.card && t.card.includes(COPY) && !LEGACY.test(t.card) && !/→/.test(t.card), "L. artist: the set card says the words, no time and no range");
