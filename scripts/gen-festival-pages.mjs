@@ -664,6 +664,15 @@ function stub(entry, statusOverride, lastmod) {
       ? `${cfg.name} lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Build your schedule and share your weekend with Plursky.`
       : `${cfg.name} at ${venue}, ${cfg.dates}. Build your schedule and share your weekend with Plursky.`;
 
+  // Real URLs from our data only (GSC Events, 2026-11-11). https or nothing.
+  const httpsOr = u => (typeof u === 'string' && /^https:\/\/[^\s"<>]+$/.test(u) ? u : null);
+  const officialSite = httpsOr(cfg.officialEvent && cfg.officialEvent.website);
+  // offers only where the festival's own ticket link is already in the data,
+  // and only before the edition ends: a past edition sells nothing. No price
+  // or availability is claimed, because none is recorded. The same link is
+  // printed in the sources list below, so the markup matches the page.
+  const ticketsUrl = isPast ? null : httpsOr(cfg.officialEvent && cfg.officialEvent.tickets);
+
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'MusicEvent',
@@ -674,14 +683,19 @@ function stub(entry, statusOverride, lastmod) {
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     description: desc,
     location: { '@type': 'Place', name: venue, ...(Object.keys(addr).length ? { address: { '@type': 'PostalAddress', ...addr } } : {}) },
-    // Only an image that is ours: the plate. Card art is official photography
-    // and patron maps are official art; neither is licensed to us.
-    ...(plate ? { image: `${ORIGIN}/${plate.file}` } : {}),
+    // Only an image that is ours: the plate, else the site's own share card
+    // (the page's og:image). Card art is official photography and patron maps
+    // are official art; neither is licensed to us.
+    image: plate ? `${ORIGIN}/${plate.file}` : `${ORIGIN}/og-card.png`,
     // performer is emitted ONLY when the names are also visible on the page
     // below — structured data that isn't in the rendered content is a
     // Google structured-data violation.
     ...(names.length ? { performer: names.map(n => ({ '@type': 'MusicGroup', name: n })) } : {}),
-    ...(cfg.brand ? { organizer: { '@type': 'Organization', name: cfg.brand } } : {}),
+    // organizer is the festival's own brand, so its url is the festival's
+    // official site, never plursky.com (that would name us as the
+    // organizer's website). No official site in the data: no url.
+    ...(cfg.brand ? { organizer: { '@type': 'Organization', name: cfg.brand, ...(officialSite ? { url: officialSite } : {}) } } : {}),
+    ...(ticketsUrl ? { offers: { '@type': 'Offer', url: ticketsUrl } } : {}),
   };
 
   // Built from `answers`, the same array answersSection() renders below.
@@ -715,6 +729,7 @@ function stub(entry, statusOverride, lastmod) {
   const site = cfg.officialEvent && cfg.officialEvent.website;
   const sources = [
     site && `      <li>Official site: <a href="${esc(site)}" rel="noopener">${esc(site)}</a></li>`,
+    ticketsUrl && `      <li>Tickets: <a href="${esc(ticketsUrl)}" rel="noopener">${esc(ticketsUrl)}</a> (official)</li>`,
     // The lineup's own source. Lineup-only festivals had NO source line at all
     // (III Points listed 218 acts citing nothing); a festival whose set times
     // came from the same page is already cited by the Set times row.
