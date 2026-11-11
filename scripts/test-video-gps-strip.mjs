@@ -377,7 +377,7 @@ const MUTANTS = [
   ["config NAL typed by its array", STRIP_SRC.replace('(fam === "avc" ? (u8[at] & 0x1f) === t : ((u8[at] >> 1) & 0x3f) === t)', "true"), SLIM_SRC],
   ["parameter sets uncapped", STRIP_SRC.replace('if (t === 7 || t === 8) return len <= _VGPS_PS_MAX ? "keep" : "refuse";', 'if (t === 7 || t === 8) return "keep";'), SLIM_SRC],
   ["text track allowed", STRIP_SRC.replace('"mebx", "tmcd",\n]);', '"mebx", "tmcd", "tx3g",\n]);'), SLIM_SRC],
-  ["moments backup keeps video coordinates", STRIP_SRC, SLIM_SRC.replace('if (copy.kind === "video") for (const f of _VIDEO_COORD_FIELDS) delete copy[f];', "")],
+  ["moments backup keeps video coordinates", STRIP_SRC, SLIM_SRC.replace(', "parsedGps", "gpsAccM", "heading", "headingRef"]', "]")],
 ];
 for (const [name, strip, slimSrc] of MUTANTS) {
   if (strip === STRIP_SRC && slimSrc === SLIM_SRC) { ok(false, `M setup: mutation "${name}" did not apply`); continue; }
