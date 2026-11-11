@@ -1845,6 +1845,207 @@
    }
   },
   {
+   "id": "lollapalooza-2019",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2019",
+   "year": 2019,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-08-01",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2019-08-02",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2019-08-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2019-08-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 187,
+    "sets": 201
+   }
+  },
+  {
+   "id": "lollapalooza-2017",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2017",
+   "year": 2017,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-08-03",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2017-08-04",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2017-08-05",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2017-08-06",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 182,
+    "sets": 190
+   }
+  },
+  {
+   "id": "lollapalooza-2016",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2016",
+   "year": 2016,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-07-28",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2016-07-29",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2016-07-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2016-07-31",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 181,
+    "sets": 189
+   }
+  },
+  {
+   "id": "lollapalooza-2015",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2015",
+   "year": 2015,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-07-31",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-08-01",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-08-02",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 141,
+    "sets": 151
+   }
+  },
+  {
+   "id": "lollapalooza-2014",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2014",
+   "year": 2014,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-08-01",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-08-02",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-08-03",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 139,
+    "sets": 151
+   }
+  },
+  {
+   "id": "lollapalooza-2013",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2013",
+   "year": 2013,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-08-02",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2013-08-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2013-08-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 138,
+    "sets": 147
+   }
+  },
+  {
    "id": "nocturnal-wonderland-2025",
    "festivalId": "nocturnal-wonderland",
    "festivalName": "Nocturnal Wonderland",

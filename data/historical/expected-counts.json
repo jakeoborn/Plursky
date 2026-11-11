@@ -71,5 +71,11 @@
  "escape-halloween-2015": { "artists": 72, "stages": 0, "appearancesPerDay": [36, 37], "dropped": 0 },
  "nocturnal-wonderland-2015": { "artists": 126, "stages": 0, "appearancesPerDay": [52, 41, 39], "dropped": 0 },
  "nocturnal-wonderland-2016": { "artists": 140, "stages": 0, "appearancesPerDay": [40, 54, 46], "dropped": 2 },
- "beyond-wonderland-socal-2016": { "artists": 68, "stages": 0, "appearancesPerDay": [38, 38], "dropped": 1 }
+ "beyond-wonderland-socal-2016": { "artists": 68, "stages": 0, "appearancesPerDay": [38, 38], "dropped": 1 },
+ "lollapalooza-2013": { "stages": 8, "setsPerDay": [50, 48, 49], "droppedPerDay": [0, 0, 0] },
+ "lollapalooza-2014": { "stages": 8, "setsPerDay": [50, 51, 50], "droppedPerDay": [0, 0, 0] },
+ "lollapalooza-2015": { "stages": 8, "setsPerDay": [50, 50, 51], "droppedPerDay": [0, 0, 1] },
+ "lollapalooza-2016": { "stages": 8, "setsPerDay": [47, 48, 47, 47], "droppedPerDay": [0, 0, 0, 1] },
+ "lollapalooza-2017": { "stages": 8, "setsPerDay": [47, 47, 48, 48], "droppedPerDay": [0, 0, 0, 1] },
+ "lollapalooza-2019": { "stages": 9, "setsPerDay": [50, 51, 51, 49], "droppedPerDay": [0, 0, 0, 1] }
 }

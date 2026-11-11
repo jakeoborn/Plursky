@@ -38,6 +38,20 @@ Official schedule graphics (Gov Ball, Lolla, ACL …):
     # hand-transcribe footer strips, put the printed header in <id>-dN.note
     node scripts/historical/finalize-review.mjs <edition-id> <review-dir> --reviewer "<who>"
 
+Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, format `acl-grid`):
+
+    node scripts/historical/gather-acl-grid.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+The gather dir stays outside the repo. Each block's am/pm is read off the
+page's own hour axis, and the em-per-minute scale is fitted from the blocks
+themselves. A block whose printed range disagrees with its height (Lolla
+2013's "5:30-4:15") is fitted out and named; its day then cannot be read
+and ships untimed, which the edition must list in `untimedDays` with a note,
+and the ledger keeps the misprint. A block printed twice (off the axis, or
+twice in the same place) is one set; a second set by the same act on the
+same stage of an untimed day is excluded as a repeat and the note says so.
+
 Mixed official sources (`official_sources`, Escape): when no single archive
 covers an edition, each day lists its sources in the ledger. A source is an
 archived official page (Wayback, the festival's own host; a post-event capture
