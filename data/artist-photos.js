@@ -2401,22 +2401,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q4671711",
     "url": "./artist-photos/baauer.webp"
   },
-  "baby-j": {
-    "artist": "BABY J",
-    "author": "KIYOUNG KIM",
-    "source": "commons",
-    "license": "CC-BY-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ha_Joo-Yeon.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:29:12.060Z",
-    "allowExport": false,
-    "asset": "artist-photos/baby-j.webp",
-    "sha256": "d55ca2fde67d680dd55db7fdb7569b591094af25272c3047329986316b9aa08a",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q11142250",
-    "url": "./artist-photos/baby-j.webp"
-  },
   "baby-jesus": {
     "artist": "Baby Jesus",
     "author": "MILLION DOLLAZ WORTH OF GAME",
@@ -5409,22 +5393,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q5284089",
     "url": "./artist-photos/divine-fits.webp"
   },
-  "dizzy": {
-    "artist": "Dizzy",
-    "author": "Adjoka",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dizzy_ft._multiple_artists_-_Homecoming_Festival-1_(cropped).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:50:07.071Z",
-    "allowExport": false,
-    "asset": "artist-photos/dizzy.webp",
-    "sha256": "a44140b72ef8b6af0bdfa79e4b18ec73899a488c1138e84bbaadf48a5c20b3fc",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q118727763",
-    "url": "./artist-photos/dizzy.webp"
-  },
   "dj-heather": {
     "artist": "DJ Heather",
     "author": "Changerequestchicago",
@@ -5520,22 +5488,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q65558243",
     "url": "./artist-photos/dj-tennis.webp"
-  },
-  "doc-brown": {
-    "artist": "Doc Brown",
-    "author": "Anthony Keiler",
-    "source": "commons",
-    "license": "CC-BY-SA-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Doc_Brown.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:51:05.542Z",
-    "allowExport": false,
-    "asset": "artist-photos/doc-brown.webp",
-    "sha256": "15cfeec54b9988d71a670be04fec6cf297b9e36d6873320498060ad4a52fec2a",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q5287024",
-    "url": "./artist-photos/doc-brown.webp"
   },
   "doechii": {
     "artist": "DOECHII",
@@ -6929,22 +6881,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q1488859",
     "url": "./artist-photos/gabriel-and-dresden.webp"
   },
-  "gaia": {
-    "artist": "Gaia",
-    "author": "Radio Bruno",
-    "source": "commons",
-    "license": "CC-BY-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gaia_(Feb_2025).png",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T05:51:46.771Z",
-    "allowExport": false,
-    "asset": "artist-photos/gaia.webp",
-    "sha256": "157937e6ca740ea3221900b43085ee3e7a83faa73c1f3941826cd98c6be8c763",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q89375508",
-    "url": "./artist-photos/gaia.webp"
-  },
   "gallant": {
     "artist": "Gallant",
     "author": "Gallant",
@@ -6960,22 +6896,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q22004445",
     "url": "./artist-photos/gallant.webp"
-  },
-  "galo": {
-    "artist": "Galo",
-    "author": "la dosis inc",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Galo_Music.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T05:51:57.240Z",
-    "allowExport": false,
-    "asset": "artist-photos/galo.webp",
-    "sha256": "b57cb7cedd8345fc5b4dcce691a3aede5b6e13e767705df6cabcf723f0c3c95c",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q111590078",
-    "url": "./artist-photos/galo.webp"
   },
   "gammer": {
     "artist": "Gammer",
@@ -7264,22 +7184,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q1547848",
     "url": "./artist-photos/gms.webp"
-  },
-  "golden-child": {
-    "artist": "Golden Child",
-    "author": "뉴스인스타",
-    "source": "commons",
-    "license": "CC-BY-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:171103_%EA%B3%A8%EB%93%A0%EC%B0%A8%EC%9D%BC%EB%93%9C.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T05:54:13.792Z",
-    "allowExport": false,
-    "asset": "artist-photos/golden-child.webp",
-    "sha256": "77e5d3ace8a2de62baebf770463ca447986a77bac443badb2d95e6ca2602acff",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q30007238",
-    "url": "./artist-photos/golden-child.webp"
   },
   "goldfinger": {
     "artist": "Goldfinger",
@@ -7664,22 +7568,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q17037824",
     "url": "./artist-photos/hamilton-leithauser.webp"
-  },
-  "hana": {
-    "artist": "HANA",
-    "author": "Justin Higuchi",
-    "source": "commons",
-    "license": "CC-BY-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:HANA_%40_Fonda_Theatre_04_09_2022_(52301611074).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T05:56:56.375Z",
-    "allowExport": false,
-    "asset": "artist-photos/hana.webp",
-    "sha256": "8c8195d6b3211f679d5ecd72b150a245bb83d634bf180f1c5821cb4890906029",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q2066647",
-    "url": "./artist-photos/hana.webp"
   },
   "hardy": {
     "artist": "HARDY",
@@ -8801,38 +8689,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q642988",
     "url": "./artist-photos/jimmy-eat-world.webp"
   },
-  "jimmy-page": {
-    "artist": "Jimmy Page",
-    "author": "Dina Regine",
-    "source": "commons",
-    "license": "CC-BY-SA-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jimmy_Page_early.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:05:17.023Z",
-    "allowExport": false,
-    "asset": "artist-photos/jimmy-page.webp",
-    "sha256": "1c8f418bfafd0e2cf6003f1ef676847c3758c52f6cf54d0b1ed0a067f7855935",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q165467",
-    "url": "./artist-photos/jimmy-page.webp"
-  },
-  "jinx": {
-    "artist": "Jinx",
-    "author": "Roberta F.",
-    "source": "commons",
-    "license": "CC-BY-SA-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jinx_25012013_Noc_muzeja_02_roberta_f.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:05:23.542Z",
-    "allowExport": false,
-    "asset": "artist-photos/jinx.webp",
-    "sha256": "9f8b6ed92d643e26e3c99f255b196036421ba4dd0746e995e8ffc150fee70775",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q3501691",
-    "url": "./artist-photos/jinx.webp"
-  },
   "joanie-leeds": {
     "artist": "JOANIE LEEDS",
     "author": "Storybird24",
@@ -9104,22 +8960,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q1157840",
     "url": "./artist-photos/jr-jr.webp"
-  },
-  "jt": {
-    "artist": "JT",
-    "author": "Cntrl+Alt+Delete",
-    "source": "commons",
-    "license": "CC-BY-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:City_Girls_July_2018.png",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:07:27.074Z",
-    "allowExport": false,
-    "asset": "artist-photos/jt.webp",
-    "sha256": "edd50306262a4384d5476b81849189622524a68349bf11b85de5498104cef785",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q106747932",
-    "url": "./artist-photos/jt.webp"
   },
   "juanes": {
     "artist": "Juanes",
@@ -10929,22 +10769,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q3544284",
     "url": "./artist-photos/manchester-orchestra.webp"
   },
-  "manics": {
-    "artist": "Manics",
-    "author": "Andrew King",
-    "source": "commons",
-    "license": "CC-BY-SA-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Manic_Street_Preachers_-_Cardiff_June_2010.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:20:20.875Z",
-    "allowExport": false,
-    "asset": "artist-photos/manics.webp",
-    "sha256": "26bae6212a8e4e484584c2865e96c2f4a4c7148aa3d51838c447f1ba6a762709",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q217025",
-    "url": "./artist-photos/manics.webp"
-  },
   "marc-rebillet": {
     "artist": "MARC REBILLET",
     "author": "Marc Rebillet",
@@ -11376,22 +11200,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q18921828",
     "url": "./artist-photos/mickey-guyton.webp"
-  },
-  "micro": {
-    "artist": "Micro",
-    "author": "Takahiro Ishiwata",
-    "source": "commons",
-    "license": "CC-BY-SA-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Def_Tech_Micro.JPG",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T06:23:29.447Z",
-    "allowExport": false,
-    "asset": "artist-photos/micro.webp",
-    "sha256": "e17b77c07acb8594f904365d5c726bd016e293daf81c99d4481ae6ea4edd9180",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q11233166",
-    "url": "./artist-photos/micro.webp"
   },
   "middle-kids": {
     "artist": "Middle Kids",
@@ -11953,22 +11761,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q24895516",
     "url": "./artist-photos/muddy-magnolias.webp"
   },
-  "muerte": {
-    "artist": "Muerte",
-    "author": "Suzanne van Bergen",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Band_la_muerte-1511017995.jpeg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:18:39.847Z",
-    "allowExport": false,
-    "asset": "artist-photos/muerte.webp",
-    "sha256": "070408f73c01c32f8856d7f6ee75592cd7cd94daa8360a920324cf5708709211",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q20747498",
-    "url": "./artist-photos/muerte.webp"
-  },
   "mumford-and-sons": {
     "artist": "Mumford & Sons",
     "author": "Stefan Schäfer, Lich",
@@ -11984,22 +11776,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q953918",
     "url": "./artist-photos/mumford-and-sons.webp"
-  },
-  "murphy-s-law": {
-    "artist": "Murphy's Law",
-    "author": "Bensocial",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Murphy's_Law_2021.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:18:52.875Z",
-    "allowExport": false,
-    "asset": "artist-photos/murphy-s-law.webp",
-    "sha256": "3a5055bd47993939036d86fd23272e7f000c9a63a5dacc2fb1ac90a5161029c8",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q1953822",
-    "url": "./artist-photos/murphy-s-law.webp"
   },
   "must-die": {
     "artist": "MUST DIE!",
@@ -12048,22 +11824,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q926269",
     "url": "./artist-photos/mutemath.webp"
-  },
-  "mxm": {
-    "artist": "MXM",
-    "author": "christmas lullaby",
-    "source": "commons",
-    "license": "CC-BY-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:170908_MXM.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:19:18.893Z",
-    "allowExport": false,
-    "asset": "artist-photos/mxm.webp",
-    "sha256": "b519cb1dc04bef7086262c120388c1999300ea2ba15d6bc9c724605d821da82d",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q33644200",
-    "url": "./artist-photos/mxm.webp"
   },
   "myles-smith": {
     "artist": "Myles Smith",
@@ -12176,38 +11936,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q2760347",
     "url": "./artist-photos/nate-ruess.webp"
-  },
-  "nebula": {
-    "artist": "Nebula",
-    "author": "Danishdrummer",
-    "source": "commons",
-    "license": "Public-Domain",
-    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nebula08.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:20:10.880Z",
-    "allowExport": false,
-    "asset": "artist-photos/nebula.webp",
-    "sha256": "797146a4d7b363420603e442479e73ec90fc7e3d421e86db6de9ab71f92460b5",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q1319254",
-    "url": "./artist-photos/nebula.webp"
-  },
-  "neon-black": {
-    "artist": "Neon Black",
-    "author": "Zoe",
-    "source": "commons",
-    "license": "CC-BY-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Machine_Drum.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:20:17.370Z",
-    "allowExport": false,
-    "asset": "artist-photos/neon-black.webp",
-    "sha256": "19b14ee43d2a152c55e7c99ae9a01e68278c9f3e24f01f97889e7b6923094d72",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q594166",
-    "url": "./artist-photos/neon-black.webp"
   },
   "nessa-barrett": {
     "artist": "NESSA BARRETT",
@@ -12641,22 +12369,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q20684996",
     "url": "./artist-photos/nothing-but-thieves.webp"
   },
-  "notion": {
-    "artist": "Notion",
-    "author": "Levis6400",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Notion_Profile_Photo.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:23:25.966Z",
-    "allowExport": false,
-    "asset": "artist-photos/notion.webp",
-    "sha256": "5e3f0c914e279bf62f5eca89a73911fea82871dc43d3b1d18f82fe2a720250cd",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q90416955",
-    "url": "./artist-photos/notion.webp"
-  },
   "ocean-alley": {
     "artist": "OCEAN ALLEY",
     "author": "Nathan Gunn",
@@ -12800,22 +12512,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q104870352",
     "url": "./artist-photos/olivia-lunny.webp"
-  },
-  "olympe": {
-    "artist": "Olympe",
-    "author": "Georges Biard",
-    "source": "commons",
-    "license": "CC-BY-SA-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Olympe_NRJ_2013_2.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:24:43.992Z",
-    "allowExport": false,
-    "asset": "artist-photos/olympe.webp",
-    "sha256": "1d09c2b299cee318466130bc7fb41afc113bf8ee212baee70b306d1f19e10365",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q15140735",
-    "url": "./artist-photos/olympe.webp"
   },
   "omah-lay": {
     "artist": "OMAH LAY",
@@ -13601,22 +13297,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q126029281",
     "url": "./artist-photos/quarters-of-change.webp"
   },
-  "quest": {
-    "artist": "Quest",
-    "author": "Quantumluminary",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Quest_Music.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:30:35.136Z",
-    "allowExport": false,
-    "asset": "artist-photos/quest.webp",
-    "sha256": "d3f6879fc8e8c7d1e32e0d21e6d76555bdd605fad842f34ea5f65fe12b07d54b",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q18224151",
-    "url": "./artist-photos/quest.webp"
-  },
   "qveen-herby": {
     "artist": "QVEEN HERBY",
     "author": "Southern Arkansas University",
@@ -13857,22 +13537,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q3421778",
     "url": "./artist-photos/rebelution.webp"
   },
-  "rebuke": {
-    "artist": "Rebūke",
-    "author": "Ponkass",
-    "source": "commons",
-    "license": "CC-BY-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rebuke_72dpi.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:32:19.136Z",
-    "allowExport": false,
-    "asset": "artist-photos/rebuke.webp",
-    "sha256": "bd36363aaa240deabc9d7fc63a72072778f65ba9833c12b7ae693c92f5c28baf",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q10650079",
-    "url": "./artist-photos/rebuke.webp"
-  },
   "red-hot-chili-peppers": {
     "artist": "Red Hot Chili Peppers",
     "author": "Kreepin Deth",
@@ -14097,22 +13761,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q28840001",
     "url": "./artist-photos/rina-sawayama.webp"
   },
-  "riot": {
-    "artist": "Riot",
-    "author": "Frank Schwichtenberg",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Riot_V_-_Wacken_Open_Air_2018_00.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:33:56.672Z",
-    "allowExport": false,
-    "asset": "artist-photos/riot.webp",
-    "sha256": "beb9ac7a6ff6285cde2bc17338559e99de85bcf0f22936e4f2126b3c17e338c4",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q1408267",
-    "url": "./artist-photos/riot.webp"
-  },
   "riot-ten": {
     "artist": "Riot Ten",
     "author": "Mikejamesadams43",
@@ -14336,22 +13984,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q16632343",
     "url": "./artist-photos/royal-blood.webp"
-  },
-  "rude-boy": {
-    "artist": "Rude Boy",
-    "author": "Fotoburo De Boer",
-    "source": "commons",
-    "license": "CC0-1.0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:UrbanDanceSquad1999-1.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:35:34.873Z",
-    "allowExport": false,
-    "asset": "artist-photos/rude-boy.webp",
-    "sha256": "5db099d7404b538cfa82bc41e465618eec0e86913f5dd0e112a09fb276e90b9f",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q7147741",
-    "url": "./artist-photos/rude-boy.webp"
   },
   "ruen-brothers": {
     "artist": "Ruen Brothers",
@@ -15025,22 +14657,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q720649",
     "url": "./artist-photos/shy-fx.webp"
   },
-  "sidekicks": {
-    "artist": "Sidekicks",
-    "author": "Knutsk",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:KaleidoscopeIslingtonOldGroupScreen.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:40:20.317Z",
-    "allowExport": false,
-    "asset": "artist-photos/sidekicks.webp",
-    "sha256": "55bb6cbe8aee46e5edf0e7ef1dba90b8d319d2b97a4877dd94da3cdb4d204553",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q751502",
-    "url": "./artist-photos/sidekicks.webp"
-  },
   "sienna-spiro": {
     "artist": "Sienna Spiro",
     "author": "Danielle Ernst",
@@ -15232,22 +14848,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q131140212",
     "url": "./artist-photos/skrilla.webp"
-  },
-  "skye": {
-    "artist": "SKYE",
-    "author": "Marie Para",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Skye_2.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:41:57.861Z",
-    "allowExport": false,
-    "asset": "artist-photos/skye.webp",
-    "sha256": "7570f0ef3d91c12d4d308dc3de587e2ff6266d2d2fcbcec8f2546dd199cd0afd",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q139868",
-    "url": "./artist-photos/skye.webp"
   },
   "skyler-day": {
     "artist": "SKYLER DAY",
@@ -15472,22 +15072,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q68866747",
     "url": "./artist-photos/sons-of-fathers.webp"
-  },
-  "sosa": {
-    "artist": "Sosa",
-    "author": "glenjamn3",
-    "source": "commons",
-    "license": "CC-BY-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chief_Keef_2019_performance.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:43:41.852Z",
-    "allowExport": false,
-    "asset": "artist-photos/sosa.webp",
-    "sha256": "d817bb22784af4b9124ab288a9a404e8f6547702b5aeeda154e446818234314d",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q127362",
-    "url": "./artist-photos/sosa.webp"
   },
   "soul-asylum": {
     "artist": "Soul Asylum",
@@ -17745,22 +17329,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q15948790",
     "url": "./artist-photos/tove-lo.webp"
   },
-  "trace": {
-    "artist": "Trace",
-    "author": "Rob Mieremet (ANEFO)",
-    "source": "commons",
-    "license": "CC0-1.0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trace1974.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:59:44.234Z",
-    "allowExport": false,
-    "asset": "artist-photos/trace.webp",
-    "sha256": "e337e288151d92c1266ed76a503b57ad4105d6eeb786b6000027abdab4461120",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q749426",
-    "url": "./artist-photos/trace.webp"
-  },
   "tracy-bonham": {
     "artist": "Tracy Bonham",
     "author": "Tammy Lo",
@@ -17840,22 +17408,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q23905339",
     "url": "./artist-photos/trixie-mattel.webp"
-  },
-  "trouble": {
-    "artist": "Trouble",
-    "author": "Cecil",
-    "source": "commons",
-    "license": "CC-BY-SA-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trouble_-_Jalometalli_2008_-_02.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T10:53:39.131Z",
-    "allowExport": false,
-    "asset": "artist-photos/trouble.webp",
-    "sha256": "202236964447e6d73c58a3db80b490a785c53054c4f2600509c4c04a0e82e374",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q2062170",
-    "url": "./artist-photos/trouble.webp"
   },
   "troyboi": {
     "artist": "TroyBoi",
@@ -18321,22 +17873,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q7932854",
     "url": "./artist-photos/vintage-trouble.webp"
   },
-  "violeta": {
-    "artist": "Violeta",
-    "author": "Barcex",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Madrid_Pride_2026_-_Violeta_H%C3%B3dar_-_260701_215224.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T10:56:54.247Z",
-    "allowExport": false,
-    "asset": "artist-photos/violeta.webp",
-    "sha256": "5165b56b82ddfbe64cfc63f44fa90b2ca6f93ab9792f2c95f3ad6a96863ea1c2",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q123504010",
-    "url": "./artist-photos/violeta.webp"
-  },
   "virtual-riot": {
     "artist": "Virtual Riot",
     "author": "Franky Nuts",
@@ -18768,22 +18304,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q1395589",
     "url": "./artist-photos/wildstylez.webp"
-  },
-  "wiley": {
-    "artist": "Wiley",
-    "author": "Clozone",
-    "source": "commons",
-    "license": "CC0-1.0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rapper_Wiley.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T10:59:56.297Z",
-    "allowExport": false,
-    "asset": "artist-photos/wiley.webp",
-    "sha256": "4dd85e7d1be2f9625ba1307ea122289ac3976bfbf290f199ba1bf5a669e66aed",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q936479",
-    "url": "./artist-photos/wiley.webp"
   },
   "willie-nelson": {
     "artist": "Willie Nelson",
