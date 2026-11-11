@@ -1,0 +1,355 @@
+{
+  "id": "edc-las-vegas-2023",
+  "method": "official_lineup_html",
+  "official": "https://lasvegas.electricdaisycarnival.com/lineup/",
+  "chosen": "20231226212306",
+  "archivedUrl": "https://web.archive.org/web/20231226212306/https://lasvegas.electricdaisycarnival.com/lineup/",
+  "sha256": "5903946c0a653a11291a79fbc01abe6a7af65e466730065a3c1445306363dec2",
+  "title": "Lineup – EDC Las Vegas 2024",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 344",
+    "By Day 344",
+    "By Stage 344"
+  ],
+  "stageOrder": [
+    "Kinetic Field",
+    "Cosmic Meadow",
+    "Circuit Grounds",
+    "Neon Garden",
+    "Basspod",
+    "Wasteland",
+    "Quantum Valley",
+    "Stereo Bloom",
+    "Bionic Jungle",
+    "Parliament 2.0 30th Anniversary Art Car",
+    "Titanic's End Art Car",
+    "Boombox Art Car",
+    "Allegiant Rave Hangar"
+  ],
+  "crossTab": [
+    "Abana: 2 days and 2 stages, stage not joined to a day",
+    "Bexxie: 3 days and 3 stages, stage not joined to a day",
+    "Blake Webber: 2 days and 2 stages, stage not joined to a day",
+    "Camden Cox: 2 days and 2 stages, stage not joined to a day",
+    "Capozzi: 2 days and 2 stages, stage not joined to a day",
+    "Carola: 2 days and 2 stages, stage not joined to a day",
+    "Dombresky: 2 days and 2 stages, stage not joined to a day",
+    "Goodboys: 2 days and 2 stages, stage not joined to a day",
+    "James Hype: 3 days and 3 stages, stage not joined to a day",
+    "Kaleena Zanders: 2 days and 2 stages, stage not joined to a day",
+    "Lady Sinclair: 2 days and 2 stages, stage not joined to a day",
+    "MISS DRE: 2 days and 2 stages, stage not joined to a day",
+    "Netsky: 2 days and 2 stages, stage not joined to a day",
+    "Odd Mob: 2 days and 2 stages, stage not joined to a day",
+    "OddKidOut: 2 days and 2 stages, stage not joined to a day",
+    "Pauline Herr: 2 days and 2 stages, stage not joined to a day",
+    "Rohaan: 2 days and 2 stages, stage not joined to a day",
+    "Softest Hard: 2 days and 2 stages, stage not joined to a day",
+    "Sonny Fodera: 2 days and 2 stages, stage not joined to a day",
+    "TOBEHONEST: 2 days and 2 stages, stage not joined to a day",
+    "Vini Vici: 2 days and 2 stages, stage not joined to a day"
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20230205064207",
+      "archivedUrl": "https://web.archive.org/web/20230205064207/https://lasvegas.electricdaisycarnival.com/lineup/",
+      "sha256": "325a57aeb0401f94ef0442f33b907749289229bfa0244f3aa21d6daf325ebc0c",
+      "bytes": 352894,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Las Vegas 2023",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [
+        "Friday, May 20 ✗",
+        "Saturday, May 21 ✗",
+        "Sunday, May 22 ✗"
+      ],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20230323225759",
+      "archivedUrl": "https://web.archive.org/web/20230323225759/https://lasvegas.electricdaisycarnival.com/lineup/",
+      "sha256": "a96faf13ab53a665ac24354f523f4e4cee4e05c86bed9172cb394c0fef69e62e",
+      "bytes": 353488,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Las Vegas 2023",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [
+        "Friday, May 20 ✗",
+        "Saturday, May 21 ✗",
+        "Sunday, May 22 ✗"
+      ],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20230414004349",
+      "notFiled": "relay: capture 20230414004349 of https://lasvegas.electricdaisycarnival.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20230513123645",
+      "archivedUrl": "https://web.archive.org/web/20230513123645/https://lasvegas.electricdaisycarnival.com/lineup/",
+      "sha256": "557c4907b5d0aa2c48fba41dd001477adf358c67211060862f00395ed2a8767f",
+      "bytes": 410108,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Las Vegas 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, May 19",
+        "Saturday, May 20",
+        "Sunday, May 21"
+      ],
+      "billings": 319,
+      "diffVsChosen": [
+        "added by the final: 30 Year Dance Party",
+        "added by the final: BARELY ALIVE",
+        "added by the final: FETISH",
+        "added by the final: Fireworks",
+        "added by the final: Hint of Lavender",
+        "added by the final: MEMBA",
+        "added by the final: SABAI",
+        "removed by the final: Barely Alive",
+        "removed by the final: Fallon",
+        "removed by the final: Fetish",
+        "removed by the final: Hint Of Lavender",
+        "removed by the final: Luude",
+        "removed by the final: Memba",
+        "removed by the final: Sabai"
+      ]
+    },
+    {
+      "captureTimestamp": "20230516205520",
+      "archivedUrl": "https://web.archive.org/web/20230516205520/https://lasvegas.electricdaisycarnival.com/lineup/",
+      "sha256": "c9e5db4c0ad5303baf4cd00435ab93a7af15979dced01df3fd18d960ab89e376",
+      "bytes": 412851,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Las Vegas 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, May 19",
+        "Saturday, May 20",
+        "Sunday, May 21"
+      ],
+      "billings": 320,
+      "diffVsChosen": [
+        "added by the final: BARELY ALIVE",
+        "added by the final: FETISH",
+        "added by the final: Hint of Lavender",
+        "added by the final: MEMBA",
+        "added by the final: SABAI",
+        "removed by the final: Barely Alive",
+        "removed by the final: Fetish",
+        "removed by the final: Hint Of Lavender",
+        "removed by the final: Luude",
+        "removed by the final: Memba",
+        "removed by the final: Sabai"
+      ]
+    },
+    {
+      "captureTimestamp": "20230602213150",
+      "archivedUrl": "https://web.archive.org/web/20230602213150/https://lasvegas.electricdaisycarnival.com/lineup/",
+      "sha256": "5bbb6f780776cae44874974c299b1243add35a3aeed993d1aec1facc96e13169",
+      "bytes": 427582,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Las Vegas 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, May 19",
+        "Saturday, May 20",
+        "Sunday, May 21"
+      ],
+      "billings": 319,
+      "diffVsChosen": [
+        "added by the final: BARELY ALIVE",
+        "added by the final: Hint of Lavender",
+        "added by the final: MEMBA",
+        "added by the final: SABAI",
+        "removed by the final: Barely Alive",
+        "removed by the final: Hint Of Lavender",
+        "removed by the final: Memba",
+        "removed by the final: Sabai"
+      ]
+    },
+    {
+      "captureTimestamp": "20230603202244",
+      "archivedUrl": "https://web.archive.org/web/20230603202244/https://lasvegas.electricdaisycarnival.com/lineup/",
+      "sha256": "3fee4bd688ee31be1b7dfa6226f39e64162061dbd0eff54ef507420f905bd8bd",
+      "bytes": 432305,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Las Vegas 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, May 19",
+        "Saturday, May 20",
+        "Sunday, May 21"
+      ],
+      "billings": 319,
+      "diffVsChosen": [
+        "added by the final: BARELY ALIVE",
+        "added by the final: Hint of Lavender",
+        "added by the final: MEMBA",
+        "added by the final: SABAI",
+        "removed by the final: Barely Alive",
+        "removed by the final: Hint Of Lavender",
+        "removed by the final: Memba",
+        "removed by the final: Sabai"
+      ]
+    },
+    {
+      "captureTimestamp": "20230620192355",
+      "archivedUrl": "https://web.archive.org/web/20230620192355/https://lasvegas.electricdaisycarnival.com/lineup/",
+      "sha256": "9ebec83e2f74d9a73ed4bcf7eb1e291eac49b78fe8543da23ba02e103813e134",
+      "bytes": 432558,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Las Vegas 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, May 19",
+        "Saturday, May 20",
+        "Sunday, May 21"
+      ],
+      "billings": 319,
+      "diffVsChosen": [
+        "added by the final: BARELY ALIVE",
+        "added by the final: Hint of Lavender",
+        "added by the final: MEMBA",
+        "added by the final: SABAI",
+        "removed by the final: Barely Alive",
+        "removed by the final: Hint Of Lavender",
+        "removed by the final: Memba",
+        "removed by the final: Sabai"
+      ]
+    },
+    {
+      "captureTimestamp": "20230823054156",
+      "archivedUrl": "https://web.archive.org/web/20230823054156/https://lasvegas.electricdaisycarnival.com/lineup/",
+      "sha256": "24ec19e18022aaecb0ce11e45b2bee7abfc3dcb45833ed57846b9fec6fb0bf4f",
+      "bytes": 442995,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Las Vegas 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, May 19",
+        "Saturday, May 20",
+        "Sunday, May 21"
+      ],
+      "billings": 319,
+      "diffVsChosen": [
+        "added by the final: BARELY ALIVE",
+        "added by the final: MEMBA",
+        "added by the final: SABAI",
+        "removed by the final: Barely Alive",
+        "removed by the final: Memba",
+        "removed by the final: Sabai"
+      ]
+    },
+    {
+      "captureTimestamp": "20231004021329",
+      "archivedUrl": "https://web.archive.org/web/20231004021329/https://lasvegas.electricdaisycarnival.com/lineup/",
+      "sha256": "6800f06255b01a5e3a85734393d819e846ec55b22d4bc21680c6194b6127a4fd",
+      "bytes": 443353,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Las Vegas 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, May 19",
+        "Saturday, May 20",
+        "Sunday, May 21"
+      ],
+      "billings": 319,
+      "diffVsChosen": [
+        "added by the final: BARELY ALIVE",
+        "added by the final: MEMBA",
+        "added by the final: SABAI",
+        "removed by the final: Barely Alive",
+        "removed by the final: Memba",
+        "removed by the final: Sabai"
+      ]
+    },
+    {
+      "captureTimestamp": "20231226125604",
+      "archivedUrl": "https://web.archive.org/web/20231226125604/https://lasvegas.electricdaisycarnival.com/lineup/",
+      "sha256": "90f4097020451ae5276c7fda260821b41139eece38ad1ee555ae73231d2b94a8",
+      "bytes": 441468,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Las Vegas 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, May 19",
+        "Saturday, May 20",
+        "Sunday, May 21"
+      ],
+      "billings": 319,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20231226212306",
+      "archivedUrl": "https://web.archive.org/web/20231226212306/https://lasvegas.electricdaisycarnival.com/lineup/",
+      "sha256": "5903946c0a653a11291a79fbc01abe6a7af65e466730065a3c1445306363dec2",
+      "bytes": 441468,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Las Vegas 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, May 19",
+        "Saturday, May 20",
+        "Sunday, May 21"
+      ],
+      "billings": 319,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Kinetic Field",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Kinetic Field",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Circuit Grounds",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v549';
+﻿const CACHE      = 'plursky-v566';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v549';
+const APP_VER    = 'v566';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -56,6 +56,8 @@ const LOCAL = [
   `./data/artist-key.js?v=${APP_VER}`,
   // Festival-art ledger (Item 6): official tile art, data/festival-art.js.
   `./data/festival-art.js?v=${APP_VER}`,
+  // Public plan-share payload contract (#74 stage 1; the link itself is flag-off).
+  `./data/plan-share-contract.js?v=${APP_VER}`,
   // Ground plates (mapImage targets). Not every festival module has one: ARC,
   // III Points, CRSSD and Portola ship mapMode "real" and no plate.
   //
@@ -89,8 +91,10 @@ const LOCAL = [
   './artist-photos/alison-wonderland.webp',
   './artist-photos/alok.webp',
   './artist-photos/amyl-and-the-sniffers.webp',
+  './artist-photos/bleachers.webp',
   './artist-photos/bone-thugs-n-harmony.webp',
   './artist-photos/boys-noize.webp',
+  './artist-photos/brandon-flowers.webp',
   './artist-photos/cascada.webp',
   './artist-photos/charli-xcx.webp',
   './artist-photos/charlotte-de-witte.webp',
@@ -127,13 +131,17 @@ const LOCAL = [
   './artist-photos/nina-kraviz.webp',
   './artist-photos/parcels.webp',
   './artist-photos/purity-ring.webp',
+  './artist-photos/rebecca-black.webp',
   './artist-photos/richie-hawtin.webp',
   './artist-photos/rusowsky.webp',
   './artist-photos/seth-troxler.webp',
   './artist-photos/skrillex.webp',
   './artist-photos/slander.webp',
+  './artist-photos/sofi-tukker.webp',
   './artist-photos/steve-aoki.webp',
+  './artist-photos/the-chainsmokers.webp',
   './artist-photos/the-war-on-drugs.webp',
+  './artist-photos/the-xx.webp',
   './artist-photos/tiesto.webp',
   './artist-photos/tokischa.webp',
   './artist-photos/tricky.webp',

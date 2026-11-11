@@ -2004,21 +2004,26 @@ function _videoDuration(blob) {
 var _POSTER_MAX_EDGE = 640;
 var _POSTER_TIMEOUT_MS = 8000;
 var _BLACK_MAX_LUMA = 40;
-function _frameIsBlack(v) {
+function _frameState(v) {
   try {
     var c = document.createElement("canvas");
     c.width = c.height = 24;
     var g = c.getContext("2d");
     g.drawImage(v, 0, 0, 24, 24);
     var d = g.getImageData(0, 0, 24, 24).data;
+    var painted = false;
     for (var i = 0; i < d.length; i += 4) {
-      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return false;
+      if (d[i + 3] === 0) continue;
+      painted = true;
+      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return "ok";
     }
-    return true;
+    return painted ? "black" : "unpainted";
   } catch {
-    return false;
+    return "ok";
   }
 }
+var _POSTER_PAINT_RETRIES = 6,
+  _POSTER_PAINT_WAIT_MS = 50;
 function _videoPosterBlob(blob) {
   return new Promise(resolve => {
     var url = null,
@@ -2078,11 +2083,15 @@ function _videoPosterBlob(blob) {
         times = [Math.min(0.6, Math.max(0.05, dur * 0.1)), dur * 0.25, dur * 0.5, dur * 0.75].filter((t, i, a) => t < dur && (i === 0 || t > a[i - 1] + 0.05));
         if (v.readyState >= 2) seek();else v.onloadeddata = seek;
       };
-      v.onseeked = () => {
-        if (!_frameIsBlack(v)) return draw();
+      var judge = tries => {
+        if (settled) return;
+        var st = _frameState(v);
+        if (st === "unpainted" && tries < _POSTER_PAINT_RETRIES) return setTimeout(() => judge(tries + 1), _POSTER_PAINT_WAIT_MS);
+        if (st === "ok") return draw();
         if (++at < times.length) return seek();
         done(null);
       };
+      v.onseeked = () => judge(0);
       v.onerror = () => done(null);
       v.src = url;
     } catch {
@@ -2805,6 +2814,7 @@ async function _backupMyWeekend(onProgress) {
     failed = 0,
     capped = false;
   var succeeded = {};
+  var gpsHeld = 0;
   for (var _m of pending) {
     var blob = await _getPhoto(_m.photoId).catch(() => null);
     if (!blob) {
@@ -2819,6 +2829,19 @@ async function _backupMyWeekend(onProgress) {
     if (usedBytes + blob.size > _BACKUP_HARD_CAP) {
       capped = true;
       break;
+    }
+    if (_m.kind === "video" || /^video\//.test(blob.type || "")) {
+      var clean = await _stripVideoGps(blob);
+      if (!clean) {
+        gpsHeld++;
+        onProgress?.({
+          done,
+          failed,
+          total: pending.length
+        });
+        continue;
+      }
+      blob = clean.blob;
     }
     var ok = await window.sbUploadMomentMedia(_m.photoId, blob);
     if (ok) {
@@ -2847,7 +2870,8 @@ async function _backupMyWeekend(onProgress) {
     failed,
     total: pending.length,
     capped,
-    usedBytes
+    usedBytes,
+    gpsHeld
   };
 }
 function _HomeMemoryThumb({
@@ -3761,8 +3785,9 @@ function MomentLightbox({
 }) {
   var m = moments[index];
   var photoUrl = useMomentPhoto(m?.photoId);
-  var artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
-  var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  var mf = _momentFestival(m);
+  var artist = m?.artistId ? mf.artists.find(a => a.id === m.artistId) || null : null;
+  var stage = artist ? mf.stages.find(s => s.id === artist.stage) || null : null;
   var estimatedSong = useSetlistSong(artist, m?.takenAt);
   var song = m?.confirmedSong ? {
     song: m.confirmedSong
@@ -3786,19 +3811,7 @@ function MomentLightbox({
     setRetagQuery("");
     setConfirmDelete(false);
   }, [index]);
-  var retagOptions = React.useMemo(() => {
-    var q = retagQuery.trim().toLowerCase();
-    if (q) {
-      return ARTISTS.filter(a => a.name.toLowerCase().includes(q)).slice(0, 24);
-    }
-    if (!m) return [];
-    var hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
-    var t = hhmm ? toNightMin(hhmm) : null;
-    var night = m.night || NOW.day;
-    var all = momentLineup(m).filter(a => a.day === night);
-    var playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
-    return (playing.length ? playing : all).slice().sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
-  }, [m, retagQuery]);
+  var retagOptions = React.useMemo(() => _retagOptionsFor(m, retagQuery), [m, retagQuery]);
   var runIdentify = async () => {
     setIdState("listening");
     var result = await identifySongFromVideo(m, p => setIdState(p));
@@ -4104,7 +4117,37 @@ function MomentLightbox({
       textAlign: "left",
       fontSize: 15
     }
-  }, retagging ? "Cancel" : artist ? "Wrong act? Fix it" : "Tag this moment"), retagging && React.createElement("div", {
+  }, retagging ? "Cancel" : artist ? "Wrong act? Fix it" : "Tag this moment"), retagging && React.createElement("input", {
+    type: "search",
+    value: retagQuery,
+    onChange: e => setRetagQuery(e.target.value),
+    placeholder: `Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`,
+    "aria-label": `Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`,
+    autoComplete: "off",
+    autoCorrect: "off",
+    autoCapitalize: "none",
+    spellCheck: false,
+    "data-retag-search": "",
+    style: {
+      marginTop: 8,
+      width: "100%",
+      boxSizing: "border-box",
+      minHeight: 44,
+      padding: "0 12px",
+      borderRadius: "var(--rad-sm)",
+      border: "1px solid rgba(var(--ink-rgb),0.24)",
+      background: "rgba(var(--ink-rgb),0.06)",
+      color: "var(--ink)",
+      fontSize: 16,
+      fontFamily: "inherit"
+    }
+  }), retagging && retagQuery.trim() && !retagOptions.length && React.createElement("div", {
+    style: {
+      marginTop: 6,
+      fontSize: 13,
+      color: "var(--text-2)"
+    }
+  }, "No act matches “", retagQuery.trim(), "”."), retagging && React.createElement("div", {
     className: "no-scrollbar",
     style: {
       marginTop: 8,
@@ -4115,16 +4158,14 @@ function MomentLightbox({
       gap: 6
     }
   }, retagOptions.map(a => {
-    var st = STAGES.find(s => s.id === a.stage);
+    var st = mf.stages.find(s => s.id === a.stage);
     var on = a.id === m.artistId;
     return React.createElement("button", {
       key: a.id,
       onClick: () => {
-        onUpdate?.(m, {
-          artistId: a.id,
-          tagSource: "manual",
-          autoTagged: false
-        });
+        onUpdate?.(m, _retagPatch({
+          artistId: a.id
+        }));
         setRetagging(false);
         try {
           window.plurskyHaptic?.("LIGHT");
@@ -5847,7 +5888,7 @@ function AddMomentForm({
       var exif = await _parseExifMeta(file).catch(() => null);
       var meta = _metaFromFile(file, exif);
       if (meta && meta.date && !artistId) {
-        var attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+        var attendedIds = _allFestivalAttendedIds();
         var matched = _matchArtistForPhoto(meta, savedNightArtists.map(a => a.id), attendedIds);
         var activeId = window.FESTIVAL_CONFIG?.id || null;
         if (matched.artistId && (!matched.festivalId || matched.festivalId === activeId)) {
@@ -6135,6 +6176,35 @@ function _momentFestival(m) {
     stages: ds.stages || window.STAGES || []
   };
 }
+function _retagOptionsFor(m, query) {
+  if (!m) return [];
+  var {
+    cfg,
+    artists
+  } = _momentFestival(m);
+  var wk = typeof momentWeekend === "function" ? momentWeekend(m.takenAt, cfg) : null;
+  var lineup = artists.filter(a => !wk || !a.weekend || a.weekend === "both" || a.weekend === wk);
+  var q = String(query || "").trim();
+  if (q) return lineup.filter(a => billedNameMatches(a.name, q)).slice(0, 24);
+  var hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
+  var t = hhmm ? toNightMin(hhmm) : null;
+  var night = m.night || NOW.day;
+  var all = lineup.filter(a => a.day === night);
+  var playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
+  var rank = new Map((m.tagAlternatives || []).map((id, i) => [id, i]));
+  var base = (playing.length ? playing : all).slice();
+  var _loop3 = function (id) {
+    if (!base.some(a => a.id === id)) {
+      var a = lineup.find(x => x.id === id);
+      if (a) base.push(a);
+    }
+  };
+  for (var id of rank.keys()) {
+    _loop3(id);
+  }
+  var r = a => rank.has(a.id) ? rank.get(a.id) : 1e6;
+  return base.sort((a, b) => r(a) - r(b) || toNightMin(a.start) - toNightMin(b.start));
+}
 function _reviewLineup(m, night) {
   var {
     cfg,
@@ -6150,7 +6220,8 @@ function _retagPatch(choice) {
     autoTagged: false,
     needsRetag: false,
     tagAmbiguous: false,
-    tagSuggested: false
+    tagSuggested: false,
+    tagAlternatives: null
   };
   if (!choice) return null;
   if (choice.unknown) return {
@@ -8289,7 +8360,7 @@ function MemoriesMapLens({
   } = React.useMemo(() => {
     var byStage = new Map();
     var unplaced = 0;
-    var _loop3 = function (m) {
+    var _loop4 = function (m) {
         if (!m.photoId) return 0;
         var stageId = null;
         if (m.parsedGps && typeof gpsToMap === "function") {
@@ -8308,7 +8379,7 @@ function MemoriesMapLens({
       },
       _ret;
     for (var m of moments || []) {
-      _ret = _loop3(m);
+      _ret = _loop4(m);
       if (_ret === 0) continue;
     }
     var pins = [...byStage.entries()].map(([id, items]) => ({
@@ -8577,7 +8648,7 @@ function MemoriesPhotoMapLens({
   } = React.useMemo(() => {
     var placed = [];
     var unplaced = 0;
-    var _loop4 = function (m) {
+    var _loop5 = function (m) {
         if (!m.photoId) return 0;
         var xy = null,
           stageId = null;
@@ -8617,7 +8688,7 @@ function MemoriesPhotoMapLens({
       },
       _ret2;
     for (var m of moments || []) {
-      _ret2 = _loop4(m);
+      _ret2 = _loop5(m);
       if (_ret2 === 0) continue;
     }
     var sorted = placed.slice().sort((a, b) => b.t - a.t);
@@ -9367,6 +9438,7 @@ function MemoriesScreen({
     }
   };
   var processImportedFiles = async (files, opts = {}) => {
+    var nativePicker = !!opts.nativePicker;
     if (files.length === 0) {
       window.plurskyToast?.("No photos received — pick a few at a time; if they're in iCloud, open them in Photos first so they download.");
       return [];
@@ -9378,10 +9450,16 @@ function MemoriesScreen({
       results
     });
     var savedIds = state.saved || [];
-    var attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+    var attendedIds = _allFestivalAttendedIds();
     var current = {
       ..._readMoments()
     };
+    _importLog("batch_start", {
+      files: files.length,
+      active: window.FESTIVAL_CONFIG?.id || null,
+      saved: savedIds.length,
+      attended: attendedIds.length
+    });
     var existingContent = new Map();
     var addCandidate = (ck, m) => {
       if (ck) existingContent.set(ck, [...(existingContent.get(ck) || []), m]);
@@ -9394,9 +9472,33 @@ function MemoriesScreen({
     var allNights = Object.keys(window.FESTIVAL_CONFIG?.dayDates || {}).map(Number).sort((a, b) => a - b);
     var fallbackNight = window.NOW?.day && allNights.includes(window.NOW.day) ? window.NOW.day : allNights[allNights.length - 1] || 1;
     var skippedDupes = 0;
-    var _loop5 = async function (i) {
+    var _loop6 = async function (i) {
       var f = files[i];
+      var reading = false;
       try {
+        if (nativePicker) {
+          reading = true;
+          var item = f;
+          var src = item.path ? window.Capacitor?.convertFileSrc?.(item.path) || item.path : null;
+          if (!src) throw new Error("No readable file path");
+          var isVideo = /^video\//.test(item.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(item.name || "");
+          if (isVideo && item.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          var response = await fetch(src);
+          if (!response.ok) throw new Error(`Media read failed (${response.status})`);
+          var blob = await response.blob();
+          if (!blob.size) throw new Error("Empty or unavailable iCloud media");
+          if (isVideo && blob.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          var type = item.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
+          if (!/^(image|video)\//.test(type)) throw new Error("Unsupported media type");
+          f = new File([blob], item.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`, {
+            type,
+            lastModified: item.modifiedAt || Date.now()
+          });
+          if (isVideo && item.path) Object.defineProperty(f, "nativePath", {
+            value: item.path
+          });
+          reading = false;
+        }
         var fp = await _fileFingerprint(f);
         var ck = _fingerprintContentKey(fp);
         var fileSha = /^image\//.test(f.type || "") ? await _blobSha256Hex(f).catch(() => null) : null;
@@ -9414,6 +9516,10 @@ function MemoriesScreen({
             night: null,
             artistId: null,
             skipped: "duplicate"
+          });
+          _importLog("file_duplicate", {
+            i,
+            name: f.name
           });
           setBatch({
             total: files.length,
@@ -9475,6 +9581,7 @@ function MemoriesScreen({
           matchReason: matched.reason || null,
           matchEvidence: matched.evidence || null,
           tagSuggested: !!(matched.artistId && matched.suggested),
+          tagAlternatives: Array.isArray(matched.alternatives) && matched.alternatives.length ? matched.alternatives.slice(0, 12) : null,
           anchorSource: matched.anchorSource || null,
           gpsAccM: meta?.acc != null ? Math.round(meta.acc) : null,
           gpsRejected: !!matched.gpsRejected,
@@ -9508,20 +9615,56 @@ function MemoriesScreen({
           tagSource,
           festivalId: moment.festivalId
         });
+        _importLog("file", {
+          i,
+          name: f.name,
+          type: f.type || null,
+          kind: out.kind,
+          takenAtSource: meta?.takenAtSource || "none",
+          exifDate: hadExifDate,
+          dateUnverified: !!meta?.dateUnverified,
+          gps: moment.hasGps,
+          gpsAccM: moment.gpsAccM,
+          gpsRejected: moment.gpsRejected,
+          festivalId: moment.festivalId,
+          resolvedBy: matched.resolvedBy || null,
+          stamp: moment.festivalStampSource,
+          night,
+          nightFromCapture: !!matched.night,
+          artistId: moment.artistId || null,
+          reason: matched.reason || null,
+          tagSource,
+          ambiguous: moment.tagAmbiguous,
+          anchorSource: moment.anchorSource,
+          recovered: !!recovered
+        });
         _writeMoments(current);
         setAll({
           ...current
         });
       } catch (err) {
         if (!results.some(r => r.fileIndex === i && r.momentId)) {
+          var name = f?.name || `item ${i + 1}`;
+          var unreadable = reading && !(err?.message || "").includes("200 MB");
           results.push({
-            name: f.name,
+            name,
             fileIndex: i,
             night: null,
             artistId: null,
-            err: err?.message || "failed"
+            err: err?.message || "failed",
+            ...(unreadable ? {
+              unreadable: true
+            } : {})
           });
         }
+        _importLog("file_failed", {
+          i,
+          name: f?.name ?? null,
+          type: f?.type || f?.mimeType || null,
+          size: f?.size ?? null,
+          error: String(err?.message || err),
+          stack: String(err?.stack || "").split("\n").slice(0, 3).join(" | ")
+        });
       }
       setBatch({
         total: files.length,
@@ -9530,7 +9673,7 @@ function MemoriesScreen({
       });
     };
     for (var i = 0; i < files.length; i++) {
-      if (await _loop5(i)) continue;
+      if (await _loop6(i)) continue;
     }
     _writeMoments(current);
     setAll({
@@ -9542,6 +9685,15 @@ function MemoriesScreen({
     var landed = settledResults.filter(r => r.momentId);
     var failedResults = settledResults.filter(r => r.err);
     var duplicateResults = settledResults.filter(r => r.skipped === "duplicate");
+    _importLog("batch_end", {
+      files: files.length,
+      landed: landed.length,
+      failed: failedResults.length,
+      duplicates: duplicateResults.length,
+      tagged: landed.filter(r => r.artistId).length,
+      fallbackNight: landed.filter(r => r.fallback).length,
+      byFestival: landed.reduce((m, r) => (m[r.festivalId || "none"] = (m[r.festivalId || "none"] || 0) + 1, m), {})
+    });
     var activeFid = window.FESTIVAL_CONFIG?.id || null;
     var elsewhere = landed.filter(r => r.festivalId && r.festivalId !== activeFid);
     if (elsewhere.length && !opts.ds?.config?.historical) {
@@ -9651,68 +9803,9 @@ function MemoriesScreen({
       if (files.length === 0) return {
         status: "cancelled"
       };
-      var out = [];
-      var unreadable = [];
-      for (var i = 0; i < files.length; i++) {
-        var f = files[i];
-        var src = f.path ? cap.convertFileSrc ? cap.convertFileSrc(f.path) : f.path : null;
-        if (!src) {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "nofile"
-          });
-          continue;
-        }
-        var blob = null;
-        try {
-          blob = await fetch(src).then(r => r.blob());
-        } catch {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "unreadable"
-          });
-          continue;
-        }
-        if (!blob || !blob.size) {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "unreadable"
-          });
-          continue;
-        }
-        var isVideo = /^video\//.test(f.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(f.name || "");
-        var type = f.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
-        if (!/^(image|video)\//.test(type)) {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "unsupported"
-          });
-          continue;
-        }
-        var name = f.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`;
-        var pickedFile = new File([blob], name, {
-          type,
-          lastModified: f.modifiedAt || Date.now()
-        });
-        if (isVideo && f.path) {
-          try {
-            Object.defineProperty(pickedFile, "nativePath", {
-              value: f.path
-            });
-          } catch {
-            pickedFile.nativePath = f.path;
-          }
-        }
-        out.push(pickedFile);
-      }
-      if (out.length === 0) return {
-        status: unreadable.length ? "nofile" : "cancelled",
-        unreadable
-      };
       return {
         status: "picked",
-        files: out,
-        unreadable
+        files
       };
     } catch (err) {
       if (_pickerErrorIsCancel(err)) return {
@@ -9729,11 +9822,19 @@ function MemoriesScreen({
     setPickerState(null);
     var res = await pickViaNative();
     if (res.status === "picked") {
-      if (res.unreadable && res.unreadable.length) setPickerState({
-        status: "unreadable",
-        detail: res.unreadable
-      });
-      await processImportedFiles(res.files);
+      var settled = (await processImportedFiles(res.files, {
+        nativePicker: true
+      })) || [];
+      var unreadable = settled.filter(r => r.unreadable).map(r => ({
+        name: r.name,
+        why: "unreadable"
+      }));
+      if (unreadable.length) {
+        setPickerState({
+          status: settled.some(r => r.momentId) ? "unreadable" : "nofile",
+          detail: unreadable
+        });
+      }
       return;
     }
     if (res.status === "unsupported") {
@@ -9843,7 +9944,7 @@ function MemoriesScreen({
       var imported = 0,
         unreadable = 0,
         done = 0;
-      var _loop6 = async function () {
+      var _loop7 = async function () {
         setScan({
           phase: "importing",
           done,
@@ -9872,7 +9973,7 @@ function MemoriesScreen({
         })?.catch?.(() => {});
       };
       for (var chunk of chunks) {
-        if (await _loop6()) continue;
+        if (await _loop7()) continue;
       }
       setScan({
         phase: "done",
@@ -9918,7 +10019,7 @@ function MemoriesScreen({
       var seen = _scanSeenRead();
       var found = [];
       var already = 0;
-      var _loop7 = async function (t) {
+      var _loop8 = async function (t) {
         var assets = [];
         for (var r of _scanQueryRanges(t.cfg)) {
           var res = await PS.scan({
@@ -9939,7 +10040,7 @@ function MemoriesScreen({
         });
       };
       for (var t of targets) {
-        if (await _loop7(t)) continue;
+        if (await _loop8(t)) continue;
       }
       var total = found.reduce((n, f) => n + f.keep.length, 0);
       if (!total) {
@@ -9957,7 +10058,7 @@ function MemoriesScreen({
       var byEdition = [];
       for (var f of found) {
         var got = 0;
-        var _loop8 = async function () {
+        var _loop9 = async function () {
           setPastScan({
             phase: "importing",
             done,
@@ -9988,7 +10089,7 @@ function MemoriesScreen({
           })?.catch?.(() => {});
         };
         for (var chunk of _scanChunks(f.keep)) {
-          if (await _loop8()) continue;
+          if (await _loop9()) continue;
         }
         if (got) byEdition.push({
           id: f.t.entry.id,
@@ -10328,7 +10429,7 @@ function MemoriesScreen({
     return backupStat.total > here ? " · ALL FESTIVALS" : "";
   }, [allMoments, backupStat.total]);
   var _afterBackup = res => {
-    if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");else if (res?.error) window.plurskyToast?.("Backup unavailable right now");else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
+    if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");else if (res?.error) window.plurskyToast?.("Backup unavailable right now");else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}${res.gpsHeld ? ` · ${res.gpsHeld} ${res.gpsHeld === 1 ? "video stays" : "videos stay"} on this phone (location could not be removed)` : ""}`);
   };
   var handleBackup = async () => {
     if (!_isPlusSub()) {
@@ -12829,15 +12930,18 @@ function AppleMusicPlaylistButton({
       });
       setResult(r);
       setStatus(r.ok ? "done" : "err");
-      if (!r.ok && r.reason !== "not_connected") setTimeout(() => setStatus("idle"), 4500);
     } catch (e) {
-      setResult({
+      var _r2 = {
         ok: false,
         reason: "create_fail",
         message: String(e?.message || e)
-      });
+      };
+      _r2.userMessage = appleMusicFailureMessage(_r2);
+      try {
+        console.warn("[plursky:applemusic] threw", _r2.message);
+      } catch {}
+      setResult(_r2);
       setStatus("err");
-      setTimeout(() => setStatus("idle"), 4500);
     }
   };
   var onClick = () => {
@@ -12858,12 +12962,13 @@ function AppleMusicPlaylistButton({
   } else if (status === "done") {
     var sm = result?.songsMatched || 0;
     var open = result?.url ? " — open ↗" : "";
-    label = soundtrack && sm > 0 ? `✓ ${sm} of your songs + ${result?.added - sm} more${open}` : `✓ ${result?.added} tracks in Apple Music${open}`;
+    var miss = result?.missed ? ` · ${result.missed} act${result.missed === 1 ? "" : "s"} not on Apple Music` : "";
+    label = soundtrack && sm > 0 ? `✓ ${sm} of your songs + ${result?.added - sm} more${miss}${open}` : `✓ ${result?.added} tracks in Apple Music${miss}${open}`;
     bg = "var(--apple-music)";
     color = "var(--on-apple-music)";
     border = "none";
   } else if (status === "err") {
-    if (result?.reason === "not_connected") label = "Tap to connect Apple Music";else if (result?.reason === "empty") label = "Save sets first";else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";else label = `Try again${result?.status ? ` · ${result.status}` : ""}`;
+    label = result?.userMessage || appleMusicFailureMessage(result) || "Apple Music playlist failed";
     bg = "rgba(var(--alert-rgb),0.16)";
     color = "var(--ink)";
     border = "1px solid var(--alert)";
@@ -12877,8 +12982,11 @@ function AppleMusicPlaylistButton({
       background: bg,
       color,
       border,
-      borderRadius: 999,
+      borderRadius: status === "err" ? 14 : 999,
       padding: "10px 16px",
+      maxWidth: "100%",
+      textAlign: "left",
+      overflowWrap: "anywhere",
       cursor: status === "working" ? "wait" : "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
@@ -12900,7 +13008,7 @@ function archiveFestival(festivalId, festivalName, festivalConfig) {
   if (!festivalId) return false;
   try {
     var archive = _readArchive();
-    var attended = JSON.parse(localStorage.getItem("plursky_attended_v1") || "{}");
+    var attended = getAllAttended(festivalId);
     var moments = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
     var saved = JSON.parse(localStorage.getItem("edc_saved") || "[]");
     var totalAttended = Object.values(attended).reduce((s, a) => s + (Array.isArray(a) ? a.length : 0), 0);
@@ -12986,12 +13094,12 @@ function _recoverCurrentVideoMomentsFromArchive() {
         changed = true;
       }
     }
-    var _loop9 = function (move) {
+    var _loop0 = function (move) {
       all[move.from] = (all[move.from] || []).filter(m => m !== move.moment);
       all[move.to] = [...(all[move.to] || []), move.moment];
     };
     for (var move of moves) {
-      _loop9(move);
+      _loop0(move);
     }
     if (changed) _writeMoments(all);
   } catch {}
@@ -13069,13 +13177,13 @@ function _reconcileFestivalStamps(moments) {
       }
     }
   }
-  var _loop0 = function (move) {
+  var _loop1 = function (move) {
     moments[move.from] = moments[move.from].filter(x => x !== move.moment);
     if (!moments[move.from].length) delete moments[move.from];
     moments[move.to] = [...(moments[move.to] || []), move.moment];
   };
   for (var move of moves) {
-    _loop0(move);
+    _loop1(move);
   }
   return changed;
 }
@@ -13388,7 +13496,7 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var _loop1 = function (m) {
+  var _loop10 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var {
         fid,
@@ -13411,7 +13519,7 @@ function _aggregateSoundtrack(moments) {
     },
     _ret3;
   for (var m of Object.values(moments)) {
-    _ret3 = _loop1(m);
+    _ret3 = _loop10(m);
     if (_ret3 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
@@ -13789,6 +13897,50 @@ function _iapDevHost() {
 }
 function _iapAvailable() {
   return !!window.Capacitor?.isNativePlatform?.() || _iapDevHost();
+}
+var PROMO_CODE_REDEEM_ON = false;
+function _codeRedeemAvailable() {
+  return PROMO_CODE_REDEEM_ON && _iapAvailable();
+}
+async function _redeemOfferCode() {
+  if (!PROMO_CODE_REDEEM_ON) return {
+    success: false,
+    unsupported: true
+  };
+  if (!window.Capacitor?.isNativePlatform?.()) {
+    if (!_iapDevHost()) return {
+      success: false,
+      unsupported: true,
+      error: "Codes can only be redeemed in the iOS app."
+    };
+    console.log("[plursky-iap] local dev host: would open Apple's offer-code sheet");
+    return {
+      success: false,
+      web: true
+    };
+  }
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return {
+    success: false,
+    error: "RevenueCat not configured"
+  };
+  try {
+    var Purchases = _rcPlugin();
+    await _withTimeout(Purchases.presentCodeRedemptionSheet(), 300000, "Offer code sheet");
+    var {
+      customerInfo
+    } = await _withTimeout(Purchases.getCustomerInfo(), 15000, "Entitlement check");
+    _syncEntitlements(customerInfo);
+    return {
+      success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT]
+    };
+  } catch (e) {
+    console.error("[plursky-iap] offer code error:", _iapMsg(e));
+    return {
+      success: false,
+      error: _iapMsg(e)
+    };
+  }
 }
 async function _purchasePlus(productId, {
   offeringId
@@ -14533,6 +14685,22 @@ function PlusGate({
       setPending(null);
     }
   };
+  var handleRedeem = async () => {
+    setBusy(true);
+    setBuyError(null);
+    try {
+      var result = await _redeemOfferCode();
+      if (result.success) {
+        window.location.reload();
+        return;
+      }
+      if (result.error) setBuyError(result.error);
+    } catch (e) {
+      setBuyError(e?.message || "The code could not be redeemed.");
+    } finally {
+      setBusy(false);
+    }
+  };
   var handleRestore = async () => {
     setBusy(true);
     setBuyError(null);
@@ -14822,7 +14990,19 @@ function PlusGate({
     onClick: handleRestore,
     disabled: busy,
     style: quiet
-  }, "Restore purchases"), React.createElement("a", {
+  }, "Restore purchases"), _codeRedeemAvailable() && React.createElement("button", {
+    onClick: handleRedeem,
+    disabled: busy,
+    style: quiet,
+    "data-redeem-code": ""
+  }, "Redeem code"), _codeRedeemAvailable() && React.createElement("span", {
+    "aria-hidden": "true",
+    "data-redeem-break": "",
+    style: {
+      flexBasis: "100%",
+      height: 0
+    }
+  }), React.createElement("a", {
     href: "./terms.html",
     target: "_blank",
     rel: "noopener",
@@ -15412,7 +15592,7 @@ function HeroCards({
     var live = true;
     var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
     (async () => {
-      var _loop10 = async function (a) {
+      var _loop11 = async function (a) {
           var canvas = await _renderHeroCard(a).catch(() => null);
           if (!live || !canvas) return 0;
           var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -15429,7 +15609,7 @@ function HeroCards({
         },
         _ret4;
       for (var a of want) {
-        _ret4 = await _loop10(a);
+        _ret4 = await _loop11(a);
         if (_ret4 === 0) continue;
       }
     })();
@@ -16625,8 +16805,8 @@ function RecapScreen({
         }
         if (!audioUrl && recap.topByPop?.name) {
           try {
-            var _r2 = await fetchPreviewUrl(recap.topByPop.name);
-            audioUrl = _r2?.url;
+            var _r3 = await fetchPreviewUrl(recap.topByPop.name);
+            audioUrl = _r3?.url;
           } catch {}
         }
         await window._shareRecapVideo?.({
@@ -17417,7 +17597,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop11 = function (rows) {
+  var _loop12 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -17431,7 +17611,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop11(rows);
+    _loop12(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }

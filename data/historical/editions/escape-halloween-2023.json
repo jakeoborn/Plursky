@@ -1,0 +1,1314 @@
+{
+ "id": "escape-halloween-2023",
+ "festivalId": "escape-halloween",
+ "name": "Escape Halloween 2023",
+ "year": 2023,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-10-27",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2023-10-28",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "escape-halloween-2023:the-grimm",
+   "name": "The Grimm"
+  },
+  {
+   "id": "escape-halloween-2023:feeding-grounds",
+   "name": "Feeding Grounds"
+  },
+  {
+   "id": "escape-halloween-2023:sanitarium",
+   "name": "Sanitarium"
+  },
+  {
+   "id": "escape-halloween-2023:sewer-district",
+   "name": "Sewer District"
+  },
+  {
+   "id": "escape-halloween-2023:wicked-woods",
+   "name": "Wicked Woods"
+  }
+ ],
+ "artists": [
+  {
+   "id": "escape-halloween-2023:above-and-beyond",
+   "name": "Above & Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:alwz-snny",
+   "name": "ALWZ SNNY",
+   "key": "alwz-snny",
+   "performers": [
+    "alwz-snny"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:armnhmr-house-set",
+   "name": "ARMNHMR (House Set)",
+   "key": "armnhmr-house-set",
+   "performers": [
+    "armnhmr-house-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:atliens",
+   "name": "ATLiens",
+   "key": "atliens",
+   "performers": [
+    "atliens"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:ben-nicky-presents-xtreme",
+   "name": "Ben Nicky presents Xtreme",
+   "key": "ben-nicky-presents-xtreme",
+   "performers": [
+    "ben-nicky-presents-xtreme"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:black-sun-empire-b2b-the-upbeats-20-years-of-black-out",
+   "name": "Black Sun Empire B2B The Upbeats (20 Years of Black Out)",
+   "key": "black-sun-empire-b2b-the-upbeats-20-years-of-black-out",
+   "performers": [
+    "black-sun-empire",
+    "the-upbeats-20-years-of-black-out"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:buns",
+   "name": "Buns",
+   "key": "buns",
+   "performers": [
+    "buns"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:calyx",
+   "name": "Calyx",
+   "key": "calyx",
+   "performers": [
+    "calyx"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:canabliss",
+   "name": "Canabliss",
+   "key": "canabliss",
+   "performers": [
+    "canabliss"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:charles-d",
+   "name": "Charles D",
+   "key": "charles-d",
+   "performers": [
+    "charles-d"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:chelina-manuhutu",
+   "name": "Chelina Manuhutu",
+   "key": "chelina-manuhutu",
+   "performers": [
+    "chelina-manuhutu"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:cid-b2b-hugel-b2b-westend",
+   "name": "CID B2B Hugel B2B Westend",
+   "key": "cid-b2b-hugel-b2b-westend",
+   "performers": [
+    "cid",
+    "hugel",
+    "westend"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:code-black",
+   "name": "Code Black",
+   "key": "code-black",
+   "performers": [
+    "code-black"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:code-black-blackout",
+   "name": "Code Black: Blackout",
+   "key": "code-black-blackout",
+   "performers": [
+    "code-black-blackout"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:codeko",
+   "name": "Codeko",
+   "key": "codeko",
+   "performers": [
+    "codeko"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:crystal-skies",
+   "name": "Crystal Skies",
+   "key": "crystal-skies",
+   "performers": [
+    "crystal-skies"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:culture-shock",
+   "name": "Culture Shock",
+   "key": "culture-shock",
+   "performers": [
+    "culture-shock"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:danny-olson",
+   "name": "Danny Olson",
+   "key": "danny-olson",
+   "performers": [
+    "danny-olson"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:darren-styles",
+   "name": "Darren Styles",
+   "key": "darren-styles",
+   "performers": [
+    "darren-styles"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:deathpact",
+   "name": "Deathpact",
+   "key": "deathpact",
+   "performers": [
+    "deathpact"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:dj-isaac-b2b-saymyname-hardstyle",
+   "name": "DJ Isaac B2B SAYMYNAME (Hardstyle)",
+   "key": "dj-isaac-b2b-saymyname-hardstyle",
+   "performers": [
+    "dj-isaac",
+    "saymyname-hardstyle"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:dj-topgun",
+   "name": "DJ Topgun",
+   "key": "dj-topgun",
+   "performers": [
+    "dj-topgun"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:ed-rush-and-optical-virus-25th-anniversary-set",
+   "name": "Ed Rush & Optical (Virus 25th Anniversary Set)",
+   "key": "ed-rush-and-optical-virus-25th-anniversary-set",
+   "performers": [
+    "ed-rush-and-optical-virus-25th-anniversary-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:emo-nite",
+   "name": "Emo Nite",
+   "key": "emo-nite",
+   "performers": [
+    "emo-nite"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:gravedgr-b2b-geo",
+   "name": "GRAVEDGR B2B GEO",
+   "key": "gravedgr-b2b-geo",
+   "performers": [
+    "gravedgr",
+    "geo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:green-velvet",
+   "name": "Green Velvet",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:he-h",
+   "name": "HE$H",
+   "key": "he-h",
+   "performers": [
+    "he-h"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:hekler",
+   "name": "Hekler",
+   "key": "hekler",
+   "performers": [
+    "hekler"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:hoang-b2b-mvse",
+   "name": "Hoang B2B MVSE",
+   "key": "hoang-b2b-mvse",
+   "performers": [
+    "hoang",
+    "mvse"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:hot-since-82",
+   "name": "Hot Since 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:ian-asher",
+   "name": "Ian Asher",
+   "key": "ian-asher",
+   "performers": [
+    "ian-asher"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:jamie-jones-b2b-loco-dice",
+   "name": "Jamie Jones B2B Loco Dice",
+   "key": "jamie-jones-b2b-loco-dice",
+   "performers": [
+    "jamie-jones",
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:jvna",
+   "name": "JVNA",
+   "key": "jvna",
+   "performers": [
+    "jvna"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:jvna-aura-city-set",
+   "name": "JVNA (Aura City Set)",
+   "key": "jvna-aura-city-set",
+   "performers": [
+    "jvna-aura-city-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:k-d-b2b-1788-l",
+   "name": "k?d B2B 1788-L",
+   "key": "k-d-b2b-1788-l",
+   "performers": [
+    "k-d",
+    "1788-l"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:k-d-throwback-set",
+   "name": "k?d (Throwback Set)",
+   "key": "k-d-throwback-set",
+   "performers": [
+    "k-d-throwback-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:kaivon",
+   "name": "Kaivon",
+   "key": "kaivon",
+   "performers": [
+    "kaivon"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:kaivon-2010-s-throwback-set",
+   "name": "Kaivon (2010's Throwback Set)",
+   "key": "kaivon-2010-s-throwback-set",
+   "performers": [
+    "kaivon-2010-s-throwback-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:kas-st",
+   "name": "KAS:ST",
+   "key": "kas-st",
+   "performers": [
+    "kas-st"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:keltek",
+   "name": "Keltek",
+   "key": "keltek",
+   "performers": [
+    "keltek"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:lady-faith",
+   "name": "Lady Faith",
+   "key": "lady-faith",
+   "performers": [
+    "lady-faith"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:lauren-lane",
+   "name": "Lauren Lane",
+   "key": "lauren-lane",
+   "performers": [
+    "lauren-lane"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:lilly-palmer",
+   "name": "Lilly Palmer",
+   "key": "lilly-palmer",
+   "performers": [
+    "lilly-palmer"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:llllnnnn-b2b-water-spirit",
+   "name": "LLLLNNNN B2B Water Spirit",
+   "key": "llllnnnn-b2b-water-spirit",
+   "performers": [
+    "llllnnnn",
+    "water-spirit"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:lny-tnz",
+   "name": "LNY TNZ",
+   "key": "lny-tnz",
+   "performers": [
+    "lny-tnz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:macky-gee",
+   "name": "Macky Gee",
+   "key": "macky-gee",
+   "performers": [
+    "macky-gee"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:malaa",
+   "name": "Malaa",
+   "key": "malaa",
+   "performers": [
+    "malaa"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:mariana-bo",
+   "name": "Mariana BO",
+   "key": "mariana-bo",
+   "performers": [
+    "mariana-bo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:matroda-b2b-san-pacho",
+   "name": "Matroda B2B San Pacho",
+   "key": "matroda-b2b-san-pacho",
+   "performers": [
+    "matroda",
+    "san-pacho"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:matroda",
+   "name": "Matroda",
+   "key": "matroda",
+   "performers": [
+    "matroda"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:max-styler",
+   "name": "Max Styler",
+   "key": "max-styler",
+   "performers": [
+    "max-styler"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:mk",
+   "name": "MK",
+   "key": "mk",
+   "performers": [
+    "mk"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:muerte",
+   "name": "Muerte",
+   "key": "muerte",
+   "performers": [
+    "muerte"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:musubi",
+   "name": "Musubi",
+   "key": "musubi",
+   "performers": [
+    "musubi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:nia-archives",
+   "name": "Nia Archives",
+   "key": "nia-archives",
+   "performers": [
+    "nia-archives"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:nitepunk-dnb-set",
+   "name": "Nitepunk (DNB Set)",
+   "key": "nitepunk-dnb-set",
+   "performers": [
+    "nitepunk-dnb-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:patrick-topping",
+   "name": "Patrick Topping",
+   "key": "patrick-topping",
+   "performers": [
+    "patrick-topping"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:reinier-zonneveld-live",
+   "name": "Reinier Zonneveld (Live)",
+   "key": "reinier-zonneveld-live",
+   "performers": [
+    "reinier-zonneveld-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:rezz",
+   "name": "Rezz",
+   "key": "rezz",
+   "performers": [
+    "rezz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:robyn-balliet",
+   "name": "Robyn Balliet",
+   "key": "robyn-balliet",
+   "performers": [
+    "robyn-balliet"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:rohaan",
+   "name": "Rohaan",
+   "key": "rohaan",
+   "performers": [
+    "rohaan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:rossy",
+   "name": "Rossy",
+   "key": "rossy",
+   "performers": [
+    "rossy"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:rossy-s-room",
+   "name": "Rossy's Room",
+   "key": "rossy-s-room",
+   "performers": [
+    "rossy-s-room"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:senza",
+   "name": "SENZA",
+   "key": "senza",
+   "performers": [
+    "senza"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:ship-wrek",
+   "name": "Ship Wrek",
+   "key": "ship-wrek",
+   "performers": [
+    "ship-wrek"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:siren",
+   "name": "Siren",
+   "key": "siren",
+   "performers": [
+    "siren"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:skellytn",
+   "name": "Skellytn",
+   "key": "skellytn",
+   "performers": [
+    "skellytn"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:slander",
+   "name": "SLANDER",
+   "key": "slander",
+   "performers": [
+    "slander"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:smoakland-presents-liquid-smoak",
+   "name": "Smoakland presents Liquid Smoak",
+   "key": "smoakland-presents-liquid-smoak",
+   "performers": [
+    "smoakland-presents-liquid-smoak"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:space-92-x-popof-present-turbulences",
+   "name": "Space 92 x Popof present: Turbulences",
+   "key": "space-92-x-popof-present-turbulences",
+   "performers": [
+    "space-92-x-popof-present-turbulences"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:suahn",
+   "name": "Suahn",
+   "key": "suahn",
+   "performers": [
+    "suahn"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:svdden-death",
+   "name": "Svdden Death",
+   "key": "svdden-death",
+   "performers": [
+    "svdden-death"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:taylor-kade",
+   "name": "Taylor Kade",
+   "key": "taylor-kade",
+   "performers": [
+    "taylor-kade"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:wicked-woods"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:tchami",
+   "name": "Tchami",
+   "key": "tchami",
+   "performers": [
+    "tchami"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:three-6-mafia",
+   "name": "Three 6 Mafia",
+   "key": "three-6-mafia",
+   "performers": [
+    "three-6-mafia"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:tobehonest",
+   "name": "TOBEHONEST",
+   "key": "tobehonest",
+   "performers": [
+    "tobehonest"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:wade",
+   "name": "Wade",
+   "key": "wade",
+   "performers": [
+    "wade"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:sanitarium"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:wilkinson",
+   "name": "Wilkinson",
+   "key": "wilkinson",
+   "performers": [
+    "wilkinson"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:william-black",
+   "name": "William Black",
+   "key": "william-black",
+   "performers": [
+    "william-black"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:yetep",
+   "name": "yetep",
+   "key": "yetep",
+   "performers": [
+    "yetep"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2023:the-grimm"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2023:zomboy",
+   "name": "Zomboy",
+   "key": "zomboy",
+   "performers": [
+    "zomboy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2023:feeding-grounds"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://escapehalloween.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20231128130635/https://escapehalloween.com/lineup/",
+    "captureTimestamp": "20231128130635",
+    "sha256": "d5389ef1fa224a8caefbb8dd48cb74ef7cf34863008a02fae0d731b54497598d"
+   }
+  ]
+ }
+}

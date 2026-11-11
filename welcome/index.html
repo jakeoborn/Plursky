@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- GENERATED from scripts/templates/welcome.html by scripts/gen-welcome-page.mjs. Edit the template, then regenerate. -->
+<title>Plursky · Plan it. Live it. Keep it.</title>
+<meta name="description" content="The festival companion for before, during and after: build your lineup, follow your night with your crew, and keep every set you saw.">
+<link rel="canonical" href="https://plursky.com/welcome/">
+<meta property="og:title" content="Plursky · Plan it. Live it. Keep it.">
+<meta property="og:description" content="Lineup builder, live now and next, crew meetups, and a gallery sorted by the set you shot it at.">
+<meta property="og:image" content="https://plursky.com/og-card.png">
+<meta property="og:url" content="https://plursky.com/welcome/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Plursky">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="apple-itunes-app" content="app-id=6768888507">
+<meta name="theme-color" content="#151C1D">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* One look, the app's own: the Today print. Sora throughout (600 display and
+   names, 500 labels and times, 400 body), charcoal paper, cream bands, spaced
+   labels, numbered rows. Tokens are the app's dark values (index.html
+   :root[data-mode="dark"] .np). Self-hosted fonts only; no third-party requests. */
+@font-face{font-family:Sora;font-style:normal;font-weight:400 600;font-display:swap;src:url(/fonts/sora-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Sora;font-style:normal;font-weight:400 600;font-display:swap;src:url(/fonts/sora-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+:root {
+  color-scheme: dark;
+  --paper: #151C1D;
+  --paper-2: #1E2829;
+  --paper-3: #273334;
+  --ink: #F2F3EB;
+  --text-2: #B9C4BE;
+  --text-3: #A6B4AF;
+  --line: rgba(242, 243, 235, .15);
+  --line-2: rgba(242, 243, 235, .25);
+  --cream: #F2F3EB;
+  --on-cream: #151C1D;
+  --on-cream-2: #4A5452;
+  --cream-line: rgba(21, 28, 29, .18);
+  --signal: #88D7C8;
+  --on-signal: #152624;
+  --flare: #FFC545;
+  --alert: #FF7896;
+  --live: #3DF5A0;
+  --fest: #F4511E;
+  --phase: var(--signal);
+  --f-ui: Sora, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { background: var(--paper); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.55 var(--f-ui); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+[hidden] { display: none !important; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.num { font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.lbl { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+.kick { display: inline-block; font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--flare); padding-bottom: 6px; border-bottom: 2px solid var(--flare); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ── web header ── */
+.top { position: sticky; top: 0; z-index: 20; background: var(--paper); padding-top: env(safe-area-inset-top, 0px); }
+.top .wrap { display: flex; align-items: center; gap: 20px; min-height: 64px; }
+.wordmark { font-weight: 600; font-size: 14px; letter-spacing: .14em; text-decoration: none; }
+.wordmark sup { font-size: 8px; letter-spacing: 0; margin-left: 2px; }
+.top nav { margin-left: auto; display: flex; gap: 26px; }
+.top nav a { text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-2); }
+.top nav a:hover { color: var(--ink); }
+.rule { height: 3px; background: var(--phase); transition: background .6s; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 4px; border: 1px solid var(--line-2); background: transparent; cursor: pointer; font-weight: 600; font-size: 15px; letter-spacing: .01em; text-decoration: none; transition: background .2s, border-color .2s, transform .12s; }
+.btn:hover { border-color: var(--ink); }
+.btn:active { transform: scale(.98); }
+.btn.primary { background: var(--signal); border-color: var(--signal); color: var(--on-signal); }
+.btn.primary:hover { background: #A3E2D6; border-color: #A3E2D6; }
+.btn.small { min-height: 40px; padding: 0 16px; font-size: 13px; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; transform: none; }
+.arrow { width: 22px; height: 22px; flex: none; }
+@media (max-width: 760px) { .top nav { display: none; } .top .btn { margin-left: auto; } }
+@media (max-width: 520px) { .hero .cta-row .btn { flex: 1 1 100%; } .final .cta-row .btn { flex: 1 1 100%; } }
+
+/* ── hero ── */
+.meta { display: flex; justify-content: space-between; gap: 16px; color: var(--text-2); padding-top: 28px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; grid-template-areas: "head phone" "rows phone"; column-gap: 64px; align-items: start; }
+.hero-head { grid-area: head; min-width: 0; }
+.hero-rows { grid-area: rows; min-width: 0; }
+.hero-phone { grid-area: phone; position: sticky; top: 90px; padding-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+h1 { margin: 18px 0 0; font-weight: 600; text-transform: uppercase; font-size: clamp(56px, 10vw, 136px); line-height: .94; letter-spacing: -.065em; }
+h1 span { display: block; transition: color .5s, opacity .5s; }
+h1 span.dim { color: var(--text-3); opacity: .3; }
+.lede { font-size: 19px; color: var(--text-2); max-width: 34ch; margin: 26px 0; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.band { background: var(--cream); color: var(--on-cream); }
+.band-in { display: flex; justify-content: space-between; align-items: center; gap: 8px 16px; flex-wrap: wrap; padding-block: 18px; }
+.hero .band { margin: 36px calc(-1 * max(16px, env(safe-area-inset-left, 0px))) 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 1000px) { .hero .band { margin-right: 0; } }
+.band .live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #006644; margin-right: 8px; vertical-align: 1px; animation: blink 1.4s infinite; }
+
+.steps { margin-top: 28px; }
+.step { display: grid; grid-template-columns: 52px minmax(0, 1fr) 28px; gap: 0 14px; align-items: start; width: 100%; text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line-2); padding: 30px 18px 30px 0; cursor: pointer; color: var(--ink); transition: background .35s, color .35s, padding .35s; }
+.step .n { font-size: 18px; font-weight: 500; padding-top: 10px; font-variant-numeric: tabular-nums; }
+.step h2 { margin: 0; font-weight: 600; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.02; letter-spacing: -.055em; text-wrap: balance; }
+.step p { margin: 14px 0 0; font-size: 17px; }
+.step .ph { display: block; margin-bottom: 8px; font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); }
+.step svg { margin-top: 10px; }
+.step[aria-selected="true"] { background: var(--cream); color: var(--on-cream); padding-left: 18px; border-bottom-color: transparent; }
+.step[aria-selected="true"] .ph { color: var(--on-cream-2); }
+.step .bar { grid-column: 1 / -1; height: 2px; margin-top: 22px; background: var(--cream-line); overflow: hidden; display: none; }
+.step[aria-selected="true"] .bar { display: block; }
+.step .bar i { display: block; height: 100%; width: 0; background: var(--on-cream); }
+.step[aria-selected="true"] .bar i { animation: fill 6.5s linear forwards; }
+.steps.paused .step .bar { display: none; }
+@keyframes fill { to { width: 100%; } }
+@keyframes blink { 50% { opacity: .25; } }
+.phone-note { font-size: 11px; letter-spacing: .04em; color: var(--text-3); text-align: center; max-width: 320px; }
+@media (max-width: 999px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "phone" "rows"; }
+  .hero-phone { position: static; padding-top: 32px; }
+  .step { padding-right: 4px; }
+  .step[aria-selected="true"] { padding-left: 14px; padding-right: 14px; }
+}
+
+/* ── phone + app screens ── */
+.phone { width: min(100%, 360px); height: 740px; border-radius: 52px; padding: 11px; background: #0B0F10; box-shadow: 0 0 0 1.5px #3A4446, 0 50px 90px -30px #000; flex: none; }
+.scr { position: relative; height: 100%; border-radius: 42px; background: var(--paper); overflow: hidden; display: flex; flex-direction: column; font-size: 13px; }
+.island { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 96px; height: 28px; border-radius: 20px; background: #000; z-index: 3; }
+.sb { height: 46px; flex: none; display: flex; justify-content: space-between; align-items: center; padding: 6px 28px 0; font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; }
+.app { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+.ah { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px 12px; flex: none; }
+.ah .wm { font-weight: 600; font-size: 11px; letter-spacing: .14em; }
+.ah .ic { display: flex; gap: 16px; }
+.ah svg { width: 18px; height: 18px; }
+.arule { height: 3px; background: var(--fest); flex: none; }
+.am { display: flex; justify-content: space-between; padding: 14px 18px 0; font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text-2); }
+.am .live { color: var(--live); display: inline-flex; align-items: center; gap: 6px; }
+.am .live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--live); animation: blink 1.4s infinite; }
+.at { padding: 6px 18px 14px; font-weight: 600; font-size: 38px; line-height: 1; letter-spacing: -.065em; text-transform: uppercase; }
+.ab { background: var(--cream); color: var(--on-cream); display: flex; justify-content: space-between; align-items: center; padding: 11px 18px; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; flex: none; font-variant-numeric: tabular-nums; }
+.ab .tabs { display: flex; gap: 14px; }
+.ab .tabs span { opacity: .45; }
+.ab .tabs span.on { opacity: 1; border-bottom: 2px solid var(--on-cream); padding-bottom: 2px; }
+.abody { flex: 1; min-height: 0; overflow: hidden; padding: 14px 18px 10px; display: flex; flex-direction: column; gap: 12px; }
+.box { border: 1px solid var(--line-2); border-radius: 4px; padding: 12px 14px; }
+.box .k { font-size: 9.5px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-2); }
+.box p { margin: 6px 0 0; font-size: 13px; line-height: 1.4; }
+.box.warn { border-color: rgba(255, 197, 69, .6); }
+.box.warn .k { color: var(--flare); }
+.lr { display: grid; grid-template-columns: 58px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.lr .tm { font-size: 10.5px; font-weight: 500; color: var(--text-2); font-variant-numeric: tabular-nums; }
+.lr b { display: block; font-weight: 600; font-size: 14px; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lr small { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--text-2); white-space: nowrap; overflow: hidden; }
+.dot { width: 7px; height: 7px; border-radius: 2px; flex: none; display: inline-block; }
+.sv { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line-2); display: grid; place-items: center; }
+.sv.on { background: var(--signal); border-color: var(--signal); }
+.sv.on::after { content: ""; width: 8px; height: 4px; border-left: 2px solid var(--on-signal); border-bottom: 2px solid var(--on-signal); transform: rotate(-45deg) translate(1px, -1px); }
+.sv.clash { border-color: var(--flare); }
+.sv.clash::after { content: "!"; color: var(--flare); font-weight: 600; font-size: 11px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { font-size: 11px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--text-2); }
+.chip.on { background: var(--cream); color: var(--on-cream); border-color: var(--cream); }
+.chip.live::before { content: "● "; color: var(--live); }
+.st { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.st .sn { display: flex; align-items: center; gap: 6px; font-size: 9.5px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text-2); }
+.st .lf { font-size: 10px; font-weight: 500; color: var(--text-2); text-align: right; font-variant-numeric: tabular-nums; }
+.st b { font-weight: 600; font-size: 16px; letter-spacing: -.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.st .nx { font-size: 10px; color: var(--text-3); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 130px; }
+.st .pg { grid-column: 1 / -1; height: 2px; background: var(--line); margin-top: 6px; }
+.st .pg i { display: block; height: 100%; background: var(--live); transition: width .6s linear; }
+.big { display: flex; align-items: baseline; gap: 10px; }
+.big b { font-weight: 600; font-size: 48px; letter-spacing: -.06em; line-height: 1; font-variant-numeric: tabular-nums; }
+.big span { font-size: 11px; color: var(--text-2); line-height: 1.3; }
+.cta-band { display: flex; justify-content: space-between; align-items: center; gap: 10px; border-radius: 4px; background: var(--paper-2); padding: 12px 14px; }
+.cta-band b { display: block; font-size: 14px; font-weight: 600; }
+.cta-band small { display: block; font-size: 11px; color: var(--text-2); }
+.cta-band .go { color: var(--signal); font-weight: 600; font-size: 12px; letter-spacing: .06em; }
+.albums { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.album { aspect-ratio: 1 / 1.05; border-radius: 4px; padding: 9px; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; }
+.album::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.65)); }
+.album > * { position: relative; z-index: 1; }
+.album b { font-size: 13px; font-weight: 600; color: #fff; }
+.album small { font-size: 9.5px; color: #E6E9E4; letter-spacing: .06em; text-transform: uppercase; }
+.album .cnt { position: absolute; top: 8px; right: 8px; z-index: 1; font-size: 10px; font-weight: 500; color: #fff; background: rgba(0,0,0,.4); padding: 2px 6px; border-radius: 3px; }
+.links div { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--line-2); font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.links div span:last-child { font-size: 10px; font-weight: 500; letter-spacing: .06em; color: var(--text-2); }
+.stats3 { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); }
+.stats3 div { padding: 12px 0 10px; }
+.stats3 div + div { border-left: 1px solid var(--line); padding-left: 12px; }
+.stats3 b { display: block; font-weight: 600; font-size: 32px; letter-spacing: -.06em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats3 small { font-size: 9.5px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text-2); }
+.fr { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.fr .n { font-size: 10.5px; font-weight: 500; color: var(--text-2); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.fr b { display: block; font-size: 15px; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+.fr small { display: block; font-size: 10.5px; color: var(--text-2); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pill { font-size: 9.5px; font-weight: 500; padding: 4px 8px; border-radius: 999px; border: 1.5px solid var(--signal); color: var(--signal); white-space: nowrap; margin-top: 1px; }
+.pill.off { border-color: var(--line-2); color: var(--text-2); }
+.pill.live { border-color: var(--live); color: var(--live); }
+.fr.dim b { color: var(--text-2); }
+.samp { font-size: 8.5px; font-weight: 500; color: var(--text-3); text-align: center; letter-spacing: .08em; margin-top: auto; padding-bottom: 4px; }
+.tb { flex: none; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); padding: 6px 6px 22px; }
+.tb button { background: none; border: 0; padding: 6px 0 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text-2); font-size: 10px; position: relative; }
+.tb svg { width: 20px; height: 20px; }
+.tb button.on { color: var(--ink); }
+.tb button.on::before { content: ""; position: absolute; top: -7px; left: 28%; right: 28%; height: 2px; border-radius: 2px; background: var(--signal); }
+.tb.static button { cursor: default; }
+
+/* ── features (cream block) ── */
+.cream-sec { background: var(--cream); color: var(--on-cream); }
+.cream-sec .wrap { padding-block: 84px; }
+.sec-meta { display: flex; justify-content: space-between; gap: 16px; }
+.h2x { margin: 14px 0 0; font-weight: 600; text-transform: uppercase; font-size: clamp(40px, 6.6vw, 88px); line-height: .98; letter-spacing: -.065em; text-wrap: balance; }
+.cols3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 56px; }
+.col h3 { margin: 0 0 6px; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+.col h3::before { content: ""; width: 10px; height: 10px; border-radius: 2px; background: var(--c); }
+.col .when { font-size: 12px; color: var(--on-cream-2); margin: 0 0 14px; }
+.feat { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 16px 0; border-top: 1px solid var(--cream-line); }
+.feat b { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
+.feat p { grid-column: 1; margin: 0; font-size: 14px; color: var(--on-cream-2); }
+.tag { grid-row: 1 / span 2; grid-column: 2; align-self: start; font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; border: 1.5px solid; white-space: nowrap; }
+.tag.live { border-color: #14685F; color: #14685F; }
+.tag.new { border-color: #B0123F; color: #B0123F; }
+.tag.plus { background: var(--on-cream); border-color: var(--on-cream); color: var(--cream); }
+.tag.soon { border-color: rgba(21, 28, 29, .35); color: var(--on-cream-2); border-style: dashed; }
+@media (max-width: 900px) { .cols3 { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
+
+/* ── sections ── */
+.sec { padding-block: 84px; border-bottom: 1px solid var(--line); }
+.sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px 48px; align-items: end; }
+.sec-head p { margin: 0; color: var(--text-2); font-size: 17px; max-width: 46ch; }
+@media (max-width: 760px) { .sec-head { grid-template-columns: minmax(0, 1fr); } .sec, .cream-sec .wrap { padding-block: 60px; } }
+.gallery { margin-top: 44px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px; scrollbar-color: var(--line-2) transparent; }
+.gallery-in { display: flex; gap: 22px; width: max-content; }
+.g-item { scroll-snap-align: start; display: flex; flex-direction: column; gap: 14px; }
+.g-item .phone { width: 320px; height: 680px; border-radius: 48px; }
+.g-item .scr { border-radius: 38px; }
+.g-cap { display: flex; gap: 12px; align-items: baseline; }
+.g-cap .num { color: var(--text-3); font-size: 12px; }
+.g-cap b { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.g-cap small { display: block; color: var(--text-2); font-size: 13px; max-width: 30ch; }
+
+.fest-list { margin-top: 28px; border-top: 1px solid var(--line-2); }
+.fest-row { display: grid; grid-template-columns: 48px 72px minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line-2); color: var(--ink); }
+.fest-row > .num { font-size: 15px; color: var(--text-2); }
+.art { width: 72px; height: 72px; border-radius: 4px; display: grid; place-items: center; font-weight: 600; font-size: 20px; letter-spacing: -.04em; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
+.fest-row h3 { margin: 0; font-size: clamp(22px, 2.6vw, 32px); font-weight: 600; letter-spacing: -.045em; line-height: 1.08; }
+.fest-row h3 a { color: inherit; text-decoration: none; transition: color .2s; }
+.fest-row h3 a:hover { color: var(--signal); }
+.fest-row.off h3 { color: var(--text-2); }
+.fest-row p { margin: 4px 0 0; color: var(--text-2); font-size: 14.5px; }
+.fest-act { display: flex; align-items: center; gap: 12px; }
+.fest-act .pill { font-size: 12px; padding: 7px 14px; }
+.years { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 12px; }
+.years .lbl { font-size: 10.5px; color: var(--text-3); margin-right: 4px; }
+.years a { font-size: 12.5px; font-weight: 500; padding: 4px 9px; border: 1px solid var(--line-2); border-radius: 4px; color: var(--text-2); text-decoration: none; }
+.years a:hover { border-color: var(--signal); color: var(--signal); }
+.seg { display: inline-flex; margin-top: 32px; border: 1px solid var(--line-2); border-radius: 4px; padding: 3px; gap: 3px; }
+.seg button { font: inherit; font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: 9px 14px; border: 0; border-radius: 2px; background: none; color: var(--text-2); cursor: pointer; }
+.seg button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+.seg button span { opacity: .6; margin-left: 4px; }
+.mob-pill { display: none; }
+@media (max-width: 700px) {
+  .fest-row { grid-template-columns: 56px minmax(0, 1fr); gap: 14px; align-items: start; }
+  .fest-row > .num, .fest-act > .pill { display: none; }
+  .fest-row .art { width: 56px; height: 56px; font-size: 16px; }
+  .fest-row .mob-pill { display: inline-block; margin-top: 8px; }
+  .fest-act { grid-column: 2; }
+  .seg { display: flex; }
+  .seg button { flex: 1; padding: 9px 8px; }
+}
+.ob-group { margin: 22px 0 4px; color: var(--text-3); }
+.ob-group:first-child { margin-top: 0; }
+.relive-nights { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; margin: 4px 0 18px; }
+.relive-nights div { border: 1px solid var(--line-2); border-radius: 4px; padding: 12px; }
+.relive-nights b { display: block; font-size: 22px; font-weight: 600; letter-spacing: -.04em; }
+.relive-nights small { color: var(--text-2); font-size: 12px; }
+
+.plus-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 40px; }
+.tier { border: 1px solid var(--line-2); border-radius: 4px; padding: 28px; min-width: 0; }
+.tier.p { background: var(--cream); color: var(--on-cream); border-color: var(--cream); }
+.tier .k { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-2); }
+.tier.p .k { color: var(--on-cream-2); }
+.tier h3 { margin: 8px 0 20px; font-weight: 600; font-size: 44px; letter-spacing: -.06em; line-height: 1; text-transform: uppercase; }
+.tier ul { list-style: none; margin: 0; padding: 0; }
+.tier li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 13px 0; border-top: 1px solid var(--line); font-size: 15.5px; }
+.tier.p li { border-top-color: var(--cream-line); }
+.tier li .tag { grid-row: auto; }
+.tier .foot { margin-top: 18px; font-size: 13.5px; color: var(--text-2); }
+.tier.p .foot { color: var(--on-cream-2); }
+@media (max-width: 760px) { .plus-grid { grid-template-columns: minmax(0, 1fr); } .tier h3 { font-size: 36px; } .tier { padding: 22px; } }
+
+.final { padding-block: 96px 72px; }
+.final .h2x { font-size: clamp(48px, 10vw, 140px); }
+.final .cta-row { margin-top: 32px; }
+footer { border-top: 1px solid var(--line); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 24px; padding-bottom: max(40px, env(safe-area-inset-bottom, 0px)); font-size: 12.5px; color: var(--text-3); }
+footer nav { display: flex; gap: 18px; }
+footer .wrap.guides { display: block; padding-top: 28px; padding-bottom: 4px; }
+footer .guides .lbl { color: var(--text-2); }
+footer .guides ul { list-style: none; margin: 14px 0 0; padding: 0; columns: 4 150px; column-gap: 24px; }
+footer .guides li { break-inside: avoid; padding: 4px 0; font-size: 13.5px; }
+footer .guides a { color: var(--text-2); text-decoration: none; }
+footer .guides a:hover { color: var(--ink); text-decoration: underline; }
+
+/* ── onboarding ── */
+.ob { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; background: rgba(0,0,0,.7); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.sheet { width: min(100%, 440px); height: min(100%, 880px); background: var(--paper); border: 1px solid var(--line-2); border-radius: 28px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 40px 120px -20px #000; animation: rise .35s ease; }
+@keyframes rise { from { transform: translateY(24px); opacity: 0; } }
+@media (max-width: 520px) { .sheet { width: 100%; height: 100%; border-radius: 0; border: 0; padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px); } }
+.ob-head { display: flex; align-items: center; gap: 12px; padding: 12px 20px 10px; }
+.ob-head .wm { font-weight: 600; font-size: 12px; letter-spacing: .14em; }
+.ob-head .count { font-size: 12px; font-weight: 500; color: var(--text-2); margin-left: auto; font-variant-numeric: tabular-nums; }
+.ob-head button { background: none; border: 0; cursor: pointer; color: var(--text-2); font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; min-height: 44px; padding: 0 2px 0 10px; }
+.ob-head button:hover { color: var(--ink); }
+.ob-rule { height: 3px; background: var(--line); flex: none; }
+.ob-rule i { display: block; height: 100%; background: var(--signal); transition: width .4s; }
+.ob-body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+.ob-meta { display: flex; justify-content: space-between; gap: 12px; padding: 18px 20px 0; color: var(--text-2); }
+.ob h3 { margin: 8px 0 0; padding: 0 20px; font-weight: 600; text-transform: uppercase; font-size: 44px; line-height: 1; letter-spacing: -.065em; text-wrap: balance; }
+.ob .band { margin-top: 20px; }
+.ob .band-in { padding: 13px 20px; }
+.ob-pad { padding: 18px 20px 24px; }
+.hint { color: var(--text-2); font-size: 14.5px; margin: 0 0 16px; }
+.ob-fest { display: grid; grid-template-columns: 26px 52px minmax(0, 1fr) 24px; gap: 12px; align-items: center; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--line-2); padding: 14px 0; cursor: pointer; color: var(--ink); }
+.ob-fest > .num { font-size: 12px; color: var(--text-2); }
+.ob-fest .art { width: 52px; height: 52px; font-size: 15px; }
+.ob-fest b { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.03em; line-height: 1.15; }
+.ob-fest small { display: block; font-size: 12px; color: var(--text-2); margin-top: 2px; }
+.ob-fest .pill { display: inline-block; margin-top: 7px; }
+.ob-fest[disabled] { cursor: not-allowed; }
+.ob-fest[disabled] b { color: var(--text-2); }
+.radio { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line-2); display: grid; place-items: center; }
+[aria-pressed="true"] > .radio { background: var(--signal); border-color: var(--signal); }
+[aria-pressed="true"] > .radio::after { content: ""; width: 8px; height: 4px; border-left: 2px solid var(--on-signal); border-bottom: 2px solid var(--on-signal); transform: rotate(-45deg) translate(1px, -1px); }
+.search { width: 100%; min-height: 48px; border-radius: 4px; border: 1px solid var(--line-2); background: transparent; color: var(--ink); padding: 0 14px; font: inherit; font-size: 16px; margin-bottom: 14px; }
+.search::placeholder { color: var(--text-3); }
+.search:focus { border-color: var(--signal); outline: none; }
+.note { font-size: 13px; color: var(--text-2); border: 1px dashed var(--line-2); border-radius: 4px; padding: 12px 14px; margin-bottom: 14px; }
+.stagelist { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-bottom: 16px; font-size: 11px; color: var(--text-2); }
+.stagelist span { display: inline-flex; align-items: center; gap: 6px; }
+.achips { display: flex; flex-wrap: wrap; gap: 8px; }
+.achip { min-height: 40px; padding: 0 15px; border-radius: 999px; border: 1px solid var(--line-2); background: transparent; cursor: pointer; font-size: 14px; color: var(--text-2); }
+.achip:hover { border-color: var(--ink); color: var(--ink); }
+.achip[aria-pressed="true"] { background: var(--cream); border-color: var(--cream); color: var(--on-cream); font-weight: 600; }
+.skel { height: 40px; border-radius: 999px; background: var(--paper-2); animation: blink 1.2s infinite; }
+.nrow { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 16px 0; border-bottom: 1px solid var(--line-2); }
+.nrow > .num { font-size: 12px; color: var(--text-2); padding-top: 4px; }
+.nrow b { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.02em; }
+.nrow small { display: block; color: var(--text-2); font-size: 13px; margin-top: 2px; }
+.nrow .tag { grid-row: auto; grid-column: 3; border-color: var(--line-2); color: var(--text-2); margin-top: 3px; }
+.nrow .tag.live { border-color: var(--signal); color: var(--signal); }
+.nrow .tag.soon { border-style: dashed; }
+.summary { border: 1px solid var(--line-2); border-radius: 4px; }
+.summary div { display: flex; justify-content: space-between; gap: 12px; padding: 13px 16px; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.summary div:last-child { border-bottom: 0; }
+.summary span:first-child { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-2); padding-top: 3px; flex: none; }
+.summary span:last-child { font-weight: 600; text-align: right; }
+.cd { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line-2); border-radius: 4px; margin-top: 12px; }
+.cd div { padding: 12px 0; text-align: center; }
+.cd div + div { border-left: 1px solid var(--line); }
+.cd b { display: block; font-weight: 600; font-size: 30px; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.cd small { font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--text-2); }
+.fine { font-size: 12.5px; color: var(--text-3); margin: 12px 0 0; }
+.ob-foot { padding: 14px 20px 20px; border-top: 1px solid var(--line); display: flex; gap: 10px; align-items: center; }
+.ob-foot .btn { flex: 1; }
+.ob-foot .meta2 { font-size: 12px; font-weight: 500; color: var(--text-2); font-variant-numeric: tabular-nums; }
+.ob-foot .alt { flex: none; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-today" viewBox="0 0 24 24"><path d="M12 20V9M12 20 6 7M12 20l6-13M12 20 3 12M12 20l9-8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-lineup" viewBox="0 0 24 24"><path d="M4 6h16M4 12h13M4 18h16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-mem" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m5 17 5-5 4 4 2-2 3 3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="15.5" cy="9" r="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-me" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 20.5c1.2-4 4-5.8 7.5-5.8s6.3 1.8 7.5 5.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="wordmark" href="/welcome/">PLURSKY<sup>®</sup></a>
+    <nav aria-label="Sections"><a href="#how">How it works</a><a href="#screens">Screens</a><a href="#festivals">Festivals</a><a href="#plus">Plursky+</a></nav>
+    <button class="btn primary small" type="button" data-open-ob>Get started</button>
+  </div>
+  <div class="rule" aria-hidden="true"></div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-head">
+          <div class="meta"><span class="lbl">Festival companion</span><span class="lbl">iPhone · Web</span></div>
+          <h1 id="heroTitle"><span data-ph="before">Plan it.</span><span data-ph="during" class="dim">Live it.</span><span data-ph="after" class="dim">Keep it.</span></h1>
+          <p class="lede">Pick a festival to plan it, live it, and keep it. One app from the lineup drop to the last photo.</p>
+          <div class="cta-row">
+            <button class="btn primary" type="button" data-open-ob>Pick your festival</button>
+            <a class="btn" href="https://apps.apple.com/us/app/plursky-live/id6768888507" rel="noopener">Get the iPhone app</a>
+          </div>
+          <div class="band" id="heroBand" hidden>
+            <div class="band-in"><span class="lbl" id="heroNext"></span><span class="lbl" id="heroWhen"></span></div>
+          </div>
+        </div>
+
+        <div class="hero-phone">
+          <div class="phone"><div class="scr" id="heroScr"></div></div>
+          <div class="phone-note">Sample screens with real Escape Halloween 2026 set times</div>
+        </div>
+
+        <div class="hero-rows" id="how">
+          <div class="steps" role="tablist" aria-label="How Plursky works" id="steps">
+            <button class="step" role="tab" data-screen="home" data-ph="before" aria-selected="true"><span class="n">01</span><span><span class="ph">Before · weeks out</span><h2>Pick your festival.</h2><p>Official lineup, stages and map, in one place.</p></span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg><span class="bar"><i></i></span></button>
+            <button class="step" role="tab" data-screen="lineup" data-ph="before" aria-selected="false"><span class="n">02</span><span><span class="ph">Before · days out</span><h2>Pick your people.</h2><p>The artists you came for, with clashes flagged.</p></span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg><span class="bar"><i></i></span></button>
+            <button class="step" role="tab" data-screen="today" data-ph="during" aria-selected="false"><span class="n">03</span><span><span class="ph">During · on site</span><h2>Follow your night.</h2><p>What's on now, what's next, where your crew is.</p></span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg><span class="bar"><i></i></span></button>
+            <button class="step" role="tab" data-screen="memories" data-ph="after" aria-selected="false"><span class="n">04</span><span><span class="ph">After · the morning after</span><h2>Create your gallery.</h2><p>Every photo and clip, sorted by the set you shot it at.</p></span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg><span class="bar"><i></i></span></button>
+            <button class="step" role="tab" data-screen="me" data-ph="after" aria-selected="false"><span class="n">05</span><span><span class="ph">After · all year</span><h2>Keep your year.</h2><p>Playlists, badges and every set you saw.</p></span><svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg><span class="bar"><i></i></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cream-sec" style="margin-top:84px">
+    <div class="wrap">
+      <div class="sec-meta"><span class="lbl">Everything, one weekend</span><span class="lbl">Live · New · Plursky+ · Soon</span></div>
+      <h2 class="h2x">Before the gates.<br>During the night.<br>After the night.</h2>
+      <div class="cols3">
+        <div class="col" style="--c:#14685F">
+          <h3>Before the gates</h3><p class="when">Lineup drop to gates open</p>
+          <div class="feat"><b>Lineup builder</b><span class="tag live">Live</span><p>Save sets from the official lineup, by day and stage.</p></div>
+          <div class="feat"><b>Clash finder</b><span class="tag live">Live</span><p>See which saved sets overlap, and by how many minutes.</p></div>
+          <div class="feat"><b>Crew</b><span class="tag live">Live</span><p>See each other's picks and message in one place.</p></div>
+          <div class="feat"><b>Saved-sets playlist</b><span class="tag live">Live</span><p>An Apple Music playlist from the artists you saved.</p></div>
+          <div class="feat"><b>Calendar, weather, amenities</b><span class="tag live">Live</span><p>Your plan in your calendar, plus the forecast, water and lockers.</p></div>
+          <div class="feat"><b>Set-time change alerts</b><span class="tag soon">Soon</span><p>A heads-up when a set you saved moves.</p></div>
+        </div>
+        <div class="col" style="--c:#9A3D00">
+          <h3>During the night</h3><p class="when">Gates to the last set</p>
+          <div class="feat"><b>Now and next</b><span class="tag live">Live</span><p>Every stage at a glance, with time left on each set.</p></div>
+          <div class="feat"><b>Live map, walking times</b><span class="tag live">Live</span><p>Stages, water, medical and charging, with a walk time to each.</p></div>
+          <div class="feat"><b>Crew meetups</b><span class="tag live">Live</span><p>Drop a rally point and everyone knows where to go.</p></div>
+          <div class="feat"><b>Set reminders</b><span class="tag live">Live</span><p>A nudge 15 minutes before every set you saved.</p></div>
+          <div class="feat"><b>Song ID and live setlists</b><span class="tag live">Live</span><p>Catch the track and keep it with the set you heard it in.</p></div>
+          <div class="feat"><b>Offline mode</b><span class="tag live">Live</span><p>Schedule and map keep working with no signal.</p></div>
+          <div class="feat"><b>Next set on your lock screen</b><span class="tag soon">Soon</span><p>See what's next without unlocking.</p></div>
+        </div>
+        <div class="col" style="--c:#B0123F">
+          <h3>After the night</h3><p class="when">Last set to next year</p>
+          <div class="feat"><b>Scan my weekend</b><span class="tag new">New</span><p>One tap finds every photo and video from festival nights.</p></div>
+          <div class="feat"><b>Photo and video tagging</b><span class="tag live">Live</span><p>Each shot lands on the set you were at, by time and place.</p></div>
+          <div class="feat"><b>Recap video</b><span class="tag live">Live</span><p>A story-sized recap with the songs you caught.</p></div>
+          <div class="feat"><b>Sets I saw playlist</b><span class="tag live">Live</span><p>An Apple Music playlist of the artists you actually saw.</p></div>
+          <div class="feat"><b>Festival year and DNA</b><span class="tag plus">Plursky+</span><p>Your year in festivals, badges and what your taste says.</p></div>
+          <div class="feat"><b>As-played playlist</b><span class="tag soon">Soon</span><p>Built from the real setlists of the sets you saw.</p></div>
+          <div class="feat"><b>Crew album per set</b><span class="tag soon">Soon</span><p>Everyone's clips from the same set, in one album.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="screens">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="kick">Every screen</span><h2 class="h2x">One design, five tabs.</h2></div>
+        <p>Home, Today, Lineup, Memories and Me, in one language: a big headline, a cream band for what matters now, and numbered rows.</p>
+      </div>
+      <div class="gallery" tabindex="0" role="region" aria-label="App screens, scroll sideways">
+        <div class="gallery-in" id="gallery"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="festivals">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="kick">Every festival</span><h2 class="h2x">Every festival, every year.</h2></div>
+        <p>Plan the ones coming up and relive the ones you went to. Every festival has its own page, with each earlier year Plursky holds.</p>
+      </div>
+      <div class="seg" role="tablist" aria-label="Festivals">
+        <button type="button" role="tab" id="segUp" aria-selected="true" aria-controls="festList">Coming up<span id="segUpN"></span></button>
+        <button type="button" role="tab" id="segPast" aria-selected="false" aria-controls="festList">Earlier this year<span id="segPastN"></span></button>
+      </div>
+      <div class="fest-list" id="festList" role="tabpanel"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="plus">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="kick">Plursky+</span><h2 class="h2x">Free to plan. Plus to keep it.</h2></div>
+        <p>Everything you need on the day is free. Plursky+ is for the weekend in full quality, backed up and broken down.</p>
+      </div>
+      <div class="plus-grid">
+        <div class="tier">
+          <div class="k">Free · every festival</div>
+          <h3>Plursky</h3>
+          <ul>
+            <li>Lineup builder, clashes and reminders</li>
+            <li>Live map, walking times and offline</li>
+            <li>Crew, meetups and messages</li>
+            <li>Photo tagging and Scan my weekend</li>
+            <li>Saved-sets and Sets I saw playlists</li>
+            <li>Recap video, with a watermark</li>
+          </ul>
+        </div>
+        <div class="tier p">
+          <div class="k">Season Pass or Monthly</div>
+          <h3>Plursky+</h3>
+          <ul>
+            <li>Recap video in 1080p, no watermark</li>
+            <li>Cloud backup of your recaps</li>
+            <li>Every recap card and hidden gem</li>
+            <li>Festival DNA and your festival year</li>
+            <li>As-played playlists <span class="tag soon">Soon</span></li>
+            <li>Crew album for every set <span class="tag soon">Soon</span></li>
+          </ul>
+          <div class="foot">Prices show in the app at checkout.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <span class="kick">Takes a minute</span>
+      <h2 class="h2x">See you at the gates.</h2>
+      <div class="cta-row">
+        <button class="btn primary" type="button" data-open-ob>Pick your festival</button>
+        <a class="btn" href="/">Open the web app</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap guides"><span class="lbl">Festival guides</span><ul><li><a href="/f/arc-2026/">ARC Music Festival 2026</a></li><li><a href="/f/acl-2026/">Austin City Limits 2026</a></li><li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a></li><li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a></li><li><a href="/f/coachella-2027/">Coachella 2027</a></li><li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a></li><li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a></li><li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a></li><li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a></li><li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a></li><li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a></li><li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a></li><li><a href="/f/electric-forest-2027/">Electric Forest 2027</a></li><li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a></li><li><a href="/f/governors-ball-2026/">Governors Ball 2026</a></li><li><a href="/f/hard-summer-2026/">HARD Summer 2026</a></li><li><a href="/f/iii-points-2026/">III Points 2026</a></li><li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a></li><li><a href="/f/lost-lands-2026/">Lost Lands 2026</a></li><li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a></li><li><a href="/f/outside-lands-2026/">Outside Lands 2026</a></li><li><a href="/f/portola-2026/">Portola 2026</a></li><li><a href="/f/summerfest-2026/">Summerfest 2026</a></li><li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a></li><li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a></li></ul></div><div class="wrap"><span>PLURSKY® · Festival companion. Sample screens use real Escape Halloween 2026 set times; the counts on them are examples.</span><nav><a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a></nav></div></footer>
+
+<div class="ob" id="ob" hidden role="dialog" aria-modal="true" aria-labelledby="obTitle">
+  <div class="sheet">
+    <div class="ob-head">
+      <span class="wm">PLURSKY®</span>
+      <span class="count" id="obCount">1 / 4</span>
+      <button type="button" id="obBack">Back</button>
+      <button type="button" id="obClose">Close</button>
+    </div>
+    <div class="ob-rule"><i id="obRule"></i></div>
+    <div class="ob-body" id="obBody"></div>
+    <div class="ob-foot" id="obFoot"><span class="meta2" id="obMeta"></span><button class="btn primary" type="button" id="obNext">Continue</button></div>
+  </div>
+</div>
+
+<script>
+// Festival data, generated from FESTIVALS_REGISTRY (data.jsx + data/festivals/*.js).
+// Dates only; "upcoming" is decided here at view time, so the file never goes stale by itself.
+window.WELCOME_DATA = {"festivals":[{"id":"edc-lv-2026","name":"EDC Las Vegas 2026","short":"EDC LV 2026","location":"Las Vegas Motor Speedway · Nevada","dates":"May 15–17, 2026","datesShort":"May 15–17","start":"2026-05-15","end":"2026-05-17","startMs":1778889600000,"accent":"#e85d2e","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/edc-lv-2026/","past":[{"id":"edc-las-vegas-2025","name":"EDC Las Vegas 2025","year":2025,"first":"2025-05-16","last":"2025-05-18","lineupOnly":false},{"id":"edc-las-vegas-2024","name":"EDC Las Vegas 2024","year":2024,"first":"2024-05-17","last":"2024-05-19","lineupOnly":false},{"id":"edc-las-vegas-2023","name":"EDC Las Vegas 2023","year":2023,"first":"2023-05-19","last":"2023-05-21","lineupOnly":true},{"id":"edc-las-vegas-2022","name":"EDC Las Vegas 2022","year":2022,"first":"2022-05-20","last":"2022-05-22","lineupOnly":false},{"id":"edc-las-vegas-2021","name":"EDC Las Vegas 2021","year":2021,"first":"2021-10-22","last":"2021-10-24","lineupOnly":true},{"id":"edc-las-vegas-2019","name":"EDC Las Vegas 2019","year":2019,"first":"2019-05-17","last":"2019-05-19","lineupOnly":true}],"stages":[{"name":"Kinetic Field","color":"#e85d2e"},{"name":"Quantum Valley","color":"#38bdf8"},{"name":"Bionic Jungle","color":"#14b8a6"},{"name":"Stereo Bloom","color":"#22c55e"},{"name":"Cosmic Meadow","color":"#fbbf24"},{"name":"Neon Garden","color":"#ec4899"},{"name":"Wasteland","color":"#f97316"},{"name":"Basspod","color":"#2563eb"},{"name":"Circuit Grounds","color":"#1e40af"}]},{"id":"electric-forest-2027","name":"Electric Forest 2027","short":"Forest 2027","location":"Double JJ Ranch · Rothbury, MI","dates":"Dates TBA","datesShort":"Dates TBA","start":null,"end":null,"startMs":null,"accent":"#34d399","available":false,"scheduleTBA":false,"hasSchedule":false,"page":"/f/electric-forest-2027/","past":[],"stages":[]},{"id":"lost-lands-2026","name":"Lost Lands 2026","short":"Lost Lands","location":"Legend Valley · Thornville, OH","dates":"Sep 18–20, 2026","datesShort":"Sep 18–20","start":"2026-09-18","end":"2026-09-20","startMs":1789574400000,"accent":"#84cc16","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/lost-lands-2026/","past":[],"stages":[{"name":"Prehistoric Paradox","color":"#f97316"},{"name":"Wompy Woods","color":"#84cc16"},{"name":"The Crater","color":"#a855f7"},{"name":"Subsidia Stage","color":"#22d3ee"},{"name":"Forest Stage","color":"#34d399"},{"name":"Raptor Alley","color":"#ef4444"},{"name":"The Grove","color":"#eab308"}]},{"id":"edc-orlando-2026","name":"EDC Orlando 2026","short":"EDC Orlando","location":"Tinker Field · Orlando","dates":"Nov 6–8, 2026","datesShort":"Nov 6–8","start":"2026-11-06","end":"2026-11-08","startMs":1793998800000,"accent":"#22c55e","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/edc-orlando-2026/","past":[{"id":"edc-orlando-2025","name":"EDC Orlando 2025","year":2025,"first":"2025-11-07","last":"2025-11-09","lineupOnly":false},{"id":"edc-orlando-2024","name":"EDC Orlando 2024","year":2024,"first":"2024-11-08","last":"2024-11-10","lineupOnly":false},{"id":"edc-orlando-2023","name":"EDC Orlando 2023","year":2023,"first":"2023-11-10","last":"2023-11-12","lineupOnly":false},{"id":"edc-orlando-2022","name":"EDC Orlando 2022","year":2022,"first":"2022-11-11","last":"2022-11-13","lineupOnly":false},{"id":"edc-orlando-2021","name":"EDC Orlando 2021","year":2021,"first":"2021-11-12","last":"2021-11-14","lineupOnly":false},{"id":"edc-orlando-2019","name":"EDC Orlando 2019","year":2019,"first":"2019-11-08","last":"2019-11-10","lineupOnly":false},{"id":"edc-orlando-2018","name":"EDC Orlando 2018","year":2018,"first":"2018-11-09","last":"2018-11-10","lineupOnly":true},{"id":"edc-orlando-2017","name":"EDC Orlando 2017","year":2017,"first":"2017-11-10","last":"2017-11-11","lineupOnly":false}],"stages":[{"name":"kineticFIELD","color":"#f97316"},{"name":"circuitGROUNDS","color":"#38bdf8"},{"name":"neonGARDEN","color":"#a855f7"},{"name":"stereoBLOOM","color":"#f43f5e"},{"name":"CASA BACARDÍ","color":"#22c55e"}]},{"id":"tomorrowland-2027","name":"Tomorrowland 2027","short":"Tomorrowland","location":"De Schorre · Boom, Belgium","dates":"Dates TBA","datesShort":"Dates TBA","start":null,"end":null,"startMs":null,"accent":"#fbbf24","available":false,"scheduleTBA":false,"hasSchedule":false,"page":"/f/tomorrowland-2027/","past":[],"stages":[]},{"id":"acl-2026","name":"Austin City Limits 2026","short":"ACL 2026","location":"Zilker Park · Austin, TX","dates":"Oct 2–4 & 9–11, 2026","datesShort":"Oct 2–11","start":"2026-10-02","end":"2026-10-11","startMs":1790960400000,"accent":"#e85d2e","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/acl-2026/","past":[{"id":"acl-2025","name":"Austin City Limits 2025","year":2025,"first":"2025-10-03","last":"2025-10-12","lineupOnly":false},{"id":"acl-2024","name":"Austin City Limits 2024","year":2024,"first":"2024-10-04","last":"2024-10-13","lineupOnly":false},{"id":"acl-2023","name":"Austin City Limits 2023","year":2023,"first":"2023-10-06","last":"2023-10-15","lineupOnly":false},{"id":"acl-2022","name":"Austin City Limits 2022","year":2022,"first":"2022-10-07","last":"2022-10-16","lineupOnly":false},{"id":"acl-2021","name":"Austin City Limits 2021","year":2021,"first":"2021-10-01","last":"2021-10-10","lineupOnly":false},{"id":"acl-2019","name":"Austin City Limits 2019","year":2019,"first":"2019-10-04","last":"2019-10-13","lineupOnly":false},{"id":"acl-2018","name":"Austin City Limits 2018","year":2018,"first":"2018-10-05","last":"2018-10-14","lineupOnly":false},{"id":"acl-2017","name":"Austin City Limits 2017","year":2017,"first":"2017-10-06","last":"2017-10-15","lineupOnly":false},{"id":"acl-2016","name":"Austin City Limits 2016","year":2016,"first":"2016-09-30","last":"2016-10-09","lineupOnly":false},{"id":"acl-2015","name":"Austin City Limits 2015","year":2015,"first":"2015-10-02","last":"2015-10-11","lineupOnly":false},{"id":"acl-2014","name":"Austin City Limits 2014","year":2014,"first":"2014-10-03","last":"2014-10-12","lineupOnly":false},{"id":"acl-2013","name":"Austin City Limits 2013","year":2013,"first":"2013-10-04","last":"2013-10-12","lineupOnly":false}],"stages":[{"name":"American Express","color":"#ec4899"},{"name":"Snapchat Stage","color":"#facc15"},{"name":"Tito's Stage","color":"#f97316"},{"name":"Miller Lite Stage","color":"#38bdf8"},{"name":"T-Mobile Stage","color":"#a855f7"},{"name":"BMI Stage","color":"#fbbf24"},{"name":"BEATBOX","color":"#1e40af"}]},{"id":"coachella-2027","name":"Coachella 2027","short":"Coachella","location":"Empire Polo Club · Indio, CA","dates":"Apr 9–18, 2027","datesShort":"Apr 9–18","start":"2027-04-09","end":"2027-04-18","startMs":null,"accent":"#ec4899","available":false,"scheduleTBA":false,"hasSchedule":false,"page":"/f/coachella-2027/","past":[],"stages":[]},{"id":"edc-mexico-2027","name":"EDC Mexico 2027","short":"EDC Mexico","location":"Autódromo Hermanos Rodríguez · Mexico City, Mexico","dates":"Feb 19–21, 2027","datesShort":"Feb 19–21","start":"2027-02-19","end":"2027-02-21","startMs":null,"accent":"#f43f5e","available":false,"scheduleTBA":false,"hasSchedule":false,"page":"/f/edc-mexico-2027/","past":[{"id":"edc-mexico-2020","name":"EDC Mexico 2020","year":2020,"first":"2020-02-28","last":"2020-03-01","lineupOnly":true}],"stages":[]},{"id":"beyond-wonderland-socal-2027","name":"Beyond Wonderland SoCal 2027","short":"Beyond SoCal","location":"NOS Events Center · San Bernardino, CA","dates":"Mar 26–27, 2027","datesShort":"Mar 26–27","start":"2027-03-26","end":"2027-03-27","startMs":null,"accent":"#c084fc","available":false,"scheduleTBA":false,"hasSchedule":false,"page":"/f/beyond-wonderland-socal-2027/","past":[{"id":"beyond-wonderland-socal-2026","name":"Beyond Wonderland SoCal 2026","year":2026,"first":"2026-03-27","last":"2026-03-28","lineupOnly":false},{"id":"beyond-wonderland-socal-2025","name":"Beyond Wonderland SoCal 2025","year":2025,"first":"2025-03-28","last":"2025-03-29","lineupOnly":true},{"id":"beyond-wonderland-socal-2024","name":"Beyond Wonderland SoCal 2024","year":2024,"first":"2024-03-22","last":"2024-03-23","lineupOnly":true},{"id":"beyond-wonderland-socal-2022","name":"Beyond Wonderland SoCal 2022","year":2022,"first":"2022-03-25","last":"2022-03-26","lineupOnly":true}],"stages":[]},{"id":"beyond-wonderland-gorge-2027","name":"Beyond Wonderland at The Gorge 2027","short":"Beyond Gorge","location":"Gorge Amphitheatre · George, WA","dates":"Jun 26–27, 2027","datesShort":"Jun 26–27","start":"2027-06-26","end":"2027-06-27","startMs":null,"accent":"#2dd4bf","available":false,"scheduleTBA":false,"hasSchedule":false,"page":"/f/beyond-wonderland-gorge-2027/","past":[{"id":"beyond-wonderland-gorge-2026","name":"Beyond Wonderland at The Gorge 2026","year":2026,"first":"2026-06-27","last":"2026-06-28","lineupOnly":false}],"stages":[]},{"id":"ultra-miami-2026","name":"Ultra Miami 2026","short":"Ultra 2026","location":"Bayfront Park · Miami, FL","dates":"Mar 27–29, 2026","datesShort":"Mar 27–29","start":"2026-03-27","end":"2026-03-29","startMs":1774641600000,"accent":"#38bdf8","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/ultra-miami-2026/","past":[],"stages":[{"name":"ULTRA Main Stage","color":"#38bdf8"},{"name":"Worldwide Stage","color":"#a855f7"},{"name":"Megastructure","color":"#f97316"},{"name":"The Cove","color":"#14b8a6"},{"name":"Live Stage","color":"#ec4899"},{"name":"UMF Radio Stage","color":"#facc15"},{"name":"Oasis","color":"#22c55e"}]},{"id":"governors-ball-2026","name":"Governors Ball 2026","short":"Gov Ball","location":"Flushing Meadows Corona Park · Queens, NY","dates":"Jun 5–7, 2026","datesShort":"Jun 5–7","start":"2026-06-05","end":"2026-06-07","startMs":1780673400000,"accent":"#ec4899","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/governors-ball-2026/","past":[{"id":"governors-ball-2025","name":"Governors Ball 2025","year":2025,"first":"2025-06-06","last":"2025-06-08","lineupOnly":false}],"stages":[{"name":"GovBallNYC","color":"#ec4899"},{"name":"Snapchat Stage","color":"#facc15"},{"name":"The Grove","color":"#22c55e"}]},{"id":"summerfest-2026","name":"Summerfest 2026","short":"Summerfest","location":"Henry Maier Festival Park · Milwaukee, WI","dates":"Jun 18–20, Jun 25–27 & Jul 2–4, 2026","datesShort":"Jun 18 – Jul 4","start":"2026-06-18","end":"2026-07-04","startMs":1781802000000,"accent":"#fbbf24","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/summerfest-2026/","past":[],"stages":[{"name":"AmFam Amphitheater","color":"#e85d2e"},{"name":"BMO Pavilion","color":"#38bdf8"},{"name":"Big Backyard","color":"#22c55e"},{"name":"Generac Power Stage","color":"#a855f7"},{"name":"Miller Lite Oasis","color":"#f97316"},{"name":"Aurora Pavilion","color":"#14b8a6"},{"name":"T-Mobile Stage","color":"#ec4899"},{"name":"Uline Warehouse","color":"#2563eb"},{"name":"Summerville","color":"#facc15"},{"name":"AmFam House","color":"#64748b"}]},{"id":"lollapalooza-2026","name":"Lollapalooza 2026","short":"Lolla 2026","location":"Grant Park · Chicago, IL","dates":"Jul 30 – Aug 2, 2026","datesShort":"Jul 30 – Aug 2","start":"2026-07-30","end":"2026-08-02","startMs":1785430800000,"accent":"#f472b6","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/lollapalooza-2026/","past":[{"id":"lollapalooza-2025","name":"Lollapalooza 2025","year":2025,"first":"2025-07-31","last":"2025-08-03","lineupOnly":false}],"stages":[{"name":"T-Mobile Stage","color":"#ec4899"},{"name":"Bud Light Stage","color":"#38bdf8"},{"name":"Perry's Stage","color":"#a855f7"},{"name":"Tito's Stage","color":"#f97316"},{"name":"Allianz Stage","color":"#22c55e"},{"name":"Airbnb Stage","color":"#14b8a6"},{"name":"BMI Stage","color":"#fbbf24"},{"name":"Bonus Tracks","color":"#64748b"},{"name":"Kidzapalooza","color":"#2563eb"}]},{"id":"outside-lands-2026","name":"Outside Lands 2026","short":"Outside Lands","location":"Golden Gate Park · San Francisco, CA","dates":"Aug 7–9, 2026","datesShort":"Aug 7–9","start":"2026-08-07","end":"2026-08-09","startMs":1786125600000,"accent":"#22c55e","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/outside-lands-2026/","past":[],"stages":[{"name":"Lands End","color":"#22c55e"},{"name":"Twin Peaks","color":"#38bdf8"},{"name":"Sutro","color":"#a855f7"},{"name":"Panhandle","color":"#fbbf24"},{"name":"SOMA Tent","color":"#ec4899"},{"name":"Dolores'","color":"#f472b6"},{"name":"Duboce Triangle","color":"#14b8a6"}]},{"id":"iii-points-2026","name":"III Points 2026","short":"III Points","location":"Mana Wynwood · Miami, FL","dates":"Oct 16–17, 2026","datesShort":"Oct 16–17","start":"2026-10-16","end":"2026-10-17","startMs":1792180800000,"accent":"#22d3ee","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/iii-points-2026/","past":[],"stages":[{"name":"MIND MELT","color":"#22d3ee"},{"name":"SECTOR 3","color":"#22d3ee"},{"name":"RC95","color":"#22d3ee"},{"name":"S3QUENC3","color":"#22d3ee"},{"name":"VERTEX","color":"#22d3ee"},{"name":"PLAYERS CLUB","color":"#22d3ee"},{"name":"HALO 88","color":"#22d3ee"},{"name":"GRAND CENTRAL","color":"#22d3ee"},{"name":"DOOR IV","color":"#22d3ee"},{"name":"III POINTS RADIO","color":"#22d3ee"},{"name":"ISOTROPIC","color":"#22d3ee"},{"name":"UNFORESEEN","color":"#22d3ee"},{"name":"444","color":"#22d3ee"}]},{"id":"nocturnal-wonderland-2026","name":"Nocturnal Wonderland 2026","short":"Nocturnal","location":"Glen Helen Regional Park · San Bernardino, CA","dates":"Sep 19–20, 2026","datesShort":"Sep 19–20","start":"2026-09-19","end":"2026-09-20","startMs":1789855200000,"accent":"#a855f7","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/nocturnal-wonderland-2026/","past":[{"id":"nocturnal-wonderland-2025","name":"Nocturnal Wonderland 2025","year":2025,"first":"2025-09-13","last":"2025-09-14","lineupOnly":true},{"id":"nocturnal-wonderland-2023","name":"Nocturnal Wonderland 2023","year":2023,"first":"2023-09-16","last":"2023-09-17","lineupOnly":true},{"id":"nocturnal-wonderland-2022","name":"Nocturnal Wonderland 2022","year":2022,"first":"2022-09-17","last":"2022-09-18","lineupOnly":false},{"id":"nocturnal-wonderland-2021","name":"Nocturnal Wonderland 2021","year":2021,"first":"2021-09-18","last":"2021-09-19","lineupOnly":false},{"id":"nocturnal-wonderland-2019","name":"Nocturnal Wonderland 2019","year":2019,"first":"2019-09-14","last":"2019-09-15","lineupOnly":false},{"id":"nocturnal-wonderland-2018","name":"Nocturnal Wonderland 2018","year":2018,"first":"2018-09-14","last":"2018-09-15","lineupOnly":false},{"id":"nocturnal-wonderland-2017","name":"Nocturnal Wonderland 2017","year":2017,"first":"2017-09-15","last":"2017-09-16","lineupOnly":false}],"stages":[{"name":"Mystic Wild","color":"#a855f7"},{"name":"Dawn Mountain","color":"#f97316"},{"name":"Aurora Plains","color":"#14b8a6"},{"name":"Rave Cave","color":"#ec4899"},{"name":"Beatbox Boombox","color":"#facc15"}]},{"id":"crssd-fall-2026","name":"CRSSD Fest Fall 2026","short":"CRSSD","location":"Waterfront Park · San Diego, CA","dates":"Sep 26–27, 2026","datesShort":"Sep 26–27","start":"2026-09-26","end":"2026-09-27","startMs":1790449200000,"accent":"#56fbf1","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/crssd-fall-2026/","past":[],"stages":[{"name":"Ocean View","color":"#56fbf1"},{"name":"City Steps","color":"#fdb915"},{"name":"The Palms","color":"#7e9f5d"}]},{"id":"portola-2026","name":"Portola 2026","short":"Portola","location":"Pier 80 · San Francisco, CA","dates":"Sep 26–27, 2026","datesShort":"Sep 26–27","start":"2026-09-26","end":"2026-09-27","startMs":1790452800000,"accent":"#2C4096","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/portola-2026/","past":[],"stages":[{"name":"Pier Stage","color":"#2C4096"},{"name":"Warehouse","color":"#DFB930"},{"name":"Crane Stage","color":"#DE6A2F"},{"name":"Ship Tent","color":"#2B5223"},{"name":"Despacio","color":"#A8AEC4"}]},{"id":"hard-summer-2026","name":"HARD Summer 2026","short":"HARD Summer","location":"Hollywood Park · Inglewood, CA","dates":"Aug 1–2, 2026","datesShort":"Aug 1–2","start":"2026-08-01","end":"2026-08-02","startMs":1785618000000,"accent":"#E51D1D","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/hard-summer-2026/","past":[{"id":"hard-summer-2025","name":"HARD Summer 2025","year":2025,"first":"2025-08-02","last":"2025-08-03","lineupOnly":false},{"id":"hard-summer-2024","name":"HARD Summer 2024","year":2024,"first":"2024-08-03","last":"2024-08-04","lineupOnly":true},{"id":"hard-summer-2023","name":"HARD Summer 2023","year":2023,"first":"2023-08-05","last":"2023-08-06","lineupOnly":true},{"id":"hard-summer-2022","name":"HARD Summer 2022","year":2022,"first":"2022-07-29","last":"2022-07-31","lineupOnly":true},{"id":"hard-summer-2019","name":"HARD Summer 2019","year":2019,"first":"2019-08-03","last":"2019-08-04","lineupOnly":true},{"id":"hard-summer-2018","name":"HARD Summer 2018","year":2018,"first":"2018-08-04","last":"2018-08-05","lineupOnly":true}],"stages":[{"name":"HARD","color":"#E51D1D"},{"name":"HARDER","color":"#F97316"},{"name":"Green","color":"#3FA34D"},{"name":"Purple","color":"#8B5CF6"},{"name":"Pink","color":"#EC4899"},{"name":"Ice Cream Truck","color":"#38BDF8"},{"name":"Beatbox Art Car","color":"#FACC15"}]},{"id":"arc-2026","name":"ARC Music Festival 2026","short":"ARC","location":"Union Park · Chicago, IL","dates":"Sep 4–7, 2026","datesShort":"Sep 4–7","start":"2026-09-04","end":"2026-09-07","startMs":1788548400000,"accent":"#C4F82A","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/arc-2026/","past":[],"stages":[{"name":"The Grid","color":"#C4F82A"},{"name":"Expansions","color":"#FF5C39"},{"name":"area909","color":"#8B5CF6"},{"name":"The Midway","color":"#22C3E6"}]},{"id":"escape-halloween-2026","name":"Escape Halloween 2026","short":"Escape","location":"NOS Events Center · San Bernardino, CA","dates":"Oct 30–31, 2026","datesShort":"Oct 30–31","start":"2026-10-30","end":"2026-10-31","startMs":1793401200000,"accent":"#F4511E","available":true,"scheduleTBA":false,"hasSchedule":true,"page":"/f/escape-halloween-2026/","past":[{"id":"escape-halloween-2025","name":"Escape Halloween 2025","year":2025,"first":"2025-10-31","last":"2025-11-01","lineupOnly":false},{"id":"escape-halloween-2024","name":"Escape Halloween 2024","year":2024,"first":"2024-10-25","last":"2024-10-26","lineupOnly":false},{"id":"escape-halloween-2023","name":"Escape Halloween 2023","year":2023,"first":"2023-10-27","last":"2023-10-28","lineupOnly":true},{"id":"escape-halloween-2022","name":"Escape Halloween 2022","year":2022,"first":"2022-10-28","last":"2022-10-29","lineupOnly":false},{"id":"escape-halloween-2021","name":"Escape Halloween 2021","year":2021,"first":"2021-10-29","last":"2021-10-30","lineupOnly":false},{"id":"escape-halloween-2019","name":"Escape Halloween 2019","year":2019,"first":"2019-10-25","last":"2019-10-26","lineupOnly":false},{"id":"escape-halloween-2017","name":"Escape Halloween 2017","year":2017,"first":"2017-10-27","last":"2017-10-28","lineupOnly":false}],"stages":[{"name":"The Big Top","color":"#29B6F6"},{"name":"Feeding Grounds","color":"#7CB342"},{"name":"The Warehouse","color":"#FFB300"},{"name":"Sewer District","color":"#9C27B0"},{"name":"The Cage","color":"#F4511E"},{"name":"Danse Macabre","color":"#EC407A"},{"name":"Beatbox Art Car","color":"#26A69A"}]},{"id":"dreamstate-socal-2026","name":"Dreamstate SoCal 2026","short":"Dreamstate SoCal","location":"Queen Mary Waterfront · Long Beach, CA","dates":"Nov 20–21, 2026","datesShort":"Nov 20–21","start":"2026-11-20","end":"2026-11-21","startMs":1795219200000,"accent":"#6366f1","available":true,"scheduleTBA":true,"hasSchedule":true,"page":"/f/dreamstate-socal-2026/","past":[{"id":"dreamstate-socal-2025","name":"Dreamstate SoCal 2025","year":2025,"first":"2025-11-21","last":"2025-11-22","lineupOnly":false},{"id":"dreamstate-socal-2024","name":"Dreamstate SoCal 2024","year":2024,"first":"2024-11-22","last":"2024-11-23","lineupOnly":false},{"id":"dreamstate-socal-2023","name":"Dreamstate SoCal 2023","year":2023,"first":"2023-11-17","last":"2023-11-18","lineupOnly":false},{"id":"dreamstate-socal-2019","name":"Dreamstate SoCal 2019","year":2019,"first":"2019-11-22","last":"2019-11-23","lineupOnly":false},{"id":"dreamstate-socal-2016","name":"Dreamstate SoCal 2016","year":2016,"first":"2016-11-25","last":"2016-11-26","lineupOnly":false}],"stages":[{"name":"Sequence","color":"#E040FB"},{"name":"Void","color":"#7C4DFF"},{"name":"Vision","color":"#00E676"},{"name":"Dream","color":"#29B6F6"},{"name":"Beatbox Art Car","color":"#FFB300"}]},{"id":"decadence-colorado-2026","name":"Decadence Colorado 2026","short":"Decadence","location":"Colorado Convention Center · Denver, CO","dates":"Dec 30–31, 2026","datesShort":"Dec 30–31","start":"2026-12-30","end":"2026-12-31","startMs":1798675200000,"accent":"#d946ef","available":true,"scheduleTBA":true,"hasSchedule":true,"page":"/f/decadence-colorado-2026/","past":[],"stages":[]},{"id":"countdown-nye-2026","name":"Countdown NYE 2026","short":"Countdown","location":"NOS Events Center · San Bernardino, CA","dates":"Dec 31, 2026 – Jan 1, 2027","datesShort":"Dec 31 – Jan 1","start":"2026-12-31","end":"2027-01-01","startMs":1798761600000,"accent":"#60a5fa","available":true,"scheduleTBA":true,"hasSchedule":true,"page":"/f/countdown-nye-2026/","past":[],"stages":[]}]};
+</script>
+<script>
+(function () {
+  "use strict";
+  var D = window.WELCOME_DATA || { festivals: [] };
+  var reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var pad = function (n) { return String(n).padStart(2, "0"); };
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var ico = function (id) { return '<svg aria-hidden="true"><use href="#i-' + id + '"/></svg>'; };
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- festivals: upcoming, decided now ---------- */
+  function localDay(t) { var d = new Date(t); return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  var TODAY = localDay(Date.now());
+  var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function rangeLabel(a, b) {
+    if (!a) return "";
+    var x = a.split("-").map(Number), y = (b || a).split("-").map(Number);
+    if (a === (b || a)) return MON[x[1] - 1] + " " + x[2] + ", " + x[0];
+    if (x[1] === y[1]) return MON[x[1] - 1] + " " + x[2] + "–" + y[2] + ", " + x[0];
+    return MON[x[1] - 1] + " " + x[2] + " – " + MON[y[1] - 1] + " " + y[2] + ", " + y[0];
+  }
+  function initials(s) { var w = String(s).replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).filter(function (x) { return x && !/^(19|20)\d\d$/.test(x); }); return ((w[0] || "?")[0] + (w[1] ? w[1][0] : (w[0] || "")[1] || "")).toUpperCase(); }
+  var ALL = (D.festivals || []).map(function (f) {
+    var live = !!(f.start && f.end && TODAY >= f.start && TODAY <= f.end);
+    return Object.assign({}, f, {
+      live: live,
+      ended: !!(f.end && f.end < TODAY),
+      open: !!f.available && !!f.hasSchedule,
+      mono: initials(f.short || f.name),
+      art: "linear-gradient(140deg," + (f.accent || "#273334") + ",#0b0620)",
+      city: (String(f.location || "").split("·")[1] || f.location || "").trim()
+    });
+  });
+  var UPCOMING = ALL.filter(function (f) { return !f.end || f.end >= TODAY; }).sort(function (a, b) {
+    if (!a.start && !b.start) return a.name.localeCompare(b.name);
+    if (!a.start) return 1;
+    if (!b.start) return -1;
+    return a.start < b.start ? -1 : a.start > b.start ? 1 : a.name.localeCompare(b.name);
+  });
+  // Earlier this year: festivals in the registry that have ended, plus
+  // editions this year that only the Past Festivals library holds (a festival
+  // whose registry entry has already moved on to next year). Newest first.
+  var YEAR = TODAY.slice(0, 4);
+  var ENDED = ALL.filter(function (f) { return f.ended && String(f.start || "").slice(0, 4) === YEAR; });
+  ALL.forEach(function (f) {
+    (f.past || []).forEach(function (e) {
+      if (String(e.year) !== YEAR || !e.last || e.last >= TODAY || ALL.some(function (x) { return x.id === e.id; })) return;
+      ENDED.push({ id: e.id, name: e.name, short: e.name.replace(/\s+20\d\d$/, ""), location: f.location, city: f.city, dates: rangeLabel(e.first, e.last), start: e.first, end: e.last,
+        archive: true, ended: true, open: false, page: f.page, past: (f.past || []).filter(function (x) { return x.year < e.year; }), mono: f.mono, art: f.art, stages: [] });
+    });
+  });
+  ENDED.sort(function (a, b) { return a.end < b.end ? 1 : a.end > b.end ? -1 : 0; });
+  var OPEN = UPCOMING.filter(function (f) { return f.open; });
+  var NEXT = OPEN[0] || null;
+  var statusOf = function (f) { return f.archive ? "In Past Festivals" : f.ended ? "Ended" : f.live ? "Live now" : f.open ? (f.scheduleTBA ? "Lineup in" : "Set times in") : "Not open yet"; };
+  var pillCls = function (f) { return f.live ? "pill live" : f.ended && !f.archive ? "pill off" : (f.open || f.archive) ? "pill" : "pill off"; };
+  var editionHref = function (id) { return "/?tab=past&edition=" + encodeURIComponent(id); };
+
+  function countdown(target) {
+    var ms = Math.max(0, (target || 0) - Date.now());
+    var d = Math.floor(ms / 864e5); ms -= d * 864e5;
+    var h = Math.floor(ms / 36e5); ms -= h * 36e5;
+    var m = Math.floor(ms / 6e4); ms -= m * 6e4;
+    return { d: d, h: h, m: m, s: Math.floor(ms / 1e3), over: !target || target <= Date.now() };
+  }
+
+  /* ---------- sample night: Escape Halloween 2026, Friday ---------- */
+  var STAGE_C = { "The Big Top": "#29B6F6", "Feeding Grounds": "#7CB342", "The Warehouse": "#FFB300", "Sewer District": "#9C27B0", "The Cage": "#F4511E", "Danse Macabre": "#EC407A" };
+  var LIVE = [
+    ["The Big Top", "Benny Benassi", "9:00 PM", "10:15 PM", "Dimitri Vegas & Like Mike"],
+    ["Sewer District", "Getter", "8:45 PM", "9:45 PM", "YDG"],
+    ["Feeding Grounds", "AniMe - No Boundaries", "9:00 PM", "10:00 PM", "Showtek"],
+    ["The Cage", "Adam Ten", "8:30 PM", "10:00 PM", "Joseph Capriati B2B Sosa"]
+  ];
+  var toMin = function (t) { var p = t.split(" "), hm = p[0].split(":").map(Number), h = hm[0]; if (p[1] === "PM" && h !== 12) h += 12; if (p[1] === "AM" && h === 12) h = 24; return h * 60 + hm[1]; };
+  var fmt = function (m) { var h = Math.floor(m / 60) % 24, ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12; return h + ":" + pad(m % 60) + " " + ap; };
+  var sim = toMin("9:20 PM");
+
+  /* ---------- app screens, shared by the hero phone and the gallery ---------- */
+  var TAB_OF = { home: null, today: "today", lineup: "lineup", memories: "memories", me: "me" };
+  var chrome = function (accent) { return '<div class="ah"><span class="wm">PLURSKY®</span><span class="ic">' + ico("search") + ico("bell") + '</span></div><div class="arule" style="background:' + accent + '"></div>'; };
+  function stagesHTML() {
+    return LIVE.map(function (r) {
+      var a = toMin(r[2]), b = toMin(r[3]), pct = Math.min(100, Math.max(0, (sim - a) / (b - a) * 100));
+      return '<div class="st"><span class="sn"><i class="dot" style="background:' + STAGE_C[r[0]] + '"></i>' + r[0] + '</span><span class="lf">' + (b - sim) + ' MIN LEFT</span><b>' + esc(r[1]) + '</b><span class="nx">then ' + esc(r[4]) + '</span><span class="pg"><i style="width:' + pct + '%"></i></span></div>';
+    }).join("");
+  }
+  var SCREENS = {
+    home: function () {
+      var n = new Date(), c = NEXT ? countdown(NEXT.startMs) : null;
+      var rows = UPCOMING.slice(0, 5).map(function (f, i) {
+        return '<div class="fr' + (f.open ? "" : " dim") + '"><span class="n">' + pad(i + 1) + '</span><span><b>' + esc(f.short) + '</b><small>' + esc(f.city) + ' · ' + esc(f.datesShort) + '</small></span><span class="' + pillCls(f) + '">' + (f.live ? "Live" : f.open ? "Open" : "Soon") + '</span></div>';
+      }).join("");
+      return chrome("var(--signal)") +
+        '<div class="am"><span>' + ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][n.getDay()] + ' · ' + MON[n.getMonth()] + ' ' + n.getDate() + '</span><span>Festivals</span></div>' +
+        '<div class="at">Pick your<br>festival.</div>' +
+        (NEXT ? '<div class="ab"><span>Next · ' + esc(NEXT.short) + '</span><span>' + (NEXT.live ? "Live now" : c.over ? "Soon" : c.d + "D " + pad(c.h) + "H") + '</span></div>' : "") +
+        '<div class="abody"><div class="box"><div class="k">Your saved festivals</div><p>Tap Save on a festival to keep it here.</p></div><div>' + rows + '</div></div>';
+    },
+    lineup: function () {
+      var rows = [["7:00 PM", "MORTEN", "The Big Top", "on"], ["8:45 PM", "Getter", "Sewer District", "on"], ["9:15 PM", "Azyr", "The Warehouse", ""], ["10:00 PM", "Showtek (Hardstyle Set)", "Feeding Grounds", "on"], ["11:30 PM", "Steve Aoki", "The Big Top", "clash"], ["11:55 PM", "Kai Wachi", "Sewer District", "clash"]];
+      return chrome("var(--fest)") +
+        '<div class="am"><span>Escape · 2026</span><span>3 days out</span></div><div class="at">Lineup</div>' +
+        '<div class="ab"><span class="tabs"><span class="on">Fri 30</span><span>Sat 31</span></span><span>7 stages</span></div>' +
+        '<div class="abody"><div class="chips"><span class="chip">All</span><span class="chip on">My plan</span><span class="chip">Grid</span><span class="chip live">Live</span></div><div>' +
+        rows.map(function (r) { return '<div class="lr"><span class="tm">' + r[0] + '</span><span><b>' + esc(r[1]) + '</b><small><i class="dot" style="background:' + STAGE_C[r[2]] + '"></i>' + r[2] + '</small></span><span class="sv ' + r[3] + '"></span></div>'; }).join("") +
+        '</div><div class="box warn"><div class="k">Clash · 45 min</div><p>Steve Aoki and Kai Wachi overlap from 11:55 PM. Pick one, or keep both and split it.</p></div></div>';
+    },
+    today: function () {
+      return chrome("var(--fest)") +
+        '<div class="am"><span>Edition 2026</span><span class="live">Live</span></div><div class="at">Escape</div>' +
+        '<div class="ab"><span>Now <span data-simclock>' + fmt(sim) + '</span></span><span>Fri Oct 30</span></div>' +
+        '<div class="abody"><div class="box"><div class="k">Up next for you · 10:00 PM</div><p><b>Showtek (Hardstyle Set)</b> at Feeding Grounds. Reminder at 9:45.</p></div>' +
+        '<div data-stages>' + stagesHTML() + '</div>' +
+        '<div class="cta-band"><span><b>Rally at The Big Top</b><small>2 of your crew are there</small></span><span class="go">4 MIN</span></div></div>';
+    },
+    memories: function () {
+      var al = [["Getter", "Sewer District", 24, "#9C27B0"], ["Benny Benassi", "The Big Top", 31, "#29B6F6"], ["Showtek", "Feeding Grounds", 18, "#7CB342"], ["Adam Ten", "The Cage", 12, "#F4511E"]];
+      return chrome("var(--fest)") +
+        '<div class="am"><span>Escape · 2026</span><span>Ended</span></div><div class="at">Memories</div>' +
+        '<div class="ab"><span>Scan my weekend</span><span>Scan ↗</span></div>' +
+        '<div class="abody"><div class="big"><b>186</b><span>photos and clips<br>sorted into 11 sets</span></div>' +
+        '<div class="chips"><span class="chip on">All</span><span class="chip">Clips</span><span class="chip">Sets</span><span class="chip">Recaps</span></div>' +
+        '<div class="albums">' + al.map(function (a) { return '<div class="album" style="background:linear-gradient(150deg,#1a1f20,' + a[3] + ')"><span class="cnt">' + a[2] + '</span><b>' + a[0] + '</b><small>' + a[1] + '</small></div>'; }).join("") + '</div></div>';
+    },
+    me: function () {
+      return '<div class="ah"><span class="wm">PLURSKY®</span><span class="ic">' + ico("bell") + '</span></div><div class="arule" style="background:var(--signal)"></div>' +
+        '<div class="am"><span>Your 2026</span><span>Festival year</span></div><div class="at">Me</div>' +
+        '<div class="ab"><span>Plursky+</span><span>Season Pass ↗</span></div>' +
+        '<div class="abody"><div class="stats3"><div><b>6</b><small>Festivals</small></div><div><b>58</b><small>Sets seen</small></div><div><b>41</b><small>Songs caught</small></div></div>' +
+        '<div class="links"><div><span>History</span><span>↗</span></div><div><span>Records</span><span>↗</span></div><div><span>Badges</span><span>9 earned ↗</span></div><div><span>Music · matched</span><span>Apple Music ↗</span></div><div><span>Festival DNA</span><span>Plus ↗</span></div></div></div>';
+    }
+  };
+  function tabBar(active, interactive) {
+    var t = [["today", "Today"], ["lineup", "Lineup"], ["memories", "Memories"], ["me", "Me"]];
+    return '<nav class="tb' + (interactive ? "" : " static") + '" aria-label="App tabs">' + t.map(function (x) {
+      return '<button type="button" ' + (interactive ? 'data-tab="' + x[0] + '"' : 'tabindex="-1" aria-hidden="true"') + ' class="' + (active === x[0] ? "on" : "") + '">' + ico(x[0] === "memories" ? "mem" : x[0]) + x[1] + '</button>';
+    }).join("") + '</nav>';
+  }
+  function screenHTML(name, interactive) {
+    var now = new Date();
+    var clock = name === "today" ? fmt(sim).replace(/ (AM|PM)/, "") : (now.getHours() % 12 || 12) + ":" + pad(now.getMinutes());
+    return '<div class="island" aria-hidden="true"></div><div class="sb"><span data-sb>' + clock + '</span><span>5G</span></div>' +
+      '<div class="app">' + SCREENS[name]() + '<div class="samp">' + (name === "home" ? "" : "SAMPLE · REAL ESCAPE 2026 SET TIMES") + '</div></div>' + tabBar(TAB_OF[name], interactive);
+  }
+
+  /* ---------- hero: numbered rows drive the phone ---------- */
+  var heroScr = $("heroScr"), stepsEl = $("steps");
+  var steps = Array.prototype.slice.call(stepsEl.querySelectorAll(".step"));
+  var PH_C = { before: "#88D7C8", during: "#FFC545", after: "#FF7896" };
+  var cur = 0, auto = !reduce, timer = null;
+  function show(i, user) {
+    cur = i;
+    var st = steps[i], ph = st.getAttribute("data-ph");
+    steps.forEach(function (s, j) {
+      s.setAttribute("aria-selected", j === i ? "true" : "false");
+      s.tabIndex = j === i ? 0 : -1;
+      var b = s.querySelector(".bar i"); if (b) { b.style.animation = "none"; void b.offsetWidth; b.style.animation = ""; }
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("#heroTitle span"), function (s) { s.classList.toggle("dim", s.getAttribute("data-ph") !== ph); });
+    document.documentElement.style.setProperty("--phase", PH_C[ph]);
+    heroScr.innerHTML = screenHTML(st.getAttribute("data-screen"), true);
+    if (user) stop(); else schedule();
+  }
+  function stop() { auto = false; clearTimeout(timer); stepsEl.classList.add("paused"); }
+  function schedule() { clearTimeout(timer); if (auto && !document.hidden) timer = setTimeout(function () { show((cur + 1) % steps.length); }, 6500); }
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) schedule(); });
+  steps.forEach(function (s, i) { s.addEventListener("click", function () { show(i, true); }); });
+  stepsEl.addEventListener("keydown", function (e) {
+    var k = e.key; if (["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft", "Home", "End"].indexOf(k) < 0) return;
+    e.preventDefault();
+    var i = k === "Home" ? 0 : k === "End" ? steps.length - 1 : (cur + (k === "ArrowDown" || k === "ArrowRight" ? 1 : steps.length - 1)) % steps.length;
+    show(i, true); steps[i].focus();
+  });
+  heroScr.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-tab]"); if (!b) return;
+    var i = steps.findIndex(function (s) { return s.getAttribute("data-screen") === b.getAttribute("data-tab"); });
+    if (i >= 0) show(i, true);
+  });
+  if (reduce) stepsEl.classList.add("paused");
+  show(0);
+
+  /* ---------- gallery ---------- */
+  var G = [["home", "Home", "Pick a festival and see what's next."], ["today", "Today", "Live now and next, your crew and your next set."], ["lineup", "Lineup", "Your plan by day, stage colors, clashes called out."], ["memories", "Memories", "Scan my weekend up top, albums by set below."], ["me", "Me", "Your year in numbers, then every record and badge."]];
+  $("gallery").innerHTML = G.map(function (g, i) { return '<div class="g-item"><div class="phone" aria-hidden="true"><div class="scr">' + screenHTML(g[0], false) + '</div></div><div class="g-cap"><span class="num">' + pad(i + 1) + '</span><span><b>' + g[1] + '</b><small>' + g[2] + '</small></span></div></div>'; }).join("");
+
+  /* ---------- hero band + live tick ---------- */
+  if (NEXT) {
+    $("heroBand").hidden = false;
+    $("heroNext").textContent = (NEXT.live ? "Live now · " : "Next up · ") + NEXT.short;
+  }
+  function tick() {
+    if (NEXT) {
+      var c = countdown(NEXT.startMs);
+      $("heroWhen").innerHTML = NEXT.live || c.over ? '<span class="live-dot"></span>' + esc(NEXT.datesShort) : 'Gates in <span class="num">' + c.d + "D " + pad(c.h) + "H " + pad(c.m) + "M</span>";
+    }
+    var cd = $("obCountdown");
+    if (cd) {
+      var f = festById(state.fest), cc = countdown(f && f.startMs);
+      cd.innerHTML = [["d", "Days"], ["h", "Hrs"], ["m", "Min"], ["s", "Sec"]].map(function (x) { return "<div><b>" + pad(cc[x[0]]) + "</b><small>" + x[1] + "</small></div>"; }).join("");
+    }
+  }
+  if (!reduce) setInterval(function () {
+    sim = sim >= toMin("9:44 PM") ? toMin("9:20 PM") : sim + 1;
+    Array.prototype.forEach.call(document.querySelectorAll("[data-stages]"), function (el) { el.innerHTML = stagesHTML(); });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-simclock]"), function (el) { el.textContent = fmt(sim); });
+    Array.prototype.forEach.call(document.querySelectorAll(".scr"), function (s) { if (s.querySelector("[data-stages]")) { var sb = s.querySelector("[data-sb]"); if (sb) sb.textContent = fmt(sim).replace(/ (AM|PM)/, ""); } });
+  }, 1500);
+
+  /* ---------- every festival: coming up, or earlier this year ---------- */
+  function yearsHTML(f) {
+    var p = (f.past || []).slice(0, 8);
+    if (!p.length) return "";
+    return '<div class="years"><span class="lbl">Earlier years</span>' + p.map(function (e) {
+      return '<a href="' + editionHref(e.id) + '" aria-label="' + esc(e.name) + ' in Past Festivals">' + e.year + '</a>';
+    }).join("") + ((f.past || []).length > p.length && f.page ? '<a href="' + esc(f.page) + '">All ' + f.past.length + '</a>' : "") + '</div>';
+  }
+  function actionHTML(f) {
+    if (f.archive) return '<a class="btn small" href="' + editionHref(f.id) + '">Open</a>';
+    if (f.open) return '<button type="button" class="btn small' + (f.ended ? "" : " primary") + '" data-open-ob data-fest-pick="' + esc(f.id) + '">' + (f.ended ? "Relive it" : "Plan it") + '</button>';
+    return f.page ? '<a class="btn small" href="' + esc(f.page) + '">Details</a>' : "";
+  }
+  function festRows(list) {
+    if (!list.length) return '<p class="hint" style="padding:22px 0">Nothing here yet.</p>';
+    return list.map(function (f, i) {
+      var name = f.page && !f.archive ? '<a href="' + esc(f.page) + '">' + esc(f.name) + '</a>' : esc(f.name);
+      return '<div class="fest-row' + (f.open || f.archive ? "" : " off") + '">' +
+        '<span class="num">' + pad(i + 1) + '</span><span class="art" style="background:' + f.art + '" aria-hidden="true">' + esc(f.mono) + '</span>' +
+        '<span><h3>' + name + '</h3><p>' + esc(f.location) + ' · ' + esc(f.dates) + '</p><span class="' + pillCls(f) + ' mob-pill">' + statusOf(f) + '</span>' + yearsHTML(f) + '</span>' +
+        '<span class="fest-act"><span class="' + pillCls(f) + '">' + statusOf(f) + '</span>' + actionHTML(f) + '</span></div>';
+    }).join("");
+  }
+  $("segUpN").textContent = UPCOMING.length;
+  $("segPastN").textContent = ENDED.length;
+  $("segPast").childNodes[0].nodeValue = "Earlier in " + YEAR;
+  function showList(past) {
+    $("segUp").setAttribute("aria-selected", String(!past));
+    $("segPast").setAttribute("aria-selected", String(past));
+    $("festList").setAttribute("aria-labelledby", past ? "segPast" : "segUp");
+    $("festList").innerHTML = festRows(past ? ENDED : UPCOMING);
+  }
+  $("segUp").addEventListener("click", function () { showList(false); });
+  $("segPast").addEventListener("click", function () { showList(true); });
+  showList(false);
+
+  /* ---------- onboarding: real lineup in, real picks out ---------- */
+  // Writes the same keys the app reads, then hands off with ?f=<id>:
+  //   plursky_saved_festivals_v1  { v: 1, ids }  (landing.jsx readSavedFestivals)
+  //   <festivalId>_saved_v1       [actId, ...]   (app.jsx _SAVED_KEY)
+  var state = { step: 0, fest: NEXT ? NEXT.id : null, picks: {}, q: "" };
+  var LINEUPS = {};
+  var ob = $("ob"), body = $("obBody"), nextB = $("obNext"), meta = $("obMeta"), backB = $("obBack");
+  var festById = function (id) { return ALL.find(function (f) { return f.id === id; }) || null; };
+  // A festival that has ended takes the short path: pick it, then relive it
+  // (Memories and Scan my weekend). Artist picks only make sense before.
+  var isPast = function () { var f = festById(state.fest); return !!(f && f.ended); };
+  var stepsTotal = function () { return isPast() ? 2 : 4; };
+  var picksFor = function (id) { return state.picks[id] || (state.picks[id] = {}); };
+  var pickCount = function () { return Object.keys(picksFor(state.fest)).length; };
+  var lastFocus = null;
+
+  function loadLineup(id) {
+    if (LINEUPS[id]) return LINEUPS[id].promise;
+    var entry = LINEUPS[id] = { status: "loading", acts: [] };
+    entry.promise = fetch("/f/" + encodeURIComponent(id) + "/schedule.json", { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) {
+        var byName = {};
+        (j.acts || []).forEach(function (a) { if (!a || !a.name) return; (byName[a.name] = byName[a.name] || []).push(a.id); });
+        entry.acts = Object.keys(byName).sort(function (a, b) { return a.localeCompare(b, undefined, { sensitivity: "base" }); }).map(function (n) { return { name: n, ids: byName[n] }; });
+        entry.status = "ready";
+      })
+      .catch(function () { entry.status = "error"; delete LINEUPS[id]; LINEUPS[id] = entry; entry.promise = null; });
+    return entry.promise;
+  }
+
+  function open(pick) {
+    lastFocus = document.activeElement;
+    if (pick && festById(pick)) state.fest = pick;
+    state.step = pick ? 1 : 0;
+    ob.hidden = false; document.documentElement.style.overflow = "hidden";
+    if (state.fest) loadLineup(state.fest);
+    render(); nextB.focus();
+    if (location.hash !== "#start") try { history.replaceState(null, "", "#start"); } catch (e) {}
+  }
+  function close() {
+    ob.hidden = true; document.documentElement.style.overflow = "";
+    if (location.hash === "#start") try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-open-ob]"); if (b) open(b.getAttribute("data-fest-pick")); });
+  $("obClose").addEventListener("click", close);
+  ob.addEventListener("click", function (e) { if (e.target === ob) close(); });
+  document.addEventListener("keydown", function (e) {
+    if (ob.hidden) return;
+    if (e.key === "Escape") close();
+    if (e.key === "Tab") {
+      var f = Array.prototype.filter.call(ob.querySelectorAll("button,input,a[href]"), function (x) { return !x.disabled && x.offsetParent !== null; });
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  backB.addEventListener("click", function () { if (state.step > 0) { state.step--; render(); } });
+  nextB.addEventListener("click", function () {
+    if (state.step === 0 && !state.fest) return;
+    if (state.step < stepsTotal() - 1) { state.step++; if (state.step === 1) loadLineup(state.fest); render(); body.scrollTop = 0; }
+    else handoff();
+  });
+
+  function handoff() {
+    var id = state.fest; if (!id) return;
+    try {
+      var raw = JSON.parse(localStorage.getItem("plursky_saved_festivals_v1") || "null");
+      var ids = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.ids) ? raw.ids : []);
+      if (ids.indexOf(id) < 0) ids.push(id);
+      localStorage.setItem("plursky_saved_festivals_v1", JSON.stringify({ v: 1, ids: ids.filter(function (x, i) { return typeof x === "string" && x && ids.indexOf(x) === i; }) }));
+    } catch (e) {}
+    try {
+      var key = id + "_saved_v1", cur = JSON.parse(localStorage.getItem(key) || "[]");
+      var next = Array.isArray(cur) ? cur.slice() : [];
+      var p = picksFor(id);
+      Object.keys(p).forEach(function (n) { p[n].forEach(function (a) { if (next.indexOf(a) < 0) next.push(a); }); });
+      localStorage.setItem(key, JSON.stringify(next));
+    } catch (e) {}
+    // An ended festival opens straight on its Memories (?tab=memories survives
+    // the app's festival-switch reload; only ?f= is stripped).
+    location.href = "/?f=" + encodeURIComponent(id) + (isPast() ? "&tab=memories" : "");
+  }
+
+  var head = function (k1, k2, title, b1, b2) { return '<div class="ob-meta"><span class="lbl">' + k1 + '</span><span class="lbl">' + k2 + '</span></div><h3 id="obTitle">' + title + '</h3><div class="band"><div class="band-in"><span class="lbl">' + b1 + '</span><span class="lbl">' + b2 + '</span></div></div>'; };
+
+  function chipList() {
+    var L = LINEUPS[state.fest];
+    if (!L || L.status === "loading") return Array(10).join('<div class="skel" style="width:' + (90 + Math.round(Math.random() * 70)) + 'px"></div>');
+    if (L.status === "error") return '<div class="note">The lineup didn\'t load. You can pick artists in the app, or <button type="button" class="achip" id="obRetry">try again</button></div>';
+    var q = state.q.trim().toLowerCase(), p = picksFor(state.fest);
+    var list = L.acts.filter(function (a) { return !q || a.name.toLowerCase().indexOf(q) >= 0; });
+    if (!list.length) return '<p class="hint">No artist on this lineup matches “' + esc(state.q) + '”.</p>';
+    return list.map(function (a) { return '<button type="button" class="achip" aria-pressed="' + !!p[a.name] + '" data-artist="' + esc(a.name) + '">' + esc(a.name) + '</button>'; }).join("");
+  }
+
+  function render() {
+    var s = state.step, f = festById(state.fest);
+    var total = stepsTotal();
+    $("obCount").textContent = (s + 1) + " / " + total;
+    $("obRule").style.width = ((s + 1) / total * 100) + "%";
+    backB.style.visibility = s === 0 ? "hidden" : "visible";
+    meta.textContent = "";
+    nextB.disabled = false;
+    var h = "";
+    if (s === 0) {
+      var festBtn = function (x, i) {
+        return '<button type="button" class="ob-fest" data-fest="' + esc(x.id) + '" aria-pressed="' + (x.id === state.fest) + '"' + (x.open ? "" : " disabled") + '><span class="num">' + pad(i + 1) + '</span><span class="art" style="background:' + x.art + '" aria-hidden="true">' + esc(x.mono) + '</span><span><b>' + esc(x.name) + '</b><small>' + esc(x.city) + ' · ' + esc(x.dates) + '</small><span class="' + pillCls(x) + '">' + statusOf(x) + '</span></span><span class="radio" aria-hidden="true"></span></button>';
+      };
+      var gone = ENDED.filter(function (x) { return x.open; });
+      h = head("Step 01", "Festival", "Pick your festival.", "Coming up or been already", (OPEN.length + gone.length) + " open") + '<div class="ob-pad"><p class="hint">Plan one that\'s coming up, or relive one you went to.</p>' +
+        '<div class="lbl ob-group">Coming up</div>' + UPCOMING.map(festBtn).join("") +
+        (gone.length ? '<div class="lbl ob-group">Earlier in ' + YEAR + '</div>' + gone.map(festBtn).join("") : "") + '</div>';
+      nextB.textContent = "Continue";
+      nextB.disabled = !f;
+    } else if (s === 1 && isPast()) {
+      var LP = LINEUPS[f.id], sets = LP && LP.status === "ready" ? LP.acts.length + " artists" : "Every set";
+      var nights = [], d0 = f.start ? new Date(f.start + "T12:00:00") : null, d1 = f.end ? new Date(f.end + "T12:00:00") : null;
+      for (var d = d0; d && d <= d1 && nights.length < 17; d = new Date(d.getTime() + 864e5)) nights.push(d);
+      var ys = (f.past || []).slice(0, 8);
+      h = head("Step 02", esc(f.datesShort), "Relive " + esc(f.short) + ".", "Your photos, sorted by set", sets) + '<div class="ob-pad">' +
+        (nights.length && nights.length <= 6 ? '<div class="relive-nights">' + nights.map(function (n, i) { return '<div><small>Night ' + (i + 1) + '</small><b>' + ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][n.getDay()] + ' ' + n.getDate() + '</b></div>'; }).join("") + '</div>' : "") +
+        '<div class="nrow"><span class="num">01</span><span><b>Scan my weekend.</b><small>On iPhone, Plursky reads your camera roll for ' + esc(f.short) + '\'s nights and finds every photo and clip. No hand-picking.</small></span><span class="tag live">New</span></div>' +
+        '<div class="nrow"><span class="num">02</span><span><b>Sorted by set.</b><small>Each shot lands on the set you were at, by time and place. On the web, add your photos in Memories.</small></span><span class="tag live">Live</span></div>' +
+        '<div class="nrow"><span class="num">03</span><span><b>Recap and playlist.</b><small>A story-sized recap and an Apple Music playlist of the sets you saw.</small></span><span class="tag live">Live</span></div>' +
+        (ys.length ? '<div style="height:18px"></div><span class="kick">Been before?</span><div class="years">' + ys.map(function (e) { return '<a href="' + editionHref(e.id) + '">' + e.year + '</a>'; }).join("") + '</div><p class="fine">Earlier years open in Past Festivals, with the stages and sets the festival published. Photo sorting covers ' + esc(f.name) + '.</p>' : "") +
+        '<div style="height:14px"></div><a class="btn" style="width:100%" href="https://apps.apple.com/us/app/plursky-live/id6768888507" rel="noopener">Get the iPhone app to scan</a></div>';
+      nextB.textContent = "Open my Memories";
+    } else if (s === 1) {
+      var L = LINEUPS[f.id], count = L && L.status === "ready" ? L.acts.length + " artists" : "Official lineup";
+      h = head("Step 02", esc(f.short), "Pick your people.", "The artists you came for", count) + '<div class="ob-pad">' +
+        (f.stages && f.stages.length ? '<div class="stagelist">' + f.stages.map(function (st) { return '<span><i class="dot" style="background:' + esc(st.color) + '"></i>' + esc(st.name) + '</span>'; }).join("") + '</div>' : "") +
+        '<label class="sr" for="obSearch">Search artists</label><input class="search" id="obSearch" type="search" placeholder="Search artists" autocomplete="off" value="' + esc(state.q) + '">' +
+        '<div class="achips" id="obChips">' + chipList() + '</div></div>';
+      nextB.textContent = pickCount() ? "Continue" : "Skip for now";
+      meta.textContent = pickCount() + " saved";
+    } else if (s === 2) {
+      h = head("Step 03", "In the app", "Your night, handled.", "Turns on when you open it", "Free") + '<div class="ob-pad">' +
+        '<div class="nrow"><span class="num">01</span><span><b>Clashes, sorted.</b><small>Overlaps in your picks get flagged, with how many minutes.</small></span><span class="tag live">Live</span></div>' +
+        '<div class="nrow"><span class="num">02</span><span><b>Bring your crew.</b><small>Share an invite, see each other\'s picks and drop a rally point.</small></span><span class="tag live">Live</span></div>' +
+        '<div class="nrow"><span class="num">03</span><span><b>Never miss a set.</b><small>A reminder 15 minutes before each set you saved.</small></span><span class="tag live">Live</span></div>' +
+        '<div class="nrow"><span class="num">04</span><span><b>Keep the night.</b><small>Scan my weekend sorts your photos and clips by set.</small></span><span class="tag live">New</span></div>' +
+        '<div class="nrow"><span class="num">05</span><span><b>Set-time change alerts.</b><small>A heads-up when a set you saved moves.</small></span><span class="tag soon">Soon</span></div></div>';
+      nextB.textContent = "Continue";
+    } else {
+      var c = countdown(f.startMs), n = pickCount();
+      h = head("You're set", esc(f.datesShort), esc(f.short) + " is ready.", "See you at the gates", esc(f.city)) + '<div class="ob-pad">' +
+        '<div class="summary"><div><span>Festival</span><span>' + esc(f.name) + '</span></div><div><span>Where</span><span>' + esc(String(f.location).split("·")[0].trim()) + '</span></div><div><span>Artists saved</span><span>' + n + '</span></div><div><span>Set times</span><span>' + (f.scheduleTBA ? "Not out yet" : "In") + '</span></div></div>' +
+        (!c.over ? '<div style="height:22px"></div><span class="kick">Gates open in</span><div class="cd" id="obCountdown"></div>' : "") +
+        '<p class="fine">Saving keeps your picks in this browser and opens Plursky on ' + esc(f.short) + '. On iPhone, the app keeps its own plan.</p>' +
+        '<div style="height:14px"></div><a class="btn" style="width:100%" href="https://apps.apple.com/us/app/plursky-live/id6768888507" rel="noopener">Get the iPhone app</a></div>';
+      nextB.textContent = "Save and open Plursky";
+    }
+    body.innerHTML = h;
+    if (s === 3) tick();
+    wire();
+  }
+  function wire() {
+    Array.prototype.forEach.call(body.querySelectorAll("[data-fest]"), function (b) {
+      b.addEventListener("click", function () {
+        state.fest = b.getAttribute("data-fest"); state.q = "";
+        Array.prototype.forEach.call(body.querySelectorAll("[data-fest]"), function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+        nextB.disabled = false; loadLineup(state.fest);
+        var total = stepsTotal();
+        $("obCount").textContent = "1 / " + total; $("obRule").style.width = (100 / total) + "%";
+      });
+    });
+    if (state.step === 1 && isPast()) {
+      var LP = LINEUPS[state.fest];
+      if (LP && LP.status === "loading" && LP.promise) LP.promise.then(function () { if (state.step === 1 && !ob.hidden) render(); });
+    }
+    var chips = $("obChips");
+    if (chips) {
+      var L = LINEUPS[state.fest];
+      if (L && L.status === "loading" && L.promise) L.promise.then(function () { if (state.step === 1 && !ob.hidden) render(); });
+      chips.addEventListener("click", function (e) {
+        if (e.target.id === "obRetry") { delete LINEUPS[state.fest]; loadLineup(state.fest); render(); return; }
+        var b = e.target.closest("[data-artist]"); if (!b) return;
+        var name = b.getAttribute("data-artist"), p = picksFor(state.fest), act = (LINEUPS[state.fest].acts || []).find(function (a) { return a.name === name; });
+        if (p[name]) delete p[name]; else if (act) p[name] = act.ids;
+        b.setAttribute("aria-pressed", p[name] ? "true" : "false");
+        meta.textContent = pickCount() + " saved";
+        nextB.textContent = pickCount() ? "Continue" : "Skip for now";
+      });
+    }
+    var search = $("obSearch");
+    if (search) search.addEventListener("input", function () { state.q = search.value; $("obChips").innerHTML = chipList(); });
+  }
+
+  tick(); setInterval(tick, 1000);
+  if (location.hash === "#start") open();
+  window.addEventListener("hashchange", function () { if (location.hash === "#start" && ob.hidden) open(); });
+})();
+</script>
+</body>
+</html>

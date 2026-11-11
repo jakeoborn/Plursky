@@ -1,0 +1,36 @@
+{
+  "id": "edc-orlando-2018",
+  "method": "official_lineup_html",
+  "official": "https://orlando.electricdaisycarnival.com/lineup/",
+  "chosen": "20181217100647",
+  "archivedUrl": "https://web.archive.org/web/20181217100647/https://orlando.electricdaisycarnival.com/lineup/",
+  "sha256": "6e0491e57302e8871a9d519838161cf68192549c59d5a198611d4be27a6f58bf",
+  "title": "Lineup – EDC Orlando 2018",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 77",
+    "By Day 78"
+  ],
+  "stageOrder": [],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20181217100647",
+      "archivedUrl": "https://web.archive.org/web/20181217100647/https://orlando.electricdaisycarnival.com/lineup/",
+      "sha256": "6e0491e57302e8871a9d519838161cf68192549c59d5a198611d4be27a6f58bf",
+      "bytes": 103395,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Orlando 2018",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, November 09",
+        "Saturday, November 10"
+      ],
+      "billings": 77,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

@@ -1,5 +1,5 @@
 {
- "_comment": "Locked from the reviewed source sheets. setsPerDay is what each edition keeps; droppedPerDay is the printed rows the founder rulings leave out (ledger/<id>.json lists each with its reason). A change here is a data change: re-review the source before editing a number.",
+ "_comment": "Locked from the reviewed source sheets. setsPerDay is what each edition keeps; droppedPerDay is the printed rows the founder rulings leave out (ledger/<id>.json lists each with its reason). A change here is a data change: re-review the source before editing a number. Lineup-only editions lock artists, stages, appearancesPerDay (billed appearances on each day) and dropped.",
  "governors-ball-2025": { "stages": 3, "setsPerDay": [20, 13, 20], "droppedPerDay": [0, 0, 0] },
  "lollapalooza-2025": { "stages": 11, "setsPerDay": [55, 56, 58, 56], "droppedPerDay": [3, 4, 2, 3] },
  "hard-summer-2025": { "stages": 7, "setsPerDay": [46, 45], "droppedPerDay": [0, 0] },
@@ -43,5 +43,21 @@
  "acl-2016": { "stages": 8, "setsPerDay": [39, 38, 40, 39, 38, 40], "droppedPerDay": [0, 0, 0, 0, 0, 0] },
  "acl-2017": { "stages": 8, "setsPerDay": [38, 38, 38, 38, 38, 38], "droppedPerDay": [1, 1, 1, 1, 1, 1] },
  "acl-2018": { "stages": 8, "setsPerDay": [38, 38, 38, 36, 38, 37], "droppedPerDay": [1, 1, 1, 1, 1, 1] },
- "acl-2019": { "stages": 8, "setsPerDay": [32, 38, 39, 32, 39, 39], "droppedPerDay": [4, 4, 4, 5, 4, 4] }
+ "acl-2019": { "stages": 8, "setsPerDay": [32, 38, 39, 32, 39, 39], "droppedPerDay": [4, 4, 4, 5, 4, 4] },
+ "nocturnal-wonderland-2025": { "artists": 80, "stages": 5, "appearancesPerDay": [41, 39], "dropped": 0 },
+ "beyond-wonderland-socal-2025": { "artists": 131, "stages": 7, "appearancesPerDay": [65, 66], "dropped": 1 },
+ "beyond-wonderland-socal-2022": { "artists": 84, "stages": 0, "appearancesPerDay": [42, 42], "dropped": 0 },
+ "beyond-wonderland-socal-2024": { "artists": 118, "stages": 0, "appearancesPerDay": [58, 61], "dropped": 2 },
+ "nocturnal-wonderland-2023": { "artists": 82, "stages": 0, "appearancesPerDay": [41, 41], "dropped": 0 },
+ "hard-summer-2018": { "artists": 82, "stages": 0, "appearancesPerDay": [42, 40], "dropped": 0 },
+ "hard-summer-2019": { "artists": 104, "stages": 0, "appearancesPerDay": [53, 52], "dropped": 0 },
+ "hard-summer-2022": { "artists": 126, "stages": 0, "appearancesPerDay": [41, 43, 42], "dropped": 0 },
+ "hard-summer-2023": { "artists": 80, "stages": 5, "appearancesPerDay": [41, 40], "dropped": 0 },
+ "hard-summer-2024": { "artists": 96, "stages": 7, "appearancesPerDay": [52, 48], "dropped": 0 },
+ "escape-halloween-2023": { "artists": 89, "stages": 5, "appearancesPerDay": [47, 42], "dropped": 0 },
+ "edc-las-vegas-2019": { "artists": 340, "stages": 15, "appearancesPerDay": [120, 123, 118], "dropped": 7 },
+ "edc-las-vegas-2021": { "artists": 333, "stages": 0, "appearancesPerDay": [116, 119, 113], "dropped": 1 },
+ "edc-las-vegas-2023": { "artists": 317, "stages": 13, "appearancesPerDay": [114, 117, 109], "dropped": 4 },
+ "edc-orlando-2018": { "artists": 77, "stages": 0, "appearancesPerDay": [40, 38], "dropped": 0 },
+ "edc-mexico-2020": { "artists": 251, "stages": 0, "appearancesPerDay": [74, 87, 90], "dropped": 0 }
 }

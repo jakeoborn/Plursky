@@ -1260,19 +1260,27 @@ const _POSTER_TIMEOUT_MS = 8000;
 // lead-in, a pocket, a lens cap. A dark night-set clip still has stage lights
 // in it and passes, so only a frame with no highlights at all is skipped.
 const _BLACK_MAX_LUMA = 40;
-function _frameIsBlack(v) {
+// "ok" | "black" | "unpainted". A frame read right after `seeked` can come
+// back with nothing drawn (every pixel alpha 0) before the decoder has
+// presented it (seen on CI Chromium as 19/20 posters). That is not a black
+// frame: it is re-read, not skipped.
+function _frameState(v) {
   try {
     const c = document.createElement("canvas");
     c.width = c.height = 24;
     const g = c.getContext("2d");
     g.drawImage(v, 0, 0, 24, 24);
     const d = g.getImageData(0, 0, 24, 24).data;
+    let painted = false;
     for (let i = 0; i < d.length; i += 4) {
-      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return false;
+      if (d[i + 3] === 0) continue;
+      painted = true;
+      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return "ok";
     }
-    return true;
-  } catch { return false; }
+    return painted ? "black" : "unpainted";
+  } catch { return "ok"; }
 }
+const _POSTER_PAINT_RETRIES = 6, _POSTER_PAINT_WAIT_MS = 50;
 function _videoPosterBlob(blob) {
   return new Promise((resolve) => {
     let url = null, v = null, settled = false, timer = null;
@@ -1321,11 +1329,15 @@ function _videoPosterBlob(blob) {
           .filter((t, i, a) => t < dur && (i === 0 || t > a[i - 1] + 0.05));
         if (v.readyState >= 2) seek(); else v.onloadeddata = seek;
       };
-      v.onseeked = () => {
-        if (!_frameIsBlack(v)) return draw();
+      const judge = (tries) => {
+        if (settled) return;
+        const st = _frameState(v);
+        if (st === "unpainted" && tries < _POSTER_PAINT_RETRIES) return setTimeout(() => judge(tries + 1), _POSTER_PAINT_WAIT_MS);
+        if (st === "ok") return draw();
         if (++at < times.length) return seek();
         done(null);
       };
+      v.onseeked = () => judge(0);
       v.onerror = () => done(null);
       v.src = url;
     } catch { done(null); }
@@ -1974,7 +1986,8 @@ function _backedUpBytes(all) {
 // Mirror every not-yet-backed-up moment photo/video to Supabase Storage, then
 // stamp `backedUp` + `backedUpBytes` on the moment (one batched write at the
 // end so we don't fire N re-renders). Stops at the hard cap. Returns
-// {done, failed, total, capped, usedBytes} or {error}.
+// {done, failed, total, capped, usedBytes, gpsHeld} or {error}; gpsHeld
+// counts videos kept back because their GPS could not be proven stripped.
 async function _backupMyWeekend(onProgress) {
   if (typeof window.sbUploadMomentMedia !== "function") return { error: "offline" };
   const user = window.sbGetUser ? await window.sbGetUser() : null;
@@ -1987,10 +2000,20 @@ async function _backupMyWeekend(onProgress) {
   }
   let done = 0, failed = 0, capped = false;
   const succeeded = {}; // id -> bytes
+  let gpsHeld = 0;
   for (const m of pending) {
-    const blob = await _getPhoto(m.photoId).catch(() => null);
+    let blob = await _getPhoto(m.photoId).catch(() => null);
     if (!blob) { failed++; onProgress?.({ done, failed, total: pending.length }); continue; }
     if (usedBytes + blob.size > _BACKUP_HARD_CAP) { capped = true; break; }
+    // A stored video is the raw file, capture GPS included; only a copy with
+    // the phone's own location metadata removed may leave the device (see
+    // _stripVideoGps for what is and is not vetted). If the strip refuses
+    // (null), the clip is held back, never sent as-is.
+    if (m.kind === "video" || /^video\//.test(blob.type || "")) {
+      const clean = await _stripVideoGps(blob);
+      if (!clean) { gpsHeld++; onProgress?.({ done, failed, total: pending.length }); continue; }
+      blob = clean.blob;
+    }
     const ok = await window.sbUploadMomentMedia(m.photoId, blob);
     if (ok) { succeeded[m.id] = blob.size; usedBytes += blob.size; done++; } else failed++;
     onProgress?.({ done, failed, total: pending.length });
@@ -2001,7 +2024,7 @@ async function _backupMyWeekend(onProgress) {
     for (const n of Object.keys(cur)) cur[n] = (cur[n] || []).map(x => succeeded[x.id] != null ? { ...x, backedUp: true, backedUpBytes: succeeded[x.id] } : x);
     _writeMoments(cur);
   }
-  return { done, failed, total: pending.length, capped, usedBytes };
+  return { done, failed, total: pending.length, capped, usedBytes, gpsHeld };
 }
 
 // Single memory thumbnail for the home strip — loads its photo blob lazily.
@@ -2737,8 +2760,12 @@ function _FavBadge({ style }) {
 function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight, onDelete }) {
   const m = moments[index];
   const photoUrl = useMomentPhoto(m?.photoId);
-  const artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
-  const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  // SPEC-179: the clip's OWN festival names its act and stage. A III Points
+  // clip opened while ACL is active looked its artistId up in ACL's lineup,
+  // so a fresh pick showed no act and no stage.
+  const mf = _momentFestival(m);
+  const artist = m?.artistId ? mf.artists.find(a => a.id === m.artistId) || null : null;
+  const stage  = artist ? mf.stages.find(s => s.id === artist.stage) || null : null;
   const estimatedSong = useSetlistSong(artist, m?.takenAt);
   // Prefer a Shazam-confirmed song over the tracklist estimate.
   const song   = m?.confirmedSong ? { song: m.confirmedSong } : estimatedSong;
@@ -2763,19 +2790,11 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   // Quick-picks come from the weekend the moment was CAPTURED in, not the
   // session's: from Oct 9 the session is W2 for good, and a Weekend 1 photo
   // was offered only Weekend 2's acts (round 5).
-  const retagOptions = React.useMemo(() => {
-    const q = retagQuery.trim().toLowerCase();
-    if (q) {
-      return ARTISTS.filter(a => a.name.toLowerCase().includes(q)).slice(0, 24);
-    }
-    if (!m) return [];
-    const hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
-    const t = hhmm ? toNightMin(hhmm) : null;
-    const night = m.night || NOW.day;
-    const all = momentLineup(m).filter(a => a.day === night);
-    const playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
-    return (playing.length ? playing : all).slice().sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
-  }, [m, retagQuery]);
+  // SPEC-179: both lists read the clip's OWN festival and weekend, never the
+  // active one (a III Points clip opened while ACL is active searched ACL),
+  // and the search folds stylized billing, so "Yukimatsu" finds
+  // "¥ØU$UK€ ¥UK1MAT$U". Acts the matcher offered come first.
+  const retagOptions = React.useMemo(() => _retagOptionsFor(m, retagQuery), [m, retagQuery]);
 
   const runIdentify = async () => {
     setIdState("listening");
@@ -2978,12 +2997,26 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           marginTop: 2, padding: 0, textAlign: "left", fontSize: 15,
         }}>{retagging ? "Cancel" : (artist ? "Wrong act? Fix it" : "Tag this moment")}</button>
         {retagging && (
+          <input type="search" value={retagQuery} onChange={e => setRetagQuery(e.target.value)}
+            placeholder={`Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`}
+            aria-label={`Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`}
+            autoComplete="off" autoCorrect="off" autoCapitalize="none" spellCheck={false} data-retag-search=""
+            style={{
+              marginTop: 8, width: "100%", boxSizing: "border-box", minHeight: 44, padding: "0 12px",
+              borderRadius: "var(--rad-sm)", border: "1px solid rgba(var(--ink-rgb),0.24)",
+              background: "rgba(var(--ink-rgb),0.06)", color: "var(--ink)", fontSize: 16, fontFamily: "inherit",
+            }}/>
+        )}
+        {retagging && retagQuery.trim() && !retagOptions.length && (
+          <div style={{ marginTop: 6, fontSize: 13, color: "var(--text-2)" }}>No act matches “{retagQuery.trim()}”.</div>
+        )}
+        {retagging && (
           <div className="no-scrollbar" style={{ marginTop: 8, maxHeight: 176, overflowY: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
             {retagOptions.map(a => {
-              const st = STAGES.find(s => s.id === a.stage);
+              const st = mf.stages.find(s => s.id === a.stage);
               const on = a.id === m.artistId;
               return (
-                <button key={a.id} onClick={() => { onUpdate?.(m, { artistId: a.id, tagSource: "manual", autoTagged: false }); setRetagging(false); try { window.plurskyHaptic?.("LIGHT"); } catch {} }} style={{
+                <button key={a.id} onClick={() => { onUpdate?.(m, _retagPatch({ artistId: a.id })); setRetagging(false); try { window.plurskyHaptic?.("LIGHT"); } catch {} }} style={{
                   display: "flex", alignItems: "center", gap: 8, padding: "8px 10px", borderRadius: "var(--rad-sm)",
                   background: on ? "rgba(var(--ink-rgb),0.18)" : "rgba(var(--ink-rgb),0.06)",
                   border: `1px solid ${on ? "var(--ink)" : "rgba(var(--ink-rgb),0.14)"}`, cursor: "pointer", textAlign: "left",
@@ -4163,7 +4196,7 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
       const exif = await _parseExifMeta(file).catch(() => null);
       const meta = _metaFromFile(file, exif);
       if (meta && meta.date && !artistId) {
-        const attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+        const attendedIds = _allFestivalAttendedIds();
         const matched = _matchArtistForPhoto(meta, savedNightArtists.map(a => a.id), attendedIds);
         // The chip must only ever name an artist from the festival this
         // moment will be SAVED under (handleSave stamps the ACTIVE festival).
@@ -4404,6 +4437,28 @@ function _momentFestival(m) {
   const ds = (window._DATA_SETS || {})[fid] || {};
   return { fid, cfg: ds.config || window.FESTIVAL_CONFIG, artists: ds.artists || window.ARTISTS || [], stages: ds.stages || window.STAGES || [] };
 }
+// The "Wrong act? Fix it" list for one moment. With a query: every act of the
+// moment's festival on its weekend whose billed name matches (stylized letters
+// folded). Without: the acts playing at its capture time on its night (all
+// of that night if none), the matcher's alternatives first.
+function _retagOptionsFor(m, query) {
+  if (!m) return [];
+  const { cfg, artists } = _momentFestival(m);
+  const wk = typeof momentWeekend === "function" ? momentWeekend(m.takenAt, cfg) : null;
+  const lineup = artists.filter(a => !wk || !a.weekend || a.weekend === "both" || a.weekend === wk);
+  const q = String(query || "").trim();
+  if (q) return lineup.filter(a => billedNameMatches(a.name, q)).slice(0, 24);
+  const hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
+  const t = hhmm ? toNightMin(hhmm) : null;
+  const night = m.night || NOW.day;
+  const all = lineup.filter(a => a.day === night);
+  const playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
+  const rank = new Map((m.tagAlternatives || []).map((id, i) => [id, i]));
+  const base = (playing.length ? playing : all).slice();
+  for (const id of rank.keys()) if (!base.some(a => a.id === id)) { const a = lineup.find(x => x.id === id); if (a) base.push(a); }
+  const r = (a) => (rank.has(a.id) ? rank.get(a.id) : 1e6);
+  return base.sort((a, b) => (r(a) - r(b)) || (toNightMin(a.start) - toNightMin(b.start)));
+}
 // The sets a moment can be tagged to on a night: its festival's lineup, on
 // the weekend it was captured.
 function _reviewLineup(m, night) {
@@ -4416,7 +4471,7 @@ function _reviewLineup(m, night) {
 // the same thing. A set carries its own stage; a stage alone is "stage known,
 // set unknown"; Unknown clears both and says so.
 function _retagPatch(choice) {
-  const base = { tagSource: "manual", autoTagged: false, needsRetag: false, tagAmbiguous: false, tagSuggested: false };
+  const base = { tagSource: "manual", autoTagged: false, needsRetag: false, tagAmbiguous: false, tagSuggested: false, tagAlternatives: null };
   if (!choice) return null;
   if (choice.unknown) return { ...base, tagSource: "unknown", artistId: null, stageId: null };
   if (choice.artistId) return { ...base, artistId: choice.artistId, stageId: null };
@@ -6271,7 +6326,11 @@ function MemoriesScreen({ state, setState }) {
   // opts.reviewAcc (Scan my weekend): an array shared across chunks, so the
   // review after each chunk lists everything the scan has landed so far
   // rather than only the latest chunk. Returns the settled results.
+  // opts.nativePicker (PHPicker): files are native {path, mimeType} items,
+  // read one at a time inside the loop; a row that failed while READING
+  // carries unreadable: true.
   const processImportedFiles = async (files, opts = {}) => {
+    const nativePicker = !!opts.nativePicker;
     if (files.length === 0) {
       window.plurskyToast?.("No photos received — pick a few at a time; if they're in iCloud, open them in Photos first so they download.");
       return [];
@@ -6279,8 +6338,12 @@ function MemoriesScreen({ state, setState }) {
     const results = [];
     setBatch({ total: files.length, done: 0, results });
     const savedIds = state.saved || [];
-    const attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+    // Every festival's attendance: the matcher keeps only ids its photo's own
+    // festival bills (ids are unique per festival), so an EDC photo imported
+    // while ACL is on screen still gets its EDC attended sets.
+    const attendedIds = _allFestivalAttendedIds();
     const current = { ..._readMoments() };
+    _importLog("batch_start", { files: files.length, active: window.FESTIVAL_CONFIG?.id || null, saved: savedIds.length, attended: attendedIds.length });
 
     // Content key → the moments that share it: candidates, not verdicts.
     const existingContent = new Map();
@@ -6298,8 +6361,35 @@ function MemoriesScreen({ state, setState }) {
       : (allNights[allNights.length - 1] || 1);
     let skippedDupes = 0;
     for (let i = 0; i < files.length; i++) {
-      const f = files[i];
+      let f = files[i];
+      // True only while the native item is being READ. A failure after the
+      // read (an IndexedDB save hitting a full disk) is not "unreadable" and
+      // must not get the iCloud banner.
+      let reading = false;
       try {
+        // PHPicker returns paths, not media blobs. Fetch just this item, write
+        // it to IndexedDB, then advance. Twenty 200 MB files must not become
+        // twenty simultaneous Blob/File objects in the WebView heap.
+        if (nativePicker) {
+          reading = true;
+          const item = f;
+          const src = item.path ? (window.Capacitor?.convertFileSrc?.(item.path) || item.path) : null;
+          if (!src) throw new Error("No readable file path");
+          const isVideo = /^video\//.test(item.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(item.name || "");
+          if (isVideo && item.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          const response = await fetch(src);
+          if (!response.ok) throw new Error(`Media read failed (${response.status})`);
+          const blob = await response.blob();
+          if (!blob.size) throw new Error("Empty or unavailable iCloud media");
+          if (isVideo && blob.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          const type = item.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
+          if (!/^(image|video)\//.test(type)) throw new Error("Unsupported media type");
+          f = new File([blob], item.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`, {
+            type, lastModified: item.modifiedAt || Date.now(),
+          });
+          if (isVideo && item.path) Object.defineProperty(f, "nativePath", { value: item.path });
+          reading = false;
+        }
         const fp = await _fileFingerprint(f);
         const ck = _fingerprintContentKey(fp);
         const fileSha = /^image\//.test(f.type || "") ? await _blobSha256Hex(f).catch(() => null) : null;
@@ -6310,6 +6400,7 @@ function MemoriesScreen({ state, setState }) {
         if (isDupe) {
           skippedDupes++;
           results.push({ name: f.name, night: null, artistId: null, skipped: "duplicate" });
+          _importLog("file_duplicate", { i, name: f.name });
           setBatch({ total: files.length, done: i + 1, results: results.slice() });
           continue;
         }
@@ -6389,6 +6480,10 @@ function MemoriesScreen({ state, setState }) {
           matchReason: matched.reason || null,
           matchEvidence: matched.evidence || null,
           tagSuggested: !!(matched.artistId && matched.suggested),
+          // SPEC-179: every act that could be this clip when the matcher would
+          // not choose (several playing, no trusted fix) or chose with doubt.
+          // The fix-it list offers these first.
+          tagAlternatives: Array.isArray(matched.alternatives) && matched.alternatives.length ? matched.alternatives.slice(0, 12) : null,
           // Which anchor class decided this tag: "crowd" (measured) or
           // "poster" (derived from the map art, known-skewed). null when GPS
           // played no part. Kept on the record so a later re-tag pass can find
@@ -6439,6 +6534,16 @@ function MemoriesScreen({ state, setState }) {
         addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];
         results.push({ name: f.name, fileIndex: i, momentId: id, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
+        _importLog("file", {
+          i, name: f.name, type: f.type || null, kind: out.kind,
+          takenAtSource: meta?.takenAtSource || "none", exifDate: hadExifDate,
+          dateUnverified: !!meta?.dateUnverified, gps: moment.hasGps, gpsAccM: moment.gpsAccM,
+          gpsRejected: moment.gpsRejected, festivalId: moment.festivalId,
+          resolvedBy: matched.resolvedBy || null, stamp: moment.festivalStampSource,
+          night, nightFromCapture: !!matched.night, artistId: moment.artistId || null,
+          reason: matched.reason || null, tagSource, ambiguous: moment.tagAmbiguous,
+          anchorSource: moment.anchorSource, recovered: !!recovered,
+        });
         // Persist + refresh after EACH file so a mid-batch Safari crash/OOM
         // (common on large iOS selections that include videos / iCloud photos)
         // keeps what's already imported and the grid fills in live — instead
@@ -6452,8 +6557,11 @@ function MemoriesScreen({ state, setState }) {
         // refresh failure) must not count the same file as both imported and
         // failed. The landed result is the durable outcome.
         if (!results.some(r => r.fileIndex === i && r.momentId)) {
-          results.push({ name: f.name, fileIndex: i, night: null, artistId: null, err: err?.message || "failed" });
+          const name = f?.name || `item ${i + 1}`;
+          const unreadable = reading && !(err?.message || "").includes("200 MB");
+          results.push({ name, fileIndex: i, night: null, artistId: null, err: err?.message || "failed", ...(unreadable ? { unreadable: true } : {}) });
         }
+        _importLog("file_failed", { i, name: f?.name ?? null, type: f?.type || f?.mimeType || null, size: f?.size ?? null, error: String(err?.message || err), stack: String(err?.stack || "").split("\n").slice(0, 3).join(" | ") });
       }
       setBatch({ total: files.length, done: i + 1, results: results.slice() });
     }
@@ -6467,6 +6575,11 @@ function MemoriesScreen({ state, setState }) {
     const landed = settledResults.filter(r => r.momentId);
     const failedResults = settledResults.filter(r => r.err);
     const duplicateResults = settledResults.filter(r => r.skipped === "duplicate");
+    _importLog("batch_end", {
+      files: files.length, landed: landed.length, failed: failedResults.length, duplicates: duplicateResults.length,
+      tagged: landed.filter(r => r.artistId).length, fallbackNight: landed.filter(r => r.fallback).length,
+      byFestival: landed.reduce((m, r) => (m[r.festivalId || "none"] = (m[r.festivalId || "none"] || 0) + 1, m), {}),
+    });
     // Never fail silently: if nothing landed, say why out loud.
     // ...and never file silently either. A cross-festival import is now
     // stamped correctly, which means it is CORRECTLY not visible on this
@@ -6618,47 +6731,9 @@ function MemoriesScreen({ state, setState }) {
       const files = result?.files || [];
       // An empty selection is the user cancelling. Nothing to report.
       if (files.length === 0) return { status: "cancelled" };
-      const out = [];
-      const unreadable = [];
-      for (let i = 0; i < files.length; i++) {
-        const f = files[i];
-        // `path` is a native file URL; convertFileSrc makes it loadable by
-        // the WebView so fetch() can read it into a Blob, then we wrap it as
-        // a File so the existing ingest pipeline sees the same shape it would
-        // from <input type="file">.
-        const src = f.path ? (cap.convertFileSrc ? cap.convertFileSrc(f.path) : f.path) : null;
-        if (!src) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "nofile" }); continue; }
-        // A file still in iCloud, or one the WebView cannot read, rejects
-        // HERE. Before v341 the whole batch threw and became a "fall back to
-        // the web input" — one un-downloaded photo lost the other 49.
-        let blob = null;
-        try {
-          blob = await fetch(src).then(r => r.blob());
-        } catch {
-          unreadable.push({ name: f.name || `item ${i + 1}`, why: "unreadable" });
-          continue;
-        }
-        if (!blob || !blob.size) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "unreadable" }); continue; }
-        const isVideo = /^video\//.test(f.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(f.name || "");
-        const type = f.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
-        if (!/^(image|video)\//.test(type)) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "unsupported" }); continue; }
-        const name = f.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`;
-        const pickedFile = new File([blob], name, {
-          type,
-          // modifiedAt is the freshly-transcoded temp file's mtime (≈now),
-          // which the <30s heuristic in _metaFromFile correctly ignores so
-          // photos tag from real EXIF rather than the conversion stamp.
-          lastModified: f.modifiedAt || Date.now(),
-        });
-        if (isVideo && f.path) {
-          try { Object.defineProperty(pickedFile, "nativePath", { value: f.path }); }
-          catch { pickedFile.nativePath = f.path; }
-        }
-        out.push(pickedFile);
-      }
-      // Everything the user picked failed to read. That is NOT a cancel.
-      if (out.length === 0) return { status: unreadable.length ? "nofile" : "cancelled", unreadable };
-      return { status: "picked", files: out, unreadable };
+      // Do not fetch here: the ingest loop resolves one path at a time.
+      // The picker may select 50 clips of up to 200 MB each.
+      return { status: "picked", files };
     } catch (err) {
       // FilePicker 6.2.0 rejects a dismissed sheet; that is the user backing
       // out, not a failure (build 39, the orange card after a cancel).
@@ -6674,10 +6749,11 @@ function MemoriesScreen({ state, setState }) {
     setPickerState(null);
     const res = await pickViaNative();
     if (res.status === "picked") {
-      // Some items read, some did not — import what we have and say what we
-      // could not take, rather than reporting a clean success.
-      if (res.unreadable && res.unreadable.length) setPickerState({ status: "unreadable", detail: res.unreadable });
-      await processImportedFiles(res.files);
+      const settled = (await processImportedFiles(res.files, { nativePicker: true })) || [];
+      const unreadable = settled.filter(r => r.unreadable).map(r => ({ name: r.name, why: "unreadable" }));
+      if (unreadable.length) {
+        setPickerState({ status: settled.some(r => r.momentId) ? "unreadable" : "nofile", detail: unreadable });
+      }
       return;
     }
     if (res.status === "unsupported") {
@@ -7167,7 +7243,7 @@ function MemoriesScreen({ state, setState }) {
     if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");
     else if (res?.error) window.plurskyToast?.("Backup unavailable right now");
     else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);
-    else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
+    else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}${res.gpsHeld ? ` · ${res.gpsHeld} ${res.gpsHeld === 1 ? "video stays" : "videos stay"} on this phone (location could not be removed)` : ""}`);
   };
   const handleBackup = async () => {
     if (!_isPlusSub()) { setShowPlus(true); return; }
@@ -8559,10 +8635,11 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
       const r = await createAppleMusicPlaylist(state, { soundtrack, onProgress: setProg });
       setResult(r);
       setStatus(r.ok ? "done" : "err");
-      if (!r.ok && r.reason !== "not_connected") setTimeout(() => setStatus("idle"), 4500);
     } catch (e) {
-      setResult({ ok: false, reason: "create_fail", message: String(e?.message || e) });
-      setStatus("err"); setTimeout(() => setStatus("idle"), 4500);
+      const r = { ok: false, reason: "create_fail", message: String(e?.message || e) };
+      r.userMessage = appleMusicFailureMessage(r);
+      try { console.warn("[plursky:applemusic] threw", r.message); } catch {}
+      setResult(r); setStatus("err");
     }
   };
   const onClick = () => {
@@ -8581,15 +8658,15 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
   } else if (status === "done") {
     const sm = result?.songsMatched || 0;
     const open = result?.url ? " — open ↗" : "";
+    const miss = result?.missed ? ` · ${result.missed} act${result.missed === 1 ? "" : "s"} not on Apple Music` : "";
     label = soundtrack && sm > 0
-      ? `✓ ${sm} of your songs + ${result?.added - sm} more${open}`
-      : `✓ ${result?.added} tracks in Apple Music${open}`;
+      ? `✓ ${sm} of your songs + ${result?.added - sm} more${miss}${open}`
+      : `✓ ${result?.added} tracks in Apple Music${miss}${open}`;
     bg = "var(--apple-music)"; color = "var(--on-apple-music)"; border = "none";
   } else if (status === "err") {
-    if (result?.reason === "not_connected") label = "Tap to connect Apple Music";
-    else if (result?.reason === "empty") label = "Save sets first";
-    else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";
-    else label = `Try again${result?.status ? ` · ${result.status}` : ""}`;
+    // The reason stays on the button until the next tap (it used to reset to
+    // idle after 4.5 s, and "not connected" never said WHY it could not connect).
+    label = result?.userMessage || appleMusicFailureMessage(result) || "Apple Music playlist failed";
     bg = "rgba(var(--alert-rgb),0.16)"; color = "var(--ink)"; border = "1px solid var(--alert)";
   } else {
     label = soundtrack ? "Soundtrack to Apple Music" : "Build Apple Music playlist";
@@ -8597,7 +8674,8 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
 
   return (
     <button onClick={onClick} disabled={status === "working"} style={{
-      background: bg, color, border, borderRadius: 999, padding: "10px 16px",
+      background: bg, color, border, borderRadius: status === "err" ? 14 : 999, padding: "10px 16px",
+      maxWidth: "100%", textAlign: "left", overflowWrap: "anywhere",
       cursor: status === "working" ? "wait" : "pointer",
       fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
       transition: "all .2s",
@@ -8622,7 +8700,7 @@ function archiveFestival(festivalId, festivalName, festivalConfig) {
     const archive = _readArchive();
     // Don't overwrite an existing snapshot — first archive wins (the user
     // explicitly archived) unless empty (auto-archive after re-entry).
-    const attended = JSON.parse(localStorage.getItem("plursky_attended_v1") || "{}");
+    const attended = getAllAttended(festivalId);   // this festival only, never the mixed store
     const moments  = JSON.parse(localStorage.getItem("plursky_moments_v1")  || "{}");
     const saved    = JSON.parse(localStorage.getItem("edc_saved") || "[]");
     const totalAttended = Object.values(attended).reduce((s, a) => s + (Array.isArray(a) ? a.length : 0), 0);
@@ -9629,6 +9707,43 @@ function _iapAvailable() {
   return !!window.Capacitor?.isNativePlatform?.() || _iapDevHost();
 }
 
+// ── Offer-code redemption (SPEC-183 2b) ──────────────────────
+// OFF. While false, the paywall shows no code entry at all. Turning it on is
+// Jake's call after his design review, and it only does something once offer
+// codes exist in App Store Connect (none do yet). The sheet is Apple's own:
+// Apple checks the code, shows the discounted price and takes the payment;
+// Plursky never sees or stores the code.
+const PROMO_CODE_REDEEM_ON = false;
+
+function _codeRedeemAvailable() {
+  return PROMO_CODE_REDEEM_ON && _iapAvailable();
+}
+
+// Opens Apple's offer-code sheet, then re-reads the entitlement. A code
+// redeemed for Plursky+ shows up there; the customer-info listener also
+// catches one that settles after the sheet closes.
+async function _redeemOfferCode() {
+  if (!PROMO_CODE_REDEEM_ON) return { success: false, unsupported: true };
+  if (!window.Capacitor?.isNativePlatform?.()) {
+    if (!_iapDevHost()) return { success: false, unsupported: true, error: "Codes can only be redeemed in the iOS app." };
+    console.log("[plursky-iap] local dev host: would open Apple's offer-code sheet");
+    return { success: false, web: true };
+  }
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return { success: false, error: "RevenueCat not configured" };
+  try {
+    const Purchases = _rcPlugin();
+    // 5 min: the person may be typing a code or switching apps to copy one.
+    await _withTimeout(Purchases.presentCodeRedemptionSheet(), 300000, "Offer code sheet");
+    const { customerInfo } = await _withTimeout(Purchases.getCustomerInfo(), 15000, "Entitlement check");
+    _syncEntitlements(customerInfo);
+    return { success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT] };
+  } catch (e) {
+    console.error("[plursky-iap] offer code error:", _iapMsg(e));
+    return { success: false, error: _iapMsg(e) };
+  }
+}
+
 // `offeringId` names a non-current offering to buy from (the Season Pass
 // rescue lives in its own "season_rescue" offering, never in `current`).
 async function _purchasePlus(productId, { offeringId } = {}) {
@@ -10170,6 +10285,19 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
     }
   };
 
+  const handleRedeem = async () => {
+    setBusy(true); setBuyError(null);
+    try {
+      const result = await _redeemOfferCode();
+      if (result.success) { window.location.reload(); return; }
+      if (result.error) setBuyError(result.error);
+    } catch (e) {
+      setBuyError(e?.message || "The code could not be redeemed.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const handleRestore = async () => {
     setBusy(true); setBuyError(null);
     try {
@@ -10316,6 +10444,11 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
         ))}
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", marginTop: 8 }}>
           <button onClick={handleRestore} disabled={busy} style={quiet}>Restore purchases</button>
+          {_codeRedeemAvailable() && <button onClick={handleRedeem} disabled={busy} style={quiet} data-redeem-code="">Redeem code</button>}
+          {/* With the code entry the four links split two and two at every
+              width (Restore · Redeem / Terms · Privacy), never "Privacy"
+              alone on a second line (#398 review, 2026-11-07). */}
+          {_codeRedeemAvailable() && <span aria-hidden="true" data-redeem-break="" style={{ flexBasis: "100%", height: 0 }} />}
           <a href="./terms.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Terms</a>
           <a href="./privacy.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Privacy</a>
         </div>
