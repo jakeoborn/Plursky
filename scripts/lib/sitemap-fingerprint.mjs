@@ -59,8 +59,11 @@ const SLICE_END = 'const rows = [];';
 // recompute, rather than trusting an injected value that proves only that the
 // field participates in the hash.
 export function templateMarkup(source) {
-  const from = source.indexOf(SLICE_START);
-  const to = source.indexOf(SLICE_END);
+  // Anchors match at the start of a line only, so a comment that quotes them
+  // (one did, above the slice, on 2026-11-12) cannot move the slice.
+  const at = (anchor) => { const i = source.indexOf('\n' + anchor); return i === -1 ? -1 : i + 1; };
+  const from = at(SLICE_START);
+  const to = at(SLICE_END);
   if (from === -1 || to === -1 || to <= from) {
     throw new Error('sitemap-fingerprint: could not slice the render path out of '
       + 'gen-festival-pages.mjs — the anchors moved. Fix this rather than deleting it: '

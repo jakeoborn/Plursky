@@ -13,7 +13,12 @@ What this does, per festival:
      what the art is being tested against, not evidence for it.
   2. Fits the art to the ground: `affine` for top-down and isometric art (a
      parallel projection of a flat site IS an affine), `homography` for art
-     drawn in perspective (streets converge, e.g. III Points).
+     drawn in perspective (streets converge, e.g. III Points), `tps` (a
+     thin-plate spline, "rubber sheet") for art drawn out of proportion, so
+     it bends through many ties instead of one stretch (Jake, 2026-11-12:
+     "get each map overlayed on top of the real ground"). A spline passes
+     through its ties by construction, so its rmsM is the LEAVE-ONE-OUT
+     error: each tie predicted by a spline that never saw it.
   3. Warps the art into a north-up raster whose four corners are a plain
      lat/lng rectangle, so MapLibre draws it exactly (an image source drawn
      from a skewed quad is split into two triangles and tears on the diagonal).
@@ -86,6 +91,48 @@ def fit(model, src, dst):
     raise SystemExit(f"unknown model {model!r}")
 
 
+def _U(r2):
+    """Thin-plate kernel r^2 log r, written on r^2 (0 at r = 0)."""
+    with np.errstate(divide="ignore", invalid="ignore"):
+        return np.where(r2 > 0, 0.5 * r2 * np.log(r2), 0.0)
+
+
+class TPS:
+    """Thin-plate spline src -> dst (both (k,2)). `smoothing` (dimensionless,
+    on src scaled to unit spread) lets the sheet miss a tie a little instead
+    of kinking through a misread one; 0 interpolates exactly."""
+    def __init__(self, src, dst, smoothing=0.0):
+        if len(src) < 4: raise SystemExit("tps needs at least 4 ties")
+        self.c = src.mean(0); self.s = max(float(np.sqrt(((src - self.c) ** 2).sum(1)).mean()), 1e-9)
+        self.p = (src - self.c) / self.s
+        k = len(src)
+        K = _U(((self.p[:, None, :] - self.p[None, :, :]) ** 2).sum(-1)) + smoothing * np.eye(k)
+        P = np.hstack([np.ones((k, 1)), self.p])
+        A = np.zeros((k + 3, k + 3)); A[:k, :k] = K; A[:k, k:] = P; A[k:, :k] = P.T
+        b = np.zeros((k + 3, 2)); b[:k] = dst
+        sol = np.linalg.solve(A, b)
+        self.w, self.a = sol[:k], sol[k:]
+    def __call__(self, pts):
+        q = (np.asarray(pts, float) - self.c) / self.s
+        out = self.a[0] + q @ self.a[1:]
+        for i in range(0, len(q), 65536):
+            blk = q[i:i + 65536]
+            out[i:i + 65536] += _U(((blk[:, None, :] - self.p[None, :, :]) ** 2).sum(-1)) @ self.w
+        return out
+
+
+class Mapper:
+    """One fitted placement, art pixels -> local metres (and back for tps)."""
+    def __init__(self, model, src, dst, smoothing=0.0):
+        self.model = model
+        if model == "tps":
+            self.fwd, self.inv, self.M = TPS(src, dst, smoothing), TPS(dst, src, smoothing), None
+        else:
+            self.M = fit(model, src, dst)
+            self.fwd = lambda pts: apply(self.M, np.asarray(pts, float))
+    def __call__(self, pts): return self.fwd(pts)
+
+
 def apply(M, pts):
     p = np.hstack([pts, np.ones((len(pts), 1))]) @ M.T
     return p[:, :2] / p[:, 2:3]
@@ -105,7 +152,8 @@ PLACEMENT_KEYS = ("plate", "artBox", "artPolygon", "model", "ties")
 
 
 def inputs_sha256(T):
-    blob = json.dumps({k: T.get(k) for k in PLACEMENT_KEYS}, sort_keys=True, separators=(",", ":"))
+    keys = PLACEMENT_KEYS + (("smoothing",) if "smoothing" in T else ())
+    blob = json.dumps({k: T.get(k) for k in keys}, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(blob.encode()).hexdigest()
 
 
@@ -114,22 +162,30 @@ def solve(T):
     frame = Frame(sum(t["lat"] for t in ties) / len(ties), sum(t["lng"] for t in ties) / len(ties))
     src = np.array([[t["px"], t["py"]] for t in ties], float)
     dst = np.array([frame.en(t["lat"], t["lng"]) for t in ties], float)
-    M = fit(T["model"], src, dst)
-    res = np.sqrt(((apply(M, src) - dst) ** 2).sum(1))
+    sm = float(T.get("smoothing", 0.0))
+    M = Mapper(T["model"], src, dst, sm)
+    res = np.sqrt(((M(src) - dst) ** 2).sum(1))
     # Leave-one-out: each tie predicted by a fit that never saw it. This is the
     # honest error of the placement; the in-sample rms flatters small sets.
-    need = 3 if T["model"] == "affine" else 4
+    need = {"affine": 3, "homography": 4, "tps": 4}[T["model"]]
     loo = []
     if len(ties) > need:
         for i in range(len(ties)):
             keep = [j for j in range(len(ties)) if j != i]
-            Mi = fit(T["model"], src[keep], dst[keep])
-            loo.append(float(np.sqrt(((apply(Mi, src[i:i + 1]) - dst[i:i + 1]) ** 2).sum())))
+            Mi = Mapper(T["model"], src[keep], dst[keep], sm)
+            loo.append(float(np.sqrt(((Mi(src[i:i + 1]) - dst[i:i + 1]) ** 2).sum())))
     checks = []
     for c in T.get("checks", []):
-        p = apply(M, np.array([[c["px"], c["py"]]], float))[0]
+        p = M(np.array([[c["px"], c["py"]]], float))[0]
         checks.append({"name": c["name"], "metres": round(float(np.hypot(*(p - np.array(frame.en(c["lat"], c["lng"]))))), 1)})
     return frame, M, res, loo, checks
+
+
+def reported_rms(model, res, loo):
+    """The rms the app gates on. A spline hits its own ties by construction,
+    so for tps only the leave-one-out error says how well the art agrees."""
+    if model == "tps": return round(float(np.sqrt(np.mean(np.square(loo)))), 1) if loo else None
+    return round(float(np.sqrt((res ** 2).mean())), 1)
 
 
 def build(fid):
@@ -154,23 +210,45 @@ def build(fid):
         alpha.paste(255, (box["x"], box["y"], box["x"] + box["w"], box["y"] + box["h"]))
     plate.putalpha(Image.composite(plate.getchannel("A"), alpha, alpha))
 
-    cen = apply(M, corners)
+    if M.model == "tps":
+        # A spline bends between corners, so trace the edge densely.
+        edge = []
+        for a, b in zip(corners, np.roll(corners, -1, 0)):
+            edge += [a + (b - a) * t for t in np.linspace(0, 1, 40, endpoint=False)]
+        corners = np.array(edge)
+    cen = M(corners)
     e0, e1 = cen[:, 0].min(), cen[:, 0].max()
     n0, n1 = cen[:, 1].min(), cen[:, 1].max()
     # Resolution: keep the art's own detail (its median metres per pixel),
     # capped so the longest side stays under MAX_PX.
     # Metres per art pixel at the middle of the ties (local scale of the fit).
     c0 = np.array([[src[:, 0].mean(), src[:, 1].mean()]])
-    ex, ey = apply(M, c0 + [[1, 0]]) - apply(M, c0), apply(M, c0 + [[0, 1]]) - apply(M, c0)
+    ex, ey = M(c0 + [[1, 0]]) - M(c0), M(c0 + [[0, 1]]) - M(c0)
     span = float(np.hypot(*ex[0])), float(np.hypot(*ey[0]))
     res_m = max(min(span), max(e1 - e0, n1 - n0) / MAX_PX)
     ow, oh = int(math.ceil((e1 - e0) / res_m)), int(math.ceil((n1 - n0) / res_m))
     # Output pixel (i, j) -> metres (e0 + i*r, n1 - j*r) -> art pixel via M^-1.
-    O = np.array([[res_m, 0, e0], [0, -res_m, n1], [0, 0, 1]])
-    P = np.linalg.inv(M) @ O
-    P = P / P[2, 2]
-    coeffs = tuple(P.flatten()[:8])
-    warped = plate.transform((ow, oh), Image.PERSPECTIVE, coeffs, Image.BICUBIC, fillcolor=(0, 0, 0, 0))
+    if M.model == "tps":
+        # Piecewise: every CELL x CELL output block maps to the art quad the
+        # inverse spline gives its corners (PIL MESH, bilinear inside a cell).
+        CELL = 8
+        xs, ys = np.arange(0, ow + CELL, CELL), np.arange(0, oh + CELL, CELL)
+        gx, gy = np.meshgrid(xs, ys)
+        ground = np.stack([e0 + gx.ravel() * res_m, n1 - gy.ravel() * res_m], 1)
+        art = M.inv(ground).reshape(len(ys), len(xs), 2)
+        mesh = []
+        for j in range(len(ys) - 1):
+            for i in range(len(xs) - 1):
+                q = (art[j, i], art[j + 1, i], art[j + 1, i + 1], art[j, i + 1])
+                mesh.append(((int(xs[i]), int(ys[j]), int(xs[i + 1]), int(ys[j + 1])),
+                             tuple(float(v) for pt in q for v in pt)))
+        warped = plate.transform((ow, oh), Image.MESH, mesh, Image.BICUBIC, fillcolor=(0, 0, 0, 0))
+    else:
+        O = np.array([[res_m, 0, e0], [0, -res_m, n1], [0, 0, 1]])
+        P = np.linalg.inv(M.M) @ O
+        P = P / P[2, 2]
+        coeffs = tuple(P.flatten()[:8])
+        warped = plate.transform((ow, oh), Image.PERSPECTIVE, coeffs, Image.BICUBIC, fillcolor=(0, 0, 0, 0))
     os.makedirs(OUT_DIR, exist_ok=True)
     out_rel = f"geo-maps/{fid}.webp"
     warped.save(os.path.join(ROOT, out_rel), "WEBP", **WEBP)
@@ -180,7 +258,7 @@ def build(fid):
     out = {
         "image": out_rel, "size": [ow, oh], "metresPerPixel": round(res_m, 3),
         "bounds": {"w": round(w, 7), "s": round(s, 7), "e": round(e, 7), "n": round(n, 7)},
-        "rmsM": round(float(np.sqrt((res ** 2).mean())), 1), "worstM": round(float(res.max()), 1),
+        "rmsM": reported_rms(T["model"], res, loo), "worstM": round(float(max(loo) if T["model"] == "tps" and loo else res.max()), 1),
         "looRmsM": round(float(np.sqrt(np.mean(np.square(loo)))), 1) if loo else None,
         "residualsM": {t["name"]: round(float(r), 1) for t, r in zip(T["ties"], res)},
         "checksM": {c["name"]: c["metres"] for c in checks},
@@ -211,8 +289,9 @@ def check():
         if out.get("inputsSha256") != inputs_sha256(T):
             print(f"  ✗ {fid}: ties, art box, polygon, model or plate changed since the build"); bad += 1; continue
         frame, M, res, loo, _ = solve(T)
-        if abs(float(np.sqrt((res ** 2).mean())) - out["rmsM"]) > 0.11:
-            print(f"  ✗ {fid}: ties changed since the build (rms now {np.sqrt((res ** 2).mean()):.1f} m)"); bad += 1; continue
+        rms = reported_rms(T["model"], res, loo)
+        if rms is None or abs(rms - out["rmsM"]) > 0.11:
+            print(f"  ✗ {fid}: ties changed since the build (rms now {rms} m)"); bad += 1; continue
         if sha256(os.path.join(ROOT, T["plate"])) != out["plateSha256"]:
             print(f"  ✗ {fid}: plate {T['plate']} changed since the build"); bad += 1; continue
         if not os.path.exists(os.path.join(ROOT, out["image"])) or sha256(os.path.join(ROOT, out["image"])) != out["sha256"]:

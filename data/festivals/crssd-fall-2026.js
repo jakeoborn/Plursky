@@ -430,6 +430,14 @@
     // published, but it is poster art whose reuse rights and registration
     // are unsettled, so it is cited and never copied or pinned from.
     mapMode: "real",
+    // The real map now also lays the festival's OWN Fall 2026 map, bent onto
+    // Waterfront Park by a thin-plate fit over its pools, the County
+    // Administration Center and the streets (never a stage), Jake 2026-11-12:
+    // "let's try to get each map overlayed on top of the real ground".
+    // map-sources/crssd-fall-2026-geo-ties.json from https://www.crssdfest.com/wp-content/uploads/Map-IG-Post-4x5-1.jpg
+    // It places the art only: no stage pins, no distances, mapMode stays "real".
+    mapGeoref: { image: "geo-maps/crssd-fall-2026.webp", bounds: [-117.1733317, 32.7191649, -117.1705385, 32.724466], model: "tps",
+                 ties: "map-sources/crssd-fall-2026-geo-ties.json", rmsM: 9.7, looRmsM: 9.7 },
 
     // The festival's OWN map page, linked (never embedded) by the /f/ page:
     // official publication is provenance, not reuse rights. mapYear is the
