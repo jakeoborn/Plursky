@@ -3668,6 +3668,21 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// ── 1z-b10. Session note (SessionStart hook) ─────────────────────────────
+// .claude/settings.json runs scripts/session-note.mjs at every new session.
+// It must stay short, read-only, offline, credential-safe, and never fail.
+{
+  console.log("▸ Session-note gate — the SessionStart note is short, read-only, offline and never fails");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-session-note.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`session note failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c4. Historical editions (Past Festivals) ─────────────────────────
 // Past editions are frozen facts read from archived OFFICIAL pages. Each one
 // must validate (days, stages, times, provenance, review manifest), equal what
