@@ -147,7 +147,23 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   }
 
   // Completeness.
-  if (!["complete_schedule", "lineup_only"].includes(e.completeness)) p.push(`${e.id}: completeness "${e.completeness}"`);
+  if (!["complete_schedule", "selected_stages", "lineup_only"].includes(e.completeness)) p.push(`${e.id}: completeness "${e.completeness}"`);
+  // selected_stages: the official schedule had stages that are not imported.
+  // The registry names each one and the days it ran; a stage named missing
+  // must have no set on those days, so adding its data forces the label off.
+  if (JSON.stringify(e.coverage || null) !== JSON.stringify(meta.coverage || null)) p.push(`${e.id}: coverage differs from the edition registry`);
+  if ((e.completeness === "selected_stages") !== !!e.coverage?.missing?.length) p.push(`${e.id}: selected_stages needs a coverage.missing list, and only selected_stages may carry one`);
+  if (e.coverage) {
+    if (!DAY.test(e.coverage.asOf || "")) p.push(`${e.id}: coverage has no asOf date`);
+    for (const m of e.coverage.missing || []) {
+      if (!m.stage || !m.when || !m.days?.length) p.push(`${e.id}: a missing stage needs stage, when and days`);
+      for (const d of m.days || []) {
+        if (!e.days.some(x => x.day === d)) p.push(`${e.id}: missing stage ${m.stage} names day ${d}, which the edition does not have`);
+        const st = new Set(e.stages.filter(s => s.name.toLowerCase() === String(m.stage).toLowerCase()).map(s => s.id));
+        if ((e.sets || []).some(s => s.day === d && st.has(s.stageId))) p.push(`${e.id}: ${m.stage} is listed as missing on day ${d} but has sets there`);
+      }
+    }
+  }
   const lineupOnly = e.completeness === "lineup_only";
   if (lineupOnly && (e.sets?.length || e.provenance?.extractionMethod !== "official_lineup_html"))
     p.push(`${e.id}: lineup_only must carry no sets (no placeholder times) and come from an official lineup page`);
