@@ -1055,6 +1055,21 @@ function emit(abs, content, alsoAccept, strictOnly) {
   if (!ok) drift.push(rel);
 }
 
+// Inputs are read before f/ is cleared. A ledger that does not parse (a
+// merge once left conflict markers in sitemap-lastmod.json) used to crash
+// the build AFTER the rmSync, and that commit dropped all 75 pages. Now it
+// stops here with f/ intact (scripts/test-gen-pages-safe-clear.mjs).
+{
+  const ledger = path.join(root, 'sitemap-lastmod.json');
+  if (existsSync(ledger)) {
+    try { JSON.parse(readFileSync(ledger, 'utf8')); }
+    catch (e) {
+      console.error(`[gen] ✗ sitemap-lastmod.json does not parse (${e.message}); f/ left untouched. Resolve the file (a merge conflict?) and rerun.`);
+      process.exit(1);
+    }
+  }
+}
+
 if (!CHECK) {
   if (existsSync(OUT_DIR)) rmSync(OUT_DIR, { recursive: true, force: true });
   mkdirSync(OUT_DIR, { recursive: true });
