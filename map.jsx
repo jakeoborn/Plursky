@@ -475,10 +475,8 @@ function readoutHonest(avatar) {
 //   "checked"   geometryVerifiedFor() passes (Summerfest, Lollapalooza, Outside
 //               Lands today): full strength, posture "OFFICIAL MAP".
 //   "unchecked" anchors place the art but nothing independent corroborates
-//               them (ACL, Gov Ball, Ultra, EDC LV, EDC Orlando): faded, posture
-//               "POSTER NOT TO SCALE". Ultra's art draws its own OSM-anchored
-//               stages up to 387 m off; a confident wrong poster is worse than
-//               no poster.
+//               them (ACL, Gov Ball): faded, posture "POSTER NOT TO SCALE".
+//               A confident wrong poster is worse than no poster.
 //   "none"      fewer than three anchors (Escape, Nocturnal, HARD) or no art at
 //               all (mapMode "real"). Nothing places the art, so it is not
 //               drawn, and neither are stage pins: mapToGps() with no affine
@@ -505,7 +503,10 @@ function artGeorefFor(cfg) {
   return g;
 }
 function posterTierFor(cfg, affine, verified) {
-  if (!cfg || cfg.mapMode === "real") return "none";
+  if (!cfg) return "none";
+  // A real-basemap festival has no drawn art, but it can still lay its own
+  // official map fitted to the ground (CRSSD, Jake 2026-11-12).
+  if (cfg.mapMode === "real") return artGeorefFor(cfg) ? "fitted" : "none";
   if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
   if (affine && verified) return "checked";
   if (artGeorefFor(cfg)) return "fitted";
@@ -5309,7 +5310,7 @@ function RealMap({
           // creation while the toggle is off would leave the visibility effect
           // below with no layer to turn back ON, making the toggle one-way.
           // Build it always; set initial visibility from the toggle.
-          if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
+          if (!ART_GEOREF && (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage)) return;
           // Fitted art places itself; otherwise no anchors -> no defensible placement.
           if (!MAP_AFFINE && !ART_GEOREF) return;
           if (officialMapFailedRef.current) return;   // failed once: stays off
@@ -5350,7 +5351,7 @@ function RealMap({
           }
         };
         _safeLayer("official-map", _addOfficialMap);
-        if (!officialMapDimsRef.current && FESTIVAL_CONFIG.mapImage) {
+        if (!officialMapDimsRef.current && (FESTIVAL_CONFIG.mapImage || ART_GEOREF)) {
           _officialMapDims(OFFICIAL_MAP_SRC).then((d) => {
             if (cancelled || !d || !mapRef.current) return;
             officialMapDimsRef.current = d;
