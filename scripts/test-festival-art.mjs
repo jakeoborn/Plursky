@@ -29,13 +29,7 @@ const TILE_BUDGET = 16 * 1024, TOTAL_BUDGET = 400 * 1024;   // 47 tiles at ~8 KB
 // lots of photos"). A festival allowed the tinted letter tile goes here, with
 // why. None today.
 const FALLBACK = {
-  // Added 2026-11-10 as gated previews. Their official art hosts (the LAN
-  // poster on 2026-lightsallnight-com.imgix.net among them) could not be
-  // downloaded from the build environment that scaffolded them. Each needs an
-  // official tile in data/festival-art.js before it flips to available.
-  "tomorrowland-thailand-2026": "official art not fetched yet; tile owed before the flip",
-  "tomorrowland-winter-2027": "official art not fetched yet; tile owed before the flip",
-  "tomorrowland-brasil-2027": "official art not fetched yet; tile owed before the flip",
+  // Empty since the photo pass (2026-11-12): every listed festival has art.
 };
 // Sat Oct 17, 4 pm ET: III Points is live, so all three chip kinds are on the page.
 const AT = "2026-10-17T20:00:00Z";

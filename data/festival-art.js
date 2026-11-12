@@ -340,4 +340,25 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     credit: "UNTOLD mainstage fireworks at Cluj Arena, an official aftermovie still linked from the site's Memories page", retrieved: "2026-11-12",
     license: "Official festival site; reuse terms not granted. Interim card art for the photo pass 2026-11-12. The site's own images are posters with text; this still is from the festival's own channel.",
   },
+  "tomorrowland-thailand-2026": {
+    tile: "festival-art/tiles/tomorrowland-thailand-2026.webp", card: "festival-art/tomorrowland-thailand-2026.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Tomorrowland_2026_Mainstage_Night_Show_Boom_Belgium.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/9/97/Tomorrowland_2026_Mainstage_Night_Show_Boom_Belgium.jpg",
+    credit: "Tomorrowland 2026 mainstage night show, Boom, Belgium. Photo by Ludovic Delot, Wikimedia Commons", retrieved: "2026-11-12",
+    license: "CC BY 4.0. Shows the Belgian edition: the Thailand site is closed to the agent browser and Commons has no Thailand photo yet.",
+  },
+  "tomorrowland-winter-2027": {
+    tile: "festival-art/tiles/tomorrowland-winter-2027.webp", card: "festival-art/tomorrowland-winter-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Alok_Tomorrowland_Winter_2025.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Alok_Tomorrowland_Winter_2025.jpg",
+    credit: "Alok on stage at Tomorrowland Winter 2025, Alpe d Huez. Photo by Lucas Gavi, Wikimedia Commons", retrieved: "2026-11-12",
+    license: "CC BY 4.0. The Winter site is closed to the agent browser.",
+  },
+  "tomorrowland-brasil-2027": {
+    tile: "festival-art/tiles/tomorrowland-brasil-2027.webp", card: "festival-art/tomorrowland-brasil-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Tomorrowland_Mainstage_Nacht.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Tomorrowland_Mainstage_Nacht.jpg",
+    credit: "Tomorrowland 2024 mainstage at night, Boom, Belgium. Photo by Adkoby, Wikimedia Commons", retrieved: "2026-11-12",
+    license: "CC BY-SA 4.0. Shows the Belgian edition: the Brasil site is closed to the agent browser and Commons has no Brasil photo.",
+  },
 });
