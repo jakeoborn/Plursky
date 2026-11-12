@@ -51,6 +51,16 @@ jobs:
       - name: Install (npm ci — guards the Capacitor 6 peer range)
         run: npm ci
 
+      # The fitted-art gate in verify.mjs re-solves each map's measured ties
+      # with scripts/build-geo-plate.py, which needs numpy and Pillow. The
+      # runner's system python3 has neither and refuses pip installs, so use
+      # setup-python. Pinned to what the plates were built with.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install geo plate checker deps (numpy, Pillow)
+        run: python3 -m pip install numpy==2.5.3 pillow==12.3.0
+
       - name: Build (scripts/build.mjs copy step)
         run: node scripts/build.mjs
 
