@@ -1,9 +1,9 @@
 <!doctype html><html><body style="margin:0;background:#000;overflow:hidden;color:#fff;font:14px sans-serif">
 <script>
-var q=new URLSearchParams(location.search);
+var q=new URLSearchParams(location.search);var W=+(q.get('w')||960),H=+(q.get('h')||640);
 [1,2].forEach(function(n){var u=q.get('u'+n);if(!u)return;var i=new Image();i.referrerPolicy='no-referrer';
-i.style.cssText='position:absolute;top:0;left:'+(n-1)*960+'px;width:960px;height:640px;object-fit:cover;object-position:'+(q.get('p'+n)||'50% 50%');
-i.onload=function(){document.body.insertAdjacentHTML('beforeend','<p style="position:absolute;top:660px;left:'+((n-1)*960+10)+'px">'+n+' ok '+i.naturalWidth+'x'+i.naturalHeight+'</p>')};
-i.onerror=function(){document.body.insertAdjacentHTML('beforeend','<p style="position:absolute;top:660px;left:'+((n-1)*960+10)+'px;color:red">'+n+' ERR</p>')};
+i.style.cssText='position:absolute;top:0;left:'+(n-1)*W+'px;width:'+W+'px;height:'+H+'px;object-fit:cover;object-position:'+(q.get('p'+n)||'50% 50%');
+i.onload=function(){document.body.insertAdjacentHTML('beforeend','<p style="position:absolute;top:'+(H+4)+'px;left:'+((n-1)*W+10)+'px">'+n+' ok '+i.naturalWidth+'x'+i.naturalHeight+'</p>')};
+i.onerror=function(){document.body.insertAdjacentHTML('beforeend','<p style="position:absolute;top:'+(H+4)+'px;left:'+((n-1)*W+10)+'px;color:red">'+n+' ERR</p>')};
 i.src=u;document.body.appendChild(i);});
 </script></body></html>
