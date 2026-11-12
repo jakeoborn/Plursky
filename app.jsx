@@ -1144,6 +1144,8 @@ function App() {
           before any festival is chosen, never mounts it. */}
       {state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar)}
       <BatterySaverToast />
+      {/* Opt-in set tracking (off until accepted in Me); renders nothing. */}
+      {state.tab !== "landing" && <SetTrackingWatcher />}
     </IOSDevice>
   );
 }
@@ -1226,7 +1228,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v581",
+        version: "v589",
       }));
     } catch {}
   }
@@ -1257,7 +1259,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v581
+          Plursky · v589
         </div>
       </div>
     );

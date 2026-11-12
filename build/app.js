@@ -1697,7 +1697,7 @@ function App() {
     onClose: () => setPersonalizeOpen(false)
   }), quickNameOpen && !showOnboarding && React.createElement(QuickNameSheet, {
     onDone: quickNameDone
-  }), state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null));
+  }), state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null), state.tab !== "landing" && React.createElement(SetTrackingWatcher, null));
 }
 var styleTag = document.createElement("style");
 styleTag.textContent = `
@@ -1789,7 +1789,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v581"
+        version: "v589"
       }));
     } catch {}
   }
@@ -1841,7 +1841,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v581"))
+      }, "Plursky · v589"))
     );
   }
 }
