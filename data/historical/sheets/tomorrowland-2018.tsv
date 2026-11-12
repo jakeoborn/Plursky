@@ -1,0 +1,843 @@
+day	stage	start	end	artist	openEnd	source
+1	Mainstage	12:00	14:50	Carl Cox		page 20180807143519
+1	Mainstage	14:50	15:50	Charlotte de Witte		page 20180807143519
+1	Mainstage	15:50	16:50	San Holo		page 20180807143519
+1	Mainstage	16:50	17:50	Vini Vici		page 20180807143519
+1	Mainstage	17:50	18:50	Bonzai All Stars feat. Airwave		page 20180807143519
+1	Mainstage	18:50	19:50	Alan Walker		page 20180807143519
+1	Mainstage	19:50	20:50	Joris Voorn		page 20180807143519
+1	Mainstage	20:50	21:50	Netsky		page 20180807143519
+1	Mainstage	21:50	22:50	Hardwell		page 20180807143519
+1	Mainstage	22:50	23:50	Axwell /\ Ingrosso		page 20180807143519
+1	Mainstage	23:50	00:50	Steve Aoki		page 20180807143519
+1	Freedom Stage by Budweiser	12:30	14:00	Lost Stories x ZAEDEN		page 20180807143519
+1	Freedom Stage by Budweiser	14:00	15:00	Julian Calor		page 20180807143519
+1	Freedom Stage by Budweiser	15:00	16:00	Robert Falcon		page 20180807143519
+1	Freedom Stage by Budweiser	16:00	17:00	Mike Williams		page 20180807143519
+1	Freedom Stage by Budweiser	17:00	18:00	Brohug		page 20180807143519
+1	Freedom Stage by Budweiser	18:00	19:00	k?d		page 20180807143519
+1	Freedom Stage by Budweiser	19:00	20:00	Jauz		page 20180807143519
+1	Freedom Stage by Budweiser	20:00	21:30	Oliver Heldens		page 20180807143519
+1	Freedom Stage by Budweiser	21:30	23:00	Don Diablo		page 20180807143519
+1	Freedom Stage by Budweiser	23:00	01:00	Tiësto		page 20180807143519
+1	Atmosphere	12:00	13:30	Michael Thoelen		page 20180807143519
+1	Atmosphere	13:30	15:00	Enrico Sangiuliano		page 20180807143519
+1	Atmosphere	15:00	17:00	Dense & Pika		page 20180807143519
+1	Atmosphere	17:00	18:30	Ida Engberg		page 20180807143519
+1	Atmosphere	18:30	20:00	Sam Paganini		page 20180807143519
+1	Atmosphere	20:00	21:30	Ben Klock		page 20180807143519
+1	Atmosphere	21:30	23:00	Richie Hawtin		page 20180807143519
+1	Atmosphere	23:00	01:00	Adam Beyer		page 20180807143519
+1	Garden of Madness	12:00	14:00	Amy Wiles		page 20180807143519
+1	Garden of Madness	14:00	15:00	Tinlicker		page 20180807143519
+1	Garden of Madness	15:00	16:00	Genix & Sunny Lax		page 20180807143519
+1	Garden of Madness	16:00	17:00	Spencer Brown		page 20180807143519
+1	Garden of Madness	17:00	18:00	Oliver Smith		page 20180807143519
+1	Garden of Madness	18:00	19:00	Jason Ross		page 20180807143519
+1	Garden of Madness	19:00	20:00	Gabriel & Dresden		page 20180807143519
+1	Garden of Madness	20:00	21:00	Andrew Bayer		page 20180807143519
+1	Garden of Madness	21:00	22:00	Grum		page 20180807143519
+1	Garden of Madness	22:00	00:00	Above & Beyond		page 20180807143519
+1	Garden of Madness	00:00	00:55	Ilan Bluestone		page 20180807143519
+1	Organ of Harmony	12:00	13:00	Sem Thomasson		page 20180807143519
+1	Organ of Harmony	13:00	14:00	Peter Luts		page 20180807143519
+1	Organ of Harmony	14:00	15:00	Dave Lambert		page 20180807143519
+1	Organ of Harmony	15:00	16:00	SCARLXRD		page 20180807143519
+1	Organ of Harmony	16:00	17:00	Ekali		page 20180807143519
+1	Organ of Harmony	17:00	17:30	Lil Kleine		page 20180807143519
+1	Organ of Harmony	17:45	19:00	Coely		page 20180807143519
+1	Organ of Harmony	19:00	20:00	Chuckie		page 20180807143519
+1	Organ of Harmony	20:00	20:45	Lil Pump		page 20180807143519
+1	Organ of Harmony	20:45	22:45	Black Coffee		page 20180807143519
+1	Organ of Harmony	22:45	23:45	DJ Jazzy Jeff		page 20180807143519
+1	Organ of Harmony	23:45	00:45	French Montana		page 20180807143519
+1	Core	12:30	14:00	Xavier Shimtshack		page 20180807143519
+1	Core	14:00	15:30	Flashmob		page 20180807143519
+1	Core	15:30	17:30	Marco Faraone		page 20180807143519
+1	Core	17:30	19:30	Patrick Topping		page 20180807143519
+1	Core	19:30	20:00	Detlef		page 20180807143519
+1	Core	20:00	21:30	Richy Ahmed		page 20180807143519
+1	Core	21:30	23:00	Nicole Moudaber		page 20180807143519
+1	Core	23:00	01:00	Jamie Jones		page 20180807143519
+1	Rose Garden	12:30	14:00	Grant		page 20180807143519
+1	Rose Garden	14:00	15:00	Myrne		page 20180807143519
+1	Rose Garden	15:00	16:00	Tokyo Machine		page 20180807143519
+1	Rose Garden	16:00	17:00	Dion Timmer		page 20180807143519
+1	Rose Garden	17:00	18:00	Lowriderz		page 20180807143519
+1	Rose Garden	18:00	19:00	Pegboard Nerds		page 20180807143519
+1	Rose Garden	19:00	20:00	KAYZO		page 20180807143519
+1	Rose Garden	20:00	21:00	Ookay		page 20180807143519
+1	Rose Garden	21:00	22:00	REZZ		page 20180807143519
+1	Rose Garden	22:00	00:00	NGHTMRE & SLANDER Present: Gud Vibrations		page 20180807143519
+1	Rose Garden	00:00	01:00	Seven Lions		page 20180807143519
+1	Tulip	12:30	13:30	Bastin.		page 20180807143519
+1	Tulip	13:30	14:45	Alec & Phill Da Cunha		page 20180807143519
+1	Tulip	14:45	16:00	B2B Soundsystem & Delafino		page 20180807143519
+1	Tulip	16:00	17:30	Cemode & Philip		page 20180807143519
+1	Tulip	17:30	18:30	Mr Grammy & Dj Licious		page 20180807143519
+1	Tulip	18:30	19:30	Sam Divine		page 20180807143519
+1	Tulip	19:30	21:00	Mambo Brothers		page 20180807143519
+1	Tulip	21:00	22:30	Edu Imbernon		page 20180807143519
+1	Tulip	22:30	23:30	Roma		page 20180807143519
+1	Tulip	23:30	00:55	Disco Dasco		page 20180807143519
+1	Cage	13:00	14:00	CYRK (Live)		page 20180807143519
+1	Cage	14:00	15:30	DC Salas		page 20180807143519
+1	Cage	15:30	17:30	Surfing Leons		page 20180807143519
+1	Cage	17:30	19:30	Myd		page 20180807143519
+1	Cage	19:30	21:30	Boston Bun		page 20180807143519
+1	Cage	21:30	23:30	Breakbot & Irfane		page 20180807143519
+1	Cage	23:30	01:00	Busy P		page 20180807143519
+1	Youphoria	12:30	14:00	Michael Amani		page 20180807143519
+1	Youphoria	14:00	15:00	Kiida		page 20180807143519
+1	Youphoria	15:00	16:00	Dubvision		page 20180807143519
+1	Youphoria	16:00	17:00	Moksi		page 20180807143519
+1	Youphoria	17:00	18:00	Laidback Luke		page 20180807143519
+1	Youphoria	18:00	19:00	Ummet Ozcan		page 20180807143519
+1	Youphoria	19:00	20:00	Ravitez		page 20180807143519
+1	Youphoria	20:00	22:00	Afrojack		page 20180807143519
+1	Youphoria	22:00	23:00	Jewelz & Sparks		page 20180807143519
+1	Youphoria	23:00	00:00	Bassjackers		page 20180807143519
+1	Youphoria	00:00	00:50	Cesqeaux		page 20180807143519
+1	Arch	12:30	14:00	Mr. Sam		page 20180807143519
+1	Arch	14:00	15:30	Olivier Pieters		page 20180807143519
+1	Arch	15:30	17:00	Youri Parker		page 20180807143519
+1	Arch	17:00	18:30	Quincy		page 20180807143519
+1	Arch	18:30	19:30	M.I.K.E. Push		page 20180807143519
+1	Arch	19:30	21:00	Jam & Spoon		page 20180807143519
+1	Arch	21:00	22:00	Yves Deruyter		page 20180807143519
+1	Arch	22:00	23:30	Insider (Live)		page 20180807143519
+1	Arch	23:30	00:50	Zolex		page 20180807143519
+1	Leaf by JBL	12:30	14:30	Boatman		page 20180807143519
+1	Leaf by JBL	14:30	17:30	Gorje Hewek & Izhevski		page 20180807143519
+1	Leaf by JBL	17:30	20:30	YokoO		page 20180807143519
+1	Leaf by JBL	20:30	23:30	Lee Burridge		page 20180807143519
+1	House of Mask by Cubanisto	13:00	16:00	Kiani & His Legion b2b Konna		page 20180807143519
+1	House of Mask by Cubanisto	16:00	18:00	Red D		page 20180807143519
+1	House of Mask by Cubanisto	18:00	20:00	San Soda		page 20180807143519
+1	House of Mask by Cubanisto	20:00	22:00	Fabrice Lig		page 20180807143519
+1	Amicorum Spectaculum presents: Theatre Formidable	12:30	14:30	Rät N FrikK		page 20180807143519
+1	Amicorum Spectaculum presents: Theatre Formidable	14:30	15:30	Ransom		page 20180807143519
+1	Amicorum Spectaculum presents: Theatre Formidable	15:30	16:30	Dr Rude		page 20180807143519
+1	Amicorum Spectaculum presents: Theatre Formidable	16:30	17:30	Mark With a K		page 20180807143519
+1	Amicorum Spectaculum presents: Theatre Formidable	17:00	19:00	The Darkraver		page 20180807143519
+1	Amicorum Spectaculum presents: Theatre Formidable	18:30	19:30	Technoboy		page 20180807143519
+1	Amicorum Spectaculum presents: Theatre Formidable	19:30	21:00	Ruthless		page 20180807143519
+1	Amicorum Spectaculum presents: Theatre Formidable	20:30	21:30	Paul Elstak		page 20180807143519
+1	Amicorum Spectaculum presents: Theatre Formidable	21:30	22:30	DJ The Prophet		page 20180807143519
+1	Amicorum Spectaculum presents: Theatre Formidable	22:30	23:30	The Viper		page 20180807143519
+1	Amicorum Spectaculum presents: Theatre Formidable	23:30	01:00	Dj Mad Dog		page 20180807143519
+1	Rave Cave	13:00	14:00	PartyShakerz		page 20180807143519
+1	Rave Cave	14:00	15:00	Bram Delux		page 20180807143519
+1	Rave Cave	15:00	16:00	Foncky Time		page 20180807143519
+1	Rave Cave	16:00	17:00	Double-U ft Eugene		page 20180807143519
+1	Rave Cave	17:00	18:00	Structure		page 20180807143519
+1	Rave Cave	18:00	19:30	Dj Luk		page 20180807143519
+1	Rave Cave	19:30	20:30	5napback b2b Freaquency		page 20180807143519
+1	Rave Cave	20:30	22:00	Dimitri Wouters		page 20180807143519
+1	Rave Cave	22:00	23:00	Deve & Matizz		page 20180807143519
+1	Rave Cave	23:00	00:00	Funk D		page 20180807143519
+1	Rave Cave	00:00	01:00	Winterclubbing All Stars		page 20180807143519
+1	Harbour House	13:00	16:00	Rakesh aka Blackjack9000		page 20180807143519
+1	Harbour House	16:00	18:00	Lady S		page 20180807143519
+1	Harbour House	18:00	20:00	DRIGAO & IAMGUNZ		page 20180807143519
+1	Harbour House	20:00	22:00	Crack-T		page 20180807143519
+1	Harbour House	22:00	01:00	B-Kay		page 20180807143519
+2	Mainstage	12:00	14:50	Nora En Pure		page 20180807143519
+2	Mainstage	14:50	15:50	Curtis Alto		page 20180807143519
+2	Mainstage	15:50	16:50	Salvatore Ganacci		page 20180807143519
+2	Mainstage	16:50	17:50	Alison Wonderland		page 20180807143519
+2	Mainstage	17:50	18:50	Lucas & Steve		page 20180807143519
+2	Mainstage	18:50	19:50	Sunnery James & Ryan Marciano		page 20180807143519
+2	Mainstage	19:50	20:50	Nicky Romero		page 20180807143519
+2	Mainstage	20:50	21:50	Yellow Claw		page 20180807143519
+2	Mainstage	21:50	22:50	Armin van Buuren		page 20180807143519
+2	Mainstage	22:50	23:50	Dimitri Vegas & Like Mike		page 20180807143519
+2	Mainstage	23:50	00:50	Alesso		page 20180807143519
+2	Freedom Stage by Budweiser	12:30	13:30	Jack Wins		page 20180807143519
+2	Freedom Stage by Budweiser	13:30	14:30	WILL K vs Dave Winnel		page 20180807143519
+2	Freedom Stage by Budweiser	14:30	15:30	NEW_ID		page 20180807143519
+2	Freedom Stage by Budweiser	15:30	16:30	D.O.D		page 20180807143519
+2	Freedom Stage by Budweiser	16:30	17:30	Shapov		page 20180807143519
+2	Freedom Stage by Budweiser	17:30	18:45	Tom Staar		page 20180807143519
+2	Freedom Stage by Budweiser	18:45	20:00	Benny Benassi		page 20180807143519
+2	Freedom Stage by Budweiser	20:00	21:15	Axwell		page 20180807143519
+2	Freedom Stage by Budweiser	21:15	22:30	Galantis		page 20180807143519
+2	Freedom Stage by Budweiser	22:30	00:00	Fatboy Slim		page 20180807143519
+2	Freedom Stage by Budweiser	00:00	01:00	Kryder		page 20180807143519
+2	Atmosphere	12:00	13:00	Unsenses		page 20180807143519
+2	Atmosphere	13:00	14:00	Demi Kanon		page 20180807143519
+2	Atmosphere	14:00	15:00	Mandy & Adrenalize		page 20180807143519
+2	Atmosphere	15:00	16:00	Audiotricz		page 20180807143519
+2	Atmosphere	16:00	17:00	Da Tweekaz		page 20180807143519
+2	Atmosphere	17:00	18:00	Wildstylez		page 20180807143519
+2	Atmosphere	18:00	19:00	Brennan Heart		page 20180807143519
+2	Atmosphere	19:00	20:00	Atmozfears		page 20180807143519
+2	Atmosphere	20:00	21:00	Zatox		page 20180807143519
+2	Atmosphere	21:00	22:00	Ran-D		page 20180807143519
+2	Atmosphere	22:00	23:00	Sub Zero Project		page 20180807143519
+2	Atmosphere	23:00	00:00	Korsakoff		page 20180807143519
+2	Garden of Madness	12:00	14:00	DkA (Live)		page 20180807143519
+2	Garden of Madness	14:00	15:30	Karmon		page 20180807143519
+2	Garden of Madness	15:30	17:30	Magdalena		page 20180807143519
+2	Garden of Madness	17:30	19:30	Lehar		page 20180807143519
+2	Garden of Madness	19:30	21:30	Adriatique		page 20180807143519
+2	Garden of Madness	21:30	23:30	Solomun		page 20180807143519
+2	Garden of Madness	23:30	00:55	Kollektiv Turmstrasse		page 20180807143519
+2	Organ of Harmony	12:00	13:00	Hermanos		page 20180807143519
+2	Organ of Harmony	13:00	15:00	Justin Mylo		page 20180807143519
+2	Organ of Harmony	15:00	16:00	TV Noise		page 20180807143519
+2	Organ of Harmony	16:00	17:00	CMC$		page 20180807143519
+2	Organ of Harmony	17:00	18:00	Ytram		page 20180807143519
+2	Organ of Harmony	18:00	19:00	Tchami x Malaa		page 20180807143519
+2	Organ of Harmony	19:00	20:00	Matisse & Sadko		page 20180807143519
+2	Organ of Harmony	20:00	21:00	Brooks		page 20180807143519
+2	Organ of Harmony	21:00	22:00	Jonas Blue		page 20180807143519
+2	Organ of Harmony	22:30	23:15	Dua Lipa		page 20180807143519
+2	Organ of Harmony	23:30	01:00	Martin Garrix		page 20180807143519
+2	Core	12:00	15:00	Spacid b2b Pilose		page 20180807143519
+2	Core	15:00	17:00	Kr!z b2b Pfirter		page 20180807143519
+2	Core	17:00	18:55	Monika Kruse b2b Anna		page 20180807143519
+2	Core	19:00	21:55	MULTIPLES Live (Speedy J & Surgeon)		page 20180807143519
+2	Core	22:00	01:00	Ben Klock b2b Marcel Dettmann		page 20180807143519
+2	Rose Garden	13:00	14:00	Dj Fire		page 20180807143519
+2	Rose Garden	14:00	15:30	Airwave		page 20180807143519
+2	Rose Garden	15:30	17:00	Oliver Lieb		page 20180807143519
+2	Rose Garden	17:00	18:00	Franky Jones		page 20180807143519
+2	Rose Garden	18:00	19:00	Bountyhunter		page 20180807143519
+2	Rose Garden	19:00	20:00	Jan Vervloet		page 20180807143519
+2	Rose Garden	20:00	21:00	Dj Ghost		page 20180807143519
+2	Rose Garden	21:00	22:30	Franky Kloeck		page 20180807143519
+2	Rose Garden	22:30	23:30	Yves Deruyter		page 20180807143519
+2	Rose Garden	23:30	01:00	Bonzai All Stars		page 20180807143519
+2	Tulip	12:30	14:00	Ton T.B. (Three Drives)		page 20180807143519
+2	Tulip	14:00	15:30	Fred Baker		page 20180807143519
+2	Tulip	15:30	16:30	Jochen Miller		page 20180807143519
+2	Tulip	16:30	17:30	Scott Bond		page 20180807143519
+2	Tulip	17:30	18:30	Marcel Woods		page 20180807143519
+2	Tulip	18:30	19:30	Menno de Jong		page 20180807143519
+2	Tulip	19:30	20:30	Rank 1		page 20180807143519
+2	Tulip	20:30	22:30	Johan Gielen Extended Set		page 20180807143519
+2	Tulip	22:30	23:30	Talla 2XLC		page 20180807143519
+2	Tulip	23:30	00:55	Mark Sherry		page 20180807143519
+2	Cage	13:00	14:30	Sheridan		page 20180807143519
+2	Cage	14:30	16:30	FCL feat. Lady Linn		page 20180807143519
+2	Cage	16:30	18:30	Simon Dunmore		page 20180807143519
+2	Cage	18:30	20:30	The Shapeshifters		page 20180807143519
+2	Cage	20:30	22:00	Purple Disco Machine		page 20180807143519
+2	Cage	22:00	23:30	Todd Terry		page 20180807143519
+2	Cage	23:30	01:00	Roger Sanchez		page 20180807143519
+2	Youphoria	12:30	14:00	Tim Arisu		page 20180807143519
+2	Youphoria	14:00	15:00	Stadiumx		page 20180807143519
+2	Youphoria	15:00	16:00	THRDL!FE		page 20180807143519
+2	Youphoria	16:00	17:00	The Him		page 20180807143519
+2	Youphoria	17:00	18:00	Throttle		page 20180807143519
+2	Youphoria	18:00	19:00	Matoma		page 20180807143519
+2	Youphoria	19:00	20:00	Danny Avila		page 20180807143519
+2	Youphoria	20:00	21:00	Quintino		page 20180807143519
+2	Youphoria	21:00	22:30	Nervo		page 20180807143519
+2	Youphoria	22:30	23:30	Chuckie		page 20180807143519
+2	Youphoria	23:30	00:45	Krewella		page 20180807143519
+2	Arch	12:30	14:00	Yannick Thiry		page 20180807143519
+2	Arch	14:00	15:00	Vertical Mode		page 20180807143519
+2	Arch	15:00	16:00	Liquid Soul		page 20180807143519
+2	Arch	16:00	17:00	Ace Ventura		page 20180807143519
+2	Arch	17:00	18:00	Vibe Tribe		page 20180807143519
+2	Arch	18:00	19:00	WHITENO1SE		page 20180807143519
+2	Arch	19:00	20:00	WAIO		page 20180807143519
+2	Arch	20:00	21:30	Firaga vs SynSUN		page 20180807143519
+2	Arch	21:30	22:30	Avalon		page 20180807143519
+2	Arch	22:30	23:30	BLiSS		page 20180807143519
+2	Arch	23:30	00:45	Infected Mushroom		page 20180807143519
+2	Leaf by JBL	12:30	15:30	Dauw & Schemering		page 20180807143519
+2	Leaf by JBL	15:30	17:30	Bloem		page 20180807143519
+2	Leaf by JBL	17:30	19:00	Monolink		page 20180807143519
+2	Leaf by JBL	19:00	21:00	Blond:ish		page 20180807143519
+2	Leaf by JBL	21:00	23:30	Behrouz		page 20180807143519
+2	House of Mask by Cubanisto	13:00	15:00	Heckman		page 20180807143519
+2	House of Mask by Cubanisto	15:00	16:30	Axel Haube		page 20180807143519
+2	House of Mask by Cubanisto	16:30	18:00	Miss Melera		page 20180807143519
+2	House of Mask by Cubanisto	18:00	19:00	Eelke Kleijn		page 20180807143519
+2	House of Mask by Cubanisto	19:00	20:30	Nico Morano		page 20180807143519
+2	House of Mask by Cubanisto	20:30	22:00	Alex Niggemann		page 20180807143519
+2	Amicorum Spectaculum presents: Theatre Formidable	12:00	14:00	Leesa		page 20180807143519
+2	Amicorum Spectaculum presents: Theatre Formidable	14:00	15:30	Prinz		page 20180807143519
+2	Amicorum Spectaculum presents: Theatre Formidable	15:30	17:00	Bontan		page 20180807143519
+2	Amicorum Spectaculum presents: Theatre Formidable	17:00	19:00	Skream		page 20180807143519
+2	Amicorum Spectaculum presents: Theatre Formidable	19:00	21:00	Eats Everything		page 20180807143519
+2	Amicorum Spectaculum presents: Theatre Formidable	21:00	23:00	Luciano		page 20180807143519
+2	Amicorum Spectaculum presents: Theatre Formidable	23:00	01:00	Dubfire		page 20180807143519
+2	Rave Cave	13:00	14:00	Bouncing Rhytms		page 20180807143519
+2	Rave Cave	14:00	15:00	Maximo		page 20180807143519
+2	Rave Cave	15:00	16:00	Jackless & The Fox		page 20180807143519
+2	Rave Cave	16:00	17:00	Samyn		page 20180807143519
+2	Rave Cave	17:00	18:00	Que 9		page 20180807143519
+2	Rave Cave	18:00	19:00	Thim		page 20180807143519
+2	Rave Cave	19:00	20:00	Greg Lamore vs Jay Lee Hudson		page 20180807143519
+2	Rave Cave	20:00	21:00	Basement Sounds		page 20180807143519
+2	Rave Cave	21:00	22:00	Wezlee		page 20180807143519
+2	Rave Cave	22:00	23:00	Seelen		page 20180807143519
+2	Rave Cave	23:00	00:00	Orb		page 20180807143519
+2	Rave Cave	00:00	01:00	Many Moore		page 20180807143519
+2	Harbour House	13:00	15:00	Kevin Kofii		page 20180807143519
+2	Harbour House	15:00	18:00	Bubba		page 20180807143519
+2	Harbour House	18:00	20:00	Mascotte DJ's		page 20180807143519
+2	Harbour House	20:00	22:00	Team DAMP		page 20180807143519
+2	Harbour House	22:00	01:00	Rakesh aka Blackjack9000		page 20180807143519
+3	Mainstage	12:00	14:50	Paul Oakenfold		page 20180807143519
+3	Mainstage	14:50	15:50	Andrew Rayel		page 20180807143519
+3	Mainstage	15:50	16:50	Fedde Le Grand		page 20180807143519
+3	Mainstage	16:50	17:50	Timmy Trumpet		page 20180807143519
+3	Mainstage	17:50	18:50	Coone		page 20180807143519
+3	Mainstage	18:50	19:50	Yves V		page 20180807143519
+3	Mainstage	19:50	20:50	Paul Kalkbrenner		page 20180807143519
+3	Mainstage	20:50	21:50	Lost Frequencies (Live)		page 20180807143519
+3	Mainstage	21:50	22:50	Steve Angello		page 20180807143519
+3	Mainstage	22:50	23:50	Martin Garrix		page 20180807143519
+3	Freedom Stage by Budweiser	12:30	13:30	Vito Mendez		page 20180807143519
+3	Freedom Stage by Budweiser	13:30	14:30	D'Angello & Francis		page 20180807143519
+3	Freedom Stage by Budweiser	14:30	15:30	MAD M.A.C.		page 20180807143519
+3	Freedom Stage by Budweiser	15:30	16:30	Henri PFR		page 20180807143519
+3	Freedom Stage by Budweiser	16:30	17:30	Brennan Heart		page 20180807143519
+3	Freedom Stage by Budweiser	17:30	18:30	Ummet Ozcan		page 20180807143519
+3	Freedom Stage by Budweiser	18:30	19:30	Quintino		page 20180807143519
+3	Freedom Stage by Budweiser	19:30	20:30	Wolfpack		page 20180807143519
+3	Freedom Stage by Budweiser	20:30	21:30	W&W		page 20180807143519
+3	Freedom Stage by Budweiser	21:30	22:30	MATTN		page 20180807143519
+3	Freedom Stage by Budweiser	22:30	00:00	Dimitri Vegas & Like Mike		page 20180807143519
+3	Atmosphere	12:30	14:30	Downside		page 20180807143519
+3	Atmosphere	14:30	16:30	Pierre		page 20180807143519
+3	Atmosphere	16:30	18:00	Mind Against		page 20180807143519
+3	Atmosphere	18:00	19:30	Marcel Dettmann		page 20180807143519
+3	Atmosphere	19:30	21:00	Pan-Pot		page 20180807143519
+3	Atmosphere	21:00	22:30	Len Faki		page 20180807143519
+3	Atmosphere	22:30	00:00	Dave Clarke		page 20180807143519
+3	Garden of Madness	12:00	13:30	Goldfox		page 20180807143519
+3	Garden of Madness	13:30	15:00	Nukov & Yelmet		page 20180807143519
+3	Garden of Madness	15:00	16:30	Francisco Allendes		page 20180807143519
+3	Garden of Madness	16:30	18:00	Camelphat		page 20180807143519
+3	Garden of Madness	18:00	19:30	Solardo		page 20180807143519
+3	Garden of Madness	19:30	21:00	wAFF		page 20180807143519
+3	Garden of Madness	21:00	22:30	Kölsch		page 20180807143519
+3	Garden of Madness	22:30	23:50	Andrea Oliva		page 20180807143519
+3	Organ of Harmony	12:00	13:30	Yamo		page 20180807143519
+3	Organ of Harmony	13:30	15:00	Coco Cole		page 20180807143519
+3	Organ of Harmony	15:00	16:30	Michael Calfan		page 20180807143519
+3	Organ of Harmony	16:30	18:00	The Magician		page 20180807143519
+3	Organ of Harmony	18:00	19:30	Kungs		page 20180807143519
+3	Organ of Harmony	19:30	21:00	Jax Jones		page 20180807143519
+3	Organ of Harmony	21:00	22:30	2manydjs (DJ Set)		page 20180807143519
+3	Organ of Harmony	22:30	00:00	Martin Solveig		page 20180807143519
+3	Core	12:00	13:00	Lars Moston		page 20180807143519
+3	Core	13:00	14:30	Two Pauz		page 20180807143519
+3	Core	14:30	16:00	MAT.Joe		page 20180807143519
+3	Core	16:00	17:30	Dennis Cruz		page 20180807143519
+3	Core	17:30	19:00	Andhim		page 20180807143519
+3	Core	19:00	20:30	Claude VonStroke		page 20180807143519
+3	Core	20:30	22:30	Claptone		page 20180807143519
+3	Core	22:30	00:00	Butch		page 20180807143519
+3	Rose Garden	12:30	13:30	Plastik Funk		page 20180807143519
+3	Rose Garden	13:30	14:30	LOVRA		page 20180807143519
+3	Rose Garden	14:30	15:30	Sylvain Armand		page 20180807143519
+3	Rose Garden	15:30	16:30	Alle Farben		page 20180807143519
+3	Rose Garden	16:30	17:30	Hugel		page 20180807143519
+3	Rose Garden	17:30	18:30	Cheat Codes		page 20180807143519
+3	Rose Garden	18:30	20:00	Deepend		page 20180807143519
+3	Rose Garden	20:00	21:30	Feder		page 20180807143519
+3	Rose Garden	21:30	23:00	Robin Schulz		page 20180807143519
+3	Rose Garden	23:00	00:00	Klingande		page 20180807143519
+3	Tulip	12:30	14:00	Kristof		page 20180807143519
+3	Tulip	14:00	15:00	Buzz Fuzz		page 20180807143519
+3	Tulip	15:00	16:00	Rob ft. MC Joe		page 20180807143519
+3	Tulip	16:00	17:00	Panic		page 20180807143519
+3	Tulip	17:00	18:00	Promo		page 20180807143519
+3	Tulip	18:00	19:00	Tommyknocker		page 20180807143519
+3	Tulip	19:00	20:00	Neophyte		page 20180807143519
+3	Tulip	20:00	21:00	N-Vitral		page 20180807143519
+3	Tulip	21:00	22:00	Nosferatu		page 20180807143519
+3	Tulip	22:00	23:00	Noize Suppressor		page 20180807143519
+3	Tulip	23:00	00:00	Unexist		page 20180807143519
+3	Cage	13:00	14:00	MYST		page 20180807143519
+3	Cage	14:00	15:30	Clockartz		page 20180807143519
+3	Cage	15:30	16:30	Requiem		page 20180807143519
+3	Cage	16:30	17:30	Phuture Noize		page 20180807143519
+3	Cage	17:30	18:30	Bass Chaserz		page 20180807143519
+3	Cage	18:30	19:30	Deetox		page 20180807143519
+3	Cage	19:30	21:00	B-Front		page 20180807143519
+3	Cage	21:00	22:00	D-Sturb		page 20180807143519
+3	Cage	22:00	23:00	E-Force		page 20180807143519
+3	Cage	23:00	00:00	Warface		page 20180807143519
+3	Youphoria	12:30	14:00	Joyhauser		page 20180807143519
+3	Youphoria	14:00	15:30	Dana Ruh		page 20180807143519
+3	Youphoria	15:30	17:00	Ilario Alicante		page 20180807143519
+3	Youphoria	17:00	19:00	Ricardo Villalobos		page 20180807143519
+3	Youphoria	19:00	21:00	Dixon		page 20180807143519
+3	Youphoria	21:00	23:50	Sven Väth		page 20180807143519
+3	Arch	12:30	14:00	Callie Reiff		page 20180807143519
+3	Arch	14:00	15:00	Radar Records Soundsystem ft NCT b2b T&Sugah		page 20180807143519
+3	Arch	15:00	16:00	Fox Stevenson		page 20180807143519
+3	Arch	16:00	17:00	TC		page 20180807143519
+3	Arch	17:00	18:00	Murdock		page 20180807143519
+3	Arch	18:00	19:00	Barely Alive & PhaseOne & Virtual Riot		page 20180807143519
+3	Arch	19:00	20:00	SaSaSaS		page 20180807143519
+3	Arch	20:00	21:00	NGHTMRE		page 20180807143519
+3	Arch	21:00	22:00	Slushii		page 20180807143519
+3	Arch	22:00	23:00	Dirtyphonics		page 20180807143519
+3	Arch	23:00	23:50	Pendulum (DJ Set)		page 20180807143519
+3	Leaf by JBL	12:30	14:00	Akira		page 20180807143519
+3	Leaf by JBL	14:00	15:30	Budakid		page 20180807143519
+3	Leaf by JBL	15:30	17:00	Luca Bacchetti		page 20180807143519
+3	Leaf by JBL	17:00	18:30	Guy Mantzur		page 20180807143519
+3	Leaf by JBL	18:30	20:00	Guy J		page 20180807143519
+3	Leaf by JBL	20:00	22:00	Chicola		page 20180807143519
+3	Leaf by JBL	22:00	23:30	Khen		page 20180807143519
+3	House of Mask by Cubanisto	13:00	14:00	Dimitri Delava		page 20180807143519
+3	House of Mask by Cubanisto	14:00	15:00	Tom Smeyers		page 20180807143519
+3	House of Mask by Cubanisto	15:00	16:00	Lunoize & LYA		page 20180807143519
+3	House of Mask by Cubanisto	16:00	17:30	Jacky		page 20180807143519
+3	House of Mask by Cubanisto	17:30	18:30	Niels Feijen		page 20180807143519
+3	House of Mask by Cubanisto	18:30	19:30	Djaxx		page 20180807143519
+3	House of Mask by Cubanisto	19:30	20:30	Bocain		page 20180807143519
+3	House of Mask by Cubanisto	20:30	22:00	Flashmob		page 20180807143519
+3	Amicorum Spectaculum presents: Theatre Formidable	13:00	15:00	Fast Distance		page 20180807143519
+3	Amicorum Spectaculum presents: Theatre Formidable	15:00	16:00	Jordan Suckley		page 20180807143519
+3	Amicorum Spectaculum presents: Theatre Formidable	16:00	17:00	Alpha9		page 20180807143519
+3	Amicorum Spectaculum presents: Theatre Formidable	17:00	18:00	Ben Nicky		page 20180807143519
+3	Amicorum Spectaculum presents: Theatre Formidable	18:00	19:00	John O'Callaghan		page 20180807143519
+3	Amicorum Spectaculum presents: Theatre Formidable	19:00	20:00	Cosmic Gate		page 20180807143519
+3	Amicorum Spectaculum presents: Theatre Formidable	20:00	21:00	Markus Schulz		page 20180807143519
+3	Amicorum Spectaculum presents: Theatre Formidable	21:00	22:30	Aly & Fila		page 20180807143519
+3	Amicorum Spectaculum presents: Theatre Formidable	22:30	00:00	Paul van Dyk		page 20180807143519
+3	Rave Cave	12:00	13:30	Karl		page 20180807143519
+3	Rave Cave	13:30	15:00	White Noise		page 20180807143519
+3	Rave Cave	15:00	16:30	Monta		page 20180807143519
+3	Rave Cave	16:30	18:00	Arno Stolz		page 20180807143519
+3	Rave Cave	18:00	19:30	That's Who		page 20180807143519
+3	Rave Cave	19:30	21:00	Soulcity		page 20180807143519
+3	Rave Cave	21:00	22:30	Deuxfwa		page 20180807143519
+3	Rave Cave	22:30	00:00	Himperson		page 20180807143519
+3	Harbour House	13:00	15:00	Dosschy		page 20180807143519
+3	Harbour House	15:00	17:00	Rakka		page 20180807143519
+3	Harbour House	17:00	18:00	Veepee		page 20180807143519
+3	Harbour House	18:00	21:00	Rakesh aka Blackjack9000		page 20180807143519
+3	Harbour House	21:00	23:00	Discobaar A Moeder		page 20180807143519
+3	Harbour House	23:00	00:00	The Knightriders		page 20180807143519
+4	Mainstage	12:00	14:50	Paul Kalkbrenner		page 20180807143519
+4	Mainstage	14:50	15:50	Nico Morano		page 20180807143519
+4	Mainstage	15:50	16:50	Jonas Blue		page 20180807143519
+4	Mainstage	16:50	17:50	Slushii		page 20180807143519
+4	Mainstage	17:50	18:50	Cherry Moon Trax		page 20180807143519
+4	Mainstage	18:50	19:50	Henri PFR		page 20180807143519
+4	Mainstage	19:50	20:50	Kölsch		page 20180807143519
+4	Mainstage	20:50	21:50	W&W		page 20180807143519
+4	Mainstage	21:50	22:50	Tiësto		page 20180807143519
+4	Mainstage	22:50	23:50	Axwell /\ Ingrosso		page 20180807143519
+4	Mainstage	23:50	00:50	Hardwell		page 20180807143519
+4	Freedom Stage by Budweiser	13:00	14:30	Estiva		page 20180807143519
+4	Freedom Stage by Budweiser	14:30	15:30	Ruben de Ronde		page 20180807143519
+4	Freedom Stage by Budweiser	15:30	16:30	Super 8 & Tab		page 20180807143519
+4	Freedom Stage by Budweiser	16:30	17:30	David Gravell		page 20180807143519
+4	Freedom Stage by Budweiser	17:30	18:30	Vini Vici		page 20180807143519
+4	Freedom Stage by Budweiser	18:30	19:30	Cosmic Gate		page 20180807143519
+4	Freedom Stage by Budweiser	19:30	22:00	Armin van Buuren		page 20180807143519
+4	Freedom Stage by Budweiser	22:00	23:00	Andrew Rayel		page 20180807143519
+4	Freedom Stage by Budweiser	23:00	00:00	Ben Nicky		page 20180807143519
+4	Freedom Stage by Budweiser	00:00	01:00	Marlo		page 20180807143519
+4	Atmosphere	12:30	14:00	Broux		page 20180807143519
+4	Atmosphere	14:00	15:30	Frankyeffe		page 20180807143519
+4	Atmosphere	15:30	17:00	Cristoph		page 20180807143519
+4	Atmosphere	17:00	19:00	Dubfire		page 20180807143519
+4	Atmosphere	19:00	21:00	Sasha		page 20180807143519
+4	Atmosphere	21:00	23:00	Adam Beyer		page 20180807143519
+4	Atmosphere	23:00	01:00	Eric Prydz		page 20180807143519
+4	Garden of Madness	12:30	13:30	Siege		page 20180807143519
+4	Garden of Madness	13:30	14:30	Bruno Martini		page 20180807143519
+4	Garden of Madness	14:30	15:30	Double Pleasure		page 20180807143519
+4	Garden of Madness	15:30	16:30	Dj Licious		page 20180807143519
+4	Garden of Madness	16:30	17:30	Cedric Gervais		page 20180807143519
+4	Garden of Madness	17:30	18:30	Burak Yeter		page 20180807143519
+4	Garden of Madness	18:30	19:30	Laidback Luke		page 20180807143519
+4	Garden of Madness	19:30	21:30	Sunnery James & Ryan Marciano		page 20180807143519
+4	Garden of Madness	21:30	22:30	Fedde Le Grand		page 20180807143519
+4	Garden of Madness	22:30	23:45	Sander van Doorn		page 20180807143519
+4	Organ of Harmony	12:00	13:30	Dave Lambert		page 20180807143519
+4	Organ of Harmony	13:30	14:30	Buscemi & MC TD Rankin		page 20180807143519
+4	Organ of Harmony	14:30	15:30	Youngr		page 20180807143519
+4	Organ of Harmony	15:45	16:45	Curtis Alto		page 20180807143519
+4	Organ of Harmony	17:00	18:00	Klingande (Live)		page 20180807143519
+4	Organ of Harmony	18:15	19:15	Coely		page 20180807143519
+4	Organ of Harmony	19:30	20:30	Craig David presents TS5		page 20180807143519
+4	Organ of Harmony	20:45	21:30	Push (Live)		page 20180807143519
+4	Organ of Harmony	22:15	23:15	The Bloody Beetroots (Live)		page 20180807143519
+4	Organ of Harmony	00:00	01:00	Underworld		page 20180807143519
+4	Core	12:30	14:00	Nick Bril		page 20180807143519
+4	Core	14:00	15:30	Flapjackers		page 20180807143519
+4	Core	15:30	17:00	Yotto		page 20180807143519
+4	Core	17:00	18:30	Konstantin Sibold		page 20180807143519
+4	Core	18:30	19:45	Maya Jane Coles		page 20180807143519
+4	Core	19:45	21:15	Tiga		page 20180807143519
+4	Core	21:15	23:00	Rødhåd b2b Âme DJ		page 20180807143519
+4	Core	23:00	01:00	Joris Voorn		page 20180807143519
+4	Rose Garden	12:30	13:30	Matt Medved		page 20180807143519
+4	Rose Garden	13:30	14:30	Codeko		page 20180807143519
+4	Rose Garden	14:30	15:30	Qrion		page 20180807143519
+4	Rose Garden	15:30	16:30	Holy Goof		page 20180807143519
+4	Rose Garden	16:30	18:00	Fox Stevenson		page 20180807143519
+4	Rose Garden	18:00	19:00	Dj Marky feat. Mc GQ		page 20180807143519
+4	Rose Garden	19:00	20:00	San Holo		page 20180807143519
+4	Rose Garden	20:00	21:30	Ookay		page 20180807143519
+4	Rose Garden	21:30	22:30	Alison Wonderland		page 20180807143519
+4	Rose Garden	22:30	00:00	Netsky		page 20180807143519
+4	Rose Garden	00:00	01:00	Jauz		page 20180807143519
+4	Tulip	12:30	14:30	Ben Böhmer		page 20180807143519
+4	Tulip	14:30	16:00	Compuphonic		page 20180807143519
+4	Tulip	16:00	17:30	Jody Wisternoff & James Grant		page 20180807143519
+4	Tulip	17:30	19:00	Eli & Fur		page 20180807143519
+4	Tulip	19:00	20:30	16 Bit Lolitas		page 20180807143519
+4	Tulip	20:30	22:00	Yotto		page 20180807143519
+4	Tulip	22:00	23:30	Lane 8		page 20180807143519
+4	Tulip	23:30	01:00	Luttrell		page 20180807143519
+4	Cage	13:00	14:00	Dave Brody		page 20180807143519
+4	Cage	14:00	15:00	Double u jay		page 20180807143519
+4	Cage	15:00	16:00	Arkline		page 20180807143519
+4	Cage	16:00	17:30	TWR72		page 20180807143519
+4	Cage	17:30	19:00	Himperson		page 20180807143519
+4	Cage	19:00	21:00	Gary Beck		page 20180807143519
+4	Cage	21:00	23:00	Marcel Fengler		page 20180807143519
+4	Cage	23:00	01:00	Oscar Mulero		page 20180807143519
+4	Youphoria	12:30	13:30	Megamen vs R-wan		page 20180807143519
+4	Youphoria	13:30	14:30	BLR		page 20180807143519
+4	Youphoria	14:30	15:30	Breathe Carolina		page 20180807143519
+4	Youphoria	15:30	16:30	Dannic		page 20180807143519
+4	Youphoria	16:30	17:30	Florian Picasso		page 20180807143519
+4	Youphoria	17:30	18:30	Sevenn		page 20180807143519
+4	Youphoria	18:30	19:30	ALOK		page 20180807143519
+4	Youphoria	19:30	20:30	Kura		page 20180807143519
+4	Youphoria	20:30	21:30	Yves V		page 20180807143519
+4	Youphoria	21:30	22:30	Timmy Trumpet		page 20180807143519
+4	Youphoria	22:30	23:30	Regi		page 20180807143519
+4	Youphoria	23:30	00:45	Brian Cross		page 20180807143519
+4	Arch	12:30	14:00	Aevion		page 20180807143519
+4	Arch	14:00	15:30	Neon		page 20180807143519
+4	Arch	15:30	17:00	Punctual		page 20180807143519
+4	Arch	17:00	18:30	Chocolate Puma		page 20180807143519
+4	Arch	18:30	19:30	Anna Lunoe		page 20180807143519
+4	Arch	19:30	21:00	Disciples		page 20180807143519
+4	Arch	21:00	22:00	Jax Jones		page 20180807143519
+4	Arch	22:00	23:30	Oliver Heldens		page 20180807143519
+4	Arch	23:30	01:00	Duke Dumont		page 20180807143519
+4	Leaf by JBL	12:30	14:30	Gab Rhome		page 20180807143519
+4	Leaf by JBL	14:30	17:30	Öona Dahl		page 20180807143519
+4	Leaf by JBL	17:30	20:30	Lost Desert		page 20180807143519
+4	Leaf by JBL	20:30	23:30	Powel		page 20180807143519
+4	House of Mask by Cubanisto	13:00	14:00	The Whatevers		page 20180807143519
+4	House of Mask by Cubanisto	14:00	15:00	Hush		page 20180807143519
+4	House of Mask by Cubanisto	15:00	16:00	Blackout Boy		page 20180807143519
+4	House of Mask by Cubanisto	16:00	17:30	Jaël		page 20180807143519
+4	House of Mask by Cubanisto	17:30	19:30	Hush Hefner		page 20180807143519
+4	House of Mask by Cubanisto	19:30	20:30	Wantigga		page 20180807143519
+4	House of Mask by Cubanisto	20:30	22:00	TLP		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	12:30	13:45	Francois		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	13:45	14:45	Dark-E		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	14:45	15:45	Pat B		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	15:45	17:00	Lowriderz		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	17:00	17:30	Lords of Tek		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	17:30	18:45	Ruthless		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	18:45	19:45	Deepack		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	19:45	20:30	The Darkraver		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	20:30	21:30	Rob ft. MC Joe		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	21:30	22:30	Paul Elstak		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	22:30	23:45	Korsakoff		page 20180807143519
+4	Amicorum Spectaculum presents: Theatre Formidable	23:45	01:00	The Viper		page 20180807143519
+4	Rave Cave	13:00	14:00	Krankenhaus Selektion		page 20180807143519
+4	Rave Cave	14:00	15:30	Kimman		page 20180807143519
+4	Rave Cave	15:30	17:00	Bjeor		page 20180807143519
+4	Rave Cave	17:00	18:30	Jensen		page 20180807143519
+4	Rave Cave	18:30	20:00	Karawane		page 20180807143519
+4	Rave Cave	20:00	21:30	Bafana		page 20180807143519
+4	Rave Cave	21:30	23:00	JP Enfant		page 20180807143519
+4	Rave Cave	23:00	01:00	Goldfox		page 20180807143519
+4	Harbour House	13:00	15:00	Nitsa		page 20180807143519
+4	Harbour House	15:00	18:00	Rakesh aka Blackjack9000		page 20180807143519
+4	Harbour House	18:00	20:00	Jesse		page 20180807143519
+4	Harbour House	20:00	22:00	B-Kay		page 20180807143519
+4	Harbour House	22:00	01:00	Bubba		page 20180807143519
+5	Mainstage	12:00	14:50	Erick Morillo		page 20180807143519
+5	Mainstage	14:50	15:50	Sigala		page 20180807143519
+5	Mainstage	15:50	16:50	Angemi		page 20180807143519
+5	Mainstage	16:50	17:50	Bassjackers		page 20180807143519
+5	Mainstage	17:50	18:50	Sunnery James & Ryan Marciano		page 20180807143519
+5	Mainstage	18:50	19:50	Nervo		page 20180807143519
+5	Mainstage	19:50	20:50	Don Diablo		page 20180807143519
+5	Mainstage	20:50	21:50	Afrojack		page 20180807143519
+5	Mainstage	21:50	22:50	Armin van Buuren		page 20180807143519
+5	Mainstage	22:50	23:50	Dimitri Vegas & Like Mike		page 20180807143519
+5	Mainstage	23:50	00:50	Above & Beyond		page 20180807143519
+5	Freedom Stage by Budweiser	12:00	13:00	Mathy		page 20180807143519
+5	Freedom Stage by Budweiser	13:00	14:00	Kenn Colt		page 20180807143519
+5	Freedom Stage by Budweiser	14:00	15:00	Sem Thomasson		page 20180807143519
+5	Freedom Stage by Budweiser	15:00	16:00	Lost Identity		page 20180807143519
+5	Freedom Stage by Budweiser	16:00	17:00	Garmiani		page 20180807143519
+5	Freedom Stage by Budweiser	17:00	18:00	Otto Knows		page 20180807143519
+5	Freedom Stage by Budweiser	18:00	19:00	Salvatore Ganacci		page 20180807143519
+5	Freedom Stage by Budweiser	19:00	20:00	Sebastian Ingrosso		page 20180807143519
+5	Freedom Stage by Budweiser	20:00	22:00	Alesso		page 20180807143519
+5	Freedom Stage by Budweiser	22:00	23:30	Virtual Self		page 20180807143519
+5	Freedom Stage by Budweiser	23:30	01:00	Fatboy Slim		page 20180807143519
+5	Atmosphere	12:00	13:00	Ransom		page 20180807143519
+5	Atmosphere	13:00	14:00	Refuzion		page 20180807143519
+5	Atmosphere	14:00	15:00	Sound Rush		page 20180807143519
+5	Atmosphere	15:00	16:00	Wasted Penguinz		page 20180807143519
+5	Atmosphere	16:00	17:00	Mark With a K & Mc Chucky		page 20180807143519
+5	Atmosphere	17:00	18:00	Bass Modulators		page 20180807143519
+5	Atmosphere	18:00	19:00	Code Black		page 20180807143519
+5	Atmosphere	19:00	20:00	Noisecontrollers		page 20180807143519
+5	Atmosphere	20:00	21:00	Psyko Punkz		page 20180807143519
+5	Atmosphere	21:00	22:00	Frequencerz		page 20180807143519
+5	Atmosphere	22:00	23:00	B-Front		page 20180807143519
+5	Atmosphere	23:00	00:00	Partyraiser		page 20180807143519
+5	Garden of Madness	12:00	13:30	Amare		page 20180807143519
+5	Garden of Madness	13:30	15:00	Hunter/Game		page 20180807143519
+5	Garden of Madness	15:00	17:00	Capoon		page 20180807143519
+5	Garden of Madness	17:00	18:30	Vaal		page 20180807143519
+5	Garden of Madness	18:30	20:00	Kollektiv Turmstrasse		page 20180807143519
+5	Garden of Madness	20:00	22:00	Mind Against		page 20180807143519
+5	Garden of Madness	22:00	23:00	Recondite (live)		page 20180807143519
+5	Garden of Madness	23:00	00:55	Tale Of Us		page 20180807143519
+5	Organ of Harmony	12:00	13:30	Toolate Groove		page 20180807143519
+5	Organ of Harmony	13:30	15:00	LIMITS		page 20180807143519
+5	Organ of Harmony	15:00	16:00	Mr. Belt & Wezol		page 20180807143519
+5	Organ of Harmony	16:00	17:00	Throttle		page 20180807143519
+5	Organ of Harmony	17:00	18:00	EDX		page 20180807143519
+5	Organ of Harmony	18:00	19:00	Zonderling		page 20180807143519
+5	Organ of Harmony	19:00	20:00	Ofenbach		page 20180807143519
+5	Organ of Harmony	20:00	21:00	Nora En Pure		page 20180807143519
+5	Organ of Harmony	21:15	22:25	Lost Frequencies (Live)		page 20180807143519
+5	Organ of Harmony	22:30	23:30	Armand van Helden		page 20180807143519
+5	Organ of Harmony	23:30	01:00	2manydjs (DJ Set)		page 20180807143519
+5	Core	12:00	13:30	Raw District		page 20180807143519
+5	Core	13:30	15:00	Magit Cacoon		page 20180807143519
+5	Core	15:00	16:30	Serge Devant		page 20180807143519
+5	Core	16:30	18:00	Patrice Bäumel		page 20180807143519
+5	Core	18:00	19:30	Bedouin		page 20180807143519
+5	Core	19:30	21:00	&ME		page 20180807143519
+5	Core	21:00	22:30	Damian Lazarus		page 20180807143519
+5	Core	22:30	00:00	Dixon		page 20180807143519
+5	Core	00:00	01:00	Damian Lazarus b2b Dixon		page 20180807143519
+5	Rose Garden	13:00	14:00	Dj Jan		page 20180807143519
+5	Rose Garden	14:00	15:30	Airwave		page 20180807143519
+5	Rose Garden	15:30	17:00	Oliver Lieb		page 20180807143519
+5	Rose Garden	17:00	18:00	Franky Jones		page 20180807143519
+5	Rose Garden	18:00	19:00	Bountyhunter		page 20180807143519
+5	Rose Garden	19:00	20:00	Jan Vervloet		page 20180807143519
+5	Rose Garden	20:00	21:00	Dj Ghost		page 20180807143519
+5	Rose Garden	21:00	22:30	Franky Kloeck		page 20180807143519
+5	Rose Garden	22:30	23:30	Yves Deruyter		page 20180807143519
+5	Rose Garden	23:30	01:00	Bonzai All Stars		page 20180807143519
+5	Tulip	12:30	13:45	Hazem Beltagui (Deep Set)		page 20180807143519
+5	Tulip	13:45	15:00	Paul Thomas		page 20180807143519
+5	Tulip	15:00	16:00	Ciaran McAuley		page 20180807143519
+5	Tulip	16:00	17:00	Alessandra Roncone		page 20180807143519
+5	Tulip	17:00	18:00	Ahmed Romel		page 20180807143519
+5	Tulip	18:00	19:00	A & Z vs Omar Sherif		page 20180807143519
+5	Tulip	19:00	20:00	Giuseppe Ottaviani Live 2.0		page 20180807143519
+5	Tulip	20:00	22:00	Aly & Fila		page 20180807143519
+5	Tulip	22:00	23:00	Cold Blue		page 20180807143519
+5	Tulip	23:00	00:00	Ferry Corsten		page 20180807143519
+5	Tulip	00:00	01:00	Stoneface & Terminal		page 20180807143519
+5	Cage	14:00	15:00	SVB		page 20180807143519
+5	Cage	15:00	16:00	One87 ft. Mc Mush		page 20180807143519
+5	Cage	16:00	17:00	Cedex & Higher Underground feat 3XB		page 20180807143519
+5	Cage	17:00	18:00	M&T ft. Mc Seko		page 20180807143519
+5	Cage	18:00	19:00	Doctrine		page 20180807143519
+5	Cage	19:00	20:00	Pamb & Harsh feat Mc Swift		page 20180807143519
+5	Cage	20:00	21:00	Ed:it b2b Pola & Bryson		page 20180807143519
+5	Cage	21:00	22:00	Fourward		page 20180807143519
+5	Cage	22:00	23:00	Friction & Linguistics		page 20180807143519
+5	Cage	23:00	00:00	Icicle b2b Ulterior Motive		page 20180807143519
+5	Cage	00:00	01:00	S.P.Y		page 20180807143519
+5	Youphoria	12:00	13:00	RayRay		page 20180807143519
+5	Youphoria	13:00	14:00	Lowriderz		page 20180807143519
+5	Youphoria	14:00	14:50	Slowbody		page 20180807143519
+5	Youphoria	14:50	15:50	PKCZ®		page 20180807143519
+5	Youphoria	15:50	16:10	Kalibwoy		page 20180807143519
+5	Youphoria	16:10	17:10	Crisis Era		page 20180807143519
+5	Youphoria	17:10	17:30	Lil Debbie (Live)		page 20180807143519
+5	Youphoria	17:30	18:30	Stoltenhoff b2b Bellorum		page 20180807143519
+5	Youphoria	18:30	18:50	ANBU (Live)		page 20180807143519
+5	Youphoria	18:50	19:50	Menasa b2b Tsunano		page 20180807143519
+5	Youphoria	19:50	20:50	DOLF		page 20180807143519
+5	Youphoria	20:50	21:50	Cesqeaux b2b Aazar		page 20180807143519
+5	Youphoria	21:50	22:50	Wiwek b2b Juyen Sebulba		page 20180807143519
+5	Youphoria	22:50	23:50	Moksi		page 20180807143519
+5	Youphoria	23:50	00:50	Yellow Claw		page 20180807143519
+5	Arch	12:30	14:00	One Track Brain b2b Ogenn		page 20180807143519
+5	Arch	14:00	15:30	Nastia Reigel		page 20180807143519
+5	Arch	15:30	17:00	SHDW & Obscure Shape		page 20180807143519
+5	Arch	17:00	18:30	Cleric		page 20180807143519
+5	Arch	18:30	20:00	Keith Carnal		page 20180807143519
+5	Arch	20:00	21:30	Charlotte de Witte		page 20180807143519
+5	Arch	21:30	23:30	Rebekah		page 20180807143519
+5	Arch	23:30	00:50	One Track Brain		page 20180807143519
+5	Leaf by JBL	12:30	15:30	Daoud		page 20180807143519
+5	Leaf by JBL	15:30	17:30	Bloem		page 20180807143519
+5	Leaf by JBL	17:30	19:00	Maga		page 20180807143519
+5	Leaf by JBL	19:00	21:00	Blond:ish		page 20180807143519
+5	Leaf by JBL	21:00	23:30	Audiofly		page 20180807143519
+5	House of Mask by Cubanisto	13:00	14:30	Franco Y Gael		page 20180807143519
+5	House of Mask by Cubanisto	14:30	16:00	Denis Horvat		page 20180807143519
+5	House of Mask by Cubanisto	16:00	17:30	Cellini		page 20180807143519
+5	House of Mask by Cubanisto	17:30	19:00	Eagles & Butterflies		page 20180807143519
+5	House of Mask by Cubanisto	19:00	21:00	Traumer		page 20180807143519
+5	House of Mask by Cubanisto	21:00	22:00	Mandana		page 20180807143519
+5	Amicorum Spectaculum presents: Theatre Formidable	12:00	14:00	Tofke		page 20180807143519
+5	Amicorum Spectaculum presents: Theatre Formidable	14:00	15:30	Maxim Lany		page 20180807143519
+5	Amicorum Spectaculum presents: Theatre Formidable	15:30	17:00	Melé		page 20180807143519
+5	Amicorum Spectaculum presents: Theatre Formidable	17:00	18:30	Alan Fitzpatrick		page 20180807143519
+5	Amicorum Spectaculum presents: Theatre Formidable	18:30	20:00	Jamie Jones		page 20180807143519
+5	Amicorum Spectaculum presents: Theatre Formidable	20:00	22:00	Nicole Moudaber		page 20180807143519
+5	Amicorum Spectaculum presents: Theatre Formidable	22:00	23:30	Paco Osuna		page 20180807143519
+5	Rave Cave	13:00	14:00	Reus & Cékes		page 20180807143519
+5	Rave Cave	14:00	15:30	Simon Dobbs & Benji		page 20180807143519
+5	Rave Cave	15:30	17:00	Adeline		page 20180807143519
+5	Rave Cave	17:00	19:00	Federico Grazzini		page 20180807143519
+5	Rave Cave	19:00	21:00	Nukov & Yelmet		page 20180807143519
+5	Rave Cave	21:00	23:00	Arado		page 20180807143519
+5	Rave Cave	23:00	01:00	Tolstoi & Andsan		page 20180807143519
+5	Harbour House	13:00	15:00	Nicki sanchez		page 20180807143519
+5	Harbour House	15:00	18:00	Uneak		page 20180807143519
+5	Harbour House	18:00	20:00	Daddy K		page 20180807143519
+5	Harbour House	20:00	22:00	Bart & Baker		page 20180807143519
+5	Harbour House	22:00	01:00	Rakesh aka Blackjack9000		page 20180807143519
+6	Mainstage	12:00	14:50	Markus Schulz		page 20180807143519
+6	Mainstage	14:50	15:50	Kungs		page 20180807143519
+6	Mainstage	15:50	16:50	Quintino		page 20180807143519
+6	Mainstage	16:50	17:50	Ummet Ozcan		page 20180807143519
+6	Mainstage	17:50	18:50	METAFO4R (Firebeatz vs Dubvision)		page 20180807143519
+6	Mainstage	18:50	19:50	Robin Schulz		page 20180807143519
+6	Mainstage	19:50	20:50	Solomun		page 20180807143519
+6	Mainstage	20:50	21:50	Steve Angello		page 20180807143519
+6	Mainstage	21:50	22:50	David Guetta		page 20180807143519
+6	Mainstage	22:50	23:50	Martin Garrix		page 20180807143519
+6	Freedom Stage by Budweiser	12:00	13:00	Mandy		page 20180807143519
+6	Freedom Stage by Budweiser	13:00	14:00	Sephyx		page 20180807143519
+6	Freedom Stage by Budweiser	14:00	15:00	Crisis Era		page 20180807143519
+6	Freedom Stage by Budweiser	15:00	16:00	LNY TNZ		page 20180807143519
+6	Freedom Stage by Budweiser	16:00	17:00	Da Tweekaz		page 20180807143519
+6	Freedom Stage by Budweiser	17:00	18:00	Wildstylez		page 20180807143519
+6	Freedom Stage by Budweiser	18:00	19:00	Coone		page 20180807143519
+6	Freedom Stage by Budweiser	19:00	19:30	Pablo Discobar		page 20180807143519
+6	Freedom Stage by Budweiser	19:30	20:15	Darren Styles		page 20180807143519
+6	Freedom Stage by Budweiser	20:15	21:15	Zatox		page 20180807143519
+6	Freedom Stage by Budweiser	21:15	22:15	Coone vs Hard Driver		page 20180807143519
+6	Freedom Stage by Budweiser	22:15	23:00	Gunz for Hire		page 20180807143519
+6	Atmosphere	12:30	14:30	Fred Hush vs Nakadia		page 20180807143519
+6	Atmosphere	14:30	16:00	Rob Hes		page 20180807143519
+6	Atmosphere	16:00	17:30	Boris Brejcha		page 20180807143519
+6	Atmosphere	17:30	19:00	Len Faki		page 20180807143519
+6	Atmosphere	19:00	21:00	Sven Väth		page 20180807143519
+6	Atmosphere	21:00	22:30	Richie Hawtin		page 20180807143519
+6	Atmosphere	22:30	00:00	Nina Kraviz		page 20180807143519
+6	Garden of Madness	12:00	14:00	Iris Menza		page 20180807143519
+6	Garden of Madness	14:00	16:00	Bollen & Fichtner		page 20180807143519
+6	Garden of Madness	16:00	17:30	ANOTR		page 20180807143519
+6	Garden of Madness	17:30	19:00	Andhim		page 20180807143519
+6	Garden of Madness	19:00	20:30	Matthias Tanzmann		page 20180807143519
+6	Garden of Madness	20:30	22:00	Andrea Oliva		page 20180807143519
+6	Garden of Madness	22:00	23:50	Joris Voorn		page 20180807143519
+6	Organ of Harmony	12:00	13:00	Diego Miranda		page 20180807143519
+6	Organ of Harmony	13:00	14:00	Warriors		page 20180807143519
+6	Organ of Harmony	14:00	15:00	Mr Pig & Jamis		page 20180807143519
+6	Organ of Harmony	15:00	16:00	Kristian Nairn		page 20180807143519
+6	Organ of Harmony	16:00	17:00	Virgil Abloh		page 20180807143519
+6	Organ of Harmony	17:00	18:00	MATTN		page 20180807143519
+6	Organ of Harmony	18:00	19:00	Bassjackers		page 20180807143519
+6	Organ of Harmony	19:00	20:00	Nicky Romero		page 20180807143519
+6	Organ of Harmony	20:00	21:00	KSHMR		page 20180807143519
+6	Organ of Harmony	21:00	22:00	Steve Aoki		page 20180807143519
+6	Organ of Harmony	22:00	23:30	Dimitri Vegas & Like Mike		page 20180807143519
+6	Organ of Harmony	23:30	00:00	3 Are Legend		page 20180807143519
+6	Core	12:00	13:30	Neon		page 20180807143519
+6	Core	13:30	14:30	The Aston Shuffle		page 20180807143519
+6	Core	14:30	15:30	Boston Bun		page 20180807143519
+6	Core	15:30	16:30	Hamza		page 20180807143519
+6	Core	16:30	18:00	Idris Elba		page 20180807143519
+6	Core	18:00	19:30	Pete Tong		page 20180807143519
+6	Core	19:30	22:00	The Magician		page 20180807143519
+6	Core	22:00	00:00	Claptone		page 20180807143519
+6	Rose Garden	12:30	14:00	LVNDSCAPE		page 20180807143519
+6	Rose Garden	14:00	15:00	Trobi		page 20180807143519
+6	Rose Garden	15:00	16:00	Deepend		page 20180807143519
+6	Rose Garden	16:00	17:00	Carta		page 20180807143519
+6	Rose Garden	17:00	18:00	Jay Hardway		page 20180807143519
+6	Rose Garden	18:00	19:00	Kris Kross Amsterdam		page 20180807143519
+6	Rose Garden	19:00	20:00	Mike Williams		page 20180807143519
+6	Rose Garden	20:00	21:00	Lucas & Steve		page 20180807143519
+6	Rose Garden	21:00	22:00	Curbi		page 20180807143519
+6	Rose Garden	22:00	23:00	Blasterjaxx		page 20180807143519
+6	Rose Garden	23:00	00:00	Tujamo		page 20180807143519
+6	Tulip	12:30	14:30	Kagge & Bowen		page 20180807143519
+6	Tulip	14:30	16:00	Caspar		page 20180807143519
+6	Tulip	16:00	19:00	Hernan Cattaneo		page 20180807143519
+6	Tulip	19:00	20:30	Don Cabron		page 20180807143519
+6	Tulip	20:30	22:30	Gui Boratto (Live)		page 20180807143519
+6	Tulip	22:30	00:00	Nico Morano		page 20180807143519
+6	Cage	13:00	14:00	Blaster vs Richie Gee		page 20180807143519
+6	Cage	14:00	14:30	Tymon (Live)		page 20180807143519
+6	Cage	14:30	15:30	Sei2ure		page 20180807143519
+6	Cage	15:30	16:30	D-Fence		page 20180807143519
+6	Cage	16:30	17:45	Hatred vs The Punisher		page 20180807143519
+6	Cage	17:45	18:45	Miss K8		page 20180807143519
+6	Cage	18:45	20:00	Detest vs eDUB		page 20180807143519
+6	Cage	20:00	21:00	Warface		page 20180807143519
+6	Cage	21:00	22:00	Sandy Warez vs Goetia		page 20180807143519
+6	Cage	22:00	23:00	Vandal		page 20180807143519
+6	Cage	23:00	00:00	Dr. Peacock		page 20180807143519
+6	Youphoria	12:30	14:30	Smos		page 20180807143519
+6	Youphoria	14:30	16:30	Dino Lenny		page 20180807143519
+6	Youphoria	16:30	18:00	Kiasmos DJ		page 20180807143519
+6	Youphoria	18:00	19:00	Peggy Gou		page 20180807143519
+6	Youphoria	19:00	20:45	Jennifer Cardini		page 20180807143519
+6	Youphoria	20:45	22:45	Maceo Plex		page 20180807143519
+6	Youphoria	22:45	00:00	Stephan Bodzin (Live)		page 20180807143519
+6	Arch	12:00	14:30	Alex Di Stefano		page 20180807143519
+6	Arch	14:30	16:30	Sean Tyas (Live)		page 20180807143519
+6	Arch	16:30	18:30	John Askew		page 20180807143519
+6	Arch	18:30	20:00	Simon Patterson		page 20180807143519
+6	Arch	20:00	21:30	Astrix		page 20180807143519
+6	Arch	21:30	22:45	Freedom Fighters		page 20180807143519
+6	Arch	22:45	00:00	Will Atkinson		page 20180807143519
+6	Leaf by JBL	12:30	14:00	Until Dawn		page 20180807143519
+6	Leaf by JBL	14:00	15:30	Sven Van Hees		page 20180807143519
+6	Leaf by JBL	15:30	17:00	Jose Maria Ramon		page 20180807143519
+6	Leaf by JBL	17:00	18:30	UNER		page 20180807143519
+6	Leaf by JBL	18:30	20:00	Franky Rizardo		page 20180807143519
+6	Leaf by JBL	20:00	22:00	Mambo Brothers		page 20180807143519
+6	Leaf by JBL	22:00	23:30	Lovely Laura & Ben Santiago		page 20180807143519
+6	House of Mask by Cubanisto	13:00	14:00	Vertier		page 20180807143519
+6	House of Mask by Cubanisto	14:00	15:30	Unclesand		page 20180807143519
+6	House of Mask by Cubanisto	15:30	17:00	Deltano		page 20180807143519
+6	House of Mask by Cubanisto	17:00	19:00	Deecoy x Jerrymore		page 20180807143519
+6	House of Mask by Cubanisto	19:00	20:30	Dominik Eulberg		page 20180807143519
+6	House of Mask by Cubanisto	20:30	22:30	Renaat Vandepapeliere		page 20180807143519
+6	Amicorum Spectaculum presents: Theatre Formidable	13:00	16:30	Ward		page 20180807143519
+6	Amicorum Spectaculum presents: Theatre Formidable	16:30	17:30	Laurent Wery		page 20180807143519
+6	Amicorum Spectaculum presents: Theatre Formidable	17:30	18:30	Wout		page 20180807143519
+6	Amicorum Spectaculum presents: Theatre Formidable	18:30	19:30	DJ F.R.A.N.K		page 20180807143519
+6	Amicorum Spectaculum presents: Theatre Formidable	19:30	20:30	DJ Jean		page 20180807143519
+6	Amicorum Spectaculum presents: Theatre Formidable	20:30	21:30	Sash!		page 20180807143519
+6	Amicorum Spectaculum presents: Theatre Formidable	21:30	22:30	Dune		page 20180807143519
+6	Amicorum Spectaculum presents: Theatre Formidable	22:30	23:00	Ward vs Party Crasher		page 20180807143519
+6	Amicorum Spectaculum presents: Theatre Formidable	23:00	00:00	Back In Time		page 20180807143519
+6	Rave Cave	12:00	13:30	Rupert Harvey & JLN		page 20180807143519
+6	Rave Cave	13:30	15:00	Amekmar		page 20180807143519
+6	Rave Cave	15:00	16:30	Seba Lecompte		page 20180807143519
+6	Rave Cave	16:30	18:00	Psytox		page 20180807143519
+6	Rave Cave	18:00	19:30	Tom Hades		page 20180807143519
+6	Rave Cave	19:30	21:00	Trixy		page 20180807143519
+6	Rave Cave	21:00	22:30	Stranger		page 20180807143519
+6	Rave Cave	22:30	00:00	Twan		page 20180807143519
+6	Harbour House	13:00	15:00	Bart & Baker		page 20180807143519
+6	Harbour House	15:00	18:00	Rakesh aka Blackjack9000		page 20180807143519
+6	Harbour House	18:00	20:00	Rakka		page 20180807143519
+6	Harbour House	20:00	22:00	Bubba		page 20180807143519
+6	Harbour House	22:00	00:00	Zeen & Myer		page 20180807143519

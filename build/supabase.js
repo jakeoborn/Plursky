@@ -260,7 +260,7 @@ function sbOnAuthChange(cb) {
   });
   return () => data.subscription.unsubscribe();
 }
-var _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256"];
+var _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256", "parsedGps", "gpsAccM", "heading", "headingRef"];
 function _slimMomentsForSync(all) {
   var out = {};
   for (var night of Object.keys(all || {})) {
@@ -450,7 +450,7 @@ async function sbExportUserData(state) {
       spotifyProfile: parseJson(safeLs("spotify_profile"))
     },
     saved: state.saved || [],
-    attended: parseJson(safeLs("plursky_attended_v1")) || {},
+    attended: (typeof getAttendedStore === "function" ? getAttendedStore() : parseJson(safeLs("plursky_attended_v1"))) || {},
     moments: parseJson(safeLs("plursky_moments_v1")) || {},
     notes: parseJson(safeLs("artist_notes_v1")) || {},
     crewCode: safeLs("plursky_group_code"),
@@ -460,7 +460,8 @@ async function sbExportUserData(state) {
       pinger: safeLs("plursky_pinger_v1")
     },
     keptBothConflicts: parseJson(safeLs("plursky_conflicts_kept_both_v1")) || [],
-    blockedPids: parseJson(safeLs("plursky_blocked_pids_v1")) || []
+    blockedPids: parseJson(safeLs("plursky_blocked_pids_v1")) || [],
+    importLog: parseJson(safeLs("plursky_import_log_v1")) || []
   };
   var json = JSON.stringify(payload, null, 2);
   var blob = new Blob([json], {

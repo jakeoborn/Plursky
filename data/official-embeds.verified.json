@@ -11,13 +11,13 @@
       "checkedAt": "2026-10-28"
     },
     "https://open.spotify.com/playlist/0yS25E7g9xQZ1Dst5SqUZn": {
-      "ok": false,
-      "reason": "accountSourceUrl does not link the official account",
+      "ok": true,
+      "reason": null,
       "festival": "tomorrowland-2027",
       "platform": "spotify",
-      "sig": "acaad0099b6daa8b",
+      "sig": "dde95e7517012f82",
       "publishedAt": null,
-      "checkedAt": "2026-10-28"
+      "checkedAt": "2026-11-09"
     },
     "https://open.spotify.com/playlist/14fOWfs7TBF4kQhZQUE8El": {
       "ok": true,
@@ -857,6 +857,99 @@
       "sig": "6d7bb1a64593a543",
       "publishedAt": null,
       "checkedAt": "2026-10-28"
+    },
+    "https://www.youtube.com/watch?v=fqvmqwXxyns": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "youtube",
+      "sig": "5d33dcad4b53fc82",
+      "publishedAt": "2026-11-07",
+      "accountName": "Insomniac",
+      "checkedAt": "2026-11-09"
+    },
+    "https://www.youtube.com/watch?v=nk5sosoCouE": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "youtube",
+      "sig": "c82d8522ea1e5db9",
+      "publishedAt": "2026-11-08",
+      "accountName": "Insomniac",
+      "checkedAt": "2026-11-09"
+    },
+    "https://x.com/EDC_Orlando/status/2119365567987474463": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "x",
+      "sig": "95e08522986115fa",
+      "publishedAt": "2026-11-08",
+      "checkedAt": "2026-11-09"
+    },
+    "https://x.com/EDC_Orlando/status/2119651878287855713": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "x",
+      "sig": "0807580b4b4b0193",
+      "publishedAt": "2026-11-09",
+      "checkedAt": "2026-11-09"
+    },
+    "https://x.com/EDC_Orlando/status/2119760529036292367": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "x",
+      "sig": "4a4b41862b5c68c2",
+      "publishedAt": "2026-11-09",
+      "checkedAt": "2026-11-09"
+    },
+    "https://x.com/EDC_Orlando/status/2119760943810838863": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "x",
+      "sig": "872a15fd449521c2",
+      "publishedAt": "2026-11-09",
+      "checkedAt": "2026-11-09"
+    },
+    "https://x.com/EDC_Orlando/status/2119761142784352350": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "x",
+      "sig": "6caf516b54c9b8c6",
+      "publishedAt": "2026-11-09",
+      "checkedAt": "2026-11-09"
+    },
+    "https://x.com/EDC_Orlando/status/2119762260830699722": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "x",
+      "sig": "83c0ac2a00cdc4bd",
+      "publishedAt": "2026-11-09",
+      "checkedAt": "2026-11-09"
+    },
+    "https://x.com/EDC_Orlando/status/2119822328779665911": {
+      "ok": true,
+      "reason": null,
+      "festival": "edc-orlando-2026",
+      "platform": "x",
+      "sig": "ea1e55396b2512e3",
+      "publishedAt": "2026-11-09",
+      "checkedAt": "2026-11-09"
+    },
+    "https://www.youtube.com/watch?v=EOQjhM4FnrE": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-socal-2027",
+      "platform": "youtube",
+      "sig": "d0dc699234925cbb",
+      "publishedAt": "2026-04-03",
+      "accountName": "Insomniac",
+      "checkedAt": "2026-11-09"
     }
   }
 }

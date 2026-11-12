@@ -1,0 +1,353 @@
+{
+  "id": "hard-summer-2023",
+  "method": "official_lineup_html",
+  "official": "https://www.hardsummer.com/lineup/",
+  "chosen": "20231002190724",
+  "archivedUrl": "https://web.archive.org/web/20231002190724/https://www.hardsummer.com/lineup/",
+  "sha256": "9456daa16d993639334e08b06c3fe9083baca078fc5c8af9393835fa0f41e5b0",
+  "title": "Lineup – HARD Summer 2023",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 80",
+    "By Day 81",
+    "By Stage 80"
+  ],
+  "stageOrder": [
+    "HARD Stage",
+    "HARDER Stage",
+    "Green Stage",
+    "Purple Stage",
+    "Pink Stage"
+  ],
+  "crossTab": [
+    "Thee Mike B: alphabetical ×1; days 1+2; stages HARD Stage"
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20230204130658",
+      "archivedUrl": "https://web.archive.org/web/20230204130658/https://www.hardsummer.com/lineup/",
+      "sha256": "700b1587ec7ffe5b72d1344588d00d97aa809cd7dd4a737d10fd2525646c706e",
+      "bytes": 52062,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20230313132718",
+      "archivedUrl": "https://web.archive.org/web/20230313132718/https://www.hardsummer.com/lineup/",
+      "sha256": "85d75a3cee1267ca23a366aab26847ab398623eb0053be1d42bf80011dbe845a",
+      "bytes": 99707,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 72,
+      "diffVsChosen": [
+        "added by the final: Diplo B2B BLOND:ISH",
+        "added by the final: Fly With Us (AC Slater + Chris Lorenzo)",
+        "added by the final: it's murph",
+        "added by the final: MK B2B Sonny Fodera",
+        "added by the final: nøll",
+        "added by the final: PAWSA",
+        "added by the final: Rochelle Jordan",
+        "added by the final: Team EZY",
+        "added by the final: Thee Mike B",
+        "added by the final: UNiiQU3",
+        "added by the final: Yung Bae",
+        "added by the final: yunè pinku",
+        "removed by the final: Diplo B2B Blond:ish",
+        "removed by the final: TBA B2B Sonny Fodera",
+        "removed by the final: Two Feet",
+        "removed by the final: Yunè Pinku"
+      ]
+    },
+    {
+      "captureTimestamp": "20230329022137",
+      "archivedUrl": "https://web.archive.org/web/20230329022137/https://www.hardsummer.com/lineup/",
+      "sha256": "3310716207e52b9dabd49ee7ba6762ab62d133271d100f935fcf6086076d9185",
+      "bytes": 99707,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 72,
+      "diffVsChosen": [
+        "added by the final: Diplo B2B BLOND:ISH",
+        "added by the final: Fly With Us (AC Slater + Chris Lorenzo)",
+        "added by the final: it's murph",
+        "added by the final: MK B2B Sonny Fodera",
+        "added by the final: nøll",
+        "added by the final: PAWSA",
+        "added by the final: Rochelle Jordan",
+        "added by the final: Team EZY",
+        "added by the final: Thee Mike B",
+        "added by the final: UNiiQU3",
+        "added by the final: Yung Bae",
+        "added by the final: yunè pinku",
+        "removed by the final: Diplo B2B Blond:ish",
+        "removed by the final: TBA B2B Sonny Fodera",
+        "removed by the final: Two Feet",
+        "removed by the final: Yunè Pinku"
+      ]
+    },
+    {
+      "captureTimestamp": "20230329022344",
+      "archivedUrl": "https://web.archive.org/web/20230329022344/https://www.hardsummer.com/lineup/",
+      "sha256": "2655a4ce9b2aa01978c9b970bdf9f9432eec793c1cee1536f89fa3dc998c5790",
+      "bytes": 99707,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 72,
+      "diffVsChosen": [
+        "added by the final: Diplo B2B BLOND:ISH",
+        "added by the final: Fly With Us (AC Slater + Chris Lorenzo)",
+        "added by the final: it's murph",
+        "added by the final: MK B2B Sonny Fodera",
+        "added by the final: nøll",
+        "added by the final: PAWSA",
+        "added by the final: Rochelle Jordan",
+        "added by the final: Team EZY",
+        "added by the final: Thee Mike B",
+        "added by the final: UNiiQU3",
+        "added by the final: Yung Bae",
+        "added by the final: yunè pinku",
+        "removed by the final: Diplo B2B Blond:ish",
+        "removed by the final: TBA B2B Sonny Fodera",
+        "removed by the final: Two Feet",
+        "removed by the final: Yunè Pinku"
+      ]
+    },
+    {
+      "captureTimestamp": "20230402094015",
+      "archivedUrl": "https://web.archive.org/web/20230402094015/https://www.hardsummer.com/lineup/",
+      "sha256": "cadbf578dac02010b4fdf18ab9fa5a966f60171ca0e2f7627efcee843d33ee2c",
+      "bytes": 99707,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 72,
+      "diffVsChosen": [
+        "added by the final: Diplo B2B BLOND:ISH",
+        "added by the final: Fly With Us (AC Slater + Chris Lorenzo)",
+        "added by the final: it's murph",
+        "added by the final: MK B2B Sonny Fodera",
+        "added by the final: nøll",
+        "added by the final: PAWSA",
+        "added by the final: Rochelle Jordan",
+        "added by the final: Team EZY",
+        "added by the final: Thee Mike B",
+        "added by the final: UNiiQU3",
+        "added by the final: Yung Bae",
+        "added by the final: yunè pinku",
+        "removed by the final: Diplo B2B Blond:ish",
+        "removed by the final: TBA B2B Sonny Fodera",
+        "removed by the final: Two Feet",
+        "removed by the final: Yunè Pinku"
+      ]
+    },
+    {
+      "captureTimestamp": "20230606071237",
+      "archivedUrl": "https://web.archive.org/web/20230606071237/https://www.hardsummer.com/lineup/",
+      "sha256": "8bb87c3e7250d58c63b0aac5ec6da23bee0e6022a3f4687b6d9bb24b7433580a",
+      "bytes": 106601,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 77,
+      "diffVsChosen": [
+        "added by the final: Diplo B2B BLOND:ISH",
+        "added by the final: it's murph",
+        "added by the final: Team EZY",
+        "added by the final: Thee Mike B",
+        "added by the final: UNiiQU3",
+        "added by the final: yunè pinku",
+        "removed by the final: Diplo B2B Blond:ish",
+        "removed by the final: Two Feet",
+        "removed by the final: Yunè Pinku"
+      ]
+    },
+    {
+      "captureTimestamp": "20230619235640",
+      "archivedUrl": "https://web.archive.org/web/20230619235640/https://www.hardsummer.com/lineup/",
+      "sha256": "abdd957dc64a7cc5e8cc66571f0386187e09d6616454a33ebc9ed0b89c17f580",
+      "bytes": 106736,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 77,
+      "diffVsChosen": [
+        "added by the final: Diplo B2B BLOND:ISH",
+        "added by the final: it's murph",
+        "added by the final: Team EZY",
+        "added by the final: Thee Mike B",
+        "added by the final: UNiiQU3",
+        "added by the final: yunè pinku",
+        "removed by the final: Diplo B2B Blond:ish",
+        "removed by the final: Two Feet",
+        "removed by the final: Yunè Pinku"
+      ]
+    },
+    {
+      "captureTimestamp": "20230721212539",
+      "archivedUrl": "https://web.archive.org/web/20230721212539/https://www.hardsummer.com/lineup/",
+      "sha256": "6a16061a49c9df1a07a08346cb10919536fb5f105d7ff18e5bd12939dfb6ea91",
+      "bytes": 148097,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 79,
+      "diffVsChosen": [
+        "added by the final: Diplo B2B BLOND:ISH",
+        "added by the final: it's murph",
+        "added by the final: Thee Mike B",
+        "added by the final: yunè pinku",
+        "removed by the final: Diplo B2B Blond:ish",
+        "removed by the final: Two Feet",
+        "removed by the final: Yunè Pinku"
+      ]
+    },
+    {
+      "captureTimestamp": "20230802225953",
+      "archivedUrl": "https://web.archive.org/web/20230802225953/https://www.hardsummer.com/lineup/",
+      "sha256": "90dccdb2f4e055b529952b28806462ebc38029f436413c4f955153457c412c2d",
+      "bytes": 150516,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 80,
+      "diffVsChosen": [
+        "added by the final: it's murph",
+        "removed by the final: Two Feet"
+      ]
+    },
+    {
+      "captureTimestamp": "20230803224837",
+      "archivedUrl": "https://web.archive.org/web/20230803224837/https://www.hardsummer.com/lineup/",
+      "sha256": "58011fc482355c3a938a1a7d0c18b5037af499211fa24551c1797f25c1273937",
+      "bytes": 150516,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 80,
+      "diffVsChosen": [
+        "added by the final: it's murph",
+        "removed by the final: Two Feet"
+      ]
+    },
+    {
+      "captureTimestamp": "20230804222544",
+      "archivedUrl": "https://web.archive.org/web/20230804222544/https://www.hardsummer.com/lineup/",
+      "sha256": "355c385558dd5cb0501a9b16372a378361c6df59a63b3818148f2468d1daede4",
+      "bytes": 150516,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 80,
+      "diffVsChosen": [
+        "added by the final: it's murph",
+        "removed by the final: Two Feet"
+      ]
+    },
+    {
+      "captureTimestamp": "20230805160300",
+      "archivedUrl": "https://web.archive.org/web/20230805160300/https://www.hardsummer.com/lineup/",
+      "sha256": "38ab870349c5ae31b29349c4c6d9b97930d795c7242d1268ef203cb57c8c6337",
+      "bytes": 150516,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 80,
+      "diffVsChosen": [
+        "added by the final: it's murph",
+        "removed by the final: Two Feet"
+      ]
+    },
+    {
+      "captureTimestamp": "20231002190724",
+      "archivedUrl": "https://web.archive.org/web/20231002190724/https://www.hardsummer.com/lineup/",
+      "sha256": "9456daa16d993639334e08b06c3fe9083baca078fc5c8af9393835fa0f41e5b0",
+      "bytes": 148932,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 05",
+        "Sunday, August 06"
+      ],
+      "billings": 80,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

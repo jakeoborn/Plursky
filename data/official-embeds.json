@@ -73,6 +73,87 @@
       "accountSourceUrl": "https://orlando.edc.com/",
       "observedAt": "2026-09-24",
       "kind": "playlist"
+    },
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=fqvmqwXxyns",
+      "officialAccount": "https://www.youtube.com/@Insomniac",
+      "accountSourceUrl": "https://www.insomniac.com/",
+      "observedAt": "2026-11-09",
+      "kind": "recap",
+      "day": 1
+    },
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=nk5sosoCouE",
+      "officialAccount": "https://www.youtube.com/@Insomniac",
+      "accountSourceUrl": "https://www.insomniac.com/",
+      "observedAt": "2026-11-09",
+      "kind": "recap",
+      "day": 2
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EDC_Orlando/status/2119365567987474463",
+      "officialAccount": "https://twitter.com/EDC_Orlando",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-11-09",
+      "kind": "recap",
+      "day": 2,
+      "artist": "Kaskade"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EDC_Orlando/status/2119822328779665911",
+      "officialAccount": "https://twitter.com/EDC_Orlando",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-11-09",
+      "kind": "recap",
+      "day": 3
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EDC_Orlando/status/2119760943810838863",
+      "officialAccount": "https://twitter.com/EDC_Orlando",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-11-09",
+      "kind": "recap",
+      "day": 3,
+      "artist": "ATLiens"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EDC_Orlando/status/2119651878287855713",
+      "officialAccount": "https://twitter.com/EDC_Orlando",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-11-09",
+      "kind": "recap",
+      "day": 3,
+      "artist": "Maddix"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EDC_Orlando/status/2119762260830699722",
+      "officialAccount": "https://twitter.com/EDC_Orlando",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-11-09",
+      "kind": "recap"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EDC_Orlando/status/2119760529036292367",
+      "officialAccount": "https://twitter.com/EDC_Orlando",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-11-09",
+      "kind": "recap"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EDC_Orlando/status/2119761142784352350",
+      "officialAccount": "https://twitter.com/EDC_Orlando",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-11-09",
+      "kind": "recap"
     }
   ],
   "edc-mexico-2027": [
@@ -201,6 +282,14 @@
       "accountSourceUrl": "https://socal.beyondwonderland.com/",
       "observedAt": "2026-09-24",
       "kind": "playlist"
+    },
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=EOQjhM4FnrE",
+      "officialAccount": "https://www.youtube.com/@Insomniac",
+      "accountSourceUrl": "https://www.insomniac.com/",
+      "observedAt": "2026-11-09",
+      "kind": "aftermovie"
     }
   ],
   "beyond-wonderland-gorge-2027": [
@@ -370,7 +459,7 @@
       "platform": "spotify",
       "url": "https://open.spotify.com/playlist/0yS25E7g9xQZ1Dst5SqUZn",
       "officialAccount": "https://open.spotify.com/playlist/0yS25E7g9xQZ1Dst5SqUZn",
-      "accountSourceUrl": "https://belgium.tomorrowland.com/",
+      "accountSourceUrl": "https://www.tomorrowland.com/en/festival/welcome",
       "observedAt": "2026-09-24",
       "kind": "playlist"
     }

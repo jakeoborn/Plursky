@@ -28,7 +28,37 @@ const TILE_BUDGET = 16 * 1024, TOTAL_BUDGET = 256 * 1024;   // 25 tiles at ~8 KB
 // Every listed festival carries art (Jake 2026-10-18: "a visual based app,
 // lots of photos"). A festival allowed the tinted letter tile goes here, with
 // why. None today.
-const FALLBACK = {};
+const FALLBACK = {
+  // Added 2026-11-10 as gated previews. Their official art hosts (the LAN
+  // poster on 2026-lightsallnight-com.imgix.net among them) could not be
+  // downloaded from the build environment that scaffolded them. Each needs an
+  // official tile in data/festival-art.js before it flips to available.
+  "lights-all-night-2026": "official art not fetched yet; tile owed before the flip",
+  "decadence-arizona-2026": "official art not fetched yet; tile owed before the flip",
+  "sunset-on-the-river-2027": "official art not fetched yet; tile owed before the flip",
+  "ubbi-dubbi-2027": "official art not fetched yet; tile owed before the flip",
+  "movement-2027": "official art not fetched yet; tile owed before the flip",
+  "shambhala-2027": "official art not fetched yet; tile owed before the flip",
+  "defqon1-2027": "official art not fetched yet; tile owed before the flip",
+  "untold-2027": "official art not fetched yet; tile owed before the flip",
+  "creamfields-2027": "official art not fetched yet; tile owed before the flip",
+  "das-energi-2027": "official art not fetched yet; tile owed before the flip",
+  "dwp-2026": "official art not fetched yet; tile owed before the flip",
+  "edc-thailand-2026": "official art not fetched yet; tile owed before the flip",
+  "tomorrowland-thailand-2026": "official art not fetched yet; tile owed before the flip",
+  "kappa-futurfestival-2027": "official art not fetched yet; tile owed before the flip",
+  "ultra-europe-2027": "official art not fetched yet; tile owed before the flip",
+  "awakenings-2027": "official art not fetched yet; tile owed before the flip",
+  "parookaville-2027": "official art not fetched yet; tile owed before the flip",
+  "electric-love-2027": "official art not fetched yet; tile owed before the flip",
+  "bass-coast-2027": "official art not fetched yet; tile owed before the flip",
+  "tomorrowland-winter-2027": "official art not fetched yet; tile owed before the flip",
+  "tomorrowland-brasil-2027": "official art not fetched yet; tile owed before the flip",
+  "primavera-sound-2027": "official art not fetched yet; tile owed before the flip",
+  "boom-festival-2027": "official art not fetched yet; tile owed before the flip",
+  "sziget-2027": "official art not fetched yet; tile owed before the flip",
+  "forbidden-kingdom-2027": "official art not fetched yet; tile owed before the flip",
+};
 // Sat Oct 17, 4 pm ET: III Points is live, so all three chip kinds are on the page.
 const AT = "2026-10-17T20:00:00Z";
 

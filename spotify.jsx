@@ -1260,19 +1260,27 @@ const _POSTER_TIMEOUT_MS = 8000;
 // lead-in, a pocket, a lens cap. A dark night-set clip still has stage lights
 // in it and passes, so only a frame with no highlights at all is skipped.
 const _BLACK_MAX_LUMA = 40;
-function _frameIsBlack(v) {
+// "ok" | "black" | "unpainted". A frame read right after `seeked` can come
+// back with nothing drawn (every pixel alpha 0) before the decoder has
+// presented it (seen on CI Chromium as 19/20 posters). That is not a black
+// frame: it is re-read, not skipped.
+function _frameState(v) {
   try {
     const c = document.createElement("canvas");
     c.width = c.height = 24;
     const g = c.getContext("2d");
     g.drawImage(v, 0, 0, 24, 24);
     const d = g.getImageData(0, 0, 24, 24).data;
+    let painted = false;
     for (let i = 0; i < d.length; i += 4) {
-      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return false;
+      if (d[i + 3] === 0) continue;
+      painted = true;
+      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return "ok";
     }
-    return true;
-  } catch { return false; }
+    return painted ? "black" : "unpainted";
+  } catch { return "ok"; }
 }
+const _POSTER_PAINT_RETRIES = 6, _POSTER_PAINT_WAIT_MS = 50;
 function _videoPosterBlob(blob) {
   return new Promise((resolve) => {
     let url = null, v = null, settled = false, timer = null;
@@ -1321,11 +1329,15 @@ function _videoPosterBlob(blob) {
           .filter((t, i, a) => t < dur && (i === 0 || t > a[i - 1] + 0.05));
         if (v.readyState >= 2) seek(); else v.onloadeddata = seek;
       };
-      v.onseeked = () => {
-        if (!_frameIsBlack(v)) return draw();
+      const judge = (tries) => {
+        if (settled) return;
+        const st = _frameState(v);
+        if (st === "unpainted" && tries < _POSTER_PAINT_RETRIES) return setTimeout(() => judge(tries + 1), _POSTER_PAINT_WAIT_MS);
+        if (st === "ok") return draw();
         if (++at < times.length) return seek();
         done(null);
       };
+      v.onseeked = () => judge(0);
       v.onerror = () => done(null);
       v.src = url;
     } catch { done(null); }
@@ -1974,7 +1986,8 @@ function _backedUpBytes(all) {
 // Mirror every not-yet-backed-up moment photo/video to Supabase Storage, then
 // stamp `backedUp` + `backedUpBytes` on the moment (one batched write at the
 // end so we don't fire N re-renders). Stops at the hard cap. Returns
-// {done, failed, total, capped, usedBytes} or {error}.
+// {done, failed, total, capped, usedBytes, gpsHeld} or {error}; gpsHeld
+// counts videos kept back because their GPS could not be proven stripped.
 async function _backupMyWeekend(onProgress) {
   if (typeof window.sbUploadMomentMedia !== "function") return { error: "offline" };
   const user = window.sbGetUser ? await window.sbGetUser() : null;
@@ -1987,10 +2000,20 @@ async function _backupMyWeekend(onProgress) {
   }
   let done = 0, failed = 0, capped = false;
   const succeeded = {}; // id -> bytes
+  let gpsHeld = 0;
   for (const m of pending) {
-    const blob = await _getPhoto(m.photoId).catch(() => null);
+    let blob = await _getPhoto(m.photoId).catch(() => null);
     if (!blob) { failed++; onProgress?.({ done, failed, total: pending.length }); continue; }
     if (usedBytes + blob.size > _BACKUP_HARD_CAP) { capped = true; break; }
+    // A stored video is the raw file, capture GPS included; only a copy with
+    // the phone's own location metadata removed may leave the device (see
+    // _stripVideoGps for what is and is not vetted). If the strip refuses
+    // (null), the clip is held back, never sent as-is.
+    if (m.kind === "video" || /^video\//.test(blob.type || "")) {
+      const clean = await _stripVideoGps(blob);
+      if (!clean) { gpsHeld++; onProgress?.({ done, failed, total: pending.length }); continue; }
+      blob = clean.blob;
+    }
     const ok = await window.sbUploadMomentMedia(m.photoId, blob);
     if (ok) { succeeded[m.id] = blob.size; usedBytes += blob.size; done++; } else failed++;
     onProgress?.({ done, failed, total: pending.length });
@@ -2001,7 +2024,7 @@ async function _backupMyWeekend(onProgress) {
     for (const n of Object.keys(cur)) cur[n] = (cur[n] || []).map(x => succeeded[x.id] != null ? { ...x, backedUp: true, backedUpBytes: succeeded[x.id] } : x);
     _writeMoments(cur);
   }
-  return { done, failed, total: pending.length, capped, usedBytes };
+  return { done, failed, total: pending.length, capped, usedBytes, gpsHeld };
 }
 
 // Single memory thumbnail for the home strip — loads its photo blob lazily.
@@ -2734,11 +2757,15 @@ function _FavBadge({ style }) {
   );
 }
 
-function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight, onDelete }) {
+function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight, onDelete, showNight = false }) {
   const m = moments[index];
   const photoUrl = useMomentPhoto(m?.photoId);
-  const artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
-  const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  // SPEC-179: the clip's OWN festival names its act and stage. A III Points
+  // clip opened while ACL is active looked its artistId up in ACL's lineup,
+  // so a fresh pick showed no act and no stage.
+  const mf = _momentFestival(m);
+  const artist = m?.artistId ? mf.artists.find(a => a.id === m.artistId) || null : null;
+  const stage  = artist ? mf.stages.find(s => s.id === artist.stage) || null : null;
   const estimatedSong = useSetlistSong(artist, m?.takenAt);
   // Prefer a Shazam-confirmed song over the tracklist estimate.
   const song   = m?.confirmedSong ? { song: m.confirmedSong } : estimatedSong;
@@ -2763,19 +2790,11 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   // Quick-picks come from the weekend the moment was CAPTURED in, not the
   // session's: from Oct 9 the session is W2 for good, and a Weekend 1 photo
   // was offered only Weekend 2's acts (round 5).
-  const retagOptions = React.useMemo(() => {
-    const q = retagQuery.trim().toLowerCase();
-    if (q) {
-      return ARTISTS.filter(a => a.name.toLowerCase().includes(q)).slice(0, 24);
-    }
-    if (!m) return [];
-    const hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
-    const t = hhmm ? toNightMin(hhmm) : null;
-    const night = m.night || NOW.day;
-    const all = momentLineup(m).filter(a => a.day === night);
-    const playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
-    return (playing.length ? playing : all).slice().sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
-  }, [m, retagQuery]);
+  // SPEC-179: both lists read the clip's OWN festival and weekend, never the
+  // active one (a III Points clip opened while ACL is active searched ACL),
+  // and the search folds stylized billing, so "Yukimatsu" finds
+  // "¥ØU$UK€ ¥UK1MAT$U". Acts the matcher offered come first.
+  const retagOptions = React.useMemo(() => _retagOptionsFor(m, retagQuery), [m, retagQuery]);
 
   const runIdentify = async () => {
     setIdState("listening");
@@ -2936,7 +2955,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           </div>
         )}
         <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
-          {[stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")}
+          {[showNight ? _momentNightName(m, mf.cfg) : null, stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")}
         </div>
 
         {/* Prominent video-song proof: this is the P0 Shazam verification
@@ -2978,12 +2997,26 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           marginTop: 2, padding: 0, textAlign: "left", fontSize: 15,
         }}>{retagging ? "Cancel" : (artist ? "Wrong act? Fix it" : "Tag this moment")}</button>
         {retagging && (
+          <input type="search" value={retagQuery} onChange={e => setRetagQuery(e.target.value)}
+            placeholder={`Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`}
+            aria-label={`Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`}
+            autoComplete="off" autoCorrect="off" autoCapitalize="none" spellCheck={false} data-retag-search=""
+            style={{
+              marginTop: 8, width: "100%", boxSizing: "border-box", minHeight: 44, padding: "0 12px",
+              borderRadius: "var(--rad-sm)", border: "1px solid rgba(var(--ink-rgb),0.24)",
+              background: "rgba(var(--ink-rgb),0.06)", color: "var(--ink)", fontSize: 16, fontFamily: "inherit",
+            }}/>
+        )}
+        {retagging && retagQuery.trim() && !retagOptions.length && (
+          <div style={{ marginTop: 6, fontSize: 13, color: "var(--text-2)" }}>No act matches “{retagQuery.trim()}”.</div>
+        )}
+        {retagging && (
           <div className="no-scrollbar" style={{ marginTop: 8, maxHeight: 176, overflowY: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
             {retagOptions.map(a => {
-              const st = STAGES.find(s => s.id === a.stage);
+              const st = mf.stages.find(s => s.id === a.stage);
               const on = a.id === m.artistId;
               return (
-                <button key={a.id} onClick={() => { onUpdate?.(m, { artistId: a.id, tagSource: "manual", autoTagged: false }); setRetagging(false); try { window.plurskyHaptic?.("LIGHT"); } catch {} }} style={{
+                <button key={a.id} onClick={() => { onUpdate?.(m, _retagPatch({ artistId: a.id })); setRetagging(false); try { window.plurskyHaptic?.("LIGHT"); } catch {} }} style={{
                   display: "flex", alignItems: "center", gap: 8, padding: "8px 10px", borderRadius: "var(--rad-sm)",
                   background: on ? "rgba(var(--ink-rgb),0.18)" : "rgba(var(--ink-rgb),0.06)",
                   border: `1px solid ${on ? "var(--ink)" : "rgba(var(--ink-rgb),0.14)"}`, cursor: "pointer", textAlign: "left",
@@ -4163,7 +4196,7 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
       const exif = await _parseExifMeta(file).catch(() => null);
       const meta = _metaFromFile(file, exif);
       if (meta && meta.date && !artistId) {
-        const attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+        const attendedIds = _allFestivalAttendedIds();
         const matched = _matchArtistForPhoto(meta, savedNightArtists.map(a => a.id), attendedIds);
         // The chip must only ever name an artist from the festival this
         // moment will be SAVED under (handleSave stamps the ACTIVE festival).
@@ -4399,10 +4432,40 @@ function _momentNeedsReview(m) {
 }
 // The moment's OWN festival — a clip filed to another festival by its capture
 // date is still reviewable here, and must be retagged from that lineup.
+// SPEC-178: the night a moment is filed under, named from ITS festival's
+// calendar ("Saturday"), not the active one. Opened from a map pin, the
+// viewer has no night header around it, so the tag must say the night itself.
+function _momentNightName(m, cfg) {
+  if (!m || m.night == null) return null;
+  const d = cfg && cfg.dayDates && cfg.dayDates[m.night];
+  return (d && (d.name || d.short)) || `Night ${m.night}`;
+}
 function _momentFestival(m) {
   const fid = (m && m.festivalId) || (window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id);
   const ds = (window._DATA_SETS || {})[fid] || {};
   return { fid, cfg: ds.config || window.FESTIVAL_CONFIG, artists: ds.artists || window.ARTISTS || [], stages: ds.stages || window.STAGES || [] };
+}
+// The "Wrong act? Fix it" list for one moment. With a query: every act of the
+// moment's festival on its weekend whose billed name matches (stylized letters
+// folded). Without: the acts playing at its capture time on its night (all
+// of that night if none), the matcher's alternatives first.
+function _retagOptionsFor(m, query) {
+  if (!m) return [];
+  const { cfg, artists } = _momentFestival(m);
+  const wk = typeof momentWeekend === "function" ? momentWeekend(m.takenAt, cfg) : null;
+  const lineup = artists.filter(a => !wk || !a.weekend || a.weekend === "both" || a.weekend === wk);
+  const q = String(query || "").trim();
+  if (q) return lineup.filter(a => billedNameMatches(a.name, q)).slice(0, 24);
+  const hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
+  const t = hhmm ? toNightMin(hhmm) : null;
+  const night = m.night || NOW.day;
+  const all = lineup.filter(a => a.day === night);
+  const playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
+  const rank = new Map((m.tagAlternatives || []).map((id, i) => [id, i]));
+  const base = (playing.length ? playing : all).slice();
+  for (const id of rank.keys()) if (!base.some(a => a.id === id)) { const a = lineup.find(x => x.id === id); if (a) base.push(a); }
+  const r = (a) => (rank.has(a.id) ? rank.get(a.id) : 1e6);
+  return base.sort((a, b) => (r(a) - r(b)) || (toNightMin(a.start) - toNightMin(b.start)));
 }
 // The sets a moment can be tagged to on a night: its festival's lineup, on
 // the weekend it was captured.
@@ -4416,7 +4479,7 @@ function _reviewLineup(m, night) {
 // the same thing. A set carries its own stage; a stage alone is "stage known,
 // set unknown"; Unknown clears both and says so.
 function _retagPatch(choice) {
-  const base = { tagSource: "manual", autoTagged: false, needsRetag: false, tagAmbiguous: false, tagSuggested: false };
+  const base = { tagSource: "manual", autoTagged: false, needsRetag: false, tagAmbiguous: false, tagSuggested: false, tagAlternatives: null };
   if (!choice) return null;
   if (choice.unknown) return { ...base, tagSource: "unknown", artistId: null, stageId: null };
   if (choice.artistId) return { ...base, artistId: choice.artistId, stageId: null };
@@ -5590,19 +5653,11 @@ function MemoriesMapLens({ moments, onPinTap }) {
   );
 }
 
-// Deterministic small offset from a moment id — used to nudge GPS-less
-// thumbnails off their stage's exact center so same-stage moments don't stack
-// pixel-perfect (and to give each pin a stable "scattered polaroid" rotation).
+// Deterministic hash of a moment id: gives each pin a stable tilt.
 function _idHash(id) {
   let h = 0; const s = String(id || "");
   for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0;
   return h >>> 0;
-}
-function _idJitter(id, amp = 2.6) {
-  const h = _idHash(id);
-  const ang = ((h % 997) / 997) * Math.PI * 2;
-  const rad = amp * (0.35 + 0.65 * (((h >>> 9) % 991) / 991));
-  return { dx: Math.cos(ang) * rad, dy: Math.sin(ang) * rad };
 }
 // Sortable capture time — prefer real EXIF/video takenAt, else createdAt.
 function _momentTime(m) {
@@ -5610,18 +5665,22 @@ function _momentTime(m) {
   return (m && m.createdAt) || 0;
 }
 
-// One scattered photo/video thumbnail pinned on the basemap. Loads its blob
-// lazily via useMomentPhoto (cloud restore-on-view), shows a stage-color ring,
-// a ▶ marker on videos, and a "+N" badge when it fronts a declustered group.
+// One photo/video thumbnail pinned at its capture fix. Loads its blob lazily
+// via useMomentPhoto (cloud restore-on-view), shows a ▶ marker on videos and a
+// "+N" badge when it fronts a declustered group.
 function _PhotoPin({ cluster, onTap }) {
   const m = cluster.face;
   const thumb = useMomentThumb(m, cluster.enabled !== false), { url } = thumb;
-  const ring = (cluster.stage && cluster.stage.color) || "#9aa";
+  const ring = "var(--acc)";
   const rot = ((_idHash(m.id) % 17) - 8); // -8..+8deg, stable per pin
   const extra = cluster.items.length - 1;
   const SIZE = cluster.items.length > 1 ? 52 : 46;
+  // Lens accuracy class of the face shot (absent on other callers' clusters).
+  const acc = cluster.acc;
+  const accSay = acc === "unknown" ? ", location accuracy unknown" : acc === "coarse" ? ", rough location" : "";
   return (
-    <button onClick={() => onTap && onTap(cluster)} style={{
+    <button onClick={() => onTap && onTap(cluster)} data-moment-ids={cluster.items.map(x => x.id).join(",")} data-acc={acc || undefined}
+      aria-label={(cluster.items.length === 1 ? (m.kind === "video" ? "Video" : "Photo") : `${cluster.items.length} moments`) + accSay} style={{
       position: "absolute", left: cluster.x + "%", top: cluster.y + "%",
       transform: `translate(-50%,-50%) rotate(${rot}deg)`,
       width: SIZE, height: SIZE, padding: 0, border: "none",
@@ -5630,7 +5689,7 @@ function _PhotoPin({ cluster, onTap }) {
     }}>
       <div style={{
         width: "100%", height: "100%", borderRadius: 10, overflow: "hidden",
-        border: `2px solid ${ring}`, background: url ? "var(--paper)" : "var(--paper-2)",
+        border: `2px ${acc === "unknown" ? "dotted" : acc === "coarse" ? "dashed" : "solid"} ${ring}`, background: url ? "var(--paper)" : "var(--paper-2)",
         boxShadow: "0 3px 9px rgba(var(--shade-rgb),0.5)",
       }}>
         <_ThumbMedia moment={m} thumb={thumb} showLength={false}/>
@@ -5655,98 +5714,163 @@ function _PhotoPin({ cluster, onTap }) {
   );
 }
 
-// Photo-scatter map lens — drops the actual photo/video thumbnails at their
-// real GPS coordinates on the festival basemap (vs MemoriesMapLens' per-stage
-// count bubbles). No GPS → sits on the tagged artist's stage with a small
-// deterministic jitter. Nearby thumbnails decluster into one face + "+N".
-// Visible thumbnails capped for perf; the rest roll into a "+N more" note.
+// PHOTOS lens: real GPS only. Each thumbnail sits where its OWN capture fix
+// says, on a plain metric surface: no poster art, no stage positions, no
+// jitter, and no fallback of any kind. A moment without a valid fix is not
+// on this lens (it is counted, not placed). Stage x/y are poster art, never a
+// survey, so nothing here may read them.
+function _lensFix(m) {
+  const g = m && m.parsedGps;
+  if (!g || typeof g.lat !== "number" || typeof g.lng !== "number") return null;
+  if (!Number.isFinite(g.lat) || !Number.isFinite(g.lng)) return null;
+  if (Math.abs(g.lat) > 90 || Math.abs(g.lng) > 180) return null;
+  if (g.lat === 0 && g.lng === 0) return null; // null island = an unset fix
+  return { lat: g.lat, lng: g.lng };
+}
+// Accuracy: photoFixAccM / photoFixAccClass (data.jsx), shared with the map.
+const _LENS_RING_CAP = 60;  // accuracy rings drawn at most
+const _LENS_FAR_M = 3000;   // a fix this far from the rest is another place, not the venue
+const _LENS_MIN_SPAN_M = 40; // one shot, or shots a step apart, still get a readable scale
+// Pure layout, exported for the gate. Projects each fix onto a local plane
+// (east/north metres around the fixes' median), one scale on both axes, so
+// distances and bearings on screen are the real ones. x/y are 0-100 (%).
+function _gpsLensLayout(moments, opts) {
+  const pad = (opts && opts.pad) || 14, clusterPct = (opts && opts.clusterPct) || 6, cap = (opts && opts.cap) || 24;
+  const fixes = [];
+  let noGps = 0;
+  for (const m of (moments || [])) {
+    if (!m || !m.photoId) continue;
+    const g = _lensFix(m);
+    if (!g) { noGps++; continue; }
+    fixes.push({ m, g, t: _momentTime(m) });
+  }
+  const empty = { clusters: [], rings: [], ringsCut: 0, hidden: 0, noGps, far: 0, coarse: 0, unknownAcc: 0, mPerPct: 0 };
+  if (!fixes.length) return empty;
+  const med = arr => { const s = arr.slice().sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
+  const lat0 = med(fixes.map(f => f.g.lat)), lng0 = med(fixes.map(f => f.g.lng));
+  const R = 6371008.8, k = Math.PI / 180, cos0 = Math.cos(lat0 * k);
+  const pts = [];
+  let far = 0;
+  for (const f of fixes) {
+    const e = (f.g.lng - lng0) * k * R * cos0, n = (f.g.lat - lat0) * k * R;
+    if (Math.hypot(e, n) > _LENS_FAR_M) { far++; continue; }
+    const acc = photoFixAccM(f.m);
+    pts.push({ m: f.m, t: f.t, e, n, acc, cls: photoFixAccClass(acc) });
+  }
+  if (!pts.length) return { ...empty, far };
+  // Extents include each PRECISE fix's accuracy ring, so a trusted ring is
+  // never cut off; a coarse ring may run past the edge (it is drawn dashed).
+  let minE = Infinity, maxE = -Infinity, minN = Infinity, maxN = -Infinity;
+  for (const p of pts) {
+    const r = p.cls === "precise" ? p.acc : 0;
+    minE = Math.min(minE, p.e - r); maxE = Math.max(maxE, p.e + r); minN = Math.min(minN, p.n - r); maxN = Math.max(maxN, p.n + r);
+  }
+  const span = Math.max(maxE - minE, maxN - minN, _LENS_MIN_SPAN_M);
+  const scale = (100 - 2 * pad) / span; // % per metre, same on both axes
+  const ce = (minE + maxE) / 2, cn = (minN + maxN) / 2;
+  for (const p of pts) { p.x = 50 + (p.e - ce) * scale; p.y = 50 - (p.n - cn) * scale; }
+  // Greedy decluster, newest first: a cluster sits at its newest shot's own
+  // fix; it never moves a pin to a computed centre.
+  const sorted = pts.slice().sort((a, b) => b.t - a.t);
+  const used = new Array(sorted.length).fill(false);
+  const clusters = [];
+  for (let i = 0; i < sorted.length; i++) {
+    if (used[i]) continue;
+    const head = sorted[i]; used[i] = true;
+    const group = [head];
+    for (let j = i + 1; j < sorted.length; j++) {
+      if (used[j]) continue;
+      if (Math.hypot(sorted[j].x - head.x, sorted[j].y - head.y) <= clusterPct) { used[j] = true; group.push(sorted[j]); }
+    }
+    clusters.push({ x: head.x, y: head.y, face: head.m, acc: head.cls, items: group.map(g => g.m), pts: group });
+  }
+  const visible = clusters.slice(0, cap);
+  const hidden = clusters.slice(cap).reduce((n, c) => n + c.items.length, 0);
+  // One ring per shot on the lens, centred on that shot's OWN fix (not its
+  // cluster's), radius = its own accuracy at lens scale. Unknown gets none.
+  // Past the cap a ring is counted (ringsCut), never dropped silently.
+  const rings = [];
+  let ringsCut = 0;
+  for (const c of visible) for (const p of c.pts) {
+    if (p.cls === "unknown") continue;
+    if (rings.length >= _LENS_RING_CAP) { ringsCut++; continue; }
+    rings.push({ id: p.m.id, x: p.x, y: p.y, r: p.acc * scale, accM: p.acc, cls: p.cls });
+  }
+  for (const c of visible) delete c.pts;
+  const coarse = pts.filter(p => p.cls === "coarse").length, unknownAcc = pts.filter(p => p.cls === "unknown").length;
+  return { clusters: visible, rings, ringsCut, hidden, noGps, far, coarse, unknownAcc, mPerPct: 1 / scale };
+}
+// A round scale-bar length that fits in about a third of the lens.
+function _lensScaleBar(mPerPct) {
+  if (!(mPerPct > 0)) return null;
+  const maxM = mPerPct * 34;
+  const steps = [5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000];
+  let m = steps[0];
+  for (const s of steps) if (s <= maxM) m = s;
+  return { m, pct: m / mPerPct, label: m >= 1000 ? `${m / 1000} km` : `${m} m` };
+}
 function MemoriesPhotoMapLens({ moments, onPinTap }) {
-  const CAP = 24, CLUSTER_R = 6;
-  const { clusters, hidden, unplaced } = React.useMemo(() => {
-    const placed = [];
-    let unplaced = 0;
-    for (const m of (moments || [])) {
-      if (!m.photoId) continue;
-      let xy = null, stageId = null;
-      if (m.parsedGps && typeof gpsToMap === "function") {
-        const p = gpsToMap(m.parsedGps.lat, m.parsedGps.lng);
-        if (p) { xy = { x: p.x, y: p.y }; if (typeof _nearestStageId === "function") stageId = _nearestStageId(p.x, p.y); }
-      }
-      if (!xy) {
-        const a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
-        const stage = a ? STAGES.find(s => s.id === a.stage) : null;
-        // A stage with no numeric x/y counts as no stage here. Some stages
-        // ship deliberately UNPLACED — Nocturnal's Rave Cave, Lost Lands' The
-        // Grove (a campground stage on the far side of Route 13) — because a
-        // pin we cannot place is worse than no pin. map.jsx filters them via
-        // PLACED_STAGES; this fallback had no such guard, so it would have
-        // built { x: NaN, y: NaN } and drawn the moment pin at NaN.
-        if (!stage || !Number.isFinite(stage.x) || !Number.isFinite(stage.y)) { unplaced++; continue; }
-        const j = _idJitter(m.id);
-        xy = { x: stage.x + j.dx, y: stage.y + j.dy };
-        stageId = stage.id;
-      }
-      if (!stageId && typeof _nearestStageId === "function") stageId = _nearestStageId(xy.x, xy.y);
-      const stage = stageId ? STAGES.find(s => s.id === stageId) : null;
-      placed.push({ m, x: xy.x, y: xy.y, stage, t: _momentTime(m) });
-    }
-    // Greedy decluster: newest first, absorb everything within CLUSTER_R units.
-    const sorted = placed.slice().sort((a, b) => b.t - a.t);
-    const used = new Array(sorted.length).fill(false);
-    const clusters = [];
-    for (let i = 0; i < sorted.length; i++) {
-      if (used[i]) continue;
-      const head = sorted[i]; used[i] = true;
-      const group = [head];
-      for (let j = i + 1; j < sorted.length; j++) {
-        if (used[j]) continue;
-        if (Math.hypot(sorted[j].x - head.x, sorted[j].y - head.y) <= CLUSTER_R) { used[j] = true; group.push(sorted[j]); }
-      }
-      clusters.push({ x: head.x, y: head.y, stage: head.stage, face: head.m, items: group.map(g => g.m) });
-    }
-    const visible = clusters.slice(0, CAP);
-    const hidden = clusters.slice(CAP).reduce((n, c) => n + c.items.length, 0);
-    return { clusters: visible, hidden, unplaced };
-  }, [moments]);
-
+  const { clusters, rings, ringsCut, hidden, noGps, far, coarse, unknownAcc, mPerPct } = React.useMemo(() => _gpsLensLayout(moments), [moments]);
+  const bar = _lensScaleBar(mPerPct);
+  const notes = (
+    (hidden > 0 || noGps > 0 || far > 0 || coarse > 0 || unknownAcc > 0 || ringsCut > 0) && (
+      <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 8, opacity: 0.85, display: "flex", flexWrap: "wrap", gap: 10 }}>
+        {hidden > 0 && <span>+{hidden} MORE CLUSTERED</span>}
+        {noGps > 0 && <span>{noGps} WITHOUT GPS NOT SHOWN</span>}
+        {far > 0 && <span>{far} FAR FROM THE REST NOT SHOWN</span>}
+        {coarse > 0 && <span data-gps-lens-note="coarse">{coarse} ROUGH FIX (OVER {STAGE_FIX_PHOTO.maxAccM} M), DASHED</span>}
+        {ringsCut > 0 && <span data-gps-lens-note="rings-cut">{ringsCut} MORE ACCURACY {ringsCut === 1 ? "RING" : "RINGS"} NOT DRAWN</span>}
+        {unknownAcc > 0 && <span data-gps-lens-note="unknown">{unknownAcc} NO ACCURACY RECORDED, DOTTED</span>}
+      </div>
+    )
+  );
   if (!clusters.length) {
     return (
-      <div style={{ padding: "28px 14px", textAlign: "center", marginTop: 14, border: "1px dashed var(--line-2)", borderRadius: 14, background: "var(--paper-2)" }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
-          NOTHING TO MAP YET — IMPORT GPS PHOTOS OR TAG SETS
+      <div style={{ marginTop: 14 }}>
+        <div data-gps-lens-empty="1" style={{ padding: "28px 14px", textAlign: "center", border: "1px dashed var(--line-2)", borderRadius: 14, background: "var(--paper-2)" }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
+            NO GPS IN THESE MOMENTS · SHOTS TAKEN WITH LOCATION ON SHOW UP HERE
+          </div>
         </div>
+        {notes}
       </div>
     );
   }
-
-  const img = (typeof FESTIVAL_CONFIG !== "undefined") ? FESTIVAL_CONFIG.mapImage : null;
   return (
     <div style={{ marginTop: 14 }}>
-      <div style={{
+      <div data-gps-lens="1" style={{
         position: "relative", width: "100%", aspectRatio: "1 / 1",
         borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)",
-        background: "var(--paper)",
+        background: "var(--paper-2)",
       }}>
-        <svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"
-          style={{ position: "absolute", inset: 0, display: "block" }}>
-          {img && <image href={img} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>}
-          <rect x="0" y="0" width="100" height="100" fill="rgba(8,7,11,0.5)"/>
-        </svg>
+        {rings.map(g => (
+          <span key={"ring-" + g.id} data-gps-lens-ring={g.id} data-acc={g.cls} data-acc-m={g.accM} aria-hidden="true" style={{
+            position: "absolute", left: (g.x - g.r) + "%", top: (g.y - g.r) + "%", width: (2 * g.r) + "%", height: (2 * g.r) + "%",
+            borderRadius: "50%", boxSizing: "border-box", pointerEvents: "none", zIndex: 1,
+            border: g.cls === "precise" ? "1.5px solid color-mix(in srgb, var(--acc) 70%, transparent)" : "1.5px dashed color-mix(in srgb, var(--acc) 60%, transparent)",
+            background: g.cls === "precise" ? "color-mix(in srgb, var(--acc) 13%, transparent)" : "color-mix(in srgb, var(--acc) 6%, transparent)",
+          }}/>
+        ))}
         {clusters.map((c, i) => <_PhotoPin key={c.face.id || i} cluster={c} onTap={onPinTap}/>)}
       </div>
-      {(hidden > 0 || unplaced > 0) && (
-        <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 8, opacity: 0.85, display: "flex", flexWrap: "wrap", gap: 10 }}>
-          {hidden > 0 && <span>+{hidden} MORE THUMBNAIL{hidden === 1 ? "" : "S"} CLUSTERED</span>}
-          {unplaced > 0 && <span>+{unplaced} UNTAGGED NOT ON THE MAP</span>}
-        </div>
-      )}
+      <div style={{ position: "relative", height: 22, marginTop: 6 }}>
+        {bar && (
+          <>
+            <span data-gps-lens-bar={bar.m} role="img" aria-label={`Scale: ${bar.label}`} style={{ position: "absolute", left: 0, top: 4, width: `${bar.pct}%`, height: 3, borderRadius: 2, background: "var(--muted)" }}/>
+            <span className="mono" aria-hidden="true" style={{ position: "absolute", left: 0, top: 10, fontSize: 8.5, fontWeight: 700, color: "var(--muted)", letterSpacing: 0.6 }}>{bar.label}</span>
+          </>
+        )}
+        <span className="mono" aria-label="North is up" style={{ position: "absolute", right: 0, top: 2, fontSize: 9, fontWeight: 800, color: "var(--muted)", letterSpacing: 1 }}>N ↑</span>
+      </div>
+      {notes}
     </div>
   );
 }
 
 // MAP-lens wrapper: a CLUSTERS ⇄ PHOTOS segmented toggle over the two lenses.
 // Defaults to CLUSTERS (the v206 count-bubble view) so existing behavior is
-// preserved; PHOTOS is the v212 GPS photo-scatter. Choice persists.
+// preserved; PHOTOS places each moment at its own real GPS fix and nothing
+// else (no stage fallback, no poster projection). Choice persists.
 function MemoriesMapTab({ moments, onPinTap }) {
   const [mode, setMode] = React.useState(() => {
     try { return localStorage.getItem("plursky_maplens_mode") === "photos" ? "photos" : "clusters"; } catch { return "clusters"; }
@@ -6271,7 +6395,11 @@ function MemoriesScreen({ state, setState }) {
   // opts.reviewAcc (Scan my weekend): an array shared across chunks, so the
   // review after each chunk lists everything the scan has landed so far
   // rather than only the latest chunk. Returns the settled results.
+  // opts.nativePicker (PHPicker): files are native {path, mimeType} items,
+  // read one at a time inside the loop; a row that failed while READING
+  // carries unreadable: true.
   const processImportedFiles = async (files, opts = {}) => {
+    const nativePicker = !!opts.nativePicker;
     if (files.length === 0) {
       window.plurskyToast?.("No photos received — pick a few at a time; if they're in iCloud, open them in Photos first so they download.");
       return [];
@@ -6279,8 +6407,12 @@ function MemoriesScreen({ state, setState }) {
     const results = [];
     setBatch({ total: files.length, done: 0, results });
     const savedIds = state.saved || [];
-    const attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+    // Every festival's attendance: the matcher keeps only ids its photo's own
+    // festival bills (ids are unique per festival), so an EDC photo imported
+    // while ACL is on screen still gets its EDC attended sets.
+    const attendedIds = _allFestivalAttendedIds();
     const current = { ..._readMoments() };
+    _importLog("batch_start", { files: files.length, active: window.FESTIVAL_CONFIG?.id || null, saved: savedIds.length, attended: attendedIds.length });
 
     // Content key → the moments that share it: candidates, not verdicts.
     const existingContent = new Map();
@@ -6298,8 +6430,35 @@ function MemoriesScreen({ state, setState }) {
       : (allNights[allNights.length - 1] || 1);
     let skippedDupes = 0;
     for (let i = 0; i < files.length; i++) {
-      const f = files[i];
+      let f = files[i];
+      // True only while the native item is being READ. A failure after the
+      // read (an IndexedDB save hitting a full disk) is not "unreadable" and
+      // must not get the iCloud banner.
+      let reading = false;
       try {
+        // PHPicker returns paths, not media blobs. Fetch just this item, write
+        // it to IndexedDB, then advance. Twenty 200 MB files must not become
+        // twenty simultaneous Blob/File objects in the WebView heap.
+        if (nativePicker) {
+          reading = true;
+          const item = f;
+          const src = item.path ? (window.Capacitor?.convertFileSrc?.(item.path) || item.path) : null;
+          if (!src) throw new Error("No readable file path");
+          const isVideo = /^video\//.test(item.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(item.name || "");
+          if (isVideo && item.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          const response = await fetch(src);
+          if (!response.ok) throw new Error(`Media read failed (${response.status})`);
+          const blob = await response.blob();
+          if (!blob.size) throw new Error("Empty or unavailable iCloud media");
+          if (isVideo && blob.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          const type = item.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
+          if (!/^(image|video)\//.test(type)) throw new Error("Unsupported media type");
+          f = new File([blob], item.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`, {
+            type, lastModified: item.modifiedAt || Date.now(),
+          });
+          if (isVideo && item.path) Object.defineProperty(f, "nativePath", { value: item.path });
+          reading = false;
+        }
         const fp = await _fileFingerprint(f);
         const ck = _fingerprintContentKey(fp);
         const fileSha = /^image\//.test(f.type || "") ? await _blobSha256Hex(f).catch(() => null) : null;
@@ -6310,6 +6469,7 @@ function MemoriesScreen({ state, setState }) {
         if (isDupe) {
           skippedDupes++;
           results.push({ name: f.name, night: null, artistId: null, skipped: "duplicate" });
+          _importLog("file_duplicate", { i, name: f.name });
           setBatch({ total: files.length, done: i + 1, results: results.slice() });
           continue;
         }
@@ -6322,7 +6482,9 @@ function MemoriesScreen({ state, setState }) {
         const baseMeta = pk ? { ...pk, takenAtSource: "photokit" } : _metaFromFile(f, exif);
         const recovered = _recoverVideoMetaFromArchive(f, fp, baseMeta);
         const meta = recovered?.meta || baseMeta;
-        const matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds) : { artistId: null, night: null, reason: "no_date" };
+        // A past-edition scan names its edition (opts.ds); everything else
+        // resolves the festival from the capture time, as before.
+        const matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds, opts.ds || undefined) : { artistId: null, night: null, reason: "no_date" };
         // v141: never skip — if EXIF/lastModified didn't pick a night, drop
         // into the current festival night untagged. User can re-tag from
         // the moment card later or delete if it doesn't belong.
@@ -6387,6 +6549,10 @@ function MemoriesScreen({ state, setState }) {
           matchReason: matched.reason || null,
           matchEvidence: matched.evidence || null,
           tagSuggested: !!(matched.artistId && matched.suggested),
+          // SPEC-179: every act that could be this clip when the matcher would
+          // not choose (several playing, no trusted fix) or chose with doubt.
+          // The fix-it list offers these first.
+          tagAlternatives: Array.isArray(matched.alternatives) && matched.alternatives.length ? matched.alternatives.slice(0, 12) : null,
           // Which anchor class decided this tag: "crowd" (measured) or
           // "poster" (derived from the map art, known-skewed). null when GPS
           // played no part. Kept on the record so a later re-tag pass can find
@@ -6427,10 +6593,26 @@ function MemoriesScreen({ state, setState }) {
           _fingerprint: fp || null,
           _contentSha256: fileSha || null,
         };
+        // A past-edition scan stamps the edition its library scan matched
+        // (on site + in that edition's set hours). No live festival can claim
+        // a past capture time, so _reconcileFestivalStamps must leave it alone
+        // rather than flag it "no-claimant". Only a resolved edition qualifies:
+        // an unresolved one keeps "active-fallback" above.
+        if (opts.ds?.config?.historical && matched.festivalId) moment.festivalStampSource = "past-edition";
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];
         results.push({ name: f.name, fileIndex: i, momentId: id, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
+        _importLog("file", {
+          i, name: f.name, type: f.type || null, kind: out.kind,
+          takenAtSource: meta?.takenAtSource || "none", exifDate: hadExifDate,
+          dateUnverified: !!meta?.dateUnverified, gps: moment.hasGps, gpsAccM: moment.gpsAccM,
+          gpsRejected: moment.gpsRejected, festivalId: moment.festivalId,
+          resolvedBy: matched.resolvedBy || null, stamp: moment.festivalStampSource,
+          night, nightFromCapture: !!matched.night, artistId: moment.artistId || null,
+          reason: matched.reason || null, tagSource, ambiguous: moment.tagAmbiguous,
+          anchorSource: moment.anchorSource, recovered: !!recovered,
+        });
         // Persist + refresh after EACH file so a mid-batch Safari crash/OOM
         // (common on large iOS selections that include videos / iCloud photos)
         // keeps what's already imported and the grid fills in live — instead
@@ -6444,8 +6626,11 @@ function MemoriesScreen({ state, setState }) {
         // refresh failure) must not count the same file as both imported and
         // failed. The landed result is the durable outcome.
         if (!results.some(r => r.fileIndex === i && r.momentId)) {
-          results.push({ name: f.name, fileIndex: i, night: null, artistId: null, err: err?.message || "failed" });
+          const name = f?.name || `item ${i + 1}`;
+          const unreadable = reading && !(err?.message || "").includes("200 MB");
+          results.push({ name, fileIndex: i, night: null, artistId: null, err: err?.message || "failed", ...(unreadable ? { unreadable: true } : {}) });
         }
+        _importLog("file_failed", { i, name: f?.name ?? null, type: f?.type || f?.mimeType || null, size: f?.size ?? null, error: String(err?.message || err), stack: String(err?.stack || "").split("\n").slice(0, 3).join(" | ") });
       }
       setBatch({ total: files.length, done: i + 1, results: results.slice() });
     }
@@ -6459,6 +6644,11 @@ function MemoriesScreen({ state, setState }) {
     const landed = settledResults.filter(r => r.momentId);
     const failedResults = settledResults.filter(r => r.err);
     const duplicateResults = settledResults.filter(r => r.skipped === "duplicate");
+    _importLog("batch_end", {
+      files: files.length, landed: landed.length, failed: failedResults.length, duplicates: duplicateResults.length,
+      tagged: landed.filter(r => r.artistId).length, fallbackNight: landed.filter(r => r.fallback).length,
+      byFestival: landed.reduce((m, r) => (m[r.festivalId || "none"] = (m[r.festivalId || "none"] || 0) + 1, m), {}),
+    });
     // Never fail silently: if nothing landed, say why out loud.
     // ...and never file silently either. A cross-festival import is now
     // stamped correctly, which means it is CORRECTLY not visible on this
@@ -6466,13 +6656,22 @@ function MemoriesScreen({ state, setState }) {
     // say where the files went. (v235)
     const activeFid = window.FESTIVAL_CONFIG?.id || null;
     const elsewhere = landed.filter(r => r.festivalId && r.festivalId !== activeFid);
-    if (elsewhere.length) {
+    // A past-edition scan reports where its photos went on its own card.
+    if (elsewhere.length && !opts.ds?.config?.historical) {
       const byFest = {};
       for (const r of elsewhere) byFest[r.festivalId] = (byFest[r.festivalId] || 0) + 1;
       const label = (id) => window._DATA_SETS?.[id]?.config?.shortName
                          || window._DATA_SETS?.[id]?.config?.name || id;
       const parts = Object.keys(byFest).map(id => `${byFest[id]} to ${label(id)}`);
       window.plurskyToast?.(`Filed by capture date — ${parts.join(", ")}. Switch festivals to see them.`);
+    }
+    // A past-edition scan reports on its own card and its photos live on the
+    // edition's page. The live summary banner and review sheet below read the
+    // ACTIVE festival's lineup and nights, so they would call every past
+    // photo "No set matched" under the wrong weekday. Skip both.
+    if (opts.ds?.config?.historical) {
+      setBatch(null);
+      return settledResults;
     }
     if (landed.length === 0) {
       const failed = failedResults.length;
@@ -6601,47 +6800,9 @@ function MemoriesScreen({ state, setState }) {
       const files = result?.files || [];
       // An empty selection is the user cancelling. Nothing to report.
       if (files.length === 0) return { status: "cancelled" };
-      const out = [];
-      const unreadable = [];
-      for (let i = 0; i < files.length; i++) {
-        const f = files[i];
-        // `path` is a native file URL; convertFileSrc makes it loadable by
-        // the WebView so fetch() can read it into a Blob, then we wrap it as
-        // a File so the existing ingest pipeline sees the same shape it would
-        // from <input type="file">.
-        const src = f.path ? (cap.convertFileSrc ? cap.convertFileSrc(f.path) : f.path) : null;
-        if (!src) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "nofile" }); continue; }
-        // A file still in iCloud, or one the WebView cannot read, rejects
-        // HERE. Before v341 the whole batch threw and became a "fall back to
-        // the web input" — one un-downloaded photo lost the other 49.
-        let blob = null;
-        try {
-          blob = await fetch(src).then(r => r.blob());
-        } catch {
-          unreadable.push({ name: f.name || `item ${i + 1}`, why: "unreadable" });
-          continue;
-        }
-        if (!blob || !blob.size) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "unreadable" }); continue; }
-        const isVideo = /^video\//.test(f.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(f.name || "");
-        const type = f.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
-        if (!/^(image|video)\//.test(type)) { unreadable.push({ name: f.name || `item ${i + 1}`, why: "unsupported" }); continue; }
-        const name = f.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`;
-        const pickedFile = new File([blob], name, {
-          type,
-          // modifiedAt is the freshly-transcoded temp file's mtime (≈now),
-          // which the <30s heuristic in _metaFromFile correctly ignores so
-          // photos tag from real EXIF rather than the conversion stamp.
-          lastModified: f.modifiedAt || Date.now(),
-        });
-        if (isVideo && f.path) {
-          try { Object.defineProperty(pickedFile, "nativePath", { value: f.path }); }
-          catch { pickedFile.nativePath = f.path; }
-        }
-        out.push(pickedFile);
-      }
-      // Everything the user picked failed to read. That is NOT a cancel.
-      if (out.length === 0) return { status: unreadable.length ? "nofile" : "cancelled", unreadable };
-      return { status: "picked", files: out, unreadable };
+      // Do not fetch here: the ingest loop resolves one path at a time.
+      // The picker may select 50 clips of up to 200 MB each.
+      return { status: "picked", files };
     } catch (err) {
       // FilePicker 6.2.0 rejects a dismissed sheet; that is the user backing
       // out, not a failure (build 39, the orange card after a cancel).
@@ -6657,10 +6818,11 @@ function MemoriesScreen({ state, setState }) {
     setPickerState(null);
     const res = await pickViaNative();
     if (res.status === "picked") {
-      // Some items read, some did not — import what we have and say what we
-      // could not take, rather than reporting a clean success.
-      if (res.unreadable && res.unreadable.length) setPickerState({ status: "unreadable", detail: res.unreadable });
-      await processImportedFiles(res.files);
+      const settled = (await processImportedFiles(res.files, { nativePicker: true })) || [];
+      const unreadable = settled.filter(r => r.unreadable).map(r => ({ name: r.name, why: "unreadable" }));
+      if (unreadable.length) {
+        setPickerState({ status: settled.some(r => r.momentId) ? "unreadable" : "nofile", detail: unreadable });
+      }
       return;
     }
     if (res.status === "unsupported") {
@@ -6762,6 +6924,101 @@ function MemoriesScreen({ state, setState }) {
     } finally {
       try { _scanDiagLog("scan-end"); } catch {}
     }
+  };
+  // ── Scan past festivals (2026-11-07) ─────────────────────────────────────
+  // Jake: "the photo video scan can do any festival in the past if in users
+  // photo gallery and if in our catalog". Every Past Festivals edition is
+  // asked of the library the way a live festival's nights are, but only a
+  // photo with a fix on that festival's own site is kept (_histAssetOnSite),
+  // and the rest of the pipeline is the live scan's: that edition's set
+  // hours, the matcher on its printed sets, chunked import, the seen-id list.
+  // Each moment is stamped with the edition id, so it stays off the live
+  // festival's screens and shows on the edition's Past Festivals page.
+  const [pastScan, setPastScan] = React.useState(null);
+  const _scanBusy = (st) => !!st && ["access", "scanning", "importing"].includes(st.phase);
+  const handleScanPast = async () => {
+    const PS = window.Capacitor?.Plugins?.PhotoScan;
+    if (!PS?.scan) return;
+    if ((batch && batch.done < batch.total) || _scanBusy(scan) || _scanBusy(pastScan)) return;
+    setPastScan({ phase: "access" });
+    try {
+      // The first-run scan step already asked for access and looked through
+      // the library; take what it found instead of asking twice.
+      const handed = _pastScanHandoffTake();
+      let limited, found, already, years;
+      if (handed) {
+        ({ limited, found, already, years } = handed);
+      } else {
+        const access = await PS.requestAccess();
+        limited = access?.status === "limited";
+        if (access?.status !== "authorized" && !limited) { setPastScan({ phase: "denied" }); return; }
+        setPastScan({ phase: "scanning" });
+        // The library index and the festival-year calendar; either alone still
+        // scans what it knows, and neither means there is nothing to look for.
+        ({ found, already, years } = await _pastScanFind(PS,
+          (checked, n) => setPastScan({ phase: "scanning", checked, years: n })));
+      }
+      const total = found.reduce((n, f) => n + f.keep.length, 0);
+      if (!total) { setPastScan({ phase: "none", already, limited, editions: years }); return; }
+      let imported = 0, unreadable = 0, done = 0;
+      const byEdition = [];
+      for (const f of found) {
+        let got = 0;
+        for (const chunk of _scanChunks(f.keep)) {
+          setPastScan({ phase: "importing", done, total });
+          done += chunk.length;
+          const files = [], fileAssets = [];
+          for (const a of chunk) {
+            const file = await _scanExportFile(PS, a, f.t.cfg);
+            if (file) { files.push(file); fileAssets.push(a); } else unreadable++;
+          }
+          if (!files.length) continue;
+          const results = (await processImportedFiles(files, { ds: f.ds })) || [];
+          const failed = new Set(results.filter(r => r.err).map(r => r.fileIndex));
+          _scanSeenAdd(fileAssets.filter((_, k) => !failed.has(k)).map(a => a.id));
+          const n = results.filter(r => r.momentId).length;
+          got += n; imported += n; unreadable += failed.size;
+          for (const file of files) if (!/^video\//.test(file.type)) PS.discard?.({ path: file._scanPath })?.catch?.(() => {});
+        }
+        if (got) byEdition.push({ id: f.t.entry.id, name: f.t.entry.name, count: got });
+      }
+      setPastScan({ phase: "done", imported, unreadable, already, limited, byEdition });
+    } catch (err) {
+      console.warn("[memories] past scan failed", err);
+      setPastScan({ phase: "error" });
+    }
+  };
+  // Arriving from the first-run scan step with something found: import it
+  // now, on the card the user can watch.
+  // The screen may already be open underneath it, so it also listens.
+  const scanPastRef = React.useRef(handleScanPast);
+  scanPastRef.current = handleScanPast;
+  React.useEffect(() => {
+    const onHandoff = () => { if (window._pastScanHandoff) scanPastRef.current(); };
+    onHandoff();
+    window.addEventListener("plursky:past-scan-handoff", onHandoff);
+    return () => window.removeEventListener("plursky:past-scan-handoff", onHandoff);
+  }, []);
+  const _pastScanMessage = (st) => {
+    if (!st) return null;
+    const limitedNote = st.limited ? "Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
+    const alreadyNote = st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : "";
+    if (st.phase === "access" || st.phase === "scanning") return { busy: true, title: "Looking for photos from past festivals…",
+      body: st.years ? `Checked ${st.checked} of ${st.years} festival years since 2010.` : null };
+    if (st.phase === "importing") return { busy: true, title: `Importing ${st.done} of ${st.total}…` };
+    if (st.phase === "denied") return { tone: "warn", title: "Plursky can’t see your photos", body: "Turn on photo access in Settings, Plursky, Photos, then scan again." };
+    if (st.phase === "error") return { tone: "warn", title: "Couldn’t finish the scan", body: "Anything already imported is saved. Past festivals need a connection the first time; scan again to pick up the rest.", retry: true };
+    if (st.phase === "none") return {
+      title: "No new photos from past festivals",
+      body: [alreadyNote || "Nothing in your library was taken on a past festival’s grounds while it was on.", limitedNote].filter(Boolean).join(" "),
+    };
+    if (st.phase === "done") return {
+      title: `Imported ${st.imported} from past festivals`,
+      body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", alreadyNote, limitedNote].filter(Boolean).join(" ") || null,
+      editions: st.byEdition || [],
+      retry: !!st.unreadable,
+    };
+    return null;
   };
   const _scanMessage = (st) => {
     if (!st) return null;
@@ -7062,7 +7319,7 @@ function MemoriesScreen({ state, setState }) {
     if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");
     else if (res?.error) window.plurskyToast?.("Backup unavailable right now");
     else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);
-    else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
+    else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}${res.gpsHeld ? ` · ${res.gpsHeld} ${res.gpsHeld === 1 ? "video stays" : "videos stay"} on this phone (location could not be removed)` : ""}`);
   };
   const handleBackup = async () => {
     if (!_isPlusSub()) { setShowPlus(true); return; }
@@ -7209,6 +7466,47 @@ function MemoriesScreen({ state, setState }) {
                   )}
                 </div>
               )}
+              {/* Scan past festivals (2026-11-07): every Past Festivals edition,
+                  photos on that festival's grounds only, each filed under its
+                  edition. Same card shape as Scan my weekend. */}
+              {(() => {
+                const pm = _pastScanMessage(pastScan);
+                const pbusy = !!pm?.busy || busy;
+                const ghost = { minHeight: 44, padding: "0 14px", borderRadius: 12, border: "none", cursor: "pointer", background: "var(--paper-3)", color: "var(--ink)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit" };
+                return (
+                  <div style={{ marginTop: 8 }}>
+                    <button onClick={handleScanPast} disabled={pbusy} data-scan-past
+                      className="duo-card" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12, width: "100%", minHeight: 64, padding: "10px 16px", border: "none", color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: pbusy ? "default" : "pointer" }}>
+                      <span aria-hidden="true" className="duo-well" style={{ width: 40, height: 40, flexShrink: 0, display: "grid", placeItems: "center", color: "var(--acc-ink)" }}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12 a8 8 0 1 0 2.4-5.7"/><path d="M4 4 v4.5 h4.5"/><path d="M12 8 v4.2 l2.8 1.8"/></svg>
+                      </span>
+                      <span style={{ flex: "1 1 150px", minWidth: 0 }}>
+                        <span data-fit-words data-fit-min="13" className="duo-headline" style={{ display: "block" }}>Scan past festivals</span>
+                        <span data-fit-words data-fit-min="11" className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>Finds photos from past years you were there</span>
+                      </span>
+                      <span className="duo-body-s" style={{ color: "var(--acc-ink)", fontWeight: 650, fontSize: 15 }}>{pbusy ? "…" : "Scan"}</span>
+                    </button>
+                    {pm && (
+                      <div role="status" data-scan-past-card style={{ marginTop: 8, padding: "12px 14px", borderRadius: 14, background: "var(--paper-2)", border: "1px solid var(--line)" }}>
+                        <div style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600, color: pm.tone === "warn" ? "var(--warn)" : "var(--ink)" }}>{pm.title}</div>
+                        {pm.body && <p style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{pm.body}</p>}
+                        {!pm.busy && (
+                          <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
+                            {(pm.editions || []).map(e => (
+                              <button key={e.id} data-scan-past-open={e.id} style={ghost}
+                                onClick={() => (window._pushNav || (() => {}))({ tab: "past", pastEdition: e.id, pastDirect: true, artist: null })}>
+                                {e.name} · {e.count}
+                              </button>
+                            ))}
+                            {pm.retry && <button onClick={handleScanPast} style={ghost}>Scan again</button>}
+                            <button onClick={() => setPastScan(null)} style={{ ...ghost, background: "transparent", color: "var(--text-2)" }}>Dismiss</button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
               {/* Build 39: one tap opens the share sheet with a privacy-safe
                   summary of the moment store and its recent writes (no
                   photos, names, paths or GPS). Read-only. */}
@@ -8413,10 +8711,11 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
       const r = await createAppleMusicPlaylist(state, { soundtrack, onProgress: setProg });
       setResult(r);
       setStatus(r.ok ? "done" : "err");
-      if (!r.ok && r.reason !== "not_connected") setTimeout(() => setStatus("idle"), 4500);
     } catch (e) {
-      setResult({ ok: false, reason: "create_fail", message: String(e?.message || e) });
-      setStatus("err"); setTimeout(() => setStatus("idle"), 4500);
+      const r = { ok: false, reason: "create_fail", message: String(e?.message || e) };
+      r.userMessage = appleMusicFailureMessage(r);
+      try { console.warn("[plursky:applemusic] threw", r.message); } catch {}
+      setResult(r); setStatus("err");
     }
   };
   const onClick = () => {
@@ -8435,15 +8734,15 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
   } else if (status === "done") {
     const sm = result?.songsMatched || 0;
     const open = result?.url ? " — open ↗" : "";
+    const miss = result?.missed ? ` · ${result.missed} act${result.missed === 1 ? "" : "s"} not on Apple Music` : "";
     label = soundtrack && sm > 0
-      ? `✓ ${sm} of your songs + ${result?.added - sm} more${open}`
-      : `✓ ${result?.added} tracks in Apple Music${open}`;
+      ? `✓ ${sm} of your songs + ${result?.added - sm} more${miss}${open}`
+      : `✓ ${result?.added} tracks in Apple Music${miss}${open}`;
     bg = "var(--apple-music)"; color = "var(--on-apple-music)"; border = "none";
   } else if (status === "err") {
-    if (result?.reason === "not_connected") label = "Tap to connect Apple Music";
-    else if (result?.reason === "empty") label = "Save sets first";
-    else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";
-    else label = `Try again${result?.status ? ` · ${result.status}` : ""}`;
+    // The reason stays on the button until the next tap (it used to reset to
+    // idle after 4.5 s, and "not connected" never said WHY it could not connect).
+    label = result?.userMessage || appleMusicFailureMessage(result) || "Apple Music playlist failed";
     bg = "rgba(var(--alert-rgb),0.16)"; color = "var(--ink)"; border = "1px solid var(--alert)";
   } else {
     label = soundtrack ? "Soundtrack to Apple Music" : "Build Apple Music playlist";
@@ -8451,7 +8750,8 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
 
   return (
     <button onClick={onClick} disabled={status === "working"} style={{
-      background: bg, color, border, borderRadius: 999, padding: "10px 16px",
+      background: bg, color, border, borderRadius: status === "err" ? 14 : 999, padding: "10px 16px",
+      maxWidth: "100%", textAlign: "left", overflowWrap: "anywhere",
       cursor: status === "working" ? "wait" : "pointer",
       fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
       transition: "all .2s",
@@ -8476,7 +8776,7 @@ function archiveFestival(festivalId, festivalName, festivalConfig) {
     const archive = _readArchive();
     // Don't overwrite an existing snapshot — first archive wins (the user
     // explicitly archived) unless empty (auto-archive after re-entry).
-    const attended = JSON.parse(localStorage.getItem("plursky_attended_v1") || "{}");
+    const attended = getAllAttended(festivalId);   // this festival only, never the mixed store
     const moments  = JSON.parse(localStorage.getItem("plursky_moments_v1")  || "{}");
     const saved    = JSON.parse(localStorage.getItem("edc_saved") || "[]");
     const totalAttended = Object.values(attended).reduce((s, a) => s + (Array.isArray(a) ? a.length : 0), 0);
@@ -8651,6 +8951,10 @@ function _reconcileFestivalStamps(moments) {
     if (!Array.isArray(arr)) continue;
     for (const m of arr) {
       if (!m || !m.festivalId || !m.takenAt) continue;   // no stamp, or no evidence
+      // Filed by "Scan past festivals" under a Past Festivals edition id. Only
+      // live festivals are claimants, so none can ever claim a past capture
+      // time; checking would flag every past photo "no-claimant".
+      if (m.festivalStampSource === "past-edition") continue;
       // A capture time this parser cannot read is NO evidence, not "no festival
       // claims it". _festivalClaimantsFor returns [] for both, and reading the
       // first as the second flagged every unparseable record "no-claimant"
@@ -9479,6 +9783,43 @@ function _iapAvailable() {
   return !!window.Capacitor?.isNativePlatform?.() || _iapDevHost();
 }
 
+// ── Offer-code redemption (SPEC-183 2b) ──────────────────────
+// OFF. While false, the paywall shows no code entry at all. Turning it on is
+// Jake's call after his design review, and it only does something once offer
+// codes exist in App Store Connect (none do yet). The sheet is Apple's own:
+// Apple checks the code, shows the discounted price and takes the payment;
+// Plursky never sees or stores the code.
+const PROMO_CODE_REDEEM_ON = false;
+
+function _codeRedeemAvailable() {
+  return PROMO_CODE_REDEEM_ON && _iapAvailable();
+}
+
+// Opens Apple's offer-code sheet, then re-reads the entitlement. A code
+// redeemed for Plursky+ shows up there; the customer-info listener also
+// catches one that settles after the sheet closes.
+async function _redeemOfferCode() {
+  if (!PROMO_CODE_REDEEM_ON) return { success: false, unsupported: true };
+  if (!window.Capacitor?.isNativePlatform?.()) {
+    if (!_iapDevHost()) return { success: false, unsupported: true, error: "Codes can only be redeemed in the iOS app." };
+    console.log("[plursky-iap] local dev host: would open Apple's offer-code sheet");
+    return { success: false, web: true };
+  }
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return { success: false, error: "RevenueCat not configured" };
+  try {
+    const Purchases = _rcPlugin();
+    // 5 min: the person may be typing a code or switching apps to copy one.
+    await _withTimeout(Purchases.presentCodeRedemptionSheet(), 300000, "Offer code sheet");
+    const { customerInfo } = await _withTimeout(Purchases.getCustomerInfo(), 15000, "Entitlement check");
+    _syncEntitlements(customerInfo);
+    return { success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT] };
+  } catch (e) {
+    console.error("[plursky-iap] offer code error:", _iapMsg(e));
+    return { success: false, error: _iapMsg(e) };
+  }
+}
+
 // `offeringId` names a non-current offering to buy from (the Season Pass
 // rescue lives in its own "season_rescue" offering, never in `current`).
 async function _purchasePlus(productId, { offeringId } = {}) {
@@ -10020,6 +10361,19 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
     }
   };
 
+  const handleRedeem = async () => {
+    setBusy(true); setBuyError(null);
+    try {
+      const result = await _redeemOfferCode();
+      if (result.success) { window.location.reload(); return; }
+      if (result.error) setBuyError(result.error);
+    } catch (e) {
+      setBuyError(e?.message || "The code could not be redeemed.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const handleRestore = async () => {
     setBusy(true); setBuyError(null);
     try {
@@ -10166,6 +10520,11 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
         ))}
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", marginTop: 8 }}>
           <button onClick={handleRestore} disabled={busy} style={quiet}>Restore purchases</button>
+          {_codeRedeemAvailable() && <button onClick={handleRedeem} disabled={busy} style={quiet} data-redeem-code="">Redeem code</button>}
+          {/* With the code entry the four links split two and two at every
+              width (Restore · Redeem / Terms · Privacy), never "Privacy"
+              alone on a second line (#398 review, 2026-11-07). */}
+          {_codeRedeemAvailable() && <span aria-hidden="true" data-redeem-break="" style={{ flexBasis: "100%", height: 0 }} />}
           <a href="./terms.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Terms</a>
           <a href="./privacy.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Privacy</a>
         </div>

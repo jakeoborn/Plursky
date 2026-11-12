@@ -45,6 +45,34 @@ const _EXIF_TAG_GPS_LNG     = 0x0004;
 
 // Try multiple date formats — ISO 8601 (XMP-style) and EXIF (colon-sep).
 // Returns the canonical { yr, mo, dy, hh, mm, ss } shape or null.
+// ── Import diagnostics ───────────────────────────────────────
+// One structured line per imported file, tagged [plursky:import], so a real
+// device import is diagnosable from the Xcode console or Safari Web Inspector
+// without asking for screenshots. The last 400 lines are also kept on device
+// (plursky_import_log_v1) and readable with plurskyImportLog() in the
+// inspector. Never logs coordinates: GPS presence and accuracy only.
+const IMPORT_LOG_KEY = "plursky_import_log_v1";
+function _importLog(event, detail) {
+  const row = { t: new Date().toISOString(), event, ...(detail || {}) };
+  try { console.info(`[plursky:import] ${event} ${JSON.stringify(detail || {})}`); } catch {}
+  try {
+    const log = JSON.parse(localStorage.getItem(IMPORT_LOG_KEY) || "[]");
+    log.push(row);
+    localStorage.setItem(IMPORT_LOG_KEY, JSON.stringify(log.slice(-400)));
+  } catch {}
+}
+function plurskyImportLog() {
+  try { return JSON.parse(localStorage.getItem(IMPORT_LOG_KEY) || "[]"); } catch { return []; }
+}
+// Every festival's attended artist ids, flat. For the photo matcher only: it
+// keeps an id only when the photo's own festival bills it.
+function _allFestivalAttendedIds() {
+  try {
+    const store = typeof getAttendedStore === "function" ? getAttendedStore() : {};
+    return [...new Set(Object.values(store).flatMap(n => Object.values(n || {}).flat()))];
+  } catch { return []; }
+}
+
 function _parseDateString(s) {
   if (!s) return null;
   // ISO 8601: 2026-05-15T23:35:00(.000)?(±HH:MM|Z)?
@@ -394,6 +422,759 @@ async function _parseVideoMeta(file) {
     visit(8, n, 0);
   } catch {}
   return out;
+}
+
+// ── Video GPS strip for cloud backup ─────────────────────────────────────
+// Photos leave the device as a canvas re-encode (_compressMomentImage), which
+// carries no EXIF. Videos are stored raw, and an iPhone clip writes its
+// capture fix into the file: `com.apple.quicktime.location.ISO6709` (+ its
+// accuracy) in moov/meta keys+ilst, older clips a udta `©xyz`, 3GPP a `loci`.
+// Real clips (EDC LV 2026, 34 of 42) also hold a SECOND copy of that meta in
+// a top-level `free` box after moov. "Back up my weekend" uploaded those
+// bytes as-is, so the backup held every clip's coordinates.
+//
+// This returns a copy for upload with every one of those redacted IN PLACE:
+// box sizes never change, so chunk offsets (stco/co64) stay valid and the
+// clip plays as before. The media (mdat) is passed through by reference and
+// never read. Anything it cannot prove clean returns null and the caller
+// does not upload (fail closed): an unparseable container, a non-mdat box
+// too large to inspect, a timed metadata track that names a location key,
+// or a coordinate-shaped string still present after the redaction.
+const _VGPS_MAX_BOX = 64 * 1024 * 1024;
+const _VGPS_COORD_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}/;
+const _VGPS_KEY_RE = /location|ISO6709|gps/i;
+const _VGPS_TRACK_FORMATS = new Set([
+  // Samples CAN carry free text: H.264/HEVC frames hold SEI user-data NAL
+  // units (x264 writes its settings there; a vendor can write GPS). So video
+  // is limited to H.264/HEVC, whose samples the strip parses NAL by NAL and
+  // whose SEI/filler units it rewrites (_vgpsNalPatches). Video formats it
+  // cannot parse (AV1 metadata OBUs, VP9, MPEG-4 Part 2 user data, ProRes)
+  // are refused, as are text, subtitle and (M)JPEG tracks and audio formats
+  // with in-band tag frames (MP3/ID3, AC-3). Audio samples that pass are NOT
+  // parsed: AAC data-stream/fill elements could hold bytes (stated residual).
+  "hvc1", "hev1", "avc1", "avc3", "dvh1", "dvhe",
+  "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64",
+  "mebx", "tmcd",
+]);
+// ── Sample-entry children: allowlisted, everything else blanked ──
+// A sample entry (avc1, mp4a, …) is fixed fields followed by child boxes, and
+// a child can be anything: a vendor uuid with a binary fix decodes fine. Each
+// format keeps only the children it needs; a fixed-size child must have its
+// exact size (else it is blanked). Unknown children become `free`, zeroed.
+// Children must tile the entry (a <8-byte tail, the QuickTime terminator, is
+// zeroed); a child that overruns its entry refuses the clip.
+// Fixed-size fields of kept children (pasp, colr, amve, …) and the variable
+// audio configs (esds, dapa) are kept as they are (stated residual).
+const _VGPS_VISUAL = new Set(["avc1", "avc3", "hvc1", "hev1", "dvh1", "dvhe"]);
+const _VGPS_ENTRY_KIDS = {
+  visual: { avcC: 0, hvcC: 0, dvcC: 32, dvvC: 32, dvwC: 32, colr: 0, amve: 16, pasp: 16, btrt: 20, clap: 40, clli: 12, mdcv: 32, fiel: 10 },
+  mp4a: { esds: 0, wave: 0, chan: 0, btrt: 20 },
+  apac: { dapa: 0, ngst: 20, btrt: 20 },
+  pcm: { chan: 0, btrt: 20, wave: 0 },
+  alac: { alac: 36, chan: 0, btrt: 20, wave: 0 },
+  wave: { frma: 12, mp4a: 12, esds: 0, enda: 10, chan: 0, alac: 36, "\0\0\0\0": 8 },
+  mebx: { keys: 0 },
+  mebxKey: { keyd: 0, dtyp: 0 },
+  tmcd: {},
+};
+function _vgpsEntryHeader(fmt, dv, e, es) {
+  if (_VGPS_VISUAL.has(fmt)) return 86;
+  if (fmt === "mebx") return 16;
+  if (fmt === "tmcd") return 34;
+  if (es < 18) return -1;                                  // sound sample entry: version picks the size
+  const v = dv.getUint16(e + 16);
+  return v === 0 ? 36 : v === 1 ? 52 : v === 2 ? 72 : -1;
+}
+// The sample entry's own header (before its children). Fields no decoder
+// reads (reserved, vendor, quality, compressorname, resolution, frame count,
+// depth) are rewritten to their canonical values in place; fields a decoder
+// does read must hold a plausible value or the clip is refused. What stays
+// is a few bits per in-range field (width/height, channel count, …): no room
+// for a 16-byte float64 fix. Returns a refusal reason, or null; `set(at,
+// bytes)` writes and counts a change.
+const _VGPS_RATES = new Set([8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000, 176400, 192000]);
+function _vgpsEntryHeaderFix(fmt, dv, e, eh, set) {
+  const u16 = o => dv.getUint16(e + o), u32 = o => dv.getUint32(e + o);
+  const be = (n, w) => { const b = []; for (let i = w - 1; i >= 0; i--) b.push(Math.floor(n / 2 ** (8 * i)) & 0xff); return b; };
+  set(8, [0, 0, 0, 0, 0, 0]);                              // reserved
+  if (u16(14) !== 1) return "sample entry data reference";
+  if (_VGPS_VISUAL.has(fmt)) {
+    set(16, new Array(16).fill(0));                        // pre_defined/version/vendor/quality
+    if (!u16(32) || !u16(34) || u16(32) > 16384 || u16(34) > 16384) return "sample entry dimensions";
+    set(36, [0, 0x48, 0, 0, 0, 0x48, 0, 0, 0, 0, 0, 0, 0, 1]); // 72 dpi ×2, reserved, frame_count 1
+    set(50, new Array(32).fill(0));                        // compressorname
+    set(82, [0, 0x18, 0xff, 0xff]);                        // depth 24, pre_defined -1
+    return null;
+  }
+  if (fmt === "mebx") return null;
+  if (fmt === "tmcd") {
+    set(16, [0, 0, 0, 0]); set(33, [0]);                   // reserved
+    const ts = u32(24), fd = u32(28), nf = dv.getUint8(e + 32);
+    if (!ts || ts > 1000000 || !fd || fd > ts || !nf || nf > 120 || u32(20) > 0xf) return "timecode entry";
+    return null;
+  }
+  // Sound: v0 36 bytes, v1 +16, v2 72 (QuickTime / ISO).
+  const v = u16(16);
+  set(18, [0, 0, 0, 0, 0, 0]);                             // revision, vendor
+  if (v === 2) {
+    if (u16(24) !== 3 || u16(26) !== 16 || u16(28) !== 0xfffe || u16(30) !== 0 || u32(32) !== 0x10000 || u32(36) !== 72 || u32(52) !== 0x7f000000) return "sound entry v2 constants";
+    const rate = dv.getFloat64(e + 40), ch = u32(48), bits = u32(56), flags = u32(60), bpp = u32(64), fpp = u32(68);
+    if (!_VGPS_RATES.has(rate) || !ch || ch > 64 || ![0, 8, 16, 24, 32, 64].includes(bits) || flags > 0xff || bpp > 65536 || fpp > 65536) return "sound entry v2 fields";
+    return null;
+  }
+  const ch = u16(24), bits = u16(26), cid = u16(28), rate = u32(32);
+  if (!ch || ch > 64 || ![0, 8, 16, 24, 32].includes(bits) || ![0, 0xfffe, 0xffff].includes(cid) || u16(30) !== 0 || (rate & 0xffff) || !_VGPS_RATES.has(rate >>> 16)) return "sound entry fields";
+  if (v === 1) {
+    const spp = u32(36), bpk = u32(40), bpf = u32(44), bps = u32(48);
+    if (spp > 65536 || bpk > 65536 || bpf > 4096 || bps > 64) return "sound entry v1 fields";
+  }
+  return null;
+}
+function _vgpsEntryKind(fmt) {
+  if (_VGPS_VISUAL.has(fmt)) return "visual";
+  if (fmt === "mp4a" || fmt === "apac" || fmt === "alac" || fmt === "mebx" || fmt === "tmcd") return fmt;
+  return "pcm";
+}
+// Walks [a, z) as child boxes under `kind`'s allowlist. onKeep(type, at, end)
+// may return a refusal string. Returns null or a refusal.
+// Variable-size children whose shape is still checkable: a child that fails
+// its check is blanked like an unknown one.
+//   chan  v/f, layout tag, bitmap, count, then count × 20-byte descriptions
+//   dtyp  namespace 0 + a 4-byte well-known type (16 bytes), or namespace 1
+//         + one of the reverse-DNS type names real iPhone clips carry
+//   keyd  namespace mdta, or fiel (a field of a structured key, e.g.
+//         detected-face.bounds); the name itself is checked per entry
+const _VGPS_DTYP_NAMES = new Set(["detected-face", "com.apple.quicktime.live-photo-info", "milli-lux", "uuid"].map(k => "com.apple.quicktime." + k));
+function _vgpsChildShapeOk(t, u8, dv, c, cs) {
+  const s4 = o => String.fromCharCode(u8[o], u8[o + 1], u8[o + 2], u8[o + 3]);
+  if (t === "chan") return cs >= 24 && cs === 24 + 20 * dv.getUint32(c + 20);
+  if (t === "dtyp") {
+    if (cs < 16) return false;
+    const ns = dv.getUint32(c + 8);
+    if (ns === 0) return cs === 16;
+    let name = ""; for (let i = c + 12; i < c + cs; i++) name += String.fromCharCode(u8[i]);
+    return ns === 1 && _VGPS_DTYP_NAMES.has(name);
+  }
+  if (t === "keyd") return cs > 12 && (s4(c + 8) === "mdta" || s4(c + 8) === "fiel");
+  return true;
+}
+function _vgpsEntryChildren(kind, u8, dv, a, z, blank, onKeep) {
+  const allow = _VGPS_ENTRY_KIDS[kind];
+  let c = a;
+  while (c + 8 <= z) {
+    const cs = dv.getUint32(c);
+    if (cs < 8 || c + cs > z) return "unreadable sample entry";
+    const t = String.fromCharCode(u8[c + 4], u8[c + 5], u8[c + 6], u8[c + 7]);
+    const want = Object.prototype.hasOwnProperty.call(allow, t) ? allow[t] : -1;
+    const colrOk = t !== "colr" || (cs === 19 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclx") ||
+      (cs === 18 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclc");
+    if (want < 0 || (want > 0 && cs !== want) || !colrOk || !_vgpsChildShapeOk(t, u8, dv, c, cs)) blank(c, c + cs);
+    else if (t === "wave") { const r = _vgpsEntryChildren("wave", u8, dv, c + 8, c + cs, blank, onKeep); if (r) return r; }
+    else if (kind === "mebx" && t === "keys") {
+      // keys (QuickTime metadata key table): one box per local key id (any
+      // name), each holding keyd/dtyp. No version/flags or count.
+      let k = c + 8;
+      while (k + 8 <= c + cs) {
+        const ks = dv.getUint32(k);
+        if (ks < 8 || k + ks > c + cs) return "unreadable timed keys";
+        const r = _vgpsEntryChildren("mebxKey", u8, dv, k + 8, k + ks, blank, onKeep); if (r) return r;
+        k += ks;
+      }
+      if (k !== c + cs) blank(k, c + cs, true);
+    } else if (onKeep) { const r = onKeep(t, c, c + cs); if (r) return r; }
+    c += cs;
+  }
+  if (c < z) blank(c, z, true);                            // QuickTime 4-byte terminator
+  return null;
+}
+// Timed (mebx) keys whose per-frame values live in mdat, where they cannot
+// be blanked: only these Apple keys pass; any other key refuses the clip.
+const _VGPS_TIMED_KEYS = new Set([
+  "video-orientation", "detected-face", "detected-face.bounds", "detected-face.face-id", "detected-face.roll-angle", "detected-face.yaw-angle",
+  "live-photo-info", "com.apple.quicktime.live-photo-info", "scene-illuminance", "milli-lux", "cinematic-audio", "segment-identifier", "optical-center",
+  "metadata.1", "uuid", "apple-maker-note.74", "apple-maker-note.97", "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber",
+].map(k => "com.apple.quicktime." + k));
+// Static (moov/meta) item values that are kept. Every other item's value
+// is blanked in place, whatever its key is called.
+const _VGPS_KEEP_KEYS = new Set([
+  "make", "model", "software", "creationdate", "full-frame-rate-playback-intent",
+  "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber",
+].map(k => "com.apple.quicktime." + k));
+function _vgpsLatin1(u8, a, b) {
+  let s = "";
+  for (let i = a; i < b; i++) s += String.fromCharCode(u8[i]);
+  return s;
+}
+// Deny by default INSIDE the movie too: each container the walker enters
+// keeps only the children named here (the boxes real iPhone clips carry, plus
+// the standard ISO/QuickTime ones). Anything else (a dashcam's moov-level
+// `gps `, a vendor box in a trak) is blanked to `free`; a player never needs a
+// box it does not know. udta and meta have their own rules below.
+// Track-reference kinds: each is a plain list of u32 track ids.
+const _VGPS_TREF_KINDS = new Set(["cdep", "cdsc", "fall", "rndr", "hint", "chap", "tmcd", "sync", "scpt", "ssrc", "vdep", "vplx", "font", "hind", "ipir", "mpod", "subt", "thmb", "auxl"]);
+const _VGPS_CHILDREN = {
+  moov: new Set(["mvhd", "trak", "udta", "meta", "mvex"]),
+  trak: new Set(["tkhd", "edts", "mdia", "meta", "tapt", "tref", "udta", "load"]),
+  edts: new Set(["elst"]),
+  mdia: new Set(["mdhd", "hdlr", "minf", "elng", "udta"]),
+  minf: new Set(["vmhd", "smhd", "gmhd", "nmhd", "hmhd", "sthd", "dinf", "stbl", "hdlr"]),
+  stbl: new Set(["stsd", "stts", "ctts", "cslg", "stsc", "stsz", "stz2", "stco", "co64", "stss", "stsh", "stps", "sdtp", "sbgp", "sgpd"]),
+  gmhd: new Set(["gmin", "text", "tmcd"]),
+  tmcd: new Set(["tcmi"]),          // only walked under gmhd
+  dinf: new Set(["dref"]),
+  dref: new Set(["url ", "alis"]),  // self-contained data references
+  mvex: new Set(["mehd", "trex"]),
+  tapt: new Set(["clef", "prof", "enof"]),
+  tref: _VGPS_TREF_KINDS,
+};
+// Containers the walker enters, and the header bytes before their children.
+const _VGPS_WALK = { moov: 0, trak: 0, mdia: 0, minf: 0, stbl: 0, udta: 0, meta: 0, ilst: 0, edts: 0, gmhd: 0, dinf: 0, mvex: 0, tapt: 0, tref: 0, dref: 8 };
+const _vgpsWalks = (type, parentType) => type in _VGPS_WALK || (type === "tmcd" && parentType === "gmhd");
+// The exact payload length of a movie leaf, from its own fields. Bytes past it
+// are slack a vendor could fill: zeroed. Shorter: refused. null = this leaf
+// has no shape the strip can check: the box is BLANKED (fail closed); every
+// leaf real iPhone clips carry has a shape here. Names (hdlr, elng, tcmi) are
+// not needed for playback, so only their fixed part is kept.
+const _VGPS_LEAF_LEN = (type, parentType, dv, p, P, ctx) => {
+  const v = P >= 1 ? dv.getUint8(p) : 0, n = off => (P >= off + 4 ? dv.getUint32(p + off) : 0);
+  if (parentType === "tref") {             // u32 track ids; 16 bytes of a fix also look like 4 ids, so range-check
+    if (P % 4) return -1;
+    for (let o = 0; o < P; o += 4) { const id = dv.getUint32(p + o); if (id < 1 || id > 1024) return -1; }
+    return P;
+  }
+  switch (type) {
+    case "mvhd": return v === 1 ? 112 : 100;
+    case "tkhd": return v === 1 ? 96 : 84;
+    case "mdhd": return v === 1 ? 36 : 24;
+    case "mehd": return v === 1 ? 12 : 8;
+    case "vmhd": return 12;
+    case "smhd": return 8;
+    case "nmhd": case "sthd": return 4;
+    case "hmhd": return 20;
+    case "gmin": return 16;
+    case "text": return 36;
+    case "load": return 16;
+    case "trex": return 24;
+    case "cslg": return v === 1 ? 44 : 24;
+    case "clef": case "prof": case "enof": return 12;
+    case "url ": case "alis": return 4;     // flags only; a self-contained ref holds no data
+    case "hdlr": return 24;                 // fixed fields; the name is zeroed
+    case "elng": return 4;                  // the language tag is zeroed
+    case "tcmi": return 24;                 // the font name is zeroed
+    case "elst": return 8 + n(4) * (v === 1 ? 20 : 12);
+    case "stts": case "ctts": case "co64": case "stsh": return 8 + n(4) * 8;
+    case "stss": case "stps": case "stco": return 8 + n(4) * 4;
+    case "stsc": return 8 + n(4) * 12;
+    case "stsz": ctx.samples = n(8); return 12 + (n(4) === 0 ? n(8) * 4 : 0);
+    case "stz2": ctx.samples = n(8); return 12 + Math.ceil(n(8) * (P >= 8 ? dv.getUint8(p + 7) : 0) / 8);
+    case "sdtp": return ctx.samples == null ? null : 4 + ctx.samples;
+    case "sbgp": return (v === 1 ? 16 : 12) + n(v === 1 ? 12 : 8) * 8;
+    case "sgpd": {
+      if (v !== 1 && v !== 2) return null;
+      const hdr = v === 1 ? 16 : 20, dl = n(8), count = n(hdr - 4);
+      if (dl) return hdr + count * dl;
+      if (v !== 1) return null;
+      let at = hdr;                         // v1, variable entries: each has its own u32 length
+      for (let i = 0; i < count; i++) { if (at + 4 > P) return P + 1; at += 4 + dv.getUint32(p + at); }
+      return at;
+    }
+    default: return null;
+  }
+};
+// Redacts one in-memory box region. Returns { n } (items redacted) or
+// { refuse: reason }.
+function _stripVideoGpsRegion(u8, layout = null) {
+  const dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+  const len = u8.byteLength;
+  const type4 = i => _vgpsLatin1(u8, i, i + 4);
+  const zero = (a, b) => { for (let i = a; i < b && i < len; i++) u8[i] = 0; };
+  const toFree = (pos) => { u8[pos + 4] = 0x66; u8[pos + 5] = 0x72; u8[pos + 6] = 0x65; u8[pos + 7] = 0x65; };
+  let n = 0, refuse = null, curTrak = null;
+  const visit = (start, end, depth, parentType, scope) => {
+    if (depth > 8 || refuse) return;
+    let pos = start;
+    const scopeCtx = {};                   // per-container: stsz's sample count, for sdtp
+    if (parentType === "stbl") {           // sdtp can come before stsz: read the count first
+      for (let q = start; q + 20 <= end; ) {
+        const qs = dv.getUint32(q);
+        if (qs < 8 || q + qs > end) break;
+        if (qs >= 20 && (type4(q + 4) === "stsz" || type4(q + 4) === "stz2")) scopeCtx.samples = dv.getUint32(q + 16);
+        q += qs;
+      }
+    }
+    while (pos + 8 <= end) {
+      let size = dv.getUint32(pos);
+      const type = type4(pos + 4);
+      let hdr = 8;
+      if (size === 1) { if (pos + 16 > end) break; size = dv.getUint32(pos + 8) * 4294967296 + dv.getUint32(pos + 12); hdr = 16; }
+      else if (size === 0) size = end - pos;
+      if (size < hdr || pos + size > end) { refuse = "malformed box"; return; }
+      const payload = pos + hdr, boxEnd = pos + size;
+      if (type === "free" || type === "skip") {
+        zero(payload, boxEnd);
+      } else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {
+        // Deny by default at the top level: uuid (XMP can carry GPS) or any
+        // box this does not understand is blanked.
+        zero(payload, boxEnd); toFree(pos); n++;
+      } else if (type === "uuid" || type === "XMP_" || (parentType === "meta" && !["hdlr", "keys", "ilst"].includes(type))) {
+        zero(payload, boxEnd); toFree(pos); n++;
+      } else if (type === "mvex") {
+        // A fragmented movie keeps its samples in moof boxes this does not
+        // walk: refused, not guessed at.
+        refuse = "fragmented movie"; return;
+      } else if (_VGPS_CHILDREN[parentType] && !_VGPS_CHILDREN[parentType].has(type)) {
+        zero(payload, boxEnd); toFree(pos); n++;
+      } else if (_VGPS_CHILDREN[parentType] && type !== "stsd" && !_vgpsWalks(type, parentType)) {
+        const want = _VGPS_LEAF_LEN(type, parentType, dv, payload, boxEnd - payload, scopeCtx);
+        if (want === null) { zero(payload, boxEnd); toFree(pos); n++; }
+        else if (want < 0 || want > boxEnd - payload) { refuse = "unreadable " + type; return; }
+        else if (want < boxEnd - payload) { zero(payload + want, boxEnd); n++; }
+        if (layout && curTrak && /^(stsz|stz2|stsc|stco|co64)$/.test(type)) {
+          if (curTrak[type]) { refuse = "duplicate " + type; return; }
+          curTrak[type] = payload;
+        }
+      } else if (type === "©xyz" || type === "loci" || (parentType === "udta" && type !== "meta")) {
+        // udta is user data, never needed for playback. Location can sit in
+        // it as text (©xyz, loci) or in a vendor's BINARY box no regex can
+        // read, so every udta child but `meta` (walked below) is blanked.
+        zero(payload, boxEnd); toFree(pos); n++;
+      } else if (type === "stsd") {
+        // A timed metadata track (mebx) declares its keys here; its VALUES
+        // live in mdat, where only video NAL units are rewritten (not mebx
+        // values). One that names a location key cannot be made clean in place.
+        if (_VGPS_KEY_RE.test(_vgpsLatin1(u8, payload, boxEnd))) { refuse = "timed location track"; return; }
+        // Binary GPS tracks (GoPro gpmd, camm, …) carry no text to find, so
+        // only known audio/video/timecode/text/mebx sample formats pass.
+        // EVERY sample entry is checked; an unreadable table is refused.
+        const count = boxEnd - payload >= 8 ? dv.getUint32(payload + 4) : 0;
+        let e = payload + 8;
+        for (let k = 0; k < count; k++) {
+          const es = e + 8 <= boxEnd ? dv.getUint32(e) : 0;
+          if (es < 8 || e + es > boxEnd) { refuse = "unreadable sample table"; return; }
+          const fmt = type4(e + 4);
+          if (!_VGPS_TRACK_FORMATS.has(fmt)) { refuse = "unknown track format " + JSON.stringify(fmt); return; }
+          const fam = _VGPS_NAL_FAMILY[fmt];
+          if (layout && curTrak) (curTrak.fmts ||= []).push(fmt);
+          // Every entry's child boxes go through the allowlist walk. The NAL
+          // length size is in avcC/hvcC; their NAL units are vetted
+          // (_vgpsConfig): an SEI there would ride along untouched.
+          const eh = _vgpsEntryHeader(fmt, dv, e, es);
+          if (eh < 0 || eh > es) { refuse = "unreadable sample entry"; return; }
+          const cfg = fam === "avc" ? "avcC" : fam ? "hvcC" : null;
+          let L = 0;
+          const blank = (a, z, tail) => { zero(tail ? a : a + 8, z); if (!tail) toFree(a); n++; };
+          const hb = _vgpsEntryHeaderFix(fmt, dv, e, eh, (at, bytes) => {
+            let ch = false;
+            for (let i = 0; i < bytes.length; i++) if (u8[e + at + i] !== bytes[i]) { u8[e + at + i] = bytes[i]; ch = true; }
+            if (ch) n++;
+          });
+          if (hb) { refuse = hb; return; }
+          const bad = _vgpsEntryChildren(_vgpsEntryKind(fmt), u8, dv, e + eh, e + es, blank, (t, a, z) => {
+            if (t === "avcC" || t === "hvcC") {
+              if (t !== cfg) return "config box " + t + " in a " + fmt + " entry";
+              const r = _vgpsConfig(fam, u8, a + 8, z);
+              if (r.refuse) return r.refuse;
+              if (L) return "two " + t + " boxes";
+              L = r.L;
+            }
+            return null;
+          });
+          if (bad) { refuse = bad; return; }
+          if (fam) {
+            if (L !== 1 && L !== 2 && L !== 4) { refuse = "unreadable " + cfg; return; }
+            if (layout && curTrak) {
+              if ((curTrak.fam && curTrak.fam !== fam) || (curTrak.lenSize && curTrak.lenSize !== L)) { refuse = "mixed video sample entries"; return; }
+              curTrak.fam = fam; curTrak.lenSize = L;
+            }
+          }
+          if (fmt === "mebx") {
+            // Every keyd name in the entry must be a known non-location key.
+            const body = _vgpsLatin1(u8, e, e + es);
+            let at = body.indexOf("keyd"), seen = 0;
+            while (at >= 4) {
+              const ks = dv.getUint32(e + at - 4);
+              if (ks < 12 || at - 4 + ks > es) { refuse = "unreadable timed key"; return; }
+              const name = body.slice(at + 8, at - 4 + ks);
+              if (!_VGPS_TIMED_KEYS.has(name)) { refuse = "timed key " + JSON.stringify(name); return; }
+              seen++; at = body.indexOf("keyd", at - 4 + ks);
+            }
+            if (!seen && body.includes("keys")) { refuse = "unreadable timed keys"; return; }
+          }
+          e += es;
+        }
+      } else if (scope && type === "keys" && boxEnd - payload >= 8) {
+        // Two keys tables make an index ambiguous (a player may read either).
+        if (scope.keysSeen++) { refuse = "duplicate keys table"; return; }
+        const count = dv.getUint32(payload + 4);
+        let k = payload + 8;
+        for (let i = 1; i <= count && k + 8 <= boxEnd; i++) {
+          const ks = dv.getUint32(k);
+          if (ks < 8 || k + ks > boxEnd) break;
+          const name = _vgpsLatin1(u8, k + 8, k + ks);
+          if (_VGPS_KEEP_KEYS.has(name)) scope.keep.add(i);
+          if (_VGPS_KEY_RE.test(name)) {
+            scope.hit.add(i);
+            const red = "plursky.redacted.".padEnd(ks - 8, "x").slice(0, ks - 8);
+            for (let j = 0; j < ks - 8; j++) u8[k + 8 + j] = red.charCodeAt(j);
+          }
+          k += ks;
+        }
+      } else if (scope && parentType === "ilst") {
+        scope.items.push({ idx: dv.getUint32(pos + 4), payload, boxEnd });
+      }
+      if (_vgpsWalks(type, parentType)) {
+        const isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
+        const inner = type === "meta" ? { hit: new Set(), keep: new Set(), items: [], keysSeen: 0 } : scope;
+        const skip = isoMeta ? 4 : type === "tmcd" ? 0 : _VGPS_WALK[type] || 0;
+        const prevTrak = curTrak;
+        if (type === "trak" && layout) { curTrak = {}; layout.push(curTrak); }
+        visit(Math.min(boxEnd, payload + skip), boxEnd, depth + 1, type, inner);
+        curTrak = prevTrak;
+        if (type === "meta") {
+          // Values are typed by key index. Keep-by-allowlist: an item keeps its
+          // value ONLY when its index names a keep-listed key; every other item
+          // (unknown key, index past a truncated keys table, a keyless
+          // iTunes-style meta) is zeroed (its `data` box keeps its header).
+          for (const it of inner.items) {
+            const dataHdr = it.payload + 16 <= it.boxEnd && type4(it.payload + 4) === "data" ? 16 : 0;
+            if (!inner.keep.has(it.idx) || inner.hit.has(it.idx)) { zero(it.payload + dataHdr, it.boxEnd); n++; continue; }
+            // A kept item keeps ONE data box; anything nested after it is zeroed.
+            const ds = dataHdr ? dv.getUint32(it.payload) : 0;
+            if (!dataHdr || ds < 16 || it.payload + ds > it.boxEnd) { zero(it.payload, it.boxEnd); n++; continue; }
+            if (it.payload + ds < it.boxEnd) { zero(it.payload + ds, it.boxEnd); n++; }
+          }
+        }
+      }
+      pos = boxEnd;
+    }
+  };
+  visit(0, len, 0, null, null);
+  return refuse ? { refuse } : { n };
+}
+// ── Video samples: H.264/HEVC NAL units ──
+// Sample bytes are not opaque: an SEI user_data_unregistered NAL unit can hold
+// any text, GPS included. Every video sample is walked NAL by NAL (length-
+// prefixed, from the moov sample tables). SEI and filler units are rewritten
+// IN PLACE as filler of the same length (H.264 type 12, HEVC type 38), which
+// decoders discard (so is a Dolby Vision RPU, below); slices and parameter
+// sets are kept; anything else, or a
+// sample whose NAL lengths do not tile it exactly, refuses the clip.
+const _VGPS_NAL_FAMILY = { avc1: "avc", avc3: "avc", hvc1: "hevc", hev1: "hevc", dvh1: "hevc", dvhe: "hevc" };
+// hvcC may carry a prefix SEI with display metadata (iPhone: ambient viewing
+// environment). It is kept only when EVERY message in it is one of these
+// fixed-size display records at its exact size: no room for text. Anything
+// else (user data, unknown types, odd sizes) refuses the clip.
+const _VGPS_HVCC_SEI = { 137: 24, 144: 4, 147: 1, 148: 8 };
+function _vgpsFixedSei(b, p, len) {
+  if (len < 3 || ((b[p] >> 1) & 0x3f) !== 39) return false;
+  let i = p + 2;
+  const z = p + len;
+  while (i < z) {
+    if (i === z - 1 && b[i] === 0x80) return true;     // rbsp trailing bits
+    let t = 0, s = 0;
+    while (i < z && b[i] === 0xff) { t += 255; i++; }
+    if (i >= z) return false;
+    t += b[i++];
+    while (i < z && b[i] === 0xff) { s += 255; i++; }
+    if (i >= z) return false;
+    s += b[i++];
+    if (_VGPS_HVCC_SEI[t] !== s || i + s > z) return false;
+    for (let k = i; k < i + s - 2; k++) if (b[k] === 0 && b[k + 1] === 0 && b[k + 2] === 3) return false; // no emulation bytes in so short a record
+    i += s;
+  }
+  return false;
+}
+// Parameter sets are kept (in avcC/hvcC and in-band), so they are capped:
+// real iPhone SPS are 37 bytes; 128 leaves headroom for VUI/HDR fields while
+// leaving no room for a payload of note.
+const _VGPS_PS_MAX = 128;
+// avcC/hvcC: every NAL unit is walked and checked by ITS OWN header type, the
+// declared counts must tile the box exactly, and only parameter sets (plus,
+// in hvcC, a fixed-size display SEI) may appear. { L } or { refuse }.
+function _vgpsConfig(fam, u8, p, z) {
+  // A config NAL is typed by its OWN header, never by the array it sits in.
+  const ps = (t, at, len) => len >= 1 && len <= _VGPS_PS_MAX && at + len <= z && !(u8[at] & 0x80) &&
+    (fam === "avc" ? (u8[at] & 0x1f) === t : ((u8[at] >> 1) & 0x3f) === t);
+  if (fam === "avc") {
+    if (z - p < 7) return { refuse: "unreadable avcC" };
+    const L = (u8[p + 4] & 3) + 1;
+    let a = p + 6;
+    const lists = [[u8[p + 5] & 0x1f, 7]];
+    const walk = (n, t) => { for (let i = 0; i < n; i++) { if (a + 2 > z) return false; const len = (u8[a] << 8) | u8[a + 1]; if (!ps(t, a + 2, len)) return false; a += 2 + len; } return true; };
+    if (!walk(u8[p + 5] & 0x1f, 7)) return { refuse: "avcC carries a NAL it cannot vouch for" };
+    if (a + 1 > z) return { refuse: "unreadable avcC" };
+    const npps = u8[a++];
+    if (!walk(npps, 8)) return { refuse: "avcC carries a NAL it cannot vouch for" };
+    // High profiles: chroma/bit-depth bytes, then SPS extensions.
+    if (a < z && [100, 110, 122, 144].includes(u8[p + 1])) {
+      if (a + 4 > z) return { refuse: "unreadable avcC" };
+      a += 3; const next = u8[a++];
+      if (!walk(next, 13)) return { refuse: "avcC carries a NAL it cannot vouch for" };
+    }
+    if (a !== z) return { refuse: "avcC has trailing bytes" };
+    return { L };
+  }
+  if (z - p < 23) return { refuse: "unreadable hvcC" };
+  const L = (u8[p + 21] & 3) + 1;
+  let a = p + 23;
+  for (let k = 0, na = u8[p + 22]; k < na; k++) {
+    if (a + 3 > z) return { refuse: "unreadable hvcC" };
+    const nt = u8[a] & 0x3f, nn = (u8[a + 1] << 8) | u8[a + 2]; a += 3;
+    for (let q = 0; q < nn; q++) {
+      if (a + 2 > z) return { refuse: "unreadable hvcC" };
+      const len = (u8[a] << 8) | u8[a + 1], at = a + 2;
+      if (at + len > z) return { refuse: "unreadable hvcC" };
+      if (nt === 39 ? !_vgpsFixedSei(u8, at, len) : !(nt >= 32 && nt <= 34 && ps(nt, at, len))) return { refuse: "hvcC carries an SEI it cannot vouch for" };
+      a = at + len;
+    }
+  }
+  if (a !== z) return { refuse: "hvcC has trailing bytes" };
+  return { L };
+}
+function _vgpsNalAction(fam, b, q, len) {
+  const h = b[q];
+  if (h & 0x80) return "refuse";                       // forbidden_zero_bit
+  if (fam === "avc") {
+    const t = h & 0x1f;
+    if (t >= 1 && t <= 5) return "keep";
+    if (t === 7 || t === 8) return len <= _VGPS_PS_MAX ? "keep" : "refuse";
+    if (t === 9) return len === 2 ? "keep" : "refuse";  // AUD
+    if (t === 10 || t === 11) return len === 1 ? "keep" : "refuse";
+    if (t === 6 || t === 12) return "fill";             // SEI, filler
+    return "refuse";
+  }
+  if (len < 2) return "refuse";
+  const t = (h >> 1) & 0x3f;
+  if (t <= 9 || (t >= 16 && t <= 21)) return "keep";
+  if (t >= 32 && t <= 34) return len <= _VGPS_PS_MAX ? "keep" : "refuse";
+  if (t === 35) return len === 3 ? "keep" : "refuse";   // AUD
+  if (t === 36 || t === 37) return len === 2 ? "keep" : "refuse";
+  if (t >= 38 && t <= 40) return "fill";                // filler, prefix/suffix SEI
+  // 62 = Dolby Vision RPU (iPhone HDR, profile 8.4): opaque per-frame
+  // metadata this cannot vouch for. Rewritten to filler: the HLG base layer
+  // still decodes and plays as HDR, without Dolby Vision's dynamic metadata.
+  if (t === 62) return "fill";
+  return "refuse";
+}
+function _vgpsFiller(fam, b, q, len) {
+  const out = new Uint8Array(len).fill(0xff);
+  const hl = fam === "avc" ? 1 : 2;
+  out[0] = fam === "avc" ? 0x0c : 0x4c;                 // nal_ref_idc 0 / layer 0
+  if (fam === "hevc") out[1] = (b[q + 1] & 7) || 1;     // keep temporal id
+  if (len > hl) out[len - 1] = 0x80;                    // rbsp trailing bits
+  return out;
+}
+// moov u8 + per-track layout → EVERY track's samples [{ off, size, fam, L }]
+// sorted (fam only for H.264/HEVC), or { refuse }. A track without sample
+// tables is refused: its bytes could not be accounted for.
+function _vgpsSamples(u8, layout) {
+  const dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+  const out = [];
+  for (const t of layout) {
+    if (!t.fmts || !t.fmts.length) return { refuse: "track without a sample description" };
+    if (t.fmts.some(f => _VGPS_NAL_FAMILY[f] !== undefined && _VGPS_NAL_FAMILY[f] !== t.fam)) return { refuse: "mixed video sample entries" };
+    const co = t.stco != null ? t.stco : t.co64;
+    if ((t.stsz == null && t.stz2 == null) || t.stsc == null || co == null || (t.stco != null && t.co64 != null)) return { refuse: "track without sample tables" };
+    let sizes;
+    if (t.stsz != null) {
+      const fixed = dv.getUint32(t.stsz + 4), cnt = dv.getUint32(t.stsz + 8);
+      sizes = i => fixed || dv.getUint32(t.stsz + 12 + i * 4);
+      sizes.count = cnt;
+    } else {
+      const fs = u8[t.stz2 + 7], cnt = dv.getUint32(t.stz2 + 8), base = t.stz2 + 12;
+      if (fs !== 4 && fs !== 8 && fs !== 16) return { refuse: "unreadable stz2" };
+      sizes = i => fs === 16 ? dv.getUint16(base + i * 2) : fs === 8 ? u8[base + i] : (u8[base + (i >> 1)] >> ((i & 1) ? 0 : 4)) & 15;
+      sizes.count = cnt;
+    }
+    const nChunks = dv.getUint32(co + 4), wide = t.co64 != null;
+    const chunkOff = c => wide ? dv.getUint32(co + 8 + c * 8) * 4294967296 + dv.getUint32(co + 12 + c * 8) : dv.getUint32(co + 8 + c * 4);
+    const runs = dv.getUint32(t.stsc + 4);
+    let i = 0;
+    for (let r = 0; r < runs; r++) {
+      const first = dv.getUint32(t.stsc + 8 + r * 12), spc = dv.getUint32(t.stsc + 12 + r * 12);
+      const next = r + 1 < runs ? dv.getUint32(t.stsc + 8 + (r + 1) * 12) : nChunks + 1;
+      if (first < 1 || next <= first || next > nChunks + 1) return { refuse: "unreadable stsc" };
+      for (let c = first; c < next; c++) {
+        let off = chunkOff(c - 1);
+        for (let k = 0; k < spc; k++, i++) {
+          if (i >= sizes.count) return { refuse: "sample tables disagree" };
+          const sz = sizes(i);
+          out.push({ off, size: sz, fam: t.fam || null, L: t.lenSize || 0 });
+          off += sz;
+        }
+      }
+    }
+    if (i !== sizes.count) return { refuse: "sample tables disagree" };
+  }
+  out.sort((x, y) => x.off - y.off);
+  return { samples: out };
+}
+// Samples inside [start, end) → in-place filler patches, or { refuse }.
+async function _vgpsNalPatches(blob, samples, start, end) {
+  const patches = [];
+  let buf = null, bs = 0;
+  for (const s of samples) {
+    if (!buf || s.off < bs || s.off + s.size > bs + buf.length) {
+      bs = s.off;
+      buf = new Uint8Array(await blob.slice(bs, Math.min(end, Math.max(s.off + s.size, s.off + _VGPS_WIN))).arrayBuffer());
+      if (s.off + s.size > bs + buf.length) return { refuse: "sample past mdat" };
+    }
+    const z = s.off - bs + s.size;
+    let q = s.off - bs;
+    while (q < z) {
+      if (q + s.L > z) return { refuse: "unparseable video sample" };
+      let len = 0;
+      for (let k = 0; k < s.L; k++) len = len * 256 + buf[q + k];
+      q += s.L;
+      if (len < 1 || q + len > z) return { refuse: "unparseable video sample" };
+      const act = _vgpsNalAction(s.fam, buf, q, len);
+      if (act === "refuse") return { refuse: "video NAL type " + (s.fam === "avc" ? buf[q] & 0x1f : (buf[q] >> 1) & 0x3f) };
+      if (act === "fill") {
+        const f = _vgpsFiller(s.fam, buf, q, len);
+        let same = true;
+        for (let k = 0; k < len && same; k++) same = f[k] === buf[q + k];
+        if (!same) patches.push({ off: bs + q, bytes: f });
+      }
+      q += len;
+    }
+  }
+  return { patches };
+}
+// The media box. Real clips (26 of those 34) carry ANOTHER copy of the
+// keys+ilst block, coordinates included, inside mdat: dead bytes from an
+// earlier moov write. mdat is read once in windows (never whole), and each
+// window gets: every embedded `meta` copy redacted like the live one, then
+// any ISO-6709-shaped string zeroed, then re-checked. Unchanged media is
+// passed through as slices of the original blob.
+const _VGPS_WIN = 8 * 1024 * 1024, _VGPS_OVERLAP = 4096;
+const _VGPS_ISO_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}(?:[+-]\d+(?:\.\d+)?)?\/?/g;
+async function _vgpsScanMedia(blob, start, end, init = []) {
+  const dec = new TextDecoder("windows-1252"); // 1 byte -> 1 char, so indexes match
+  const patches = init.slice(); // { off, bytes } absolute, non-overlapping
+  const inPatch = (o) => patches.find(p => o >= p.off && o < p.off + p.bytes.length);
+  for (let w = start; w < end; w += _VGPS_WIN) {
+    const b = Math.min(end, w + _VGPS_WIN + _VGPS_OVERLAP);
+    const u8 = new Uint8Array(await blob.slice(w, b).arrayBuffer());
+    const s = dec.decode(u8);
+    const own = i => w + i < Math.min(end, w + _VGPS_WIN); // a hit belongs to the window it starts in
+    // 1) embedded meta copies (QuickTime meta: hdlr right after the header;
+    //    ISO meta: after 4 flag bytes).
+    const metaRe = /meta/g; let m;
+    while ((m = metaRe.exec(s))) {
+      const p = m.index - 4;
+      if (p < 0 || !own(p) || inPatch(w + p)) continue;
+      const sz = new DataView(u8.buffer, u8.byteOffset + p, 4).getUint32(0);
+      if (sz < 24 || sz > 1024 * 1024 || w + p + sz > end) continue;
+      if (s.slice(p + 12, p + 16) !== "hdlr" && s.slice(p + 16, p + 20) !== "hdlr") continue;
+      const reg = new Uint8Array(await blob.slice(w + p, w + p + sz).arrayBuffer());
+      const r = _stripVideoGpsRegion(reg);
+      if (r.refuse) return { refuse: "embedded meta: " + r.refuse };
+      if (r.n) patches.push({ off: w + p, bytes: reg });
+    }
+    // 2) any remaining coordinate string, wherever it sits.
+    _VGPS_ISO_RE.lastIndex = 0;
+    while ((m = _VGPS_ISO_RE.exec(s))) {
+      if (!own(m.index)) continue;
+      const abs = w + m.index, host = inPatch(abs);
+      if (host) { host.bytes.fill(0, abs - host.off, Math.min(host.bytes.length, abs - host.off + m[0].length)); }
+      else patches.push({ off: abs, bytes: new Uint8Array(m[0].length) });
+    }
+    // 3) proof for this window: patched, it reads clean.
+    const chk = u8.slice();
+    for (const p of patches) {
+      const a = Math.max(p.off, w), z = Math.min(p.off + p.bytes.length, b);
+      if (a < z) chk.set(p.bytes.subarray(a - p.off, z - p.off), a - w);
+    }
+    const cs = dec.decode(chk);
+    if (new RegExp(_VGPS_ISO_RE.source).test(cs) || /location\.ISO6709|location\.accuracy/.test(cs)) return { refuse: "coordinate left in media" };
+  }
+  patches.sort((x, y) => x.off - y.off);
+  const parts = []; let at = start;
+  for (const p of patches) {
+    if (p.off < at) return { refuse: "overlapping patches" };
+    if (p.off > at) parts.push(blob.slice(at, p.off));
+    parts.push(p.bytes); at = p.off + p.bytes.length;
+  }
+  if (at < end) parts.push(blob.slice(at, end));
+  return { parts, n: patches.length };
+}
+// Blob in, { blob, redacted } or null out. Never throws.
+async function _stripVideoGps(blob) {
+  try {
+    if (!blob || typeof blob.slice !== "function") return null;
+    const size = blob.size;
+    const head = async (pos) => new DataView(await blob.slice(pos, Math.min(size, pos + 16)).arrayBuffer());
+    // Pass 1: top-level box headers. moov is stripped FIRST (iPhone writes
+    // it after mdat), because its sample tables say where the video NAL
+    // units sit inside mdat.
+    const boxes = [];
+    for (let pos = 0; pos < size; ) {
+      if (pos + 8 > size) return null;
+      const h = await head(pos);
+      let boxSize = h.getUint32(0), hdr = 8;
+      const type = String.fromCharCode(h.getUint8(4), h.getUint8(5), h.getUint8(6), h.getUint8(7));
+      if (boxSize === 1) { if (h.byteLength < 16) return null; boxSize = h.getUint32(8) * 4294967296 + h.getUint32(12); hdr = 16; }
+      else if (boxSize === 0) boxSize = size - pos;
+      if (boxSize < hdr || pos + boxSize > size) return null;
+      if (["moof", "mfra", "sidx", "styp", "ssix"].includes(type)) return null; // fragmented: refused
+      boxes.push({ pos, boxSize, hdr, type });
+      pos += boxSize;
+    }
+    if (boxes.filter(b => b.type === "moov").length !== 1) return null;
+    const done = new Map();
+    let redacted = 0, samples = [];
+    for (const b of boxes) {
+      if (b.type === "mdat") continue;
+      if (b.boxSize > _VGPS_MAX_BOX) return null;
+      const u8 = new Uint8Array(await blob.slice(b.pos, b.pos + b.boxSize).arrayBuffer());
+      const layout = b.type === "moov" ? [] : null;
+      const r = _stripVideoGpsRegion(u8, layout);
+      if (r.refuse) { console.warn("[backup] video GPS strip refused:", r.refuse); return null; }
+      redacted += r.n;
+      // Proof, not hope: after the redaction no inspected byte may still
+      // read as a coordinate or a location key.
+      const s = _vgpsLatin1(u8, 0, u8.byteLength);
+      if (_VGPS_COORD_RE.test(s) || /ISO6709/.test(s)) { console.warn("[backup] video GPS strip: coordinate left in", b.type); return null; }
+      if (layout) {
+        const v = _vgpsSamples(u8, layout);
+        if (v.refuse) { console.warn("[backup] video GPS strip refused:", v.refuse); return null; }
+        samples = v.samples;
+      }
+      done.set(b, u8);
+    }
+    const parts = [];
+    let covered = 0;
+    for (const b of boxes) {
+      if (b.type !== "mdat") { parts.push(done.get(b)); continue; }
+      const a = b.pos + b.hdr, z = b.pos + b.boxSize;
+      const mine = samples.filter(s => s.off >= a && s.off + s.size <= z);
+      covered += mine.length;
+      const np = await _vgpsNalPatches(blob, mine.filter(s => s.fam), a, z);
+      if (np.refuse) { console.warn("[backup] video GPS strip refused:", np.refuse); return null; }
+      // mdat bytes no track's sample tables point at are dead to every player
+      // (iPhone leaves an old copy of the location meta there): zeroed.
+      let at = a, gap = 0;
+      const gaps = [];
+      for (const s of mine) {
+        if (s.off > at) { gaps.push({ off: at, bytes: new Uint8Array(s.off - at) }); gap += s.off - at; }
+        at = Math.max(at, s.off + s.size);
+      }
+      if (at < z) { gaps.push({ off: at, bytes: new Uint8Array(z - at) }); gap += z - at; }
+      if (gap > _VGPS_MAX_BOX) { console.warn("[backup] video GPS strip refused: too much unreferenced media"); return null; }
+      parts.push(blob.slice(b.pos, a));
+      const r = await _vgpsScanMedia(blob, a, z, np.patches.concat(gaps));
+      if (r.refuse) { console.warn("[backup] video GPS strip refused:", r.refuse); return null; }
+      parts.push(...r.parts); redacted += r.n;
+    }
+    // Every sample must sit inside an mdat this walked.
+    if (covered !== samples.length) { console.warn("[backup] video GPS strip refused: samples outside mdat"); return null; }
+    const out = new Blob(parts, { type: blob.type || "video/quicktime" });
+    if (out.size !== size) return null;
+    return { blob: out, redacted };
+  } catch (e) {
+    console.warn("[backup] video GPS strip failed:", e && e.message);
+    return null;
+  }
 }
 
 // Given EXIF metadata + the list of saved-set IDs the user has tagged for
@@ -794,6 +1575,63 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   const attendedSet = new Set(attendedIds || []);
   const savedSet    = new Set(savedIds || []);
   const priorIds    = [...new Set([...(attendedIds || []), ...(savedIds || [])])];
+
+  // SPEC-179: GPS speaks for a STAGE only through the one fix gate (#366):
+  // accuracy 100 m or better (unknown counts as coarse), within 140 m of the
+  // nearest stage, and that stage at least 35 m nearer than the runner-up.
+  // At III Points the pins sit 42-121 m apart, so the old "within 120 m at
+  // ±200 m" read one spot as two to five stages, and a clip filmed at RC95
+  // during Yousuke Yukimatsu was tagged horsegiirL at Sector 3.
+  const stageAnchorsAll = resolvedStageAnchors(cfg);
+  const fixGate = (lat != null && lng != null)
+    ? stageFixGate(stageAnchorsAll, { lat, lng, accuracy: acc }, null, STAGE_FIX_PHOTO)
+    : { status: "none" };
+  const trustedStage = fixGate.status === "trusted" ? fixGate.stageId : null;
+  const gpsGate = fixGate.status === "none" ? undefined : {
+    status: fixGate.status, stageId: trustedStage,
+    distM: fixGate.distM != null ? Math.round(fixGate.distM) : null,
+    marginM: fixGate.marginM != null ? Math.round(fixGate.marginM) : null,
+  };
+  // Every act whose set (5 min early, 10 min late) contains the capture time.
+  const playingIn = (a) => {
+    const w = setWindow(a);
+    return !!w && photoMs >= w.startMs - 5 * 60000 && photoMs <= w.endMs + 10 * 60000;
+  };
+  const playingNow = artists.filter(playingIn)
+    .sort((x, y) => (setWindow(x).startMs - setWindow(y).startMs) || String(x.id).localeCompare(String(y.id)));
+  // A trusted fix at a stage where an act is playing tags that act, even over
+  // a set you saved or marked attended: being measured at RC95 outranks a
+  // plan, and a tap on the wrong row. Anything else that could be true stays
+  // on the record as an alternative.
+  if (trustedStage) {
+    const here = playingNow.filter(a => a.stage === trustedStage);
+    if (here.length) {
+      // Two acts at one stage only overlap in the changeover slack: the one
+      // whose real set contains the time, else the nearer edge.
+      const edge = (a) => { const w = setWindow(a); return photoMs < w.startMs ? w.startMs - photoMs : photoMs > w.endMs ? photoMs - w.endMs : 0; };
+      const act = here.slice().sort((x, y) => edge(x) - edge(y))[0];
+      const anchor = stageAnchorsAll.find(g => g.stageId === trustedStage);
+      const surveyGrade = !!anchor && (anchor.anchorSource === "osm" || anchor.anchorSource === "crowd");
+      // An act at a stage with no pin could be where the fix really was.
+      const unpinned = playingNow.some(a => a.id !== act.id && !stageAnchorsAll.some(g => g.stageId === a.stage));
+      const priorPlaying = priorIds.filter(id => id !== act.id && playingNow.some(a => a.id === id));
+      const ambiguous = !surveyGrade || unpinned || here.length > 1 || priorPlaying.length > 0;
+      // The act GPS found may also be the one you saved or attended: say so.
+      const own = attendedSet.has(act.id) ? "attended" : savedSet.has(act.id) ? "saved" : null;
+      const over = priorPlaying.length ? ";over-" + (priorPlaying.some(id => attendedSet.has(id)) ? "attended" : "saved") : "";
+      return {
+        localDate, gpsRejected,
+        artistId: act.id, night: act.day, festivalId, resolvedBy,
+        reason: own ? own + "_set_time" : "stage_gps_time",
+        evidence: (own ? own + "+time+stage-gps" : "trusted-gps+time") + over,
+        suggested: false,
+        anchorSource: anchor ? anchor.anchorSource : null,
+        ambiguous,
+        alternatives: ambiguous ? [act.id, ...playingNow.filter(a => a.id !== act.id).map(a => a.id)] : undefined,
+        gpsGate,
+      };
+    }
+  }
   const priorHits = priorIds
     .map(id => artists.find(a => a.id === id))
     .filter(Boolean)
@@ -804,7 +1642,6 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // the legacy +10. (2026-08-22 founder field report at EDC.)
     .filter(x => photoMs >= x.startMs - 5 * 60000 &&
                  photoMs <= x.endMs + (attendedSet.has(x.a.id) ? 20 : 10) * 60000);
-  let savedDefeatedByGps = false;
   if (priorHits.length) {
     // Highest tier first (attended > saved); tightest-fit as tiebreak.
     priorHits.sort((x, y) => (y.score - x.score) || ((x.endMs - x.startMs) - (y.endMs - y.startMs)));
@@ -826,43 +1663,21 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
                  evidence: "gps-off-venue", distMeters: away, defeated: hit.a.id };
       }
     }
-    const stageAnchors = sLat != null && sLng != null ? resolvedStageAnchors(cfg) : [];
-    const anchor = stageAnchors.find(g => g.stageId === hit.a.stage) || null;
-    const atStage = !!anchor && _haversineMeters(sLat, sLng, anchor.lat, anchor.lng) <= 120;
-    // Usable GPS at a DIFFERENT anchored stage, where an act is playing now,
-    // contradicts a saved guess. If the saved act's stage is anchored too, the
-    // GPS is the better evidence: drop the guess and match on time + GPS
-    // below. If its stage has no anchor we cannot say how far it is, so keep
-    // the guess as a suggestion and offer both acts.
-    let gpsAct = null;
-    if (!attended && !atStage && stageAnchors.length) {
-      let near = null, nearM = Infinity;
-      for (const g of stageAnchors) {
-        const m = _haversineMeters(sLat, sLng, g.lat, g.lng);
-        if (m < nearM) { nearM = m; near = g; }
-      }
-      if (near && nearM <= 120 && near.stageId !== hit.a.stage) {
-        gpsAct = artists.find(a => a.stage === near.stageId && (() => {
-          const w = setWindow(a);
-          return w && photoMs >= w.startMs - 5 * 60000 && photoMs <= w.endMs + 10 * 60000;
-        })()) || null;
-      }
-    }
-    if (!(gpsAct && anchor)) {
-      const evidence = attended ? "attended+time" : atStage ? "saved+time+stage-gps" : "saved+time";
-      const alts = gpsAct ? [...new Set([...topTier.map(h => h.a.id), gpsAct.id])] : topTier.map(h => h.a.id);
-      const amb = ambiguous || !!gpsAct;
-      return {
-        localDate, gpsRejected,
-        artistId: hit.a.id, night: hit.a.day, festivalId, resolvedBy,
-        reason: attended ? "attended_set_time" : "saved_set_time",
-        evidence: gpsAct ? "saved+time;gps-other-stage" : evidence,
-        suggested: !attended && !atStage,
-        ambiguous: amb,
-        alternatives: amb ? alts : undefined,
-      };
-    }
-    savedDefeatedByGps = true; // fall through; the time + GPS match below decides.
+    // A trusted fix at this set's own stage confirms a saved guess. A fix
+    // that is coarse, ambiguous or elsewhere with nobody playing says nothing
+    // (a trusted fix at a stage WITH an act playing already returned above).
+    const atStage = trustedStage != null && trustedStage === hit.a.stage;
+    const evidence = attended ? "attended+time" : atStage ? "saved+time+stage-gps" : "saved+time";
+    return {
+      localDate, gpsRejected,
+      artistId: hit.a.id, night: hit.a.day, festivalId, resolvedBy,
+      reason: attended ? "attended_set_time" : "saved_set_time",
+      evidence,
+      suggested: !attended && !atStage,
+      ambiguous,
+      alternatives: ambiguous ? topTier.map(h => h.a.id) : undefined,
+      gpsGate,
+    };
   }
 
   // The same off-venue verdict for every other time-only guess: a photo
@@ -924,14 +1739,12 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // within 120m of a stage anchor, tag that stage's temporally-nearest set
     // when it's within 60 min — flagged `ambiguous` so the card shows the
     // FIX TAG chip instead of pretending certainty.
-    if (sLat != null && sLng != null) {
-      const anchors = resolvedStageAnchors(cfg);
-      let nearStage = null, nearStageM = Infinity, nearSource = null;
-      for (const g of anchors) {
-        const m = _haversineMeters(sLat, sLng, g.lat, g.lng);
-        if (m < nearStageM) { nearStageM = m; nearStage = g.stageId; nearSource = g.anchorSource; }
-      }
-      if (nearStage && nearStageM <= 120) {
+    // SPEC-179: only a TRUSTED fix names the stage here too.
+    {
+      const nearStage = trustedStage;
+      const nearStageM = fixGate.distM;
+      const nearSource = (stageAnchorsAll.find(g => g.stageId === trustedStage) || {}).anchorSource || null;
+      if (nearStage) {
         let best = null, bestGap = Infinity;
         for (const a of artists) {
           if (a.day !== night || a.stage !== nearStage) continue;
@@ -954,63 +1767,42 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // shuttle line, etc.).
     return { localDate, gpsRejected, artistId: null, night, festivalId, resolvedBy, reason: "no_artist_at_time" };
   }
-  // Prefer ATTENDED, then SAVED, then any; GPS tiebreaker; then tightest fit.
-  const inAttended = candidates.filter(c => attendedSet.has(c.a.id));
-  const inSaved    = candidates.filter(c => savedSet.has(c.a.id));
-  const pool = inAttended.length ? inAttended : (inSaved.length && !savedDefeatedByGps ? inSaved : candidates);
-  const _anchors = resolvedStageAnchors(cfg);
-  const stageDist = (a) => {
-    if (sLat == null || sLng == null) return Infinity;
-    const anchor = _anchors.find(g => g.stageId === a.stage);
-    if (!anchor) return Infinity;
-    const dLat = sLat - anchor.lat, dLng = sLng - anchor.lng;
-    return dLat * dLat + dLng * dLng;
-  };
-  // A candidate whose stage anchor is within 120 m of usable GPS is where
-  // the photo was taken; it outranks a candidate whose stage has no anchor,
-  // which used to win on start time alone. The match stays flagged
-  // ambiguous below, since an unanchored stage's distance is unknown.
-  const atAnchor = (a) => {
-    if (sLat == null || sLng == null) return false;
-    const g = _anchors.find(x => x.stageId === a.stage);
-    return !!g && _haversineMeters(sLat, sLng, g.lat, g.lng) <= 120;
-  };
-  pool.sort((x, y) => {
-    const ax = atAnchor(x.a), ay = atAnchor(y.a);
-    if (ax !== ay) return ax ? -1 : 1;
-    const dx = stageDist(x.a), dy = stageDist(y.a);
-    if (dx !== Infinity && dy !== Infinity && Math.abs(dx - dy) > 1e-9) return dx - dy;
-    return Math.abs(adjustedMin - x.startMin) - Math.abs(adjustedMin - y.startMin);
-  });
-  // Two+ sets overlap this timestamp and GPS didn't cleanly separate the
-  // stages → keep the best guess but flag it so the card shows a fix-tag chip.
-  const dists = pool.map(c => stageDist(c.a));
-  const gpsSeparated = dists.every(d => d !== Infinity) &&
-    [...dists].sort((a, b) => a - b).slice(0, 2).reduce((a, b) => b - a, 0) > 1e-9;
-  // Provenance of the anchor that actually decided this match. Only meaningful
-  // when GPS did the separating — with no fix, or with a single candidate, the
-  // anchor never entered into it and flagging would be noise.
-  const winnerAnchor = _anchors.find(g => g.stageId === pool[0].a.stage) || null;
-  const gpsDecided = sLat != null && sLng != null && pool.length > 1 && gpsSeparated;
-  const anchorSource = gpsDecided ? (winnerAnchor ? winnerAnchor.anchorSource : null) : null;
-  // POSTER-FALLBACK HONESTY FLAG. A match separated by a pin we know was
-  // measured off a poster is a guess wearing a confident face — keep it (it
-  // still beats no tag) but surface the FIX TAG chip, same as a GPS tie.
-  // An anchor only stops a match being "ambiguous" if it came from something
-  // outside the app's own map art. This used to read `anchorSource === "poster"`,
-  // which was correct only because resolvedStageAnchors labelled EVERY gpsAnchor
-  // "poster" regardless of origin. Anchors now carry real provenance, so test
-  // the property that matters — surveyed or measured — rather than one label.
-  // Effect: OSM-sourced anchors (the wave-1 festivals) stop being flagged
-  // ambiguous, which they never should have been; poster/prov/derived are
-  // unchanged.
-  const surveyGrade = anchorSource === "osm" || anchorSource === "crowd";
-  const ambiguous = (pool.length > 1 && !gpsSeparated) || (anchorSource != null && !surveyGrade);
+  // A precise fix more than 140 m from every pinned stage (the gate's
+  // "outside") rules out the acts AT pinned stages: you were not within 140 m
+  // of them. What is left plays on a stage with no pin, where the fix could
+  // be. ACL pins 3 of 7 stages, so a photo in the BMI crowd is BMI's.
+  if (fixGate.status === "outside" && candidates.length > 1) {
+    const pinned = (a) => stageAnchorsAll.some(g => g.stageId === a.stage);
+    const left = candidates.filter(c => !pinned(c.a));
+    if (left.length === 1) {
+      return { localDate, gpsRejected, artistId: left[0].a.id, night, festivalId, resolvedBy, reason: "unpinned_by_exclusion",
+               ambiguous: true, anchorSource: null, gpsGate,
+               alternatives: [left[0].a.id, ...candidates.filter(c => c !== left[0]).sort((x, y) => x.startMin - y.startMin).map(c => c.a.id)] };
+    }
+    if (left.length > 1) {
+      const ordered = [...left.sort((x, y) => x.startMin - y.startMin), ...candidates.filter(c => pinned(c.a)).sort((x, y) => x.startMin - y.startMin)];
+      return { localDate, gpsRejected, artistId: null, night, festivalId, resolvedBy, reason: "several_playing",
+               ambiguous: true, anchorSource: null, gpsGate, alternatives: ordered.map(c => c.a.id) };
+    }
+  }
+  // One act playing: that's the act, whatever GPS says (a trusted fix at
+  // its stage already returned above; a fix elsewhere with nobody playing
+  // there is a walk between stages, not a different set).
+  if (candidates.length === 1) {
+    return { localDate, gpsRejected, artistId: candidates[0].a.id, night, festivalId, resolvedBy, reason: "matched",
+             ambiguous: false, anchorSource: null, gpsGate };
+  }
+  // Several acts playing and no trusted fix to choose between them. Before
+  // SPEC-179 the act that started most recently won, flagged ambiguous; a
+  // guess is not a tag, so this stays untagged with every act that was
+  // playing offered as a suggestion, earliest start first.
+  const several = candidates.slice().sort((x, y) => (x.startMin - y.startMin) || String(x.a.id).localeCompare(String(y.a.id)));
   return {
-      localDate, gpsRejected,
-    artistId: pool[0].a.id, night, festivalId, resolvedBy, reason: "matched",
-    ambiguous, anchorSource,
-    alternatives: ambiguous ? pool.map(c => c.a.id) : undefined,
+    localDate, gpsRejected,
+    artistId: null, night, festivalId, resolvedBy, reason: "several_playing",
+    ambiguous: true, anchorSource: null,
+    alternatives: several.map(c => c.a.id),
+    gpsGate,
   };
 }
 
@@ -1195,6 +1987,169 @@ function _wallClockFromUtcTz(ms, cfg) {
   return _wallClockFromUtc(ms, cfg);
 }
 
+// ── Past editions in the library (2026-11-07) ────────────────────────────
+// Jake: "the photo video scan can do any festival in the past if in users
+// photo gallery and if in our catalog". The Past Festivals catalog
+// (data/historical) carries each edition's days, zone and printed sets, so a
+// past edition becomes a scan target shaped like a live festival: the same
+// night windows, set-hour filter and matcher run on it. Its photos are
+// stamped with the EDITION id ("lollapalooza-2024"), which keeps them off the
+// live festival's screens (_activeMoments) and puts them on that edition's
+// Past Festivals page.
+//
+// GPS is REQUIRED here, unlike the live scan. The live scan runs for the
+// festival the person picked; a catalog-wide scan would otherwise import every
+// photo taken anywhere on ~40 past festival weekends. Only a fix inside the
+// festival's own footprint (its live config's gps + onSiteRadiusMi) plus
+// _OFF_VENUE_MARGIN_M counts, the fix's own error allowed up to that margin. A
+// festival with no live config has no footprint and is not scanned, and a
+// venue that moved fails closed: a missed photo, never a wrong festival.
+
+// The live config of an edition's festival ("lollapalooza" → the
+// lollapalooza-2026 config), or null when it has no sourced footprint.
+function _histFamilyConfig(festivalId, setsIn) {
+  const sets = setsIn || window._DATA_SETS || {};
+  for (const id of Object.keys(sets).sort()) {
+    const m = /^(.*)-(\d{4})$/.exec(id);
+    const c = sets[id]?.config;
+    if (m && m[1] === festivalId && c?.gps && c.gps.lat != null && c.gps.lng != null && c.gps.onSiteRadiusMi > 0) return c;
+  }
+  return null;
+}
+
+// Local midnight of an ISO date in an IANA zone, as a UTC instant.
+function _histMidnightUtc(iso, tz) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+  return m ? _zonedWallToUtc(+m[1], +m[2], +m[3], 0, 0, tz) : null;
+}
+
+// A catalog index entry → a festival config the scan and matcher read. Each
+// printed day is its own night (ACL's Weekend 2 days are days 4-6), so there
+// is no weekend shift.
+function _histEditionConfig(entry, family) {
+  if (!entry?.id || !entry.timezone || !Array.isArray(entry.days) || !entry.days.length || !family?.gps) return null;
+  const dayDates = {};
+  for (const d of entry.days) {
+    const ms = _histMidnightUtc(d.date, entry.timezone);
+    if (typeof ms !== "number") return null;
+    dayDates[d.day] = { midnightUtc: ms, date: d.date, label: d.label || null };
+  }
+  return { id: entry.id, name: entry.name, shortName: entry.name, tz: entry.timezone, dayDates,
+           gps: { lat: family.gps.lat, lng: family.gps.lng, onSiteRadiusMi: family.gps.onSiteRadiusMi },
+           historical: true, festivalId: entry.festivalId, year: entry.year };
+}
+
+// Every festival year the library scan can look for, oldest first.
+//
+// Jake 2026-11-11: "ensure the scan of the photos and videos can do any
+// festival we have and past years specifically like edc 2019 or the times I
+// went to das in the past". The library only holds years whose lineup has
+// been read, so the scan also walks data/historical/scan-calendar.json: every
+// festival year since 2010 with sourced dates and a located venue
+// (scripts/historical/build-scan-calendar.mjs). Each year carries its OWN
+// venue's footprint, so a festival that moved (HARD Summer: Auto Club
+// Speedway in 2016, Hollywood Park in 2024) is looked for where it was that
+// year. A year in the library uses the library's printed days and sets; a
+// calendar-only year is matched on its dates and place alone, and its photos
+// are stamped with the same id ("das-energi-2019") its lineup page will use.
+// Canceled years are not in the calendar; a year that has not started yet is
+// not scanned.
+function _histScanTargets(index, setsIn, calendar, nowMs) {
+  const now = typeof nowMs === "number" ? nowMs : Date.now();
+  const lib = new Map();
+  for (const e of (index && index.editions) || []) if (e && e.id && e.status !== "canceled") lib.set(e.id, e);
+  const out = new Map();
+  for (const c of (calendar && calendar.editions) || []) {
+    if (!c || !c.id || out.has(c.id) || !c.gps) continue;
+    const libEntry = lib.get(c.id) || null;
+    const cfg = _histEditionConfig(libEntry || c, { gps: c.gps });
+    if (!cfg) continue;
+    cfg.venue = c.venue || null;
+    out.set(c.id, { entry: libEntry || c, cfg, inLibrary: !!libEntry });
+  }
+  // A library year the calendar has no located venue for still scans on its
+  // festival's live footprint, as before.
+  for (const e of lib.values()) {
+    if (out.has(e.id)) continue;
+    const fam = _histFamilyConfig(e.festivalId, setsIn);
+    const cfg = fam ? _histEditionConfig(e, fam) : null;
+    if (cfg) out.set(e.id, { entry: e, cfg, inLibrary: true });
+  }
+  return [...out.values()]
+    .filter(t => Object.values(t.cfg.dayDates).some(d => d.midnightUtc <= now))
+    .sort((a, b) => (a.entry.year - b.entry.year) || String(a.entry.id).localeCompare(String(b.entry.id)));
+}
+
+// Is this asset's fix inside the edition's footprint? No fix = no.
+function _histAssetOnSite(asset, cfg) {
+  const g = cfg?.gps;
+  const lat = Number(asset?.lat), lng = Number(asset?.lng);
+  if (!g || asset?.lat == null || asset?.lng == null || !isFinite(lat) || !isFinite(lng) || (lat === 0 && lng === 0)) return false;
+  const acc = Number(asset.acc);
+  const err = asset.acc != null && isFinite(acc) && acc >= 0 ? Math.min(acc, _OFF_VENUE_MARGIN_M) : 0;
+  return _haversineMeters(lat, lng, g.lat, g.lng) - err <= g.onSiteRadiusMi * 1609.34 + _OFF_VENUE_MARGIN_M;
+}
+
+// An edition's printed sets → the act rows the scan and matcher read. A
+// closing set printed with a start only has no end to match against, so for
+// MATCHING it runs to the latest end the same day prints (the festival's own
+// close); it is never shown, and a day with no later printed end drops it. A
+// set with no printed start ("Time not confirmed") is not timed at all.
+function _histEditionArtists(edition) {
+  const names = new Map(((edition && edition.artists) || []).map(a => [a.id, a.name]));
+  const sets = (edition && edition.sets) || [];
+  const close = {};
+  for (const s of sets) {
+    const e = _hhmmNightMin(s.end);
+    if (s.start && e != null && (close[s.day] == null || e > close[s.day])) close[s.day] = e;
+  }
+  const hhmm = (min) => `${String(Math.floor(min / 60) % 24).padStart(2, "0")}:${String(min % 60).padStart(2, "0")}`;
+  const out = [];
+  for (const s of sets) {
+    const st = _hhmmNightMin(s.start);
+    if (st == null || !s.artistId) continue;
+    let end = s.end;
+    if (_hhmmNightMin(end) == null) {
+      if (close[s.day] == null || close[s.day] <= st) continue;
+      end = hhmm(close[s.day]);
+    }
+    out.push({ id: s.artistId, name: names.get(s.artistId) || "", day: s.day, stage: s.stageId || null,
+               start: s.start, end, setId: s.id, endPrinted: !!s.end });
+  }
+  return out;
+}
+
+// The data set processImportedFiles matches a past edition's photos against.
+// The moments a past-edition scan filed under one edition, oldest first.
+// Lives here, not in historical.jsx: the archive module never touches storage.
+function _histEditionMoments(editionId) {
+  let all = {};
+  try { all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {}; } catch {}
+  const out = [];
+  for (const night of Object.keys(all)) for (const m of (Array.isArray(all[night]) ? all[night] : [])) {
+    if (m && m.festivalId === editionId) out.push(m);
+  }
+  return out.sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")));
+}
+
+// Which festival years hold a moment from a past-edition scan, so the
+// Past Festivals list can offer a year whose lineup is not in the library yet.
+function _histMomentEditionIds() {
+  let all = {};
+  try { all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {}; } catch {}
+  const ids = new Set();
+  for (const night of Object.keys(all)) for (const m of (Array.isArray(all[night]) ? all[night] : [])) {
+    if (m && m.festivalStampSource === "past-edition" && /^[a-z0-9-]+-\d{4}$/.test(m.festivalId || "")) ids.add(m.festivalId);
+  }
+  return ids;
+}
+
+// A calendar-only year has no edition file: no sets, so every night is
+// scanned in full and the matcher tags the festival year, not an artist.
+function _histDataSet(edition, cfg) {
+  return { id: cfg.id, config: cfg, artists: _histEditionArtists(edition), amenities: [], resolvedBy: "past-edition-scan" };
+}
+
 // Which of the returned assets to import: inside a night's set-time window,
 // not imported by an earlier scan, oldest first. Everything else is counted
 // by why, so the screen can say what it skipped instead of a bare "nothing":
@@ -1274,6 +2229,71 @@ function _scanSeenAdd(ids) {
   const trimmed = cur.length > _SCAN_SEEN_MAX ? cur.slice(cur.length - _SCAN_SEEN_MAX) : cur;
   try { localStorage.setItem(_SCAN_SEEN_KEY, JSON.stringify(trimmed)); } catch {}
   return trimmed.length;
+}
+
+// ── Past-festival finder (2026-11-11) ────────────────────────────────────
+// Which past festival years the photo library holds photos and videos from.
+// One function for both doors: Memories' "Scan past festivals" imports what
+// it returns, and the first-run scan step (app.jsx, Jake: "the landing page
+// for a new user should direct them directly to scan as 1st thing") shows
+// the same count before anything is imported. It reads only; nothing is
+// exported, stamped or marked as seen here.
+//   PS          the native PhotoScan plugin (access already granted)
+//   onProgress  (checked, years) every 10 festival years
+// Returns { found: [{ t, ds, keep }], already, years }.
+async function _pastScanFind(PS, onProgress) {
+  const [index, calendar] = await Promise.all([
+    _histFetch("index.json").catch(() => null),
+    _histFetch("scan-calendar.json").catch(() => null),
+  ]);
+  if (!index && !calendar) throw new Error("past festival lists unavailable");
+  const targets = _histScanTargets(index, null, calendar);
+  const seen = _scanSeenRead();
+  const found = [];
+  let already = 0;
+  for (const [i, t] of targets.entries()) {
+    if (onProgress && i % 10 === 0) onProgress(i, targets.length);
+    const assets = [];
+    for (const r of _scanQueryRanges(t.cfg)) {
+      const res = await PS.scan({ startMs: r.startMs, endMs: r.endMs });
+      assets.push(...(res?.assets || []));
+    }
+    const onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
+    if (!onSite.length) continue;
+    const ds = _histDataSet(t.inLibrary ? await _histFetch(`editions/${t.entry.id}.json`) : null, t.cfg);
+    const pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
+    already += pick.already;
+    if (pick.keep.length) found.push({ t, ds, keep: pick.keep });
+  }
+  return { found, already, years: targets.length };
+}
+
+// What the first run found, held for Memories so the import does not ask the
+// library a second time. Same page only (a festival switch reloads and drops
+// it), and only while fresh, since the library can change.
+const _PAST_SCAN_HANDOFF_MS = 10 * 60 * 1000;
+function _pastScanHandoffSet(result) {
+  window._pastScanHandoff = result ? { at: Date.now(), result } : null;
+  // A Memories screen already mounted under the first-run dialog (a link
+  // opened on ?tab=memories) never remounts, so it is told directly.
+  if (result) window.dispatchEvent(new Event("plursky:past-scan-handoff"));
+}
+function _pastScanHandoffTake() {
+  const h = window._pastScanHandoff;
+  window._pastScanHandoff = null;
+  return h && Date.now() - h.at < _PAST_SCAN_HANDOFF_MS ? h.result : null;
+}
+// For a screen: photo and video counts, and the festival years, newest first.
+function _pastScanSummary(found) {
+  let photos = 0, videos = 0;
+  const years = [];
+  for (const f of found || []) {
+    const v = f.keep.filter(a => a?.mediaType === "video").length;
+    videos += v; photos += f.keep.length - v;
+    years.push({ id: f.t.entry.id, name: f.t.entry.name, year: f.t.entry.year, count: f.keep.length });
+  }
+  years.sort((a, b) => (b.year || 0) - (a.year || 0));
+  return { photos, videos, total: photos + videos, years };
 }
 
 // ── Scan diagnostic (build 39) ───────────────────────────────────────────

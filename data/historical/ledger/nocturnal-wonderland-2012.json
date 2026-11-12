@@ -1,0 +1,177 @@
+{
+  "id": "nocturnal-wonderland-2012",
+  "method": "structured_html",
+  "official": "http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+  "window": [
+    "20120101",
+    "20131231"
+  ],
+  "template": "insomniac lineup.php",
+  "days": [
+    {
+      "day": 1,
+      "url": "http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "date": "2012-09-21",
+      "chosen": "20120925025007",
+      "archivedUrl": "https://web.archive.org/web/20120925025007/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "2937deb39beb7da6d63dff2e0448fab973c557135bc9021b6de57c85f808a472",
+      "rows": 39,
+      "stages": {
+        "Labyrinth": 8,
+        "Alice's House": 7,
+        "Sunken Garden": 7,
+        "Wide Awake Art Car": 8,
+        "Discovery Project": 9
+      }
+    },
+    {
+      "day": 2,
+      "url": "http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "date": "2012-09-22",
+      "chosen": "20120925025007",
+      "archivedUrl": "https://web.archive.org/web/20120925025007/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "2937deb39beb7da6d63dff2e0448fab973c557135bc9021b6de57c85f808a472",
+      "rows": 56,
+      "stages": {
+        "Labyrinth": 10,
+        "Alice's House": 9,
+        "Sunken Garden": 8,
+        "Queen's Grounds": 9,
+        "Upside Down Room": 9,
+        "Discovery Project": 11
+      }
+    }
+  ],
+  "chosen": "20120925025007",
+  "relayedVia": "firecrawl",
+  "skipped": [],
+  "considered": [
+    {
+      "captureTimestamp": "20120114124927",
+      "archivedUrl": "https://web.archive.org/web/20120114124927/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "bea0ec744ec039a2c19a3da3484c468c2f82f2cf4578dd98762395fac967bdf9",
+      "bytes": 57025,
+      "via": "firecrawl",
+      "valid": false,
+      "rows": 0,
+      "problems": [
+        "no stage block prints 2012-09-21",
+        "no stage block prints 2012-09-22"
+      ],
+      "skipped": []
+    },
+    {
+      "captureTimestamp": "20120217125311",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120319073142",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120419041345",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120519220217",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120623115759",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120825064216",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120925025007",
+      "archivedUrl": "https://web.archive.org/web/20120925025007/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "2937deb39beb7da6d63dff2e0448fab973c557135bc9021b6de57c85f808a472",
+      "bytes": 119918,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 95,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20130801053150",
+      "archivedUrl": "https://web.archive.org/web/20130801053150/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "405c75f2c9debcf44172e0041c2fe69adfeaf8e8c023900bcc007a45f1a45e84",
+      "bytes": 121103,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 95,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": [
+        "only in chosen: Fury Sunken Garden 17:00-19:00",
+        "only in other: Fury w/ MC Dino Sunken Garden 17:00-19:00",
+        "David Steven: artist DAVID STEVEN → David Steven"
+      ]
+    },
+    {
+      "captureTimestamp": "20130901204024",
+      "archivedUrl": "https://web.archive.org/web/20130901204024/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "68238d36ad4421b129f981382f7b2a174593f7793ee3977fcd3f301764734f1d",
+      "bytes": 142543,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 95,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": [
+        "only in chosen: Fury Sunken Garden 17:00-19:00",
+        "only in chosen: Myon & Shane54 with Aruna Alice's House 18:00-19:00",
+        "only in other: Fury w/ MC Dino Sunken Garden 17:00-19:00",
+        "David Steven: artist DAVID STEVEN → David Steven",
+        "only in other: Myon & Shane54 Alice's House 18:00-19:00"
+      ]
+    },
+    {
+      "captureTimestamp": "20131003060335",
+      "archivedUrl": "https://web.archive.org/web/20131003060335/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "fa2cdf4fc12aeca9ec3e1889a7c9d8a8c35138860ed492a483b6a27df8035b8d",
+      "bytes": 156076,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 95,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": [
+        "only in chosen: Fury Sunken Garden 17:00-19:00",
+        "only in chosen: Myon & Shane54 with Aruna Alice's House 18:00-19:00",
+        "only in other: Fury w/ MC Dino Sunken Garden 17:00-19:00",
+        "David Steven: artist DAVID STEVEN → David Steven",
+        "only in other: Myon & Shane54 Alice's House 18:00-19:00"
+      ]
+    },
+    {
+      "captureTimestamp": "20131104132257",
+      "archivedUrl": "https://web.archive.org/web/20131104132257/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "5eeefc56fe86ca08c14d2c96e45a4d27473edd38ff17d252b502d8ae7efd6229",
+      "bytes": 154834,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 95,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": [
+        "only in chosen: Fury Sunken Garden 17:00-19:00",
+        "only in chosen: Myon & Shane54 with Aruna Alice's House 18:00-19:00",
+        "only in other: Fury w/ MC Dino Sunken Garden 17:00-19:00",
+        "David Steven: artist DAVID STEVEN → David Steven",
+        "only in other: Myon & Shane54 Alice's House 18:00-19:00"
+      ]
+    }
+  ],
+  "dropped": []
+}

@@ -273,6 +273,7 @@
 
   const CONFIG = {
     id: "ultra-miami-2026",
+    officialEvent: { website: "https://ultramusicfestival.com/", observedAt: "2026-11-11" },
     // From the SOURCE note above: ultramusicfestival.com/lineup/set-times/, accessed 2026-08-28. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://ultramusicfestival.com/lineup/set-times/", observedAt: "2026-08-28", official: true },
     name: "Ultra Miami 2026",

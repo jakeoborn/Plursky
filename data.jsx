@@ -466,6 +466,478 @@ const FESTIVALS_REGISTRY = [
     region:    "North America",
   },
   {
+    // ── Das Energi 2027 — The Great Saltair, Magna UT ──
+    // Added 2026-11-10 as a gated preview. V2 Presents + MASV; the 2026
+    // edition ran Aug 7–9 at The Great Saltair.
+    //
+    // ⛔ NO OFFICIAL 2027 DATES (checked dasenergifestival.com 2026-11-10).
+    // "Aug 6–8, 2027" circulates on a ticket-listing site only, so it is not
+    // used. `dates` stays the literal "Dates TBA" (see Electric Forest 2027
+    // above for why the /f/ page then emits no JSON-LD dates). Replace when
+    // the festival announces them.
+    config: {
+      id:        "das-energi-2027",
+      officialEvent: { website: "https://dasenergifestival.com/", observedAt: "2026-11-10" },
+      name:      "Das Energi 2027",
+      shortName: "Das Energi",
+      brand:     "Das Energi",
+      tagline:   "Three nights on the shore of the Great Salt Lake",
+      location:  "The Great Saltair · Magna, UT",
+      locationShort: "The Great Saltair",
+      dates:     "Dates TBA",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://dasenergifestival.com/", observedAt: "2026-11-10" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#22d3ee",
+    emoji:     "⚡",
+    region:    "North America",
+  },
+  {
+    // ── Forbidden Kingdom 2027 — Central Florida Fairgrounds, Orlando FL ──
+    // Added 2026-11-10 as a gated preview. Dates from Insomniac's own press
+    // release, read 2026-11-10: "next year's edition will take place at the
+    // Central Florida Fairgrounds across three days from April 23-25, 2027",
+    // "100+ artists ... across three days and five stages".
+    // https://press.insomniac.com/blog/forbidden-kingdom-will-return-to-central-florida-fairgrounds-in-2027
+    // No 2027 lineup, set times or map yet. When they publish, this becomes a
+    // data/festivals/ module and scripts/fetch-insomniac-settimes.mjs applies.
+    config: {
+      id:        "forbidden-kingdom-2027",
+      officialEvent: { website: "https://www.forbiddenkingdomfestival.com/", observedAt: "2026-11-10" },
+      name:      "Forbidden Kingdom 2027",
+      shortName: "Forbidden Kingdom",
+      brand:     "Forbidden Kingdom",
+      tagline:   "Three days, five stages in Orlando",
+      location:  "Central Florida Fairgrounds · Orlando, FL",
+      locationShort: "Central Florida Fairgrounds",
+      dates:     "Apr 23–25, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.forbiddenkingdomfestival.com/", observedAt: "2026-11-10" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#a3e635",
+    emoji:     "🐉",
+    region:    "North America",
+  },
+  {
+    // ── Ubbi Dubbi 2027 — Panther Island Pavilion, Fort Worth TX ──
+    // Added 2026-11-11 as a gated preview. Disco Presents. Dates and venue from
+    // ubbidubbifestival.com, read 2026-11-11: "join us April 23 & 24 at Panther
+    // Island Pavilion in Ft. Worth", page title "Ubbi Dubbi Festival 2027".
+    // The 2027 lineup IS announced, but the official site carries it only as a
+    // poster image, and the text press relays read 2026-11-11 name about half
+    // of it. No partial lineup ships: this becomes a data/festivals/ module
+    // once the full list is readable from an official or complete source.
+    config: {
+      id:        "ubbi-dubbi-2027",
+      officialEvent: { website: "https://ubbidubbifestival.com/", observedAt: "2026-11-11" },
+      name:      "Ubbi Dubbi 2027",
+      shortName: "Ubbi Dubbi",
+      brand:     "Ubbi Dubbi",
+      tagline:   "Two days of house and bass in Fort Worth",
+      location:  "Panther Island Pavilion · Fort Worth, TX",
+      locationShort: "Panther Island Pavilion",
+      dates:     "Apr 23–24, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://ubbidubbifestival.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#f472b6",
+    emoji:     "🍭",
+    region:    "North America",
+  },
+  {
+    // ── Movement 2027 — Hart Plaza, Detroit MI ──
+    // Added 2026-11-11 as a gated preview. Dates from movementfestival.com/faqs,
+    // read 2026-11-11: "Movement 2027 will take place Memorial Day Weekend,
+    // starting Saturday, May 29 through Monday, May 31, inside Hart Plaza".
+    // No 2027 lineup yet.
+    config: {
+      id:        "movement-2027",
+      officialEvent: { website: "https://movementfestival.com/", observedAt: "2026-11-11" },
+      name:      "Movement 2027",
+      shortName: "Movement",
+      brand:     "Movement",
+      tagline:   "Memorial Day weekend of techno in downtown Detroit",
+      location:  "Hart Plaza · Detroit, MI",
+      locationShort: "Hart Plaza",
+      dates:     "May 29–31, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://movementfestival.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#94a3b8",
+    emoji:     "🏙️",
+    region:    "North America",
+  },
+  {
+    // ── Shambhala 2027 — Salmo River Ranch, BC ──
+    // Added 2026-11-11 as a gated preview. Dates from the official site's page
+    // title, read 2026-11-11: "July 23-26, 2027 | Salmo River Ranch, BC,
+    // Canada" (shown as sold out). No 2027 lineup yet.
+    config: {
+      id:        "shambhala-2027",
+      officialEvent: { website: "https://www.shambhalamusicfestival.com/", observedAt: "2026-11-11" },
+      name:      "Shambhala 2027",
+      shortName: "Shambhala",
+      brand:     "Shambhala",
+      tagline:   "Four nights on a family farm in the Kootenays",
+      location:  "Salmo River Ranch · BC, Canada",
+      locationShort: "Salmo River Ranch",
+      dates:     "Jul 23–26, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.shambhalamusicfestival.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#4ade80",
+    emoji:     "🌲",
+    region:    "North America",
+  },
+  {
+    // ── Defqon.1 2027 — Biddinghuizen, Netherlands ──
+    // Added 2026-11-11 as a gated preview. Q-dance. defqon1.com redirects to
+    // q-dance.com/l/defqon1-2027, read 2026-11-11: "Defqon.1 Weekend Festival
+    // 2027 | June 24 - 27". No 2027 lineup yet.
+    config: {
+      id:        "defqon1-2027",
+      officialEvent: { website: "https://www.defqon1.com/", observedAt: "2026-11-11" },
+      name:      "Defqon.1 2027",
+      shortName: "Defqon.1",
+      brand:     "Defqon.1",
+      tagline:   "Four days of hardstyle in the Dutch polder",
+      location:  "Biddinghuizen · Netherlands",
+      locationShort: "Biddinghuizen",
+      dates:     "Jun 24–27, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.defqon1.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ef4444",
+    emoji:     "⚔️",
+    region:    "Europe",
+  },
+  {
+    // ── Untold 2027 — Cluj-Napoca, Romania ──
+    // Added 2026-11-11 as a gated preview. Dates from untold.com, read
+    // 2026-11-11: "5-8 August 2027, Cluj-Napoca, Romania". No 2027 lineup yet.
+    config: {
+      id:        "untold-2027",
+      officialEvent: { website: "https://untold.com/", observedAt: "2026-11-11" },
+      name:      "Untold 2027",
+      shortName: "Untold",
+      brand:     "Untold",
+      tagline:   "Four nights in the heart of Transylvania",
+      location:  "Cluj-Napoca, Romania",
+      locationShort: "Cluj-Napoca",
+      dates:     "Aug 5–8, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://untold.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#c084fc",
+    emoji:     "🏰",
+    region:    "Europe",
+  },
+  {
+    // ── Creamfields 2027 — Daresbury, Cheshire UK ──
+    // Added 2026-11-11 as a gated preview. Dates from creamfields.com, read
+    // 2026-11-11: "Thu 26 – Sun 29 August 2027, Daresbury Cheshire". No 2027
+    // lineup yet.
+    config: {
+      id:        "creamfields-2027",
+      officialEvent: { website: "https://www.creamfields.com/", observedAt: "2026-11-11" },
+      name:      "Creamfields 2027",
+      shortName: "Creamfields",
+      brand:     "Creamfields",
+      tagline:   "Bank holiday weekend in the Cheshire fields",
+      location:  "Daresbury · Cheshire, UK",
+      locationShort: "Daresbury",
+      dates:     "Aug 26–29, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.creamfields.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#a855f7",
+    emoji:     "🍦",
+    region:    "Europe",
+  },
+  {
+    // ── Kappa FuturFestival 2027 — Parco Dora, Turin ──
+    // Added 2026-11-11 as a gated preview. Dates and venue from
+    // kappafuturfestival.it, read 2026-11-11: "PARCO DORA, TORINO, ITALY 02 - 04
+    // JULY 2027 FROM NOON TO MIDNIGHT". No 2027 lineup yet.
+    config: {
+      id:        "kappa-futurfestival-2027",
+      officialEvent: { website: "https://www.kappafuturfestival.it/", observedAt: "2026-11-11" },
+      name:      "Kappa FuturFestival 2027",
+      shortName: "Kappa FuturFestival",
+      brand:     "Kappa FuturFestival",
+      tagline:   "Noon to midnight in a Turin industrial park",
+      location:  "Parco Dora · Turin, Italy",
+      locationShort: "Parco Dora",
+      dates:     "Jul 2–4, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.kappafuturfestival.it/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#38bdf8",
+    emoji:     "🏭",
+    region:    "Europe",
+  },
+  {
+    // ── Ultra Europe 2027 — Split, Croatia ──
+    // Added 2026-11-11 as a gated preview. Dates from ultraeurope.com, read
+    // 2026-11-11: "July 9, 10, 11 — 2027". No 2027 lineup yet.
+    config: {
+      id:        "ultra-europe-2027",
+      officialEvent: { website: "https://ultraeurope.com/", observedAt: "2026-11-11" },
+      name:      "Ultra Europe 2027",
+      shortName: "Ultra Europe",
+      brand:     "Ultra Europe",
+      tagline:   "Three nights on the Adriatic coast",
+      location:  "Split, Croatia",
+      locationShort: "Split",
+      dates:     "Jul 9–11, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://ultraeurope.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#3b82f6",
+    emoji:     "⛵",
+    region:    "Europe",
+  },
+  {
+    // ── Awakenings 2027 — Hilvarenbeek, Netherlands ──
+    // Added 2026-11-11 as a gated preview. Dates from awakenings.com's 2027
+    // event page, read 2026-11-11: "Friday July 09 2027 - Sunday July 11
+    // 2027 … at Hilvarenbeek". No 2027 lineup yet.
+    config: {
+      id:        "awakenings-2027",
+      officialEvent: { website: "https://www.awakenings.com/en/events/2027/07/awakenings-festival-2027/399344/", observedAt: "2026-11-11" },
+      name:      "Awakenings Festival 2027",
+      shortName: "Awakenings",
+      brand:     "Awakenings",
+      tagline:   "Three days of techno in the Dutch countryside",
+      location:  "Hilvarenbeek, Netherlands",
+      locationShort: "Hilvarenbeek",
+      dates:     "Jul 9–11, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.awakenings.com/en/events/2027/07/awakenings-festival-2027/399344/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#e5e7eb",
+    emoji:     "🌘",
+    region:    "Europe",
+  },
+  {
+    // ── Parookaville 2027 — Airport Weeze, Germany ──
+    // Added 2026-11-11 as a gated preview. Dates and venue from
+    // parookaville.com/en/info, read 2026-11-11: "16 to 18 July 2027 at
+    // Airport Weeze (NRW, Germany)". No 2027 lineup yet.
+    config: {
+      id:        "parookaville-2027",
+      officialEvent: { website: "https://www.parookaville.com/en/info", observedAt: "2026-11-11" },
+      name:      "Parookaville 2027",
+      shortName: "Parookaville",
+      brand:     "Parookaville",
+      tagline:   "A festival city on a German airfield",
+      location:  "Airport Weeze · Weeze, Germany",
+      locationShort: "Airport Weeze",
+      dates:     "Jul 16–18, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.parookaville.com/en/info", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#facc15",
+    emoji:     "🏘️",
+    region:    "Europe",
+  },
+  {
+    // ── Electric Love 2027 — Salzburg, Austria ──
+    // Added 2026-11-11 as a gated preview. Dates from electriclove.at's 2027
+    // page, read 2026-11-11: "8 – 10 July 2027, Salzburg, Austria". No 2027
+    // lineup yet.
+    config: {
+      id:        "electric-love-2027",
+      officialEvent: { website: "https://www.electriclove.at/en/electriclove2027/", observedAt: "2026-11-11" },
+      name:      "Electric Love 2027",
+      shortName: "Electric Love",
+      brand:     "Electric Love",
+      tagline:   "Three summer days near Salzburg",
+      location:  "Salzburg, Austria",
+      locationShort: "Salzburg",
+      dates:     "Jul 8–10, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.electriclove.at/en/electriclove2027/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#f43f5e",
+    emoji:     "💘",
+    region:    "Europe",
+  },
+  {
+    // ── Bass Coast 2027 — Merritt, BC ──
+    // Added 2026-11-11 as a gated preview. Dates from basscoast.ca, read
+    // 2026-11-11: "July 9-12 · Merritt, British Columbia · 2027". No 2027
+    // lineup yet.
+    config: {
+      id:        "bass-coast-2027",
+      officialEvent: { website: "https://basscoast.ca/", observedAt: "2026-11-11" },
+      name:      "Bass Coast 2027",
+      shortName: "Bass Coast",
+      brand:     "Bass Coast",
+      tagline:   "Bass music and art in the BC interior",
+      location:  "Merritt · BC, Canada",
+      locationShort: "Merritt",
+      dates:     "Jul 9–12, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://basscoast.ca/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#14b8a6",
+    emoji:     "🏔️",
+    region:    "North America",
+  },
+  {
+    // ── Tomorrowland Winter 2027 — Alpe d'Huez, France ──
+    // Added 2026-11-11 as a gated preview. Dates from winter.tomorrowland.com,
+    // read 2026-11-11: "MARCH 20–27, 2027 | ALPE D'HUEZ, FRANCE". No 2027
+    // lineup yet.
+    config: {
+      id:        "tomorrowland-winter-2027",
+      officialEvent: { website: "https://winter.tomorrowland.com/", observedAt: "2026-11-11" },
+      name:      "Tomorrowland Winter 2027",
+      shortName: "Tomorrowland Winter",
+      brand:     "Tomorrowland",
+      tagline:   "A week of music in the French Alps",
+      location:  "Alpe d'Huez, France",
+      locationShort: "Alpe d'Huez",
+      dates:     "Mar 20–27, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://winter.tomorrowland.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#93c5fd",
+    emoji:     "🏔️",
+    region:    "Europe",
+  },
+  {
+    // ── Tomorrowland Brasil 2027 — Itu, São Paulo, Brazil ──
+    // Added 2026-11-11 as a gated preview. Dates from brasil.tomorrowland.com,
+    // read 2026-11-11: "April 30 - May 2, 2027 | Itu - São Paulo, Brazil".
+    // The site's text names no venue, so none is loaded here.
+    config: {
+      id:        "tomorrowland-brasil-2027",
+      officialEvent: { website: "https://brasil.tomorrowland.com/", observedAt: "2026-11-11" },
+      name:      "Tomorrowland Brasil 2027",
+      shortName: "Tomorrowland Brasil",
+      brand:     "Tomorrowland",
+      tagline:   "Three days of Tomorrowland in São Paulo state",
+      location:  "Itu, Brazil",
+      locationShort: "Itu",
+      dates:     "Apr 30, 2027 – May 2, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://brasil.tomorrowland.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#22c55e",
+    emoji:     "🦜",
+    region:    "Latin America",
+  },
+  {
+    // ── Primavera Sound Barcelona 2027 — Parc del Fòrum, Barcelona ──
+    // Added 2026-11-11 as a gated preview. Dates from primaverasound.com's
+    // early-bird page, read 2026-11-11: "Primavera Sound Barcelona will
+    // celebrate the main days of its 25th edition from 3rd to 5th June at
+    // Parc del Fòrum." Loaded as the three main days; the city shows around
+    // them are not. No full 2027 lineup read yet.
+    config: {
+      id:        "primavera-sound-2027",
+      officialEvent: { website: "https://www.primaverasound.com/en/barcelona", observedAt: "2026-11-11" },
+      name:      "Primavera Sound Barcelona 2027",
+      shortName: "Primavera Sound",
+      brand:     "Primavera Sound",
+      tagline:   "The 25th edition by the sea",
+      location:  "Parc del Fòrum · Barcelona, Spain",
+      locationShort: "Parc del Fòrum",
+      dates:     "Jun 3–5, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.primaverasound.com/en/barcelona", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#f472b6",
+    emoji:     "🌊",
+    region:    "Europe",
+  },
+  {
+    // ── Boom Festival 2027 — Idanha-a-Nova, Portugal ──
+    // Added 2026-11-11 as a gated preview. Dates from boomfestival.org's own
+    // home page text as a web search indexed it on 2026-11-11: "18-25 July
+    // 2027 Full Moon Idanha-a-nova lake - Portugal" (the page itself renders
+    // the line client-side, so a direct read did not return it; re-check
+    // before any flip). The site says 2027 tickets are sold out.
+    config: {
+      id:        "boom-festival-2027",
+      officialEvent: { website: "https://www.boomfestival.org/", observedAt: "2026-11-11" },
+      name:      "Boom Festival 2027",
+      shortName: "Boom",
+      brand:     "Boom Festival",
+      tagline:   "Thirty years by the lake under a full moon",
+      location:  "Idanha-a-Nova, Portugal",
+      locationShort: "Idanha-a-Nova",
+      dates:     "Jul 18–25, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.boomfestival.org/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#f59e0b",
+    emoji:     "🌕",
+    region:    "Europe",
+  },
+  {
+    // ── Sziget 2027 — Budapest, Hungary ──
+    // Added 2026-11-11 as a gated preview. Dates from szigetfestival.com's
+    // festival-info page, read 2026-11-11: "Sziget Festival 2027 is ON from
+    // 10–14 August – Tuesday to Saturday". No 2027 lineup yet.
+    config: {
+      id:        "sziget-2027",
+      officialEvent: { website: "https://szigetfestival.com/en/festival-info", observedAt: "2026-11-11" },
+      name:      "Sziget 2027",
+      shortName: "Sziget",
+      brand:     "Sziget Festival",
+      tagline:   "Five days on the Island of Freedom",
+      location:  "Budapest, Hungary",
+      locationShort: "Budapest",
+      dates:     "Aug 10–14, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://szigetfestival.com/en/festival-info", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ef4444",
+    emoji:     "🏝️",
+    region:    "Europe",
+  },
+  {
     // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
     // Flip 2026-09-11: stage + set time per act come from the Lost Lands app
     // schedule (app v10.0.0, as captured 2026-09-10); the SCHEDULE block
@@ -473,6 +945,7 @@ const FESTIVALS_REGISTRY = [
     // "real" with no anchors (decided 2026-09-07, see the map block below).
     config: {
       id:        "lost-lands-2026",
+      officialEvent: { website: "https://www.lostlandsfestival.com/", observedAt: "2026-11-11" },
       // The SCHEDULE block's source: a public capture of the official Lost
       // Lands app (v10.0.0, captured 2026-09-10) — third-party, so official: false.
       scheduleSource: { url: "https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts", observedAt: "2026-09-10", official: false },
@@ -809,6 +1282,11 @@ const FESTIVALS_REGISTRY = [
       // scripts/build-edco-map-2026.mjs from the unedited source in
       // map-sources/. It replaces a generated placeholder.
       mapImage: "edco-tinker-2026.webp",
+      // The same art fitted to the ground by its own street ties (not stage
+      // anchors): scripts/build-geo-plate.py over map-sources/edc-orlando-2026-geo-ties.json.
+      // The real map lays this plate down at its bounds; stages stay pending.
+      mapGeoref: { image: "geo-maps/edc-orlando-2026.webp", bounds: [-81.4059882, 28.5347911, -81.397489, 28.5411997], model: "affine",
+                   ties: "map-sources/edc-orlando-2026-geo-ties.json", rmsM: 9.5, looRmsM: 41.3 },
       mapStyle: "image-overlay",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
@@ -867,6 +1345,7 @@ const FESTIVALS_REGISTRY = [
   {
     config: {
       id:        "acl-2026",
+      officialEvent: { website: "https://www.aclfestival.com/", observedAt: "2026-11-11" },
       // The ACL_ARTISTS header: official posters on aclfestival.com/schedule,
       // refreshed September 30 2026.
       scheduleSource: { url: "https://www.aclfestival.com/schedule", observedAt: "2026-09-30", official: true },
@@ -1879,6 +2358,24 @@ const ARTISTS = [
 // Falling back to a known-skewed poster pin (rather than refusing to match)
 // is the deliberate call: for the six stages with no measurement yet, a
 // flagged guess beats tagging nothing at all.
+// Folds a billed name for search: accents dropped, case ignored, and the
+// stylized letters festivals bill with read as the letters they stand for
+// (III Points bills Yousuke Yukimatsu as "¥ØU$UK€ ¥UK1MAT$U"). Spaces and
+// punctuation are dropped, so "yuki matsu" and "Yukimatsu" both match.
+// Apply it to BOTH sides of a comparison.
+const _STYLIZED_LETTERS = { "¥": "y", "ø": "o", "$": "s", "€": "e", "1": "i" };
+function foldBilledName(s) {
+  return String(s || "").toLowerCase().normalize("NFKD").replace(/\p{M}/gu, "")
+    .replace(/[¥ø$€1]/g, c => _STYLIZED_LETTERS[c]).replace(/[^\p{L}\p{N}]+/gu, "");
+}
+// Does `query` find `name`? A plain substring, or the folded forms.
+function billedNameMatches(name, query) {
+  const q = String(query || "").trim().toLowerCase();
+  if (!q) return false;
+  if (String(name || "").toLowerCase().includes(q)) return true;
+  const fq = foldBilledName(q);
+  return !!fq && foldBilledName(name).includes(fq);
+}
 function resolvedStageAnchors(cfg) {
   const byId = new Map();
   for (const g of (cfg?.gpsAnchors || [])) {
@@ -2497,6 +2994,9 @@ function _haversineMeters(lat1, lng1, lat2, lng2) {
 // radius stays today's 140 m, accuracy and margin are Check-in's.
 const STAGE_FIX_ATTEND = { maxAgeMs: 60000, maxAccM: 100, maxDistM: 140, minMarginM: 35 };
 const STAGE_FIX_ATTEND_SAVER = { maxAgeMs: 120000, maxAccM: 100, maxDistM: 140, minMarginM: 35 };
+// The photo tagger (SPEC-179): the same accuracy, radius and margin, with no
+// freshness rule, because a photo's fix is read at the moment it was taken.
+const STAGE_FIX_PHOTO = { maxAgeMs: Infinity, maxAccM: 100, maxDistM: 140, minMarginM: 35 };
 function stageFixGate(anchors, fix, atMs, rules) {
   if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return { status: fix && fix.denied ? "denied" : "none" };
   const accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
@@ -2511,6 +3011,18 @@ function stageFixGate(anchors, fix, atMs, rules) {
   return { ...out, status: "trusted", stageId: d[0].stageId };
 }
 
+// A moment's capture accuracy (metres, the ~68% radius) as recorded, or null
+// when none was. Never defaulted: a missing value stays unknown. Every surface
+// that draws a photo's fix (the Memories lens, the real map) asks these two,
+// so the precise/coarse line is the tagger's own maxAccM, in one place.
+function photoFixAccM(m) {
+  const a = m && m.gpsAccM;
+  return typeof a === "number" && Number.isFinite(a) && a > 0 ? a : null;
+}
+function photoFixAccClass(acc) {
+  if (acc == null) return "unknown";
+  return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";
+}
 // Only measured stage positions (osm / crowd) may fire automatic attendance.
 // A poster read, a provisional pin or a derived point is a guess about where
 // a stage is, and a guess must not mark a set (founder, 2026-10-20).
@@ -4352,6 +4864,12 @@ const _WAVE1_IDS = [
   "dreamstate-socal-2026",
   "decadence-colorado-2026",
   "countdown-nye-2026",
+  "lights-all-night-2026",
+  "decadence-arizona-2026",
+  "sunset-on-the-river-2027",
+  "dwp-2026",
+  "edc-thailand-2026",
+  "tomorrowland-thailand-2026",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {

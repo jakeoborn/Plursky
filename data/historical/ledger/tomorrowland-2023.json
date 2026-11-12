@@ -1,0 +1,493 @@
+{
+  "id": "tomorrowland-2023",
+  "method": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2023-07-21",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "archivedUrl": "https://web.archive.org/web/20230802083753/https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "captureTimestamp": "20230802083753",
+          "printed": "Friday 21 July 2023",
+          "sha256": "e51814afbc58d4e33d41d805a1691652c02bef64e7b96a165c872586006bb28d",
+          "bytes": 1394913,
+          "rows": 121,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Freedom by Bud": "Freedom",
+            "The Rose Garden": "Rampage",
+            "Elixir": "The Mangrove",
+            "The Rave Cave": "Burenhinder",
+            "Youphoria": "Sub Zero Project – Psychodelic",
+            "Rise by Coke Studio": "Rise",
+            "Atmosphere": "Drumcode",
+            "Core": "Core",
+            "The Library": "Lost Frequencies & Friends"
+          },
+          "stagesAs": {
+            "CORE": "Core"
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2023-07-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "archivedUrl": "https://web.archive.org/web/20230802083753/https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "captureTimestamp": "20230802083753",
+          "printed": "Saturday 22 July 2023",
+          "sha256": "e51814afbc58d4e33d41d805a1691652c02bef64e7b96a165c872586006bb28d",
+          "bytes": 1394913,
+          "rows": 123,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Freedom by Bud": "Afterlife",
+            "The Rose Garden": "Bonzai",
+            "Elixir": "Lonely at the Tap by FeestDJRuud",
+            "Cage": "Footworxx",
+            "The Rave Cave": "Crystal",
+            "Youphoria": "Monstercat",
+            "Rise by Coke Studio": "Glitterbox",
+            "Core": "CORE presents ZAMNA",
+            "The Library": "STMPD RCRDS x Tomorrowland Music"
+          },
+          "stagesAs": {
+            "CORE": "Core"
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2023-07-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "archivedUrl": "https://web.archive.org/web/20230802083753/https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "captureTimestamp": "20230802083753",
+          "printed": "Sunday 23 July 2023",
+          "sha256": "e51814afbc58d4e33d41d805a1691652c02bef64e7b96a165c872586006bb28d",
+          "bytes": 1394913,
+          "rows": 124,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Freedom by Bud": "Q-dance",
+            "The Rose Garden": "2010-2012",
+            "Elixir": "Radio Ultra Modern",
+            "Cage": "One87 presents",
+            "The Rave Cave": "WoodyWeekend",
+            "Terra Solis": "SHOMI",
+            "Rise by Coke Studio": "Cafeína",
+            "Core": "Core",
+            "The Library": "Smash The House"
+          },
+          "duplicateSets": 1,
+          "stagesAs": {
+            "CORE": "Core"
+          }
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2023-07-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "archivedUrl": "https://web.archive.org/web/20230802083753/https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "captureTimestamp": "20230802083753",
+          "printed": "Friday 28 July 2023",
+          "sha256": "e51814afbc58d4e33d41d805a1691652c02bef64e7b96a165c872586006bb28d",
+          "bytes": 1394913,
+          "rows": 129,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Freedom by Bud": "Freedom",
+            "The Rose Garden": "Rampage",
+            "Elixir": "The Mangrove",
+            "Cage": "Footworxx",
+            "The Rave Cave": "Winterclubbing",
+            "Youphoria": "Psygathering",
+            "Terra Solis": "Nico Morano & Friends",
+            "Rise by Coke Studio": "Vissa",
+            "Core": "CORE presents MIND AGAINST",
+            "Crystal Garden": "All 4 House"
+          },
+          "stagesAs": {
+            "CORE": "Core"
+          }
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2023-07-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "archivedUrl": "https://web.archive.org/web/20230802083753/https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "captureTimestamp": "20230802083753",
+          "printed": "Saturday 29 July 2023",
+          "sha256": "e51814afbc58d4e33d41d805a1691652c02bef64e7b96a165c872586006bb28d",
+          "bytes": 1394913,
+          "rows": 121,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Freedom by Bud": "Freedom",
+            "The Rose Garden": "Bonzai",
+            "Elixir": "Lonely at the Tap by FeestDJRuud",
+            "Cage": "HEX",
+            "The Rave Cave": "Coincidence",
+            "Youphoria": "SHAQ's Bass All-stars",
+            "Rise by Coke Studio": "Defected",
+            "Core": "CORE presents HONEY DIJON",
+            "Crystal Garden": "Anjunabeats",
+            "The Library": "Lost Frequencies & Friends"
+          },
+          "stagesAs": {
+            "CORE": "Core"
+          }
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2023-07-30",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "archivedUrl": "https://web.archive.org/web/20230802083753/https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+          "captureTimestamp": "20230802083753",
+          "printed": "Sunday 30 July 2023",
+          "sha256": "e51814afbc58d4e33d41d805a1691652c02bef64e7b96a165c872586006bb28d",
+          "bytes": 1394913,
+          "rows": 119,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Freedom by Bud": "Freedom",
+            "The Rose Garden": "2010-2012",
+            "Elixir": "Radio Ultra Modern",
+            "The Rave Cave": "Butternut",
+            "Youphoria": "Da Tweekaz - Tweekamania",
+            "Terra Solis": "SHOMI",
+            "Rise by Coke Studio": "Yves V presents V SESSIONS",
+            "Atmosphere": "EXHALE",
+            "Core": "CORE presents DJ TENNIS",
+            "The Library": "Smash The House"
+          },
+          "stagesAs": {
+            "CORE": "Core"
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "13:30",
+      "end": "14:15",
+      "billing": "DJ Kaspa",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "14:15",
+      "end": "15:00",
+      "billing": "Donelly",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "15:00",
+      "end": "15:45",
+      "billing": "Livado",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "15:45",
+      "end": "16:30",
+      "billing": "Laura Hoogland",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "16:30",
+      "end": "17:15",
+      "billing": "Prinz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "17:15",
+      "end": "18:00",
+      "billing": "Amari",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "18:00",
+      "end": "18:45",
+      "billing": "Emilija",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "18:45",
+      "end": "19:30",
+      "billing": "Makasi",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "19:30",
+      "end": "20:15",
+      "billing": "Maxim Lany",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "20:15",
+      "end": "21:00",
+      "billing": "USED",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "21:00",
+      "end": "21:45",
+      "billing": "Amber Broos",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "21:45",
+      "end": "22:30",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "22:30",
+      "end": "23:15",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-20",
+      "stage": "The Gathering",
+      "start": "23:15",
+      "end": "00:00",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "day": 3,
+      "stage": "Freedom by Bud",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "Frontliner",
+      "reason": "the page prints this set twice, same stage and time; the second copy is not a set",
+      "duplicate": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "13:30",
+      "end": "14:15",
+      "billing": "Chiara Meloni",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "14:15",
+      "end": "15:00",
+      "billing": "Muze",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "15:00",
+      "end": "15:45",
+      "billing": "Boy",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "15:45",
+      "end": "16:30",
+      "billing": "Prinz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "16:30",
+      "end": "17:15",
+      "billing": "BDC",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "17:15",
+      "end": "18:00",
+      "billing": "Mademoiselle Luna",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "18:00",
+      "end": "18:45",
+      "billing": "Meaghan",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "18:45",
+      "end": "19:30",
+      "billing": "Omdat Het Kan Soundsystem ft. Average Rob",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "19:30",
+      "end": "20:15",
+      "billing": "Henri PFR",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "20:15",
+      "end": "21:00",
+      "billing": "Andromedik",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "21:00",
+      "end": "22:00",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "22:00",
+      "end": "22:45",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "22:45",
+      "end": "23:30",
+      "billing": "Yves V vs Regi",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2023-07-27",
+      "stage": "The Gathering",
+      "start": "23:30",
+      "end": "00:00",
+      "billing": "MANDY",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    }
+  ],
+  "offDays": [
+    {
+      "date": "2023-07-20",
+      "printed": "Thursday 20 July 2023",
+      "archivedUrl": "https://web.archive.org/web/20230802083753/https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+      "captureTimestamp": "20230802083753",
+      "sets": 14
+    },
+    {
+      "date": "2023-07-27",
+      "printed": "Thursday 27 July 2023",
+      "archivedUrl": "https://web.archive.org/web/20230802083753/https://www.tomorrowland.com/en/festival/line-up/stages/friday-21-july-2023",
+      "captureTimestamp": "20230802083753",
+      "sets": 14
+    }
+  ],
+  "dropped": [
+    {
+      "day": 3,
+      "stage": "Rise by Coke Studio",
+      "start": "13:30",
+      "end": "14:30",
+      "billing": "To be announced",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

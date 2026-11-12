@@ -1,0 +1,104 @@
+{
+  "id": "nocturnal-wonderland-2011",
+  "method": "structured_html",
+  "official": "http://www.nocturnalwonderland.com/lineup.php",
+  "window": [
+    "20110101",
+    "20111231"
+  ],
+  "template": "insomniac lineup.php",
+  "days": [
+    {
+      "day": 1,
+      "url": "http://www.nocturnalwonderland.com/lineup.php",
+      "date": "2011-09-23",
+      "chosen": "20110928142156",
+      "archivedUrl": "https://web.archive.org/web/20110928142156/http://www.nocturnalwonderland.com/lineup.php",
+      "sha256": "fc35508c1b7fdbbc2e4bb0d0b37b66348d47e1a8d85c87a4b7958d66d523ccd9",
+      "rows": 24,
+      "stages": {
+        "Alice's House": 8,
+        "Labyrinth": 7,
+        "Sunken Garden": 9
+      }
+    },
+    {
+      "day": 2,
+      "url": "http://www.nocturnalwonderland.com/lineup.php",
+      "date": "2011-09-24",
+      "chosen": "20110928142156",
+      "archivedUrl": "https://web.archive.org/web/20110928142156/http://www.nocturnalwonderland.com/lineup.php",
+      "sha256": "fc35508c1b7fdbbc2e4bb0d0b37b66348d47e1a8d85c87a4b7958d66d523ccd9",
+      "rows": 38,
+      "stages": {
+        "Alice's House": 8,
+        "Labyrinth": 7,
+        "Sunken Garden": 8,
+        "Queen's Grounds": 7,
+        "Upside Down Room": 8
+      }
+    }
+  ],
+  "chosen": "20110928142156",
+  "relayedVia": "firecrawl",
+  "skipped": [],
+  "considered": [
+    {
+      "captureTimestamp": "20110923155132",
+      "archivedUrl": "https://web.archive.org/web/20110923155132/http://www.nocturnalwonderland.com/lineup.php",
+      "sha256": "d5b33d54342dd2beae97446e738751eacf25949c3724b3769b35edc49c127039",
+      "bytes": 55928,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 62,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": [
+        "Fareoh: artist FareOH → Fareoh"
+      ]
+    },
+    {
+      "captureTimestamp": "20110928142156",
+      "archivedUrl": "https://web.archive.org/web/20110928142156/http://www.nocturnalwonderland.com/lineup.php",
+      "sha256": "fc35508c1b7fdbbc2e4bb0d0b37b66348d47e1a8d85c87a4b7958d66d523ccd9",
+      "bytes": 56138,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 62,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20111004052403",
+      "archivedUrl": "https://web.archive.org/web/20111004052403/http://www.nocturnalwonderland.com/lineup.php",
+      "sha256": "de3e488371c737a65e941c8f224f57c5e23a151b01c8f357bae200581e3ac0cd",
+      "bytes": 54878,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 62,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": [
+        "Michael Woods: start 20:00 → 17:30",
+        "Michael Woods: end 21:00 → 18:30"
+      ]
+    },
+    {
+      "captureTimestamp": "20111121055301",
+      "archivedUrl": "https://web.archive.org/web/20111121055301/http://www.nocturnalwonderland.com/lineup.php",
+      "sha256": "3a7199597937651edb2a8b7d341925397a920aa3a13067ecf62a56055563074c",
+      "bytes": 56143,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 62,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": [
+        "Michael Woods: start 20:00 → 17:30",
+        "Michael Woods: end 21:00 → 18:30"
+      ]
+    }
+  ],
+  "dropped": []
+}
