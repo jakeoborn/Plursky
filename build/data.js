@@ -1321,6 +1321,21 @@ var FESTIVALS_REGISTRY = [{
       lat: 30.266712,
       lng: -97.766540,
       src: "osm"
+    }, {
+      stageId: "titos",
+      lat: 30.267785,
+      lng: -97.765064,
+      src: "osm"
+    }, {
+      stageId: "bmi",
+      lat: 30.266537,
+      lng: -97.769236,
+      src: "osm"
+    }, {
+      stageId: "beatbox",
+      lat: 30.265399,
+      lng: -97.768634,
+      src: "osm"
     }],
     mainStageId: "amex",
     mapImage: "acl-park-2026.webp",
