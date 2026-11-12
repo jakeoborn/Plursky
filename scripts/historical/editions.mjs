@@ -17,6 +17,20 @@ export const EDITIONS = {
   "governors-ball-2025": { festivalId: "governors-ball", name: "Governors Ball 2025", year: 2025,
     timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2025-06-06", "Friday"], ["2025-06-07", "Saturday"], ["2025-06-08", "Sunday"]] },
+  // Governors Ball 2017-2019: the official governorsballmusicfestival.com
+  // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
+  // one archived page per year, each captured after the festival.
+  "governors-ball-2017": { festivalId: "governors-ball", name: "Governors Ball 2017", year: 2017,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2017-06-02", "Friday"], ["2017-06-03", "Saturday"], ["2017-06-04", "Sunday"]] },
+  "governors-ball-2018": { festivalId: "governors-ball", name: "Governors Ball 2018", year: 2018,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2018-06-01", "Friday"], ["2018-06-02", "Saturday"], ["2018-06-03", "Sunday"]] },
+  "governors-ball-2019": { festivalId: "governors-ball", name: "Governors Ball 2019", year: 2019,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2019-05-31", "Friday"], ["2019-06-01", "Saturday"], ["2019-06-02", "Sunday"]],
+    notes: [{ asOf: "2026-11-11", days: [3], text: "Sunday was evacuated for storms. The schedule shown is the revised one the official page printed after the festival, with gates reopening in the evening; acts that were canceled are not listed.",
+      source: "https://web.archive.org/web/20190709043321/https://www.governorsballmusicfestival.com/schedule/" }] },
   "lollapalooza-2025": { festivalId: "lollapalooza", name: "Lollapalooza 2025", year: 2025,
     timezone: "America/Chicago", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2025-07-31", "Thursday"], ["2025-08-01", "Friday"], ["2025-08-02", "Saturday"], ["2025-08-03", "Sunday"]] },
@@ -144,6 +158,35 @@ export const EDITIONS = {
   "electric-forest-2013": { festivalId: "electric-forest", name: "Electric Forest 2013", year: 2013,
     timezone: "America/Detroit", rolloverHour: 6, method: "official_sources",
     dates: [["2013-06-27", "Thursday"], ["2013-06-28", "Friday"], ["2013-06-29", "Saturday"], ["2013-06-30", "Sunday"]] },
+  // Coachella's own lineup page (coachella.com/lineup/): one card per act
+  // with each set's date, start and stage, and no end time, so every set is
+  // open-ended. 2016's page prints both weekends; 2014's and 2015's print
+  // one weekend per view (?weekend=1, ?weekend=2; the default view is the
+  // weekend the site last showed).
+  // 2012's page prints each act's sets in a hidden overlay (format
+  // "coachella-overlays"), start times only.
+  "coachella-2012": { festivalId: "coachella", name: "Coachella 2012", year: 2012,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2012-04-13", "Friday"], ["2012-04-14", "Saturday"], ["2012-04-15", "Sunday"], ["2012-04-20", "Friday"], ["2012-04-21", "Saturday"], ["2012-04-22", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "coachella-2014": { festivalId: "coachella", name: "Coachella 2014", year: 2014,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2014-04-11", "Friday"], ["2014-04-12", "Saturday"], ["2014-04-13", "Sunday"], ["2014-04-18", "Friday"], ["2014-04-19", "Saturday"], ["2014-04-20", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "coachella-2015": { festivalId: "coachella", name: "Coachella 2015", year: 2015,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2015-04-10", "Friday"], ["2015-04-11", "Saturday"], ["2015-04-12", "Sunday"], ["2015-04-17", "Friday"], ["2015-04-18", "Saturday"], ["2015-04-19", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "coachella-2016": { festivalId: "coachella", name: "Coachella 2016", year: 2016,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2016-04-15", "Friday"], ["2016-04-16", "Saturday"], ["2016-04-17", "Sunday"], ["2016-04-22", "Friday"], ["2016-04-23", "Saturday"], ["2016-04-24", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  // 2017's page holds the lineup as data (format "coachella-data"): start and
+  // end where it has them; a set with no end is open-ended.
+  "coachella-2017": { festivalId: "coachella", name: "Coachella 2017", year: 2017,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2017-04-14", "Friday"], ["2017-04-15", "Saturday"], ["2017-04-16", "Sunday"], ["2017-04-21", "Friday"], ["2017-04-22", "Saturday"], ["2017-04-23", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
   "tomorrowland-2017": { festivalId: "tomorrowland", name: "Tomorrowland 2017", year: 2017,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2017-07-21", "Friday"], ["2017-07-22", "Saturday"], ["2017-07-23", "Sunday"], ["2017-07-28", "Friday"], ["2017-07-29", "Saturday"], ["2017-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
@@ -434,6 +477,8 @@ export const PRINTED_NON_LATIN = {
   // The duo's own Greek lambda, in the page's artist_data list.
   "edc-las-vegas-2016": ["Axwell Λ Ingrosso"],
   "edc-las-vegas-2017": ["Axwell Λ Ingrosso"],
+  // The trio's own Greek lambda, as Coachella's 2012 lineup page prints it.
+  "coachella-2012": ["NOISIΛ"],
 };
 
 const ACTIVITY_REASON = "non-music Bonus Tracks activity";

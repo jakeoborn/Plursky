@@ -317,10 +317,14 @@
     ],
     weatherEndpoint: "https://api.weather.gov/points/37.77,-122.49",
     mainStageId: "landsend",
-    // Generated abstract overlay, NOT the official patron map — that art is
-    // rights-restricted and is never copied into this repo (lostlands-2026.jpg
-    // precedent). Authored in the same 0-100 frame as the stages above.
+    // Generated abstract overlay, authored in the same 0-100 frame as the
+    // stages above; the poster view and the stage pins use it.
+    // The real map lays the festival's OWN map (Jake, 2026-11-11: "let's just
+    // use the map we do it for other festivals"), fitted to the streets by
+    // map-sources/outside-lands-2026-geo-ties.json from https://sfoutsidelands.com/assets/maps/ol26-patron-map_73026.pdf
     mapImage: "osl-2026.svg",
+    mapGeoref: { image: "geo-maps/outside-lands-2026.webp", bounds: [-122.4984607, 37.7644441, -122.4762446, 37.7739127], model: "affine",
+                 ties: "map-sources/outside-lands-2026-geo-ties.json", rmsM: 13.4, looRmsM: 30.5 },
     mapStyle: "image-overlay",
     mapTheme: "park",
     // The overlay prints no stage names, so pills carry them.

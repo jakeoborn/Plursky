@@ -79,7 +79,47 @@ act are dropped as `event-block`; the Silent Disco is dropped as operational.
 2014's archived pages print a lineup only, and 2024's schedule page has not
 been read yet.
 
-Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, format `acl-grid`):
+Archived Coachella lineup pages (2014, 2015, 2016, format `coachella-cards`;
+2012, `coachella-overlays`; 2017, `coachella-data`):
+
+    node scripts/historical/gather-coachella.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> ...]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+coachella.com/lineup/ prints one card per act, and each card lists that act's
+sets: the date with its year ("Friday, April 15, 2016": the year must be the
+edition's and the weekday the date's own), the start and the stage. It prints
+no end times, so every set is open-ended (`openEnd`, end blank; the app says
+"no end time printed"). 2016's page lists both weekends; 2014's and 2015's
+list one weekend per view (`?weekend=1`, `?weekend=2`), so those editions
+cite two captures, one per weekend, and each day must be printed by exactly
+one of them. The `data-weekend` attribute is not read (2016 marks both
+weekends "1"); the printed date decides the day. An entry printed without its
+time ("Saturday, April 19, 2014 | Gobi") or its stage is excluded as
+incomplete, with what it prints kept in the sheet; a card with no set (a host)
+is kept in the ledger as unscheduled, never as a set. 2014's Weekend 1 view
+lists no Do Lab sets; nothing is added for them.
+
+2012's page (`/lineup/list/date/all`) prints each act's sets in a hidden
+overlay, under "2012 Appearance": "Friday April 20th | 4:30pm | Gobi", start
+times only, so every set is open-ended; a line printed "| TBD" is excluded as
+incomplete. It lists one Do Lab act (Lucent Dossier Experience); nothing is
+added for the others. NOISIΛ keeps the lambda the page prints
+(`PRINTED_NON_LATIN`).
+
+2017's page holds its whole lineup as one data attribute
+(`<lineup-listing v-bind:artists>`), which its script draws as the cards: per
+act and weekend the date (with its printed form), start, end and stage. A set
+with an end keeps it; one with no end is open-ended (the sheet's `openEnd`
+rows must be exactly those). A set with no start, a "TBD" stage, or a bare
+00:00 start with no end (the page's blank value) is excluded as incomplete.
+The data lists one act twice under two spellings ("Shannon & the Clams",
+"Shannon and the Clams"): one set, the first spelling kept, the other named in
+the ledger's `respelled`. Names keep their own HTML entities in the data
+("R&oacute;is&iacute;n"), read as their letters. 2018's archived lineup page
+is an empty shell and 2019's Set Times page loads its times by script, so
+neither is readable from the archive.
+
+Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, Governors Ball 2017–2019, format `acl-grid`):
 
     node scripts/historical/gather-acl-grid.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]
     node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
@@ -92,6 +132,15 @@ and ships untimed, which the edition must list in `untimedDays` with a note,
 and the ledger keeps the misprint. A block printed twice (off the axis, or
 twice in the same place) is one set; a second set by the same act on the
 same stage of an untimed day is excluded as a repeat and the note says so.
+
+Governors Ball 2017–2019 use the same grid on governorsballmusicfestival.com
+/schedule/, each read from a capture taken after the festival (20170606161221,
+20180612023504, 20190709043321). The 2017 capture before the festival
+(20170519) differs in two Sunday blocks; the later one is kept. 2019's
+Sunday was evacuated for storms, and its capture prints the revised evening
+schedule, which the edition's note says. 2018 and 2019 print stage names
+differently from 2017 ("Gov Ball NYC Stage", "GOVBALLNYC Stage"), kept as
+printed. 2020 was canceled; 2021 onward print the schedule as graphics.
 
 Mixed official sources (`official_sources`, Escape): when no single archive
 covers an edition, each day lists its sources in the ledger. A source is an

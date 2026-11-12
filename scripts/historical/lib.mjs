@@ -26,6 +26,10 @@ export function datedLabel(label, year) {
   // printed year must be the edition's.
   const eu = /^(\w+)\s+(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/.exec(String(label).trim());
   if (eu) return +eu[4] === +year ? datedLabel(`${eu[1]} ${eu[3]} ${eu[2]}`, year) : null;
+  // Coachella prints the year after the date ("Friday, April 15, 2016"):
+  // it must be the edition's.
+  const us = /^(\w+,\s+\w+\s+\d{1,2}),\s+(\d{4})$/.exec(String(label).trim());
+  if (us) return +us[2] === +year ? datedLabel(us[1], year) : null;
   // Electric Forest prints "Thursday - June 28th".
   const m = /^(\w+)(?:,|\s+-)?\s+(\w+)\s+(\d{1,2})(st|nd|rd|th)?$/i.exec(String(label).trim());
   if (!m) return null;

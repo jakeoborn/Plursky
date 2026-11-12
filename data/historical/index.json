@@ -772,6 +772,236 @@
    }
   },
   {
+   "id": "coachella-2017",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2017",
+   "year": 2017,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-04-14",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-04-15",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-04-16",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2017-04-21",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2017-04-22",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2017-04-23",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 229,
+    "sets": 398
+   }
+  },
+  {
+   "id": "coachella-2016",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2016",
+   "year": 2016,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-04-15",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-04-16",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2016-04-17",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2016-04-22",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2016-04-23",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2016-04-24",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 231,
+    "sets": 398
+   }
+  },
+  {
+   "id": "coachella-2015",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2015",
+   "year": 2015,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-04-10",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-04-11",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-04-12",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2015-04-17",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2015-04-18",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2015-04-19",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 234,
+    "sets": 415
+   }
+  },
+  {
+   "id": "coachella-2014",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2014",
+   "year": 2014,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-04-11",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-04-12",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-04-13",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2014-04-18",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2014-04-19",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2014-04-20",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 212,
+    "sets": 391
+   }
+  },
+  {
+   "id": "coachella-2012",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2012",
+   "year": 2012,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-04-13",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-04-14",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2012-04-15",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2012-04-20",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2012-04-21",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2012-04-22",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 149,
+    "sets": 293
+   }
+  },
+  {
    "id": "countdown-nye-2023",
    "festivalId": "countdown-nye",
    "festivalName": "Countdown NYE",
@@ -1831,6 +2061,99 @@
     "stages": 3,
     "artists": 53,
     "sets": 53
+   }
+  },
+  {
+   "id": "governors-ball-2019",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2019",
+   "year": 2019,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-05-31",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-06-01",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-06-02",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 64,
+    "sets": 66
+   }
+  },
+  {
+   "id": "governors-ball-2018",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2018",
+   "year": 2018,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-06-01",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2018-06-02",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2018-06-03",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 66,
+    "sets": 66
+   }
+  },
+  {
+   "id": "governors-ball-2017",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2017",
+   "year": 2017,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-06-02",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-06-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-06-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 67,
+    "sets": 67
    }
   },
   {
