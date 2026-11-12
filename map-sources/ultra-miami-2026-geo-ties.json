@@ -1,0 +1,171 @@
+{
+  "festivalId": "ultra-miami-2026",
+  "plate": "map-sources/art/ultra-miami-2026-official.webp",
+  "source": "https://www.instagram.com/p/DWUu8iZjawz/",
+  "artPolygon": [
+    [
+      270,
+      0
+    ],
+    [
+      1200,
+      0
+    ],
+    [
+      1200,
+      590
+    ],
+    [
+      700,
+      590
+    ],
+    [
+      700,
+      748
+    ],
+    [
+      270,
+      748
+    ]
+  ],
+  "model": "tps",
+  "measuredAt": "2026-11-12",
+  "method": "Ultra Music Festival 2026 site map, from the festival's own Instagram post (@ultra, '#ULTRA2026 Site Map', 2026-03-25), captured at 2x and cropped to the map panel. The art is rotated: up is east (Biscayne Bay), left is north; the legend panel and the logo block are masked out. Ties are Biscayne Blvd cross-street gaps between the drawn medians (read at the midpoint of each gap), the Pepper Fountain circle, the amphitheater stage, Chopin Plaza's two ends and the bay seawall at three street lines, read off a zoomed pixel grid and matched to OpenStreetMap (api.openstreetmap.org map calls over Bayfront Park); intersections use the midpoint of Biscayne's two carriageway nodes. Thin-plate (rubber sheet) model so the art bends through every tie; rmsM is the leave-one-out error.",
+  "ties": [
+    {
+      "name": "Biscayne Blvd x NE 5th St",
+      "px": 183,
+      "py": 665,
+      "lat": 25.779336,
+      "lng": -80.188725
+    },
+    {
+      "name": "Biscayne Blvd x NE 4th St",
+      "px": 325,
+      "py": 612,
+      "lat": 25.778173,
+      "lng": -80.188286
+    },
+    {
+      "name": "Biscayne Blvd x NE 3rd St",
+      "px": 466,
+      "py": 590,
+      "lat": 25.777201,
+      "lng": -80.188067
+    },
+    {
+      "name": "Biscayne Blvd x NE 2nd St",
+      "px": 606,
+      "py": 545,
+      "lat": 25.77627,
+      "lng": -80.18774
+    },
+    {
+      "name": "Biscayne Blvd x NE 1st St",
+      "px": 752,
+      "py": 525,
+      "lat": 25.775305,
+      "lng": -80.187604
+    },
+    {
+      "name": "Biscayne Blvd x E Flagler St",
+      "px": 888,
+      "py": 498,
+      "lat": 25.774342,
+      "lng": -80.187471
+    },
+    {
+      "name": "Biscayne Blvd x SE 1st St",
+      "px": 1008,
+      "py": 478,
+      "lat": 25.773539,
+      "lng": -80.187293
+    },
+    {
+      "name": "Mildred and Claude Pepper Fountain (centre)",
+      "px": 880,
+      "py": 245,
+      "lat": 25.774412,
+      "lng": -80.185482
+    },
+    {
+      "name": "Bayfront Park Amphitheater stage roof",
+      "px": 630,
+      "py": 295,
+      "lat": 25.776206,
+      "lng": -80.186039
+    },
+    {
+      "name": "Biscayne Blvd x Chopin Plaza",
+      "px": 1100,
+      "py": 463,
+      "lat": 25.77296,
+      "lng": -80.187062
+    },
+    {
+      "name": "Chopin Plaza east end (bay)",
+      "px": 1100,
+      "py": 165,
+      "lat": 25.77281,
+      "lng": -80.1852
+    },
+    {
+      "name": "Bay seawall at NE 1st St line",
+      "px": 752,
+      "py": 192,
+      "lat": 25.775305,
+      "lng": -80.1851
+    },
+    {
+      "name": "Bay seawall at E Flagler St line",
+      "px": 888,
+      "py": 190,
+      "lat": 25.774342,
+      "lng": -80.18507
+    },
+    {
+      "name": "Bay seawall at SE 1st St line",
+      "px": 1008,
+      "py": 200,
+      "lat": 25.773539,
+      "lng": -80.185241
+    }
+  ],
+  "output": {
+    "image": "geo-maps/ultra-miami-2026.webp",
+    "size": [
+      739,
+      1005
+    ],
+    "metresPerPixel": 0.738,
+    "bounds": {
+      "w": -80.1892438,
+      "s": 25.7720042,
+      "e": -80.1838037,
+      "n": 25.7787024
+    },
+    "rmsM": 12.1,
+    "worstM": 25.4,
+    "looRmsM": 12.1,
+    "residualsM": {
+      "Biscayne Blvd x NE 5th St": 0.0,
+      "Biscayne Blvd x NE 4th St": 0.0,
+      "Biscayne Blvd x NE 3rd St": 0.0,
+      "Biscayne Blvd x NE 2nd St": 0.0,
+      "Biscayne Blvd x NE 1st St": 0.0,
+      "Biscayne Blvd x E Flagler St": 0.0,
+      "Biscayne Blvd x SE 1st St": 0.0,
+      "Mildred and Claude Pepper Fountain (centre)": 0.0,
+      "Bayfront Park Amphitheater stage roof": 0.0,
+      "Biscayne Blvd x Chopin Plaza": 0.0,
+      "Chopin Plaza east end (bay)": 0.0,
+      "Bay seawall at NE 1st St line": 0.0,
+      "Bay seawall at E Flagler St line": 0.0,
+      "Bay seawall at SE 1st St line": 0.0
+    },
+    "checksM": {},
+    "inputsSha256": "36a69d9bb5503ebf9deec748c709e9e14ca371d2a880210325e1b47e865b9810",
+    "plateSha256": "4a1fa5b879d1cf2933180a21b442737d2097932fa7c9bf380a37a3b203c37f51",
+    "sha256": "a86d2103e3bb66460ac578c78a8e0f36996823069fc83e40cef86233f324a24b"
+  }
+}

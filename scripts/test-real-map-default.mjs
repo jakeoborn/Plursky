@@ -56,7 +56,8 @@ const CASES = [
   { fid: "outside-lands-2026", at: "2026-08-08T23:00:00Z", pins: true, overlay: "checked", georef: true },
   // Ultra's is the longest posture label; at 393 pt it is the one that fits
   // beside a shrinking title and printed over it. III Points runs at 320 pt.
-  { fid: "ultra-miami-2026", at: "2026-03-28T23:00:00Z", pins: false, overlay: "unchecked" },
+  // Its official 2026 site map is now fitted to Bayfront Park (tps, map-sources/ultra-miami-2026-geo-ties.json).
+  { fid: "ultra-miami-2026", at: "2026-03-28T23:00:00Z", pins: false, overlay: "fitted" },
   // III Points' official art is fitted to the streets (map-sources/iii-points-2026-geo-ties.json):
   // the warped plate is drawn at its measured bounds, still with no stage pins.
   { fid: "iii-points-2026",  at: "2026-10-17T02:00:00Z", pins: false, overlay: "fitted", w: 320 },

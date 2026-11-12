@@ -555,7 +555,8 @@ function artGeorefFor(cfg) {
   return g;
 }
 function posterTierFor(cfg, affine, verified) {
-  if (!cfg || cfg.mapMode === "real") return "none";
+  if (!cfg) return "none";
+  if (cfg.mapMode === "real") return artGeorefFor(cfg) ? "fitted" : "none";
   if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
   if (affine && verified) return "checked";
   if (artGeorefFor(cfg)) return "fitted";
@@ -7097,7 +7098,7 @@ function RealMap({
           })
         });
         var _addOfficialMap = () => {
-          if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
+          if (!ART_GEOREF && (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage)) return;
           if (!MAP_AFFINE && !ART_GEOREF) return;
           if (officialMapFailedRef.current) return;
           var dims = officialMapDimsRef.current;
@@ -7134,7 +7135,7 @@ function RealMap({
           }
         };
         _safeLayer("official-map", _addOfficialMap);
-        if (!officialMapDimsRef.current && FESTIVAL_CONFIG.mapImage) {
+        if (!officialMapDimsRef.current && (FESTIVAL_CONFIG.mapImage || ART_GEOREF)) {
           _officialMapDims(OFFICIAL_MAP_SRC).then(d => {
             if (cancelled || !d || !mapRef.current) return;
             officialMapDimsRef.current = d;
