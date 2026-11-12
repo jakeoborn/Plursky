@@ -1420,9 +1420,9 @@ const FESTIVALS_REGISTRY = [
       gpsAnchors: [
         // Calibrated basis — do NOT reorder; _solveMapAffine() (map.jsx)
         // reads only the first three.
-        { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm", assumed: "2023 capture, assumed for 2026" },
-        { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm", assumed: "2023 capture, assumed for 2026" },
-        { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm", assumed: "2023 capture, assumed for 2026" },
+        { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm", assumed: "satellite 2023, assumed for 2026" },
         // Independent evidence, NOT in the basis: the grove-footprint stage
         // structure, measured on the same Esri Wayback 2024-11-18 capture at
         // z19. The official patron maps run that footprint T-Mobile (2024) ->
@@ -1431,7 +1431,7 @@ const FESTIVALS_REGISTRY = [
         // 2026-09-06 desk survey (as "ladybird"); re-anchored to snapchat
         // 2026-10-18 after the 2024/2025 archived patron maps settled the
         // footprint. Centre of the main stage roof.
-        { stageId: "snapchat", lat: 30.266712, lng: -97.766540, src: "osm", assumed: "2023 capture, assumed for 2026" },
+        { stageId: "snapchat", lat: 30.266712, lng: -97.766540, src: "osm", assumed: "satellite 2023, assumed for 2026" },
         // Tito's, BMI and BEATBOX — measured 2026-11-12 on the same capture
         // (Nearmap 2023-10-08, Wayback release 2026-10-29) at z20-21, each at
         // the centre of the stage roof, identified by roof + front barricade
@@ -1454,9 +1454,9 @@ const FESTIVALS_REGISTRY = [
         // identically), and each carries `assumed` saying so. A crowdAnchors
         // entry for the same stage (measured from 2026 photos) overrides it in
         // resolvedStageAnchors(); test-acl-map-2026 pins that override.
-        { stageId: "titos",   lat: 30.267785, lng: -97.765064, src: "osm", assumed: "2023 capture, assumed for 2026" },
-        { stageId: "bmi",     lat: 30.266537, lng: -97.769236, src: "osm", assumed: "2023 capture, assumed for 2026" },
-        { stageId: "beatbox", lat: 30.265399, lng: -97.768634, src: "osm", assumed: "2023 capture, assumed for 2026" },
+        { stageId: "titos",   lat: 30.267785, lng: -97.765064, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "bmi",     lat: 30.266537, lng: -97.769236, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "beatbox", lat: 30.265399, lng: -97.768634, src: "osm", assumed: "satellite 2023, assumed for 2026" },
         //
         // History of the three anchors above (kept so nobody re-derives them):
         // `bmi` was dropped 2026-09-23 (founder ruling) as derived arithmetic

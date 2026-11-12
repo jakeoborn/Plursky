@@ -1306,43 +1306,43 @@ var FESTIVALS_REGISTRY = [{
       lat: 30.267233,
       lng: -97.763236,
       src: "osm",
-      assumed: "2023 capture, assumed for 2026"
+      assumed: "satellite 2023, assumed for 2026"
     }, {
       stageId: "miller",
       lat: 30.269017,
       lng: -97.769316,
       src: "osm",
-      assumed: "2023 capture, assumed for 2026"
+      assumed: "satellite 2023, assumed for 2026"
     }, {
       stageId: "tmobile",
       lat: 30.268021,
       lng: -97.770282,
       src: "osm",
-      assumed: "2023 capture, assumed for 2026"
+      assumed: "satellite 2023, assumed for 2026"
     }, {
       stageId: "snapchat",
       lat: 30.266712,
       lng: -97.766540,
       src: "osm",
-      assumed: "2023 capture, assumed for 2026"
+      assumed: "satellite 2023, assumed for 2026"
     }, {
       stageId: "titos",
       lat: 30.267785,
       lng: -97.765064,
       src: "osm",
-      assumed: "2023 capture, assumed for 2026"
+      assumed: "satellite 2023, assumed for 2026"
     }, {
       stageId: "bmi",
       lat: 30.266537,
       lng: -97.769236,
       src: "osm",
-      assumed: "2023 capture, assumed for 2026"
+      assumed: "satellite 2023, assumed for 2026"
     }, {
       stageId: "beatbox",
       lat: 30.265399,
       lng: -97.768634,
       src: "osm",
-      assumed: "2023 capture, assumed for 2026"
+      assumed: "satellite 2023, assumed for 2026"
     }],
     mainStageId: "amex",
     mapImage: "acl-park-2026.webp",

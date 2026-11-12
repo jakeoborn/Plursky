@@ -92,7 +92,7 @@ function validate(ds, { local = LOCAL, start = ctx.__o.avatarStartFor(ds) } = {}
   // here is a guess about where a stage is, and attendance must not fire on it.
   for (const a of an) if (a.src !== "osm") p.push(`${a.stageId} has a ${a.src} GPS anchor; only a satellite or crowd measurement may place a stage`);
   // All seven are read off the 2023 capture: each must say it is assumed for 2026.
-  for (const a of an) if (!/^2023 capture, assumed for 2026$/.test(a.assumed || "")) p.push(`${a.stageId} anchor does not say it is a 2023 position assumed for 2026`);
+  for (const a of an) if (!/^satellite 2023, assumed for 2026$/.test(a.assumed || "")) p.push(`${a.stageId} anchor does not say it is a 2023 position assumed for 2026`);
   // Art coordinates: every x/y is a measured row, and nothing unmeasured ships.
   const rows = [...ds.stages.map(s => ["stages", s]), ...(ds.amenities || []).map(a => ["amenities", a])];
   for (const [kind, item] of rows) {
