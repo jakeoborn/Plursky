@@ -22,10 +22,11 @@ try{
 var views=(q.get("v")||"f=dreamstate-socal-2026|f=dreamstate-socal-2026&tab=lineup|f=dreamstate-socal-2026&tab=map").split("|");
 var row=document.getElementById("row");
 views.forEach(function(v){
+  var r=ref,m=v.match(/^([0-9a-f]{7,40})~(.*)$/);if(m){r=m[1];v=m[2];}
   var c=document.createElement("div");c.className="cell";
-  var l=document.createElement("div");l.textContent=v;
+  var l=document.createElement("div");l.textContent=(m?r.slice(0,7)+" ":"")+v;
   var f=document.createElement("iframe");f.width=w;f.height=h;
-  f.src="https://raw.githack.com/jakeoborn/plursky/"+ref+"/index.html?"+v;
+  f.src="https://raw.githack.com/jakeoborn/plursky/"+r+"/index.html?"+v;
   c.appendChild(l);c.appendChild(f);row.appendChild(c);
 });
 </script></body></html>
