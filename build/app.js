@@ -1667,7 +1667,7 @@ function App() {
     }
   }, React.createElement("div", {
     key: state.artist ? "artist" : state.tab,
-    className: "ps-view",
+    className: state.artist ? "ps-view ps-view-push" : "ps-view",
     style: {
       position: "absolute",
       inset: 0,

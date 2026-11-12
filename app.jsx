@@ -1097,9 +1097,11 @@ function App() {
         {!(state.tab === "home" && !state.artist) && state.tab !== "landing" && <StatusStrip />}
         <div style={{ flex: 1, position: "relative" }}>
           {/* Each tab arrives with a short fade (index.html .ps-view), so a
-              switch reads as one surface replacing another, not a flash. The
-              key is the tab, so moving between artists does not refade. */}
-          <div key={state.artist ? "artist" : state.tab} className="ps-view" style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column" }}>
+              switch reads as one surface replacing another, not a flash. An
+              artist page slides in from the right, the way a pushed page
+              does on iOS. The key is the tab, so moving between artists
+              does not replay it. */}
+          <div key={state.artist ? "artist" : state.tab} className={state.artist ? "ps-view ps-view-push" : "ps-view"} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column" }}>
             {body}
           </div>
           {/* Search FAB — floats above TabBar, accessible from any screen.

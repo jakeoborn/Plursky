@@ -662,9 +662,13 @@
       box-shadow:0 0 80px -20px rgba(0,0,0,.35)}
   }
   /* Tab arrival: opacity only (a transform would make the view a containing
-     block for fixed sheets mid-fade). Reduced motion is caught globally. */
+     block for fixed sheets mid-fade). The artist push is the one exception;
+     its transform lasts .3s and ends at none (fill: backwards). Reduced
+     motion is caught globally. */
   @keyframes psViewIn{from{opacity:0}}
   .ps-view{animation:psViewIn .22s var(--ease-decay) backwards}
+  @keyframes psViewPush{from{opacity:0;transform:translateX(28px)}}
+  .ps-view-push{animation:psViewPush .3s var(--ease-decay) backwards}
   .ps-tab:active .ps-tab-icon{transform:scale(.88) !important;transition-duration:80ms !important}
   @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}}
   @keyframes vfx-rise{0%{transform:translateY(0);opacity:0}8%{opacity:1}85%{opacity:.8}100%{transform:translateY(-140px) translateX(12px);opacity:0}}
