@@ -149,6 +149,12 @@ export const EDITIONS = {
   // open-ended. 2016's page prints both weekends; 2014's and 2015's print
   // one weekend per view (?weekend=1, ?weekend=2; the default view is the
   // weekend the site last showed).
+  // 2012's page prints each act's sets in a hidden overlay (format
+  // "coachella-overlays"), start times only.
+  "coachella-2012": { festivalId: "coachella", name: "Coachella 2012", year: 2012,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2012-04-13", "Friday"], ["2012-04-14", "Saturday"], ["2012-04-15", "Sunday"], ["2012-04-20", "Friday"], ["2012-04-21", "Saturday"], ["2012-04-22", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
   "coachella-2014": { festivalId: "coachella", name: "Coachella 2014", year: 2014,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2014-04-11", "Friday"], ["2014-04-12", "Saturday"], ["2014-04-13", "Sunday"], ["2014-04-18", "Friday"], ["2014-04-19", "Saturday"], ["2014-04-20", "Sunday"]],
@@ -160,6 +166,12 @@ export const EDITIONS = {
   "coachella-2016": { festivalId: "coachella", name: "Coachella 2016", year: 2016,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2016-04-15", "Friday"], ["2016-04-16", "Saturday"], ["2016-04-17", "Sunday"], ["2016-04-22", "Friday"], ["2016-04-23", "Saturday"], ["2016-04-24", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  // 2017's page holds the lineup as data (format "coachella-data"): start and
+  // end where it has them; a set with no end is open-ended.
+  "coachella-2017": { festivalId: "coachella", name: "Coachella 2017", year: 2017,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2017-04-14", "Friday"], ["2017-04-15", "Saturday"], ["2017-04-16", "Sunday"], ["2017-04-21", "Friday"], ["2017-04-22", "Saturday"], ["2017-04-23", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
   "tomorrowland-2017": { festivalId: "tomorrowland", name: "Tomorrowland 2017", year: 2017,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2017-07-21", "Friday"], ["2017-07-22", "Saturday"], ["2017-07-23", "Sunday"], ["2017-07-28", "Friday"], ["2017-07-29", "Saturday"], ["2017-07-30", "Sunday"]],
@@ -451,6 +463,8 @@ export const PRINTED_NON_LATIN = {
   // The duo's own Greek lambda, in the page's artist_data list.
   "edc-las-vegas-2016": ["Axwell Λ Ingrosso"],
   "edc-las-vegas-2017": ["Axwell Λ Ingrosso"],
+  // The trio's own Greek lambda, as Coachella's 2012 lineup page prints it.
+  "coachella-2012": ["NOISIΛ"],
 };
 
 const ACTIVITY_REASON = "non-music Bonus Tracks activity";

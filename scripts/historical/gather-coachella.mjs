@@ -11,12 +11,18 @@
 // the pages given. Every set the page prints becomes a sheet row, as
 // printed, open-ended (the page prints no end times). An entry printed
 // without its time or stage is an excluded row, with the page's own words.
+// The 2017 page holds its lineup as data (format "coachella-data",
+// parseCoachellaData): a set with an end keeps it, one without is
+// open-ended. The 2012 page (format "coachella-overlays", parseCoachella2012)
+// prints each act's sets in its hidden overlay, start times only.
 
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { EDITIONS } from "./editions.mjs";
 import { fetchCapture } from "./wayback.mjs";
-import { parseCoachella } from "./coachella-lineup.mjs";
+import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./coachella-lineup.mjs";
+
+const PARSERS = { "coachella-cards": parseCoachella, "coachella-data": parseCoachellaData, "coachella-overlays": parseCoachella2012 };
 
 const [id, out, official, ...pairs] = process.argv.slice(2);
 const ed = EDITIONS[id];
@@ -28,17 +34,18 @@ for (let i = 0; i < pairs.length; i += 2) {
   const [ts, url] = [pairs[i], pairs[i + 1]];
   const cap = await fetchCapture(ts, url);
   if (cap.captureTimestamp !== ts) throw new Error(`${url}: Wayback served ${cap.captureTimestamp}, not ${ts}`);
-  const page = parseCoachella(cap.text, { year: ed.year });
+  const format = /<lineup-listing\b/.test(cap.text) ? "coachella-data" : /<div class="artist-overlay" id="artist-/.test(cap.text) ? "coachella-overlays" : "coachella-cards";
+  const page = PARSERS[format](cap.text, { year: ed.year });
   const ref = `page ${ts}`, printed = {};
   for (const d of page.days) {
     const day = ed.dates.findIndex(([x]) => x === d.date) + 1;
     if (!day) throw new Error(`${url} @${ts}: prints ${d.label}, not a day of ${id}`);
     if (printedBy[day]) throw new Error(`${url} @${ts}: day ${day} is also printed by page ${printedBy[day]}`);
     printedBy[day] = ts; printed[day] = d.label;
-    for (const x of d.sets) rows.push({ day, date: d.date, stage: x.stage, start: x.start, end: "", artist: x.artist, openEnd: 1, ref, note: "" });
+    for (const x of d.sets) rows.push({ day, date: d.date, stage: x.stage, start: x.start, end: x.end, artist: x.artist, openEnd: x.end ? "" : 1, ref, note: "" });
     for (const x of d.incomplete) rows.push({ day, date: d.date, stage: x.stage, start: x.start, end: "", artist: x.artist, ref, note: `${incomplete}: "${x.printed}"` });
   }
-  sources.push({ kind: "page", match: ref, url, captureTimestamp: ts, format: "coachella-cards", printed });
+  sources.push({ kind: "page", match: ref, url, captureTimestamp: ts, format, printed });
 }
 const missing = ed.dates.filter((_, i) => !printedBy[i + 1]).map(([d]) => d);
 if (missing.length) throw new Error(`no page given prints ${missing.join(", ")}`);
