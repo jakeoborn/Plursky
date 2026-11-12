@@ -21,7 +21,8 @@
 // local, just past the computed Jan 10 sunrise (07:27); not doors-to-close.
 // NO VENUE: the official page names only Tulum. gps is the town of Tulum,
 // en.wikipedia.org/wiki/Tulum,_Quintana_Roo, read 2026-11-12 — 20.21194°N
-// 87.46583°W, with a wide on-site radius because the site is not announced.
+// 87.46583°W, with a wide 3-mile on-site radius because the site is not
+// announced (wider breaks the offline map pack's 120-tile cap).
 // Re-check before treating the map point as the venue.
 // NO AGE POLICY loaded: none read from an official page.
 // NO WEATHER: api.weather.gov covers the US only, so weatherEndpoint is null.
@@ -110,7 +111,7 @@
     },
     // Computed (NOAA formula) at the gps point; Jan 10 sunrise is 07:27.
     sunTimes: { 1: { rise: "07:27", set: "18:25" } },
-    gps: { lat: 20.21194, lng: -87.46583, onSiteRadiusMi: 6 },
+    gps: { lat: 20.21194, lng: -87.46583, onSiteRadiusMi: 3 },
     venue: {
       name: "Jungle site near Tulum (not announced)",
       address: "Tulum, Quintana Roo, Mexico",

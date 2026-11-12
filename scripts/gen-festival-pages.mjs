@@ -27,6 +27,26 @@ import { loadDayAfter, assertDayAfter, selectDayAfter, dayAfterSection, DAY_AFTE
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://plursky.com';
 const OUT_DIR = path.join(root, 'f');
+
+// Inputs are read before f/ is cleared. A ledger that does not parse (a
+// merge once left conflict markers in sitemap-lastmod.json) used to crash
+// the build AFTER the rmSync, and that commit dropped all 75 pages. Now it
+// stops here with f/ intact (scripts/test-gen-pages-safe-clear.mjs).
+// This check sits ABOVE the render path on purpose: that slice of this file
+// is hashed into every festival page's fingerprint (lib/sitemap-fingerprint.mjs),
+// so code added inside it moves every <lastmod>. Do not quote the slice's
+// anchor strings in comments up here either: the slicer finds them by indexOf.
+{
+  const ledger = path.join(root, 'sitemap-lastmod.json');
+  if (existsSync(ledger)) {
+    try { JSON.parse(readFileSync(ledger, 'utf8')); }
+    catch (e) {
+      console.error(`[gen] ✗ sitemap-lastmod.json does not parse (${e.message}); f/ left untouched. Resolve the file (a merge conflict?) and rerun.`);
+      process.exit(1);
+    }
+  }
+}
+
 const EMBEDS = loadEmbedData(root);
 const NOW_MS = Date.now();
 // Day-after cards (row 9): every record is checked, whatever its status, so a
