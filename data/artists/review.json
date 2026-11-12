@@ -399,6 +399,13 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "governors-ball-2019:d2:govballnyc-stage:2115:florence-the-machine",
+  "printed": "FLORENCE + THE MACHINE",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "lollapalooza-2013:d1:bmi:1410:brick-mortar",
   "printed": "Brick + Mortar",
   "reason": "\"+\" billing",

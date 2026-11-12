@@ -1943,6 +1943,47 @@
    "setTag": "Sublevel Live",
    "why": "Sublevel is Doc Martin's own party and label, not a person: \"Sublevel Live\" names the set, it is the set tag, and the billing counts on Doc Martin.",
    "source": "https://www.coachella.com/lineup/"
+  },
+  {
+   "printed": "SLAVES (UK)",
+   "performers": [
+    {
+     "name": "SLAVES (UK)",
+     "role": "performer"
+    }
+   ],
+   "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Slaves\".",
+   "source": "https://www.governorsballmusicfestival.com/"
+  },
+  {
+   "printed": "SILK CITY (DIPLO + MARK RONSON)",
+   "performers": [
+    {
+     "name": "SILK CITY",
+     "role": "project",
+     "parents": [
+      "DIPLO",
+      "MARK RONSON"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.governorsballmusicfestival.com/"
+  },
+  {
+   "printed": "BEAST COAST (JOEY BADA$$ + FLATBUSH ZOMBIES)",
+   "performers": [
+    {
+     "name": "BEAST COAST",
+     "role": "project",
+     "parents": [
+      "JOEY BADA$$",
+      "FLATBUSH ZOMBIES"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.governorsballmusicfestival.com/"
   }
  ],
  "pending": [
@@ -2352,6 +2393,10 @@
   },
   {
    "printed": "The Geek x Vrv",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "FLORENCE + THE MACHINE",
    "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
   }
  ]
