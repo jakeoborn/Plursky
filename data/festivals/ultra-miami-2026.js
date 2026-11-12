@@ -362,10 +362,15 @@
     ],
     weatherEndpoint: "https://api.weather.gov/points/25.78,-80.19",
     mainStageId: "main",
-    // Generated abstract overlay, NOT the official patron map — that art is
-    // rights-restricted and is never copied into this repo (lostlands-2026.jpg
-    // precedent). Authored in the same 0-100 frame as the stages above.
+    // Generated abstract overlay, authored in the same 0-100 frame as the
+    // stages above; the poster view and the stage pins use it.
+    // The real map lays the festival's OWN 2026 site map (Jake, 2026-11-12:
+    // "let's try to get each map overlayed on top of the real ground"), bent
+    // onto the streets by a thin-plate fit over
+    // map-sources/ultra-miami-2026-geo-ties.json from https://www.instagram.com/p/DWUu8iZjawz/
     mapImage: "ultra-2026.svg",
+    mapGeoref: { image: "geo-maps/ultra-miami-2026.webp", bounds: [-80.1892438, 25.7720042, -80.1838037, 25.7787024], model: "tps",
+                 ties: "map-sources/ultra-miami-2026-geo-ties.json", rmsM: 12.1, looRmsM: 12.1 },
     mapStyle: "image-overlay",
     mapTheme: "park",
     // The overlay prints no stage names, so pills carry them.
