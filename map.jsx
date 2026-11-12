@@ -486,13 +486,43 @@ function readoutHonest(avatar) {
 //               point. Stages read as pending until anchors are measured.
 // Measuring anchors (first-party evidence per anchor) is what moves a festival
 // up a tier; nothing here does.
+//
+// "fitted" (Jake, 2026-11-10: the festival's own map "overlaid on top of the
+// geo coordinates" of the venue): the ART is placed by its own tie points,
+// street corners, buildings and shorelines that both the art and the ground
+// draw, fitted by scripts/build-geo-plate.py into a north-up plate
+// (cfg.mapGeoref). That places the art, never a stage: stages keep following
+// gpsAnchors and the gates above, so a fitted festival still pins nothing and
+// reads STAGES PENDING until its stages are checked. Only a fit whose ties
+// agree within ARTFIT_MAX_RMS_M counts; a looser one is ignored, not faded.
+const ARTFIT_MAX_RMS_M = 15;
+function artGeorefFor(cfg) {
+  const g = cfg && cfg.mapGeoref;
+  if (!g || typeof g.image !== "string" || !Array.isArray(g.bounds) || g.bounds.length !== 4) return null;
+  const [w, s, e, n] = g.bounds;
+  if (![w, s, e, n].every(Number.isFinite) || !(e > w && n > s)) return null;
+  if (!(Number.isFinite(g.rmsM) && g.rmsM <= ARTFIT_MAX_RMS_M)) return null;
+  return g;
+}
 function posterTierFor(cfg, affine, verified) {
-  if (!cfg || cfg.mapMode === "real" || !affine) return "none";
+  if (!cfg || cfg.mapMode === "real") return "none";
   if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
-  return verified ? "checked" : "unchecked";
+  if (affine && verified) return "checked";
+  if (artGeorefFor(cfg)) return "fitted";
+  return affine ? "unchecked" : "none";
 }
 const POSTER_TIER = posterTierFor(FESTIVAL_CONFIG, MAP_AFFINE, MAP_REGISTRATION_SOURCED);
+// A checked festival can carry a fit too (Summerfest, Lollapalooza, Outside
+// Lands: their official maps, Jake 2026-11-11). Its own art then replaces the
+// drawn overlay on the real map; its stages keep their checked pins.
+const ART_GEOREF = POSTER_TIER === "none" ? null : artGeorefFor(FESTIVAL_CONFIG);
+// The image the real map lays down: the fitted plate where there is one,
+// otherwise the art itself, placed corner by corner through the affine.
+const OFFICIAL_MAP_SRC = ART_GEOREF ? ART_GEOREF.image : FESTIVAL_CONFIG.mapImage;
 const POSTER_OPACITY_UNCHECKED = 0.35;
+// Fitted art matches the ground within metres, so it reads as the map; the
+// basemap still shows through enough to read streets past the art's edge.
+const POSTER_OPACITY_FITTED = 0.82;
 // What the real map may PIN: only what checked geometry places on the ground
 // (#313 review, Instinct's lane: "pins off, full stop"). On an unchecked
 // festival the affine exists but is not corroborated, so a stage, landmark or
@@ -2113,7 +2143,8 @@ function MapScreen({ state, setState }) {
   const artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
   const artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
   const mapPostureLabel = artYear + (REAL_MAP_ONLY || (useRealMap && !REAL_MAP_PLACES_CHECKED)
-    ? (useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING")
+    ? (useRealMap && POSTER_TIER === "fitted" ? "OFFICIAL MAP · STAGES PENDING"
+      : useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING")
     : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
         ? "OFFICIAL MAP"
         : "LAYOUT ONLY");
@@ -4662,6 +4693,12 @@ function _officialMapDims(src) {
   return _imgDimsCache[src];
 }
 
+// A fitted plate is already north-up, so its corners are its bounds.
+function _geoPlateCorners(g) {
+  const [w, s, e, n] = g.bounds;
+  return [[w, n], [e, n], [e, s], [w, s]];
+}
+
 // Corner quad for a MapLibre `image` source: [TL, TR, BR, BL] as [lng, lat].
 function _officialMapCorners(natW, natH) {
   const e = _officialMapExtent(natW, natH);
@@ -5273,12 +5310,13 @@ function RealMap({
           // below with no layer to turn back ON, making the toggle one-way.
           // Build it always; set initial visibility from the toggle.
           if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
-          if (!MAP_AFFINE) return;   // no anchors -> no defensible placement
+          // Fitted art places itself; otherwise no anchors -> no defensible placement.
+          if (!MAP_AFFINE && !ART_GEOREF) return;
           if (officialMapFailedRef.current) return;   // failed once: stays off
           const dims = officialMapDimsRef.current;
           if (!dims) return;         // still loading; the .then() below re-runs us
-          const src = dims.url || FESTIVAL_CONFIG.mapImage;
-          const coordinates = _officialMapCorners(dims.w, dims.h);
+          const src = dims.url || OFFICIAL_MAP_SRC;
+          const coordinates = ART_GEOREF ? _geoPlateCorners(ART_GEOREF) : _officialMapCorners(dims.w, dims.h);
           if (!map.getSource("official-map")) {
             map.addSource("official-map", { type: "image", url: src, coordinates });
           } else {
@@ -5302,7 +5340,7 @@ function RealMap({
                 // not to scale, and the ground under it is the truth (POSTER_TIER).
                 "raster-opacity": POSTER_TIER === "checked"
                   ? (FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78)
-                  : POSTER_OPACITY_UNCHECKED,
+                  : POSTER_TIER === "fitted" ? POSTER_OPACITY_FITTED : POSTER_OPACITY_UNCHECKED,
                 "raster-fade-duration": 0,
                 "raster-resampling": "linear",
               },
@@ -5313,7 +5351,7 @@ function RealMap({
         };
         _safeLayer("official-map", _addOfficialMap);
         if (!officialMapDimsRef.current && FESTIVAL_CONFIG.mapImage) {
-          _officialMapDims(FESTIVAL_CONFIG.mapImage).then((d) => {
+          _officialMapDims(OFFICIAL_MAP_SRC).then((d) => {
             if (cancelled || !d || !mapRef.current) return;
             officialMapDimsRef.current = d;
             _safeLayer("official-map", _addOfficialMap);
@@ -8023,5 +8061,5 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
 Object.assign(window, {
   MapScreen, getMyPingCode, WALK_PAIRS, _pairKey,
   geometryVerifiedFor, _geomVerifiedMemo, MAP_REGISTRATION_SOURCED, readoutHonest,
-  posterTierFor, POSTER_TIER, POSTER_OPACITY_UNCHECKED, REAL_MAP_PLACES_CHECKED, REAL_MAP_AMENITIES, _realMapTarget, _meetTargetFor, _groundsLngLats,
+  posterTierFor, POSTER_TIER, POSTER_OPACITY_UNCHECKED, POSTER_OPACITY_FITTED, artGeorefFor, ART_GEOREF, OFFICIAL_MAP_SRC, _geoPlateCorners, REAL_MAP_PLACES_CHECKED, REAL_MAP_AMENITIES, _realMapTarget, _meetTargetFor, _groundsLngLats,
 });

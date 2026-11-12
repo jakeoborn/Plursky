@@ -1161,6 +1161,14 @@ var FESTIVALS_REGISTRY = [{
     }],
     mainStageId: "kinetic",
     mapImage: "edco-tinker-2026.webp",
+    mapGeoref: {
+      image: "geo-maps/edc-orlando-2026.webp",
+      bounds: [-81.4059882, 28.5347911, -81.397489, 28.5411997],
+      model: "affine",
+      ties: "map-sources/edc-orlando-2026-geo-ties.json",
+      rmsM: 9.5,
+      looRmsM: 41.3
+    },
     mapStyle: "image-overlay",
     mapTheme: "park",
     weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",

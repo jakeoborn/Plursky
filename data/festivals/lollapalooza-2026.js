@@ -396,10 +396,14 @@
     ],
     weatherEndpoint: "https://api.weather.gov/points/41.88,-87.62",
     mainStageId: "tmobile",
-    // Generated abstract overlay, NOT the official patron map — that art is
-    // rights-restricted and is never copied into this repo (lostlands-2026.jpg
-    // precedent). Authored in the same 0-100 frame as the stages above.
+    // Generated abstract overlay, authored in the same 0-100 frame as the
+    // stages above; the poster view and the stage pins use it.
+    // The real map lays the festival's OWN map (Jake, 2026-11-11: "let's just
+    // use the map we do it for other festivals"), fitted to the streets by
+    // map-sources/lollapalooza-2026-geo-ties.json from https://help.lollapalooza.com/article/959-festival-map
     mapImage: "lolla-2026.svg",
+    mapGeoref: { image: "geo-maps/lollapalooza-2026.webp", bounds: [-87.6245612, 41.868904, -87.6168666, 41.8809954], model: "affine",
+                 ties: "map-sources/lollapalooza-2026-geo-ties.json", rmsM: 4.4, looRmsM: 7.2 },
     mapStyle: "image-overlay",
     mapTheme: "park",
     // The overlay prints no stage names, so pills carry them.
