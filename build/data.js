@@ -206,6 +206,14 @@ var FESTIVAL_CONFIG = {
   weatherEndpoint: "https://api.weather.gov/points/36.27,-115.01",
   mainStageId: "kinetic",
   mapImage: "edc-map-2026.jpg",
+  mapGeoref: {
+    image: "geo-maps/edc-lv-2026.webp",
+    bounds: [-115.0149509, 36.2686557, -115.0055499, 36.2757255],
+    model: "tps",
+    ties: "map-sources/edc-lv-2026-geo-ties.json",
+    rmsM: 13.2,
+    looRmsM: 13.2
+  },
   mapSource: {
     url: "https://lasvegas.edc.com/festival-map/",
     observedAt: "2026-09-24",

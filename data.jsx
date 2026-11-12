@@ -336,6 +336,12 @@ const FESTIVAL_CONFIG = {
   // ── Defaults ──
   mainStageId: "kinetic",
   mapImage: "edc-map-2026.jpg",
+  // The same art bent onto the speedway by a thin-plate fit over its own ties
+  // (Jake, 2026-11-12: "let's try to get each map overlayed on top of the
+  // real ground"): scripts/build-geo-plate.py over map-sources/edc-lv-2026-geo-ties.json.
+  // The real map lays this plate down at its bounds; stages stay pending.
+  mapGeoref: { image: "geo-maps/edc-lv-2026.webp", bounds: [-115.0149509, 36.2686557, -115.0055499, 36.2757255], model: "tps",
+               ties: "map-sources/edc-lv-2026-geo-ties.json", rmsM: 13.2, looRmsM: 13.2 },
 
   // The festival's OWN map page, linked (never embedded) by the /f/ page:
   // official publication is provenance, not reuse rights. mapYear is the
