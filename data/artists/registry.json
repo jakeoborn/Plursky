@@ -332,6 +332,21 @@
   "links": []
  },
  {
+  "key": "22-weeks",
+  "name": "22 Weeks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-22-weeks"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "220-kid",
   "name": "220 Kid",
   "aliases": [],
@@ -1804,6 +1819,7 @@
   ],
   "billings": [
    "ultra-miami-2026:ul75",
+   "groove-cruise-2027:gc-adam-beyer",
    "beyond-wonderland-socal-2012:d1:cheshire-woods:2130:adam-beyer",
    "coachella-2016:d3:yuma:2015:adam-beyer-b2b-ida-engberg",
    "coachella-2016:d6:yuma:2015:adam-beyer-b2b-ida-engberg",
@@ -1823,7 +1839,7 @@
    "tomorrowland-2023:d1:atmosphere:2300:adam-beyer"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2026-03-28",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -1910,11 +1926,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-adam-scott",
    "dreamstate-socal-2016:d1:timeless:1800:adam-scott",
    "edc-orlando-2023:d3:stereo-bloom:1400:adam-scott"
   ],
   "firstSeen": "2016-11-25",
-  "lastSeen": "2023-11-12",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -2167,6 +2184,21 @@
   ],
   "firstSeen": "2019-11-08",
   "lastSeen": "2022-11-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "adina-butar",
+  "name": "Adina Butar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-adina-butar"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -4449,6 +4481,21 @@
   "links": []
  },
  {
+  "key": "alley-kay",
+  "name": "Alley Kay",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-alley-kay"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alleycvt",
   "name": "Alleycvt",
   "aliases": [
@@ -5501,6 +5548,21 @@
   "links": []
  },
  {
+  "key": "amidy",
+  "name": "AMIDY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-amidy"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "amine",
   "name": "Aminé",
   "aliases": [
@@ -5612,6 +5674,21 @@
   "links": []
  },
  {
+  "key": "amprs-and-nd",
+  "name": "AMPRS&ND",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-amprs-and-nd"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "amtrac",
   "name": "Amtrac",
   "aliases": [],
@@ -5668,6 +5745,7 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-amy-wiles",
+   "groove-cruise-2027:gc-amy-wiles",
    "dreamstate-socal-2023:d2:the-dream:1600:amy-wiles",
    "dreamstate-socal-2025:d1:the-vision:1900:amy-wiles",
    "tomorrowland-2018:d1:garden-of-madness:1200:amy-wiles",
@@ -5675,7 +5753,7 @@
    "tomorrowland-2023:d5:crystal-garden:1500:amy-wiles-b2b-leena-punks"
   ],
   "firstSeen": "2018-07-20",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -5872,10 +5950,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-anabel-englund",
    "edc-orlando-2023:d1:stereo-bloom:1730:anabel-englund-sunset-set"
   ],
   "firstSeen": "2023-11-10",
-  "lastSeen": "2023-11-10",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -5964,10 +6043,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-thailand-2026:edcth-and-friends"
+   "edc-thailand-2026:edcth-and-friends",
+   "groove-cruise-2027:gc-and-friends"
   ],
   "firstSeen": "2026-12-18",
-  "lastSeen": "2026-12-18",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -5979,11 +6059,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "day-zero-tulum-2027:dzt-and-me",
    "tomorrowland-2018:d5:core:1930:and-me",
    "tomorrowland-2023:d2:core:2300:and-me"
   ],
   "firstSeen": "2018-07-28",
-  "lastSeen": "2023-07-22",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -6183,6 +6264,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-andrew-bayer",
    "dreamstate-socal-2019:d2:the-dream:0100:andrew-bayer-b2b-ilan-bluestone",
    "dreamstate-socal-2023:d2:the-dream:1900:andrew-bayer",
    "dreamstate-socal-2024:d2:the-dream:0000:andrew-bayer",
@@ -6192,7 +6274,7 @@
    "tomorrowland-2023:d5:crystal-garden:1900:andrew-bayer"
   ],
   "firstSeen": "2018-07-20",
-  "lastSeen": "2024-11-23",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -7082,6 +7164,21 @@
   "links": []
  },
  {
+  "key": "antaares",
+  "name": "ANTAARES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-antaares"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "antemasque",
   "name": "Antemasque",
   "aliases": [],
@@ -7094,6 +7191,21 @@
   ],
   "firstSeen": "2015-04-12",
   "lastSeen": "2015-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "anthony-attalla",
+  "name": "Anthony Attalla",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-anthony-attalla"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -10189,6 +10301,21 @@
   "links": []
  },
  {
+  "key": "badwolf",
+  "name": "BADWOLF",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-badwolf"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bae-toven",
   "name": "Bae-toven",
   "aliases": [],
@@ -11978,10 +12105,11 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls6",
+   "groove-cruise-2027:gc-bella-renee",
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:1630:bella-renee"
   ],
   "firstSeen": "2026-06-27",
-  "lastSeen": "2026-09-19",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -17267,6 +17395,21 @@
   "links": []
  },
  {
+  "key": "brookie",
+  "name": "Brookie",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-brookie"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "brooks",
   "name": "Brooks",
   "aliases": [],
@@ -17443,10 +17586,11 @@
    "iii-points-2026:iiip-brunello-b2b-rafael",
    "portola-2026:pt2-brunello",
    "hard-summer-2026:hs1-brunello",
-   "arc-2026:arc-tiga-b2b-brunello-expansions-d1"
+   "arc-2026:arc-tiga-b2b-brunello-expansions-d1",
+   "day-zero-tulum-2027:dzt-brunello"
   ],
   "firstSeen": "2026-08-01",
-  "lastSeen": "2026-11-06",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -17538,6 +17682,21 @@
   ],
   "firstSeen": "2023-11-17",
   "lastSeen": "2025-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bryan-lubliner",
+  "name": "Bryan Lubliner",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-bryan-lubliner"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -17867,10 +18026,11 @@
    "acl-2026:af41",
    "countdown-nye-2026:cdny-bunt",
    "decadence-arizona-2026:daz-bunt",
+   "groove-cruise-2027:gc-bunt",
    "lollapalooza-2025:d2:perry-s:1615:bunt"
   ],
   "firstSeen": "2025-08-01",
-  "lastSeen": "2026-12-31",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -20101,6 +20261,21 @@
   "links": []
  },
  {
+  "key": "cazztek",
+  "name": "Cazztek",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-cazztek"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cc-love",
   "name": "CC Love",
   "aliases": [],
@@ -21877,12 +22052,13 @@
    "edc-lv-2026:n3",
    "edc-lv-2026:b6",
    "portola-2026:pt1-chloe-caillet",
+   "day-zero-tulum-2027:dzt-chloe-caillet",
    "escape-halloween-2024:d1:wicked-woods:2000:chloe-caillet",
    "escape-halloween-2024:d1:the-cauldron:1730:chloe-caillet",
    "tomorrowland-2023:d1:core:1600:chloe-caillet"
   ],
   "firstSeen": "2023-07-21",
-  "lastSeen": "2026-09-26",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -22678,11 +22854,27 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-ciaran-mcauley",
    "dreamstate-socal-2024:d2:the-vision:1600:ciaran-mcauley",
    "tomorrowland-2018:d5:tulip:1500:ciaran-mcauley"
   ],
   "firstSeen": "2018-07-28",
-  "lastSeen": "2024-11-23",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cicale",
+  "name": "CICALE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-cicale"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -22713,6 +22905,7 @@
   "billings": [
    "edc-lv-2026:s15",
    "edc-orlando-2026:ecs2",
+   "groove-cruise-2027:gc-cid",
    "edc-las-vegas-2022:d2:stereo-bloom:0230:cid",
    "edc-las-vegas-2022:d2:allegiant-rave-hangar:0100:cid",
    "edc-orlando-2019:d2:kineticfield:1600:cid",
@@ -22721,7 +22914,7 @@
    "tomorrowland-2019:d4:l-orangerie:1400:cid"
   ],
   "firstSeen": "2019-07-26",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -24119,6 +24312,21 @@
   ],
   "firstSeen": "2012-06-28",
   "lastSeen": "2012-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "collelo",
+  "name": "Collelo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-collelo"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -25758,6 +25966,21 @@
   "links": []
  },
  {
+  "key": "culoe-de-song",
+  "name": "CULOE DE SONG",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-culoe-de-song"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cults",
   "name": "Cults",
   "aliases": [],
@@ -26272,6 +26495,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-d-o-d",
    "beyond-wonderland-socal-2026:d1:queen-s-domain:1940:d-o-d",
    "hard-summer-2025:d2:harder-stage:1600:d-o-d",
    "tomorrowland-2017:d2:jacked:2000:afrojack-b2b-d-o-d-b2b-ravitez",
@@ -26280,7 +26504,7 @@
    "tomorrowland-2019:d5:freedom-stage-by-budweiser:1730:d-o-d"
   ],
   "firstSeen": "2017-07-22",
-  "lastSeen": "2026-03-27",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -26797,6 +27021,7 @@
   "projects": [],
   "billings": [
    "arc-2026:arc-vintage-culture-b2b-damian-lazarus-expansions-d4",
+   "day-zero-tulum-2027:dzt-damian-lazarus",
    "beyond-wonderland-socal-2013:d1:cheshire-woods:1900:damian-lazarus",
    "coachella-2014:d1:yuma:1530:damian-lazarus",
    "coachella-2014:d4:yuma:1530:damian-lazarus",
@@ -26807,7 +27032,7 @@
    "tomorrowland-2019:d1:core:2300:damian-lazarus"
   ],
   "firstSeen": "2012-09-22",
-  "lastSeen": "2026-09-07",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -26856,6 +27081,21 @@
   ],
   "firstSeen": "2013-10-05",
   "lastSeen": "2013-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dan-ghenacia",
+  "name": "DAN GHENACIA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-dan-ghenacia"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -27355,6 +27595,21 @@
   ],
   "firstSeen": "2026-06-18",
   "lastSeen": "2026-06-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dansyn",
+  "name": "Dansyn",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-dansyn"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -27901,10 +28156,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-dave-neven",
    "dreamstate-socal-2019:d1:the-dream:1700:dave-neven"
   ],
   "firstSeen": "2019-11-22",
-  "lastSeen": "2019-11-22",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -28393,11 +28649,12 @@
   "projects": [],
   "billings": [
    "edc-thailand-2026:edcth-daxson",
+   "groove-cruise-2027:gc-daxson",
    "dreamstate-socal-2023:d1:the-dream:1600:daxson",
    "edc-las-vegas-2024:d2:quantum-valley:2030:daxson"
   ],
   "firstSeen": "2023-11-17",
-  "lastSeen": "2026-12-19",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -29314,11 +29571,27 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-deeper-purpose",
    "edc-las-vegas-2022:d3:stereo-bloom:2100:deeper-purpose",
    "edc-las-vegas-2024:d3:cosmic-meadow:2015:deeper-purpose"
   ],
   "firstSeen": "2022-05-22",
-  "lastSeen": "2024-05-19",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "deepfake",
+  "name": "DEEPFAKE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-deepfake"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -29330,10 +29603,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "day-zero-tulum-2027:dzt-deer-jade",
    "tomorrowland-2019:d6:leaf-by-jbl:1400:deer-jade"
   ],
   "firstSeen": "2019-07-28",
-  "lastSeen": "2019-07-28",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -29365,6 +29639,21 @@
   ],
   "firstSeen": "2016-04-16",
   "lastSeen": "2016-04-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "deerock",
+  "name": "Deerock",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-deerock"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -30973,9 +31262,11 @@
   "projects": [
    "abraxis"
   ],
-  "billings": [],
-  "firstSeen": null,
-  "lastSeen": null,
+  "billings": [
+   "groove-cruise-2027:gc-dimibo"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -31518,6 +31809,7 @@
    "iii-points-2026:iiip-disco-lines",
    "escape-halloween-2026:esc-disco-lines-d2",
    "sunset-on-the-river-2027:sotr-disco-lines",
+   "groove-cruise-2027:gc-disco-lines",
    "acl-2025:d3:miller-lite:1715:disco-lines",
    "acl-2025:d6:miller-lite:1715:disco-lines",
    "edc-las-vegas-2025:d3:cosmic-meadow:0430:disco-lines",
@@ -31684,10 +31976,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu11"
+   "lost-lands-2026:llu11",
+   "groove-cruise-2027:gc-distant-matter"
   ],
   "firstSeen": "2026-09-20",
-  "lastSeen": "2026-09-20",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -33860,6 +34153,21 @@
   "links": []
  },
  {
+  "key": "dj-susan",
+  "name": "DJ Susan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-dj-susan"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-tennis",
   "name": "DJ Tennis",
   "aliases": [
@@ -34425,11 +34733,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-doc-brown",
    "edc-orlando-2017:d1:corona-electric-beach:1400:doc-brown",
    "edc-orlando-2021:d1:corona-electric-beach:1500:doc-brown"
   ],
   "firstSeen": "2017-11-10",
-  "lastSeen": "2021-11-12",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -35170,6 +35479,21 @@
   ],
   "firstSeen": "2026-07-04",
   "lastSeen": "2026-07-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dose",
+  "name": "Dose",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-dose"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -36067,6 +36391,21 @@
   "links": []
  },
  {
+  "key": "drums-of-the-sun",
+  "name": "Drums of the Sun",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-drums-of-the-sun"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dskotek",
   "name": "DSKOTEK",
   "aliases": [],
@@ -36742,6 +37081,21 @@
   ],
   "firstSeen": "2015-10-04",
   "lastSeen": "2015-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dxn3",
+  "name": "DXN3",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-dxn3"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -38178,6 +38532,7 @@
    "ultra-miami-2026:ul74",
    "lollapalooza-2026:lo158",
    "decadence-arizona-2026:daz-eli-brown",
+   "groove-cruise-2027:gc-eli-brown",
    "edc-las-vegas-2024:d2:circuit-grounds:0215:eli-brown-b2b-hi-lo",
    "edc-las-vegas-2024:d2:stereo-bloom:2315:eli-brown",
    "edc-las-vegas-2025:d1:circuit-grounds:0330:eli-brown",
@@ -38191,7 +38546,7 @@
    "tomorrowland-2023:d1:atmosphere:1800:eli-brown"
   ],
   "firstSeen": "2019-09-15",
-  "lastSeen": "2026-12-30",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -38649,13 +39004,14 @@
   "billings": [
    "nocturnal-wonderland-2026:nw-ely-oaks",
    "dwp-2026:dwp-ely-oaks",
+   "groove-cruise-2027:gc-ely-oaks",
    "dreamstate-socal-2025:d2:the-void:1800:ely-oaks",
    "edc-orlando-2025:d2:kineticfield:1426:ely-oaks",
    "edc-orlando-2025:d2:casabacardi:2130:ely-oaks",
    "escape-halloween-2025:d2:the-big-top:1700:ely-oaks"
   ],
   "firstSeen": "2025-11-01",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -39520,6 +39876,21 @@
   ],
   "firstSeen": "2013-06-30",
   "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "eskuche",
+  "name": "Eskuche",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-eskuche"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -40475,12 +40846,13 @@
   "projects": [],
   "billings": [
    "edc-orlando-2026:ecs14",
+   "groove-cruise-2027:gc-fallon",
    "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:1830:fallon",
    "edc-las-vegas-2024:d1:house-of-dunkin:2130:fallon",
    "escape-halloween-2024:d2:feeding-grounds:1700:fallon"
   ],
   "firstSeen": "2024-05-17",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -45566,12 +45938,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-gene-farris",
    "edc-las-vegas-2022:d1:bionic-jungle:0130:gene-farris",
    "edc-las-vegas-2022:d3:stereo-bloom:0230:gene-farris",
    "nocturnal-wonderland-2021:d1:sunken-garden:1800:gene-farris"
   ],
   "firstSeen": "2021-09-18",
-  "lastSeen": "2022-05-22",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -48180,10 +48553,11 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:c20",
-   "nocturnal-wonderland-2026:nw-gravagerz"
+   "nocturnal-wonderland-2026:nw-gravagerz",
+   "groove-cruise-2027:gc-gravagerz"
   ],
   "firstSeen": "2026-05-17",
-  "lastSeen": "2026-09-19",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -48815,10 +49189,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-grube-and-hovsepian",
    "edc-orlando-2021:d2:stereo-bloom:1300:grube-and-hovsepian"
   ],
   "firstSeen": "2021-11-13",
-  "lastSeen": "2021-11-13",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -49014,11 +49389,12 @@
   "billings": [
    "nocturnal-wonderland-2026:nw-gudfella",
    "edc-thailand-2026:edcth-gudfella",
+   "groove-cruise-2027:gc-gudfella",
    "edc-las-vegas-2025:d3:cosmic-meadow:1900:gudfella",
    "edc-las-vegas-2025:d3:metaphoenix:0130:gudfella"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2026-12-19",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -50098,6 +50474,21 @@
   ],
   "firstSeen": "2019-07-21",
   "lastSeen": "2019-07-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hardt-antoine",
+  "name": "HARDT ANTOINE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-hardt-antoine"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -55280,12 +55671,13 @@
    "edc-lv-2026:c2",
    "lollapalooza-2026:lo153",
    "edc-thailand-2026:edcth-jackie-hollander",
+   "groove-cruise-2027:gc-jackie-hollander",
    "edc-las-vegas-2024:d3:house-of-dunkin:2200:jackie-hollander",
    "edc-las-vegas-2025:d1:stereo-bloom:2000:jackie-hollander",
    "edc-orlando-2024:d1:stereo-bloom:1415:jackie-hollander"
   ],
   "firstSeen": "2024-05-19",
-  "lastSeen": "2026-12-18",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -56317,6 +56709,21 @@
   "links": []
  },
  {
+  "key": "jane-fitz",
+  "name": "JANE FITZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-jane-fitz"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jane-leo",
   "name": "JANE LEO",
   "aliases": [],
@@ -56618,6 +57025,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-jason-ross",
    "dreamstate-socal-2016:d1:the-dream:1900:jason-ross",
    "dreamstate-socal-2019:d2:the-dream:2100:jason-ross",
    "edc-las-vegas-2022:d2:circuit-grounds:0430:jason-ross",
@@ -56626,7 +57034,7 @@
    "tomorrowland-2018:d1:garden-of-madness:1800:jason-ross"
   ],
   "firstSeen": "2016-11-25",
-  "lastSeen": "2022-05-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -56719,6 +57127,21 @@
   ],
   "firstSeen": "2017-07-21",
   "lastSeen": "2017-07-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jawar",
+  "name": "JAWAR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-jawar"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -58023,6 +58446,21 @@
   ],
   "firstSeen": "2014-04-13",
   "lastSeen": "2014-10-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jhony-chief",
+  "name": "JHONY CHIEF",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-jhony-chief-live"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -60137,13 +60575,14 @@
    "edc-orlando-2026:ecf19",
    "nocturnal-wonderland-2026:nw-joshwa",
    "countdown-nye-2026:cdny-joshwa",
+   "groove-cruise-2027:gc-joshwa",
    "edc-las-vegas-2022:d2:stereo-bloom:0330:joshwa",
    "edc-orlando-2023:d1:stereo-bloom:2000:westend-b2b-joshwa",
    "escape-halloween-2024:d2:feeding-grounds:2000:joshwa-b2b-riordan",
    "escape-halloween-2024:d2:casa-bacardi:2200:joshwa"
   ],
   "firstSeen": "2022-05-21",
-  "lastSeen": "2026-12-31",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -61555,6 +61994,21 @@
   "links": []
  },
  {
+  "key": "k3ss",
+  "name": "K3SS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-k3ss"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kab",
   "name": "KAB",
   "aliases": [],
@@ -62564,6 +63018,21 @@
   "links": []
  },
  {
+  "key": "katana",
+  "name": "KATANA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-katana"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kate-nash",
   "name": "Kate Nash",
   "aliases": [],
@@ -63380,10 +63849,11 @@
    "portola-2026:pt1-kettama",
    "lights-all-night-2026:lan-kettama",
    "decadence-arizona-2026:daz-kettama",
+   "groove-cruise-2027:gc-kettama",
    "edc-orlando-2025:d1:stereobloom:2115:prospa-b2b-kettama"
   ],
   "firstSeen": "2025-11-07",
-  "lastSeen": "2026-12-31",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -64462,10 +64932,11 @@
    "edc-lv-2026:b19",
    "edc-orlando-2026:ecs21",
    "iii-points-2026:iiip-kinahau",
-   "arc-2026:arc-silvie-loto-b2b-kinahau-grid-d4"
+   "arc-2026:arc-silvie-loto-b2b-kinahau-grid-d4",
+   "day-zero-tulum-2027:dzt-kinahau"
   ],
   "firstSeen": "2026-05-17",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -66059,11 +66530,12 @@
   "projects": [],
   "billings": [
    "hard-summer-2026:hs2-ksofresko",
+   "groove-cruise-2027:gc-ksofresko",
    "edc-las-vegas-2022:d2:pariah-express-art-car:2130:ksofresko",
    "edc-las-vegas-2022:d3:boombox-art-car:1900:ksofresko"
   ],
   "firstSeen": "2022-05-21",
-  "lastSeen": "2026-08-02",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -67619,12 +68091,13 @@
    "acl-2026:as08",
    "outside-lands-2026:os59",
    "outside-lands-2026:os93",
+   "groove-cruise-2027:gc-laszewo",
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2055:aszewo",
    "edc-orlando-2022:d3:circuit-grounds:1425:laszewo",
    "edc-orlando-2025:d3:circuitgrounds:1625:aszewo"
   ],
   "firstSeen": "2022-11-13",
-  "lastSeen": "2026-10-10",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -67748,12 +68221,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-laura-van-dam",
    "dreamstate-socal-2024:d2:the-dream:1500:laura-van-dam",
    "edc-las-vegas-2025:d3:quantum-valley:2000:laura-van-dam",
    "tomorrowland-2023:d5:crystal-garden:1330:laura-van-dam"
   ],
   "firstSeen": "2023-07-29",
-  "lastSeen": "2025-05-18",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -68236,6 +68710,21 @@
   "links": []
  },
  {
+  "key": "leah-loredo",
+  "name": "Leah Loredo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-leah-loredo"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "leann-rimes",
   "name": "LEANN RIMES",
   "aliases": [],
@@ -68411,10 +68900,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-leena-punks",
    "tomorrowland-2023:d5:crystal-garden:1500:amy-wiles-b2b-leena-punks"
   ],
   "firstSeen": "2023-07-29",
-  "lastSeen": "2023-07-29",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -69929,10 +70419,11 @@
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul30",
+   "groove-cruise-2027:gc-linney",
    "edc-las-vegas-2025:d1:forest-house:0300:linney"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2026-03-27",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -70387,10 +70878,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-lizzy-jane",
    "edc-las-vegas-2024:d2:meta-phoenix:0230:lizzy-jane"
   ],
   "firstSeen": "2024-05-18",
-  "lastSeen": "2024-05-18",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -71832,6 +72324,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "day-zero-tulum-2027:dzt-lp-giobbi",
    "acl-2021:d5:tito-s-handmade-vodka:1400:lp-giobbi",
    "acl-2025:d2:tito-s-handmade-vodka:1830:lp-giobbi",
    "acl-2025:d5:tito-s-handmade-vodka:1830:lp-giobbi",
@@ -71846,7 +72339,7 @@
    "tomorrowland-2023:d1:crystal-garden:1730:lp-giobbi"
   ],
   "firstSeen": "2021-09-18",
-  "lastSeen": "2025-10-11",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -72041,13 +72534,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-luccio",
    "edc-orlando-2017:d1:neongarden:1300:luccio",
    "edc-orlando-2021:d2:stereo-bloom:1400:luccio",
    "edc-orlando-2023:d3:stereo-bloom:1300:luccio",
    "edc-orlando-2024:d3:stereo-bloom:1300:luccio"
   ],
   "firstSeen": "2017-11-10",
-  "lastSeen": "2024-11-10",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -72084,10 +72578,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu26"
+   "lost-lands-2026:llu26",
+   "groove-cruise-2027:gc-luci"
   ],
   "firstSeen": "2026-09-20",
-  "lastSeen": "2026-09-20",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -72508,6 +73003,21 @@
   "links": []
  },
  {
+  "key": "luke-alexander",
+  "name": "Luke Alexander",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-luke-alexander"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "luke-combs",
   "name": "Luke Combs",
   "aliases": [
@@ -72591,6 +73101,21 @@
   ],
   "firstSeen": "2016-10-02",
   "lastSeen": "2016-10-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lum",
+  "name": "LUM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-lum"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -73960,6 +74485,21 @@
   ],
   "firstSeen": "2026-11-07",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "maesic",
+  "name": "Maesic",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-maesic"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -75413,11 +75953,12 @@
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul72",
+   "groove-cruise-2027:gc-marco-faraone",
    "tomorrowland-2017:d1:drumcode:1730:marco-faraone",
    "tomorrowland-2018:d1:core:1530:marco-faraone"
   ],
   "firstSeen": "2017-07-21",
-  "lastSeen": "2026-03-28",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -75462,11 +76003,12 @@
   "projects": [],
   "billings": [
    "crssd-fall-2026:crssd-marco-strous",
+   "groove-cruise-2027:gc-marco-strous",
    "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:1845:marco-strous",
    "escape-halloween-2025:d2:feeding-grounds:1815:marco-strous"
   ],
   "firstSeen": "2025-11-01",
-  "lastSeen": "2026-09-27",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -75786,11 +76328,12 @@
   "billings": [
    "dreamstate-socal-2026:dssc-hannah-laing-and-marie-vaunt",
    "lights-all-night-2026:lan-marie-vaunt",
+   "groove-cruise-2027:gc-marie-vaunt",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:2000:marie-vaunt",
    "edc-las-vegas-2025:d1:quantum-valley:2300:marie-vaunt"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2026-12-30",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -76155,6 +76698,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-markus-schulz",
    "beyond-wonderland-socal-2013:d1:queen-s-domain:2130:markus-schulz",
    "dreamstate-socal-2024:d1:the-dream:2045:markus-schulz",
    "edc-las-vegas-2024:d1:quantum-valley:0000:markus-schulz",
@@ -76168,7 +76712,7 @@
    "tomorrowland-2019:d6:freedom-stage-by-budweiser:2300:markus-schulz"
   ],
   "firstSeen": "2013-03-16",
-  "lastSeen": "2024-11-22",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -76715,6 +77259,21 @@
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mary-jane",
+  "name": "MARY JANE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-mary-jane"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -77896,12 +78455,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-max-low",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:1600:max-low",
    "edc-las-vegas-2022:d2:forest-house-art-car:0415:max-low",
    "nocturnal-wonderland-2022:d2:sunken-garden:1500:max-low"
   ],
   "firstSeen": "2022-05-21",
-  "lastSeen": "2026-03-28",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -78112,6 +78672,21 @@
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "maxinne",
+  "name": "Maxinne",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-maxinne"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -78556,10 +79131,11 @@
   "billings": [
    "edc-orlando-2026:ecs26",
    "edc-orlando-2026:ecf42",
-   "ultra-miami-2026:ul115"
+   "ultra-miami-2026:ul115",
+   "groove-cruise-2027:gc-me-n-u"
   ],
   "firstSeen": "2026-03-29",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -81112,6 +81688,21 @@
   "links": []
  },
  {
+  "key": "mira",
+  "name": "MIRA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-mira"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mirage",
   "name": "Mirage",
   "aliases": [],
@@ -81409,11 +82000,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "day-zero-tulum-2027:dzt-mita-gami",
    "edc-las-vegas-2025:d1:neon-garden:0215:adam-ten-b2b-mita-gami",
    "hard-summer-2025:d2:pink-stage:2030:adam-ten-b2b-mita-gami"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2025-08-03",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -81442,13 +82034,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-mitis",
    "coachella-2014:d6:do-lab:2245:mitis",
    "edc-las-vegas-2022:d2:cosmic-meadow:0330:mitis",
    "edc-las-vegas-2024:d2:kinetic-field:2000:mitis",
    "edc-las-vegas-2024:d2:house-of-dunkin:0200:mitis-throwback-set"
   ],
   "firstSeen": "2014-04-20",
-  "lastSeen": "2024-05-18",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -83185,13 +83778,14 @@
    "outside-lands-2026:os30",
    "iii-points-2026:iiip-mph",
    "crssd-fall-2026:crssd-mph",
+   "groove-cruise-2027:gc-mph",
    "edc-las-vegas-2025:d3:stereo-bloom:0315:33-below-b2b-mph",
    "edc-las-vegas-2025:d3:metaphoenix:2300:mph",
    "edc-orlando-2025:d3:stereobloom:1615:mph",
    "hard-summer-2025:d2:purple-stage:1730:mph"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2026-11-06",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -85021,6 +85615,21 @@
   "links": []
  },
  {
+  "key": "nate-wyatt",
+  "name": "Nate Wyatt",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-nate-wyatt"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nathan-barato",
   "name": "NATHAN BARATO",
   "aliases": [],
@@ -85033,6 +85642,21 @@
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2017-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nathan-bliss",
+  "name": "Nathan Bliss",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-nathan-bliss"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -85806,6 +86430,21 @@
   "links": []
  },
  {
+  "key": "new-girl",
+  "name": "New Girl",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-new-girl"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "new-id",
   "name": "NEW_ID",
   "aliases": [],
@@ -86352,6 +86991,21 @@
   "links": []
  },
  {
+  "key": "nicky-genesis",
+  "name": "Nicky Genesis",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-nicky-genesis"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nicky-romero",
   "name": "Nicky Romero",
   "aliases": [],
@@ -86688,6 +87342,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-nifra",
    "dreamstate-socal-2024:d2:the-void:1800:nifra",
    "dreamstate-socal-2025:d1:the-void:2300:nifra",
    "edc-las-vegas-2024:d1:quantum-valley:2100:nifra",
@@ -86695,7 +87350,7 @@
    "tomorrowland-2023:d3:youphoria:1730:nifra"
   ],
   "firstSeen": "2021-11-13",
-  "lastSeen": "2025-11-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -89098,10 +89753,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-okayval",
    "edc-orlando-2025:d2:kineticfield:1330:okayval"
   ],
   "firstSeen": "2025-11-08",
-  "lastSeen": "2025-11-08",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -95050,6 +95706,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-pretty-pink",
    "dreamstate-socal-2023:d2:the-dream:1700:pretty-pink",
    "edc-las-vegas-2022:d1:quantum-valley:2000:pretty-pink",
    "edc-las-vegas-2022:d1:parliament-art-car:0000:pretty-pink",
@@ -95061,7 +95718,7 @@
    "tomorrowland-2023:d5:the-library:1700:pretty-pink"
   ],
   "firstSeen": "2019-07-20",
-  "lastSeen": "2023-11-18",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -96137,6 +96794,21 @@
   "links": []
  },
  {
+  "key": "quackson",
+  "name": "Quackson",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-quackson"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "quadeca",
   "name": "Quadeca",
   "aliases": [],
@@ -96915,12 +97587,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-raecola",
    "edc-las-vegas-2025:d3:stereo-bloom:1900:raecola",
    "edc-las-vegas-2025:d3:blacklight-bar:2230:raecola",
    "lollapalooza-2025:d4:perry-s:1200:raecola"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2025-08-03",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -96950,10 +97623,11 @@
   "billings": [
    "iii-points-2026:iiip-brunello-b2b-rafael",
    "crssd-fall-2026:crssd-rafael",
-   "edc-thailand-2026:edcth-rafael"
+   "edc-thailand-2026:edcth-rafael",
+   "day-zero-tulum-2027:dzt-rafael"
   ],
   "firstSeen": "2026-09-26",
-  "lastSeen": "2026-12-19",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -96996,10 +97670,11 @@
   "projects": [],
   "billings": [
    "iii-points-2026:iiip-ragie-ban",
-   "nocturnal-wonderland-2026:nw-ragie-ban"
+   "nocturnal-wonderland-2026:nw-ragie-ban",
+   "groove-cruise-2027:gc-ragie-ban"
   ],
   "firstSeen": "2026-09-19",
-  "lastSeen": "2026-10-16",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -97435,13 +98110,14 @@
    "portola-2026:pt1-ranger-trucco-b2b-alisha",
    "hard-summer-2026:hs2-ranger-trucco",
    "countdown-nye-2026:cdny-ranger-trucco",
+   "groove-cruise-2027:gc-ranger-trucco",
    "beyond-wonderland-socal-2026:d1:the-sea-of-wonder:1950:ranger-trucco",
    "edc-las-vegas-2024:d3:bionic-jungle:2300:ranger-trucco",
    "edc-orlando-2025:d1:stereobloom:1730:luke-dean-b2b-ranger-trucco-sunset-set",
    "escape-halloween-2021:d2:sanitarium:1600:ranger-trucco"
   ],
   "firstSeen": "2021-10-30",
-  "lastSeen": "2026-12-31",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -97717,6 +98393,21 @@
   ],
   "firstSeen": "2017-07-22",
   "lastSeen": "2018-07-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ravnzen",
+  "name": "RavnZen",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-ravnzen"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -99962,16 +100653,18 @@
  },
  {
   "key": "rinaly",
-  "name": "RINALY",
+  "name": "Rinaly",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [
    "rina-mirai"
   ],
-  "billings": [],
-  "firstSeen": null,
-  "lastSeen": null,
+  "billings": [
+   "groove-cruise-2027:gc-rinaly"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -100459,6 +101152,21 @@
   "links": []
  },
  {
+  "key": "robag-wruhme",
+  "name": "ROBAG WRUHME",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-robag-wruhme"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "robbie-doherty",
   "name": "Robbie Doherty",
   "aliases": [],
@@ -100857,10 +101565,11 @@
    "edc-orlando-2026:ecs31",
    "iii-points-2026:iiip-roddy-lima",
    "arc-2026:arc-discip-b2b-roddy-lima-midway-d2",
-   "decadence-arizona-2026:daz-roddy-lima"
+   "decadence-arizona-2026:daz-roddy-lima",
+   "groove-cruise-2027:gc-roddy-lima"
   ],
   "firstSeen": "2026-05-15",
-  "lastSeen": "2026-12-31",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -101129,6 +101838,21 @@
   ],
   "firstSeen": "2025-11-22",
   "lastSeen": "2025-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "romeo",
+  "name": "Romeo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-romeo"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -101610,6 +102334,21 @@
   ],
   "firstSeen": "2026-05-16",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rpr-soundsystem-raresh-rhadoo-petre-inspirescu",
+  "name": "RPR SOUNDSYSTEM (RARESH, RHADOO, PETRE INSPIRESCU)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-rpr-soundsystem-raresh-rhadoo-petre-inspirescu"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -102552,6 +103291,21 @@
   "links": []
  },
  {
+  "key": "sad-bois",
+  "name": "SAD BOIS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-sad-bois"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sad-boy-saturday",
   "name": "Sad Boy Saturday",
   "aliases": [],
@@ -103035,6 +103789,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-sam-feldt",
    "coachella-2016:d1:sahara:1555:sam-feldt",
    "coachella-2016:d4:sahara:1550:sam-feldt",
    "tomorrowland-2017:d3:robin-schulz-and-friends:1630:sam-feldt",
@@ -103043,7 +103798,7 @@
    "tomorrowland-2019:d5:mainstage:1750:sam-feldt-live"
   ],
   "firstSeen": "2016-04-15",
-  "lastSeen": "2019-07-27",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -103753,11 +104508,12 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:q1",
+   "groove-cruise-2027:gc-sarah-de-warren",
    "dreamstate-socal-2025:d1:the-dream:1600:sarah-de-warren",
    "edc-las-vegas-2025:d3:metaphoenix:1900:sarah-de-warren"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2026-05-15",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -103908,10 +104664,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "day-zero-tulum-2027:dzt-satori-live",
    "coachella-2016:d6:do-lab:1445:satori"
   ],
   "firstSeen": "2016-04-24",
-  "lastSeen": "2016-04-24",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -104462,6 +105219,21 @@
   "links": []
  },
  {
+  "key": "scooter-and-lavelle",
+  "name": "Scooter & Lavelle",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-scooter-and-lavelle"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "scorched-waves",
   "name": "Scorched Waves",
   "aliases": [],
@@ -104548,6 +105320,21 @@
   ],
   "firstSeen": "2026-06-20",
   "lastSeen": "2026-06-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "scotty-boy",
+  "name": "Scotty Boy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-scotty-boy"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -104773,10 +105560,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul160"
+   "ultra-miami-2026:ul160",
+   "groove-cruise-2027:gc-sebastian-morxx"
   ],
   "firstSeen": "2026-03-29",
-  "lastSeen": "2026-03-29",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -104827,6 +105615,21 @@
   ],
   "firstSeen": "2016-07-28",
   "lastSeen": "2016-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "secret-echoes",
+  "name": "SECRET ECHOES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-secret-echoes-live"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -105905,6 +106708,21 @@
   "links": []
  },
  {
+  "key": "shannon-scott-williams",
+  "name": "Shannon Scott Williams",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-shannon-scott-williams"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "shanti-celeste",
   "name": "Shanti Celeste",
   "aliases": [],
@@ -106388,10 +107206,11 @@
   ],
   "billings": [
    "edc-lv-2026:k20",
+   "groove-cruise-2027:gc-ship-wrek",
    "edc-orlando-2023:d2:kinetic-field:1527:ship-wrek"
   ],
   "firstSeen": "2023-11-11",
-  "lastSeen": "2026-05-17",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -107267,10 +108086,11 @@
   "billings": [
    "edc-lv-2026:s24",
    "portola-2026:pt2-silva-bumpa",
-   "arc-2026:arc-silva-bumpa-area909-d1"
+   "arc-2026:arc-silva-bumpa-area909-d1",
+   "groove-cruise-2027:gc-silva-bumpa"
   ],
   "firstSeen": "2026-05-17",
-  "lastSeen": "2026-09-27",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -108786,10 +109606,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-sloane-motion",
    "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:1600:sloane-motion"
   ],
   "firstSeen": "2026-06-28",
-  "lastSeen": "2026-06-28",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -109912,6 +110733,21 @@
   "links": []
  },
  {
+  "key": "somnity",
+  "name": "SOMNiTY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-somnity"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "somo",
   "name": "SoMo",
   "aliases": [],
@@ -110338,6 +111174,21 @@
   "links": []
  },
  {
+  "key": "soul-of-hex",
+  "name": "SOUL OF HEX",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-soul-of-hex"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "soul-purpose",
   "name": "Soul Purpose",
   "aliases": [],
@@ -110597,11 +111448,12 @@
   ],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-amber-broos-b2b-space-92",
+   "groove-cruise-2027:gc-space-92",
    "dreamstate-socal-2025:d2:the-void:2200:space-92",
    "edc-orlando-2024:d3:kinetic-field:1432:space-92"
   ],
   "firstSeen": "2024-11-10",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -115763,6 +116615,21 @@
   "links": []
  },
  {
+  "key": "tee-so",
+  "name": "Tee So",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-tee-so"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "teezo-touchdown",
   "name": "TEEZO TOUCHDOWN",
   "aliases": [],
@@ -117167,6 +118034,21 @@
   ],
   "firstSeen": "2013-08-03",
   "lastSeen": "2013-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-brothers-grim",
+  "name": "The Brothers Grim",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-the-brothers-grim"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -121730,6 +122612,7 @@
    "iii-points-2026:iiip-tiga",
    "hard-summer-2026:hs2-tiga",
    "arc-2026:arc-tiga-b2b-brunello-expansions-d1",
+   "day-zero-tulum-2027:dzt-tiga",
    "coachella-2014:d2:yuma:2230:tiga",
    "coachella-2014:d5:yuma:2230:tiga",
    "edc-orlando-2019:d1:neongarden:1800:tiga-b2b-dj-tennis",
@@ -121737,7 +122620,7 @@
    "tomorrowland-2019:d1:freedom-stage-by-budweiser:2100:tiga"
   ],
   "firstSeen": "2014-04-12",
-  "lastSeen": "2026-10-17",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -122083,12 +122966,13 @@
   "projects": [],
   "billings": [
    "nocturnal-wonderland-2026:nw-tini-gessler",
+   "groove-cruise-2027:gc-tini-gessler",
    "edc-orlando-2023:d2:neon-garden:1400:tini-gessler",
    "tomorrowland-2017:d4:elrow:1230:tini-gessler",
    "tomorrowland-2019:d4:casa-corona:1800:tini-gessler-b2b-toni-varga"
   ],
   "firstSeen": "2017-07-28",
-  "lastSeen": "2026-09-20",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -122151,10 +123035,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-tinykvt",
    "edc-las-vegas-2022:d2:pariah-express-art-car:2245:tinykvt"
   ],
   "firstSeen": "2022-05-21",
-  "lastSeen": "2022-05-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -122685,6 +123570,21 @@
   ],
   "firstSeen": "2018-07-29",
   "lastSeen": "2018-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tom-higgenson",
+  "name": "Tom Higgenson",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-tom-higgenson"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -123627,6 +124527,21 @@
   "links": []
  },
  {
+  "key": "travis-clark",
+  "name": "Travis Clark",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-travis-clark"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "travis-scott",
   "name": "Travis Scott",
   "aliases": [
@@ -123944,6 +124859,7 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llu43",
+   "groove-cruise-2027:gc-trivecta",
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2155:trivecta",
    "edc-las-vegas-2025:d1:cosmic-meadow:2100:trivecta",
    "edc-orlando-2022:d3:circuit-grounds:1625:trivecta",
@@ -123951,7 +124867,7 @@
    "nocturnal-wonderland-2022:d1:labyrinth:1900:trivecta"
   ],
   "firstSeen": "2022-09-17",
-  "lastSeen": "2026-09-20",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -126878,10 +127794,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "day-zero-tulum-2027:dzt-victor-calderone",
    "nocturnal-wonderland-2011:d2:upside-down-room:2130:victor-calderone"
   ],
   "firstSeen": "2011-09-24",
-  "lastSeen": "2011-09-24",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -127263,6 +128180,7 @@
    "hard-summer-2026:hs2-vintage-culture",
    "arc-2026:arc-vintage-culture-b2b-damian-lazarus-expansions-d4",
    "edc-thailand-2026:edcth-vintage-culture",
+   "day-zero-tulum-2027:dzt-vintage-culture",
    "edc-las-vegas-2022:d2:kinetic-field:2309:vintage-culture",
    "edc-las-vegas-2022:d2:parliament-art-car:0100:vintage-culture",
    "edc-las-vegas-2022:d3:stereo-bloom:0000:vintage-culture-b2b-james-hype",
@@ -127282,7 +128200,7 @@
    "tomorrowland-2023:d4:crystal-garden:1600:vintage-culture"
   ],
   "firstSeen": "2019-07-19",
-  "lastSeen": "2026-12-18",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -128019,6 +128937,21 @@
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2024-05-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wadley",
+  "name": "WADLEY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "day-zero-tulum-2027:dzt-wadley-live"
+  ],
+  "firstSeen": "2027-01-09",
+  "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
  },
@@ -129018,6 +129951,21 @@
   "links": []
  },
  {
+  "key": "wes-miles",
+  "name": "WES MILES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-wes-miles"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wes-mills",
   "name": "Wes Mills",
   "aliases": [
@@ -129360,6 +130308,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "groove-cruise-2027:gc-whipped-cream",
    "edc-las-vegas-2022:d1:cosmic-meadow:0430:whipped-cream",
    "edc-orlando-2021:d3:circuit-grounds:1805:whipped-cream",
    "lollapalooza-2019:d3:perry-s:untimed:whipped-cream",
@@ -129369,7 +130318,7 @@
    "tomorrowland-2023:d5:youphoria:2000:whipped-cream"
   ],
   "firstSeen": "2019-07-26",
-  "lastSeen": "2023-07-29",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },
@@ -131846,6 +132795,21 @@
   ],
   "firstSeen": "2015-10-04",
   "lastSeen": "2016-07-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "years-of-war",
+  "name": "Years of War",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "groove-cruise-2027:gc-years-of-war"
+  ],
+  "firstSeen": "2027-01-21",
+  "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
  },

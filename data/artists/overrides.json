@@ -2398,6 +2398,10 @@
   {
    "printed": "FLORENCE + THE MACHINE",
    "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "RPR SOUNDSYSTEM (RARESH, RHADOO, PETRE INSPIRESCU)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
   }
  ]
 }

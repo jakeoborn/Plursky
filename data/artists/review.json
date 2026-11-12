@@ -14,6 +14,13 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "day-zero-tulum-2027:dzt-rpr-soundsystem-raresh-rhadoo-petre-inspirescu",
+  "printed": "RPR SOUNDSYSTEM (RARESH, RHADOO, PETRE INSPIRESCU)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "acl-2013:d1:austin-kiddie-limits:1230:tim-and-the-space-cadets-with-mother-falcon",
   "printed": "Tim and the Space Cadets with Mother Falcon",
   "reason": "feat / with billing",
@@ -644,6 +651,13 @@
   "why": "Short name billed at Nocturnal Wonderland 2022 and Lights All Night 2026 (from a press relay of the poster). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  },
  {
+  "id": "key:d-o-d",
+  "printed": "D.O.D",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:zoe",
   "printed": "Zoé",
   "reason": "very short name billed at more than one festival brand",
@@ -723,13 +737,6 @@
  {
   "id": "key:edx",
   "printed": "EDX",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
- },
- {
-  "id": "key:d-o-d",
-  "printed": "D.O.D",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
