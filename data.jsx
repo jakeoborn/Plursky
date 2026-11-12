@@ -3137,6 +3137,34 @@ function attendanceVerdictLabel(v) {
   return "";
 }
 
+// Set tracking (spec PR 3) keeps runs one fix at a time; chrome.jsx owns the
+// store and the watcher, these two pure rules live beside the engine.
+// One qualifying fix ({ ms, stageId }) onto a festival's entry. The same rule
+// as attendFixesToIntervals, one fix at a time: it extends the newest run when
+// that run is this stage and the gap is ≤ gapMs; a fix at another stage or a
+// longer gap starts a new run. A fix older than the last one is dropped (the
+// watch delivers in order; a repeat must not reopen a closed run).
+function setTrackAppend(entry, fix, gapMs = ATTEND_GAP_MS) {
+  const e = { last: entry && entry.last ? { ...entry.last } : null, runs: {} };
+  for (const k of Object.keys((entry && entry.runs) || {})) e.runs[k] = entry.runs[k].map(r => ({ from: r.from, to: r.to, src: r.src }));
+  if (!fix || typeof fix.ms !== "number" || !isFinite(fix.ms) || fix.stageId == null) return e;
+  if (e.last && fix.ms < e.last.ms) return e;
+  const runs = (e.runs[fix.stageId] = e.runs[fix.stageId] || []);
+  const top = runs[runs.length - 1];
+  if (e.last && e.last.stageId === fix.stageId && top && fix.ms - top.to <= gapMs) top.to = fix.ms;
+  else runs.push({ from: fix.ms, to: fix.ms, src: "gps" });
+  e.last = { stageId: fix.stageId, ms: fix.ms };
+  return e;
+}
+// Can sets be timed for this festival right now? "no-stages" means none of
+// its stages has a measured position, so tracking is never offered for it.
+function setTrackEligibility(cfg, nowMs) {
+  if (!cfg) return "no-festival";
+  if (!attendEvidenceAnchors(cfg).length) return "no-stages";
+  const phase = typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, nowMs) : "upcoming";
+  return phase === "live" ? "live" : phase === "ended" ? "ended" : "not-live";
+}
+
 // ── Schedule Sync: the feed shape, the diff, the replay ────────────────────
 // The schedule as f/<id>/schedule.json publishes it and as the diff reads it.
 // gen-festival-pages calls this same function, so the feed and the app's own
