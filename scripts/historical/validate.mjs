@@ -31,6 +31,8 @@ export const OFFICIAL_HOSTS = {
   "dreamstate-socal": ["dreamstateusa.com"],
   "tomorrowland": ["tomorrowland.com"],
   "shambhala": ["shambhalamusicfestival.com"],
+  // The schedule grid and act pages lived on the lineup subdomain (DoStuff).
+  "outside-lands": ["sfoutsidelands.com", "lineup.sfoutsidelands.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -341,6 +343,19 @@ function officialSources(e, meta, p) {
         if (!T || new Date(T * 1000).toISOString().slice(0, 10) !== date) p.push(`${tag}: the page's first slot ${c.firstSlot} is not on ${date}`);
         if (String(c.printed).toLowerCase() !== wd.toLowerCase()) p.push(`${tag}: the page's day tab "${c.printed}" is not ${wd}`);
       } else if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
+      // Outside Lands' grid prints no am/pm: the day's meridiem comes from one
+      // act's own page on the official site, which must print this day.
+      if (c.meridiemFrom) {
+        const m = c.meridiemFrom;
+        officialArchive(m.archivedUrl, e.festivalId, e.year, p, `${tag} meridiem`);
+        if (!/^[0-9a-f]{64}$/.test(m.sha256 || "")) p.push(`${tag}: the meridiem page's hash is missing`);
+        // "Friday Aug 9 7:10 PM on Lands End" (through 2014) or "Friday, August 7, 7:55 PM" (2015 on).
+        const pm = /^([A-Za-z]+),? ([A-Za-z]{3,9}) (\d{1,2}),? \d{1,2}:\d{2} [AP]M(?: .+)?$/.exec(m.printed || "");
+        const d = new Date(date + "T12:00:00Z");
+        if (!pm || pm[1] !== d.toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" }) || pm[2].slice(0, 3) !== d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })
+          || (pm[2].length > 3 && pm[2] !== d.toLocaleDateString("en-US", { month: "long", timeZone: "UTC" })) || +pm[3] !== d.getUTCDate())
+          p.push(`${tag}: the meridiem page prints "${m.printed}", not a set on ${date}`);
+      }
     }
     // A stage printed two ways carried onto one name: only case, spacing and
     // a leading "The" may change, and the target must be a stage it shows.

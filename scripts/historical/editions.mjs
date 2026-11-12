@@ -29,6 +29,17 @@ export const EDITIONS = {
   "shambhala-2014": { festivalId: "shambhala", name: "Shambhala 2014", year: 2014, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2014-08-07","Thursday"],["2014-08-08","Friday"],["2014-08-09","Saturday"],["2014-08-10","Sunday"]] },
   "shambhala-2015": { festivalId: "shambhala", name: "Shambhala 2015", year: 2015, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2015-08-06","Thursday"],["2015-08-07","Friday"],["2015-08-08","Saturday"],["2015-08-09","Sunday"]] },
   "shambhala-2016": { festivalId: "shambhala", name: "Shambhala 2016", year: 2016, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2016-08-04","Thursday"],["2016-08-05","Friday"],["2016-08-06","Saturday"],["2016-08-07","Sunday"]] },
+  // Outside Lands 2012-2017: the official lineup.sfoutsidelands.com schedule
+  // grid, one archived page per day (format "dostuff-grid",
+  // dostuff-schedule.mjs). The grid prints no am/pm; each day's meridiem is
+  // read off one act's own page on the same site. Music runs from noon to
+  // 10 PM in Golden Gate Park, so no set crosses midnight.
+  "outside-lands-2012": { festivalId: "outside-lands", name: "Outside Lands 2012", year: 2012, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2012-08-10","Friday"],["2012-08-11","Saturday"],["2012-08-12","Sunday"]] },
+  "outside-lands-2013": { festivalId: "outside-lands", name: "Outside Lands 2013", year: 2013, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2013-08-09","Friday"],["2013-08-10","Saturday"],["2013-08-11","Sunday"]] },
+  "outside-lands-2014": { festivalId: "outside-lands", name: "Outside Lands 2014", year: 2014, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2014-08-08","Friday"],["2014-08-09","Saturday"],["2014-08-10","Sunday"]] },
+  "outside-lands-2015": { festivalId: "outside-lands", name: "Outside Lands 2015", year: 2015, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2015-08-07","Friday"],["2015-08-08","Saturday"],["2015-08-09","Sunday"]] },
+  "outside-lands-2016": { festivalId: "outside-lands", name: "Outside Lands 2016", year: 2016, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2016-08-05","Friday"],["2016-08-06","Saturday"],["2016-08-07","Sunday"]] },
+  "outside-lands-2017": { festivalId: "outside-lands", name: "Outside Lands 2017", year: 2017, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2017-08-11","Friday"],["2017-08-12","Saturday"],["2017-08-13","Sunday"]] },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.

@@ -2468,6 +2468,137 @@
    ],
    "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
    "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "DJ Shotnez (Balkan Beat Box)",
+   "performers": [
+    {
+     "name": "DJ Shotnez",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the band the DJ is known from, not a second act on the set: the DJ is the performer, and the band is never credited as playing.",
+   "source": "https://www.sfoutsidelands.com/"
+  },
+  {
+   "printed": "DJ Sam Spiegel (NASA)",
+   "performers": [
+    {
+     "name": "DJ Sam Spiegel",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the band the DJ is known from, not a second act on the set: the DJ is the performer, and the band is never credited as playing.",
+   "source": "https://www.sfoutsidelands.com/"
+  },
+  {
+   "printed": "Run the Jewels (El-P & Killer Mike)",
+   "performers": [
+    {
+     "name": "Run the Jewels",
+     "role": "project",
+     "parents": [
+      "El-P",
+      "Killer Mike"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.sfoutsidelands.com/"
+  },
+  {
+   "printed": "Wolf + Lamb vs. Soul Clap",
+   "performers": [
+    {
+     "name": "Wolf + Lamb",
+     "role": "cobilled"
+    },
+    {
+     "name": "Soul Clap",
+     "role": "cobilled"
+    }
+   ],
+   "why": "The printing sets two acts against each other with \"vs.\": each side is credited as co-billed on the same set. \"Wolf + Lamb\" stays one name, as printed (never split on \"+\").",
+   "source": "https://www.sfoutsidelands.com/"
+  },
+  {
+   "printed": "HEARTWATCH (fka The Tropics)",
+   "performers": [
+    {
+     "name": "HEARTWATCH",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical gives the act's former name (\"fka\"): the billed name is the performer. It is not merged with any billing of the old name until a first-party page links them.",
+   "source": "https://www.sfoutsidelands.com/"
+  },
+  {
+   "printed": "Brother in Arms (J.Boogie and DJ Theory)",
+   "performers": [
+    {
+     "name": "Brother in Arms",
+     "role": "project",
+     "parents": [
+      "J.Boogie",
+      "DJ Theory"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.sfoutsidelands.com/"
+  },
+  {
+   "printed": "Floorwax (feat. Motion Potion & DJ Zeph)",
+   "performers": [
+    {
+     "name": "Floorwax",
+     "role": "performer"
+    },
+    {
+     "name": "Motion Potion",
+     "role": "guest"
+    },
+    {
+     "name": "DJ Zeph",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.sfoutsidelands.com/"
+  },
+  {
+   "printed": "BIG GRAMS (BIG BOI + PHANTOGRAM)",
+   "performers": [
+    {
+     "name": "BIG GRAMS",
+     "role": "project",
+     "parents": [
+      "BIG BOI",
+      "PHANTOGRAM"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.sfoutsidelands.com/"
+  },
+  {
+   "printed": "BERKLEE COLLEGE OF MUSIC WITH DWILLY AND GUEST HUNTER LAMAR",
+   "performers": [
+    {
+     "name": "BERKLEE COLLEGE OF MUSIC",
+     "role": "performer"
+    },
+    {
+     "name": "DWILLY",
+     "role": "guest"
+    },
+    {
+     "name": "HUNTER LAMAR",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"and guest\" adds the second guest.",
+   "source": "https://www.sfoutsidelands.com/"
   }
  ],
  "pending": [
@@ -2910,6 +3041,18 @@
   {
    "key": "r-d",
    "why": "Short name billed at Nocturnal Wonderland 2022 and Lights All Night 2026 (from a press relay of the poster). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+  },
+  {
+   "key": "fun",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "air",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "wet",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]
 }

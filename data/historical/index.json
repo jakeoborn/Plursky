@@ -2872,6 +2872,192 @@
    }
   },
   {
+   "id": "outside-lands-2017",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2017",
+   "year": 2017,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-08-11",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-08-12",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-08-13",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 94,
+    "sets": 109
+   }
+  },
+  {
+   "id": "outside-lands-2016",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2016",
+   "year": 2016,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-08-05",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-08-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2016-08-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 90,
+    "sets": 90
+   }
+  },
+  {
+   "id": "outside-lands-2015",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2015",
+   "year": 2015,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-08-07",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-08-08",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-08-09",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 95,
+    "sets": 107
+   }
+  },
+  {
+   "id": "outside-lands-2014",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2014",
+   "year": 2014,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-08-08",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-08-09",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-08-10",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 86,
+    "sets": 86
+   }
+  },
+  {
+   "id": "outside-lands-2013",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2013",
+   "year": 2013,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-08-09",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2013-08-10",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2013-08-11",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 96,
+    "sets": 109
+   }
+  },
+  {
+   "id": "outside-lands-2012",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2012",
+   "year": 2012,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-08-10",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-08-11",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2012-08-12",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 87,
+    "sets": 87
+   }
+  },
+  {
    "id": "shambhala-2016",
    "festivalId": "shambhala",
    "festivalName": "Shambhala",

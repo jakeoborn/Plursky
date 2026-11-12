@@ -1,0 +1,346 @@
+{
+  "id": "outside-lands-2014",
+  "method": "official_sources",
+  "official": "https://www.sfoutsidelands.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2014-08-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2014/08/08",
+          "archivedUrl": "https://web.archive.org/web/20140811114020/http://lineup.sfoutsidelands.com/events/2014/08/08",
+          "captureTimestamp": "20140811114020",
+          "printed": "Friday, August 8",
+          "sha256": "b9809d005a3712cba8db7341ee296bb4c4f56a29d0a254b6613fe36ec6023edb",
+          "bytes": 65533,
+          "rows": 29,
+          "format": "dostuff-grid",
+          "stages": 7,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/kanye-west",
+            "archivedUrl": "https://web.archive.org/web/20140819184855/http://lineup.sfoutsidelands.com/band/kanye-west",
+            "captureTimestamp": "20140819184855",
+            "sha256": "fcc7e1e4223e934453d268c5c99362c95dab78afa93b9e6272249686d46f70fb",
+            "bytes": 56211,
+            "printed": "Friday Aug 8 8:20 PM on Lands End"
+          },
+          "comedyShows": 4,
+          "comedyStage": "The Barbary",
+          "foodShows": 5,
+          "foodStage": "GastroMagic"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2014-08-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2014/08/09",
+          "archivedUrl": "https://web.archive.org/web/20140811185329/http://lineup.sfoutsidelands.com/events/2014/08/09",
+          "captureTimestamp": "20140811185329",
+          "printed": "Saturday, August 9",
+          "sha256": "87aba0a13caba8c3c3b7d711c49c98ccc86973457c45dbd97d452aa487058f5c",
+          "bytes": 65398,
+          "rows": 29,
+          "format": "dostuff-grid",
+          "stages": 7,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/tom-petty-and-the-heartbreakers",
+            "archivedUrl": "https://web.archive.org/web/20140819195245/http://lineup.sfoutsidelands.com/band/tom-petty-and-the-heartbreakers",
+            "captureTimestamp": "20140819195245",
+            "sha256": "fd5b96d438dc7355a550005ad3653e0d2967f2cd9ad104b1a010b21afa8bc8c2",
+            "bytes": 54235,
+            "printed": "Saturday Aug 9 7:55 PM on Lands End"
+          },
+          "comedyShows": 4,
+          "comedyStage": "The Barbary",
+          "foodShows": 5,
+          "foodStage": "GastroMagic"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2014-08-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2014/08/10",
+          "archivedUrl": "https://web.archive.org/web/20140811185409/http://lineup.sfoutsidelands.com/events/2014/08/10",
+          "captureTimestamp": "20140811185409",
+          "printed": "Sunday, August 10",
+          "sha256": "2ca68a3a14a532e6b7563012d3d59acf65632d7914d42efdc8c5de70aee27026",
+          "bytes": 64332,
+          "rows": 28,
+          "format": "dostuff-grid",
+          "stages": 7,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/the-killers",
+            "archivedUrl": "https://web.archive.org/web/20140819084800/http://lineup.sfoutsidelands.com/band/the-killers",
+            "captureTimestamp": "20140819084800",
+            "sha256": "34ed2ea2e961cb6d65b4dc8df3407c18867fdbb33a6f4e42ead598440422cf56",
+            "bytes": 61242,
+            "printed": "Sunday Aug 10 8:05 PM on Lands End"
+          },
+          "comedyShows": 4,
+          "comedyStage": "The Barbary",
+          "foodShows": 4,
+          "foodStage": "GastroMagic"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "12:45",
+      "end": "13:45",
+      "billing": "Garfunkel & Oates and Aparna Nancherla",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "14:30",
+      "end": "15:45",
+      "billing": "Aisha Tyler, Ali Mafi and Matt McCarthy",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "16:30",
+      "end": "17:45",
+      "billing": "Lewis Black, Rory Albanese and Aparna Nancherla",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "18:15",
+      "end": "19:15",
+      "billing": "Garfunkel & Oates and Aparna Nancherla",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "13:45",
+      "end": "14:15",
+      "billing": "Flavor Tripping Food Science with Chris Jones",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "15:05",
+      "end": "15:35",
+      "billing": "Magician Jon Armstrong",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "16:35",
+      "end": "17:05",
+      "billing": "Offal Good Music with Chris Cosentino",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "18:05",
+      "end": "18:35",
+      "billing": "Amaro Amore!",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "19:35",
+      "end": "20:20",
+      "billing": "Chocolate Gold Rush with Holy Ghost!",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "12:45",
+      "end": "13:45",
+      "billing": "The Chris Gethard Show",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "14:15",
+      "end": "15:15",
+      "billing": "Improv4Humans - Upright Citizens Brigade's Matt Besser with guests Chris Gethard, Lauren Lapkus and Seth Morris",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "The Improvised Shakespeare Company",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "17:45",
+      "end": "19:00",
+      "billing": "Aisha Tyler, Ali Mafi and Matt McCarthy",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "13:30",
+      "end": "14:00",
+      "billing": "Chefs Read Bad Reviews with Matt Besser",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "14:50",
+      "end": "15:20",
+      "billing": "Beignets & Bounce Brunch wih Big Freedia",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "16:10",
+      "end": "16:40",
+      "billing": "Duck Sauce Soiree featuring Duck Sauce and Brandon Jew",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "17:30",
+      "end": "18:00",
+      "billing": "Knights of the Rich Table",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "19:10",
+      "end": "19:40",
+      "billing": "BBQ & Drank with Lewis Black & Southpaw",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "12:45",
+      "end": "13:45",
+      "billing": "The Improvised Shakespeare Company",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "14:30",
+      "end": "15:45",
+      "billing": "Lewis Black and Rory Albanese",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "16:30",
+      "end": "18:00",
+      "billing": "Stars of Silicon Valley: Thomas Middleditch, T.J. Miller, and Kumail Nanjiani",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "18:30",
+      "end": "20:00",
+      "billing": "Stars of Silicon Valley: Thomas Middleditch, T.J. Miller and Kumail Nanjiani",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "14:50",
+      "end": "15:30",
+      "billing": "The Improvised Shakespeare Company in the Kitchen",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "16:10",
+      "end": "16:40",
+      "billing": "Breakdown Breakdance",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "17:40",
+      "end": "18:10",
+      "billing": "Food Fight: Marlowe vs Park Tavern",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "19:20",
+      "end": "20:05",
+      "billing": "Mezcal Mambo Limbo",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    }
+  ],
+  "dropped": []
+}

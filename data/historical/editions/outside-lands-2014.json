@@ -1,0 +1,1479 @@
+{
+ "id": "outside-lands-2014",
+ "festivalId": "outside-lands",
+ "name": "Outside Lands 2014",
+ "year": 2014,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2014-08-08",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2014-08-09",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2014-08-10",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "outside-lands-2014:lands-end",
+   "name": "Lands End"
+  },
+  {
+   "id": "outside-lands-2014:sutro",
+   "name": "Sutro"
+  },
+  {
+   "id": "outside-lands-2014:twin-peaks",
+   "name": "Twin Peaks"
+  },
+  {
+   "id": "outside-lands-2014:panhandle",
+   "name": "Panhandle"
+  },
+  {
+   "id": "outside-lands-2014:the-house-by-heineken",
+   "name": "The House by Heineken"
+  }
+ ],
+ "artists": [
+  {
+   "id": "outside-lands-2014:the-soul-rebels",
+   "name": "The Soul Rebels",
+   "key": "the-soul-rebels",
+   "performers": [
+    "the-soul-rebels"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:run-the-jewels-el-p-and-killer-mike",
+   "name": "Run the Jewels (El-P & Killer Mike)",
+   "key": "run-the-jewels-el-p-and-killer-mike",
+   "performers": [
+    "run-the-jewels-el-p-and-killer-mike"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:holy-ghost",
+   "name": "Holy Ghost!",
+   "key": "holy-ghost",
+   "performers": [
+    "holy-ghost"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:chromeo",
+   "name": "Chromeo",
+   "key": "chromeo",
+   "performers": [
+    "chromeo"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:disclosure",
+   "name": "Disclosure",
+   "key": "disclosure",
+   "performers": [
+    "disclosure"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:kanye-west",
+   "name": "Kanye West",
+   "key": "kanye-west",
+   "performers": [
+    "kanye-west"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:rayland-baxter",
+   "name": "RayLand Baxter",
+   "key": "rayland-baxter",
+   "performers": [
+    "rayland-baxter"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:greensky-bluegrass",
+   "name": "Greensky Bluegrass",
+   "key": "greensky-bluegrass",
+   "performers": [
+    "greensky-bluegrass"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:phosphorescent",
+   "name": "Phosphorescent",
+   "key": "phosphorescent",
+   "performers": [
+    "phosphorescent"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:nicki-bluhm-and-the-gramblers",
+   "name": "Nicki Bluhm and The Gramblers",
+   "key": "nicki-bluhm-and-the-gramblers",
+   "performers": [
+    "nicki-bluhm-and-the-gramblers"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:kacey-musgraves",
+   "name": "Kacey Musgraves",
+   "key": "kacey-musgraves",
+   "performers": [
+    "kacey-musgraves"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:tedeschi-trucks-band",
+   "name": "Tedeschi Trucks Band",
+   "key": "tedeschi-trucks-band",
+   "performers": [
+    "tedeschi-trucks-band"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:aer",
+   "name": "Aer",
+   "key": "aer",
+   "performers": [
+    "aer"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:bleachers",
+   "name": "Bleachers",
+   "key": "bleachers",
+   "performers": [
+    "bleachers"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:warpaint",
+   "name": "Warpaint",
+   "key": "warpaint",
+   "performers": [
+    "warpaint"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:grouplove",
+   "name": "Grouplove",
+   "key": "grouplove",
+   "performers": [
+    "grouplove"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:tegan-and-sara",
+   "name": "Tegan & Sara",
+   "key": "tegan-and-sara",
+   "performers": [
+    "tegan-and-sara"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:arctic-monkeys",
+   "name": "Arctic Monkeys",
+   "key": "arctic-monkeys",
+   "performers": [
+    "arctic-monkeys"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:night-terrors-of-1927",
+   "name": "Night Terrors of 1927",
+   "key": "night-terrors-of-1927",
+   "performers": [
+    "night-terrors-of-1927"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:usps-janis-joplin-tribute-featuring-special-guests",
+   "name": "USPS Janis Joplin Tribute featuring Special Guests",
+   "key": "usps-janis-joplin-tribute-featuring-special-guests",
+   "performers": [
+    "usps-janis-joplin-tribute-featuring-special-guests"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:nahko-and-medicine-for-the-people",
+   "name": "Nahko and Medicine for the People",
+   "key": "nahko-and-medicine-for-the-people",
+   "performers": [
+    "nahko-and-medicine-for-the-people"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:mikal-cronin",
+   "name": "Mikal Cronin",
+   "key": "mikal-cronin",
+   "performers": [
+    "mikal-cronin"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:bear-hands",
+   "name": "Bear Hands",
+   "key": "bear-hands",
+   "performers": [
+    "bear-hands"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:typhoon",
+   "name": "Typhoon",
+   "key": "typhoon",
+   "performers": [
+    "typhoon"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:shouts",
+   "name": "Shouts!",
+   "key": "shouts",
+   "performers": [
+    "shouts"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:dj-dials",
+   "name": "DJ Dials",
+   "key": "dj-dials",
+   "performers": [
+    "dj-dials"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:motion-potion",
+   "name": "Motion Potion",
+   "key": "motion-potion",
+   "performers": [
+    "motion-potion"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:paul-johnson",
+   "name": "Paul Johnson",
+   "key": "paul-johnson",
+   "performers": [
+    "paul-johnson"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:dj-icey",
+   "name": "DJ Icey",
+   "key": "dj-icey",
+   "performers": [
+    "dj-icey"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:dum-dum-girls",
+   "name": "Dum Dum Girls",
+   "key": "dum-dum-girls",
+   "performers": [
+    "dum-dum-girls"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:the-kooks",
+   "name": "The Kooks",
+   "key": "the-kooks",
+   "performers": [
+    "the-kooks"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:local-natives",
+   "name": "Local Natives",
+   "key": "local-natives",
+   "performers": [
+    "local-natives"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:haim",
+   "name": "Haim",
+   "key": "haim",
+   "performers": [
+    "haim"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:death-cab-for-cutie",
+   "name": "Death Cab For Cutie",
+   "key": "death-cab-for-cutie",
+   "performers": [
+    "death-cab-for-cutie"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:tom-petty-and-the-heartbreakers",
+   "name": "Tom Petty & the Heartbreakers",
+   "key": "tom-petty-and-the-heartbreakers",
+   "performers": [
+    "tom-petty-and-the-heartbreakers"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:tumbleweed-wanderers",
+   "name": "Tumbleweed Wanderers",
+   "key": "tumbleweed-wanderers",
+   "performers": [
+    "tumbleweed-wanderers"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:valerie-june",
+   "name": "Valerie June",
+   "key": "valerie-june",
+   "performers": [
+    "valerie-june"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:christopher-owens",
+   "name": "Christopher Owens",
+   "key": "christopher-owens",
+   "performers": [
+    "christopher-owens"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:deer-tick",
+   "name": "Deer Tick",
+   "key": "deer-tick",
+   "performers": [
+    "deer-tick"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:john-butler-trio",
+   "name": "John Butler Trio",
+   "key": "john-butler-trio",
+   "performers": [
+    "john-butler-trio"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:atmosphere",
+   "name": "Atmosphere",
+   "key": "atmosphere",
+   "performers": [
+    "atmosphere"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:trails-and-ways",
+   "name": "Trails and Ways",
+   "key": "trails-and-ways",
+   "performers": [
+    "trails-and-ways"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:jagwar-ma",
+   "name": "Jagwar Ma",
+   "key": "jagwar-ma",
+   "performers": [
+    "jagwar-ma"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:tycho",
+   "name": "Tycho",
+   "key": "tycho",
+   "performers": [
+    "tycho"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:capital-cities",
+   "name": "Capital Cities",
+   "key": "capital-cities",
+   "performers": [
+    "capital-cities"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:duck-sauce",
+   "name": "Duck Sauce",
+   "key": "duck-sauce",
+   "performers": [
+    "duck-sauce"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:macklemore-and-ryan-lewis",
+   "name": "Macklemore & Ryan Lewis",
+   "key": "macklemore-and-ryan-lewis",
+   "performers": [
+    "macklemore-and-ryan-lewis"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:nocona",
+   "name": "Nocona",
+   "key": "nocona",
+   "performers": [
+    "nocona"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:the-districts",
+   "name": "The Districts",
+   "key": "the-districts",
+   "performers": [
+    "the-districts"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:finish-ticket",
+   "name": "Finish Ticket",
+   "key": "finish-ticket",
+   "performers": [
+    "finish-ticket"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:vance-joy",
+   "name": "Vance Joy",
+   "key": "vance-joy",
+   "performers": [
+    "vance-joy"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:big-freedia",
+   "name": "Big Freedia",
+   "key": "big-freedia",
+   "performers": [
+    "big-freedia"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:boys-noize",
+   "name": "Boys Noize",
+   "key": "boys-noize",
+   "performers": [
+    "boys-noize"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:matt-haze",
+   "name": "Matt Haze",
+   "key": "matt-haze",
+   "performers": [
+    "matt-haze"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:deejay-theory",
+   "name": "Deejay Theory",
+   "key": "deejay-theory",
+   "performers": [
+    "deejay-theory"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:shawn-reynaldo",
+   "name": "Shawn Reynaldo",
+   "key": "shawn-reynaldo",
+   "performers": [
+    "shawn-reynaldo"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:the-scumfrog",
+   "name": "The Scumfrog",
+   "key": "the-scumfrog",
+   "performers": [
+    "the-scumfrog"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:gorgon-city",
+   "name": "Gorgon City",
+   "key": "gorgon-city",
+   "performers": [
+    "gorgon-city"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:imelda-may",
+   "name": "Imelda May",
+   "key": "imelda-may",
+   "performers": [
+    "imelda-may"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:chvrches",
+   "name": "CHVRCHES",
+   "key": "chvrches",
+   "performers": [
+    "chvrches"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:paolo-nutini",
+   "name": "Paolo Nutini",
+   "key": "paolo-nutini",
+   "performers": [
+    "paolo-nutini"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:spoon",
+   "name": "Spoon",
+   "key": "spoon",
+   "performers": [
+    "spoon"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:the-flaming-lips",
+   "name": "The Flaming Lips",
+   "key": "the-flaming-lips",
+   "performers": [
+    "the-flaming-lips"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:the-killers",
+   "name": "The Killers",
+   "key": "the-killers",
+   "performers": [
+    "the-killers"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:jonathan-wilson",
+   "name": "Jonathan Wilson",
+   "key": "jonathan-wilson",
+   "performers": [
+    "jonathan-wilson"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:woods",
+   "name": "Woods",
+   "key": "woods",
+   "performers": [
+    "woods"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:lucius",
+   "name": "Lucius",
+   "key": "lucius",
+   "performers": [
+    "lucius"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:jenny-lewis",
+   "name": "Jenny Lewis",
+   "key": "jenny-lewis",
+   "performers": [
+    "jenny-lewis"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:ben-howard",
+   "name": "Ben Howard",
+   "key": "ben-howard",
+   "performers": [
+    "ben-howard"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:ray-lamontagne",
+   "name": "Ray LaMontagne",
+   "key": "ray-lamontagne",
+   "performers": [
+    "ray-lamontagne"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:made-in-heights",
+   "name": "Made in Heights",
+   "key": "made-in-heights",
+   "performers": [
+    "made-in-heights"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:watsky",
+   "name": "Watsky",
+   "key": "watsky",
+   "performers": [
+    "watsky"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:flume",
+   "name": "Flume",
+   "key": "flume",
+   "performers": [
+    "flume"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:lykke-li",
+   "name": "Lykke Li",
+   "key": "lykke-li",
+   "performers": [
+    "lykke-li"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:cut-copy",
+   "name": "Cut Copy",
+   "key": "cut-copy",
+   "performers": [
+    "cut-copy"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:the-bots",
+   "name": "The Bots",
+   "key": "the-bots",
+   "performers": [
+    "the-bots"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:the-brothers-comatose",
+   "name": "The Brothers Comatose",
+   "key": "the-brothers-comatose",
+   "performers": [
+    "the-brothers-comatose"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:hiss-golden-messenger",
+   "name": "Hiss Golden Messenger",
+   "key": "hiss-golden-messenger",
+   "performers": [
+    "hiss-golden-messenger"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:courtney-barnett",
+   "name": "Courtney Barnett",
+   "key": "courtney-barnett",
+   "performers": [
+    "courtney-barnett"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:gardens-and-villa",
+   "name": "Gardens & Villa",
+   "key": "gardens-and-villa",
+   "performers": [
+    "gardens-and-villa"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:gold-panda",
+   "name": "Gold Panda",
+   "key": "gold-panda",
+   "performers": [
+    "gold-panda"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:lights-down-low-richie-panic-sleazemore-and-mphd",
+   "name": "Lights Down Low: Richie Panic, Sleazemore & MPHD",
+   "key": "lights-down-low-richie-panic-sleazemore-and-mphd",
+   "performers": [
+    "lights-down-low-richie-panic-sleazemore-and-mphd"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:cappa-regime",
+   "name": "Cappa Regime",
+   "key": "cappa-regime",
+   "performers": [
+    "cappa-regime"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:soultech-gene-farris-and-dustin-sheridan",
+   "name": "Soultech 'Gene Farris & Dustin Sheridan'",
+   "key": "soultech-gene-farris-and-dustin-sheridan",
+   "performers": [
+    "soultech-gene-farris-and-dustin-sheridan"
+   ]
+  },
+  {
+   "id": "outside-lands-2014:green-velvet",
+   "name": "Green Velvet",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "outside-lands-2014:d1:lands-end:1255:the-soul-rebels",
+   "artistId": "outside-lands-2014:the-soul-rebels",
+   "day": 1,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "12:55",
+   "end": "13:45"
+  },
+  {
+   "id": "outside-lands-2014:d1:lands-end:1415:run-the-jewels-el-p-and-killer-mike",
+   "artistId": "outside-lands-2014:run-the-jewels-el-p-and-killer-mike",
+   "day": 1,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "14:15",
+   "end": "15:05"
+  },
+  {
+   "id": "outside-lands-2014:d1:lands-end:1535:holy-ghost",
+   "artistId": "outside-lands-2014:holy-ghost",
+   "day": 1,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "15:35",
+   "end": "16:35"
+  },
+  {
+   "id": "outside-lands-2014:d1:lands-end:1705:chromeo",
+   "artistId": "outside-lands-2014:chromeo",
+   "day": 1,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "17:05",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2014:d1:lands-end:1835:disclosure",
+   "artistId": "outside-lands-2014:disclosure",
+   "day": 1,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "18:35",
+   "end": "19:35"
+  },
+  {
+   "id": "outside-lands-2014:d1:lands-end:2020:kanye-west",
+   "artistId": "outside-lands-2014:kanye-west",
+   "day": 1,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "20:20",
+   "end": "22:00"
+  },
+  {
+   "id": "outside-lands-2014:d1:sutro:1200:rayland-baxter",
+   "artistId": "outside-lands-2014:rayland-baxter",
+   "day": 1,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2014:d1:sutro:1310:greensky-bluegrass",
+   "artistId": "outside-lands-2014:greensky-bluegrass",
+   "day": 1,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "13:10",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2014:d1:sutro:1430:phosphorescent",
+   "artistId": "outside-lands-2014:phosphorescent",
+   "day": 1,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "outside-lands-2014:d1:sutro:1600:nicki-bluhm-and-the-gramblers",
+   "artistId": "outside-lands-2014:nicki-bluhm-and-the-gramblers",
+   "day": 1,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "outside-lands-2014:d1:sutro:1730:kacey-musgraves",
+   "artistId": "outside-lands-2014:kacey-musgraves",
+   "day": 1,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "outside-lands-2014:d1:sutro:1900:tedeschi-trucks-band",
+   "artistId": "outside-lands-2014:tedeschi-trucks-band",
+   "day": 1,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "outside-lands-2014:d1:twin-peaks:1245:aer",
+   "artistId": "outside-lands-2014:aer",
+   "day": 1,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2014:d1:twin-peaks:1410:bleachers",
+   "artistId": "outside-lands-2014:bleachers",
+   "day": 1,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "14:10",
+   "end": "14:55"
+  },
+  {
+   "id": "outside-lands-2014:d1:twin-peaks:1540:warpaint",
+   "artistId": "outside-lands-2014:warpaint",
+   "day": 1,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "15:40",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2014:d1:twin-peaks:1715:grouplove",
+   "artistId": "outside-lands-2014:grouplove",
+   "day": 1,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "17:15",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2014:d1:twin-peaks:1850:tegan-and-sara",
+   "artistId": "outside-lands-2014:tegan-and-sara",
+   "day": 1,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "18:50",
+   "end": "19:50"
+  },
+  {
+   "id": "outside-lands-2014:d1:twin-peaks:2040:arctic-monkeys",
+   "artistId": "outside-lands-2014:arctic-monkeys",
+   "day": 1,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "20:40",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2014:d1:panhandle:1200:night-terrors-of-1927",
+   "artistId": "outside-lands-2014:night-terrors-of-1927",
+   "day": 1,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2014:d1:panhandle:1330:usps-janis-joplin-tribute-featuring-special-guests",
+   "artistId": "outside-lands-2014:usps-janis-joplin-tribute-featuring-special-guests",
+   "day": 1,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "13:30",
+   "end": "14:10"
+  },
+  {
+   "id": "outside-lands-2014:d1:panhandle:1455:nahko-and-medicine-for-the-people",
+   "artistId": "outside-lands-2014:nahko-and-medicine-for-the-people",
+   "day": 1,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "14:55",
+   "end": "15:35"
+  },
+  {
+   "id": "outside-lands-2014:d1:panhandle:1630:mikal-cronin",
+   "artistId": "outside-lands-2014:mikal-cronin",
+   "day": 1,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "outside-lands-2014:d1:panhandle:1805:bear-hands",
+   "artistId": "outside-lands-2014:bear-hands",
+   "day": 1,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "18:05",
+   "end": "18:45"
+  },
+  {
+   "id": "outside-lands-2014:d1:panhandle:1950:typhoon",
+   "artistId": "outside-lands-2014:typhoon",
+   "day": 1,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "19:50",
+   "end": "20:35"
+  },
+  {
+   "id": "outside-lands-2014:d1:the-house-by-heineken:1200:shouts",
+   "artistId": "outside-lands-2014:shouts",
+   "day": 1,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2014:d1:the-house-by-heineken:1330:dj-dials",
+   "artistId": "outside-lands-2014:dj-dials",
+   "day": 1,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2014:d1:the-house-by-heineken:1500:motion-potion",
+   "artistId": "outside-lands-2014:motion-potion",
+   "day": 1,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2014:d1:the-house-by-heineken:1630:paul-johnson",
+   "artistId": "outside-lands-2014:paul-johnson",
+   "day": 1,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2014:d1:the-house-by-heineken:1800:dj-icey",
+   "artistId": "outside-lands-2014:dj-icey",
+   "day": 1,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "outside-lands-2014:d2:lands-end:1220:dum-dum-girls",
+   "artistId": "outside-lands-2014:dum-dum-girls",
+   "day": 2,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "12:20",
+   "end": "13:10"
+  },
+  {
+   "id": "outside-lands-2014:d2:lands-end:1340:the-kooks",
+   "artistId": "outside-lands-2014:the-kooks",
+   "day": 2,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "13:40",
+   "end": "14:30"
+  },
+  {
+   "id": "outside-lands-2014:d2:lands-end:1500:local-natives",
+   "artistId": "outside-lands-2014:local-natives",
+   "day": 2,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "outside-lands-2014:d2:lands-end:1630:haim",
+   "artistId": "outside-lands-2014:haim",
+   "day": 2,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "outside-lands-2014:d2:lands-end:1800:death-cab-for-cutie",
+   "artistId": "outside-lands-2014:death-cab-for-cutie",
+   "day": 2,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "18:00",
+   "end": "19:10"
+  },
+  {
+   "id": "outside-lands-2014:d2:lands-end:1955:tom-petty-and-the-heartbreakers",
+   "artistId": "outside-lands-2014:tom-petty-and-the-heartbreakers",
+   "day": 2,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "19:55",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2014:d2:sutro:1200:tumbleweed-wanderers",
+   "artistId": "outside-lands-2014:tumbleweed-wanderers",
+   "day": 2,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "outside-lands-2014:d2:sutro:1310:valerie-june",
+   "artistId": "outside-lands-2014:valerie-june",
+   "day": 2,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "13:10",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2014:d2:sutro:1430:christopher-owens",
+   "artistId": "outside-lands-2014:christopher-owens",
+   "day": 2,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "outside-lands-2014:d2:sutro:1600:deer-tick",
+   "artistId": "outside-lands-2014:deer-tick",
+   "day": 2,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "outside-lands-2014:d2:sutro:1730:john-butler-trio",
+   "artistId": "outside-lands-2014:john-butler-trio",
+   "day": 2,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "outside-lands-2014:d2:sutro:1900:atmosphere",
+   "artistId": "outside-lands-2014:atmosphere",
+   "day": 2,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "outside-lands-2014:d2:twin-peaks:1240:trails-and-ways",
+   "artistId": "outside-lands-2014:trails-and-ways",
+   "day": 2,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "12:40",
+   "end": "13:25"
+  },
+  {
+   "id": "outside-lands-2014:d2:twin-peaks:1405:jagwar-ma",
+   "artistId": "outside-lands-2014:jagwar-ma",
+   "day": 2,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "14:05",
+   "end": "14:55"
+  },
+  {
+   "id": "outside-lands-2014:d2:twin-peaks:1540:tycho",
+   "artistId": "outside-lands-2014:tycho",
+   "day": 2,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "15:40",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2014:d2:twin-peaks:1715:capital-cities",
+   "artistId": "outside-lands-2014:capital-cities",
+   "day": 2,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "17:15",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2014:d2:twin-peaks:1855:duck-sauce",
+   "artistId": "outside-lands-2014:duck-sauce",
+   "day": 2,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "18:55",
+   "end": "19:55"
+  },
+  {
+   "id": "outside-lands-2014:d2:twin-peaks:2040:macklemore-and-ryan-lewis",
+   "artistId": "outside-lands-2014:macklemore-and-ryan-lewis",
+   "day": 2,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "20:40",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2014:d2:panhandle:1200:nocona",
+   "artistId": "outside-lands-2014:nocona",
+   "day": 2,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2014:d2:panhandle:1325:the-districts",
+   "artistId": "outside-lands-2014:the-districts",
+   "day": 2,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "13:25",
+   "end": "14:05"
+  },
+  {
+   "id": "outside-lands-2014:d2:panhandle:1455:finish-ticket",
+   "artistId": "outside-lands-2014:finish-ticket",
+   "day": 2,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "14:55",
+   "end": "15:35"
+  },
+  {
+   "id": "outside-lands-2014:d2:panhandle:1630:vance-joy",
+   "artistId": "outside-lands-2014:vance-joy",
+   "day": 2,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "outside-lands-2014:d2:panhandle:1805:big-freedia",
+   "artistId": "outside-lands-2014:big-freedia",
+   "day": 2,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "18:05",
+   "end": "18:50"
+  },
+  {
+   "id": "outside-lands-2014:d2:panhandle:1955:boys-noize",
+   "artistId": "outside-lands-2014:boys-noize",
+   "day": 2,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "19:55",
+   "end": "20:40"
+  },
+  {
+   "id": "outside-lands-2014:d2:the-house-by-heineken:1200:matt-haze",
+   "artistId": "outside-lands-2014:matt-haze",
+   "day": 2,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2014:d2:the-house-by-heineken:1330:deejay-theory",
+   "artistId": "outside-lands-2014:deejay-theory",
+   "day": 2,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2014:d2:the-house-by-heineken:1500:shawn-reynaldo",
+   "artistId": "outside-lands-2014:shawn-reynaldo",
+   "day": 2,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2014:d2:the-house-by-heineken:1630:the-scumfrog",
+   "artistId": "outside-lands-2014:the-scumfrog",
+   "day": 2,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2014:d2:the-house-by-heineken:1800:gorgon-city",
+   "artistId": "outside-lands-2014:gorgon-city",
+   "day": 2,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "18:00",
+   "end": "19:45"
+  },
+  {
+   "id": "outside-lands-2014:d3:lands-end:1340:imelda-may",
+   "artistId": "outside-lands-2014:imelda-may",
+   "day": 3,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "13:40",
+   "end": "14:40"
+  },
+  {
+   "id": "outside-lands-2014:d3:lands-end:1510:chvrches",
+   "artistId": "outside-lands-2014:chvrches",
+   "day": 3,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "15:10",
+   "end": "16:10"
+  },
+  {
+   "id": "outside-lands-2014:d3:lands-end:1510:paolo-nutini",
+   "artistId": "outside-lands-2014:paolo-nutini",
+   "day": 3,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "15:10",
+   "end": "16:10"
+  },
+  {
+   "id": "outside-lands-2014:d3:lands-end:1640:spoon",
+   "artistId": "outside-lands-2014:spoon",
+   "day": 3,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "16:40",
+   "end": "17:40"
+  },
+  {
+   "id": "outside-lands-2014:d3:lands-end:1810:the-flaming-lips",
+   "artistId": "outside-lands-2014:the-flaming-lips",
+   "day": 3,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "18:10",
+   "end": "19:20"
+  },
+  {
+   "id": "outside-lands-2014:d3:lands-end:2005:the-killers",
+   "artistId": "outside-lands-2014:the-killers",
+   "day": 3,
+   "stageId": "outside-lands-2014:lands-end",
+   "start": "20:05",
+   "end": "21:35"
+  },
+  {
+   "id": "outside-lands-2014:d3:sutro:1200:jonathan-wilson",
+   "artistId": "outside-lands-2014:jonathan-wilson",
+   "day": 3,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "outside-lands-2014:d3:sutro:1310:woods",
+   "artistId": "outside-lands-2014:woods",
+   "day": 3,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "13:10",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2014:d3:sutro:1430:lucius",
+   "artistId": "outside-lands-2014:lucius",
+   "day": 3,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "14:30",
+   "end": "15:20"
+  },
+  {
+   "id": "outside-lands-2014:d3:sutro:1550:jenny-lewis",
+   "artistId": "outside-lands-2014:jenny-lewis",
+   "day": 3,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "15:50",
+   "end": "16:50"
+  },
+  {
+   "id": "outside-lands-2014:d3:sutro:1720:ben-howard",
+   "artistId": "outside-lands-2014:ben-howard",
+   "day": 3,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "17:20",
+   "end": "18:20"
+  },
+  {
+   "id": "outside-lands-2014:d3:sutro:1850:ray-lamontagne",
+   "artistId": "outside-lands-2014:ray-lamontagne",
+   "day": 3,
+   "stageId": "outside-lands-2014:sutro",
+   "start": "18:50",
+   "end": "20:00"
+  },
+  {
+   "id": "outside-lands-2014:d3:twin-peaks:1240:made-in-heights",
+   "artistId": "outside-lands-2014:made-in-heights",
+   "day": 3,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "12:40",
+   "end": "13:20"
+  },
+  {
+   "id": "outside-lands-2014:d3:twin-peaks:1400:watsky",
+   "artistId": "outside-lands-2014:watsky",
+   "day": 3,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "14:00",
+   "end": "14:45"
+  },
+  {
+   "id": "outside-lands-2014:d3:twin-peaks:1530:flume",
+   "artistId": "outside-lands-2014:flume",
+   "day": 3,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "15:30",
+   "end": "16:20"
+  },
+  {
+   "id": "outside-lands-2014:d3:twin-peaks:1705:lykke-li",
+   "artistId": "outside-lands-2014:lykke-li",
+   "day": 3,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "17:05",
+   "end": "17:55"
+  },
+  {
+   "id": "outside-lands-2014:d3:twin-peaks:1840:cut-copy",
+   "artistId": "outside-lands-2014:cut-copy",
+   "day": 3,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "18:40",
+   "end": "19:40"
+  },
+  {
+   "id": "outside-lands-2014:d3:twin-peaks:2025:tiesto",
+   "artistId": "outside-lands-2014:tiesto",
+   "day": 3,
+   "stageId": "outside-lands-2014:twin-peaks",
+   "start": "20:25",
+   "end": "21:35"
+  },
+  {
+   "id": "outside-lands-2014:d3:panhandle:1200:the-bots",
+   "artistId": "outside-lands-2014:the-bots",
+   "day": 3,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2014:d3:panhandle:1320:the-brothers-comatose",
+   "artistId": "outside-lands-2014:the-brothers-comatose",
+   "day": 3,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "13:20",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2014:d3:panhandle:1445:hiss-golden-messenger",
+   "artistId": "outside-lands-2014:hiss-golden-messenger",
+   "day": 3,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "14:45",
+   "end": "15:25"
+  },
+  {
+   "id": "outside-lands-2014:d3:panhandle:1620:courtney-barnett",
+   "artistId": "outside-lands-2014:courtney-barnett",
+   "day": 3,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "16:20",
+   "end": "17:00"
+  },
+  {
+   "id": "outside-lands-2014:d3:panhandle:1755:gardens-and-villa",
+   "artistId": "outside-lands-2014:gardens-and-villa",
+   "day": 3,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "17:55",
+   "end": "18:35"
+  },
+  {
+   "id": "outside-lands-2014:d3:panhandle:1940:gold-panda",
+   "artistId": "outside-lands-2014:gold-panda",
+   "day": 3,
+   "stageId": "outside-lands-2014:panhandle",
+   "start": "19:40",
+   "end": "20:25"
+  },
+  {
+   "id": "outside-lands-2014:d3:the-house-by-heineken:1200:lights-down-low-richie-panic-sleazemore-and-mphd",
+   "artistId": "outside-lands-2014:lights-down-low-richie-panic-sleazemore-and-mphd",
+   "day": 3,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "12:00",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2014:d3:the-house-by-heineken:1500:cappa-regime",
+   "artistId": "outside-lands-2014:cappa-regime",
+   "day": 3,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "outside-lands-2014:d3:the-house-by-heineken:1600:soultech-gene-farris-and-dustin-sheridan",
+   "artistId": "outside-lands-2014:soultech-gene-farris-and-dustin-sheridan",
+   "day": 3,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "outside-lands-2014:d3:the-house-by-heineken:1730:green-velvet",
+   "artistId": "outside-lands-2014:green-velvet",
+   "day": 3,
+   "stageId": "outside-lands-2014:the-house-by-heineken",
+   "start": "17:30",
+   "end": "20:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.sfoutsidelands.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20140811114020/http://lineup.sfoutsidelands.com/events/2014/08/08",
+    "captureTimestamp": "20140811114020",
+    "printed": "Friday, August 8",
+    "sha256": "b9809d005a3712cba8db7341ee296bb4c4f56a29d0a254b6613fe36ec6023edb",
+    "rows": 29,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20140819184855/http://lineup.sfoutsidelands.com/band/kanye-west",
+     "captureTimestamp": "20140819184855",
+     "printed": "Friday Aug 8 8:20 PM on Lands End",
+     "sha256": "fcc7e1e4223e934453d268c5c99362c95dab78afa93b9e6272249686d46f70fb"
+    }
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20140811185329/http://lineup.sfoutsidelands.com/events/2014/08/09",
+    "captureTimestamp": "20140811185329",
+    "printed": "Saturday, August 9",
+    "sha256": "87aba0a13caba8c3c3b7d711c49c98ccc86973457c45dbd97d452aa487058f5c",
+    "rows": 29,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20140819195245/http://lineup.sfoutsidelands.com/band/tom-petty-and-the-heartbreakers",
+     "captureTimestamp": "20140819195245",
+     "printed": "Saturday Aug 9 7:55 PM on Lands End",
+     "sha256": "fd5b96d438dc7355a550005ad3653e0d2967f2cd9ad104b1a010b21afa8bc8c2"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20140811185409/http://lineup.sfoutsidelands.com/events/2014/08/10",
+    "captureTimestamp": "20140811185409",
+    "printed": "Sunday, August 10",
+    "sha256": "2ca68a3a14a532e6b7563012d3d59acf65632d7914d42efdc8c5de70aee27026",
+    "rows": 28,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20140819084800/http://lineup.sfoutsidelands.com/band/the-killers",
+     "captureTimestamp": "20140819084800",
+     "printed": "Sunday Aug 10 8:05 PM on Lands End",
+     "sha256": "34ed2ea2e961cb6d65b4dc8df3407c18867fdbb33a6f4e42ead598440422cf56"
+    }
+   }
+  ]
+ }
+}
