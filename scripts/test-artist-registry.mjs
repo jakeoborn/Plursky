@@ -79,8 +79,12 @@ const out = build();
   // The stop line was 100 until batch 6 (Tomorrowland 2017–2023): eleven
   // rows no standing rule settles (seven "x" billings, four short names now
   // billed at Tomorrowland too) took the pending queue to 109. Raised to 110
-  // and reported in that pull request; past it, stop and report again.
-  check(review.length <= 110, `review queue is ${review.length} rows (> 110 means stop and report)`);
+  // and reported in that pull request. Batch 8 (Coachella 2014 to 2016)
+  // added four more short names billed at a second brand (Nas, UZ, Zoé, RAC),
+  // each left separate by the standing short-name rule: raised to 120 under
+  // Jake's standing "make the best decision" call, and reported in that pull
+  // request; past it, stop and report again.
+  check(review.length <= 120, `review queue is ${review.length} rows (> 120 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

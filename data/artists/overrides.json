@@ -122,6 +122,21 @@
    "source": "https://summerfest.com/lineup"
   },
   {
+   "printed": "Jimmy Cliff with Tim Armstrong and the Engine Band",
+   "performers": [
+    {
+     "name": "Jimmy Cliff",
+     "role": "performer"
+    },
+    {
+     "name": "Tim Armstrong and the Engine Band",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\": the first name is the performer, the added name is credited as a guest on the same set, as printed (never split on \"and\").",
+   "source": "https://www.coachella.com/lineup/"
+  },
+  {
    "printed": "OUT TONIGHT: A Musical Singalong feat. D’Arcy Drollinger",
    "performers": [
     {
@@ -1888,6 +1903,46 @@
    ],
    "why": "The printing names a contest and its winner: the winner is the performer; the contest is not an act.",
    "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "J.E.S.+S. (Jackmaster, Eats Everything, Skream & Seth Troxler)",
+   "performers": [
+    {
+     "name": "J.E.S.+S.",
+     "role": "project",
+     "parents": [
+      "Jackmaster",
+      "Eats Everything",
+      "Skream",
+      "Seth Troxler"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as any of them billed alone.",
+   "source": "https://www.coachella.com/lineup/"
+  },
+  {
+   "printed": "Nortec Collective Presents: Bostich + Fussible",
+   "performers": [
+    {
+     "name": "Bostich + Fussible",
+     "role": "performer"
+    }
+   ],
+   "why": "\"Nortec Collective Presents:\" is the banner the set is billed under, not a separate act on stage: the billing counts on Bostich + Fussible, kept whole as printed (never split on \"+\").",
+   "source": "https://www.coachella.com/lineup/"
+  },
+  {
+   "printed": "Doc Martin feat. Sublevel Live",
+   "performers": [
+    {
+     "name": "Doc Martin",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Sublevel Live",
+   "why": "Sublevel is Doc Martin's own party and label, not a person: \"Sublevel Live\" names the set, it is the set tag, and the billing counts on Doc Martin.",
+   "source": "https://www.coachella.com/lineup/"
   }
  ],
  "pending": [
@@ -2274,6 +2329,30 @@
   {
    "key": "a-m-c",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "nas",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "uz",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "zoe",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "rac",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "nao",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "The Geek x Vrv",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
   }
  ]
 }

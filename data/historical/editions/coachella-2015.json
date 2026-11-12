@@ -1,0 +1,5742 @@
+{
+ "id": "coachella-2015",
+ "festivalId": "coachella",
+ "name": "Coachella 2015",
+ "year": 2015,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-04-10",
+   "label": "Weekend 1 · Friday"
+  },
+  {
+   "day": 2,
+   "date": "2015-04-11",
+   "label": "Weekend 1 · Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2015-04-12",
+   "label": "Weekend 1 · Sunday"
+  },
+  {
+   "day": 4,
+   "date": "2015-04-17",
+   "label": "Weekend 2 · Friday"
+  },
+  {
+   "day": 5,
+   "date": "2015-04-18",
+   "label": "Weekend 2 · Saturday"
+  },
+  {
+   "day": 6,
+   "date": "2015-04-19",
+   "label": "Weekend 2 · Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "coachella-2015:gobi",
+   "name": "Gobi"
+  },
+  {
+   "id": "coachella-2015:coachella",
+   "name": "Coachella"
+  },
+  {
+   "id": "coachella-2015:outdoor",
+   "name": "Outdoor"
+  },
+  {
+   "id": "coachella-2015:sahara",
+   "name": "Sahara"
+  },
+  {
+   "id": "coachella-2015:do-lab",
+   "name": "Do Lab"
+  },
+  {
+   "id": "coachella-2015:mojave",
+   "name": "Mojave"
+  },
+  {
+   "id": "coachella-2015:yuma",
+   "name": "Yuma"
+  }
+ ],
+ "artists": [
+  {
+   "id": "coachella-2015:moustache",
+   "name": "Moustache",
+   "key": "moustache",
+   "performers": [
+    "moustache"
+   ]
+  },
+  {
+   "id": "coachella-2015:ruen-brothers",
+   "name": "Ruen Brothers",
+   "key": "ruen-brothers",
+   "performers": [
+    "ruen-brothers"
+   ]
+  },
+  {
+   "id": "coachella-2015:eagulls",
+   "name": "Eagulls",
+   "key": "eagulls",
+   "performers": [
+    "eagulls"
+   ]
+  },
+  {
+   "id": "coachella-2015:cloud-nothings",
+   "name": "Cloud Nothings",
+   "key": "cloud-nothings",
+   "performers": [
+    "cloud-nothings"
+   ]
+  },
+  {
+   "id": "coachella-2015:ab-soul",
+   "name": "Ab-Soul",
+   "key": "ab-soul",
+   "performers": [
+    "ab-soul"
+   ]
+  },
+  {
+   "id": "coachella-2015:kimbra",
+   "name": "Kimbra",
+   "key": "kimbra",
+   "performers": [
+    "kimbra"
+   ]
+  },
+  {
+   "id": "coachella-2015:ride",
+   "name": "Ride",
+   "key": "ride",
+   "performers": [
+    "ride"
+   ]
+  },
+  {
+   "id": "coachella-2015:hot-natured",
+   "name": "Hot Natured",
+   "key": "hot-natured",
+   "performers": [
+    "hot-natured"
+   ]
+  },
+  {
+   "id": "coachella-2015:gorgon-city",
+   "name": "Gorgon City",
+   "key": "gorgon-city",
+   "performers": [
+    "gorgon-city"
+   ]
+  },
+  {
+   "id": "coachella-2015:todd-terje-and-the-olsens",
+   "name": "Todd Terje and the Olsens",
+   "key": "todd-terje-and-the-olsens",
+   "performers": [
+    "todd-terje-and-the-olsens"
+   ]
+  },
+  {
+   "id": "coachella-2015:squarepusher",
+   "name": "Squarepusher",
+   "key": "squarepusher",
+   "performers": [
+    "squarepusher"
+   ]
+  },
+  {
+   "id": "coachella-2015:vic-mensa",
+   "name": "Vic Mensa",
+   "key": "vic-mensa",
+   "performers": [
+    "vic-mensa"
+   ]
+  },
+  {
+   "id": "coachella-2015:action-bronson",
+   "name": "Action Bronson",
+   "key": "action-bronson",
+   "performers": [
+    "action-bronson"
+   ]
+  },
+  {
+   "id": "coachella-2015:charles-bradley-and-his-extraordinaires",
+   "name": "Charles Bradley and His Extraordinaires",
+   "key": "charles-bradley-and-his-extraordinaires",
+   "performers": [
+    "charles-bradley-and-his-extraordinaires"
+   ]
+  },
+  {
+   "id": "coachella-2015:azealia-banks",
+   "name": "Azealia Banks",
+   "key": "azealia-banks",
+   "performers": [
+    "azealia-banks"
+   ]
+  },
+  {
+   "id": "coachella-2015:the-war-on-drugs",
+   "name": "The War on Drugs",
+   "key": "the-war-on-drugs",
+   "performers": [
+    "the-war-on-drugs"
+   ]
+  },
+  {
+   "id": "coachella-2015:interpol",
+   "name": "Interpol",
+   "key": "interpol",
+   "performers": [
+    "interpol"
+   ]
+  },
+  {
+   "id": "coachella-2015:tame-impala",
+   "name": "Tame Impala",
+   "key": "tame-impala",
+   "performers": [
+    "tame-impala"
+   ]
+  },
+  {
+   "id": "coachella-2015:ac-dc",
+   "name": "AC/DC",
+   "key": "ac-dc",
+   "performers": [
+    "ac-dc"
+   ]
+  },
+  {
+   "id": "coachella-2015:alchemy",
+   "name": "Alchemy",
+   "key": "alchemy",
+   "performers": [
+    "alchemy"
+   ]
+  },
+  {
+   "id": "coachella-2015:the-ghost-of-a-saber-tooth-tiger",
+   "name": "The Ghost of a Saber Tooth Tiger",
+   "key": "the-ghost-of-a-saber-tooth-tiger",
+   "performers": [
+    "the-ghost-of-a-saber-tooth-tiger"
+   ]
+  },
+  {
+   "id": "coachella-2015:brant-bjork-and-the-low-desert-punk-band",
+   "name": "Brant Bjork & The Low Desert Punk Band",
+   "key": "brant-bjork-and-the-low-desert-punk-band",
+   "performers": [
+    "brant-bjork-and-the-low-desert-punk-band"
+   ]
+  },
+  {
+   "id": "coachella-2015:allah-las",
+   "name": "Allah-Las",
+   "key": "allah-las",
+   "performers": [
+    "allah-las"
+   ]
+  },
+  {
+   "id": "coachella-2015:lil-b",
+   "name": "Lil B",
+   "key": "lil-b",
+   "performers": [
+    "lil-b"
+   ]
+  },
+  {
+   "id": "coachella-2015:angus-and-julia-stone",
+   "name": "Angus & Julia Stone",
+   "key": "angus-and-julia-stone",
+   "performers": [
+    "angus-and-julia-stone"
+   ]
+  },
+  {
+   "id": "coachella-2015:raekwon-and-ghostface-killah",
+   "name": "Raekwon and Ghostface Killah",
+   "key": "raekwon-and-ghostface-killah",
+   "performers": [
+    "raekwon-and-ghostface-killah"
+   ]
+  },
+  {
+   "id": "coachella-2015:alabama-shakes",
+   "name": "Alabama Shakes",
+   "key": "alabama-shakes",
+   "performers": [
+    "alabama-shakes"
+   ]
+  },
+  {
+   "id": "coachella-2015:steely-dan",
+   "name": "Steely Dan",
+   "key": "steely-dan",
+   "performers": [
+    "steely-dan"
+   ]
+  },
+  {
+   "id": "coachella-2015:nero",
+   "name": "Nero",
+   "key": "nero",
+   "performers": [
+    "nero"
+   ]
+  },
+  {
+   "id": "coachella-2015:djp",
+   "name": "DJP",
+   "key": "djp",
+   "performers": [
+    "djp"
+   ]
+  },
+  {
+   "id": "coachella-2015:peking-duk",
+   "name": "Peking Duk",
+   "key": "peking-duk",
+   "performers": [
+    "peking-duk"
+   ]
+  },
+  {
+   "id": "coachella-2015:trippy-turtle",
+   "name": "Trippy Turtle",
+   "key": "trippy-turtle",
+   "performers": [
+    "trippy-turtle"
+   ]
+  },
+  {
+   "id": "coachella-2015:alvin-risk",
+   "name": "Alvin Risk",
+   "key": "alvin-risk",
+   "performers": [
+    "alvin-risk"
+   ]
+  },
+  {
+   "id": "coachella-2015:keys-n-krates",
+   "name": "Keys N Krates",
+   "key": "keys-n-krates",
+   "performers": [
+    "keys-n-krates"
+   ]
+  },
+  {
+   "id": "coachella-2015:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ]
+  },
+  {
+   "id": "coachella-2015:r3hab",
+   "name": "R3hab",
+   "key": "r3hab",
+   "performers": [
+    "r3hab"
+   ]
+  },
+  {
+   "id": "coachella-2015:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ]
+  },
+  {
+   "id": "coachella-2015:porter-robinson",
+   "name": "Porter Robinson",
+   "key": "porter-robinson",
+   "performers": [
+    "porter-robinson"
+   ]
+  },
+  {
+   "id": "coachella-2015:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ]
+  },
+  {
+   "id": "coachella-2015:clozee",
+   "name": "CloZee",
+   "key": "clozee",
+   "performers": [
+    "clozee"
+   ]
+  },
+  {
+   "id": "coachella-2015:b-r-e-e-d",
+   "name": "B.R.E.E.D.",
+   "key": "b-r-e-e-d",
+   "performers": [
+    "b-r-e-e-d"
+   ]
+  },
+  {
+   "id": "coachella-2015:dirtwire",
+   "name": "Dirtwire",
+   "key": "dirtwire",
+   "performers": [
+    "dirtwire"
+   ]
+  },
+  {
+   "id": "coachella-2015:mihkal",
+   "name": "MiHKAL",
+   "key": "mihkal",
+   "performers": [
+    "mihkal"
+   ]
+  },
+  {
+   "id": "coachella-2015:jesse-wright",
+   "name": "Jesse Wright",
+   "key": "jesse-wright",
+   "performers": [
+    "jesse-wright"
+   ]
+  },
+  {
+   "id": "coachella-2015:lane-8",
+   "name": "Lane 8",
+   "key": "lane-8",
+   "performers": [
+    "lane-8"
+   ]
+  },
+  {
+   "id": "coachella-2015:lucent-dossier-experience",
+   "name": "Lucent Dossier Experience",
+   "key": "lucent-dossier-experience",
+   "performers": [
+    "lucent-dossier-experience"
+   ]
+  },
+  {
+   "id": "coachella-2015:fort-knox-five",
+   "name": "Fort Knox Five",
+   "key": "fort-knox-five",
+   "performers": [
+    "fort-knox-five"
+   ]
+  },
+  {
+   "id": "coachella-2015:jackal",
+   "name": "Jackal",
+   "key": "jackal",
+   "performers": [
+    "jackal"
+   ]
+  },
+  {
+   "id": "coachella-2015:loudpvck",
+   "name": "Loudpvck",
+   "key": "loudpvck",
+   "performers": [
+    "loudpvck"
+   ]
+  },
+  {
+   "id": "coachella-2015:los-rakas",
+   "name": "Los Rakas",
+   "key": "los-rakas",
+   "performers": [
+    "los-rakas"
+   ]
+  },
+  {
+   "id": "coachella-2015:haerts",
+   "name": "Haerts",
+   "key": "haerts",
+   "performers": [
+    "haerts"
+   ]
+  },
+  {
+   "id": "coachella-2015:reverend-horton-heat",
+   "name": "Reverend Horton Heat",
+   "key": "reverend-horton-heat",
+   "performers": [
+    "reverend-horton-heat"
+   ]
+  },
+  {
+   "id": "coachella-2015:george-ezra",
+   "name": "George Ezra",
+   "key": "george-ezra",
+   "performers": [
+    "george-ezra"
+   ]
+  },
+  {
+   "id": "coachella-2015:sylvan-esso",
+   "name": "Sylvan Esso",
+   "key": "sylvan-esso",
+   "performers": [
+    "sylvan-esso"
+   ]
+  },
+  {
+   "id": "coachella-2015:kiesza",
+   "name": "Kiesza",
+   "key": "kiesza",
+   "performers": [
+    "kiesza"
+   ]
+  },
+  {
+   "id": "coachella-2015:ryan-hemsworth",
+   "name": "Ryan Hemsworth",
+   "key": "ryan-hemsworth",
+   "performers": [
+    "ryan-hemsworth"
+   ]
+  },
+  {
+   "id": "coachella-2015:lykke-li",
+   "name": "Lykke Li",
+   "key": "lykke-li",
+   "performers": [
+    "lykke-li"
+   ]
+  },
+  {
+   "id": "coachella-2015:caribou",
+   "name": "Caribou",
+   "key": "caribou",
+   "performers": [
+    "caribou"
+   ]
+  },
+  {
+   "id": "coachella-2015:flying-lotus",
+   "name": "Flying Lotus",
+   "key": "flying-lotus",
+   "performers": [
+    "flying-lotus"
+   ]
+  },
+  {
+   "id": "coachella-2015:freddy-be",
+   "name": "Freddy Be",
+   "key": "freddy-be",
+   "performers": [
+    "freddy-be"
+   ]
+  },
+  {
+   "id": "coachella-2015:marques-wyatt",
+   "name": "Marques Wyatt",
+   "key": "marques-wyatt",
+   "performers": [
+    "marques-wyatt"
+   ]
+  },
+  {
+   "id": "coachella-2015:lee-foss",
+   "name": "Lee Foss",
+   "key": "lee-foss",
+   "performers": [
+    "lee-foss"
+   ]
+  },
+  {
+   "id": "coachella-2015:erol-alkan",
+   "name": "Erol Alkan",
+   "key": "erol-alkan",
+   "performers": [
+    "erol-alkan"
+   ]
+  },
+  {
+   "id": "coachella-2015:jon-hopkins",
+   "name": "Jon Hopkins",
+   "key": "jon-hopkins",
+   "performers": [
+    "jon-hopkins"
+   ]
+  },
+  {
+   "id": "coachella-2015:pete-tong",
+   "name": "Pete Tong",
+   "key": "pete-tong",
+   "performers": [
+    "pete-tong"
+   ]
+  },
+  {
+   "id": "coachella-2015:chris-malinchak",
+   "name": "Chris Malinchak",
+   "key": "chris-malinchak",
+   "performers": [
+    "chris-malinchak"
+   ]
+  },
+  {
+   "id": "coachella-2015:mk",
+   "name": "MK",
+   "key": "mk",
+   "performers": [
+    "mk"
+   ]
+  },
+  {
+   "id": "coachella-2015:until-the-ribbon-breaks",
+   "name": "Until the Ribbon Breaks",
+   "key": "until-the-ribbon-breaks",
+   "performers": [
+    "until-the-ribbon-breaks"
+   ]
+  },
+  {
+   "id": "coachella-2015:coasts",
+   "name": "Coasts",
+   "key": "coasts",
+   "performers": [
+    "coasts"
+   ]
+  },
+  {
+   "id": "coachella-2015:parquet-courts",
+   "name": "Parquet Courts",
+   "key": "parquet-courts",
+   "performers": [
+    "parquet-courts"
+   ]
+  },
+  {
+   "id": "coachella-2015:lights",
+   "name": "Lights",
+   "key": "lights",
+   "performers": [
+    "lights"
+   ]
+  },
+  {
+   "id": "coachella-2015:benjamin-booker",
+   "name": "Benjamin Booker",
+   "key": "benjamin-booker",
+   "performers": [
+    "benjamin-booker"
+   ]
+  },
+  {
+   "id": "coachella-2015:cashmere-cat",
+   "name": "Cashmere Cat",
+   "key": "cashmere-cat",
+   "performers": [
+    "cashmere-cat"
+   ]
+  },
+  {
+   "id": "coachella-2015:yelle",
+   "name": "Yelle",
+   "key": "yelle",
+   "performers": [
+    "yelle"
+   ]
+  },
+  {
+   "id": "coachella-2015:glass-animals",
+   "name": "Glass Animals",
+   "key": "glass-animals",
+   "performers": [
+    "glass-animals"
+   ]
+  },
+  {
+   "id": "coachella-2015:the-gaslamp-killer-experience",
+   "name": "The Gaslamp Killer Experience",
+   "key": "the-gaslamp-killer-experience",
+   "performers": [
+    "the-gaslamp-killer-experience"
+   ]
+  },
+  {
+   "id": "coachella-2015:fka-twigs",
+   "name": "FKA twigs",
+   "key": "fka-twigs",
+   "performers": [
+    "fka-twigs"
+   ]
+  },
+  {
+   "id": "coachella-2015:drive-like-jehu",
+   "name": "Drive Like Jehu",
+   "key": "drive-like-jehu",
+   "performers": [
+    "drive-like-jehu"
+   ]
+  },
+  {
+   "id": "coachella-2015:nortec-collective-presents-bostich-fussible",
+   "name": "Nortec Collective Presents: Bostich + Fussible",
+   "key": "nortec-collective-presents-bostich-fussible",
+   "performers": [
+    "nortec-collective-presents-bostich-fussible"
+   ]
+  },
+  {
+   "id": "coachella-2015:clean-bandit",
+   "name": "Clean Bandit",
+   "key": "clean-bandit",
+   "performers": [
+    "clean-bandit"
+   ]
+  },
+  {
+   "id": "coachella-2015:bad-religion",
+   "name": "Bad Religion",
+   "key": "bad-religion",
+   "performers": [
+    "bad-religion"
+   ]
+  },
+  {
+   "id": "coachella-2015:milky-chance",
+   "name": "Milky Chance",
+   "key": "milky-chance",
+   "performers": [
+    "milky-chance"
+   ]
+  },
+  {
+   "id": "coachella-2015:hozier",
+   "name": "Hozier",
+   "key": "hozier",
+   "performers": [
+    "hozier"
+   ]
+  },
+  {
+   "id": "coachella-2015:alt-j",
+   "name": "alt-J",
+   "key": "alt-j",
+   "performers": [
+    "alt-j"
+   ]
+  },
+  {
+   "id": "coachella-2015:jack-white",
+   "name": "Jack White",
+   "key": "jack-white",
+   "performers": [
+    "jack-white"
+   ]
+  },
+  {
+   "id": "coachella-2015:the-weeknd",
+   "name": "The Weeknd",
+   "key": "the-weeknd",
+   "performers": [
+    "the-weeknd"
+   ]
+  },
+  {
+   "id": "coachella-2015:mantastique",
+   "name": "Mantastique",
+   "key": "mantastique",
+   "performers": [
+    "mantastique"
+   ]
+  },
+  {
+   "id": "coachella-2015:phox",
+   "name": "Phox",
+   "key": "phox",
+   "performers": [
+    "phox"
+   ]
+  },
+  {
+   "id": "coachella-2015:jamestown-revival",
+   "name": "Jamestown Revival",
+   "key": "jamestown-revival",
+   "performers": [
+    "jamestown-revival"
+   ]
+  },
+  {
+   "id": "coachella-2015:perfume-genius",
+   "name": "Perfume Genius",
+   "key": "perfume-genius",
+   "performers": [
+    "perfume-genius"
+   ]
+  },
+  {
+   "id": "coachella-2015:royal-blood",
+   "name": "Royal Blood",
+   "key": "royal-blood",
+   "performers": [
+    "royal-blood"
+   ]
+  },
+  {
+   "id": "coachella-2015:andrew-mcmahon-in-the-wilderness",
+   "name": "Andrew McMahon in the Wilderness",
+   "key": "andrew-mcmahon-in-the-wilderness",
+   "performers": [
+    "andrew-mcmahon-in-the-wilderness"
+   ]
+  },
+  {
+   "id": "coachella-2015:chet-faker",
+   "name": "Chet Faker",
+   "key": "chet-faker",
+   "performers": [
+    "chet-faker"
+   ]
+  },
+  {
+   "id": "coachella-2015:belle-and-sebastian",
+   "name": "Belle and Sebastian",
+   "key": "belle-and-sebastian",
+   "performers": [
+    "belle-and-sebastian"
+   ]
+  },
+  {
+   "id": "coachella-2015:father-john-misty",
+   "name": "Father John Misty",
+   "key": "father-john-misty",
+   "performers": [
+    "father-john-misty"
+   ]
+  },
+  {
+   "id": "coachella-2015:tyler-the-creator",
+   "name": "Tyler The Creator",
+   "key": "tyler-the-creator",
+   "performers": [
+    "tyler-the-creator"
+   ]
+  },
+  {
+   "id": "coachella-2015:flosstradamus",
+   "name": "Flosstradamus",
+   "key": "flosstradamus",
+   "performers": [
+    "flosstradamus"
+   ]
+  },
+  {
+   "id": "coachella-2015:axwell-ingrosso",
+   "name": "Axwell ^ Ingrosso",
+   "key": "axwell-ingrosso",
+   "performers": [
+    "axwell-ingrosso"
+   ]
+  },
+  {
+   "id": "coachella-2015:dem-ham-boyz",
+   "name": "Dem Ham Boyz",
+   "key": "dem-ham-boyz",
+   "performers": [
+    "dem-ham-boyz"
+   ]
+  },
+  {
+   "id": "coachella-2015:bixel-boys",
+   "name": "Bixel Boys",
+   "key": "bixel-boys",
+   "performers": [
+    "bixel-boys"
+   ]
+  },
+  {
+   "id": "coachella-2015:matthew-koma",
+   "name": "Matthew Koma",
+   "key": "matthew-koma",
+   "performers": [
+    "matthew-koma"
+   ]
+  },
+  {
+   "id": "coachella-2015:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ]
+  },
+  {
+   "id": "coachella-2015:gramatik",
+   "name": "Gramatik",
+   "key": "gramatik",
+   "performers": [
+    "gramatik"
+   ]
+  },
+  {
+   "id": "coachella-2015:yellow-claw",
+   "name": "Yellow Claw",
+   "key": "yellow-claw",
+   "performers": [
+    "yellow-claw"
+   ]
+  },
+  {
+   "id": "coachella-2015:dirty-south",
+   "name": "Dirty South",
+   "key": "dirty-south",
+   "performers": [
+    "dirty-south"
+   ]
+  },
+  {
+   "id": "coachella-2015:cedric-gervais",
+   "name": "Cedric Gervais",
+   "key": "cedric-gervais",
+   "performers": [
+    "cedric-gervais"
+   ]
+  },
+  {
+   "id": "coachella-2015:duke-dumont",
+   "name": "Duke Dumont",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ]
+  },
+  {
+   "id": "coachella-2015:deorro",
+   "name": "Deorro",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ]
+  },
+  {
+   "id": "coachella-2015:ratatat",
+   "name": "Ratatat",
+   "key": "ratatat",
+   "performers": [
+    "ratatat"
+   ]
+  },
+  {
+   "id": "coachella-2015:addatap",
+   "name": "Addatap",
+   "key": "addatap",
+   "performers": [
+    "addatap"
+   ]
+  },
+  {
+   "id": "coachella-2015:justin-jay",
+   "name": "Justin Jay",
+   "key": "justin-jay",
+   "performers": [
+    "justin-jay"
+   ]
+  },
+  {
+   "id": "coachella-2015:sebastien-leger",
+   "name": "Sebastien Leger",
+   "key": "sebastien-leger",
+   "performers": [
+    "sebastien-leger"
+   ]
+  },
+  {
+   "id": "coachella-2015:droog",
+   "name": "Droog",
+   "key": "droog",
+   "performers": [
+    "droog"
+   ]
+  },
+  {
+   "id": "coachella-2015:an-ten-nae",
+   "name": "An-ten-nae",
+   "key": "an-ten-nae",
+   "performers": [
+    "an-ten-nae"
+   ]
+  },
+  {
+   "id": "coachella-2015:joe-kay-and-jay-prince",
+   "name": "Joe Kay & Jay Prince",
+   "key": "joe-kay-and-jay-prince",
+   "performers": [
+    "joe-kay-and-jay-prince"
+   ]
+  },
+  {
+   "id": "coachella-2015:falcons",
+   "name": "Falcons",
+   "key": "falcons",
+   "performers": [
+    "falcons"
+   ]
+  },
+  {
+   "id": "coachella-2015:russ-liquid",
+   "name": "Russ Liquid",
+   "key": "russ-liquid",
+   "performers": [
+    "russ-liquid"
+   ]
+  },
+  {
+   "id": "coachella-2015:ooah",
+   "name": "Ooah",
+   "key": "ooah",
+   "performers": [
+    "ooah"
+   ]
+  },
+  {
+   "id": "coachella-2015:radkey",
+   "name": "Radkey",
+   "key": "radkey",
+   "performers": [
+    "radkey"
+   ]
+  },
+  {
+   "id": "coachella-2015:tourist",
+   "name": "Tourist",
+   "key": "tourist",
+   "performers": [
+    "tourist"
+   ]
+  },
+  {
+   "id": "coachella-2015:ryn-weaver",
+   "name": "Ryn Weaver",
+   "key": "ryn-weaver",
+   "performers": [
+    "ryn-weaver"
+   ]
+  },
+  {
+   "id": "coachella-2015:st-paul-and-the-broken-bones",
+   "name": "St. Paul and the Broken Bones",
+   "key": "st-paul-and-the-broken-bones",
+   "performers": [
+    "st-paul-and-the-broken-bones"
+   ]
+  },
+  {
+   "id": "coachella-2015:bad-suns",
+   "name": "Bad Suns",
+   "key": "bad-suns",
+   "performers": [
+    "bad-suns"
+   ]
+  },
+  {
+   "id": "coachella-2015:toro-y-moi",
+   "name": "Toro y Moi",
+   "key": "toro-y-moi",
+   "performers": [
+    "toro-y-moi"
+   ]
+  },
+  {
+   "id": "coachella-2015:jungle",
+   "name": "Jungle",
+   "key": "jungle",
+   "performers": [
+    "jungle"
+   ]
+  },
+  {
+   "id": "coachella-2015:run-the-jewels",
+   "name": "Run the Jewels",
+   "key": "run-the-jewels",
+   "performers": [
+    "run-the-jewels"
+   ]
+  },
+  {
+   "id": "coachella-2015:kasabian",
+   "name": "Kasabian",
+   "key": "kasabian",
+   "performers": [
+    "kasabian"
+   ]
+  },
+  {
+   "id": "coachella-2015:tycho",
+   "name": "Tycho",
+   "key": "tycho",
+   "performers": [
+    "tycho"
+   ]
+  },
+  {
+   "id": "coachella-2015:sbtrkt",
+   "name": "SBTRKT",
+   "key": "sbtrkt",
+   "performers": [
+    "sbtrkt"
+   ]
+  },
+  {
+   "id": "coachella-2015:mor-elian",
+   "name": "Mor Elian",
+   "key": "mor-elian",
+   "performers": [
+    "mor-elian"
+   ]
+  },
+  {
+   "id": "coachella-2015:lauren-lane",
+   "name": "Lauren Lane",
+   "key": "lauren-lane",
+   "performers": [
+    "lauren-lane"
+   ]
+  },
+  {
+   "id": "coachella-2015:andrea-oliva",
+   "name": "Andrea Oliva",
+   "key": "andrea-oliva",
+   "performers": [
+    "andrea-oliva"
+   ]
+  },
+  {
+   "id": "coachella-2015:tale-of-us",
+   "name": "Tale of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ]
+  },
+  {
+   "id": "coachella-2015:carl-craig",
+   "name": "Carl Craig",
+   "key": "carl-craig",
+   "performers": [
+    "carl-craig"
+   ]
+  },
+  {
+   "id": "coachella-2015:danny-tenaglia",
+   "name": "Danny Tenaglia",
+   "key": "danny-tenaglia",
+   "performers": [
+    "danny-tenaglia"
+   ]
+  },
+  {
+   "id": "coachella-2015:dj-harvey",
+   "name": "DJ Harvey",
+   "key": "dj-harvey",
+   "performers": [
+    "dj-harvey"
+   ]
+  },
+  {
+   "id": "coachella-2015:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ]
+  },
+  {
+   "id": "coachella-2015:annie-mac",
+   "name": "Annie Mac",
+   "key": "annie-mac",
+   "performers": [
+    "annie-mac"
+   ]
+  },
+  {
+   "id": "coachella-2015:astronautica",
+   "name": "Astronautica",
+   "key": "astronautica",
+   "performers": [
+    "astronautica"
+   ]
+  },
+  {
+   "id": "coachella-2015:night-terrors-of-1927",
+   "name": "Night Terrors of 1927",
+   "key": "night-terrors-of-1927",
+   "performers": [
+    "night-terrors-of-1927"
+   ]
+  },
+  {
+   "id": "coachella-2015:angel-olsen",
+   "name": "Angel Olsen",
+   "key": "angel-olsen",
+   "performers": [
+    "angel-olsen"
+   ]
+  },
+  {
+   "id": "coachella-2015:m",
+   "name": "MØ",
+   "key": "m",
+   "performers": [
+    "m"
+   ]
+  },
+  {
+   "id": "coachella-2015:sturgill-simpson",
+   "name": "Sturgill Simpson",
+   "key": "sturgill-simpson",
+   "performers": [
+    "sturgill-simpson"
+   ]
+  },
+  {
+   "id": "coachella-2015:desaparecidos",
+   "name": "Desaparecidos",
+   "key": "desaparecidos",
+   "performers": [
+    "desaparecidos"
+   ]
+  },
+  {
+   "id": "coachella-2015:the-cribs",
+   "name": "The Cribs",
+   "key": "the-cribs",
+   "performers": [
+    "the-cribs"
+   ]
+  },
+  {
+   "id": "coachella-2015:philip-selway",
+   "name": "Philip Selway",
+   "key": "philip-selway",
+   "performers": [
+    "philip-selway"
+   ]
+  },
+  {
+   "id": "coachella-2015:jamie-xx",
+   "name": "Jamie xx",
+   "key": "jamie-xx",
+   "performers": [
+    "jamie-xx"
+   ]
+  },
+  {
+   "id": "coachella-2015:odesza",
+   "name": "ODESZA",
+   "key": "odesza",
+   "performers": [
+    "odesza"
+   ]
+  },
+  {
+   "id": "coachella-2015:kaytranada",
+   "name": "Kaytranada",
+   "key": "kaytranada",
+   "performers": [
+    "kaytranada"
+   ]
+  },
+  {
+   "id": "coachella-2015:swans",
+   "name": "Swans",
+   "key": "swans",
+   "performers": [
+    "swans"
+   ]
+  },
+  {
+   "id": "coachella-2015:jimbo-jenkins",
+   "name": "Jimbo Jenkins",
+   "key": "jimbo-jenkins",
+   "performers": [
+    "jimbo-jenkins"
+   ]
+  },
+  {
+   "id": "coachella-2015:saint-motel",
+   "name": "Saint Motel",
+   "key": "saint-motel",
+   "performers": [
+    "saint-motel"
+   ]
+  },
+  {
+   "id": "coachella-2015:the-orwells",
+   "name": "The Orwells",
+   "key": "the-orwells",
+   "performers": [
+    "the-orwells"
+   ]
+  },
+  {
+   "id": "coachella-2015:circa-survive",
+   "name": "Circa Survive",
+   "key": "circa-survive",
+   "performers": [
+    "circa-survive"
+   ]
+  },
+  {
+   "id": "coachella-2015:st-lucia",
+   "name": "St. Lucia",
+   "key": "st-lucia",
+   "performers": [
+    "st-lucia"
+   ]
+  },
+  {
+   "id": "coachella-2015:marina-and-the-diamonds",
+   "name": "Marina and the Diamonds",
+   "key": "marina-and-the-diamonds",
+   "performers": [
+    "marina-and-the-diamonds"
+   ]
+  },
+  {
+   "id": "coachella-2015:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ]
+  },
+  {
+   "id": "coachella-2015:florence-the-machine",
+   "name": "Florence + the Machine",
+   "key": "florence-the-machine",
+   "performers": [
+    "florence-the-machine"
+   ]
+  },
+  {
+   "id": "coachella-2015:drake",
+   "name": "Drake",
+   "key": "drake",
+   "performers": [
+    "drake"
+   ]
+  },
+  {
+   "id": "coachella-2015:gabe-real",
+   "name": "Gabe Real",
+   "key": "gabe-real",
+   "performers": [
+    "gabe-real"
+   ]
+  },
+  {
+   "id": "coachella-2015:chicano-batman",
+   "name": "Chicano Batman",
+   "key": "chicano-batman",
+   "performers": [
+    "chicano-batman"
+   ]
+  },
+  {
+   "id": "coachella-2015:joyce-manor",
+   "name": "Joyce Manor",
+   "key": "joyce-manor",
+   "performers": [
+    "joyce-manor"
+   ]
+  },
+  {
+   "id": "coachella-2015:mac-demarco",
+   "name": "Mac DeMarco",
+   "key": "mac-demarco",
+   "performers": [
+    "mac-demarco"
+   ]
+  },
+  {
+   "id": "coachella-2015:built-to-spill",
+   "name": "Built to Spill",
+   "key": "built-to-spill",
+   "performers": [
+    "built-to-spill"
+   ]
+  },
+  {
+   "id": "coachella-2015:jenny-lewis",
+   "name": "Jenny Lewis",
+   "key": "jenny-lewis",
+   "performers": [
+    "jenny-lewis"
+   ]
+  },
+  {
+   "id": "coachella-2015:ryan-adams",
+   "name": "Ryan Adams",
+   "key": "ryan-adams",
+   "performers": [
+    "ryan-adams"
+   ]
+  },
+  {
+   "id": "coachella-2015:st-vincent",
+   "name": "St. Vincent",
+   "key": "st-vincent",
+   "performers": [
+    "st-vincent"
+   ]
+  },
+  {
+   "id": "coachella-2015:fitz-and-the-tantrums",
+   "name": "Fitz & the Tantrums",
+   "key": "fitz-and-the-tantrums",
+   "performers": [
+    "fitz-and-the-tantrums"
+   ]
+  },
+  {
+   "id": "coachella-2015:soslo",
+   "name": "Soslo",
+   "key": "soslo",
+   "performers": [
+    "soslo"
+   ]
+  },
+  {
+   "id": "coachella-2015:superduperbrick",
+   "name": "superduperbrick",
+   "key": "superduperbrick",
+   "performers": [
+    "superduperbrick"
+   ]
+  },
+  {
+   "id": "coachella-2015:alf-alpha",
+   "name": "Alf Alpha",
+   "key": "alf-alpha",
+   "performers": [
+    "alf-alpha"
+   ]
+  },
+  {
+   "id": "coachella-2015:claude-vonstroke",
+   "name": "Claude VonStroke",
+   "key": "claude-vonstroke",
+   "performers": [
+    "claude-vonstroke"
+   ]
+  },
+  {
+   "id": "coachella-2015:what-so-not",
+   "name": "What So Not",
+   "key": "what-so-not",
+   "performers": [
+    "what-so-not"
+   ]
+  },
+  {
+   "id": "coachella-2015:martin-solveig",
+   "name": "Martin Solveig",
+   "key": "martin-solveig",
+   "performers": [
+    "martin-solveig"
+   ]
+  },
+  {
+   "id": "coachella-2015:madeon",
+   "name": "Madeon",
+   "key": "madeon",
+   "performers": [
+    "madeon"
+   ]
+  },
+  {
+   "id": "coachella-2015:new-world-punx",
+   "name": "New World Punx",
+   "key": "new-world-punx",
+   "performers": [
+    "new-world-punx"
+   ]
+  },
+  {
+   "id": "coachella-2015:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ]
+  },
+  {
+   "id": "coachella-2015:cassian",
+   "name": "Cassian",
+   "key": "cassian",
+   "performers": [
+    "cassian"
+   ]
+  },
+  {
+   "id": "coachella-2015:bit-funk",
+   "name": "Bit Funk",
+   "key": "bit-funk",
+   "performers": [
+    "bit-funk"
+   ]
+  },
+  {
+   "id": "coachella-2015:hayden-james",
+   "name": "Hayden James",
+   "key": "hayden-james",
+   "performers": [
+    "hayden-james"
+   ]
+  },
+  {
+   "id": "coachella-2015:jai-wolf",
+   "name": "Jai Wolf",
+   "key": "jai-wolf",
+   "performers": [
+    "jai-wolf"
+   ]
+  },
+  {
+   "id": "coachella-2015:coyote-kisses",
+   "name": "Coyote Kisses",
+   "key": "coyote-kisses",
+   "performers": [
+    "coyote-kisses"
+   ]
+  },
+  {
+   "id": "coachella-2015:till-von-sein",
+   "name": "Till Von Sein",
+   "key": "till-von-sein",
+   "performers": [
+    "till-von-sein"
+   ]
+  },
+  {
+   "id": "coachella-2015:edu-imbernon",
+   "name": "Edu Imbernon",
+   "key": "edu-imbernon",
+   "performers": [
+    "edu-imbernon"
+   ]
+  },
+  {
+   "id": "coachella-2015:m-a-n-d-y",
+   "name": "M.A.N.D.Y.",
+   "key": "m-a-n-d-y",
+   "performers": [
+    "m-a-n-d-y"
+   ]
+  },
+  {
+   "id": "coachella-2015:little-red-spiders",
+   "name": "Little Red Spiders",
+   "key": "little-red-spiders",
+   "performers": [
+    "little-red-spiders"
+   ]
+  },
+  {
+   "id": "coachella-2015:sloan",
+   "name": "Sloan",
+   "key": "sloan",
+   "performers": [
+    "sloan"
+   ]
+  },
+  {
+   "id": "coachella-2015:touche-amore",
+   "name": "Touche Amore",
+   "key": "touche-amore",
+   "performers": [
+    "touche-amore"
+   ]
+  },
+  {
+   "id": "coachella-2015:off",
+   "name": "OFF!",
+   "key": "off",
+   "performers": [
+    "off"
+   ]
+  },
+  {
+   "id": "coachella-2015:panda-bear",
+   "name": "Panda Bear",
+   "key": "panda-bear",
+   "performers": [
+    "panda-bear"
+   ]
+  },
+  {
+   "id": "coachella-2015:rac",
+   "name": "RAC",
+   "key": "rac",
+   "performers": [
+    "rac"
+   ]
+  },
+  {
+   "id": "coachella-2015:vance-joy",
+   "name": "Vance Joy",
+   "key": "vance-joy",
+   "performers": [
+    "vance-joy"
+   ]
+  },
+  {
+   "id": "coachella-2015:brand-new",
+   "name": "Brand New",
+   "key": "brand-new",
+   "performers": [
+    "brand-new"
+   ]
+  },
+  {
+   "id": "coachella-2015:stromae",
+   "name": "Stromae",
+   "key": "stromae",
+   "performers": [
+    "stromae"
+   ]
+  },
+  {
+   "id": "coachella-2015:gesaffelstein",
+   "name": "Gesaffelstein",
+   "key": "gesaffelstein",
+   "performers": [
+    "gesaffelstein"
+   ]
+  },
+  {
+   "id": "coachella-2015:kygo",
+   "name": "Kygo",
+   "key": "kygo",
+   "performers": [
+    "kygo"
+   ]
+  },
+  {
+   "id": "coachella-2015:antemasque",
+   "name": "Antemasque",
+   "key": "antemasque",
+   "performers": [
+    "antemasque"
+   ]
+  },
+  {
+   "id": "coachella-2015:trent-cantrelle",
+   "name": "Trent Cantrelle",
+   "key": "trent-cantrelle",
+   "performers": [
+    "trent-cantrelle"
+   ]
+  },
+  {
+   "id": "coachella-2015:doc-martin-feat-sublevel-live",
+   "name": "Doc Martin feat. Sublevel Live",
+   "key": "doc-martin-feat-sublevel-live",
+   "performers": [
+    "doc-martin-feat-sublevel-live"
+   ]
+  },
+  {
+   "id": "coachella-2015:tini",
+   "name": "tINI",
+   "key": "tini",
+   "performers": [
+    "tini"
+   ]
+  },
+  {
+   "id": "coachella-2015:tiger-and-woods",
+   "name": "Tiger and Woods",
+   "key": "tiger-and-woods",
+   "performers": [
+    "tiger-and-woods"
+   ]
+  },
+  {
+   "id": "coachella-2015:john-talabot-dj-set",
+   "name": "John Talabot DJ Set",
+   "key": "john-talabot-dj-set",
+   "performers": [
+    "john-talabot-dj-set"
+   ]
+  },
+  {
+   "id": "coachella-2015:jason-bentley",
+   "name": "Jason Bentley",
+   "key": "jason-bentley",
+   "performers": [
+    "jason-bentley"
+   ]
+  },
+  {
+   "id": "coachella-2015:ben-klock",
+   "name": "Ben Klock",
+   "key": "ben-klock",
+   "performers": [
+    "ben-klock"
+   ]
+  },
+  {
+   "id": "coachella-2015:guy-gerber",
+   "name": "Guy Gerber",
+   "key": "guy-gerber",
+   "performers": [
+    "guy-gerber"
+   ]
+  },
+  {
+   "id": "coachella-2015:j-e-s-s-jackmaster-eats-everything-skream-and-seth-troxler",
+   "name": "J.E.S.+S. (Jackmaster, Eats Everything, Skream & Seth Troxler)",
+   "key": "j-e-s-s-jackmaster-eats-everything-skream-and-seth-troxler",
+   "performers": [
+    "j-e-s-s-jackmaster-eats-everything-skream-and-seth-troxler"
+   ]
+  },
+  {
+   "id": "coachella-2015:whitehorse",
+   "name": "Whitehorse",
+   "key": "whitehorse",
+   "performers": [
+    "whitehorse"
+   ]
+  },
+  {
+   "id": "coachella-2015:patricio-and-shawni",
+   "name": "Patricio and Shawni",
+   "key": "patricio-and-shawni",
+   "performers": [
+    "patricio-and-shawni"
+   ]
+  },
+  {
+   "id": "coachella-2015:sabo",
+   "name": "Sabo",
+   "key": "sabo",
+   "performers": [
+    "sabo"
+   ]
+  },
+  {
+   "id": "coachella-2015:lisbona",
+   "name": "Lisbona",
+   "key": "lisbona",
+   "performers": [
+    "lisbona"
+   ]
+  },
+  {
+   "id": "coachella-2015:atish",
+   "name": "Atish",
+   "key": "atish",
+   "performers": [
+    "atish"
+   ]
+  },
+  {
+   "id": "coachella-2015:mija",
+   "name": "Mija",
+   "key": "mija",
+   "performers": [
+    "mija"
+   ]
+  },
+  {
+   "id": "coachella-2015:my-favorite-robot",
+   "name": "My Favorite Robot",
+   "key": "my-favorite-robot",
+   "performers": [
+    "my-favorite-robot"
+   ]
+  },
+  {
+   "id": "coachella-2015:dr-fresch",
+   "name": "Dr. Fresch",
+   "key": "dr-fresch",
+   "performers": [
+    "dr-fresch"
+   ]
+  },
+  {
+   "id": "coachella-2015:andrew-luce",
+   "name": "Andrew Luce",
+   "key": "andrew-luce",
+   "performers": [
+    "andrew-luce"
+   ]
+  },
+  {
+   "id": "coachella-2015:tropicool",
+   "name": "Tropicool",
+   "key": "tropicool",
+   "performers": [
+    "tropicool"
+   ]
+  },
+  {
+   "id": "coachella-2015:tastytreat",
+   "name": "TastyTreat",
+   "key": "tastytreat",
+   "performers": [
+    "tastytreat"
+   ]
+  },
+  {
+   "id": "coachella-2015:goldrush",
+   "name": "GoldRush",
+   "key": "goldrush",
+   "performers": [
+    "goldrush"
+   ]
+  },
+  {
+   "id": "coachella-2015:robot-koch",
+   "name": "Robot Koch",
+   "key": "robot-koch",
+   "performers": [
+    "robot-koch"
+   ]
+  },
+  {
+   "id": "coachella-2015:hoodboi",
+   "name": "Hoodboi",
+   "key": "hoodboi",
+   "performers": [
+    "hoodboi"
+   ]
+  },
+  {
+   "id": "coachella-2015:crnkn",
+   "name": "CRNKN",
+   "key": "crnkn",
+   "performers": [
+    "crnkn"
+   ]
+  },
+  {
+   "id": "coachella-2015:a-tribe-called-red",
+   "name": "A Tribe Called Red",
+   "key": "a-tribe-called-red",
+   "performers": [
+    "a-tribe-called-red"
+   ]
+  },
+  {
+   "id": "coachella-2015:kraddy",
+   "name": "Kraddy",
+   "key": "kraddy",
+   "performers": [
+    "kraddy"
+   ]
+  },
+  {
+   "id": "coachella-2015:adam-freeland",
+   "name": "Adam Freeland",
+   "key": "adam-freeland",
+   "performers": [
+    "adam-freeland"
+   ]
+  },
+  {
+   "id": "coachella-2015:eevaan-tre-and-the-show",
+   "name": "Eevaan Tre & The Show",
+   "key": "eevaan-tre-and-the-show",
+   "performers": [
+    "eevaan-tre-and-the-show"
+   ]
+  },
+  {
+   "id": "coachella-2015:john-beaver",
+   "name": "John Beaver",
+   "key": "john-beaver",
+   "performers": [
+    "john-beaver"
+   ]
+  },
+  {
+   "id": "coachella-2015:hunter-leggitt",
+   "name": "Hunter Leggitt",
+   "key": "hunter-leggitt",
+   "performers": [
+    "hunter-leggitt"
+   ]
+  },
+  {
+   "id": "coachella-2015:morillo",
+   "name": "Morillo",
+   "key": "morillo",
+   "performers": [
+    "morillo"
+   ]
+  },
+  {
+   "id": "coachella-2015:louis-futon",
+   "name": "Louis Futon",
+   "key": "louis-futon",
+   "performers": [
+    "louis-futon"
+   ]
+  },
+  {
+   "id": "coachella-2015:dance-spirit",
+   "name": "Dance Spirit",
+   "key": "dance-spirit",
+   "performers": [
+    "dance-spirit"
+   ]
+  },
+  {
+   "id": "coachella-2015:pomo",
+   "name": "Pomo",
+   "key": "pomo",
+   "performers": [
+    "pomo"
+   ]
+  },
+  {
+   "id": "coachella-2015:worthy",
+   "name": "Worthy",
+   "key": "worthy",
+   "performers": [
+    "worthy"
+   ]
+  },
+  {
+   "id": "coachella-2015:j-phlip",
+   "name": "J. Phlip",
+   "key": "j-phlip",
+   "performers": [
+    "j-phlip"
+   ]
+  },
+  {
+   "id": "coachella-2015:wavegroove",
+   "name": "Wavegroove",
+   "key": "wavegroove",
+   "performers": [
+    "wavegroove"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "coachella-2015:d1:gobi:1115:moustache",
+   "artistId": "coachella-2015:moustache",
+   "day": 1,
+   "stageId": "coachella-2015:gobi",
+   "start": "11:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:gobi:1200:ruen-brothers",
+   "artistId": "coachella-2015:ruen-brothers",
+   "day": 1,
+   "stageId": "coachella-2015:gobi",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:gobi:1255:eagulls",
+   "artistId": "coachella-2015:eagulls",
+   "day": 1,
+   "stageId": "coachella-2015:gobi",
+   "start": "12:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:gobi:1355:cloud-nothings",
+   "artistId": "coachella-2015:cloud-nothings",
+   "day": 1,
+   "stageId": "coachella-2015:gobi",
+   "start": "13:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:gobi:1500:ab-soul",
+   "artistId": "coachella-2015:ab-soul",
+   "day": 1,
+   "stageId": "coachella-2015:gobi",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:gobi:1615:kimbra",
+   "artistId": "coachella-2015:kimbra",
+   "day": 1,
+   "stageId": "coachella-2015:gobi",
+   "start": "16:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:gobi:1725:ride",
+   "artistId": "coachella-2015:ride",
+   "day": 1,
+   "stageId": "coachella-2015:gobi",
+   "start": "17:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:gobi:1845:hot-natured",
+   "artistId": "coachella-2015:hot-natured",
+   "day": 1,
+   "stageId": "coachella-2015:gobi",
+   "start": "18:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:gobi:2005:gorgon-city",
+   "artistId": "coachella-2015:gorgon-city",
+   "day": 1,
+   "stageId": "coachella-2015:gobi",
+   "start": "20:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:gobi:2120:todd-terje-and-the-olsens",
+   "artistId": "coachella-2015:todd-terje-and-the-olsens",
+   "day": 1,
+   "stageId": "coachella-2015:gobi",
+   "start": "21:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:gobi:2250:squarepusher",
+   "artistId": "coachella-2015:squarepusher",
+   "day": 1,
+   "stageId": "coachella-2015:gobi",
+   "start": "22:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:coachella:1320:vic-mensa",
+   "artistId": "coachella-2015:vic-mensa",
+   "day": 1,
+   "stageId": "coachella-2015:coachella",
+   "start": "13:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:coachella:1430:action-bronson",
+   "artistId": "coachella-2015:action-bronson",
+   "day": 1,
+   "stageId": "coachella-2015:coachella",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:coachella:1545:charles-bradley-and-his-extraordinaires",
+   "artistId": "coachella-2015:charles-bradley-and-his-extraordinaires",
+   "day": 1,
+   "stageId": "coachella-2015:coachella",
+   "start": "15:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:coachella:1700:azealia-banks",
+   "artistId": "coachella-2015:azealia-banks",
+   "day": 1,
+   "stageId": "coachella-2015:coachella",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:coachella:1810:the-war-on-drugs",
+   "artistId": "coachella-2015:the-war-on-drugs",
+   "day": 1,
+   "stageId": "coachella-2015:coachella",
+   "start": "18:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:coachella:1925:interpol",
+   "artistId": "coachella-2015:interpol",
+   "day": 1,
+   "stageId": "coachella-2015:coachella",
+   "start": "19:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:coachella:2115:tame-impala",
+   "artistId": "coachella-2015:tame-impala",
+   "day": 1,
+   "stageId": "coachella-2015:coachella",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:coachella:2235:ac-dc",
+   "artistId": "coachella-2015:ac-dc",
+   "day": 1,
+   "stageId": "coachella-2015:coachella",
+   "start": "22:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:outdoor:1115:alchemy",
+   "artistId": "coachella-2015:alchemy",
+   "day": 1,
+   "stageId": "coachella-2015:outdoor",
+   "start": "11:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:outdoor:1200:the-ghost-of-a-saber-tooth-tiger",
+   "artistId": "coachella-2015:the-ghost-of-a-saber-tooth-tiger",
+   "day": 1,
+   "stageId": "coachella-2015:outdoor",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:outdoor:1300:brant-bjork-and-the-low-desert-punk-band",
+   "artistId": "coachella-2015:brant-bjork-and-the-low-desert-punk-band",
+   "day": 1,
+   "stageId": "coachella-2015:outdoor",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:outdoor:1410:allah-las",
+   "artistId": "coachella-2015:allah-las",
+   "day": 1,
+   "stageId": "coachella-2015:outdoor",
+   "start": "14:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:outdoor:1510:lil-b",
+   "artistId": "coachella-2015:lil-b",
+   "day": 1,
+   "stageId": "coachella-2015:outdoor",
+   "start": "15:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:outdoor:1625:angus-and-julia-stone",
+   "artistId": "coachella-2015:angus-and-julia-stone",
+   "day": 1,
+   "stageId": "coachella-2015:outdoor",
+   "start": "16:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:outdoor:1745:raekwon-and-ghostface-killah",
+   "artistId": "coachella-2015:raekwon-and-ghostface-killah",
+   "day": 1,
+   "stageId": "coachella-2015:outdoor",
+   "start": "17:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:outdoor:1900:alabama-shakes",
+   "artistId": "coachella-2015:alabama-shakes",
+   "day": 1,
+   "stageId": "coachella-2015:outdoor",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:outdoor:2015:steely-dan",
+   "artistId": "coachella-2015:steely-dan",
+   "day": 1,
+   "stageId": "coachella-2015:outdoor",
+   "start": "20:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:outdoor:2135:nero",
+   "artistId": "coachella-2015:nero",
+   "day": 1,
+   "stageId": "coachella-2015:outdoor",
+   "start": "21:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:sahara:1130:djp",
+   "artistId": "coachella-2015:djp",
+   "day": 1,
+   "stageId": "coachella-2015:sahara",
+   "start": "11:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:sahara:1320:peking-duk",
+   "artistId": "coachella-2015:peking-duk",
+   "day": 1,
+   "stageId": "coachella-2015:sahara",
+   "start": "13:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:sahara:1430:trippy-turtle",
+   "artistId": "coachella-2015:trippy-turtle",
+   "day": 1,
+   "stageId": "coachella-2015:sahara",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:sahara:1540:alvin-risk",
+   "artistId": "coachella-2015:alvin-risk",
+   "day": 1,
+   "stageId": "coachella-2015:sahara",
+   "start": "15:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:sahara:1650:keys-n-krates",
+   "artistId": "coachella-2015:keys-n-krates",
+   "day": 1,
+   "stageId": "coachella-2015:sahara",
+   "start": "16:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:sahara:1800:oliver-heldens",
+   "artistId": "coachella-2015:oliver-heldens",
+   "day": 1,
+   "stageId": "coachella-2015:sahara",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:sahara:1910:r3hab",
+   "artistId": "coachella-2015:r3hab",
+   "day": 1,
+   "stageId": "coachella-2015:sahara",
+   "start": "19:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:sahara:2030:dj-snake",
+   "artistId": "coachella-2015:dj-snake",
+   "day": 1,
+   "stageId": "coachella-2015:sahara",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:sahara:2200:porter-robinson",
+   "artistId": "coachella-2015:porter-robinson",
+   "day": 1,
+   "stageId": "coachella-2015:sahara",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:sahara:2335:alesso",
+   "artistId": "coachella-2015:alesso",
+   "day": 1,
+   "stageId": "coachella-2015:sahara",
+   "start": "23:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:do-lab:1130:clozee",
+   "artistId": "coachella-2015:clozee",
+   "day": 1,
+   "stageId": "coachella-2015:do-lab",
+   "start": "11:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:do-lab:1300:b-r-e-e-d",
+   "artistId": "coachella-2015:b-r-e-e-d",
+   "day": 1,
+   "stageId": "coachella-2015:do-lab",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:do-lab:1425:dirtwire",
+   "artistId": "coachella-2015:dirtwire",
+   "day": 1,
+   "stageId": "coachella-2015:do-lab",
+   "start": "14:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:do-lab:1550:mihkal",
+   "artistId": "coachella-2015:mihkal",
+   "day": 1,
+   "stageId": "coachella-2015:do-lab",
+   "start": "15:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:do-lab:1700:jesse-wright",
+   "artistId": "coachella-2015:jesse-wright",
+   "day": 1,
+   "stageId": "coachella-2015:do-lab",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:do-lab:1815:lane-8",
+   "artistId": "coachella-2015:lane-8",
+   "day": 1,
+   "stageId": "coachella-2015:do-lab",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:do-lab:1945:lucent-dossier-experience",
+   "artistId": "coachella-2015:lucent-dossier-experience",
+   "day": 1,
+   "stageId": "coachella-2015:do-lab",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:do-lab:2115:fort-knox-five",
+   "artistId": "coachella-2015:fort-knox-five",
+   "day": 1,
+   "stageId": "coachella-2015:do-lab",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:do-lab:2230:jackal",
+   "artistId": "coachella-2015:jackal",
+   "day": 1,
+   "stageId": "coachella-2015:do-lab",
+   "start": "22:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:do-lab:2345:loudpvck",
+   "artistId": "coachella-2015:loudpvck",
+   "day": 1,
+   "stageId": "coachella-2015:do-lab",
+   "start": "23:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:mojave:1140:los-rakas",
+   "artistId": "coachella-2015:los-rakas",
+   "day": 1,
+   "stageId": "coachella-2015:mojave",
+   "start": "11:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:mojave:1230:haerts",
+   "artistId": "coachella-2015:haerts",
+   "day": 1,
+   "stageId": "coachella-2015:mojave",
+   "start": "12:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:mojave:1330:reverend-horton-heat",
+   "artistId": "coachella-2015:reverend-horton-heat",
+   "day": 1,
+   "stageId": "coachella-2015:mojave",
+   "start": "13:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:mojave:1440:george-ezra",
+   "artistId": "coachella-2015:george-ezra",
+   "day": 1,
+   "stageId": "coachella-2015:mojave",
+   "start": "14:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:mojave:1540:sylvan-esso",
+   "artistId": "coachella-2015:sylvan-esso",
+   "day": 1,
+   "stageId": "coachella-2015:mojave",
+   "start": "15:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:mojave:1655:kiesza",
+   "artistId": "coachella-2015:kiesza",
+   "day": 1,
+   "stageId": "coachella-2015:mojave",
+   "start": "16:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:mojave:1805:ryan-hemsworth",
+   "artistId": "coachella-2015:ryan-hemsworth",
+   "day": 1,
+   "stageId": "coachella-2015:mojave",
+   "start": "18:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:mojave:1920:lykke-li",
+   "artistId": "coachella-2015:lykke-li",
+   "day": 1,
+   "stageId": "coachella-2015:mojave",
+   "start": "19:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:mojave:2040:caribou",
+   "artistId": "coachella-2015:caribou",
+   "day": 1,
+   "stageId": "coachella-2015:mojave",
+   "start": "20:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:mojave:2200:flying-lotus",
+   "artistId": "coachella-2015:flying-lotus",
+   "day": 1,
+   "stageId": "coachella-2015:mojave",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:yuma:1300:freddy-be",
+   "artistId": "coachella-2015:freddy-be",
+   "day": 1,
+   "stageId": "coachella-2015:yuma",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:yuma:1415:marques-wyatt",
+   "artistId": "coachella-2015:marques-wyatt",
+   "day": 1,
+   "stageId": "coachella-2015:yuma",
+   "start": "14:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:yuma:1530:lee-foss",
+   "artistId": "coachella-2015:lee-foss",
+   "day": 1,
+   "stageId": "coachella-2015:yuma",
+   "start": "15:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:yuma:1645:erol-alkan",
+   "artistId": "coachella-2015:erol-alkan",
+   "day": 1,
+   "stageId": "coachella-2015:yuma",
+   "start": "16:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:yuma:1800:jon-hopkins",
+   "artistId": "coachella-2015:jon-hopkins",
+   "day": 1,
+   "stageId": "coachella-2015:yuma",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:yuma:1915:pete-tong",
+   "artistId": "coachella-2015:pete-tong",
+   "day": 1,
+   "stageId": "coachella-2015:yuma",
+   "start": "19:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:yuma:2035:chris-malinchak",
+   "artistId": "coachella-2015:chris-malinchak",
+   "day": 1,
+   "stageId": "coachella-2015:yuma",
+   "start": "20:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d1:yuma:2205:mk",
+   "artistId": "coachella-2015:mk",
+   "day": 1,
+   "stageId": "coachella-2015:yuma",
+   "start": "22:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:gobi:1145:until-the-ribbon-breaks",
+   "artistId": "coachella-2015:until-the-ribbon-breaks",
+   "day": 2,
+   "stageId": "coachella-2015:gobi",
+   "start": "11:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:gobi:1235:coasts",
+   "artistId": "coachella-2015:coasts",
+   "day": 2,
+   "stageId": "coachella-2015:gobi",
+   "start": "12:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:gobi:1325:parquet-courts",
+   "artistId": "coachella-2015:parquet-courts",
+   "day": 2,
+   "stageId": "coachella-2015:gobi",
+   "start": "13:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:gobi:1430:lights",
+   "artistId": "coachella-2015:lights",
+   "day": 2,
+   "stageId": "coachella-2015:gobi",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:gobi:1540:benjamin-booker",
+   "artistId": "coachella-2015:benjamin-booker",
+   "day": 2,
+   "stageId": "coachella-2015:gobi",
+   "start": "15:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:gobi:1645:cashmere-cat",
+   "artistId": "coachella-2015:cashmere-cat",
+   "day": 2,
+   "stageId": "coachella-2015:gobi",
+   "start": "16:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:gobi:1800:yelle",
+   "artistId": "coachella-2015:yelle",
+   "day": 2,
+   "stageId": "coachella-2015:gobi",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:gobi:1910:glass-animals",
+   "artistId": "coachella-2015:glass-animals",
+   "day": 2,
+   "stageId": "coachella-2015:gobi",
+   "start": "19:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:gobi:2020:the-gaslamp-killer-experience",
+   "artistId": "coachella-2015:the-gaslamp-killer-experience",
+   "day": 2,
+   "stageId": "coachella-2015:gobi",
+   "start": "20:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:gobi:2135:fka-twigs",
+   "artistId": "coachella-2015:fka-twigs",
+   "day": 2,
+   "stageId": "coachella-2015:gobi",
+   "start": "21:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:gobi:2250:drive-like-jehu",
+   "artistId": "coachella-2015:drive-like-jehu",
+   "day": 2,
+   "stageId": "coachella-2015:gobi",
+   "start": "22:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:coachella:1300:nortec-collective-presents-bostich-fussible",
+   "artistId": "coachella-2015:nortec-collective-presents-bostich-fussible",
+   "day": 2,
+   "stageId": "coachella-2015:coachella",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:coachella:1415:clean-bandit",
+   "artistId": "coachella-2015:clean-bandit",
+   "day": 2,
+   "stageId": "coachella-2015:coachella",
+   "start": "14:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:coachella:1525:bad-religion",
+   "artistId": "coachella-2015:bad-religion",
+   "day": 2,
+   "stageId": "coachella-2015:coachella",
+   "start": "15:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:coachella:1640:milky-chance",
+   "artistId": "coachella-2015:milky-chance",
+   "day": 2,
+   "stageId": "coachella-2015:coachella",
+   "start": "16:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:coachella:1800:hozier",
+   "artistId": "coachella-2015:hozier",
+   "day": 2,
+   "stageId": "coachella-2015:coachella",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:coachella:1930:alt-j",
+   "artistId": "coachella-2015:alt-j",
+   "day": 2,
+   "stageId": "coachella-2015:coachella",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:coachella:2115:jack-white",
+   "artistId": "coachella-2015:jack-white",
+   "day": 2,
+   "stageId": "coachella-2015:coachella",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:coachella:2325:the-weeknd",
+   "artistId": "coachella-2015:the-weeknd",
+   "day": 2,
+   "stageId": "coachella-2015:coachella",
+   "start": "23:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:1100:mantastique",
+   "artistId": "coachella-2015:mantastique",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "11:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:1200:phox",
+   "artistId": "coachella-2015:phox",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:1300:jamestown-revival",
+   "artistId": "coachella-2015:jamestown-revival",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:1355:perfume-genius",
+   "artistId": "coachella-2015:perfume-genius",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "13:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:1500:royal-blood",
+   "artistId": "coachella-2015:royal-blood",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:1605:andrew-mcmahon-in-the-wilderness",
+   "artistId": "coachella-2015:andrew-mcmahon-in-the-wilderness",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "16:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:1710:chet-faker",
+   "artistId": "coachella-2015:chet-faker",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "17:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:1840:belle-and-sebastian",
+   "artistId": "coachella-2015:belle-and-sebastian",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:2000:father-john-misty",
+   "artistId": "coachella-2015:father-john-misty",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:2115:tyler-the-creator",
+   "artistId": "coachella-2015:tyler-the-creator",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:2230:flosstradamus",
+   "artistId": "coachella-2015:flosstradamus",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "22:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:outdoor:2355:axwell-ingrosso",
+   "artistId": "coachella-2015:axwell-ingrosso",
+   "day": 2,
+   "stageId": "coachella-2015:outdoor",
+   "start": "23:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:sahara:1130:dem-ham-boyz",
+   "artistId": "coachella-2015:dem-ham-boyz",
+   "day": 2,
+   "stageId": "coachella-2015:sahara",
+   "start": "11:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:sahara:1220:bixel-boys",
+   "artistId": "coachella-2015:bixel-boys",
+   "day": 2,
+   "stageId": "coachella-2015:sahara",
+   "start": "12:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:sahara:1325:matthew-koma",
+   "artistId": "coachella-2015:matthew-koma",
+   "day": 2,
+   "stageId": "coachella-2015:sahara",
+   "start": "13:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:sahara:1430:alison-wonderland",
+   "artistId": "coachella-2015:alison-wonderland",
+   "day": 2,
+   "stageId": "coachella-2015:sahara",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:sahara:1535:gramatik",
+   "artistId": "coachella-2015:gramatik",
+   "day": 2,
+   "stageId": "coachella-2015:sahara",
+   "start": "15:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:sahara:1645:yellow-claw",
+   "artistId": "coachella-2015:yellow-claw",
+   "day": 2,
+   "stageId": "coachella-2015:sahara",
+   "start": "16:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:sahara:1755:dirty-south",
+   "artistId": "coachella-2015:dirty-south",
+   "day": 2,
+   "stageId": "coachella-2015:sahara",
+   "start": "17:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:sahara:1905:cedric-gervais",
+   "artistId": "coachella-2015:cedric-gervais",
+   "day": 2,
+   "stageId": "coachella-2015:sahara",
+   "start": "19:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:sahara:2020:duke-dumont",
+   "artistId": "coachella-2015:duke-dumont",
+   "day": 2,
+   "stageId": "coachella-2015:sahara",
+   "start": "20:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:sahara:2145:deorro",
+   "artistId": "coachella-2015:deorro",
+   "day": 2,
+   "stageId": "coachella-2015:sahara",
+   "start": "21:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:sahara:2315:ratatat",
+   "artistId": "coachella-2015:ratatat",
+   "day": 2,
+   "stageId": "coachella-2015:sahara",
+   "start": "23:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:do-lab:1200:addatap",
+   "artistId": "coachella-2015:addatap",
+   "day": 2,
+   "stageId": "coachella-2015:do-lab",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:do-lab:1345:justin-jay",
+   "artistId": "coachella-2015:justin-jay",
+   "day": 2,
+   "stageId": "coachella-2015:do-lab",
+   "start": "13:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:do-lab:1515:sebastien-leger",
+   "artistId": "coachella-2015:sebastien-leger",
+   "day": 2,
+   "stageId": "coachella-2015:do-lab",
+   "start": "15:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:do-lab:1645:droog",
+   "artistId": "coachella-2015:droog",
+   "day": 2,
+   "stageId": "coachella-2015:do-lab",
+   "start": "16:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:do-lab:1815:an-ten-nae",
+   "artistId": "coachella-2015:an-ten-nae",
+   "day": 2,
+   "stageId": "coachella-2015:do-lab",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:do-lab:1930:joe-kay-and-jay-prince",
+   "artistId": "coachella-2015:joe-kay-and-jay-prince",
+   "day": 2,
+   "stageId": "coachella-2015:do-lab",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:do-lab:2100:falcons",
+   "artistId": "coachella-2015:falcons",
+   "day": 2,
+   "stageId": "coachella-2015:do-lab",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:do-lab:2215:russ-liquid",
+   "artistId": "coachella-2015:russ-liquid",
+   "day": 2,
+   "stageId": "coachella-2015:do-lab",
+   "start": "22:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:do-lab:2330:ooah",
+   "artistId": "coachella-2015:ooah",
+   "day": 2,
+   "stageId": "coachella-2015:do-lab",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:mojave:1135:radkey",
+   "artistId": "coachella-2015:radkey",
+   "day": 2,
+   "stageId": "coachella-2015:mojave",
+   "start": "11:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:mojave:1220:tourist",
+   "artistId": "coachella-2015:tourist",
+   "day": 2,
+   "stageId": "coachella-2015:mojave",
+   "start": "12:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:mojave:1315:ryn-weaver",
+   "artistId": "coachella-2015:ryn-weaver",
+   "day": 2,
+   "stageId": "coachella-2015:mojave",
+   "start": "13:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:mojave:1420:st-paul-and-the-broken-bones",
+   "artistId": "coachella-2015:st-paul-and-the-broken-bones",
+   "day": 2,
+   "stageId": "coachella-2015:mojave",
+   "start": "14:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:mojave:1520:bad-suns",
+   "artistId": "coachella-2015:bad-suns",
+   "day": 2,
+   "stageId": "coachella-2015:mojave",
+   "start": "15:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:mojave:1620:toro-y-moi",
+   "artistId": "coachella-2015:toro-y-moi",
+   "day": 2,
+   "stageId": "coachella-2015:mojave",
+   "start": "16:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:mojave:1735:jungle",
+   "artistId": "coachella-2015:jungle",
+   "day": 2,
+   "stageId": "coachella-2015:mojave",
+   "start": "17:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:mojave:1855:run-the-jewels",
+   "artistId": "coachella-2015:run-the-jewels",
+   "day": 2,
+   "stageId": "coachella-2015:mojave",
+   "start": "18:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:mojave:2015:kasabian",
+   "artistId": "coachella-2015:kasabian",
+   "day": 2,
+   "stageId": "coachella-2015:mojave",
+   "start": "20:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:mojave:2130:tycho",
+   "artistId": "coachella-2015:tycho",
+   "day": 2,
+   "stageId": "coachella-2015:mojave",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:mojave:2250:sbtrkt",
+   "artistId": "coachella-2015:sbtrkt",
+   "day": 2,
+   "stageId": "coachella-2015:mojave",
+   "start": "22:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:yuma:1300:mor-elian",
+   "artistId": "coachella-2015:mor-elian",
+   "day": 2,
+   "stageId": "coachella-2015:yuma",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:yuma:1410:lauren-lane",
+   "artistId": "coachella-2015:lauren-lane",
+   "day": 2,
+   "stageId": "coachella-2015:yuma",
+   "start": "14:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:yuma:1510:andrea-oliva",
+   "artistId": "coachella-2015:andrea-oliva",
+   "day": 2,
+   "stageId": "coachella-2015:yuma",
+   "start": "15:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:yuma:1620:tale-of-us",
+   "artistId": "coachella-2015:tale-of-us",
+   "day": 2,
+   "stageId": "coachella-2015:yuma",
+   "start": "16:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:yuma:1730:carl-craig",
+   "artistId": "coachella-2015:carl-craig",
+   "day": 2,
+   "stageId": "coachella-2015:yuma",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:yuma:1850:danny-tenaglia",
+   "artistId": "coachella-2015:danny-tenaglia",
+   "day": 2,
+   "stageId": "coachella-2015:yuma",
+   "start": "18:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:yuma:2030:dj-harvey",
+   "artistId": "coachella-2015:dj-harvey",
+   "day": 2,
+   "stageId": "coachella-2015:yuma",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:yuma:2220:loco-dice",
+   "artistId": "coachella-2015:loco-dice",
+   "day": 2,
+   "stageId": "coachella-2015:yuma",
+   "start": "22:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d2:yuma:2345:annie-mac",
+   "artistId": "coachella-2015:annie-mac",
+   "day": 2,
+   "stageId": "coachella-2015:yuma",
+   "start": "23:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:1150:astronautica",
+   "artistId": "coachella-2015:astronautica",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "11:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:1230:night-terrors-of-1927",
+   "artistId": "coachella-2015:night-terrors-of-1927",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "12:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:1325:angel-olsen",
+   "artistId": "coachella-2015:angel-olsen",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "13:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:1425:m",
+   "artistId": "coachella-2015:m",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "14:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:1525:sturgill-simpson",
+   "artistId": "coachella-2015:sturgill-simpson",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "15:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:1635:desaparecidos",
+   "artistId": "coachella-2015:desaparecidos",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "16:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:1805:the-cribs",
+   "artistId": "coachella-2015:the-cribs",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "18:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:1910:philip-selway",
+   "artistId": "coachella-2015:philip-selway",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "19:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:2020:jamie-xx",
+   "artistId": "coachella-2015:jamie-xx",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "20:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:2135:odesza",
+   "artistId": "coachella-2015:odesza",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "21:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:2245:kaytranada",
+   "artistId": "coachella-2015:kaytranada",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "22:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:gobi:0005:swans",
+   "artistId": "coachella-2015:swans",
+   "day": 3,
+   "stageId": "coachella-2015:gobi",
+   "start": "00:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:coachella:1245:jimbo-jenkins",
+   "artistId": "coachella-2015:jimbo-jenkins",
+   "day": 3,
+   "stageId": "coachella-2015:coachella",
+   "start": "12:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:coachella:1320:saint-motel",
+   "artistId": "coachella-2015:saint-motel",
+   "day": 3,
+   "stageId": "coachella-2015:coachella",
+   "start": "13:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:coachella:1420:the-orwells",
+   "artistId": "coachella-2015:the-orwells",
+   "day": 3,
+   "stageId": "coachella-2015:coachella",
+   "start": "14:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:coachella:1520:circa-survive",
+   "artistId": "coachella-2015:circa-survive",
+   "day": 3,
+   "stageId": "coachella-2015:coachella",
+   "start": "15:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:coachella:1630:st-lucia",
+   "artistId": "coachella-2015:st-lucia",
+   "day": 3,
+   "stageId": "coachella-2015:coachella",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:coachella:1745:marina-and-the-diamonds",
+   "artistId": "coachella-2015:marina-and-the-diamonds",
+   "day": 3,
+   "stageId": "coachella-2015:coachella",
+   "start": "17:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:coachella:1925:kaskade",
+   "artistId": "coachella-2015:kaskade",
+   "day": 3,
+   "stageId": "coachella-2015:coachella",
+   "start": "19:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:coachella:2050:florence-the-machine",
+   "artistId": "coachella-2015:florence-the-machine",
+   "day": 3,
+   "stageId": "coachella-2015:coachella",
+   "start": "20:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:coachella:2215:drake",
+   "artistId": "coachella-2015:drake",
+   "day": 3,
+   "stageId": "coachella-2015:coachella",
+   "start": "22:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:outdoor:1200:gabe-real",
+   "artistId": "coachella-2015:gabe-real",
+   "day": 3,
+   "stageId": "coachella-2015:outdoor",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:outdoor:1300:chicano-batman",
+   "artistId": "coachella-2015:chicano-batman",
+   "day": 3,
+   "stageId": "coachella-2015:outdoor",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:outdoor:1400:joyce-manor",
+   "artistId": "coachella-2015:joyce-manor",
+   "day": 3,
+   "stageId": "coachella-2015:outdoor",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:outdoor:1505:mac-demarco",
+   "artistId": "coachella-2015:mac-demarco",
+   "day": 3,
+   "stageId": "coachella-2015:outdoor",
+   "start": "15:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:outdoor:1615:built-to-spill",
+   "artistId": "coachella-2015:built-to-spill",
+   "day": 3,
+   "stageId": "coachella-2015:outdoor",
+   "start": "16:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:outdoor:1730:jenny-lewis",
+   "artistId": "coachella-2015:jenny-lewis",
+   "day": 3,
+   "stageId": "coachella-2015:outdoor",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:outdoor:1835:ryan-adams",
+   "artistId": "coachella-2015:ryan-adams",
+   "day": 3,
+   "stageId": "coachella-2015:outdoor",
+   "start": "18:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:outdoor:2000:st-vincent",
+   "artistId": "coachella-2015:st-vincent",
+   "day": 3,
+   "stageId": "coachella-2015:outdoor",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:outdoor:2120:fitz-and-the-tantrums",
+   "artistId": "coachella-2015:fitz-and-the-tantrums",
+   "day": 3,
+   "stageId": "coachella-2015:outdoor",
+   "start": "21:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:sahara:1130:soslo",
+   "artistId": "coachella-2015:soslo",
+   "day": 3,
+   "stageId": "coachella-2015:sahara",
+   "start": "11:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:sahara:1230:superduperbrick",
+   "artistId": "coachella-2015:superduperbrick",
+   "day": 3,
+   "stageId": "coachella-2015:sahara",
+   "start": "12:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:sahara:1320:alf-alpha",
+   "artistId": "coachella-2015:alf-alpha",
+   "day": 3,
+   "stageId": "coachella-2015:sahara",
+   "start": "13:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:sahara:1420:claude-vonstroke",
+   "artistId": "coachella-2015:claude-vonstroke",
+   "day": 3,
+   "stageId": "coachella-2015:sahara",
+   "start": "14:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:sahara:1535:what-so-not",
+   "artistId": "coachella-2015:what-so-not",
+   "day": 3,
+   "stageId": "coachella-2015:sahara",
+   "start": "15:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:sahara:1650:martin-solveig",
+   "artistId": "coachella-2015:martin-solveig",
+   "day": 3,
+   "stageId": "coachella-2015:sahara",
+   "start": "16:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:sahara:1820:madeon",
+   "artistId": "coachella-2015:madeon",
+   "day": 3,
+   "stageId": "coachella-2015:sahara",
+   "start": "18:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:sahara:1935:new-world-punx",
+   "artistId": "coachella-2015:new-world-punx",
+   "day": 3,
+   "stageId": "coachella-2015:sahara",
+   "start": "19:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:sahara:2100:david-guetta",
+   "artistId": "coachella-2015:david-guetta",
+   "day": 3,
+   "stageId": "coachella-2015:sahara",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:do-lab:1145:cassian",
+   "artistId": "coachella-2015:cassian",
+   "day": 3,
+   "stageId": "coachella-2015:do-lab",
+   "start": "11:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:do-lab:1305:bit-funk",
+   "artistId": "coachella-2015:bit-funk",
+   "day": 3,
+   "stageId": "coachella-2015:do-lab",
+   "start": "13:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:do-lab:1420:hayden-james",
+   "artistId": "coachella-2015:hayden-james",
+   "day": 3,
+   "stageId": "coachella-2015:do-lab",
+   "start": "14:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:do-lab:1530:jai-wolf",
+   "artistId": "coachella-2015:jai-wolf",
+   "day": 3,
+   "stageId": "coachella-2015:do-lab",
+   "start": "15:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:do-lab:1645:coyote-kisses",
+   "artistId": "coachella-2015:coyote-kisses",
+   "day": 3,
+   "stageId": "coachella-2015:do-lab",
+   "start": "16:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:do-lab:1800:till-von-sein",
+   "artistId": "coachella-2015:till-von-sein",
+   "day": 3,
+   "stageId": "coachella-2015:do-lab",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:do-lab:1930:edu-imbernon",
+   "artistId": "coachella-2015:edu-imbernon",
+   "day": 3,
+   "stageId": "coachella-2015:do-lab",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:do-lab:2100:m-a-n-d-y",
+   "artistId": "coachella-2015:m-a-n-d-y",
+   "day": 3,
+   "stageId": "coachella-2015:do-lab",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:1120:little-red-spiders",
+   "artistId": "coachella-2015:little-red-spiders",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "11:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:1200:sloan",
+   "artistId": "coachella-2015:sloan",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:1300:touche-amore",
+   "artistId": "coachella-2015:touche-amore",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:1400:off",
+   "artistId": "coachella-2015:off",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:1455:panda-bear",
+   "artistId": "coachella-2015:panda-bear",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "14:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:1610:rac",
+   "artistId": "coachella-2015:rac",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "16:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:1730:vance-joy",
+   "artistId": "coachella-2015:vance-joy",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:1840:brand-new",
+   "artistId": "coachella-2015:brand-new",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:2000:stromae",
+   "artistId": "coachella-2015:stromae",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:2120:gesaffelstein",
+   "artistId": "coachella-2015:gesaffelstein",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "21:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:2300:kygo",
+   "artistId": "coachella-2015:kygo",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:mojave:0005:antemasque",
+   "artistId": "coachella-2015:antemasque",
+   "day": 3,
+   "stageId": "coachella-2015:mojave",
+   "start": "00:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:yuma:1130:trent-cantrelle",
+   "artistId": "coachella-2015:trent-cantrelle",
+   "day": 3,
+   "stageId": "coachella-2015:yuma",
+   "start": "11:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:yuma:1230:doc-martin-feat-sublevel-live",
+   "artistId": "coachella-2015:doc-martin-feat-sublevel-live",
+   "day": 3,
+   "stageId": "coachella-2015:yuma",
+   "start": "12:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:yuma:1325:tini",
+   "artistId": "coachella-2015:tini",
+   "day": 3,
+   "stageId": "coachella-2015:yuma",
+   "start": "13:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:yuma:1440:tiger-and-woods",
+   "artistId": "coachella-2015:tiger-and-woods",
+   "day": 3,
+   "stageId": "coachella-2015:yuma",
+   "start": "14:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:yuma:1600:john-talabot-dj-set",
+   "artistId": "coachella-2015:john-talabot-dj-set",
+   "day": 3,
+   "stageId": "coachella-2015:yuma",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:yuma:1735:jason-bentley",
+   "artistId": "coachella-2015:jason-bentley",
+   "day": 3,
+   "stageId": "coachella-2015:yuma",
+   "start": "17:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:yuma:1835:ben-klock",
+   "artistId": "coachella-2015:ben-klock",
+   "day": 3,
+   "stageId": "coachella-2015:yuma",
+   "start": "18:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:yuma:1940:guy-gerber",
+   "artistId": "coachella-2015:guy-gerber",
+   "day": 3,
+   "stageId": "coachella-2015:yuma",
+   "start": "19:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d3:yuma:2100:j-e-s-s-jackmaster-eats-everything-skream-and-seth-troxler",
+   "artistId": "coachella-2015:j-e-s-s-jackmaster-eats-everything-skream-and-seth-troxler",
+   "day": 3,
+   "stageId": "coachella-2015:yuma",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:gobi:1115:moustache",
+   "artistId": "coachella-2015:moustache",
+   "day": 4,
+   "stageId": "coachella-2015:gobi",
+   "start": "11:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:gobi:1200:ruen-brothers",
+   "artistId": "coachella-2015:ruen-brothers",
+   "day": 4,
+   "stageId": "coachella-2015:gobi",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:gobi:1255:eagulls",
+   "artistId": "coachella-2015:eagulls",
+   "day": 4,
+   "stageId": "coachella-2015:gobi",
+   "start": "12:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:gobi:1355:cloud-nothings",
+   "artistId": "coachella-2015:cloud-nothings",
+   "day": 4,
+   "stageId": "coachella-2015:gobi",
+   "start": "13:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:gobi:1500:ab-soul",
+   "artistId": "coachella-2015:ab-soul",
+   "day": 4,
+   "stageId": "coachella-2015:gobi",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:gobi:1615:kimbra",
+   "artistId": "coachella-2015:kimbra",
+   "day": 4,
+   "stageId": "coachella-2015:gobi",
+   "start": "16:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:gobi:1730:ride",
+   "artistId": "coachella-2015:ride",
+   "day": 4,
+   "stageId": "coachella-2015:gobi",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:gobi:1850:hot-natured",
+   "artistId": "coachella-2015:hot-natured",
+   "day": 4,
+   "stageId": "coachella-2015:gobi",
+   "start": "18:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:gobi:2010:gorgon-city",
+   "artistId": "coachella-2015:gorgon-city",
+   "day": 4,
+   "stageId": "coachella-2015:gobi",
+   "start": "20:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:gobi:2125:todd-terje-and-the-olsens",
+   "artistId": "coachella-2015:todd-terje-and-the-olsens",
+   "day": 4,
+   "stageId": "coachella-2015:gobi",
+   "start": "21:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:gobi:2250:squarepusher",
+   "artistId": "coachella-2015:squarepusher",
+   "day": 4,
+   "stageId": "coachella-2015:gobi",
+   "start": "22:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:coachella:1315:vic-mensa",
+   "artistId": "coachella-2015:vic-mensa",
+   "day": 4,
+   "stageId": "coachella-2015:coachella",
+   "start": "13:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:coachella:1425:action-bronson",
+   "artistId": "coachella-2015:action-bronson",
+   "day": 4,
+   "stageId": "coachella-2015:coachella",
+   "start": "14:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:coachella:1540:charles-bradley-and-his-extraordinaires",
+   "artistId": "coachella-2015:charles-bradley-and-his-extraordinaires",
+   "day": 4,
+   "stageId": "coachella-2015:coachella",
+   "start": "15:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:coachella:1655:azealia-banks",
+   "artistId": "coachella-2015:azealia-banks",
+   "day": 4,
+   "stageId": "coachella-2015:coachella",
+   "start": "16:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:coachella:1805:the-war-on-drugs",
+   "artistId": "coachella-2015:the-war-on-drugs",
+   "day": 4,
+   "stageId": "coachella-2015:coachella",
+   "start": "18:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:coachella:1920:interpol",
+   "artistId": "coachella-2015:interpol",
+   "day": 4,
+   "stageId": "coachella-2015:coachella",
+   "start": "19:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:coachella:2115:tame-impala",
+   "artistId": "coachella-2015:tame-impala",
+   "day": 4,
+   "stageId": "coachella-2015:coachella",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:coachella:2235:ac-dc",
+   "artistId": "coachella-2015:ac-dc",
+   "day": 4,
+   "stageId": "coachella-2015:coachella",
+   "start": "22:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:outdoor:1115:alchemy",
+   "artistId": "coachella-2015:alchemy",
+   "day": 4,
+   "stageId": "coachella-2015:outdoor",
+   "start": "11:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:outdoor:1155:the-ghost-of-a-saber-tooth-tiger",
+   "artistId": "coachella-2015:the-ghost-of-a-saber-tooth-tiger",
+   "day": 4,
+   "stageId": "coachella-2015:outdoor",
+   "start": "11:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:outdoor:1255:brant-bjork-and-the-low-desert-punk-band",
+   "artistId": "coachella-2015:brant-bjork-and-the-low-desert-punk-band",
+   "day": 4,
+   "stageId": "coachella-2015:outdoor",
+   "start": "12:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:outdoor:1405:allah-las",
+   "artistId": "coachella-2015:allah-las",
+   "day": 4,
+   "stageId": "coachella-2015:outdoor",
+   "start": "14:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:outdoor:1505:lil-b",
+   "artistId": "coachella-2015:lil-b",
+   "day": 4,
+   "stageId": "coachella-2015:outdoor",
+   "start": "15:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:outdoor:1620:angus-and-julia-stone",
+   "artistId": "coachella-2015:angus-and-julia-stone",
+   "day": 4,
+   "stageId": "coachella-2015:outdoor",
+   "start": "16:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:outdoor:1740:raekwon-and-ghostface-killah",
+   "artistId": "coachella-2015:raekwon-and-ghostface-killah",
+   "day": 4,
+   "stageId": "coachella-2015:outdoor",
+   "start": "17:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:outdoor:1855:alabama-shakes",
+   "artistId": "coachella-2015:alabama-shakes",
+   "day": 4,
+   "stageId": "coachella-2015:outdoor",
+   "start": "18:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:outdoor:2010:steely-dan",
+   "artistId": "coachella-2015:steely-dan",
+   "day": 4,
+   "stageId": "coachella-2015:outdoor",
+   "start": "20:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:outdoor:2135:nero",
+   "artistId": "coachella-2015:nero",
+   "day": 4,
+   "stageId": "coachella-2015:outdoor",
+   "start": "21:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:sahara:1200:djp",
+   "artistId": "coachella-2015:djp",
+   "day": 4,
+   "stageId": "coachella-2015:sahara",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:sahara:1330:peking-duk",
+   "artistId": "coachella-2015:peking-duk",
+   "day": 4,
+   "stageId": "coachella-2015:sahara",
+   "start": "13:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:sahara:1435:trippy-turtle",
+   "artistId": "coachella-2015:trippy-turtle",
+   "day": 4,
+   "stageId": "coachella-2015:sahara",
+   "start": "14:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:sahara:1540:alvin-risk",
+   "artistId": "coachella-2015:alvin-risk",
+   "day": 4,
+   "stageId": "coachella-2015:sahara",
+   "start": "15:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:sahara:1650:keys-n-krates",
+   "artistId": "coachella-2015:keys-n-krates",
+   "day": 4,
+   "stageId": "coachella-2015:sahara",
+   "start": "16:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:sahara:1800:oliver-heldens",
+   "artistId": "coachella-2015:oliver-heldens",
+   "day": 4,
+   "stageId": "coachella-2015:sahara",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:sahara:1910:r3hab",
+   "artistId": "coachella-2015:r3hab",
+   "day": 4,
+   "stageId": "coachella-2015:sahara",
+   "start": "19:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:sahara:2030:dj-snake",
+   "artistId": "coachella-2015:dj-snake",
+   "day": 4,
+   "stageId": "coachella-2015:sahara",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:sahara:2200:porter-robinson",
+   "artistId": "coachella-2015:porter-robinson",
+   "day": 4,
+   "stageId": "coachella-2015:sahara",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:sahara:2335:alesso",
+   "artistId": "coachella-2015:alesso",
+   "day": 4,
+   "stageId": "coachella-2015:sahara",
+   "start": "23:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:do-lab:1100:jesse-wright",
+   "artistId": "coachella-2015:jesse-wright",
+   "day": 4,
+   "stageId": "coachella-2015:do-lab",
+   "start": "11:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:do-lab:1130:whitehorse",
+   "artistId": "coachella-2015:whitehorse",
+   "day": 4,
+   "stageId": "coachella-2015:do-lab",
+   "start": "11:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:do-lab:1300:patricio-and-shawni",
+   "artistId": "coachella-2015:patricio-and-shawni",
+   "day": 4,
+   "stageId": "coachella-2015:do-lab",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:do-lab:1430:sabo",
+   "artistId": "coachella-2015:sabo",
+   "day": 4,
+   "stageId": "coachella-2015:do-lab",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:do-lab:1545:lisbona",
+   "artistId": "coachella-2015:lisbona",
+   "day": 4,
+   "stageId": "coachella-2015:do-lab",
+   "start": "15:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:do-lab:1700:atish",
+   "artistId": "coachella-2015:atish",
+   "day": 4,
+   "stageId": "coachella-2015:do-lab",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:do-lab:1815:mija",
+   "artistId": "coachella-2015:mija",
+   "day": 4,
+   "stageId": "coachella-2015:do-lab",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:do-lab:1925:lucent-dossier-experience",
+   "artistId": "coachella-2015:lucent-dossier-experience",
+   "day": 4,
+   "stageId": "coachella-2015:do-lab",
+   "start": "19:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:do-lab:2115:my-favorite-robot",
+   "artistId": "coachella-2015:my-favorite-robot",
+   "day": 4,
+   "stageId": "coachella-2015:do-lab",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:do-lab:2230:dr-fresch",
+   "artistId": "coachella-2015:dr-fresch",
+   "day": 4,
+   "stageId": "coachella-2015:do-lab",
+   "start": "22:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:mojave:1140:los-rakas",
+   "artistId": "coachella-2015:los-rakas",
+   "day": 4,
+   "stageId": "coachella-2015:mojave",
+   "start": "11:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:mojave:1230:haerts",
+   "artistId": "coachella-2015:haerts",
+   "day": 4,
+   "stageId": "coachella-2015:mojave",
+   "start": "12:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:mojave:1335:reverend-horton-heat",
+   "artistId": "coachella-2015:reverend-horton-heat",
+   "day": 4,
+   "stageId": "coachella-2015:mojave",
+   "start": "13:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:mojave:1440:george-ezra",
+   "artistId": "coachella-2015:george-ezra",
+   "day": 4,
+   "stageId": "coachella-2015:mojave",
+   "start": "14:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:mojave:1540:sylvan-esso",
+   "artistId": "coachella-2015:sylvan-esso",
+   "day": 4,
+   "stageId": "coachella-2015:mojave",
+   "start": "15:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:mojave:1655:kiesza",
+   "artistId": "coachella-2015:kiesza",
+   "day": 4,
+   "stageId": "coachella-2015:mojave",
+   "start": "16:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:mojave:1805:ryan-hemsworth",
+   "artistId": "coachella-2015:ryan-hemsworth",
+   "day": 4,
+   "stageId": "coachella-2015:mojave",
+   "start": "18:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:mojave:1920:lykke-li",
+   "artistId": "coachella-2015:lykke-li",
+   "day": 4,
+   "stageId": "coachella-2015:mojave",
+   "start": "19:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:mojave:2040:caribou",
+   "artistId": "coachella-2015:caribou",
+   "day": 4,
+   "stageId": "coachella-2015:mojave",
+   "start": "20:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:mojave:2200:flying-lotus",
+   "artistId": "coachella-2015:flying-lotus",
+   "day": 4,
+   "stageId": "coachella-2015:mojave",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:yuma:1300:freddy-be",
+   "artistId": "coachella-2015:freddy-be",
+   "day": 4,
+   "stageId": "coachella-2015:yuma",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:yuma:1415:marques-wyatt",
+   "artistId": "coachella-2015:marques-wyatt",
+   "day": 4,
+   "stageId": "coachella-2015:yuma",
+   "start": "14:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:yuma:1530:lee-foss",
+   "artistId": "coachella-2015:lee-foss",
+   "day": 4,
+   "stageId": "coachella-2015:yuma",
+   "start": "15:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:yuma:1645:chris-malinchak",
+   "artistId": "coachella-2015:chris-malinchak",
+   "day": 4,
+   "stageId": "coachella-2015:yuma",
+   "start": "16:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:yuma:1800:erol-alkan",
+   "artistId": "coachella-2015:erol-alkan",
+   "day": 4,
+   "stageId": "coachella-2015:yuma",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:yuma:1915:jon-hopkins",
+   "artistId": "coachella-2015:jon-hopkins",
+   "day": 4,
+   "stageId": "coachella-2015:yuma",
+   "start": "19:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:yuma:2035:pete-tong",
+   "artistId": "coachella-2015:pete-tong",
+   "day": 4,
+   "stageId": "coachella-2015:yuma",
+   "start": "20:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d4:yuma:2205:mk",
+   "artistId": "coachella-2015:mk",
+   "day": 4,
+   "stageId": "coachella-2015:yuma",
+   "start": "22:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:gobi:1145:until-the-ribbon-breaks",
+   "artistId": "coachella-2015:until-the-ribbon-breaks",
+   "day": 5,
+   "stageId": "coachella-2015:gobi",
+   "start": "11:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:gobi:1235:coasts",
+   "artistId": "coachella-2015:coasts",
+   "day": 5,
+   "stageId": "coachella-2015:gobi",
+   "start": "12:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:gobi:1325:parquet-courts",
+   "artistId": "coachella-2015:parquet-courts",
+   "day": 5,
+   "stageId": "coachella-2015:gobi",
+   "start": "13:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:gobi:1430:lights",
+   "artistId": "coachella-2015:lights",
+   "day": 5,
+   "stageId": "coachella-2015:gobi",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:gobi:1540:benjamin-booker",
+   "artistId": "coachella-2015:benjamin-booker",
+   "day": 5,
+   "stageId": "coachella-2015:gobi",
+   "start": "15:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:gobi:1645:cashmere-cat",
+   "artistId": "coachella-2015:cashmere-cat",
+   "day": 5,
+   "stageId": "coachella-2015:gobi",
+   "start": "16:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:gobi:1800:yelle",
+   "artistId": "coachella-2015:yelle",
+   "day": 5,
+   "stageId": "coachella-2015:gobi",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:gobi:1910:glass-animals",
+   "artistId": "coachella-2015:glass-animals",
+   "day": 5,
+   "stageId": "coachella-2015:gobi",
+   "start": "19:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:gobi:2020:the-gaslamp-killer-experience",
+   "artistId": "coachella-2015:the-gaslamp-killer-experience",
+   "day": 5,
+   "stageId": "coachella-2015:gobi",
+   "start": "20:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:gobi:2135:fka-twigs",
+   "artistId": "coachella-2015:fka-twigs",
+   "day": 5,
+   "stageId": "coachella-2015:gobi",
+   "start": "21:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:gobi:2250:drive-like-jehu",
+   "artistId": "coachella-2015:drive-like-jehu",
+   "day": 5,
+   "stageId": "coachella-2015:gobi",
+   "start": "22:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:coachella:1300:nortec-collective-presents-bostich-fussible",
+   "artistId": "coachella-2015:nortec-collective-presents-bostich-fussible",
+   "day": 5,
+   "stageId": "coachella-2015:coachella",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:coachella:1415:clean-bandit",
+   "artistId": "coachella-2015:clean-bandit",
+   "day": 5,
+   "stageId": "coachella-2015:coachella",
+   "start": "14:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:coachella:1525:bad-religion",
+   "artistId": "coachella-2015:bad-religion",
+   "day": 5,
+   "stageId": "coachella-2015:coachella",
+   "start": "15:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:coachella:1640:milky-chance",
+   "artistId": "coachella-2015:milky-chance",
+   "day": 5,
+   "stageId": "coachella-2015:coachella",
+   "start": "16:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:coachella:1800:hozier",
+   "artistId": "coachella-2015:hozier",
+   "day": 5,
+   "stageId": "coachella-2015:coachella",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:coachella:1930:alt-j",
+   "artistId": "coachella-2015:alt-j",
+   "day": 5,
+   "stageId": "coachella-2015:coachella",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:coachella:2115:jack-white",
+   "artistId": "coachella-2015:jack-white",
+   "day": 5,
+   "stageId": "coachella-2015:coachella",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:coachella:2325:the-weeknd",
+   "artistId": "coachella-2015:the-weeknd",
+   "day": 5,
+   "stageId": "coachella-2015:coachella",
+   "start": "23:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:1100:mantastique",
+   "artistId": "coachella-2015:mantastique",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "11:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:1200:phox",
+   "artistId": "coachella-2015:phox",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:1300:jamestown-revival",
+   "artistId": "coachella-2015:jamestown-revival",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:1355:perfume-genius",
+   "artistId": "coachella-2015:perfume-genius",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "13:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:1500:royal-blood",
+   "artistId": "coachella-2015:royal-blood",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:1605:andrew-mcmahon-in-the-wilderness",
+   "artistId": "coachella-2015:andrew-mcmahon-in-the-wilderness",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "16:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:1710:chet-faker",
+   "artistId": "coachella-2015:chet-faker",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "17:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:1840:belle-and-sebastian",
+   "artistId": "coachella-2015:belle-and-sebastian",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:2000:father-john-misty",
+   "artistId": "coachella-2015:father-john-misty",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:2115:tyler-the-creator",
+   "artistId": "coachella-2015:tyler-the-creator",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:2230:flosstradamus",
+   "artistId": "coachella-2015:flosstradamus",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "22:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:outdoor:2355:axwell-ingrosso",
+   "artistId": "coachella-2015:axwell-ingrosso",
+   "day": 5,
+   "stageId": "coachella-2015:outdoor",
+   "start": "23:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:sahara:1130:dem-ham-boyz",
+   "artistId": "coachella-2015:dem-ham-boyz",
+   "day": 5,
+   "stageId": "coachella-2015:sahara",
+   "start": "11:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:sahara:1215:bixel-boys",
+   "artistId": "coachella-2015:bixel-boys",
+   "day": 5,
+   "stageId": "coachella-2015:sahara",
+   "start": "12:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:sahara:1320:matthew-koma",
+   "artistId": "coachella-2015:matthew-koma",
+   "day": 5,
+   "stageId": "coachella-2015:sahara",
+   "start": "13:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:sahara:1425:alison-wonderland",
+   "artistId": "coachella-2015:alison-wonderland",
+   "day": 5,
+   "stageId": "coachella-2015:sahara",
+   "start": "14:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:sahara:1530:yellow-claw",
+   "artistId": "coachella-2015:yellow-claw",
+   "day": 5,
+   "stageId": "coachella-2015:sahara",
+   "start": "15:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:sahara:1635:gramatik",
+   "artistId": "coachella-2015:gramatik",
+   "day": 5,
+   "stageId": "coachella-2015:sahara",
+   "start": "16:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:sahara:1750:dirty-south",
+   "artistId": "coachella-2015:dirty-south",
+   "day": 5,
+   "stageId": "coachella-2015:sahara",
+   "start": "17:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:sahara:1900:cedric-gervais",
+   "artistId": "coachella-2015:cedric-gervais",
+   "day": 5,
+   "stageId": "coachella-2015:sahara",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:sahara:2020:duke-dumont",
+   "artistId": "coachella-2015:duke-dumont",
+   "day": 5,
+   "stageId": "coachella-2015:sahara",
+   "start": "20:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:sahara:2145:deorro",
+   "artistId": "coachella-2015:deorro",
+   "day": 5,
+   "stageId": "coachella-2015:sahara",
+   "start": "21:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:sahara:2315:ratatat",
+   "artistId": "coachella-2015:ratatat",
+   "day": 5,
+   "stageId": "coachella-2015:sahara",
+   "start": "23:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:do-lab:1145:andrew-luce",
+   "artistId": "coachella-2015:andrew-luce",
+   "day": 5,
+   "stageId": "coachella-2015:do-lab",
+   "start": "11:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:do-lab:1245:tropicool",
+   "artistId": "coachella-2015:tropicool",
+   "day": 5,
+   "stageId": "coachella-2015:do-lab",
+   "start": "12:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:do-lab:1345:tastytreat",
+   "artistId": "coachella-2015:tastytreat",
+   "day": 5,
+   "stageId": "coachella-2015:do-lab",
+   "start": "13:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:do-lab:1445:goldrush",
+   "artistId": "coachella-2015:goldrush",
+   "day": 5,
+   "stageId": "coachella-2015:do-lab",
+   "start": "14:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:do-lab:1545:robot-koch",
+   "artistId": "coachella-2015:robot-koch",
+   "day": 5,
+   "stageId": "coachella-2015:do-lab",
+   "start": "15:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:do-lab:1645:hoodboi",
+   "artistId": "coachella-2015:hoodboi",
+   "day": 5,
+   "stageId": "coachella-2015:do-lab",
+   "start": "16:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:do-lab:1930:crnkn",
+   "artistId": "coachella-2015:crnkn",
+   "day": 5,
+   "stageId": "coachella-2015:do-lab",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:do-lab:2045:a-tribe-called-red",
+   "artistId": "coachella-2015:a-tribe-called-red",
+   "day": 5,
+   "stageId": "coachella-2015:do-lab",
+   "start": "20:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:do-lab:2200:kraddy",
+   "artistId": "coachella-2015:kraddy",
+   "day": 5,
+   "stageId": "coachella-2015:do-lab",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:do-lab:2330:adam-freeland",
+   "artistId": "coachella-2015:adam-freeland",
+   "day": 5,
+   "stageId": "coachella-2015:do-lab",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:mojave:1135:radkey",
+   "artistId": "coachella-2015:radkey",
+   "day": 5,
+   "stageId": "coachella-2015:mojave",
+   "start": "11:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:mojave:1220:tourist",
+   "artistId": "coachella-2015:tourist",
+   "day": 5,
+   "stageId": "coachella-2015:mojave",
+   "start": "12:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:mojave:1315:ryn-weaver",
+   "artistId": "coachella-2015:ryn-weaver",
+   "day": 5,
+   "stageId": "coachella-2015:mojave",
+   "start": "13:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:mojave:1420:st-paul-and-the-broken-bones",
+   "artistId": "coachella-2015:st-paul-and-the-broken-bones",
+   "day": 5,
+   "stageId": "coachella-2015:mojave",
+   "start": "14:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:mojave:1520:bad-suns",
+   "artistId": "coachella-2015:bad-suns",
+   "day": 5,
+   "stageId": "coachella-2015:mojave",
+   "start": "15:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:mojave:1620:toro-y-moi",
+   "artistId": "coachella-2015:toro-y-moi",
+   "day": 5,
+   "stageId": "coachella-2015:mojave",
+   "start": "16:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:mojave:1735:jungle",
+   "artistId": "coachella-2015:jungle",
+   "day": 5,
+   "stageId": "coachella-2015:mojave",
+   "start": "17:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:mojave:1855:run-the-jewels",
+   "artistId": "coachella-2015:run-the-jewels",
+   "day": 5,
+   "stageId": "coachella-2015:mojave",
+   "start": "18:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:mojave:2015:kasabian",
+   "artistId": "coachella-2015:kasabian",
+   "day": 5,
+   "stageId": "coachella-2015:mojave",
+   "start": "20:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:mojave:2130:tycho",
+   "artistId": "coachella-2015:tycho",
+   "day": 5,
+   "stageId": "coachella-2015:mojave",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:mojave:2250:sbtrkt",
+   "artistId": "coachella-2015:sbtrkt",
+   "day": 5,
+   "stageId": "coachella-2015:mojave",
+   "start": "22:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:yuma:1300:mor-elian",
+   "artistId": "coachella-2015:mor-elian",
+   "day": 5,
+   "stageId": "coachella-2015:yuma",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:yuma:1410:lauren-lane",
+   "artistId": "coachella-2015:lauren-lane",
+   "day": 5,
+   "stageId": "coachella-2015:yuma",
+   "start": "14:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:yuma:1510:andrea-oliva",
+   "artistId": "coachella-2015:andrea-oliva",
+   "day": 5,
+   "stageId": "coachella-2015:yuma",
+   "start": "15:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:yuma:1620:tale-of-us",
+   "artistId": "coachella-2015:tale-of-us",
+   "day": 5,
+   "stageId": "coachella-2015:yuma",
+   "start": "16:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:yuma:1730:carl-craig",
+   "artistId": "coachella-2015:carl-craig",
+   "day": 5,
+   "stageId": "coachella-2015:yuma",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:yuma:1850:danny-tenaglia",
+   "artistId": "coachella-2015:danny-tenaglia",
+   "day": 5,
+   "stageId": "coachella-2015:yuma",
+   "start": "18:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:yuma:2030:dj-harvey",
+   "artistId": "coachella-2015:dj-harvey",
+   "day": 5,
+   "stageId": "coachella-2015:yuma",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:yuma:2220:loco-dice",
+   "artistId": "coachella-2015:loco-dice",
+   "day": 5,
+   "stageId": "coachella-2015:yuma",
+   "start": "22:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d5:yuma:2345:annie-mac",
+   "artistId": "coachella-2015:annie-mac",
+   "day": 5,
+   "stageId": "coachella-2015:yuma",
+   "start": "23:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:1150:eevaan-tre-and-the-show",
+   "artistId": "coachella-2015:eevaan-tre-and-the-show",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "11:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:1230:night-terrors-of-1927",
+   "artistId": "coachella-2015:night-terrors-of-1927",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "12:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:1325:angel-olsen",
+   "artistId": "coachella-2015:angel-olsen",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "13:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:1425:m",
+   "artistId": "coachella-2015:m",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "14:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:1525:sturgill-simpson",
+   "artistId": "coachella-2015:sturgill-simpson",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "15:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:1635:desaparecidos",
+   "artistId": "coachella-2015:desaparecidos",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "16:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:1805:the-cribs",
+   "artistId": "coachella-2015:the-cribs",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "18:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:1910:philip-selway",
+   "artistId": "coachella-2015:philip-selway",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "19:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:2020:jamie-xx",
+   "artistId": "coachella-2015:jamie-xx",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "20:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:2135:odesza",
+   "artistId": "coachella-2015:odesza",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "21:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:2245:kaytranada",
+   "artistId": "coachella-2015:kaytranada",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "22:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:0000:astronautica",
+   "artistId": "coachella-2015:astronautica",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "00:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:gobi:0005:swans",
+   "artistId": "coachella-2015:swans",
+   "day": 6,
+   "stageId": "coachella-2015:gobi",
+   "start": "00:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:coachella:1245:jimbo-jenkins",
+   "artistId": "coachella-2015:jimbo-jenkins",
+   "day": 6,
+   "stageId": "coachella-2015:coachella",
+   "start": "12:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:coachella:1315:saint-motel",
+   "artistId": "coachella-2015:saint-motel",
+   "day": 6,
+   "stageId": "coachella-2015:coachella",
+   "start": "13:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:coachella:1415:the-orwells",
+   "artistId": "coachella-2015:the-orwells",
+   "day": 6,
+   "stageId": "coachella-2015:coachella",
+   "start": "14:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:coachella:1515:circa-survive",
+   "artistId": "coachella-2015:circa-survive",
+   "day": 6,
+   "stageId": "coachella-2015:coachella",
+   "start": "15:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:coachella:1625:st-lucia",
+   "artistId": "coachella-2015:st-lucia",
+   "day": 6,
+   "stageId": "coachella-2015:coachella",
+   "start": "16:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:coachella:1740:marina-and-the-diamonds",
+   "artistId": "coachella-2015:marina-and-the-diamonds",
+   "day": 6,
+   "stageId": "coachella-2015:coachella",
+   "start": "17:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:coachella:1920:kaskade",
+   "artistId": "coachella-2015:kaskade",
+   "day": 6,
+   "stageId": "coachella-2015:coachella",
+   "start": "19:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:coachella:2100:florence-the-machine",
+   "artistId": "coachella-2015:florence-the-machine",
+   "day": 6,
+   "stageId": "coachella-2015:coachella",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:coachella:2215:drake",
+   "artistId": "coachella-2015:drake",
+   "day": 6,
+   "stageId": "coachella-2015:coachella",
+   "start": "22:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:outdoor:1200:gabe-real",
+   "artistId": "coachella-2015:gabe-real",
+   "day": 6,
+   "stageId": "coachella-2015:outdoor",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:outdoor:1245:chicano-batman",
+   "artistId": "coachella-2015:chicano-batman",
+   "day": 6,
+   "stageId": "coachella-2015:outdoor",
+   "start": "12:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:outdoor:1350:joyce-manor",
+   "artistId": "coachella-2015:joyce-manor",
+   "day": 6,
+   "stageId": "coachella-2015:outdoor",
+   "start": "13:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:outdoor:1450:mac-demarco",
+   "artistId": "coachella-2015:mac-demarco",
+   "day": 6,
+   "stageId": "coachella-2015:outdoor",
+   "start": "14:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:outdoor:1600:built-to-spill",
+   "artistId": "coachella-2015:built-to-spill",
+   "day": 6,
+   "stageId": "coachella-2015:outdoor",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:outdoor:1720:jenny-lewis",
+   "artistId": "coachella-2015:jenny-lewis",
+   "day": 6,
+   "stageId": "coachella-2015:outdoor",
+   "start": "17:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:outdoor:1830:ryan-adams",
+   "artistId": "coachella-2015:ryan-adams",
+   "day": 6,
+   "stageId": "coachella-2015:outdoor",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:outdoor:2010:st-vincent",
+   "artistId": "coachella-2015:st-vincent",
+   "day": 6,
+   "stageId": "coachella-2015:outdoor",
+   "start": "20:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:outdoor:2125:fitz-and-the-tantrums",
+   "artistId": "coachella-2015:fitz-and-the-tantrums",
+   "day": 6,
+   "stageId": "coachella-2015:outdoor",
+   "start": "21:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:sahara:1130:soslo",
+   "artistId": "coachella-2015:soslo",
+   "day": 6,
+   "stageId": "coachella-2015:sahara",
+   "start": "11:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:sahara:1220:john-beaver",
+   "artistId": "coachella-2015:john-beaver",
+   "day": 6,
+   "stageId": "coachella-2015:sahara",
+   "start": "12:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:sahara:1320:alf-alpha",
+   "artistId": "coachella-2015:alf-alpha",
+   "day": 6,
+   "stageId": "coachella-2015:sahara",
+   "start": "13:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:sahara:1420:claude-vonstroke",
+   "artistId": "coachella-2015:claude-vonstroke",
+   "day": 6,
+   "stageId": "coachella-2015:sahara",
+   "start": "14:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:sahara:1535:what-so-not",
+   "artistId": "coachella-2015:what-so-not",
+   "day": 6,
+   "stageId": "coachella-2015:sahara",
+   "start": "15:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:sahara:1650:martin-solveig",
+   "artistId": "coachella-2015:martin-solveig",
+   "day": 6,
+   "stageId": "coachella-2015:sahara",
+   "start": "16:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:sahara:1820:madeon",
+   "artistId": "coachella-2015:madeon",
+   "day": 6,
+   "stageId": "coachella-2015:sahara",
+   "start": "18:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:sahara:1935:new-world-punx",
+   "artistId": "coachella-2015:new-world-punx",
+   "day": 6,
+   "stageId": "coachella-2015:sahara",
+   "start": "19:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:sahara:2100:david-guetta",
+   "artistId": "coachella-2015:david-guetta",
+   "day": 6,
+   "stageId": "coachella-2015:sahara",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:sahara:0000:superduperbrick",
+   "artistId": "coachella-2015:superduperbrick",
+   "day": 6,
+   "stageId": "coachella-2015:sahara",
+   "start": "00:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:do-lab:1245:hunter-leggitt",
+   "artistId": "coachella-2015:hunter-leggitt",
+   "day": 6,
+   "stageId": "coachella-2015:do-lab",
+   "start": "12:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:do-lab:1400:morillo",
+   "artistId": "coachella-2015:morillo",
+   "day": 6,
+   "stageId": "coachella-2015:do-lab",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:do-lab:1510:louis-futon",
+   "artistId": "coachella-2015:louis-futon",
+   "day": 6,
+   "stageId": "coachella-2015:do-lab",
+   "start": "15:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:do-lab:1615:dance-spirit",
+   "artistId": "coachella-2015:dance-spirit",
+   "day": 6,
+   "stageId": "coachella-2015:do-lab",
+   "start": "16:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:do-lab:1830:pomo",
+   "artistId": "coachella-2015:pomo",
+   "day": 6,
+   "stageId": "coachella-2015:do-lab",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:do-lab:1945:worthy",
+   "artistId": "coachella-2015:worthy",
+   "day": 6,
+   "stageId": "coachella-2015:do-lab",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:do-lab:2115:j-phlip",
+   "artistId": "coachella-2015:j-phlip",
+   "day": 6,
+   "stageId": "coachella-2015:do-lab",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:1120:wavegroove",
+   "artistId": "coachella-2015:wavegroove",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "11:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:1200:sloan",
+   "artistId": "coachella-2015:sloan",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:1300:touche-amore",
+   "artistId": "coachella-2015:touche-amore",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:1400:off",
+   "artistId": "coachella-2015:off",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:1455:panda-bear",
+   "artistId": "coachella-2015:panda-bear",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "14:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:1610:rac",
+   "artistId": "coachella-2015:rac",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "16:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:1730:vance-joy",
+   "artistId": "coachella-2015:vance-joy",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:1840:brand-new",
+   "artistId": "coachella-2015:brand-new",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:2000:stromae",
+   "artistId": "coachella-2015:stromae",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:2120:gesaffelstein",
+   "artistId": "coachella-2015:gesaffelstein",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "21:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:2300:kygo",
+   "artistId": "coachella-2015:kygo",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:0000:little-red-spiders",
+   "artistId": "coachella-2015:little-red-spiders",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "00:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:mojave:0005:antemasque",
+   "artistId": "coachella-2015:antemasque",
+   "day": 6,
+   "stageId": "coachella-2015:mojave",
+   "start": "00:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:yuma:1130:trent-cantrelle",
+   "artistId": "coachella-2015:trent-cantrelle",
+   "day": 6,
+   "stageId": "coachella-2015:yuma",
+   "start": "11:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:yuma:1230:doc-martin-feat-sublevel-live",
+   "artistId": "coachella-2015:doc-martin-feat-sublevel-live",
+   "day": 6,
+   "stageId": "coachella-2015:yuma",
+   "start": "12:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:yuma:1325:tini",
+   "artistId": "coachella-2015:tini",
+   "day": 6,
+   "stageId": "coachella-2015:yuma",
+   "start": "13:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:yuma:1440:tiger-and-woods",
+   "artistId": "coachella-2015:tiger-and-woods",
+   "day": 6,
+   "stageId": "coachella-2015:yuma",
+   "start": "14:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:yuma:1600:john-talabot-dj-set",
+   "artistId": "coachella-2015:john-talabot-dj-set",
+   "day": 6,
+   "stageId": "coachella-2015:yuma",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:yuma:1735:jason-bentley",
+   "artistId": "coachella-2015:jason-bentley",
+   "day": 6,
+   "stageId": "coachella-2015:yuma",
+   "start": "17:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:yuma:1835:ben-klock",
+   "artistId": "coachella-2015:ben-klock",
+   "day": 6,
+   "stageId": "coachella-2015:yuma",
+   "start": "18:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:yuma:1940:guy-gerber",
+   "artistId": "coachella-2015:guy-gerber",
+   "day": 6,
+   "stageId": "coachella-2015:yuma",
+   "start": "19:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "coachella-2015:d6:yuma:2100:j-e-s-s-jackmaster-eats-everything-skream-and-seth-troxler",
+   "artistId": "coachella-2015:j-e-s-s-jackmaster-eats-everything-skream-and-seth-troxler",
+   "day": 6,
+   "stageId": "coachella-2015:yuma",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.coachella.com/lineup/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150506174804/https://www.coachella.com/lineup/",
+    "captureTimestamp": "20150506174804",
+    "printed": "Friday, April 10, 2015",
+    "sha256": "2adf1f1dfdbd1b3bcad995616e049881408fe84306e9d604a218c93b071e8a7c",
+    "rows": 67
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150506174804/https://www.coachella.com/lineup/",
+    "captureTimestamp": "20150506174804",
+    "printed": "Saturday, April 11, 2015",
+    "sha256": "2adf1f1dfdbd1b3bcad995616e049881408fe84306e9d604a218c93b071e8a7c",
+    "rows": 71
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150506174804/https://www.coachella.com/lineup/",
+    "captureTimestamp": "20150506174804",
+    "printed": "Sunday, April 12, 2015",
+    "sha256": "2adf1f1dfdbd1b3bcad995616e049881408fe84306e9d604a218c93b071e8a7c",
+    "rows": 68
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150522025423/https://www.coachella.com/lineup/?weekend=2&sort=alpha",
+    "captureTimestamp": "20150522025423",
+    "printed": "Friday, April 17, 2015",
+    "sha256": "a0f4fdb9dc484f04edaa3da805ccb7facff2a1fd5a2eeb4a873516ba3f1444f6",
+    "rows": 67
+   },
+   {
+    "day": 5,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150522025423/https://www.coachella.com/lineup/?weekend=2&sort=alpha",
+    "captureTimestamp": "20150522025423",
+    "printed": "Saturday, April 18, 2015",
+    "sha256": "a0f4fdb9dc484f04edaa3da805ccb7facff2a1fd5a2eeb4a873516ba3f1444f6",
+    "rows": 72
+   },
+   {
+    "day": 6,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150522025423/https://www.coachella.com/lineup/?weekend=2&sort=alpha",
+    "captureTimestamp": "20150522025423",
+    "printed": "Sunday, April 19, 2015",
+    "sha256": "a0f4fdb9dc484f04edaa3da805ccb7facff2a1fd5a2eeb4a873516ba3f1444f6",
+    "rows": 70
+   }
+  ]
+ }
+}
