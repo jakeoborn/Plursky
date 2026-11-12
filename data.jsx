@@ -336,6 +336,12 @@ const FESTIVAL_CONFIG = {
   // ── Defaults ──
   mainStageId: "kinetic",
   mapImage: "edc-map-2026.jpg",
+  // The same art bent onto the speedway by a thin-plate fit over its own ties
+  // (Jake, 2026-11-12: "let's try to get each map overlayed on top of the
+  // real ground"): scripts/build-geo-plate.py over map-sources/edc-lv-2026-geo-ties.json.
+  // The real map lays this plate down at its bounds; stages stay pending.
+  mapGeoref: { image: "geo-maps/edc-lv-2026.webp", bounds: [-115.0149509, 36.2686557, -115.0055499, 36.2757255], model: "tps",
+               ties: "map-sources/edc-lv-2026-geo-ties.json", rmsM: 13.2, looRmsM: 13.2 },
 
   // The festival's OWN map page, linked (never embedded) by the /f/ page:
   // official publication is provenance, not reuse rights. mapYear is the
@@ -3135,6 +3141,34 @@ function attendanceVerdictLabel(v) {
   if (v.verdict === "partial") return v.minutes != null && v.setMin ? `≈ ${r5(v.minutes)} of ${r5(v.setMin)} min` : "Part of the set";
   if (v.verdict === "unknown" && v.caught && v.minutes) return `≈ ${r5(v.minutes)} min`;
   return "";
+}
+
+// Set tracking (spec PR 3) keeps runs one fix at a time; chrome.jsx owns the
+// store and the watcher, these two pure rules live beside the engine.
+// One qualifying fix ({ ms, stageId }) onto a festival's entry. The same rule
+// as attendFixesToIntervals, one fix at a time: it extends the newest run when
+// that run is this stage and the gap is ≤ gapMs; a fix at another stage or a
+// longer gap starts a new run. A fix older than the last one is dropped (the
+// watch delivers in order; a repeat must not reopen a closed run).
+function setTrackAppend(entry, fix, gapMs = ATTEND_GAP_MS) {
+  const e = { last: entry && entry.last ? { ...entry.last } : null, runs: {} };
+  for (const k of Object.keys((entry && entry.runs) || {})) e.runs[k] = entry.runs[k].map(r => ({ from: r.from, to: r.to, src: r.src }));
+  if (!fix || typeof fix.ms !== "number" || !isFinite(fix.ms) || fix.stageId == null) return e;
+  if (e.last && fix.ms < e.last.ms) return e;
+  const runs = (e.runs[fix.stageId] = e.runs[fix.stageId] || []);
+  const top = runs[runs.length - 1];
+  if (e.last && e.last.stageId === fix.stageId && top && fix.ms - top.to <= gapMs) top.to = fix.ms;
+  else runs.push({ from: fix.ms, to: fix.ms, src: "gps" });
+  e.last = { stageId: fix.stageId, ms: fix.ms };
+  return e;
+}
+// Can sets be timed for this festival right now? "no-stages" means none of
+// its stages has a measured position, so tracking is never offered for it.
+function setTrackEligibility(cfg, nowMs) {
+  if (!cfg) return "no-festival";
+  if (!attendEvidenceAnchors(cfg).length) return "no-stages";
+  const phase = typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, nowMs) : "upcoming";
+  return phase === "live" ? "live" : phase === "ended" ? "ended" : "not-live";
 }
 
 // ── Schedule Sync: the feed shape, the diff, the replay ────────────────────
