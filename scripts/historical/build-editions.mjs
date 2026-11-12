@@ -77,7 +77,8 @@ export function buildEdition(id, rows, ledger) {
     captures: ed.method === "official_sources"
       ? ledger.days.flatMap(d => d.sources.map(s => s.kind === "page"
         ? { day: d.day, kind: "page", archivedUrl: s.archivedUrl, captureTimestamp: s.captureTimestamp, printed: s.printed, sha256: s.sha256, rows: s.rows,
-            ...(s.firstSlot && { firstSlot: s.firstSlot }) }
+            ...(s.firstSlot && { firstSlot: s.firstSlot }),
+            ...(s.anchor && { meridiemFrom: { archivedUrl: s.anchor.archivedUrl, captureTimestamp: s.anchor.captureTimestamp, printed: s.anchor.printed, sha256: s.anchor.sha256 } }) }
         : { day: d.day, kind: "graphic", imageUrl: s.imageUrl, foundAt: s.foundAt, published: s.published, rehostedBy: s.rehostedBy,
             fetchedAt: s.fetchedAt, printed: s.printed, sha256: s.sha256, rows: s.rows, receipt: s.receipt, reviewManifest: `data/historical/review/${id}.json`,
             ...(s.stagesAs && { stagesAs: s.stagesAs }) }))
