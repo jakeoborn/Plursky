@@ -85,11 +85,15 @@ function load(fid, mapSrc = MAP) {
 // evidence per anchor); edit this table in the same PR that registers them.
 const EXPECTED = {
   checked:   ["summerfest-2026", "lollapalooza-2026", "outside-lands-2026"],
-  unchecked: ["edc-lv-2026", "acl-2026", "ultra-miami-2026", "governors-ball-2026"],
+  unchecked: ["acl-2026", "governors-ball-2026"],
   // The festival's own art fitted to the ground by street ties
   // (scripts/build-geo-plate.py, map-sources/<id>-geo-ties.json). The ART is
   // placed; stages are not, so these still pin nothing.
-  fitted:    ["edc-orlando-2026", "hard-summer-2026", "iii-points-2026"],
+  // Jake, 2026-11-12: "let's try to get each map overlayed on top of the real
+  // ground" added Ultra, EDC LV, Dreamstate and CRSSD (CRSSD keeps its real
+  // basemap and lays its fitted art on it).
+  fitted:    ["edc-orlando-2026", "hard-summer-2026", "iii-points-2026",
+              "ultra-miami-2026", "edc-lv-2026", "dreamstate-socal-2026", "crssd-fall-2026"],
 };
 // Festivals whose own official art is fitted to the streets, whatever their
 // tier: the real map lays the warped plate at its measured bounds. A checked
@@ -112,7 +116,7 @@ function fleet(mapSrc) {
     const t = P.posterTierFor(cfg, aff, ver);
     ok(t === expectedTier(id), `${id}: tier "${t}", expected "${expectedTier(id)}"`);
     ok((t === "checked") === ver, `${id}: "checked" must mean geometryVerifiedFor() passes (tier ${t}, verified ${ver})`);
-    if (cfg.mapMode === "real") ok(t === "none", `${id}: mapMode "real" has no art to lay over (tier ${t})`);
+    if (cfg.mapMode === "real") ok(t === "none" || (t === "fitted" && !!P.artGeorefFor(cfg)), `${id}: mapMode "real" lays only fitted art (tier ${t})`);
     if (t === "fitted") ok(!!P.artGeorefFor(cfg), `${id}: "fitted" needs a mapGeoref that passes artGeorefFor()`);
     ok(!!(t !== "none" && P.artGeorefFor(cfg)) === GEOREFFED.includes(id), `${id}: fitted art placement ${!!P.artGeorefFor(cfg)} (tier ${t}), expected ${GEOREFFED.includes(id)}`);
   }
@@ -127,7 +131,8 @@ function fleet(mapSrc) {
   // The active-festival constants agree with the function (one policy).
   // EDC Orlando is gated (it cannot be the active festival); its tier is pinned above.
   for (const id of ["summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "ultra-miami-2026", "acl-2026", "governors-ball-2026",
-                    "edc-lv-2026", "escape-halloween-2026", "iii-points-2026", "hard-summer-2026"]) {
+                    "edc-lv-2026", "escape-halloween-2026", "iii-points-2026", "hard-summer-2026",
+                    "dreamstate-socal-2026", "crssd-fall-2026"]) {
     const A = load(id, mapSrc);
     ok(A.id === id, `active festival is ${A.id}, not ${id} (a gated id silently loads the default)`);
     ok(A.tier === expectedTier(id), `${id} active: POSTER_TIER "${A.tier}", expected "${expectedTier(id)}"`);

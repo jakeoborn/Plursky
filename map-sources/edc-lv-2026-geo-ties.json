@@ -1,0 +1,529 @@
+{
+  "festivalId": "edc-lv-2026",
+  "plate": "edc-map-2026.jpg",
+  "model": "tps",
+  "smoothing": 0.05,
+  "measuredAt": "2026-11-12",
+  "method": "Official EDC Las Vegas 2026 festival map: a cartoon of the Las Vegas Motor Speedway drawn top-down, rotated so the oval's long axis (NE) points up, with the infield heavily enlarged relative to the track. Tied the drawn speedway ring (centre of the band, measured on the plate) to the OSM raceway centreline, pairing points by normalised angle around each oval and using OSM nodes, plus fixed infield features: the service-road junctions and road-course bend that the art draws as Kinetic Trail, Rainbow Road, Power Path, Daisy Lane, Memory Lane and Electric Avenue, and the Neon Garage (drawn as the rainbow ring: courtyard centre and the four diagonal outer-wall faces). Art pixels were read on zoomed grids and OSM points from node ids; no stage, tent, gate or other temporary structure was used. Ring points at 41, 54, 141, 257 and 270 deg sit under labels or light-pink stretches and were placed on the fitted ring outline.",
+  "artPolygon": [
+    [
+      86,
+      477
+    ],
+    [
+      90,
+      430
+    ],
+    [
+      99,
+      384
+    ],
+    [
+      114,
+      340
+    ],
+    [
+      134,
+      298
+    ],
+    [
+      160,
+      259
+    ],
+    [
+      191,
+      224
+    ],
+    [
+      226,
+      193
+    ],
+    [
+      265,
+      168
+    ],
+    [
+      307,
+      147
+    ],
+    [
+      351,
+      132
+    ],
+    [
+      397,
+      123
+    ],
+    [
+      444,
+      120
+    ],
+    [
+      490,
+      123
+    ],
+    [
+      536,
+      132
+    ],
+    [
+      580,
+      147
+    ],
+    [
+      622,
+      168
+    ],
+    [
+      661,
+      193
+    ],
+    [
+      696,
+      224
+    ],
+    [
+      727,
+      259
+    ],
+    [
+      753,
+      298
+    ],
+    [
+      773,
+      340
+    ],
+    [
+      788,
+      384
+    ],
+    [
+      797,
+      430
+    ],
+    [
+      800,
+      477
+    ],
+    [
+      802,
+      966
+    ],
+    [
+      798,
+      1013
+    ],
+    [
+      789,
+      1059
+    ],
+    [
+      774,
+      1103
+    ],
+    [
+      754,
+      1145
+    ],
+    [
+      728,
+      1184
+    ],
+    [
+      697,
+      1219
+    ],
+    [
+      662,
+      1249
+    ],
+    [
+      623,
+      1275
+    ],
+    [
+      581,
+      1296
+    ],
+    [
+      537,
+      1311
+    ],
+    [
+      491,
+      1320
+    ],
+    [
+      445,
+      1323
+    ],
+    [
+      398,
+      1320
+    ],
+    [
+      352,
+      1311
+    ],
+    [
+      308,
+      1296
+    ],
+    [
+      266,
+      1275
+    ],
+    [
+      227,
+      1249
+    ],
+    [
+      192,
+      1219
+    ],
+    [
+      161,
+      1184
+    ],
+    [
+      135,
+      1145
+    ],
+    [
+      115,
+      1103
+    ],
+    [
+      100,
+      1059
+    ],
+    [
+      91,
+      1013
+    ],
+    [
+      88,
+      966
+    ],
+    [
+      88,
+      885
+    ],
+    [
+      136,
+      885
+    ],
+    [
+      136,
+      785
+    ],
+    [
+      110,
+      785
+    ],
+    [
+      110,
+      650
+    ],
+    [
+      88,
+      650
+    ]
+  ],
+  "ties": [
+    {
+      "name": "Speedway oval centreline 26deg",
+      "px": 604.7,
+      "py": 164.4,
+      "lat": 36.2742996,
+      "lng": -115.0057604,
+      "ref": "OSM node 3498231366"
+    },
+    {
+      "name": "Speedway oval centreline 41deg",
+      "px": 692.4,
+      "py": 230.6,
+      "lat": 36.2734869,
+      "lng": -115.0056146,
+      "ref": "OSM node 8402656498"
+    },
+    {
+      "name": "Speedway oval centreline 54deg",
+      "px": 763.5,
+      "py": 334.9,
+      "lat": 36.2725684,
+      "lng": -115.0059428,
+      "ref": "OSM node 8402656500"
+    },
+    {
+      "name": "Speedway oval centreline 69deg",
+      "px": 789.0,
+      "py": 491.4,
+      "lat": 36.271659,
+      "lng": -115.0069267,
+      "ref": "OSM node 3498231007"
+    },
+    {
+      "name": "Speedway oval centreline 90deg",
+      "px": 789.0,
+      "py": 722.3,
+      "lat": 36.270592934999996,
+      "lng": -115.00852610000001,
+      "ref": "OSM way 27545411 (point interpolated between nodes 10276348634 and 3498231007)"
+    },
+    {
+      "name": "Speedway oval centreline 110deg",
+      "px": 789.0,
+      "py": 936.7,
+      "lat": 36.2696499,
+      "lng": -115.0099409,
+      "ref": "OSM node 10276348633"
+    },
+    {
+      "name": "Speedway oval centreline 125deg",
+      "px": 768.6,
+      "py": 1101.2,
+      "lat": 36.2689113,
+      "lng": -115.0111774,
+      "ref": "OSM node 3498230922"
+    },
+    {
+      "name": "Speedway oval centreline 141deg",
+      "px": 684.6,
+      "py": 1220.0,
+      "lat": 36.2687136,
+      "lng": -115.0125,
+      "ref": "OSM node 302378429"
+    },
+    {
+      "name": "Speedway oval centreline 161deg",
+      "px": 561.5,
+      "py": 1297.3,
+      "lat": 36.2690686,
+      "lng": -115.0137711,
+      "ref": "OSM node 8402656509"
+    },
+    {
+      "name": "Speedway oval centreline 179deg",
+      "px": 453.0,
+      "py": 1311.6,
+      "lat": 36.2696481,
+      "lng": -115.014489,
+      "ref": "OSM node 8402656512"
+    },
+    {
+      "name": "Speedway oval centreline 199deg",
+      "px": 323.0,
+      "py": 1295.9,
+      "lat": 36.2705488,
+      "lng": -115.0149119,
+      "ref": "OSM node 8402656514"
+    },
+    {
+      "name": "Speedway oval centreline 215deg",
+      "px": 225.6,
+      "py": 1243.9,
+      "lat": 36.2713745,
+      "lng": -115.014847,
+      "ref": "OSM node 1437765638"
+    },
+    {
+      "name": "Speedway oval centreline 246deg",
+      "px": 98.4,
+      "py": 982.5,
+      "lat": 36.2731121,
+      "lng": -115.0139916,
+      "ref": "OSM node 302378352"
+    },
+    {
+      "name": "Speedway oval centreline 257deg",
+      "px": 98.0,
+      "py": 854.9,
+      "lat": 36.273757,
+      "lng": -115.0134985,
+      "ref": "OSM node 3498231312"
+    },
+    {
+      "name": "Speedway oval centreline 270deg",
+      "px": 98.0,
+      "py": 720.6,
+      "lat": 36.2744491,
+      "lng": -115.012698,
+      "ref": "OSM node 8402689418"
+    },
+    {
+      "name": "Speedway oval centreline 286deg",
+      "px": 98.0,
+      "py": 548.7,
+      "lat": 36.2750832,
+      "lng": -115.0114833,
+      "ref": "OSM node 8402689421"
+    },
+    {
+      "name": "Speedway oval centreline 302deg",
+      "px": 110.0,
+      "py": 373.9,
+      "lat": 36.2753956,
+      "lng": -115.0103331,
+      "ref": "OSM node 302378468"
+    },
+    {
+      "name": "Speedway oval centreline 324deg",
+      "px": 224.0,
+      "py": 201.5,
+      "lat": 36.2756681,
+      "lng": -115.0087345,
+      "ref": "OSM node 3498231160"
+    },
+    {
+      "name": "Speedway oval centreline 334deg",
+      "px": 285.5,
+      "py": 164.4,
+      "lat": 36.2757033,
+      "lng": -115.0080599,
+      "ref": "OSM node 3498231155"
+    },
+    {
+      "name": "Kinetic Trail apex (junction of inner service road and connector)",
+      "px": 329,
+      "py": 272,
+      "lat": 36.2752024,
+      "lng": -115.0085946,
+      "ref": "OSM node 3498231113"
+    },
+    {
+      "name": "Rainbow Road north end (service road corner)",
+      "px": 513,
+      "py": 428,
+      "lat": 36.2737952,
+      "lng": -115.008248,
+      "ref": "OSM node 3498231320"
+    },
+    {
+      "name": "Power Path north corner (road course bend)",
+      "px": 566,
+      "py": 430,
+      "lat": 36.2735206,
+      "lng": -115.008043,
+      "ref": "OSM node 8402689437"
+    },
+    {
+      "name": "Daisy Lane x Rainbow Road",
+      "px": 512,
+      "py": 603,
+      "lat": 36.2731033,
+      "lng": -115.0093323,
+      "ref": "OSM node 3499854453"
+    },
+    {
+      "name": "Daisy Lane x Memory Lane",
+      "px": 266,
+      "py": 603,
+      "lat": 36.274245,
+      "lng": -115.0105584,
+      "ref": "OSM node 11613537997"
+    },
+    {
+      "name": "Electric Avenue x Rainbow Road",
+      "px": 512,
+      "py": 912,
+      "lat": 36.2715626,
+      "lng": -115.0115857,
+      "ref": "OSM node 3499857771"
+    },
+    {
+      "name": "Neon Garage NW outer wall, diagonal face midpoint (on the drawn rainbow ring)",
+      "px": 336.3,
+      "py": 667.5,
+      "lat": 36.2735231,
+      "lng": -115.01071525,
+      "ref": "mean of OSM nodes 654593396 and 654593395"
+    },
+    {
+      "name": "Neon Garage NE outer wall, diagonal face midpoint (on the drawn rainbow ring)",
+      "px": 445.1,
+      "py": 660.4,
+      "lat": 36.27296235,
+      "lng": -115.01018725,
+      "ref": "mean of OSM nodes 654593394 and 654593393"
+    },
+    {
+      "name": "Neon Garage SE outer wall, diagonal face midpoint (on the drawn rainbow ring)",
+      "px": 432.6,
+      "py": 833.8,
+      "lat": 36.2722927,
+      "lng": -115.0112543,
+      "ref": "mean of OSM nodes 654593382 and 654593381"
+    },
+    {
+      "name": "Neon Garage SW outer wall, diagonal face midpoint (on the drawn rainbow ring)",
+      "px": 332.2,
+      "py": 817.1,
+      "lat": 36.272813799999994,
+      "lng": -115.01179350000001,
+      "ref": "mean of OSM nodes 654593379 and 654593377"
+    },
+    {
+      "name": "Neon Garage courtyard centre",
+      "px": 396,
+      "py": 744,
+      "lat": 36.272828188235295,
+      "lng": -115.01084159411764,
+      "ref": "OSM way 130583430 (mean of its 17 nodes)"
+    }
+  ],
+  "output": {
+    "image": "geo-maps/edc-lv-2026.webp",
+    "size": [
+      1244,
+      1155
+    ],
+    "metresPerPixel": 0.679,
+    "bounds": {
+      "w": -115.0149509,
+      "s": 36.2686557,
+      "e": -115.0055499,
+      "n": 36.2757255
+    },
+    "rmsM": 13.2,
+    "worstM": 25.8,
+    "looRmsM": 13.2,
+    "residualsM": {
+      "Speedway oval centreline 26deg": 0.9,
+      "Speedway oval centreline 41deg": 1.0,
+      "Speedway oval centreline 54deg": 0.2,
+      "Speedway oval centreline 69deg": 1.1,
+      "Speedway oval centreline 90deg": 1.2,
+      "Speedway oval centreline 110deg": 0.7,
+      "Speedway oval centreline 125deg": 0.5,
+      "Speedway oval centreline 141deg": 1.3,
+      "Speedway oval centreline 161deg": 0.4,
+      "Speedway oval centreline 179deg": 1.7,
+      "Speedway oval centreline 199deg": 1.2,
+      "Speedway oval centreline 215deg": 2.6,
+      "Speedway oval centreline 246deg": 2.5,
+      "Speedway oval centreline 257deg": 2.3,
+      "Speedway oval centreline 270deg": 2.3,
+      "Speedway oval centreline 286deg": 1.2,
+      "Speedway oval centreline 302deg": 3.1,
+      "Speedway oval centreline 324deg": 2.8,
+      "Speedway oval centreline 334deg": 2.2,
+      "Kinetic Trail apex (junction of inner service road and connector)": 3.5,
+      "Rainbow Road north end (service road corner)": 2.9,
+      "Power Path north corner (road course bend)": 4.2,
+      "Daisy Lane x Rainbow Road": 5.9,
+      "Daisy Lane x Memory Lane": 5.7,
+      "Electric Avenue x Rainbow Road": 4.1,
+      "Neon Garage NW outer wall, diagonal face midpoint (on the drawn rainbow ring)": 1.4,
+      "Neon Garage NE outer wall, diagonal face midpoint (on the drawn rainbow ring)": 7.0,
+      "Neon Garage SE outer wall, diagonal face midpoint (on the drawn rainbow ring)": 3.9,
+      "Neon Garage SW outer wall, diagonal face midpoint (on the drawn rainbow ring)": 2.3,
+      "Neon Garage courtyard centre": 3.3
+    },
+    "checksM": {},
+    "inputsSha256": "7917fed875d3fcb3e565db7985dd719646d0b87af47350a66949b370a8722ac2",
+    "plateSha256": "b2c553d06d3668864a7a29b64b3c740bce817566838cd31496ed1969b6f746c8",
+    "sha256": "608f0c545548626e29cc6466f5334587e9dab27fb4edaa5e5d7bf26ac1715e8d"
+  }
+}
