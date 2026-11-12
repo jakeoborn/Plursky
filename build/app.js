@@ -1697,7 +1697,7 @@ function App() {
     onClose: () => setPersonalizeOpen(false)
   }), quickNameOpen && !showOnboarding && React.createElement(QuickNameSheet, {
     onDone: quickNameDone
-  }), state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null));
+  }), state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null), state.tab !== "landing" && React.createElement(SetTrackingWatcher, null));
 }
 var styleTag = document.createElement("style");
 styleTag.textContent = `

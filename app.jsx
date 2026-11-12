@@ -1144,6 +1144,8 @@ function App() {
           before any festival is chosen, never mounts it. */}
       {state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar)}
       <BatterySaverToast />
+      {/* Opt-in set tracking (off until accepted in Me); renders nothing. */}
+      {state.tab !== "landing" && <SetTrackingWatcher />}
     </IOSDevice>
   );
 }
