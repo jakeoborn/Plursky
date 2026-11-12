@@ -225,9 +225,9 @@
     // cross-checked (see header). This is the first of the recent gated
     // scaffolds that did not need the III Points workaround.
     dayDates: {
-      1: { y: 2026, m: 11, d: 30, name: "Dec 30", short: "WED",
+      1: { y: 2026, m: 11, d: 30, name: "Wednesday", short: "WED",
            midnightUtc: Date.UTC(2026, 11, 30, 7, 0, 0) },
-      2: { y: 2026, m: 11, d: 31, name: "Dec 31", short: "NYE",
+      2: { y: 2026, m: 11, d: 31, name: "Thursday", short: "NYE",
            midnightUtc: Date.UTC(2026, 11, 31, 7, 0, 0) },
     },
     // api.sunrise-sunset.org at 39.742394,-104.996650, converted to MST.
