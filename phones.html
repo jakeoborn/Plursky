@@ -1,0 +1,31 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Plursky phone preview</title>
+<style>
+body{margin:0;background:#2a2a30;font:12px system-ui;color:#ccc}
+.row{display:flex;gap:18px;padding:14px 18px;flex-wrap:nowrap}
+.cell{display:flex;flex-direction:column;gap:6px}
+iframe{border:0;border-radius:18px;background:#000;box-shadow:0 0 0 1px #444}
+</style></head><body>
+<div class="row" id="row"></div>
+<script>
+// Design-review harness (throwaway branch). Renders the app at phone width
+// from a given commit so a 1024px+ browser can see the mobile layout.
+var q=new URLSearchParams(location.search);
+var ref=q.get("ref")||"main";
+var mode=q.get("mode")||"dark";
+var w=+(q.get("w")||390), h=+(q.get("h")||800);
+try{
+  localStorage.setItem("onboarded","v1");
+  if(mode==="system")localStorage.removeItem("plursky.appearance");else localStorage.setItem("plursky.appearance",mode);
+  (q.get("ls")||"").split(";").filter(Boolean).forEach(function(kv){var i=kv.indexOf("=");localStorage.setItem(kv.slice(0,i),decodeURIComponent(kv.slice(i+1)))});
+}catch(e){}
+var views=(q.get("v")||"f=dreamstate-socal-2026|f=dreamstate-socal-2026&tab=lineup|f=dreamstate-socal-2026&tab=map").split("|");
+var row=document.getElementById("row");
+views.forEach(function(v){
+  var c=document.createElement("div");c.className="cell";
+  var l=document.createElement("div");l.textContent=v;
+  var f=document.createElement("iframe");f.width=w;f.height=h;
+  f.src="https://raw.githack.com/jakeoborn/plursky/"+ref+"/index.html?"+v;
+  c.appendChild(l);c.appendChild(f);row.appendChild(c);
+});
+</script></body></html>
