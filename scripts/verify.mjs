@@ -3920,6 +3920,16 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
     fail(`set attendance failed${detail ? ` — ${detail}` : ""}`);
   }
 
+  console.log("▸ Set-tracking gate — opt-in, foreground, measured stages, runs equal the engine's, no coordinates stored");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-tracking.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set tracking failed${detail ? ` — ${detail}` : ""}`);
+  }
+
   console.log("▸ Signal-aware gate — 2G/Data Saver/queued sends = weak signal, heartbeat 60s, strip + card, export key, mutations");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-signal-aware.mjs"],

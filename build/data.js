@@ -2710,6 +2710,41 @@ function attendanceVerdictLabel(v) {
   if (v.verdict === "unknown" && v.caught && v.minutes) return `≈ ${r5(v.minutes)} min`;
   return "";
 }
+function setTrackAppend(entry, fix, gapMs = ATTEND_GAP_MS) {
+  var e = {
+    last: entry && entry.last ? {
+      ...entry.last
+    } : null,
+    runs: {}
+  };
+  for (var k of Object.keys(entry && entry.runs || {})) e.runs[k] = entry.runs[k].map(r => ({
+    from: r.from,
+    to: r.to,
+    src: r.src
+  }));
+  if (!fix || typeof fix.ms !== "number" || !isFinite(fix.ms) || fix.stageId == null) return e;
+  if (e.last && fix.ms < e.last.ms) return e;
+  var runs = e.runs[fix.stageId] = e.runs[fix.stageId] || [];
+  var top = runs[runs.length - 1];
+  if (e.last && e.last.stageId === fix.stageId && top && fix.ms - top.to <= gapMs) top.to = fix.ms;else runs.push({
+    from: fix.ms,
+    to: fix.ms,
+    src: "gps"
+  });
+  e.last = {
+    stageId: fix.stageId,
+    ms: fix.ms
+  };
+  return e;
+}
+function setTrackEligibility(cfg, nowMs) {
+  if (!cfg) return "no-festival";
+  if (!attendEvidenceAnchors(cfg).length) return "no-stages";
+  var phase = typeof _festivalPhase === "function" ? _festivalPhase({
+    config: cfg
+  }, nowMs) : "upcoming";
+  return phase === "live" ? "live" : phase === "ended" ? "ended" : "not-live";
+}
 function _scheduleActs(artists) {
   return (artists || []).map(a => {
     var o = {
