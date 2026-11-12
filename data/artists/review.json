@@ -476,6 +476,41 @@
   "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
  },
  {
+  "id": "shambhala-2011:d3:labyrinth:0700:dj-solar-of-deliria",
+  "printed": "DJ Solar (of Deliria)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+ },
+ {
+  "id": "shambhala-2012:d2:labyrinth:0400:amani-friend-desert-dwellers",
+  "printed": "Amani Friend (Desert Dwellers)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+ },
+ {
+  "id": "shambhala-2012:d4:labyrinth:0600:rara-avis-desert-dwellers",
+  "printed": "Rara Avis (Desert Dwellers)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+ },
+ {
+  "id": "shambhala-2014:d2:living-room:2100:james-flavour-dirt-crew",
+  "printed": "James Flavour (Dirt Crew)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+ },
+ {
+  "id": "shambhala-2016:d1:living-room:1630:wavs-vs-wakcutt-ft-lyndi-lush",
+  "printed": "WAVS (VS. + Wakcutt ft. Lyndi Lush)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "tomorrowland-2018:d1:freedom-stage-by-budweiser:1230:lost-stories-x-zaeden",
   "printed": "Lost Stories x ZAEDEN",
   "reason": "\"x\" billing whose sides are not both known acts",
@@ -756,6 +791,13 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:tjr",
+  "printed": "TJR",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Nocturnal Wonderland 2022 and Lights All Night 2026 (from a press relay of the poster). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
   "id": "key:gta",
   "printed": "GTA",
   "reason": "very short name billed at more than one festival brand",
@@ -817,6 +859,13 @@
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:r-d",
+  "printed": "R/D",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Nocturnal Wonderland 2022 and Lights All Night 2026 (from a press relay of the poster). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  },
  {
   "id": "key:s-p-y",
