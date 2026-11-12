@@ -1,0 +1,246 @@
+{
+  "id": "shambhala-2013",
+  "method": "official_sources",
+  "official": "https://www.shambhalamusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2013-08-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2013-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20130910195801/http://www.shambhalamusicfestival.com/2013-schedule/",
+          "captureTimestamp": "20130910195801",
+          "printed": "Thursday",
+          "sha256": "1aa46b9fcca82d6f8563c32a7a75b34ab1fedc42724c6b0211dd154ef01b2bf1",
+          "bytes": 355163,
+          "rows": 36,
+          "format": "shambhala-table",
+          "firstSlot": "time_1375963200",
+          "stages": 6,
+          "axis": "12:00PM … 12:00PM",
+          "slots": 49,
+          "openEnded": 33,
+          "printedRanges": [
+            "iSicK: (6:30-7:15am)",
+            "Jittabug: (7:15-8am)",
+            "Deeps & Wakcutt - 2x4 set: (12-1:30pm)"
+          ],
+          "joined": [
+            "Deeps + \"& Wakcutt - 2x4 set (12-1:30pm)\""
+          ],
+          "closedBlocks": 6,
+          "repeatedNextDaySets": 2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2013-08-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2013-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20130910195801/http://www.shambhalamusicfestival.com/2013-schedule/",
+          "captureTimestamp": "20130910195801",
+          "printed": "Friday",
+          "sha256": "1aa46b9fcca82d6f8563c32a7a75b34ab1fedc42724c6b0211dd154ef01b2bf1",
+          "bytes": 355163,
+          "rows": 90,
+          "format": "shambhala-table",
+          "firstSlot": "time_1376049600",
+          "stages": 6,
+          "axis": "12:00PM … 12:00PM",
+          "slots": 49,
+          "openEnded": 86,
+          "printedRanges": [
+            "Mousai Entertainment: (7-7:15PM)",
+            "Arlen: (7:15-8PM)",
+            "Opiuo: (1-2:15am)",
+            "Love & Light: (2:15-3:30am)"
+          ],
+          "closedBlocks": 10,
+          "repeatedNextDaySets": 2
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2013-08-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2013-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20130910195801/http://www.shambhalamusicfestival.com/2013-schedule/",
+          "captureTimestamp": "20130910195801",
+          "printed": "Saturday",
+          "sha256": "1aa46b9fcca82d6f8563c32a7a75b34ab1fedc42724c6b0211dd154ef01b2bf1",
+          "bytes": 355163,
+          "rows": 80,
+          "format": "shambhala-table",
+          "firstSlot": "time_1376136000",
+          "stages": 6,
+          "axis": "12:00PM … 12:00PM",
+          "slots": 49,
+          "openEnded": 80,
+          "closedBlocks": 10,
+          "repeatedNextDaySets": 3
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2013-08-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2013-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20130910195801/http://www.shambhalamusicfestival.com/2013-schedule/",
+          "captureTimestamp": "20130910195801",
+          "printed": "Sunday",
+          "sha256": "1aa46b9fcca82d6f8563c32a7a75b34ab1fedc42724c6b0211dd154ef01b2bf1",
+          "bytes": 355163,
+          "rows": 78,
+          "format": "shambhala-table",
+          "firstSlot": "time_1376222400",
+          "stages": 6,
+          "axis": "12:00PM … 10:00AM",
+          "slots": 45,
+          "openEnded": 78,
+          "closedBlocks": 9
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Fractal Forest",
+      "start": "12:00",
+      "end": "",
+      "billing": "Pauliewood",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    },
+    {
+      "day": 1,
+      "stage": "Living Room",
+      "start": "12:00",
+      "end": "",
+      "billing": "Foxy Moron",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    },
+    {
+      "day": 2,
+      "stage": "Living Room",
+      "start": "12:00",
+      "end": "",
+      "billing": "Mandai",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    },
+    {
+      "day": 2,
+      "stage": "Amphitheatre",
+      "start": "12:00",
+      "end": "",
+      "billing": "Sam Klass",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    },
+    {
+      "day": 3,
+      "stage": "Labyrinth",
+      "start": "12:00",
+      "end": "",
+      "billing": "Heidrogen",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    },
+    {
+      "day": 3,
+      "stage": "Living Room",
+      "start": "12:00",
+      "end": "",
+      "billing": "Erica Dee",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    },
+    {
+      "day": 3,
+      "stage": "Amphitheatre",
+      "start": "12:00",
+      "end": "",
+      "billing": "Church of Reggae Yoga: Adam Tree & DJ Caçadora",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    }
+  ],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "Labyrinth",
+      "start": "13:00",
+      "end": null,
+      "billing": "Opening Ceremony with Soul Fire Dance",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Village",
+      "start": "14:00",
+      "end": null,
+      "billing": "PK & Friends present the Ragga Jungle Rinse Out, hosted by Hush",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Labyrinth",
+      "start": "13:00",
+      "end": null,
+      "billing": "Dance Church w/ Emma Star & Bernice Rabbis",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Village",
+      "start": "14:00",
+      "end": null,
+      "billing": "Hip Hop Showcase - Hosted by Erica Dee",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Living Room",
+      "start": "06:00",
+      "end": null,
+      "billing": "The Pride: Hoola & Special Closing Set by Lion-S",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Amphitheatre",
+      "start": "12:00",
+      "end": null,
+      "billing": "Church of Reggae Yoga: Adam Tree & DJ Caçadora",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Fractal Forest",
+      "start": "13:00",
+      "end": null,
+      "billing": "Fractal Funk Jam, with hosts Smalltown DJs",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    }
+  ]
+}
