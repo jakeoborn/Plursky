@@ -1281,6 +1281,85 @@ function recordAttendanceFromGps(lat, lng, opts) {
   return added ? hit : null;
 }
 
+// ── Set tracking (set-attendance spec PR 3): the opt-in app-level watcher ──
+// While the user has turned it on, the app is open and the active festival
+// is live with measured stages, a GPS watch feeds trusted fixes (the one
+// stageFixGate, measured anchors only) into presence runs per stage. What is
+// stored is { stageId, from, to, src } and the last fix's stage and time:
+// never a coordinate, never synced, never in a backup. The verdict is not
+// stored here; surfaces ask attendanceVerdict (PR 4). Default off: nothing
+// watches until the user accepts the sheet in Me. Foreground only: no
+// background mode, no new permission, so a locked screen pauses the count.
+const SET_TRACK_PREF_KEY = "plursky_set_tracking_v1";    // "on" | "off" | absent = never asked
+const SET_TRACK_STORE_KEY = "plursky_set_intervals_v1";  // { [festivalId]: { last, runs } }
+const SET_TRACK_EVENT = "plursky-set-tracking-change";
+function getSetTracking() {
+  try { const v = localStorage.getItem(SET_TRACK_PREF_KEY); return v === "on" || v === "off" ? v : null; } catch { return null; }
+}
+function setSetTracking(on) {
+  try { localStorage.setItem(SET_TRACK_PREF_KEY, on ? "on" : "off"); } catch {}
+  try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
+}
+function _readSetTrackStore() {
+  try { const s = JSON.parse(localStorage.getItem(SET_TRACK_STORE_KEY) || "{}"); return s && typeof s === "object" ? s : {}; } catch { return {}; }
+}
+function setTrackRecord(festivalId, fix) {
+  if (!festivalId) return false;
+  const all = _readSetTrackStore();
+  all[festivalId] = setTrackAppend(all[festivalId], { ms: fix && fix.ms, stageId: fix && fix.stageId });
+  try { localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all)); } catch { return false; }
+  try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
+  return true;
+}
+// { [stageId]: [{ from, to, src }] }: the shape attendanceVerdict takes.
+function getSetTrackIntervals(festivalId) {
+  const e = _readSetTrackStore()[festivalId];
+  return (e && e.runs) || {};
+}
+function clearSetTrack(festivalId) {
+  const all = _readSetTrackStore();
+  if (!(festivalId in all)) return false;
+  delete all[festivalId];
+  try { localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all)); } catch {}
+  try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
+  return true;
+}
+// Mounted once at app level. Watches only while ALL hold: the user turned it
+// on, the page is visible, and the active festival is live with measured
+// stages. The fix's lat/lng live only inside the callback.
+function SetTrackingWatcher() {
+  const [, bump] = React.useReducer(x => x + 1, 0);
+  const { active: bsActive } = useBatterySaver();
+  React.useEffect(() => {
+    const on = () => bump();
+    window.addEventListener(SET_TRACK_EVENT, on);
+    document.addEventListener("visibilitychange", on);
+    const t = setInterval(on, 60000);   // a festival day opening or closing
+    return () => { window.removeEventListener(SET_TRACK_EVENT, on); document.removeEventListener("visibilitychange", on); clearInterval(t); };
+  }, []);
+  const cfg = window.FESTIVAL_CONFIG;
+  const fid = cfg && cfg.id;
+  const run = getSetTracking() === "on" && document.visibilityState !== "hidden"
+    && setTrackEligibility(cfg, Date.now()) === "live";
+  React.useEffect(() => {
+    if (!run || !navigator.geolocation) return;
+    const anchors = attendEvidenceAnchors(cfg);
+    const rules = bsActive ? STAGE_FIX_ATTEND_SAVER : STAGE_FIX_ATTEND;
+    const opts = bsActive
+      ? { enableHighAccuracy: false, maximumAge: 30000, timeout: 30000 }
+      : { enableHighAccuracy: true,  maximumAge: 4000,  timeout: 15000 };
+    let alive = true;
+    const id = navigator.geolocation.watchPosition((p) => {
+      if (!alive || !p || !p.coords) return;
+      const q = attendQualifyFixes([{ lat: p.coords.latitude, lng: p.coords.longitude, accuracy: p.coords.accuracy,
+        timestamp: p.timestamp, atMs: Date.now() }], anchors, rules);
+      if (q.length) setTrackRecord(fid, q[0]);
+    }, () => {}, opts);
+    return () => { alive = false; try { navigator.geolocation.clearWatch(id); } catch {} };
+  }, [run, fid, bsActive]);
+  return null;
+}
+
 // Convert an artist's set start to a real UTC timestamp.
 function _artistStartMs(artist) {
   // artistDayDate stamps the weekend THIS act plays (see data.jsx). Reading
@@ -2178,6 +2257,74 @@ function BatterySaverCard() {
     </div>
   );
 }
+
+// Settings card for MeScreen: the opt-in for set tracking and its off switch.
+// Turning it on goes through one plain consent panel (what is recorded, what
+// is not). The limit is always on screen: it counts only while Plursky is
+// open, so nothing here may imply a whole night was measured.
+function SetTrackingCard() {
+  const [, bump] = React.useReducer(x => x + 1, 0);
+  const [asking, setAsking] = React.useState(false);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  const cfg = window.FESTIVAL_CONFIG;
+  const name = (cfg && (cfg.shortName || cfg.name)) || "this festival";
+  const on = getSetTracking() === "on";
+  const elig = setTrackEligibility(cfg, Date.now());
+  const hasData = !!(cfg && Object.keys(getSetTrackIntervals(cfg.id)).length);
+  const btn = (primary) => ({
+    background: primary ? "var(--acc)" : "var(--s3)", color: primary ? "var(--on-acc)" : "var(--ink)",
+    border: "none", borderRadius: 999, padding: "0 16px", minHeight: 44,
+    fontFamily: "var(--f-ui)", fontSize: 14, fontWeight: 650, cursor: "pointer",
+  });
+  const body = { fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: 12 };
+  const status = elig === "no-stages" ? `${name}'s stages aren't measured yet, so sets can't be timed here.`
+    : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one."
+    : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses."
+    : elig === "ended" ? `On. ${name} is over, so nothing is counting.`
+    : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
+  return (
+    <div data-set-tracking-card data-set-tracking-state={on ? "on" : "off"} data-set-tracking-elig={elig} style={{
+      padding: 16, borderRadius: "var(--rad-md)",
+      background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+      marginBottom: 12,
+    }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
+        <div className="duo-label" style={{ color: "var(--ink-3)" }}>SET TRACKING</div>
+        <span className="duo-label" style={{ color: on ? "var(--acc-ink)" : "var(--ink-2)" }}>{on ? "ON" : "OFF"}</span>
+      </div>
+      <div className="duo-headline" style={{ marginBottom: 4 }}>Time the sets you catch</div>
+      <div data-set-tracking-status style={body}>{status}</div>
+      {asking && !on ? (
+        <div data-set-tracking-consent>
+          <div style={body}>
+            <b style={{ color: "var(--ink)" }}>Recorded:</b> which stage you were at and when, during sets.<br/>
+            <b style={{ color: "var(--ink)" }}>Not recorded:</b> your exact location. Nothing leaves this phone.<br/>
+            It counts only while Plursky is open, and you can turn it off here any time.
+          </div>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            <button data-set-tracking-accept onClick={() => { setSetTracking(true); setAsking(false); }} style={btn(true)}>Turn on</button>
+            <button onClick={() => { setSetTracking(false); setAsking(false); }} style={btn(false)}>Not now</button>
+          </div>
+        </div>
+      ) : (
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          {on ? (
+            <button data-set-tracking-off onClick={() => setSetTracking(false)} style={btn(false)}>Turn off</button>
+          ) : elig !== "no-stages" && (
+            <button data-set-tracking-setup onClick={() => setAsking(true)} style={btn(false)}>Set up</button>
+          )}
+          {hasData && (
+            <button data-set-tracking-clear onClick={() => clearSetTrack(cfg.id)} style={btn(false)}>Clear {name} times</button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 
 // ─────────────────────────────────────────────────────────────
 // Appearance: System / Dark / Light. The policy is window.PlurskyAppearance,

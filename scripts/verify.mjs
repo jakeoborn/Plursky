@@ -2807,6 +2807,21 @@ for (const [script, label] of [
   }
 }
 
+// gen-festival-pages.mjs reads sitemap-lastmod.json before it clears f/: a
+// ledger a merge left conflicted must stop the build with every page intact
+// (one such merge dropped all 75 pages). Real generator, scratch copy.
+{
+  console.log("▸ Pages safe-clear gate — a conflicted sitemap-lastmod.json stops gen with f/ intact");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-gen-pages-safe-clear.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`gen pages safe clear failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b6. Memories grouping reachability ─────────────────────────────────
 // Every moment the TIMELINE lens COUNTS must be REACHABLE, exactly once, in
 // exactly one rendered group. Before this gate, a truthy artistId the ACTIVE
@@ -3906,6 +3921,16 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`set attendance failed${detail ? ` — ${detail}` : ""}`);
+  }
+
+  console.log("▸ Set-tracking gate — opt-in, foreground, measured stages, runs equal the engine's, no coordinates stored");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-tracking.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set tracking failed${detail ? ` — ${detail}` : ""}`);
   }
 
   console.log("▸ Signal-aware gate — 2G/Data Saver/queued sends = weak signal, heartbeat 60s, strip + card, export key, mutations");

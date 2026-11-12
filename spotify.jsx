@@ -8554,6 +8554,7 @@ function MeScreen({ state, setState }) {
             <div style={{ marginTop: 10 }}>
               <NotificationsCard state={state} />
               <BatterySaverCard />
+              <SetTrackingCard />
               <PackListCard />
               <div style={{ marginTop: 14 }}>
                 <button onClick={() => window.plurskyOpenPersonalize?.()} className="duo-btn" style={{
