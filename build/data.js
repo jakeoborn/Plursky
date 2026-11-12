@@ -1324,6 +1324,15 @@ var FESTIVALS_REGISTRY = [{
     }],
     mainStageId: "amex",
     mapImage: "acl-park-2026.webp",
+    mapGeoref: {
+      image: "geo-maps/acl-2026.webp",
+      bounds: [-97.7722556, 30.2628479, -97.7612848, 30.2704815],
+      model: "tps",
+      ties: "map-sources/acl-2026-geo-ties.json",
+      rmsM: 51.6,
+      looRmsM: 51.6,
+      approximate: true
+    },
     mapSource: {
       url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map",
       observedAt: "2026-09-25",

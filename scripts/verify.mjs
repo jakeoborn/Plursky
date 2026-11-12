@@ -561,6 +561,9 @@ if (fdata.length) {
     if (!Array.isArray(g.bounds) || g.bounds.length !== 4 || [B.w, B.s, B.e, B.n].some((v, i) => Math.abs(v - g.bounds[i]) > 1e-7)) why.push("bounds differ from the build");
     if (g.rmsM !== O.rmsM || g.looRmsM !== O.looRmsM) why.push(`rms ${g.rmsM}/${g.looRmsM} != built ${O.rmsM}/${O.looRmsM}`);
     if (g.model !== T.model) why.push(`model ${g.model} != ${T.model}`);
+    // An approximate fit (Jake, 2026-11-12) is a choice made in the ties file and
+    // measured by the build; the config may not claim or drop it on its own.
+    if ((g.approximate === true) !== (O.approximate === true) || (O.approximate === true) !== (T.approximate === true)) why.push(`approximate ${g.approximate} != built ${O.approximate} / ties ${T.approximate}`);
     // The plate is the festival's own art: either its mapImage, or the official
     // map kept as a source under map-sources/art/ (Jake, 2026-11-11: "use the
     // map we do it for other festivals") with the first-party page it came from.
@@ -569,7 +572,7 @@ if (fdata.length) {
     else if (!existsSync(join(ROOT, T.plate))) why.push(`fitted plate ${T.plate} is missing`);
     if (artPlate && !/^https:\/\//.test(T.source || "")) why.push(`official art ${T.plate} names no https source page`);
     if (why.length) { console.log(`  ✗ ${id.padEnd(26)} ${why.join("; ")}`); gbad++; }
-    else console.log(`  ok ${id.padEnd(26)} ${T.model} over ${T.ties.length} ties · rms ${O.rmsM} m · leave-one-out ${O.looRmsM} m`);
+    else console.log(`  ok ${id.padEnd(26)} ${T.model} over ${T.ties.length} ties · rms ${O.rmsM} m · leave-one-out ${O.looRmsM} m${O.approximate ? " · approximate" : ""}`);
   }
   try {
     execFileSync("python3", [join(ROOT, "scripts", "build-geo-plate.py"), "check"], { cwd: ROOT, stdio: "inherit" });

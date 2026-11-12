@@ -19,6 +19,11 @@ What this does, per festival:
      "get each map overlayed on top of the real ground"). A spline passes
      through its ties by construction, so its rmsM is the LEAVE-ONE-OUT
      error: each tie predicted by a spline that never saw it.
+     Art drawn too far out of proportion for that error to reach 15 m can be
+     marked `"approximate": true` (Jake, 2026-11-12: "I think we can make it
+     work with event map over the location it's being held at"): the spline
+     still pins the art to every tie, and the app labels the map approximate
+     between them.
   3. Warps the art into a north-up raster whose four corners are a plain
      lat/lng rectangle, so MapLibre draws it exactly (an image source drawn
      from a skewed quad is split into two triangles and tears on the diagonal).
@@ -152,7 +157,7 @@ PLACEMENT_KEYS = ("plate", "artBox", "artPolygon", "model", "ties")
 
 
 def inputs_sha256(T):
-    keys = PLACEMENT_KEYS + (("smoothing",) if "smoothing" in T else ())
+    keys = PLACEMENT_KEYS + tuple(k for k in ("smoothing", "approximate") if k in T)
     blob = json.dumps({k: T.get(k) for k in keys}, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(blob.encode()).hexdigest()
 
@@ -263,6 +268,7 @@ def build(fid):
         "residualsM": {t["name"]: round(float(r), 1) for t, r in zip(T["ties"], res)},
         "checksM": {c["name"]: c["metres"] for c in checks},
         "inputsSha256": inputs_sha256(T),
+        **({"approximate": True} if T.get("approximate") else {}),
         "plateSha256": sha256(os.path.join(ROOT, T["plate"])),
         "sha256": sha256(os.path.join(ROOT, out_rel)),
     }
@@ -274,9 +280,10 @@ def build(fid):
     for t, r in zip(T["ties"], res): print(f"    {t['name']:<44} {r:6.1f} m")
     for c in checks: print(f"    check {c['name']:<38} {c['metres']:6.1f} m")
     b = out["bounds"]
-    print("  mapGeoref: { image: %s, bounds: [%s, %s, %s, %s], model: %s, ties: %s, rmsM: %s, looRmsM: %s },"
+    print("  mapGeoref: { image: %s, bounds: [%s, %s, %s, %s], model: %s, ties: %s, rmsM: %s, looRmsM: %s%s },"
           % (json.dumps(out_rel), b["w"], b["s"], b["e"], b["n"], json.dumps(T["model"]),
-             json.dumps(f"map-sources/{fid}-geo-ties.json"), out["rmsM"], json.dumps(out["looRmsM"])))
+             json.dumps(f"map-sources/{fid}-geo-ties.json"), out["rmsM"], json.dumps(out["looRmsM"]),
+             ", approximate: true" if T.get("approximate") else ""))
 
 
 def check():

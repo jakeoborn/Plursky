@@ -1478,6 +1478,12 @@ const FESTIVALS_REGISTRY = [
       // directly. Built by scripts/build-acl-map-2026.mjs from the unedited
       // source in map-sources/.
       mapImage: "acl-park-2026.webp",
+      // The same art bent onto Zilker Park by a thin-plate fit pinned at every
+      // measured road, path and shoreline tie (Jake, 2026-11-12: "I think we can make it work with event map over the location it's being held at").
+      // The art is out of proportion, ~52 m between ties: an APPROXIMATE fit,
+      // labelled so. scripts/build-geo-plate.py over map-sources/acl-2026-geo-ties.json.
+      mapGeoref: { image: "geo-maps/acl-2026.webp", bounds: [-97.7722556, 30.2628479, -97.7612848, 30.2704815], model: "tps",
+                   ties: "map-sources/acl-2026-geo-ties.json", rmsM: 51.6, looRmsM: 51.6, approximate: true },
 
       // The festival's OWN map page, linked (never embedded) by the /f/ page:
       // official publication is provenance, not reuse rights. mapYear is the
