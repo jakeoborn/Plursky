@@ -1986,6 +1986,151 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "governors-ball:gov-ball-nyc",
+     "names": [
+      {
+       "printed": "Gov Ball NYC",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:honda",
+     "names": [
+      {
+       "printed": "Honda",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:big-apple",
+     "names": [
+      {
+       "printed": "Big Apple",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bacardi",
+     "names": [
+      {
+       "printed": "Bacardi",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:gov-ball-nyc-stage",
+     "names": [
+      {
+       "printed": "Gov Ball NYC Stage",
+       "editions": [
+        "governors-ball-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bacardi-stage",
+     "names": [
+      {
+       "printed": "Bacardi Stage",
+       "editions": [
+        "governors-ball-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:honda-stage",
+     "names": [
+      {
+       "printed": "Honda Stage",
+       "editions": [
+        "governors-ball-2018",
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:american-eagle-stage",
+     "names": [
+      {
+       "printed": "American Eagle Stage",
+       "editions": [
+        "governors-ball-2018",
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:govballnyc-stage",
+     "names": [
+      {
+       "printed": "GOVBALLNYC Stage",
+       "editions": [
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bacardi-stage-2",
+     "names": [
+      {
+       "printed": "BACARDÍ Stage",
+       "editions": [
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bud-light-dive-bar-sessions",
+     "names": [
+      {
+       "printed": "Bud Light Dive Bar Sessions",
+       "editions": [
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

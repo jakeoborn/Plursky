@@ -2086,6 +2086,99 @@
    }
   },
   {
+   "id": "governors-ball-2019",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2019",
+   "year": 2019,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-05-31",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-06-01",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-06-02",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 64,
+    "sets": 66
+   }
+  },
+  {
+   "id": "governors-ball-2018",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2018",
+   "year": 2018,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-06-01",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2018-06-02",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2018-06-03",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 66,
+    "sets": 66
+   }
+  },
+  {
+   "id": "governors-ball-2017",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2017",
+   "year": 2017,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-06-02",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-06-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-06-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 67,
+    "sets": 67
+   }
+  },
+  {
    "id": "hard-summer-2025",
    "festivalId": "hard-summer",
    "festivalName": "HARD Summer",
