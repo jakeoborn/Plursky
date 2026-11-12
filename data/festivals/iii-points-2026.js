@@ -923,6 +923,7 @@
 
   const CONFIG = {
     id:        "iii-points-2026",
+    officialEvent: { website: "https://www.iiipoints.com/", observedAt: "2026-11-11" },
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
     // The official lineup-by-day graphic every act's tier comes from (Item 4).
@@ -1025,6 +1026,12 @@
     // pins stay suppressed and distance readouts stay off until an osm/crowd
     // anchor lands (map.jsx geometryVerifiedFor owns that promotion).
     mapImage: "iiip-map-2026.webp",
+    // The same art fitted to the ground by its own street ties (not stage
+    // anchors): scripts/build-geo-plate.py over map-sources/iii-points-2026-geo-ties.json.
+    // Oblique art, so a homography. The real map lays this plate down at its
+    // bounds; stages stay pending.
+    mapGeoref: { image: "geo-maps/iii-points-2026.webp", bounds: [-80.2054892, 25.7966535, -80.2000044, 25.8007702], model: "homography",
+                 ties: "map-sources/iii-points-2026-geo-ties.json", rmsM: 5.2, looRmsM: 19.2 },
     mapStyle: "image-overlay",
     mapSource: { url: "https://www.iiipoints.com/assets/campaign/festival-map-2026-1080.webp", observedAt: "2026-10-15", mapYear: 2026 },
     // The art prints every stage name as signage (verified on the pinned

@@ -1426,17 +1426,6 @@ function LineupScreen({ state, setState }) {
         </div>
       )}
 
-      {/* Open, lineup in, schedule still to come. Without this the screen is a
-          list of acts whose every time reads "—", which looks like the app
-          failed to load them rather than like the festival hasn't said yet. */}
-      {_schedTBA && (
-        <div role="status" className="duo-card" style={{ margin: "8px 16px 0", padding: "12px 16px" }}>
-          <div className="duo-headline" style={{ fontSize: 15 }}>Set times pending from the festival</div>
-          <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>
-            The full lineup is here. Save the acts you want and the schedule fills itself in as soon as {FESTIVAL_CONFIG.shortName || "the festival"} publishes it.
-          </div>
-        </div>
-      )}
 
 
       {wizardOpen && (
@@ -1456,6 +1445,21 @@ function LineupScreen({ state, setState }) {
           ? { overflowY: "hidden", display: "flex", flexDirection: "column", padding: 0 }
           : { padding: "0 20px 96px" }
       }>
+        {/* Open, lineup in, schedule still to come. Without this the screen is a
+            list of acts with no times, which looks like the app failed to load
+            them rather than like the festival hasn't said yet. It rides INSIDE
+            the scroller, as the list's first item: pinned above it, it held a
+            quarter of a phone screen still while the rows slid under it, and
+            jumped with the header each time the header folded (Jake, Nov 10:
+            "When I scroll down it's weird"). LIST only: TBA forces list mode. */}
+        {_schedTBA && viewMode === "list" && (
+          <div role="status" data-sched-tba className="duo-card" style={{ margin: "8px 0 4px", padding: "12px 16px" }}>
+            <div className="duo-headline" style={{ fontSize: 15 }}>Set times pending from the festival</div>
+            <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>
+              The full lineup is here. Save the acts you want and the schedule fills itself in as soon as {FESTIVAL_CONFIG.shortName || "the festival"} publishes it.
+            </div>
+          </div>
+        )}
         {gridLead && (() => {
           // v165: grid now shows only the selected day (like list mode) so
           // navigation is clean — no more scrolling through all 3 days.
@@ -1530,6 +1534,11 @@ function LineupScreen({ state, setState }) {
           // One NOW rule, before the first set that hasn't started: only on the
           // night that is actually running, and only in time order.
           const nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
+          // A day with no published time at all has no time column: 72px of
+          // lone dashes down the left edge read as broken data, and pushed every
+          // face and name a third of the way across a phone. The column comes
+          // back with the first real time on the day.
+          const timeCol = dayArtists.some(a => a.start && !setTimesUnconfirmed(a));
           const renderRow = (a, pinned) => {
             const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
             const saved = state.saved.includes(a.id);
@@ -1551,10 +1560,12 @@ function LineupScreen({ state, setState }) {
                 data-lineup-highlight={isHighlighted && !pinned ? "true" : undefined}
                 className={`duo-lrow${isLive ? " live" : saved ? " plan" : ""}`}
                 style={{ animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined }}>
-                <div data-set-time className={`duo-data${saved || isLive ? "" : " duo-ink2"}`}
-                  style={{ width: 72, flexShrink: 0, whiteSpace: "nowrap", fontSize: 13 }}>
-                  {setTimesUnconfirmed(a) ? null : fmt12(a.start)}
-                </div>
+                {timeCol && (
+                  <div data-set-time className={`duo-data${saved || isLive ? "" : " duo-ink2"}`}
+                    style={{ width: 72, flexShrink: 0, whiteSpace: "nowrap", fontSize: 13 }}>
+                    {setTimesUnconfirmed(a) ? null : fmt12(a.start)}
+                  </div>
+                )}
                 <DuoAvatar name={a.name} size={42} ring={ring} />
                 <button onClick={() => setState({ ...state, artist: a.id })} style={{
                   flex: 1, minWidth: 0, minHeight: 44, padding: 0, background: "transparent", border: "none",
@@ -2996,8 +3007,152 @@ async function copyScheduleText(state) {
   } catch { return { ok: false }; }
 }
 
+// ── Public plan-share link (#74, row 4 stage 1) ──────────────────────
+// SHIPS OFF. Stage 1 is local-only: a preview of exactly what a link would
+// show, built through the shared contract (data/plan-share-contract.js).
+// No network call, no token, no Supabase table, no public page. The link
+// turns on only after Jake reviews the payload, privacy and wording.
+const PLAN_SHARE_LINK_ON = false;
+
+// The saved plan → the public payload, through the one allowlist. Only sets
+// with confirmed start AND end times go on; the rest are counted, never guessed.
+function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date.now()) {
+  const contract = typeof window !== "undefined" ? window.PlurskyPlanShare : null;
+  if (!contract) return { error: "unavailable", rows: [], left: 0 };
+  const list = Array.from(savedIds || []);
+  const ids = new Set(list);
+  // The weekend comes from THIS selection, and each act's dates from the app's
+  // one per-act resolver (artistDayDate): a W2-only set is on Weekend 2's dates
+  // whatever the session says. A hardcoded shift put ACL W2 a week early.
+  const acts = activeLineup(list).filter(a => ids.has(a.id))
+    .sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
+  const rows = []; let left = 0;
+  for (const a of acts) {
+    const t = setTimingMin(a);
+    const dd = artistDayDate(a, now, list), base = cfg.dayDates && cfg.dayDates[a.day];
+    const shift = dd && base ? dd.midnightUtc - base.midnightUtc : null;
+    const s = t && t.end != null && shift != null ? _scanActUtc(cfg, a.day, shift, a.start) : null;
+    const e = s != null ? _scanActUtc(cfg, a.day, shift, a.end) : null;
+    if (s == null || e == null || !(e > s)) { left++; continue; }
+    const stage = STAGES.find(x => x.id === a.stage) || UNPLACED_STAGE;
+    rows.push({ act: a, night: dd, stageName: stage.name, set: {
+      id: String(a.id), artist: a.name, stage: stage.name,
+      startsAt: new Date(s).toISOString(), endsAt: new Date(e).toISOString(),
+    } });
+  }
+  // Group order follows the resolved night, so a W1 and a W2 set on the same
+  // day number land under their own dates (stable sort keeps time order).
+  rows.sort((x, y) => x.night.midnightUtc - y.night.midnightUtc);
+  if (typeof cfg.endMs !== "number") return { error: "no_edition_end", rows, left };
+  try {
+    const payload = contract.makePublicPlan({
+      kind: "schedule", festivalId: cfg.id, editionEnd: new Date(cfg.endMs).toISOString(),
+      sets: rows.map(r => r.set), displayName: displayName || undefined,
+    }, now);
+    return { payload, rows, left };
+  } catch (err) {
+    const msg = String(err && err.message || "");
+    return { error: /window has ended/.test(msg) ? "ended" : /display name/.test(msg) ? "name" : "invalid", rows, left };
+  }
+}
+
+function PlanShareLinkSheet({ saved, onClose }) {
+  const cfg = FESTIVAL_CONFIG, tz = cfg.tz;
+  const [nameOn, setNameOn] = React.useState(false); // opt-in, never from the profile
+  const [name, setName] = React.useState("");
+  const d = planShareDraft(saved, nameOn ? name.trim() : "", cfg);
+  const fmtDay = ms => new Date(ms).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", ...(tz ? { timeZone: tz } : {}) });
+  const byDay = [];
+  for (const r of d.rows) {
+    const g = byDay[byDay.length - 1];
+    if (g && g.night.midnightUtc === r.night.midnightUtc) g.rows.push(r); else byDay.push({ day: r.act.day, night: r.night, rows: [r] });
+  }
+  // The header reads the SAME resolved night as the payload's instants
+  // (artistDayDate via planShareDraft), never the base W1 dayDates.
+  const dayLabel = (n, m) => {
+    if (!m) return `Day ${n}`;
+    const date = Number.isFinite(m.y) ? new Date(Date.UTC(m.y, m.m, m.d)).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }) : "";
+    return date ? `${m.name} · ${date}` : m.name;
+  };
+  const label = { fontSize: 13, color: "var(--text-2)", lineHeight: "18px" };
+  const ERR = {
+    ended: `Sharing for ${cfg.shortName || cfg.name} has closed. Links last until a week after the festival.`,
+    name: "That name can't go on a link. Use letters and numbers, up to 60 characters.",
+    no_edition_end: "This festival has no confirmed end date yet, so a link can't set when it ends.",
+    unavailable: "The link preview didn't load. Close and try again.",
+    invalid: "Something in this plan can't go on a link yet.",
+  };
+  const footer = (
+    <div>
+      <button disabled aria-disabled="true" style={{
+        width: "100%", minHeight: 48, borderRadius: 999, border: "1px solid var(--line-2)",
+        background: "transparent", color: "var(--text-2)", font: "600 15px/20px var(--f-ui)", cursor: "not-allowed",
+      }}>Create link</button>
+      <div style={{ ...label, textAlign: "center", marginTop: 8 }}>Links aren't live yet.</div>
+    </div>
+  );
+  return (
+    <FieldSheet title="Share your plan as a link" eyebrow="Preview" footer={footer} onClose={onClose}>
+      <div data-plan-share-sheet style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <p style={{ ...label, margin: 0, color: "var(--ink)", fontSize: 15, lineHeight: "21px" }}>
+          Anyone with the link will see exactly this. Nothing else leaves your phone.
+        </p>
+        {d.error ? (
+          <div role="alert" data-plan-share-error={d.error} style={{ ...label, color: "var(--ink)" }}>{ERR[d.error] || ERR.invalid}</div>
+        ) : (
+          <>
+            <div style={{ border: "1px solid var(--line)", borderRadius: 14, padding: "12px 14px" }}>
+              <div style={{ font: "700 17px/22px var(--f-ui)", color: "var(--ink)", overflowWrap: "anywhere" }}>
+                {nameOn && name.trim() ? `${name.trim()}'s ` : ""}{cfg.shortName || cfg.name} plan
+              </div>
+              <div style={{ ...label, marginTop: 2 }}>{d.rows.length} {d.rows.length === 1 ? "set" : "sets"}</div>
+              {byDay.map(g => (
+                <div key={g.night.midnightUtc} style={{ marginTop: 12 }}>
+                  <div data-plan-share-day className="duo-label duo-ink3" style={{ marginBottom: 4 }}>{dayLabel(g.day, g.night)}</div>
+                  {g.rows.map(r => (
+                    <div key={r.set.id} data-plan-share-set={r.set.id} style={{ display: "flex", gap: 10, padding: "6px 0", borderTop: "1px solid var(--line)" }}>
+                      <div className="duo-data-s" aria-label={`${fmt12(r.act.start)} to ${fmt12(r.act.end)}`} style={{ width: 80, flexShrink: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+                        <div data-plan-share-start>{fmt12(r.act.start)}</div>
+                        <div data-plan-share-end>– {fmt12(r.act.end)}</div>
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 15, fontWeight: 600, color: "var(--ink)", overflowWrap: "anywhere" }}>{r.set.artist}</div>
+                        <div style={{ ...label, overflowWrap: "anywhere" }}>{r.stageName}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+              {!d.rows.length && <div style={{ ...label, marginTop: 10 }}>No sets with confirmed times yet.</div>}
+            </div>
+            {d.left > 0 && (
+              <div data-plan-share-left={d.left} style={label}>
+                {d.left} {d.left === 1 ? "set doesn't" : "sets don't"} have confirmed times yet, so {d.left === 1 ? "it stays" : "they stay"} off the link.
+              </div>
+            )}
+            <div style={label} data-plan-share-ends>The link stops working {fmtDay(Date.parse(d.payload.expiresAt))}, a week after the festival. You can turn it off sooner.</div>
+          </>
+        )}
+        <label style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 44, cursor: "pointer" }}>
+          <input type="checkbox" checked={nameOn} onChange={e => setNameOn(e.target.checked)} style={{ width: 20, height: 20, flexShrink: 0 }}/>
+          <span style={{ fontSize: 15, color: "var(--ink)" }}>Show a name on the link</span>
+        </label>
+        {nameOn && (
+          <input type="text" value={name} maxLength={60} onChange={e => setName(e.target.value)}
+            placeholder="Name to show" aria-label="Name to show on the link" autoComplete="off" style={{
+              minHeight: 44, padding: "0 12px", borderRadius: 10, border: "1px solid var(--line-2)",
+              background: "var(--s1)", color: "var(--ink)", font: "400 16px/20px var(--f-ui)",
+            }}/>
+        )}
+        <div style={label}>Never on the link: where you are, your notes, photos, account or crew.</div>
+      </div>
+    </FieldSheet>
+  );
+}
+
 function ShareLineupButton({ state }) {
   const [open, setOpen] = React.useState(false);
+  const [linkOpen, setLinkOpen] = React.useState(false);
   const [busy, setBusy] = React.useState(false);
   const [done, setDone] = React.useState(null); // 'image' | 'cal' | 'pdf' | 'txt' | null
 
@@ -3049,8 +3204,14 @@ function ShareLineupButton({ state }) {
             <ShareMenuItem icon="cal"  label="Add to calendar"   sub=".ics with 15-min reminders" onClick={wrap("cal", exportLineupICS)} />
             <ShareMenuItem icon="prn"  label="Print schedule"    sub="Save as PDF from print dialog" onClick={wrap("pdf", async (s) => printLineupPDF(s))} />
             <ShareMenuItem icon="txt"  label="Copy as text"      sub="Paste anywhere" onClick={wrap("txt", copyScheduleText)} />
+            {PLAN_SHARE_LINK_ON && (
+              <ShareMenuItem icon="lnk" label="Share as a link" sub="Preview what a link shows" onClick={() => { setOpen(false); setLinkOpen(true); }} />
+            )}
           </div>
         </>
+      )}
+      {PLAN_SHARE_LINK_ON && linkOpen && (
+        <PlanShareLinkSheet saved={savedInLineup(state.saved)} onClose={() => setLinkOpen(false)} />
       )}
     </div>
   );
@@ -3060,6 +3221,7 @@ function ShareMenuItem({ icon, label, sub, onClick }) {
   const ico =
     icon === "img" ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M3 17 L9 12 L14 16 L17 13 L21 17"/></svg> :
     icon === "cal" ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9 H21"/><path d="M8 3 V7"/><path d="M16 3 V7"/></svg> :
+    icon === "lnk" ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M10 14 a4 4 0 0 0 5.66 0 l3-3 a4 4 0 0 0 -5.66 -5.66 l-1 1"/><path d="M14 10 a4 4 0 0 0 -5.66 0 l-3 3 a4 4 0 0 0 5.66 5.66 l1 -1"/></svg> :
     icon === "txt" ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8 H16"/><path d="M8 12 H16"/><path d="M8 16 H12"/></svg> :
                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9 V3 H18 V9"/><rect x="3" y="9" width="18" height="9" rx="1"/><rect x="6" y="14" width="12" height="6"/></svg>;
   return (

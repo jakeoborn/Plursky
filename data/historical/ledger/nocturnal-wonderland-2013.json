@@ -1,0 +1,564 @@
+{
+  "id": "nocturnal-wonderland-2013",
+  "method": "structured_html",
+  "official": "http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+  "window": [
+    "20120101",
+    "20131231"
+  ],
+  "template": "insomniac lineup.php",
+  "days": [
+    {
+      "day": 1,
+      "url": "http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "date": "2013-09-21",
+      "chosen": "20131003060335",
+      "archivedUrl": "https://web.archive.org/web/20131003060335/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "fa2cdf4fc12aeca9ec3e1889a7c9d8a8c35138860ed492a483b6a27df8035b8d",
+      "rows": 45,
+      "stages": {
+        "Labyrinth": 10,
+        "Sunken Garden": 10,
+        "Queen's Grounds": 11,
+        "Alice's House": 7,
+        "Discovery Project": 7
+      }
+    }
+  ],
+  "chosen": "20131003060335",
+  "relayedVia": "firecrawl",
+  "skipped": [
+    {
+      "day": 1,
+      "block": "Noct 2013 alpha",
+      "artist": "Bassrush Experience",
+      "printed": "1:33pm - 1:33pm",
+      "reason": "alphabetical list, not a stage: zero-length time"
+    },
+    {
+      "day": 1,
+      "block": "Noct 2013 alpha",
+      "artist": "Crosstown Rebels present Get Lost",
+      "printed": "1:50pm - 1:50pm",
+      "reason": "alphabetical list, not a stage: zero-length time"
+    },
+    {
+      "day": 1,
+      "block": "Noct 2013 alpha",
+      "artist": "Discovery Project",
+      "printed": "2:03pm - 2:03pm",
+      "reason": "alphabetical list, not a stage: zero-length time"
+    },
+    {
+      "day": 1,
+      "block": "Noct 2013 alpha",
+      "artist": "Wide Awake Art Car",
+      "printed": "2:25pm - 2:25pm",
+      "reason": "alphabetical list, not a stage: zero-length time"
+    },
+    {
+      "day": 1,
+      "block": "Noct 2013 alpha",
+      "artist": "Fury w/ MC Dino",
+      "printed": "10:14am - 10:14am",
+      "reason": "alphabetical list, not a stage: zero-length time"
+    },
+    {
+      "day": 1,
+      "block": "Noct 2013 alpha",
+      "artist": "Armanni Reign",
+      "printed": "12:33pm - 12:33pm",
+      "reason": "alphabetical list, not a stage: zero-length time"
+    }
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20120114124927",
+      "archivedUrl": "https://web.archive.org/web/20120114124927/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "bea0ec744ec039a2c19a3da3484c468c2f82f2cf4578dd98762395fac967bdf9",
+      "bytes": 57025,
+      "via": "firecrawl",
+      "valid": false,
+      "rows": 0,
+      "problems": [
+        "no stage block prints 2013-09-21"
+      ],
+      "skipped": []
+    },
+    {
+      "captureTimestamp": "20120217125311",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120319073142",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120419041345",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120519220217",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120623115759",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120825064216",
+      "notFiled": true,
+      "valid": false
+    },
+    {
+      "captureTimestamp": "20120925025007",
+      "archivedUrl": "https://web.archive.org/web/20120925025007/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "2937deb39beb7da6d63dff2e0448fab973c557135bc9021b6de57c85f808a472",
+      "bytes": 119918,
+      "via": "firecrawl",
+      "valid": false,
+      "rows": 0,
+      "problems": [
+        "no stage block prints 2013-09-21"
+      ],
+      "skipped": []
+    },
+    {
+      "captureTimestamp": "20130801053150",
+      "archivedUrl": "https://web.archive.org/web/20130801053150/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "405c75f2c9debcf44172e0041c2fe69adfeaf8e8c023900bcc007a45f1a45e84",
+      "bytes": 121103,
+      "via": "firecrawl",
+      "valid": false,
+      "rows": 0,
+      "problems": [
+        "no stage block prints 2013-09-21"
+      ],
+      "skipped": []
+    },
+    {
+      "captureTimestamp": "20130901204024",
+      "archivedUrl": "https://web.archive.org/web/20130901204024/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "68238d36ad4421b129f981382f7b2a174593f7793ee3977fcd3f301764734f1d",
+      "bytes": 142543,
+      "via": "firecrawl",
+      "valid": false,
+      "rows": 0,
+      "problems": [
+        "no stage block prints 2013-09-21"
+      ],
+      "skipped": [
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Armanni Reign",
+          "printed": "12:33pm - 12:33pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Thomas Gold",
+          "printed": "2:25pm - 2:25pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Sunnery James & Ryan Marciano",
+          "printed": "2:24pm - 2:24pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Subb-an",
+          "printed": "2:24pm - 2:24pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Firebeatz",
+          "printed": "10:51am - 10:51am",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Sander van Doorn",
+          "printed": "2:23pm - 2:23pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Porter Robinson",
+          "printed": "2:23pm - 2:23pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Netsky",
+          "printed": "2:22pm - 2:22pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Myon & Shane54",
+          "printed": "2:22pm - 2:22pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Umek",
+          "printed": "2:25pm - 2:25pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Wide Awake Art Car",
+          "printed": "2:25pm - 2:25pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Xilent",
+          "printed": "2:25pm - 2:25pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Damian Lazarus",
+          "printed": "12:32pm - 12:32pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "The Martinez Brothers",
+          "printed": "10:17am - 10:17am",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Fury w/ MC Dino",
+          "printed": "10:14am - 10:14am",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Lee Burridge",
+          "printed": "2:07pm - 2:07pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Mediks b2b Shimon",
+          "printed": "2:32pm - 2:32pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Maztek",
+          "printed": "2:31pm - 2:31pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Heroes x Villains",
+          "printed": "2:31pm - 2:31pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Fatboy Slim",
+          "printed": "10:12am - 10:12am",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Martin Solveig",
+          "printed": "2:14pm - 2:14pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Markus Schulz",
+          "printed": "2:13pm - 2:13pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Dash Berlin",
+          "printed": "2:02pm - 2:02pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Crosstown Rebels present Get Lost",
+          "printed": "1:50pm - 1:50pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Green Velvet",
+          "printed": "10:11am - 10:11am",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Carnage",
+          "printed": "1:46pm - 1:46pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Bro Safari",
+          "printed": "1:46pm - 1:46pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Bingo Players",
+          "printed": "1:44pm - 1:44pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Benny Benassi",
+          "printed": "1:33pm - 1:33pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Andy C",
+          "printed": "1:32pm - 1:32pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Datsik",
+          "printed": "2:02pm - 2:02pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "DAVID STEVEN",
+          "printed": "2:02pm - 2:02pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Discovery Project",
+          "printed": "2:03pm - 2:03pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Krewella",
+          "printed": "2:13pm - 2:13pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Kill The Noise",
+          "printed": "2:12pm - 2:12pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Infinity Ink live",
+          "printed": "2:12pm - 2:12pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Francesca Lombardo",
+          "printed": "2:09pm - 2:09pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Fedde le Grand",
+          "printed": "2:08pm - 2:08pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Excision",
+          "printed": "2:06pm - 2:06pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "EDX",
+          "printed": "2:06pm - 2:06pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "DJ Hype",
+          "printed": "2:06pm - 2:06pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Bassrush Experience",
+          "printed": "1:33pm - 1:33pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        }
+      ]
+    },
+    {
+      "captureTimestamp": "20131003060335",
+      "archivedUrl": "https://web.archive.org/web/20131003060335/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "fa2cdf4fc12aeca9ec3e1889a7c9d8a8c35138860ed492a483b6a27df8035b8d",
+      "bytes": 156076,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 45,
+      "problems": [],
+      "skipped": [
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Bassrush Experience",
+          "printed": "1:33pm - 1:33pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Crosstown Rebels present Get Lost",
+          "printed": "1:50pm - 1:50pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Discovery Project",
+          "printed": "2:03pm - 2:03pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Wide Awake Art Car",
+          "printed": "2:25pm - 2:25pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Fury w/ MC Dino",
+          "printed": "10:14am - 10:14am",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Armanni Reign",
+          "printed": "12:33pm - 12:33pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        }
+      ],
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20131104132257",
+      "archivedUrl": "https://web.archive.org/web/20131104132257/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+      "sha256": "5eeefc56fe86ca08c14d2c96e45a4d27473edd38ff17d252b502d8ae7efd6229",
+      "bytes": 154834,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 45,
+      "problems": [],
+      "skipped": [
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Bassrush Experience",
+          "printed": "1:33pm - 1:33pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Crosstown Rebels present Get Lost",
+          "printed": "1:50pm - 1:50pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Discovery Project",
+          "printed": "2:03pm - 2:03pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Wide Awake Art Car",
+          "printed": "2:25pm - 2:25pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Fury w/ MC Dino",
+          "printed": "10:14am - 10:14am",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        },
+        {
+          "day": 1,
+          "block": "Noct 2013 alpha",
+          "artist": "Armanni Reign",
+          "printed": "12:33pm - 12:33pm",
+          "reason": "alphabetical list, not a stage: zero-length time"
+        }
+      ],
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

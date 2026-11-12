@@ -430,7 +430,12 @@ function sbOnAuthChange(cb) {
 // file:// path that means nothing on another device; `_fingerprint` is a
 // dedupe hash recomputed at import. Measured at ~16% of the serialized blob,
 // and dropping them costs the restore nothing.
-const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256"];
+// Capture location stays on the device (SPEC-178, and imported videos). Before
+// this, `parsedGps` (raw lat/lng), its accuracy and the compass heading rode
+// every backup to user_data.meta.moments. A restored phone gets its moments
+// back without map pins, which is the lock working, not a loss to repair.
+// `location` stays: it is an amenity label + metres, no coordinates.
+const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256", "parsedGps", "gpsAccM", "heading", "headingRef"];
 function _slimMomentsForSync(all) {
   const out = {};
   for (const night of Object.keys(all || {})) {
@@ -633,7 +638,7 @@ async function sbExportUserData(state) {
       spotifyProfile: parseJson(safeLs("spotify_profile")),
     },
     saved:    state.saved || [],
-    attended: parseJson(safeLs("plursky_attended_v1")) || {},
+    attended: (typeof getAttendedStore === "function" ? getAttendedStore() : parseJson(safeLs("plursky_attended_v1"))) || {},
     moments:  parseJson(safeLs("plursky_moments_v1"))  || {},
     notes:    parseJson(safeLs("artist_notes_v1")) || {},
     crewCode: safeLs("plursky_group_code"),
@@ -645,6 +650,11 @@ async function sbExportUserData(state) {
     // Conflicts the user explicitly chose to keep both
     keptBothConflicts: parseJson(safeLs("plursky_conflicts_kept_both_v1")) || [],
     blockedPids:       parseJson(safeLs("plursky_blocked_pids_v1")) || [],
+    // Last 400 photo/video import outcomes (one row per file: tag reason,
+    // capture-time source, GPS presence + accuracy, never coordinates). A
+    // release build's WebView is not inspectable, so this is how a device
+    // import is diagnosed.
+    importLog:         parseJson(safeLs("plursky_import_log_v1")) || [],
   };
   const json = JSON.stringify(payload, null, 2);
   const blob = new Blob([json], { type: "application/json" });

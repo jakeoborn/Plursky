@@ -1,0 +1,23 @@
+{
+  "festivalId": "sunset-on-the-river-2027",
+  "source": null,
+  "scheduleHash": "f1bd30c8a0bcea5b",
+  "acts": [
+    {"id":"sotr-acraze","name":"ACRAZE","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-alesso","name":"Alesso","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-alok","name":"ALOK","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-angrybaby","name":"Angrybaby","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-disco-lines","name":"Disco Lines","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-dj-mandy","name":"DJ Mandy","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-john-anthony","name":"John Anthony","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-kyefi","name":"Kyefi","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-leondis","name":"Leondis","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-lost-frequencies","name":"Lost Frequencies","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-omnom","name":"OMNOM","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-pushman","name":"Pushman","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-sueno","name":"Sueno","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-tokimonsta","name":"TOKiMONSTA","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-westend","name":"Westend","day":1,"stage":null,"start":"","end":""},
+    {"id":"sotr-wes-mills","name":"Wes Mills","day":1,"stage":null,"start":"","end":""}
+  ]
+}

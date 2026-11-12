@@ -1,0 +1,103 @@
+{
+  "id": "lollapalooza-2019",
+  "method": "official_sources",
+  "official": "https://www.lollapalooza.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-08-01",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20190730190925/https://www.lollapalooza.com/schedule/",
+          "captureTimestamp": "20190730190925",
+          "printed": "Thursday Aug 1st",
+          "sha256": "45e1d219b83ab5b38f23142bc0952943af6d226940323e754d8541daa64ed83f",
+          "bytes": 695282,
+          "rows": 50,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2,
+          "timesConfirmed": false
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2019-08-02",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20190730190925/https://www.lollapalooza.com/schedule/",
+          "captureTimestamp": "20190730190925",
+          "printed": "Friday Aug 2nd",
+          "sha256": "45e1d219b83ab5b38f23142bc0952943af6d226940323e754d8541daa64ed83f",
+          "bytes": 695282,
+          "rows": 51,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2,
+          "timesConfirmed": false
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2019-08-03",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20190730190925/https://www.lollapalooza.com/schedule/",
+          "captureTimestamp": "20190730190925",
+          "printed": "Saturday Aug 3rd",
+          "sha256": "45e1d219b83ab5b38f23142bc0952943af6d226940323e754d8541daa64ed83f",
+          "bytes": 695282,
+          "rows": 51,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2,
+          "timesConfirmed": false
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2019-08-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20190730190925/https://www.lollapalooza.com/schedule/",
+          "captureTimestamp": "20190730190925",
+          "printed": "Sunday Aug 4th",
+          "sha256": "45e1d219b83ab5b38f23142bc0952943af6d226940323e754d8541daa64ed83f",
+          "bytes": 695282,
+          "rows": 50,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2,
+          "timesConfirmed": false
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 4,
+      "stage": "Kidzapalooza",
+      "start": "",
+      "end": null,
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

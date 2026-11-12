@@ -27,6 +27,7 @@ const COPY = [
   'data/artist-photos.js',
   'data/artist-key.js',
   'data/festival-art.js',
+  'data/plan-share-contract.js',
   // The Artists directory and career slices: shipped, loaded on demand, never precached.
   'data/artists/directory.json',
   'data/artists/careers.json',
@@ -74,10 +75,12 @@ const festivalArtFiles = existsSync(path.join(root, 'festival-art'))
   : [];
 
 // Past Festivals library (historical.jsx fetches these on demand; never
-// precached). Only the index and the edition files ship: sheets, ledgers and
-// review manifests are build inputs and provenance, not runtime data.
+// precached). Only the index, the edition files and the scan calendar (every
+// festival year's dates and venue, for the past-photo scan) ship: sheets,
+// ledgers, review manifests and the calendar's TSV sources are build inputs
+// and provenance, not runtime data.
 const historicalFiles = existsSync(path.join(root, 'data', 'historical', 'editions'))
-  ? ['data/historical/index.json', ...(await readdir(path.join(root, 'data', 'historical', 'editions')))
+  ? ['data/historical/index.json', 'data/historical/scan-calendar.json', ...(await readdir(path.join(root, 'data', 'historical', 'editions')))
       .filter(f => f.endsWith('.json')).map(f => path.join('data', 'historical', 'editions', f))]
   : [];
 
@@ -98,9 +101,14 @@ if (!buildFiles.length) {
   process.exit(1);
 }
 
+// Festival map art fitted to its venue (scripts/build-geo-plate.py). The real
+// map loads these by path, so a plate missing here is a map with no art offline.
+const geoPlateFiles = existsSync(path.join(root, 'geo-maps'))
+  ? (await readdir(path.join(root, 'geo-maps'))).filter(f => /\.webp$/i.test(f)).map(f => path.join('geo-maps', f)) : [];
+
 const artistPhotoFiles = existsSync(path.join(root, 'artist-photos'))
   ? (await readdir(path.join(root, 'artist-photos'))).filter(f => /\.(webp|png|jpg)$/.test(f)).map(f => path.join('artist-photos', f)) : [];
-const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles, ...historicalFiles, ...fontFiles, ...artistPhotoFiles])];
+const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles, ...historicalFiles, ...fontFiles, ...geoPlateFiles, ...artistPhotoFiles])];
 for (const file of allFiles) {
   const src = path.join(root, file);
   if (!existsSync(src)) {

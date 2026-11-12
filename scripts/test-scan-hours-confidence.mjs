@@ -264,14 +264,20 @@ function checks(C, R) {
         // Saved act on an anchored stage (T-Mobile); GPS at Amex while Amex plays: GPS wins.
         const r1 = C._matchArtistForPhoto(atMin(1, 13, 20, st("amex")), ["af02"], [], ds);
         t(r1.artistId === "af44" && !r1.suggested, `GPS at Amex lost to a saved T-Mobile act: ${JSON.stringify([r1.artistId, r1.reason, r1.suggested])}`);
-        // Saved act on an UNANCHORED stage (Beatbox); GPS at Snapchat: stays a suggestion, both offered.
+        // Saved act on an UNANCHORED stage (Beatbox); trusted GPS at Snapchat while
+        // Snapchat plays. SPEC-179: the trusted fix tags Snapchat's act; Beatbox has
+        // no pin, so the tag is flagged and the saved act stays offered.
         const r2 = C._matchArtistForPhoto(atMin(1, 14, 20, st("snapchat")), ["af23"], [], ds);
-        t(r2.artistId === "af23" && r2.suggested === true && r2.ambiguous === true && (r2.alternatives || []).includes("af39")
-          && r2.evidence === "saved+time;gps-other-stage", `GPS at Snapchat vs a saved Beatbox act: ${JSON.stringify([r2.artistId, r2.suggested, r2.ambiguous, r2.alternatives, r2.evidence])}`);
+        t(r2.artistId === "af39" && r2.ambiguous === true && (r2.alternatives || []).includes("af23")
+          && r2.evidence === "trusted-gps+time;over-saved", `GPS at Snapchat vs a saved Beatbox act: ${JSON.stringify([r2.artistId, r2.suggested, r2.ambiguous, r2.alternatives, r2.evidence])}`);
+        // SPEC-179: no GPS and several acts playing → untagged, every act offered.
+        const r5 = C._matchArtistForPhoto({ ...atMin(1, 14, 20, st("snapchat")), lat: null, lng: null, acc: null }, [], [], ds);
+        t(r5.artistId === null && r5.reason === "several_playing" && (r5.alternatives || []).length > 1 && r5.alternatives.includes("af39") && r5.alternatives.includes("af23"),
+          `no GPS, several playing: ${JSON.stringify([r5.artistId, r5.reason, r5.alternatives])}`);
         // Unsaved overlap: GPS at Miller's anchor beats an unanchored stage's act that started nearer the time.
         const r3 = C._matchArtistForPhoto(atMin(2, 14, 5, st("miller")), [], [], ds);
         t(r3.artistId === "as06" && r3.ambiguous === true, `GPS at Miller lost to unanchored Tito's on start time: ${JSON.stringify([r3.artistId, r3.ambiguous])}`);
-        // Positive control: with no GPS the start-time order still picks Tito's.
+        // Positive control: with no GPS, Miller's act is not the tag (SPEC-179: nobody is).
         const r4 = C._matchArtistForPhoto({ ...atMin(2, 14, 5, st("miller")), lat: null, lng: null, acc: null }, [], [], ds);
         t(r4.artistId !== "as06" || r4.ambiguous === true, `no-GPS overlap control: ${JSON.stringify([r4.artistId, r4.ambiguous])}`);
       }
@@ -337,9 +343,9 @@ const MUTANTS = [
   ["no timezone path (midnight + hours)", shipped.replace(/var utc = _zonedWallToUtc\(/, "var utc = null && _zonedWallToUtc(")],
   ["untimed nights left unscanned", shipped.replace(/whole = true;/, "outsideSets++; continue;")],
   ["full-night photos skip the seen list", shipped.replace(/if \(seen\.has\(a\.id\)\) \{(\s*already\+\+;\s*(?:return 0|continue);\s*\}\s*if \(whole\) fullNight\+\+;)/, "if (!whole && seen.has(a.id)) {$1")],
-  ["GPS at another anchored stage never defeats a saved guess", shipped.replace(/if \(!\(gpsAct && anchor\)\) \{/, "if (true) {")],
-  ["saved guess contradicted by stage GPS is not flagged", shipped.replace(/var amb = (_?ambiguous) \|\| !!gpsAct;/, "var amb = $1;")],
-  ["unanchored stage wins on start time", shipped.replace(/if \(ax !== ay\) return ax \? -1 : 1;/, "")],
+  ["a trusted fix never beats a saved act", shipped.replace(/if \(trustedStage\) \{/, "if (false) {")],
+  ["an unpinned overlap under a trusted fix is not flagged", shipped.replace(/var ambiguous = !surveyGrade \|\| unpinned \|\| /, "var ambiguous = !surveyGrade || ")],
+  ["latest start wins again", shipped.replace(/artistId: null,(\s*)night,(\s*)festivalId,(\s*)resolvedBy,(\s*)reason: "several_playing",(\s*)ambiguous: true,(\s*)anchorSource: null,(\s*)alternatives: several/, 'artistId: several[several.length - 1].a.id,$1night,$2festivalId,$3resolvedBy,$4reason: "several_playing",$5ambiguous: true,$6anchorSource: null,$7alternatives: several')],
   ["footprint circle edge is the fence", shipped.replace(/return past > _OFF_VENUE_MARGIN_M \? /, "return past > 0 ? ")],
   ["unresolved set times move a window boundary", shipped.replace(/if \(setTimeStatus\(a\) !== "confirmed"\) continue;/, "")],
   ["every picker rejection is a cancel", shipped.replace(/return \/\^pick\(Files\|Media\|Images\|Videos\)\? cancel\(l\)\?ed\\\.\?\$\/i\.test\(msg\);/, "return true;")],

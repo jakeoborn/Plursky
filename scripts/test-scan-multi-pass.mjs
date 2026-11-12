@@ -290,7 +290,7 @@ try {
   t(byId2.get(unknownId)?.tagSource === "unknown" && !byId2.get(unknownId)?.artistId, "the Unknown choice did not survive scan 2");
   // Every act-time item is on its own act (no collapse onto one card).
   if (process.env.MP_DEBUG) {
-    for (const m of after2) console.log("M", m.id.slice(-8), m.artistId, m.tagSource, m.matchReason, m.matchEvidence, m.tagSuggested, m.lat != null);
+    for (const m of after2) console.log("M", m.id.slice(-8), m.artistId, m.tagSource, m.matchReason, m.matchEvidence, m.tagSuggested, m.lat != null, m.tagAmbiguous, JSON.stringify(m.tagAlternatives));
     for (const a of plan.acts) console.log("P", a.id, a.night, a.min, a.stage, a.saved);
   }
   const artists2 = new Set(after2.filter(m => m.artistId && m.tagSource !== "manual").map(m => m.artistId));
@@ -299,11 +299,12 @@ try {
   t(!!dinner && !dinner.artistId && dinner.matchReason === "off_venue", `the dinner 3 km away was not left off the saved set (${JSON.stringify(dinner && [dinner.artistId, dinner.tagSource, dinner.matchReason])})`);
   const savedOnly = after2.filter(m => m.matchReason === "saved_set_time" && m.tagSource === "photokit"); // a hand choice is an answer
   t(savedOnly.length > 0 && savedOnly.every(m => m.tagSuggested === true && /^saved\+time(;gps-other-stage)?$/.test(m.matchEvidence || "")), "a saved-set guess was stored as certain");
-  // GPS at another anchored stage: if the saved act's stage is anchored the
-  // GPS wins; if it is not (ACL's Beatbox), the guess stays a suggestion and
-  // the fix-tag chip shows.
-  const conflict = after2.filter(m => m.matchEvidence === "saved+time;gps-other-stage");
-  t(conflict.length > 0 && conflict.every(m => m.tagSuggested && m.tagAmbiguous), "a saved guess contradicted by stage GPS did not show the fix-tag chip");
+  // GPS at another stage while a saved act plays. SPEC-179: a trusted fix
+  // tags the act at ITS stage; when the saved act's stage has no pin (ACL's
+  // Beatbox) the tag is flagged, so the fix-tag chip shows and the saved act
+  // stays offered.
+  const conflict = after2.filter(m => m.tagSource === "photokit" && /^trusted-gps\+time;over-saved$/.test(m.matchEvidence || "")); // a hand choice is an answer
+  t(conflict.length > 0 && conflict.every(m => m.tagAmbiguous && (m.tagAlternatives || []).length > 1), "a saved guess contradicted by stage GPS did not show the fix-tag chip");
   const gpsWins = plan.acts.filter(a => !a.saved && plan.acts.some(s2 => s2.saved && s2.night === a.night && Math.abs(s2.min - a.min) < 45 && anchoredStages.includes(s2.stage)));
   t(gpsWins.length > 0, "fixture: no unsaved act overlaps a saved act on an anchored stage (vacuous check)");
   t(gpsWins.every(a => after2.some(m => m.artistId === a.id)), `GPS at an anchored stage lost to a saved act on an anchored stage (${gpsWins.map(a => a.id)})`);

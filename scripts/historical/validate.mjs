@@ -2,7 +2,7 @@
 // Returns a list of problems; empty means valid. Used by the verify gate
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
-import { EDITIONS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
+import { EDITIONS, KEPT_STAGES, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
 import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, undatedOwnPost, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
@@ -11,6 +11,8 @@ export const OFFICIAL_HOSTS = {
   "governors-ball": ["governorsballmusicfestival.com", "cdn.prod.website-files.com"],
   "lollapalooza": ["lollapalooza.com", "cdn.prod.website-files.com"],
   "hard-summer": ["hardsummer.com"],
+  "electric-forest": ["electricforestfestival.com", "electricforest.com"],
+  "coachella": ["coachella.com"],
   "edc-lv": ["lasvegas.electricdaisycarnival.com"],
   // assets-global.website-files.com is the same Webflow CDN under its older
   // hostname: every archived 2022 aclfestival.com/schedule capture embeds the
@@ -18,12 +20,16 @@ export const OFFICIAL_HOSTS = {
   // ruling, SPEC-182, 2026-11-06); the image must still be embedded on an
   // archived official page and carry its hash and review entry.
   "acl": ["aclfestival.com", "cdn.prod.website-files.com", "assets-global.website-files.com"],
-  "beyond-wonderland-socal": ["socal.beyondwonderland.com"],
+  // The 2012 and 2013 SoCal lineups lived on the root domain (lineup.php).
+  "beyond-wonderland-socal": ["socal.beyondwonderland.com", "beyondwonderland.com"],
   "beyond-wonderland-gorge": ["pnw.beyondwonderland.com"],
   "escape-halloween": ["escapehalloween.com"],
   "edc-orlando": ["orlando.electricdaisycarnival.com"],
+  "edc-mexico": ["mexico.electricdaisycarnival.com"],
   "nocturnal-wonderland": ["nocturnalwonderland.com"],
+  "countdown-nye": ["countdownnye.com"],
   "dreamstate-socal": ["dreamstateusa.com"],
+  "tomorrowland": ["tomorrowland.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -71,6 +77,17 @@ const strings = x => typeof x === "string" ? [x, ...x.split(":").slice(1)]
   : x && typeof x === "object" ? Object.values(x).flatMap(strings) : [];
 
 // `dropped` is ledger/<id>.json's record of the printed rows the build left out.
+// A year-end edition (New Year's Eve) is often only captured in the first
+// days of January: a capture from the next year counts only when it falls
+// within 31 days after the edition's last day.
+function earlyNextYear(ts, e) {
+  const last = (e.days || []).map(d => d.date).sort().pop();
+  if (!last || !ts.startsWith(String(e.year + 1))) return false;
+  const cap = Date.UTC(+ts.slice(0, 4), +ts.slice(4, 6) - 1, +ts.slice(6, 8));
+  const end = Date.parse(last + "T00:00:00Z");
+  return cap > end && cap - end <= 31 * 864e5;
+}
+
 export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   const p = [];
   const meta = EDITIONS[e.id];
@@ -89,6 +106,7 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   // official page of the edition's year. An untimed day must be covered by a
   // note that names it, and a cancelled day by an edition-wide note.
   if (JSON.stringify(e.notes || null) !== JSON.stringify(meta.notes || null)) p.push(`${e.id}: notes differ from the edition registry`);
+  if (!!e.undated !== !!meta.undated) p.push(`${e.id}: undated is ${!!e.undated}, the edition registry says ${!!meta.undated}`);
   for (const n of e.notes || []) {
     if (!DAY.test(n.asOf || "")) p.push(`${e.id}: a note has no asOf date`);
     if (!n.text) p.push(`${e.id}: a note has no text`);
@@ -121,19 +139,21 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   if (e.provenance?.extractionMethod === "official_sources") officialSources(e, meta, p);
   else for (const c of e.provenance?.captures || []) {
     const url = c.archivedUrl || c.pageArchivedUrl;
-    const ts = officialArchive(url, e.festivalId, e.year, p, `${e.id} day ${c.day}`);
-    if (ts && !ts.startsWith(String(e.year))) p.push(`${e.id} day ${c.day}: page capture ${ts} is not from ${e.year}`);
-    if (c.imageArchivedUrl) officialArchive(c.imageArchivedUrl, e.festivalId, e.year, p, `${e.id} day ${c.day} graphic`);
-    if (!/^[0-9a-f]{64}$/.test(c.sha256 || "")) p.push(`${e.id} day ${c.day}: artifact hash missing`);
+    const where = c.day ? `day ${c.day}` : `${c.page || "?"} page`;
+    const ts = officialArchive(url, e.festivalId, e.year, p, `${e.id} ${where}`);
+    if (ts && !ts.startsWith(String(e.year)) && !earlyNextYear(ts, e)) p.push(`${e.id} ${where}: page capture ${ts} is not from ${e.year}`);
+    if (c.imageArchivedUrl) officialArchive(c.imageArchivedUrl, e.festivalId, e.year, p, `${e.id} ${where} graphic`);
+    if (!/^[0-9a-f]{64}$/.test(c.sha256 || "")) p.push(`${e.id} ${where}: artifact hash missing`);
   }
 
   // Completeness.
   if (!["complete_schedule", "lineup_only"].includes(e.completeness)) p.push(`${e.id}: completeness "${e.completeness}"`);
-  if (e.completeness === "lineup_only") {
-    if (e.sets?.length || e.stages?.length) p.push(`${e.id}: lineup_only must carry no stages or sets (no placeholder times)`);
-    if (!e.artists?.length) p.push(`${e.id}: lineup_only with no artists`);
-    return p;
-  }
+  const lineupOnly = e.completeness === "lineup_only";
+  if (lineupOnly && (e.sets?.length || e.provenance?.extractionMethod !== "official_lineup_html"))
+    p.push(`${e.id}: lineup_only must carry no sets (no placeholder times) and come from an official lineup page`);
+  if (!lineupOnly && e.provenance?.extractionMethod === "official_lineup_html")
+    return p.concat(`${e.id}: a lineup page has no times, so it cannot make a complete_schedule`);
+  if (lineupOnly && !e.artists?.length) p.push(`${e.id}: lineup_only with no artists`);
 
   const stageIds = new Set(e.stages.map(s => s.id)), artistIds = new Set(e.artists.map(a => a.id));
   if (stageIds.size !== e.stages.length) p.push(`${e.id}: duplicate stage id`);
@@ -143,7 +163,12 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   // event, a stage or an id). The ledger holds them as the audit trail.
   if ("events" in e) p.push(`${e.id}: carries an events list; operational rows are dropped, not stored`);
   const hit = new Set();
+  // A stage the founder ruled to keep as printed (KEPT_STAGES) is not checked
+  // by its name or the slug its ids carry; every billing on it, and every
+  // other edition, still is (the set check below).
+  const kept = new Set(e.stages.filter(s => (KEPT_STAGES[e.id] || []).includes(s.name)).flatMap(s => [s.name, s.id.split(":").pop()]));
   for (const x of strings({ stages: e.stages, artists: e.artists, sets: e.sets, events: e.events })) {
+    if (kept.has(x)) continue;
     // Each string is tried as a billing and as a stage name.
     const why = dropReason(x, x);
     if (why && !hit.has(x)) { hit.add(x); p.push(`${e.id}: dropped ${why.category} "${x}" appears in the edition`); }
@@ -155,6 +180,8 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     const billing = s.billing || artistName.get(s.artistId) || "", why = dropReason(billing, stageName.get(s.stageId) || "");
     if (why && !hit.has(billing)) { hit.add(billing); p.push(`${e.id}: dropped ${why.category} "${billing}" appears in the edition`); }
   }
+
+  if (lineupOnly) return p.concat(validateLineup(e, { expected, dropped }, stageIds));
 
   const ids = new Set(), slots = new Set(), used = new Set();
   for (const s of e.sets) {
@@ -193,9 +220,7 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   // "ОTОBOKE BEAVER" came back with Cyrillic О). It renders identically and
   // silently breaks search and cross-edition matching, so billing and stage
   // names must be Latin-script letters (accented Latin such as RÜFÜS, BÔA is fine).
-  for (const x of [...e.artists, ...e.stages])
-    // Letters only: symbols in a stylized billing are real ("€URO TRA$H").
-    if (/(?=\p{L})\P{Script=Latin}/u.test(x.name) && !(PRINTED_NON_LATIN[e.id] || []).includes(x.name)) p.push(`${e.id}: "${x.name}" contains a non-Latin look-alike character`);
+  p.push(...nonLatin(e));
 
   // Every documented day and stage present; counts locked from the reviewed sheet.
   for (const d of e.days) if (!e.sets.some(s => s.day === d.day)) p.push(`${e.id}: day ${d.day} has no sets`);
@@ -203,7 +228,8 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   if (!expected) p.push(`${e.id}: no locked expected counts`);
   else {
     if (expected.stages !== e.stages.length) p.push(`${e.id}: ${e.stages.length} stages, locked ${expected.stages}`);
-    expected.setsPerDay.forEach((n, i) => {
+    if (!Array.isArray(expected.setsPerDay)) p.push(`${e.id}: no locked setsPerDay`);
+    else expected.setsPerDay.forEach((n, i) => {
       const got = e.sets.filter(s => s.day === i + 1).length;
       if (got !== n) p.push(`${e.id}: day ${i + 1} has ${got} sets, locked ${n}`);
     });
@@ -253,6 +279,43 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   return p;
 }
 
+// Letters only: symbols in a stylized billing are real ("€URO TRA$H").
+const nonLatin = e => [...e.artists, ...e.stages]
+  // Letters only: symbols in a stylized billing are real ("€URO TRA$H"), and
+  // a name the source itself printed in another script is listed in
+  // PRINTED_NON_LATIN.
+  .filter(x => /(?=\p{L})\P{Script=Latin}/u.test(x.name) && !(PRINTED_NON_LATIN[e.id] || []).includes(x.name))
+  .map(x => `${e.id}: "${x.name}" contains a non-Latin look-alike character`);
+
+// A lineup_only edition: artists as the official lineup page billed them,
+// each with the day and stage it printed (where it printed them), no times.
+function validateLineup(e, { expected, dropped }, stageIds) {
+  const p = nonLatin(e), used = new Set();
+  for (const a of e.artists) {
+    if (!a.id.startsWith(e.id + ":")) p.push(`${e.id} ${a.id}: id not scoped to its edition`);
+    for (const x of a.appearances || []) {
+      const keys = Object.keys(x);
+      if (keys.some(k => k !== "day" && k !== "stageId") || !keys.length) p.push(`${e.id} ${a.name}: appearance ${JSON.stringify(x)} carries something other than a day and a stage`);
+      if ("day" in x && (!Number.isInteger(x.day) || x.day < 1 || x.day > e.days.length)) p.push(`${e.id} ${a.name}: day ${x.day} is not an edition day`);
+      if ("stageId" in x) { if (!stageIds.has(x.stageId)) p.push(`${e.id} ${a.name}: unknown stage ${x.stageId}`); used.add(x.stageId); }
+    }
+  }
+  for (const st of e.stages) if (!used.has(st.id)) p.push(`${e.id}: stage ${st.name} is on no artist's appearance`);
+  // An undated lineup page printed no days: no artist may carry one, and the
+  // edition must say so in a note. Any other lineup edition dates every day.
+  if (e.undated) {
+    if (e.artists.some(a => (a.appearances || []).some(x => "day" in x))) p.push(`${e.id}: undated lineup, but an artist carries a day`);
+    if (!(e.notes || []).some(n => /printed no days/.test(n.text))) p.push(`${e.id}: undated lineup without a note saying the page printed no days`);
+  } else for (const d of e.days) if (!e.artists.some(a => (a.appearances || []).some(x => x.day === d.day))) p.push(`${e.id}: day ${d.day} has no billed artist`);
+  if (!expected) return p.concat(`${e.id}: no locked expected counts`);
+  if (expected.artists !== e.artists.length) p.push(`${e.id}: ${e.artists.length} artists, locked ${expected.artists}`);
+  if (expected.stages !== e.stages.length) p.push(`${e.id}: ${e.stages.length} stages, locked ${expected.stages}`);
+  const per = e.days.map(d => e.artists.reduce((n, a) => n + (a.appearances || []).filter(x => x.day === d.day).length, 0));
+  if (JSON.stringify(per) !== JSON.stringify(expected.appearancesPerDay)) p.push(`${e.id}: appearances per day ${per.join("/")}, locked ${(expected.appearancesPerDay || []).join("/")}`);
+  if ((dropped || []).length !== (expected.dropped ?? -1)) p.push(`${e.id}: drops ${(dropped || []).length} printed billings, locked ${expected.dropped}`);
+  return p;
+}
+
 // official_sources: each capture is either an archived official page or an
 // official graphic with a dated re-host receipt. Either way it must print the
 // day it is cited for.
@@ -271,6 +334,17 @@ function officialSources(e, meta, p) {
       if (ts && !(ts.startsWith(String(e.year)) || ts.startsWith(String(e.year + 1)))) p.push(`${tag}: page capture ${ts} is not from ${e.year} or the year after`);
       if (ts && ts !== c.captureTimestamp) p.push(`${tag}: captureTimestamp ${c.captureTimestamp} ≠ the archived URL's ${ts}`);
       if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
+    }
+    // A stage printed two ways carried onto one name: only case, spacing and
+    // a leading "The" may change, and the target must be a stage it shows.
+    if (c.kind === "page" || c.kind === "graphic") {
+      const fold = x => String(x).replace(/^the\s+/i, "").replace(/\s+/g, "").toLowerCase();
+      for (const [from, to] of Object.entries(c.stagesAs || {})) {
+        if (fold(from) !== fold(to)) p.push(`${tag}: stagesAs "${from}" → "${to}" renames the stage; only case, spacing and a leading "The" may differ`);
+        if (!e.stages.some(st => st.name === to)) p.push(`${tag}: stagesAs maps "${from}" onto "${to}", which is not a stage of the edition`);
+      }
+    }
+    if (c.kind === "page") {
     } else if (c.kind === "graphic") {
       const host = hostOf(c.imageUrl);
       const official = (OFFICIAL_HOSTS[e.festivalId] || []).some(h => host === h || host.endsWith("." + h));
@@ -294,11 +368,6 @@ function officialSources(e, meta, p) {
         p.push(`${tag}: the graphic's header "${c.printed}" does not print ${weekdayOf(date)} ${date}`);
       // A styled stage name carried onto the edition's other printing: only
       // case and spacing may change, and the target must be a stage it shows.
-      const fold = x => String(x).replace(/\s+/g, "").toLowerCase();
-      for (const [from, to] of Object.entries(c.stagesAs || {})) {
-        if (fold(from) !== fold(to)) p.push(`${tag}: stagesAs "${from}" → "${to}" renames the stage; only case and spacing may differ`);
-        if (!e.stages.some(st => st.name === to)) p.push(`${tag}: stagesAs maps "${from}" onto "${to}", which is not a stage of the edition`);
-      }
     } else p.push(`${tag}: source kind "${c.kind}" is neither page nor graphic`);
   }
   for (const [i] of meta.dates.entries()) if (!e.provenance.captures.some(c => c.day === i + 1)) p.push(`${e.id} day ${i + 1}: no source`);

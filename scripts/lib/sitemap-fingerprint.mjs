@@ -21,6 +21,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { plateFor, pastEditionsFor, amenitySummary, stageProgrammingFor } from './festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedFingerprintInput, embedWindowStart } from './official-embeds.mjs';
+import { loadDayAfter, selectDayAfter, dayAfterFingerprintInput } from './day-after.mjs';
 
 export const fp = (v) => createHash('sha256').update(JSON.stringify(v)).digest('hex').slice(0, 16);
 
@@ -111,6 +112,7 @@ export const FINGERPRINTED_ENTRY_FIELDS = [
   'available',   // the CTA verb and the "not switchable yet" note
   'scheduleTBA', // the "set times appear when the festival publishes" note
   'region',      // JSON-LD addressCountry when the location string omits it
+  'accent',      // the header rule and hero glow colour
 ];
 
 // Deliberately NOT hashed. Each one is a decision, not an oversight.
@@ -135,7 +137,7 @@ export const EXCLUDED_ENTRY_FIELDS = {
 // test can diff WHICH field moved instead of only that something did.
 // `templateFp` is an override for the regression test only; production always
 // derives it from the generator source on disk.
-export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, templateFp }) {
+export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, templateFp, NOW_MS }) {
   const cfg = entry.config;
   const ds = DS[cfg.id] || {};
   const d = eventDates(cfg);
@@ -150,6 +152,7 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     tzAbbr: cfg.tzAbbr || '',
     dayDates: cfg.dayDates || null,
     region: entry.region || '',
+    accent: entry.accent || '',
     available: !!entry.available,
     scheduleTBA: !!entry.scheduleTBA,
     setTimesProvisional: !!cfg.setTimesProvisional,
@@ -189,6 +192,9 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     // The Watch & listen section: the embeds the page shows, in order. A
     // verification that drops or restores one moves the page, and so lastmod.
     embeds: embedFingerprintInput(selectEmbeds(cfg.id, loadEmbedData(), embedWindowStart(cfg, d))),
+    // Day-after cards it shows. Only a page with one adds the key, so every
+    // other page keeps its fingerprint.
+    ...(() => { const r = selectDayAfter(cfg.id, loadDayAfter(), cfg, NOW_MS ?? Date.now()); return r.length ? { dayAfter: dayAfterFingerprintInput(r) } : {}; })(),
   };
 }
 

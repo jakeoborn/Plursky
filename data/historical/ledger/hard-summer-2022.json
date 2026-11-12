@@ -1,0 +1,264 @@
+{
+  "id": "hard-summer-2022",
+  "method": "official_lineup_html",
+  "official": "https://www.hardsummer.com/lineup/",
+  "chosen": "20221206051035",
+  "archivedUrl": "https://web.archive.org/web/20221206051035/https://www.hardsummer.com/lineup/",
+  "sha256": "fa610c18f51301a4e808607e534080e632c6df566da0df96729908bb9e769aeb",
+  "title": "Lineup – HARD Summer 2022",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 125",
+    "By Day 126"
+  ],
+  "stageOrder": [],
+  "crossTab": [
+    "RemK: not alphabetical; days 3"
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20220121213104",
+      "archivedUrl": "https://web.archive.org/web/20220121213104/https://www.hardsummer.com/lineup/",
+      "sha256": "3bcfd6109911fa0231d3942eb5a04a366af1146ab2508570307de5ac5a10aee5",
+      "bytes": 57439,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2022",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220128220226",
+      "archivedUrl": "https://web.archive.org/web/20220128220226/https://www.hardsummer.com/lineup/",
+      "sha256": "48b5670154949ba4e1a62bc73a8d194275d91822ccabbd2e9ac627b975b1511f",
+      "bytes": 57108,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2022",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220507211358",
+      "archivedUrl": "https://web.archive.org/web/20220507211358/https://www.hardsummer.com/lineup/",
+      "sha256": "44997e2b25e0a5cdd932f0363fa2a80aca12c2ec209e51c60b23d114e1ff577a",
+      "bytes": 122489,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2022",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, July 29",
+        "Saturday, July 30",
+        "Sunday, July 31"
+      ],
+      "billings": 106,
+      "diffVsChosen": [
+        "added by the final: 21 Savage",
+        "added by the final: ALEKO",
+        "added by the final: ALRT",
+        "added by the final: BRKLYN",
+        "added by the final: Flosstradamus",
+        "added by the final: GOJ!RA",
+        "added by the final: ISOKNOCK III (ISOxo B2B Knock2)",
+        "added by the final: Jawns",
+        "added by the final: Krucial",
+        "added by the final: longstoryshort",
+        "added by the final: Luke Andy",
+        "added by the final: Lyon 808",
+        "added by the final: Manny Lo",
+        "added by the final: Masego (Hybrid Set)",
+        "added by the final: Mr. Carmack",
+        "added by the final: Nitepunk",
+        "added by the final: Qlank",
+        "added by the final: RemK (Golden Hour Set)",
+        "added by the final: Revel",
+        "added by the final: SENZA",
+        "added by the final: Shdws",
+        "added by the final: Svdden Death B2B MARAUDA",
+        "added by the final: VILLA",
+        "added by the final: Westley",
+        "removed by the final: Gunna",
+        "removed by the final: Masego",
+        "removed by the final: Svdden Death B2B Marauda",
+        "removed by the final: Venga"
+      ]
+    },
+    {
+      "captureTimestamp": "20220527005220",
+      "archivedUrl": "https://web.archive.org/web/20220527005220/https://www.hardsummer.com/lineup/",
+      "sha256": "28c70031a9902876cff0e04b3921fe6f397cba48720308c3a14e965202d1d6bf",
+      "bytes": 122537,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2022",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, July 29",
+        "Saturday, July 30",
+        "Sunday, July 31"
+      ],
+      "billings": 106,
+      "diffVsChosen": [
+        "added by the final: 21 Savage",
+        "added by the final: ALEKO",
+        "added by the final: ALRT",
+        "added by the final: BRKLYN",
+        "added by the final: Flosstradamus",
+        "added by the final: GOJ!RA",
+        "added by the final: ISOKNOCK III (ISOxo B2B Knock2)",
+        "added by the final: Jawns",
+        "added by the final: Krucial",
+        "added by the final: longstoryshort",
+        "added by the final: Luke Andy",
+        "added by the final: Lyon 808",
+        "added by the final: Manny Lo",
+        "added by the final: Masego (Hybrid Set)",
+        "added by the final: Mr. Carmack",
+        "added by the final: Nitepunk",
+        "added by the final: Qlank",
+        "added by the final: RemK (Golden Hour Set)",
+        "added by the final: Revel",
+        "added by the final: SENZA",
+        "added by the final: Shdws",
+        "added by the final: Svdden Death B2B MARAUDA",
+        "added by the final: VILLA",
+        "added by the final: Westley",
+        "removed by the final: Gunna",
+        "removed by the final: Masego",
+        "removed by the final: Svdden Death B2B Marauda",
+        "removed by the final: Venga"
+      ]
+    },
+    {
+      "captureTimestamp": "20220729073331",
+      "archivedUrl": "https://web.archive.org/web/20220729073331/https://www.hardsummer.com/lineup/",
+      "sha256": "0110492632fc5b2614918cd83fd90108b9e82e34680dc0b3265a792c4246c876",
+      "bytes": 136942,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2022",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, July 29",
+        "Saturday, July 30",
+        "Sunday, July 31"
+      ],
+      "billings": 126,
+      "diffVsChosen": [
+        "added by the final: Svdden Death B2B MARAUDA",
+        "removed by the final: Svdden Death B2B Marauda"
+      ]
+    },
+    {
+      "captureTimestamp": "20220802053002",
+      "archivedUrl": "https://web.archive.org/web/20220802053002/https://www.hardsummer.com/lineup/",
+      "sha256": "4206b196686419b2d56c250daeac50f19a852441da4fc81b41791fb2a4f6eb22",
+      "bytes": 135915,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2022",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, July 29",
+        "Saturday, July 30",
+        "Sunday, July 31"
+      ],
+      "billings": 126,
+      "diffVsChosen": [
+        "added by the final: Svdden Death B2B MARAUDA",
+        "removed by the final: Svdden Death B2B Marauda"
+      ]
+    },
+    {
+      "captureTimestamp": "20220804081816",
+      "archivedUrl": "https://web.archive.org/web/20220804081816/https://www.hardsummer.com/lineup/",
+      "sha256": "5390be323813250b36283645e1640366e90efa9afa011fc515b7506cd410b226",
+      "bytes": 135915,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2022",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, July 29",
+        "Saturday, July 30",
+        "Sunday, July 31"
+      ],
+      "billings": 126,
+      "diffVsChosen": [
+        "added by the final: Svdden Death B2B MARAUDA",
+        "removed by the final: Svdden Death B2B Marauda"
+      ]
+    },
+    {
+      "captureTimestamp": "20220814194350",
+      "archivedUrl": "https://web.archive.org/web/20220814194350/https://www.hardsummer.com/lineup/",
+      "sha256": "2ab692acb6bb3ebd953e02fd0accbe4b37b1b64fcfe48a02c9419b8ec803347b",
+      "bytes": 135915,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2022",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, July 29",
+        "Saturday, July 30",
+        "Sunday, July 31"
+      ],
+      "billings": 126,
+      "diffVsChosen": [
+        "added by the final: Svdden Death B2B MARAUDA",
+        "removed by the final: Svdden Death B2B Marauda"
+      ]
+    },
+    {
+      "captureTimestamp": "20220928041622",
+      "archivedUrl": "https://web.archive.org/web/20220928041622/https://www.hardsummer.com/lineup/",
+      "sha256": "f2aa347850b06ab57a271d4b33aefde91cd3719f38f3f7b13b061008332793d2",
+      "bytes": 136048,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2022",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, July 29",
+        "Saturday, July 30",
+        "Sunday, July 31"
+      ],
+      "billings": 126,
+      "diffVsChosen": [
+        "added by the final: Svdden Death B2B MARAUDA",
+        "removed by the final: Svdden Death B2B Marauda"
+      ]
+    },
+    {
+      "captureTimestamp": "20221206051035",
+      "archivedUrl": "https://web.archive.org/web/20221206051035/https://www.hardsummer.com/lineup/",
+      "sha256": "fa610c18f51301a4e808607e534080e632c6df566da0df96729908bb9e769aeb",
+      "bytes": 134146,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2022",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, July 29",
+        "Saturday, July 30",
+        "Sunday, July 31"
+      ],
+      "billings": 126,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

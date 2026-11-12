@@ -228,8 +228,13 @@ function useModalOpen() {
 }
 
 // ── Stagger-fade entrance for scrollable cards ───────────────
-// Returns a ref to attach to a container. Children with
-// [data-animate] get an intersection-triggered fade-in.
+// Returns a ref to attach to a container. The [data-animate] children that
+// are ON SCREEN when it mounts fade up in a short stagger; nothing below the
+// fold is ever hidden. It used to hide every row and reveal each one from an
+// IntersectionObserver as it scrolled in: on a phone the observer fires after
+// the scroll paints, so rows arrived blank and popped in, and the first one
+// past the fold waited ~280ms then slid up 8px (Jake, Nov 10, Lineup: "When I
+// scroll down it's weird"). A row you scroll to is simply there.
 function useStaggerFade(depKey, skip = false) {
   const ref = React.useRef(null);
   React.useEffect(() => {
@@ -237,33 +242,24 @@ function useStaggerFade(depKey, skip = false) {
     // skip: a list that opens somewhere other than its top (Lineup at the
     // current hour) shows its rows as they are; sliding rows in under a jump
     // reads as the list moving twice.
-    if (!el || skip || !window.IntersectionObserver) return;
-    const targets = el.querySelectorAll("[data-animate]");
-    if (!targets.length) return;
-    targets.forEach(t => { t.style.opacity = "0"; t.style.transform = "translateY(8px)"; });
-    let idx = 0;
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const t = e.target;
-        if (idx < 8) {
-          const delay = idx * 40;
-          setTimeout(() => {
-            t.style.transition = "opacity 0.3s ease, transform 0.3s var(--ease-spring)";
-            t.style.opacity = "1";
-            t.style.transform = "translateY(0)";
-          }, delay);
-        } else {
-          t.style.transition = "none";
-          t.style.opacity = "1";
-          t.style.transform = "translateY(0)";
-        }
-        idx++;
-        obs.unobserve(t);
-      });
-    }, { threshold: 0.05 });
-    targets.forEach(t => obs.observe(t));
-    return () => obs.disconnect();
+    if (!el || skip) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) return;
+    const box = el.getBoundingClientRect();
+    const visible = [...el.querySelectorAll("[data-animate]")].filter(t => {
+      const r = t.getBoundingClientRect();
+      return r.bottom > box.top && r.top < box.bottom;
+    }).slice(0, 8);
+    if (!visible.length) return;
+    visible.forEach(t => { t.style.transition = "none"; t.style.opacity = "0"; t.style.transform = "translateY(8px)"; });
+    const timers = visible.map((t, i) => setTimeout(() => {
+      t.style.transition = "opacity 0.3s ease, transform 0.3s var(--ease-spring)";
+      t.style.opacity = "1";
+      t.style.transform = "translateY(0)";
+    }, i * 40));
+    return () => {
+      timers.forEach(clearTimeout);
+      visible.forEach(t => { t.style.transition = ""; t.style.opacity = ""; t.style.transform = ""; });
+    };
   }, [depKey]);
   return ref;
 }
@@ -1112,36 +1108,107 @@ function _mapDisplayPerm(display) {
 //   (b) Manual review in the Memories tab — checkbox list per night
 //       so the user can backfill anything we missed the next morning.
 
-const ATTENDED_KEY = "plursky_attended_v1";
-function getAllAttended() {
+// Festival-scoped since v408. Night keys are bare day numbers ("1", "2"), so
+// the old single map (plursky_attended_v1) put EDC's night-1 sets and ACL's
+// night-1 sets in one bucket, and every reader that flattened it counted other
+// festivals' attendance as the current one's. The store is now
+// { festivalId: { night: artistId[] } }; readers default to the ACTIVE
+// festival, writers to the festival that bills the artist.
+//
+// Legacy rows migrate by artist id: ids are unique across every data set
+// (measured 2026-10-07: 2584 ids, 19 sets, 0 shared), so each row has exactly
+// one owner. A row no loaded set bills goes to "_unattributed" — kept, never
+// shown, never guessed onto the active festival. The v1 key is left in place.
+const ATTENDED_KEY = "plursky_attended_v2";
+const ATTENDED_LEGACY_KEY = "plursky_attended_v1";
+const ATTENDED_UNATTRIBUTED = "_unattributed";
+function _attendedDataSets() {
+  try { return (typeof _DATA_SETS !== "undefined" ? _DATA_SETS : window._DATA_SETS) || {}; } catch { return {}; }
+}
+let _attendedOwnerIndex = null;
+function _attendedOwnerOf(artistId) {
+  const sets = _attendedDataSets();
+  if (!_attendedOwnerIndex || _attendedOwnerIndex._n !== Object.keys(sets).length) {
+    const idx = { _n: Object.keys(sets).length, map: {} };
+    for (const [fid, ds] of Object.entries(sets)) {
+      for (const a of ds?.artists || []) {
+        // An id two sets bill has no single owner: it stays null for good.
+        idx.map[a.id] = a.id in idx.map && idx.map[a.id] !== fid ? null : fid;
+      }
+    }
+    _attendedOwnerIndex = idx;
+  }
+  return _attendedOwnerIndex.map[artistId] || null;
+}
+function _normAttendedNights(obj) {
+  const out = {};
+  if (!obj || typeof obj !== "object") return out;
+  Object.keys(obj).forEach(k => {
+    out[k] = Array.isArray(obj[k]) ? obj[k].filter(x => typeof x === "string") : [];
+  });
+  return out;
+}
+function _migrateLegacyAttended() {
+  let legacy = {};
+  try { legacy = JSON.parse(localStorage.getItem(ATTENDED_LEGACY_KEY) || "{}") || {}; } catch {}
+  const store = {};
+  for (const [night, ids] of Object.entries(_normAttendedNights(legacy))) {
+    for (const id of ids) {
+      const fid = _attendedOwnerOf(id) || ATTENDED_UNATTRIBUTED;
+      const nights = (store[fid] = store[fid] || {});
+      const list = (nights[night] = nights[night] || []);
+      if (!list.includes(id)) list.push(id);
+    }
+  }
+  // Persist only once data sets are loaded; before that every row would be
+  // stranded as unattributed.
+  if (Object.keys(_attendedDataSets()).length) {
+    try { localStorage.setItem(ATTENDED_KEY, JSON.stringify(store)); } catch {}
+  }
+  return store;
+}
+function _readAttendedStore() {
   try {
     const raw = localStorage.getItem(ATTENDED_KEY);
-    const obj = raw ? JSON.parse(raw) : {};
-    // Normalize legacy/empty values into arrays of strings.
-    Object.keys(obj).forEach(k => {
-      obj[k] = Array.isArray(obj[k]) ? obj[k].filter(x => typeof x === "string") : [];
-    });
-    return obj;
-  } catch { return {}; }
+    if (raw) { const s = JSON.parse(raw); if (s && typeof s === "object") return s; }
+  } catch {}
+  return _migrateLegacyAttended();
 }
-function _writeAttended(map) {
-  try { localStorage.setItem(ATTENDED_KEY, JSON.stringify(map)); } catch {}
+// Every festival's attendance: { festivalId: { night: artistId[] } }.
+function getAttendedStore() {
+  const s = _readAttendedStore(), out = {};
+  Object.keys(s).forEach(fid => { out[fid] = _normAttendedNights(s[fid]); });
+  return out;
+}
+// One festival's attendance (the active one by default): { night: artistId[] }.
+function getAllAttended(festivalId) {
+  const fid = festivalId || window.FESTIVAL_CONFIG?.id;
+  if (!fid) return {};
+  return _normAttendedNights(_readAttendedStore()[fid]);
+}
+function _writeAttended(map, festivalId) {
+  const fid = festivalId || window.FESTIVAL_CONFIG?.id;
+  if (!fid) return;
+  const store = _readAttendedStore();
+  store[fid] = map;
+  try { localStorage.setItem(ATTENDED_KEY, JSON.stringify(store)); } catch {}
   try { window.dispatchEvent(new CustomEvent("plursky-attended-change")); } catch {}
 }
-function getAttendedForNight(night) {
-  return new Set(getAllAttended()[night] || []);
+function getAttendedForNight(night, festivalId) {
+  return new Set(getAllAttended(festivalId)[night] || []);
 }
-function getAttendedCount() {
-  const all = getAllAttended();
+function getAttendedCount(festivalId) {
+  const all = getAllAttended(festivalId);
   return Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
 }
 function markAttended(night, artistId, source = "manual") {
   if (!night || !artistId) return false;
-  const all = getAllAttended();
+  const fid = _attendedOwnerOf(artistId) || window.FESTIVAL_CONFIG?.id;
+  const all = getAllAttended(fid);
   const list = all[night] || [];
   if (list.includes(artistId)) return false;
   all[night] = [...list, artistId];
-  _writeAttended(all);
+  _writeAttended(all, fid);
   if (source === "gps") {
     // Lightweight crumb so we can show a "marked by GPS" badge later
     try {
@@ -1154,11 +1221,12 @@ function markAttended(night, artistId, source = "manual") {
 }
 function unmarkAttended(night, artistId) {
   if (!night || !artistId) return false;
-  const all = getAllAttended();
+  const fid = _attendedOwnerOf(artistId) || window.FESTIVAL_CONFIG?.id;
+  const all = getAllAttended(fid);
   const list = (all[night] || []).filter(x => x !== artistId);
   if (list.length === (all[night] || []).length) return false;
   all[night] = list;
-  _writeAttended(all);
+  _writeAttended(all, fid);
   return true;
 }
 function isAttended(night, artistId) {
@@ -2539,7 +2607,7 @@ Object.assign(window, {
   SpotifyFullLogo, SPOTIFY_IMAGE_TTL_MS,
   useInstallPrompt, InstallBanner,
   useNotifications, NotificationsCard, scheduleReminders,
-  getAllAttended, getAttendedForNight, getAttendedCount, markAttended, unmarkAttended,
+  getAllAttended, getAttendedStore, getAttendedForNight, getAttendedCount, markAttended, unmarkAttended,
   isAttended, getAttendanceSource, detectCurrentArtist, recordAttendanceFromGps,
   FestivalChip, FestivalSwitcher,
   useBatterySaver, BatterySaverCard, BatterySaverToast, setBatterySaverMode,
