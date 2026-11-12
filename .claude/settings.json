@@ -1,6 +1,10 @@
 {
   "permissions": {
-    "deny": ["Agent(general-purpose)", "Agent(claude)"]
+    "deny": [
+      "Agent(general-purpose)",
+      "Agent(claude)",
+      "Bash(gh pr close:*)"
+    ]
   },
   "hooks": {
     "SessionStart": [
