@@ -398,6 +398,11 @@
     // x/y below silently shifts. Re-crop the source and you MUST re-register
     // all seven stages. Same rule that bit acl-park.webp.
     mapImage: "hard-summer-2026.webp",
+    // The same art fitted to the ground by its own street ties (not stage
+    // anchors): scripts/build-geo-plate.py over map-sources/hard-summer-2026-geo-ties.json.
+    // The real map lays this plate down at its bounds; stages stay pending.
+    mapGeoref: { image: "geo-maps/hard-summer-2026.webp", bounds: [-118.3450929, 33.9478585, -118.3342093, 33.957218], model: "affine",
+                 ties: "map-sources/hard-summer-2026-geo-ties.json", rmsM: 3.8, looRmsM: 21.8 },
 
     // The festival's OWN map page, linked (never embedded) by the /f/ page:
     // official publication is provenance, not reuse rights. mapYear is the

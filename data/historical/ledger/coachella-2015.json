@@ -1,0 +1,123 @@
+{
+  "id": "coachella-2015",
+  "method": "official_sources",
+  "official": "https://www.coachella.com/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2015-04-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20150506174804/https://www.coachella.com/lineup/",
+          "captureTimestamp": "20150506174804",
+          "printed": "Friday, April 10, 2015",
+          "sha256": "2adf1f1dfdbd1b3bcad995616e049881408fe84306e9d604a218c93b071e8a7c",
+          "bytes": 494423,
+          "rows": 67,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 67
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2015-04-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20150506174804/https://www.coachella.com/lineup/",
+          "captureTimestamp": "20150506174804",
+          "printed": "Saturday, April 11, 2015",
+          "sha256": "2adf1f1dfdbd1b3bcad995616e049881408fe84306e9d604a218c93b071e8a7c",
+          "bytes": 494423,
+          "rows": 71,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 71
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2015-04-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20150506174804/https://www.coachella.com/lineup/",
+          "captureTimestamp": "20150506174804",
+          "printed": "Sunday, April 12, 2015",
+          "sha256": "2adf1f1dfdbd1b3bcad995616e049881408fe84306e9d604a218c93b071e8a7c",
+          "bytes": 494423,
+          "rows": 68,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 68
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2015-04-17",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?weekend=2&sort=alpha",
+          "archivedUrl": "https://web.archive.org/web/20150522025423/https://www.coachella.com/lineup/?weekend=2&sort=alpha",
+          "captureTimestamp": "20150522025423",
+          "printed": "Friday, April 17, 2015",
+          "sha256": "a0f4fdb9dc484f04edaa3da805ccb7facff2a1fd5a2eeb4a873516ba3f1444f6",
+          "bytes": 500910,
+          "rows": 67,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 67
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2015-04-18",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?weekend=2&sort=alpha",
+          "archivedUrl": "https://web.archive.org/web/20150522025423/https://www.coachella.com/lineup/?weekend=2&sort=alpha",
+          "captureTimestamp": "20150522025423",
+          "printed": "Saturday, April 18, 2015",
+          "sha256": "a0f4fdb9dc484f04edaa3da805ccb7facff2a1fd5a2eeb4a873516ba3f1444f6",
+          "bytes": 500910,
+          "rows": 72,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 72
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2015-04-19",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?weekend=2&sort=alpha",
+          "archivedUrl": "https://web.archive.org/web/20150522025423/https://www.coachella.com/lineup/?weekend=2&sort=alpha",
+          "captureTimestamp": "20150522025423",
+          "printed": "Sunday, April 19, 2015",
+          "sha256": "a0f4fdb9dc484f04edaa3da805ccb7facff2a1fd5a2eeb4a873516ba3f1444f6",
+          "bytes": 500910,
+          "rows": 70,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 70
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

@@ -5675,9 +5675,12 @@ function _PhotoPin({ cluster, onTap }) {
   const rot = ((_idHash(m.id) % 17) - 8); // -8..+8deg, stable per pin
   const extra = cluster.items.length - 1;
   const SIZE = cluster.items.length > 1 ? 52 : 46;
+  // Lens accuracy class of the face shot (absent on other callers' clusters).
+  const acc = cluster.acc;
+  const accSay = acc === "unknown" ? ", location accuracy unknown" : acc === "coarse" ? ", rough location" : "";
   return (
-    <button onClick={() => onTap && onTap(cluster)} data-moment-ids={cluster.items.map(x => x.id).join(",")}
-      aria-label={cluster.items.length === 1 ? (m.kind === "video" ? "Video" : "Photo") : `${cluster.items.length} moments`} style={{
+    <button onClick={() => onTap && onTap(cluster)} data-moment-ids={cluster.items.map(x => x.id).join(",")} data-acc={acc || undefined}
+      aria-label={(cluster.items.length === 1 ? (m.kind === "video" ? "Video" : "Photo") : `${cluster.items.length} moments`) + accSay} style={{
       position: "absolute", left: cluster.x + "%", top: cluster.y + "%",
       transform: `translate(-50%,-50%) rotate(${rot}deg)`,
       width: SIZE, height: SIZE, padding: 0, border: "none",
@@ -5686,7 +5689,7 @@ function _PhotoPin({ cluster, onTap }) {
     }}>
       <div style={{
         width: "100%", height: "100%", borderRadius: 10, overflow: "hidden",
-        border: `2px solid ${ring}`, background: url ? "var(--paper)" : "var(--paper-2)",
+        border: `2px ${acc === "unknown" ? "dotted" : acc === "coarse" ? "dashed" : "solid"} ${ring}`, background: url ? "var(--paper)" : "var(--paper-2)",
         boxShadow: "0 3px 9px rgba(var(--shade-rgb),0.5)",
       }}>
         <_ThumbMedia moment={m} thumb={thumb} showLength={false}/>
@@ -5724,6 +5727,8 @@ function _lensFix(m) {
   if (g.lat === 0 && g.lng === 0) return null; // null island = an unset fix
   return { lat: g.lat, lng: g.lng };
 }
+// Accuracy: photoFixAccM / photoFixAccClass (data.jsx), shared with the map.
+const _LENS_RING_CAP = 60;  // accuracy rings drawn at most
 const _LENS_FAR_M = 3000;   // a fix this far from the rest is another place, not the venue
 const _LENS_MIN_SPAN_M = 40; // one shot, or shots a step apart, still get a readable scale
 // Pure layout, exported for the gate. Projects each fix onto a local plane
@@ -5739,7 +5744,7 @@ function _gpsLensLayout(moments, opts) {
     if (!g) { noGps++; continue; }
     fixes.push({ m, g, t: _momentTime(m) });
   }
-  const empty = { clusters: [], hidden: 0, noGps, far: 0, mPerPct: 0 };
+  const empty = { clusters: [], rings: [], ringsCut: 0, hidden: 0, noGps, far: 0, coarse: 0, unknownAcc: 0, mPerPct: 0 };
   if (!fixes.length) return empty;
   const med = arr => { const s = arr.slice().sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
   const lat0 = med(fixes.map(f => f.g.lat)), lng0 = med(fixes.map(f => f.g.lng));
@@ -5749,11 +5754,17 @@ function _gpsLensLayout(moments, opts) {
   for (const f of fixes) {
     const e = (f.g.lng - lng0) * k * R * cos0, n = (f.g.lat - lat0) * k * R;
     if (Math.hypot(e, n) > _LENS_FAR_M) { far++; continue; }
-    pts.push({ m: f.m, t: f.t, e, n });
+    const acc = photoFixAccM(f.m);
+    pts.push({ m: f.m, t: f.t, e, n, acc, cls: photoFixAccClass(acc) });
   }
   if (!pts.length) return { ...empty, far };
+  // Extents include each PRECISE fix's accuracy ring, so a trusted ring is
+  // never cut off; a coarse ring may run past the edge (it is drawn dashed).
   let minE = Infinity, maxE = -Infinity, minN = Infinity, maxN = -Infinity;
-  for (const p of pts) { minE = Math.min(minE, p.e); maxE = Math.max(maxE, p.e); minN = Math.min(minN, p.n); maxN = Math.max(maxN, p.n); }
+  for (const p of pts) {
+    const r = p.cls === "precise" ? p.acc : 0;
+    minE = Math.min(minE, p.e - r); maxE = Math.max(maxE, p.e + r); minN = Math.min(minN, p.n - r); maxN = Math.max(maxN, p.n + r);
+  }
   const span = Math.max(maxE - minE, maxN - minN, _LENS_MIN_SPAN_M);
   const scale = (100 - 2 * pad) / span; // % per metre, same on both axes
   const ce = (minE + maxE) / 2, cn = (minN + maxN) / 2;
@@ -5771,11 +5782,23 @@ function _gpsLensLayout(moments, opts) {
       if (used[j]) continue;
       if (Math.hypot(sorted[j].x - head.x, sorted[j].y - head.y) <= clusterPct) { used[j] = true; group.push(sorted[j]); }
     }
-    clusters.push({ x: head.x, y: head.y, face: head.m, items: group.map(g => g.m) });
+    clusters.push({ x: head.x, y: head.y, face: head.m, acc: head.cls, items: group.map(g => g.m), pts: group });
   }
   const visible = clusters.slice(0, cap);
   const hidden = clusters.slice(cap).reduce((n, c) => n + c.items.length, 0);
-  return { clusters: visible, hidden, noGps, far, mPerPct: 1 / scale };
+  // One ring per shot on the lens, centred on that shot's OWN fix (not its
+  // cluster's), radius = its own accuracy at lens scale. Unknown gets none.
+  // Past the cap a ring is counted (ringsCut), never dropped silently.
+  const rings = [];
+  let ringsCut = 0;
+  for (const c of visible) for (const p of c.pts) {
+    if (p.cls === "unknown") continue;
+    if (rings.length >= _LENS_RING_CAP) { ringsCut++; continue; }
+    rings.push({ id: p.m.id, x: p.x, y: p.y, r: p.acc * scale, accM: p.acc, cls: p.cls });
+  }
+  for (const c of visible) delete c.pts;
+  const coarse = pts.filter(p => p.cls === "coarse").length, unknownAcc = pts.filter(p => p.cls === "unknown").length;
+  return { clusters: visible, rings, ringsCut, hidden, noGps, far, coarse, unknownAcc, mPerPct: 1 / scale };
 }
 // A round scale-bar length that fits in about a third of the lens.
 function _lensScaleBar(mPerPct) {
@@ -5787,14 +5810,17 @@ function _lensScaleBar(mPerPct) {
   return { m, pct: m / mPerPct, label: m >= 1000 ? `${m / 1000} km` : `${m} m` };
 }
 function MemoriesPhotoMapLens({ moments, onPinTap }) {
-  const { clusters, hidden, noGps, far, mPerPct } = React.useMemo(() => _gpsLensLayout(moments), [moments]);
+  const { clusters, rings, ringsCut, hidden, noGps, far, coarse, unknownAcc, mPerPct } = React.useMemo(() => _gpsLensLayout(moments), [moments]);
   const bar = _lensScaleBar(mPerPct);
   const notes = (
-    (hidden > 0 || noGps > 0 || far > 0) && (
+    (hidden > 0 || noGps > 0 || far > 0 || coarse > 0 || unknownAcc > 0 || ringsCut > 0) && (
       <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 8, opacity: 0.85, display: "flex", flexWrap: "wrap", gap: 10 }}>
         {hidden > 0 && <span>+{hidden} MORE CLUSTERED</span>}
         {noGps > 0 && <span>{noGps} WITHOUT GPS NOT SHOWN</span>}
         {far > 0 && <span>{far} FAR FROM THE REST NOT SHOWN</span>}
+        {coarse > 0 && <span data-gps-lens-note="coarse">{coarse} ROUGH FIX (OVER {STAGE_FIX_PHOTO.maxAccM} M), DASHED</span>}
+        {ringsCut > 0 && <span data-gps-lens-note="rings-cut">{ringsCut} MORE ACCURACY {ringsCut === 1 ? "RING" : "RINGS"} NOT DRAWN</span>}
+        {unknownAcc > 0 && <span data-gps-lens-note="unknown">{unknownAcc} NO ACCURACY RECORDED, DOTTED</span>}
       </div>
     )
   );
@@ -5817,6 +5843,14 @@ function MemoriesPhotoMapLens({ moments, onPinTap }) {
         borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)",
         background: "var(--paper-2)",
       }}>
+        {rings.map(g => (
+          <span key={"ring-" + g.id} data-gps-lens-ring={g.id} data-acc={g.cls} data-acc-m={g.accM} aria-hidden="true" style={{
+            position: "absolute", left: (g.x - g.r) + "%", top: (g.y - g.r) + "%", width: (2 * g.r) + "%", height: (2 * g.r) + "%",
+            borderRadius: "50%", boxSizing: "border-box", pointerEvents: "none", zIndex: 1,
+            border: g.cls === "precise" ? "1.5px solid color-mix(in srgb, var(--acc) 70%, transparent)" : "1.5px dashed color-mix(in srgb, var(--acc) 60%, transparent)",
+            background: g.cls === "precise" ? "color-mix(in srgb, var(--acc) 13%, transparent)" : "color-mix(in srgb, var(--acc) 6%, transparent)",
+          }}/>
+        ))}
         {clusters.map((c, i) => <_PhotoPin key={c.face.id || i} cluster={c} onTap={onPinTap}/>)}
       </div>
       <div style={{ position: "relative", height: 22, marginTop: 6 }}>
@@ -6908,37 +6942,24 @@ function MemoriesScreen({ state, setState }) {
     if ((batch && batch.done < batch.total) || _scanBusy(scan) || _scanBusy(pastScan)) return;
     setPastScan({ phase: "access" });
     try {
-      const access = await PS.requestAccess();
-      const limited = access?.status === "limited";
-      if (access?.status !== "authorized" && !limited) { setPastScan({ phase: "denied" }); return; }
-      setPastScan({ phase: "scanning" });
-      // The library index and the festival-year calendar; either alone still
-      // scans what it knows, and neither means there is nothing to look for.
-      const [index, calendar] = await Promise.all([
-        _histFetch("index.json").catch(() => null),
-        _histFetch("scan-calendar.json").catch(() => null),
-      ]);
-      if (!index && !calendar) throw new Error("past festival lists unavailable");
-      const targets = _histScanTargets(index, null, calendar);
-      const seen = _scanSeenRead();
-      const found = [];
-      let already = 0;
-      for (const [i, t] of targets.entries()) {
-        if (i % 10 === 0) setPastScan({ phase: "scanning", checked: i, years: targets.length });
-        const assets = [];
-        for (const r of _scanQueryRanges(t.cfg)) {
-          const res = await PS.scan({ startMs: r.startMs, endMs: r.endMs });
-          assets.push(...(res?.assets || []));
-        }
-        const onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
-        if (!onSite.length) continue;
-        const ds = _histDataSet(t.inLibrary ? await _histFetch(`editions/${t.entry.id}.json`) : null, t.cfg);
-        const pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
-        already += pick.already;
-        if (pick.keep.length) found.push({ t, ds, keep: pick.keep });
+      // The first-run scan step already asked for access and looked through
+      // the library; take what it found instead of asking twice.
+      const handed = _pastScanHandoffTake();
+      let limited, found, already, years;
+      if (handed) {
+        ({ limited, found, already, years } = handed);
+      } else {
+        const access = await PS.requestAccess();
+        limited = access?.status === "limited";
+        if (access?.status !== "authorized" && !limited) { setPastScan({ phase: "denied" }); return; }
+        setPastScan({ phase: "scanning" });
+        // The library index and the festival-year calendar; either alone still
+        // scans what it knows, and neither means there is nothing to look for.
+        ({ found, already, years } = await _pastScanFind(PS,
+          (checked, n) => setPastScan({ phase: "scanning", checked, years: n })));
       }
       const total = found.reduce((n, f) => n + f.keep.length, 0);
-      if (!total) { setPastScan({ phase: "none", already, limited, editions: targets.length }); return; }
+      if (!total) { setPastScan({ phase: "none", already, limited, editions: years }); return; }
       let imported = 0, unreadable = 0, done = 0;
       const byEdition = [];
       for (const f of found) {
@@ -6967,6 +6988,17 @@ function MemoriesScreen({ state, setState }) {
       setPastScan({ phase: "error" });
     }
   };
+  // Arriving from the first-run scan step with something found: import it
+  // now, on the card the user can watch.
+  // The screen may already be open underneath it, so it also listens.
+  const scanPastRef = React.useRef(handleScanPast);
+  scanPastRef.current = handleScanPast;
+  React.useEffect(() => {
+    const onHandoff = () => { if (window._pastScanHandoff) scanPastRef.current(); };
+    onHandoff();
+    window.addEventListener("plursky:past-scan-handoff", onHandoff);
+    return () => window.removeEventListener("plursky:past-scan-handoff", onHandoff);
+  }, []);
   const _pastScanMessage = (st) => {
     if (!st) return null;
     const limitedNote = st.limited ? "Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";

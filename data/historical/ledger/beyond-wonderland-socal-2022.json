@@ -85,5 +85,13 @@
       "diffVsChosen": []
     }
   ],
-  "dropped": []
+  "dropped": [
+    {
+      "day": 1,
+      "stage": null,
+      "billing": "Discovery Project Winner",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
 }

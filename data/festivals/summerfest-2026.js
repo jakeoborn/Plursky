@@ -685,6 +685,7 @@
 
   const CONFIG = {
     id: "summerfest-2026",
+    officialEvent: { website: "https://www.summerfest.com/", observedAt: "2026-11-11" },
     // The festival's OWN map page, linked (never embedded) by the /f/ page. The page links
     // the "2026 Summerfest Grounds Map"; link the page, never the image.
     mapSource: { url: "https://www.summerfest.com/about/", observedAt: "2026-09-24", mapYear: 2026 },
@@ -769,10 +770,14 @@
     ],
     weatherEndpoint: "https://api.weather.gov/points/43.03,-87.90",
     mainStageId: "amph",
-    // Generated abstract overlay, NOT the official patron map — that art is
-    // rights-restricted and is never copied into this repo (lostlands-2026.jpg
-    // precedent). Authored in the same 0-100 frame as the stages above.
+    // Generated abstract overlay, authored in the same 0-100 frame as the
+    // stages above; the poster view and the stage pins use it.
+    // The real map lays the festival's OWN map (Jake, 2026-11-11: "let's just
+    // use the map we do it for other festivals"), fitted to the streets by
+    // map-sources/summerfest-2026-geo-ties.json from https://s3.summerfest.com/assets/images/maps/SF26_GroundsMap-Layered_050426.jpg
     mapImage: "summerfest-2026.svg",
+    mapGeoref: { image: "geo-maps/summerfest-2026.webp", bounds: [-87.9017934, 43.0263342, -87.8951567, 43.0358206], model: "affine",
+                 ties: "map-sources/summerfest-2026-geo-ties.json", rmsM: 9.4, looRmsM: 14.7 },
     mapStyle: "image-overlay",
     mapTheme: "park",
     // The overlay prints no stage names, so pills carry them.

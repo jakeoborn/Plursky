@@ -545,13 +545,27 @@ var MAP_REGISTRATION_SOURCED = geometryVerifiedFor(FESTIVAL_CONFIG.id, FESTIVAL_
 function readoutHonest(avatar) {
   return geometryVerifiedFor(typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
+var ARTFIT_MAX_RMS_M = 15;
+function artGeorefFor(cfg) {
+  var g = cfg && cfg.mapGeoref;
+  if (!g || typeof g.image !== "string" || !Array.isArray(g.bounds) || g.bounds.length !== 4) return null;
+  var [w, s, e, n] = g.bounds;
+  if (![w, s, e, n].every(Number.isFinite) || !(e > w && n > s)) return null;
+  if (!(Number.isFinite(g.rmsM) && g.rmsM <= ARTFIT_MAX_RMS_M)) return null;
+  return g;
+}
 function posterTierFor(cfg, affine, verified) {
-  if (!cfg || cfg.mapMode === "real" || !affine) return "none";
+  if (!cfg || cfg.mapMode === "real") return "none";
   if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
-  return verified ? "checked" : "unchecked";
+  if (affine && verified) return "checked";
+  if (artGeorefFor(cfg)) return "fitted";
+  return affine ? "unchecked" : "none";
 }
 var POSTER_TIER = posterTierFor(FESTIVAL_CONFIG, MAP_AFFINE, MAP_REGISTRATION_SOURCED);
+var ART_GEOREF = POSTER_TIER === "none" ? null : artGeorefFor(FESTIVAL_CONFIG);
+var OFFICIAL_MAP_SRC = ART_GEOREF ? ART_GEOREF.image : FESTIVAL_CONFIG.mapImage;
 var POSTER_OPACITY_UNCHECKED = 0.35;
+var POSTER_OPACITY_FITTED = 0.82;
 var REAL_MAP_PLACES_CHECKED = !!MAP_AFFINE && !!MAP_REGISTRATION_SOURCED;
 var REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];
 var REAL_MAP_AMENITIES = REAL_MAP_PLACES_CHECKED && typeof AMENITIES !== "undefined" ? AMENITIES : [];
@@ -2730,7 +2744,7 @@ function MapScreen({
   var canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
   var artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
   var artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
-  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
+  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "fitted" ? "OFFICIAL MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
   var mapAmenities = useRealMap ? REAL_MAP_AMENITIES : typeof AMENITIES !== "undefined" ? AMENITIES : [];
   var [realMapNote, setRealMapNote] = React.useState(null);
   var _disableRealMap = why => {
@@ -6182,11 +6196,13 @@ function _momentPinsFor(moments, festivalId) {
     if (festivalId && m.festivalId && m.festivalId !== festivalId) continue;
     var g = m.parsedGps;
     if (!_validGps(g) || g.lat === 0 && g.lng === 0) continue;
+    var accM = photoFixAccM(m);
     out.push({
       id: m.id,
       lat: g.lat,
       lng: g.lng,
-      accM: Number.isFinite(m.gpsAccM) ? m.gpsAccM : null,
+      accM,
+      acc: photoFixAccClass(accM),
       kind: m.kind === "video" ? "video" : "photo"
     });
   }
@@ -6203,9 +6219,42 @@ function _momentPinsGeoJson(pins) {
       },
       properties: {
         id: p.id,
-        kind: p.kind
+        kind: p.kind,
+        acc: p.acc || "unknown"
       }
     }))
+  };
+}
+var _ACC_RING_STEPS = 48;
+function _momentAccRingsGeoJson(pins) {
+  var R = 6371008.8,
+    k = Math.PI / 180,
+    features = [];
+  for (var p of pins || []) {
+    if (!(p && p.accM > 0) || p.acc === "unknown") continue;
+    var dLat = p.accM / R / k,
+      dLng = p.accM / (R * Math.cos(p.lat * k)) / k,
+      ring = [];
+    for (var i = 0; i <= _ACC_RING_STEPS; i++) {
+      var a = 2 * Math.PI * (i % _ACC_RING_STEPS) / _ACC_RING_STEPS;
+      ring.push([p.lng + dLng * Math.cos(a), p.lat + dLat * Math.sin(a)]);
+    }
+    features.push({
+      type: "Feature",
+      geometry: {
+        type: "Polygon",
+        coordinates: [ring]
+      },
+      properties: {
+        id: p.id,
+        acc: p.acc,
+        accM: p.accM
+      }
+    });
+  }
+  return {
+    type: "FeatureCollection",
+    features
   };
 }
 var _NO_PINS = Object.freeze([]);
@@ -6224,6 +6273,10 @@ var MOMENT_PIN_SOURCE = "my-moments";
 var MOMENT_PIN_CLUSTER = "my-moments-cluster";
 var MOMENT_PIN_POINT = "my-moments-point";
 var MOMENT_PIN_COUNT = "my-moments-count";
+var MOMENT_ACC_SOURCE = "my-moments-acc";
+var MOMENT_ACC_FILL = "my-moments-acc-fill";
+var MOMENT_ACC_LINE = "my-moments-acc-line";
+var MOMENT_ACC_LINE_COARSE = "my-moments-acc-line-coarse";
 function _momentPinCountImage(label) {
   try {
     var text = String(label).slice(0, 5);
@@ -6244,6 +6297,51 @@ function _momentPinCountImage(label) {
   }
 }
 function _addMomentPinLayers(map, pins, onTap) {
+  if (!map.getSource(MOMENT_ACC_SOURCE)) {
+    map.addSource(MOMENT_ACC_SOURCE, {
+      type: "geojson",
+      data: _momentAccRingsGeoJson(pins),
+      maxzoom: 22
+    });
+  }
+  if (!map.getLayer(MOMENT_ACC_FILL)) {
+    map.addLayer({
+      id: MOMENT_ACC_FILL,
+      type: "fill",
+      source: MOMENT_ACC_SOURCE,
+      paint: {
+        "fill-color": "#e85d2e",
+        "fill-opacity": ["match", ["get", "acc"], "precise", 0.16, 0.07]
+      }
+    });
+  }
+  if (!map.getLayer(MOMENT_ACC_LINE)) {
+    map.addLayer({
+      id: MOMENT_ACC_LINE,
+      type: "line",
+      source: MOMENT_ACC_SOURCE,
+      filter: ["==", ["get", "acc"], "precise"],
+      paint: {
+        "line-color": "#e85d2e",
+        "line-width": 1.5,
+        "line-opacity": 0.85
+      }
+    });
+  }
+  if (!map.getLayer(MOMENT_ACC_LINE_COARSE)) {
+    map.addLayer({
+      id: MOMENT_ACC_LINE_COARSE,
+      type: "line",
+      source: MOMENT_ACC_SOURCE,
+      filter: ["==", ["get", "acc"], "coarse"],
+      paint: {
+        "line-color": "#e85d2e",
+        "line-width": 1.5,
+        "line-opacity": 0.7,
+        "line-dasharray": [2, 2]
+      }
+    });
+  }
   if (!map.getSource(MOMENT_PIN_SOURCE)) {
     map.addSource(MOMENT_PIN_SOURCE, {
       type: "geojson",
@@ -6277,8 +6375,9 @@ function _addMomentPinLayers(map, pins, onTap) {
       paint: {
         "circle-color": ["match", ["get", "kind"], "video", "#7c3aed", "#e85d2e"],
         "circle-radius": 9,
+        "circle-opacity": ["match", ["get", "acc"], "unknown", 0.55, 1],
         "circle-stroke-width": 2,
-        "circle-stroke-color": "#ffffff"
+        "circle-stroke-color": ["match", ["get", "acc"], "unknown", "#1f2937", "#ffffff"]
       }
     });
   }
@@ -6420,6 +6519,10 @@ function _officialMapDims(src) {
     im.src = src;
   });
   return _imgDimsCache[src];
+}
+function _geoPlateCorners(g) {
+  var [w, s, e, n] = g.bounds;
+  return [[w, n], [e, n], [e, s], [w, s]];
 }
 function _officialMapCorners(natW, natH) {
   var e = _officialMapExtent(natW, natH);
@@ -6584,6 +6687,12 @@ function RealMap({
     if (src) {
       try {
         src.setData(_momentPinsGeoJson(photoPins));
+      } catch {}
+    }
+    var acc = mapRef.current && mapRef.current.getSource(MOMENT_ACC_SOURCE);
+    if (acc) {
+      try {
+        acc.setData(_momentAccRingsGeoJson(photoPins));
       } catch {}
     }
   }, [photoPins]);
@@ -6989,12 +7098,12 @@ function RealMap({
         });
         var _addOfficialMap = () => {
           if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
-          if (!MAP_AFFINE) return;
+          if (!MAP_AFFINE && !ART_GEOREF) return;
           if (officialMapFailedRef.current) return;
           var dims = officialMapDimsRef.current;
           if (!dims) return;
-          var src = dims.url || FESTIVAL_CONFIG.mapImage;
-          var coordinates = _officialMapCorners(dims.w, dims.h);
+          var src = dims.url || OFFICIAL_MAP_SRC;
+          var coordinates = ART_GEOREF ? _geoPlateCorners(ART_GEOREF) : _officialMapCorners(dims.w, dims.h);
           if (!map.getSource("official-map")) {
             map.addSource("official-map", {
               type: "image",
@@ -7016,7 +7125,7 @@ function RealMap({
                 visibility: officialMapRef.current ? "visible" : "none"
               },
               paint: {
-                "raster-opacity": POSTER_TIER === "checked" ? FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78 : POSTER_OPACITY_UNCHECKED,
+                "raster-opacity": POSTER_TIER === "checked" ? FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78 : POSTER_TIER === "fitted" ? POSTER_OPACITY_FITTED : POSTER_OPACITY_UNCHECKED,
                 "raster-fade-duration": 0,
                 "raster-resampling": "linear"
               }
@@ -7026,7 +7135,7 @@ function RealMap({
         };
         _safeLayer("official-map", _addOfficialMap);
         if (!officialMapDimsRef.current && FESTIVAL_CONFIG.mapImage) {
-          _officialMapDims(FESTIVAL_CONFIG.mapImage).then(d => {
+          _officialMapDims(OFFICIAL_MAP_SRC).then(d => {
             if (cancelled || !d || !mapRef.current) return;
             officialMapDimsRef.current = d;
             _safeLayer("official-map", _addOfficialMap);
@@ -7183,7 +7292,7 @@ function RealMap({
             });
           }
         });
-        var _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route", MOMENT_PIN_CLUSTER, MOMENT_PIN_POINT, MOMENT_PIN_COUNT].filter(id => map.getLayer(id));
+        var _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route", MOMENT_ACC_FILL, MOMENT_ACC_LINE, MOMENT_ACC_LINE_COARSE, MOMENT_PIN_CLUSTER, MOMENT_PIN_POINT, MOMENT_PIN_COUNT].filter(id => map.getLayer(id));
         var _order = (() => {
           try {
             return (map.getStyle().layers || []).map(l => l.id);
@@ -11005,6 +11114,11 @@ Object.assign(window, {
   posterTierFor,
   POSTER_TIER,
   POSTER_OPACITY_UNCHECKED,
+  POSTER_OPACITY_FITTED,
+  artGeorefFor,
+  ART_GEOREF,
+  OFFICIAL_MAP_SRC,
+  _geoPlateCorners,
   REAL_MAP_PLACES_CHECKED,
   REAL_MAP_AMENITIES,
   _realMapTarget,

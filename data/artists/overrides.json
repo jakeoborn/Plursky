@@ -122,6 +122,21 @@
    "source": "https://summerfest.com/lineup"
   },
   {
+   "printed": "Jimmy Cliff with Tim Armstrong and the Engine Band",
+   "performers": [
+    {
+     "name": "Jimmy Cliff",
+     "role": "performer"
+    },
+    {
+     "name": "Tim Armstrong and the Engine Band",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\": the first name is the performer, the added name is credited as a guest on the same set, as printed (never split on \"and\").",
+   "source": "https://www.coachella.com/lineup/"
+  },
+  {
    "printed": "OUT TONIGHT: A Musical Singalong feat. D’Arcy Drollinger",
    "performers": [
     {
@@ -1017,6 +1032,917 @@
    "setTag": "solo",
    "why": "The parenthetical says how the act played that set (a solo set), not who: Japanese Breakfast is the performer and \"solo\" is the set tag.",
    "source": "https://www.lollapalooza.com/"
+  },
+  {
+   "printed": "Rob ft. Mc Joe",
+   "performers": [
+    {
+     "name": "Rob",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Joe",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Rob ft. MC Joe",
+   "performers": [
+    {
+     "name": "Rob",
+     "role": "performer"
+    },
+    {
+     "name": "MC Joe",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Vato Gonzalez ft. Mc Tjen",
+   "performers": [
+    {
+     "name": "Vato Gonzalez",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Tjen",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Menasa ft. Mc Don't",
+   "performers": [
+    {
+     "name": "Menasa",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Don't",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "One87 ft. Mc Mush",
+   "performers": [
+    {
+     "name": "One87",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Mush",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "M&T ft. Mc Seko",
+   "performers": [
+    {
+     "name": "M&T",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Seko",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "James Marvel ft. Mc Mota",
+   "performers": [
+    {
+     "name": "James Marvel",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Mota",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Wilkinson ft. Mc Ad-Apt",
+   "performers": [
+    {
+     "name": "Wilkinson",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Ad-Apt",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Dj Marky feat. Mc GQ",
+   "performers": [
+    {
+     "name": "Dj Marky",
+     "role": "performer"
+    },
+    {
+     "name": "Mc GQ",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Pamb & Harsh feat Mc Swift",
+   "performers": [
+    {
+     "name": "Pamb & Harsh",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Swift",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Mefjus ft. MC Maksim",
+   "performers": [
+    {
+     "name": "Mefjus",
+     "role": "performer"
+    },
+    {
+     "name": "MC Maksim",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Masai & The Roots ft. MC Rim",
+   "performers": [
+    {
+     "name": "Masai & The Roots",
+     "role": "performer"
+    },
+    {
+     "name": "MC Rim",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Mark With a K & Mc Chucky",
+   "performers": [
+    {
+     "name": "Mark With a K",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Chucky",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"Mark With a K\" is the act's own name (billed alone at Tomorrowland 2017, 2018 and 2022); its \"with\" joins nobody.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Mark with a K & Warface & MC Chucky",
+   "performers": [
+    {
+     "name": "Mark with a K & Warface",
+     "role": "performer"
+    },
+    {
+     "name": "MC Chucky",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. The two DJs are kept as printed, one billed name (\"&\" is never split); \"Mark with a K\" is one act's own name.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Mark With a K & MC Chucky LIVE",
+   "performers": [
+    {
+     "name": "Mark With a K",
+     "role": "performer"
+    },
+    {
+     "name": "MC Chucky",
+     "role": "mc"
+    }
+   ],
+   "setTag": "LIVE",
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"LIVE\" is the set tag. \"Mark With a K\" is the act's own name.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Mark with a K",
+   "performers": [
+    {
+     "name": "Mark with a K",
+     "role": "performer"
+    }
+   ],
+   "why": "The billed name is the act's own name and contains \"with\" (Mark With a K): one performer, nobody is added.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Mark With a K",
+   "performers": [
+    {
+     "name": "Mark With a K",
+     "role": "performer"
+    }
+   ],
+   "why": "The billed name is the act's own name and contains \"with\" (Mark With a K): one performer, nobody is added.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Double-u ft Eugene",
+   "performers": [
+    {
+     "name": "Double-u",
+     "role": "performer"
+    },
+    {
+     "name": "Eugene",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Double-U ft Eugene",
+   "performers": [
+    {
+     "name": "Double-U",
+     "role": "performer"
+    },
+    {
+     "name": "Eugene",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Bonzai All Stars feat. Airwave",
+   "performers": [
+    {
+     "name": "Bonzai All Stars",
+     "role": "performer"
+    },
+    {
+     "name": "Airwave",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "FCL feat. Lady Linn",
+   "performers": [
+    {
+     "name": "FCL",
+     "role": "performer"
+    },
+    {
+     "name": "Lady Linn",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Red D ft. Lady Linn",
+   "performers": [
+    {
+     "name": "Red D",
+     "role": "performer"
+    },
+    {
+     "name": "Lady Linn",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "UNEAK ft. COSMIC",
+   "performers": [
+    {
+     "name": "UNEAK",
+     "role": "performer"
+    },
+    {
+     "name": "COSMIC",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Frederico ft. Lotte Feyen",
+   "performers": [
+    {
+     "name": "Frederico",
+     "role": "performer"
+    },
+    {
+     "name": "Lotte Feyen",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Omdat Het Kan Soundsystem ft. Average Rob",
+   "performers": [
+    {
+     "name": "Omdat Het Kan Soundsystem",
+     "role": "performer"
+    },
+    {
+     "name": "Average Rob",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "DJ Policy ft. Burd & BeatFox",
+   "performers": [
+    {
+     "name": "DJ Policy",
+     "role": "performer"
+    },
+    {
+     "name": "Burd",
+     "role": "guest"
+    },
+    {
+     "name": "BeatFox",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Flo Windey ft. Skyve",
+   "performers": [
+    {
+     "name": "Flo Windey",
+     "role": "performer"
+    },
+    {
+     "name": "Skyve",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "A.M.C ft Phantom",
+   "performers": [
+    {
+     "name": "A.M.C",
+     "role": "performer"
+    },
+    {
+     "name": "Phantom",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "El Bacha ft Sam Renascent",
+   "performers": [
+    {
+     "name": "El Bacha",
+     "role": "performer"
+    },
+    {
+     "name": "Sam Renascent",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "UNEAK ft Cosmic & Babybang",
+   "performers": [
+    {
+     "name": "UNEAK",
+     "role": "performer"
+    },
+    {
+     "name": "Cosmic",
+     "role": "guest"
+    },
+    {
+     "name": "Babybang",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Cedex & Higher Underground feat 3XB",
+   "performers": [
+    {
+     "name": "Cedex & Higher Underground",
+     "role": "performer"
+    },
+    {
+     "name": "3XB",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"Cedex & Higher Underground\" is kept as printed, one billed name (\"&\" is never split).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Kerri Chandler vs Red D ft Lady Linn",
+   "performers": [
+    {
+     "name": "Kerri Chandler vs Red D",
+     "role": "performer"
+    },
+    {
+     "name": "Lady Linn",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"Kerri Chandler vs Red D\" is kept as printed, one billed name.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Midas Touch Showcase w/ SVB & Scepticz",
+   "performers": [
+    {
+     "name": "Midas Touch Showcase",
+     "role": "performer"
+    },
+    {
+     "name": "SVB",
+     "role": "guest"
+    },
+    {
+     "name": "Scepticz",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. The billed name is a label showcase, kept as printed.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Carl Cox (Daybreak Session)",
+   "performers": [
+    {
+     "name": "Carl Cox",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Daybreak Session",
+   "why": "\"Daybreak Session\" names the set (Tomorrowland's Mainstage opening slot), not a person: it is the set tag, and the billing counts on Carl Cox (the Sian (Techno Classics) rule).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Maceo Plex (Daybreak Session)",
+   "performers": [
+    {
+     "name": "Maceo Plex",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Daybreak Session",
+   "why": "\"Daybreak Session\" names the set (Tomorrowland's Mainstage opening slot), not a person: it is the set tag, and the billing counts on Maceo Plex (the Sian (Techno Classics) rule).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Cosmic Gate (Daybreak Session)",
+   "performers": [
+    {
+     "name": "Cosmic Gate",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Daybreak Session",
+   "why": "\"Daybreak Session\" names the set (Tomorrowland's Mainstage opening slot), not a person: it is the set tag, and the billing counts on Cosmic Gate (the Sian (Techno Classics) rule).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Kölsch (Daybreak Session)",
+   "performers": [
+    {
+     "name": "Kölsch",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Daybreak Session",
+   "why": "\"Daybreak Session\" names the set (Tomorrowland's Mainstage opening slot), not a person: it is the set tag, and the billing counts on Kölsch (the Sian (Techno Classics) rule).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Claptone (Daybreak Session)",
+   "performers": [
+    {
+     "name": "Claptone",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Daybreak Session",
+   "why": "\"Daybreak Session\" names the set (Tomorrowland's Mainstage opening slot), not a person: it is the set tag, and the billing counts on Claptone (the Sian (Techno Classics) rule).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Yves Deruyter (Daybreak Session)",
+   "performers": [
+    {
+     "name": "Yves Deruyter",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Daybreak Session",
+   "why": "\"Daybreak Session\" names the set (Tomorrowland's Mainstage opening slot), not a person: it is the set tag, and the billing counts on Yves Deruyter (the Sian (Techno Classics) rule).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Davis (The Sound of Tomorrow)",
+   "performers": [
+    {
+     "name": "Davis",
+     "role": "performer"
+    }
+   ],
+   "setTag": "The Sound of Tomorrow",
+   "why": "\"The Sound of Tomorrow\" names the programme the set was played under (the stage host Tomorrowland 2017 prints of that name), not a person: it is the set tag, and the billing counts on Davis.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Empra (The Sound of Tomorrow)",
+   "performers": [
+    {
+     "name": "Empra",
+     "role": "performer"
+    }
+   ],
+   "setTag": "The Sound of Tomorrow",
+   "why": "\"The Sound of Tomorrow\" names the programme the set was played under (the stage host Tomorrowland 2017 prints of that name), not a person: it is the set tag, and the billing counts on Empra.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Myma (The Sound of Tomorrow)",
+   "performers": [
+    {
+     "name": "Myma",
+     "role": "performer"
+    }
+   ],
+   "setTag": "The Sound of Tomorrow",
+   "why": "\"The Sound of Tomorrow\" names the programme the set was played under (the stage host Tomorrowland 2017 prints of that name), not a person: it is the set tag, and the billing counts on Myma.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "MULTIPLES Live (Speedy J & Surgeon)",
+   "performers": [
+    {
+     "name": "MULTIPLES",
+     "role": "project",
+     "parents": [
+      "Speedy J",
+      "Surgeon"
+     ]
+    }
+   ],
+   "setTag": "Live",
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone. \"Live\" is the set tag.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "METAFO4R (Firebeatz vs Dubvision)",
+   "performers": [
+    {
+     "name": "METAFO4R",
+     "role": "project",
+     "parents": [
+      "Firebeatz",
+      "Dubvision"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Headstrong (Randomer & Clouds)",
+   "performers": [
+    {
+     "name": "Headstrong",
+     "role": "project",
+     "parents": [
+      "Randomer",
+      "Clouds"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "O/V/R (James Ruskin & Regis)",
+   "performers": [
+    {
+     "name": "O/V/R",
+     "role": "project",
+     "parents": [
+      "James Ruskin",
+      "Regis"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Space Pirate Recordings Crew (James Marvel , Phase & Cedex and Higher Underground)",
+   "performers": [
+    {
+     "name": "Space Pirate Recordings Crew",
+     "role": "project",
+     "parents": [
+      "James Marvel",
+      "Phase",
+      "Cedex and Higher Underground"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a label crew with them as parents, and it never counts as any of them billed alone. \"Cedex and Higher Underground\" is kept as one name, as Tomorrowland 2018 bills it.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Psycho Boys Club: Juyen Sebulba x Stoltenhoff",
+   "performers": [
+    {
+     "name": "Psycho Boys Club",
+     "role": "project",
+     "parents": [
+      "Juyen Sebulba",
+      "Stoltenhoff"
+     ]
+    }
+   ],
+   "why": "The printing names the project and the artists behind it (\"C: A x B\"): C is a project with A and B as parents (the Levity presents Lasership rule).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Ton T.B. (Three Drives)",
+   "performers": [
+    {
+     "name": "Three Drives",
+     "role": "project",
+     "parents": [
+      "Ton T.B."
+     ]
+    }
+   ],
+   "why": "The parenthetical names the project the billed artist plays as: Three Drives is a project with Ton T.B. as its parent (the Tchami x Malaa (No Redemption) rule).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Funk Ark ft. Frank Mitchell Jr.",
+   "performers": [
+    {
+     "name": "Funk Ark",
+     "role": "performer"
+    },
+    {
+     "name": "Frank Mitchell Jr.",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Break Science featuring Chali 2na",
+   "performers": [
+    {
+     "name": "Break Science",
+     "role": "performer"
+    },
+    {
+     "name": "Chali 2na",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "The Travelin' McCourys featuring Keller Williams",
+   "performers": [
+    {
+     "name": "The Travelin' McCourys",
+     "role": "performer"
+    },
+    {
+     "name": "Keller Williams",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Cosby Sweater ft. Joel Cummins",
+   "performers": [
+    {
+     "name": "Cosby Sweater",
+     "role": "performer"
+    },
+    {
+     "name": "Joel Cummins",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Digital Tape Machine ft. Joel Cummins & Kris Myers of Umphrey's McGee",
+   "performers": [
+    {
+     "name": "Digital Tape Machine",
+     "role": "performer"
+    },
+    {
+     "name": "Joel Cummins",
+     "role": "guest"
+    },
+    {
+     "name": "Kris Myers",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"of Umphrey's McGee\" says which band the guests are from; it is not a name.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "The Infamous Stringdusters with Special Guests",
+   "performers": [
+    {
+     "name": "The Infamous Stringdusters",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing bills the act \"with Special Guests\" / \"w/ Special Guests\": the act is the performer; guests the page does not name are not credited.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "GrizMatik w/ Special Guests",
+   "performers": [
+    {
+     "name": "GrizMatik",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing bills the act \"with Special Guests\" / \"w/ Special Guests\": the act is the performer; guests the page does not name are not credited.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Nobody Beats the Drum (DJ)",
+   "performers": [
+    {
+     "name": "Nobody Beats the Drum",
+     "role": "performer"
+    }
+   ],
+   "setTag": "DJ",
+   "why": "\"(DJ)\" is the set tag: the act's DJ set, beside its live set the same weekend.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Paxahau Presents a Stirring Evening of Live Ambient Aural Exploration with Robert Rich",
+   "performers": [
+    {
+     "name": "Robert Rich",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing names an event (a promoter's presentation or a closing party) and the one act playing it, after \"with\" / \"w/\": that act is the performer; the event's title is not an act.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Tripolee Closing Party w/ Keys N Krates",
+   "performers": [
+    {
+     "name": "Keys N Krates",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing names an event (a promoter's presentation or a closing party) and the one act playing it, after \"with\" / \"w/\": that act is the performer; the event's title is not an act.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "The Untz Challenge III / SPEKTR",
+   "performers": [
+    {
+     "name": "SPEKTR",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing names a contest and its winner: the winner is the performer; the contest is not an act.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Mixcloud Mix Match Winner Prymativ",
+   "performers": [
+    {
+     "name": "Prymativ",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing names a contest and its winner: the winner is the performer; the contest is not an act.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "J.E.S.+S. (Jackmaster, Eats Everything, Skream & Seth Troxler)",
+   "performers": [
+    {
+     "name": "J.E.S.+S.",
+     "role": "project",
+     "parents": [
+      "Jackmaster",
+      "Eats Everything",
+      "Skream",
+      "Seth Troxler"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as any of them billed alone.",
+   "source": "https://www.coachella.com/lineup/"
+  },
+  {
+   "printed": "Nortec Collective Presents: Bostich + Fussible",
+   "performers": [
+    {
+     "name": "Bostich + Fussible",
+     "role": "performer"
+    }
+   ],
+   "why": "\"Nortec Collective Presents:\" is the banner the set is billed under, not a separate act on stage: the billing counts on Bostich + Fussible, kept whole as printed (never split on \"+\").",
+   "source": "https://www.coachella.com/lineup/"
+  },
+  {
+   "printed": "Doc Martin feat. Sublevel Live",
+   "performers": [
+    {
+     "name": "Doc Martin",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Sublevel Live",
+   "why": "Sublevel is Doc Martin's own party and label, not a person: \"Sublevel Live\" names the set, it is the set tag, and the billing counts on Doc Martin.",
+   "source": "https://www.coachella.com/lineup/"
   }
  ],
  "pending": [
@@ -1359,6 +2285,74 @@
   {
    "key": "gta",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Lost Stories x ZAEDEN",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Deecoy x Jerrymore",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Aspyer x Matt Nash",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "CAROLA x KVSH",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Loopers x Nuzb",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Blinders x TV Noise",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Justin Mylo x Pontifexx",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "tnt",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "s-p-y",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "tc",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "a-m-c",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "nas",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "uz",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "zoe",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "rac",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "nao",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "The Geek x Vrv",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
   }
  ]
 }

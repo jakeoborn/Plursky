@@ -1,0 +1,249 @@
+{
+  "id": "electric-forest-2012",
+  "method": "official_sources",
+  "official": "https://electricforestfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2012-06-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://electricforestfestival.com/set-times.php",
+          "archivedUrl": "https://web.archive.org/web/20120705170750/http://electricforestfestival.com/set-times.php",
+          "captureTimestamp": "20120705170750",
+          "printed": "Thursday - June 28th",
+          "sha256": "409e18e59ec3b189e47f300970431d1947293e82030a1125ccff5338f42d8dd4",
+          "bytes": 92129,
+          "rows": 25,
+          "format": "ef-grid",
+          "stages": 5,
+          "axis": "6:00pm … 1:45am",
+          "blocksOnGrid": 25
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2012-06-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://electricforestfestival.com/set-times.php",
+          "archivedUrl": "https://web.archive.org/web/20120705170750/http://electricforestfestival.com/set-times.php",
+          "captureTimestamp": "20120705170750",
+          "printed": "Friday - June 29th",
+          "sha256": "409e18e59ec3b189e47f300970431d1947293e82030a1125ccff5338f42d8dd4",
+          "bytes": 92129,
+          "rows": 38,
+          "format": "ef-grid",
+          "stages": 5,
+          "axis": "12:30pm … 4:00am",
+          "blocksOnGrid": 38,
+          "openEnded": 1
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2012-06-30",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://electricforestfestival.com/set-times.php",
+          "archivedUrl": "https://web.archive.org/web/20120705170750/http://electricforestfestival.com/set-times.php",
+          "captureTimestamp": "20120705170750",
+          "printed": "Saturday - June 30th",
+          "sha256": "409e18e59ec3b189e47f300970431d1947293e82030a1125ccff5338f42d8dd4",
+          "bytes": 92129,
+          "rows": 32,
+          "format": "ef-grid",
+          "stages": 5,
+          "axis": "12:30pm … 3:15am",
+          "blocksOnGrid": 32,
+          "openEnded": 1,
+          "untimed": [
+            "Bell's Beer Tasting at the Forest Bar: 4:30pm - Start"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2012-07-01",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://electricforestfestival.com/set-times.php",
+          "archivedUrl": "https://web.archive.org/web/20120705170750/http://electricforestfestival.com/set-times.php",
+          "captureTimestamp": "20120705170750",
+          "printed": "Sunday - July 1st",
+          "sha256": "409e18e59ec3b189e47f300970431d1947293e82030a1125ccff5338f42d8dd4",
+          "bytes": 92129,
+          "rows": 23,
+          "format": "ef-grid",
+          "stages": 5,
+          "axis": "11:30am … 1:45am",
+          "blocksOnGrid": 23
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 3,
+      "stage": "Forest Stage",
+      "start": "",
+      "end": "",
+      "billing": "Bell's Beer Tasting at the Forest Bar",
+      "reason": "the page prints this entry with no set time (the words it prints instead are kept in the sheet)",
+      "untimed": true
+    }
+  ],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "Tripolee",
+      "start": "12:30",
+      "end": "13:30",
+      "billing": "Yoga with KK Ledford wildmoonwisdom",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Tripolee",
+      "start": "13:45",
+      "end": "14:30",
+      "billing": "Hula Hoop Workshop with Luna Breeze",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Forest Stage",
+      "start": "13:00",
+      "end": "13:45",
+      "billing": "African Drum Workshop",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Forest Stage",
+      "start": "15:30",
+      "end": "16:15",
+      "billing": "Kyle Hollingsworth's Brewru Experience",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Wagon Wheel",
+      "start": "14:00",
+      "end": "19:00",
+      "billing": "Elm & Oak and Paper Diamond Present The Wagon Wheel Beach Bash / / With Music From Two Fresh Raw Russ and Very Special Guests! / / Featuring a Live Interactive Grafitti Wall",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Tripolee",
+      "start": "12:30",
+      "end": "13:30",
+      "billing": "Yoga with KK Ledford wildmoonwisdom",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Forest Stage",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "Electric Forest Hoop Troupe Showcase",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Forest Stage",
+      "start": "14:15",
+      "end": "15:00",
+      "billing": "African Drum Workshop",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Forest Stage",
+      "start": "23:00",
+      "end": "01:00",
+      "billing": "TBA",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "Wagon Wheel",
+      "start": "14:00",
+      "end": "19:00",
+      "billing": "Prime Social Group Presents Unplugged at the Wagon Wheel Featuring Pierce Fulton and Special Guests With Sets By Tony Desaro, Attak & Karma and more TBA!",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Wagon Wheel",
+      "start": "20:00",
+      "end": "03:30",
+      "billing": "Movement Electric Music Festival Presents a Detroit Dance Party Featuring: / / Chuck Flask & Keith Kemp / / Ataxia / / Secrets",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Tripolee",
+      "start": "11:30",
+      "end": "12:30",
+      "billing": "Yoga with KK Ledford wildmoonwisdom",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Tripolee",
+      "start": "12:45",
+      "end": "13:30",
+      "billing": "Hula Hoop Workshop with Luna Breeze",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Forest Stage",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "African Drum Workshop",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Forest Stage",
+      "start": "15:15",
+      "end": "16:15",
+      "billing": "Storytelling with Wally Wojak",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Wagon Wheel",
+      "start": "14:00",
+      "end": "19:00",
+      "billing": "Wagon Wheel Closing Party Featuring / / Up Until Now / Human Agency / and THE UNSHEATHED!",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    }
+  ]
+}

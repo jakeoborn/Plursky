@@ -1,0 +1,211 @@
+{
+  "id": "coachella-2017",
+  "method": "official_sources",
+  "official": "https://www.coachella.com/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2017-04-14",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20170430213610/https://www.coachella.com/lineup/",
+          "captureTimestamp": "20170430213610",
+          "printed": "Friday, April 14, 2017",
+          "sha256": "b70095eee5833bf4be103acf9b1d894a12b27b3b4c0bb24f7e800993ceb52608",
+          "bytes": 545315,
+          "rows": 71,
+          "format": "coachella-data",
+          "stages": 8,
+          "openEnded": 8
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2017-04-15",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20170430213610/https://www.coachella.com/lineup/",
+          "captureTimestamp": "20170430213610",
+          "printed": "Saturday, April 15, 2017",
+          "sha256": "b70095eee5833bf4be103acf9b1d894a12b27b3b4c0bb24f7e800993ceb52608",
+          "bytes": 545315,
+          "rows": 65,
+          "format": "coachella-data",
+          "stages": 8,
+          "openEnded": 7,
+          "incomplete": [
+            "Classixx: Saturday, April 15, 2017 | 00:00:00 | no end | Mojave",
+            "Daphni: Saturday, April 15, 2017 | no start | no end | TBD",
+            "Eagles & Butterflies: Saturday, April 15, 2017 | no start | no end | Do Lab",
+            "Four Tet: Saturday, April 15, 2017 | no start | no end | TBD"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2017-04-16",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20170430213610/https://www.coachella.com/lineup/",
+          "captureTimestamp": "20170430213610",
+          "printed": "Sunday, April 16, 2017",
+          "sha256": "b70095eee5833bf4be103acf9b1d894a12b27b3b4c0bb24f7e800993ceb52608",
+          "bytes": 545315,
+          "rows": 62,
+          "format": "coachella-data",
+          "stages": 8,
+          "openEnded": 8
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2017-04-21",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20170430213610/https://www.coachella.com/lineup/",
+          "captureTimestamp": "20170430213610",
+          "printed": "Friday, April 21, 2017",
+          "sha256": "b70095eee5833bf4be103acf9b1d894a12b27b3b4c0bb24f7e800993ceb52608",
+          "bytes": 545315,
+          "rows": 70,
+          "format": "coachella-data",
+          "stages": 8,
+          "openEnded": 7,
+          "duplicateSets": 1,
+          "respelled": [
+            "Shannon and the Clams = Shannon & the Clams"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2017-04-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20170430213610/https://www.coachella.com/lineup/",
+          "captureTimestamp": "20170430213610",
+          "printed": "Saturday, April 22, 2017",
+          "sha256": "b70095eee5833bf4be103acf9b1d894a12b27b3b4c0bb24f7e800993ceb52608",
+          "bytes": 545315,
+          "rows": 69,
+          "format": "coachella-data",
+          "stages": 8,
+          "openEnded": 6,
+          "incomplete": [
+            "Classixx: Saturday, April 22, 2017 | 00:00:00 | no end | Mojave",
+            "Daphni: Saturday, April 22, 2017 | no start | no end | TBD",
+            "Four Tet: Saturday, April 22, 2017 | no start | no end | TBD"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2017-04-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20170430213610/https://www.coachella.com/lineup/",
+          "captureTimestamp": "20170430213610",
+          "printed": "Sunday, April 23, 2017",
+          "sha256": "b70095eee5833bf4be103acf9b1d894a12b27b3b4c0bb24f7e800993ceb52608",
+          "bytes": 545315,
+          "rows": 61,
+          "format": "coachella-data",
+          "stages": 8,
+          "openEnded": 7
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 2,
+      "stage": "Mojave",
+      "start": "00:00",
+      "end": "",
+      "billing": "Classixx",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 2,
+      "stage": "TBD",
+      "start": "",
+      "end": "",
+      "billing": "Daphni",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 2,
+      "stage": "Do Lab",
+      "start": "",
+      "end": "",
+      "billing": "Eagles & Butterflies",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 2,
+      "stage": "TBD",
+      "start": "",
+      "end": "",
+      "billing": "Four Tet",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 5,
+      "stage": "Mojave",
+      "start": "00:00",
+      "end": "",
+      "billing": "Classixx",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 5,
+      "stage": "TBD",
+      "start": "",
+      "end": "",
+      "billing": "Daphni",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 5,
+      "stage": "TBD",
+      "start": "",
+      "end": "",
+      "billing": "Four Tet",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    }
+  ],
+  "unscheduledActs": [
+    {
+      "archivedUrl": "https://web.archive.org/web/20170430213610/https://www.coachella.com/lineup/",
+      "captureTimestamp": "20170430213610",
+      "acts": [
+        "PNL"
+      ]
+    }
+  ],
+  "dropped": []
+}

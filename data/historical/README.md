@@ -38,6 +38,87 @@ Official schedule graphics (Gov Ball, Lolla, ACL …):
     # hand-transcribe footer strips, put the printed header in <id>-dN.note
     node scripts/historical/finalize-review.mjs <edition-id> <review-dir> --reviewer "<who>"
 
+Archived Tomorrowland timetables (2017–2019, 2022, 2023, format `tml-stages`):
+
+    node scripts/historical/gather-tml.mjs <edition-id> <gather-dir> <official-url> <ts> <url> <location|heading>
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+One /en/festival/line-up/stages/<day> page prints every day of every
+weekend, each set with its printed range and its data-start/data-end (which
+must agree). Each heading pairs a stage with that day's host, in an order
+that changed: 2018 and 2019 print the host first ("Holosphere - Freedom
+Stage by Budweiser", `location`), 2022 on print the stage first ("Rose
+Garden - Rampage", `heading`); 2017 prints only the host. The importer holds
+the receipt to the reading that names the fewer stages, and the hosts go in
+the ledger. The Thursday before each weekend (The Gathering) is printed but
+is not a festival day: its sets are excluded as `offDay` rows, by date. A
+stage printed two ways (case, spacing, a leading "The") is carried onto its
+most-printed form with `stageAs`. 2017's only timetable capture is from the
+Monday between the weekends (July 24); every other year's is from the last
+day or after it. 2024 and later have no archived timetable.
+
+Archived Electric Forest artist schedules (2012, 2013, format `ef-grid`):
+
+    node scripts/historical/gather-ef.mjs <edition-id> <gather-dir> <official-url> <ts> <url>
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+The "All Days" view of set-times.php prints a tab per day ("Thursday - June
+28th", no year: the weekday must be the date's own in the edition's year),
+then one grid per day: a 15-minute axis and one column per stage, each artist
+block placed on the axis. A block's top must be its printed start and a single
+block's height its printed length, which settles am and pm across midnight;
+the page is not read if a block is off its start. A block whose height
+disagrees with its printed range is a misprint and is excluded (2013's
+Instrumental Forester), as is an entry that prints no range ("*Forest Stage
+Bar beginning at 2:30pm"). A range ending "Close" or "??" is an open end
+(`openEnd`, end blank). A "format" block holds a curated group or the Silent
+Disco channels, several sets in one block, each inside its span. Yoga,
+workshops, talks, showcases and brand experiences are dropped as `activity`
+(`PROGRAMME` in editions.mjs); 2012's Wagon Wheel event titles that name no
+act are dropped as `event-block`; the Silent Disco is dropped as operational.
+2014's archived pages print a lineup only, and 2024's schedule page has not
+been read yet.
+
+Archived Coachella lineup pages (2014, 2015, 2016, format `coachella-cards`;
+2012, `coachella-overlays`; 2017, `coachella-data`):
+
+    node scripts/historical/gather-coachella.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> ...]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+coachella.com/lineup/ prints one card per act, and each card lists that act's
+sets: the date with its year ("Friday, April 15, 2016": the year must be the
+edition's and the weekday the date's own), the start and the stage. It prints
+no end times, so every set is open-ended (`openEnd`, end blank; the app says
+"no end time printed"). 2016's page lists both weekends; 2014's and 2015's
+list one weekend per view (`?weekend=1`, `?weekend=2`), so those editions
+cite two captures, one per weekend, and each day must be printed by exactly
+one of them. The `data-weekend` attribute is not read (2016 marks both
+weekends "1"); the printed date decides the day. An entry printed without its
+time ("Saturday, April 19, 2014 | Gobi") or its stage is excluded as
+incomplete, with what it prints kept in the sheet; a card with no set (a host)
+is kept in the ledger as unscheduled, never as a set. 2014's Weekend 1 view
+lists no Do Lab sets; nothing is added for them.
+
+2012's page (`/lineup/list/date/all`) prints each act's sets in a hidden
+overlay, under "2012 Appearance": "Friday April 20th | 4:30pm | Gobi", start
+times only, so every set is open-ended; a line printed "| TBD" is excluded as
+incomplete. It lists one Do Lab act (Lucent Dossier Experience); nothing is
+added for the others. NOISIΛ keeps the lambda the page prints
+(`PRINTED_NON_LATIN`).
+
+2017's page holds its whole lineup as one data attribute
+(`<lineup-listing v-bind:artists>`), which its script draws as the cards: per
+act and weekend the date (with its printed form), start, end and stage. A set
+with an end keeps it; one with no end is open-ended (the sheet's `openEnd`
+rows must be exactly those). A set with no start, a "TBD" stage, or a bare
+00:00 start with no end (the page's blank value) is excluded as incomplete.
+The data lists one act twice under two spellings ("Shannon & the Clams",
+"Shannon and the Clams"): one set, the first spelling kept, the other named in
+the ledger's `respelled`. Names keep their own HTML entities in the data
+("R&oacute;is&iacute;n"), read as their letters. 2018's archived lineup page
+is an empty shell and 2019's Set Times page loads its times by script, so
+neither is readable from the archive.
+
 Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, format `acl-grid`):
 
     node scripts/historical/gather-acl-grid.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]

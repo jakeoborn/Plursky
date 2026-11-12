@@ -53,5 +53,13 @@
       "diffVsChosen": []
     }
   ],
-  "dropped": []
+  "dropped": [
+    {
+      "day": 1,
+      "stage": null,
+      "billing": "Secret Set",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
 }

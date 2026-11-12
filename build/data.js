@@ -778,7 +778,151 @@ var FESTIVALS_REGISTRY = [{
   region: "North America"
 }, {
   config: {
+    id: "tomorrowland-winter-2027",
+    officialEvent: {
+      website: "https://winter.tomorrowland.com/",
+      observedAt: "2026-11-11"
+    },
+    name: "Tomorrowland Winter 2027",
+    shortName: "Tomorrowland Winter",
+    brand: "Tomorrowland",
+    tagline: "A week of music in the French Alps",
+    location: "Alpe d'Huez, France",
+    locationShort: "Alpe d'Huez",
+    dates: "Mar 20–27, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://winter.tomorrowland.com/",
+        observedAt: "2026-11-11"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#93c5fd",
+  emoji: "🏔️",
+  region: "Europe"
+}, {
+  config: {
+    id: "tomorrowland-brasil-2027",
+    officialEvent: {
+      website: "https://brasil.tomorrowland.com/",
+      observedAt: "2026-11-11"
+    },
+    name: "Tomorrowland Brasil 2027",
+    shortName: "Tomorrowland Brasil",
+    brand: "Tomorrowland",
+    tagline: "Three days of Tomorrowland in São Paulo state",
+    location: "Itu, Brazil",
+    locationShort: "Itu",
+    dates: "Apr 30, 2027 – May 2, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://brasil.tomorrowland.com/",
+        observedAt: "2026-11-11"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#22c55e",
+  emoji: "🦜",
+  region: "Latin America"
+}, {
+  config: {
+    id: "primavera-sound-2027",
+    officialEvent: {
+      website: "https://www.primaverasound.com/en/barcelona",
+      observedAt: "2026-11-11"
+    },
+    name: "Primavera Sound Barcelona 2027",
+    shortName: "Primavera Sound",
+    brand: "Primavera Sound",
+    tagline: "The 25th edition by the sea",
+    location: "Parc del Fòrum · Barcelona, Spain",
+    locationShort: "Parc del Fòrum",
+    dates: "Jun 3–5, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.primaverasound.com/en/barcelona",
+        observedAt: "2026-11-11"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#f472b6",
+  emoji: "🌊",
+  region: "Europe"
+}, {
+  config: {
+    id: "boom-festival-2027",
+    officialEvent: {
+      website: "https://www.boomfestival.org/",
+      observedAt: "2026-11-11"
+    },
+    name: "Boom Festival 2027",
+    shortName: "Boom",
+    brand: "Boom Festival",
+    tagline: "Thirty years by the lake under a full moon",
+    location: "Idanha-a-Nova, Portugal",
+    locationShort: "Idanha-a-Nova",
+    dates: "Jul 18–25, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.boomfestival.org/",
+        observedAt: "2026-11-11"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#f59e0b",
+  emoji: "🌕",
+  region: "Europe"
+}, {
+  config: {
+    id: "sziget-2027",
+    officialEvent: {
+      website: "https://szigetfestival.com/en/festival-info",
+      observedAt: "2026-11-11"
+    },
+    name: "Sziget 2027",
+    shortName: "Sziget",
+    brand: "Sziget Festival",
+    tagline: "Five days on the Island of Freedom",
+    location: "Budapest, Hungary",
+    locationShort: "Budapest",
+    dates: "Aug 10–14, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://szigetfestival.com/en/festival-info",
+        observedAt: "2026-11-11"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#ef4444",
+  emoji: "🏝️",
+  region: "Europe"
+}, {
+  config: {
     id: "lost-lands-2026",
+    officialEvent: {
+      website: "https://www.lostlandsfestival.com/",
+      observedAt: "2026-11-11"
+    },
     scheduleSource: {
       url: "https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts",
       observedAt: "2026-09-10",
@@ -1017,6 +1161,14 @@ var FESTIVALS_REGISTRY = [{
     }],
     mainStageId: "kinetic",
     mapImage: "edco-tinker-2026.webp",
+    mapGeoref: {
+      image: "geo-maps/edc-orlando-2026.webp",
+      bounds: [-81.4059882, 28.5347911, -81.397489, 28.5411997],
+      model: "affine",
+      ties: "map-sources/edc-orlando-2026-geo-ties.json",
+      rmsM: 9.5,
+      looRmsM: 41.3
+    },
     mapStyle: "image-overlay",
     mapTheme: "park",
     weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
@@ -1059,6 +1211,10 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "acl-2026",
+    officialEvent: {
+      website: "https://www.aclfestival.com/",
+      observedAt: "2026-11-11"
+    },
     scheduleSource: {
       url: "https://www.aclfestival.com/schedule",
       observedAt: "2026-09-30",
@@ -2422,6 +2578,14 @@ function stageFixGate(anchors, fix, atMs, rules) {
     status: "trusted",
     stageId: d[0].stageId
   };
+}
+function photoFixAccM(m) {
+  var a = m && m.gpsAccM;
+  return typeof a === "number" && Number.isFinite(a) && a > 0 ? a : null;
+}
+function photoFixAccClass(acc) {
+  if (acc == null) return "unknown";
+  return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";
 }
 function attendEvidenceAnchors(cfg) {
   return (typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg && cfg.gpsAnchors || []).filter(a => {
@@ -4026,7 +4190,7 @@ var UNPLACED_STAGE = {
   color: "#8a8580",
   size: 1
 };
-var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026"];
+var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026", "tomorrowland-thailand-2026"];
 var _WAVE1 = typeof window !== "undefined" && window.PLURSKY_FESTIVALS || {};
 for (var _id of _WAVE1_IDS) {
   var _f = _WAVE1[_id];

@@ -486,13 +486,43 @@ function readoutHonest(avatar) {
 //               point. Stages read as pending until anchors are measured.
 // Measuring anchors (first-party evidence per anchor) is what moves a festival
 // up a tier; nothing here does.
+//
+// "fitted" (Jake, 2026-11-10: the festival's own map "overlaid on top of the
+// geo coordinates" of the venue): the ART is placed by its own tie points,
+// street corners, buildings and shorelines that both the art and the ground
+// draw, fitted by scripts/build-geo-plate.py into a north-up plate
+// (cfg.mapGeoref). That places the art, never a stage: stages keep following
+// gpsAnchors and the gates above, so a fitted festival still pins nothing and
+// reads STAGES PENDING until its stages are checked. Only a fit whose ties
+// agree within ARTFIT_MAX_RMS_M counts; a looser one is ignored, not faded.
+const ARTFIT_MAX_RMS_M = 15;
+function artGeorefFor(cfg) {
+  const g = cfg && cfg.mapGeoref;
+  if (!g || typeof g.image !== "string" || !Array.isArray(g.bounds) || g.bounds.length !== 4) return null;
+  const [w, s, e, n] = g.bounds;
+  if (![w, s, e, n].every(Number.isFinite) || !(e > w && n > s)) return null;
+  if (!(Number.isFinite(g.rmsM) && g.rmsM <= ARTFIT_MAX_RMS_M)) return null;
+  return g;
+}
 function posterTierFor(cfg, affine, verified) {
-  if (!cfg || cfg.mapMode === "real" || !affine) return "none";
+  if (!cfg || cfg.mapMode === "real") return "none";
   if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
-  return verified ? "checked" : "unchecked";
+  if (affine && verified) return "checked";
+  if (artGeorefFor(cfg)) return "fitted";
+  return affine ? "unchecked" : "none";
 }
 const POSTER_TIER = posterTierFor(FESTIVAL_CONFIG, MAP_AFFINE, MAP_REGISTRATION_SOURCED);
+// A checked festival can carry a fit too (Summerfest, Lollapalooza, Outside
+// Lands: their official maps, Jake 2026-11-11). Its own art then replaces the
+// drawn overlay on the real map; its stages keep their checked pins.
+const ART_GEOREF = POSTER_TIER === "none" ? null : artGeorefFor(FESTIVAL_CONFIG);
+// The image the real map lays down: the fitted plate where there is one,
+// otherwise the art itself, placed corner by corner through the affine.
+const OFFICIAL_MAP_SRC = ART_GEOREF ? ART_GEOREF.image : FESTIVAL_CONFIG.mapImage;
 const POSTER_OPACITY_UNCHECKED = 0.35;
+// Fitted art matches the ground within metres, so it reads as the map; the
+// basemap still shows through enough to read streets past the art's edge.
+const POSTER_OPACITY_FITTED = 0.82;
 // What the real map may PIN: only what checked geometry places on the ground
 // (#313 review, Instinct's lane: "pins off, full stop"). On an unchecked
 // festival the affine exists but is not corroborated, so a stage, landmark or
@@ -2113,7 +2143,8 @@ function MapScreen({ state, setState }) {
   const artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
   const artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
   const mapPostureLabel = artYear + (REAL_MAP_ONLY || (useRealMap && !REAL_MAP_PLACES_CHECKED)
-    ? (useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING")
+    ? (useRealMap && POSTER_TIER === "fitted" ? "OFFICIAL MAP · STAGES PENDING"
+      : useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING")
     : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
         ? "OFFICIAL MAP"
         : "LAYOUT ONLY");
@@ -4369,25 +4400,45 @@ function _momentPinsFor(moments, festivalId) {
     if (festivalId && m.festivalId && m.festivalId !== festivalId) continue;
     const g = m.parsedGps;
     if (!_validGps(g) || (g.lat === 0 && g.lng === 0)) continue;
+    const accM = photoFixAccM(m);
     out.push({
       id: m.id, lat: g.lat, lng: g.lng,
-      accM: Number.isFinite(m.gpsAccM) ? m.gpsAccM : null,
+      accM, acc: photoFixAccClass(accM),
       kind: m.kind === "video" ? "video" : "photo",
     });
   }
   return out;
 }
-// GeoJSON for the clustered pin source. Properties carry the moment id and
-// kind only; the tag is looked up on tap from the on-device store.
+// GeoJSON for the clustered pin source. Properties carry the moment id, kind
+// and accuracy class only; the tag is looked up on tap from the on-device store.
 function _momentPinsGeoJson(pins) {
   return {
     type: "FeatureCollection",
     features: (pins || []).map(p => ({
       type: "Feature",
       geometry: { type: "Point", coordinates: [p.lng, p.lat] },
-      properties: { id: p.id, kind: p.kind },
+      properties: { id: p.id, kind: p.kind, acc: p.acc || "unknown" },
     })),
   };
+}
+// SPEC-192 ws1: each pin's capture accuracy as a true-metre circle on the
+// ground (a polygon, so it scales with zoom like the map does), centred on
+// that pin's own fix with its own recorded radius. A pin with no recorded
+// accuracy gets none: no default ring. Own source, never clustered, so a
+// ring always sits on its shot even while the pins are grouped.
+const _ACC_RING_STEPS = 48;
+function _momentAccRingsGeoJson(pins) {
+  const R = 6371008.8, k = Math.PI / 180, features = [];
+  for (const p of pins || []) {
+    if (!(p && p.accM > 0) || p.acc === "unknown") continue;
+    const dLat = p.accM / R / k, dLng = p.accM / (R * Math.cos(p.lat * k)) / k, ring = [];
+    for (let i = 0; i <= _ACC_RING_STEPS; i++) {
+      const a = (2 * Math.PI * (i % _ACC_RING_STEPS)) / _ACC_RING_STEPS;
+      ring.push([p.lng + dLng * Math.cos(a), p.lat + dLat * Math.sin(a)]);
+    }
+    features.push({ type: "Feature", geometry: { type: "Polygon", coordinates: [ring] }, properties: { id: p.id, acc: p.acc, accM: p.accM } });
+  }
+  return { type: "FeatureCollection", features };
 }
 const _NO_PINS = Object.freeze([]);
 // The active festival's moments, flattened, from the on-device store.
@@ -4404,6 +4455,10 @@ const MOMENT_PIN_SOURCE = "my-moments";
 const MOMENT_PIN_CLUSTER = "my-moments-cluster";
 const MOMENT_PIN_POINT = "my-moments-point";
 const MOMENT_PIN_COUNT = "my-moments-count";
+const MOMENT_ACC_SOURCE = "my-moments-acc";
+const MOMENT_ACC_FILL = "my-moments-acc-fill";
+const MOMENT_ACC_LINE = "my-moments-acc-line";
+const MOMENT_ACC_LINE_COARSE = "my-moments-acc-line-coarse";
 // Adds the clustered pin source + layers once per style. A tap NEVER moves the
 // camera: easing to a cluster would fetch basemap tiles around where the photo
 // was taken, and a tile URL is a location. A single pin opens its item; a
@@ -4425,6 +4480,31 @@ function _momentPinCountImage(label) {
   } catch { return null; }
 }
 function _addMomentPinLayers(map, pins, onTap) {
+  // Accuracy rings first, so every pin layer draws on top of them. Precise
+  // (within the tagger's trust line): solid. Coarse: dashed, fainter.
+  if (!map.getSource(MOMENT_ACC_SOURCE)) {
+    map.addSource(MOMENT_ACC_SOURCE, { type: "geojson", data: _momentAccRingsGeoJson(pins), maxzoom: 22 });
+  }
+  if (!map.getLayer(MOMENT_ACC_FILL)) {
+    map.addLayer({
+      id: MOMENT_ACC_FILL, type: "fill", source: MOMENT_ACC_SOURCE,
+      paint: { "fill-color": "#e85d2e", "fill-opacity": ["match", ["get", "acc"], "precise", 0.16, 0.07] },
+    });
+  }
+  if (!map.getLayer(MOMENT_ACC_LINE)) {
+    map.addLayer({
+      id: MOMENT_ACC_LINE, type: "line", source: MOMENT_ACC_SOURCE,
+      filter: ["==", ["get", "acc"], "precise"],
+      paint: { "line-color": "#e85d2e", "line-width": 1.5, "line-opacity": 0.85 },
+    });
+  }
+  if (!map.getLayer(MOMENT_ACC_LINE_COARSE)) {
+    map.addLayer({
+      id: MOMENT_ACC_LINE_COARSE, type: "line", source: MOMENT_ACC_SOURCE,
+      filter: ["==", ["get", "acc"], "coarse"],
+      paint: { "line-color": "#e85d2e", "line-width": 1.5, "line-opacity": 0.7, "line-dasharray": [2, 2] },
+    });
+  }
   if (!map.getSource(MOMENT_PIN_SOURCE)) {
     map.addSource(MOMENT_PIN_SOURCE, {
       type: "geojson", data: _momentPinsGeoJson(pins),
@@ -4452,7 +4532,10 @@ function _addMomentPinLayers(map, pins, onTap) {
       paint: {
         "circle-color": ["match", ["get", "kind"], "video", "#7c3aed", "#e85d2e"],
         "circle-radius": 9,
-        "circle-stroke-width": 2, "circle-stroke-color": "#ffffff",
+        // No recorded accuracy: a hollow-looking pin (dark ring, lighter fill),
+        // so it never reads as a fix as good as a ringed one.
+        "circle-opacity": ["match", ["get", "acc"], "unknown", 0.55, 1],
+        "circle-stroke-width": 2, "circle-stroke-color": ["match", ["get", "acc"], "unknown", "#1f2937", "#ffffff"],
       },
     });
   }
@@ -4610,6 +4693,12 @@ function _officialMapDims(src) {
   return _imgDimsCache[src];
 }
 
+// A fitted plate is already north-up, so its corners are its bounds.
+function _geoPlateCorners(g) {
+  const [w, s, e, n] = g.bounds;
+  return [[w, n], [e, n], [e, s], [w, s]];
+}
+
 // Corner quad for a MapLibre `image` source: [TL, TR, BR, BL] as [lng, lat].
 function _officialMapCorners(natW, natH) {
   const e = _officialMapExtent(natW, natH);
@@ -4755,6 +4844,8 @@ function RealMap({
     photoPinsRef.current = photoPins;
     const src = mapRef.current && mapRef.current.getSource(MOMENT_PIN_SOURCE);
     if (src) { try { src.setData(_momentPinsGeoJson(photoPins)); } catch {} }
+    const acc = mapRef.current && mapRef.current.getSource(MOMENT_ACC_SOURCE);
+    if (acc) { try { acc.setData(_momentAccRingsGeoJson(photoPins)); } catch {} }
   }, [photoPins]);
   React.useEffect(() => { onMapClickRef.current  = onMapClick;  }, [onMapClick]);
   React.useEffect(() => { meetModeRef.current    = meetMode;    }, [meetMode]);
@@ -5219,12 +5310,13 @@ function RealMap({
           // below with no layer to turn back ON, making the toggle one-way.
           // Build it always; set initial visibility from the toggle.
           if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
-          if (!MAP_AFFINE) return;   // no anchors -> no defensible placement
+          // Fitted art places itself; otherwise no anchors -> no defensible placement.
+          if (!MAP_AFFINE && !ART_GEOREF) return;
           if (officialMapFailedRef.current) return;   // failed once: stays off
           const dims = officialMapDimsRef.current;
           if (!dims) return;         // still loading; the .then() below re-runs us
-          const src = dims.url || FESTIVAL_CONFIG.mapImage;
-          const coordinates = _officialMapCorners(dims.w, dims.h);
+          const src = dims.url || OFFICIAL_MAP_SRC;
+          const coordinates = ART_GEOREF ? _geoPlateCorners(ART_GEOREF) : _officialMapCorners(dims.w, dims.h);
           if (!map.getSource("official-map")) {
             map.addSource("official-map", { type: "image", url: src, coordinates });
           } else {
@@ -5248,7 +5340,7 @@ function RealMap({
                 // not to scale, and the ground under it is the truth (POSTER_TIER).
                 "raster-opacity": POSTER_TIER === "checked"
                   ? (FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78)
-                  : POSTER_OPACITY_UNCHECKED,
+                  : POSTER_TIER === "fitted" ? POSTER_OPACITY_FITTED : POSTER_OPACITY_UNCHECKED,
                 "raster-fade-duration": 0,
                 "raster-resampling": "linear",
               },
@@ -5259,7 +5351,7 @@ function RealMap({
         };
         _safeLayer("official-map", _addOfficialMap);
         if (!officialMapDimsRef.current && FESTIVAL_CONFIG.mapImage) {
-          _officialMapDims(FESTIVAL_CONFIG.mapImage).then((d) => {
+          _officialMapDims(OFFICIAL_MAP_SRC).then((d) => {
             if (cancelled || !d || !mapRef.current) return;
             officialMapDimsRef.current = d;
             _safeLayer("official-map", _addOfficialMap);
@@ -5444,7 +5536,7 @@ function RealMap({
         // 125 styledata in 2 s on III Points and on ACL). The style never
         // settles, so map "load" never fires and the avatar, stage and
         // landmark markers it adds never appear, while the GPU churns.
-        const _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route", MOMENT_PIN_CLUSTER, MOMENT_PIN_POINT, MOMENT_PIN_COUNT].filter((id) => map.getLayer(id));
+        const _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route", MOMENT_ACC_FILL, MOMENT_ACC_LINE, MOMENT_ACC_LINE_COARSE, MOMENT_PIN_CLUSTER, MOMENT_PIN_POINT, MOMENT_PIN_COUNT].filter((id) => map.getLayer(id));
         const _order = (() => { try { return (map.getStyle().layers || []).map((l) => l.id); } catch { return []; } })();
         const _tail = _order.slice(_order.length - _top.length);
         if (_top.some((id, i) => _tail[i] !== id)) _top.forEach((id) => {
@@ -7969,5 +8061,5 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
 Object.assign(window, {
   MapScreen, getMyPingCode, WALK_PAIRS, _pairKey,
   geometryVerifiedFor, _geomVerifiedMemo, MAP_REGISTRATION_SOURCED, readoutHonest,
-  posterTierFor, POSTER_TIER, POSTER_OPACITY_UNCHECKED, REAL_MAP_PLACES_CHECKED, REAL_MAP_AMENITIES, _realMapTarget, _meetTargetFor, _groundsLngLats,
+  posterTierFor, POSTER_TIER, POSTER_OPACITY_UNCHECKED, POSTER_OPACITY_FITTED, artGeorefFor, ART_GEOREF, OFFICIAL_MAP_SRC, _geoPlateCorners, REAL_MAP_PLACES_CHECKED, REAL_MAP_AMENITIES, _realMapTarget, _meetTargetFor, _groundsLngLats,
 });

@@ -13,6 +13,10 @@
 //   L4 counts: without-GPS and far-away shots are counted, not placed.
 //   L5 static: the lens never reads STAGES, ARTISTS, gpsToMap, the poster image
 //      or a jitter helper.
+//   A  accuracy (SPEC-192 ws3): each shot's ring sits on its OWN fix with its
+//      OWN captured radius at lens scale; the precise/coarse line is the
+//      auto-tagger's STAGE_FIX_PHOTO.maxAccM; no recorded accuracy = no ring
+//      (never a default); precise rings fit inside the lens.
 //   M  mutations: each must turn a check red, or the check proves nothing.
 import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -28,7 +32,10 @@ function slice(src, a, b) {
 const TIME_SRC = slice(SP, "function _momentTime(m)", "// One photo/video thumbnail pinned");
 const LAYOUT_SRC = slice(SP, "function _lensFix(m)", "function MemoriesPhotoMapLens(");
 const LENS_SRC = slice(SP, "// PHOTOS lens: real GPS only.", "// MAP-lens wrapper:");
-const load = src => new Function(`${TIME_SRC}\n${src}; return _gpsLensLayout;`)();
+const DATA = readFileSync(join(ROOT, "data.jsx"), "utf8");
+const TRUST_SRC = slice(DATA, "const STAGE_FIX_PHOTO = {", "// Only measured stage positions (osm / crowd)");
+const TRUST_M = new Function(`${TRUST_SRC}; return STAGE_FIX_PHOTO.maxAccM;`)();
+const load = (src, trust = TRUST_SRC) => new Function(`${trust}\n${TIME_SRC}\n${src}; return _gpsLensLayout;`)();
 
 // Fixture: real-shaped moments (spotify.jsx import loop). Fixes ~EDC Orlando.
 const F = {
@@ -39,7 +46,7 @@ const F = {
 };
 const mk = (id, gps, extra = {}) => ({ id, photoId: `p_${id}`, kind: "photo", night: 2, festivalId: "edc-orlando-2026", artistId: "kaskade", takenAt: `2026-11-07 2${id.length % 10}:00:00`, createdAt: 1, parsedGps: gps, ...extra });
 const fixture = () => [
-  mk("m_a", F.a), mk("m_b", F.b, { kind: "video" }), mk("m_c", F.c, { artistId: null }), mk("m_d", F.d),
+  mk("m_a", F.a, { gpsAccM: 8 }), mk("m_b", F.b, { kind: "video", gpsAccM: 250 }), mk("m_c", F.c, { artistId: null }), mk("m_d", F.d, { gpsAccM: 30 }),
   mk("m_nogps_tagged", null, { hasGps: false }),
   mk("m_range", { lat: 128.5, lng: -81.4 }), mk("m_nan", { lat: NaN, lng: -81.4 }),
   mk("m_null_island", { lat: 0, lng: 0 }), mk("m_str", { lat: "28.53", lng: "-81.40" }),
@@ -89,6 +96,35 @@ function suite(layout) {
   const none = layout([mk("m_x", null), mk("m_y", { lat: 0, lng: 0 })]);
   ok(none.clusters.length === 0 && none.noGps === 2, "L4d no fixes → no pins (empty state), no throw");
   ok(layout(null).clusters.length === 0, "L4e no moments → no pins, no throw");
+  // A: accuracy rings. Fixture: a 8 m and d 30 m (precise), b 250 m (coarse), c none.
+  const ACC = { m_a: 8, m_b: 250, m_d: 30 };
+  const ring = Object.fromEntries((L.rings || []).map(g => [g.id, g]));
+  ok(Object.keys(ring).sort().join() === "m_a,m_b,m_d", `A1 a ring for every shot with a recorded accuracy, none for the one without (got ${Object.keys(ring).join(",")})`);
+  ok(Object.entries(ACC).every(([id, a]) => ring[id] && Math.abs(ring[id].r * L.mPerPct - a) < 1e-6 && ring[id].accM === a), "A2 each ring's radius is its own captured accuracy at lens scale");
+  ok(Object.keys(ACC).every(id => ring[id] && pos[id] && Math.abs(ring[id].x - pos[id].x) < 1e-9 && Math.abs(ring[id].y - pos[id].y) < 1e-9), "A3 each ring is centred on its own pin");
+  ok(ring.m_a?.cls === "precise" && ring.m_d?.cls === "precise" && ring.m_b?.cls === "coarse", "A4 precise ≤ the trust line, coarse past it");
+  ok(L.coarse === 1 && L.unknownAcc === 1, `A4b coarse and no-accuracy shots are counted (coarse=${L.coarse}, unknown=${L.unknownAcc})`);
+  const byFace = Object.fromEntries(L.clusters.map(c => [c.face.id, c.acc]));
+  ok(byFace.m_c === "unknown" && byFace.m_a === "precise" && byFace.m_b === "coarse", "A4c each pin carries its own shot's accuracy class");
+  ok(["m_a", "m_d"].every(id => ring[id] && ring[id].x - ring[id].r >= -1e-9 && ring[id].x + ring[id].r <= 100 + 1e-9 && ring[id].y - ring[id].r >= -1e-9 && ring[id].y + ring[id].r <= 100 + 1e-9), "A5 precise rings fit inside the lens");
+  // Clustered: every ring stays on its OWN shot's fix, not the cluster's.
+  const Lr = Object.fromEntries((Lc.rings || []).map(g => [g.id, g]));
+  const vd = Lr.m_a && Lr.m_d ? { dx: Lr.m_d.x - Lr.m_a.x, dy: Lr.m_d.y - Lr.m_a.y } : null, td = enM(F.a, F.d);
+  ok(!!vd && Math.abs(vd.dx * Lc.mPerPct - td.e) < 0.01 && Math.abs(-vd.dy * Lc.mPerPct - td.n) < 0.01, "A3b clustered shots keep their rings on their own fixes");
+  const wide = layout([mk("m_w", F.a, { gpsAccM: 90 })]).rings[0];
+  ok(wide && wide.x - wide.r >= -1e-9 && wide.x + wide.r <= 100 + 1e-9, `A5b a lone 90 m ring still fits (r=${wide && wide.r.toFixed(1)}%)`);
+  // A9: the ring cap is disclosed, never silent. 61 precise shots in ONE pin
+  // (the reviewer's case: hidden = 0) and 61 separate pins.
+  const many = (n, spread) => Array.from({ length: n }, (_, i) => mk(`m_r${i}`, { lat: F.a.lat + (spread ? (i % 8) * 4e-4 : i * 1e-7), lng: F.a.lng + (spread ? Math.floor(i / 8) * 4e-4 : 0) }, { gpsAccM: 9, takenAt: `2026-11-07 22:${String(i % 60).padStart(2, "0")}:00` }));
+  const one61 = layout(many(61, false));
+  ok(one61.clusters.length === 1 && one61.hidden === 0 && one61.rings.length + one61.ringsCut === 61 && one61.ringsCut >= 1, `A9 61 shots in one pin: every ring drawn or counted (drawn ${one61.rings.length}, cut ${one61.ringsCut}, hidden ${one61.hidden})`);
+  const sep61 = layout(many(61, true), { clusterPct: 0.0001, cap: 100 });
+  ok(sep61.clusters.length === 61 && sep61.rings.length + sep61.ringsCut === 61 && sep61.ringsCut >= 1, `A9b 61 separate pins: every ring drawn or counted (drawn ${sep61.rings.length}, cut ${sep61.ringsCut})`);
+  ok(layout(many(5, false)).ringsCut === 0, "A9c under the cap nothing is counted as cut");
+  // Bad accuracy values are unknown, never a default ring.
+  const bad = layout([mk("m_n1", F.a, { gpsAccM: NaN }), mk("m_n2", F.b, { gpsAccM: 0 }), mk("m_n3", F.c, { gpsAccM: -5 }), mk("m_n4", F.d, { gpsAccM: "12" })], { clusterPct: 0.0001 });
+  ok(bad.rings.length === 0 && bad.unknownAcc === 4, `A6 NaN, 0, negative and string accuracies are unknown: no ring (rings=${bad.rings.length}, unknown=${bad.unknownAcc})`);
+  ok(layout([mk("m_e", F.a, { gpsAccM: TRUST_M })]).rings[0]?.cls === "precise" && layout([mk("m_f", F.a, { gpsAccM: TRUST_M + 1 })]).rings[0]?.cls === "coarse", "A7 the line is inclusive at the trust value");
   return { failed, total };
 }
 
@@ -102,6 +138,7 @@ const ok = (c, msg) => { if (c) pass++; else { fail++; console.log(`  ✗ ${msg}
 // L5 static
 ok(!/STAGES|ARTISTS|gpsToMap|mapToGps|_nearestStageId|_idJitter|mapImage|FESTIVAL_CONFIG|\.stage\b|gpsAnchors/.test(LENS_SRC), "L5 the lens reads no stage, artist, poster projection, poster image or jitter");
 ok(!/function _idJitter/.test(SP), "L5b the jitter helper is gone (no lens can reach for it)");
+ok(/ringsCut > 0 && <span data-gps-lens-note="rings-cut">\{ringsCut\}/.test(LENS_SRC) && /\|\| ringsCut > 0\) &&/.test(LENS_SRC), "A9d the lens renders the cut-ring count whenever the cap trims");
 
 const MUTANTS = [
   ["stage fallback for no-GPS", LAYOUT_SRC.replace("if (!g) { noGps++; continue; }", "if (!g) { fixes.push({ m, g: { lat: 28.5291, lng: -81.4049 }, t: 0 }); continue; }")],
@@ -111,9 +148,24 @@ const MUTANTS = [
   ["string fixes coerced", LAYOUT_SRC.replace('if (!g || typeof g.lat !== "number" || typeof g.lng !== "number") return null;', "if (!g) return null; g = { lat: +g.lat, lng: +g.lng };").replace("const g = m && m.parsedGps;", "let g = m && m.parsedGps;")],
   ["cluster at a computed centre", LAYOUT_SRC.replace("clusters.push({ x: head.x, y: head.y,", "clusters.push({ x: group.reduce((s, g) => s + g.x, 0) / group.length, y: group.reduce((s, g) => s + g.y, 0) / group.length,")],
 ];
-for (const [name, src] of MUTANTS) {
-  if (src === LAYOUT_SRC) { ok(false, `M setup: mutation "${name}" did not apply`); continue; }
-  const { failed } = suite(load(src));
+// A8: the line IS the auto-tagger's policy: move it in data.jsx, the lens follows.
+{
+  const moved = load(LAYOUT_SRC, TRUST_SRC.replace(/maxAccM: \d+/, "maxAccM: 5"));
+  const r = moved([mk("m_a", F.a, { gpsAccM: 8 })]).rings[0];
+  ok(r && r.cls === "coarse", "A8 the precise/coarse line follows STAGE_FIX_PHOTO.maxAccM (one policy)");
+  ok(!/maxAccM|gpsAccM/.test(LAYOUT_SRC) && /photoFixAccClass\(/.test(LAYOUT_SRC), "A8b the lens restates no accuracy rule: it calls photoFixAccM/photoFixAccClass");
+}
+MUTANTS.push(
+  ["missing accuracy defaulted", LAYOUT_SRC, TRUST_SRC.replace("&& a > 0 ? a : null;", "&& a > 0 ? a : 10;")],
+  ["ring on the cluster's fix", LAYOUT_SRC.replace("rings.push({ id: p.m.id, x: p.x, y: p.y,", "rings.push({ id: p.m.id, x: c.x, y: c.y,")],
+  ["ring tighter than captured", LAYOUT_SRC.replace("r: p.acc * scale,", "r: p.acc * scale * 0.5,")],
+  ["coarse drawn as precise", LAYOUT_SRC, TRUST_SRC.replace("return acc <= STAGE_FIX_PHOTO.maxAccM ? \"precise\" : \"coarse\";", "return \"precise\";")],
+  ["ring cap trims silently", LAYOUT_SRC.replace("if (rings.length >= _LENS_RING_CAP) { ringsCut++; continue; }", "if (rings.length >= _LENS_RING_CAP) continue;")],
+  ["precise rings left out of the extents", LAYOUT_SRC.replace('const r = p.cls === "precise" ? p.acc : 0;', "const r = 0;")],
+);
+for (const [name, src, trust] of MUTANTS) {
+  if (src === LAYOUT_SRC && (!trust || trust === TRUST_SRC)) { ok(false, `M setup: mutation "${name}" did not apply`); continue; }
+  const { failed } = suite(load(src, trust || TRUST_SRC));
   ok(failed.length > 0, `M mutation "${name}" turns a check red`);
   if (failed.length) console.log(`  · mutation "${name}" caught by: ${failed[0]}`);
 }
