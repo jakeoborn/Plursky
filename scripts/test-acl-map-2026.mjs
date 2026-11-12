@@ -91,6 +91,8 @@ function validate(ds, { local = LOCAL, start = ctx.__o.avatarStartFor(ds) } = {}
   // Every anchor is a satellite read: a poster/derived/provisional source
   // here is a guess about where a stage is, and attendance must not fire on it.
   for (const a of an) if (a.src !== "osm") p.push(`${a.stageId} has a ${a.src} GPS anchor; only a satellite or crowd measurement may place a stage`);
+  // All seven are read off the 2023 capture: each must say it is assumed for 2026.
+  for (const a of an) if (!/^2023 capture, assumed for 2026$/.test(a.assumed || "")) p.push(`${a.stageId} anchor does not say it is a 2023 position assumed for 2026`);
   // Art coordinates: every x/y is a measured row, and nothing unmeasured ships.
   const rows = [...ds.stages.map(s => ["stages", s]), ...(ds.amenities || []).map(a => ["amenities", a])];
   for (const [kind, item] of rows) {
@@ -146,6 +148,7 @@ mustFail("drop the plate from the precache", () => {}, { local: new Set([...LOCA
 mustFail("precache the 4 MB source", () => {}, { local: new Set([...LOCAL, M.source]) });
 mustFail("add a Snapchat GPS anchor from the poster", m => { m.config.gpsAnchors.push({ stageId: "snapchat", lat: 30.2665, lng: -97.7672, src: "poster" }); });
 mustFail("swap Tito's satellite read for a poster-derived one", m => { Object.assign(m.config.gpsAnchors.find(a => a.stageId === "titos"), { lat: 30.2685, lng: -97.7652, src: "derived" }); });
+mustFail("drop the 2023-assumption label from BMI", m => { delete m.config.gpsAnchors.find(a => a.stageId === "bmi").assumed; });
 mustFail("relabel the BEATBOX read as a poster pin", m => { m.config.gpsAnchors.find(a => a.stageId === "beatbox").src = "poster"; });
 mustFail("reorder the affine basis", m => { const a = m.config.gpsAnchors; [a[0], a[1]] = [a[1], a[0]]; });
 mustFail("move a satellite anchor", m => { m.config.gpsAnchors[2].lat += 0.0005; });
@@ -248,6 +251,22 @@ const cut = matcherFrom(PHOTO_TAG.replace(COVERAGE_CALL, ""));
 mutations++;
 ok(bmiSolo && photoAt(cut, "acl-2026", bmiSolo.id, 5, ...FAR, withoutBmi).reason === "off_stage",
   "mutation not caught: removing the all-stages-anchored check did not bring back off_stage with BMI unanchored");
+
+// ── 7. a crowd measurement from 2026 photos overrides a 2023 satellite spot ──
+{
+  const R = vm.runInContext("resolvedStageAnchors", ctx);
+  const crowd = { stageId: "bmi", lat: 30.266600, lng: -97.769100, n: 5, nights: 1, spreadM: 40, soleSetInWindow: true };
+  const cfg2 = { ...acl.config, crowdAnchors: [crowd] };
+  const got = R(cfg2).filter(a => a.stageId === "bmi");
+  ok(got.length === 1 && got[0].lat === crowd.lat && got[0].lng === crowd.lng && got[0].anchorSource === "crowd",
+    `a 2026 crowd anchor for BMI did not replace the 2023 satellite spot: ${JSON.stringify(got)}`);
+  const titos = R(cfg2).find(a => a.stageId === "titos");
+  ok(titos && titos.anchorSource === "osm" && titos.lat === 30.267785, "a crowd anchor for one stage disturbed another stage's satellite spot");
+  // Mutation: a resolver that ignores crowdAnchors must be caught.
+  mutations++;
+  const satOnly = c => (c.gpsAnchors || []).map(g => ({ stageId: g.stageId, lat: g.lat, lng: g.lng, anchorSource: g.src }));
+  ok(satOnly(cfg2).find(a => a.stageId === "bmi").anchorSource !== "crowd", "mutation not caught: a satellite-only resolver passes the override check");
+}
 
 if (fails.length) { fails.forEach(f => console.error(`  ✗ ${f}`)); console.error(`  ${fails.length} of ${checks} ACL map checks failed`); process.exit(1); }
 console.log(`  ✓ ACL 2026 map: plate is the verified 2026 patron map (square ${M.derivativeSize.join("×")}), ` +
