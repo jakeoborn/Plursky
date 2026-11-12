@@ -25,6 +25,7 @@ var ScrollBody = React.forwardRef(function ScrollBody({
 }, fwdRef) {
   return React.createElement("div", {
     ref: fwdRef,
+    "data-scroll-body": "",
     ...rest,
     style: {
       flex: 1,
@@ -112,26 +113,61 @@ function TabBar({
     label: "Me",
     icon: MeIcon
   }];
+  var idx = Math.max(0, tabs.findIndex(t => t.id === active));
+  var lit = tabs.some(t => t.id === active);
   return React.createElement("div", {
+    className: "ps-tabbar",
     style: {
+      position: "relative",
       background: "var(--chrome)",
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       borderTop: "1px solid var(--line)",
-      padding: "0 10px 10px",
+      padding: "0 10px max(10px, env(safe-area-inset-bottom, 0px))",
       display: "flex",
       justifyContent: "space-around"
     }
-  }, tabs.map(t => {
+  }, lit && React.createElement("span", {
+    "aria-hidden": "true",
+    className: "ps-tab-ind",
+    style: {
+      position: "absolute",
+      top: 0,
+      left: 10,
+      height: 53,
+      width: `calc((100% - 20px) / ${tabs.length})`,
+      transform: `translateX(${idx * 100}%)`,
+      transition: "transform var(--t-move) var(--ease-spring)",
+      pointerEvents: "none",
+      display: "flex",
+      justifyContent: "center"
+    }
+  }, React.createElement("span", {
+    style: {
+      marginTop: 6,
+      width: 58,
+      height: 30,
+      borderRadius: 999,
+      background: "var(--acc-14)",
+      boxShadow: "inset 0 0 0 1px var(--acc-30)"
+    }
+  })), tabs.map(t => {
     var Icon = t.icon;
     var on = active === t.id;
     return React.createElement("button", {
       key: t.id,
       onClick: () => {
         haptic.light();
+        if (on) document.querySelectorAll(".ps-view [data-scroll-body]").forEach(sc => {
+          if (sc.scrollTop > 0) sc.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        });
         onChange(t.id);
       },
       "aria-current": on ? "page" : undefined,
+      className: "ps-tab",
       style: {
         position: "relative",
         background: "transparent",
@@ -149,21 +185,16 @@ function TabBar({
         minHeight: 53,
         transition: "color var(--t-tap) var(--ease-decay)"
       }
-    }, on && React.createElement("span", {
-      "aria-hidden": "true",
+    }, React.createElement("span", {
+      className: "ps-tab-icon",
       style: {
-        position: "absolute",
-        top: -1,
-        left: "28%",
-        right: "28%",
-        height: 2,
-        borderRadius: 2,
-        background: "var(--acc)",
-        boxShadow: "0 0 12px var(--acc-55)"
+        display: "flex",
+        transition: "transform var(--t-move) var(--ease-spring)",
+        transform: on ? "translateY(-1px)" : "none"
       }
-    }), React.createElement(Icon, {
+    }, React.createElement(Icon, {
       on: on
-    }), React.createElement("span", {
+    })), React.createElement("span", {
       "data-fit-words": true,
       "data-fit-group": "tab",
       "data-fit-min": "9",
@@ -173,7 +204,7 @@ function TabBar({
         fontSize: 11,
         lineHeight: 1.17,
         letterSpacing: ".01em",
-        fontWeight: 500,
+        fontWeight: on ? 600 : 500,
         textAlign: "center"
       }
     }, t.label));
@@ -1596,6 +1627,119 @@ function recordAttendanceFromGps(lat, lng, opts) {
   var added = markAttended(hit.night, hit.artistId, "gps");
   return added ? hit : null;
 }
+var SET_TRACK_PREF_KEY = "plursky_set_tracking_v1";
+var SET_TRACK_STORE_KEY = "plursky_set_intervals_v1";
+var SET_TRACK_EVENT = "plursky-set-tracking-change";
+function getSetTracking() {
+  try {
+    var v = localStorage.getItem(SET_TRACK_PREF_KEY);
+    return v === "on" || v === "off" ? v : null;
+  } catch {
+    return null;
+  }
+}
+function setSetTracking(on) {
+  try {
+    localStorage.setItem(SET_TRACK_PREF_KEY, on ? "on" : "off");
+  } catch {}
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+}
+function _readSetTrackStore() {
+  try {
+    var s = JSON.parse(localStorage.getItem(SET_TRACK_STORE_KEY) || "{}");
+    return s && typeof s === "object" ? s : {};
+  } catch {
+    return {};
+  }
+}
+function setTrackRecord(festivalId, fix) {
+  if (!festivalId) return false;
+  var all = _readSetTrackStore();
+  all[festivalId] = setTrackAppend(all[festivalId], {
+    ms: fix && fix.ms,
+    stageId: fix && fix.stageId
+  });
+  try {
+    localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all));
+  } catch {
+    return false;
+  }
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+  return true;
+}
+function getSetTrackIntervals(festivalId) {
+  var e = _readSetTrackStore()[festivalId];
+  return e && e.runs || {};
+}
+function clearSetTrack(festivalId) {
+  var all = _readSetTrackStore();
+  if (!(festivalId in all)) return false;
+  delete all[festivalId];
+  try {
+    localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all));
+  } catch {}
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+  return true;
+}
+function SetTrackingWatcher() {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  var {
+    active: bsActive
+  } = useBatterySaver();
+  React.useEffect(() => {
+    var on = () => bump();
+    window.addEventListener(SET_TRACK_EVENT, on);
+    document.addEventListener("visibilitychange", on);
+    var t = setInterval(on, 60000);
+    return () => {
+      window.removeEventListener(SET_TRACK_EVENT, on);
+      document.removeEventListener("visibilitychange", on);
+      clearInterval(t);
+    };
+  }, []);
+  var cfg = window.FESTIVAL_CONFIG;
+  var fid = cfg && cfg.id;
+  var run = getSetTracking() === "on" && document.visibilityState !== "hidden" && setTrackEligibility(cfg, Date.now()) === "live";
+  React.useEffect(() => {
+    if (!run || !navigator.geolocation) return;
+    var anchors = attendEvidenceAnchors(cfg);
+    var rules = bsActive ? STAGE_FIX_ATTEND_SAVER : STAGE_FIX_ATTEND;
+    var opts = bsActive ? {
+      enableHighAccuracy: false,
+      maximumAge: 30000,
+      timeout: 30000
+    } : {
+      enableHighAccuracy: true,
+      maximumAge: 4000,
+      timeout: 15000
+    };
+    var alive = true;
+    var id = navigator.geolocation.watchPosition(p => {
+      if (!alive || !p || !p.coords) return;
+      var q = attendQualifyFixes([{
+        lat: p.coords.latitude,
+        lng: p.coords.longitude,
+        accuracy: p.coords.accuracy,
+        timestamp: p.timestamp,
+        atMs: Date.now()
+      }], anchors, rules);
+      if (q.length) setTrackRecord(fid, q[0]);
+    }, () => {}, opts);
+    return () => {
+      alive = false;
+      try {
+        navigator.geolocation.clearWatch(id);
+      } catch {}
+    };
+  }, [run, fid, bsActive]);
+  return null;
+}
 function _artistStartMs(artist) {
   return _wallMs(artistDayDate(artist), artist && artist.start, FESTIVAL_CONFIG && FESTIVAL_CONFIG.tz);
 }
@@ -2869,6 +3013,125 @@ function BatterySaverCard() {
       fontWeight: 600
     }
   }, battPct, "% ", battery.charging ? "· CHARGING" : "")));
+}
+function SetTrackingCard() {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  var [asking, setAsking] = React.useState(false);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  var cfg = window.FESTIVAL_CONFIG;
+  var name = cfg && (cfg.shortName || cfg.name) || "this festival";
+  var on = getSetTracking() === "on";
+  var elig = setTrackEligibility(cfg, Date.now());
+  var hasData = !!(cfg && Object.keys(getSetTrackIntervals(cfg.id)).length);
+  var btn = primary => ({
+    background: primary ? "var(--acc)" : "var(--s3)",
+    color: primary ? "var(--on-acc)" : "var(--ink)",
+    border: "none",
+    borderRadius: 999,
+    padding: "0 16px",
+    minHeight: 44,
+    fontFamily: "var(--f-ui)",
+    fontSize: 14,
+    fontWeight: 650,
+    cursor: "pointer"
+  });
+  var body = {
+    fontSize: 14,
+    color: "var(--ink-2)",
+    lineHeight: 1.43,
+    marginBottom: 12
+  };
+  var status = elig === "no-stages" ? `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one." : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses." : elig === "ended" ? `On. ${name} is over, so nothing is counting.` : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
+  return React.createElement("div", {
+    "data-set-tracking-card": true,
+    "data-set-tracking-state": on ? "on" : "off",
+    "data-set-tracking-elig": elig,
+    style: {
+      padding: 16,
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      marginBottom: 12
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 6
+    }
+  }, React.createElement("div", {
+    className: "duo-label",
+    style: {
+      color: "var(--ink-3)"
+    }
+  }, "SET TRACKING"), React.createElement("span", {
+    className: "duo-label",
+    style: {
+      color: on ? "var(--acc-ink)" : "var(--ink-2)"
+    }
+  }, on ? "ON" : "OFF")), React.createElement("div", {
+    className: "duo-headline",
+    style: {
+      marginBottom: 4
+    }
+  }, "Time the sets you catch"), React.createElement("div", {
+    "data-set-tracking-status": true,
+    style: body
+  }, status), asking && !on ? React.createElement("div", {
+    "data-set-tracking-consent": true
+  }, React.createElement("div", {
+    style: body
+  }, React.createElement("b", {
+    style: {
+      color: "var(--ink)"
+    }
+  }, "Recorded:"), " which stage you were at and when, during sets.", React.createElement("br", null), React.createElement("b", {
+    style: {
+      color: "var(--ink)"
+    }
+  }, "Not recorded:"), " your exact location. Nothing leaves this phone.", React.createElement("br", null), "It counts only while Plursky is open, and you can turn it off here any time."), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, React.createElement("button", {
+    "data-set-tracking-accept": true,
+    onClick: () => {
+      setSetTracking(true);
+      setAsking(false);
+    },
+    style: btn(true)
+  }, "Turn on"), React.createElement("button", {
+    onClick: () => {
+      setSetTracking(false);
+      setAsking(false);
+    },
+    style: btn(false)
+  }, "Not now"))) : React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, on ? React.createElement("button", {
+    "data-set-tracking-off": true,
+    onClick: () => setSetTracking(false),
+    style: btn(false)
+  }, "Turn off") : elig !== "no-stages" && React.createElement("button", {
+    "data-set-tracking-setup": true,
+    onClick: () => setAsking(true),
+    style: btn(false)
+  }, "Set up"), hasData && React.createElement("button", {
+    "data-set-tracking-clear": true,
+    onClick: () => clearSetTrack(cfg.id),
+    style: btn(false)
+  }, "Clear ", name, " times")));
 }
 function _syncNativeAppearance(mode, choice) {
   var style = choice === "dark" || choice === "light" ? mode : "system";
