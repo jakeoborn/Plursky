@@ -1,0 +1,192 @@
+{
+  "id": "shambhala-2012",
+  "method": "official_sources",
+  "official": "https://www.shambhalamusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2012-08-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2012-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20120915203815/http://www.shambhalamusicfestival.com/2012-schedule/",
+          "captureTimestamp": "20120915203815",
+          "printed": "Thursday",
+          "sha256": "8609b0ffcd8ab2edd3bcb4f3a3921a0b8819722662f11220859ee55f87228d10",
+          "bytes": 122594,
+          "rows": 34,
+          "format": "shambhala-table",
+          "firstSlot": "time_1344513600",
+          "stages": 6,
+          "axis": "12:00PM … 6:00AM",
+          "slots": 37,
+          "openEnded": 34,
+          "closedBlocks": 2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2012-08-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2012-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20120915203815/http://www.shambhalamusicfestival.com/2012-schedule/",
+          "captureTimestamp": "20120915203815",
+          "printed": "Friday",
+          "sha256": "8609b0ffcd8ab2edd3bcb4f3a3921a0b8819722662f11220859ee55f87228d10",
+          "bytes": 122594,
+          "rows": 79,
+          "format": "shambhala-table",
+          "firstSlot": "time_1344600000",
+          "stages": 6,
+          "axis": "12:00PM … 10:00AM",
+          "slots": 45,
+          "openEnded": 79,
+          "closedBlocks": 7
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2012-08-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2012-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20120915203815/http://www.shambhalamusicfestival.com/2012-schedule/",
+          "captureTimestamp": "20120915203815",
+          "printed": "Saturday",
+          "sha256": "8609b0ffcd8ab2edd3bcb4f3a3921a0b8819722662f11220859ee55f87228d10",
+          "bytes": 122594,
+          "rows": 78,
+          "format": "shambhala-table",
+          "firstSlot": "time_1344682800",
+          "stages": 6,
+          "axis": "11:00AM … 10:00AM",
+          "slots": 47,
+          "openEnded": 78,
+          "closedBlocks": 11
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2012-08-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2012-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20120915203815/http://www.shambhalamusicfestival.com/2012-schedule/",
+          "captureTimestamp": "20120915203815",
+          "printed": "Sunday",
+          "sha256": "8609b0ffcd8ab2edd3bcb4f3a3921a0b8819722662f11220859ee55f87228d10",
+          "bytes": 122594,
+          "rows": 79,
+          "format": "shambhala-table",
+          "firstSlot": "time_1344769200",
+          "stages": 6,
+          "axis": "11:00AM … 10:00AM",
+          "slots": 47,
+          "openEnded": 79,
+          "closedBlocks": 5
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Rock Pit",
+      "start": "12:00",
+      "end": null,
+      "billing": "Opening Ceremony with Luciterra",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Labyrinth",
+      "start": "12:00",
+      "end": null,
+      "billing": "Labyrinth Experience",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Village",
+      "start": "14:30",
+      "end": null,
+      "billing": "PK & friends Ragga Jungle Rinse Out",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Rock Pit",
+      "start": "12:00",
+      "end": null,
+      "billing": "Ableton Workshop w/ Vespers",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Labyrinth",
+      "start": "12:00",
+      "end": null,
+      "billing": "Inner Journeys Ecstatic Dance",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Village",
+      "start": "15:00",
+      "end": null,
+      "billing": "Hip Hop Showcase",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Rock Pit",
+      "start": "14:00",
+      "end": null,
+      "billing": "TBA",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 4,
+      "stage": "Rock Pit",
+      "start": "00:00",
+      "end": null,
+      "billing": "TBA",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 4,
+      "stage": "Fractal Forest",
+      "start": "13:00",
+      "end": null,
+      "billing": "Fractal Funk Jam w/ Smalltown DJs & friends",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Labyrinth",
+      "start": "08:00",
+      "end": null,
+      "billing": "Closing Circle",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    }
+  ]
+}
