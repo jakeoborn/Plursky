@@ -9,11 +9,14 @@
 // sorted across midnight; open-ended closers show no invented end; ACL's six
 // days group into two weekends; search spans every day; the provenance sheet
 // lists every archived capture, each row readable apart from the others
-// (several graphics on one day are numbered); a lineup_only edition (a fixture served by
-// route interception, since no real one exists yet) shows names and no times;
-// a failed fetch offers a retry; and nothing scrolls sideways at 393pt.
+// (several graphics on one day are numbered); a lineup_only edition with no
+// printed days (a fixture served by route interception) shows names and no
+// times; the real lineup_only editions show each day's artists under the stage
+// their official lineup printed, an All tab with every billing (including one
+// printed without a day), and no times; a failed fetch offers a retry; and
+// nothing scrolls sideways at 393pt.
 //
-//   PLURSKY_PAST_SHOTS=<dir> node scripts/test-past-festivals-ui.mjs   # also writes 9 screenshots
+//   PLURSKY_PAST_SHOTS=<dir> node scripts/test-past-festivals-ui.mjs   # also writes a screenshot of each state
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { createServer } from "node:net";
@@ -35,8 +38,8 @@ const ok = (cond, msg) => { checks++; if (!cond) fails.push(msg); };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const port = () => new Promise((res, rej) => { const s = createServer(); s.once("error", rej); s.listen(0, "127.0.0.1", () => { const p = s.address().port; s.close(() => res(p)); }); });
 
-// A lineup_only edition does not exist in the library yet, so the gate brings
-// its own: names only, no stages, no sets (the shape validate.mjs enforces).
+// A lineup_only edition whose page printed no days: names only, no stages,
+// no sets. No real edition has this shape, so the gate brings its own.
 const FIXTURE = {
   id: "fixture-fest-2024", festivalId: "fixture", name: "Fixture Fest 2024", year: 2024, timezone: "America/Chicago", rolloverHour: 6,
   completeness: "lineup_only", days: [{ day: 1, date: "2024-06-01", label: "Saturday" }], stages: [], sets: [],
@@ -68,6 +71,15 @@ try {
     await r.fulfill({ response: resp, json: { editions: [...j.editions, FIXTURE_META] } });
   });
   await ctx.route(`**/data/historical/editions/${FIXTURE.id}.json`, r => r.fulfill({ json: FIXTURE }));
+  // Main's data replaced the lineup-only Dreamstate and Escape 2025 editions
+  // with complete schedules, so no real edition still prints days without
+  // stages, or a billing without a day. Those two shapes are served as
+  // variants of the real Nocturnal 2025 file.
+  let nocVariant = null;
+  await ctx.route("**/data/historical/editions/nocturnal-wonderland-2025.json", async r => {
+    if (!nocVariant) return r.fallback();
+    const resp = await r.fetch(); await r.fulfill({ response: resp, json: nocVariant(await resp.json()) });
+  });
   await ctx.route("**/data/historical/editions/*.json", r => failEdition && r.request().url().includes(failEdition) ? r.abort() : r.fallback());
   await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
 
@@ -90,7 +102,7 @@ try {
   await page.getByRole("heading", { name: "Past festivals", level: 1 }).waitFor({ timeout: 10000 });
   await page.getByText(INDEX.editions[0].festivalName, { exact: true }).first().waitFor({ timeout: 10000 });
   for (const e of INDEX.editions) {
-    const want = `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets`;
+    const want = e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets`;
     ok(await page.getByText(want, { exact: true }).count() >= 1, `library row for ${e.id} does not read "${want}"`);
   }
   ok(await page.getByText("3 artists · lineup only", { exact: true }).count() === 1, "the lineup_only row does not say it is lineup only");
@@ -224,11 +236,86 @@ try {
   await noSideScroll("lineup_only");
   await shot("6-lineup-only");
 
+  // ── real lineup_only editions: the day and stage the official lineup printed, no times ──
+  const openEdition = async (name, id) => {
+    await page.getByRole("button", { name: "Back" }).click();
+    await page.evaluate(() => { for (const k of Object.keys(_histCache)) if (k.includes("nocturnal-wonderland-2025")) delete _histCache[k]; });
+    await page.locator("section", { has: page.getByRole("heading", { name: String(ED[id].year), exact: true }) })
+      .getByRole("button", { name: new RegExp(`^${name}`) }).click();
+    await page.getByText(`Official ${ED[id].year} lineup · archived`, { exact: true }).waitFor({ timeout: 10000 });
+    await page.getByText(/^Set times not verified for this edition: no official set times survive/).waitFor({ timeout: 10000 });
+  };
+  const onDay = (e, d) => e.artists.filter(a => a.appearances.some(x => x.day === d));
+  {
+    const noc = ED["nocturnal-wonderland-2025"];
+    await openEdition("Nocturnal Wonderland", noc.id);
+    ok(await page.getByRole("button", { pressed: true }).count() === 1 && await page.locator("[aria-pressed]").count() === noc.days.length + 1,
+      `Nocturnal shows ${await page.locator("[aria-pressed]").count()} tabs, want ${noc.days.length} days + All`);
+    const d1Stages = noc.stages.filter(st => noc.artists.some(a => a.appearances.some(x => x.day === 1 && x.stageId === st.id)));
+    ok(JSON.stringify(await page.locator("[data-stage] h2").allTextContents()) === JSON.stringify(d1Stages.map(s => s.name)), "Nocturnal day 1 stage sections are not the printed stages in printed order");
+    const d1Rows = noc.artists.reduce((n, a) => n + a.appearances.filter(x => x.day === 1).length, 0);
+    ok(await page.locator("[data-stage] li").count() === d1Rows, `Nocturnal day 1 renders ${await page.locator("[data-stage] li").count()} rows, data has ${d1Rows}`);
+    ok(await page.getByText(/\d:\d\d ?[AP]M/).count() === 0, "a lineup-only edition shows a time");
+    ok(await page.getByText("Days and stages are as the official lineup printed them.", { exact: false }).count() === 1, "the lineup note does not say where days and stages come from");
+    await noSideScroll("Nocturnal day 1");
+    await shot("7-lineup-nocturnal-day1");
+    await page.getByRole("button", { name: "The whole lineup" }).click();
+    ok(await page.getByRole("list", { name: "Lineup" }).getByRole("listitem").count() === noc.artists.length, "the All tab does not list every artist");
+    const sample = noc.artists.find(a => a.appearances.length === 1 && a.appearances[0].stageId);
+    const sub = `${noc.days.find(d => d.day === sample.appearances[0].day).label} · ${noc.stages.find(s => s.id === sample.appearances[0].stageId).name}`;
+    ok(await page.getByRole("listitem").filter({ hasText: sample.name }).getByText(sub, { exact: true }).count() >= 1, `All does not show ${sample.name} as "${sub}"`);
+    await page.getByRole("searchbox", { name: "Search artists" }).fill(sample.name.toLowerCase());
+    ok(await page.getByRole("list", { name: "Lineup" }).getByRole("listitem").count() === noc.artists.filter(a => a.name.toLowerCase().includes(sample.name.toLowerCase())).length, "lineup search does not filter by name");
+    ok(await page.locator("[aria-pressed]").count() === 0, "day tabs stay up while a lineup search spans every day");
+    await page.getByRole("searchbox", { name: "Search artists" }).fill("");
+  }
+  {
+    // Days but no stages printed (was Dreamstate 2025's lineup page).
+    nocVariant = e => ({ ...e, stages: [], artists: e.artists.map(a => ({ ...a, appearances: a.appearances.filter(x => x.day).map(({ day }) => ({ day })) })) });
+    const ds = nocVariant(ED["nocturnal-wonderland-2025"]);
+    await openEdition("Nocturnal Wonderland", ds.id);
+    ok(await page.locator("[data-stage] h2").count() === 0, "a lineup with no printed stages shows stage headers");
+    ok(await page.locator("[data-stage] li").count() === onDay(ds, 1).length, `no-stage day 1 renders ${await page.locator("[data-stage] li").count()} artists, data has ${onDay(ds, 1).length}`);
+    ok(await page.getByText("Days are as the official lineup printed them.", { exact: false }).count() === 1, "the no-stage note claims stages");
+    await noSideScroll("no-stage day 1");
+  }
+  {
+    // A billing printed under a stage but no day (was Escape 2025's lineup page).
+    let moved = null;
+    nocVariant = e => ({ ...e, artists: e.artists.map(a => {
+      if (moved && moved !== a.name) return a;
+      const x = a.appearances.find(y => y.stageId);
+      if (!x) return a;
+      moved = a.name; return { ...a, appearances: [{ stageId: x.stageId }] };
+    }) });
+    const esc = nocVariant(ED["nocturnal-wonderland-2025"]);
+    await openEdition("Nocturnal Wonderland", esc.id);
+    const dayless = esc.artists.filter(a => !a.appearances.some(x => x.day));
+    ok(dayless.length > 0, "control: the variant has no billing printed without a day");
+    await page.getByRole("button", { name: "The whole lineup" }).click();
+    for (const a of dayless) {
+      const st = esc.stages.find(s => s.id === a.appearances[0]?.stageId)?.name;
+      ok(await page.getByRole("listitem").filter({ hasText: a.name }).getByText(st, { exact: true }).count() >= 1, `${a.name} (printed only under ${st}) is missing from All, or shows an invented day`);
+    }
+    await noSideScroll("dayless All");
+    nocVariant = null;
+  }
+  {
+    // Main's complete schedules stay complete: Dreamstate 2025 opens with times.
+    const ds = ED["dreamstate-socal-2025"];
+    ok(ds.completeness === "complete_schedule" && ds.sets.length === 84, `Dreamstate 2025 is ${ds.completeness} with ${ds.sets.length} sets (want complete_schedule, 84)`);
+    await page.getByRole("button", { name: "Back" }).click();
+    await page.locator("section", { has: page.getByRole("heading", { name: "2025", exact: true }) })
+      .getByRole("button", { name: /^Dreamstate SoCal/ }).click();
+    await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
+    ok(await page.getByText(/\d:\d\d ?[AP]M/).count() > 0, "Dreamstate 2025 day 1 shows no set times");
+  }
+
   // ── a failed edition fetch offers a retry that recovers ──
   await page.getByRole("button", { name: "Back" }).click();
   failEdition = "hard-summer-2025";
   await page.evaluate(() => { for (const k of Object.keys(_histCache)) if (k.includes("hard-summer")) delete _histCache[k]; });
-  await page.getByRole("button", { name: /^HARD Summer/ }).click();
+  await page.getByRole("button", { name: /^HARD Summer .*\b2025\b/ }).click();
   await page.getByRole("button", { name: "Try again" }).waitFor({ timeout: 10000 });
   failEdition = null;
   await page.getByRole("button", { name: "Try again" }).click();

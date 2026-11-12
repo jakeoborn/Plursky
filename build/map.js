@@ -545,13 +545,27 @@ var MAP_REGISTRATION_SOURCED = geometryVerifiedFor(FESTIVAL_CONFIG.id, FESTIVAL_
 function readoutHonest(avatar) {
   return geometryVerifiedFor(typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
+var ARTFIT_MAX_RMS_M = 15;
+function artGeorefFor(cfg) {
+  var g = cfg && cfg.mapGeoref;
+  if (!g || typeof g.image !== "string" || !Array.isArray(g.bounds) || g.bounds.length !== 4) return null;
+  var [w, s, e, n] = g.bounds;
+  if (![w, s, e, n].every(Number.isFinite) || !(e > w && n > s)) return null;
+  if (!(Number.isFinite(g.rmsM) && g.rmsM <= ARTFIT_MAX_RMS_M)) return null;
+  return g;
+}
 function posterTierFor(cfg, affine, verified) {
-  if (!cfg || cfg.mapMode === "real" || !affine) return "none";
+  if (!cfg || cfg.mapMode === "real") return "none";
   if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
-  return verified ? "checked" : "unchecked";
+  if (affine && verified) return "checked";
+  if (artGeorefFor(cfg)) return "fitted";
+  return affine ? "unchecked" : "none";
 }
 var POSTER_TIER = posterTierFor(FESTIVAL_CONFIG, MAP_AFFINE, MAP_REGISTRATION_SOURCED);
+var ART_GEOREF = POSTER_TIER === "none" ? null : artGeorefFor(FESTIVAL_CONFIG);
+var OFFICIAL_MAP_SRC = ART_GEOREF ? ART_GEOREF.image : FESTIVAL_CONFIG.mapImage;
 var POSTER_OPACITY_UNCHECKED = 0.35;
+var POSTER_OPACITY_FITTED = 0.82;
 var REAL_MAP_PLACES_CHECKED = !!MAP_AFFINE && !!MAP_REGISTRATION_SOURCED;
 var REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];
 var REAL_MAP_AMENITIES = REAL_MAP_PLACES_CHECKED && typeof AMENITIES !== "undefined" ? AMENITIES : [];
@@ -2699,6 +2713,29 @@ function MapScreen({
       return true;
     }
   });
+  var [showMyPins, setShowMyPins] = React.useState(() => {
+    try {
+      return localStorage.getItem("plursky_map_mypins") !== "0";
+    } catch {
+      return true;
+    }
+  });
+  var [myMoments, setMyMoments] = React.useState(_mapMyMoments);
+  React.useEffect(() => {
+    var on = () => setMyMoments(_mapMyMoments());
+    window.addEventListener("plursky-moments-change", on);
+    return () => window.removeEventListener("plursky-moments-change", on);
+  }, []);
+  var photoPins = React.useMemo(() => useRealMap && showMyPins ? _momentPinsFor(myMoments, FESTIVAL_CONFIG.id) : _NO_PINS, [useRealMap, showMyPins, myMoments]);
+  var [pinView, setPinView] = React.useState(null);
+  var openPinned = React.useCallback(ids => {
+    var want = new Set(ids || []);
+    var items = myMoments.filter(m => want.has(m.id)).sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")) || (a.createdAt || 0) - (b.createdAt || 0));
+    if (items.length) setPinView({
+      moments: items,
+      index: 0
+    });
+  }, [myMoments]);
   var setMeet = t => setMeetTarget(_meetTargetFor(t, useRealMap));
   React.useEffect(() => {
     setMeetTarget(t => _meetTargetFor(t, useRealMap));
@@ -2707,7 +2744,7 @@ function MapScreen({
   var canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
   var artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
   var artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
-  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
+  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "fitted" ? "OFFICIAL MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
   var mapAmenities = useRealMap ? REAL_MAP_AMENITIES : typeof AMENITIES !== "undefined" ? AMENITIES : [];
   var [realMapNote, setRealMapNote] = React.useState(null);
   var _disableRealMap = why => {
@@ -3464,7 +3501,17 @@ function MapScreen({
     label: "Landmark labels",
     active: showLabels,
     onToggle: () => setShowLabels(s => !s)
-  }, ...(REAL_MAP_ONLY ? [] : [{
+  }, ...(useRealMap ? [{
+    id: "mypins",
+    label: "My photos & videos",
+    active: showMyPins,
+    onToggle: () => setShowMyPins(v => {
+      try {
+        localStorage.setItem("plursky_map_mypins", v ? "0" : "1");
+      } catch {}
+      return !v;
+    })
+  }] : []), ...(REAL_MAP_ONLY ? [] : [{
     id: "realmap",
     label: "Real map",
     active: useRealMap,
@@ -4405,6 +4452,8 @@ function MapScreen({
     amenityFilter: mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null,
     controlRef: realMapCtl,
     onViewChange: setRealView,
+    photoPins: photoPins,
+    onPhotoPin: openPinned,
     crewFriends: crewFriends,
     saved: state.saved,
     showHeat: showHeat,
@@ -5075,6 +5124,40 @@ function MapScreen({
     onStop: () => setShareState(null)
   }), meetupsOpen && React.createElement(MeetupsSheet, {
     onClose: () => setMeetupsOpen(false)
+  }), pinView && typeof MomentLightbox === "function" && React.createElement(MomentLightbox, {
+    moments: pinView.moments,
+    index: pinView.index,
+    showNight: true,
+    onClose: () => setPinView(null),
+    onIndexChange: i => setPinView(v => v ? {
+      ...v,
+      index: i
+    } : v),
+    onArtistClick: id => {
+      setPinView(null);
+      setState({
+        ...state,
+        tab: "home",
+        artist: id
+      });
+    },
+    onUpdate: (mom, patch) => {
+      try {
+        var all = _readMoments();
+        for (var n of Object.keys(all)) all[n] = (all[n] || []).map(m => m.id === mom.id ? {
+          ...m,
+          ...patch
+        } : m);
+        _writeMoments(all);
+        setPinView(v => v ? {
+          ...v,
+          moments: v.moments.map(m => m.id === mom.id ? {
+            ...m,
+            ...patch
+          } : m)
+        } : v);
+      } catch {}
+    }
   }));
 }
 function StageIcon({
@@ -6106,6 +6189,250 @@ function OfflinePacksSheet({
 function _validGps(g) {
   return !!g && Number.isFinite(g.lat) && Number.isFinite(g.lng) && Math.abs(g.lat) <= 90 && Math.abs(g.lng) <= 180;
 }
+function _momentPinsFor(moments, festivalId) {
+  var out = [];
+  for (var m of moments || []) {
+    if (!m || !m.id || !m.artistId) continue;
+    if (festivalId && m.festivalId && m.festivalId !== festivalId) continue;
+    var g = m.parsedGps;
+    if (!_validGps(g) || g.lat === 0 && g.lng === 0) continue;
+    var accM = photoFixAccM(m);
+    out.push({
+      id: m.id,
+      lat: g.lat,
+      lng: g.lng,
+      accM,
+      acc: photoFixAccClass(accM),
+      kind: m.kind === "video" ? "video" : "photo"
+    });
+  }
+  return out;
+}
+function _momentPinsGeoJson(pins) {
+  return {
+    type: "FeatureCollection",
+    features: (pins || []).map(p => ({
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [p.lng, p.lat]
+      },
+      properties: {
+        id: p.id,
+        kind: p.kind,
+        acc: p.acc || "unknown"
+      }
+    }))
+  };
+}
+var _ACC_RING_STEPS = 48;
+function _momentAccRingsGeoJson(pins) {
+  var R = 6371008.8,
+    k = Math.PI / 180,
+    features = [];
+  for (var p of pins || []) {
+    if (!(p && p.accM > 0) || p.acc === "unknown") continue;
+    var dLat = p.accM / R / k,
+      dLng = p.accM / (R * Math.cos(p.lat * k)) / k,
+      ring = [];
+    for (var i = 0; i <= _ACC_RING_STEPS; i++) {
+      var a = 2 * Math.PI * (i % _ACC_RING_STEPS) / _ACC_RING_STEPS;
+      ring.push([p.lng + dLng * Math.cos(a), p.lat + dLat * Math.sin(a)]);
+    }
+    features.push({
+      type: "Feature",
+      geometry: {
+        type: "Polygon",
+        coordinates: [ring]
+      },
+      properties: {
+        id: p.id,
+        acc: p.acc,
+        accM: p.accM
+      }
+    });
+  }
+  return {
+    type: "FeatureCollection",
+    features
+  };
+}
+var _NO_PINS = Object.freeze([]);
+function _mapMyMoments() {
+  try {
+    if (typeof _readMoments !== "function" || typeof _activeMoments !== "function") return [];
+    var all = _activeMoments(_readMoments());
+    var out = [];
+    for (var n of Object.keys(all)) for (var m of all[n] || []) if (m) out.push(m);
+    return out;
+  } catch {
+    return [];
+  }
+}
+var MOMENT_PIN_SOURCE = "my-moments";
+var MOMENT_PIN_CLUSTER = "my-moments-cluster";
+var MOMENT_PIN_POINT = "my-moments-point";
+var MOMENT_PIN_COUNT = "my-moments-count";
+var MOMENT_ACC_SOURCE = "my-moments-acc";
+var MOMENT_ACC_FILL = "my-moments-acc-fill";
+var MOMENT_ACC_LINE = "my-moments-acc-line";
+var MOMENT_ACC_LINE_COARSE = "my-moments-acc-line-coarse";
+function _momentPinCountImage(label) {
+  try {
+    var text = String(label).slice(0, 5);
+    var c = document.createElement("canvas");
+    var w = 28 * 2 + text.length * 8 * 2,
+      h = 28 * 2;
+    c.width = w;
+    c.height = h;
+    var g = c.getContext("2d");
+    g.fillStyle = "#ffffff";
+    g.font = "700 26px -apple-system, system-ui, 'Helvetica Neue', Arial, sans-serif";
+    g.textAlign = "center";
+    g.textBaseline = "middle";
+    g.fillText(text, w / 2, h / 2 + 1);
+    return g.getImageData(0, 0, w, h);
+  } catch {
+    return null;
+  }
+}
+function _addMomentPinLayers(map, pins, onTap) {
+  if (!map.getSource(MOMENT_ACC_SOURCE)) {
+    map.addSource(MOMENT_ACC_SOURCE, {
+      type: "geojson",
+      data: _momentAccRingsGeoJson(pins),
+      maxzoom: 22
+    });
+  }
+  if (!map.getLayer(MOMENT_ACC_FILL)) {
+    map.addLayer({
+      id: MOMENT_ACC_FILL,
+      type: "fill",
+      source: MOMENT_ACC_SOURCE,
+      paint: {
+        "fill-color": "#e85d2e",
+        "fill-opacity": ["match", ["get", "acc"], "precise", 0.16, 0.07]
+      }
+    });
+  }
+  if (!map.getLayer(MOMENT_ACC_LINE)) {
+    map.addLayer({
+      id: MOMENT_ACC_LINE,
+      type: "line",
+      source: MOMENT_ACC_SOURCE,
+      filter: ["==", ["get", "acc"], "precise"],
+      paint: {
+        "line-color": "#e85d2e",
+        "line-width": 1.5,
+        "line-opacity": 0.85
+      }
+    });
+  }
+  if (!map.getLayer(MOMENT_ACC_LINE_COARSE)) {
+    map.addLayer({
+      id: MOMENT_ACC_LINE_COARSE,
+      type: "line",
+      source: MOMENT_ACC_SOURCE,
+      filter: ["==", ["get", "acc"], "coarse"],
+      paint: {
+        "line-color": "#e85d2e",
+        "line-width": 1.5,
+        "line-opacity": 0.7,
+        "line-dasharray": [2, 2]
+      }
+    });
+  }
+  if (!map.getSource(MOMENT_PIN_SOURCE)) {
+    map.addSource(MOMENT_PIN_SOURCE, {
+      type: "geojson",
+      data: _momentPinsGeoJson(pins),
+      maxzoom: 22,
+      cluster: true,
+      clusterRadius: 36,
+      clusterMaxZoom: 21
+    });
+  }
+  if (!map.getLayer(MOMENT_PIN_CLUSTER)) {
+    map.addLayer({
+      id: MOMENT_PIN_CLUSTER,
+      type: "circle",
+      source: MOMENT_PIN_SOURCE,
+      filter: ["has", "point_count"],
+      paint: {
+        "circle-color": "#e85d2e",
+        "circle-radius": ["step", ["get", "point_count"], 16, 10, 19, 50, 23],
+        "circle-stroke-width": 2,
+        "circle-stroke-color": "#ffffff"
+      }
+    });
+  }
+  if (!map.getLayer(MOMENT_PIN_POINT)) {
+    map.addLayer({
+      id: MOMENT_PIN_POINT,
+      type: "circle",
+      source: MOMENT_PIN_SOURCE,
+      filter: ["!", ["has", "point_count"]],
+      paint: {
+        "circle-color": ["match", ["get", "kind"], "video", "#7c3aed", "#e85d2e"],
+        "circle-radius": 9,
+        "circle-opacity": ["match", ["get", "acc"], "unknown", 0.55, 1],
+        "circle-stroke-width": 2,
+        "circle-stroke-color": ["match", ["get", "acc"], "unknown", "#1f2937", "#ffffff"]
+      }
+    });
+  }
+  if (!map.getLayer(MOMENT_PIN_COUNT)) {
+    map.addLayer({
+      id: MOMENT_PIN_COUNT,
+      type: "symbol",
+      source: MOMENT_PIN_SOURCE,
+      filter: ["has", "point_count"],
+      layout: {
+        "icon-image": ["concat", "plur-pin-n-", ["get", "point_count_abbreviated"]],
+        "icon-allow-overlap": true,
+        "icon-ignore-placement": true
+      }
+    });
+  }
+  if (!map.__plurPinImages) {
+    map.__plurPinImages = true;
+    map.on("styleimagemissing", e => {
+      var id = e && e.id;
+      if (typeof id !== "string" || id.indexOf("plur-pin-n-") !== 0 || map.hasImage(id)) return;
+      var img = _momentPinCountImage(id.slice("plur-pin-n-".length));
+      if (img) {
+        try {
+          map.addImage(id, img, {
+            pixelRatio: 2
+          });
+        } catch {}
+      }
+    });
+  }
+  if (map.__plurMomentTaps || typeof onTap !== "function") return;
+  map.__plurMomentTaps = true;
+  map.on("click", MOMENT_PIN_POINT, e => {
+    var f = e.features && e.features[0];
+    if (f && f.properties && f.properties.id) onTap([f.properties.id]);
+  });
+  map.on("click", MOMENT_PIN_CLUSTER, e => {
+    var f = e.features && e.features[0];
+    var src = map.getSource(MOMENT_PIN_SOURCE);
+    if (!f || !src) return;
+    Promise.resolve(src.getClusterLeaves(f.properties.cluster_id, 200, 0)).then(leaves => {
+      var ids = (leaves || []).map(l => l.properties && l.properties.id).filter(Boolean);
+      if (ids.length) onTap(ids);
+    }).catch(() => {});
+  });
+  for (var id of [MOMENT_PIN_POINT, MOMENT_PIN_CLUSTER]) {
+    map.on("mouseenter", id, () => {
+      map.getCanvas().style.cursor = "pointer";
+    });
+    map.on("mouseleave", id, () => {
+      map.getCanvas().style.cursor = "";
+    });
+  }
+}
 function _lngLatOf(p) {
   var g = p && p.gps;
   if (_validGps(g)) return {
@@ -6193,6 +6520,10 @@ function _officialMapDims(src) {
   });
   return _imgDimsCache[src];
 }
+function _geoPlateCorners(g) {
+  var [w, s, e, n] = g.bounds;
+  return [[w, n], [e, n], [e, s], [w, s]];
+}
 function _officialMapCorners(natW, natH) {
   var e = _officialMapExtent(natW, natH);
   var pt = (x, y) => {
@@ -6224,7 +6555,9 @@ function RealMap({
   showAmenities = false,
   amenityFilter = null,
   controlRef,
-  onViewChange
+  onViewChange,
+  photoPins = _NO_PINS,
+  onPhotoPin
 }) {
   var containerRef = React.useRef(null);
   var mapRef = React.useRef(null);
@@ -6254,6 +6587,8 @@ function RealMap({
   var showLabelsRef = React.useRef(showLabels);
   var onPickStageRef = React.useRef(onPickStage);
   var onMapClickRef = React.useRef(onMapClick);
+  var photoPinsRef = React.useRef(photoPins);
+  var onPhotoPinRef = React.useRef(onPhotoPin);
   var meetModeRef = React.useRef(meetMode);
   var [loaded, setLoaded] = React.useState(false);
   var [err, setErr] = React.useState(null);
@@ -6343,6 +6678,24 @@ function RealMap({
   React.useEffect(() => {
     onPickStageRef.current = onPickStage;
   }, [onPickStage]);
+  React.useEffect(() => {
+    onPhotoPinRef.current = onPhotoPin;
+  }, [onPhotoPin]);
+  React.useEffect(() => {
+    photoPinsRef.current = photoPins;
+    var src = mapRef.current && mapRef.current.getSource(MOMENT_PIN_SOURCE);
+    if (src) {
+      try {
+        src.setData(_momentPinsGeoJson(photoPins));
+      } catch {}
+    }
+    var acc = mapRef.current && mapRef.current.getSource(MOMENT_ACC_SOURCE);
+    if (acc) {
+      try {
+        acc.setData(_momentAccRingsGeoJson(photoPins));
+      } catch {}
+    }
+  }, [photoPins]);
   React.useEffect(() => {
     onMapClickRef.current = onMapClick;
   }, [onMapClick]);
@@ -6745,12 +7098,12 @@ function RealMap({
         });
         var _addOfficialMap = () => {
           if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
-          if (!MAP_AFFINE) return;
+          if (!MAP_AFFINE && !ART_GEOREF) return;
           if (officialMapFailedRef.current) return;
           var dims = officialMapDimsRef.current;
           if (!dims) return;
-          var src = dims.url || FESTIVAL_CONFIG.mapImage;
-          var coordinates = _officialMapCorners(dims.w, dims.h);
+          var src = dims.url || OFFICIAL_MAP_SRC;
+          var coordinates = ART_GEOREF ? _geoPlateCorners(ART_GEOREF) : _officialMapCorners(dims.w, dims.h);
           if (!map.getSource("official-map")) {
             map.addSource("official-map", {
               type: "image",
@@ -6772,7 +7125,7 @@ function RealMap({
                 visibility: officialMapRef.current ? "visible" : "none"
               },
               paint: {
-                "raster-opacity": POSTER_TIER === "checked" ? FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78 : POSTER_OPACITY_UNCHECKED,
+                "raster-opacity": POSTER_TIER === "checked" ? FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78 : POSTER_TIER === "fitted" ? POSTER_OPACITY_FITTED : POSTER_OPACITY_UNCHECKED,
                 "raster-fade-duration": 0,
                 "raster-resampling": "linear"
               }
@@ -6782,7 +7135,7 @@ function RealMap({
         };
         _safeLayer("official-map", _addOfficialMap);
         if (!officialMapDimsRef.current && FESTIVAL_CONFIG.mapImage) {
-          _officialMapDims(FESTIVAL_CONFIG.mapImage).then(d => {
+          _officialMapDims(OFFICIAL_MAP_SRC).then(d => {
             if (cancelled || !d || !mapRef.current) return;
             officialMapDimsRef.current = d;
             _safeLayer("official-map", _addOfficialMap);
@@ -6939,7 +7292,7 @@ function RealMap({
             });
           }
         });
-        var _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route"].filter(id => map.getLayer(id));
+        var _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route", MOMENT_ACC_FILL, MOMENT_ACC_LINE, MOMENT_ACC_LINE_COARSE, MOMENT_PIN_CLUSTER, MOMENT_PIN_POINT, MOMENT_PIN_COUNT].filter(id => map.getLayer(id));
         var _order = (() => {
           try {
             return (map.getStyle().layers || []).map(l => l.id);
@@ -6991,9 +7344,12 @@ function RealMap({
             }
           });
         }
+        _safeLayer(MOMENT_PIN_SOURCE, () => _addMomentPinLayers(map, photoPinsRef.current, ids => {
+          if (onPhotoPinRef.current) onPhotoPinRef.current(ids);
+        }));
         try {
           (map.getStyle().layers || []).forEach(lyr => {
-            if (lyr.type === "symbol") map.setLayoutProperty(lyr.id, "visibility", "none");
+            if (lyr.type === "symbol" && lyr.id !== MOMENT_PIN_COUNT) map.setLayoutProperty(lyr.id, "visibility", "none");
           });
         } catch {}
       };
@@ -7183,7 +7539,7 @@ function RealMap({
       map.on("click", e => {
         if (!meetModeRef.current || !onMapClickRef.current) return;
         var hits = map.queryRenderedFeatures(e.point, {
-          layers: ["stages-3d"]
+          layers: ["stages-3d", MOMENT_PIN_POINT, MOMENT_PIN_CLUSTER].filter(id => map.getLayer(id))
         });
         if (hits && hits.length) return;
         var ll = e.lngLat;
@@ -7721,6 +8077,13 @@ var AMENITY_KEY = [{
   label: "Art"
 }];
 var AMENITY_STYLE = Object.fromEntries(AMENITY_KEY.map(a => [a.type, a]));
+function _chipShift(left, right, lo, hi) {
+  if (!(hi > lo)) return 0;
+  if (right - left >= hi - lo) return lo - left;
+  if (left < lo) return lo - left;
+  if (right > hi) return hi - right;
+  return 0;
+}
 function TopDownMap({
   avatar,
   heading,
@@ -7850,6 +8213,23 @@ function TopDownMap({
     w: 0,
     h: 0
   });
+  var clampAvatarChip = React.useCallback(() => {
+    var boxEl = boxRef.current;
+    var chip = boxEl && boxEl.querySelector("[data-avatar-label]");
+    if (!chip) return;
+    chip.style.translate = "";
+    var r = chip.getBoundingClientRect(),
+      b = boxEl.getBoundingClientRect();
+    var vw = window.innerWidth || document.documentElement.clientWidth || b.right;
+    var dx = _chipShift(r.left, r.right, Math.max(b.left, 0) + 4, Math.min(b.right, vw) - 4);
+    if (!dx) return;
+    var t = -mapRotate * Math.PI / 180,
+      z = zoom || 1;
+    chip.style.translate = `${dx * Math.cos(t) / z}px ${dx * Math.sin(t) / z}px`;
+  }, [mapRotate, zoom]);
+  React.useLayoutEffect(() => {
+    clampAvatarChip();
+  });
   React.useEffect(() => {
     var el = boxRef.current;
     if (!el) return;
@@ -7904,6 +8284,7 @@ function TopDownMap({
     onTouchMove: onTouchMove,
     onTouchEnd: onTouchEnd
   }, React.createElement("div", {
+    onTransitionEnd: clampAvatarChip,
     style: {
       position: "absolute",
       inset: 0,
@@ -10733,6 +11114,11 @@ Object.assign(window, {
   posterTierFor,
   POSTER_TIER,
   POSTER_OPACITY_UNCHECKED,
+  POSTER_OPACITY_FITTED,
+  artGeorefFor,
+  ART_GEOREF,
+  OFFICIAL_MAP_SRC,
+  _geoPlateCorners,
   REAL_MAP_PLACES_CHECKED,
   REAL_MAP_AMENITIES,
   _realMapTarget,

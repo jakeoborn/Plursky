@@ -27,6 +27,8 @@ execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: 
 execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-poster-billing.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-no-stray-jsx-comments.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-qa-press.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-welcome-page.mjs"], { cwd: ROOT, stdio: "inherit" });
 
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
 // A symlink committed at the repo root killed the GitHub Pages deploy on
@@ -525,8 +527,55 @@ if (fdata.length) {
     if (!listed.has(img)) { console.log(`  ✗ ${id.padEnd(26)} renders ${img} — not in sw.js LOCAL`); mbad++; }
     else console.log(`  ok ${id.padEnd(26)} ${img}`);
   }
+  // The real map lays a fitted plate (mapGeoref.image) in place of the art itself.
+  for (const f of PREG) {
+    const cfg = f.config || f;
+    const g = cfg.mapGeoref;
+    if (!g || !g.image) continue;
+    mseen++;
+    if (!listed.has(g.image)) { console.log(`  ✗ ${(cfg.id || "?").padEnd(26)} lays ${g.image} — not in sw.js LOCAL`); mbad++; }
+    else console.log(`  ok ${(cfg.id || "?").padEnd(26)} ${g.image}`);
+  }
   if (mbad) fail(`${mbad} festival(s) render a map plate that is not precached — no offline map on the field`);
   console.log(`  ✓ ${listed.size} LOCAL entr(ies) resolve; ${mseen} map plate(s) precached`);
+
+  // ── Fitted-art gate (Jake, 2026-11-10: each festival's own map "overlaid on
+  // top of the geo coordinates" of its venue). A config's mapGeoref is a copy
+  // of what scripts/build-geo-plate.py measured; it must agree with the ties
+  // file it names, and the ties file must still produce the bytes on disk.
+  // A hand-edited bound or rms would move the art with no measurement behind it.
+  console.log(`▸ Fitted-art gate — every mapGeoref is the build of its ties file`);
+  let gbad = 0, gseen = 0;
+  for (const f of PREG) {
+    const cfg = f.config || f;
+    const g = cfg.mapGeoref, id = cfg.id || "?";
+    if (!g) continue;
+    gseen++;
+    const tp = join(ROOT, g.ties || "");
+    if (!g.ties || !existsSync(tp)) { console.log(`  ✗ ${id.padEnd(26)} names ties ${g.ties} — missing`); gbad++; continue; }
+    const T = JSON.parse(readFileSync(tp, "utf8")), O = T.output || {};
+    const B = O.bounds || {};
+    const why = [];
+    if (T.festivalId !== id) why.push(`ties are for ${T.festivalId}`);
+    if (O.image !== g.image) why.push(`image ${g.image} != built ${O.image}`);
+    if (!Array.isArray(g.bounds) || g.bounds.length !== 4 || [B.w, B.s, B.e, B.n].some((v, i) => Math.abs(v - g.bounds[i]) > 1e-7)) why.push("bounds differ from the build");
+    if (g.rmsM !== O.rmsM || g.looRmsM !== O.looRmsM) why.push(`rms ${g.rmsM}/${g.looRmsM} != built ${O.rmsM}/${O.looRmsM}`);
+    if (g.model !== T.model) why.push(`model ${g.model} != ${T.model}`);
+    // The plate is the festival's own art: either its mapImage, or the official
+    // map kept as a source under map-sources/art/ (Jake, 2026-11-11: "use the
+    // map we do it for other festivals") with the first-party page it came from.
+    const artPlate = typeof T.plate === "string" && T.plate.startsWith("map-sources/art/");
+    if (!(T.plate && (T.plate === cfg.mapImage || artPlate))) why.push(`fitted plate ${T.plate} is neither the festival's mapImage ${cfg.mapImage} nor official art under map-sources/art/`);
+    else if (!existsSync(join(ROOT, T.plate))) why.push(`fitted plate ${T.plate} is missing`);
+    if (artPlate && !/^https:\/\//.test(T.source || "")) why.push(`official art ${T.plate} names no https source page`);
+    if (why.length) { console.log(`  ✗ ${id.padEnd(26)} ${why.join("; ")}`); gbad++; }
+    else console.log(`  ok ${id.padEnd(26)} ${T.model} over ${T.ties.length} ties · rms ${O.rmsM} m · leave-one-out ${O.looRmsM} m`);
+  }
+  try {
+    execFileSync("python3", [join(ROOT, "scripts", "build-geo-plate.py"), "check"], { cwd: ROOT, stdio: "inherit" });
+  } catch { gbad++; }
+  if (gbad) fail(`${gbad} fitted map(s) do not match their measured ties — rerun python3 scripts/build-geo-plate.py build <id> and copy its mapGeoref`);
+  console.log(`  ✓ ${gseen} festival map(s) fitted to their venue from measured ties`);
 }
 
 // ── Day-count gate ───────────────────────────────────────────────────────
@@ -2231,6 +2280,25 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-v. Native picker video batch ──────────────────────────────────────
+// Twenty clips land through the web input AND through the mocked PHPicker
+// bridge one fetch at a time; a failed SAVE is not reported as unreadable.
+// A mock, not iPhone evidence: real-device QA stays on the device lane.
+for (const [script, label] of [
+  ["scripts/test-video-batch-20.mjs", "20-video batch (web + native mock, one in flight)"],
+  ["scripts/test-video-native-failures.mjs", "native read vs save failures"],
+]) {
+  console.log(`▸ Video import gate — ${label}`);
+  try {
+    const out = execFileSync(process.execPath, [script],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`${label} regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-a. iPhone video GPS (QuickTime mdta) ───────────────────────────────
 {
   console.log("▸ Video GPS gate — iPhone mdta location + accuracy reach the tagger");
@@ -2269,6 +2337,38 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`setlist.fm fallback regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-a2b. Apple Music playlists use credited songs only ─────────────────
+// The real createAppleMusicPlaylist against a stubbed Apple API: a song is
+// used only when the catalog credits the act (or the moment's artist and
+// title), an unmatched act is skipped and named, and every failure reason
+// reaches the user as a sentence and the log as [plursky:applemusic].
+{
+  console.log("▸ Apple Music playlist gate — credited songs only, every failure has a reason");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-apple-music-playlist.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Apple Music playlist regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-a2c. Attendance is festival-scoped ─────────────────────────────────
+// Night keys are bare day numbers, so one shared map leaked every festival's
+// night-N sets into every other's. Legacy rows migrate by artist id.
+{
+  console.log("▸ Attended scope gate — each festival reads only its own attendance");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-attended-scope.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`attended scope regression failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2363,6 +2463,28 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 {
+  console.log("▸ Past-edition scan gate — real app, on-site photos only, filed under their edition, shown on its page, rescan adds nothing");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-past-edition-scan.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 420000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Past-edition scan failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Onboarding scan gate — a new user's first screen scans photos and videos; found → Memories imports, nothing found → next festival");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-onboarding-scan.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Onboarding scan failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
   console.log("▸ Shazam reasons gate — library clips say why they failed, stale path retried from IndexedDB, never the mic");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-shazam-reasons.mjs"],
@@ -2371,6 +2493,28 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`Shazam reasons failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Tagger trusted-GPS gate — GPS names a stage only through the fix gate; Fix-it searches the clip's festival, stylized names folded");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-tagger-trusted-gps.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 120000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Tagger trusted-GPS failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Lightbox retag search — a III Points clip under ACL: real input, own-festival matches and stage labels, the pick shows the act");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-lightbox-retag-search.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Lightbox retag search failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 {
@@ -2415,6 +2559,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`Paywall events failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Promo-code redeem — offer-code entry ships off, fits the paywall row, re-reads the entitlement (SPEC-183 2b)");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-promo-code-redeem.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 300000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Promo-code redeem failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 {
@@ -2868,6 +3023,34 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`maplibre field load failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// SPEC-178: your tagged photos/videos pinned at capture GPS on the real map.
+// No GPS = no pin; coordinates never leave the device (cloud backup strips
+// them, no request carries one); a tap opens the item with night/stage/artist
+// and never moves the camera.
+// Memories PHOTOS lens: real GPS only. A moment sits at its own capture fix
+// (one scale, true bearings); no stage fallback, no jitter, no poster x/y.
+// Imported videos: no coordinate leaves the device. The backup uploads a copy
+// with every capture fix redacted (or holds the clip back), and the moments
+// backup drops a video's parsedGps/gpsAccM/heading/headingRef.
+for (const [label, file] of [
+  ["Map pins — selection + cloud backup strips coordinates", "scripts/test-map-pins.mjs"],
+  ["Map pins — real map: pins, clusters, tap, no coords on the wire", "scripts/test-map-pins-browser.mjs"],
+  ["Memories GPS lens — real fixes only, true scale and bearing, mutations", "scripts/test-memories-gps-lens.mjs"],
+  ["Memories GPS lens — real app: only GPS moments render, empty state, no coords on the wire", "scripts/test-memories-gps-lens-browser.mjs"],
+  ["Video GPS strip — every fix redacted, fail closed, moments backup", "scripts/test-video-gps-strip.mjs"],
+  ["Video GPS strip — real backup flow, nothing on the wire carries a coordinate", "scripts/test-video-gps-backup-browser.mjs"],
+]) {
+  console.log(`▸ ${label}`);
+  try {
+    const out = execFileSync(process.execPath, [file],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`${file} failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -3383,6 +3566,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Public plan-share link, stage 1 (#74, PM spec v2 row 4) ──────────────
+// The payload allowlist + expiry contract (one file the app and Node share),
+// its in-memory server adapter, and the flag-off preview sheet: no network,
+// no token, no schema, the link item absent as shipped.
+for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"], ["service (in-memory)", "scripts/test-public-plan-share-service.mjs"], ["stage 1 preview", "scripts/test-plan-share-stage1.mjs"]]) {
+  console.log(`▸ Plan-share ${label} gate`);
+  try {
+    const out = execFileSync(process.execPath, [file], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`plan-share ${label} failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b8b. Social embeds are tap-to-load ────────────────────────────────
 // Instagram and X posts on /f/ pages load only when the reader taps one:
 // a real browser renders and scrolls the page and asserts zero requests to
@@ -3396,6 +3594,25 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`embeds tap-to-load failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8c. Day-after cards (row 9) ──────────────────────────────────────
+// "The story of the night" on a festival page: link-only to official recap
+// posts already verified for that festival and day; renders only when
+// published with Instinct's claim check and the approval sign-off, from 08:00
+// festival-local the morning after; a bad record of any status stops the
+// build. A real browser checks the cards at 320/393 × Dark/Light with zero
+// platform requests.
+{
+  console.log("▸ Day-after cards gate — link-only, official, signed off, morning after");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-day-after.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`day-after cards failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -3478,6 +3695,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     fail(`coverage census failed${detail ? ` — ${detail}` : ""}`);
   }
 }
+{
+  console.log("▸ Scan calendar — every festival year since 2010 the past-photo scan looks for: dated, located, never a canceled year");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-scan-calendar.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 60000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`scan calendar failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
 // Memory index + handoff format: fixture self-tests only. The live --check
 // reads a home-dir memory store and GitHub, so it runs locally at close-out,
 // never in CI.
@@ -3520,6 +3748,39 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`Past look-backs failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c7. Season Pass rescue ─────────────────────────────────────────────
+// The $9.99 rescue card (spotify.jsx PlusGate) against a mocked StoreKit
+// bridge: it shows only on the second native paywall view or a cancelled
+// full-price Season Pass, fails closed on six store states, reads the store's
+// priceString, buys the promo package from its own offering, and leaves the
+// full-price, monthly and restore paths working. Events are allowlisted.
+{
+  console.log("▸ Season Pass rescue gate — two triggers, fail-closed, live price");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-season-rescue.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Season Pass rescue failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// TestFlight uploads stay internal-only: the export plist sets
+// testFlightInternalTestingOnly, and an external beta group or public link
+// stops build-upload-testflight.mjs before anything uploads.
+{
+  console.log("▸ TestFlight internal-only guard — no external group, no public link, internal-only export");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-testflight-guard.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`TestFlight internal-only guard failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

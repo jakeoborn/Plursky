@@ -29,6 +29,7 @@ import { plateFor, isPlaceholderStage, MAX_PAGE_IMAGE_BYTES } from './lib/festiv
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const F_DIR = join(ROOT, 'f');
+const HIST = existsSync(join(ROOT, 'data/historical/index.json')) ? JSON.parse(readFileSync(join(ROOT, 'data/historical/index.json'), 'utf8')).editions : [];
 
 let checks = 0, failed = 0;
 const fail = (msg) => { checks++; failed++; console.log(`  ✗  ${msg}`); };
@@ -94,6 +95,27 @@ function checkPage(entry, html, { verified }) {
   const hasMap = /id="map-h"/.test(html);
   if (hasMap !== wantMap) out.push(`map section present=${hasMap}, expected ${wantMap} (plate=${!!plate}, mapSource=${!!cfg.mapSource})`);
   const mapSec = section(html, 'map-h') || '';
+
+  // Past editions, read from data/historical/index.json. A gated festival
+  // shows its newest edition as the "Look back" section and the rest under
+  // "Earlier editions"; an open one lists every edition under "Past editions".
+  // Each edition reads its own artist and set counts, and a lineup_only
+  // edition says "set times not verified", never "0 sets": none were archived.
+  const past = HIST.filter(e => e.festivalId === id.replace(/-\d{4}$/, ''));
+  const lookText = visibleText(section(html, 'lookback-h') || '');
+  const pastLines = (section(html, 'past-h') || '').split('</li>').map(visibleText);
+  const pastText = [lookText, ...pastLines].join(' ');
+  const shown = /id="(past|lookback)-h"/.test(html);
+  if (!!past.length !== shown) out.push(`past-editions section present=${shown}, library has ${past.length}`);
+  for (const e of past) {
+    const look = lookText.includes(`${e.name} ·`);
+    const line = look ? lookText : pastLines.find(l => l.includes(`${e.name} —`));
+    if (!line) { out.push(`past editions do not list "${e.name}"`); continue; }
+    if (!look && !line.includes(`, ${e.counts.artists} artists`)) out.push(`past editions do not read "${e.name}" with ${e.counts.artists} artists`);
+    if (e.completeness === 'lineup_only' ? !/set times not verified/i.test(line) : !line.includes(`${e.counts.sets} sets`))
+      out.push(`past editions do not read "${e.name}" as ${e.completeness === 'lineup_only' ? 'set times not verified' : `${e.counts.sets} sets`}`);
+  }
+  if (/\b0 sets\b/.test(pastText)) out.push('past editions claim "0 sets"');
   if (/\bmap of\b/i.test(visibleText(mapSec))) out.push('map section says "map of"');
 
   // Images: our own plate and nothing else. Official festival photos were
@@ -170,7 +192,36 @@ function checkPage(entry, html, { verified }) {
   else if (d && (ev.startDate !== d.start || ev.endDate !== d.end)) out.push(`JSON-LD dates ${ev.startDate}..${ev.endDate} are not the visible ${d.start}..${d.end}`);
   if (!text.includes(decode(cfg.dates))) out.push('the visible dates string is not on the page');
   if (!lds.some(x => x['@type'] === 'BreadcrumbList')) out.push('no BreadcrumbList JSON-LD');
-  if (ev && ev.image && !(plate && ev.image.endsWith(`/${plate.file}`))) out.push(`JSON-LD image ${ev.image} is not ours`);
+  // GSC Events fields (2026-11-11): image, organizer.url, offers. Each from
+  // our own files or a real URL already in the data, never invented.
+  if (ev) {
+    const ORIGIN = 'https://plursky.com';
+    // image: always present, and always ours (the plate, else the share card).
+    const ours = plate ? `${ORIGIN}/${plate.file}` : `${ORIGIN}/og-card.png`;
+    if (ev.image !== ours) out.push(`JSON-LD image ${ev.image} is not ours (want ${ours})`);
+    else if (!existsSync(join(ROOT, ev.image.slice(ORIGIN.length + 1)))) out.push(`JSON-LD image ${ev.image} is not a file in the repo`);
+    // organizer.url: the festival's own official site, or nothing. Never
+    // plursky.com: the organizer is the festival brand, not us.
+    const site = cfg.officialEvent && cfg.officialEvent.website;
+    const org = ev.organizer;
+    if (org && org.url && /(^|\.)plursky\.com/i.test(new URL(org.url).hostname)) out.push(`organizer.url ${org.url} names Plursky as the organizer's site`);
+    if (org && site && /^https:/.test(site) && org.url !== site) out.push(`organizer.url ${org.url} is not the official site ${site}`);
+    if (org && !site && org.url) out.push(`organizer.url ${org.url} has no official site in the data behind it`);
+    // offers: only the festival's own ticket link, no claimed price or stock,
+    // printed on the page, and only before the edition ends. Days within one
+    // of the end date are not judged here (time zones).
+    const tix = cfg.officialEvent && cfg.officialEvent.tickets;
+    const end = d && d.end ? Date.parse(d.end.slice(0, 10) + 'T00:00:00Z') : NaN;
+    const daysLeft = (end - Date.now()) / 864e5;
+    if (ev.offers) {
+      if (!tix || ev.offers.url !== tix) out.push(`offers.url ${ev.offers.url} is not the ticket link in the data (${tix || 'none'})`);
+      for (const k of ['price', 'priceCurrency', 'availability', 'lowPrice', 'highPrice', 'validFrom']) if (k in ev.offers) out.push(`offers claims ${k}, which no data records`);
+      if (!html.includes(`<a href="${ev.offers.url}"`)) out.push('offers names a ticket link the page does not show');
+      if (daysLeft < -1) out.push('offers on an edition that has ended');
+    } else if (tix && /^https:/.test(tix) && daysLeft > 1) {
+      out.push(`ticket link ${tix} is in the data but the upcoming edition has no offers`);
+    }
+  }
 
   // Sources: a page that lists acts names where they came from. Lineup-only
   // festivals had no Sources row at all (III Points listed 218 acts citing
@@ -225,6 +276,19 @@ const verified = REG.find(e => verifiedIds.has(e.config.id) && existsSync(join(F
 const artFestival = REG.find(e => e.config.mapImage && !/\.svg$/i.test(e.config.mapImage));
 const withLineup = REG.find(e => (DS[e.config.id]?.artists || []).length > 1);
 const WALK = '<p>It is a 12 min walk from the main stage.</p>';
+// Rewrites the page's MusicEvent JSON-LD through `fn`, leaving the rest as is.
+const editEvent = (html, fn) => html.replace(/(<script type="application\/ld\+json">\s*)([\s\S]*?)(\s*<\/script>)/g, (all, a, body, b) => {
+  let d; try { d = JSON.parse(body); } catch { return all; }
+  if (d['@type'] !== 'MusicEvent') return all;
+  fn(d); return a + JSON.stringify(d) + b;
+});
+const eventOf = (id) => { const m = pageOf(id).match(/<script type="application\/ld\+json">\s*(\{[\s\S]*?"MusicEvent"[\s\S]*?\})\s*<\/script>/); try { return m ? JSON.parse(m[1]) : null; } catch { return null; } };
+const withOffers = REG.find(e => eventOf(e.config.id)?.offers);
+const withOrgUrl = REG.find(e => eventOf(e.config.id)?.organizer?.url);
+const endedWithTickets = REG.find(e => {
+  const t = e.config.officialEvent && e.config.officialEvent.tickets, d = eventDates(e.config);
+  return t && d && Date.parse(d.end.slice(0, 10) + 'T00:00:00Z') < Date.now() - 2 * 864e5;
+});
 const mutants = [
   ['an embedded official map', artFestival, (h) => h.replace('</main>', `<img src="/${artFestival.config.mapImage}" width="10" height="10">\n</main>`), false],
   // The ruled-out photo coming back: festival card art on a public page.
@@ -235,8 +299,19 @@ const mutants = [
   // only official link.
   ['an acts page with both source rows dropped', byId('iii-points-2026'), (h) => h.replace(/\n\s*<li>(?:Lineup|Set times): [^\n]*<\/li>/g, ''), false],
   ['an empty preview with its official links dropped', byId('coachella-2027'), (h) => h.replace(/<a href="https:\/\/www\.coachella\.com\/[^"]*"[^>]*>[^<]*<\/a>/g, 'coachella'), false], // site AND maps page
+  // A lineup-only past edition relabelled with the zero its sets list happens to hold.
+  ['a lineup-only past edition shown as "0 sets"', byId('nocturnal-wonderland-2026'), (h) => h.replace(', set times not verified</li>', ', 0 sets</li>'), false],
   // Control: the same sentence on VERIFIED geometry is not what the rule forbids.
   ['a walk-time sentence on verified geometry', verified, (h) => h.replace('</main>', `${WALK}\n</main>`), true],
+  // GSC Events fields. Fixtures are chosen by what the data holds, so they
+  // follow festivals as they open and end.
+  ['MusicEvent image dropped', withLineup, (h) => editEvent(h, e => { delete e.image; }), false],
+  ['MusicEvent image swapped to festival card art', byId('acl-2026'), (h) => editEvent(h, e => { e.image = 'https://plursky.com/festival-art/acl-2026.webp'; }), false],
+  ['organizer.url set to plursky.com', withOrgUrl, (h) => editEvent(h, e => { e.organizer.url = 'https://plursky.com/'; }), false],
+  ['offers with an invented price', withOffers, (h) => editEvent(h, e => { e.offers.price = '199'; e.offers.priceCurrency = 'USD'; }), false],
+  ['offers dropped on an upcoming edition with a ticket link', withOffers, (h) => editEvent(h, e => { delete e.offers; }), false],
+  ['offers on an edition that has ended', endedWithTickets, (h) => editEvent(h, e => { e.offers = { '@type': 'Offer', url: endedWithTickets.config.officialEvent.tickets }; }), false],
+  ['offers whose ticket link the page does not show', withOffers, (h) => h.replace(/\n\s*<li>Tickets: [^\n]*<\/li>/, ''), false],
 ];
 for (const [label, entry, mutate, shouldPass] of mutants) {
   if (!entry) { fail(`mutation "${label}": no fixture festival — the mutation cannot run`); continue; }
@@ -254,4 +329,4 @@ if (failed) {
   console.log(`\n  ${failed}/${checks} checks FAILED`);
   process.exit(1);
 }
-console.log(`  ✓ festival pages: ${checks} checks across ${REG.length} pages (plates ${plates}, official-map links ${links}, noindex ${noindexed}, multi-weekend ${multiWeekend}; 6 mutations caught, 1 control passed)`);
+console.log(`  ✓ festival pages: ${checks} checks across ${REG.length} pages (plates ${plates}, official-map links ${links}, noindex ${noindexed}, multi-weekend ${multiWeekend}; ${mutants.filter(m => !m[3]).length} mutations caught, ${mutants.filter(m => m[3]).length} control passed)`);

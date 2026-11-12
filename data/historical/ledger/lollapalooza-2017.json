@@ -1,0 +1,99 @@
+{
+  "id": "lollapalooza-2017",
+  "method": "official_sources",
+  "official": "https://www.lollapalooza.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2017-08-03",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20170913053914/https://www.lollapalooza.com/schedule/",
+          "captureTimestamp": "20170913053914",
+          "printed": "Thursday Aug 3rd",
+          "sha256": "0a763ed658825ada4e8e686cf330fb32c842d572cdbe3dd0f73e348313be4679",
+          "bytes": 867272,
+          "rows": 47,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:30am … 9:30pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2017-08-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20170913053914/https://www.lollapalooza.com/schedule/",
+          "captureTimestamp": "20170913053914",
+          "printed": "Friday Aug 4th",
+          "sha256": "0a763ed658825ada4e8e686cf330fb32c842d572cdbe3dd0f73e348313be4679",
+          "bytes": 867272,
+          "rows": 47,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:30am … 9:30pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2017-08-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20170913053914/https://www.lollapalooza.com/schedule/",
+          "captureTimestamp": "20170913053914",
+          "printed": "Saturday Aug 5th",
+          "sha256": "0a763ed658825ada4e8e686cf330fb32c842d572cdbe3dd0f73e348313be4679",
+          "bytes": 867272,
+          "rows": 48,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:30am … 9:30pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2017-08-06",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20170913053914/https://www.lollapalooza.com/schedule/",
+          "captureTimestamp": "20170913053914",
+          "printed": "Sunday Aug 6th",
+          "sha256": "0a763ed658825ada4e8e686cf330fb32c842d572cdbe3dd0f73e348313be4679",
+          "bytes": 867272,
+          "rows": 49,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:30am … 9:30pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 4,
+      "stage": "Kidzapalooza",
+      "start": "16:30",
+      "end": "16:45",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

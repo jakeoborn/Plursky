@@ -93,6 +93,52 @@
    }
   },
   {
+   "id": "acl-2023",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2023",
+   "year": 2023,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-10-06",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-10-07",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2023-10-08",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2023-10-13",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2023-10-14",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2023-10-15",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 145,
+    "sets": 215
+   }
+  },
+  {
    "id": "acl-2022",
    "festivalId": "acl",
    "festivalName": "Austin City Limits",
@@ -554,6 +600,460 @@
    }
   },
   {
+   "id": "beyond-wonderland-socal-2025",
+   "festivalId": "beyond-wonderland-socal",
+   "festivalName": "Beyond Wonderland SoCal",
+   "name": "Beyond Wonderland SoCal 2025",
+   "year": 2025,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-03-28",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-03-29",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 131,
+    "sets": 0
+   }
+  },
+  {
+   "id": "beyond-wonderland-socal-2024",
+   "festivalId": "beyond-wonderland-socal",
+   "festivalName": "Beyond Wonderland SoCal",
+   "name": "Beyond Wonderland SoCal 2024",
+   "year": 2024,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-03-22",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-03-23",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 118,
+    "sets": 0
+   }
+  },
+  {
+   "id": "beyond-wonderland-socal-2022",
+   "festivalId": "beyond-wonderland-socal",
+   "festivalName": "Beyond Wonderland SoCal",
+   "name": "Beyond Wonderland SoCal 2022",
+   "year": 2022,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-03-25",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-03-26",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 83,
+    "sets": 0
+   }
+  },
+  {
+   "id": "beyond-wonderland-socal-2019",
+   "festivalId": "beyond-wonderland-socal",
+   "festivalName": "Beyond Wonderland SoCal",
+   "name": "Beyond Wonderland SoCal 2019",
+   "year": 2019,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-03-22",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-03-23",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 91,
+    "sets": 0
+   }
+  },
+  {
+   "id": "beyond-wonderland-socal-2016",
+   "festivalId": "beyond-wonderland-socal",
+   "festivalName": "Beyond Wonderland SoCal",
+   "name": "Beyond Wonderland SoCal 2016",
+   "year": 2016,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-03-18",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-03-19",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 68,
+    "sets": 0
+   }
+  },
+  {
+   "id": "beyond-wonderland-socal-2013",
+   "festivalId": "beyond-wonderland-socal",
+   "festivalName": "Beyond Wonderland SoCal",
+   "name": "Beyond Wonderland SoCal 2013",
+   "year": 2013,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-03-16",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 41,
+    "sets": 42
+   }
+  },
+  {
+   "id": "beyond-wonderland-socal-2012",
+   "festivalId": "beyond-wonderland-socal",
+   "festivalName": "Beyond Wonderland SoCal",
+   "name": "Beyond Wonderland SoCal 2012",
+   "year": 2012,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-03-17",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 46,
+    "sets": 46
+   }
+  },
+  {
+   "id": "coachella-2017",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2017",
+   "year": 2017,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-04-14",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-04-15",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-04-16",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2017-04-21",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2017-04-22",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2017-04-23",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 229,
+    "sets": 398
+   }
+  },
+  {
+   "id": "coachella-2016",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2016",
+   "year": 2016,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-04-15",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-04-16",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2016-04-17",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2016-04-22",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2016-04-23",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2016-04-24",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 231,
+    "sets": 398
+   }
+  },
+  {
+   "id": "coachella-2015",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2015",
+   "year": 2015,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-04-10",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-04-11",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-04-12",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2015-04-17",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2015-04-18",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2015-04-19",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 234,
+    "sets": 415
+   }
+  },
+  {
+   "id": "coachella-2014",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2014",
+   "year": 2014,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-04-11",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-04-12",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-04-13",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2014-04-18",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2014-04-19",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2014-04-20",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 212,
+    "sets": 391
+   }
+  },
+  {
+   "id": "coachella-2012",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2012",
+   "year": 2012,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-04-13",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-04-14",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2012-04-15",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2012-04-20",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2012-04-21",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2012-04-22",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 149,
+    "sets": 293
+   }
+  },
+  {
+   "id": "countdown-nye-2023",
+   "festivalId": "countdown-nye",
+   "festivalName": "Countdown NYE",
+   "name": "Countdown NYE 2023",
+   "year": 2023,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-12-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2023-12-31",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 88,
+    "sets": 0
+   }
+  },
+  {
+   "id": "countdown-nye-2022",
+   "festivalId": "countdown-nye",
+   "festivalName": "Countdown NYE",
+   "name": "Countdown NYE 2022",
+   "year": 2022,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-12-30",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-12-31",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 76,
+    "sets": 0
+   }
+  },
+  {
    "id": "dreamstate-socal-2025",
    "festivalId": "dreamstate-socal",
    "festivalName": "Dreamstate SoCal",
@@ -746,6 +1246,37 @@
    }
   },
   {
+   "id": "edc-las-vegas-2023",
+   "festivalId": "edc-lv",
+   "festivalName": "EDC Las Vegas",
+   "name": "EDC Las Vegas 2023",
+   "year": 2023,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-05-19",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-05-20",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2023-05-21",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 13,
+    "artists": 316,
+    "sets": 0
+   }
+  },
+  {
    "id": "edc-las-vegas-2022",
    "festivalId": "edc-lv",
    "festivalName": "EDC Las Vegas",
@@ -774,6 +1305,161 @@
     "stages": 16,
     "artists": 395,
     "sets": 429
+   }
+  },
+  {
+   "id": "edc-las-vegas-2021",
+   "festivalId": "edc-lv",
+   "festivalName": "EDC Las Vegas",
+   "name": "EDC Las Vegas 2021",
+   "year": 2021,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2021-10-22",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2021-10-23",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2021-10-24",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 333,
+    "sets": 0
+   }
+  },
+  {
+   "id": "edc-las-vegas-2019",
+   "festivalId": "edc-lv",
+   "festivalName": "EDC Las Vegas",
+   "name": "EDC Las Vegas 2019",
+   "year": 2019,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-05-17",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-05-18",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-05-19",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 15,
+    "artists": 340,
+    "sets": 0
+   }
+  },
+  {
+   "id": "edc-las-vegas-2017",
+   "festivalId": "edc-lv",
+   "festivalName": "EDC Las Vegas",
+   "name": "EDC Las Vegas 2017",
+   "year": 2017,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-06-16",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-06-17",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-06-18",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 297,
+    "sets": 0
+   }
+  },
+  {
+   "id": "edc-las-vegas-2016",
+   "festivalId": "edc-lv",
+   "festivalName": "EDC Las Vegas",
+   "name": "EDC Las Vegas 2016",
+   "year": 2016,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-06-17",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-06-18",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2016-06-19",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 281,
+    "sets": 0
+   }
+  },
+  {
+   "id": "edc-mexico-2020",
+   "festivalId": "edc-mexico",
+   "festivalName": "EDC Mexico",
+   "name": "EDC Mexico 2020",
+   "year": 2020,
+   "timezone": "America/Mexico_City",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2020-02-28",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2020-02-29",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2020-03-01",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 250,
+    "sets": 0
    }
   },
   {
@@ -963,6 +1649,32 @@
    }
   },
   {
+   "id": "edc-orlando-2018",
+   "festivalId": "edc-orlando",
+   "festivalName": "EDC Orlando",
+   "name": "EDC Orlando 2018",
+   "year": 2018,
+   "timezone": "America/New_York",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-11-09",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2018-11-10",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 77,
+    "sets": 0
+   }
+  },
+  {
    "id": "edc-orlando-2017",
    "festivalId": "edc-orlando",
    "festivalName": "EDC Orlando",
@@ -986,6 +1698,130 @@
     "stages": 5,
     "artists": 86,
     "sets": 93
+   }
+  },
+  {
+   "id": "edc-orlando-2016",
+   "festivalId": "edc-orlando",
+   "festivalName": "EDC Orlando",
+   "name": "EDC Orlando 2016",
+   "year": 2016,
+   "timezone": "America/New_York",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-11-04",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-11-05",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 62,
+    "sets": 0
+   }
+  },
+  {
+   "id": "edc-orlando-2015",
+   "festivalId": "edc-orlando",
+   "festivalName": "EDC Orlando",
+   "name": "EDC Orlando 2015",
+   "year": 2015,
+   "timezone": "America/New_York",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-11-06",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-11-07",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 60,
+    "sets": 0
+   }
+  },
+  {
+   "id": "electric-forest-2013",
+   "festivalId": "electric-forest",
+   "festivalName": "Electric Forest",
+   "name": "Electric Forest 2013",
+   "year": 2013,
+   "timezone": "America/Detroit",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-06-27",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2013-06-28",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2013-06-29",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2013-06-30",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 108,
+    "sets": 156
+   }
+  },
+  {
+   "id": "electric-forest-2012",
+   "festivalId": "electric-forest",
+   "festivalName": "Electric Forest",
+   "name": "Electric Forest 2012",
+   "year": 2012,
+   "timezone": "America/Detroit",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-06-28",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2012-06-29",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2012-06-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2012-07-01",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 91,
+    "sets": 102
    }
   },
   {
@@ -1038,6 +1874,32 @@
     "stages": 8,
     "artists": 124,
     "sets": 128
+   }
+  },
+  {
+   "id": "escape-halloween-2023",
+   "festivalId": "escape-halloween",
+   "festivalName": "Escape Halloween",
+   "name": "Escape Halloween 2023",
+   "year": 2023,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-10-27",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-10-28",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 89,
+    "sets": 0
    }
   },
   {
@@ -1145,6 +2007,32 @@
    }
   },
   {
+   "id": "escape-halloween-2015",
+   "festivalId": "escape-halloween",
+   "festivalName": "Escape Halloween",
+   "name": "Escape Halloween 2015",
+   "year": 2015,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-10-30",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-10-31",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 72,
+    "sets": 0
+   }
+  },
+  {
    "id": "governors-ball-2025",
    "festivalId": "governors-ball",
    "festivalName": "Governors Ball",
@@ -1202,6 +2090,141 @@
    }
   },
   {
+   "id": "hard-summer-2024",
+   "festivalId": "hard-summer",
+   "festivalName": "HARD Summer",
+   "name": "HARD Summer 2024",
+   "year": 2024,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-08-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2024-08-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 96,
+    "sets": 0
+   }
+  },
+  {
+   "id": "hard-summer-2023",
+   "festivalId": "hard-summer",
+   "festivalName": "HARD Summer",
+   "name": "HARD Summer 2023",
+   "year": 2023,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-08-05",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2023-08-06",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 80,
+    "sets": 0
+   }
+  },
+  {
+   "id": "hard-summer-2022",
+   "festivalId": "hard-summer",
+   "festivalName": "HARD Summer",
+   "name": "HARD Summer 2022",
+   "year": 2022,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-07-29",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-07-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-07-31",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 126,
+    "sets": 0
+   }
+  },
+  {
+   "id": "hard-summer-2019",
+   "festivalId": "hard-summer",
+   "festivalName": "HARD Summer",
+   "name": "HARD Summer 2019",
+   "year": 2019,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-08-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2019-08-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 104,
+    "sets": 0
+   }
+  },
+  {
+   "id": "hard-summer-2018",
+   "festivalId": "hard-summer",
+   "festivalName": "HARD Summer",
+   "name": "HARD Summer 2018",
+   "year": 2018,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-08-04",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2018-08-05",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 82,
+    "sets": 0
+   }
+  },
+  {
    "id": "lollapalooza-2025",
    "festivalId": "lollapalooza",
    "festivalName": "Lollapalooza",
@@ -1235,6 +2258,259 @@
     "stages": 11,
     "artists": 190,
     "sets": 225
+   }
+  },
+  {
+   "id": "lollapalooza-2019",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2019",
+   "year": 2019,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-08-01",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2019-08-02",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2019-08-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2019-08-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 187,
+    "sets": 201
+   }
+  },
+  {
+   "id": "lollapalooza-2017",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2017",
+   "year": 2017,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-08-03",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2017-08-04",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2017-08-05",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2017-08-06",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 182,
+    "sets": 190
+   }
+  },
+  {
+   "id": "lollapalooza-2016",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2016",
+   "year": 2016,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-07-28",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2016-07-29",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2016-07-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2016-07-31",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 181,
+    "sets": 189
+   }
+  },
+  {
+   "id": "lollapalooza-2015",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2015",
+   "year": 2015,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-07-31",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-08-01",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-08-02",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 141,
+    "sets": 151
+   }
+  },
+  {
+   "id": "lollapalooza-2014",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2014",
+   "year": 2014,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-08-01",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-08-02",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-08-03",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 139,
+    "sets": 151
+   }
+  },
+  {
+   "id": "lollapalooza-2013",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2013",
+   "year": 2013,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-08-02",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2013-08-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2013-08-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 138,
+    "sets": 147
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2025",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2025",
+   "year": 2025,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-09-13",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2025-09-14",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 80,
+    "sets": 0
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2023",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2023",
+   "year": 2023,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-09-16",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2023-09-17",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 82,
+    "sets": 0
    }
   },
   {
@@ -1365,6 +2641,386 @@
     "stages": 4,
     "artists": 63,
     "sets": 63
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2016",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2016",
+   "year": 2016,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-09-02",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-09-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2016-09-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 140,
+    "sets": 0
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2015",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2015",
+   "year": 2015,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-09-04",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-09-05",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-09-06",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 126,
+    "sets": 0
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2013",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2013",
+   "year": 2013,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-09-21",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 45,
+    "sets": 45
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2012",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2012",
+   "year": 2012,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-09-21",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-09-22",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 94,
+    "sets": 95
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2011",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2011",
+   "year": 2011,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-09-23",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2011-09-24",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 62,
+    "sets": 62
+   }
+  },
+  {
+   "id": "tomorrowland-2023",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2023",
+   "year": 2023,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-07-21",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-07-22",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2023-07-23",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2023-07-28",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2023-07-29",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2023-07-30",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 14,
+    "artists": 651,
+    "sets": 736
+   }
+  },
+  {
+   "id": "tomorrowland-2022",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2022",
+   "year": 2022,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-07-15",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-07-16",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-07-17",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2022-07-22",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2022-07-23",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2022-07-24",
+     "label": "Weekend 2 · Sunday"
+    },
+    {
+     "day": 7,
+     "date": "2022-07-29",
+     "label": "Weekend 3 · Friday"
+    },
+    {
+     "day": 8,
+     "date": "2022-07-30",
+     "label": "Weekend 3 · Saturday"
+    },
+    {
+     "day": 9,
+     "date": "2022-07-31",
+     "label": "Weekend 3 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 14,
+    "artists": 814,
+    "sets": 1057
+   }
+  },
+  {
+   "id": "tomorrowland-2019",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2019",
+   "year": 2019,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-07-19",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-07-20",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-07-21",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2019-07-26",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2019-07-27",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2019-07-28",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 17,
+    "artists": 746,
+    "sets": 887
+   }
+  },
+  {
+   "id": "tomorrowland-2018",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2018",
+   "year": 2018,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-07-20",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2018-07-21",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2018-07-22",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2018-07-27",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2018-07-28",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2018-07-29",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 16,
+    "artists": 706,
+    "sets": 842
+   }
+  },
+  {
+   "id": "tomorrowland-2017",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2017",
+   "year": 2017,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-07-21",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-07-22",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-07-23",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2017-07-28",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2017-07-29",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2017-07-30",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 69,
+    "artists": 757,
+    "sets": 878
    }
   }
  ]

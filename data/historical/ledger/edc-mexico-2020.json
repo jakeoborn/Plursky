@@ -1,0 +1,65 @@
+{
+  "id": "edc-mexico-2020",
+  "method": "official_lineup_html",
+  "official": "https://mexico.electricdaisycarnival.com/lineup/",
+  "chosen": "20200408075816",
+  "archivedUrl": "https://web.archive.org/web/20200408075816/https://mexico.electricdaisycarnival.com/lineup/",
+  "sha256": "20a27ecea3bc530355acbbcdc41782fbb111cbea9d26b7e060671aa383a5d38d",
+  "title": "Lineup – EDC Mexico 2020 – ES",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 250",
+    "By Day 251"
+  ],
+  "stageOrder": [],
+  "crossTab": [
+    "La Clicka presents Worldwide Records: not alphabetical; days 2"
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20200316160528",
+      "archivedUrl": "https://web.archive.org/web/20200316160528/https://mexico.electricdaisycarnival.com/lineup/",
+      "sha256": "a9167e85342aa7d632bfa3b8cc2e7f1101726bcfa994db44182b64d7a1a4cc22",
+      "bytes": 208162,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Mexico 2020 – ES",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, February 28",
+        "Saturday, February 29",
+        "Sunday, March 01"
+      ],
+      "billings": 251,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20200408075816",
+      "archivedUrl": "https://web.archive.org/web/20200408075816/https://mexico.electricdaisycarnival.com/lineup/",
+      "sha256": "20a27ecea3bc530355acbbcdc41782fbb111cbea9d26b7e060671aa383a5d38d",
+      "bytes": 208162,
+      "via": "firecrawl",
+      "title": "Lineup – EDC Mexico 2020 – ES",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, February 28",
+        "Saturday, February 29",
+        "Sunday, March 01"
+      ],
+      "billings": 251,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": null,
+      "billing": "Secret Set",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

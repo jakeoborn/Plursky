@@ -2004,21 +2004,26 @@ function _videoDuration(blob) {
 var _POSTER_MAX_EDGE = 640;
 var _POSTER_TIMEOUT_MS = 8000;
 var _BLACK_MAX_LUMA = 40;
-function _frameIsBlack(v) {
+function _frameState(v) {
   try {
     var c = document.createElement("canvas");
     c.width = c.height = 24;
     var g = c.getContext("2d");
     g.drawImage(v, 0, 0, 24, 24);
     var d = g.getImageData(0, 0, 24, 24).data;
+    var painted = false;
     for (var i = 0; i < d.length; i += 4) {
-      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return false;
+      if (d[i + 3] === 0) continue;
+      painted = true;
+      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return "ok";
     }
-    return true;
+    return painted ? "black" : "unpainted";
   } catch {
-    return false;
+    return "ok";
   }
 }
+var _POSTER_PAINT_RETRIES = 6,
+  _POSTER_PAINT_WAIT_MS = 50;
 function _videoPosterBlob(blob) {
   return new Promise(resolve => {
     var url = null,
@@ -2078,11 +2083,15 @@ function _videoPosterBlob(blob) {
         times = [Math.min(0.6, Math.max(0.05, dur * 0.1)), dur * 0.25, dur * 0.5, dur * 0.75].filter((t, i, a) => t < dur && (i === 0 || t > a[i - 1] + 0.05));
         if (v.readyState >= 2) seek();else v.onloadeddata = seek;
       };
-      v.onseeked = () => {
-        if (!_frameIsBlack(v)) return draw();
+      var judge = tries => {
+        if (settled) return;
+        var st = _frameState(v);
+        if (st === "unpainted" && tries < _POSTER_PAINT_RETRIES) return setTimeout(() => judge(tries + 1), _POSTER_PAINT_WAIT_MS);
+        if (st === "ok") return draw();
         if (++at < times.length) return seek();
         done(null);
       };
+      v.onseeked = () => judge(0);
       v.onerror = () => done(null);
       v.src = url;
     } catch {
@@ -2805,6 +2814,7 @@ async function _backupMyWeekend(onProgress) {
     failed = 0,
     capped = false;
   var succeeded = {};
+  var gpsHeld = 0;
   for (var _m of pending) {
     var blob = await _getPhoto(_m.photoId).catch(() => null);
     if (!blob) {
@@ -2819,6 +2829,19 @@ async function _backupMyWeekend(onProgress) {
     if (usedBytes + blob.size > _BACKUP_HARD_CAP) {
       capped = true;
       break;
+    }
+    if (_m.kind === "video" || /^video\//.test(blob.type || "")) {
+      var clean = await _stripVideoGps(blob);
+      if (!clean) {
+        gpsHeld++;
+        onProgress?.({
+          done,
+          failed,
+          total: pending.length
+        });
+        continue;
+      }
+      blob = clean.blob;
     }
     var ok = await window.sbUploadMomentMedia(_m.photoId, blob);
     if (ok) {
@@ -2847,7 +2870,8 @@ async function _backupMyWeekend(onProgress) {
     failed,
     total: pending.length,
     capped,
-    usedBytes
+    usedBytes,
+    gpsHeld
   };
 }
 function _HomeMemoryThumb({
@@ -3757,12 +3781,14 @@ function MomentLightbox({
   onArtistClick,
   onUpdate,
   onRecoverNight,
-  onDelete
+  onDelete,
+  showNight = false
 }) {
   var m = moments[index];
   var photoUrl = useMomentPhoto(m?.photoId);
-  var artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
-  var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  var mf = _momentFestival(m);
+  var artist = m?.artistId ? mf.artists.find(a => a.id === m.artistId) || null : null;
+  var stage = artist ? mf.stages.find(s => s.id === artist.stage) || null : null;
   var estimatedSong = useSetlistSong(artist, m?.takenAt);
   var song = m?.confirmedSong ? {
     song: m.confirmedSong
@@ -3786,19 +3812,7 @@ function MomentLightbox({
     setRetagQuery("");
     setConfirmDelete(false);
   }, [index]);
-  var retagOptions = React.useMemo(() => {
-    var q = retagQuery.trim().toLowerCase();
-    if (q) {
-      return ARTISTS.filter(a => a.name.toLowerCase().includes(q)).slice(0, 24);
-    }
-    if (!m) return [];
-    var hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
-    var t = hhmm ? toNightMin(hhmm) : null;
-    var night = m.night || NOW.day;
-    var all = momentLineup(m).filter(a => a.day === night);
-    var playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
-    return (playing.length ? playing : all).slice().sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
-  }, [m, retagQuery]);
+  var retagOptions = React.useMemo(() => _retagOptionsFor(m, retagQuery), [m, retagQuery]);
   var runIdentify = async () => {
     setIdState("listening");
     var result = await identifySongFromVideo(m, p => setIdState(p));
@@ -4042,7 +4056,7 @@ function MomentLightbox({
     style: {
       fontWeight: 400
     }
-  }, [stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")), m.kind === "video" && !m.confirmedSong && React.createElement("button", {
+  }, [showNight ? _momentNightName(m, mf.cfg) : null, stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")), m.kind === "video" && !m.confirmedSong && React.createElement("button", {
     onClick: runIdentify,
     disabled: idState !== "idle" && idState !== "fail",
     style: {
@@ -4104,7 +4118,37 @@ function MomentLightbox({
       textAlign: "left",
       fontSize: 15
     }
-  }, retagging ? "Cancel" : artist ? "Wrong act? Fix it" : "Tag this moment"), retagging && React.createElement("div", {
+  }, retagging ? "Cancel" : artist ? "Wrong act? Fix it" : "Tag this moment"), retagging && React.createElement("input", {
+    type: "search",
+    value: retagQuery,
+    onChange: e => setRetagQuery(e.target.value),
+    placeholder: `Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`,
+    "aria-label": `Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`,
+    autoComplete: "off",
+    autoCorrect: "off",
+    autoCapitalize: "none",
+    spellCheck: false,
+    "data-retag-search": "",
+    style: {
+      marginTop: 8,
+      width: "100%",
+      boxSizing: "border-box",
+      minHeight: 44,
+      padding: "0 12px",
+      borderRadius: "var(--rad-sm)",
+      border: "1px solid rgba(var(--ink-rgb),0.24)",
+      background: "rgba(var(--ink-rgb),0.06)",
+      color: "var(--ink)",
+      fontSize: 16,
+      fontFamily: "inherit"
+    }
+  }), retagging && retagQuery.trim() && !retagOptions.length && React.createElement("div", {
+    style: {
+      marginTop: 6,
+      fontSize: 13,
+      color: "var(--text-2)"
+    }
+  }, "No act matches “", retagQuery.trim(), "”."), retagging && React.createElement("div", {
     className: "no-scrollbar",
     style: {
       marginTop: 8,
@@ -4115,16 +4159,14 @@ function MomentLightbox({
       gap: 6
     }
   }, retagOptions.map(a => {
-    var st = STAGES.find(s => s.id === a.stage);
+    var st = mf.stages.find(s => s.id === a.stage);
     var on = a.id === m.artistId;
     return React.createElement("button", {
       key: a.id,
       onClick: () => {
-        onUpdate?.(m, {
-          artistId: a.id,
-          tagSource: "manual",
-          autoTagged: false
-        });
+        onUpdate?.(m, _retagPatch({
+          artistId: a.id
+        }));
         setRetagging(false);
         try {
           window.plurskyHaptic?.("LIGHT");
@@ -5847,7 +5889,7 @@ function AddMomentForm({
       var exif = await _parseExifMeta(file).catch(() => null);
       var meta = _metaFromFile(file, exif);
       if (meta && meta.date && !artistId) {
-        var attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+        var attendedIds = _allFestivalAttendedIds();
         var matched = _matchArtistForPhoto(meta, savedNightArtists.map(a => a.id), attendedIds);
         var activeId = window.FESTIVAL_CONFIG?.id || null;
         if (matched.artistId && (!matched.festivalId || matched.festivalId === activeId)) {
@@ -6125,6 +6167,11 @@ function _momentNeedsReview(m) {
   if (m.needsRetag || m.tagAmbiguous || m.tagSuggested || _REVIEW_WARN.has(m.tagSource)) return true;
   return !m.artistId && !m.stageId && m.tagSource !== "off_stage" && m.tagSource !== "off_venue";
 }
+function _momentNightName(m, cfg) {
+  if (!m || m.night == null) return null;
+  var d = cfg && cfg.dayDates && cfg.dayDates[m.night];
+  return d && (d.name || d.short) || `Night ${m.night}`;
+}
 function _momentFestival(m) {
   var fid = m && m.festivalId || window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id;
   var ds = (window._DATA_SETS || {})[fid] || {};
@@ -6134,6 +6181,35 @@ function _momentFestival(m) {
     artists: ds.artists || window.ARTISTS || [],
     stages: ds.stages || window.STAGES || []
   };
+}
+function _retagOptionsFor(m, query) {
+  if (!m) return [];
+  var {
+    cfg,
+    artists
+  } = _momentFestival(m);
+  var wk = typeof momentWeekend === "function" ? momentWeekend(m.takenAt, cfg) : null;
+  var lineup = artists.filter(a => !wk || !a.weekend || a.weekend === "both" || a.weekend === wk);
+  var q = String(query || "").trim();
+  if (q) return lineup.filter(a => billedNameMatches(a.name, q)).slice(0, 24);
+  var hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
+  var t = hhmm ? toNightMin(hhmm) : null;
+  var night = m.night || NOW.day;
+  var all = lineup.filter(a => a.day === night);
+  var playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
+  var rank = new Map((m.tagAlternatives || []).map((id, i) => [id, i]));
+  var base = (playing.length ? playing : all).slice();
+  var _loop3 = function (id) {
+    if (!base.some(a => a.id === id)) {
+      var a = lineup.find(x => x.id === id);
+      if (a) base.push(a);
+    }
+  };
+  for (var id of rank.keys()) {
+    _loop3(id);
+  }
+  var r = a => rank.has(a.id) ? rank.get(a.id) : 1e6;
+  return base.sort((a, b) => r(a) - r(b) || toNightMin(a.start) - toNightMin(b.start));
 }
 function _reviewLineup(m, night) {
   var {
@@ -6150,7 +6226,8 @@ function _retagPatch(choice) {
     autoTagged: false,
     needsRetag: false,
     tagAmbiguous: false,
-    tagSuggested: false
+    tagSuggested: false,
+    tagAlternatives: null
   };
   if (!choice) return null;
   if (choice.unknown) return {
@@ -8289,7 +8366,7 @@ function MemoriesMapLens({
   } = React.useMemo(() => {
     var byStage = new Map();
     var unplaced = 0;
-    var _loop3 = function (m) {
+    var _loop4 = function (m) {
         if (!m.photoId) return 0;
         var stageId = null;
         if (m.parsedGps && typeof gpsToMap === "function") {
@@ -8308,7 +8385,7 @@ function MemoriesMapLens({
       },
       _ret;
     for (var m of moments || []) {
-      _ret = _loop3(m);
+      _ret = _loop4(m);
       if (_ret === 0) continue;
     }
     var pins = [...byStage.entries()].map(([id, items]) => ({
@@ -8467,15 +8544,6 @@ function _idHash(id) {
   for (var i = 0; i < s.length; i++) h = Math.imul(h, 31) + s.charCodeAt(i) | 0;
   return h >>> 0;
 }
-function _idJitter(id, amp = 2.6) {
-  var h = _idHash(id);
-  var ang = h % 997 / 997 * Math.PI * 2;
-  var rad = amp * (0.35 + 0.65 * ((h >>> 9) % 991 / 991));
-  return {
-    dx: Math.cos(ang) * rad,
-    dy: Math.sin(ang) * rad
-  };
-}
 function _momentTime(m) {
   if (m && m.takenAt) {
     var t = Date.parse(m.takenAt.replace(" ", "T"));
@@ -8492,12 +8560,17 @@ function _PhotoPin({
     {
       url
     } = thumb;
-  var ring = cluster.stage && cluster.stage.color || "#9aa";
+  var ring = "var(--acc)";
   var rot = _idHash(m.id) % 17 - 8;
   var extra = cluster.items.length - 1;
   var SIZE = cluster.items.length > 1 ? 52 : 46;
+  var acc = cluster.acc;
+  var accSay = acc === "unknown" ? ", location accuracy unknown" : acc === "coarse" ? ", rough location" : "";
   return React.createElement("button", {
     onClick: () => onTap && onTap(cluster),
+    "data-moment-ids": cluster.items.map(x => x.id).join(","),
+    "data-acc": acc || undefined,
+    "aria-label": (cluster.items.length === 1 ? m.kind === "video" ? "Video" : "Photo" : `${cluster.items.length} moments`) + accSay,
     style: {
       position: "absolute",
       left: cluster.x + "%",
@@ -8517,7 +8590,7 @@ function _PhotoPin({
       height: "100%",
       borderRadius: 10,
       overflow: "hidden",
-      border: `2px solid ${ring}`,
+      border: `2px ${acc === "unknown" ? "dotted" : acc === "coarse" ? "dashed" : "solid"} ${ring}`,
       background: url ? "var(--paper)" : "var(--paper-2)",
       boxShadow: "0 3px 9px rgba(var(--shade-rgb),0.5)"
     }
@@ -8564,157 +8637,189 @@ function _PhotoPin({
     }
   }, "+", extra));
 }
+function _lensFix(m) {
+  var g = m && m.parsedGps;
+  if (!g || typeof g.lat !== "number" || typeof g.lng !== "number") return null;
+  if (!Number.isFinite(g.lat) || !Number.isFinite(g.lng)) return null;
+  if (Math.abs(g.lat) > 90 || Math.abs(g.lng) > 180) return null;
+  if (g.lat === 0 && g.lng === 0) return null;
+  return {
+    lat: g.lat,
+    lng: g.lng
+  };
+}
+var _LENS_RING_CAP = 60;
+var _LENS_FAR_M = 3000;
+var _LENS_MIN_SPAN_M = 40;
+function _gpsLensLayout(moments, opts) {
+  var pad = opts && opts.pad || 14,
+    clusterPct = opts && opts.clusterPct || 6,
+    cap = opts && opts.cap || 24;
+  var fixes = [];
+  var noGps = 0;
+  for (var m of moments || []) {
+    if (!m || !m.photoId) continue;
+    var g = _lensFix(m);
+    if (!g) {
+      noGps++;
+      continue;
+    }
+    fixes.push({
+      m,
+      g,
+      t: _momentTime(m)
+    });
+  }
+  var empty = {
+    clusters: [],
+    rings: [],
+    ringsCut: 0,
+    hidden: 0,
+    noGps,
+    far: 0,
+    coarse: 0,
+    unknownAcc: 0,
+    mPerPct: 0
+  };
+  if (!fixes.length) return empty;
+  var med = arr => {
+    var s = arr.slice().sort((a, b) => a - b);
+    return s[Math.floor(s.length / 2)];
+  };
+  var lat0 = med(fixes.map(f => f.g.lat)),
+    lng0 = med(fixes.map(f => f.g.lng));
+  var R = 6371008.8,
+    k = Math.PI / 180,
+    cos0 = Math.cos(lat0 * k);
+  var pts = [];
+  var far = 0;
+  for (var f of fixes) {
+    var e = (f.g.lng - lng0) * k * R * cos0,
+      n = (f.g.lat - lat0) * k * R;
+    if (Math.hypot(e, n) > _LENS_FAR_M) {
+      far++;
+      continue;
+    }
+    var acc = photoFixAccM(f.m);
+    pts.push({
+      m: f.m,
+      t: f.t,
+      e,
+      n,
+      acc,
+      cls: photoFixAccClass(acc)
+    });
+  }
+  if (!pts.length) return {
+    ...empty,
+    far
+  };
+  var minE = Infinity,
+    maxE = -Infinity,
+    minN = Infinity,
+    maxN = -Infinity;
+  for (var p of pts) {
+    var r = p.cls === "precise" ? p.acc : 0;
+    minE = Math.min(minE, p.e - r);
+    maxE = Math.max(maxE, p.e + r);
+    minN = Math.min(minN, p.n - r);
+    maxN = Math.max(maxN, p.n + r);
+  }
+  var span = Math.max(maxE - minE, maxN - minN, _LENS_MIN_SPAN_M);
+  var scale = (100 - 2 * pad) / span;
+  var ce = (minE + maxE) / 2,
+    cn = (minN + maxN) / 2;
+  for (var _p of pts) {
+    _p.x = 50 + (_p.e - ce) * scale;
+    _p.y = 50 - (_p.n - cn) * scale;
+  }
+  var sorted = pts.slice().sort((a, b) => b.t - a.t);
+  var used = new Array(sorted.length).fill(false);
+  var clusters = [];
+  for (var i = 0; i < sorted.length; i++) {
+    if (used[i]) continue;
+    var head = sorted[i];
+    used[i] = true;
+    var group = [head];
+    for (var j = i + 1; j < sorted.length; j++) {
+      if (used[j]) continue;
+      if (Math.hypot(sorted[j].x - head.x, sorted[j].y - head.y) <= clusterPct) {
+        used[j] = true;
+        group.push(sorted[j]);
+      }
+    }
+    clusters.push({
+      x: head.x,
+      y: head.y,
+      face: head.m,
+      acc: head.cls,
+      items: group.map(g => g.m),
+      pts: group
+    });
+  }
+  var visible = clusters.slice(0, cap);
+  var hidden = clusters.slice(cap).reduce((n, c) => n + c.items.length, 0);
+  var rings = [];
+  var ringsCut = 0;
+  for (var c of visible) for (var _p2 of c.pts) {
+    if (_p2.cls === "unknown") continue;
+    if (rings.length >= _LENS_RING_CAP) {
+      ringsCut++;
+      continue;
+    }
+    rings.push({
+      id: _p2.m.id,
+      x: _p2.x,
+      y: _p2.y,
+      r: _p2.acc * scale,
+      accM: _p2.acc,
+      cls: _p2.cls
+    });
+  }
+  for (var _c of visible) delete _c.pts;
+  var coarse = pts.filter(p => p.cls === "coarse").length,
+    unknownAcc = pts.filter(p => p.cls === "unknown").length;
+  return {
+    clusters: visible,
+    rings,
+    ringsCut,
+    hidden,
+    noGps,
+    far,
+    coarse,
+    unknownAcc,
+    mPerPct: 1 / scale
+  };
+}
+function _lensScaleBar(mPerPct) {
+  if (!(mPerPct > 0)) return null;
+  var maxM = mPerPct * 34;
+  var steps = [5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000];
+  var m = steps[0];
+  for (var s of steps) if (s <= maxM) m = s;
+  return {
+    m,
+    pct: m / mPerPct,
+    label: m >= 1000 ? `${m / 1000} km` : `${m} m`
+  };
+}
 function MemoriesPhotoMapLens({
   moments,
   onPinTap
 }) {
-  var CAP = 24,
-    CLUSTER_R = 6;
   var {
     clusters,
+    rings,
+    ringsCut,
     hidden,
-    unplaced
-  } = React.useMemo(() => {
-    var placed = [];
-    var unplaced = 0;
-    var _loop4 = function (m) {
-        if (!m.photoId) return 0;
-        var xy = null,
-          stageId = null;
-        if (m.parsedGps && typeof gpsToMap === "function") {
-          var p = gpsToMap(m.parsedGps.lat, m.parsedGps.lng);
-          if (p) {
-            xy = {
-              x: p.x,
-              y: p.y
-            };
-            if (typeof _nearestStageId === "function") stageId = _nearestStageId(p.x, p.y);
-          }
-        }
-        if (!xy) {
-          var a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
-          var _stage = a ? STAGES.find(s => s.id === a.stage) : null;
-          if (!_stage || !Number.isFinite(_stage.x) || !Number.isFinite(_stage.y)) {
-            unplaced++;
-            return 0;
-          }
-          var _j = _idJitter(m.id);
-          xy = {
-            x: _stage.x + _j.dx,
-            y: _stage.y + _j.dy
-          };
-          stageId = _stage.id;
-        }
-        if (!stageId && typeof _nearestStageId === "function") stageId = _nearestStageId(xy.x, xy.y);
-        var stage = stageId ? STAGES.find(s => s.id === stageId) : null;
-        placed.push({
-          m,
-          x: xy.x,
-          y: xy.y,
-          stage,
-          t: _momentTime(m)
-        });
-      },
-      _ret2;
-    for (var m of moments || []) {
-      _ret2 = _loop4(m);
-      if (_ret2 === 0) continue;
-    }
-    var sorted = placed.slice().sort((a, b) => b.t - a.t);
-    var used = new Array(sorted.length).fill(false);
-    var clusters = [];
-    for (var i = 0; i < sorted.length; i++) {
-      if (used[i]) continue;
-      var head = sorted[i];
-      used[i] = true;
-      var group = [head];
-      for (var j = i + 1; j < sorted.length; j++) {
-        if (used[j]) continue;
-        if (Math.hypot(sorted[j].x - head.x, sorted[j].y - head.y) <= CLUSTER_R) {
-          used[j] = true;
-          group.push(sorted[j]);
-        }
-      }
-      clusters.push({
-        x: head.x,
-        y: head.y,
-        stage: head.stage,
-        face: head.m,
-        items: group.map(g => g.m)
-      });
-    }
-    var visible = clusters.slice(0, CAP);
-    var hidden = clusters.slice(CAP).reduce((n, c) => n + c.items.length, 0);
-    return {
-      clusters: visible,
-      hidden,
-      unplaced
-    };
-  }, [moments]);
-  if (!clusters.length) {
-    return React.createElement("div", {
-      style: {
-        padding: "28px 14px",
-        textAlign: "center",
-        marginTop: 14,
-        border: "1px dashed var(--line-2)",
-        borderRadius: 14,
-        background: "var(--paper-2)"
-      }
-    }, React.createElement("div", {
-      className: "mono",
-      style: {
-        fontSize: 9,
-        letterSpacing: 1.3,
-        color: "var(--muted)",
-        fontWeight: 700
-      }
-    }, "NOTHING TO MAP YET — IMPORT GPS PHOTOS OR TAG SETS"));
-  }
-  var img = typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.mapImage : null;
-  return React.createElement("div", {
-    style: {
-      marginTop: 14
-    }
-  }, React.createElement("div", {
-    style: {
-      position: "relative",
-      width: "100%",
-      aspectRatio: "1 / 1",
-      borderRadius: 16,
-      overflow: "hidden",
-      border: "1px solid var(--line)",
-      background: "var(--paper)"
-    }
-  }, React.createElement("svg", {
-    viewBox: "0 0 100 100",
-    width: "100%",
-    height: "100%",
-    preserveAspectRatio: "xMidYMid slice",
-    style: {
-      position: "absolute",
-      inset: 0,
-      display: "block"
-    }
-  }, img && React.createElement("image", {
-    href: img,
-    x: "0",
-    y: "0",
-    width: "100",
-    height: "100",
-    preserveAspectRatio: "xMidYMid slice",
-    opacity: "0.6"
-  }), React.createElement("rect", {
-    x: "0",
-    y: "0",
-    width: "100",
-    height: "100",
-    fill: "rgba(8,7,11,0.5)"
-  })), clusters.map((c, i) => React.createElement(_PhotoPin, {
-    key: c.face.id || i,
-    cluster: c,
-    onTap: onPinTap
-  }))), (hidden > 0 || unplaced > 0) && React.createElement("div", {
+    noGps,
+    far,
+    coarse,
+    unknownAcc,
+    mPerPct
+  } = React.useMemo(() => _gpsLensLayout(moments), [moments]);
+  var bar = _lensScaleBar(mPerPct);
+  var notes = (hidden > 0 || noGps > 0 || far > 0 || coarse > 0 || unknownAcc > 0 || ringsCut > 0) && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 8.5,
@@ -8727,7 +8832,119 @@ function MemoriesPhotoMapLens({
       flexWrap: "wrap",
       gap: 10
     }
-  }, hidden > 0 && React.createElement("span", null, "+", hidden, " MORE THUMBNAIL", hidden === 1 ? "" : "S", " CLUSTERED"), unplaced > 0 && React.createElement("span", null, "+", unplaced, " UNTAGGED NOT ON THE MAP")));
+  }, hidden > 0 && React.createElement("span", null, "+", hidden, " MORE CLUSTERED"), noGps > 0 && React.createElement("span", null, noGps, " WITHOUT GPS NOT SHOWN"), far > 0 && React.createElement("span", null, far, " FAR FROM THE REST NOT SHOWN"), coarse > 0 && React.createElement("span", {
+    "data-gps-lens-note": "coarse"
+  }, coarse, " ROUGH FIX (OVER ", STAGE_FIX_PHOTO.maxAccM, " M), DASHED"), ringsCut > 0 && React.createElement("span", {
+    "data-gps-lens-note": "rings-cut"
+  }, ringsCut, " MORE ACCURACY ", ringsCut === 1 ? "RING" : "RINGS", " NOT DRAWN"), unknownAcc > 0 && React.createElement("span", {
+    "data-gps-lens-note": "unknown"
+  }, unknownAcc, " NO ACCURACY RECORDED, DOTTED"));
+  if (!clusters.length) {
+    return React.createElement("div", {
+      style: {
+        marginTop: 14
+      }
+    }, React.createElement("div", {
+      "data-gps-lens-empty": "1",
+      style: {
+        padding: "28px 14px",
+        textAlign: "center",
+        border: "1px dashed var(--line-2)",
+        borderRadius: 14,
+        background: "var(--paper-2)"
+      }
+    }, React.createElement("div", {
+      className: "mono",
+      style: {
+        fontSize: 9,
+        letterSpacing: 1.3,
+        color: "var(--muted)",
+        fontWeight: 700
+      }
+    }, "NO GPS IN THESE MOMENTS · SHOTS TAKEN WITH LOCATION ON SHOW UP HERE")), notes);
+  }
+  return React.createElement("div", {
+    style: {
+      marginTop: 14
+    }
+  }, React.createElement("div", {
+    "data-gps-lens": "1",
+    style: {
+      position: "relative",
+      width: "100%",
+      aspectRatio: "1 / 1",
+      borderRadius: 16,
+      overflow: "hidden",
+      border: "1px solid var(--line)",
+      background: "var(--paper-2)"
+    }
+  }, rings.map(g => React.createElement("span", {
+    key: "ring-" + g.id,
+    "data-gps-lens-ring": g.id,
+    "data-acc": g.cls,
+    "data-acc-m": g.accM,
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      left: g.x - g.r + "%",
+      top: g.y - g.r + "%",
+      width: 2 * g.r + "%",
+      height: 2 * g.r + "%",
+      borderRadius: "50%",
+      boxSizing: "border-box",
+      pointerEvents: "none",
+      zIndex: 1,
+      border: g.cls === "precise" ? "1.5px solid color-mix(in srgb, var(--acc) 70%, transparent)" : "1.5px dashed color-mix(in srgb, var(--acc) 60%, transparent)",
+      background: g.cls === "precise" ? "color-mix(in srgb, var(--acc) 13%, transparent)" : "color-mix(in srgb, var(--acc) 6%, transparent)"
+    }
+  })), clusters.map((c, i) => React.createElement(_PhotoPin, {
+    key: c.face.id || i,
+    cluster: c,
+    onTap: onPinTap
+  }))), React.createElement("div", {
+    style: {
+      position: "relative",
+      height: 22,
+      marginTop: 6
+    }
+  }, bar && React.createElement(React.Fragment, null, React.createElement("span", {
+    "data-gps-lens-bar": bar.m,
+    role: "img",
+    "aria-label": `Scale: ${bar.label}`,
+    style: {
+      position: "absolute",
+      left: 0,
+      top: 4,
+      width: `${bar.pct}%`,
+      height: 3,
+      borderRadius: 2,
+      background: "var(--muted)"
+    }
+  }), React.createElement("span", {
+    className: "mono",
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      left: 0,
+      top: 10,
+      fontSize: 8.5,
+      fontWeight: 700,
+      color: "var(--muted)",
+      letterSpacing: 0.6
+    }
+  }, bar.label)), React.createElement("span", {
+    className: "mono",
+    "aria-label": "North is up",
+    style: {
+      position: "absolute",
+      right: 0,
+      top: 2,
+      fontSize: 9,
+      fontWeight: 800,
+      color: "var(--muted)",
+      letterSpacing: 1
+    }
+  }, "N ↑")), notes);
 }
 function MemoriesMapTab({
   moments,
@@ -9367,6 +9584,7 @@ function MemoriesScreen({
     }
   };
   var processImportedFiles = async (files, opts = {}) => {
+    var nativePicker = !!opts.nativePicker;
     if (files.length === 0) {
       window.plurskyToast?.("No photos received — pick a few at a time; if they're in iCloud, open them in Photos first so they download.");
       return [];
@@ -9378,10 +9596,16 @@ function MemoriesScreen({
       results
     });
     var savedIds = state.saved || [];
-    var attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+    var attendedIds = _allFestivalAttendedIds();
     var current = {
       ..._readMoments()
     };
+    _importLog("batch_start", {
+      files: files.length,
+      active: window.FESTIVAL_CONFIG?.id || null,
+      saved: savedIds.length,
+      attended: attendedIds.length
+    });
     var existingContent = new Map();
     var addCandidate = (ck, m) => {
       if (ck) existingContent.set(ck, [...(existingContent.get(ck) || []), m]);
@@ -9396,7 +9620,31 @@ function MemoriesScreen({
     var skippedDupes = 0;
     var _loop5 = async function (i) {
       var f = files[i];
+      var reading = false;
       try {
+        if (nativePicker) {
+          reading = true;
+          var item = f;
+          var src = item.path ? window.Capacitor?.convertFileSrc?.(item.path) || item.path : null;
+          if (!src) throw new Error("No readable file path");
+          var isVideo = /^video\//.test(item.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(item.name || "");
+          if (isVideo && item.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          var response = await fetch(src);
+          if (!response.ok) throw new Error(`Media read failed (${response.status})`);
+          var blob = await response.blob();
+          if (!blob.size) throw new Error("Empty or unavailable iCloud media");
+          if (isVideo && blob.size > _MAX_VIDEO_BYTES) throw new Error("Video exceeds 200 MB cap");
+          var type = item.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
+          if (!/^(image|video)\//.test(type)) throw new Error("Unsupported media type");
+          f = new File([blob], item.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`, {
+            type,
+            lastModified: item.modifiedAt || Date.now()
+          });
+          if (isVideo && item.path) Object.defineProperty(f, "nativePath", {
+            value: item.path
+          });
+          reading = false;
+        }
         var fp = await _fileFingerprint(f);
         var ck = _fingerprintContentKey(fp);
         var fileSha = /^image\//.test(f.type || "") ? await _blobSha256Hex(f).catch(() => null) : null;
@@ -9415,6 +9663,10 @@ function MemoriesScreen({
             artistId: null,
             skipped: "duplicate"
           });
+          _importLog("file_duplicate", {
+            i,
+            name: f.name
+          });
           setBatch({
             total: files.length,
             done: i + 1,
@@ -9430,7 +9682,7 @@ function MemoriesScreen({
         } : _metaFromFile(f, exif);
         var recovered = _recoverVideoMetaFromArchive(f, fp, baseMeta);
         var meta = recovered?.meta || baseMeta;
-        var matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds) : {
+        var matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds, opts.ds || undefined) : {
           artistId: null,
           night: null,
           reason: "no_date"
@@ -9475,6 +9727,7 @@ function MemoriesScreen({
           matchReason: matched.reason || null,
           matchEvidence: matched.evidence || null,
           tagSuggested: !!(matched.artistId && matched.suggested),
+          tagAlternatives: Array.isArray(matched.alternatives) && matched.alternatives.length ? matched.alternatives.slice(0, 12) : null,
           anchorSource: matched.anchorSource || null,
           gpsAccM: meta?.acc != null ? Math.round(meta.acc) : null,
           gpsRejected: !!matched.gpsRejected,
@@ -9494,6 +9747,7 @@ function MemoriesScreen({
           _fingerprint: fp || null,
           _contentSha256: fileSha || null
         };
+        if (opts.ds?.config?.historical && matched.festivalId) moment.festivalStampSource = "past-edition";
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];
@@ -9507,20 +9761,56 @@ function MemoriesScreen({
           tagSource,
           festivalId: moment.festivalId
         });
+        _importLog("file", {
+          i,
+          name: f.name,
+          type: f.type || null,
+          kind: out.kind,
+          takenAtSource: meta?.takenAtSource || "none",
+          exifDate: hadExifDate,
+          dateUnverified: !!meta?.dateUnverified,
+          gps: moment.hasGps,
+          gpsAccM: moment.gpsAccM,
+          gpsRejected: moment.gpsRejected,
+          festivalId: moment.festivalId,
+          resolvedBy: matched.resolvedBy || null,
+          stamp: moment.festivalStampSource,
+          night,
+          nightFromCapture: !!matched.night,
+          artistId: moment.artistId || null,
+          reason: matched.reason || null,
+          tagSource,
+          ambiguous: moment.tagAmbiguous,
+          anchorSource: moment.anchorSource,
+          recovered: !!recovered
+        });
         _writeMoments(current);
         setAll({
           ...current
         });
       } catch (err) {
         if (!results.some(r => r.fileIndex === i && r.momentId)) {
+          var name = f?.name || `item ${i + 1}`;
+          var unreadable = reading && !(err?.message || "").includes("200 MB");
           results.push({
-            name: f.name,
+            name,
             fileIndex: i,
             night: null,
             artistId: null,
-            err: err?.message || "failed"
+            err: err?.message || "failed",
+            ...(unreadable ? {
+              unreadable: true
+            } : {})
           });
         }
+        _importLog("file_failed", {
+          i,
+          name: f?.name ?? null,
+          type: f?.type || f?.mimeType || null,
+          size: f?.size ?? null,
+          error: String(err?.message || err),
+          stack: String(err?.stack || "").split("\n").slice(0, 3).join(" | ")
+        });
       }
       setBatch({
         total: files.length,
@@ -9541,14 +9831,27 @@ function MemoriesScreen({
     var landed = settledResults.filter(r => r.momentId);
     var failedResults = settledResults.filter(r => r.err);
     var duplicateResults = settledResults.filter(r => r.skipped === "duplicate");
+    _importLog("batch_end", {
+      files: files.length,
+      landed: landed.length,
+      failed: failedResults.length,
+      duplicates: duplicateResults.length,
+      tagged: landed.filter(r => r.artistId).length,
+      fallbackNight: landed.filter(r => r.fallback).length,
+      byFestival: landed.reduce((m, r) => (m[r.festivalId || "none"] = (m[r.festivalId || "none"] || 0) + 1, m), {})
+    });
     var activeFid = window.FESTIVAL_CONFIG?.id || null;
     var elsewhere = landed.filter(r => r.festivalId && r.festivalId !== activeFid);
-    if (elsewhere.length) {
+    if (elsewhere.length && !opts.ds?.config?.historical) {
       var byFest = {};
       for (var r of elsewhere) byFest[r.festivalId] = (byFest[r.festivalId] || 0) + 1;
       var label = id => window._DATA_SETS?.[id]?.config?.shortName || window._DATA_SETS?.[id]?.config?.name || id;
       var parts = Object.keys(byFest).map(id => `${byFest[id]} to ${label(id)}`);
       window.plurskyToast?.(`Filed by capture date — ${parts.join(", ")}. Switch festivals to see them.`);
+    }
+    if (opts.ds?.config?.historical) {
+      setBatch(null);
+      return settledResults;
     }
     if (landed.length === 0) {
       var failed = failedResults.length;
@@ -9646,68 +9949,9 @@ function MemoriesScreen({
       if (files.length === 0) return {
         status: "cancelled"
       };
-      var out = [];
-      var unreadable = [];
-      for (var i = 0; i < files.length; i++) {
-        var f = files[i];
-        var src = f.path ? cap.convertFileSrc ? cap.convertFileSrc(f.path) : f.path : null;
-        if (!src) {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "nofile"
-          });
-          continue;
-        }
-        var blob = null;
-        try {
-          blob = await fetch(src).then(r => r.blob());
-        } catch {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "unreadable"
-          });
-          continue;
-        }
-        if (!blob || !blob.size) {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "unreadable"
-          });
-          continue;
-        }
-        var isVideo = /^video\//.test(f.mimeType || "") || /\.(mov|mp4|m4v)$/i.test(f.name || "");
-        var type = f.mimeType || blob.type || (isVideo ? "video/mp4" : "image/jpeg");
-        if (!/^(image|video)\//.test(type)) {
-          unreadable.push({
-            name: f.name || `item ${i + 1}`,
-            why: "unsupported"
-          });
-          continue;
-        }
-        var name = f.name || `pick-${i}.${isVideo ? "mp4" : "jpg"}`;
-        var pickedFile = new File([blob], name, {
-          type,
-          lastModified: f.modifiedAt || Date.now()
-        });
-        if (isVideo && f.path) {
-          try {
-            Object.defineProperty(pickedFile, "nativePath", {
-              value: f.path
-            });
-          } catch {
-            pickedFile.nativePath = f.path;
-          }
-        }
-        out.push(pickedFile);
-      }
-      if (out.length === 0) return {
-        status: unreadable.length ? "nofile" : "cancelled",
-        unreadable
-      };
       return {
         status: "picked",
-        files: out,
-        unreadable
+        files
       };
     } catch (err) {
       if (_pickerErrorIsCancel(err)) return {
@@ -9724,11 +9968,19 @@ function MemoriesScreen({
     setPickerState(null);
     var res = await pickViaNative();
     if (res.status === "picked") {
-      if (res.unreadable && res.unreadable.length) setPickerState({
-        status: "unreadable",
-        detail: res.unreadable
-      });
-      await processImportedFiles(res.files);
+      var settled = (await processImportedFiles(res.files, {
+        nativePicker: true
+      })) || [];
+      var unreadable = settled.filter(r => r.unreadable).map(r => ({
+        name: r.name,
+        why: "unreadable"
+      }));
+      if (unreadable.length) {
+        setPickerState({
+          status: settled.some(r => r.momentId) ? "unreadable" : "nofile",
+          detail: unreadable
+        });
+      }
       return;
     }
     if (res.status === "unsupported") {
@@ -9887,6 +10139,163 @@ function MemoriesScreen({
         _scanDiagLog("scan-end");
       } catch {}
     }
+  };
+  var [pastScan, setPastScan] = React.useState(null);
+  var _scanBusy = st => !!st && ["access", "scanning", "importing"].includes(st.phase);
+  var handleScanPast = async () => {
+    var PS = window.Capacitor?.Plugins?.PhotoScan;
+    if (!PS?.scan) return;
+    if (batch && batch.done < batch.total || _scanBusy(scan) || _scanBusy(pastScan)) return;
+    setPastScan({
+      phase: "access"
+    });
+    try {
+      var handed = _pastScanHandoffTake();
+      var limited, found, already, years;
+      if (handed) {
+        ({
+          limited,
+          found,
+          already,
+          years
+        } = handed);
+      } else {
+        var access = await PS.requestAccess();
+        limited = access?.status === "limited";
+        if (access?.status !== "authorized" && !limited) {
+          setPastScan({
+            phase: "denied"
+          });
+          return;
+        }
+        setPastScan({
+          phase: "scanning"
+        });
+        ({
+          found,
+          already,
+          years
+        } = await _pastScanFind(PS, (checked, n) => setPastScan({
+          phase: "scanning",
+          checked,
+          years: n
+        })));
+      }
+      var total = found.reduce((n, f) => n + f.keep.length, 0);
+      if (!total) {
+        setPastScan({
+          phase: "none",
+          already,
+          limited,
+          editions: years
+        });
+        return;
+      }
+      var imported = 0,
+        unreadable = 0,
+        done = 0;
+      var byEdition = [];
+      for (var f of found) {
+        var got = 0;
+        var _loop7 = async function () {
+          setPastScan({
+            phase: "importing",
+            done,
+            total
+          });
+          done += chunk.length;
+          var files = [],
+            fileAssets = [];
+          for (var a of chunk) {
+            var file = await _scanExportFile(PS, a, f.t.cfg);
+            if (file) {
+              files.push(file);
+              fileAssets.push(a);
+            } else unreadable++;
+          }
+          if (!files.length) return 1;
+          var results = (await processImportedFiles(files, {
+            ds: f.ds
+          })) || [];
+          var failed = new Set(results.filter(r => r.err).map(r => r.fileIndex));
+          _scanSeenAdd(fileAssets.filter((_, k) => !failed.has(k)).map(a => a.id));
+          var n = results.filter(r => r.momentId).length;
+          got += n;
+          imported += n;
+          unreadable += failed.size;
+          for (var _file of files) if (!/^video\//.test(_file.type)) PS.discard?.({
+            path: _file._scanPath
+          })?.catch?.(() => {});
+        };
+        for (var chunk of _scanChunks(f.keep)) {
+          if (await _loop7()) continue;
+        }
+        if (got) byEdition.push({
+          id: f.t.entry.id,
+          name: f.t.entry.name,
+          count: got
+        });
+      }
+      setPastScan({
+        phase: "done",
+        imported,
+        unreadable,
+        already,
+        limited,
+        byEdition
+      });
+    } catch (err) {
+      console.warn("[memories] past scan failed", err);
+      setPastScan({
+        phase: "error"
+      });
+    }
+  };
+  var scanPastRef = React.useRef(handleScanPast);
+  scanPastRef.current = handleScanPast;
+  React.useEffect(() => {
+    var onHandoff = () => {
+      if (window._pastScanHandoff) scanPastRef.current();
+    };
+    onHandoff();
+    window.addEventListener("plursky:past-scan-handoff", onHandoff);
+    return () => window.removeEventListener("plursky:past-scan-handoff", onHandoff);
+  }, []);
+  var _pastScanMessage = st => {
+    if (!st) return null;
+    var limitedNote = st.limited ? "Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
+    var alreadyNote = st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : "";
+    if (st.phase === "access" || st.phase === "scanning") return {
+      busy: true,
+      title: "Looking for photos from past festivals…",
+      body: st.years ? `Checked ${st.checked} of ${st.years} festival years since 2010.` : null
+    };
+    if (st.phase === "importing") return {
+      busy: true,
+      title: `Importing ${st.done} of ${st.total}…`
+    };
+    if (st.phase === "denied") return {
+      tone: "warn",
+      title: "Plursky can’t see your photos",
+      body: "Turn on photo access in Settings, Plursky, Photos, then scan again."
+    };
+    if (st.phase === "error") return {
+      tone: "warn",
+      title: "Couldn’t finish the scan",
+      body: "Anything already imported is saved. Past festivals need a connection the first time; scan again to pick up the rest.",
+      retry: true
+    };
+    if (st.phase === "none") return {
+      title: "No new photos from past festivals",
+      body: [alreadyNote || "Nothing in your library was taken on a past festival’s grounds while it was on.", limitedNote].filter(Boolean).join(" ")
+    };
+    if (st.phase === "done") return {
+      title: `Imported ${st.imported} from past festivals`,
+      body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", alreadyNote, limitedNote].filter(Boolean).join(" ") || null,
+      editions: st.byEdition || [],
+      retry: !!st.unreadable
+    };
+    return null;
   };
   var _scanMessage = st => {
     if (!st) return null;
@@ -10170,7 +10579,7 @@ function MemoriesScreen({
     return backupStat.total > here ? " · ALL FESTIVALS" : "";
   }, [allMoments, backupStat.total]);
   var _afterBackup = res => {
-    if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");else if (res?.error) window.plurskyToast?.("Backup unavailable right now");else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
+    if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");else if (res?.error) window.plurskyToast?.("Backup unavailable right now");else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}${res.gpsHeld ? ` · ${res.gpsHeld} ${res.gpsHeld === 1 ? "video stays" : "videos stay"} on this phone (location could not be removed)` : ""}`);
   };
   var handleBackup = async () => {
     if (!_isPlusSub()) {
@@ -10450,7 +10859,151 @@ function MemoriesScreen({
         fontWeight: 600,
         fontFamily: "inherit"
       }
-    }, "Dismiss"))), React.createElement("div", {
+    }, "Dismiss"))), (() => {
+      var pm = _pastScanMessage(pastScan);
+      var pbusy = !!pm?.busy || busy;
+      var ghost = {
+        minHeight: 44,
+        padding: "0 14px",
+        borderRadius: 12,
+        border: "none",
+        cursor: "pointer",
+        background: "var(--paper-3)",
+        color: "var(--ink)",
+        fontSize: 15,
+        lineHeight: 1.33,
+        fontWeight: 600,
+        fontFamily: "inherit"
+      };
+      return React.createElement("div", {
+        style: {
+          marginTop: 8
+        }
+      }, React.createElement("button", {
+        onClick: handleScanPast,
+        disabled: pbusy,
+        "data-scan-past": true,
+        className: "duo-card",
+        style: {
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          gap: 12,
+          width: "100%",
+          minHeight: 64,
+          padding: "10px 16px",
+          border: "none",
+          color: "var(--ink)",
+          textAlign: "left",
+          fontFamily: "inherit",
+          cursor: pbusy ? "default" : "pointer"
+        }
+      }, React.createElement("span", {
+        "aria-hidden": "true",
+        className: "duo-well",
+        style: {
+          width: 40,
+          height: 40,
+          flexShrink: 0,
+          display: "grid",
+          placeItems: "center",
+          color: "var(--acc-ink)"
+        }
+      }, React.createElement("svg", {
+        width: "20",
+        height: "20",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "1.8",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }, React.createElement("path", {
+        d: "M4 12 a8 8 0 1 0 2.4-5.7"
+      }), React.createElement("path", {
+        d: "M4 4 v4.5 h4.5"
+      }), React.createElement("path", {
+        d: "M12 8 v4.2 l2.8 1.8"
+      }))), React.createElement("span", {
+        style: {
+          flex: "1 1 150px",
+          minWidth: 0
+        }
+      }, React.createElement("span", {
+        "data-fit-words": true,
+        "data-fit-min": "13",
+        className: "duo-headline",
+        style: {
+          display: "block"
+        }
+      }, "Scan past festivals"), React.createElement("span", {
+        "data-fit-words": true,
+        "data-fit-min": "11",
+        className: "duo-body-s duo-ink2",
+        style: {
+          display: "block",
+          fontWeight: 400
+        }
+      }, "Finds photos from past years you were there")), React.createElement("span", {
+        className: "duo-body-s",
+        style: {
+          color: "var(--acc-ink)",
+          fontWeight: 650,
+          fontSize: 15
+        }
+      }, pbusy ? "…" : "Scan")), pm && React.createElement("div", {
+        role: "status",
+        "data-scan-past-card": true,
+        style: {
+          marginTop: 8,
+          padding: "12px 14px",
+          borderRadius: 14,
+          background: "var(--paper-2)",
+          border: "1px solid var(--line)"
+        }
+      }, React.createElement("div", {
+        style: {
+          fontSize: 15,
+          lineHeight: 1.33,
+          fontWeight: 600,
+          color: pm.tone === "warn" ? "var(--warn)" : "var(--ink)"
+        }
+      }, pm.title), pm.body && React.createElement("p", {
+        style: {
+          margin: "4px 0 0",
+          fontSize: 13,
+          lineHeight: 1.38,
+          color: "var(--text-2)"
+        }
+      }, pm.body), !pm.busy && React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 8,
+          marginTop: 8,
+          flexWrap: "wrap"
+        }
+      }, (pm.editions || []).map(e => React.createElement("button", {
+        key: e.id,
+        "data-scan-past-open": e.id,
+        style: ghost,
+        onClick: () => (window._pushNav || (() => {}))({
+          tab: "past",
+          pastEdition: e.id,
+          pastDirect: true,
+          artist: null
+        })
+      }, e.name, " · ", e.count)), pm.retry && React.createElement("button", {
+        onClick: handleScanPast,
+        style: ghost
+      }, "Scan again"), React.createElement("button", {
+        onClick: () => setPastScan(null),
+        style: {
+          ...ghost,
+          background: "transparent",
+          color: "var(--text-2)"
+        }
+      }, "Dismiss"))));
+    })(), React.createElement("div", {
       style: {
         display: "flex",
         alignItems: "center",
@@ -12527,15 +13080,18 @@ function AppleMusicPlaylistButton({
       });
       setResult(r);
       setStatus(r.ok ? "done" : "err");
-      if (!r.ok && r.reason !== "not_connected") setTimeout(() => setStatus("idle"), 4500);
     } catch (e) {
-      setResult({
+      var _r2 = {
         ok: false,
         reason: "create_fail",
         message: String(e?.message || e)
-      });
+      };
+      _r2.userMessage = appleMusicFailureMessage(_r2);
+      try {
+        console.warn("[plursky:applemusic] threw", _r2.message);
+      } catch {}
+      setResult(_r2);
       setStatus("err");
-      setTimeout(() => setStatus("idle"), 4500);
     }
   };
   var onClick = () => {
@@ -12556,12 +13112,13 @@ function AppleMusicPlaylistButton({
   } else if (status === "done") {
     var sm = result?.songsMatched || 0;
     var open = result?.url ? " — open ↗" : "";
-    label = soundtrack && sm > 0 ? `✓ ${sm} of your songs + ${result?.added - sm} more${open}` : `✓ ${result?.added} tracks in Apple Music${open}`;
+    var miss = result?.missed ? ` · ${result.missed} act${result.missed === 1 ? "" : "s"} not on Apple Music` : "";
+    label = soundtrack && sm > 0 ? `✓ ${sm} of your songs + ${result?.added - sm} more${miss}${open}` : `✓ ${result?.added} tracks in Apple Music${miss}${open}`;
     bg = "var(--apple-music)";
     color = "var(--on-apple-music)";
     border = "none";
   } else if (status === "err") {
-    if (result?.reason === "not_connected") label = "Tap to connect Apple Music";else if (result?.reason === "empty") label = "Save sets first";else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";else label = `Try again${result?.status ? ` · ${result.status}` : ""}`;
+    label = result?.userMessage || appleMusicFailureMessage(result) || "Apple Music playlist failed";
     bg = "rgba(var(--alert-rgb),0.16)";
     color = "var(--ink)";
     border = "1px solid var(--alert)";
@@ -12575,8 +13132,11 @@ function AppleMusicPlaylistButton({
       background: bg,
       color,
       border,
-      borderRadius: 999,
+      borderRadius: status === "err" ? 14 : 999,
       padding: "10px 16px",
+      maxWidth: "100%",
+      textAlign: "left",
+      overflowWrap: "anywhere",
       cursor: status === "working" ? "wait" : "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
@@ -12598,7 +13158,7 @@ function archiveFestival(festivalId, festivalName, festivalConfig) {
   if (!festivalId) return false;
   try {
     var archive = _readArchive();
-    var attended = JSON.parse(localStorage.getItem("plursky_attended_v1") || "{}");
+    var attended = getAllAttended(festivalId);
     var moments = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
     var saved = JSON.parse(localStorage.getItem("edc_saved") || "[]");
     var totalAttended = Object.values(attended).reduce((s, a) => s + (Array.isArray(a) ? a.length : 0), 0);
@@ -12684,12 +13244,12 @@ function _recoverCurrentVideoMomentsFromArchive() {
         changed = true;
       }
     }
-    var _loop7 = function (move) {
+    var _loop8 = function (move) {
       all[move.from] = (all[move.from] || []).filter(m => m !== move.moment);
       all[move.to] = [...(all[move.to] || []), move.moment];
     };
     for (var move of moves) {
-      _loop7(move);
+      _loop8(move);
     }
     if (changed) _writeMoments(all);
   } catch {}
@@ -12715,6 +13275,7 @@ function _reconcileFestivalStamps(moments) {
     if (!Array.isArray(arr)) continue;
     for (var m of arr) {
       if (!m || !m.festivalId || !m.takenAt) continue;
+      if (m.festivalStampSource === "past-edition") continue;
       if (!_momentTakenAtToDateParts(m.takenAt)) {
         if (m.festivalReview && m.festivalReview.reason === "no-claimant") {
           delete m.festivalReview;
@@ -12766,13 +13327,13 @@ function _reconcileFestivalStamps(moments) {
       }
     }
   }
-  var _loop8 = function (move) {
+  var _loop9 = function (move) {
     moments[move.from] = moments[move.from].filter(x => x !== move.moment);
     if (!moments[move.from].length) delete moments[move.from];
     moments[move.to] = [...(moments[move.to] || []), move.moment];
   };
   for (var move of moves) {
-    _loop8(move);
+    _loop9(move);
   }
   return changed;
 }
@@ -13085,7 +13646,7 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var _loop9 = function (m) {
+  var _loop0 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var {
         fid,
@@ -13106,10 +13667,10 @@ function _aggregateSoundtrack(moments) {
       songMap[key].count++;
       songMap[key].artists.add(artist.name);
     },
-    _ret3;
+    _ret2;
   for (var m of Object.values(moments)) {
-    _ret3 = _loop9(m);
-    if (_ret3 === 0) continue;
+    _ret2 = _loop0(m);
+    if (_ret2 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
 }
@@ -13448,6 +14009,7 @@ function _iapMsg(e) {
   }
 }
 var _rcInitialized = false;
+var _rcAppUserId = null;
 async function _initRevenueCat() {
   if (_rcInitialized || !RC_API_KEY) return;
   if (!window.Capacitor?.isNativePlatform?.()) return;
@@ -13457,6 +14019,9 @@ async function _initRevenueCat() {
       apiKey: RC_API_KEY
     }), 12000, "RevenueCat configure");
     _rcInitialized = true;
+    try {
+      _rcAppUserId = (await _withTimeout(Purchases.getAppUserID(), 5000, "RevenueCat getAppUserID"))?.appUserID || null;
+    } catch {}
     var {
       customerInfo
     } = await _withTimeout(Purchases.getCustomerInfo(), 12000, "RevenueCat getCustomerInfo");
@@ -13483,7 +14048,53 @@ function _iapDevHost() {
 function _iapAvailable() {
   return !!window.Capacitor?.isNativePlatform?.() || _iapDevHost();
 }
-async function _purchasePlus(productId) {
+var PROMO_CODE_REDEEM_ON = false;
+function _codeRedeemAvailable() {
+  return PROMO_CODE_REDEEM_ON && _iapAvailable();
+}
+async function _redeemOfferCode() {
+  if (!PROMO_CODE_REDEEM_ON) return {
+    success: false,
+    unsupported: true
+  };
+  if (!window.Capacitor?.isNativePlatform?.()) {
+    if (!_iapDevHost()) return {
+      success: false,
+      unsupported: true,
+      error: "Codes can only be redeemed in the iOS app."
+    };
+    console.log("[plursky-iap] local dev host: would open Apple's offer-code sheet");
+    return {
+      success: false,
+      web: true
+    };
+  }
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return {
+    success: false,
+    error: "RevenueCat not configured"
+  };
+  try {
+    var Purchases = _rcPlugin();
+    await _withTimeout(Purchases.presentCodeRedemptionSheet(), 300000, "Offer code sheet");
+    var {
+      customerInfo
+    } = await _withTimeout(Purchases.getCustomerInfo(), 15000, "Entitlement check");
+    _syncEntitlements(customerInfo);
+    return {
+      success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT]
+    };
+  } catch (e) {
+    console.error("[plursky-iap] offer code error:", _iapMsg(e));
+    return {
+      success: false,
+      error: _iapMsg(e)
+    };
+  }
+}
+async function _purchasePlus(productId, {
+  offeringId
+} = {}) {
   if (!window.Capacitor?.isNativePlatform?.()) {
     if (!_iapDevHost()) {
       console.warn("[plursky-iap] purchase blocked — web build has no StoreKit");
@@ -13508,7 +14119,8 @@ async function _purchasePlus(productId) {
   try {
     var Purchases = _rcPlugin();
     var offerings = await _withTimeout(Purchases.getOfferings(), 15000, "StoreKit offerings lookup");
-    var pkg = offerings?.current?.availablePackages?.find(p => p.product?.identifier === productId);
+    var offering = offeringId ? offerings?.all?.[offeringId] : offerings?.current;
+    var pkg = offering?.availablePackages?.find(p => p.product?.identifier === productId);
     if (!pkg) {
       console.warn("[plursky-iap] product not found:", productId);
       return {
@@ -13526,7 +14138,7 @@ async function _purchasePlus(productId) {
       success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT]
     };
   } catch (e) {
-    if (e?.code === "1" || e?.message?.includes("cancelled")) {
+    if (e?.userCancelled === true || e?.code === "1" || e?.message?.includes("cancelled")) {
       return {
         success: false,
         cancelled: true
@@ -13619,6 +14231,153 @@ async function _restorePurchases() {
       error: _iapMsg(e)
     };
   }
+}
+var RESCUE_PRODUCT_ID = "plursky_season_pass_2026_promo";
+var RESCUE_OFFERING_ID = "season_rescue";
+var RESCUE_STATE_KEY = "plursky_rescue_v1";
+function _rescueScope() {
+  return _rcAppUserId ? "rc:" + _rcAppUserId : "install";
+}
+function _rescueReadAll() {
+  try {
+    return JSON.parse(localStorage.getItem(RESCUE_STATE_KEY) || "{}") || {};
+  } catch {
+    return {};
+  }
+}
+function _rescueState() {
+  var all = _rescueReadAll(),
+    scope = _rescueScope();
+  return {
+    ...(all[scope] || scope !== "install" && all.install || {})
+  };
+}
+function _rescueWrite(next) {
+  var all = _rescueReadAll();
+  all[_rescueScope()] = next;
+  try {
+    localStorage.setItem(RESCUE_STATE_KEY, JSON.stringify(all));
+  } catch {}
+  return next;
+}
+function _rescueNoteView() {
+  var s = _rescueState(),
+    now = Date.now();
+  s.firstPaywallAt = s.firstPaywallAt || now;
+  s.paywallViewCount = (s.paywallViewCount || 0) + 1;
+  if (s.paywallViewCount >= 2 && !s.rescueEligibleAt) {
+    s.rescueEligibleAt = now;
+    s.rescueTrigger = "second_view";
+  }
+  return _rescueWrite(s);
+}
+function _rescueNoteSeasonCancel() {
+  var s = _rescueState();
+  if (!s.rescueEligibleAt) {
+    s.rescueEligibleAt = Date.now();
+    s.rescueTrigger = "season_purchase_cancel";
+  }
+  return _rescueWrite(s);
+}
+function _rescueNotePurchased() {
+  var s = _rescueState();
+  s.rescuePurchased = true;
+  return _rescueWrite(s);
+}
+async function _rescueOffer() {
+  if (!window.Capacitor?.isNativePlatform?.()) return null;
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return null;
+  try {
+    var offerings = await _withTimeout(_rcPlugin().getOfferings(), 10000, "Rescue offer lookup");
+    var offering = offerings?.all?.[RESCUE_OFFERING_ID];
+    if (!offering) return null;
+    var live = offering.metadata?.rescue_enabled === true;
+    var sandbox = !live && (await _rescueSandboxOn());
+    if (!live && !sandbox) return null;
+    var pkg = (offering.availablePackages || []).find(p => p.product?.identifier === RESCUE_PRODUCT_ID);
+    var price = pkg?.product?.priceString;
+    return typeof price === "string" && price ? {
+      productId: RESCUE_PRODUCT_ID,
+      price,
+      sandbox
+    } : null;
+  } catch (e) {
+    console.warn("[plursky-iap] rescue offer unavailable:", _iapMsg(e));
+    return null;
+  }
+}
+var RESCUE_SANDBOX_KEY = "plursky_rescue_sandbox_v1";
+function _rescueSandboxAllowed(channel, stored) {
+  if (channel !== "debug" && channel !== "testflight") return false;
+  return stored === "1";
+}
+async function _rescueSandboxChannel() {
+  try {
+    if (!window.Capacitor?.isNativePlatform?.() || !window.ShazamPlugin) return null;
+    var r = await _withTimeout(window.ShazamPlugin.buildChannel(), 3000, "Build channel");
+    return r && r.channel || null;
+  } catch {
+    return null;
+  }
+}
+async function _rescueSandboxOn() {
+  var stored = null;
+  try {
+    stored = localStorage.getItem(RESCUE_SANDBOX_KEY);
+  } catch {}
+  if (stored !== "1") return false;
+  return _rescueSandboxAllowed(await _rescueSandboxChannel(), stored);
+}
+async function _rescueSandboxApplyUrl(rawUrl) {
+  var v = null;
+  try {
+    var u = new URL(rawUrl || "", "capacitor://localhost");
+    v = new URLSearchParams(u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "")).get("rescueSandbox");
+  } catch {}
+  if (v !== "1" && v !== "0") return null;
+  var ch = await _rescueSandboxChannel();
+  if (ch !== "debug" && ch !== "testflight") return null;
+  try {
+    v === "1" ? localStorage.setItem(RESCUE_SANDBOX_KEY, "1") : localStorage.removeItem(RESCUE_SANDBOX_KEY);
+  } catch {}
+  return v === "1";
+}
+if (window.Capacitor?.isNativePlatform?.()) {
+  try {
+    var capApp = window.Capacitor.Plugins?.App;
+    Promise.resolve(capApp?.getLaunchUrl?.()).then(r => r?.url && _rescueSandboxApplyUrl(r.url)).catch(() => {});
+    Promise.resolve(capApp?.addListener?.("appUrlOpen", ({
+      url
+    }) => {
+      _rescueSandboxApplyUrl(url);
+    })).catch(() => {});
+  } catch {}
+}
+var PLUS_EVENT_KEY = "plursky_plus_events";
+var _PLUS_EVENT_PROPS = ["entry_feature", "view_number", "is_native", "storefront", "rescue_eligible", "rescue_trigger", "product_id", "displayed_price", "trigger", "discount_product_id", "result"];
+function _plusEvent(name, props = {}) {
+  var clean = {};
+  for (var k of _PLUS_EVENT_PROPS) {
+    var v = props[k];
+    if (v === null || ["string", "number", "boolean"].includes(typeof v)) clean[k] = v ?? null;
+  }
+  var ev = {
+    name,
+    at: Date.now(),
+    ...clean
+  };
+  try {
+    var log = JSON.parse(localStorage.getItem(PLUS_EVENT_KEY) || "[]");
+    log.push(ev);
+    localStorage.setItem(PLUS_EVENT_KEY, JSON.stringify(log.slice(-200)));
+  } catch {}
+  try {
+    window.dispatchEvent(new CustomEvent("plursky:plus-event", {
+      detail: ev
+    }));
+  } catch {}
+  return ev;
 }
 function _isPlusSub() {
   try {
@@ -13973,21 +14732,84 @@ function PlusGate({
   var [buyError, setBuyError] = React.useState(null);
   var live = useLivePlusPrices();
   var [plan, setPlan] = React.useState(RC_PRODUCT_IDS.season);
+  var [rescue, setRescue] = React.useState(null);
+  var [rescueOffer, setRescueOffer] = React.useState(null);
+  var rescueSeen = React.useRef(false);
+  var plusNow = _isPlusSub();
+  var nativeBuy = !plusNow && !!window.Capacitor?.isNativePlatform?.();
+  React.useEffect(() => {
+    if (plusNow) return;
+    var counts = nativeBuy && layout === "sheet";
+    var rec = !nativeBuy ? null : counts ? _rescueNoteView() : _rescueState();
+    if (rec) setRescue(rec);
+    _plusEvent("plus_paywall_view", {
+      entry_feature: feature || null,
+      view_number: counts ? rec.paywallViewCount : null,
+      is_native: nativeBuy,
+      storefront: null,
+      rescue_eligible: !!rec?.rescueEligibleAt,
+      rescue_trigger: rec?.rescueTrigger || null
+    });
+  }, []);
+  React.useEffect(() => {
+    if (!nativeBuy || !rescue?.rescueEligibleAt || rescue.rescuePurchased) return;
+    var dead = false;
+    _rescueOffer().then(o => {
+      if (!dead) setRescueOffer(o);
+    });
+    return () => {
+      dead = true;
+    };
+  }, [rescue?.rescueEligibleAt]);
+  var rescueTrigger = rescue?.rescueTrigger || null;
+  var showRescue = nativeBuy && !!rescue?.rescueEligibleAt && !rescue.rescuePurchased && !!rescueOffer && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
+  React.useEffect(() => {
+    if (!showRescue || rescueSeen.current) return;
+    rescueSeen.current = true;
+    _plusEvent("plus_inline_rescue_view", {
+      trigger: rescueTrigger,
+      discount_product_id: rescueOffer.productId,
+      displayed_price: rescueOffer.price
+    });
+  }, [showRescue]);
   React.useEffect(() => {
     if (!_isPlusSub()) _pwEvent("offer_shown", {
       surface: feature
     });
   }, []);
-  if (_isPlusSub()) return children;
+  if (plusNow) return children;
   var canBuy = _iapAvailable();
-  var handlePurchase = async productId => {
+  var handlePurchase = async (productId, {
+    rescue: isRescue = false
+  } = {}) => {
     var target = productId || RC_PRODUCT_IDS.season;
+    var shown = isRescue ? rescueOffer?.price : live && live[target] || null;
+    var trig = isRescue ? rescueTrigger : null;
     setBusy(true);
     setPending(target);
     setBuyError(null);
+    _plusEvent("plus_purchase_start", {
+      product_id: target,
+      displayed_price: shown || null,
+      rescue_trigger: trig
+    });
+    var outcome = "error";
     try {
-      var result = await _withTimeout(_purchasePlus(target), 50000, "Purchase");
+      var result = await _withTimeout(_purchasePlus(target, isRescue ? {
+        offeringId: RESCUE_OFFERING_ID
+      } : undefined), 50000, "Purchase");
+      outcome = result.success ? "success" : result.cancelled ? "cancel" : /timed out/i.test(result.error || "") ? "timeout" : "error";
+      _plusEvent("plus_purchase_result", {
+        result: outcome,
+        product_id: target,
+        rescue_trigger: trig
+      });
       if (result.success) {
+        if (isRescue) _rescueNotePurchased();
+        _plusEvent("plus_entitlement_active", {
+          product_id: target,
+          rescue_trigger: trig
+        });
         await _pwEvent("offer_accept", {
           surface: feature,
           productId: target
@@ -13999,12 +14821,34 @@ function PlusGate({
         surface: feature,
         productId: target
       });
+      if (result.cancelled && !isRescue && target === RC_PRODUCT_IDS.season && nativeBuy) setRescue(_rescueNoteSeasonCancel());
       if (!result.cancelled && !result.unsupported) setBuyError(result.error || "Purchase could not be completed.");
     } catch (e) {
+      if (outcome === "error") _plusEvent("plus_purchase_result", {
+        result: /timed out/i.test(e?.message || "") ? "timeout" : "error",
+        product_id: target,
+        rescue_trigger: trig
+      });
       setBuyError(e?.message || "Purchase could not be completed.");
     } finally {
       setBusy(false);
       setPending(null);
+    }
+  };
+  var handleRedeem = async () => {
+    setBusy(true);
+    setBuyError(null);
+    try {
+      var result = await _redeemOfferCode();
+      if (result.success) {
+        window.location.reload();
+        return;
+      }
+      if (result.error) setBuyError(result.error);
+    } catch (e) {
+      setBuyError(e?.message || "The code could not be redeemed.");
+    } finally {
+      setBusy(false);
     }
   };
   var handleRestore = async () => {
@@ -14125,7 +14969,63 @@ function PlusGate({
       lineHeight: "18px",
       color: "var(--warn)"
     }
-  }, buyError, " You are only charged when Apple confirms — nothing was charged for this attempt."), !showPlans ? null : canBuy ? React.createElement(React.Fragment, null, React.createElement("div", {
+  }, buyError, " You are only charged when Apple confirms — nothing was charged for this attempt."), !showPlans ? null : canBuy ? React.createElement(React.Fragment, null, showRescue && React.createElement("section", {
+    "aria-label": "Festival launch price",
+    style: {
+      marginTop: 16,
+      padding: "14px 14px 12px",
+      borderRadius: 14,
+      background: "var(--paper-2)",
+      border: "1.5px solid var(--signal)"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      letterSpacing: "0.04em",
+      textTransform: "uppercase",
+      color: "var(--signal)"
+    }
+  }, "Festival launch price"), rescueOffer.sandbox && React.createElement("div", {
+    style: {
+      marginTop: 4,
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      color: "var(--text-2)"
+    }
+  }, "Sandbox test · remote switch is off"), React.createElement("div", {
+    style: {
+      marginTop: 4,
+      fontSize: 17,
+      lineHeight: "22px",
+      fontWeight: 700,
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, "Season Pass · ", rescueOffer.price, " one time"), React.createElement("div", {
+    style: {
+      marginTop: 2,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, "Keep the full weekend. No subscription, nothing auto-renews."), React.createElement(FieldButton, {
+    onClick: () => handlePurchase(RESCUE_PRODUCT_ID, {
+      rescue: true
+    }),
+    disabled: busy,
+    style: {
+      marginTop: 12
+    }
+  }, pending === RESCUE_PRODUCT_ID ? "Processing…" : `Get Season Pass for ${rescueOffer.price}`), React.createElement("p", {
+    style: {
+      margin: "8px 0 0",
+      fontSize: 12,
+      lineHeight: "17px",
+      color: "var(--text-2)"
+    }
+  }, "Season Pass · ", rescueOffer.price, " one-time purchase. No subscription, nothing auto-renews.")), React.createElement("div", {
     role: "radiogroup",
     "aria-label": "Choose a plan",
     style: {
@@ -14141,7 +15041,14 @@ function PlusGate({
       key: p.id,
       role: "radio",
       "aria-checked": on,
-      onClick: () => setPlan(p.id),
+      onClick: () => {
+        setPlan(p.id);
+        _plusEvent("plus_plan_select", {
+          product_id: p.id,
+          displayed_price: price,
+          rescue_eligible: !!rescue?.rescueEligibleAt
+        });
+      },
       disabled: busy,
       style: {
         display: "flex",
@@ -14213,7 +15120,7 @@ function PlusGate({
     style: {
       marginTop: 16
     }
-  }, pending ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta), PLANS.map(p => React.createElement("p", {
+  }, pending && pending !== RESCUE_PRODUCT_ID ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta), PLANS.map(p => React.createElement("p", {
     key: p.id,
     style: {
       margin: "10px 0 0",
@@ -14233,7 +15140,19 @@ function PlusGate({
     onClick: handleRestore,
     disabled: busy,
     style: quiet
-  }, "Restore purchases"), React.createElement("a", {
+  }, "Restore purchases"), _codeRedeemAvailable() && React.createElement("button", {
+    onClick: handleRedeem,
+    disabled: busy,
+    style: quiet,
+    "data-redeem-code": ""
+  }, "Redeem code"), _codeRedeemAvailable() && React.createElement("span", {
+    "aria-hidden": "true",
+    "data-redeem-break": "",
+    style: {
+      flexBasis: "100%",
+      height: 0
+    }
+  }), React.createElement("a", {
     href: "./terms.html",
     target: "_blank",
     rel: "noopener",
@@ -14823,7 +15742,7 @@ function HeroCards({
     var live = true;
     var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
     (async () => {
-      var _loop0 = async function (a) {
+      var _loop1 = async function (a) {
           var canvas = await _renderHeroCard(a).catch(() => null);
           if (!live || !canvas) return 0;
           var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -14838,10 +15757,10 @@ function HeroCards({
             }
           }));
         },
-        _ret4;
+        _ret3;
       for (var a of want) {
-        _ret4 = await _loop0(a);
-        if (_ret4 === 0) continue;
+        _ret3 = await _loop1(a);
+        if (_ret3 === 0) continue;
       }
     })();
     return () => {
@@ -16036,8 +16955,8 @@ function RecapScreen({
         }
         if (!audioUrl && recap.topByPop?.name) {
           try {
-            var _r2 = await fetchPreviewUrl(recap.topByPop.name);
-            audioUrl = _r2?.url;
+            var _r3 = await fetchPreviewUrl(recap.topByPop.name);
+            audioUrl = _r3?.url;
           } catch {}
         }
         await window._shareRecapVideo?.({
@@ -16828,7 +17747,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop1 = function (rows) {
+  var _loop10 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -16842,7 +17761,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop1(rows);
+    _loop10(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }

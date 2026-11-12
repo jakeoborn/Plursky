@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v545';
+﻿const CACHE      = 'plursky-v585';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v545';
+const APP_VER    = 'v585';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -50,12 +50,20 @@ const LOCAL = [
   `./data/festivals/dreamstate-socal-2026.js?v=${APP_VER}`,
   `./data/festivals/decadence-colorado-2026.js?v=${APP_VER}`,
   `./data/festivals/countdown-nye-2026.js?v=${APP_VER}`,
+  `./data/festivals/lights-all-night-2026.js?v=${APP_VER}`,
+  `./data/festivals/decadence-arizona-2026.js?v=${APP_VER}`,
+  `./data/festivals/sunset-on-the-river-2027.js?v=${APP_VER}`,
+  `./data/festivals/dwp-2026.js?v=${APP_VER}`,
+  `./data/festivals/edc-thailand-2026.js?v=${APP_VER}`,
+  `./data/festivals/tomorrowland-thailand-2026.js?v=${APP_VER}`,
   // Licensed artist-photo ledger runtime (data/artist-photos/ledger.json → build-artist-photo-ledger.mjs).
   `./data/artist-photos.js?v=${APP_VER}`,
   // One artist key for the photo lookup and the registry (artist repository M3).
   `./data/artist-key.js?v=${APP_VER}`,
   // Festival-art ledger (Item 6): official tile art, data/festival-art.js.
   `./data/festival-art.js?v=${APP_VER}`,
+  // Public plan-share payload contract (#74 stage 1; the link itself is flag-off).
+  `./data/plan-share-contract.js?v=${APP_VER}`,
   // Ground plates (mapImage targets). Not every festival module has one: ARC,
   // III Points, CRSSD and Portola ship mapMode "real" and no plate.
   //
@@ -84,14 +92,23 @@ const LOCAL = [
   './onboarding-crowd-unsplash.jpg',
   './edco-tinker-2026.webp',
   './dreamstate-socal-2026-map.webp',
+  // Official map art fitted to each venue (scripts/build-geo-plate.py).
+  './geo-maps/edc-orlando-2026.webp',
+  './geo-maps/hard-summer-2026.webp',
+  './geo-maps/iii-points-2026.webp',
+  './geo-maps/lollapalooza-2026.webp',
+  './geo-maps/outside-lands-2026.webp',
+  './geo-maps/summerfest-2026.webp',
   './artist-photos/afrojack.webp',
   './artist-photos/alan-walker.webp',
   './artist-photos/alesso.webp',
   './artist-photos/alison-wonderland.webp',
   './artist-photos/alok.webp',
   './artist-photos/amyl-and-the-sniffers.webp',
+  './artist-photos/bleachers.webp',
   './artist-photos/bone-thugs-n-harmony.webp',
   './artist-photos/boys-noize.webp',
+  './artist-photos/brandon-flowers.webp',
   './artist-photos/cascada.webp',
   './artist-photos/charli-xcx.webp',
   './artist-photos/charlotte-de-witte.webp',
@@ -128,13 +145,17 @@ const LOCAL = [
   './artist-photos/nina-kraviz.webp',
   './artist-photos/parcels.webp',
   './artist-photos/purity-ring.webp',
+  './artist-photos/rebecca-black.webp',
   './artist-photos/richie-hawtin.webp',
   './artist-photos/rusowsky.webp',
   './artist-photos/seth-troxler.webp',
   './artist-photos/skrillex.webp',
   './artist-photos/slander.webp',
+  './artist-photos/sofi-tukker.webp',
   './artist-photos/steve-aoki.webp',
+  './artist-photos/the-chainsmokers.webp',
   './artist-photos/the-war-on-drugs.webp',
+  './artist-photos/the-xx.webp',
   './artist-photos/tiesto.webp',
   './artist-photos/tokischa.webp',
   './artist-photos/tricky.webp',

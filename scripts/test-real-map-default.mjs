@@ -50,14 +50,16 @@ const BLANK_STYLE = JSON.stringify({ version: 8, sources: {}, layers: [{ id: "bg
 // The map is a during-festival tab, so each case pins the clock inside its festival.
 const tag0 = C => C.fix ? `${C.fid}@${C.fix.stage}` : C.fid;
 const CASES = [
-  { fid: "summerfest-2026",  at: "2026-06-19T23:00:00Z", pins: true,  overlay: "checked" },
+  { fid: "summerfest-2026",  at: "2026-06-19T23:00:00Z", pins: true,  overlay: "checked", georef: true },
   // Outside Lands is wide east-west: its edge stages are where a pan limit
   // that ignores the opening view clipped a name off-screen.
-  { fid: "outside-lands-2026", at: "2026-08-08T23:00:00Z", pins: true, overlay: "checked" },
+  { fid: "outside-lands-2026", at: "2026-08-08T23:00:00Z", pins: true, overlay: "checked", georef: true },
   // Ultra's is the longest posture label; at 393 pt it is the one that fits
   // beside a shrinking title and printed over it. III Points runs at 320 pt.
   { fid: "ultra-miami-2026", at: "2026-03-28T23:00:00Z", pins: false, overlay: "unchecked" },
-  { fid: "iii-points-2026",  at: "2026-10-17T02:00:00Z", pins: false, overlay: "unchecked", w: 320 },
+  // III Points' official art is fitted to the streets (map-sources/iii-points-2026-geo-ties.json):
+  // the warped plate is drawn at its measured bounds, still with no stage pins.
+  { fid: "iii-points-2026",  at: "2026-10-17T02:00:00Z", pins: false, overlay: "fitted", w: 320 },
   // ACL: no venue box or footprint, and its configured centre is off the park.
   { fid: "acl-2026",         at: "2026-10-10T22:00:00Z", pins: false, overlay: "unchecked", fix: { stage: "amex",   latitude: 30.267233, longitude: -97.763236 } },
   { fid: "acl-2026",         at: "2026-10-10T22:00:00Z", pins: false, overlay: "unchecked", fix: { stage: "miller", latitude: 30.269017, longitude: -97.769316 }, only: "fix" },
@@ -120,6 +122,8 @@ try {
         container: { l: container.left, t: container.top, r: container.right, b: container.bottom },
         layer: !!map.getLayer("official-map"),
         opacity: map.getLayer("official-map") ? map.getPaintProperty("official-map", "raster-opacity") : null,
+        overlaySrc: (s => s ? { url: s.url, coordinates: s.coordinates } : null)(map.getSource("official-map")),
+        georef: window.ART_GEOREF || null,
         chips: [...document.querySelectorAll("[data-map-cat]")].map(b => b.getAttribute("data-map-cat")),
         amen: (window.AMENITIES || []).reduce((o, a) => (o[a.type] = (o[a.type] || 0) + 1, o), {}),
         dots: document.querySelectorAll("[data-realmap-amenity]").length,
@@ -189,6 +193,7 @@ try {
       check(r.dots === 0, `${tag}: no amenity dots from poster positions (got ${r.dots})`);
       check(/STAGES PENDING/.test(r.posture || ""), `${tag}: posture "${r.posture}" must read STAGES PENDING`);
       if (C.overlay === "unchecked") check(/NOT TO SCALE/.test(r.posture || ""), `${tag}: unchecked art says NOT TO SCALE ("${r.posture}")`);
+      if (C.overlay === "fitted") check(r.posture === "OFFICIAL MAP · STAGES PENDING", `${tag}: fitted art reads OFFICIAL MAP · STAGES PENDING ("${r.posture}")`);
     }
     const clash = r.title && r.postureBox && r.title.l < r.postureBox.r && r.title.r > r.postureBox.l && r.title.t < r.postureBox.b && r.title.b > r.postureBox.t;
     check(!clash, `${tag}: posture label prints over the "Map" title at ${C.w || 393} pt`);
@@ -196,6 +201,16 @@ try {
     if (C.overlay === "checked") check(r.layer && r.opacity >= 0.75, `${tag}: festival map at full strength (layer ${r.layer}, opacity ${r.opacity})`);
     if (C.overlay === "unchecked") check(r.layer && r.opacity > 0 && r.opacity <= 0.5, `${tag}: festival map faded (layer ${r.layer}, opacity ${r.opacity})`);
     if (C.overlay === "none") check(!r.layer, `${tag}: no festival map drawn`);
+    if (C.overlay === "fitted") check(r.layer && r.opacity > 0.5 && r.opacity < 1, `${tag}: fitted map drawn strong but not opaque (layer ${r.layer}, opacity ${r.opacity})`);
+    // Fitted art (any tier: Summerfest and Outside Lands are checked AND lay
+    // their official map, fitted by street ties): the warped plate at its bounds.
+    if (C.overlay === "fitted" || C.georef) {
+      const g = r.georef, src = r.overlaySrc;
+      check(!!g && !!src && String(src.url || "").endsWith(g.image), `${tag}: fitted map draws the warped plate ${g && g.image} (got ${src && src.url})`);
+      const [w, s, e, n] = (g && g.bounds) || [];
+      const want = [[w, n], [e, n], [e, s], [w, s]];
+      check(!!src && JSON.stringify(src.coordinates) === JSON.stringify(want), `${tag}: fitted map sits at its measured bounds (got ${JSON.stringify(src && src.coordinates)})`);
+    }
     // 4. opening layout
     if (C.pins) {
       const hit = (a, b) => a.l < b.r && a.r > b.l && a.t < b.b && a.b > b.t;

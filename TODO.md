@@ -719,6 +719,19 @@ Ordered by impact-per-engineering-hour.
 
 ## 🟡 POLISH + RISK REDUCTION
 
+- [ ] **Video GPS strip, follow-up B (decided 2026-11-10: A ships in #410, B logged here, not in #410).**
+      #410 states as residual what its strip does not vet: audio samples (AAC
+      data-stream/fill elements), `mebx` timed values for allowlisted keys,
+      `tmcd` counters, the fixed-size display SEI kept in `hvcC`, and the values
+      inside allowlisted sample-entry children (`esds`, `dapa`, `btrt`, …).
+      None carries the phone's own capture fix on the 66 real clips; a crafted
+      file could. Hardening: walk AAC frames and fill data-stream/fill
+      elements; refuse raw-PCM/`mebx` tracks whose sample sizes don't match
+      their format; overwrite the `hvcC` display SEI with fixed defaults
+      (every iPhone clip loses its ambient-viewing values); re-check the
+      66 real clips (0 refused) and decode. About a day. Until then, copy
+      claims only that the phone's own location metadata is removed.
+
 - [x] **Wire `@capacitor/haptics` into primary CTAs** — Dim Hour shipped
       this 2026-05-21 (commit on main; see Dim Hour memory
       `feedback_check_skills_catalog_first.md` for the broader skill-
