@@ -1,0 +1,134 @@
+{
+  "id": "coachella-2016",
+  "method": "official_sources",
+  "official": "https://www.coachella.com/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2016-04-15",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?sort=alpha",
+          "archivedUrl": "https://web.archive.org/web/20160531214754/https://www.coachella.com/lineup/?sort=alpha",
+          "captureTimestamp": "20160531214754",
+          "printed": "Friday, April 15, 2016",
+          "sha256": "36143f4be6db97aac52012be4679b962015696afc7be391c84b083112b05ee32",
+          "bytes": 689450,
+          "rows": 68,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 68
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2016-04-16",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?sort=alpha",
+          "archivedUrl": "https://web.archive.org/web/20160531214754/https://www.coachella.com/lineup/?sort=alpha",
+          "captureTimestamp": "20160531214754",
+          "printed": "Saturday, April 16, 2016",
+          "sha256": "36143f4be6db97aac52012be4679b962015696afc7be391c84b083112b05ee32",
+          "bytes": 689450,
+          "rows": 67,
+          "format": "coachella-cards",
+          "stages": 8,
+          "openEnded": 67
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2016-04-17",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?sort=alpha",
+          "archivedUrl": "https://web.archive.org/web/20160531214754/https://www.coachella.com/lineup/?sort=alpha",
+          "captureTimestamp": "20160531214754",
+          "printed": "Sunday, April 17, 2016",
+          "sha256": "36143f4be6db97aac52012be4679b962015696afc7be391c84b083112b05ee32",
+          "bytes": 689450,
+          "rows": 63,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 63
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2016-04-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?sort=alpha",
+          "archivedUrl": "https://web.archive.org/web/20160531214754/https://www.coachella.com/lineup/?sort=alpha",
+          "captureTimestamp": "20160531214754",
+          "printed": "Friday, April 22, 2016",
+          "sha256": "36143f4be6db97aac52012be4679b962015696afc7be391c84b083112b05ee32",
+          "bytes": 689450,
+          "rows": 67,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 67
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2016-04-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?sort=alpha",
+          "archivedUrl": "https://web.archive.org/web/20160531214754/https://www.coachella.com/lineup/?sort=alpha",
+          "captureTimestamp": "20160531214754",
+          "printed": "Saturday, April 23, 2016",
+          "sha256": "36143f4be6db97aac52012be4679b962015696afc7be391c84b083112b05ee32",
+          "bytes": 689450,
+          "rows": 67,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 67
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2016-04-24",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?sort=alpha",
+          "archivedUrl": "https://web.archive.org/web/20160531214754/https://www.coachella.com/lineup/?sort=alpha",
+          "captureTimestamp": "20160531214754",
+          "printed": "Sunday, April 24, 2016",
+          "sha256": "36143f4be6db97aac52012be4679b962015696afc7be391c84b083112b05ee32",
+          "bytes": 689450,
+          "rows": 66,
+          "format": "coachella-cards",
+          "stages": 8,
+          "openEnded": 66
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "unscheduledActs": [
+    {
+      "archivedUrl": "https://web.archive.org/web/20160531214754/https://www.coachella.com/lineup/?sort=alpha",
+      "captureTimestamp": "20160531214754",
+      "acts": [
+        "Jason Bentley",
+        "Mister Blaqk",
+        "Sasha"
+      ]
+    }
+  ],
+  "dropped": []
+}

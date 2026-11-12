@@ -666,6 +666,121 @@
     }
    ]
   },
+  "coachella": {
+   "lineages": [
+    {
+     "id": "coachella:coachella",
+     "names": [
+      {
+       "printed": "Coachella",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:gobi",
+     "names": [
+      {
+       "printed": "Gobi",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:mojave",
+     "names": [
+      {
+       "printed": "Mojave",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:outdoor",
+     "names": [
+      {
+       "printed": "Outdoor",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:sahara",
+     "names": [
+      {
+       "printed": "Sahara",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:yuma",
+     "names": [
+      {
+       "printed": "Yuma",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:do-lab",
+     "names": [
+      {
+       "printed": "Do Lab",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:despacio",
+     "names": [
+      {
+       "printed": "Despacio",
+       "editions": [
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "crssd-fall": {
    "lineages": [
     {

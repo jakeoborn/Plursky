@@ -144,6 +144,23 @@ export const EDITIONS = {
   "electric-forest-2013": { festivalId: "electric-forest", name: "Electric Forest 2013", year: 2013,
     timezone: "America/Detroit", rolloverHour: 6, method: "official_sources",
     dates: [["2013-06-27", "Thursday"], ["2013-06-28", "Friday"], ["2013-06-29", "Saturday"], ["2013-06-30", "Sunday"]] },
+  // Coachella's own lineup page (coachella.com/lineup/): one card per act
+  // with each set's date, start and stage, and no end time, so every set is
+  // open-ended. 2016's page prints both weekends; 2014's and 2015's print
+  // one weekend per view (?weekend=1, ?weekend=2; the default view is the
+  // weekend the site last showed).
+  "coachella-2014": { festivalId: "coachella", name: "Coachella 2014", year: 2014,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2014-04-11", "Friday"], ["2014-04-12", "Saturday"], ["2014-04-13", "Sunday"], ["2014-04-18", "Friday"], ["2014-04-19", "Saturday"], ["2014-04-20", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "coachella-2015": { festivalId: "coachella", name: "Coachella 2015", year: 2015,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2015-04-10", "Friday"], ["2015-04-11", "Saturday"], ["2015-04-12", "Sunday"], ["2015-04-17", "Friday"], ["2015-04-18", "Saturday"], ["2015-04-19", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "coachella-2016": { festivalId: "coachella", name: "Coachella 2016", year: 2016,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2016-04-15", "Friday"], ["2016-04-16", "Saturday"], ["2016-04-17", "Sunday"], ["2016-04-22", "Friday"], ["2016-04-23", "Saturday"], ["2016-04-24", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
   "tomorrowland-2017": { festivalId: "tomorrowland", name: "Tomorrowland 2017", year: 2017,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2017-07-21", "Friday"], ["2017-07-22", "Saturday"], ["2017-07-23", "Sunday"], ["2017-07-28", "Friday"], ["2017-07-29", "Saturday"], ["2017-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },

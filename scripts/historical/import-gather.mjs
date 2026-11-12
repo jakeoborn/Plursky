@@ -40,9 +40,14 @@ import { readSheet } from "./build-editions.mjs";
 import { parseAclSchedule } from "./acl-schedule.mjs";
 import { parseTomorrowland } from "./tml-schedule.mjs";
 import { parseElectricForest } from "./ef-schedule.mjs";
+import { parseCoachella } from "./coachella-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
+// Pages that print a set with a start and no end: Electric Forest's grid
+// ("2:15am - Close") and Coachella's lineup cards (no end times at all).
+const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards"]);
+
 const rowKey = r => [r.day, r.stage, r.start, r.end, r.artist].join("|");
 
 // The public review label: who checked the pixels and how, never a session.
@@ -150,7 +155,7 @@ export async function importGather(id, dir) {
     }
     const date = ed.dates[+r.day - 1]?.[0];
     if (r.date !== date) throw new Error(`row ${r.artist}: day ${r.day} is ${r.date}, the edition says ${date}`);
-    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }) }); continue; }
+    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }), ...(ex.incomplete && { incomplete: true }) }); continue; }
     const hits = rc.sources.map((s, i) => [s, i]).filter(([s]) => (r.source_ref || "").includes(s.match)
       && (!s.when?.stage || new RegExp(s.when.stage).test(r.stage)) && (!s.when?.stageNot || !new RegExp(s.when.stageNot).test(r.stage)));
     if (hits.length !== 1) throw new Error(`row d${r.day} ${r.stage} ${r.start} ${r.artist}: ${hits.length} sources match its source_ref`);
@@ -159,13 +164,13 @@ export async function importGather(id, dir) {
     // An open end (openEnd 1: a start and no end) only where the source's
     // own page prints one ("2:15am - Close"), checked against the page below.
     const open = r.openEnd === "1";
-    if (open && (!r.start || r.end || s.format !== "ef-grid")) throw new Error(`row ${r.artist}: openEnd needs a start, a blank end and a page that prints open ends`);
+    if (open && (!r.start || r.end || !OPEN_END_FORMATS.has(s.format))) throw new Error(`row ${r.artist}: openEnd needs a start, a blank end and a page that prints open ends`);
     if ((!r.start || (!r.end && !open)) && !(ed.untimedDays || []).includes(+r.day)) throw new Error(`row ${r.artist}: blank time`);
     bySource.get(i).push({ day: +r.day, stage: stageFor(s, r.stage), start: r.start, end: r.end, artist: r.artist, ...(open && { openEnd: "1" }), source: s.match, note: r.note || "" });
   }
 
   const ledgerDays = ed.dates.map(([date], i) => ({ day: i + 1, date, sources: [] }));
-  const cancelledLedger = [], offDayLedger = [];
+  const cancelledLedger = [], offDayLedger = [], unscheduledLedger = [];
   const reviewDays = [], out = [];
   for (const [i, s] of rc.sources.entries()) {
     const got = bySource.get(i);
@@ -304,6 +309,32 @@ export async function importGather(id, dir) {
             ...(d.untimed.length && { untimed: d.untimed.map(x => `${x.artist}: ${x.printed}`) }),
             ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.misprint}`) }) });
         }
+      } else if (s.format === "coachella-cards") {
+        // One page lists every act's sets on both weekends, each with its
+        // printed date, start and stage, and no end (coachella-lineup.mjs).
+        // Every day it prints is the edition's and is cited; every set is
+        // open-ended, and the sheet must say so row for row. Acts whose card
+        // lists no set are kept in the ledger, never as sets.
+        const page = parseCoachella(cap.text, { year: ed.year });
+        const dayOf = date => ed.dates.findIndex(([d]) => d === date) + 1;
+        const printedDays = page.days.map(d => dayOf(d.date));
+        if (printedDays.some(d => d < 1)) throw new Error(`${s.url} @${s.captureTimestamp}: prints a day that is not the edition's (${page.days.map(d => d.date).join(", ")})`);
+        if (printedDays.join() !== days.join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints days ${printedDays.join(",")}, the sheet cites it for ${days.join(",")}`);
+        if (got.some(r => r.openEnd !== "1")) throw new Error(`${s.url} @${s.captureTimestamp}: the page prints no end times, so every row must be open-ended`);
+        for (const d of page.days) {
+          const day = dayOf(d.date);
+          if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints "${d.label}", the receipt says "${s.printed[day]}"`);
+          // A set printed without its time or its stage is not a set: the
+          // sheet must exclude it as incomplete, one for one.
+          const k = x => [x.stage, x.start, x.artist ?? x.billing].join("|");
+          const pg = d.incomplete.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x.incomplete).map(k).sort().join("\n");
+          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${d.incomplete.length} incomplete entr(ies), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+          agree(day, d.sets.map(x => ({ stage: x.stage, start: x.start, end: "", artist: x.artist })));
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { stages: d.stages.length, openEnded: d.sets.length,
+            ...(d.incomplete.length && { incomplete: d.incomplete.map(x => `${x.artist}: ${x.printed}`) }),
+            ...(d.duplicates && { duplicateSets: d.duplicates }) });
+        }
+        if (page.unscheduled.length) unscheduledLedger.push({ archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp, acts: page.unscheduled });
       } else if (s.format === "day-tabs") {
         // Every day is on the page; each day's rows must equal its own pane.
         const panes = parseDayTabs(cap.text);
@@ -358,7 +389,7 @@ export async function importGather(id, dir) {
   if (stale.length) throw new Error(`notUsedGraphics entries that are used, on no receipt page, or have no reason: ${stale.map(n => n.cites).join(", ")}`);
   for (const c of ed.cancelledDays || []) if (!cancelledLedger.some(x => x.date === c.date)) throw new Error(`no source prints cancelled day ${c.date} with its banner`);
   const ledger = { id, method: "official_sources", official: rc.official, days: ledgerDays, excluded,
-    ...(cancelledLedger.length && { cancelledDays: cancelledLedger }), ...(offDayLedger.length && { offDays: offDayLedger }), ...(notUsedGraphics.length && { notUsedGraphics }) };
+    ...(cancelledLedger.length && { cancelledDays: cancelledLedger }), ...(offDayLedger.length && { offDays: offDayLedger }), ...(unscheduledLedger.length && { unscheduledActs: unscheduledLedger }), ...(notUsedGraphics.length && { notUsedGraphics }) };
   writeFileSync(join(ROOT, `data/historical/ledger/${id}.json`), JSON.stringify(ledger, null, 2) + "\n");
   if (reviewDays.length) {
     mkdirSync(join(ROOT, "data/historical/review"), { recursive: true });
