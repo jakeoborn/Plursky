@@ -119,7 +119,7 @@ the ledger's `respelled`. Names keep their own HTML entities in the data
 is an empty shell and 2019's Set Times page loads its times by script, so
 neither is readable from the archive.
 
-Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, format `acl-grid`):
+Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, Governors Ball 2017–2019, format `acl-grid`):
 
     node scripts/historical/gather-acl-grid.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]
     node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
@@ -132,6 +132,15 @@ and ships untimed, which the edition must list in `untimedDays` with a note,
 and the ledger keeps the misprint. A block printed twice (off the axis, or
 twice in the same place) is one set; a second set by the same act on the
 same stage of an untimed day is excluded as a repeat and the note says so.
+
+Governors Ball 2017–2019 use the same grid on governorsballmusicfestival.com
+/schedule/, each read from a capture taken after the festival (20170606161221,
+20180612023504, 20190709043321). The 2017 capture before the festival
+(20170519) differs in two Sunday blocks; the later one is kept. 2019's
+Sunday was evacuated for storms, and its capture prints the revised evening
+schedule, which the edition's note says. 2018 and 2019 print stage names
+differently from 2017 ("Gov Ball NYC Stage", "GOVBALLNYC Stage"), kept as
+printed. 2020 was canceled; 2021 onward print the schedule as graphics.
 
 Mixed official sources (`official_sources`, Escape): when no single archive
 covers an edition, each day lists its sources in the ledger. A source is an

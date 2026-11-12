@@ -271066,6 +271066,4783 @@
   "mainStage": null
  },
  {
+  "id": "governors-ball-2017:d1:gov-ball-nyc:1215:tkay-maidza",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Gov Ball NYC",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "Tkay Maidza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tkay-maidza",
+    "role": "performer"
+   }
+  ],
+  "act": "tkay-maidza",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:gov-ball-nyc:1330:muna",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Gov Ball NYC",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "MUNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muna",
+    "role": "performer"
+   }
+  ],
+  "act": "muna",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:gov-ball-nyc:1500:kehlani",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Gov Ball NYC",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "Kehlani",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kehlani",
+    "role": "performer"
+   }
+  ],
+  "act": "kehlani",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:gov-ball-nyc:1645:bleachers",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Gov Ball NYC",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Bleachers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bleachers",
+    "role": "performer"
+   }
+  ],
+  "act": "bleachers",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:gov-ball-nyc:1840:special-guest-nancy-whang-dj-set",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Gov Ball NYC",
+  "start": "18:40",
+  "end": "19:10",
+  "printed": "Special Guest Nancy Whang DJ Set",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "special-guest-nancy-whang-dj-set",
+    "role": "performer"
+   }
+  ],
+  "act": "special-guest-nancy-whang-dj-set",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:gov-ball-nyc:1930:lorde",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Gov Ball NYC",
+  "start": "19:30",
+  "end": "20:45",
+  "printed": "Lorde",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lorde",
+    "role": "performer"
+   }
+  ],
+  "act": "lorde",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:gov-ball-nyc:2145:chance-the-rapper",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Gov Ball NYC",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "Chance The Rapper",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chance-the-rapper",
+    "role": "performer"
+   }
+  ],
+  "act": "chance-the-rapper",
+  "closing": true,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:honda:1215:jenaux",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Honda",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "Jenaux",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jenaux",
+    "role": "performer"
+   }
+  ],
+  "act": "jenaux",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:honda:1330:blossoms",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Honda",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "Blossoms",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blossoms",
+    "role": "performer"
+   }
+  ],
+  "act": "blossoms",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:honda:1500:the-strumbellas",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Honda",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "The Strumbellas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-strumbellas",
+    "role": "performer"
+   }
+  ],
+  "act": "the-strumbellas",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:honda:1645:tove-lo",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Honda",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Tove Lo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tove-lo",
+    "role": "performer"
+   }
+  ],
+  "act": "tove-lo",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:honda:1845:schoolboy-q",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Honda",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "ScHoolboy Q",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "schoolboy-q",
+    "role": "performer"
+   }
+  ],
+  "act": "schoolboy-q",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:honda:2045:flume",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Honda",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Flume",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flume",
+    "role": "performer"
+   }
+  ],
+  "act": "flume",
+  "closing": true,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:big-apple:1245:roosevelt",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Big Apple",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Roosevelt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roosevelt",
+    "role": "performer"
+   }
+  ],
+  "act": "roosevelt",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:big-apple:1415:judah-and-the-lion",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Big Apple",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "Judah & the Lion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "judah-and-the-lion",
+    "role": "performer"
+   }
+  ],
+  "act": "judah-and-the-lion",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:big-apple:1545:charli-xcx",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Big Apple",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "Charli XCX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charli-xcx",
+    "role": "performer"
+   }
+  ],
+  "act": "charli-xcx",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:big-apple:1745:michael-kiwanuka",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Big Apple",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Michael Kiwanuka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "michael-kiwanuka",
+    "role": "performer"
+   }
+  ],
+  "act": "michael-kiwanuka",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:big-apple:1945:beach-house",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Big Apple",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "Beach House",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beach-house",
+    "role": "performer"
+   }
+  ],
+  "act": "beach-house",
+  "closing": true,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:bacardi:1245:michael-blume",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Bacardi",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Michael Blume",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "michael-blume",
+    "role": "performer"
+   }
+  ],
+  "act": "michael-blume",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:bacardi:1415:francis-and-the-lights",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Bacardi",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "Francis and the Lights",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "francis-and-the-lights",
+    "role": "performer"
+   }
+  ],
+  "act": "francis-and-the-lights",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:bacardi:1545:charles-bradley-and-his-extraordinaires",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Bacardi",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "Charles Bradley & His Extraordinaires",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charles-bradley-and-his-extraordinaires",
+    "role": "performer"
+   }
+  ],
+  "act": "charles-bradley-and-his-extraordinaires",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:bacardi:1745:danny-brown",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Bacardi",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Danny Brown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danny-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "danny-brown",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d1:bacardi:2045:majid-jordan",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-02",
+  "day": 1,
+  "stage": "Bacardi",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "Majid Jordan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "majid-jordan",
+    "role": "performer"
+   }
+  ],
+  "act": "majid-jordan",
+  "closing": true,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:gov-ball-nyc:1215:vant",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Gov Ball NYC",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "VANT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vant",
+    "role": "performer"
+   }
+  ],
+  "act": "vant",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:gov-ball-nyc:1330:dua-lipa",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Gov Ball NYC",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "Dua Lipa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dua-lipa",
+    "role": "performer"
+   }
+  ],
+  "act": "dua-lipa",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:gov-ball-nyc:1500:saint-motel",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Gov Ball NYC",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "Saint Motel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saint-motel",
+    "role": "performer"
+   }
+  ],
+  "act": "saint-motel",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:gov-ball-nyc:1645:the-head-and-the-heart",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Gov Ball NYC",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "The Head and The Heart",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-head-and-the-heart",
+    "role": "performer"
+   }
+  ],
+  "act": "the-head-and-the-heart",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:gov-ball-nyc:1845:wu-tang-clan",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Gov Ball NYC",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Wu-Tang Clan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wu-tang-clan",
+    "role": "performer"
+   }
+  ],
+  "act": "wu-tang-clan",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:gov-ball-nyc:2115:phoenix",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Gov Ball NYC",
+  "start": "21:15",
+  "end": "23:00",
+  "printed": "Phoenix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phoenix",
+    "role": "performer"
+   }
+  ],
+  "act": "phoenix",
+  "closing": true,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:honda:1215:jessie-reyez",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Honda",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "Jessie Reyez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-reyez",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-reyez",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:honda:1330:a-r-i-z-o-n-a",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Honda",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "A R I Z O N A",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-r-i-z-o-n-a",
+    "role": "performer"
+   }
+  ],
+  "act": "a-r-i-z-o-n-a",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:honda:1500:stormzy",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Honda",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "Stormzy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stormzy",
+    "role": "performer"
+   }
+  ],
+  "act": "stormzy",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:honda:1645:a-ap-ferg",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Honda",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "A$AP Ferg",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-ap-ferg",
+    "role": "performer"
+   }
+  ],
+  "act": "a-ap-ferg",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:honda:1845:marshmello",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Honda",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Marshmello",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marshmello",
+    "role": "performer"
+   }
+  ],
+  "act": "marshmello",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:honda:2115:childish-gambino",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Honda",
+  "start": "21:15",
+  "end": "23:00",
+  "printed": "Childish Gambino",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "childish-gambino",
+    "role": "performer"
+   }
+  ],
+  "act": "childish-gambino",
+  "closing": true,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:big-apple:1245:welles",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Big Apple",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Welles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "welles",
+    "role": "performer"
+   }
+  ],
+  "act": "welles",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:big-apple:1415:car-seat-headrest",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Big Apple",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "Car Seat Headrest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "car-seat-headrest",
+    "role": "performer"
+   }
+  ],
+  "act": "car-seat-headrest",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:big-apple:1545:yg",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Big Apple",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "YG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yg",
+    "role": "performer"
+   }
+  ],
+  "act": "yg",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:big-apple:1745:local-natives",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Big Apple",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Local Natives",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "local-natives",
+    "role": "performer"
+   }
+  ],
+  "act": "local-natives",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:big-apple:2000:mark-ronson-vs-kevin-parker",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Big Apple",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "Mark Ronson vs Kevin Parker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mark-ronson-vs-kevin-parker",
+    "role": "performer"
+   }
+  ],
+  "act": "mark-ronson-vs-kevin-parker",
+  "closing": true,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:bacardi:1245:lo-moon",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Bacardi",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Lo Moon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lo-moon",
+    "role": "performer"
+   }
+  ],
+  "act": "lo-moon",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:bacardi:1415:the-range",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Bacardi",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "The Range",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-range",
+    "role": "performer"
+   }
+  ],
+  "act": "the-range",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:bacardi:1545:rae-sremmurd",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Bacardi",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "Rae Sremmurd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rae-sremmurd",
+    "role": "performer"
+   }
+  ],
+  "act": "rae-sremmurd",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:bacardi:1745:rufus-du-sol",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Bacardi",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "RÜFÜS DU SOL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rufus-du-sol",
+    "role": "performer"
+   }
+  ],
+  "act": "rufus-du-sol",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d2:bacardi:2000:banks",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-03",
+  "day": 2,
+  "stage": "Bacardi",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "BANKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "banks",
+    "role": "performer"
+   }
+  ],
+  "act": "banks",
+  "closing": true,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:gov-ball-nyc:1215:ron-gallo",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Gov Ball NYC",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "Ron Gallo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ron-gallo",
+    "role": "performer"
+   }
+  ],
+  "act": "ron-gallo",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:gov-ball-nyc:1330:the-orwells",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Gov Ball NYC",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "The Orwells",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-orwells",
+    "role": "performer"
+   }
+  ],
+  "act": "the-orwells",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:gov-ball-nyc:1500:parquet-courts",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Gov Ball NYC",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "Parquet Courts",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "parquet-courts",
+    "role": "performer"
+   }
+  ],
+  "act": "parquet-courts",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:gov-ball-nyc:1645:royal-blood",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Gov Ball NYC",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Royal Blood",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "royal-blood",
+    "role": "performer"
+   }
+  ],
+  "act": "royal-blood",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:gov-ball-nyc:1845:cage-the-elephant",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Gov Ball NYC",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Cage The Elephant",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cage-the-elephant",
+    "role": "performer"
+   }
+  ],
+  "act": "cage-the-elephant",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:gov-ball-nyc:2115:tool",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Gov Ball NYC",
+  "start": "21:15",
+  "end": "23:00",
+  "printed": "Tool",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tool",
+    "role": "performer"
+   }
+  ],
+  "act": "tool",
+  "closing": true,
+  "stageLineage": "governors-ball:gov-ball-nyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:honda:1215:barns-courtney",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Honda",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "Barns Courtney",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "barns-courtney",
+    "role": "performer"
+   }
+  ],
+  "act": "barns-courtney",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:honda:1330:saint-jhn",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Honda",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "SAINt JHN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saint-jhn",
+    "role": "performer"
+   }
+  ],
+  "act": "saint-jhn",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:honda:1500:gryffin",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Honda",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "GRYFFIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gryffin",
+    "role": "performer"
+   }
+  ],
+  "act": "gryffin",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:honda:1645:mac-demarco",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Honda",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Mac DeMarco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mac-demarco",
+    "role": "performer"
+   }
+  ],
+  "act": "mac-demarco",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:honda:1845:phantogram",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Honda",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Phantogram",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phantogram",
+    "role": "performer"
+   }
+  ],
+  "act": "phantogram",
+  "closing": false,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:honda:2115:wiz-khalifa",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Honda",
+  "start": "21:15",
+  "end": "23:00",
+  "printed": "Wiz Khalifa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wiz-khalifa",
+    "role": "performer"
+   }
+  ],
+  "act": "wiz-khalifa",
+  "closing": true,
+  "stageLineage": "governors-ball:honda",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:big-apple:1245:mondo-cozmo",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Big Apple",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Mondo Cozmo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mondo-cozmo",
+    "role": "performer"
+   }
+  ],
+  "act": "mondo-cozmo",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:big-apple:1415:zane-lowe",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Big Apple",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "Zane Lowe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zane-lowe",
+    "role": "performer"
+   }
+  ],
+  "act": "zane-lowe",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:big-apple:1545:warpaint",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Big Apple",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "Warpaint",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "warpaint",
+    "role": "performer"
+   }
+  ],
+  "act": "warpaint",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:big-apple:1745:franz-ferdinand",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Big Apple",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Franz Ferdinand",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "franz-ferdinand",
+    "role": "performer"
+   }
+  ],
+  "act": "franz-ferdinand",
+  "closing": false,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:big-apple:2000:logic",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Big Apple",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "Logic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "logic",
+    "role": "performer"
+   }
+  ],
+  "act": "logic",
+  "closing": true,
+  "stageLineage": "governors-ball:big-apple",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:bacardi:1245:jack-martini",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Bacardi",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Jack Martini",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-martini",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-martini",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:bacardi:1415:eden",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Bacardi",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "EDEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eden",
+    "role": "performer"
+   }
+  ],
+  "act": "eden",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:bacardi:1545:skepta",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Bacardi",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "Skepta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skepta",
+    "role": "performer"
+   }
+  ],
+  "act": "skepta",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:bacardi:1745:the-avalanches",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Bacardi",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "The Avalanches",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-avalanches",
+    "role": "performer"
+   }
+  ],
+  "act": "the-avalanches",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2017:d3:bacardi:2000:air",
+  "source": "edition",
+  "festivalId": "governors-ball-2017",
+  "festivalBrand": "governors-ball",
+  "year": 2017,
+  "date": "2017-06-04",
+  "day": 3,
+  "stage": "Bacardi",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "AIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "air",
+    "role": "performer"
+   }
+  ],
+  "act": "air",
+  "closing": true,
+  "stageLineage": "governors-ball:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:gov-ball-nyc-stage:1215:slaves-uk",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Gov Ball NYC Stage",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "SLAVES (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slaves-uk",
+    "role": "performer"
+   }
+  ],
+  "act": "slaves-uk",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:gov-ball-nyc-stage:1330:pond",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Gov Ball NYC Stage",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "POND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pond",
+    "role": "performer"
+   }
+  ],
+  "act": "pond",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:gov-ball-nyc-stage:1500:alvvays",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Gov Ball NYC Stage",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "ALVVAYS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alvvays",
+    "role": "performer"
+   }
+  ],
+  "act": "alvvays",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:gov-ball-nyc-stage:1630:maggie-rogers",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Gov Ball NYC Stage",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "MAGGIE ROGERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maggie-rogers",
+    "role": "performer"
+   }
+  ],
+  "act": "maggie-rogers",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:gov-ball-nyc-stage:1845:yeah-yeah-yeahs",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Gov Ball NYC Stage",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "YEAH YEAH YEAHS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yeah-yeah-yeahs",
+    "role": "performer"
+   }
+  ],
+  "act": "yeah-yeah-yeahs",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:gov-ball-nyc-stage:2115:jack-white",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Gov Ball NYC Stage",
+  "start": "21:15",
+  "end": "23:00",
+  "printed": "JACK WHITE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-white",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-white",
+  "closing": true,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:bacardi-stage:1245:lophiile",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Bacardi Stage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "LOPHIILE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lophiile",
+    "role": "performer"
+   }
+  ],
+  "act": "lophiile",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:bacardi-stage:1415:wolf-alice",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Bacardi Stage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "WOLF ALICE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wolf-alice",
+    "role": "performer"
+   }
+  ],
+  "act": "wolf-alice",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:bacardi-stage:1545:goldlink",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Bacardi Stage",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "GOLDLINK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldlink",
+    "role": "performer"
+   }
+  ],
+  "act": "goldlink",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:bacardi-stage:1745:tash-sultana",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Bacardi Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "TASH SULTANA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tash-sultana",
+    "role": "performer"
+   }
+  ],
+  "act": "tash-sultana",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:bacardi-stage:2000:damian-jr-gong-marley",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Bacardi Stage",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "DAMIAN ‘JR. GONG’ MARLEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "damian-jr-gong-marley",
+    "role": "performer"
+   }
+  ],
+  "act": "damian-jr-gong-marley",
+  "closing": true,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:honda-stage:1215:lou-the-human",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "LOU THE HUMAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lou-the-human",
+    "role": "performer"
+   }
+  ],
+  "act": "lou-the-human",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:honda-stage:1330:sir-sly",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "SIR SLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sir-sly",
+    "role": "performer"
+   }
+  ],
+  "act": "sir-sly",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:honda-stage:1500:belly",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "BELLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "belly",
+    "role": "performer"
+   }
+  ],
+  "act": "belly",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:honda-stage:1630:dram",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "16:30",
+  "end": "17:15",
+  "printed": "DRAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dram",
+    "role": "performer"
+   }
+  ],
+  "act": "dram",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:honda-stage:1725:shawn-mendes",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "17:25",
+  "end": "18:00",
+  "printed": "SHAWN MENDES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shawn-mendes",
+    "role": "performer"
+   }
+  ],
+  "act": "shawn-mendes",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:honda-stage:1845:post-malone",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "POST MALONE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "post-malone",
+    "role": "performer"
+   }
+  ],
+  "act": "post-malone",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:honda-stage:2115:james-blake",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "21:15",
+  "end": "23:00",
+  "printed": "JAMES BLAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-blake",
+    "role": "performer"
+   }
+  ],
+  "act": "james-blake",
+  "closing": true,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:american-eagle-stage:1245:a-ap-twelvyy",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "American Eagle Stage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "A$AP TWELVYY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-ap-twelvyy",
+    "role": "performer"
+   }
+  ],
+  "act": "a-ap-twelvyy",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:american-eagle-stage:1415:two-feet",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "American Eagle Stage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "TWO FEET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "two-feet",
+    "role": "performer"
+   }
+  ],
+  "act": "two-feet",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:american-eagle-stage:1545:flight-facilities",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "American Eagle Stage",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "FLIGHT FACILITIES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flight-facilities",
+    "role": "performer"
+   }
+  ],
+  "act": "flight-facilities",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:american-eagle-stage:1800:6lack",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "American Eagle Stage",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "6LACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "6lack",
+    "role": "performer"
+   }
+  ],
+  "act": "6lack",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d1:american-eagle-stage:2000:the-glitch-mob",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-01",
+  "day": 1,
+  "stage": "American Eagle Stage",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "THE GLITCH MOB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-glitch-mob",
+    "role": "performer"
+   }
+  ],
+  "act": "the-glitch-mob",
+  "closing": true,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:gov-ball-nyc-stage:1215:mikky-ekko",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Gov Ball NYC Stage",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "MIKKY EKKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mikky-ekko",
+    "role": "performer"
+   }
+  ],
+  "act": "mikky-ekko",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:gov-ball-nyc-stage:1330:aurora",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Gov Ball NYC Stage",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "AURORA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aurora",
+    "role": "performer"
+   }
+  ],
+  "act": "aurora",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:gov-ball-nyc-stage:1500:lany",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Gov Ball NYC Stage",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "LANY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lany",
+    "role": "performer"
+   }
+  ],
+  "act": "lany",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:gov-ball-nyc-stage:1645:cut-copy",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Gov Ball NYC Stage",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "CUT COPY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cut-copy",
+    "role": "performer"
+   }
+  ],
+  "act": "cut-copy",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:gov-ball-nyc-stage:1845:halsey",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Gov Ball NYC Stage",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "HALSEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "halsey",
+    "role": "performer"
+   }
+  ],
+  "act": "halsey",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:gov-ball-nyc-stage:2130:travis-scott",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Gov Ball NYC Stage",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "TRAVIS SCOTT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "travis-scott",
+    "role": "performer"
+   }
+  ],
+  "act": "travis-scott",
+  "closing": true,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:bacardi-stage:1245:the-spencer-lee-band",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Bacardi Stage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "THE SPENCER LEE BAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-spencer-lee-band",
+    "role": "performer"
+   }
+  ],
+  "act": "the-spencer-lee-band",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:bacardi-stage:1415:jay-electronica",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Bacardi Stage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "JAY ELECTRONICA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jay-electronica",
+    "role": "performer"
+   }
+  ],
+  "act": "jay-electronica",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:bacardi-stage:1545:japandroids",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Bacardi Stage",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "JAPANDROIDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "japandroids",
+    "role": "performer"
+   }
+  ],
+  "act": "japandroids",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:bacardi-stage:1745:manchester-orchestra",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Bacardi Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "MANCHESTER ORCHESTRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "manchester-orchestra",
+    "role": "performer"
+   }
+  ],
+  "act": "manchester-orchestra",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:bacardi-stage:2000:silk-city-diplo-mark-ronson",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Bacardi Stage",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "SILK CITY (DIPLO + MARK RONSON)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "silk-city",
+    "role": "project"
+   }
+  ],
+  "act": "silk-city-diplo-mark-ronson",
+  "closing": true,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:honda-stage:1215:the-regrettes",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "THE REGRETTES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-regrettes",
+    "role": "performer"
+   }
+  ],
+  "act": "the-regrettes",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:honda-stage:1330:vhs-collection",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "VHS COLLECTION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vhs-collection",
+    "role": "performer"
+   }
+  ],
+  "act": "vhs-collection",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:honda-stage:1500:the-menzingers",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "THE MENZINGERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-menzingers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-menzingers",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:honda-stage:1645:2-chainz",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "2 CHAINZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "2-chainz",
+    "role": "performer"
+   }
+  ],
+  "act": "2-chainz",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:honda-stage:1845:galantis",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "GALANTIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "galantis",
+    "role": "performer"
+   }
+  ],
+  "act": "galantis",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:honda-stage:2115:the-gaslight-anthem",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "21:15",
+  "end": "23:00",
+  "printed": "THE GASLIGHT ANTHEM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-gaslight-anthem",
+    "role": "performer"
+   }
+  ],
+  "act": "the-gaslight-anthem",
+  "closing": true,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:american-eagle-stage:1245:cuco",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "American Eagle Stage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "CUCO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cuco",
+    "role": "performer"
+   }
+  ],
+  "act": "cuco",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:american-eagle-stage:1415:moses-sumney",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "American Eagle Stage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "MOSES SUMNEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moses-sumney",
+    "role": "performer"
+   }
+  ],
+  "act": "moses-sumney",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:american-eagle-stage:1545:kelela",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "American Eagle Stage",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "KELELA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kelela",
+    "role": "performer"
+   }
+  ],
+  "act": "kelela",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:american-eagle-stage:1745:pusha-t",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "American Eagle Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "PUSHA T",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pusha-t",
+    "role": "performer"
+   }
+  ],
+  "act": "pusha-t",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d2:american-eagle-stage:2000:russ",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-02",
+  "day": 2,
+  "stage": "American Eagle Stage",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "RUSS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "russ",
+    "role": "performer"
+   }
+  ],
+  "act": "russ",
+  "closing": true,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:gov-ball-nyc-stage:1215:confidence-man",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Gov Ball NYC Stage",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "CONFIDENCE MAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "confidence-man",
+    "role": "performer"
+   }
+  ],
+  "act": "confidence-man",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:gov-ball-nyc-stage:1330:middle-kids",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Gov Ball NYC Stage",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "MIDDLE KIDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "middle-kids",
+    "role": "performer"
+   }
+  ],
+  "act": "middle-kids",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:gov-ball-nyc-stage:1500:amine",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Gov Ball NYC Stage",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "AMINÉ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amine",
+    "role": "performer"
+   }
+  ],
+  "act": "amine",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:gov-ball-nyc-stage:1645:khalid",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Gov Ball NYC Stage",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "KHALID",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "khalid",
+    "role": "performer"
+   }
+  ],
+  "act": "khalid",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:gov-ball-nyc-stage:1845:chvrches",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Gov Ball NYC Stage",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "CHVRCHES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chvrches",
+    "role": "performer"
+   }
+  ],
+  "act": "chvrches",
+  "closing": false,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:gov-ball-nyc-stage:2115:eminem",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Gov Ball NYC Stage",
+  "start": "21:15",
+  "end": "23:00",
+  "printed": "EMINEM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eminem",
+    "role": "performer"
+   }
+  ],
+  "act": "eminem",
+  "closing": true,
+  "stageLineage": "governors-ball:gov-ball-nyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:bacardi-stage:1245:westside-gunn-and-conway",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Bacardi Stage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "WESTSIDE GUNN & CONWAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "westside-gunn-and-conway",
+    "role": "performer"
+   }
+  ],
+  "act": "westside-gunn-and-conway",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:bacardi-stage:1415:quinn-xcii",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Bacardi Stage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "QUINN XCII",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quinn-xcii",
+    "role": "performer"
+   }
+  ],
+  "act": "quinn-xcii",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:bacardi-stage:1545:margo-price",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Bacardi Stage",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "MARGO PRICE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "margo-price",
+    "role": "performer"
+   }
+  ],
+  "act": "margo-price",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:bacardi-stage:1745:dirty-projectors",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Bacardi Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "DIRTY PROJECTORS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dirty-projectors",
+    "role": "performer"
+   }
+  ],
+  "act": "dirty-projectors",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:bacardi-stage:2000:sylvan-esso",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Bacardi Stage",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "SYLVAN ESSO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sylvan-esso",
+    "role": "performer"
+   }
+  ],
+  "act": "sylvan-esso",
+  "closing": true,
+  "stageLineage": "governors-ball:bacardi-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:honda-stage:1215:alice-merton",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Honda Stage",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "ALICE MERTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alice-merton",
+    "role": "performer"
+   }
+  ],
+  "act": "alice-merton",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:honda-stage:1330:berhana",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Honda Stage",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "BERHANA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "berhana",
+    "role": "performer"
+   }
+  ],
+  "act": "berhana",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:honda-stage:1500:the-struts",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Honda Stage",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "THE STRUTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-struts",
+    "role": "performer"
+   }
+  ],
+  "act": "the-struts",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:honda-stage:1645:third-eye-blind",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Honda Stage",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "THIRD EYE BLIND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "third-eye-blind",
+    "role": "performer"
+   }
+  ],
+  "act": "third-eye-blind",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:honda-stage:1845:n-e-r-d",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "Honda Stage",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "N.E.R.D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "n-e-r-d",
+    "role": "performer"
+   }
+  ],
+  "act": "n-e-r-d",
+  "closing": true,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:american-eagle-stage:1245:knox-fortune",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "American Eagle Stage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "KNOX FORTUNE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "knox-fortune",
+    "role": "performer"
+   }
+  ],
+  "act": "knox-fortune",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:american-eagle-stage:1415:billie-eilish",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "American Eagle Stage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "BILLIE EILISH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billie-eilish",
+    "role": "performer"
+   }
+  ],
+  "act": "billie-eilish",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:american-eagle-stage:1545:kali-uchis",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "American Eagle Stage",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "KALI UCHIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kali-uchis",
+    "role": "performer"
+   }
+  ],
+  "act": "kali-uchis",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:american-eagle-stage:1745:vic-mensa",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "American Eagle Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "VIC MENSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vic-mensa",
+    "role": "performer"
+   }
+  ],
+  "act": "vic-mensa",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2018:d3:american-eagle-stage:2000:lil-uzi-vert",
+  "source": "edition",
+  "festivalId": "governors-ball-2018",
+  "festivalBrand": "governors-ball",
+  "year": 2018,
+  "date": "2018-06-03",
+  "day": 3,
+  "stage": "American Eagle Stage",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "LIL UZI VERT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-uzi-vert",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-uzi-vert",
+  "closing": true,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:govballnyc-stage:1215:deal-casino",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "GOVBALLNYC Stage",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "DEAL CASINO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deal-casino",
+    "role": "performer"
+   }
+  ],
+  "act": "deal-casino",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:govballnyc-stage:1330:dennis-lloyd",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "GOVBALLNYC Stage",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "DENNIS LLOYD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dennis-lloyd",
+    "role": "performer"
+   }
+  ],
+  "act": "dennis-lloyd",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:govballnyc-stage:1500:amber-mark",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "GOVBALLNYC Stage",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "AMBER MARK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amber-mark",
+    "role": "performer"
+   }
+  ],
+  "act": "amber-mark",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:govballnyc-stage:1645:the-internet",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "GOVBALLNYC Stage",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "THE INTERNET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-internet",
+    "role": "performer"
+   }
+  ],
+  "act": "the-internet",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:govballnyc-stage:1845:brockhampton",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "GOVBALLNYC Stage",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "BROCKHAMPTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brockhampton",
+    "role": "performer"
+   }
+  ],
+  "act": "brockhampton",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:govballnyc-stage:2145:tyler-the-creator",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "GOVBALLNYC Stage",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "TYLER, THE CREATOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyler-the-creator",
+    "role": "performer"
+   }
+  ],
+  "act": "tyler-the-creator",
+  "closing": true,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:bacardi-stage:1245:hundredth",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "BACARDÍ Stage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "HUNDREDTH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hundredth",
+    "role": "performer"
+   }
+  ],
+  "act": "hundredth",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:bacardi-stage:1415:cautious-clay",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "BACARDÍ Stage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "CAUTIOUS CLAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cautious-clay",
+    "role": "performer"
+   }
+  ],
+  "act": "cautious-clay",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:bacardi-stage:1545:jessie-reyez",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "BACARDÍ Stage",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "JESSIE REYEZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-reyez",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-reyez",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:bacardi-stage:1745:blood-orange",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "BACARDÍ Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "BLOOD ORANGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blood-orange",
+    "role": "performer"
+   }
+  ],
+  "act": "blood-orange",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:bacardi-stage:2000:lil-wayne",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "BACARDÍ Stage",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "LIL WAYNE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-wayne",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-wayne",
+  "closing": true,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:honda-stage:1215:njomza",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "NJOMZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "njomza",
+    "role": "performer"
+   }
+  ],
+  "act": "njomza",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:honda-stage:1330:injury-reserve",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "INJURY RESERVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "injury-reserve",
+    "role": "performer"
+   }
+  ],
+  "act": "injury-reserve",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:honda-stage:1500:rolling-blackouts-coastal-fever",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "ROLLING BLACKOUTS COASTAL FEVER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rolling-blackouts-coastal-fever",
+    "role": "performer"
+   }
+  ],
+  "act": "rolling-blackouts-coastal-fever",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:honda-stage:1645:mitski",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "MITSKI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mitski",
+    "role": "performer"
+   }
+  ],
+  "act": "mitski",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:honda-stage:1845:jorja-smith",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "JORJA SMITH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jorja-smith",
+    "role": "performer"
+   }
+  ],
+  "act": "jorja-smith",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:honda-stage:2045:gesaffelstein",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "Honda Stage",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "GESAFFELSTEIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gesaffelstein",
+    "role": "performer"
+   }
+  ],
+  "act": "gesaffelstein",
+  "closing": true,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:american-eagle-stage:1245:still-woozy",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "American Eagle Stage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "STILL WOOZY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "still-woozy",
+    "role": "performer"
+   }
+  ],
+  "act": "still-woozy",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:american-eagle-stage:1415:jeremy-zucker",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "American Eagle Stage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "JEREMY ZUCKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jeremy-zucker",
+    "role": "performer"
+   }
+  ],
+  "act": "jeremy-zucker",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:american-eagle-stage:1545:hippo-campus",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "American Eagle Stage",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "HIPPO CAMPUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hippo-campus",
+    "role": "performer"
+   }
+  ],
+  "act": "hippo-campus",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:american-eagle-stage:1745:m",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "American Eagle Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "MØ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mo",
+    "role": "performer"
+   }
+  ],
+  "act": "mo",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:american-eagle-stage:1945:the-voidz",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "American Eagle Stage",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "THE VOIDZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-voidz",
+    "role": "performer"
+   }
+  ],
+  "act": "the-voidz",
+  "closing": true,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:bud-light-dive-bar-sessions:1420:njomza",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "Bud Light Dive Bar Sessions",
+  "start": "14:20",
+  "end": "14:50",
+  "printed": "NJOMZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "njomza",
+    "role": "performer"
+   }
+  ],
+  "act": "njomza",
+  "closing": false,
+  "stageLineage": "governors-ball:bud-light-dive-bar-sessions",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:bud-light-dive-bar-sessions:1550:tyla-yaweh",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "Bud Light Dive Bar Sessions",
+  "start": "15:50",
+  "end": "16:20",
+  "printed": "TYLA YAWEH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyla-yaweh",
+    "role": "performer"
+   }
+  ],
+  "act": "tyla-yaweh",
+  "closing": false,
+  "stageLineage": "governors-ball:bud-light-dive-bar-sessions",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d1:bud-light-dive-bar-sessions:1750:jeremy-zucker",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 1,
+  "stage": "Bud Light Dive Bar Sessions",
+  "start": "17:50",
+  "end": "18:20",
+  "printed": "JEREMY ZUCKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jeremy-zucker",
+    "role": "performer"
+   }
+  ],
+  "act": "jeremy-zucker",
+  "closing": true,
+  "stageLineage": "governors-ball:bud-light-dive-bar-sessions",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:govballnyc-stage:1215:dreamers",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "GOVBALLNYC Stage",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "DREAMERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dreamers",
+    "role": "performer"
+   }
+  ],
+  "act": "dreamers",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:govballnyc-stage:1330:calpurnia",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "GOVBALLNYC Stage",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "CALPURNIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "calpurnia",
+    "role": "performer"
+   }
+  ],
+  "act": "calpurnia",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:govballnyc-stage:1500:clairo",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "GOVBALLNYC Stage",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "CLAIRO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clairo",
+    "role": "performer"
+   }
+  ],
+  "act": "clairo",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:govballnyc-stage:1645:kacey-musgraves",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "GOVBALLNYC Stage",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "KACEY MUSGRAVES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kacey-musgraves",
+    "role": "performer"
+   }
+  ],
+  "act": "kacey-musgraves",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:govballnyc-stage:1845:the-1975",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "GOVBALLNYC Stage",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "THE 1975",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-1975",
+    "role": "performer"
+   }
+  ],
+  "act": "the-1975",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:govballnyc-stage:2115:florence-the-machine",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "GOVBALLNYC Stage",
+  "start": "21:15",
+  "end": "23:00",
+  "printed": "FLORENCE + THE MACHINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "florence-the-machine",
+    "role": "act"
+   }
+  ],
+  "act": "florence-the-machine",
+  "closing": true,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "governors-ball-2019:d2:bacardi-stage:1245:suzi-wu",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "BACARDÍ Stage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "SUZI WU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suzi-wu",
+    "role": "performer"
+   }
+  ],
+  "act": "suzi-wu",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:bacardi-stage:1415:sunflower-bean",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "BACARDÍ Stage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "SUNFLOWER BEAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sunflower-bean",
+    "role": "performer"
+   }
+  ],
+  "act": "sunflower-bean",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:bacardi-stage:1545:ravyn-lenae",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "BACARDÍ Stage",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "RAVYN LENAE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ravyn-lenae",
+    "role": "performer"
+   }
+  ],
+  "act": "ravyn-lenae",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:bacardi-stage:1745:king-princess",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "BACARDÍ Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "KING PRINCESS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "king-princess",
+    "role": "performer"
+   }
+  ],
+  "act": "king-princess",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:bacardi-stage:2000:zhu",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "BACARDÍ Stage",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "ZHU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zhu",
+    "role": "performer"
+   }
+  ],
+  "act": "zhu",
+  "closing": true,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:honda-stage:1215:tobi-lou",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "TOBI LOU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tobi-lou",
+    "role": "performer"
+   }
+  ],
+  "act": "tobi-lou",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:honda-stage:1330:u-s-girls",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "U.S. GIRLS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "u-s-girls",
+    "role": "performer"
+   }
+  ],
+  "act": "u-s-girls",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:honda-stage:1500:denzel-curry",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "DENZEL CURRY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "denzel-curry",
+    "role": "performer"
+   }
+  ],
+  "act": "denzel-curry",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:honda-stage:1645:playboi-carti",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "PLAYBOI CARTI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "playboi-carti",
+    "role": "performer"
+   }
+  ],
+  "act": "playboi-carti",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:honda-stage:1845:vince-staples",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "VINCE STAPLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vince-staples",
+    "role": "performer"
+   }
+  ],
+  "act": "vince-staples",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:honda-stage:2145:major-lazer",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "Honda Stage",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "MAJOR LAZER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "major-lazer",
+    "role": "performer"
+   }
+  ],
+  "act": "major-lazer",
+  "closing": true,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:american-eagle-stage:1245:easy-life",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "American Eagle Stage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "EASY LIFE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "easy-life",
+    "role": "performer"
+   }
+  ],
+  "act": "easy-life",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:american-eagle-stage:1415:elohim",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "American Eagle Stage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "ELOHIM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elohim",
+    "role": "performer"
+   }
+  ],
+  "act": "elohim",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:american-eagle-stage:1545:saba",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "American Eagle Stage",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "SABA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saba",
+    "role": "performer"
+   }
+  ],
+  "act": "saba",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:american-eagle-stage:1745:ty-dolla-ign",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "American Eagle Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "TY DOLLA $IGN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ty-dolla-ign",
+    "role": "performer"
+   }
+  ],
+  "act": "ty-dolla-ign",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:american-eagle-stage:2015:lord-huron",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "American Eagle Stage",
+  "start": "20:15",
+  "end": "21:15",
+  "printed": "LORD HURON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lord-huron",
+    "role": "performer"
+   }
+  ],
+  "act": "lord-huron",
+  "closing": true,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:bud-light-dive-bar-sessions:1420:vincint",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "Bud Light Dive Bar Sessions",
+  "start": "14:20",
+  "end": "14:50",
+  "printed": "VINCINT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vincint",
+    "role": "performer"
+   }
+  ],
+  "act": "vincint",
+  "closing": false,
+  "stageLineage": "governors-ball:bud-light-dive-bar-sessions",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:bud-light-dive-bar-sessions:1550:leland",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "Bud Light Dive Bar Sessions",
+  "start": "15:50",
+  "end": "16:20",
+  "printed": "LELAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leland",
+    "role": "performer"
+   }
+  ],
+  "act": "leland",
+  "closing": false,
+  "stageLineage": "governors-ball:bud-light-dive-bar-sessions",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d2:bud-light-dive-bar-sessions:1750:lauren-sanderson",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 2,
+  "stage": "Bud Light Dive Bar Sessions",
+  "start": "17:50",
+  "end": "18:20",
+  "printed": "LAUREN SANDERSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lauren-sanderson",
+    "role": "performer"
+   }
+  ],
+  "act": "lauren-sanderson",
+  "closing": true,
+  "stageLineage": "governors-ball:bud-light-dive-bar-sessions",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:govballnyc-stage:1910:lily-allen",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "GOVBALLNYC Stage",
+  "start": "19:10",
+  "end": "19:50",
+  "printed": "LILY ALLEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lily-allen",
+    "role": "performer"
+   }
+  ],
+  "act": "lily-allen",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:govballnyc-stage:2020:nas",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "GOVBALLNYC Stage",
+  "start": "20:20",
+  "end": "21:30",
+  "printed": "NAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nas",
+    "role": "performer"
+   }
+  ],
+  "act": "nas",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:govballnyc-stage:2215:the-strokes",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "GOVBALLNYC Stage",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "THE STROKES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-strokes",
+    "role": "performer"
+   }
+  ],
+  "act": "the-strokes",
+  "closing": true,
+  "stageLineage": "governors-ball:govballnyc-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:bacardi-stage:1845:noname",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "BACARDÍ Stage",
+  "start": "18:45",
+  "end": "19:10",
+  "printed": "NONAME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noname",
+    "role": "performer"
+   }
+  ],
+  "act": "noname",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:bacardi-stage:1950:bazzi",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "BACARDÍ Stage",
+  "start": "19:50",
+  "end": "20:20",
+  "printed": "BAZZI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bazzi",
+    "role": "performer"
+   }
+  ],
+  "act": "bazzi",
+  "closing": false,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:bacardi-stage:2130:beast-coast-joey-bada-flatbush-zombies",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "BACARDÍ Stage",
+  "start": "21:30",
+  "end": "22:15",
+  "printed": "BEAST COAST (JOEY BADA$$ + FLATBUSH ZOMBIES)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beast-coast",
+    "role": "project"
+   }
+  ],
+  "act": "beast-coast-joey-bada-flatbush-zombies",
+  "closing": true,
+  "stageLineage": "governors-ball:bacardi-stage-2",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:honda-stage:1910:sheck-wes",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "Honda Stage",
+  "start": "19:10",
+  "end": "19:50",
+  "printed": "SHECK WES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sheck-wes",
+    "role": "performer"
+   }
+  ],
+  "act": "sheck-wes",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:honda-stage:2045:louis-the-child",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "Honda Stage",
+  "start": "20:45",
+  "end": "21:30",
+  "printed": "LOUIS THE CHILD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "louis-the-child",
+    "role": "performer"
+   }
+  ],
+  "act": "louis-the-child",
+  "closing": false,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:honda-stage:2215:sza",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "Honda Stage",
+  "start": "22:15",
+  "end": "23:15",
+  "printed": "SZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sza",
+    "role": "performer"
+   }
+  ],
+  "act": "sza",
+  "closing": true,
+  "stageLineage": "governors-ball:honda-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:american-eagle-stage:1845:chelsea-cutler",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "American Eagle Stage",
+  "start": "18:45",
+  "end": "19:10",
+  "printed": "CHELSEA CUTLER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chelsea-cutler",
+    "role": "performer"
+   }
+  ],
+  "act": "chelsea-cutler",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:american-eagle-stage:1950:bob-moses",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "American Eagle Stage",
+  "start": "19:50",
+  "end": "20:20",
+  "printed": "BOB MOSES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-moses",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-moses",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:american-eagle-stage:2030:070shake",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "American Eagle Stage",
+  "start": "20:30",
+  "end": "20:45",
+  "printed": "070SHAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "070shake",
+    "role": "performer"
+   }
+  ],
+  "act": "070shake",
+  "closing": false,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:american-eagle-stage:2130:kaytranada",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "American Eagle Stage",
+  "start": "21:30",
+  "end": "22:15",
+  "printed": "KAYTRANADA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaytranada",
+    "role": "performer"
+   }
+  ],
+  "act": "kaytranada",
+  "closing": true,
+  "stageLineage": "governors-ball:american-eagle-stage",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:bud-light-dive-bar-sessions:1845:shaed",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "Bud Light Dive Bar Sessions",
+  "start": "18:45",
+  "end": "19:05",
+  "printed": "SHAED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shaed",
+    "role": "performer"
+   }
+  ],
+  "act": "shaed",
+  "closing": false,
+  "stageLineage": "governors-ball:bud-light-dive-bar-sessions",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:bud-light-dive-bar-sessions:1950:taylor-bennet",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "Bud Light Dive Bar Sessions",
+  "start": "19:50",
+  "end": "20:15",
+  "printed": "TAYLOR BENNET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taylor-bennet",
+    "role": "performer"
+   }
+  ],
+  "act": "taylor-bennet",
+  "closing": false,
+  "stageLineage": "governors-ball:bud-light-dive-bar-sessions",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2019:d3:bud-light-dive-bar-sessions:2130:aaron-aye",
+  "source": "edition",
+  "festivalId": "governors-ball-2019",
+  "festivalBrand": "governors-ball",
+  "year": 2019,
+  "date": "2019-06-02",
+  "day": 3,
+  "stage": "Bud Light Dive Bar Sessions",
+  "start": "21:30",
+  "end": "21:50",
+  "printed": "AARON AYE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aaron-aye",
+    "role": "performer"
+   }
+  ],
+  "act": "aaron-aye",
+  "closing": true,
+  "stageLineage": "governors-ball:bud-light-dive-bar-sessions",
+  "mainStage": null
+ },
+ {
   "id": "governors-ball-2025:d1:govballnyc:1215:school-of-rock-queens",
   "source": "edition",
   "festivalId": "governors-ball-2025",
