@@ -313,16 +313,47 @@ function seoCheck(f, add) {
   return out;
 }
 
-function waivers() {
-  const src = readFileSync(join(ROOT, "scripts/verify.mjs"), "utf8");
-  const i = src.indexOf("const REGISTRATION_WAIVERS");
-  if (i < 0) return {};
-  // Walk the object literal: top-level keys are festival ids, each with an expires date.
-  let depth = 0, j = src.indexOf("{", i), end = j;
-  for (; end < src.length; end++) { if (src[end] === "{") depth++; else if (src[end] === "}" && --depth === 0) break; }
-  const body = src.slice(j, end);
+// Both waiver tables in scripts/verify.mjs, each entry tagged with its kind:
+//   REGISTRATION_WAIVERS → "registration" (anchors that can't be checked),
+//   ART_WAIVERS          → "art" (map art that disagrees with measured anchors).
+// Either expiring turns verify red on every branch, so the audit must see both.
+// A missing or empty table is an error, never "no waivers".
+const WAIVER_TABLES = [["REGISTRATION_WAIVERS", "registration"], ["ART_WAIVERS", "art"]];
+function waiverTable(src, name) {
+  const i = src.indexOf(`const ${name}`);
+  if (i < 0) throw new Error(`waiver table ${name} not found in scripts/verify.mjs`);
+  const open = src.indexOf("{", i);
+  // Walk the literal, skipping strings and comments, so a brace or a date in a
+  // note can't end an entry early or lend it another entry's expiry.
+  const out = [];
+  let depth = 0, key = null, entryStart = -1;
+  for (let k = open; k < src.length; k++) {
+    const c = src[k];
+    if (c === "/" && src[k + 1] === "/") { k = src.indexOf("\n", k); if (k < 0) break; continue; }
+    if (c === "/" && src[k + 1] === "*") { k = src.indexOf("*/", k) + 1; continue; }
+    if (c === '"' || c === "'" || c === "`") {
+      const q = c, from = k;
+      for (k++; k < src.length && src[k] !== q; k++) if (src[k] === "\\") k++;
+      if (depth === 1) key = src.slice(from + 1, k);
+      continue;
+    }
+    if (c === "{") { depth++; if (depth === 2) entryStart = k; }
+    else if (c === "}") {
+      if (depth === 2) {
+        const body = src.slice(entryStart, k + 1);
+        const m = body.match(/\bexpires\s*:\s*"(\d{4}-\d{2}-\d{2})"/);
+        out.push({ id: key, expires: m ? m[1] : null });
+      }
+      if (--depth === 0) break;
+    }
+  }
+  if (!out.length) throw new Error(`waiver table ${name} has no entries`);
+  return out;
+}
+function waivers(src = readFileSync(join(ROOT, "scripts/verify.mjs"), "utf8")) {
   const out = {};
-  for (const m of body.matchAll(/["']?([a-z0-9-]+-20\d\d)["']?\s*:\s*\{[\s\S]*?expires:\s*"(\d{4}-\d{2}-\d{2})"/g)) out[m[1]] = m[2];
+  for (const [name, kind] of WAIVER_TABLES)
+    for (const w of waiverTable(src, name)) (out[w.id] ||= []).push({ kind, expires: w.expires });
   return out;
 }
 
@@ -450,10 +481,36 @@ if (process.argv.includes("--self-test")) {
   const got2 = []; internalChecks(two, (sev, what, detail) => got2.push(`${sev} ${what} ${detail}`));
   const emptyDayOk = got2.some(g => /^S2 scheduled day with zero timed sets day 2\b/.test(g)) && !got2.some(g => /day 1\b.*zero timed/.test(g));
   if (!emptyDayOk) yearMiss.push(`empty day 2 not reported: ${JSON.stringify(got2)}`);
-  const fail = miss.length || dmMiss.length || !edOk || !ed2Ok || flagMiss || yearMiss.length;
+  // Waivers: both tables, kind kept. The fixture plants the shapes that broke
+  // naive parsing: a brace and a date inside a note, a dated comment, an entry
+  // with no expiry, and string concatenation.
+  const WFIX = `
+  const ART_WAIVERS = {
+    // was "2020-01-01" before the redraw {see note}
+    "art-fest-2099": { expires: "2099-02-01", note: "art is {distorted} until 2099-12-31" },
+  };
+  const REGISTRATION_WAIVERS = {
+    "reg-fest-2099": { excuses: ["blind"], expires: "2099-03-01", note: "a " + "b" },
+    "both-fest-2099": { excuses: ["unsourced"], note: "no date here" },
+  };
+  const OTHER = { "x-2099": { expires: "1999-01-01" } };`;
+  const wGot = JSON.stringify(waivers(WFIX));
+  const wWant = JSON.stringify({ "reg-fest-2099": [{ kind: "registration", expires: "2099-03-01" }], "both-fest-2099": [{ kind: "registration", expires: null }], "art-fest-2099": [{ kind: "art", expires: "2099-02-01" }] });
+  const waiverMiss = wGot === wWant ? [] : [`parsed ${wGot}, want ${wWant}`];
+  // Negative controls: with either table disabled the audit must refuse, not
+  // report "no waivers" (the #459 a282641f defect read only one table).
+  for (const [name] of WAIVER_TABLES) {
+    let threw = false;
+    try { waivers(WFIX.replace(`const ${name} `, `const DISABLED_${name} `)); } catch { threw = true; }
+    if (!threw) waiverMiss.push(`${name} disabled but the audit still ran`);
+  }
+  // And the live verify.mjs must yield both kinds.
+  const live = Object.values(waivers()).flat();
+  for (const [, kind] of WAIVER_TABLES) if (!live.some(w => w.kind === kind)) waiverMiss.push(`live verify.mjs has no ${kind} waiver`);
+  const fail = miss.length || dmMiss.length || !edOk || !ed2Ok || flagMiss || yearMiss.length || waiverMiss.length;
   console.log(fail
-    ? `SELF-TEST FAIL: missed ${JSON.stringify(miss)} dates ${JSON.stringify(dmMiss)} eventDays ${ed} / ${ed2} commonsFlag misses ${flagMiss} year/empty-day ${JSON.stringify(yearMiss)}`
-    : `self-test: ${want.length} planted defects caught, date parsing OK, ${yearCases.length} year cases OK, empty day reported, Commons flags ${flagged.length} caught / ${clean.length} clean pass`);
+    ? `SELF-TEST FAIL: missed ${JSON.stringify(miss)} dates ${JSON.stringify(dmMiss)} eventDays ${ed} / ${ed2} commonsFlag misses ${flagMiss} year/empty-day ${JSON.stringify(yearMiss)} waivers ${JSON.stringify(waiverMiss)}`
+    : `self-test: ${want.length} planted defects caught, date parsing OK, ${yearCases.length} year cases OK, empty day reported, Commons flags ${flagged.length} caught / ${clean.length} clean pass, waivers: both tables parsed with kind, ${WAIVER_TABLES.length} disabled-table controls refused, live file has ${live.length} waivers (${live.map(w => w.kind).join(", ")})`);
   process.exit(fail ? 1 : 0);
 }
 
@@ -476,14 +533,15 @@ for (const f of fests) {
   const stats = internalChecks(f, add);
   const official = await officialCheck(f, add);
   const seo = seoCheck(f, add);
-  const map = { mode: f.config.mapMode || null, anchors: f.config.gpsAnchors?.length || 0, georef: f.config.mapGeoref, waiverExpires: W[f.id] || null };
+  const map = { mode: f.config.mapMode || null, anchors: f.config.gpsAnchors?.length || 0, georef: f.config.mapGeoref, waivers: W[f.id] || [] };
   map.basis = map.anchors ? `${map.anchors} GPS anchor(s)` : map.georef ? "georeferenced plate" : "none (real map only)";
-  if (map.waiverExpires) {
-    const days = Math.round((Date.parse(map.waiverExpires) - Date.parse(DATE)) / 864e5);
-    map.waiverDays = days;
-    const wurl = "https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs";
-    if (days < 0) add("S1", "map registration waiver has expired", `expired ${map.waiverExpires}`, wurl);
-    else if (days <= 45) add("S2", "map registration waiver expires within 45 days", `${map.waiverExpires} (${days} d)`, wurl);
+  const wurl = "https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs";
+  for (const w of map.waivers) {
+    if (!w.expires) { add("S1", `map ${w.kind} waiver has no expiry date`, "", wurl); continue; }
+    const days = Math.round((Date.parse(w.expires) - Date.parse(DATE)) / 864e5);
+    w.days = days;
+    if (days < 0) add("S1", `map ${w.kind} waiver has expired`, `expired ${w.expires}`, wurl);
+    else if (days <= 45) add("S2", `map ${w.kind} waiver expires within 45 days`, `${w.expires} (${days} d)`, wurl);
   }
   results.push({ id: f.id, name: f.config.name, tba: f.tba, ended, stats, official, seo, map, findings });
   process.stdout.write(`${f.id.padEnd(30)} ${findings.length} finding(s) · dates ${official.dates} · venue ${official.venue}\n`);
@@ -497,7 +555,8 @@ const orphanPages = fDirs.filter(id => !fests.some(f => f.id === id) && !ONLY.le
 const sevCount = { S1: 0, S2: 0, S3: 0 };
 for (const r of results) for (const x of r.findings) sevCount[x.sev]++;
 for (const x of photos.findings) sevCount[x.sev]++;
-const json = { spec: "SPEC-193 P2", date: DATE, head, runtimeMs: Date.now() - t0, severity: sevCount, festivals: results, photos, pagesWithoutDataSet: orphanPages };
+const scriptSha = createHash("sha1").update(readFileSync(fileURLToPath(import.meta.url))).digest("hex").slice(0, 12);
+const json = { spec: "SPEC-193 P2", date: DATE, head, scriptSha, runtimeMs: Date.now() - t0, severity: sevCount, festivals: results, photos, pagesWithoutDataSet: orphanPages };
 writeFileSync(join(OUT, `festival-truth-${DATE}.json`), JSON.stringify(json, null, 1));
 
 // ---------- markdown ----------
@@ -505,7 +564,7 @@ const L = [];
 const esc = s => String(s ?? "").replace(/\|/g, "/").replace(/\n/g, " ");
 const link = u => u ? `[source](${u})` : "—";
 L.push(`# Festival truth audit — ${DATE}`, "",
-  `SPEC-193 Phase 2. Read-only. Data read from the running app (\`_DATA_SETS\`) at \`${head}\`. ${results.length} festivals, ${photos.rows} artist-photo ledger rows. Command: \`node scripts/audit-festival-truth.mjs\`.`, "",
+  `SPEC-193 Phase 2. Read-only. Data read from the running app (\`_DATA_SETS\`) at source head \`${head}\`. Waivers read from that tree's \`scripts/verify.mjs\` (both tables). Audit script sha1 \`${scriptSha}\`. ${results.length} festivals, ${photos.rows} artist-photo ledger rows. Command: \`node scripts/audit-festival-truth.mjs\`.`, "",
   `**Findings: ${sevCount.S1} S1 · ${sevCount.S2} S2 · ${sevCount.S3} S3.**`, "",
   "Severity: **S1** = the app shows a fan something false or broken (wrong date, a set on a stage that doesn't exist, two sets at once on one stage, a deleted photo). **S2** = likely wrong or unproven and needs a look (possible date mismatch, duplicate act, missing provenance, waiver expiring). **S3** = cosmetic or informational.", "",
   "Official checks read only server-rendered text from the official site recorded in the festival's own `officialEvent`. A site that renders in the browser shows up as UNVERIFIED, not MATCH. `MISMATCH?` means the page names other dates in the same month; it is a lead for a human, never proof.", "");
@@ -514,7 +573,7 @@ L.push("## Summary", "", "| Festival | State | Stages | Sets (timed) | Official 
 for (const r of results) {
   const n = s => r.findings.filter(x => x.sev === s).length;
   const state = r.ended ? "ended" : r.tba ? "TBA" : "live/upcoming";
-  L.push(`| ${r.id} | ${state} | ${r.stats.stages} | ${r.stats.sets} (${r.stats.timed}) | ${r.official.dates}${r.official.url ? ` ([fetched ${r.official.fetchedAt?.slice(0, 16) || "—"}](${r.official.url}))` : ""} | ${r.official.venue} | ${r.seo.page ? "yes" : "no"} | ${esc(r.map.basis)} | ${r.map.waiverExpires || "—"} | ${n("S1")} | ${n("S2")} | ${n("S3")} |`);
+  L.push(`| ${r.id} | ${state} | ${r.stats.stages} | ${r.stats.sets} (${r.stats.timed}) | ${r.official.dates}${r.official.url ? ` ([fetched ${r.official.fetchedAt?.slice(0, 16) || "—"}](${r.official.url}))` : ""} | ${r.official.venue} | ${r.seo.page ? "yes" : "no"} | ${esc(r.map.basis)} | ${r.map.waivers.map(w => `${w.kind} ${w.expires}`).join("; ") || "—"} | ${n("S1")} | ${n("S2")} | ${n("S3")} |`);
 }
 for (const sev of ["S1", "S2", "S3"]) {
   L.push("", `## ${sev} findings`, "");

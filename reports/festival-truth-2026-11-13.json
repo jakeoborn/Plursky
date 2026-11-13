@@ -1,11 +1,12 @@
 {
  "spec": "SPEC-193 P2",
  "date": "2026-11-13",
- "head": "4439cf28",
- "runtimeMs": 1682,
+ "head": "cc320d65",
+ "scriptSha": "eb9dbac0be45",
+ "runtimeMs": 2562,
  "severity": {
   "S1": 0,
-  "S2": 7,
+  "S2": 9,
   "S3": 10
  },
  "festivals": [
@@ -38,7 +39,7 @@
     "mode": null,
     "anchors": 9,
     "georef": true,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "9 GPS anchor(s)"
    },
    "findings": [
@@ -77,12 +78,25 @@
    },
    "map": {
     "mode": null,
-    "anchors": 4,
+    "anchors": 7,
     "georef": false,
-    "waiverExpires": null,
-    "basis": "4 GPS anchor(s)"
+    "waivers": [
+     {
+      "kind": "art",
+      "expires": "2026-12-01",
+      "days": 18
+     }
+    ],
+    "basis": "7 GPS anchor(s)"
    },
-   "findings": []
+   "findings": [
+    {
+     "sev": "S2",
+     "what": "map art waiver expires within 45 days",
+     "detail": "2026-12-01 (18 d)",
+     "url": "https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs"
+    }
+   ]
   },
   {
    "id": "lost-lands-2026",
@@ -113,7 +127,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": [
@@ -154,9 +168,14 @@
     "mode": null,
     "anchors": 5,
     "georef": true,
-    "waiverExpires": "2026-12-01",
-    "basis": "5 GPS anchor(s)",
-    "waiverDays": 18
+    "waivers": [
+     {
+      "kind": "registration",
+      "expires": "2026-12-01",
+      "days": 18
+     }
+    ],
+    "basis": "5 GPS anchor(s)"
    },
    "findings": [
     {
@@ -214,10 +233,23 @@
     "mode": null,
     "anchors": 7,
     "georef": true,
-    "waiverExpires": null,
+    "waivers": [
+     {
+      "kind": "art",
+      "expires": "2026-12-01",
+      "days": 18
+     }
+    ],
     "basis": "7 GPS anchor(s)"
    },
-   "findings": []
+   "findings": [
+    {
+     "sev": "S2",
+     "what": "map art waiver expires within 45 days",
+     "detail": "2026-12-01 (18 d)",
+     "url": "https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs"
+    }
+   ]
   },
   {
    "id": "governors-ball-2026",
@@ -248,9 +280,14 @@
     "mode": null,
     "anchors": 3,
     "georef": false,
-    "waiverExpires": "2026-12-01",
-    "basis": "3 GPS anchor(s)",
-    "waiverDays": 18
+    "waivers": [
+     {
+      "kind": "registration",
+      "expires": "2026-12-01",
+      "days": 18
+     }
+    ],
+    "basis": "3 GPS anchor(s)"
    },
    "findings": [
     {
@@ -290,7 +327,7 @@
     "mode": null,
     "anchors": 10,
     "georef": true,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "10 GPS anchor(s)"
    },
    "findings": [
@@ -337,7 +374,7 @@
     "mode": null,
     "anchors": 9,
     "georef": true,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "9 GPS anchor(s)"
    },
    "findings": [
@@ -378,7 +415,7 @@
     "mode": null,
     "anchors": 7,
     "georef": true,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "7 GPS anchor(s)"
    },
    "findings": [
@@ -431,7 +468,7 @@
     "mode": null,
     "anchors": 13,
     "georef": true,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "13 GPS anchor(s)"
    },
    "findings": []
@@ -465,7 +502,7 @@
     "mode": null,
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -499,7 +536,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": true,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "georeferenced plate"
    },
    "findings": []
@@ -533,7 +570,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -567,7 +604,7 @@
     "mode": null,
     "anchors": 0,
     "georef": true,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "georeferenced plate"
    },
    "findings": [
@@ -608,7 +645,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -642,7 +679,7 @@
     "mode": null,
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": [
@@ -689,7 +726,7 @@
     "mode": null,
     "anchors": 0,
     "georef": true,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "georeferenced plate"
    },
    "findings": [
@@ -730,7 +767,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -764,7 +801,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -798,7 +835,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -832,7 +869,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -866,7 +903,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -900,7 +937,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -934,7 +971,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -968,7 +1005,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -1002,7 +1039,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []
@@ -1036,7 +1073,7 @@
     "mode": "real",
     "anchors": 0,
     "georef": false,
-    "waiverExpires": null,
+    "waivers": [],
     "basis": "none (real map only)"
    },
    "findings": []

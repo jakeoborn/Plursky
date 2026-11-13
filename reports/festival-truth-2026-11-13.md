@@ -1,8 +1,8 @@
 # Festival truth audit — 2026-11-13
 
-SPEC-193 Phase 2. Read-only. Data read from the running app (`_DATA_SETS`) at `4439cf28`. 27 festivals, 1194 artist-photo ledger rows. Command: `node scripts/audit-festival-truth.mjs`.
+SPEC-193 Phase 2. Read-only. Data read from the running app (`_DATA_SETS`) at source head `cc320d65`. Waivers read from that tree's `scripts/verify.mjs` (both tables). Audit script sha1 `eb9dbac0be45`. 27 festivals, 1194 artist-photo ledger rows. Command: `node scripts/audit-festival-truth.mjs`.
 
-**Findings: 0 S1 · 7 S2 · 10 S3.**
+**Findings: 0 S1 · 9 S2 · 10 S3.**
 
 Severity: **S1** = the app shows a fan something false or broken (wrong date, a set on a stage that doesn't exist, two sets at once on one stage, a deleted photo). **S2** = likely wrong or unproven and needs a look (possible date mismatch, duplicate act, missing provenance, waiver expiring). **S3** = cosmetic or informational.
 
@@ -15,11 +15,11 @@ Artist photos: 1194 ledger rows, 1194 files hash-checked, 1194 of 1194 Commons p
 | Festival | State | Stages | Sets (timed) | Official dates | Official venue | /f/ page | Map basis | Waiver | S1 | S2 | S3 |
 |---|---|--:|--:|---|---|---|---|---|--:|--:|--:|
 | edc-lv-2026 | ended | 9 | 241 (241) | PARTIAL ([fetched 2026-11-13T06:06](https://lasvegas.edc.com/)) | MATCH | yes | 9 GPS anchor(s) | — | 0 | 0 | 1 |
-| acl-2026 | ended | 7 | 136 (136) | PARTIAL ([fetched 2026-11-13T06:06](https://www.aclfestival.com/)) | MATCH | yes | 4 GPS anchor(s) | — | 0 | 0 | 0 |
+| acl-2026 | ended | 7 | 136 (136) | PARTIAL ([fetched 2026-11-13T06:06](https://www.aclfestival.com/)) | MATCH | yes | 7 GPS anchor(s) | art 2026-12-01 | 0 | 1 | 0 |
 | lost-lands-2026 | ended | 7 | 206 (206) | MATCH ([fetched 2026-11-13T06:06](https://www.lostlandsfestival.com/)) | UNVERIFIED | yes | none (real map only) | — | 0 | 0 | 1 |
-| edc-orlando-2026 | ended | 5 | 133 (133) | MISMATCH? ([fetched 2026-11-13T06:06](https://orlando.edc.com/)) | MATCH | yes | 5 GPS anchor(s) | 2026-12-01 | 0 | 2 | 2 |
-| ultra-miami-2026 | ended | 7 | 166 (166) | PARTIAL ([fetched 2026-11-13T06:06](https://ultramusicfestival.com/)) | MATCH | yes | 7 GPS anchor(s) | — | 0 | 0 | 0 |
-| governors-ball-2026 | ended | 3 | 58 (58) | MATCH ([fetched 2026-11-13T06:06](https://www.governorsballmusicfestival.com/)) | MATCH | yes | 3 GPS anchor(s) | 2026-12-01 | 0 | 1 | 0 |
+| edc-orlando-2026 | ended | 5 | 133 (133) | MISMATCH? ([fetched 2026-11-13T06:06](https://orlando.edc.com/)) | MATCH | yes | 5 GPS anchor(s) | registration 2026-12-01 | 0 | 2 | 2 |
+| ultra-miami-2026 | ended | 7 | 166 (166) | PARTIAL ([fetched 2026-11-13T06:06](https://ultramusicfestival.com/)) | MATCH | yes | 7 GPS anchor(s) | art 2026-12-01 | 0 | 1 | 0 |
+| governors-ball-2026 | ended | 3 | 58 (58) | MATCH ([fetched 2026-11-13T06:06](https://www.governorsballmusicfestival.com/)) | MATCH | yes | 3 GPS anchor(s) | registration 2026-12-01 | 0 | 1 | 0 |
 | summerfest-2026 | ended | 10 | 446 (436) | UNVERIFIED ([fetched 2026-11-13T06:06](https://www.summerfest.com/)) | UNVERIFIED | yes | 10 GPS anchor(s) | — | 0 | 1 | 1 |
 | lollapalooza-2026 | ended | 9 | 195 (195) | MATCH ([fetched 2026-11-13T06:06](https://www.lollapalooza.com/)) | MATCH | yes | 9 GPS anchor(s) | — | 0 | 0 | 1 |
 | outside-lands-2026 | ended | 7 | 139 (139) | MISMATCH? ([fetched 2026-11-13T06:06](https://www.sfoutsidelands.com/)) | UNVERIFIED | yes | 7 GPS anchor(s) | — | 0 | 2 | 1 |
@@ -50,8 +50,10 @@ None.
 
 | Festival | Finding | Detail | Evidence |
 |---|---|---|---|
+| acl-2026 | map art waiver expires within 45 days | 2026-12-01 (18 d) | [source](https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs) |
 | edc-orlando-2026 | official page may show different dates (needs a human look) | page names our days in another year: nov 6, 2027, nov 7, 2027; ours nov 6, 2026, nov 7, 2026, nov 8, 2026 | [source](https://orlando.edc.com/) |
 | edc-orlando-2026 | map registration waiver expires within 45 days | 2026-12-01 (18 d) | [source](https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs) |
+| ultra-miami-2026 | map art waiver expires within 45 days | 2026-12-01 (18 d) | [source](https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs) |
 | governors-ball-2026 | map registration waiver expires within 45 days | 2026-12-01 (18 d) | [source](https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs) |
 | summerfest-2026 | two sets overlap on the same stage (festival ended) | 1: day 6 aurora: DJ Andres 14:45-15:20 × Jazzteca 15:15-16:10 | [source](https://summerfest.com/lineup) |
 | outside-lands-2026 | two sets overlap on the same stage (festival ended) | 2: day 2 dolores: OASIS DJ Set: Beverly Chills 13:30-14:15 × Pink Stiletto 14:00-14:30; day 2 dolores: Pink Stiletto 14:00-14:30 × REPARATIONS w/ DJ Newoncé 14:15-15:15 | [source](https://inmusicblog.com/) |
