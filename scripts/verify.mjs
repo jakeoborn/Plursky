@@ -3089,6 +3089,22 @@ for (const [script, label] of [
   }
 }
 
+// The service worker on a slow-but-alive link: a warm app opens from its saved
+// copy when the network has not delivered within the deadline, a fast network
+// still wins (deploys propagate), a slow one refreshes the cache behind it, and
+// main's previous network-first handler fails the same open (negative control).
+{
+  console.log("▸ Service worker slow link — saved copy on a held network, fresh on a fast one");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-sw-slow-link.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 300000 });
+    process.stdout.write(out.split("\n").filter(l => /✗|^✓/.test(l.trim())).join("\n") + "\n");
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`sw slow link failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // SPEC-178: your tagged photos/videos pinned at capture GPS on the real map.
 // No GPS = no pin; coordinates never leave the device (cloud backup strips
 // them, no request carries one); a tap opens the item with night/stage/artist
