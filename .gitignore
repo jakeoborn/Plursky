@@ -38,3 +38,7 @@ artifacts/agent-device/
 # Local agent/brain handles. These carry a token, the repo is public, and a
 # plain `git add -A` picks them up — which is exactly how a secret leaks.
 .gbrain-owner.json
+
+# Python bytecode (build-geo-plate.py); #425 committed one by accident.
+__pycache__/
+*.pyc

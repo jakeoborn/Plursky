@@ -465,37 +465,103 @@ function SpotifyFullLogo({ height = 21, title = "Spotify" }) {
   );
 }
 
+// The credit under a list of faces: Spotify's policy wants its photos
+// attributed with its logo, and a 34 px face has no room for one, so a list
+// that shows any Spotify photo ends with this line (the artist hero carries
+// its own logo). Re-checks when a photo for one of the names is written.
+function SpotifyPhotoCredit({ names }) {
+  const list = (names || []).filter(Boolean);
+  const has = () => list.some(n => getArtistImage(n)?.source === "spotify");
+  const [show, setShow] = React.useState(has);
+  const sig = list.join("|");
+  React.useEffect(() => {
+    setShow(has());
+    const on = () => setShow(has());
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, on);
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
+    return () => { window.removeEventListener(ARTIST_IMAGES_WRITTEN, on); window.removeEventListener(ARTIST_IMAGES_EXPIRED, on); };
+  }, [sig]);
+  if (!show) return null;
+  return (
+    <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" data-spotify-attribution="list"
+      aria-label="Artist photos from Spotify" style={{
+        display: "flex", alignItems: "center", gap: 8, padding: "14px 0 6px", color: "var(--ink-2)",
+        fontSize: 12, textDecoration: "none",
+      }}>
+      <span>Artist photos from</span><SpotifyFullLogo height={21} />
+    </a>
+  );
+}
+
 // ── Artist photo cache + rate-limited Spotify fetch ──────────
 // One fetch at a time, 150 ms apart — avoids Spotify 429s when
 // the full lineup loads. Reads localStorage cache first (instant).
+// A connected listener searches with their own token; everyone else asks
+// Plursky's spotify-artist-image function, which searches with the app's own
+// key (supabase/functions/spotify-artist-image). Both keep only an exact name
+// match, so a near name never borrows another act's face, and both store the
+// URL under the same 24 h Spotify rule.
 const _photoQueue = [];
 let   _photoActive = false;
+
+const SPOTIFY_PHOTO_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/spotify-artist-image";
+// Off for the rest of the session once the function says it is not set up
+// (or is not deployed), and paused after a rate limit, so a full lineup does
+// not knock on a closed door a hundred times.
+let _photoProxyOff = false;
+let _photoProxyPausedUntil = 0;
+function _photoProxyUsable() {
+  // A browser test (navigator.webdriver) never reaches the live function, so
+  // no real photo lands in a test's page; a test that drives the function
+  // stubs it and opts in with window.__plurskyPhotoProxyInTests.
+  if (typeof navigator !== "undefined" && navigator.webdriver && !window.__plurskyPhotoProxyInTests) return false;
+  return !_photoProxyOff && Date.now() >= _photoProxyPausedUntil
+    && (typeof navigator === "undefined" || navigator.onLine !== false);
+}
+function _spotifyNameKey(s) {
+  return String(s || "").normalize("NFKD").replace(/[̀-ͯ]/g, "")
+    .toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "");
+}
+// Spotify's first artist whose name is this act's name, accents, case and
+// punctuation aside. No partial or first-result fallback.
+function _spotifyExactArtist(items, name) {
+  const k = _spotifyNameKey(name);
+  return k ? (items || []).find(x => x && _spotifyNameKey(x.name) === k) || null : null;
+}
+// The proxy's answer for one name: { url, spotifyId } or null. Stores the URL
+// (24 h) so every face of this act picks it up.
+function _fetchProxyPhoto(name) {
+  if (!_photoProxyUsable()) return Promise.resolve(null);
+  return fetch(SPOTIFY_PHOTO_PROXY_URL + "?name=" + encodeURIComponent(name)).then(r => {
+    if (r.status === 429) { _photoProxyPausedUntil = Date.now() + 1000 * Math.min(600, parseInt(r.headers.get("Retry-After")) || 60); return null; }
+    if (r.status === 404 || r.status === 503) { _photoProxyOff = true; return null; }
+    return r.ok ? r.json() : null;
+  }).then(d => {
+    if (!d || !d.url) return null;
+    putArtistImage(name, d.url, "spotify", { spotifyId: d.spotifyId });
+    return { url: d.url, spotifyId: d.spotifyId || null };
+  }).catch(() => null);
+}
 
 function _drainPhotoQueue() {
   if (_photoActive || !_photoQueue.length) return;
   _photoActive = true;
   const { name, resolve } = _photoQueue.shift();
-  const token   = localStorage.getItem("spotify_token");
-  const expires = localStorage.getItem("spotify_expires");
-  if (!token || !expires || Date.now() >= parseInt(expires)) {
-    _photoActive = false; resolve(null); _drainPhotoQueue(); return;
+  const next = () => { _photoActive = false; setTimeout(_drainPhotoQueue, 150); };
+  if (!_spotifyTokenValid()) {
+    if (!_photoProxyUsable()) { _photoActive = false; resolve(null); _drainPhotoQueue(); return; }
+    _fetchProxyPhoto(name).then(hit => resolve(hit ? hit.url : null)).finally(next);
+    return;
   }
   fetch(
-    `https://api.spotify.com/v1/search?q=${encodeURIComponent(name)}&type=artist&limit=3`,
-    { headers: { Authorization: "Bearer " + token } }
+    `https://api.spotify.com/v1/search?q=${encodeURIComponent(name)}&type=artist&limit=10`,
+    { headers: { Authorization: "Bearer " + localStorage.getItem("spotify_token") } }
   ).then(r => r.ok ? r.json() : null).then(d => {
-    const ln = name.toLowerCase();
-    const items = d?.artists?.items || [];
-    const match = items.find(x => x.name.toLowerCase() === ln)
-      || items.find(x => ln.includes(x.name.toLowerCase()))
-      || items[0];
+    const match = _spotifyExactArtist(d?.artists?.items, name);
     const img = match?.images?.[0]?.url || null;
     if (img) putArtistImage(name, img, "spotify", { spotifyId: match.id });
     resolve(img);
-  }).catch(() => resolve(null)).finally(() => {
-    _photoActive = false;
-    setTimeout(_drainPhotoQueue, 150);
-  });
+  }).catch(() => resolve(null)).finally(next);
 }
 
 function _queuePhoto(name) {
@@ -665,10 +731,11 @@ function useArtistPhotoMachine(name, { key = name, lookup = null, canFetch = () 
 }
 
 // The swatch/strip photo: a URL string or null, as its four callers expect.
-// Spotify (connected users, 24 h rule) is the only lookup, through the photo
-// queue; with no photo the swatch keeps its gradient and initials.
+// Spotify (24 h rule) is the only lookup, through the photo queue: the
+// listener's own token when connected, Plursky's photo function otherwise.
+// With no photo the swatch keeps its gradient and initials.
 function useArtistPhoto(name) {
-  return useArtistPhotoMachine(name, { lookup: _queuePhoto, canFetch: _spotifyTokenValid }).url;
+  return useArtistPhotoMachine(name, { lookup: _queuePhoto, canFetch: () => _spotifyTokenValid() || _photoProxyUsable() }).url;
 }
 
 // Artist color swatch — shows Spotify headshot when available,
@@ -832,6 +899,14 @@ function _duoInitials(name) {
   return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2)
     .map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
+// The current festival's identity colour (registry accent), for initials.
+function _duoFaceAccent() {
+  try {
+    const id = typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id;
+    const e = id && (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : []).find(f => f && f.config && f.config.id === id);
+    return e && /^#[0-9a-f]{6}$/i.test(e.accent || "") ? e.accent : null;
+  } catch { return null; }
+}
 function DuoFace({ name, size, ring = "", style, className = "" }) {
   const resolved = useArtistPhoto(name);
   const rec = getArtistImage(name);
@@ -843,7 +918,7 @@ function DuoFace({ name, size, ring = "", style, className = "" }) {
   return (
     <span className={`duo-av ${ring} ${className}`.trim()} aria-hidden="true" data-face={name}
       data-photo-source={photo ? (rec?.source || "") : "initials"}
-      style={{ ...(size ? { width: size, height: size, fontSize: Math.round(size * 0.32) } : {}), ...style }}>
+      style={{ ...(!photo && _duoFaceAccent() ? { "--face-acc": _duoFaceAccent() } : {}), ...(size ? { width: size, height: size, fontSize: Math.round(size * 0.32) } : {}), ...style }}>
       {photo ? <img src={photo} alt="" onError={() => setFailed(photo)} /> : _duoInitials(name)}
     </span>
   );
@@ -1324,6 +1399,28 @@ function clearSetTrack(festivalId) {
   try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
   return true;
 }
+// The one read of a tracked set (spec PR 4): attendanceVerdict over the
+// stored runs, with its label ("Full set" / "≈ 30 of 60 min"). Null when set
+// tracking recorded nothing at this set's stage. Every surface asks this;
+// none restates a threshold.
+function setTrackVerdict(a, cfg = window.FESTIVAL_CONFIG) {
+  if (!a || !cfg || !cfg.id) return null;
+  const iv = getSetTrackIntervals(cfg.id);
+  if (!iv[a.stage] || !iv[a.stage].length) return null;
+  const v = attendanceVerdict(a, iv, cfg);
+  return v.verdict === "none" ? null : { ...v, label: attendanceVerdictLabel(v) };
+}
+// Full and part sets set tracking timed across a lineup (the recap line).
+function setTrackSummary(artists, cfg = window.FESTIVAL_CONFIG) {
+  const out = { full: 0, partial: 0 };
+  for (const a of artists || []) {
+    const v = setTrackVerdict(a, cfg);
+    if (v && v.verdict === "full") out.full++;
+    else if (v && v.verdict === "partial") out.partial++;
+  }
+  return out;
+}
+
 // Mounted once at app level. Watches only while ALL hold: the user turned it
 // on, the page is visible, and the active festival is live with measured
 // stages. The fix's lat/lng live only inside the callback.
@@ -2751,7 +2848,7 @@ function plurskyHaptic(style = "LIGHT") {
 Object.assign(window, {
   Screen, ScrollBody, TopBar, TabBar, Pill, ArtistSwatch, Wordmark,
   useArtistPhoto, useArtistPhotoMachine, ARTIST_PHOTO_MACHINE, getArtistImage, getShareableArtistImage, putArtistImage, putArtistImages,
-  SpotifyFullLogo, SPOTIFY_IMAGE_TTL_MS,
+  SpotifyFullLogo, SpotifyPhotoCredit, SPOTIFY_IMAGE_TTL_MS, _fetchProxyPhoto, _photoProxyUsable, _spotifyExactArtist,
   useInstallPrompt, InstallBanner,
   useNotifications, NotificationsCard, scheduleReminders,
   getAllAttended, getAttendedStore, getAttendedForNight, getAttendedCount, markAttended, unmarkAttended,
