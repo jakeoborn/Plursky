@@ -1665,7 +1665,16 @@ function App() {
       flex: 1,
       position: "relative"
     }
-  }, body, React.createElement(ToastHost, null)), !state.artist && state.tab !== "landing" && (() => {
+  }, React.createElement("div", {
+    key: state.artist ? "artist" : state.tab,
+    className: state.artist ? "ps-view ps-view-push" : "ps-view",
+    style: {
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, body), React.createElement(ToastHost, null)), !state.artist && state.tab !== "landing" && (() => {
     var postFest = (() => {
       try {
         return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity);
@@ -1789,7 +1798,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v595"
+        version: "v596"
       }));
     } catch {}
   }
@@ -1841,7 +1850,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v595"))
+      }, "Plursky · v596"))
     );
   }
 }
