@@ -1528,10 +1528,16 @@ const FESTIVALS_REGISTRY = [
         //             footprint "IHG Hotels & Resorts". Roof faces east to a
         //             square FOH.
         // Stages are rebuilt every year: ALL SEVEN ACL anchors are 2023
-        // positions taken to hold for 2026 (both official maps place them
-        // identically), and each carries `assumed` saying so. A crowdAnchors
-        // entry for the same stage (measured from 2026 photos) overrides it in
-        // resolvedStageAnchors(); test-acl-map-2026 pins that override.
+        // positions taken to hold for 2026, and each carries `assumed` saying
+        // so. Each roof is named against the 2023 map (the imagery's year),
+        // then carried to the 2026 stage on the same footprint. Names do move
+        // between footprints (2023 Honda -> 2026 T-Mobile, 2023 T-Mobile ->
+        // 2026 Snapchat); Tito's, BMI and BEATBOX (2023 "IHG") kept theirs.
+        // The 2026 map is the "25 YEARS" art served at the same attachment
+        // URL today (sha256 b94080e4…). Proof packet with both maps: PR #460.
+        // A crowdAnchors entry for the same stage (measured from 2026 photos)
+        // overrides it in resolvedStageAnchors(); test-acl-map-2026 pins that
+        // override.
         { stageId: "titos",   lat: 30.267785, lng: -97.765064, src: "osm", assumed: "satellite 2023, assumed for 2026" },
         { stageId: "bmi",     lat: 30.266537, lng: -97.769236, src: "osm", assumed: "satellite 2023, assumed for 2026" },
         { stageId: "beatbox", lat: 30.265399, lng: -97.768634, src: "osm", assumed: "satellite 2023, assumed for 2026" },
