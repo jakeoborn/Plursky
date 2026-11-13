@@ -3,7 +3,7 @@
 // (scripts/find-commons-photos.mjs), offline. A wrong face is worse than
 // initials, so each rule has a case that must be refused.
 import assert from 'node:assert/strict';
-import { pickEntity, isMusicAct, namesBilling, mapLicense, cleanAuthor } from './find-commons-photos.mjs';
+import { pickEntity, isMusicAct, namesBilling, mapLicense, cleanAuthor, commonsFlag } from './find-commons-photos.mjs';
 
 let checks = 0;
 const ok = (v, m) => { checks++; assert.ok(v, m); };
@@ -66,6 +66,39 @@ eq(mapLicense('Public domain')?.license, 'Public-Domain', 'public domain');
 eq(mapLicense('CC BY-SA 3.0 de')?.license, 'CC-BY-SA-3.0-DE', 'German 3.0 port');
 for (const bad of ['CC BY-NC 2.0', 'CC BY-SA 2.5', 'GFDL', 'Copyrighted free use', 'All rights reserved', '', undefined])
   eq(mapLicense(bad), null, `refused: ${bad}`);
+
+// Rule 5: a flagged Commons page is refused, whatever its license field says.
+// The flagged fixtures are the live pages of the five files #419 dropped
+// (read Nov 2026); each must be REFUSED with its reason. (Evan Giia went by
+// ruling: its page carries no flag, see the clean cases below.)
+const pg = (title, templates = [], categories = [], extra = {}) => ({ title: 'File:' + title,
+  templates: templates.map(t => ({ ns: 10, title: 'Template:' + t })), categories: categories.map(c => ({ ns: 14, title: 'Category:' + c })), ...extra });
+const flagged = [
+  [pg('Gallant-Plaid-Suit-Yellow-Green.jpg', ['Deletion template tag', 'No permission since', 'No permission since/en'], ['All media missing permission', 'CC-Zero', 'Media missing permission as of 8 November 2026']), 'commons-deletion-request'],
+  [pg('Gallant-Plaid-Suit-Yellow-Green.jpg', [], ['All media missing permission', 'CC-Zero']), 'commons-missing-permission'],
+  [pg('R3hab (Cropped).jpg', ['Delete', 'Delete/en', 'FlickreviewR/link'], ['CC-BY-2.0', 'Deletion requests October 2026', 'Flickr images reviewed by trusted users']), 'commons-deletion-request'],
+  [pg('R3hab (Cropped).jpg', [], ['Deletion requests October 2026']), 'commons-deletion-request'],
+  [pg('Fujii Kaze (cropped) (2).jpg', ['Extracted from deleted', 'Extracted from deleted/en'], ['CC-BY-4.0', 'Extracted images with broken file links (unreviewed)']), 'commons-source-deleted'],
+  [pg('Katseye at Wango Tango 2025 (cropped).jpg', ['Extracted from deleted'], ['CC-BY-4.0', 'Extracted images with broken file links (unreviewed)']), 'commons-source-deleted'],
+  [pg('Copied.jpg', ['Copyvio']), 'commons-copyright-dispute'],
+  [pg('Copied.jpg', [], ['Copyright violations']), 'commons-copyright-dispute'],
+  [pg('NoSource.jpg', ['No source since']), 'commons-no-source-or-license'],
+  [pg('NoLicense.jpg', [], ['Media without a license as of 1 November 2026']), 'commons-no-source-or-license'],
+  [pg('Gone.jpg', [], [], { missing: '' }), 'commons-file-missing'],
+];
+for (const [page, reason] of flagged) eq(commonsFlag(page)?.reason, reason, `refused (${reason}): ${page.title}`);
+// Clean pages pass: review, extraction and undeletion are not flags.
+for (const page of [
+  pg('Skrillex.jpg', ['Information', 'Cc-by-2.0', 'FlickreviewR/link', 'Flickrreview'], ['CC-BY-2.0', 'Flickr images reviewed by FlickreviewR', 'Skrillex']),
+  pg('Act (cropped).jpg', ['Extracted from', 'Self'], ['CC-BY-SA-4.0', 'Extracted images', 'Self-published work']),
+  pg('Restored.jpg', ['Undeleted'], ['Undeleted files', 'License review needed? no']),
+  pg('Plain.jpg'),
+  // A broken link is not a flag: Gesaffelstein's crop links a deleted copy made
+  // FROM it; Evan Giia's links a stray "TestPhoto2.jpg" (live pages, Nov 2026).
+  pg('Brodinski&Gesaffelstein crop.jpg', ['Information', 'Image extracted', 'Cc-by-2.0'], ['Gesaffelstein', 'Files with broken file links']),
+  pg('Evan GIIA performing in Montreal (cropped).jpg', ['Information', 'Extracted from', 'Self'], ['CC-BY-SA-4.0', 'Extracted images', 'Files with broken file links', 'Self-published work']),
+]) eq(commonsFlag(page), null, `clean: ${page.title}`);
+eq(commonsFlag(undefined), null, 'no page read: no claim (the caller skips it as unread)');
 
 // Credits: text only, never cut mid-name, never longer than 32.
 eq(cleanAuthor('<a href="//commons.wikimedia.org/wiki/User:Jane">Jane Doe</a>'), 'Jane Doe', 'link text');

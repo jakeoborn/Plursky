@@ -6209,22 +6209,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q105581073",
     "url": "./artist-photos/ethel-cain.webp"
   },
-  "evan-giia": {
-    "artist": "Evan Giia",
-    "author": "Face With Freckles",
-    "source": "commons",
-    "license": "CC-BY-SA-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Evan_GIIA_performing_in_Montreal_(cropped).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T02:56:24.247Z",
-    "allowExport": false,
-    "asset": "artist-photos/evan-giia.webp",
-    "sha256": "b42e1475d4f0fc5d300a8e656cb393af0c408a71d4f205ef8c2b7aa177f7dd1a",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q107297510",
-    "url": "./artist-photos/evan-giia.webp"
-  },
   "eyedress": {
     "artist": "EYEDRESS",
     "author": "POPDUST",
@@ -6785,22 +6769,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q117018188",
     "url": "./artist-photos/frost-children.webp"
   },
-  "fujii-kaze": {
-    "artist": "FUJII KAZE",
-    "author": "KazeQal",
-    "source": "commons",
-    "license": "CC-BY-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fujii_Kaze_performing_during_Best_Of_Fujii_Kaze_2020-2024_Asia_Tour_in_Axiata_Arena_Kuala_Lumpur_(cropped)_(2).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T05:51:05.181Z",
-    "allowExport": false,
-    "asset": "artist-photos/fujii-kaze.webp",
-    "sha256": "1673ac8ac675d92c89fc4bdd8a7c132fc8d6e3f7b825937649e42ecd6ed1f872",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q84803821",
-    "url": "./artist-photos/fujii-kaze.webp"
-  },
   "fun": {
     "artist": "fun.",
     "author": "Mirandaheneghan",
@@ -6880,22 +6848,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q1488859",
     "url": "./artist-photos/gabriel-and-dresden.webp"
-  },
-  "gallant": {
-    "artist": "Gallant",
-    "author": "Gallant",
-    "source": "commons",
-    "license": "CC0-1.0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gallant-Plaid-Suit-Yellow-Green.jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T05:51:50.673Z",
-    "allowExport": false,
-    "asset": "artist-photos/gallant.webp",
-    "sha256": "5980b6b2f4f343f3d59cb939f5f38c517cb40d93d0cd2cd2444ee75a97d6bdbd",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q22004445",
-    "url": "./artist-photos/gallant.webp"
   },
   "gammer": {
     "artist": "Gammer",
@@ -13313,22 +13265,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "wikidata": "Q44304560",
     "url": "./artist-photos/qveen-herby.webp"
   },
-  "r3hab": {
-    "artist": "R3hab",
-    "author": "digboston",
-    "source": "commons",
-    "license": "CC-BY-2.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:R3hab_(Cropped).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T09:30:48.148Z",
-    "allowExport": false,
-    "asset": "artist-photos/r3hab.webp",
-    "sha256": "e2f53da23b92fa6548ed1a27b485ba393be6b3403627c12ff4b3774aad752e90",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q3414998",
-    "url": "./artist-photos/r3hab.webp"
-  },
   "ra-ra-riot": {
     "artist": "Ra Ra Riot",
     "author": "Cameron Parkins",
@@ -18928,22 +18864,6 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
     "wikidata": "Q28104185",
     "url": "./artist-photos/japanese-breakfast.webp"
-  },
-  "katseye": {
-    "artist": "KATSEYE",
-    "author": "Warmtoned",
-    "source": "commons",
-    "license": "CC-BY-4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Katseye_at_Wango_Tango_2025_(cropped).jpg",
-    "reviewedBy": "Commons pipeline: Wikidata match",
-    "reviewedAt": "2026-11-11T11:21:24.249Z",
-    "allowExport": false,
-    "asset": "artist-photos/katseye.webp",
-    "sha256": "b9a9c6f0e2a2dbcce5776b45f7a36320471f2c1402a6ca4e62e7f0ec73904a36",
-    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
-    "wikidata": "Q123480242",
-    "url": "./artist-photos/katseye.webp"
   },
   "lp-giobbi": {
     "artist": "LP Giobbi",
