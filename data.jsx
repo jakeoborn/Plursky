@@ -2571,6 +2571,8 @@ function _weekendShiftMs(cfg, nowMs, savedIds) {
   if (!(shift > 0)) return 0;
   const now = typeof nowMs === "number" ? nowMs : Date.now();
   if (now >= _w1WrappedMs(cfg, w, shift)) return shift; // clock wins outright
+  const chosen = chosenWeekend(cfg);                   // else: the weekend they picked
+  if (chosen) return chosen === "W2" ? shift : 0;
   try {                                                // else: what did they save?
     if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
     const raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";
@@ -2580,6 +2582,59 @@ function _weekendShiftMs(cfg, nowMs, savedIds) {
     return out;
   } catch {}
   return 0;
+}
+
+// ── A weekend the USER picks ──
+// When every act plays both weekends (Coachella 2027's announced lineup: the
+// same acts on the same weekday, W1 and W2), the lineup cannot say which
+// weekend someone is going to, and the saved-majority rule above has nothing
+// to count — it would silently answer W1. Then the weekend is the user's
+// choice, stored per festival in `${fid}_weekend_v1` ("W1" | "W2"); unset
+// means not chosen yet, and the lineup ASKS. A festival whose acts are tagged
+// per weekend (ACL) is not a choice festival: nothing writes the key for it,
+// so the clock-then-majority resolver above is unchanged there.
+// One saved id = one billing on whichever weekend is chosen: switching the
+// weekend never adds, drops or duplicates a save.
+function weekendIsUsersChoice(cfg, artists) {
+  const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  const w = c && c.weekendStartMs;
+  if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return false;
+  const arts = artists || ((typeof _DATA_SETS !== "undefined" && _DATA_SETS[c.id]) || {}).artists || [];
+  return arts.length > 0 && arts.every(a => !a.weekend || a.weekend === "both");
+}
+function chosenWeekend(cfg) {
+  const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  if (!c || !c.id || !c.weekendStartMs) return null;
+  try { const v = localStorage.getItem(`${c.id}_weekend_v1`); return v === "W1" || v === "W2" ? v : null; }
+  catch { return null; }
+}
+function chooseWeekend(cfg, wk) {
+  const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  if (!c || !c.id || (wk !== "W1" && wk !== "W2") || !weekendIsUsersChoice(c)) return false;
+  try { localStorage.setItem(`${c.id}_weekend_v1`, wk); } catch { return false; }
+  _wkMemo = null; _nowCache = null;
+  return true;
+}
+// "Apr 16–18, 2027": a weekend's own dates, from dayDates + its shift.
+function weekendDatesText(cfg, wk) {
+  const c = cfg || FESTIVAL_CONFIG;
+  const nums = Object.keys((c && c.dayDates) || {}).map(Number).sort((a, b) => a - b);
+  if (!nums.length) return "";
+  const sh = (festivalWeekendShifts(c).find(s => s.weekend === wk) || { shift: 0 }).shift;
+  const M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const at = n => { const d = c.dayDates[n]; return new Date((typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)) + sh); };
+  const a = at(nums[0]), b = at(nums[nums.length - 1]);
+  const am = M[a.getUTCMonth()], bm = M[b.getUTCMonth()];
+  return am === bm ? `${am} ${a.getUTCDate()}–${b.getUTCDate()}, ${b.getUTCFullYear()}`
+                   : `${am} ${a.getUTCDate()} – ${bm} ${b.getUTCDate()}, ${b.getUTCFullYear()}`;
+}
+// A lineup with NO published set time at all (announced lineup, schedule to
+// come). Timing-dependent doors — the timetable, Build My Night, calendar
+// export, a printed schedule — have nothing true to say, and the saved list
+// is a SHORTLIST, not a plan.
+function lineupHasNoTimes(artists) {
+  const arts = artists || (typeof window !== "undefined" && window.ARTISTS) || ARTISTS || [];
+  return arts.length > 0 && arts.every(a => !a.start);
 }
 
 // Which weekend is active, as a label. Null when the festival has only one.

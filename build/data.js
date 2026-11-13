@@ -2161,6 +2161,8 @@ function _weekendShiftMs(cfg, nowMs, savedIds) {
   if (!(shift > 0)) return 0;
   var now = typeof nowMs === "number" ? nowMs : Date.now();
   if (now >= _w1WrappedMs(cfg, w, shift)) return shift;
+  var chosen = chosenWeekend(cfg);
+  if (chosen) return chosen === "W2" ? shift : 0;
   try {
     if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
     var raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";
@@ -2174,6 +2176,57 @@ function _weekendShiftMs(cfg, nowMs, savedIds) {
     return out;
   } catch {}
   return 0;
+}
+function weekendIsUsersChoice(cfg, artists) {
+  var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  var w = c && c.weekendStartMs;
+  if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return false;
+  var arts = artists || (typeof _DATA_SETS !== "undefined" && _DATA_SETS[c.id] || {}).artists || [];
+  return arts.length > 0 && arts.every(a => !a.weekend || a.weekend === "both");
+}
+function chosenWeekend(cfg) {
+  var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  if (!c || !c.id || !c.weekendStartMs) return null;
+  try {
+    var v = localStorage.getItem(`${c.id}_weekend_v1`);
+    return v === "W1" || v === "W2" ? v : null;
+  } catch {
+    return null;
+  }
+}
+function chooseWeekend(cfg, wk) {
+  var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  if (!c || !c.id || wk !== "W1" && wk !== "W2" || !weekendIsUsersChoice(c)) return false;
+  try {
+    localStorage.setItem(`${c.id}_weekend_v1`, wk);
+  } catch {
+    return false;
+  }
+  _wkMemo = null;
+  _nowCache = null;
+  return true;
+}
+function weekendDatesText(cfg, wk) {
+  var c = cfg || FESTIVAL_CONFIG;
+  var nums = Object.keys(c && c.dayDates || {}).map(Number).sort((a, b) => a - b);
+  if (!nums.length) return "";
+  var sh = (festivalWeekendShifts(c).find(s => s.weekend === wk) || {
+    shift: 0
+  }).shift;
+  var M = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var at = n => {
+    var d = c.dayDates[n];
+    return new Date((typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)) + sh);
+  };
+  var a = at(nums[0]),
+    b = at(nums[nums.length - 1]);
+  var am = M[a.getUTCMonth()],
+    bm = M[b.getUTCMonth()];
+  return am === bm ? `${am} ${a.getUTCDate()}–${b.getUTCDate()}, ${b.getUTCFullYear()}` : `${am} ${a.getUTCDate()} – ${bm} ${b.getUTCDate()}, ${b.getUTCFullYear()}`;
+}
+function lineupHasNoTimes(artists) {
+  var arts = artists || typeof window !== "undefined" && window.ARTISTS || ARTISTS || [];
+  return arts.length > 0 && arts.every(a => !a.start);
 }
 function activeWeekend(cfg, nowMs, savedIds) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
