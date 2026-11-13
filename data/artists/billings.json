@@ -73755,6 +73755,3271 @@
   "mainStage": null
  },
  {
+  "id": "groove-cruise-2027:gc-22-weeks",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "22 Weeks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "22-weeks",
+    "role": "performer"
+   }
+  ],
+  "act": "22-weeks",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-adam-beyer",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Adam Beyer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-beyer",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-beyer",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-adam-scott",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Adam Scott",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-scott",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-scott",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-adina-butar",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Adina Butar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adina-butar",
+    "role": "performer"
+   }
+  ],
+  "act": "adina-butar",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-alley-kay",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Alley Kay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alley-kay",
+    "role": "performer"
+   }
+  ],
+  "act": "alley-kay",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-amidy",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "AMIDY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amidy",
+    "role": "performer"
+   }
+  ],
+  "act": "amidy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-amprs-and-nd",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "AMPRS&ND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amprs-and-nd",
+    "role": "performer"
+   }
+  ],
+  "act": "amprs-and-nd",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-amy-wiles",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Amy Wiles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amy-wiles",
+    "role": "performer"
+   }
+  ],
+  "act": "amy-wiles",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-anabel-englund",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Anabel Englund",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anabel-englund",
+    "role": "performer"
+   }
+  ],
+  "act": "anabel-englund",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-andrew-bayer",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Andrew Bayer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrew-bayer",
+    "role": "performer"
+   }
+  ],
+  "act": "andrew-bayer",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-anthony-attalla",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Anthony Attalla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anthony-attalla",
+    "role": "performer"
+   }
+  ],
+  "act": "anthony-attalla",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-bella-renee",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bella Renee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bella-renee",
+    "role": "performer"
+   }
+  ],
+  "act": "bella-renee",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-brookie",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Brookie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brookie",
+    "role": "performer"
+   }
+  ],
+  "act": "brookie",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-bryan-lubliner",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bryan Lubliner",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bryan-lubliner",
+    "role": "performer"
+   }
+  ],
+  "act": "bryan-lubliner",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-bunt",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bunt.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bunt",
+    "role": "performer"
+   }
+  ],
+  "act": "bunt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-cazztek",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cazztek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cazztek",
+    "role": "performer"
+   }
+  ],
+  "act": "cazztek",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-ciaran-mcauley",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ciaran McAuley",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ciaran-mcauley",
+    "role": "performer"
+   }
+  ],
+  "act": "ciaran-mcauley",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-cicale",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CICALE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cicale",
+    "role": "performer"
+   }
+  ],
+  "act": "cicale",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-cid",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cid",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cid",
+    "role": "performer"
+   }
+  ],
+  "act": "cid",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-collelo",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Collelo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "collelo",
+    "role": "performer"
+   }
+  ],
+  "act": "collelo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-dansyn",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dansyn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dansyn",
+    "role": "performer"
+   }
+  ],
+  "act": "dansyn",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-dave-neven",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dave Neven",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dave-neven",
+    "role": "performer"
+   }
+  ],
+  "act": "dave-neven",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-daxson",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Daxson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daxson",
+    "role": "performer"
+   }
+  ],
+  "act": "daxson",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-deeper-purpose",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Deeper Purpose",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deeper-purpose",
+    "role": "performer"
+   }
+  ],
+  "act": "deeper-purpose",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-deepfake",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DEEPFAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deepfake",
+    "role": "performer"
+   }
+  ],
+  "act": "deepfake",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-deerock",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Deerock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deerock",
+    "role": "performer"
+   }
+  ],
+  "act": "deerock",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-dimibo",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dimibo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dimibo",
+    "role": "performer"
+   }
+  ],
+  "act": "dimibo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-disco-lines",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Disco Lines",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disco-lines",
+    "role": "performer"
+   }
+  ],
+  "act": "disco-lines",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-distant-matter",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Distant Matter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "distant-matter",
+    "role": "performer"
+   }
+  ],
+  "act": "distant-matter",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-dj-susan",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Susan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-susan",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-susan",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-doc-brown",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Doc Brown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doc-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "doc-brown",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-d-o-d",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "D.O.D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d-o-d",
+    "role": "performer"
+   }
+  ],
+  "act": "d-o-d",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-dose",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dose",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dose",
+    "role": "performer"
+   }
+  ],
+  "act": "dose",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-drums-of-the-sun",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Drums of the Sun",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "drums-of-the-sun",
+    "role": "performer"
+   }
+  ],
+  "act": "drums-of-the-sun",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-dxn3",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DXN3",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dxn3",
+    "role": "performer"
+   }
+  ],
+  "act": "dxn3",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-eli-brown",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Eli Brown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eli-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "eli-brown",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-ely-oaks",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ely Oaks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ely-oaks",
+    "role": "performer"
+   }
+  ],
+  "act": "ely-oaks",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-eskuche",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Eskuche",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eskuche",
+    "role": "performer"
+   }
+  ],
+  "act": "eskuche",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-fallon",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Fallon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fallon",
+    "role": "performer"
+   }
+  ],
+  "act": "fallon",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-and-friends",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "&friends",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "and-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "and-friends",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-gene-farris",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Gene Farris",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gene-farris",
+    "role": "performer"
+   }
+  ],
+  "act": "gene-farris",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-gravagerz",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Gravagerz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gravagerz",
+    "role": "performer"
+   }
+  ],
+  "act": "gravagerz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-grube-and-hovsepian",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Grube & Hovsepian",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grube-and-hovsepian",
+    "role": "performer"
+   }
+  ],
+  "act": "grube-and-hovsepian",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-gudfella",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "GUDFELLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gudfella",
+    "role": "performer"
+   }
+  ],
+  "act": "gudfella",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-jackie-hollander",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jackie Hollander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jackie-hollander",
+    "role": "performer"
+   }
+  ],
+  "act": "jackie-hollander",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-jason-ross",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jason Ross",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jason-ross",
+    "role": "performer"
+   }
+  ],
+  "act": "jason-ross",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-joshwa",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Joshwa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joshwa",
+    "role": "performer"
+   }
+  ],
+  "act": "joshwa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-k3ss",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "K3SS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "k3ss",
+    "role": "performer"
+   }
+  ],
+  "act": "k3ss",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-kettama",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kettama",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kettama",
+    "role": "performer"
+   }
+  ],
+  "act": "kettama",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-ksofresko",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "KsoFresKo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ksofresko",
+    "role": "performer"
+   }
+  ],
+  "act": "ksofresko",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-laszewo",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Laszewo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laszewo",
+    "role": "performer"
+   }
+  ],
+  "act": "laszewo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-laura-van-dam",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Laura van Dam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laura-van-dam",
+    "role": "performer"
+   }
+  ],
+  "act": "laura-van-dam",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-leah-loredo",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Leah Loredo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leah-loredo",
+    "role": "performer"
+   }
+  ],
+  "act": "leah-loredo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-leena-punks",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Leena Punks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leena-punks",
+    "role": "performer"
+   }
+  ],
+  "act": "leena-punks",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-linney",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Linney",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "linney",
+    "role": "performer"
+   }
+  ],
+  "act": "linney",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-lizzy-jane",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lizzy Jane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lizzy-jane",
+    "role": "performer"
+   }
+  ],
+  "act": "lizzy-jane",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-luccio",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Luccio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luccio",
+    "role": "performer"
+   }
+  ],
+  "act": "luccio",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-luci",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Luci",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luci",
+    "role": "performer"
+   }
+  ],
+  "act": "luci",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-luke-alexander",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Luke Alexander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luke-alexander",
+    "role": "performer"
+   }
+  ],
+  "act": "luke-alexander",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-maesic",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Maesic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maesic",
+    "role": "performer"
+   }
+  ],
+  "act": "maesic",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-marco-faraone",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Marco Faraone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marco-faraone",
+    "role": "performer"
+   }
+  ],
+  "act": "marco-faraone",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-marco-strous",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Marco Strous",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marco-strous",
+    "role": "performer"
+   }
+  ],
+  "act": "marco-strous",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-marie-vaunt",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Marie Vaunt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marie-vaunt",
+    "role": "performer"
+   }
+  ],
+  "act": "marie-vaunt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-markus-schulz",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Markus Schulz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "markus-schulz",
+    "role": "performer"
+   }
+  ],
+  "act": "markus-schulz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-maxinne",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Maxinne",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maxinne",
+    "role": "performer"
+   }
+  ],
+  "act": "maxinne",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-max-low",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Max Low",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "max-low",
+    "role": "performer"
+   }
+  ],
+  "act": "max-low",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-me-n-u",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Me n ü",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "me-n-u",
+    "role": "performer"
+   }
+  ],
+  "act": "me-n-u",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-mitis",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MitiS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mitis",
+    "role": "performer"
+   }
+  ],
+  "act": "mitis",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-mph",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MPH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mph",
+    "role": "performer"
+   }
+  ],
+  "act": "mph",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-nate-wyatt",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Nate Wyatt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nate-wyatt",
+    "role": "performer"
+   }
+  ],
+  "act": "nate-wyatt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-nathan-bliss",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Nathan Bliss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nathan-bliss",
+    "role": "performer"
+   }
+  ],
+  "act": "nathan-bliss",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-new-girl",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "New Girl",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "new-girl",
+    "role": "performer"
+   }
+  ],
+  "act": "new-girl",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-nicky-genesis",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Nicky Genesis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nicky-genesis",
+    "role": "performer"
+   }
+  ],
+  "act": "nicky-genesis",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-nifra",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Nifra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nifra",
+    "role": "performer"
+   }
+  ],
+  "act": "nifra",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-okayval",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "OKAYVAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "okayval",
+    "role": "performer"
+   }
+  ],
+  "act": "okayval",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-pretty-pink",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Pretty Pink",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pretty-pink",
+    "role": "performer"
+   }
+  ],
+  "act": "pretty-pink",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-quackson",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Quackson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quackson",
+    "role": "performer"
+   }
+  ],
+  "act": "quackson",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-raecola",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RaeCola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raecola",
+    "role": "performer"
+   }
+  ],
+  "act": "raecola",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-ragie-ban",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ragie Ban",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ragie-ban",
+    "role": "performer"
+   }
+  ],
+  "act": "ragie-ban",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-ranger-trucco",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ranger Trucco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ranger-trucco",
+    "role": "performer"
+   }
+  ],
+  "act": "ranger-trucco",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-ravnzen",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RavnZen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ravnzen",
+    "role": "performer"
+   }
+  ],
+  "act": "ravnzen",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-rinaly",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Rinaly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rinaly",
+    "role": "performer"
+   }
+  ],
+  "act": "rinaly",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-roddy-lima",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Roddy Lima",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roddy-lima",
+    "role": "performer"
+   }
+  ],
+  "act": "roddy-lima",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-romeo",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Romeo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "romeo",
+    "role": "performer"
+   }
+  ],
+  "act": "romeo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-sad-bois",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SAD BOIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sad-bois",
+    "role": "performer"
+   }
+  ],
+  "act": "sad-bois",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-sam-feldt",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sam Feldt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sam-feldt",
+    "role": "performer"
+   }
+  ],
+  "act": "sam-feldt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-sarah-de-warren",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sarah de Warren",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sarah-de-warren",
+    "role": "performer"
+   }
+  ],
+  "act": "sarah-de-warren",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-scooter-and-lavelle",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Scooter & Lavelle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "scooter-and-lavelle",
+    "role": "performer"
+   }
+  ],
+  "act": "scooter-and-lavelle",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-scotty-boy",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Scotty Boy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "scotty-boy",
+    "role": "performer"
+   }
+  ],
+  "act": "scotty-boy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-sebastian-morxx",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sebastian Morxx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sebastian-morxx",
+    "role": "performer"
+   }
+  ],
+  "act": "sebastian-morxx",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-shannon-scott-williams",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Shannon Scott Williams",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shannon-scott-williams",
+    "role": "performer"
+   }
+  ],
+  "act": "shannon-scott-williams",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-ship-wrek",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ship Wrek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ship-wrek",
+    "role": "performer"
+   }
+  ],
+  "act": "ship-wrek",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-silva-bumpa",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Silva Bumpa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "silva-bumpa",
+    "role": "performer"
+   }
+  ],
+  "act": "silva-bumpa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-sloane-motion",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sloane Motion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sloane-motion",
+    "role": "performer"
+   }
+  ],
+  "act": "sloane-motion",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-somnity",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SOMNiTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "somnity",
+    "role": "performer"
+   }
+  ],
+  "act": "somnity",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-space-92",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Space 92",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "space-92",
+    "role": "performer"
+   }
+  ],
+  "act": "space-92",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-tee-so",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tee So",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tee-so",
+    "role": "performer"
+   }
+  ],
+  "act": "tee-so",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-the-brothers-grim",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Brothers Grim",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-brothers-grim",
+    "role": "performer"
+   }
+  ],
+  "act": "the-brothers-grim",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-tini-gessler",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tini Gessler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tini-gessler",
+    "role": "performer"
+   }
+  ],
+  "act": "tini-gessler",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-tinykvt",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "TINYKVT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tinykvt",
+    "role": "performer"
+   }
+  ],
+  "act": "tinykvt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-tom-higgenson",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tom Higgenson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tom-higgenson",
+    "role": "performer"
+   }
+  ],
+  "act": "tom-higgenson",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-travis-clark",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Travis Clark",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "travis-clark",
+    "role": "performer"
+   }
+  ],
+  "act": "travis-clark",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-trivecta",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Trivecta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trivecta",
+    "role": "performer"
+   }
+  ],
+  "act": "trivecta",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-wes-miles",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "WES MILES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wes-miles",
+    "role": "performer"
+   }
+  ],
+  "act": "wes-miles",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-whipped-cream",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Whipped Cream",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whipped-cream",
+    "role": "performer"
+   }
+  ],
+  "act": "whipped-cream",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "groove-cruise-2027:gc-years-of-war",
+  "source": "live",
+  "festivalId": "groove-cruise-2027",
+  "festivalBrand": "groove-cruise",
+  "year": 2027,
+  "date": "2027-01-21",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Years of War",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "years-of-war",
+    "role": "performer"
+   }
+  ],
+  "act": "years-of-war",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-and-me",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "&ME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "and-me",
+    "role": "performer"
+   }
+  ],
+  "act": "and-me",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-antaares",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ANTAARES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "antaares",
+    "role": "performer"
+   }
+  ],
+  "act": "antaares",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-badwolf",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BADWOLF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "badwolf",
+    "role": "performer"
+   }
+  ],
+  "act": "badwolf",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-brunello",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Brunello",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brunello",
+    "role": "performer"
+   }
+  ],
+  "act": "brunello",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-chloe-caillet",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Chloé Caillet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chloe-caillet",
+    "role": "performer"
+   }
+  ],
+  "act": "chloe-caillet",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-culoe-de-song",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CULOE DE SONG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "culoe-de-song",
+    "role": "performer"
+   }
+  ],
+  "act": "culoe-de-song",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-damian-lazarus",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Damian Lazarus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "damian-lazarus",
+    "role": "performer"
+   }
+  ],
+  "act": "damian-lazarus",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-dan-ghenacia",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DAN GHENACIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dan-ghenacia",
+    "role": "performer"
+   }
+  ],
+  "act": "dan-ghenacia",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-deer-jade",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Deer Jade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deer-jade",
+    "role": "performer"
+   }
+  ],
+  "act": "deer-jade",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-hardt-antoine",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "HARDT ANTOINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hardt-antoine",
+    "role": "performer"
+   }
+  ],
+  "act": "hardt-antoine",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-jane-fitz",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JANE FITZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jane-fitz",
+    "role": "performer"
+   }
+  ],
+  "act": "jane-fitz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-jawar",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JAWAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jawar",
+    "role": "performer"
+   }
+  ],
+  "act": "jawar",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-jhony-chief-live",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JHONY CHIEF (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "jhony-chief",
+    "role": "performer"
+   }
+  ],
+  "act": "jhony-chief",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-katana",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "KATANA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "katana",
+    "role": "performer"
+   }
+  ],
+  "act": "katana",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-kinahau",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "KinAhau",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kinahau",
+    "role": "performer"
+   }
+  ],
+  "act": "kinahau",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-lp-giobbi",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LP Giobbi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lp-giobbi",
+    "role": "performer"
+   }
+  ],
+  "act": "lp-giobbi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-lum",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LUM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lum",
+    "role": "performer"
+   }
+  ],
+  "act": "lum",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-mary-jane",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MARY JANE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mary-jane",
+    "role": "performer"
+   }
+  ],
+  "act": "mary-jane",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-mira",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MIRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mira",
+    "role": "performer"
+   }
+  ],
+  "act": "mira",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-mita-gami",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mita Gami",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mita-gami",
+    "role": "performer"
+   }
+  ],
+  "act": "mita-gami",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-rafael",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Rafael",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rafael",
+    "role": "performer"
+   }
+  ],
+  "act": "rafael",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-robag-wruhme",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ROBAG WRUHME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "robag-wruhme",
+    "role": "performer"
+   }
+  ],
+  "act": "robag-wruhme",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-rpr-soundsystem-raresh-rhadoo-petre-inspirescu",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RPR SOUNDSYSTEM (RARESH, RHADOO, PETRE INSPIRESCU)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rpr-soundsystem-raresh-rhadoo-petre-inspirescu",
+    "role": "act"
+   }
+  ],
+  "act": "rpr-soundsystem-raresh-rhadoo-petre-inspirescu",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-satori-live",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Satori (Live)",
+  "setTag": "Live",
+  "performers": [
+   {
+    "key": "satori",
+    "role": "performer"
+   }
+  ],
+  "act": "satori",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-secret-echoes-live",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SECRET ECHOES (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "secret-echoes",
+    "role": "performer"
+   }
+  ],
+  "act": "secret-echoes",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-soul-of-hex",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SOUL OF HEX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soul-of-hex",
+    "role": "performer"
+   }
+  ],
+  "act": "soul-of-hex",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-tiga",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tiga",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiga",
+    "role": "performer"
+   }
+  ],
+  "act": "tiga",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-victor-calderone",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Victor Calderone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "victor-calderone",
+    "role": "performer"
+   }
+  ],
+  "act": "victor-calderone",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-vintage-culture",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Vintage Culture",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vintage-culture",
+    "role": "performer"
+   }
+  ],
+  "act": "vintage-culture",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "day-zero-tulum-2027:dzt-wadley-live",
+  "source": "live",
+  "festivalId": "day-zero-tulum-2027",
+  "festivalBrand": "day-zero-tulum",
+  "year": 2027,
+  "date": "2027-01-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "WADLEY (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "wadley",
+    "role": "performer"
+   }
+  ],
+  "act": "wadley",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "acl-2013:d1:amd:1200:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2013",

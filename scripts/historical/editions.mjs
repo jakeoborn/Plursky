@@ -195,15 +195,24 @@ export const EDITIONS = {
   "coachella-2014": { festivalId: "coachella", name: "Coachella 2014", year: 2014,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2014-04-11", "Friday"], ["2014-04-12", "Saturday"], ["2014-04-13", "Sunday"], ["2014-04-18", "Friday"], ["2014-04-19", "Saturday"], ["2014-04-20", "Sunday"]],
-    dayLabels: ACL_WEEKEND_LABELS },
+    dayLabels: ACL_WEEKEND_LABELS,
+    // Not every stage: review of merged #440 (2026-11-12) found these on the
+    // official set-times page but not imported. Label first, data later.
+    coverage: { asOf: "2026-11-12", missing: [{ stage: "Heineken House", days: [1, 2, 3, 4, 5, 6], when: "both weekends" }, { stage: "Do Lab", days: [1, 2, 3], when: "Weekend 1" }] } },
   "coachella-2015": { festivalId: "coachella", name: "Coachella 2015", year: 2015,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2015-04-10", "Friday"], ["2015-04-11", "Saturday"], ["2015-04-12", "Sunday"], ["2015-04-17", "Friday"], ["2015-04-18", "Saturday"], ["2015-04-19", "Sunday"]],
-    dayLabels: ACL_WEEKEND_LABELS },
+    dayLabels: ACL_WEEKEND_LABELS,
+    // Not every stage: review of merged #440 (2026-11-12) found these on the
+    // official set-times page but not imported. Label first, data later.
+    coverage: { asOf: "2026-11-12", missing: [{ stage: "Heineken House", days: [1, 2, 3, 4, 5, 6], when: "both weekends" }] } },
   "coachella-2016": { festivalId: "coachella", name: "Coachella 2016", year: 2016,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2016-04-15", "Friday"], ["2016-04-16", "Saturday"], ["2016-04-17", "Sunday"], ["2016-04-22", "Friday"], ["2016-04-23", "Saturday"], ["2016-04-24", "Sunday"]],
-    dayLabels: ACL_WEEKEND_LABELS },
+    dayLabels: ACL_WEEKEND_LABELS,
+    // Not every stage: review of merged #440 (2026-11-12) found these on the
+    // official set-times page but not imported. Label first, data later.
+    coverage: { asOf: "2026-11-12", missing: [{ stage: "Heineken House", days: [1, 2, 3, 4, 5, 6], when: "both weekends" }] } },
   // 2017's page holds the lineup as data (format "coachella-data"): start and
   // end where it has them; a set with no end is open-ended.
   "coachella-2017": { festivalId: "coachella", name: "Coachella 2017", year: 2017,

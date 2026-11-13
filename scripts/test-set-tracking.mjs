@@ -159,6 +159,12 @@ sCheck(/<BatterySaverCard \/>\s*<SetTrackingCard \/>/.test(spot), "Me → Settin
 sCheck(/data-set-tracking-off onClick=\{\(\) => setSetTracking\(false\)\}/.test(chrome), "the card's Turn off button switches it off");
 sCheck(/data-set-tracking-accept onClick=\{\(\) => \{ setSetTracking\(true\)/.test(chrome) && /data-set-tracking-consent/.test(chrome), "turning it on goes through the consent panel");
 sCheck(/Lock the screen and the count pauses/.test(chrome) && /only while Plursky is open/.test(chrome), "the card states the foreground-only limit");
+const vfn = (chrome.match(/function setTrackVerdict\([\s\S]*?\n}\n/) || [""])[0];
+sCheck(/attendanceVerdict\(a, iv, cfg\)/.test(vfn) && /attendanceVerdictLabel\(v\)/.test(vfn), "PR 4: setTrackVerdict asks attendanceVerdict and its label (no second rule)");
+sCheck(/const tracked = setTrackVerdict\(a\);/.test(spot) && /tracked && tracked\.label &&/.test(spot), "PR 4: the set badge shows setTrackVerdict's label");
+sCheck(/const tracked = setTrackSummary\(/.test(spot) && /recap\.tracked\.full \+ recap\.tracked\.partial > 0/.test(spot), "PR 4: the recap line counts from setTrackSummary");
+const restated = [chrome.replace(/function setTrackVerdict[\s\S]*?\n}\n/, ""), spot].some(t => /ATTEND_FULL_SHARE|ATTEND_PARTIAL_MS|0\.85\s*\*|\* ?0\.85/.test(t));
+sCheck(!restated, "PR 4: no surface restates the full/partial thresholds");
 const others = readdirSync(ROOT).filter(f => f.endsWith(".jsx") && f !== "chrome.jsx");
 const leak = others.filter(f => /plursky_set_intervals_v1|SET_TRACK_STORE_KEY|getSetTrackIntervals/.test(code(f)));
 sCheck(leak.length === 0, `no other file (backup, sync, crew) reads the interval store (${leak.join(", ") || "none"})`);
@@ -280,6 +286,59 @@ if (!process.env.SET_TRACKING_SKIP_BROWSER) {
       await page.clock.setFixedTime(new Date(Date.UTC(2026, 2, 20, 18)));
       await page.evaluate(() => window.dispatchEvent(new CustomEvent("plursky-set-tracking-change"))); await page.waitForTimeout(300);
       aCheck((await geo()).calls === 2 && /starts on .*festival days/.test(await card.innerText()), `${tag} on, a week before: no watch, and the card says when it starts`);
+      // ── PR 4: the set badge and the recap line, both from attendanceVerdict.
+      const pick = await page.evaluate(() => {
+        const cfg = window.FESTIVAL_CONFIG, H = 60000;
+        const timed = (stage, minLen) => activeLineup().map(a => ({ a, w: setTimeStatus(a) === "confirmed" ? attendSetWindowMs(a, cfg, []) : null }))
+          .find(x => x.a.stage === stage && x.w && (x.w.endMs - x.w.startMs) >= minLen * H);
+        const full = timed("cove", 30), part = timed("megastructure", 60);
+        if (!full || !part) return null;
+        localStorage.setItem("plursky_set_intervals_v1", JSON.stringify({ [cfg.id]: { last: null, runs: {
+          cove: [{ from: full.w.startMs, to: full.w.endMs, src: "gps" }],
+          megastructure: [{ from: part.w.startMs, to: part.w.startMs + 30 * H, src: "gps" }],
+        } } }));
+        markAttended(full.a.day, full.a.id, "gps"); markAttended(part.a.day, part.a.id, "gps");
+        return { full: { id: full.a.id, day: full.a.day }, part: { id: part.a.id, day: part.a.day, len: Math.round((part.w.endMs - part.w.startMs) / H) } };
+      });
+      aCheck(!!pick, `${tag} positive control: Ultra has a timed cove set and a 60+ min megastructure set`);
+      if (pick) {
+        await page.evaluate(p => {
+          const host = document.getElementById("__t");
+          const arts = activeLineup().filter(a => a.id === p.full.id || a.id === p.part.id);
+          host.innerHTML = ""; const box = document.createElement("div"); host.appendChild(box);
+          ReactDOM.createRoot(box).render(React.createElement(AttendanceReview, { night: p.full.day, savedNightArtists: arts.filter(a => a.day === p.full.day) }));
+          const box2 = document.createElement("div"); host.appendChild(box2);
+          if (p.part.day !== p.full.day) ReactDOM.createRoot(box2).render(React.createElement(AttendanceReview, { night: p.part.day, savedNightArtists: arts.filter(a => a.day === p.part.day) }));
+        }, pick);
+        await page.waitForTimeout(400);
+        const badges = await page.locator("#__t [data-set-track-badge]").allInnerTexts();
+        const r5 = n => Math.max(5, Math.round(n / 5) * 5);
+        aCheck(badges.includes("Full set"), `${tag} a whole tracked set → "Full set" badge (${JSON.stringify(badges)})`);
+        aCheck(badges.includes(`≈ 30 of ${r5(pick.part.len)} min`), `${tag} 30 tracked minutes of a ${pick.part.len}-min set → "≈ 30 of ${r5(pick.part.len)} min" (${JSON.stringify(badges)})`);
+        if (process.env.SHOT_DIR || process.env.SET_TRACKING_SHOTS) {
+          const dir = process.env.SET_TRACKING_SHOTS || process.env.SHOT_DIR;
+          await page.locator("#__t").screenshot({ path: join(dir, `set-tracking-badges-${width}.png`) });
+        }
+        const rc = await page.evaluate(() => _computeRecap({ saved: [] }).tracked);
+        aCheck(rc && rc.full === 1 && rc.partial === 1, `${tag} the recap counts 1 full and 1 part set (${JSON.stringify(rc)})`);
+        await page.evaluate(() => {
+          const host = document.getElementById("__t"); host.innerHTML = ""; host.style.bottom = "0"; host.style.overflow = "auto"; host.style.padding = "0";
+          const box = document.createElement("div"); box.style.cssText = "position:relative;min-height:100%"; host.appendChild(box);
+          ReactDOM.createRoot(box).render(React.createElement(RecapScreen, { state: { saved: [], tab: "recap" }, setState: () => {} }));
+        });
+        await page.waitForTimeout(800);
+        const line = await page.locator("#__t [data-recap-set-track]").innerText().catch(() => "");
+        aCheck(line === "Set tracking timed 1 full set and 1 part set, while Plursky was open.", `${tag} the recap line ("${line}")`);
+        if (process.env.SHOT_DIR || process.env.SET_TRACKING_SHOTS) {
+          const dir = process.env.SET_TRACKING_SHOTS || process.env.SHOT_DIR;
+          const el = page.locator("#__t [data-recap-set-track]");
+          if (await el.count()) { await el.scrollIntoViewIfNeeded(); await page.waitForTimeout(200); await page.screenshot({ path: join(dir, `set-tracking-recap-${width}.png`) }); }
+        }
+        // No tracked runs → no badge, no line.
+        await page.evaluate(() => { localStorage.removeItem("plursky_set_intervals_v1"); });
+        const rc0 = await page.evaluate(() => _computeRecap({ saved: [] }).tracked);
+        aCheck(rc0.full === 0 && rc0.partial === 0, `${tag} nothing tracked → the recap counts nothing`);
+      }
       aCheck(errors.length === 0, `${tag} no page errors (${errors.slice(0, 2).join(" | ")})`);
       await ctx.close();
     }

@@ -201,8 +201,12 @@ function openPastEdition(id) {
     artist: null
   });
 }
+function _histMissingList(missing) {
+  var parts = missing.map(m => `${m.stage} (${m.when})`);
+  return parts.length < 2 ? parts.join("") : `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
+}
 function pastEditionLine(e) {
-  var what = e.completeness === "lineup_only" ? `${e.counts.artists} artists · set times not verified` : `${e.counts.sets} sets · ${e.counts.stages} stages`;
+  var what = e.completeness === "lineup_only" ? `${e.counts.artists} artists · set times not verified` : `${e.counts.sets} sets · ${e.counts.stages} stages${e.completeness === "selected_stages" ? " · selected stages" : ""}`;
   return `${_histDateRange(e.days)} · ${what}`;
 }
 function PastEditionsSection({
@@ -432,7 +436,7 @@ function _HistLibrary({
     style: {
       marginTop: 3
     }
-  }, e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets`)), React.createElement("svg", {
+  }, e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets${e.completeness === "selected_stages" ? " · selected stages" : ""}`)), React.createElement("svg", {
     "aria-hidden": "true",
     width: "16",
     height: "16",
@@ -744,7 +748,7 @@ function _HistEdition({
       year: "numeric"
     }) : "";
   }, [e]);
-  var frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"} · archived`;
+  var frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"}${meta.completeness === "selected_stages" ? ", selected stages" : ""} · archived`;
   var view = React.useMemo(() => {
     if (!e) return null;
     var artist = Object.fromEntries(e.artists.map(a => [a.id, a]));
@@ -778,6 +782,11 @@ function _HistEdition({
   var query = _histFold(q.trim());
   var time = s => s.start == null ? "Time not confirmed" : s.end ? `${fmt12(s.start)} – ${fmt12(s.end)}` : fmt12(s.start);
   var notes = (e?.notes || []).filter(n => !n.days || query || n.days.includes(day));
+  var missing = e?.coverage?.missing || [];
+  if (missing.length) notes.unshift({
+    asOf: e.coverage.asOf,
+    text: `Not every stage is here yet. The official schedule also listed ${_histMissingList(missing)}, whose set times are not in this edition.`
+  });
   var noteBlock = notes.length > 0 && React.createElement("div", {
     "data-edition-notes": true,
     style: {

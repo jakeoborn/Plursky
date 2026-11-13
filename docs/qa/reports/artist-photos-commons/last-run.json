@@ -1,0 +1,91 @@
+{
+ "ranAt": "2026-11-10T23:27:45.377Z",
+ "scope": "decadence-colorado-2026",
+ "width": 480,
+ "considered": 18,
+ "added": 1,
+ "skipped": {
+  "no-music-item": 8,
+  "ambiguous": 1,
+  "no-image": 7,
+  "license-not-admitted": 1
+ },
+ "addedRows": [
+  {
+   "artist": "Zeds Dead",
+   "wikidata": "Q3005564",
+   "license": "CC-BY-SA-3.0",
+   "author": "NSR257"
+  }
+ ],
+ "skips": {
+  "no-music-item": [
+   {
+    "artist": "Daniel Allan"
+   },
+   {
+    "artist": "Deathpact"
+   },
+   {
+    "artist": "YØU$UK€ ¥UK1MAT$U"
+   },
+   {
+    "artist": "Zingara"
+   },
+   {
+    "artist": "ALLEYCVT"
+   },
+   {
+    "artist": "GorillaT"
+   },
+   {
+    "artist": "ISOxo"
+   },
+   {
+    "artist": "it’s murph"
+   }
+  ],
+  "ambiguous": [
+   {
+    "artist": "Green Velvet"
+   }
+  ],
+  "no-image": [
+   {
+    "artist": "Seven Lions",
+    "wikidata": "Q14949098"
+   },
+   {
+    "artist": "Sullivan King",
+    "wikidata": "Q107304081"
+   },
+   {
+    "artist": "Crankdat",
+    "wikidata": "Q47948539"
+   },
+   {
+    "artist": "GRiZ",
+    "wikidata": "Q18763607"
+   },
+   {
+    "artist": "Kasbo",
+    "wikidata": "Q48700636"
+   },
+   {
+    "artist": "Levity",
+    "wikidata": "Q11755352"
+   },
+   {
+    "artist": "The Resistance",
+    "wikidata": "Q3988979"
+   }
+  ],
+  "license-not-admitted": [
+   {
+    "artist": "Black Tiger Sex Machine",
+    "wikidata": "Q22906792",
+    "license": "Public domain"
+   }
+  ]
+ }
+}
