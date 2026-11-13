@@ -144,7 +144,9 @@ async function warm(browser, port) {
   return { ctx, p, errs, up };
 }
 
-const browser = await chromium.launch();
+// Same launch as the repo's other browser gates: CI has system Chrome, not Playwright's bundled build.
+const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
+const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 try {
   // ── the fix ──
   {
