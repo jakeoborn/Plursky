@@ -1408,7 +1408,11 @@ const REGISTRATION_TOL_M = 25;
     // the shipped art coordinates agree with the measured world.
     "acl-2026": {
       expires: "2026-12-01",
-      note: "acl-park-2026.webp art is locally distorted near The Grove; the satellite-measured snapchat anchor sits 5.19 grid units (~35 m) off the affine. Re-derive stage x/y against the measured anchors, then delete this waiver.",
+      // 2026-11-12: titos/bmi/beatbox joined as satellite reads, 76/101/96 m
+      // from where the basis affine draws them (anchor-residuals.mjs): the art
+      // is distorted at its NE and S edges too, the same defect that put
+      // poster-derived positions in the lake. Same waiver, same fix.
+      note: "acl-park-2026.webp art is locally distorted (The Grove, NE lake edge, S lobe); the satellite-measured snapchat/titos/bmi/beatbox anchors sit 35-101 m off the affine. Re-derive stage x/y against the measured anchors, then delete this waiver.",
     },
     "ultra-miami-2026": {
       // Chosen to force the redraw into the quiet window before the 2027

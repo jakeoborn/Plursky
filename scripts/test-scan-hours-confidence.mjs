@@ -258,8 +258,12 @@ function checks(C, R) {
         return { date: C._wallClockFromUtc(ms, cfg), rawUtcMs: ms, lat: g.lat, lng: g.lng, acc: 8 }; };
       const st = id => anchors.find(g => g.stageId === id);
       const ok = A("af02")?.stage === "tmobile" && A("af44")?.stage === "amex" && A("af23")?.stage === "beatbox" && A("af39")?.stage === "snapchat"
-        && A("as06")?.stage === "miller" && A("as28")?.stage === "titos" && st("amex") && st("snapchat") && st("miller") && !st("beatbox") && !st("titos");
+        && A("as06")?.stage === "miller" && A("as28")?.stage === "titos" && st("amex") && st("snapchat") && st("miller") && st("beatbox") && st("titos");
       t(!!ok, "fixture: ACL acts or anchors moved");
+      // Since 2026-11-12 every ACL stage has a satellite pin. The unpinned-stage
+      // paths below still matter (most festivals have unpinned stages), so they
+      // run on this ACL with Tito's and BEATBOX unpinned; the real data runs after.
+      const unpin = { ...ds, config: { ...cfg, gpsAnchors: cfg.gpsAnchors.filter(g => g.stageId !== "beatbox" && g.stageId !== "titos") } };
       if (ok) {
         // Saved act on an anchored stage (T-Mobile); GPS at Amex while Amex plays: GPS wins.
         const r1 = C._matchArtistForPhoto(atMin(1, 13, 20, st("amex")), ["af02"], [], ds);
@@ -267,19 +271,28 @@ function checks(C, R) {
         // Saved act on an UNANCHORED stage (Beatbox); trusted GPS at Snapchat while
         // Snapchat plays. SPEC-179: the trusted fix tags Snapchat's act; Beatbox has
         // no pin, so the tag is flagged and the saved act stays offered.
-        const r2 = C._matchArtistForPhoto(atMin(1, 14, 20, st("snapchat")), ["af23"], [], ds);
+        const r2 = C._matchArtistForPhoto(atMin(1, 14, 20, st("snapchat")), ["af23"], [], unpin);
         t(r2.artistId === "af39" && r2.ambiguous === true && (r2.alternatives || []).includes("af23")
           && r2.evidence === "trusted-gps+time;over-saved", `GPS at Snapchat vs a saved Beatbox act: ${JSON.stringify([r2.artistId, r2.suggested, r2.ambiguous, r2.alternatives, r2.evidence])}`);
         // SPEC-179: no GPS and several acts playing → untagged, every act offered.
-        const r5 = C._matchArtistForPhoto({ ...atMin(1, 14, 20, st("snapchat")), lat: null, lng: null, acc: null }, [], [], ds);
+        const r5 = C._matchArtistForPhoto({ ...atMin(1, 14, 20, st("snapchat")), lat: null, lng: null, acc: null }, [], [], unpin);
         t(r5.artistId === null && r5.reason === "several_playing" && (r5.alternatives || []).length > 1 && r5.alternatives.includes("af39") && r5.alternatives.includes("af23"),
           `no GPS, several playing: ${JSON.stringify([r5.artistId, r5.reason, r5.alternatives])}`);
         // Unsaved overlap: GPS at Miller's anchor beats an unanchored stage's act that started nearer the time.
-        const r3 = C._matchArtistForPhoto(atMin(2, 14, 5, st("miller")), [], [], ds);
+        const r3 = C._matchArtistForPhoto(atMin(2, 14, 5, st("miller")), [], [], unpin);
         t(r3.artistId === "as06" && r3.ambiguous === true, `GPS at Miller lost to unanchored Tito's on start time: ${JSON.stringify([r3.artistId, r3.ambiguous])}`);
         // Positive control: with no GPS, Miller's act is not the tag (SPEC-179: nobody is).
-        const r4 = C._matchArtistForPhoto({ ...atMin(2, 14, 5, st("miller")), lat: null, lng: null, acc: null }, [], [], ds);
+        const r4 = C._matchArtistForPhoto({ ...atMin(2, 14, 5, st("miller")), lat: null, lng: null, acc: null }, [], [], unpin);
         t(r4.artistId !== "as06" || r4.ambiguous === true, `no-GPS overlap control: ${JSON.stringify([r4.artistId, r4.ambiguous])}`);
+        // Real ACL, every stage pinned: the same two photos.
+        const q2 = C._matchArtistForPhoto(atMin(1, 14, 20, st("snapchat")), ["af23"], [], ds);
+        const q3 = C._matchArtistForPhoto(atMin(2, 14, 5, st("miller")), [], [], ds);
+        // The trusted fix still tags Snapchat's act over the saved BEATBOX act, and keeps the saved act offered.
+        t(q2.artistId === "af39" && (q2.alternatives || []).includes("af23") && q2.evidence === "trusted-gps+time;over-saved",
+          `real ACL, GPS at Snapchat vs a saved Beatbox act: ${JSON.stringify([q2.artistId, q2.ambiguous, q2.alternatives, q2.evidence])}`);
+        // With Tito's pinned, nothing unpinned overlaps: GPS at Miller is a clean, unflagged tag.
+        t(q3.artistId === "as06" && q3.ambiguous === false && q3.suggested === false,
+          `real ACL, GPS at Miller with every stage pinned: ${JSON.stringify([q3.artistId, q3.ambiguous, q3.suggested])}`);
       }
     }
     // No footprint, no verdict: nothing invented.

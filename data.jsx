@@ -1487,15 +1487,20 @@ const FESTIVALS_REGISTRY = [
       // Rd bridge (beatbox). Re-measured, the old anchors were 448–539 m out.
       //
       // The three below are SATELLITE measurements: Esri World Imagery
-      // Wayback, capture vintage 2024-11-18 (ACL 2024 mid-teardown — stage
-      // roofs, FOH towers and crowd fans all visible), read at z=19
-      // (~0.26 m/px) against the tile grid. Not poster reads.
+      // Wayback, read at z=19 (~0.26 m/px) against the tile grid. Not poster
+      // reads. ⚠ "2024-11-18" here and below is the Wayback RELEASE, not the
+      // capture: Esri's metadata for every release since 2024-06-27 gives
+      // Zilker's imagery as Nearmap 7.5 cm, captured 2023-10-08, i.e. ACL
+      // 2023 weekend-one Sunday (stage roofs, FOH towers, crowds all visible).
+      // Stage identities are therefore read against the 2023 patron map
+      // (2023 Honda = 2026 T-Mobile footprint; 2023 T-Mobile = the grove).
+      // src "osm" is the historical label for these satellite reads.
       gpsAnchors: [
         // Calibrated basis — do NOT reorder; _solveMapAffine() (map.jsx)
         // reads only the first three.
-        { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm" },
-        { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm" },
-        { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm" },
+        { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm", assumed: "satellite 2023, assumed for 2026" },
         // Independent evidence, NOT in the basis: the grove-footprint stage
         // structure, measured on the same Esri Wayback 2024-11-18 capture at
         // z19. The official patron maps run that footprint T-Mobile (2024) ->
@@ -1504,24 +1509,52 @@ const FESTIVALS_REGISTRY = [
         // 2026-09-06 desk survey (as "ladybird"); re-anchored to snapchat
         // 2026-10-18 after the 2024/2025 archived patron maps settled the
         // footprint. Centre of the main stage roof.
-        { stageId: "snapchat", lat: 30.266712, lng: -97.766540, src: "osm" },
+        { stageId: "snapchat", lat: 30.266712, lng: -97.766540, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        // Tito's, BMI and BEATBOX — measured 2026-11-12 on the same capture
+        // (Nearmap 2023-10-08, Wayback release 2026-10-29) at z20-21, each at
+        // the centre of the stage roof, identified by roof + front barricade
+        // + FOH position + cable run, and named by footprint against the
+        // official "MUSIC FEST 2023 MAP" (third-party mirror:
+        // https://dulljack.blogspot.com/2023/09/acl-2023-map.html; the same art
+        // is in the Internet Archive's 2023 capture of support.aclfestival.com
+        // attachment 20003152073748, sha256 a9a126c5…). The official support
+        // links now 301 to the help homepage (help.aclfestival.com), so they
+        // can't be checked live. The 2026 map (map-sources/
+        // acl-map-2026-source.png, sha256 83a95f15…) puts the same stage in the
+        // same place relative to the park:
+        //   titos   — NE lake edge, west of the Cabanas, facing SW (2023 and
+        //             2026 both "Tito's").
+        //   bmi     — SW, beside the West VIP lounge (2026 "VIP Grove West" /
+        //             Bungalows) above the Barton Springs West entrance; a
+        //             cable cover runs from the stage front to a two-box FOH.
+        //             ~150 m WEST of the old derived point (30.266404,
+        //             -97.767698) dropped 2026-09-23.
+        //   beatbox — the south lobe by William Barton Dr; 2023 billed this
+        //             footprint "IHG Hotels & Resorts". Roof faces east to a
+        //             square FOH.
+        // Stages are rebuilt every year: ALL SEVEN ACL anchors are 2023
+        // positions taken to hold for 2026, and each carries `assumed` saying
+        // so. Each roof is named against the 2023 map (the imagery's year),
+        // then carried to the 2026 stage on the same footprint. Names do move
+        // between footprints (2023 Honda -> 2026 T-Mobile, 2023 T-Mobile ->
+        // 2026 Snapchat); Tito's, BMI and BEATBOX (2023 "IHG") kept theirs.
+        // These are 2023 imagery measurements assumed for 2026, not a 2026
+        // survey. Proof packet with both maps: PR #460.
+        // A crowdAnchors entry for the same stage (measured from 2026 photos)
+        // overrides it in resolvedStageAnchors(); test-acl-map-2026 pins that
+        // override.
+        { stageId: "titos",   lat: 30.267785, lng: -97.765064, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "bmi",     lat: 30.266537, lng: -97.769236, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "beatbox", lat: 30.265399, lng: -97.768634, src: "osm", assumed: "satellite 2023, assumed for 2026" },
         //
-        // ⛔ NOT ANCHORED, deliberately — three reasons:
-        //
-        // `bmi`: dropped 2026-09-23 (founder ruling). It was never measured:
-        // tree cover and teardown hid it in the capture, so it was derived
-        // arithmetic (30.266404, -97.767698) through the basis above, fixed
-        // against the 2025 art. Re-measured against the 2026 plate by
-        // scripts/anchor-residuals.mjs, it sits 57 m from where the new fit
-        // draws BMI. resolvedStageAnchors() hands every gpsAnchor to the photo
-        // tagger, so a known-bad anchor tags photos to the wrong stage.
-        // Re-add only from a satellite or ground measurement.
-        //
-        // `titos` + `beatbox`: deleted 2026-09-05. The poster's NE and S edges
-        // are distorted enough that new-affine derivations put them in water
-        // and on a road bridge. No anchor beats a wrong anchor — photo-tag.jsx
-        // declines to geo-match a stage it cannot place, which is the correct
-        // failure mode.
+        // History of the three anchors above (kept so nobody re-derives them):
+        // `bmi` was dropped 2026-09-23 (founder ruling) as derived arithmetic
+        // through the basis against the 2025 art, 57 m from the 2026 fit;
+        // `titos` + `beatbox` were deleted 2026-09-05 because new-affine
+        // derivations off the poster put them in the lake and on a road
+        // bridge. Neither problem applies to a satellite read of the stage
+        // itself, which is what replaced them on 2026-11-12. Never derive a
+        // stage's world position from the poster.
         //
         // `snapchat`: ANCHORED 2026-10-18 (see above), so no longer in this
         // list. The 2026 patron map places it on the art by The Grove; the
