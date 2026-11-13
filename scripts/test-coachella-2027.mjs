@@ -6,7 +6,7 @@
 // Pins, on the real data/festivals/coachella-2027.js + data.jsx:
 //   - ONE registry entry for coachella-2027 (the old data.jsx stub is gone)
 //   - 155 unique billings: Fri 54 / Sat 52 / Sun 48 / day pending 1, no NOYA
-//   - no clock time, stage, sun time or gps: the AEG feed's 10:00-10:30
+//   - no clock time, stage or sun time, and gps is only the venue point: the AEG feed's 10:00-10:30
 //     "Coachella" placeholders never enter the data
 //   - two weekends in America/Los_Angeles: Apr 9-11 and Apr 16-18 are event
 //     days, Apr 12-15 never are, and nothing in the gap is "live"
@@ -76,7 +76,12 @@ function check(modSrc, dataSrc) {
   }
   if (ds.stages.length) bad.push(`${ds.stages.length} stages; none are published`);
   if (c.sunTimes) bad.push("sunTimes present; none are published");
-  if (c.gps) bad.push("gps present; no source for it");
+  // gps: the venue point only, the same row the historical scan calendar uses.
+  const venueRow = readFileSync(path.join(ROOT, "data/historical/scan-calendar/venues.tsv"), "utf8")
+    .split("\n").find(l => l.startsWith("Empire Polo Club\t"));
+  const [, vlat, vlng] = (venueRow || "").split("\t");
+  if (!c.gps || c.gps.lat !== +vlat || c.gps.lng !== +vlng)
+    bad.push(`gps ${JSON.stringify(c.gps)} is not the Empire Polo Club venue row (${vlat}, ${vlng})`);
   const sched = JSON.stringify(o.sched(acts));
   if (/\d{1,2}:\d{2}/.test(sched)) bad.push("the schedule feed carries a clock time");
   if (c.tz !== "America/Los_Angeles") bad.push(`tz ${c.tz}`);
@@ -102,6 +107,26 @@ function check(modSrc, dataSrc) {
     bad.push("weekendStartMs is not Apr 9 / Apr 16 local midnight");
   const w1 = acts.filter(a => o.plays(a, "W1")).length, w2 = acts.filter(a => o.plays(a, "W2")).length;
   if (w1 !== 155 || w2 !== 155) bad.push(`W1 ${w1} / W2 ${w2} acts, want 155 each`);
+
+  // Saved identity survives a source reorder and one act leaving: a saved id
+  // names the same billing in the reordered module, and the removed act's id
+  // is simply absent (storage keeps it as an orphan; savedInLineup drops it
+  // from counts). Ids from list POSITION would pass every check above.
+  const names = list => Object.fromEntries(list.map(a => [a.id, a.name]));
+  const mkLines = modSrc.match(/^ {4}mk\(.*$/gm) || [];
+  if (mkLines.length) {
+    // Row k takes row (n-1-k)'s text; the original last row (now first) is dropped.
+    const rev = [...mkLines].reverse(); let k = 0;
+    const reordered = modSrc.replace(/^ {4}mk\(.*$\n?/gm, () => (k++ === 0 ? "" : rev[k - 1] + "\n"));
+    let o2; try { o2 = load(reordered, dataSrc); } catch (e) { bad.push(`reordered module threw: ${e.message}`); }
+    if (o2) {
+      const before = names(acts), after = names(o2.DS[ID].artists);
+      const dropped = acts.find(a => !(a.id in after));
+      const moved = Object.keys(before).filter(id => id in after && after[id] !== before[id]);
+      if (moved.length) bad.push(`reorder: ${moved.length} saved ids now name a different billing (e.g. ${moved[0]} ${before[moved[0]]} -> ${after[moved[0]]})`);
+      if (!dropped || dropped.name !== before[mkLines[mkLines.length - 1].match(/mk\("([^"]+)"/)[1]]) bad.push("reorder: the removed act is not the one left out");
+    }
+  } else bad.push("no mk(...) rows to reorder");
 
   // Gated, never the default
   if (entries[0] && entries[0].available !== false) bad.push("coachella-2027 is openable; activation is its own PR");
@@ -129,6 +154,8 @@ const MUTATIONS = [
   ["Jakob Nowell given the feed's Sunday", () => [sub(modSrc, `"Jakob Nowell and THE CASTLE", null)`, `"Jakob Nowell and THE CASTLE", 3)`), dataSrc]],
   ["an act tagged W1-only without a source", () => [sub(modSrc, `mk("coa27-american-football", "American Football", 1)`, `{ ...mk("coa27-american-football", "American Football", 1), weekend: "W1" }`), dataSrc]],
   ["the module opened in its foundation PR", () => [sub(modSrc, "registry: { available: false,", "registry: { available: true,"), dataSrc]],
+  ["a made-up venue point", () => [sub(modSrc, "lat: 33.679811", "lat: 33.6810"), dataSrc]],
+  ["ids assigned by list position (a reorder moves saved ids)", () => [sub(modSrc, `  window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};`, `  ARTISTS.forEach((a, i) => { a.id = "coa27-" + i; });\n  window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};`), dataSrc]],
   ["an act dropped", () => [modSrc.replace(/^ {4}mk\("coa27-adam-ten".*\n/m, ""), dataSrc]],
 ];
 let caught = 0;
@@ -141,4 +168,4 @@ for (const [name, make] of MUTATIONS) {
   if (b.length) caught++; else { console.log(`  ✗ mutation "${name}" stayed green`); failed++; }
 }
 if (failed) { console.log(`✗ coachella-2027: ${failed} failure(s)`); process.exit(1); }
-console.log(`  ✓ coachella 2027: 155 billings (Fri 54 / Sat 52 / Sun 48 / pending 1), no times/stages/sun/gps, Apr 9-11 + 16-18 PDT with Apr 12-15 never live, both weekends one id, gated, never default; ${caught}/${MUTATIONS.length} mutations caught`);
+console.log(`  ✓ coachella 2027: 155 billings (Fri 54 / Sat 52 / Sun 48 / pending 1), no times/stages/sun times, gps = the venue row, Apr 9-11 + 16-18 PDT with Apr 12-15 never live, both weekends one id, saved ids stable across a reorder, gated, never default; ${caught}/${MUTATIONS.length} mutations caught`);

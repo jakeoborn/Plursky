@@ -3182,8 +3182,9 @@ for (const [label, file] of [
 
 // ── Coachella 2027: the official roster, and nothing the source doesn't say ──
 // 155 billings from coachella.com's lineup widget, days confirmed by its public
-// BY DAY view, no time/stage/sun/gps, two PDT weekends with Apr 12-15 never
-// live, one id across both weekends, gated; 10 mutations must each go red.
+// BY DAY view, no time/stage/sun time, gps = the venue row, two PDT weekends
+// with Apr 12-15 never live, one id across both weekends, saved ids stable
+// across a source reorder, gated; 12 mutations must each go red.
 {
   console.log("▸ Coachella 2027 — 155 official billings, no placeholder times, two weekends, gated");
   try {

@@ -4,7 +4,7 @@
 // ═══════════════════════════════════════════════════════════════════════
 // LINEUP ONLY. The billing names and their days are official; stages, set
 // times, gates, a 2027 map and sun times are NOT published and none are
-// invented below. Gated (`available: false`) in this module's own PR; the
+// invented below. The one location fact is the venue's own point (below). Gated (`available: false`) in this module's own PR; the
 // activation is a separate PR.
 //
 // ── SOURCES (observed 2026-11-13T12:36:48Z) ──
@@ -270,6 +270,12 @@
       2: { y: 2027, m: 3, d: 10, name: "Saturday", short: "SAT", midnightUtc: Date.UTC(2027, 3, 10, PDT, 0, 0) },
       3: { y: 2027, m: 3, d: 11, name: "Sunday",   short: "SUN", midnightUtc: Date.UTC(2027, 3, 11, PDT, 0, 0) },
     },
+    // The venue's point, NOT a stage or map position: the same Empire Polo
+    // Club row the historical scan calendar already uses
+    // (data/historical/scan-calendar/venues.tsv, sourced from
+    // en.wikipedia.org/wiki/Empire_Polo_Club). The app reads gps for weather,
+    // on-site checks and the map's centre.
+    gps: { lat: 33.679811, lng: -116.237256, onSiteRadiusMi: 0.7 },
     venue: {
       name: "Empire Polo Club",
       address: "Indio, CA",
