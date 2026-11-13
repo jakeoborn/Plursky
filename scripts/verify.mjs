@@ -24,6 +24,8 @@ const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 
 execFileSync(process.execPath, ["scripts/build-artist-photo-ledger.mjs", "--check"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-commons-photos.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-map-mask-grounds.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-poster-billing.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-no-stray-jsx-comments.mjs"], { cwd: ROOT, stdio: "inherit" });
