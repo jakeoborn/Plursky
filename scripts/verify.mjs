@@ -3184,9 +3184,9 @@ for (const [label, file] of [
 // 155 billings from coachella.com's lineup widget, days confirmed by its public
 // BY DAY view, no time/stage/sun time, gps = the venue row, two PDT weekends
 // with Apr 12-15 never live, one id across both weekends, saved ids stable
-// across a source reorder, gated; 12 mutations must each go red.
+// across a source reorder, open lineup-only; 13 mutations must each go red.
 {
-  console.log("▸ Coachella 2027 — 155 official billings, no placeholder times, two weekends, gated");
+  console.log("▸ Coachella 2027 — 155 official billings, no placeholder times, two weekends, open lineup-only");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-coachella-2027.mjs"],
       { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
@@ -3198,7 +3198,7 @@ for (const [label, file] of [
 }
 
 // ── Coachella 2027 shortlist: the untimed lineup a fan can use ───────────
-// Real index.html, module served with only its gate flag flipped: weekend
+// Real index.html with the open module as committed: weekend
 // choice, folded search, save/shortlist/reload, honest share (cancel is not a
 // success, no share sheet copies), orphan + W1-only fixture, deep link vs
 // root, ACL/Dreamstate/LAN unchanged, warm offline reopen, cold offline.
