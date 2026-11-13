@@ -2317,6 +2317,10 @@ function LineupScreen({
         }
       })));
     }
+    rows.push(React.createElement(SpotifyPhotoCredit, {
+      key: "__spcredit",
+      names: dayArtists.map(a => a.name)
+    }));
     if (nowMin != null) {
       var hour = Math.floor(nowMin / 60) * 60;
       var at = dayArtists.findIndex(a => isSetLive(a) || toNightMin(a.start) >= hour);

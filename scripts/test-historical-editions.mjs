@@ -25,6 +25,7 @@ import { parseLineupPage, provesEdition, lineupRows, LINEUP_EDITIONS, printedRan
 import { parseAclSchedule, axisMinutes, readAxis } from "./historical/acl-schedule.mjs";
 import { parseTomorrowland, eventDay } from "./historical/tml-schedule.mjs";
 import { parseElectricForest, navDay } from "./historical/ef-schedule.mjs";
+import { parseShambhala, slotLabel } from "./historical/shambhala-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -234,6 +235,43 @@ if (base && edc) {
     efMust("an Electric Forest artist printed outside any block", efPage.replace(`</div></div>`, `${efEntry("Stray", "9:00pm - 10:00pm")}</div></div>`));
     efMust("an Electric Forest day grid without its tab", efNav([]) + efDay("Thursday", ["Ranch Arena", "Tripolee"], efCols));
     efMust("an Electric Forest page that is one day's view", efPage.replace(`<li class="first current">All Days</li>`, `<li class="first">All Days</li>`));
+    // Shambhala's schedule page (2011 to 2016): one table per weekday tab, a
+    // row per half hour whose time cell is id="time_T" (T the wall time as a
+    // UTC epoch), a set printed in its block's first cell with its start under
+    // it. A table's last row is the next table's first, printed again.
+    const shT = (d, h, m) => Date.UTC(2016, 7, d, h, m) / 1000;
+    const shHead = `<tr><th id="time_head">Time</th><th id="Pagoda_head">Pagoda</th><th id="Village_head">Village</th></tr>`;
+    const shRow = (T, a, b) => `<tr><td id="time_${T}">${slotLabel(new Date(T * 1000).getUTCHours() * 60 + new Date(T * 1000).getUTCMinutes())}</td>`
+      + `<td id="pagoda_${T}"${a[0] ? ` class="${a[0]}"` : ""}>${a[1] || ""}</td><td id="village_${T}"${b[0] ? ` class="${b[0]}"` : ""}>${b[1] || ""}</td></tr>`;
+    const shSet = (who, at) => `${who}<br><span class="little">${at}</span>`;
+    const shTable = (rows, again = "") => `<table class="x" id="schedule_table"><thead>${shHead}</thead><tbody>${again}${rows.join("")}</tbody></table>`;
+    const shPage = `<ul class="tabList"><li><a href="#">Thursday</a></li><li><a href="#">Friday</a></li></ul>`
+      + shTable([shRow(shT(4, 23, 0), ["open top", shSet("Opener", "11:10PM")], ["closed top", "CLOSED"]),
+        shRow(shT(4, 23, 30), ["open bottom"], ["closed bottom"]),
+        shRow(shT(5, 0, 0), ["open top bottom", shSet("Midnight Act", "12:00AM")], ["top bottom"])])
+      + shTable([shRow(shT(5, 0, 0), ["open top bottom", shSet("Midnight Act", "12:00AM")], ["open top bottom", shSet("Ranged (12:05-12:50am)", "12:05AM")]),
+        shHead, shRow(shT(5, 0, 30), ["open top bottom", shSet("Deeps", "12:30AM")], []),
+        shRow(shT(5, 1, 0), ["open top bottom", shSet("vs. Wakcutt (12:30-1:30am)", "1:00AM")], [])]);
+    const sp = parseShambhala(shPage, { year: 2016 }).days;
+    ok(JSON.stringify(sp.map(d => [d.label, d.date, d.firstSlot, d.sets.map(x => [x.stage, x.start, x.end, x.artist, x.openEnd]), d.overlap.map(x => x.artist), d.joined.length, d.closed, d.empty, d.lastRowRepeatsNext]))
+      === JSON.stringify([
+        ["Thursday", "2016-08-04", `time_${shT(4, 23, 0)}`, [["Pagoda", "23:10", "", "Opener", true]], ["Midnight Act"], 0, 1, 1, true],
+        ["Friday", "2016-08-05", `time_${shT(5, 0, 0)}`, [["Pagoda", "00:00", "", "Midnight Act", true], ["Pagoda", "00:30", "01:30", "Deeps vs. Wakcutt", false], ["Village", "00:05", "00:50", "Ranged", false]], [], 1, 0, 0, false]]),
+      `a Shambhala table must come back set by set, with the next day's first row kept once, printed ranges read, split billings joined: ${JSON.stringify(sp)}`);
+    const shMust = (what, html) => { let bad = false; try { parseShambhala(html, { year: 2016 }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    shMust("a Shambhala start outside its half hour", shPage.replace("11:10PM", "11:40PM"));
+    shMust("a Shambhala closed block printing a name", shPage.replace("CLOSED", "Somebody"));
+    shMust("a Shambhala tab naming another weekday", shPage.replace(">Thursday<", ">Wednesday<"));
+    shMust("a Shambhala last row not printed again as the next day's first", shPage.replace(/(<table[\s\S]*?<table[\s\S]*?)Midnight Act/, "$1Other Act"));
+    shMust("a Shambhala billing printed inside a block, not at its top", shPage.replace(`class="open bottom"></td>`, `class="open bottom">Stray</td>`));
+    shMust("a Shambhala split billing continuing no set", shPage.replace("Ranged (12:05-12:50am)", "&amp; Friend"));
+    shMust("a Shambhala time cell printing another slot", shPage.replace(">11:30<", ">11:45<"));
+    shMust("a Shambhala printed range of more than six hours", shPage.replace("(12:05-12:50am)", "(12:05-6:50am)"));
+    shMust("a Shambhala heading whose id is not its name", shPage.replace(`<th id="Village_head">Village</th></tr></thead>`, `<th id="Village_head">Grove</th></tr></thead>`));
+    shMust("a Shambhala cell with an unknown class", shPage.replace(`class="open top"`, `class="open top live"`));
+    shMust("a Shambhala tab with no table", shPage.replace(`</ul>`, `<li><a href="#">Saturday</a></li></ul>`));
+    shMust("a Shambhala repeated head row naming other stages", shPage.replace(`${shHead}<tr><td id="time_${shT(5, 0, 30)}"`, `${shHead.replace(">Village<", ">Grove<").replace('"Village_head"', '"Grove_head"')}<tr><td id="time_${shT(5, 0, 30)}"`));
+    shMust("a Shambhala row not half an hour after the one before", shPage.replaceAll(String(shT(5, 1, 0)), String(shT(5, 1, 30))));
     // Coachella's lineup cards (2016's two divs, 2015's one span): every set
     // open-ended, a card with no set unscheduled, an entry without its time
     // or stage incomplete, and nothing read off data-weekend.
@@ -542,6 +580,14 @@ for (const [id, e] of Object.entries(editions)) {
       const srcs = led.days.find(x => x.day === d.day)?.sources || [];
       ok(srcs.length > 0, `${id} day ${d.day}: no source in the ledger`);
       for (const s of srcs) {
+        // Shambhala's tab prints the weekday alone; the date is the one its
+        // table's first slot is written as (<td id="time_T">, T a UTC epoch).
+        if (s.format === "shambhala-table") {
+          const T = +/^time_(\d+)$/.exec(s.firstSlot || "")?.[1];
+          ok(s.printed.toUpperCase() === wd && !!T && new Date(T * 1000).toISOString().slice(0, 10) === d.date,
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" with first slot ${s.firstSlot}, not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
         ok(s.kind === "page" ? datedLabel(s.printed, e.year) === d.date : graphicPrints(s.printed, d.date, e.year, e.days.map(x => x.date)),
           `${id} day ${d.day}: ${s.kind} ${s.captureTimestamp || s.sha256?.slice(0, 12)} prints "${s.printed}", not ${wd} ${MONTH[m - 1]} ${dd}`);
       }
@@ -638,6 +684,24 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
     mustFail("a lineup capture from the wrong year", m => { m.provenance.captures[0].archivedUrl = m.provenance.captures[0].archivedUrl.replace("/web/2025", "/web/2024"); }, noc, undefined, /not from 2025/);
     mustFail("Special Guest back in a lineup", m => { m.artists.push({ id: `${m.id}:special-guest`, name: "Special Guest", key: "special-guest", performers: ["special-guest"], appearances: [{ day: 1 }] }); }, esc, undefined, /: dropped /);
   }
+
+  // selected_stages: an edition whose official schedule had stages that are
+  // not imported names them (review of merged #440, 2026-11-12). Exactly these
+  // three carry the label, and it cannot drift from the rows.
+  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016"];
+  const selected = Object.values(editions).filter(e => e.completeness === "selected_stages").map(e => e.id).sort();
+  ok(JSON.stringify(selected) === JSON.stringify(SELECTED), `selected_stages editions are ${selected.join(", ") || "none"}, want ${SELECTED.join(", ")}`);
+  const c14 = editions["coachella-2014"];
+  if (c14) {
+    ok(c14.coverage.missing.map(m => m.stage).join() === "Heineken House,Do Lab", `coachella-2014 missing ${c14.coverage.missing.map(m => m.stage)}`);
+    const dolab = c14.stages.find(x => x.name === "Do Lab");
+    mustFail("a stage listed missing gains a set that day", m => { m.sets.push({ ...m.sets.find(x => x.stageId === dolab.id), id: `${m.id}:d1:do-lab:1200:x`, day: 1, start: "12:00" }); }, c14, undefined, /listed as missing on day 1 but has sets/);
+    mustFail("selected stages relabelled complete", m => { m.completeness = "complete_schedule"; }, c14, undefined, /only selected_stages may carry one/);
+    mustFail("the missing-stage list dropped", m => { delete m.coverage; }, c14, undefined, /coverage differs from the edition registry/);
+    mustFail("a missing stage names a day the edition lacks", m => { m.coverage.missing[1].days = [7]; }, c14, undefined, /coverage differs|names day 7/);
+  }
+  const c17 = editions["coachella-2017"];
+  if (c17) mustFail("a complete schedule claims a missing stage", m => { m.coverage = { asOf: "2026-11-12", missing: [{ stage: "X", days: [1], when: "Friday" }] }; }, c17, undefined, /coverage differs from the edition registry/);
 
   // Parser fixtures: the real markup shapes, and the traps.
   const li = (name, extra = "") => `<li><span><a href="#modal-lineup-artist" data-artist-id="1" data-artist-name="${name}"${extra}>${name}</a></span></li>`;

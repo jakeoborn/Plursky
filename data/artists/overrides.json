@@ -1984,6 +1984,490 @@
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
    "source": "https://www.governorsballmusicfestival.com/"
+  },
+  {
+   "printed": "Run With The Heard",
+   "performers": [
+    {
+     "name": "Run With The Heard",
+     "role": "performer"
+    }
+   ],
+   "why": "The billed name is the act's own name and contains \"with\" (the Mark With a K rule): one performer, nobody is added. \"The Heard\" is not an act or person billed anywhere in the data.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "JGirl & Manousos with Dani Lion",
+   "performers": [
+    {
+     "name": "JGirl & Manousos",
+     "role": "performer"
+    },
+    {
+     "name": "Dani Lion",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"JGirl & Manousos\" is kept as printed, one billed name (\"&\" is never split).",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Fuchis Project: (Tatiana Nudelman, Cindy Freeman)",
+   "performers": [
+    {
+     "name": "Fuchis Project",
+     "role": "project",
+     "parents": [
+      "Tatiana Nudelman",
+      "Cindy Freeman"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Kytami w/ FUC",
+   "performers": [
+    {
+     "name": "Kytami",
+     "role": "performer"
+    },
+    {
+     "name": "FUC",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Misselaineous (aka Honeey Mustard)",
+   "performers": [
+    {
+     "name": "Misselaineous",
+     "role": "performer"
+    }
+   ],
+   "why": "\"aka\" gives the same act's other name, not a second act: the billing counts on Misselaineous, the billed name, and the other name is not credited separately.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Amoeba Collective (Tippy Agogo & Bill Bourn)",
+   "performers": [
+    {
+     "name": "Amoeba Collective",
+     "role": "project",
+     "parents": [
+      "Tippy Agogo",
+      "Bill Bourn"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Tight & Bright 80's Dance Party with Val Kilmer & The New Coke",
+   "performers": [
+    {
+     "name": "Tight & Bright 80's Dance Party",
+     "role": "performer"
+    },
+    {
+     "name": "Val Kilmer & The New Coke",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. The billed name is a show, kept as printed; \"Val Kilmer & The New Coke\" is kept as printed, one band name (\"&\" is never split).",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Moontricks (NOG & Mr. Mercy)",
+   "performers": [
+    {
+     "name": "Moontricks",
+     "role": "project",
+     "parents": [
+      "NOG",
+      "Mr. Mercy"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Neighbour w/ Think Tank",
+   "performers": [
+    {
+     "name": "Neighbour",
+     "role": "performer"
+    },
+    {
+     "name": "Think Tank",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Cal Bass w/ MC Think Tank",
+   "performers": [
+    {
+     "name": "Cal Bass",
+     "role": "performer"
+    },
+    {
+     "name": "MC Think Tank",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Dua w/ Generic",
+   "performers": [
+    {
+     "name": "Dua",
+     "role": "performer"
+    },
+    {
+     "name": "Generic",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Audio Architech w/ Zack Shave",
+   "performers": [
+    {
+     "name": "Audio Architech",
+     "role": "performer"
+    },
+    {
+     "name": "Zack Shave",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "That African ft. KapOk",
+   "performers": [
+    {
+     "name": "That African",
+     "role": "performer"
+    },
+    {
+     "name": "KapOk",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Jpod the beat chef w/ Dash",
+   "performers": [
+    {
+     "name": "Jpod the beat chef",
+     "role": "performer"
+    },
+    {
+     "name": "Dash",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Beats Antique Live (ft. David Satori & Sidecar Tommy)",
+   "performers": [
+    {
+     "name": "Beats Antique",
+     "role": "performer"
+    },
+    {
+     "name": "David Satori",
+     "role": "guest"
+    },
+    {
+     "name": "Sidecar Tommy",
+     "role": "guest"
+    }
+   ],
+   "setTag": "Live",
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"Live\" is the set tag.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Eligh & Amp Live (Hip Hop Showcase)",
+   "performers": [
+    {
+     "name": "Eligh & Amp Live",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Hip Hop Showcase",
+   "why": "\"Hip Hop Showcase\" names the programme the set was played under (the Village block Shambhala 2014 prints of that name), not a person: it is the set tag, and the billing counts on Eligh & Amp Live, kept as printed (\"&\" is never split; \"Amp Live\" is a name, not a set tag) (the Davis (The Sound of Tomorrow) rule).",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Casual (Hip Hop Showcase)",
+   "performers": [
+    {
+     "name": "Casual",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Hip Hop Showcase",
+   "why": "\"Hip Hop Showcase\" names the programme the set was played under (the Village block Shambhala 2014 prints of that name), not a person: it is the set tag, and the billing counts on Casual (the Davis (The Sound of Tomorrow) rule).",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Zion I (Hip Hop Showcase)",
+   "performers": [
+    {
+     "name": "Zion I",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Hip Hop Showcase",
+   "why": "\"Hip Hop Showcase\" names the programme the set was played under (the Village block Shambhala 2014 prints of that name), not a person: it is the set tag, and the billing counts on Zion I (the Davis (The Sound of Tomorrow) rule).",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Calamalka w/ Chadio",
+   "performers": [
+    {
+     "name": "Calamalka",
+     "role": "performer"
+    },
+    {
+     "name": "Chadio",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Dreadsquad ft. Blackout JA, Kasia Malenda & El Fata",
+   "performers": [
+    {
+     "name": "Dreadsquad",
+     "role": "performer"
+    },
+    {
+     "name": "Blackout JA",
+     "role": "guest"
+    },
+    {
+     "name": "Kasia Malenda",
+     "role": "guest"
+    },
+    {
+     "name": "El Fata",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Lynx (USA)",
+   "performers": [
+    {
+     "name": "Lynx (USA)",
+     "role": "performer"
+    }
+   ],
+   "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Lynx\".",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Kalya Scintilla ft. Eve Olution",
+   "performers": [
+    {
+     "name": "Kalya Scintilla",
+     "role": "performer"
+    },
+    {
+     "name": "Eve Olution",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Yan Zombie w/ Zes Nomis",
+   "performers": [
+    {
+     "name": "Yan Zombie",
+     "role": "performer"
+    },
+    {
+     "name": "Zes Nomis",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Ardalan (Dirtybird Takeover Begins!)",
+   "performers": [
+    {
+     "name": "Ardalan",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Dirtybird Takeover Begins!",
+   "why": "\"Dirtybird Takeover Begins!\" names the programme the set opened (the Dirtybird label's run on the Pagoda that night), not a person: it is the set tag, and the billing counts on Ardalan (the Davis (The Sound of Tomorrow) rule).",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Tipper with Android Jones",
+   "performers": [
+    {
+     "name": "Tipper",
+     "role": "performer"
+    },
+    {
+     "name": "Android Jones",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Erica Dee w/ Aisha Rose",
+   "performers": [
+    {
+     "name": "Erica Dee",
+     "role": "performer"
+    },
+    {
+     "name": "Aisha Rose",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Kris Cayden (WAVO Remix Contest Winner)",
+   "performers": [
+    {
+     "name": "Kris Cayden",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing names a contest and its winner: the winner is the performer; the contest is not an act.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Fort Knox 5 ft. Qdup",
+   "performers": [
+    {
+     "name": "Fort Knox 5",
+     "role": "performer"
+    },
+    {
+     "name": "Qdup",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Only Now (aka Kush Arora)",
+   "performers": [
+    {
+     "name": "Only Now",
+     "role": "performer"
+    }
+   ],
+   "why": "\"aka\" gives the same act's other name, not a second act: the billing counts on Only Now, the billed name, and the other name is not credited separately.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Roni Size & Krust Present Full Cycle ft Dynamite MC",
+   "performers": [
+    {
+     "name": "Full Cycle",
+     "role": "project",
+     "parents": [
+      "Roni Size",
+      "Krust"
+     ]
+    },
+    {
+     "name": "Dynamite MC",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the project and the artists behind it (\"A & B Present C\"): C is a project with A and B as parents (the Levity presents Lasership rule). The printing names the MC as \"<name> MC\": the MC is credited as MC on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Marty Carter w/ Russ",
+   "performers": [
+    {
+     "name": "Marty Carter",
+     "role": "performer"
+    },
+    {
+     "name": "Russ",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Beats Antique ft. David Satori & Tommy Sidecar",
+   "performers": [
+    {
+     "name": "Beats Antique",
+     "role": "performer"
+    },
+    {
+     "name": "David Satori",
+     "role": "guest"
+    },
+    {
+     "name": "Tommy Sidecar",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "The Gaff ft. Mat The Alien",
+   "performers": [
+    {
+     "name": "The Gaff",
+     "role": "performer"
+    },
+    {
+     "name": "Mat The Alien",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
   }
  ],
  "pending": [
@@ -2398,6 +2882,38 @@
   {
    "printed": "FLORENCE + THE MACHINE",
    "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "RPR SOUNDSYSTEM (RARESH, RHADOO, PETRE INSPIRESCU)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "DJ Solar (of Deliria)",
+   "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+  },
+  {
+   "printed": "Amani Friend (Desert Dwellers)",
+   "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+  },
+  {
+   "printed": "Rara Avis (Desert Dwellers)",
+   "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+  },
+  {
+   "printed": "James Flavour (Dirt Crew)",
+   "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+  },
+  {
+   "printed": "WAVS (VS. + Wakcutt ft. Lyndi Lush)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "tjr",
+   "why": "Short name billed at Nocturnal Wonderland 2022 and Lights All Night 2026 (from a press relay of the poster). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+  },
+  {
+   "key": "r-d",
+   "why": "Short name billed at Nocturnal Wonderland 2022 and Lights All Night 2026 (from a press relay of the poster). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
   }
  ]
 }

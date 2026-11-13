@@ -944,6 +944,84 @@ const FESTIVALS_REGISTRY = [
     region:    "Europe",
   },
   {
+    // ── Time Warp Germany 2027 — Maimarkthalle, Mannheim ──
+    // Added 2026-11-12 as a gated preview. Date and venue from time-warp.de,
+    // read 2026-11-12: "03 April 2027 Maimarkthalle Mannheim Time Warp
+    // Germany". One night. No 2027 lineup yet.
+    config: {
+      id:        "time-warp-2027",
+      officialEvent: { website: "https://www.time-warp.de/", observedAt: "2026-11-12" },
+      name:      "Time Warp Germany 2027",
+      shortName: "Time Warp",
+      brand:     "Time Warp",
+      tagline:   "One night of techno in Mannheim",
+      location:  "Maimarkthalle · Mannheim, Germany",
+      locationShort: "Maimarkthalle",
+      dates:     "Apr 3, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.time-warp.de/", observedAt: "2026-11-12" }, note: "Not measured yet; the theme-color meta is #0048FF, so confirm against the site's own CSS before setting it." },
+    },
+    available: false,
+    accent:    "#3b82f6",
+    emoji:     "⏱️",
+    region:    "Europe",
+  },
+  {
+    // ── Sónar Barcelona 2027 — Barcelona, Spain ──
+    // Added 2026-11-12 as a gated preview. Dates from sonar.es, read
+    // 2026-11-12: "Sónar - 17.18.19 June 2027"; "Sónar by Day on 17th, 18th
+    // and 19th June 2027 and ... Sónar by Night on 18th and 19th June 2027".
+    // The 2027 format and sites are changing, so no venue is loaded. Only
+    // first acts are announced, so no lineup yet.
+    config: {
+      id:        "sonar-2027",
+      officialEvent: { website: "https://sonar.es/en", observedAt: "2026-11-12" },
+      name:      "Sónar Barcelona 2027",
+      shortName: "Sónar",
+      brand:     "Sónar",
+      tagline:   "Music, creativity and technology in Barcelona",
+      location:  "Barcelona, Spain",
+      locationShort: "Barcelona",
+      dates:     "Jun 17–19, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://sonar.es/en", observedAt: "2026-11-12" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#facc15",
+    emoji:     "🔊",
+    region:    "Europe",
+  },
+  {
+    // ── O.Z.O.R.A. Festival 2027 — Hungary ──
+    // Added 2026-11-12 as a gated preview. Dates from the official ticket
+    // page (ozorafestival.eu → ticket.ozorafestival.eu), read 2026-11-12:
+    // "Gate opening: 23 July, Friday at 12:00 noon", "Opening Ceremony: 26
+    // July, Monday at 20:00", "Gate closing: 3 August, Tuesday at 12:00
+    // noon", with "Ticket prices will remain unchanged for 2027". Loaded as
+    // gate opening to gate closing. The page names no site, so only the
+    // country is loaded. No lineup yet.
+    config: {
+      id:        "ozora-2027",
+      officialEvent: { website: "https://ozorafestival.eu/", observedAt: "2026-11-12" },
+      name:      "O.Z.O.R.A. Festival 2027",
+      shortName: "O.Z.O.R.A.",
+      brand:     "O.Z.O.R.A.",
+      tagline:   "A week and more of psytrance in the Hungarian countryside",
+      location:  "Hungary",
+      locationShort: "Hungary",
+      dates:     "Jul 23, 2027 – Aug 3, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://ozorafestival.eu/", observedAt: "2026-11-12" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#a3e635",
+    emoji:     "🍄",
+    region:    "Europe",
+  },
+  {
     // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
     // Flip 2026-09-11: stage + set time per act come from the Lost Lands app
     // schedule (app v10.0.0, as captured 2026-09-10); the SCHEDULE block
@@ -1682,6 +1760,9 @@ function _festivalEventDates(cfg) {
   if (m) return { start: ymd(m[1], m[2], m[6]), end: ymd(m[1], m[5] || m[3], m[6]) };
   const x = /^([A-Z][a-z]{2}) (\d+), (\d{4}) [–-] ([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || "");
   if (x && MONTHS[x[1]] && MONTHS[x[4]]) return { start: ymd(x[1], x[2], x[3]), end: ymd(x[4], x[5], x[6]) };
+  // One-night events print one date ("Apr 3, 2027").
+  const one = /^([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || "");
+  if (one && MONTHS[one[1]]) return { start: ymd(one[1], one[2], one[3]), end: ymd(one[1], one[2], one[3]) };
   const dd = cfg.dayDates && Object.values(cfg.dayDates);
   if (dd && dd.length) {
     const f = (d) => `${d.y}-${String(d.m + 1).padStart(2, "0")}-${String(d.d).padStart(2, "0")}`;
@@ -4910,6 +4991,8 @@ const _WAVE1_IDS = [
   "dwp-2026",
   "edc-thailand-2026",
   "tomorrowland-thailand-2026",
+  "groove-cruise-2027",
+  "day-zero-tulum-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {

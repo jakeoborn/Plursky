@@ -1104,7 +1104,7 @@ function ArtistScreen({
   var lookupName = _lookupName(activeName);
   var heroPhotoMachine = useArtistPhotoMachine(activeName, {
     key: a.id + "|" + activeName,
-    canFetch: reason => reason === "mount" && !!(localStorage.getItem("spotify_token") || localStorage.getItem("spotify_refresh_token"))
+    canFetch: reason => reason === "mount" && (!!(localStorage.getItem("spotify_token") || localStorage.getItem("spotify_refresh_token")) || typeof _photoProxyUsable === "function" && _photoProxyUsable())
   });
   var heroCacheRec = heroPhotoMachine.rec;
   var saved = state.saved.includes(a.id);
@@ -1198,22 +1198,35 @@ function ArtistScreen({
     }
     var ln = activeName.toLowerCase();
     if (heroCacheRec && hasCachedStats) return;
-    if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
+    if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) {
+      if (heroCacheRec) return;
+      var live = true;
+      var viaProxy = typeof _fetchProxyPhoto === "function" ? _fetchProxyPhoto(lookupName) : Promise.resolve(null);
+      viaProxy.then(hit => {
+        if (!live) return;
+        if (hit && lookupName !== activeName) putArtistImage(activeName, hit.url, "spotify", {
+          spotifyId: hit.spotifyId
+        });
+        heroPhotoMachine.report(hit ? hit.url : null);
+      });
+      return () => {
+        live = false;
+      };
+    }
     var ctrl = new AbortController();
     getValidToken().then(token => {
       if (!token) {
         if (!heroCacheRec) heroPhotoMachine.noLookup();
         return;
       }
-      fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(lookupName)}&type=artist&limit=3`, {
+      fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(lookupName)}&type=artist&limit=10`, {
         headers: {
           Authorization: "Bearer " + token
         },
         signal: ctrl.signal
       }).then(r => r.ok ? r.json() : null).then(async d => {
-        var ln = activeName.toLowerCase();
         var items = d?.artists?.items || [];
-        var match = items.find(x => x.name.toLowerCase() === ln) || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
+        var match = (typeof _spotifyExactArtist === "function" ? _spotifyExactArtist(items, lookupName) || _spotifyExactArtist(items, activeName) : items.find(x => x.name.toLowerCase() === activeName.toLowerCase())) || null;
         if (!match) {
           if (!heroCacheRec) heroPhotoMachine.report(null);
           return;

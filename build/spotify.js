@@ -11894,6 +11894,7 @@ function AttendanceReview({
     var on = attended.has(a.id);
     var stage = STAGES.find(s => s.id === a.stage);
     var src = on ? getAttendanceSource(a.id) : null;
+    var tracked = setTrackVerdict(a);
     return React.createElement("button", {
       key: a.id,
       onClick: () => toggle(a.id),
@@ -11950,7 +11951,22 @@ function AttendanceReview({
         marginTop: 2,
         fontWeight: 600
       }
-    }, (stage?.short || "").toUpperCase(), " · ", setTimeLabel(a))), src === "gps" && React.createElement("span", {
+    }, (stage?.short || "").toUpperCase(), " · ", setTimeLabel(a)), tracked && tracked.label && React.createElement("span", {
+      "data-set-track-badge": true,
+      className: "mono",
+      style: {
+        display: "inline-block",
+        marginTop: 4,
+        fontSize: 10,
+        letterSpacing: 0.4,
+        color: "var(--ink)",
+        fontWeight: 700,
+        padding: "2px 8px",
+        borderRadius: 999,
+        whiteSpace: "nowrap",
+        background: "var(--s3)"
+      }
+    }, tracked.label)), src === "gps" && React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
@@ -13577,9 +13593,11 @@ function _computeRecap(state) {
   var walkingMetersLo = Math.round(walkingMinutesLo * 75);
   var walkingMetersHi = Math.round(walkingMinutesHi * 75);
   var b2bSets = caughtArtists.filter(a => /\bb2b\b/i.test(a.name));
+  var tracked = setTrackSummary(typeof activeLineup === "function" ? activeLineup() : ARTISTS, CFG);
   return {
     setsCount,
     totalMin,
+    tracked,
     nights: Object.keys(byNight).length,
     busiestNightLabel,
     busiestNightCount,
@@ -16184,7 +16202,15 @@ function RecapScreen({
       color: "var(--media-ink-2)",
       marginTop: 3
     }
-  }, "HEADLINERS")))), recap.setsCount > 0 && React.createElement("button", {
+  }, "HEADLINERS"))), recap.tracked && recap.tracked.full + recap.tracked.partial > 0 && React.createElement("div", {
+    "data-recap-set-track": true,
+    style: {
+      fontSize: 14,
+      lineHeight: 1.43,
+      color: "var(--media-ink-2)",
+      marginTop: 14
+    }
+  }, "Set tracking timed ", [recap.tracked.full ? `${recap.tracked.full} full set${recap.tracked.full === 1 ? "" : "s"}` : "", recap.tracked.partial ? `${recap.tracked.partial} part set${recap.tracked.partial === 1 ? "" : "s"}` : ""].filter(Boolean).join(" and "), ", while Plursky was open.")), recap.setsCount > 0 && React.createElement("button", {
     onClick: () => setWrappedOpen(true),
     style: {
       width: "100%",
