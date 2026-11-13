@@ -83,8 +83,13 @@ const out = build();
   // added four more short names billed at a second brand (Nas, UZ, Zoé, RAC),
   // each left separate by the standing short-name rule: raised to 120 under
   // Jake's standing "make the best decision" call, and reported in that pull
-  // request; past it, stop and report again.
-  check(review.length <= 120, `review queue is ${review.length} rows (> 120 means stop and report)`);
+  // request. Batch 11 (Shambhala 2011 to 2016) added five billings no
+  // standing rule settles (four "Name (Act)" parentheticals, the Bunny (Rabbit
+  // in the Moon) case, and WAVS (VS. + Wakcutt ft. Lyndi Lush)) and two more
+  // short names billed at a second brand (TJR, R/D): 125 rows. Raised to 130
+  // under the same standing call and reported in that pull request; past it,
+  // stop and report again.
+  check(review.length <= 130, `review queue is ${review.length} rows (> 130 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
