@@ -1513,10 +1513,15 @@ const FESTIVALS_REGISTRY = [
         // Tito's, BMI and BEATBOX — measured 2026-11-12 on the same capture
         // (Nearmap 2023-10-08, Wayback release 2026-10-29) at z20-21, each at
         // the centre of the stage roof, identified by roof + front barricade
-        // + FOH position + cable run, and named by footprint: the official
-        // 2023 patron map (support.aclfestival.com attachment 20003152073748,
-        // sha256 a9a126c5…) and the 2026 one put the same stage in the same
-        // place relative to the park:
+        // + FOH position + cable run, and named by footprint against the
+        // official "MUSIC FEST 2023 MAP" (third-party mirror:
+        // https://dulljack.blogspot.com/2023/09/acl-2023-map.html; the same art
+        // is in the Internet Archive's 2023 capture of support.aclfestival.com
+        // attachment 20003152073748, sha256 a9a126c5…). The official support
+        // links now 301 to the help homepage (help.aclfestival.com), so they
+        // can't be checked live. The 2026 map (map-sources/
+        // acl-map-2026-source.png, sha256 83a95f15…) puts the same stage in the
+        // same place relative to the park:
         //   titos   — NE lake edge, west of the Cabanas, facing SW (2023 and
         //             2026 both "Tito's").
         //   bmi     — SW, beside the West VIP lounge (2026 "VIP Grove West" /
@@ -1533,8 +1538,8 @@ const FESTIVALS_REGISTRY = [
         // then carried to the 2026 stage on the same footprint. Names do move
         // between footprints (2023 Honda -> 2026 T-Mobile, 2023 T-Mobile ->
         // 2026 Snapchat); Tito's, BMI and BEATBOX (2023 "IHG") kept theirs.
-        // The 2026 map is the "25 YEARS" art served at the same attachment
-        // URL today (sha256 b94080e4…). Proof packet with both maps: PR #460.
+        // These are 2023 imagery measurements assumed for 2026, not a 2026
+        // survey. Proof packet with both maps: PR #460.
         // A crowdAnchors entry for the same stage (measured from 2026 photos)
         // overrides it in resolvedStageAnchors(); test-acl-map-2026 pins that
         // override.
