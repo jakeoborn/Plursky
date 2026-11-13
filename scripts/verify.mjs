@@ -1404,7 +1404,9 @@ const REGISTRATION_TOL_M = 25;
     // art is the festival's own patron map) or by re-deriving stage x/y so
     // the shipped art coordinates agree with the measured world.
     "acl-2026": {
-      expires: "2026-12-01",
+      expires: "2027-09-01",
+      // Re-dated 2026-11-13 (was 2026-12-01): ACL 2027 dates are not announced;
+      // assumed early October, as in 2026. Re-check when they are announced.
       // 2026-11-12: titos/bmi/beatbox joined as satellite reads, 76/101/96 m
       // from where the basis affine draws them (anchor-residuals.mjs): the art
       // is distorted at its NE and S edges too, the same defect that put
@@ -1414,7 +1416,9 @@ const REGISTRATION_TOL_M = 25;
     "ultra-miami-2026": {
       // Chosen to force the redraw into the quiet window before the 2027
       // festival roll, rather than into Ultra flip week.
-      expires: "2026-12-01",
+      expires: "2027-02-01",
+      // Re-dated 2026-11-13 (was 2026-12-01): about eight weeks before Ultra
+      // 2027 (announced for Mar 26-28, 2027). Re-check if that changes.
       note: "ultra-2026.svg is drawn art, not a projection; redraw it from the surveyed layout, then delete this waiver.",
     },
   };
@@ -1558,7 +1562,9 @@ const REGISTRATION_TOL_M = 25;
       // which needs a schema change, since gpsAnchors are stageId-keyed.
       // The expiry forces that schema work into the same quiet-window batch
       // as the art waivers above.
-      expires: "2026-12-01",
+      expires: "2027-05-01",
+      // Re-dated 2026-11-13 (was 2026-12-01): Gov Ball 2027 dates are not
+      // announced; assumed early June, as in 2026. Re-check when they are announced.
       note: "3 anchors, all of them the basis — structurally uncheckable " +
             "until a landmark tie point exists. grove is satellite-measured; " +
             "verizon and snapchat agree with the official 2026 patron map " +
@@ -1580,7 +1586,9 @@ const REGISTRATION_TOL_M = 25;
       // plus one independent anchor, from a post-festival capture or an
       // on-site survey. Delete it then, or let it expire and gate the
       // festival again.
-      expires: "2026-12-01",
+      expires: "2027-10-01",
+      // Re-dated 2026-11-13 (was 2026-12-01): about five weeks before EDC
+      // Orlando 2027 (Nov 5-7, 2027). Re-check if those dates change.
       note: "all 5 anchors are poster reads off the official 2026 map; no " +
             "satellite capture shows an EDC Orlando build (Esri Wayback at " +
             "Tinker Field: 2021-01-28, 2023-02-06, 2024-04-26 only). " +
