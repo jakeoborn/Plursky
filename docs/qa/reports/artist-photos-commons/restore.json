@@ -1,0 +1,270 @@
+{
+ "ranAt": "2026-11-11T11:22:42.296Z",
+ "scope": "registry",
+ "width": 480,
+ "total": 48,
+ "offset": 0,
+ "nextOffset": null,
+ "considered": 48,
+ "added": 25,
+ "skipped": {
+  "no-music-item": 20,
+  "no-item": 2,
+  "no-image": 1
+ },
+ "addedRows": [
+  {
+   "artist": "Barry Can't Swim",
+   "wikidata": "Q124098371",
+   "license": "CC-BY-2.0",
+   "author": "Raph_PH",
+   "description": "Scottish musician and producer"
+  },
+  {
+   "artist": "Bayonne",
+   "wikidata": "Q23542737",
+   "license": "CC-BY-SA-4.0",
+   "author": "Pooneh Ghana",
+   "description": "musician from Austin, Texas"
+  },
+  {
+   "artist": "CORTIS",
+   "wikidata": "Q135668928",
+   "license": "CC-BY-4.0",
+   "author": "TV10",
+   "description": "South Korean boy group"
+  },
+  {
+   "artist": "Djo",
+   "wikidata": "Q27064031",
+   "license": "CC-BY-SA-4.0",
+   "author": "PhilipRomano",
+   "description": "American actor and musician (born 1992)"
+  },
+  {
+   "artist": "ERIC SLICK",
+   "wikidata": "Q51336785",
+   "license": "CC-BY-SA-4.0",
+   "author": "Morgan NOTI",
+   "description": "American singer, songwriter and drummer (born 1987)"
+  },
+  {
+   "artist": "FKJ",
+   "wikidata": "Q30457256",
+   "license": "CC-BY-SA-4.0",
+   "author": "Jishnuchakrabortyimages",
+   "description": "French multi-instrumentalist, singer, and musician"
+  },
+  {
+   "artist": "GELLI HAHA",
+   "wikidata": "Q135431515",
+   "license": "CC-BY-SA-4.0",
+   "author": "Hibachrach",
+   "description": "American singer"
+  },
+  {
+   "artist": "Girlfriend",
+   "wikidata": "Q18733030",
+   "license": "CC-BY-3.0",
+   "author": "K-POPIT 케이팝잇",
+   "description": "South Korean girl group"
+  },
+  {
+   "artist": "Idriss D",
+   "wikidata": "Q110396410",
+   "license": "CC-BY-SA-4.0",
+   "author": "Idrissdib",
+   "description": "Algerian DJ based in Italy"
+  },
+  {
+   "artist": "Injury Reserve",
+   "wikidata": "Q24075128",
+   "license": "CC-BY-2.0",
+   "author": "The Come Up Show from Canada",
+   "description": "American band"
+  },
+  {
+   "artist": "James Kennedy",
+   "wikidata": "Q117816451",
+   "license": "CC-BY-SA-4.0",
+   "author": "KonicRecords",
+   "description": "Welsh musician, author and podcaster"
+  },
+  {
+   "artist": "Japanese Breakfast",
+   "wikidata": "Q28104185",
+   "license": "CC-BY-2.0",
+   "author": "David Lee",
+   "description": "American solo musical project"
+  },
+  {
+   "artist": "KATSEYE",
+   "wikidata": "Q123480242",
+   "license": "CC-BY-4.0",
+   "author": "Warmtoned",
+   "description": "Los Angeles-based girl group"
+  },
+  {
+   "artist": "LP Giobbi",
+   "wikidata": "Q123348009",
+   "license": "CC-BY-SA-4.0",
+   "author": "Vbrunophotog",
+   "description": "American DJ and producer"
+  },
+  {
+   "artist": "Michael Bibi",
+   "wikidata": "Q115631706",
+   "license": "CC-BY-SA-4.0",
+   "author": "Giacomo Russello",
+   "description": "electronic musician and DJ"
+  },
+  {
+   "artist": "Moon Boots",
+   "wikidata": "Q66846517",
+   "license": "CC-BY-SA-4.0",
+   "author": "Peter Dougherty",
+   "description": "American DJ and music producer"
+  },
+  {
+   "artist": "O.A.R.",
+   "wikidata": "Q1975153",
+   "license": "CC-BY-SA-3.0",
+   "author": "Darry2385",
+   "description": "American rock band"
+  },
+  {
+   "artist": "Olly James",
+   "wikidata": "Q56377659",
+   "license": "CC-BY-SA-4.0",
+   "author": "Joel Kampelmacher",
+   "description": "English DJ and producer"
+  },
+  {
+   "artist": "Ownboss",
+   "wikidata": "Q112075901",
+   "license": "Public-Domain",
+   "author": "Fernandos Soares",
+   "description": "Brazilian DJ and music producer"
+  },
+  {
+   "artist": "P!NK",
+   "wikidata": "Q160009",
+   "license": "CC-BY-SA-4.0",
+   "author": "Andemaya",
+   "description": "American singer, songwriter, and actress (born 1979)"
+  },
+  {
+   "artist": "SB19",
+   "wikidata": "Q75905366",
+   "license": "CC-BY-3.0",
+   "author": "TV Ten Asia",
+   "description": "Filipino musical group; boy band"
+  },
+  {
+   "artist": "Sodown",
+   "wikidata": "Q55633386",
+   "license": "CC-BY-SA-4.0",
+   "author": "Szango",
+   "description": "American electronic music producer, musician and DJ"
+  },
+  {
+   "artist": "STEVEN SPENCE",
+   "wikidata": "Q20685637",
+   "license": "CC-BY-SA-4.0",
+   "author": "Theupsidedown",
+   "description": "American drummer"
+  },
+  {
+   "artist": "Sunday (1994)",
+   "wikidata": "Q134287184",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi",
+   "description": "pop band based in Los Angeles, California"
+  },
+  {
+   "artist": "Thundercat",
+   "wikidata": "Q15285290",
+   "license": "CC-BY-4.0",
+   "author": "FifthLegend",
+   "description": "American musician and singer-songwriter (born 1984)"
+  }
+ ],
+ "skips": {
+  "no-music-item": [
+   {
+    "artist": "Adam Scott"
+   },
+   {
+    "artist": "arman."
+   },
+   {
+    "artist": "ARYA"
+   },
+   {
+    "artist": "CØNTRA"
+   },
+   {
+    "artist": "Corbu"
+   },
+   {
+    "artist": "DUA LIPA"
+   },
+   {
+    "artist": "EGGY"
+   },
+   {
+    "artist": "HUXLEY"
+   },
+   {
+    "artist": "Inbal"
+   },
+   {
+    "artist": "Joseph"
+   },
+   {
+    "artist": "Kassel"
+   },
+   {
+    "artist": "Koa"
+   },
+   {
+    "artist": "Lydia B Kollins"
+   },
+   {
+    "artist": "Panteros666"
+   },
+   {
+    "artist": "Spencer Ludwig"
+   },
+   {
+    "artist": "STEREOTYPE"
+   },
+   {
+    "artist": "Suki Waterhouse"
+   },
+   {
+    "artist": "YDG"
+   },
+   {
+    "artist": "ZEP"
+   },
+   {
+    "artist": "Zero"
+   }
+  ],
+  "no-item": [
+   {
+    "artist": "Q"
+   },
+   {
+    "artist": "SJ"
+   }
+  ],
+  "no-image": [
+   {
+    "artist": "Skepsis",
+    "wikidata": "Q121236636"
+   }
+  ]
+ }
+}

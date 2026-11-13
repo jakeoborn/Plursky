@@ -96,5 +96,11 @@
  "tomorrowland-2018": { "stages": 16, "setsPerDay": [143, 141, 138, 140, 147, 133], "droppedPerDay": [0, 0, 0, 0, 0, 0] },
  "tomorrowland-2019": { "stages": 17, "setsPerDay": [142, 148, 149, 152, 148, 148], "droppedPerDay": [0, 1, 0, 0, 0, 0] },
  "tomorrowland-2022": { "stages": 14, "setsPerDay": [116, 120, 116, 118, 120, 117, 115, 122, 113], "droppedPerDay": [0, 1, 1, 0, 0, 0, 0, 0, 1] },
- "tomorrowland-2023": { "stages": 14, "setsPerDay": [121, 123, 123, 129, 121, 119], "droppedPerDay": [0, 0, 1, 0, 0, 0] }
+ "tomorrowland-2023": { "stages": 14, "setsPerDay": [121, 123, 123, 129, 121, 119], "droppedPerDay": [0, 0, 1, 0, 0, 0] },
+ "shambhala-2011": { "stages": 6, "setsPerDay": [33, 67, 67, 63], "droppedPerDay": [0, 1, 5, 2] },
+ "shambhala-2012": { "stages": 6, "setsPerDay": [33, 77, 75, 75], "droppedPerDay": [1, 2, 3, 4] },
+ "shambhala-2013": { "stages": 6, "setsPerDay": [36, 88, 78, 75], "droppedPerDay": [0, 2, 2, 3] },
+ "shambhala-2014": { "stages": 6, "setsPerDay": [27, 78, 70, 72], "droppedPerDay": [0, 2, 5, 1] },
+ "shambhala-2015": { "stages": 6, "setsPerDay": [26, 76, 69, 71], "droppedPerDay": [2, 2, 4, 2] },
+ "shambhala-2016": { "stages": 6, "setsPerDay": [26, 69, 68, 66], "droppedPerDay": [3, 3, 4, 3] }
 }

@@ -30,6 +30,7 @@ export const OFFICIAL_HOSTS = {
   "countdown-nye": ["countdownnye.com"],
   "dreamstate-socal": ["dreamstateusa.com"],
   "tomorrowland": ["tomorrowland.com"],
+  "shambhala": ["shambhalamusicfestival.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -147,7 +148,23 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   }
 
   // Completeness.
-  if (!["complete_schedule", "lineup_only"].includes(e.completeness)) p.push(`${e.id}: completeness "${e.completeness}"`);
+  if (!["complete_schedule", "selected_stages", "lineup_only"].includes(e.completeness)) p.push(`${e.id}: completeness "${e.completeness}"`);
+  // selected_stages: the official schedule had stages that are not imported.
+  // The registry names each one and the days it ran; a stage named missing
+  // must have no set on those days, so adding its data forces the label off.
+  if (JSON.stringify(e.coverage || null) !== JSON.stringify(meta.coverage || null)) p.push(`${e.id}: coverage differs from the edition registry`);
+  if ((e.completeness === "selected_stages") !== !!e.coverage?.missing?.length) p.push(`${e.id}: selected_stages needs a coverage.missing list, and only selected_stages may carry one`);
+  if (e.coverage) {
+    if (!DAY.test(e.coverage.asOf || "")) p.push(`${e.id}: coverage has no asOf date`);
+    for (const m of e.coverage.missing || []) {
+      if (!m.stage || !m.when || !m.days?.length) p.push(`${e.id}: a missing stage needs stage, when and days`);
+      for (const d of m.days || []) {
+        if (!e.days.some(x => x.day === d)) p.push(`${e.id}: missing stage ${m.stage} names day ${d}, which the edition does not have`);
+        const st = new Set(e.stages.filter(s => s.name.toLowerCase() === String(m.stage).toLowerCase()).map(s => s.id));
+        if ((e.sets || []).some(s => s.day === d && st.has(s.stageId))) p.push(`${e.id}: ${m.stage} is listed as missing on day ${d} but has sets there`);
+      }
+    }
+  }
   const lineupOnly = e.completeness === "lineup_only";
   if (lineupOnly && (e.sets?.length || e.provenance?.extractionMethod !== "official_lineup_html"))
     p.push(`${e.id}: lineup_only must carry no sets (no placeholder times) and come from an official lineup page`);
@@ -333,7 +350,13 @@ function officialSources(e, meta, p) {
       // still print this day's weekday and date in the edition year.
       if (ts && !(ts.startsWith(String(e.year)) || ts.startsWith(String(e.year + 1)))) p.push(`${tag}: page capture ${ts} is not from ${e.year} or the year after`);
       if (ts && ts !== c.captureTimestamp) p.push(`${tag}: captureTimestamp ${c.captureTimestamp} ≠ the archived URL's ${ts}`);
-      if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
+      // Shambhala's tabs print the weekday alone; the date is the one the
+      // day's table writes its first slot as (<td id="time_T">, T a UTC epoch).
+      if (c.firstSlot) {
+        const T = +/^time_(\d+)$/.exec(c.firstSlot)?.[1], wd = new Date(date + "T12:00:00Z").toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
+        if (!T || new Date(T * 1000).toISOString().slice(0, 10) !== date) p.push(`${tag}: the page's first slot ${c.firstSlot} is not on ${date}`);
+        if (String(c.printed).toLowerCase() !== wd.toLowerCase()) p.push(`${tag}: the page's day tab "${c.printed}" is not ${wd}`);
+      } else if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
     }
     // A stage printed two ways carried onto one name: only case, spacing and
     // a leading "The" may change, and the target must be a stage it shows.

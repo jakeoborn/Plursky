@@ -8061,6 +8061,7 @@ function AttendanceReview({ night, savedNightArtists }) {
             const on = attended.has(a.id);
             const stage = STAGES.find(s => s.id === a.stage);
             const src = on ? getAttendanceSource(a.id) : null;
+            const tracked = setTrackVerdict(a);
             return (
               <button key={a.id} onClick={() => toggle(a.id)} style={{
                 display: "flex", alignItems: "center", gap: 10,
@@ -8082,6 +8083,14 @@ function AttendanceReview({ night, savedNightArtists }) {
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2, fontWeight: 600 }}>
                     {(stage?.short || "").toUpperCase()} · {setTimeLabel(a)}
                   </div>
+                  {tracked && tracked.label && (
+                    <span data-set-track-badge className="mono" style={{
+                      display: "inline-block", marginTop: 4,
+                      fontSize: 10, letterSpacing: 0.4, color: "var(--ink)", fontWeight: 700,
+                      padding: "2px 8px", borderRadius: 999, whiteSpace: "nowrap",
+                      background: "var(--s3)",
+                    }}>{tracked.label}</span>
+                  )}
                 </div>
                 {src === "gps" && (
                   <span className="mono" style={{
@@ -8090,6 +8099,7 @@ function AttendanceReview({ night, savedNightArtists }) {
                     background: "rgba(var(--signal-rgb),0.14)",
                   }}>📍 GPS</span>
                 )}
+
               </button>
             );
           })}
@@ -9345,9 +9355,13 @@ function _computeRecap(state) {
   // v147: B2B sets caught — artist names containing "b2b" or " b2b "
   const b2bSets = caughtArtists.filter(a => /\bb2b\b/i.test(a.name));
 
+  // Set tracking (spec PR 4): sets it timed, counted from attendanceVerdict.
+  const tracked = setTrackSummary(typeof activeLineup === "function" ? activeLineup() : ARTISTS, CFG);
+
   return {
     setsCount,
     totalMin,
+    tracked,
     nights: Object.keys(byNight).length,
     busiestNightLabel,
     busiestNightCount,
@@ -11104,6 +11118,14 @@ function RecapScreen({ state, setState }) {
               <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 700, color: "var(--media-ink-2)", marginTop: 3 }}>HEADLINERS</div>
             </div>
           </div>
+          {recap.tracked && recap.tracked.full + recap.tracked.partial > 0 && (
+            <div data-recap-set-track style={{ fontSize: 14, lineHeight: 1.43, color: "var(--media-ink-2)", marginTop: 14 }}>
+              Set tracking timed {[
+                recap.tracked.full ? `${recap.tracked.full} full set${recap.tracked.full === 1 ? "" : "s"}` : "",
+                recap.tracked.partial ? `${recap.tracked.partial} part set${recap.tracked.partial === 1 ? "" : "s"}` : "",
+              ].filter(Boolean).join(" and ")}, while Plursky was open.
+            </div>
+          )}
         </div>
 
         {/* WRAPPED CTA */}

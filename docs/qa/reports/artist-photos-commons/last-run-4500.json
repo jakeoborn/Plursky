@@ -1,0 +1,1772 @@
+{
+ "ranAt": "2026-11-11T11:03:24.421Z",
+ "scope": "registry",
+ "width": 480,
+ "total": 5014,
+ "offset": 4500,
+ "nextOffset": null,
+ "considered": 458,
+ "added": 93,
+ "skipped": {
+  "no-image": 74,
+  "ambiguous": 14,
+  "no-item": 190,
+  "no-music-item": 79,
+  "no-usable-credit": 5,
+  "license-not-admitted": 3
+ },
+ "addedRows": [
+  {
+   "artist": "Tritonal",
+   "wikidata": "Q4051786",
+   "license": "CC-BY-SA-3.0",
+   "author": "LaetitiaX0"
+  },
+  {
+   "artist": "TRIXIE MATTEL",
+   "wikidata": "Q23905339",
+   "license": "CC-BY-2.0",
+   "author": "dvsross"
+  },
+  {
+   "artist": "Trouble",
+   "wikidata": "Q2062170",
+   "license": "CC-BY-SA-3.0",
+   "author": "Cecil"
+  },
+  {
+   "artist": "TroyBoi",
+   "wikidata": "Q26214698",
+   "license": "CC-BY-SA-4.0",
+   "author": "Nicolas Völcker"
+  },
+  {
+   "artist": "Tucker Beathard",
+   "wikidata": "Q23887725",
+   "license": "CC-BY-SA-4.0",
+   "author": "Bruteforce7700"
+  },
+  {
+   "artist": "tUnE-yArDs",
+   "wikidata": "Q2120656",
+   "license": "CC-BY-2.0",
+   "author": "fjludo"
+  },
+  {
+   "artist": "Turnover",
+   "wikidata": "Q18719132",
+   "license": "CC-BY-2.0",
+   "author": "Steven Pisano"
+  },
+  {
+   "artist": "Turnpike Troubadours",
+   "wikidata": "Q7856100",
+   "license": "CC-BY-SA-4.0",
+   "author": "Cal Quinn"
+  },
+  {
+   "artist": "Twenty One Pilots",
+   "wikidata": "Q7857806",
+   "license": "CC-BY-SA-4.0",
+   "author": "Sry85"
+  },
+  {
+   "artist": "Twin Forks",
+   "wikidata": "Q16744049",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Twin Shadow",
+   "wikidata": "Q605129",
+   "license": "CC-BY-2.0",
+   "author": "Christopher March"
+  },
+  {
+   "artist": "Two Door Cinema Club",
+   "wikidata": "Q777302",
+   "license": "CC-BY-2.0",
+   "author": "Gertrude Key"
+  },
+  {
+   "artist": "tyDi",
+   "wikidata": "Q288904",
+   "license": "CC-BY-SA-2.0",
+   "author": "Scott Sandars"
+  },
+  {
+   "artist": "TYLA YAWEH",
+   "wikidata": "Q61978150",
+   "license": "CC-BY-2.0",
+   "author": "The Come Up Show from Canada"
+  },
+  {
+   "artist": "Tyler Childers",
+   "wikidata": "Q41278078",
+   "license": "CC-BY-2.0",
+   "author": "Roberta"
+  },
+  {
+   "artist": "Tyler Hubbard",
+   "wikidata": "Q20740966",
+   "license": "CC-BY-SA-4.0",
+   "author": "Umgnashvilleofficial"
+  },
+  {
+   "artist": "TYLER, THE CREATOR",
+   "wikidata": "Q167635",
+   "license": "CC-BY-2.0",
+   "author": "Incase from California, USA"
+  },
+  {
+   "artist": "UCast",
+   "wikidata": "Q17513738",
+   "license": "CC-BY-SA-4.0",
+   "author": "Dr.Mihas"
+  },
+  {
+   "artist": "Uncle Waffles",
+   "wikidata": "Q109406884",
+   "license": "CC-BY-SA-4.0",
+   "author": "Musiclaborotry"
+  },
+  {
+   "artist": "Underscores",
+   "wikidata": "Q110852201",
+   "license": "CC-BY-4.0",
+   "author": "jwx8"
+  },
+  {
+   "artist": "Unknown Mortal Orchestra",
+   "wikidata": "Q7896966",
+   "license": "CC-BY-2.0",
+   "author": "Stuart Sevastos"
+  },
+  {
+   "artist": "Valentino Khan",
+   "wikidata": "Q22005805",
+   "license": "CC-BY-SA-4.0",
+   "author": "NoFameAgency"
+  },
+  {
+   "artist": "Valerie June",
+   "wikidata": "Q7911294",
+   "license": "CC-BY-2.0",
+   "author": "DVSROSS"
+  },
+  {
+   "artist": "Vance Joy",
+   "wikidata": "Q15044005",
+   "license": "CC-BY-SA-3.0",
+   "author": "Daniel Åhs Karlsson"
+  },
+  {
+   "artist": "Vanessa Zamora",
+   "wikidata": "Q19004550",
+   "license": "CC-BY-SA-4.0",
+   "author": "Feli Gutierres"
+  },
+  {
+   "artist": "VÉRITÉ",
+   "wikidata": "Q20880877",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Vertical Horizon",
+   "wikidata": "Q2061582",
+   "license": "CC-BY-2.0",
+   "author": "Mira Hartford"
+  },
+  {
+   "artist": "Viagra Boys",
+   "wikidata": "Q60970146",
+   "license": "CC-BY-2.0",
+   "author": "Paul Hudson from United Kingdom"
+  },
+  {
+   "artist": "Vic Mensa",
+   "wikidata": "Q16235952",
+   "license": "CC-BY-SA-2.0",
+   "author": "Coup d'Oreille"
+  },
+  {
+   "artist": "Vieze Asbak",
+   "wikidata": "Q124337632",
+   "license": "CC-BY-4.0",
+   "author": "Tim van den Broek, BRAKKA MEDIA"
+  },
+  {
+   "artist": "Vince Staples",
+   "wikidata": "Q16235863",
+   "license": "CC-BY-2.0",
+   "author": "Andy Witchger"
+  },
+  {
+   "artist": "Vintage Trouble",
+   "wikidata": "Q7932854",
+   "license": "CC-BY-SA-4.0",
+   "author": "Hinton1994"
+  },
+  {
+   "artist": "Violeta",
+   "wikidata": "Q123504010",
+   "license": "CC-BY-SA-4.0",
+   "author": "Barcex"
+  },
+  {
+   "artist": "Virtual Riot",
+   "wikidata": "Q17125764",
+   "license": "CC-BY-3.0",
+   "author": "Franky Nuts"
+  },
+  {
+   "artist": "VLAD HOLIDAY",
+   "wikidata": "Q29452206",
+   "license": "CC-BY-SA-4.0",
+   "author": "Lespaulstdio"
+  },
+  {
+   "artist": "Vulfpeck",
+   "wikidata": "Q17091147",
+   "license": "CC-BY-2.0",
+   "author": "EvanLBerent"
+  },
+  {
+   "artist": "W&W",
+   "wikidata": "Q1891477",
+   "license": "CC-BY-SA-4.0",
+   "author": "Q1q2q3qwertz"
+  },
+  {
+   "artist": "Walk Off The Earth",
+   "wikidata": "Q373962",
+   "license": "CC-BY-2.0",
+   "author": "Flickr user tjchampagne"
+  },
+  {
+   "artist": "WALK THE MOON",
+   "wikidata": "Q3653206",
+   "license": "CC-BY-SA-4.0",
+   "author": "Danazar"
+  },
+  {
+   "artist": "Wallows",
+   "wikidata": "Q55184769",
+   "license": "CC-BY-SA-4.0",
+   "author": "Jimmy Fontaine"
+  },
+  {
+   "artist": "WALT DISCO",
+   "wikidata": "Q137842967",
+   "license": "CC-BY-4.0",
+   "author": "Wojciech Pędzich"
+  },
+  {
+   "artist": "WASIA PROJECT",
+   "wikidata": "Q111865044",
+   "license": "CC-BY-4.0",
+   "author": "Misfit Biscuit"
+  },
+  {
+   "artist": "Wasted Penguinz",
+   "wikidata": "Q2547746",
+   "license": "CC-BY-SA-3.0",
+   "author": "WastedPenguinz"
+  },
+  {
+   "artist": "Waxahatchee",
+   "wikidata": "Q7975703",
+   "license": "CC-BY-SA-4.0",
+   "author": "© Alexander Kellner"
+  },
+  {
+   "artist": "Waylon Wyatt",
+   "wikidata": "Q136352160",
+   "license": "CC-BY-SA-4.0",
+   "author": "Valeriewango"
+  },
+  {
+   "artist": "Welshly Arms",
+   "wikidata": "Q28452843",
+   "license": "CC-BY-SA-4.0",
+   "author": "Stefan Brending ( 2eight )"
+  },
+  {
+   "artist": "Wet Leg",
+   "wikidata": "Q107475751",
+   "license": "CC-BY-4.0",
+   "author": "Raph_PH"
+  },
+  {
+   "artist": "Weyes Blood",
+   "wikidata": "Q26924937",
+   "license": "CC-BY-4.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Whethan",
+   "wikidata": "Q28748039",
+   "license": "CC-BY-SA-4.0",
+   "author": "Ywu01"
+  },
+  {
+   "artist": "Whiskey Myers",
+   "wikidata": "Q7993887",
+   "license": "CC-BY-SA-4.0",
+   "author": "AllisonBostrom"
+  },
+  {
+   "artist": "White Denim",
+   "wikidata": "Q4053105",
+   "license": "CC-BY-SA-4.0",
+   "author": "Crunchcrackle"
+  },
+  {
+   "artist": "White Reaper",
+   "wikidata": "Q22026280",
+   "license": "CC-BY-SA-2.0",
+   "author": "David Lee from Redmond, WA, USA"
+  },
+  {
+   "artist": "WHOMADEWHO",
+   "wikidata": "Q1545212",
+   "license": "CC-BY-SA-4.0",
+   "author": "Kai kestner"
+  },
+  {
+   "artist": "Widowspeak",
+   "wikidata": "Q7998825",
+   "license": "CC-BY-2.0",
+   "author": "Paul Hudson from United Kingdom"
+  },
+  {
+   "artist": "Wilco",
+   "wikidata": "Q637771",
+   "license": "CC-BY-SA-4.0",
+   "author": "Austin Nelson"
+  },
+  {
+   "artist": "Wild Belle",
+   "wikidata": "Q8000526",
+   "license": "CC-BY-2.0",
+   "author": "Fred von Lohmann"
+  },
+  {
+   "artist": "Wild Cub",
+   "wikidata": "Q17148786",
+   "license": "CC-BY-2.0",
+   "author": "Nan Palmero"
+  },
+  {
+   "artist": "Wild Nothing",
+   "wikidata": "Q4019781",
+   "license": "CC-BY-2.0",
+   "author": "Alexander from Berlin, Germany"
+  },
+  {
+   "artist": "Wilderado",
+   "wikidata": "Q65044474",
+   "license": "CC-BY-SA-4.0",
+   "author": "Grant Spanier"
+  },
+  {
+   "artist": "Wildstylez",
+   "wikidata": "Q1395589",
+   "license": "CC-BY-SA-4.0",
+   "author": "Denis Apel"
+  },
+  {
+   "artist": "Wiley",
+   "wikidata": "Q936479",
+   "license": "CC0-1.0",
+   "author": "Clozone"
+  },
+  {
+   "artist": "Willie Nelson",
+   "wikidata": "Q206112",
+   "license": "CC-BY-SA-3.0",
+   "author": "Robbiework at English Wikipedia"
+  },
+  {
+   "artist": "WIZTHEMC",
+   "wikidata": "Q116754008",
+   "license": "CC-BY-SA-4.0",
+   "author": "MulberryStreet"
+  },
+  {
+   "artist": "Wolf Alice",
+   "wikidata": "Q8029799",
+   "license": "CC-BY-4.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Wrabel",
+   "wikidata": "Q15844825",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Wuki",
+   "wikidata": "Q36065176",
+   "license": "CC-BY-SA-4.0",
+   "author": "Nimmyjewtron"
+  },
+  {
+   "artist": "X Ambassadors",
+   "wikidata": "Q15963313",
+   "license": "CC-BY-2.0",
+   "author": "Abby Gillardi"
+  },
+  {
+   "artist": "XAVIERSOBASED",
+   "wikidata": "Q122731572",
+   "license": "CC-BY-SA-4.0",
+   "author": "Ninecalling"
+  },
+  {
+   "artist": "XDINARY HEROES",
+   "wikidata": "Q109579414",
+   "license": "CC-BY-3.0",
+   "author": "JYPAudition"
+  },
+  {
+   "artist": "Xilent",
+   "wikidata": "Q8044430",
+   "license": "CC-BY-SA-3.0",
+   "author": "Scott Miller"
+  },
+  {
+   "artist": "Xilla",
+   "wikidata": "Q141554101",
+   "license": "CC0-1.0",
+   "author": "Xillabeats"
+  },
+  {
+   "artist": "Yard Act",
+   "wikidata": "Q110269845",
+   "license": "CC-BY-2.0",
+   "author": "Paul Hudson from United Kingdom"
+  },
+  {
+   "artist": "YDG",
+   "wikidata": "Q489604",
+   "license": "CC-BY-SA-3.0",
+   "author": "acrofan.com"
+  },
+  {
+   "artist": "YEAH YEAH YEAHS",
+   "wikidata": "Q641858",
+   "license": "CC-BY-SA-3.0",
+   "author": "Max Knies from New York City"
+  },
+  {
+   "artist": "Years & Years",
+   "wikidata": "Q18608591",
+   "license": "CC-BY-SA-4.0",
+   "author": "Sno"
+  },
+  {
+   "artist": "Yellow Claw",
+   "wikidata": "Q15613707",
+   "license": "CC-BY-SA-2.0",
+   "author": "swimfinfan"
+  },
+  {
+   "artist": "YOASOBI",
+   "wikidata": "Q95688943",
+   "license": "CC-BY-SA-4.0",
+   "author": "Colleen Sturtevant"
+  },
+  {
+   "artist": "Yoji Biomehanika",
+   "wikidata": "Q709234",
+   "license": "CC-BY-SA-3.0",
+   "author": "MIXTRIBE"
+  },
+  {
+   "artist": "Yolanda Be Cool",
+   "wikidata": "Q1058926",
+   "license": "CC-BY-SA-4.0",
+   "author": "Goodquestionla"
+  },
+  {
+   "artist": "Yotto",
+   "wikidata": "Q23664961",
+   "license": "CC-BY-SA-4.0",
+   "author": "1964ghia"
+  },
+  {
+   "artist": "¥ØU$UK€ ¥UK1MAT$U",
+   "wikidata": "Q125789914",
+   "license": "CC-BY-SA-4.0",
+   "author": "Kalai Ramu"
+  },
+  {
+   "artist": "Young & Sick",
+   "wikidata": "Q8057878",
+   "license": "CC-BY-2.0",
+   "author": "Young & Sick"
+  },
+  {
+   "artist": "Young The Giant",
+   "wikidata": "Q2499094",
+   "license": "CC-BY-SA-3.0",
+   "author": "Christopher Dube"
+  },
+  {
+   "artist": "Yousuke Yukimatsu",
+   "wikidata": "Q125789914",
+   "license": "CC-BY-SA-4.0",
+   "author": "Kalai Ramu"
+  },
+  {
+   "artist": "Yungblud",
+   "wikidata": "Q47500295",
+   "license": "CC-BY-SA-4.0",
+   "author": "Moiyeah"
+  },
+  {
+   "artist": "YVES TUMOR",
+   "wikidata": "Q56486752",
+   "license": "CC-BY-2.0",
+   "author": "Tower Hamlets Council"
+  },
+  {
+   "artist": "Z-Trip",
+   "wikidata": "Q3700448",
+   "license": "CC-BY-3.0",
+   "author": "Obsidian-Fox1"
+  },
+  {
+   "artist": "Zack Fox",
+   "wikidata": "Q66187282",
+   "license": "CC-BY-SA-4.0",
+   "author": "Stussll"
+  },
+  {
+   "artist": "ZELLA DAY",
+   "wikidata": "Q19867501",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "ZEP",
+   "wikidata": "Q123066",
+   "license": "CC-BY-SA-4.0",
+   "author": "Selbymay"
+  },
+  {
+   "artist": "Zero",
+   "wikidata": "Q2142",
+   "license": "CC-BY-SA-4.0",
+   "author": "LostplanetKD73"
+  },
+  {
+   "artist": "Zhu",
+   "wikidata": "Q17649109",
+   "license": "CC-BY-2.0",
+   "author": "FifthLegend"
+  },
+  {
+   "artist": "ZOE KO",
+   "wikidata": "Q123413872",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  }
+ ],
+ "skips": {
+  "no-image": [
+   {
+    "artist": "THE RED CLAY STRAYS",
+    "wikidata": "Q126095069"
+   },
+   {
+    "artist": "The Resistance",
+    "wikidata": "Q3988979"
+   },
+   {
+    "artist": "The Space Brothers",
+    "wikidata": "Q7765634"
+   },
+   {
+    "artist": "The Suffers",
+    "wikidata": "Q20685691"
+   },
+   {
+    "artist": "THE SYMPOSIUM",
+    "wikidata": "Q123413831"
+   },
+   {
+    "artist": "Thee Sacred Souls",
+    "wikidata": "Q122926905"
+   },
+   {
+    "artist": "THEE SINSEERS",
+    "wikidata": "Q123680583"
+   },
+   {
+    "artist": "Thomas Gold",
+    "wikidata": "Q6146045"
+   },
+   {
+    "artist": "TIERA KENNEDY",
+    "wikidata": "Q125427943"
+   },
+   {
+    "artist": "TIM KUBART",
+    "wikidata": "Q23007809"
+   },
+   {
+    "artist": "Tinlicker",
+    "wikidata": "Q107452045"
+   },
+   {
+    "artist": "TITA LAU",
+    "wikidata": "Q136497310"
+   },
+   {
+    "artist": "TOBE NWIGWE",
+    "wikidata": "Q104835395"
+   },
+   {
+    "artist": "Tokyo Machine",
+    "wikidata": "Q60741064"
+   },
+   {
+    "artist": "TOPS",
+    "wikidata": "Q17110870"
+   },
+   {
+    "artist": "Torren Foot",
+    "wikidata": "Q58007866"
+   },
+   {
+    "artist": "Trapper Schoepp",
+    "wikidata": "Q7835654"
+   },
+   {
+    "artist": "Trivecta",
+    "wikidata": "Q112041164"
+   },
+   {
+    "artist": "True Believers",
+    "wikidata": "Q30609517"
+   },
+   {
+    "artist": "Truth",
+    "wikidata": "Q19944443"
+   },
+   {
+    "artist": "Tucker Wetmore",
+    "wikidata": "Q124754909"
+   },
+   {
+    "artist": "Umek",
+    "wikidata": "Q2165261"
+   },
+   {
+    "artist": "UNiiQU3",
+    "wikidata": "Q123514378"
+   },
+   {
+    "artist": "UNLIKE PLUTO",
+    "wikidata": "Q60733761"
+   },
+   {
+    "artist": "URBAN HEAT",
+    "wikidata": "Q117189120"
+   },
+   {
+    "artist": "VACATIONS",
+    "wikidata": "Q115804318"
+   },
+   {
+    "artist": "Valencia Grace",
+    "wikidata": "Q137997367"
+   },
+   {
+    "artist": "Vampa",
+    "wikidata": "Q140133748"
+   },
+   {
+    "artist": "VAVO",
+    "wikidata": "Q134311220"
+   },
+   {
+    "artist": "Vertigo",
+    "wikidata": "Q1951293"
+   },
+   {
+    "artist": "Vessel",
+    "wikidata": "Q86751623"
+   },
+   {
+    "artist": "VHS Collection",
+    "wikidata": "Q65072704"
+   },
+   {
+    "artist": "Victor Calderone",
+    "wikidata": "Q7925776"
+   },
+   {
+    "artist": "Victor Jones",
+    "wikidata": "Q1742866"
+   },
+   {
+    "artist": "VINCENT NEIL EMERSON",
+    "wikidata": "Q123583229"
+   },
+   {
+    "artist": "VINDATA",
+    "wikidata": "Q30122435"
+   },
+   {
+    "artist": "Vini Vici",
+    "wikidata": "Q34398202"
+   },
+   {
+    "artist": "Vinny",
+    "wikidata": "Q10391605"
+   },
+   {
+    "artist": "Vintage Culture",
+    "wikidata": "Q27306126"
+   },
+   {
+    "artist": "Volac",
+    "wikidata": "Q114164374"
+   },
+   {
+    "artist": "von Grey",
+    "wikidata": "Q17109044"
+   },
+   {
+    "artist": "VTSS",
+    "wikidata": "Q133567726"
+   },
+   {
+    "artist": "Wally Lopez",
+    "wikidata": "Q6166144"
+   },
+   {
+    "artist": "Warface",
+    "wikidata": "Q140393557"
+   },
+   {
+    "artist": "Warp Brothers",
+    "wikidata": "Q2549612"
+   },
+   {
+    "artist": "Water From Your Eyes",
+    "wikidata": "Q116482745"
+   },
+   {
+    "artist": "WAVE TO EARTH",
+    "wikidata": "Q123125515"
+   },
+   {
+    "artist": "WAVEDASH",
+    "wikidata": "Q108880734"
+   },
+   {
+    "artist": "Wax Motif",
+    "wikidata": "Q23772062"
+   },
+   {
+    "artist": "WAZE & ODYSSEY",
+    "wikidata": "Q19663334"
+   },
+   {
+    "artist": "Westend",
+    "wikidata": "Q181792"
+   },
+   {
+    "artist": "WHAT SO NOT",
+    "wikidata": "Q15713325"
+   },
+   {
+    "artist": "Whatmore",
+    "wikidata": "Q139856270"
+   },
+   {
+    "artist": "WILD RIVERS",
+    "wikidata": "Q105740493"
+   },
+   {
+    "artist": "Wilkinson",
+    "wikidata": "Q15139979"
+   },
+   {
+    "artist": "WILLARIS. K",
+    "wikidata": "Q84146606"
+   },
+   {
+    "artist": "William Clark Green",
+    "wikidata": "Q19880096"
+   },
+   {
+    "artist": "WILLOW AVALON",
+    "wikidata": "Q132718044"
+   },
+   {
+    "artist": "Wisp",
+    "wikidata": "Q4020519"
+   },
+   {
+    "artist": "Wolfie",
+    "wikidata": "Q8030162"
+   },
+   {
+    "artist": "Wood & Wire",
+    "wikidata": "Q104834941"
+   },
+   {
+    "artist": "Wooli",
+    "wikidata": "Q85816153"
+   },
+   {
+    "artist": "Worship",
+    "wikidata": "Q138849509"
+   },
+   {
+    "artist": "Wunderhorse",
+    "wikidata": "Q119475375"
+   },
+   {
+    "artist": "WYATT FLORES",
+    "wikidata": "Q125884645"
+   },
+   {
+    "artist": "XiJaro & Pitch",
+    "wikidata": "Q111028915"
+   },
+   {
+    "artist": "YAYA BEY",
+    "wikidata": "Q112626150"
+   },
+   {
+    "artist": "YENDRY",
+    "wikidata": "Q107295304"
+   },
+   {
+    "artist": "YHWH Nailgun",
+    "wikidata": "Q134572973"
+   },
+   {
+    "artist": "YOKE LORE",
+    "wikidata": "Q88743627"
+   },
+   {
+    "artist": "Zen Freeman",
+    "wikidata": "Q141895345"
+   },
+   {
+    "artist": "Zomboy",
+    "wikidata": "Q14546605"
+   },
+   {
+    "artist": "ZONDERLING",
+    "wikidata": "Q56118390"
+   },
+   {
+    "artist": "ZUEZEU",
+    "wikidata": "Q115478623"
+   }
+  ],
+  "ambiguous": [
+   {
+    "artist": "The Relatives"
+   },
+   {
+    "artist": "Thomas Schumacher"
+   },
+   {
+    "artist": "Tinashe"
+   },
+   {
+    "artist": "TNT"
+   },
+   {
+    "artist": "TRADEMARK"
+   },
+   {
+    "artist": "TSHA"
+   },
+   {
+    "artist": "TWICE"
+   },
+   {
+    "artist": "TYLA"
+   },
+   {
+    "artist": "Vampire Weekend"
+   },
+   {
+    "artist": "Vegas"
+   },
+   {
+    "artist": "WHIPPED CREAM"
+   },
+   {
+    "artist": "Will Atkinson"
+   },
+   {
+    "artist": "William Black"
+   },
+   {
+    "artist": "Wolfmother"
+   }
+  ],
+  "no-item": [
+   {
+    "artist": "The River City Christianettes"
+   },
+   {
+    "artist": "The Rocketman"
+   },
+   {
+    "artist": "THE SAINT CECILIA"
+   },
+   {
+    "artist": "The Shouting Matches"
+   },
+   {
+    "artist": "The Sisterhood Band"
+   },
+   {
+    "artist": "The Spiritualettes"
+   },
+   {
+    "artist": "The Stapletones"
+   },
+   {
+    "artist": "The Taxmen"
+   },
+   {
+    "artist": "THE TEETA"
+   },
+   {
+    "artist": "THE TENDER THINGS"
+   },
+   {
+    "artist": "The Terry Sims Band"
+   },
+   {
+    "artist": "The Texas Gentlemen"
+   },
+   {
+    "artist": "THE TIARRAS"
+   },
+   {
+    "artist": "The Wans"
+   },
+   {
+    "artist": "The Warrior Gospel Band"
+   },
+   {
+    "artist": "The Weeknd"
+   },
+   {
+    "artist": "The Widdler"
+   },
+   {
+    "artist": "The Wild Now"
+   },
+   {
+    "artist": "THEBROSFRESH"
+   },
+   {
+    "artist": "Thee-O"
+   },
+   {
+    "artist": "Things You Say"
+   },
+   {
+    "artist": "Thom Yorke Tomorrow’s Modern Boxes"
+   },
+   {
+    "artist": "Thomas Csorba"
+   },
+   {
+    "artist": "Thunderpony"
+   },
+   {
+    "artist": "Tiefshwarz"
+   },
+   {
+    "artist": "Tiësto - In Search of Sunrise Set 2025"
+   },
+   {
+    "artist": "Tiffy Vera"
+   },
+   {
+    "artist": "Tigernite"
+   },
+   {
+    "artist": "Tim and the Space Cadets with Mother Falcon"
+   },
+   {
+    "artist": "Tim Kubart with Mother Falcon"
+   },
+   {
+    "artist": "Tim Underscore"
+   },
+   {
+    "artist": "TIM3LESS"
+   },
+   {
+    "artist": "Tini Gessler"
+   },
+   {
+    "artist": "TINYKVT"
+   },
+   {
+    "artist": "Tinzo + Jojo"
+   },
+   {
+    "artist": "Tisoki"
+   },
+   {
+    "artist": "Tito Soto"
+   },
+   {
+    "artist": "TOBEHONEST"
+   },
+   {
+    "artist": "Tobiahs"
+   },
+   {
+    "artist": "Tom & Collins"
+   },
+   {
+    "artist": "Tomar and the FCs"
+   },
+   {
+    "artist": "Toneshifterz"
+   },
+   {
+    "artist": "Toni Shardai"
+   },
+   {
+    "artist": "Tony H"
+   },
+   {
+    "artist": "Too Heavy Crew"
+   },
+   {
+    "artist": "Too Kind"
+   },
+   {
+    "artist": "TOOLTIME"
+   },
+   {
+    "artist": "Tory Lanez"
+   },
+   {
+    "artist": "Trainer Red"
+   },
+   {
+    "artist": "Trance Wax"
+   },
+   {
+    "artist": "Trancemaster Krause"
+   },
+   {
+    "artist": "TRAUMER"
+   },
+   {
+    "artist": "Trax Unit"
+   },
+   {
+    "artist": "Treasure Fingers"
+   },
+   {
+    "artist": "Trent Cantrelle"
+   },
+   {
+    "artist": "TRÈS MORTIMER"
+   },
+   {
+    "artist": "Triceradrops"
+   },
+   {
+    "artist": "TRICKSTAR"
+   },
+   {
+    "artist": "Trippie Hippie"
+   },
+   {
+    "artist": "TRIPPY TURTLE"
+   },
+   {
+    "artist": "Trombone Shorty & Orleans Avenue"
+   },
+   {
+    "artist": "Troy Kurtz"
+   },
+   {
+    "artist": "Troy Tyler"
+   },
+   {
+    "artist": "Trussie"
+   },
+   {
+    "artist": "Tsu Nami"
+   },
+   {
+    "artist": "TVBOO"
+   },
+   {
+    "artist": "Tweekacore"
+   },
+   {
+    "artist": "Twelve’Len"
+   },
+   {
+    "artist": "TWEN"
+   },
+   {
+    "artist": "Twin Limb"
+   },
+   {
+    "artist": "Twinsick"
+   },
+   {
+    "artist": "TWLV34"
+   },
+   {
+    "artist": "Twopercent"
+   },
+   {
+    "artist": "TY MORRIS & H.O.W."
+   },
+   {
+    "artist": "Tycho DJ Set"
+   },
+   {
+    "artist": "TYKNI"
+   },
+   {
+    "artist": "TYLER BALLGAME"
+   },
+   {
+    "artist": "TYLER HALVERSON"
+   },
+   {
+    "artist": "Tyree Morris & Hearts of Worship"
+   },
+   {
+    "artist": "Uchi"
+   },
+   {
+    "artist": "Ultrathem"
+   },
+   {
+    "artist": "UNCLE JUMBO"
+   },
+   {
+    "artist": "Ur Mom"
+   },
+   {
+    "artist": "€URO TRA$H"
+   },
+   {
+    "artist": "Urulu"
+   },
+   {
+    "artist": "Usaybflow"
+   },
+   {
+    "artist": "V1FRO"
+   },
+   {
+    "artist": "VALLEY JAMES"
+   },
+   {
+    "artist": "Vandelux"
+   },
+   {
+    "artist": "Vangar"
+   },
+   {
+    "artist": "Vania Junco"
+   },
+   {
+    "artist": "VANILLA IS BLACK"
+   },
+   {
+    "artist": "Vastive"
+   },
+   {
+    "artist": "veggi"
+   },
+   {
+    "artist": "Venus & The Flytraps"
+   },
+   {
+    "artist": "Verse."
+   },
+   {
+    "artist": "VIBE LINK"
+   },
+   {
+    "artist": "Vibeshock"
+   },
+   {
+    "artist": "VINCENT LIMA"
+   },
+   {
+    "artist": "Vincent Van Great"
+   },
+   {
+    "artist": "Vini Vici & Friends"
+   },
+   {
+    "artist": "Viperactive"
+   },
+   {
+    "artist": "VisionV"
+   },
+   {
+    "artist": "Viva Vidal"
+   },
+   {
+    "artist": "VLCN"
+   },
+   {
+    "artist": "VNSSA"
+   },
+   {
+    "artist": "vsyana"
+   },
+   {
+    "artist": "VUlllGUR"
+   },
+   {
+    "artist": "VVilhelm"
+   },
+   {
+    "artist": "Vwillz"
+   },
+   {
+    "artist": "Wakyin"
+   },
+   {
+    "artist": "Walker & Royce"
+   },
+   {
+    "artist": "Walker Lukens & The Side Arms"
+   },
+   {
+    "artist": "Wankdat"
+   },
+   {
+    "artist": "Ward Andrews"
+   },
+   {
+    "artist": "Wax Motif & Friends"
+   },
+   {
+    "artist": "WE DON'T RIDE LLAMAS"
+   },
+   {
+    "artist": "Wenzday"
+   },
+   {
+    "artist": "wes mills"
+   },
+   {
+    "artist": "Wes Pierce"
+   },
+   {
+    "artist": "Wesley Bray and the Disciples of Joy"
+   },
+   {
+    "artist": "WEST 22ND"
+   },
+   {
+    "artist": "Weston Estate"
+   },
+   {
+    "artist": "Whiskey Shivers"
+   },
+   {
+    "artist": "Whitesquare"
+   },
+   {
+    "artist": "Whitney Whitney"
+   },
+   {
+    "artist": "Whizard w/ MC XYZ"
+   },
+   {
+    "artist": "WHO IS HUSH"
+   },
+   {
+    "artist": "Who's John"
+   },
+   {
+    "artist": "WHOOKILLEDKENNY"
+   },
+   {
+    "artist": "wht.rrbt.obj"
+   },
+   {
+    "artist": "Wick-it The Instigator"
+   },
+   {
+    "artist": "Wild Feathers"
+   },
+   {
+    "artist": "Wild Moccasins"
+   },
+   {
+    "artist": "Will Buck"
+   },
+   {
+    "artist": "Will Renuart"
+   },
+   {
+    "artist": "Will Swinton"
+   },
+   {
+    "artist": "Will Terry"
+   },
+   {
+    "artist": "William Kiss"
+   },
+   {
+    "artist": "Willie Pake"
+   },
+   {
+    "artist": "Willikens & Ivkovic"
+   },
+   {
+    "artist": "Win and Woo"
+   },
+   {
+    "artist": "WINNETKA BOWLING LEAGUE"
+   },
+   {
+    "artist": "Winter Wrong"
+   },
+   {
+    "artist": "Wippenberg"
+   },
+   {
+    "artist": "Wire & Nail"
+   },
+   {
+    "artist": "Wonkywilla"
+   },
+   {
+    "artist": "Woo York"
+   },
+   {
+    "artist": "Woof Logik"
+   },
+   {
+    "artist": "World Famous Pets"
+   },
+   {
+    "artist": "WTCHCRFT"
+   },
+   {
+    "artist": "Wuki & Friends"
+   },
+   {
+    "artist": "WYLLO"
+   },
+   {
+    "artist": "Wyzzard"
+   },
+   {
+    "artist": "X&G"
+   },
+   {
+    "artist": "X & Ivy"
+   },
+   {
+    "artist": "X Club."
+   },
+   {
+    "artist": "X-Coast"
+   },
+   {
+    "artist": "Xavier Omär"
+   },
+   {
+    "artist": "XENAA"
+   },
+   {
+    "artist": "Xotix"
+   },
+   {
+    "artist": "Yakz"
+   },
+   {
+    "artist": "Yamagucci"
+   },
+   {
+    "artist": "Yanamaste"
+   },
+   {
+    "artist": "YaYa Biggs"
+   },
+   {
+    "artist": "YELLOWTAEL"
+   },
+   {
+    "artist": "Yetep"
+   },
+   {
+    "artist": "YOBILL"
+   },
+   {
+    "artist": "YOJI BIOMEHANIKA & SCOT PROJECT"
+   },
+   {
+    "artist": "YOOKIE"
+   },
+   {
+    "artist": "YOSHI + RAZNER PRES GENESIS"
+   },
+   {
+    "artist": "Yosuf"
+   },
+   {
+    "artist": "YØU$UKE YUK1MAT$U"
+   },
+   {
+    "artist": "YOUNG MARCO"
+   },
+   {
+    "artist": "YULTRON"
+   },
+   {
+    "artist": "YUNIFY"
+   },
+   {
+    "artist": "YVM3"
+   },
+   {
+    "artist": "ZACH PERSON"
+   },
+   {
+    "artist": "Zack Martino"
+   },
+   {
+    "artist": "ZAI1K"
+   },
+   {
+    "artist": "Zamurai"
+   },
+   {
+    "artist": "Zara Larsson"
+   },
+   {
+    "artist": "ZEKE BEATS"
+   },
+   {
+    "artist": "Zen Selekta"
+   },
+   {
+    "artist": "Zevy"
+   },
+   {
+    "artist": "ZINADELPHIA"
+   },
+   {
+    "artist": "Zoe Gitter"
+   },
+   {
+    "artist": "Zoey808"
+   },
+   {
+    "artist": "ZULAN"
+   },
+   {
+    "artist": "ZYROK"
+   }
+  ],
+  "no-music-item": [
+   {
+    "artist": "The Roosevelts"
+   },
+   {
+    "artist": "The Saints"
+   },
+   {
+    "artist": "THEO LAWRENCE"
+   },
+   {
+    "artist": "Thomas Day"
+   },
+   {
+    "artist": "Thomas Garcia"
+   },
+   {
+    "artist": "THOMAS KELLY"
+   },
+   {
+    "artist": "TiDDY"
+   },
+   {
+    "artist": "Tim Clark"
+   },
+   {
+    "artist": "Tiny Voices"
+   },
+   {
+    "artist": "Tobacco Road"
+   },
+   {
+    "artist": "TOBi"
+   },
+   {
+    "artist": "TONG"
+   },
+   {
+    "artist": "Tonks"
+   },
+   {
+    "artist": "Trampa"
+   },
+   {
+    "artist": "Transcendent"
+   },
+   {
+    "artist": "Traveller"
+   },
+   {
+    "artist": "Triode"
+   },
+   {
+    "artist": "Tripps"
+   },
+   {
+    "artist": "True Vine"
+   },
+   {
+    "artist": "Trym"
+   },
+   {
+    "artist": "TSUNAMI"
+   },
+   {
+    "artist": "TSURUDA"
+   },
+   {
+    "artist": "TTR"
+   },
+   {
+    "artist": "Turno"
+   },
+   {
+    "artist": "TWENTY SIX"
+   },
+   {
+    "artist": "Two Feet"
+   },
+   {
+    "artist": "TWO FRIENDS"
+   },
+   {
+    "artist": "TWO OWLS"
+   },
+   {
+    "artist": "Tynan"
+   },
+   {
+    "artist": "Typhoon"
+   },
+   {
+    "artist": "Ubur"
+   },
+   {
+    "artist": "Ume"
+   },
+   {
+    "artist": "UZ"
+   },
+   {
+    "artist": "V-Funk"
+   },
+   {
+    "artist": "VALE"
+   },
+   {
+    "artist": "VARI"
+   },
+   {
+    "artist": "Veil"
+   },
+   {
+    "artist": "Velora"
+   },
+   {
+    "artist": "Vial"
+   },
+   {
+    "artist": "Victor Ruiz"
+   },
+   {
+    "artist": "Villager"
+   },
+   {
+    "artist": "Villanelle"
+   },
+   {
+    "artist": "Villu"
+   },
+   {
+    "artist": "VIRAGO"
+   },
+   {
+    "artist": "Vitamin D"
+   },
+   {
+    "artist": "VKTM"
+   },
+   {
+    "artist": "VOID"
+   },
+   {
+    "artist": "VOYD"
+   },
+   {
+    "artist": "VRG"
+   },
+   {
+    "artist": "Wade"
+   },
+   {
+    "artist": "Wags"
+   },
+   {
+    "artist": "Warlord"
+   },
+   {
+    "artist": "Warung"
+   },
+   {
+    "artist": "Water Spirit"
+   },
+   {
+    "artist": "Waters"
+   },
+   {
+    "artist": "Wave Point"
+   },
+   {
+    "artist": "Welles"
+   },
+   {
+    "artist": "Whales"
+   },
+   {
+    "artist": "Whitney"
+   },
+   {
+    "artist": "Wild Child"
+   },
+   {
+    "artist": "Will Clarke"
+   },
+   {
+    "artist": "Will Rees"
+   },
+   {
+    "artist": "WINGTIP"
+   },
+   {
+    "artist": "Winyah"
+   },
+   {
+    "artist": "WIRES"
+   },
+   {
+    "artist": "WIZARD"
+   },
+   {
+    "artist": "Wobs"
+   },
+   {
+    "artist": "Wraz"
+   },
+   {
+    "artist": "X-Con"
+   },
+   {
+    "artist": "Xavi"
+   },
+   {
+    "artist": "YANA"
+   },
+   {
+    "artist": "YEONG"
+   },
+   {
+    "artist": "Yokai"
+   },
+   {
+    "artist": "YOLA"
+   },
+   {
+    "artist": "ZILLION"
+   },
+   {
+    "artist": "Zingara"
+   },
+   {
+    "artist": "Zoé"
+   },
+   {
+    "artist": "ZOF"
+   },
+   {
+    "artist": "Zorza"
+   }
+  ],
+  "no-usable-credit": [
+   {
+    "artist": "The Strumbellas",
+    "wikidata": "Q7767089"
+   },
+   {
+    "artist": "TRISTAN",
+    "wikidata": "Q16409"
+   },
+   {
+    "artist": "TV on the Radio",
+    "wikidata": "Q829138"
+   },
+   {
+    "artist": "Tyrese",
+    "wikidata": "Q311232"
+   },
+   {
+    "artist": "Young Miko",
+    "wikidata": "Q117349631"
+   }
+  ],
+  "license-not-admitted": [
+   {
+    "artist": "Turnstile",
+    "wikidata": "Q18719133",
+    "license": "Attribution"
+   },
+   {
+    "artist": "Xandra",
+    "wikidata": "Q291116",
+    "license": "CC BY-SA 3.0 nl"
+   },
+   {
+    "artist": "ZACH BRYAN",
+    "wikidata": "Q106770023",
+    "license": "Attribution"
+   }
+  ]
+ }
+}

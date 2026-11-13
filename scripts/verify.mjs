@@ -24,6 +24,8 @@ const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 
 execFileSync(process.execPath, ["scripts/build-artist-photo-ledger.mjs", "--check"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-commons-photos.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-map-mask-grounds.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-poster-billing.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-no-stray-jsx-comments.mjs"], { cwd: ROOT, stdio: "inherit" });
@@ -1710,6 +1712,11 @@ const REGISTRATION_TOL_M = 25;
       // re-derives the six dependent anchors and manufactures precision
       // nobody measured. They stay put until a real geo source exists.
       stageIds: ["kinetic", "cosmic", "bionic"],
+      // SPEC-192 ws2, option A (2026-11-11): all nine EDC LV positions stay
+      // poster-read and provisional, and this date is when they must be
+      // re-measured: before EDC LV 2027 opens. On it the gate goes red and
+      // someone measures them or re-dates this deliberately, with a reason.
+      recheckBy: "2027-05-01",
       note:
         "3 of 9 anchors sit outside the LVMS oval (kinetic 16 m, cosmic 95 m, " +
         "bionic 152 m). They were derived from poster space, which does not " +
@@ -1726,6 +1733,15 @@ const REGISTRATION_TOL_M = 25;
     }
     return c;
   };
+  // OSM park boundaries, verify-only (SPEC-192 ws2, 2026-11-11). For a
+  // festival with measured anchors but no surveyed festival footprint, the
+  // park the festival is held in is still a real, sourced outline, and an
+  // anchor outside it is wrong. Deliberately NOT venue.footprint: the app
+  // reads that for the opening camera, the offline pack and the 3D mask, and
+  // a park is bigger than the grounds (Zilker is 397 acres; ACL uses a
+  // corner). The app never loads this file. See its _about.
+  const PARK_BOUNDARIES = JSON.parse(readFileSync(join(ROOT, "map-sources", "osm-park-boundaries.json"), "utf8")).boundaries;
+  const parkUsed = new Set();
   console.log("▸ Venue footprint gate — anchors must fall inside the real venue");
   let fpHard = 0, fpChecked = 0, fpWaived = 0, fpArmed = 0, fpUnbounded = 0, fpReal = 0;
   for (const f of REG) {
@@ -1762,6 +1778,19 @@ const REGISTRATION_TOL_M = 25;
       console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), footprint INFERRED (not surveyed) — UNGUARDED by this gate`);
       continue;
     }
+    if (!poly?.length && an.length && PARK_BOUNDARIES[cfg.id]) {
+      const pb = PARK_BOUNDARIES[cfg.id];
+      parkUsed.add(cfg.id);
+      const outPark = an.filter(a => !inside(a.lat, a.lng, pb.ring)).map(a => a.stageId);
+      fpChecked++;
+      if (outPark.length) {
+        fpHard++;
+        console.log(`  ✗  ${cfg.id.padEnd(22)} ${outPark.length}/${an.length} anchor(s) OUTSIDE ${pb.name} (OSM ${pb.osm}): ${outPark.join(", ")}`);
+      } else {
+        console.log(`  ok ${cfg.id.padEnd(22)} all ${an.length} anchors inside ${pb.name} (OSM ${pb.osm}) — park boundary, not a festival footprint`);
+      }
+      continue;
+    }
     if (!poly?.length && an.length) {
       fpUnbounded++;
       console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), NO footprint — UNGUARDED by this gate`);
@@ -1780,9 +1809,22 @@ const REGISTRATION_TOL_M = 25;
 
     if (!out.length && !waiver) { console.log(`  ok ${cfg.id.padEnd(22)} all ${an.length} anchors inside`); continue; }
 
+    // A pending waiver carries a re-check date, and the date is the
+    // mechanism: without one it is a warning nobody reads (see the
+    // REGISTRATION_WAIVERS comment above).
+    if (waiver && !/^\d{4}-\d{2}-\d{2}$/.test(waiver.recheckBy || "")) {
+      fpHard++;
+      console.log(`  ✗  ${cfg.id.padEnd(22)} pending waiver has no recheckBy date (YYYY-MM-DD)`);
+      continue;
+    }
+    if (waiver && waiver.recheckBy <= TODAY) {
+      fpHard++;
+      console.log(`  ✗  ${cfg.id.padEnd(22)} pending waiver EXPIRED ${waiver.recheckBy} (today ${TODAY}) — re-measure ${waiver.stageIds.join(", ")} or re-date it deliberately`);
+      continue;
+    }
     if (waiver && !unexcused.length && !stale.length) {
       fpWaived++;
-      console.log(`  !  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")}) — PENDING`);
+      console.log(`  !  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")}) — PENDING, re-check by ${waiver.recheckBy}`);
       console.log(`     ${waiver.note}`);
     } else if (waiver && stale.length) {
       fpHard++;
@@ -1810,6 +1852,12 @@ const REGISTRATION_TOL_M = 25;
     }
   }
   if (!fpChecked && !fpArmed && !fpUnbounded && !fpReal) console.log("  (no festival declares venue.footprint yet)");
+  for (const id of Object.keys(PARK_BOUNDARIES)) {
+    if (!parkUsed.has(id)) {
+      console.log(`  ✗  ${id.padEnd(22)} park boundary is STALE — the festival is gone, has a surveyed footprint now, or has no anchors. Remove it from map-sources/osm-park-boundaries.json.`);
+      fpHard++;
+    }
+  }
   if (fpHard) fail(`${fpHard} festival(s) failed the venue footprint gate — see above`);
   if (fpWaived) console.log(`  ${fpWaived} festival(s) waived pending ground truth — see notes above`);
   if (fpReal) console.log(`  ${fpReal} festival(s) on a real basemap — anchors not applicable`);
@@ -3680,6 +3728,21 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`shell portability failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b10. Session note (SessionStart hook) ─────────────────────────────
+// .claude/settings.json runs scripts/session-note.mjs at every new session.
+// It must stay short, read-only, offline, credential-safe, and never fail.
+{
+  console.log("▸ Session-note gate — the SessionStart note is short, read-only, offline and never fails");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-session-note.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`session note failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
