@@ -1034,7 +1034,7 @@ function LineupScreen({ state, setState }) {
   // counts after the toggle flipped, round 5).
   // L3: windows and kept-both pairs change clash counts on any screen.
   const attendV = useAttendVersion();
-  const _hasPendingDay = React.useMemo(() => _untimed && ARTISTS.some(a => a.day == null), [_untimed]);
+  const _hasPendingDay = React.useMemo(() => _untimed && lineupFor(weekendFilter).some(a => a.day == null), [_untimed, weekendFilter]);
   const dayStats = React.useMemo(() => [...DAYS, ...(_hasPendingDay ? [{ n: null, label: "DAY", date: "Day TBA" }] : [])].map(d => {
     const savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     let clashes = 0;

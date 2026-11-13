@@ -1300,7 +1300,7 @@ function LineupScreen({
     }).length;
   }, [q, day, weekendFilter]);
   var attendV = useAttendVersion();
-  var _hasPendingDay = React.useMemo(() => _untimed && ARTISTS.some(a => a.day == null), [_untimed]);
+  var _hasPendingDay = React.useMemo(() => _untimed && lineupFor(weekendFilter).some(a => a.day == null), [_untimed, weekendFilter]);
   var dayStats = React.useMemo(() => [...DAYS, ...(_hasPendingDay ? [{
     n: null,
     label: "DAY",

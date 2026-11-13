@@ -2633,6 +2633,8 @@ function weekendDatesText(cfg, wk) {
 // export, a printed schedule — have nothing true to say, and the saved list
 // is a SHORTLIST, not a plan.
 function lineupHasNoTimes(artists) {
+  // weekend-exempt: "is any set timed at all" spans both weekends; one timed
+  // set on either weekend ends the shortlist for the whole festival.
   const arts = artists || (typeof window !== "undefined" && window.ARTISTS) || ARTISTS || [];
   return arts.length > 0 && arts.every(a => !a.start);
 }
