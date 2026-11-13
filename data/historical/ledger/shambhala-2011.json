@@ -1,0 +1,228 @@
+{
+  "id": "shambhala-2011",
+  "method": "official_sources",
+  "official": "https://www.shambhalamusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2011-08-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2011-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20110928015725/http://www.shambhalamusicfestival.com/2011-schedule/",
+          "captureTimestamp": "20110928015725",
+          "printed": "Thursday",
+          "sha256": "db78e48a7fb2426f8da972abb5e37585c1ac75a34e819f7855d0f9428ca5c73d",
+          "bytes": 124604,
+          "rows": 33,
+          "format": "shambhala-table",
+          "firstSlot": "time_1312459200",
+          "stages": 6,
+          "axis": "12:00PM … 12:00PM",
+          "slots": 49,
+          "openEnded": 33,
+          "repeatedNextDaySets": 2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2011-08-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2011-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20110928015725/http://www.shambhalamusicfestival.com/2011-schedule/",
+          "captureTimestamp": "20110928015725",
+          "printed": "Friday",
+          "sha256": "db78e48a7fb2426f8da972abb5e37585c1ac75a34e819f7855d0f9428ca5c73d",
+          "bytes": 124604,
+          "rows": 68,
+          "format": "shambhala-table",
+          "firstSlot": "time_1312545600",
+          "stages": 6,
+          "axis": "12:00PM … 12:00PM",
+          "slots": 49,
+          "openEnded": 68,
+          "repeatedNextDaySets": 2
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2011-08-06",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2011-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20110928015725/http://www.shambhalamusicfestival.com/2011-schedule/",
+          "captureTimestamp": "20110928015725",
+          "printed": "Saturday",
+          "sha256": "db78e48a7fb2426f8da972abb5e37585c1ac75a34e819f7855d0f9428ca5c73d",
+          "bytes": 124604,
+          "rows": 72,
+          "format": "shambhala-table",
+          "firstSlot": "time_1312632000",
+          "stages": 6,
+          "axis": "12:00PM … 12:00PM",
+          "slots": 49,
+          "openEnded": 72,
+          "repeatedNextDaySets": 2
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2011-08-07",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2011-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20110928015725/http://www.shambhalamusicfestival.com/2011-schedule/",
+          "captureTimestamp": "20110928015725",
+          "printed": "Sunday",
+          "sha256": "db78e48a7fb2426f8da972abb5e37585c1ac75a34e819f7855d0f9428ca5c73d",
+          "bytes": 124604,
+          "rows": 65,
+          "format": "shambhala-table",
+          "firstSlot": "time_1312718400",
+          "stages": 6,
+          "axis": "12:00PM … 12:00PM",
+          "slots": 49,
+          "openEnded": 65
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Labyrinth",
+      "start": "12:00",
+      "end": "",
+      "billing": "Labyrinth Experience",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    },
+    {
+      "day": 1,
+      "stage": "Living Room",
+      "start": "12:00",
+      "end": "",
+      "billing": "Sham Paine",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    },
+    {
+      "day": 2,
+      "stage": "Labyrinth",
+      "start": "12:00",
+      "end": "",
+      "billing": "Inner Journeys Ecstatic Dance",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    },
+    {
+      "day": 2,
+      "stage": "Living Room",
+      "start": "12:00",
+      "end": "",
+      "billing": "Wassabi Collective",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    },
+    {
+      "day": 3,
+      "stage": "Labyrinth",
+      "start": "12:00",
+      "end": "",
+      "billing": "Giant Panda Showcase: The Mighty Party All Night Dance Adventure, The Vortex Ensemble, Wholesome Jones",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    },
+    {
+      "day": 3,
+      "stage": "Living Room",
+      "start": "12:00",
+      "end": "",
+      "billing": "Ginger",
+      "reason": "the day's table ends with the next day's first slot printed again; the set is the next day's, where it is kept",
+      "duplicate": true
+    }
+  ],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "Labyrinth",
+      "start": "12:00",
+      "end": null,
+      "billing": "Labyrinth Experience",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Living Room",
+      "start": "19:00",
+      "end": null,
+      "billing": "Reggae Jam",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Living Room",
+      "start": "10:00",
+      "end": null,
+      "billing": "Freakers Corner with Tippy A GoGo & the Beach Mystic",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Rock Pit",
+      "start": "17:30",
+      "end": null,
+      "billing": "TBD",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "Labyrinth",
+      "start": "12:00",
+      "end": null,
+      "billing": "Inner Journeys Ecstatic Dance",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Village",
+      "start": "15:00",
+      "end": null,
+      "billing": "Hip Hop Showcase: Click thru for full line up",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Fractal Forest",
+      "start": "13:00",
+      "end": null,
+      "billing": "Fractal Funk Jam",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Labyrinth",
+      "start": "12:00",
+      "end": null,
+      "billing": "Giant Panda Showcase: The Mighty Party All Night Dance Adventure, The Vortex Ensemble, Wholesome Jones",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    }
+  ]
+}
