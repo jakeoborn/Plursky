@@ -2598,7 +2598,7 @@ function _weekendShiftMs(cfg, nowMs, savedIds) {
 function weekendIsUsersChoice(cfg, artists) {
   const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
   const w = c && c.weekendStartMs;
-  if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return false;
+  if (!c.untimedShortlist || !w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return false;
   const arts = artists || ((typeof _DATA_SETS !== "undefined" && _DATA_SETS[c.id]) || {}).artists || [];
   return arts.length > 0 && arts.every(a => !a.weekend || a.weekend === "both");
 }
@@ -2635,6 +2635,14 @@ function weekendDatesText(cfg, wk) {
 function lineupHasNoTimes(artists) {
   const arts = artists || (typeof window !== "undefined" && window.ARTISTS) || ARTISTS || [];
   return arts.length > 0 && arts.every(a => !a.start);
+}
+// The shortlist experience (weekend choice, Shortlist chip, text share, no
+// My night/Calendar) is OPT-IN per festival: config.untimedShortlist, and
+// only while no set time exists. Coachella 2027 opts in (SPEC-195); the open
+// lineup-only festivals keep today's lineup until they opt in themselves.
+function shortlistMode(cfg, artists) {
+  const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  return !!(c && c.untimedShortlist) && lineupHasNoTimes(artists);
 }
 
 // Which weekend is active, as a label. Null when the festival has only one.

@@ -22,7 +22,9 @@
 //      keeps an existing explicit festival; a new visitor's root is not Coachella.
 //   5. Regressions: ACL (two tagged weekends, timed), Dreamstate (untimed, one
 //      weekend) and Lights All Night (untimed, no day split) render with no
-//      page error or overflow; only untimed lineups get the shortlist note.
+//      page error or overflow and keep TODAY's lineup: "My plan", no weekend
+//      question, no shortlist note, no TBA chip, the full share menu. The
+//      shortlist is opt-in (config.untimedShortlist), Coachella only.
 //   6. Offline: a warm revisit (service worker on) reopens the lineup and the
 //      shortlist with the network off; a cold first visit offline shows no app
 //      at all, so nothing claims a data pack exists.
@@ -213,7 +215,7 @@ try {
 
   // ── 5. Regressions on festivals already open ───────────────────────────────
   console.log("▸ regressions");
-  for (const [fid, untimed, tagged] of [["acl-2026", false, true], ["dreamstate-socal-2026", true, false], ["lights-all-night-2026", true, false]]) {
+  for (const [fid, tagged] of [["acl-2026", true], ["dreamstate-socal-2026", false], ["lights-all-night-2026", false]]) {
     const ctx = await context(browser, { seed: { active_festival_id: fid, active_festival_explicit: "1" } });
     const p = await boot(ctx, `f=${fid}&tab=lineup`, fid);
     const t = await txt(p);
@@ -224,7 +226,12 @@ try {
     // The plan row (My night + Calendar, or the untimed note) shows once a save exists.
     await p.locator('button[aria-label^="Save "]').first().click(); await p.waitForTimeout(300);
     await p.click('[data-lineup-show="saved"]').catch(() => {}); await p.waitForTimeout(300);
-    ok(untimed === !!(await p.$("[data-untimed-note]")), `${fid}: shortlist note ${untimed ? "shown (no set times)" : "absent (timed)"}`);
+    const t2 = await txt(p);
+    ok(!(await p.$("[data-untimed-note]")) && /My plan/.test(t2) && !/Shortlist/.test(t2), `${fid}: unchanged plan row (My plan, no shortlist note)`);
+    const tabs = await p.$$eval('[role="tablist"][aria-label="Festival day"] button', bs => bs.map(b => b.textContent.trim()));
+    ok(tabs.length > 0 && !tabs.includes("TBA"), `${fid}: no pending-day TBA chip (${tabs.join(" | ")})`);
+    await p.click("[data-share-lineup]").catch(() => {}); await p.waitForTimeout(250);
+    ok(await p.$('button:has-text("Image for stories")') && !(await p.$('button:has-text("Share shortlist")')), `${fid}: today's share menu (Image for stories, no Share shortlist)`);
     ok(!/NaN|undefined/.test(await txt(p)), `${fid}: no NaN or undefined text`);
     await ctx.close();
   }

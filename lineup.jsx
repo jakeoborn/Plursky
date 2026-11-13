@@ -642,10 +642,13 @@ function LineupScreen({ state, setState }) {
   // come (founder call 2026-09-15: show the lineup, don't hold the festival
   // back). The screen has to SAY that — a list of acts whose every time reads
   // "—" otherwise looks like the app failed to load them.
-  const _schedTBA = (typeof isScheduleTBA === "function" && isScheduleTBA()) || lineupHasNoTimes();
+  const _schedTBA = (typeof isScheduleTBA === "function" && isScheduleTBA()) || shortlistMode();
   // Wholly untimed (no act has a set time): what the user saves is a
   // SHORTLIST, and search and the shortlist span every day.
-  const _untimed = lineupHasNoTimes();
+  const _untimed = shortlistMode();
+  // Accent folding is part of the opt-in shortlist; other lineups keep
+  // today's case-only match.
+  const _fold = _untimed ? _searchFold : (s => String(s || "").toLowerCase());
   const [filter, setFilter] = React.useState("all"); // all | saved
   const [stageFilter, setStageFilter] = React.useState("all"); // all | stage id
   const [tierFilter, setTierFilter] = React.useState("all"); // all | head | prime | open | legend
@@ -962,7 +965,7 @@ function LineupScreen({ state, setState }) {
   // act is found wherever it plays (Day TBA included) without tapping days.
   const _acrossDays = _untimed && (!!q.trim() || filter === "saved");
   const dayArtists = React.useMemo(() => {
-    const term = _searchFold(q.trim());
+    const term = _fold(q.trim());
     return lineupFor(weekendFilter)
       .filter(a => _acrossDays || a.day === day)
       .filter(a => weekendFilter === "all" || actPlaysWeekend(a, weekendFilter))
@@ -980,9 +983,9 @@ function LineupScreen({ state, setState }) {
       .filter(a => {
         if (!term) return true;
         const st = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
-        return _searchFold(a.name).includes(term)
-          || _searchFold(a.genre).includes(term)
-          || _searchFold(st?.name).includes(term);
+        return _fold(a.name).includes(term)
+          || _fold(a.genre).includes(term)
+          || _fold(st?.name).includes(term);
       })
       .sort((a, b) => {
         // Across days (untimed search or shortlist): in day order, pending last.
@@ -1014,14 +1017,14 @@ function LineupScreen({ state, setState }) {
   // user to tap all three chips to find out. Same name/genre/stage test as the
   // filter above, day deliberately ignored.
   const _otherDayHits = React.useMemo(() => {
-    const term = _searchFold(q.trim());
+    const term = _fold(q.trim());
     if (!term) return 0;
     return lineupFor(weekendFilter).filter(a => {
       if (a.day === day) return false;
       const st = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
-      return _searchFold(a.name).includes(term)
-        || _searchFold(a.genre).includes(term)
-        || _searchFold(st?.name).includes(term);
+      return _fold(a.name).includes(term)
+        || _fold(a.genre).includes(term)
+        || _fold(st?.name).includes(term);
     }).length;
   }, [q, day, weekendFilter]);
 
@@ -1031,7 +1034,7 @@ function LineupScreen({ state, setState }) {
   // counts after the toggle flipped, round 5).
   // L3: windows and kept-both pairs change clash counts on any screen.
   const attendV = useAttendVersion();
-  const _hasPendingDay = React.useMemo(() => ARTISTS.some(a => a.day == null), []);
+  const _hasPendingDay = React.useMemo(() => _untimed && ARTISTS.some(a => a.day == null), [_untimed]);
   const dayStats = React.useMemo(() => [...DAYS, ...(_hasPendingDay ? [{ n: null, label: "DAY", date: "Day TBA" }] : [])].map(d => {
     const savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     let clashes = 0;
@@ -1364,7 +1367,7 @@ function LineupScreen({ state, setState }) {
       {/* Day selector: stays on screen while the list scrolls. Per-day saved
           and clash counts ride on each day, in words for assistive tech. */}
       <div role="tablist" aria-label="Festival day" style={{
-        display: "flex", gap: dayStats.length > 3 ? 16 : 22, flexShrink: 0, flexWrap: "wrap",
+        display: "flex", gap: _hasPendingDay ? 16 : 22, flexShrink: 0, flexWrap: "wrap",
         padding: "6px 20px 8px",
       }}>
         {dayStats.map(d => {
@@ -3249,11 +3252,9 @@ function PlanShareLinkSheet({ saved, onClose }) {
 }
 
 function ShareLineupButton({ state, weekend }) {
-  const untimed = lineupHasNoTimes();
+  const untimed = shortlistMode();
   const [open, _setOpen] = React.useState(false);
-  // The menu is FIXED to the button's rect: inside the folding lineup header
-  // (overflow hidden, measured max-height) an absolute menu was clipped to
-  // the header's bottom edge.
+  // Shortlist mode anchors its portaled menu to the button's rect (below).
   const btnRef = React.useRef(null);
   const [anchor, setAnchor] = React.useState(null);
   const setOpen = (v) => _setOpen(o => {
@@ -3299,42 +3300,50 @@ function ShareLineupButton({ state, weekend }) {
           : busy ? "…" : "Share"}
       </button>
 
-      {open && ReactDOM.createPortal(
-        // Portaled to <body>: the lineup header is its own stacking context,
-        // so even a fixed menu inside it painted UNDER the list rows.
-        <>
-          <div onClick={() => setOpen(false)} style={{
-            position: "fixed", inset: 0, zIndex: 60, background: "transparent",
-          }}/>
-          <div style={{
-            // Untimed, Share is the row's FIRST action (no My night before
-            // it), so the menu opens rightward from its left edge.
-            position: "fixed", top: anchor ? anchor.top : 0,
-            ...(untimed ? { left: Math.max(8, anchor ? anchor.left : 8) } : { right: Math.max(8, anchor ? anchor.right : 8) }), zIndex: 61,
-            background: "var(--paper-2)", border: "1px solid var(--line-2)",
-            borderRadius: 14, padding: 5, minWidth: 200,
-            boxShadow: "var(--shadow-pop)",
-          }}>
-            {untimed ? (
-              <>
-                <ShareMenuItem icon="txt" label="Share shortlist" sub="Text · set times not announced" onClick={wrap("shared", (s) => shareShortlistText(s, weekend))} />
-                <ShareMenuItem icon="cal" label="Add to calendar" sub="Opens when set times are announced" disabled />
-                <ShareMenuItem icon="prn" label="Print schedule"  sub="Opens when set times are announced" disabled />
-              </>
-            ) : (
-              <>
-            <ShareMenuItem icon="img"  label="Image for stories" sub="1080×1920 PNG" onClick={wrap("image", shareLineupImage)} />
-            <ShareMenuItem icon="cal"  label="Add to calendar"   sub=".ics with 15-min reminders" onClick={wrap("cal", exportLineupICS)} />
-            <ShareMenuItem icon="prn"  label="Print schedule"    sub="Save as PDF from print dialog" onClick={wrap("pdf", async (s) => printLineupPDF(s))} />
-            <ShareMenuItem icon="txt"  label="Copy as text"      sub="Paste anywhere" onClick={wrap("txt", copyScheduleText)} />
-              </>
-            )}
-            {PLAN_SHARE_LINK_ON && (
-              <ShareMenuItem icon="lnk" label="Share as a link" sub="Preview what a link shows" onClick={() => { setOpen(false); setLinkOpen(true); }} />
-            )}
-          </div>
-        </>, document.body
-      )}
+      {open && (() => {
+        const menu = (
+          <>
+            <div onClick={() => setOpen(false)} style={{
+              position: "fixed", inset: 0, zIndex: 60, background: "transparent",
+            }}/>
+            <div style={untimed ? {
+              // Shortlist: portaled to <body> and FIXED to the button's rect.
+              // Inside the folding lineup header (overflow hidden, its own
+              // stacking context) an absolute menu was clipped and the list
+              // rows painted over it. Share is the row's first action here,
+              // so the menu opens rightward from its left edge.
+              position: "fixed", top: anchor ? anchor.top : 0, left: Math.max(8, anchor ? anchor.left : 8), zIndex: 61,
+              background: "var(--paper-2)", border: "1px solid var(--line-2)",
+              borderRadius: 14, padding: 5, minWidth: 200,
+              boxShadow: "var(--shadow-pop)",
+            } : {
+              position: "absolute", right: 0, top: "calc(100% + 6px)", zIndex: 61,
+              background: "var(--paper-2)", border: "1px solid var(--line-2)",
+              borderRadius: 14, padding: 5, minWidth: 200,
+              boxShadow: "var(--shadow-pop)",
+            }}>
+              {untimed ? (
+                <>
+                  <ShareMenuItem icon="txt" label="Share shortlist" sub="Text · set times not announced" onClick={wrap("shared", (s) => shareShortlistText(s, weekend))} />
+                  <ShareMenuItem icon="cal" label="Add to calendar" sub="Opens when set times are announced" disabled />
+                  <ShareMenuItem icon="prn" label="Print schedule"  sub="Opens when set times are announced" disabled />
+                </>
+              ) : (
+                <>
+                  <ShareMenuItem icon="img"  label="Image for stories" sub="1080×1920 PNG" onClick={wrap("image", shareLineupImage)} />
+                  <ShareMenuItem icon="cal"  label="Add to calendar"   sub=".ics with 15-min reminders" onClick={wrap("cal", exportLineupICS)} />
+                  <ShareMenuItem icon="prn"  label="Print schedule"    sub="Save as PDF from print dialog" onClick={wrap("pdf", async (s) => printLineupPDF(s))} />
+                  <ShareMenuItem icon="txt"  label="Copy as text"      sub="Paste anywhere" onClick={wrap("txt", copyScheduleText)} />
+                </>
+              )}
+              {PLAN_SHARE_LINK_ON && (
+                <ShareMenuItem icon="lnk" label="Share as a link" sub="Preview what a link shows" onClick={() => { setOpen(false); setLinkOpen(true); }} />
+              )}
+            </div>
+          </>
+        );
+        return untimed ? ReactDOM.createPortal(menu, document.body) : menu;
+      })()}
       {PLAN_SHARE_LINK_ON && linkOpen && (
         <PlanShareLinkSheet saved={savedInLineup(state.saved)} onClose={() => setLinkOpen(false)} />
       )}
@@ -3396,7 +3405,7 @@ function toggleSave(state, setState, id) {
     const isFirstSave = !has && savedInLineup(state.saved).length === 0;
     const isMilestone = !has && [5, 10, 15, 20].includes(liveNext);
     // Before set times exist a save is an ARTIST on a shortlist, not a set.
-    const unit = lineupHasNoTimes() ? "ARTIST" : "SET";
+    const unit = shortlistMode() ? "ARTIST" : "SET";
     const msg = has ? `REMOVED · ${label}`
       : isFirstSave ? `✦ FIRST ${unit} SAVED · ${label} · LET'S GO`
       : isMilestone ? `✦ ${liveNext} ${unit}S · ${label} · LINEUP GROWING`
