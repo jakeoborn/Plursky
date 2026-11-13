@@ -3180,6 +3180,22 @@ for (const [label, file] of [
   }
 }
 
+// ── Coachella 2027: the official roster, and nothing the source doesn't say ──
+// 155 billings from coachella.com's lineup widget, days confirmed by its public
+// BY DAY view, no time/stage/sun/gps, two PDT weekends with Apr 12-15 never
+// live, one id across both weekends, gated; 10 mutations must each go red.
+{
+  console.log("▸ Coachella 2027 — 155 official billings, no placeholder times, two weekends, gated");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-coachella-2027.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Coachella 2027 gate failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Escape Halloween 2026: the official set times, as shipped ────────────
 // 118 sets on 7 stages (Fri 58, Sat 60) from escapehalloween.com's per-day
 // set-times pages; every set's instant in PDT, the 02:00 close on the

@@ -1445,41 +1445,6 @@ var FESTIVALS_REGISTRY = [{
   region: "North America"
 }, {
   config: {
-    id: "coachella-2027",
-    officialEvent: {
-      website: "https://www.coachella.com/",
-      observedAt: "2026-09-24"
-    },
-    mapSource: {
-      url: "https://www.coachella.com/maps",
-      observedAt: "2026-09-24",
-      mapYear: 2026
-    },
-    name: "Coachella 2027",
-    shortName: "Coachella",
-    brand: "Coachella",
-    tagline: "Two weekends, one polo field",
-    location: "Empire Polo Club · Indio, CA",
-    dates: "Apr 9–18, 2027",
-    year: 2027,
-    print: {
-      accent: "#4E6234",
-      accent2: "#44A1A4",
-      source: {
-        url: "https://media.coachella.com/templates/template10c/css/style.v7.css?t=7522fab35e14c254d8ced93290f5922c",
-        observedAt: "2026-10-09",
-        seenAs: "Site stylesheet token `html { --color-green-2:#4e6234 }`; the default `.c-button` background is an image, `--_button-bg:url(.../coachella-2026/button-bg-green.webp)`, whose sampled mean colour is #496330 (modal bucket #405828), matching that token; page headers use a teal gradient #337190 -> #44a1a4 -> #85cfc4 and link hover is `--color-yellow-1:#ffab37`.",
-        confidence: "medium"
-      },
-      note: "No <meta theme-color> and the 2026 site spreads a 20-colour palette across gradients, so the primary button's olive green is the accent, identified by sampling the button image (sips -> BMP, 27,078 opaque pixels) and matching it to the nearest first-party token."
-    }
-  },
-  available: false,
-  accent: "#ec4899",
-  emoji: "🌵",
-  region: "North America"
-}, {
-  config: {
     id: "edc-mexico-2027",
     name: "EDC Mexico 2027",
     shortName: "EDC Mexico",
@@ -4344,7 +4309,7 @@ var UNPLACED_STAGE = {
   color: "#8a8580",
   size: 1
 };
-var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026", "tomorrowland-thailand-2026", "groove-cruise-2027", "day-zero-tulum-2027"];
+var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026", "tomorrowland-thailand-2026", "groove-cruise-2027", "day-zero-tulum-2027", "coachella-2027"];
 var _WAVE1 = typeof window !== "undefined" && window.PLURSKY_FESTIVALS || {};
 for (var _id of _WAVE1_IDS) {
   var _f = _WAVE1[_id];

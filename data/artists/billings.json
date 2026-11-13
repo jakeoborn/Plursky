@@ -77020,6 +77020,3728 @@
   "mainStage": null
  },
  {
+  "id": "coachella-2027:coa27-american-football",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "American Football",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "american-football",
+    "role": "performer"
+   }
+  ],
+  "act": "american-football",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-angine-de-poitrine",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Angine De Poitrine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angine-de-poitrine",
+    "role": "performer"
+   }
+  ],
+  "act": "angine-de-poitrine",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-atarashii-gakko",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ATARASHII GAKKO!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "atarashii-gakko",
+    "role": "performer"
+   }
+  ],
+  "act": "atarashii-gakko",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-bea-miller",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bea Miller",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bea-miller",
+    "role": "performer"
+   }
+  ],
+  "act": "bea-miller",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-bella-kay",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bella Kay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bella-kay",
+    "role": "performer"
+   }
+  ],
+  "act": "bella-kay",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-chris-stassy-presents-linger-av",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CHRIS STASSY presents LINGER AV",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "linger-av",
+    "role": "project"
+   }
+  ],
+  "act": "chris-stassy-presents-linger-av",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-close-friends-only",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Close Friends Only",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "close-friends-only",
+    "role": "performer"
+   }
+  ],
+  "act": "close-friends-only",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-daddy-yankee",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Daddy Yankee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daddy-yankee",
+    "role": "performer"
+   }
+  ],
+  "act": "daddy-yankee",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-diljit-dosanjh",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Diljit Dosanjh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "diljit-dosanjh",
+    "role": "performer"
+   }
+  ],
+  "act": "diljit-dosanjh",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-disco-dom",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Disco Dom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disco-dom",
+    "role": "performer"
+   }
+  ],
+  "act": "disco-dom",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-drain-gang",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Drain Gang",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "drain-gang",
+    "role": "performer"
+   }
+  ],
+  "act": "drain-gang",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-dua-lipa",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dua Lipa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dua-lipa",
+    "role": "performer"
+   }
+  ],
+  "act": "dua-lipa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-eli",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Eli",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eli",
+    "role": "performer"
+   }
+  ],
+  "act": "eli",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-fetty-wap",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Fetty Wap",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fetty-wap",
+    "role": "performer"
+   }
+  ],
+  "act": "fetty-wap",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-franky-rizardo",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Franky Rizardo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "franky-rizardo",
+    "role": "performer"
+   }
+  ],
+  "act": "franky-rizardo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-gang-of-youths",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Gang of Youths",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gang-of-youths",
+    "role": "performer"
+   }
+  ],
+  "act": "gang-of-youths",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-giorgio-moroder",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Giorgio Moroder",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giorgio-moroder",
+    "role": "performer"
+   }
+  ],
+  "act": "giorgio-moroder",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-haute-and-freddy",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Haute & Freddy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "haute-and-freddy",
+    "role": "performer"
+   }
+  ],
+  "act": "haute-and-freddy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-jackie-hollander",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jackie Hollander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jackie-hollander",
+    "role": "performer"
+   }
+  ],
+  "act": "jackie-hollander",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-jacob-lusk",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jacob Lusk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jacob-lusk",
+    "role": "performer"
+   }
+  ],
+  "act": "jacob-lusk",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-jamback-x-marsolo",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jamback x Marsolo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamback-x-marsolo",
+    "role": "collab"
+   }
+  ],
+  "act": "jamback-x-marsolo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-jisoo",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JISOO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jisoo",
+    "role": "performer"
+   }
+  ],
+  "act": "jisoo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-kehlani",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kehlani",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kehlani",
+    "role": "performer"
+   }
+  ],
+  "act": "kehlani",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-kelela",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kelela",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kelela",
+    "role": "performer"
+   }
+  ],
+  "act": "kelela",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-la-dispute",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "La Dispute",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-dispute",
+    "role": "performer"
+   }
+  ],
+  "act": "la-dispute",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-las-petunias",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Las Petunias",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "las-petunias",
+    "role": "performer"
+   }
+  ],
+  "act": "las-petunias",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-leenalchi",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LEENALCHI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leenalchi",
+    "role": "performer"
+   }
+  ],
+  "act": "leenalchi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-leon-thomas",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Leon Thomas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leon-thomas",
+    "role": "performer"
+   }
+  ],
+  "act": "leon-thomas",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-love-spells",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Love Spells",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "love-spells",
+    "role": "performer"
+   }
+  ],
+  "act": "love-spells",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-madonna",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Madonna",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madonna",
+    "role": "performer"
+   }
+  ],
+  "act": "madonna",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-mary-in-the-junkyard",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "mary in the junkyard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mary-in-the-junkyard",
+    "role": "performer"
+   }
+  ],
+  "act": "mary-in-the-junkyard",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-mike-d-5d",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mike D 5D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mike-d-5d",
+    "role": "performer"
+   }
+  ],
+  "act": "mike-d-5d",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-milo-j",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Milo J",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "milo-j",
+    "role": "performer"
+   }
+  ],
+  "act": "milo-j",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-mph",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MPH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mph",
+    "role": "performer"
+   }
+  ],
+  "act": "mph",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-nettspend",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Nettspend",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nettspend",
+    "role": "performer"
+   }
+  ],
+  "act": "nettspend",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-nirosta-steel",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Nirosta Steel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nirosta-steel",
+    "role": "performer"
+   }
+  ],
+  "act": "nirosta-steel",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-obskur",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Obskür",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "obskur",
+    "role": "performer"
+   }
+  ],
+  "act": "obskur",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-peggy-gou",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Peggy Gou",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peggy-gou",
+    "role": "performer"
+   }
+  ],
+  "act": "peggy-gou",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-pinegrove",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Pinegrove",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pinegrove",
+    "role": "performer"
+   }
+  ],
+  "act": "pinegrove",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-rafael",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Rafael",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rafael",
+    "role": "performer"
+   }
+  ],
+  "act": "rafael",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-ragie-ban",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ragie Ban",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ragie-ban",
+    "role": "performer"
+   }
+  ],
+  "act": "ragie-ban",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-sg-lewis",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SG Lewis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sg-lewis",
+    "role": "performer"
+   }
+  ],
+  "act": "sg-lewis",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-snow-strippers",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Snow Strippers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snow-strippers",
+    "role": "performer"
+   }
+  ],
+  "act": "snow-strippers",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-social-distortion",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Social Distortion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "social-distortion",
+    "role": "performer"
+   }
+  ],
+  "act": "social-distortion",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-solid-grooves",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Solid Grooves",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "solid-grooves",
+    "role": "performer"
+   }
+  ],
+  "act": "solid-grooves",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-steve-lacy",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Steve Lacy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steve-lacy",
+    "role": "performer"
+   }
+  ],
+  "act": "steve-lacy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-the-damned",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Damned",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-damned",
+    "role": "performer"
+   }
+  ],
+  "act": "the-damned",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-the-hellp",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Hellp",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-hellp",
+    "role": "performer"
+   }
+  ],
+  "act": "the-hellp",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-the-womack-sisters",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Womack Sisters",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-womack-sisters",
+    "role": "performer"
+   }
+  ],
+  "act": "the-womack-sisters",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-this-is-lorelei",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "This Is Lorelei",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "this-is-lorelei",
+    "role": "performer"
+   }
+  ],
+  "act": "this-is-lorelei",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-vintage-culture",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Vintage Culture",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vintage-culture",
+    "role": "performer"
+   }
+  ],
+  "act": "vintage-culture",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-violet-grohl",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Violet Grohl",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "violet-grohl",
+    "role": "performer"
+   }
+  ],
+  "act": "violet-grohl",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-xaviersobased",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "xaviersobased",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xaviersobased",
+    "role": "performer"
+   }
+  ],
+  "act": "xaviersobased",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-zara-larsson",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-09",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Zara Larsson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zara-larsson",
+    "role": "performer"
+   }
+  ],
+  "act": "zara-larsson",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-adela",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ADÉLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adela",
+    "role": "performer"
+   }
+  ],
+  "act": "adela",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-apollonia",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Apollonia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "apollonia",
+    "role": "performer"
+   }
+  ],
+  "act": "apollonia",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-bad-gyal",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bad Gyal",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bad-gyal",
+    "role": "performer"
+   }
+  ],
+  "act": "bad-gyal",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-barry-cant-swim",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Barry Can't Swim",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "barry-can-t-swim",
+    "role": "performer"
+   }
+  ],
+  "act": "barry-can-t-swim",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-basement",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Basement",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "basement",
+    "role": "performer"
+   }
+  ],
+  "act": "basement",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-bassvictim",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bassvictim",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassvictim",
+    "role": "performer"
+   }
+  ],
+  "act": "bassvictim",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-beltran",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Beltran",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beltran",
+    "role": "performer"
+   }
+  ],
+  "act": "beltran",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-boy-harsher",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Boy Harsher",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boy-harsher",
+    "role": "performer"
+   }
+  ],
+  "act": "boy-harsher",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-brutalismus-3000",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Brutalismus 3000",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brutalismus-3000",
+    "role": "performer"
+   }
+  ],
+  "act": "brutalismus-3000",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-charlotte-de-witte",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Charlotte de Witte",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charlotte-de-witte",
+    "role": "performer"
+   }
+  ],
+  "act": "charlotte-de-witte",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-cloonee",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cloonee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cloonee",
+    "role": "performer"
+   }
+  ],
+  "act": "cloonee",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-dream-boat",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dream Boat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dream-boat",
+    "role": "performer"
+   }
+  ],
+  "act": "dream-boat",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-ear",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ear",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ear",
+    "role": "performer"
+   }
+  ],
+  "act": "ear",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-enigma",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Enigma",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "enigma",
+    "role": "performer"
+   }
+  ],
+  "act": "enigma",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-first-day-back",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "First Day Back",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "first-day-back",
+    "role": "performer"
+   }
+  ],
+  "act": "first-day-back",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-getdown-services",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Getdown Services",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "getdown-services",
+    "role": "performer"
+   }
+  ],
+  "act": "getdown-services",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-good-neighbours",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Good Neighbours",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "good-neighbours",
+    "role": "performer"
+   }
+  ],
+  "act": "good-neighbours",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-jimi-jules",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jimi Jules",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jimi-jules",
+    "role": "performer"
+   }
+  ],
+  "act": "jimi-jules",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-ki-ki",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "KI/KI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ki-ki",
+    "role": "performer"
+   }
+  ],
+  "act": "ki-ki",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-kolter-x-sidney-charles",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kolter x Sidney Charles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kolter-x-sidney-charles",
+    "role": "act"
+   }
+  ],
+  "act": "kolter-x-sidney-charles",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "coachella-2027:coa27-la-texana",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "La Texana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-texana",
+    "role": "performer"
+   }
+  ],
+  "act": "la-texana",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-leon-bridges",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Leon Bridges",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leon-bridges",
+    "role": "performer"
+   }
+  ],
+  "act": "leon-bridges",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-los-pibes-chorros",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Los Pibes Chorros",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-pibes-chorros",
+    "role": "performer"
+   }
+  ],
+  "act": "los-pibes-chorros",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-lusid",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LuSiD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lusid",
+    "role": "performer"
+   }
+  ],
+  "act": "lusid",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-magdalena-bay",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Magdalena Bay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "magdalena-bay",
+    "role": "performer"
+   }
+  ],
+  "act": "magdalena-bay",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-mariah-the-scientist",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mariah the Scientist",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mariah-the-scientist",
+    "role": "performer"
+   }
+  ],
+  "act": "mariah-the-scientist",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-martin-garrix",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Martin Garrix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "martin-garrix",
+    "role": "performer"
+   }
+  ],
+  "act": "martin-garrix",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-mathame",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mathame",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mathame",
+    "role": "performer"
+   }
+  ],
+  "act": "mathame",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-murda-beatz",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Murda Beatz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "murda-beatz",
+    "role": "performer"
+   }
+  ],
+  "act": "murda-beatz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-maneskin",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Måneskin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maneskin",
+    "role": "performer"
+   }
+  ],
+  "act": "maneskin",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-nct",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NCT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nct",
+    "role": "performer"
+   }
+  ],
+  "act": "nct",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-no-na",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "no na",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "no-na",
+    "role": "performer"
+   }
+  ],
+  "act": "no-na",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-odeal",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Odeal",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odeal",
+    "role": "performer"
+   }
+  ],
+  "act": "odeal",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-omri",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "OMRI.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omri",
+    "role": "performer"
+   }
+  ],
+  "act": "omri",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-phoebe-bridgers",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Phoebe Bridgers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phoebe-bridgers",
+    "role": "performer"
+   }
+  ],
+  "act": "phoebe-bridgers",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-robyn",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Robyn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "robyn",
+    "role": "performer"
+   }
+  ],
+  "act": "robyn",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-role-model",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Role Model",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "role-model",
+    "role": "performer"
+   }
+  ],
+  "act": "role-model",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-rommulas",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "rommulas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rommulas",
+    "role": "performer"
+   }
+  ],
+  "act": "rommulas",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-sb19",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SB19",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sb19",
+    "role": "performer"
+   }
+  ],
+  "act": "sb19",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-solomun",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Solomun",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "solomun",
+    "role": "performer"
+   }
+  ],
+  "act": "solomun",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-tame-impala",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tame Impala",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tame-impala",
+    "role": "performer"
+   }
+  ],
+  "act": "tame-impala",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-tiffany-day",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tiffany Day",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiffany-day",
+    "role": "performer"
+   }
+  ],
+  "act": "tiffany-day",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-tiesto",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tiësto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiesto",
+    "role": "performer"
+   }
+  ],
+  "act": "tiesto",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-twin-tribes",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Twin Tribes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "twin-tribes",
+    "role": "performer"
+   }
+  ],
+  "act": "twin-tribes",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-twisted-teens",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Twisted Teens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "twisted-teens",
+    "role": "performer"
+   }
+  ],
+  "act": "twisted-teens",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-underscores",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "underscores",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "underscores",
+    "role": "performer"
+   }
+  ],
+  "act": "underscores",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-underworld",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Underworld",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "underworld",
+    "role": "performer"
+   }
+  ],
+  "act": "underworld",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-vandelux",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Vandelux",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vandelux",
+    "role": "performer"
+   }
+  ],
+  "act": "vandelux",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-villanelle",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Villanelle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "villanelle",
+    "role": "performer"
+   }
+  ],
+  "act": "villanelle",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-volkoder",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Volkoder",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "volkoder",
+    "role": "performer"
+   }
+  ],
+  "act": "volkoder",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-weezer",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Weezer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "weezer",
+    "role": "performer"
+   }
+  ],
+  "act": "weezer",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-zimmer90",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-10",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Zimmer90",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zimmer90",
+    "role": "performer"
+   }
+  ],
+  "act": "zimmer90",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-adam-ten",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Adam Ten",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-ten",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-ten",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-after",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "After",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "after",
+    "role": "performer"
+   }
+  ],
+  "act": "after",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-akriila",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "AKRIILA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "akriila",
+    "role": "performer"
+   }
+  ],
+  "act": "akriila",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-amelie-lens-x-sara-landry",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Amelie Lens x Sara Landry",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amelie-lens-x-sara-landry",
+    "role": "collab"
+   }
+  ],
+  "act": "amelie-lens-x-sara-landry",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-ayra-starr",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ayra Starr",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ayra-starr",
+    "role": "performer"
+   }
+  ],
+  "act": "ayra-starr",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-babymonster",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BABYMONSTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "babymonster",
+    "role": "performer"
+   }
+  ],
+  "act": "babymonster",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-becky-g",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Becky G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "becky-g",
+    "role": "performer"
+   }
+  ],
+  "act": "becky-g",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-bolo",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BOLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bolo",
+    "role": "performer"
+   }
+  ],
+  "act": "bolo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-boris-brejcha",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Boris Brejcha",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boris-brejcha",
+    "role": "performer"
+   }
+  ],
+  "act": "boris-brejcha",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-caroline-polachek",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Caroline Polachek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "caroline-polachek",
+    "role": "performer"
+   }
+  ],
+  "act": "caroline-polachek",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-chanel-beads",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Chanel Beads",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chanel-beads",
+    "role": "performer"
+   }
+  ],
+  "act": "chanel-beads",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-chase-and-status",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Chase & Status",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chase-and-status",
+    "role": "performer"
+   }
+  ],
+  "act": "chase-and-status",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-chasewest",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ChaseWest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chasewest",
+    "role": "performer"
+   }
+  ],
+  "act": "chasewest",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-dinner-party",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dinner Party",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dinner-party",
+    "role": "performer"
+   }
+  ],
+  "act": "dinner-party",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-dj-habibeats",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Habibeats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-habibeats",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-habibeats",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-dom-dolla",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DOM DOLLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dom-dolla",
+    "role": "performer"
+   }
+  ],
+  "act": "dom-dolla",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-don-toliver",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Don Toliver",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "don-toliver",
+    "role": "performer"
+   }
+  ],
+  "act": "don-toliver",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-empire-of-the-sun",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Empire of the Sun",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "empire-of-the-sun",
+    "role": "performer"
+   }
+  ],
+  "act": "empire-of-the-sun",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-esdeekid",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "EsDeeKid",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "esdeekid",
+    "role": "performer"
+   }
+  ],
+  "act": "esdeekid",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-fat-dog",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Fat Dog",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fat-dog",
+    "role": "performer"
+   }
+  ],
+  "act": "fat-dog",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-florence-road",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Florence Road",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "florence-road",
+    "role": "performer"
+   }
+  ],
+  "act": "florence-road",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-four-tet",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Four Tet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "four-tet",
+    "role": "performer"
+   }
+  ],
+  "act": "four-tet",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-freddie-gibbs",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Freddie Gibbs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freddie-gibbs",
+    "role": "performer"
+   }
+  ],
+  "act": "freddie-gibbs",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-genesis-owusu",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Genesis Owusu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "genesis-owusu",
+    "role": "performer"
+   }
+  ],
+  "act": "genesis-owusu",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-jazzy",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jazzy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jazzy",
+    "role": "performer"
+   }
+  ],
+  "act": "jazzy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-jorja-smith",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jorja Smith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jorja-smith",
+    "role": "performer"
+   }
+  ],
+  "act": "jorja-smith",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-joshua-slone",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Joshua Slone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joshua-slone",
+    "role": "performer"
+   }
+  ],
+  "act": "joshua-slone",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-julia-wolf",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Julia Wolf",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julia-wolf",
+    "role": "performer"
+   }
+  ],
+  "act": "julia-wolf",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-klave-efectiva",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Klave Efectiva",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "klave-efectiva",
+    "role": "performer"
+   }
+  ],
+  "act": "klave-efectiva",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-kygo",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kygo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kygo",
+    "role": "performer"
+   }
+  ],
+  "act": "kygo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-lambrini-girls",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lambrini Girls",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lambrini-girls",
+    "role": "performer"
+   }
+  ],
+  "act": "lambrini-girls",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-marten-lou-x-alex-wann",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Marten Lou x Alex Wann",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marten-lou-x-alex-wann",
+    "role": "act"
+   }
+  ],
+  "act": "marten-lou-x-alex-wann",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "coachella-2027:coa27-muna",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MUNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muna",
+    "role": "performer"
+   }
+  ],
+  "act": "muna",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-odd-mob",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Odd Mob",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odd-mob",
+    "role": "performer"
+   }
+  ],
+  "act": "odd-mob",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-omar",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Omar+",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omar",
+    "role": "performer"
+   }
+  ],
+  "act": "omar",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-pennywise",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Pennywise",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pennywise",
+    "role": "performer"
+   }
+  ],
+  "act": "pennywise",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-remi-wolf",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Remi Wolf",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "remi-wolf",
+    "role": "performer"
+   }
+  ],
+  "act": "remi-wolf",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-shygirl",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Shygirl",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shygirl",
+    "role": "performer"
+   }
+  ],
+  "act": "shygirl",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-silva-bumpa",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Silva Bumpa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "silva-bumpa",
+    "role": "performer"
+   }
+  ],
+  "act": "silva-bumpa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-sza",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sza",
+    "role": "performer"
+   }
+  ],
+  "act": "sza",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-talon",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Talón",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "talon",
+    "role": "performer"
+   }
+  ],
+  "act": "talon",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-the-avalanches",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Avalanches",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-avalanches",
+    "role": "performer"
+   }
+  ],
+  "act": "the-avalanches",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-the-mainliners",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Mainliners",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-mainliners",
+    "role": "performer"
+   }
+  ],
+  "act": "the-mainliners",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-the-neighbourhood",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Neighbourhood",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-neighbourhood",
+    "role": "performer"
+   }
+  ],
+  "act": "the-neighbourhood",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-tove-lo",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tove Lo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tove-lo",
+    "role": "performer"
+   }
+  ],
+  "act": "tove-lo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-tul8te",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "TUL8TE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tul8te",
+    "role": "performer"
+   }
+  ],
+  "act": "tul8te",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-victoria-monet",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Victoria Monét",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "victoria-monet",
+    "role": "performer"
+   }
+  ],
+  "act": "victoria-monet",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-zack-fox",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": "2027-04-11",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Zack Fox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zack-fox",
+    "role": "performer"
+   }
+  ],
+  "act": "zack-fox",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2027:coa27-jakob-nowell-and-the-castle",
+  "source": "live",
+  "festivalId": "coachella-2027",
+  "festivalBrand": "coachella",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jakob Nowell and THE CASTLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jakob-nowell-and-the-castle",
+    "role": "performer"
+   }
+  ],
+  "act": "jakob-nowell-and-the-castle",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "acl-2013:d1:amd:1200:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2013",

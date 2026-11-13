@@ -58,6 +58,7 @@ const LOCAL = [
   `./data/festivals/tomorrowland-thailand-2026.js?v=${APP_VER}`,
   `./data/festivals/groove-cruise-2027.js?v=${APP_VER}`,
   `./data/festivals/day-zero-tulum-2027.js?v=${APP_VER}`,
+  `./data/festivals/coachella-2027.js?v=${APP_VER}`,
   // Licensed artist-photo ledger runtime (data/artist-photos/ledger.json → build-artist-photo-ledger.mjs).
   `./data/artist-photos.js?v=${APP_VER}`,
   // One artist key for the photo lookup and the registry (artist repository M3).
