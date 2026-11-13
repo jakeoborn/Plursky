@@ -41,13 +41,15 @@ import { parseAclSchedule } from "./acl-schedule.mjs";
 import { parseTomorrowland } from "./tml-schedule.mjs";
 import { parseElectricForest } from "./ef-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./coachella-lineup.mjs";
+import { parseShambhala } from "./shambhala-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
 // Pages that print a set with a start and no end: Electric Forest's grid
 // ("2:15am - Close"), Coachella's lineup cards and 2012 overlays (no end
-// times at all) and Coachella 2017's lineup data (a few sets without an end).
-const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards", "coachella-data", "coachella-overlays"]);
+// times at all), Coachella 2017's lineup data (a few sets without an end) and
+// Shambhala's schedule tables (a start under each block, no end).
+const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards", "coachella-data", "coachella-overlays", "shambhala-table"]);
 
 const rowKey = r => [r.day, r.stage, r.start, r.end, r.artist].join("|");
 
@@ -346,6 +348,34 @@ export async function importGather(id, dir) {
             ...(d.duplicates && { duplicateSets: d.duplicates }), ...(d.respelled && { respelled: d.respelled }) });
         }
         if (page.unscheduled.length) unscheduledLedger.push({ archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp, acts: page.unscheduled });
+      } else if (s.format === "shambhala-table") {
+        // One page prints every day as its own table (shambhala-schedule.mjs).
+        // Every day it prints is the edition's and is cited. A set is
+        // open-ended exactly when its billing prints no range of its own; a
+        // set in a table's last row (the next day's first row printed again)
+        // must be an excluded duplicate row of that day, one for one.
+        const page = parseShambhala(cap.text, { year: ed.year });
+        const dayOf = date => ed.dates.findIndex(([d]) => d === date) + 1;
+        const printedDays = page.days.map(d => dayOf(d.date));
+        if (printedDays.some(d => d < 1)) throw new Error(`${s.url} @${s.captureTimestamp}: prints a day that is not the edition's (${page.days.map(d => d.date).join(", ")})`);
+        if (printedDays.join() !== days.join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints days ${printedDays.join(",")}, the sheet cites it for ${days.join(",")}`);
+        const ok = (d, x) => [d, x.stage, x.start, x.artist].join("|");
+        const pgOpen = page.days.flatMap(d => d.sets.filter(x => x.openEnd).map(x => ok(dayOf(d.date), x))).sort().join("\n");
+        const shOpen = got.filter(r => r.openEnd === "1").map(r => ok(r.day, r)).sort().join("\n");
+        if (pgOpen !== shOpen) throw new Error(`${s.url} @${s.captureTimestamp}: the open-ended rows are not the sets whose billing prints no range`);
+        for (const d of page.days) {
+          const day = dayOf(d.date);
+          if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day}'s tab prints "${d.label}", the receipt says "${s.printed[day]}"`);
+          const k = x => [x.stage, x.start, x.artist ?? x.billing].join("|");
+          const pg = d.overlap.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x.duplicate).map(k).sort().join("\n");
+          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${d.overlap.length} set(s) in its repeated last row, the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+          agree(day, d.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          const ranged = d.sets.filter(x => x.printedRange);
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { firstSlot: d.firstSlot, stages: d.stages.length, axis: d.axis, slots: d.slots,
+            openEnded: d.sets.filter(x => x.openEnd).length, ...(ranged.length && { printedRanges: ranged.map(x => `${x.artist}: ${x.printedRange}`) }),
+            ...(d.joined.length && { joined: d.joined.map(x => `${x.joinedTo} + "${x.artist}"`) }),
+            ...(d.closed && { closedBlocks: d.closed }), ...(d.overlap.length && { repeatedNextDaySets: d.overlap.length }) });
+        }
       } else if (s.format === "day-tabs") {
         // Every day is on the page; each day's rows must equal its own pane.
         const panes = parseDayTabs(cap.text);
