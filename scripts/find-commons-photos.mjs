@@ -21,7 +21,14 @@
 //      run's spot check), and a fictional character can be a "singer";
 //   3. exactly ONE search result clears 1 and 2. Two is ambiguous: skipped;
 //   4. it has an image, the Commons file's license maps onto the ledger's
-//      allow-list, and its author credit fits the 32-character credit line.
+//      allow-list, and its author credit fits the 32-character credit line;
+//   5. the Commons file page carries no permission, deletion or dispute flag
+//      (commonsFlag below): an open deletion request, "no permission since",
+//      a copyright-violation or no-source/no-license tag, or a crop extracted
+//      from a file Commons has deleted. The license field can read clean while
+//      the page says the file is going away (#419, Nov 2026: Gallant, R3hab,
+//      Fujii Kaze, KATSEYE; Evan Giia was dropped by ruling, not by a flag). --recheck drops any ledger row whose
+//      file has picked up a flag since, hand-reviewed rows included.
 // Each row records the Wikidata item it came from, so any match can be
 // re-checked by hand, and the run report lists every skip and its reason.
 //
@@ -95,6 +102,60 @@ export function mapLicense(shortName) {
   const id = LICENSE_MAP.get(k);
   return id ? { license: id, licenseUrl: LICENSE_URL[id] } : null;
 }
+
+// Rule 5. A Commons file page's own flags, read from its templates and
+// categories (the API's prop=templates|categories). Templates are what an
+// editor places; the categories they add are the fallback. Returns
+// { reason, detail } for a flagged page, null for a clean one. Matched against
+// the live pages of the five #419 files (Nov 2026), not guessed.
+const FLAG_TEMPLATES = [
+  [/^Template:(Delete|Deletion template tag|Speedy ?delete|SD|Speedydelete)$/i, 'commons-deletion-request'],
+  [/^Template:(No permission since|Permission pending|OTRS pending|Wait for permission)$/i, 'commons-missing-permission'],
+  [/^Template:(Copyvio|Copyright violation|Dw no source since|Derivative work)$/i, 'commons-copyright-dispute'],
+  [/^Template:(Disputed|Dispute|Disputed license|License dispute)$/i, 'commons-copyright-dispute'],
+  [/^Template:(No source since|No license since|No license|No source)$/i, 'commons-no-source-or-license'],
+  [/^Template:Extracted from deleted$/i, 'commons-source-deleted'],
+];
+const FLAG_CATEGORIES = [
+  [/^Category:Deletion requests\b|^Category:Candidates for speedy deletion|^Category:Other speedy deletions/i, 'commons-deletion-request'],
+  [/^Category:(All )?Media missing permission|^Category:Items with OTRS permission pending|^Category:Items with VRT permission pending/i, 'commons-missing-permission'],
+  [/^Category:(Copyright violations|Possible copyright violations|Disputed|Media with disputed)/i, 'commons-copyright-dispute'],
+  [/^Category:(All )?Media without a (source|license)|^Category:Images without (source|license)/i, 'commons-no-source-or-license'],
+  // NOT "Files with broken file links": that category only says the page links
+  // a missing file, which can be a deleted copy made FROM it (Gesaffelstein's
+  // crop) or a stray link (Evan Giia's "TestPhoto2.jpg"). A deleted SOURCE is
+  // the "Extracted from deleted" template above.
+];
+export function commonsFlag(page) {
+  if (!page) return null;
+  if (page.missing !== undefined) return { reason: 'commons-file-missing', detail: page.title || '' };
+  for (const t of page.templates || []) for (const [re, reason] of FLAG_TEMPLATES) if (re.test(t.title)) return { reason, detail: t.title };
+  for (const c of page.categories || []) for (const [re, reason] of FLAG_CATEGORIES) if (re.test(c.title)) return { reason, detail: c.title };
+  return null;
+}
+// Templates and categories for up to 50 file titles per request, following
+// the API's continuation (one busy page can spill the 500-row limit).
+async function flagPages(titles) {
+  const out = new Map();
+  for (let i = 0; i < titles.length; i += 50) {
+    let cont = {};
+    for (let n = 0; n < 20; n++) {
+      const j = await api(COMMONS, { action: 'query', titles: titles.slice(i, i + 50).join('|'), prop: 'templates|categories', tllimit: 'max', cllimit: 'max', ...cont });
+      const norm = new Map((j.query?.normalized || []).map(x => [x.to, x.from]));
+      for (const p of Object.values(j.query?.pages || {})) {
+        const key = (norm.get(p.title) || p.title).replace(/^File:/, '').replace(/_/g, ' ');
+        const have = out.get(key) || { title: p.title, templates: [], categories: [] };
+        if (p.missing !== undefined) have.missing = '';
+        have.templates.push(...(p.templates || [])); have.categories.push(...(p.categories || []));
+        out.set(key, have);
+      }
+      if (!j.continue) break;
+      const { continue: _c, ...rest } = j.continue; cont = { ...rest, continue: j.continue.continue };
+    }
+  }
+  return out;
+}
+const fileTitleOf = sourceUrl => { const m = /\/wiki\/File:(.+)$/.exec(sourceUrl || ''); return m ? decodeURIComponent(m[1]).replace(/_/g, ' ') : null; };
 
 // Commons "Artist" is HTML ("<a href=...>Jane Doe</a>"). Text only, one line,
 // and it must fit the 32-character credit line or the photo is skipped:
@@ -247,17 +308,28 @@ async function recheck(args) {
     const reason = hold.has(r.wikidata) ? 'held' : !namesBilling(r.artist, e) ? 'no-item' : !isMusicAct(e) ? 'no-music-item' : null;
     if (reason) dropped.push({ artist: r.artist, wikidata: r.wikidata, reason, asset: r.asset, description: describe(e) });
   }
+  // Rule 5 holds for every Commons row, hand-reviewed ones too: a deletion
+  // request or a missing permission is the file's status, not a matching call.
+  const commonsRows = ledger.filter(r => r.source === 'commons' && fileTitleOf(r.sourceUrl));
+  const flags = await flagPages([...new Set(commonsRows.map(r => fileTitleOf(r.sourceUrl)))].map(t => 'File:' + t));
+  for (const r of commonsRows) {
+    const page = flags.get(fileTitleOf(r.sourceUrl));
+    if (!page) continue;   // not fetched: leave it, report nothing
+    const flag = commonsFlag(page);
+    if (flag && !dropped.some(d => d.asset === r.asset)) dropped.push({ artist: r.artist, wikidata: r.wikidata || null, reason: flag.reason, flag: flag.detail, asset: r.asset, reviewedBy: r.reviewedBy || null });
+  }
   const gone = new Set(dropped.map(d => d.asset));
+  const flaggedAssets = new Set(dropped.filter(d => /^commons-/.test(d.reason)).map(d => d.asset));
   if (!args.dry) {
-    writeFileSync(LEDGER, JSON.stringify(ledger.filter(r => !gone.has(r.asset) || !/^Commons pipeline/.test(r.reviewedBy || '')), null, 2) + '\n');
+    writeFileSync(LEDGER, JSON.stringify(ledger.filter(r => !gone.has(r.asset) || (!/^Commons pipeline/.test(r.reviewedBy || '') && !flaggedAssets.has(r.asset))), null, 2) + '\n');
     for (const a of gone) { try { unlinkSync(join(ROOT, a)); } catch {} }
   }
-  const report = { ranAt: new Date().toISOString(), scope: 'recheck', checked: pipeline.length, dropped: dropped.length,
+  const report = { ranAt: new Date().toISOString(), scope: 'recheck', checked: pipeline.length, commonsChecked: commonsRows.length, dropped: dropped.length,
     byReason: dropped.reduce((m, d) => (m[d.reason] = (m[d.reason] || 0) + 1, m), {}), rows: dropped,
     // Every row's item description, so a person can look the faces over.
     kept: kept.filter(k => !dropped.some(d => d.wikidata === k.wikidata && d.artist === k.artist)) };
   if (args.report) { mkdirSync(dirname(join(ROOT, args.report)), { recursive: true }); writeFileSync(join(ROOT, args.report), JSON.stringify(report, null, 1) + '\n'); }
-  console.log(`[commons] recheck: ${report.checked} pipeline rows, dropped ${report.dropped} ${JSON.stringify(report.byReason)}`);
+  console.log(`[commons] recheck: ${report.checked} pipeline rows, ${report.commonsChecked} Commons pages, dropped ${report.dropped} ${JSON.stringify(report.byReason)}`);
 }
 
 async function main() {
@@ -303,6 +375,7 @@ async function main() {
     const norm = new Map((j.query?.normalized || []).map(n => [n.to, n.from]));
     for (const p of Object.values(j.query?.pages || {})) info.set((norm.get(p.title) || p.title).replace(/^File:/, ''), p);
   }
+  const flags = await flagPages(matched.map(m => 'File:' + m.file));
   const imgDir = join(ROOT, 'artist-photos'), descs = new Map();
   mkdirSync(imgDir, { recursive: true });
   for (const m of matched) {
@@ -310,6 +383,10 @@ async function main() {
     const ii = page && page.imageinfo && page.imageinfo[0];
     if (!ii || !ii.thumburl) { skip(m.a, 'no-file', { wikidata: m.qid }); continue; }
     if (!/^image\/(jpeg|png|webp|tiff)$/.test(ii.mime || '')) { skip(m.a, 'not-a-photo', { wikidata: m.qid, mime: ii.mime }); continue; }
+    const fp = flags.get(m.file.replace(/_/g, ' ')) || flags.get(page.title.replace(/^File:/, ''));
+    if (!fp) { skip(m.a, 'commons-flags-unread', { wikidata: m.qid }); continue; }
+    const flag = commonsFlag(fp);
+    if (flag) { skip(m.a, flag.reason, { wikidata: m.qid, flag: flag.detail }); continue; }
     const md = ii.extmetadata || {};
     const lic = mapLicense(md.LicenseShortName?.value);
     if (!lic) { skip(m.a, 'license-not-admitted', { wikidata: m.qid, license: md.LicenseShortName?.value || null }); continue; }
