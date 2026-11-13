@@ -1656,6 +1656,27 @@ function clearSetTrack(festivalId) {
   } catch {}
   return true;
 }
+function setTrackVerdict(a, cfg = window.FESTIVAL_CONFIG) {
+  if (!a || !cfg || !cfg.id) return null;
+  var iv = getSetTrackIntervals(cfg.id);
+  if (!iv[a.stage] || !iv[a.stage].length) return null;
+  var v = attendanceVerdict(a, iv, cfg);
+  return v.verdict === "none" ? null : {
+    ...v,
+    label: attendanceVerdictLabel(v)
+  };
+}
+function setTrackSummary(artists, cfg = window.FESTIVAL_CONFIG) {
+  var out = {
+    full: 0,
+    partial: 0
+  };
+  for (var a of artists || []) {
+    var v = setTrackVerdict(a, cfg);
+    if (v && v.verdict === "full") out.full++;else if (v && v.verdict === "partial") out.partial++;
+  }
+  return out;
+}
 function SetTrackingWatcher() {
   var [, bump] = React.useReducer(x => x + 1, 0);
   var {
