@@ -25,6 +25,9 @@ const arg = (k, d) => { const i = process.argv.indexOf(k); return i > 0 ? proces
 const OFFLINE = process.argv.includes("--offline");
 const ONLY = (arg("--only", "") || "").split(",").filter(Boolean);
 const DATE = arg("--date", new Date().toISOString().slice(0, 10));
+// DATE decides "ended" and waiver expiry. An unparseable value would quietly
+// read every festival as not ended and skip every waiver, so refuse it.
+if (!/^\d{4}-\d{2}-\d{2}$/.test(DATE) || Number.isNaN(Date.parse(DATE))) { console.error(`--date must be YYYY-MM-DD, got "${DATE}"`); process.exit(2); }
 const OUT = join(ROOT, "reports"), CACHE = join(OUT, ".truth-cache");
 mkdirSync(CACHE, { recursive: true });
 writeFileSync(join(CACHE, ".gitignore"), "*\n"); // fetch cache, never committed
