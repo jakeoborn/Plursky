@@ -1,11 +1,11 @@
 {
  "spec": "SPEC-193 P2",
  "date": "2026-11-13",
- "head": "b55f5953",
- "runtimeMs": 1710,
+ "head": "4439cf28",
+ "runtimeMs": 1682,
  "severity": {
-  "S1": 4,
-  "S2": 4,
+  "S1": 0,
+  "S2": 7,
   "S3": 10
  },
  "festivals": [
@@ -137,11 +137,11 @@
     "days": 3
    },
    "official": {
-    "dates": "PARTIAL",
+    "dates": "MISMATCH?",
     "venue": "MATCH",
     "url": "https://orlando.edc.com/",
     "fetchedAt": "2026-11-13T06:06:11.207Z",
-    "why": "page names 2/3 of our dates",
+    "why": "page names our days in another year: nov 6, 2027, nov 7, 2027; ours nov 6, 2026, nov 7, 2026, nov 8, 2026",
     "status": 200
    },
    "seo": {
@@ -170,6 +170,12 @@
      "what": "act plays two sets on one day (spot-check against the official times)",
      "detail": "2: AAT (ecf1 stereo 14:15) ≈ AAT (ecf46 bacardi 17:45) day 1; Gabss (ecs17 stereo 14:30) ≈ Gabss (ecs45 bacardi 18:00) day 2",
      "url": "https://orlando.edc.com/lineup/set-times/day-1/"
+    },
+    {
+     "sev": "S2",
+     "what": "official page may show different dates (needs a human look)",
+     "detail": "page names our days in another year: nov 6, 2027, nov 7, 2027; ours nov 6, 2026, nov 7, 2026, nov 8, 2026",
+     "url": "https://orlando.edc.com/"
     },
     {
      "sev": "S2",
@@ -355,11 +361,11 @@
     "days": 3
    },
    "official": {
-    "dates": "PARTIAL",
+    "dates": "MISMATCH?",
     "venue": "UNVERIFIED",
     "url": "https://www.sfoutsidelands.com/",
     "fetchedAt": "2026-11-13T06:06:13.375Z",
-    "why": "page names 2/3 of our dates",
+    "why": "page names our days in another year: aug 7, 2027, aug 8, 2027; ours aug 7, 2026, aug 8, 2026, aug 9, 2026",
     "status": 200
    },
    "seo": {
@@ -387,6 +393,12 @@
      "what": "act plays two sets on one day (spot-check against the official times)",
      "detail": "14: Hot Goth Freak Show (os38 dolores 15:20) ≈ Hot Goth Freak Show (os42 dolores 18:05) day 1; Nezza (os8 twinpeaks 12:30) ≈ Nezza (os45 duboce 14:05) day 1; Chezile (os22 panhandle 13:20) ≈ Chezile (os46 duboce 15:25) day 1",
      "url": "https://inmusicblog.com/"
+    },
+    {
+     "sev": "S2",
+     "what": "official page may show different dates (needs a human look)",
+     "detail": "page names our days in another year: aug 7, 2027, aug 8, 2027; ours aug 7, 2026, aug 8, 2026, aug 9, 2026",
+     "url": "https://www.sfoutsidelands.com/"
     }
    ]
   },
@@ -613,11 +625,11 @@
     "days": 2
    },
    "official": {
-    "dates": "PARTIAL",
+    "dates": "MISMATCH?",
     "venue": "MATCH",
     "url": "https://escapehalloween.com/",
     "fetchedAt": "2026-11-13T06:06:19.676Z",
-    "why": "page names 1/2 of our dates",
+    "why": "page names our days in another year: oct 30, 2027; ours oct 30, 2026, oct 31, 2026",
     "status": 200
    },
    "seo": {
@@ -639,6 +651,12 @@
      "what": "act plays two sets on one day (spot-check against the official times)",
      "detail": "2: Acyan (esc-acyan-d2 sewer-district 16:00) ≈ Acyan (esc-acyan-d2-s2 beatbox-art-car 18:30) day 2; Cat & Maomi (esc-cat-and-maomi-d2 feeding-grounds 16:00) ≈ Cat & Maomi (esc-cat-and-maomi-d2-s2 beatbox-art-car 21:30) day 2",
      "url": "https://escapehalloween.com/lineup/set-times/day-1/"
+    },
+    {
+     "sev": "S2",
+     "what": "official page may show different dates (needs a human look)",
+     "detail": "page names our days in another year: oct 30, 2027; ours oct 30, 2026, oct 31, 2026",
+     "url": "https://escapehalloween.com/"
     }
    ]
   },
@@ -729,11 +747,11 @@
     "days": 1
    },
    "official": {
-    "dates": "MATCH",
+    "dates": "PARTIAL",
     "venue": "MATCH",
     "url": "https://countdownnye.com/",
     "fetchedAt": "2026-11-13T06:06:22.273Z",
-    "why": "",
+    "why": "page names 1/2 of our dates",
     "status": 200
    },
    "seo": {
@@ -1025,37 +1043,12 @@
   }
  ],
  "photos": {
-  "rows": 1199,
-  "hashed": 1199,
-  "commons": 1199,
-  "commonsRows": 1199,
+  "rows": 1194,
+  "hashed": 1194,
+  "commons": 1194,
+  "commonsRows": 1194,
   "unread": 0,
-  "findings": [
-   {
-    "sev": "S1",
-    "what": "Commons file is flagged",
-    "detail": "FUJII KAZE: cropped from a deleted file (Template:Extracted from deleted)",
-    "url": "https://commons.wikimedia.org/wiki/File:Fujii_Kaze_performing_during_Best_Of_Fujii_Kaze_2020-2024_Asia_Tour_in_Axiata_Arena_Kuala_Lumpur_(cropped)_(2).jpg"
-   },
-   {
-    "sev": "S1",
-    "what": "Commons file is flagged",
-    "detail": "Gallant: deletion request (Template:Deletion template tag)",
-    "url": "https://commons.wikimedia.org/wiki/File:Gallant-Plaid-Suit-Yellow-Green.jpg"
-   },
-   {
-    "sev": "S1",
-    "what": "Commons file is flagged",
-    "detail": "R3hab: deletion request (Template:Delete)",
-    "url": "https://commons.wikimedia.org/wiki/File:R3hab_(Cropped).jpg"
-   },
-   {
-    "sev": "S1",
-    "what": "Commons file is flagged",
-    "detail": "KATSEYE: cropped from a deleted file (Template:Extracted from deleted)",
-    "url": "https://commons.wikimedia.org/wiki/File:Katseye_at_Wango_Tango_2025_(cropped).jpg"
-   }
-  ]
+  "findings": []
  },
  "pagesWithoutDataSet": [
   "awakenings-2027",

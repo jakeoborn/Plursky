@@ -108,31 +108,60 @@ const htmlText = h => h.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/styl
   .replace(/&nbsp;|&#160;/g, " ").replace(/&amp;/g, "&").replace(/&#8211;|&#8212;|&ndash;|&mdash;/g, "-").replace(/\s+/g, " ");
 
 // Every (month, day) the page text mentions, ranges expanded ("Dec 30-31", "December 30 & 31").
-function dateMentions(text) {
-  const out = new Set();
+// Every calendar date the page text names, as {m, d, y}: y is the year written
+// right after the date ("June 1-2, 2027", "11 • 12 • 13 DEC 2026"), else null.
+function dateMentionsY(text) {
+  const out = [];
+  const yearAfter = i => { const m = /^\s*,?\s*(20\d\d)\b/.exec(text.slice(i, i + 12)); return m ? +m[1] : null; };
   const re = /\b(jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\.?\s+(\d{1,2})(?!\d)(?:st|nd|rd|th)?(?:\s*(?:-|–|—|to|&|and|\+)\s*(?:(jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\.?\s+)?(\d{1,2})(?!\d)(?:st|nd|rd|th)?)?/gi;
   for (const m of text.matchAll(re)) {
+    const y = yearAfter(m.index + m[0].length);
     const m1 = MONTHS.indexOf(m[1].slice(0, 3).toLowerCase()), d1 = +m[2];
     if (d1 < 1 || d1 > 31) continue;
-    out.add(`${m1}-${d1}`);
+    out.push({ m: m1, d: d1, y });
     if (m[4]) {
       const m2 = m[3] ? MONTHS.indexOf(m[3].slice(0, 3).toLowerCase()) : m1, d2 = +m[4];
-      if (m2 === m1 && d2 > d1 && d2 - d1 <= 10) for (let d = d1 + 1; d <= d2; d++) out.add(`${m1}-${d}`);
-      else if (d2 >= 1 && d2 <= 31) out.add(`${m2}-${d2}`);
+      if (m2 === m1 && d2 > d1 && d2 - d1 <= 10) for (let d = d1 + 1; d <= d2; d++) out.push({ m: m1, d, y });
+      else if (d2 >= 1 && d2 <= 31) out.push({ m: m2, d: d2, y });
     }
   }
   // Day-first: "11 • 12 • 13 DEC 2026", "9 JAN 2027", "30-31 December".
   const dayFirst = /((?:(?<!\d)\d{1,2}(?!\d)(?:st|nd|rd|th)?\s*(?:-|–|—|•|·|&|,|\+|and|to)?\s*)+)\b(jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\b/gi;
   for (const m of text.matchAll(dayFirst)) {
+    const y = yearAfter(m.index + m[0].length);
     const mi = MONTHS.indexOf(m[2].slice(0, 3).toLowerCase());
     const parts = [...m[1].matchAll(/(\d{1,2})(?:st|nd|rd|th)?\s*(-|–|—|to)?/g)];
     for (let i = 0; i < parts.length; i++) {
       const d = +parts[i][1]; if (d < 1 || d > 31) continue;
-      out.add(`${mi}-${d}`);
-      if (parts[i][2] && parts[i + 1]) { const e = +parts[i + 1][1]; if (e > d && e - d <= 10) for (let x = d + 1; x < e; x++) out.add(`${mi}-${x}`); }
+      out.push({ m: mi, d, y });
+      if (parts[i][2] && parts[i + 1]) { const e = +parts[i + 1][1]; if (e > d && e - d <= 10) for (let x = d + 1; x < e; x++) out.push({ m: mi, d: x, y }); }
     }
   }
   return out;
+}
+const dateMentions = text => new Set(dateMentionsY(text).map(x => `${x.m}-${x.d}`));
+
+// Our event days against a page's text, YEAR INCLUDED. A date with its year
+// written must be our year. A yearless date counts only when the page names
+// our year somewhere, or names no year at all; a page whose only years are
+// other years is advertising another edition ("June 1-2" + "2027" ≠ 2026).
+function compareDates(text, days) {
+  const found = dateMentionsY(text);
+  // Edition years the page names. A copyright footer ("© 2021 Insomniac") is not one.
+  const pageYears = new Set([...text.replace(/(?:©|\(c\)|copyright)\s*(?:20\d\d\s*[-–]\s*)?20\d\d/gi, " ").matchAll(/\b(20\d\d)\b/g)].map(m => +m[1]));
+  const fmt = x => `${MONTHS[x.m]} ${x.d}${x.y ? `, ${x.y}` : ""}`;
+  const sameDay = (a, b) => a.m === b.m && a.d === b.d;
+  const yearOk = (x, y) => x.y != null ? x.y === y : (pageYears.size === 0 || pageYears.has(y));
+  const hit = days.filter(o => found.some(x => sameDay(x, o) && yearOk(x, o.y)));
+  if (days.length && hit.length === days.length) return { dates: "MATCH", why: "" };
+  if (hit.length) return { dates: "PARTIAL", why: `page names ${hit.length}/${days.length} of our dates` };
+  const wrongYear = found.filter(x => days.some(o => sameDay(x, o)) && !yearOk(x, days[0].y));
+  if (wrongYear.length) return { dates: "MISMATCH?", why: `page names our days in another year: ${[...new Set(wrongYear.map(x => fmt({ ...x, y: x.y ?? [...pageYears].join("/") })))].slice(0, 4).join(", ")}; ours ${days.map(o => fmt(o)).join(", ")}` };
+  // Only call it a mismatch when the page names dates in our months and none of ours.
+  const ourMonths = new Set(days.map(o => o.m));
+  const other = found.filter(x => ourMonths.has(x.m));
+  if (other.length) return { dates: "MISMATCH?", why: `page names ${[...new Set(other.map(fmt))].slice(0, 4).join(", ")}; ours ${days.map(o => fmt(o)).join(", ")}` };
+  return { dates: "UNVERIFIED", why: "page text names none of our dates" };
 }
 
 
@@ -173,7 +202,10 @@ function internalChecks(f, add) {
   if (badDay.length) add("S1", "set on a day the festival does not have", `${badDay.length}: ${badDay.slice(0, 5).map(a => `${a.name} day ${a.day}`).join(", ")}`, ev);
   if (!f.tba) for (const d of days) {
     const n = timed.filter(a => +a.day === d).length;
-    if (n > 0 && n < 3) add("S3", "day with fewer than 3 timed sets", `day ${d}: ${n}`, ev);
+    // A scheduled day with NO timed sets, while other days have times, is a
+    // blank day in the fan's lineup: report it, never skip it.
+    if (n === 0 && timed.length) add("S2", "scheduled day with zero timed sets", `day ${d}${c.dayDates?.[d] ? ` (${iso(c.dayDates[d])})` : ""}: 0 of ${timed.length} timed sets`, ev);
+    else if (n > 0 && n < 3) add("S3", "day with fewer than 3 timed sets", `day ${d}: ${n}`, ev);
   }
 
   // Times
@@ -239,18 +271,7 @@ async function officialCheck(f, add) {
   if (!r.ok) { res.why = `fetch failed (${r.status || r.error})`; return res; }
   const text = htmlText(r.text);
   if (text.length < 400) { res.why = "page has almost no server-rendered text (client-rendered)"; return res; }
-  const ours = eventDays(c).map(d => `${d.m}-${d.d}`);
-  const found = dateMentions(text);
-  const hit = ours.filter(k => found.has(k));
-  if (ours.length && hit.length === ours.length) res.dates = "MATCH";
-  else if (hit.length) { res.dates = "PARTIAL"; res.why = `page names ${hit.length}/${ours.length} of our dates`; }
-  else {
-    // Only call it a mismatch when the page names dates in our months and none of ours.
-    const ourMonths = new Set(ours.map(k => k.split("-")[0]));
-    const other = [...found].filter(k => ourMonths.has(k.split("-")[0]));
-    if (other.length) { res.dates = "MISMATCH?"; res.why = `page names ${other.slice(0, 4).map(k => `${MONTHS[k.split("-")[0]]} ${k.split("-")[1]}`).join(", ")}; ours ${ours.map(k => `${MONTHS[k.split("-")[0]]} ${k.split("-")[1]}`).join(", ")}`; }
-    else res.why = "page text names none of our dates";
-  }
+  Object.assign(res, compareDates(text, eventDays(c)));
   const vn = [c.venue?.name, c.locationShort].filter(Boolean);
   if (vn.some(v => norm(text).includes(norm(v)))) res.venue = "MATCH";
   if (res.dates === "MISMATCH?") add("S2", "official page may show different dates (needs a human look)", res.why, url);
@@ -410,10 +431,29 @@ if (process.argv.includes("--self-test")) {
     { templates: [T("Extracted from deleted")] }, { missing: "" }, { templates: [T("Copyvio")] }, { categories: [C("Media without a license as of 8 November 2026")] }];
   const clean = [{ templates: [T("Information"), T("Cc-by-sa-4.0")], categories: [C("Skrillex")] }, { templates: [T("Extracted from")], categories: [C("Files with broken file links")] }];
   const flagMiss = flagged.filter(p => !commonsFlag(p)).length + clean.filter(p => commonsFlag(p)).length;
-  const fail = miss.length || dmMiss.length || !edOk || !ed2Ok || flagMiss;
+  // Year: app June 1-2, 2026 against an official page for June 1-2, 2027.
+  const jun26 = [{ y: 2026, m: 5, d: 1 }, { y: 2026, m: 5, d: 2 }];
+  const yearCases = [
+    ["Festival returns June 1-2, 2027. Tickets on sale now.", "MISMATCH?"],
+    ["June 1-2 · Lineup 2027 · Tickets", "MISMATCH?"],            // yearless dates, page only names 2027
+    ["June 1-2, 2026 at the park", "MATCH"],
+    ["June 1-2 · 2026 lineup", "MATCH"],                          // yearless, page names our year
+    ["June 1 & 2", "MATCH"],                                      // no year anywhere: day-month match stands
+    ["1 • 2 JUN 2027", "MISMATCH?"],
+    ["Festival | June 1+2 | Park Tickets … By continuing you agree. © 2021 Insomniac Holdings", "MATCH"],  // EDC Thailand's real shape
+  ];
+  const yearMiss = yearCases.filter(([t, want]) => compareDates(t, jun26).dates !== want).map(([t, want]) => `${t} → ${compareDates(t, jun26).dates}, want ${want}`);
+  // Zero-timed-sets day: two days, day 2 empty.
+  const two = { id: "fixture-empty-day", tba: false, stages: [{ id: "a", name: "A" }],
+    config: { dates: "Jun 1–2, 2099", year: 2099, dayDates: { 1: { y: 2099, m: 5, d: 1 }, 2: { y: 2099, m: 5, d: 2 } }, officialEvent: { website: "x" }, lineupSource: { url: "x" }, scheduleSource: { url: "x" } },
+    artists: [mk("e1", "One", "a", 1, "14:00", "15:00"), mk("e2", "Two", "a", 1, "15:00", "16:00"), mk("e3", "Three", "a", 1, "16:00", "17:00")] };
+  const got2 = []; internalChecks(two, (sev, what, detail) => got2.push(`${sev} ${what} ${detail}`));
+  const emptyDayOk = got2.some(g => /^S2 scheduled day with zero timed sets day 2\b/.test(g)) && !got2.some(g => /day 1\b.*zero timed/.test(g));
+  if (!emptyDayOk) yearMiss.push(`empty day 2 not reported: ${JSON.stringify(got2)}`);
+  const fail = miss.length || dmMiss.length || !edOk || !ed2Ok || flagMiss || yearMiss.length;
   console.log(fail
-    ? `SELF-TEST FAIL: missed ${JSON.stringify(miss)} dates ${JSON.stringify(dmMiss)} eventDays ${ed} / ${ed2} commonsFlag misses ${flagMiss}`
-    : `self-test: ${want.length} planted defects caught, date parsing OK, Commons flags ${flagged.length} caught / ${clean.length} clean pass`);
+    ? `SELF-TEST FAIL: missed ${JSON.stringify(miss)} dates ${JSON.stringify(dmMiss)} eventDays ${ed} / ${ed2} commonsFlag misses ${flagMiss} year/empty-day ${JSON.stringify(yearMiss)}`
+    : `self-test: ${want.length} planted defects caught, date parsing OK, ${yearCases.length} year cases OK, empty day reported, Commons flags ${flagged.length} caught / ${clean.length} clean pass`);
   process.exit(fail ? 1 : 0);
 }
 

@@ -1,14 +1,14 @@
 # Festival truth audit — 2026-11-13
 
-SPEC-193 Phase 2. Read-only. Data read from the running app (`_DATA_SETS`) at `b55f5953`. 27 festivals, 1199 artist-photo ledger rows. Command: `node scripts/audit-festival-truth.mjs`.
+SPEC-193 Phase 2. Read-only. Data read from the running app (`_DATA_SETS`) at `4439cf28`. 27 festivals, 1194 artist-photo ledger rows. Command: `node scripts/audit-festival-truth.mjs`.
 
-**Findings: 4 S1 · 4 S2 · 10 S3.**
+**Findings: 0 S1 · 7 S2 · 10 S3.**
 
 Severity: **S1** = the app shows a fan something false or broken (wrong date, a set on a stage that doesn't exist, two sets at once on one stage, a deleted photo). **S2** = likely wrong or unproven and needs a look (possible date mismatch, duplicate act, missing provenance, waiver expiring). **S3** = cosmetic or informational.
 
 Official checks read only server-rendered text from the official site recorded in the festival's own `officialEvent`. A site that renders in the browser shows up as UNVERIFIED, not MATCH. `MISMATCH?` means the page names other dates in the same month; it is a lead for a human, never proof.
 
-Artist photos: 1199 ledger rows, 1199 files hash-checked, 1199 of 1199 Commons pages re-read (licence, plus deletion, permission, dispute and no-source templates or categories), 4 finding(s).
+Artist photos: 1194 ledger rows, 1194 files hash-checked, 1194 of 1194 Commons pages re-read (licence, plus deletion, permission, dispute and no-source templates or categories), 0 finding(s).
 
 ## Summary
 
@@ -17,22 +17,22 @@ Artist photos: 1199 ledger rows, 1199 files hash-checked, 1199 of 1199 Commons p
 | edc-lv-2026 | ended | 9 | 241 (241) | PARTIAL ([fetched 2026-11-13T06:06](https://lasvegas.edc.com/)) | MATCH | yes | 9 GPS anchor(s) | — | 0 | 0 | 1 |
 | acl-2026 | ended | 7 | 136 (136) | PARTIAL ([fetched 2026-11-13T06:06](https://www.aclfestival.com/)) | MATCH | yes | 4 GPS anchor(s) | — | 0 | 0 | 0 |
 | lost-lands-2026 | ended | 7 | 206 (206) | MATCH ([fetched 2026-11-13T06:06](https://www.lostlandsfestival.com/)) | UNVERIFIED | yes | none (real map only) | — | 0 | 0 | 1 |
-| edc-orlando-2026 | ended | 5 | 133 (133) | PARTIAL ([fetched 2026-11-13T06:06](https://orlando.edc.com/)) | MATCH | yes | 5 GPS anchor(s) | 2026-12-01 | 0 | 1 | 2 |
+| edc-orlando-2026 | ended | 5 | 133 (133) | MISMATCH? ([fetched 2026-11-13T06:06](https://orlando.edc.com/)) | MATCH | yes | 5 GPS anchor(s) | 2026-12-01 | 0 | 2 | 2 |
 | ultra-miami-2026 | ended | 7 | 166 (166) | PARTIAL ([fetched 2026-11-13T06:06](https://ultramusicfestival.com/)) | MATCH | yes | 7 GPS anchor(s) | — | 0 | 0 | 0 |
 | governors-ball-2026 | ended | 3 | 58 (58) | MATCH ([fetched 2026-11-13T06:06](https://www.governorsballmusicfestival.com/)) | MATCH | yes | 3 GPS anchor(s) | 2026-12-01 | 0 | 1 | 0 |
 | summerfest-2026 | ended | 10 | 446 (436) | UNVERIFIED ([fetched 2026-11-13T06:06](https://www.summerfest.com/)) | UNVERIFIED | yes | 10 GPS anchor(s) | — | 0 | 1 | 1 |
 | lollapalooza-2026 | ended | 9 | 195 (195) | MATCH ([fetched 2026-11-13T06:06](https://www.lollapalooza.com/)) | MATCH | yes | 9 GPS anchor(s) | — | 0 | 0 | 1 |
-| outside-lands-2026 | ended | 7 | 139 (139) | PARTIAL ([fetched 2026-11-13T06:06](https://www.sfoutsidelands.com/)) | UNVERIFIED | yes | 7 GPS anchor(s) | — | 0 | 1 | 1 |
+| outside-lands-2026 | ended | 7 | 139 (139) | MISMATCH? ([fetched 2026-11-13T06:06](https://www.sfoutsidelands.com/)) | UNVERIFIED | yes | 7 GPS anchor(s) | — | 0 | 2 | 1 |
 | iii-points-2026 | ended | 13 | 231 (231) | UNVERIFIED ([fetched 2026-11-13T06:06](https://www.iiipoints.com/)) | MATCH | yes | 13 GPS anchor(s) | — | 0 | 0 | 0 |
 | nocturnal-wonderland-2026 | ended | 5 | 86 (86) | MATCH ([fetched 2026-11-13T06:06](https://www.nocturnalwonderland.com/)) | UNVERIFIED | yes | none (real map only) | — | 0 | 0 | 0 |
 | crssd-fall-2026 | ended | 3 | 53 (53) | UNVERIFIED ([fetched 2026-11-13T06:06](https://www.crssdfest.com/)) | UNVERIFIED | yes | georeferenced plate | — | 0 | 0 | 0 |
 | portola-2026 | ended | 5 | 64 (64) | UNVERIFIED ([fetched 2026-11-13T06:06](https://portolamusicfestival.com/)) | UNVERIFIED | yes | none (real map only) | — | 0 | 0 | 0 |
 | hard-summer-2026 | ended | 7 | 91 (91) | MATCH ([fetched 2026-11-13T06:06](https://www.hardsummer.com/)) | UNVERIFIED | yes | georeferenced plate | — | 0 | 0 | 1 |
 | arc-2026 | ended | 4 | 96 (96) | MATCH ([fetched 2026-11-13T06:06](https://arcmusicfestival.com/)) | MATCH | yes | none (real map only) | — | 0 | 0 | 0 |
-| escape-halloween-2026 | ended | 7 | 118 (118) | PARTIAL ([fetched 2026-11-13T06:06](https://escapehalloween.com/)) | MATCH | yes | none (real map only) | — | 0 | 0 | 1 |
+| escape-halloween-2026 | ended | 7 | 118 (118) | MISMATCH? ([fetched 2026-11-13T06:06](https://escapehalloween.com/)) | MATCH | yes | none (real map only) | — | 0 | 1 | 1 |
 | dreamstate-socal-2026 | TBA | 5 | 70 (0) | MATCH ([fetched 2026-11-13T06:06](https://socal.dreamstateusa.com/)) | UNVERIFIED | yes | georeferenced plate | — | 0 | 0 | 1 |
 | decadence-colorado-2026 | TBA | 0 | 23 (0) | MATCH ([fetched 2026-11-13T06:06](https://decadencenye.com/)) | UNVERIFIED | yes | none (real map only) | — | 0 | 0 | 0 |
-| countdown-nye-2026 | TBA | 0 | 71 (0) | MATCH ([fetched 2026-11-13T06:06](https://countdownnye.com/)) | MATCH | yes | none (real map only) | — | 0 | 0 | 0 |
+| countdown-nye-2026 | TBA | 0 | 71 (0) | PARTIAL ([fetched 2026-11-13T06:06](https://countdownnye.com/)) | MATCH | yes | none (real map only) | — | 0 | 0 | 0 |
 | lights-all-night-2026 | TBA | 0 | 39 (0) | MATCH ([fetched 2026-11-13T06:06](https://lightsallnight.com/)) | MATCH | yes | none (real map only) | — | 0 | 0 | 0 |
 | decadence-arizona-2026 | TBA | 0 | 39 (0) | MATCH ([fetched 2026-11-13T06:06](https://decadencearizona.com/)) | MATCH | yes | none (real map only) | — | 0 | 0 | 0 |
 | sunset-on-the-river-2027 | TBA | 0 | 16 (0) | MATCH ([fetched 2026-11-13T06:06](https://sunsetotr.com/)) | MATCH | yes | none (real map only) | — | 0 | 0 | 0 |
@@ -44,21 +44,19 @@ Artist photos: 1199 ledger rows, 1199 files hash-checked, 1199 of 1199 Commons p
 
 ## S1 findings
 
-| Festival | Finding | Detail | Evidence |
-|---|---|---|---|
-| artist photos | Commons file is flagged | FUJII KAZE: cropped from a deleted file (Template:Extracted from deleted) | [source](https://commons.wikimedia.org/wiki/File:Fujii_Kaze_performing_during_Best_Of_Fujii_Kaze_2020-2024_Asia_Tour_in_Axiata_Arena_Kuala_Lumpur_(cropped)_(2).jpg) |
-| artist photos | Commons file is flagged | Gallant: deletion request (Template:Deletion template tag) | [source](https://commons.wikimedia.org/wiki/File:Gallant-Plaid-Suit-Yellow-Green.jpg) |
-| artist photos | Commons file is flagged | R3hab: deletion request (Template:Delete) | [source](https://commons.wikimedia.org/wiki/File:R3hab_(Cropped).jpg) |
-| artist photos | Commons file is flagged | KATSEYE: cropped from a deleted file (Template:Extracted from deleted) | [source](https://commons.wikimedia.org/wiki/File:Katseye_at_Wango_Tango_2025_(cropped).jpg) |
+None.
 
 ## S2 findings
 
 | Festival | Finding | Detail | Evidence |
 |---|---|---|---|
+| edc-orlando-2026 | official page may show different dates (needs a human look) | page names our days in another year: nov 6, 2027, nov 7, 2027; ours nov 6, 2026, nov 7, 2026, nov 8, 2026 | [source](https://orlando.edc.com/) |
 | edc-orlando-2026 | map registration waiver expires within 45 days | 2026-12-01 (18 d) | [source](https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs) |
 | governors-ball-2026 | map registration waiver expires within 45 days | 2026-12-01 (18 d) | [source](https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs) |
 | summerfest-2026 | two sets overlap on the same stage (festival ended) | 1: day 6 aurora: DJ Andres 14:45-15:20 × Jazzteca 15:15-16:10 | [source](https://summerfest.com/lineup) |
 | outside-lands-2026 | two sets overlap on the same stage (festival ended) | 2: day 2 dolores: OASIS DJ Set: Beverly Chills 13:30-14:15 × Pink Stiletto 14:00-14:30; day 2 dolores: Pink Stiletto 14:00-14:30 × REPARATIONS w/ DJ Newoncé 14:15-15:15 | [source](https://inmusicblog.com/) |
+| outside-lands-2026 | official page may show different dates (needs a human look) | page names our days in another year: aug 7, 2027, aug 8, 2027; ours aug 7, 2026, aug 8, 2026, aug 9, 2026 | [source](https://www.sfoutsidelands.com/) |
+| escape-halloween-2026 | official page may show different dates (needs a human look) | page names our days in another year: oct 30, 2027; ours oct 30, 2026, oct 31, 2026 | [source](https://escapehalloween.com/) |
 
 ## S3 findings
 
@@ -82,22 +80,22 @@ Artist photos: 1199 ledger rows, 1199 files hash-checked, 1199 of 1199 Commons p
 | edc-lv-2026 | https://lasvegas.edc.com/ | 2026-11-13T06:06:09.928Z | PARTIAL | MATCH | page names 2/3 of our dates |
 | acl-2026 | https://www.aclfestival.com/ | 2026-11-13T06:06:10.557Z | PARTIAL | MATCH | page names 3/6 of our dates |
 | lost-lands-2026 | https://www.lostlandsfestival.com/ | 2026-11-13T06:06:10.829Z | MATCH | UNVERIFIED |  |
-| edc-orlando-2026 | https://orlando.edc.com/ | 2026-11-13T06:06:11.207Z | PARTIAL | MATCH | page names 2/3 of our dates |
+| edc-orlando-2026 | https://orlando.edc.com/ | 2026-11-13T06:06:11.207Z | MISMATCH? | MATCH | page names our days in another year: nov 6, 2027, nov 7, 2027; ours nov 6, 2026, nov 7, 2026, nov 8, 2026 |
 | ultra-miami-2026 | https://ultramusicfestival.com/ | 2026-11-13T06:06:11.603Z | PARTIAL | MATCH | page names 2/3 of our dates |
 | governors-ball-2026 | https://www.governorsballmusicfestival.com/ | 2026-11-13T06:06:12.261Z | MATCH | MATCH |  |
 | summerfest-2026 | https://www.summerfest.com/ | 2026-11-13T06:06:12.769Z | UNVERIFIED | UNVERIFIED | fetch failed (403) |
 | lollapalooza-2026 | https://www.lollapalooza.com/ | 2026-11-13T06:06:13.081Z | MATCH | MATCH |  |
-| outside-lands-2026 | https://www.sfoutsidelands.com/ | 2026-11-13T06:06:13.375Z | PARTIAL | UNVERIFIED | page names 2/3 of our dates |
+| outside-lands-2026 | https://www.sfoutsidelands.com/ | 2026-11-13T06:06:13.375Z | MISMATCH? | UNVERIFIED | page names our days in another year: aug 7, 2027, aug 8, 2027; ours aug 7, 2026, aug 8, 2026, aug 9, 2026 |
 | iii-points-2026 | https://www.iiipoints.com/ | 2026-11-13T06:06:13.988Z | UNVERIFIED | MATCH | page text names none of our dates |
 | nocturnal-wonderland-2026 | https://www.nocturnalwonderland.com/ | 2026-11-13T06:06:14.484Z | MATCH | UNVERIFIED |  |
 | crssd-fall-2026 | https://www.crssdfest.com/ | 2026-11-13T06:06:15.696Z | UNVERIFIED | UNVERIFIED | page has almost no server-rendered text (client-rendered) |
 | portola-2026 | https://portolamusicfestival.com/ | 2026-11-13T06:06:17.598Z | UNVERIFIED | UNVERIFIED | page text names none of our dates |
 | hard-summer-2026 | https://www.hardsummer.com/ | 2026-11-13T06:06:17.991Z | MATCH | UNVERIFIED |  |
 | arc-2026 | https://arcmusicfestival.com/ | 2026-11-13T06:06:19.147Z | MATCH | MATCH |  |
-| escape-halloween-2026 | https://escapehalloween.com/ | 2026-11-13T06:06:19.676Z | PARTIAL | MATCH | page names 1/2 of our dates |
+| escape-halloween-2026 | https://escapehalloween.com/ | 2026-11-13T06:06:19.676Z | MISMATCH? | MATCH | page names our days in another year: oct 30, 2027; ours oct 30, 2026, oct 31, 2026 |
 | dreamstate-socal-2026 | https://socal.dreamstateusa.com/ | 2026-11-13T06:06:20.645Z | MATCH | UNVERIFIED |  |
 | decadence-colorado-2026 | https://decadencenye.com/ | 2026-11-13T06:06:21.819Z | MATCH | UNVERIFIED |  |
-| countdown-nye-2026 | https://countdownnye.com/ | 2026-11-13T06:06:22.273Z | MATCH | MATCH |  |
+| countdown-nye-2026 | https://countdownnye.com/ | 2026-11-13T06:06:22.273Z | PARTIAL | MATCH | page names 1/2 of our dates |
 | lights-all-night-2026 | https://lightsallnight.com/ | 2026-11-13T06:06:22.928Z | MATCH | MATCH |  |
 | decadence-arizona-2026 | https://decadencearizona.com/ | 2026-11-13T06:06:24.004Z | MATCH | MATCH |  |
 | sunset-on-the-river-2027 | https://sunsetotr.com/ | 2026-11-13T06:06:24.557Z | MATCH | MATCH |  |
