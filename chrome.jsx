@@ -1399,6 +1399,28 @@ function clearSetTrack(festivalId) {
   try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
   return true;
 }
+// The one read of a tracked set (spec PR 4): attendanceVerdict over the
+// stored runs, with its label ("Full set" / "≈ 30 of 60 min"). Null when set
+// tracking recorded nothing at this set's stage. Every surface asks this;
+// none restates a threshold.
+function setTrackVerdict(a, cfg = window.FESTIVAL_CONFIG) {
+  if (!a || !cfg || !cfg.id) return null;
+  const iv = getSetTrackIntervals(cfg.id);
+  if (!iv[a.stage] || !iv[a.stage].length) return null;
+  const v = attendanceVerdict(a, iv, cfg);
+  return v.verdict === "none" ? null : { ...v, label: attendanceVerdictLabel(v) };
+}
+// Full and part sets set tracking timed across a lineup (the recap line).
+function setTrackSummary(artists, cfg = window.FESTIVAL_CONFIG) {
+  const out = { full: 0, partial: 0 };
+  for (const a of artists || []) {
+    const v = setTrackVerdict(a, cfg);
+    if (v && v.verdict === "full") out.full++;
+    else if (v && v.verdict === "partial") out.partial++;
+  }
+  return out;
+}
+
 // Mounted once at app level. Watches only while ALL hold: the user turned it
 // on, the page is visible, and the active festival is live with measured
 // stages. The fix's lat/lng live only inside the callback.
