@@ -1096,7 +1096,14 @@ function App() {
             is festival-scoped chrome and stays off General Home. */}
         {!(state.tab === "home" && !state.artist) && state.tab !== "landing" && <StatusStrip />}
         <div style={{ flex: 1, position: "relative" }}>
-          {body}
+          {/* Each tab arrives with a short fade (index.html .ps-view), so a
+              switch reads as one surface replacing another, not a flash. An
+              artist page slides in from the right, the way a pushed page
+              does on iOS. The key is the tab, so moving between artists
+              does not replay it. */}
+          <div key={state.artist ? "artist" : state.tab} className={state.artist ? "ps-view ps-view-push" : "ps-view"} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column" }}>
+            {body}
+          </div>
           {/* Search FAB — floats above TabBar, accessible from any screen.
               Labeled pill so first-time users actually notice it. */}
           {/* No floating Search pill on any tab. It covered a control wherever
@@ -1228,7 +1235,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v595",
+        version: "v601",
       }));
     } catch {}
   }
@@ -1259,7 +1266,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v595
+          Plursky · v601
         </div>
       </div>
     );
