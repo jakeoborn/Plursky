@@ -188,14 +188,20 @@ function IOSList({ header, children, dark = false }) {
 // Device frame
 // ─────────────────────────────────────────────────────────────
 function IOSDevice({ children, dark = false }) {
+  // .ps-stage / .ps-shell (index.html): on a phone the shell is the whole
+  // screen. On a wide window it becomes one centred app column, so the tab
+  // bar, sheets and toasts line up with the content instead of stretching
+  // across a desktop monitor.
   return (
-    <div style={{
+    <div className="ps-stage" style={{
       position: 'fixed', inset: 0, overflow: 'hidden',
       background: dark ? 'var(--paper)' : 'var(--paper)',
       fontFamily: '-apple-system, system-ui, sans-serif',
       WebkitFontSmoothing: 'antialiased',
     }}>
-      {children}
+      <div className="ps-shell" style={{ position: 'absolute', inset: 0, overflow: 'hidden', background: 'var(--paper)' }}>
+        {children}
+      </div>
     </div>
   );
 }
