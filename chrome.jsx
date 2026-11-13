@@ -16,7 +16,7 @@ function Screen({ children, bg = "var(--paper)", pad = true, ink = "var(--ink)",
 
 const ScrollBody = React.forwardRef(function ScrollBody({ children, style, ...rest }, fwdRef) {
   return (
-    <div ref={fwdRef} {...rest} style={{
+    <div ref={fwdRef} data-scroll-body="" {...rest} style={{
       flex: 1, overflowY: "auto", overflowX: "hidden",
       WebkitOverflowScrolling: "touch",
       ...style,
@@ -75,25 +75,50 @@ function TabBar({ active, onChange }) {
     { id: "map",     label: "Map",    icon: MapIcon },
     { id: "me",      label: "Me",     icon: MeIcon },
   ];
-  // The duo board's bar: quiet chrome, the selected tab in full ink with a
-  // short accent bar along its top edge. Stage colour never tints it.
+  // The duo board's bar: quiet chrome, the selected tab in full ink on a
+  // soft accent pill that glides between tabs (one element, moved by
+  // transform, so a switch reads as motion rather than a jump). Stage colour
+  // never tints it. The bar clears the iPhone home indicator.
+  const idx = Math.max(0, tabs.findIndex(t => t.id === active));
+  const lit = tabs.some(t => t.id === active);
   return (
-    <div style={{
+    <div className="ps-tabbar" style={{
+      position: "relative",
       background: "var(--chrome)",
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       borderTop: "1px solid var(--line)",
-      padding: "0 10px 10px",
+      padding: "0 10px max(10px, env(safe-area-inset-bottom, 0px))",
       display: "flex",
       justifyContent: "space-around",
     }}>
+      {lit && <span aria-hidden="true" className="ps-tab-ind" style={{
+        position: "absolute", top: 0, left: 10, height: 53,
+        width: `calc((100% - 20px) / ${tabs.length})`,
+        transform: `translateX(${idx * 100}%)`,
+        transition: "transform var(--t-move) var(--ease-spring)",
+        pointerEvents: "none", display: "flex", justifyContent: "center",
+      }}>
+        <span style={{
+          marginTop: 6, width: 58, height: 30, borderRadius: 999,
+          background: "var(--acc-14)", boxShadow: "inset 0 0 0 1px var(--acc-30)",
+        }} />
+      </span>}
       {tabs.map(t => {
         const Icon = t.icon;
         const on = active === t.id;
         return (
           <button key={t.id}
-            onClick={() => { haptic.light(); onChange(t.id); }}
+            onClick={() => {
+              haptic.light();
+              // Tapping the tab you are on takes its page back to the top,
+              // as on iOS. It still reports the tap: Me is lit on its own
+              // sub-screens (Past, Artists), where the tap leads back to Me.
+              if (on) document.querySelectorAll(".ps-view [data-scroll-body]").forEach(sc => { if (sc.scrollTop > 0) sc.scrollTo({ top: 0, behavior: "smooth" }); });
+              onChange(t.id);
+            }}
             aria-current={on ? "page" : undefined}
+            className="ps-tab"
             style={{
               position: "relative",
               background: "transparent", border: "none", cursor: "pointer",
@@ -106,18 +131,16 @@ function TabBar({ active, onChange }) {
               flex: "1 1 0", minWidth: 0, minHeight: 53,
               transition: "color var(--t-tap) var(--ease-decay)",
             }}>
-            {on && <span aria-hidden="true" style={{
-              position: "absolute", top: -1, left: "28%", right: "28%", height: 2, borderRadius: 2,
-              background: "var(--acc)", boxShadow: "0 0 12px var(--acc-55)",
-            }} />}
-            <Icon on={on} />
+            <span className="ps-tab-icon" style={{ display: "flex", transition: "transform var(--t-move) var(--ease-spring)", transform: on ? "translateY(-1px)" : "none" }}>
+              <Icon on={on} />
+            </span>
             {/* The label must be able to shrink, and its line box must scale
                 with it. At 200% text "Memories" ran past its own button, then
                 broke inside the word ("Toda / y"); it now steps down to fit. */}
             <span data-fit-words data-fit-group="tab" data-fit-min="9" style={{
               display: "block", width: "100%",
               fontSize: 11, lineHeight: 1.17, letterSpacing: ".01em",
-              fontWeight: 500, textAlign: "center",
+              fontWeight: on ? 600 : 500, textAlign: "center",
             }}>
               {t.label}
             </span>

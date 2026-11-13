@@ -25,6 +25,7 @@ var ScrollBody = React.forwardRef(function ScrollBody({
 }, fwdRef) {
   return React.createElement("div", {
     ref: fwdRef,
+    "data-scroll-body": "",
     ...rest,
     style: {
       flex: 1,
@@ -112,26 +113,61 @@ function TabBar({
     label: "Me",
     icon: MeIcon
   }];
+  var idx = Math.max(0, tabs.findIndex(t => t.id === active));
+  var lit = tabs.some(t => t.id === active);
   return React.createElement("div", {
+    className: "ps-tabbar",
     style: {
+      position: "relative",
       background: "var(--chrome)",
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       borderTop: "1px solid var(--line)",
-      padding: "0 10px 10px",
+      padding: "0 10px max(10px, env(safe-area-inset-bottom, 0px))",
       display: "flex",
       justifyContent: "space-around"
     }
-  }, tabs.map(t => {
+  }, lit && React.createElement("span", {
+    "aria-hidden": "true",
+    className: "ps-tab-ind",
+    style: {
+      position: "absolute",
+      top: 0,
+      left: 10,
+      height: 53,
+      width: `calc((100% - 20px) / ${tabs.length})`,
+      transform: `translateX(${idx * 100}%)`,
+      transition: "transform var(--t-move) var(--ease-spring)",
+      pointerEvents: "none",
+      display: "flex",
+      justifyContent: "center"
+    }
+  }, React.createElement("span", {
+    style: {
+      marginTop: 6,
+      width: 58,
+      height: 30,
+      borderRadius: 999,
+      background: "var(--acc-14)",
+      boxShadow: "inset 0 0 0 1px var(--acc-30)"
+    }
+  })), tabs.map(t => {
     var Icon = t.icon;
     var on = active === t.id;
     return React.createElement("button", {
       key: t.id,
       onClick: () => {
         haptic.light();
+        if (on) document.querySelectorAll(".ps-view [data-scroll-body]").forEach(sc => {
+          if (sc.scrollTop > 0) sc.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        });
         onChange(t.id);
       },
       "aria-current": on ? "page" : undefined,
+      className: "ps-tab",
       style: {
         position: "relative",
         background: "transparent",
@@ -149,21 +185,16 @@ function TabBar({
         minHeight: 53,
         transition: "color var(--t-tap) var(--ease-decay)"
       }
-    }, on && React.createElement("span", {
-      "aria-hidden": "true",
+    }, React.createElement("span", {
+      className: "ps-tab-icon",
       style: {
-        position: "absolute",
-        top: -1,
-        left: "28%",
-        right: "28%",
-        height: 2,
-        borderRadius: 2,
-        background: "var(--acc)",
-        boxShadow: "0 0 12px var(--acc-55)"
+        display: "flex",
+        transition: "transform var(--t-move) var(--ease-spring)",
+        transform: on ? "translateY(-1px)" : "none"
       }
-    }), React.createElement(Icon, {
+    }, React.createElement(Icon, {
       on: on
-    }), React.createElement("span", {
+    })), React.createElement("span", {
       "data-fit-words": true,
       "data-fit-group": "tab",
       "data-fit-min": "9",
@@ -173,7 +204,7 @@ function TabBar({
         fontSize: 11,
         lineHeight: 1.17,
         letterSpacing: ".01em",
-        fontWeight: 500,
+        fontWeight: on ? 600 : 500,
         textAlign: "center"
       }
     }, t.label));
