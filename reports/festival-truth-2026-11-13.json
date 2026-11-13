@@ -1,0 +1,1090 @@
+{
+ "spec": "SPEC-193 P2",
+ "date": "2026-11-13",
+ "head": "b55f5953",
+ "runtimeMs": 1710,
+ "severity": {
+  "S1": 4,
+  "S2": 4,
+  "S3": 10
+ },
+ "festivals": [
+  {
+   "id": "edc-lv-2026",
+   "name": "EDC Las Vegas 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 9,
+    "sets": 241,
+    "timed": 241,
+    "days": 3
+   },
+   "official": {
+    "dates": "PARTIAL",
+    "venue": "MATCH",
+    "url": "https://lasvegas.edc.com/",
+    "fetchedAt": "2026-11-13T06:06:09.928Z",
+    "why": "page names 2/3 of our dates",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-05-15",
+    "endDate": "2026-05-17",
+    "scheduleActs": 241
+   },
+   "map": {
+    "mode": null,
+    "anchors": 9,
+    "georef": true,
+    "waiverExpires": null,
+    "basis": "9 GPS anchor(s)"
+   },
+   "findings": [
+    {
+     "sev": "S3",
+     "what": "set time not on a 5-minute mark",
+     "detail": "21: Chris Lorenzo 22:07-23:15, Sofi Tukker 23:19-00:30, The Chainsmokers 00:32-01:42, FISHER 01:47-02:57, Porter Robinson (DJ Set) 03:01-04:11",
+     "url": "https://festivaldust.com/"
+    }
+   ]
+  },
+  {
+   "id": "acl-2026",
+   "name": "Austin City Limits 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 7,
+    "sets": 136,
+    "timed": 136,
+    "days": 3
+   },
+   "official": {
+    "dates": "PARTIAL",
+    "venue": "MATCH",
+    "url": "https://www.aclfestival.com/",
+    "fetchedAt": "2026-11-13T06:06:10.557Z",
+    "why": "page names 3/6 of our dates",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-10-02",
+    "endDate": "2026-10-11",
+    "scheduleActs": 136
+   },
+   "map": {
+    "mode": null,
+    "anchors": 4,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "4 GPS anchor(s)"
+   },
+   "findings": []
+  },
+  {
+   "id": "lost-lands-2026",
+   "name": "Lost Lands 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 7,
+    "sets": 206,
+    "timed": 206,
+    "days": 5
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "UNVERIFIED",
+    "url": "https://www.lostlandsfestival.com/",
+    "fetchedAt": "2026-11-13T06:06:10.829Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-09-18",
+    "endDate": "2026-09-20",
+    "scheduleActs": 206
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": [
+    {
+     "sev": "S3",
+     "what": "set time not on a 5-minute mark",
+     "detail": "1: Excision B2B Space Laces 21:40-22:47",
+     "url": "https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts"
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2026",
+   "name": "EDC Orlando 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 5,
+    "sets": 133,
+    "timed": 133,
+    "days": 3
+   },
+   "official": {
+    "dates": "PARTIAL",
+    "venue": "MATCH",
+    "url": "https://orlando.edc.com/",
+    "fetchedAt": "2026-11-13T06:06:11.207Z",
+    "why": "page names 2/3 of our dates",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-11-06",
+    "endDate": "2026-11-08",
+    "scheduleActs": 133
+   },
+   "map": {
+    "mode": null,
+    "anchors": 5,
+    "georef": true,
+    "waiverExpires": "2026-12-01",
+    "basis": "5 GPS anchor(s)",
+    "waiverDays": 18
+   },
+   "findings": [
+    {
+     "sev": "S3",
+     "what": "set time not on a 5-minute mark",
+     "detail": "17: Alesso (Sunset Set) 17:28-18:43, David Guetta 22:31-23:56, KREAM 18:47-19:57, Mau P 21:13-22:28, Pegassi 16:25-17:28",
+     "url": "https://orlando.edc.com/lineup/set-times/day-1/"
+    },
+    {
+     "sev": "S3",
+     "what": "act plays two sets on one day (spot-check against the official times)",
+     "detail": "2: AAT (ecf1 stereo 14:15) ≈ AAT (ecf46 bacardi 17:45) day 1; Gabss (ecs17 stereo 14:30) ≈ Gabss (ecs45 bacardi 18:00) day 2",
+     "url": "https://orlando.edc.com/lineup/set-times/day-1/"
+    },
+    {
+     "sev": "S2",
+     "what": "map registration waiver expires within 45 days",
+     "detail": "2026-12-01 (18 d)",
+     "url": "https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs"
+    }
+   ]
+  },
+  {
+   "id": "ultra-miami-2026",
+   "name": "Ultra Miami 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 7,
+    "sets": 166,
+    "timed": 166,
+    "days": 3
+   },
+   "official": {
+    "dates": "PARTIAL",
+    "venue": "MATCH",
+    "url": "https://ultramusicfestival.com/",
+    "fetchedAt": "2026-11-13T06:06:11.603Z",
+    "why": "page names 2/3 of our dates",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-03-27",
+    "endDate": "2026-03-29",
+    "scheduleActs": 166
+   },
+   "map": {
+    "mode": null,
+    "anchors": 7,
+    "georef": true,
+    "waiverExpires": null,
+    "basis": "7 GPS anchor(s)"
+   },
+   "findings": []
+  },
+  {
+   "id": "governors-ball-2026",
+   "name": "Governors Ball 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 3,
+    "sets": 58,
+    "timed": 58,
+    "days": 3
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "MATCH",
+    "url": "https://www.governorsballmusicfestival.com/",
+    "fetchedAt": "2026-11-13T06:06:12.261Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-06-05",
+    "endDate": "2026-06-07",
+    "scheduleActs": 58
+   },
+   "map": {
+    "mode": null,
+    "anchors": 3,
+    "georef": false,
+    "waiverExpires": "2026-12-01",
+    "basis": "3 GPS anchor(s)",
+    "waiverDays": 18
+   },
+   "findings": [
+    {
+     "sev": "S2",
+     "what": "map registration waiver expires within 45 days",
+     "detail": "2026-12-01 (18 d)",
+     "url": "https://github.com/jakeoborn/Plursky/blob/main/scripts/verify.mjs"
+    }
+   ]
+  },
+  {
+   "id": "summerfest-2026",
+   "name": "Summerfest 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 10,
+    "sets": 446,
+    "timed": 436,
+    "days": 9
+   },
+   "official": {
+    "dates": "UNVERIFIED",
+    "venue": "UNVERIFIED",
+    "url": "https://www.summerfest.com/",
+    "fetchedAt": "2026-11-13T06:06:12.769Z",
+    "why": "fetch failed (403)",
+    "status": 403
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-06-18",
+    "endDate": "2026-07-04",
+    "scheduleActs": 446
+   },
+   "map": {
+    "mode": null,
+    "anchors": 10,
+    "georef": true,
+    "waiverExpires": null,
+    "basis": "10 GPS anchor(s)"
+   },
+   "findings": [
+    {
+     "sev": "S2",
+     "what": "two sets overlap on the same stage (festival ended)",
+     "detail": "1: day 6 aurora: DJ Andres 14:45-15:20 × Jazzteca 15:15-16:10",
+     "url": "https://summerfest.com/lineup"
+    },
+    {
+     "sev": "S3",
+     "what": "act plays two sets on one day (spot-check against the official times)",
+     "detail": "65: The Mighty Ms. Erica And the Sound Production (su40 johnsonville 13:45) ≈ The Mighty Ms. Erica And the Sound Production (su41 johnsonville 15:30) day 1; 5 Card Studs (su42 johnsonville 17:30) ≈ 5 Card Studs (su43 johnsonville 19:30) day 1; Passion Pit (su32 tmobile 22:15) ≈ Passion Pit (su46 amfamhouse 16:00) day 1",
+     "url": "https://summerfest.com/lineup"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-2026",
+   "name": "Lollapalooza 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 9,
+    "sets": 195,
+    "timed": 195,
+    "days": 4
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "MATCH",
+    "url": "https://www.lollapalooza.com/",
+    "fetchedAt": "2026-11-13T06:06:13.081Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-07-30",
+    "endDate": "2026-08-02",
+    "scheduleActs": 195
+   },
+   "map": {
+    "mode": null,
+    "anchors": 9,
+    "georef": true,
+    "waiverExpires": null,
+    "basis": "9 GPS anchor(s)"
+   },
+   "findings": [
+    {
+     "sev": "S3",
+     "what": "act plays two sets on one day (spot-check against the official times)",
+     "detail": "4: Devault (lo13 perrys 13:45) ≈ Devault (lo23 titos 19:30) day 1; DJ Prince Lex (lo44 bonus 13:30) ≈ DJ Prince Lex (lo46 bonus 16:30) day 1; DJ Prince Lex (lo96 bonus 14:00) ≈ DJ Prince Lex (lo100 bonus 17:45) day 2",
+     "url": "https://lollapalooza.com/schedule"
+    }
+   ]
+  },
+  {
+   "id": "outside-lands-2026",
+   "name": "Outside Lands 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 7,
+    "sets": 139,
+    "timed": 139,
+    "days": 3
+   },
+   "official": {
+    "dates": "PARTIAL",
+    "venue": "UNVERIFIED",
+    "url": "https://www.sfoutsidelands.com/",
+    "fetchedAt": "2026-11-13T06:06:13.375Z",
+    "why": "page names 2/3 of our dates",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-08-07",
+    "endDate": "2026-08-09",
+    "scheduleActs": 139
+   },
+   "map": {
+    "mode": null,
+    "anchors": 7,
+    "georef": true,
+    "waiverExpires": null,
+    "basis": "7 GPS anchor(s)"
+   },
+   "findings": [
+    {
+     "sev": "S2",
+     "what": "two sets overlap on the same stage (festival ended)",
+     "detail": "2: day 2 dolores: OASIS DJ Set: Beverly Chills 13:30-14:15 × Pink Stiletto 14:00-14:30; day 2 dolores: Pink Stiletto 14:00-14:30 × REPARATIONS w/ DJ Newoncé 14:15-15:15",
+     "url": "https://inmusicblog.com/"
+    },
+    {
+     "sev": "S3",
+     "what": "act plays two sets on one day (spot-check against the official times)",
+     "detail": "14: Hot Goth Freak Show (os38 dolores 15:20) ≈ Hot Goth Freak Show (os42 dolores 18:05) day 1; Nezza (os8 twinpeaks 12:30) ≈ Nezza (os45 duboce 14:05) day 1; Chezile (os22 panhandle 13:20) ≈ Chezile (os46 duboce 15:25) day 1",
+     "url": "https://inmusicblog.com/"
+    }
+   ]
+  },
+  {
+   "id": "iii-points-2026",
+   "name": "III Points 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 13,
+    "sets": 231,
+    "timed": 231,
+    "days": 2
+   },
+   "official": {
+    "dates": "UNVERIFIED",
+    "venue": "MATCH",
+    "url": "https://www.iiipoints.com/",
+    "fetchedAt": "2026-11-13T06:06:13.988Z",
+    "why": "page text names none of our dates",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-10-16",
+    "endDate": "2026-10-17",
+    "scheduleActs": 231
+   },
+   "map": {
+    "mode": null,
+    "anchors": 13,
+    "georef": true,
+    "waiverExpires": null,
+    "basis": "13 GPS anchor(s)"
+   },
+   "findings": []
+  },
+  {
+   "id": "nocturnal-wonderland-2026",
+   "name": "Nocturnal Wonderland 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 5,
+    "sets": 86,
+    "timed": 86,
+    "days": 2
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "UNVERIFIED",
+    "url": "https://www.nocturnalwonderland.com/",
+    "fetchedAt": "2026-11-13T06:06:14.484Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-09-19",
+    "endDate": "2026-09-20",
+    "scheduleActs": 86
+   },
+   "map": {
+    "mode": null,
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "crssd-fall-2026",
+   "name": "CRSSD Fest Fall 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 3,
+    "sets": 53,
+    "timed": 53,
+    "days": 2
+   },
+   "official": {
+    "dates": "UNVERIFIED",
+    "venue": "UNVERIFIED",
+    "url": "https://www.crssdfest.com/",
+    "fetchedAt": "2026-11-13T06:06:15.696Z",
+    "why": "page has almost no server-rendered text (client-rendered)",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-09-26",
+    "endDate": "2026-09-27",
+    "scheduleActs": 53
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": true,
+    "waiverExpires": null,
+    "basis": "georeferenced plate"
+   },
+   "findings": []
+  },
+  {
+   "id": "portola-2026",
+   "name": "Portola 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 5,
+    "sets": 64,
+    "timed": 64,
+    "days": 2
+   },
+   "official": {
+    "dates": "UNVERIFIED",
+    "venue": "UNVERIFIED",
+    "url": "https://portolamusicfestival.com/",
+    "fetchedAt": "2026-11-13T06:06:17.598Z",
+    "why": "page text names none of our dates",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-09-26",
+    "endDate": "2026-09-27",
+    "scheduleActs": 64
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "hard-summer-2026",
+   "name": "HARD Summer 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 7,
+    "sets": 91,
+    "timed": 91,
+    "days": 2
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "UNVERIFIED",
+    "url": "https://www.hardsummer.com/",
+    "fetchedAt": "2026-11-13T06:06:17.991Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-08-01",
+    "endDate": "2026-08-02",
+    "scheduleActs": 91
+   },
+   "map": {
+    "mode": null,
+    "anchors": 0,
+    "georef": true,
+    "waiverExpires": null,
+    "basis": "georeferenced plate"
+   },
+   "findings": [
+    {
+     "sev": "S3",
+     "what": "set time not on a 5-minute mark",
+     "detail": "1: Kali Uchis 20:56-22:00",
+     "url": "https://hardsummer.com/lineup/set-times/day-1/"
+    }
+   ]
+  },
+  {
+   "id": "arc-2026",
+   "name": "ARC Music Festival 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 4,
+    "sets": 96,
+    "timed": 96,
+    "days": 4
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "MATCH",
+    "url": "https://arcmusicfestival.com/",
+    "fetchedAt": "2026-11-13T06:06:19.147Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-09-04",
+    "endDate": "2026-09-07",
+    "scheduleActs": 96
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "escape-halloween-2026",
+   "name": "Escape Halloween 2026",
+   "tba": false,
+   "ended": true,
+   "stats": {
+    "stages": 7,
+    "sets": 118,
+    "timed": 118,
+    "days": 2
+   },
+   "official": {
+    "dates": "PARTIAL",
+    "venue": "MATCH",
+    "url": "https://escapehalloween.com/",
+    "fetchedAt": "2026-11-13T06:06:19.676Z",
+    "why": "page names 1/2 of our dates",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-10-30",
+    "endDate": "2026-10-31",
+    "scheduleActs": 118
+   },
+   "map": {
+    "mode": null,
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": [
+    {
+     "sev": "S3",
+     "what": "act plays two sets on one day (spot-check against the official times)",
+     "detail": "2: Acyan (esc-acyan-d2 sewer-district 16:00) ≈ Acyan (esc-acyan-d2-s2 beatbox-art-car 18:30) day 2; Cat & Maomi (esc-cat-and-maomi-d2 feeding-grounds 16:00) ≈ Cat & Maomi (esc-cat-and-maomi-d2-s2 beatbox-art-car 21:30) day 2",
+     "url": "https://escapehalloween.com/lineup/set-times/day-1/"
+    }
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2026",
+   "name": "Dreamstate SoCal 2026",
+   "tba": true,
+   "ended": false,
+   "stats": {
+    "stages": 5,
+    "sets": 70,
+    "timed": 0,
+    "days": 1
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "UNVERIFIED",
+    "url": "https://socal.dreamstateusa.com/",
+    "fetchedAt": "2026-11-13T06:06:20.645Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-11-20",
+    "endDate": "2026-11-21",
+    "scheduleActs": 70
+   },
+   "map": {
+    "mode": null,
+    "anchors": 0,
+    "georef": true,
+    "waiverExpires": null,
+    "basis": "georeferenced plate"
+   },
+   "findings": [
+    {
+     "sev": "S3",
+     "what": "stage with zero sets",
+     "detail": "Sequence, Void, Vision, Dream, Beatbox Art Car",
+     "url": "https://socal.dreamstateusa.com/lineup/"
+    }
+   ]
+  },
+  {
+   "id": "decadence-colorado-2026",
+   "name": "Decadence Colorado 2026",
+   "tba": true,
+   "ended": false,
+   "stats": {
+    "stages": 0,
+    "sets": 23,
+    "timed": 0,
+    "days": 2
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "UNVERIFIED",
+    "url": "https://decadencenye.com/",
+    "fetchedAt": "2026-11-13T06:06:21.819Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-12-30",
+    "endDate": "2026-12-31",
+    "scheduleActs": 23
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "countdown-nye-2026",
+   "name": "Countdown NYE 2026",
+   "tba": true,
+   "ended": false,
+   "stats": {
+    "stages": 0,
+    "sets": 71,
+    "timed": 0,
+    "days": 1
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "MATCH",
+    "url": "https://countdownnye.com/",
+    "fetchedAt": "2026-11-13T06:06:22.273Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-12-31",
+    "endDate": "2027-01-01",
+    "scheduleActs": 71
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "lights-all-night-2026",
+   "name": "Lights All Night 2026",
+   "tba": true,
+   "ended": false,
+   "stats": {
+    "stages": 0,
+    "sets": 39,
+    "timed": 0,
+    "days": 1
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "MATCH",
+    "url": "https://lightsallnight.com/",
+    "fetchedAt": "2026-11-13T06:06:22.928Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-12-30",
+    "endDate": "2026-12-31",
+    "scheduleActs": 39
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "decadence-arizona-2026",
+   "name": "Decadence Arizona 2026",
+   "tba": true,
+   "ended": false,
+   "stats": {
+    "stages": 0,
+    "sets": 39,
+    "timed": 0,
+    "days": 2
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "MATCH",
+    "url": "https://decadencearizona.com/",
+    "fetchedAt": "2026-11-13T06:06:24.004Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-12-30",
+    "endDate": "2026-12-31",
+    "scheduleActs": 39
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "sunset-on-the-river-2027",
+   "name": "Sunset On The River 2027",
+   "tba": true,
+   "ended": false,
+   "stats": {
+    "stages": 0,
+    "sets": 16,
+    "timed": 0,
+    "days": 1
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "MATCH",
+    "url": "https://sunsetotr.com/",
+    "fetchedAt": "2026-11-13T06:06:24.557Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2027-02-20",
+    "endDate": "2027-02-21",
+    "scheduleActs": 16
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "dwp-2026",
+   "name": "Djakarta Warehouse Project 2026",
+   "tba": true,
+   "ended": false,
+   "stats": {
+    "stages": 0,
+    "sets": 25,
+    "timed": 0,
+    "days": 1
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "UNVERIFIED",
+    "url": "https://dwpfest.com/",
+    "fetchedAt": "2026-11-13T06:06:25.574Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-12-11",
+    "endDate": "2026-12-13",
+    "scheduleActs": 25
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "edc-thailand-2026",
+   "name": "EDC Thailand 2026",
+   "tba": true,
+   "ended": false,
+   "stats": {
+    "stages": 0,
+    "sets": 100,
+    "timed": 0,
+    "days": 3
+   },
+   "official": {
+    "dates": "PARTIAL",
+    "venue": "MATCH",
+    "url": "https://thailand.edc.com/en/",
+    "fetchedAt": "2026-11-13T06:06:26.868Z",
+    "why": "page names 2/3 of our dates",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-12-18",
+    "endDate": "2026-12-20",
+    "scheduleActs": 100
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "tomorrowland-thailand-2026",
+   "name": "Tomorrowland Thailand 2026",
+   "tba": true,
+   "ended": false,
+   "stats": {
+    "stages": 7,
+    "sets": 158,
+    "timed": 0,
+    "days": 3
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "MATCH",
+    "url": "https://thailand.tomorrowland.com/en/",
+    "fetchedAt": "2026-11-13T06:06:28.073Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2026-12-11",
+    "endDate": "2026-12-13",
+    "scheduleActs": 158
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "groove-cruise-2027",
+   "name": "Groove Cruise Miami 2027",
+   "tba": true,
+   "ended": false,
+   "stats": {
+    "stages": 0,
+    "sets": 106,
+    "timed": 0,
+    "days": 1
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "MATCH",
+    "url": "https://www.groovecruise.com/",
+    "fetchedAt": "2026-11-13T06:06:28.879Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2027-01-21",
+    "endDate": "2027-01-25",
+    "scheduleActs": 106
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  },
+  {
+   "id": "day-zero-tulum-2027",
+   "name": "Day Zero Tulum 2027",
+   "tba": true,
+   "ended": false,
+   "stats": {
+    "stages": 0,
+    "sets": 30,
+    "timed": 0,
+    "days": 1
+   },
+   "official": {
+    "dates": "MATCH",
+    "venue": "MATCH",
+    "url": "https://dayzerofestival.com/tulum/",
+    "fetchedAt": "2026-11-13T06:06:29.182Z",
+    "why": "",
+    "status": 200
+   },
+   "seo": {
+    "page": true,
+    "startDate": "2027-01-09",
+    "endDate": "2027-01-09",
+    "scheduleActs": 30
+   },
+   "map": {
+    "mode": "real",
+    "anchors": 0,
+    "georef": false,
+    "waiverExpires": null,
+    "basis": "none (real map only)"
+   },
+   "findings": []
+  }
+ ],
+ "photos": {
+  "rows": 1199,
+  "hashed": 1199,
+  "commons": 1199,
+  "commonsRows": 1199,
+  "unread": 0,
+  "findings": [
+   {
+    "sev": "S1",
+    "what": "Commons file is flagged",
+    "detail": "FUJII KAZE: cropped from a deleted file (Template:Extracted from deleted)",
+    "url": "https://commons.wikimedia.org/wiki/File:Fujii_Kaze_performing_during_Best_Of_Fujii_Kaze_2020-2024_Asia_Tour_in_Axiata_Arena_Kuala_Lumpur_(cropped)_(2).jpg"
+   },
+   {
+    "sev": "S1",
+    "what": "Commons file is flagged",
+    "detail": "Gallant: deletion request (Template:Deletion template tag)",
+    "url": "https://commons.wikimedia.org/wiki/File:Gallant-Plaid-Suit-Yellow-Green.jpg"
+   },
+   {
+    "sev": "S1",
+    "what": "Commons file is flagged",
+    "detail": "R3hab: deletion request (Template:Delete)",
+    "url": "https://commons.wikimedia.org/wiki/File:R3hab_(Cropped).jpg"
+   },
+   {
+    "sev": "S1",
+    "what": "Commons file is flagged",
+    "detail": "KATSEYE: cropped from a deleted file (Template:Extracted from deleted)",
+    "url": "https://commons.wikimedia.org/wiki/File:Katseye_at_Wango_Tango_2025_(cropped).jpg"
+   }
+  ]
+ },
+ "pagesWithoutDataSet": [
+  "awakenings-2027",
+  "bass-coast-2027",
+  "beyond-wonderland-gorge-2027",
+  "beyond-wonderland-socal-2027",
+  "boom-festival-2027",
+  "coachella-2027",
+  "creamfields-2027",
+  "das-energi-2027",
+  "defqon1-2027",
+  "edc-mexico-2027",
+  "electric-forest-2027",
+  "electric-love-2027",
+  "forbidden-kingdom-2027",
+  "kappa-futurfestival-2027",
+  "movement-2027",
+  "ozora-2027",
+  "parookaville-2027",
+  "primavera-sound-2027",
+  "shambhala-2027",
+  "sonar-2027",
+  "sziget-2027",
+  "time-warp-2027",
+  "tomorrowland-2027",
+  "tomorrowland-brasil-2027",
+  "tomorrowland-winter-2027",
+  "ubbi-dubbi-2027",
+  "ultra-europe-2027",
+  "untold-2027"
+ ]
+}
