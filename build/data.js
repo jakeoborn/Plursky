@@ -926,6 +926,90 @@ var FESTIVALS_REGISTRY = [{
   region: "Europe"
 }, {
   config: {
+    id: "time-warp-2027",
+    officialEvent: {
+      website: "https://www.time-warp.de/",
+      observedAt: "2026-11-12"
+    },
+    name: "Time Warp Germany 2027",
+    shortName: "Time Warp",
+    brand: "Time Warp",
+    tagline: "One night of techno in Mannheim",
+    location: "Maimarkthalle · Mannheim, Germany",
+    locationShort: "Maimarkthalle",
+    dates: "Apr 3, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.time-warp.de/",
+        observedAt: "2026-11-12"
+      },
+      note: "Not measured yet; the theme-color meta is #0048FF, so confirm against the site's own CSS before setting it."
+    }
+  },
+  available: false,
+  accent: "#3b82f6",
+  emoji: "⏱️",
+  region: "Europe"
+}, {
+  config: {
+    id: "sonar-2027",
+    officialEvent: {
+      website: "https://sonar.es/en",
+      observedAt: "2026-11-12"
+    },
+    name: "Sónar Barcelona 2027",
+    shortName: "Sónar",
+    brand: "Sónar",
+    tagline: "Music, creativity and technology in Barcelona",
+    location: "Barcelona, Spain",
+    locationShort: "Barcelona",
+    dates: "Jun 17–19, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://sonar.es/en",
+        observedAt: "2026-11-12"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#facc15",
+  emoji: "🔊",
+  region: "Europe"
+}, {
+  config: {
+    id: "ozora-2027",
+    officialEvent: {
+      website: "https://ozorafestival.eu/",
+      observedAt: "2026-11-12"
+    },
+    name: "O.Z.O.R.A. Festival 2027",
+    shortName: "O.Z.O.R.A.",
+    brand: "O.Z.O.R.A.",
+    tagline: "A week and more of psytrance in the Hungarian countryside",
+    location: "Hungary",
+    locationShort: "Hungary",
+    dates: "Jul 23, 2027 – Aug 3, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://ozorafestival.eu/",
+        observedAt: "2026-11-12"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#a3e635",
+  emoji: "🍄",
+  region: "Europe"
+}, {
+  config: {
     id: "lost-lands-2026",
     officialEvent: {
       website: "https://www.lostlandsfestival.com/",
@@ -1512,6 +1596,11 @@ function _festivalEventDates(cfg) {
   if (x && MONTHS[x[1]] && MONTHS[x[4]]) return {
     start: ymd(x[1], x[2], x[3]),
     end: ymd(x[4], x[5], x[6])
+  };
+  var one = /^([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || "");
+  if (one && MONTHS[one[1]]) return {
+    start: ymd(one[1], one[2], one[3]),
+    end: ymd(one[1], one[2], one[3])
   };
   var dd = cfg.dayDates && Object.values(cfg.dayDates);
   if (dd && dd.length) {
@@ -4233,7 +4322,7 @@ var UNPLACED_STAGE = {
   color: "#8a8580",
   size: 1
 };
-var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026", "tomorrowland-thailand-2026"];
+var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026", "tomorrowland-thailand-2026", "groove-cruise-2027", "day-zero-tulum-2027"];
 var _WAVE1 = typeof window !== "undefined" && window.PLURSKY_FESTIVALS || {};
 for (var _id of _WAVE1_IDS) {
   var _f = _WAVE1[_id];

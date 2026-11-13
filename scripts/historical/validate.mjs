@@ -30,6 +30,7 @@ export const OFFICIAL_HOSTS = {
   "countdown-nye": ["countdownnye.com"],
   "dreamstate-socal": ["dreamstateusa.com"],
   "tomorrowland": ["tomorrowland.com"],
+  "shambhala": ["shambhalamusicfestival.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -333,7 +334,13 @@ function officialSources(e, meta, p) {
       // still print this day's weekday and date in the edition year.
       if (ts && !(ts.startsWith(String(e.year)) || ts.startsWith(String(e.year + 1)))) p.push(`${tag}: page capture ${ts} is not from ${e.year} or the year after`);
       if (ts && ts !== c.captureTimestamp) p.push(`${tag}: captureTimestamp ${c.captureTimestamp} ≠ the archived URL's ${ts}`);
-      if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
+      // Shambhala's tabs print the weekday alone; the date is the one the
+      // day's table writes its first slot as (<td id="time_T">, T a UTC epoch).
+      if (c.firstSlot) {
+        const T = +/^time_(\d+)$/.exec(c.firstSlot)?.[1], wd = new Date(date + "T12:00:00Z").toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
+        if (!T || new Date(T * 1000).toISOString().slice(0, 10) !== date) p.push(`${tag}: the page's first slot ${c.firstSlot} is not on ${date}`);
+        if (String(c.printed).toLowerCase() !== wd.toLowerCase()) p.push(`${tag}: the page's day tab "${c.printed}" is not ${wd}`);
+      } else if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
     }
     // A stage printed two ways carried onto one name: only case, spacing and
     // a leading "The" may change, and the target must be a stage it shows.

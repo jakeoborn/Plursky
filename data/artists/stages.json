@@ -3541,6 +3541,142 @@
     }
    ]
   },
+  "shambhala": {
+   "lineages": [
+    {
+     "id": "shambhala:living-room",
+     "names": [
+      {
+       "printed": "Living Room",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:rock-pit",
+     "names": [
+      {
+       "printed": "Rock Pit",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:pagoda",
+     "names": [
+      {
+       "printed": "Pagoda",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:fractal-forest",
+     "names": [
+      {
+       "printed": "Fractal Forest",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:labyrinth",
+     "names": [
+      {
+       "printed": "Labyrinth",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:village",
+     "names": [
+      {
+       "printed": "Village",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:amphitheatre",
+     "names": [
+      {
+       "printed": "Amphitheatre",
+       "editions": [
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:grove",
+     "names": [
+      {
+       "printed": "Grove",
+       "editions": [
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "summerfest": {
    "lineages": [
     {
