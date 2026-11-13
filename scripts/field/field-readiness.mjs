@@ -22,7 +22,7 @@ import { chromium } from "playwright";
 import { spawn, execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync, rmSync, existsSync, statSync, readdirSync, symlinkSync, cpSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { wireVendor } from "../lib/vendor-cdn.mjs";
+import { wireVendor, vendoredScripts } from "../lib/vendor-cdn.mjs";
 import { FLOWS } from "./flows.mjs";
 
 const ROOT = process.cwd();
@@ -33,6 +33,11 @@ const WORKERS = +arg("--workers", 6);
 const OUTDIR = resolve(arg("--out", join(ROOT, "reports")));
 const SHOTS = join(OUTDIR, "field");
 const SHOT_CAP = 40 * 1024 * 1024;
+const SLOW_BPS = 400_000;   // slow3g link: 400 kbit/s, shared by every request in the cell
+const SLOW_WAIT = 180_000;  // how long a slow3g cell may take before it is called a timeout
+const sleep = ms => new Promise(r => setTimeout(r, Math.max(0, ms)));
+// The vendored CDN bodies (React etc.), so the slow link can time them by size too.
+const VENDOR = new Map(vendoredScripts().map(v => [v.url, v]));
 mkdirSync(SHOTS, { recursive: true });
 
 // Console noise a gate causes ON PURPOSE (every outside host is aborted, so
@@ -137,7 +142,8 @@ async function cell(f, [w, h], net) {
   const sw = net === "offline" || net === "slow3g";
   const { ctx, page } = await openCtx({ w, h, sw, fid: f.id });
   const checks = [], add = (flow, ok, note = "") => checks.push({ flow, ok, note });
-  let ms = 0;
+  let ms = 0, t0 = 0;
+  const link = { freeAt: 0, bytes: 0 };   // this cell's one slow-3G link
   try {
     if (net === "tiles-blocked") {
       ms = await boot(page, "index.html?tab=map");
@@ -165,19 +171,33 @@ async function cell(f, [w, h], net) {
         await page.waitForTimeout(2500);
         if (net === "offline") await ctx.setOffline(true);
         else {
-          // "Slow 3G" (400 ms) plus the spec's 4 s extra, on every request the
-          // page OR its service worker makes. CDP network emulation does not
-          // reach service-worker fetches, so the delay is a route: the app's
-          // network-first own-origin fetches really do wait 4.4 s each.
-          await ctx.route(() => true, async r => { await new Promise(res => setTimeout(res, 4400)); await r.fallback(); });
+          // "Slow 3G": 4.4 s latency per request AND a 400 kbit/s link, on every
+          // request the page OR its service worker makes. CDP network emulation
+          // does not reach service-worker fetches, so the link is a route: each
+          // response waits out the latency, then queues for the ONE shared link
+          // and is held for bytes × 8 / 400 kbit/s before it is delivered.
+          await ctx.route(() => true, async r => { try {
+            await sleep(4400);
+            const url = r.request().url();
+            let status = 200, headers = {}, body;
+            if (url.startsWith(BASE)) { const resp = await r.fetch(); status = resp.status(); headers = resp.headers(); body = await resp.body(); }
+            else if (VENDOR.has(url.split("#")[0])) { const v = VENDOR.get(url.split("#")[0]); headers = { "content-type": v.type, "access-control-allow-origin": "*" }; body = v.body; }
+            else return r.abort();
+            const start = Math.max(Date.now(), link.freeAt);
+            link.freeAt = start + body.length * 8 / SLOW_BPS * 1000; link.bytes += body.length;
+            await sleep(link.freeAt - Date.now());
+            await r.fulfill({ status, headers, body });
+          } catch { /* the cell ended with this request in flight */ } });
         }
         page._errors.length = 0;
-        const t0 = Date.now();
-        await page.goto(BASE + "index.html?tab=lineup", { waitUntil: "domcontentloaded", timeout: 60000 });
-        await page.waitForFunction(() => document.getElementById("root")?.childElementCount > 0, null, { timeout: 60000 });
+        t0 = Date.now();
+        // Long enough to MEASURE a slow load (the 20 s bar is checked below),
+        // so a slow cell reports its time instead of a bare timeout.
+        await page.goto(BASE + "index.html?tab=lineup", { waitUntil: "domcontentloaded", timeout: SLOW_WAIT });
+        await page.waitForFunction(() => document.getElementById("root")?.childElementCount > 0, null, { timeout: SLOW_WAIT });
         ms = Date.now() - t0;
-      } else ms = await boot(page, "index.html?tab=lineup");
-      const lineupUp = await page.waitForSelector("[data-lineup-scroll], [data-grid-scroll]", { timeout: net === "slow3g" ? 60000 : 20000 }).then(() => true, () => false);
+      } else { t0 = Date.now(); ms = await boot(page, "index.html?tab=lineup"); }
+      const lineupUp = await page.waitForSelector("[data-lineup-scroll], [data-grid-scroll]", { timeout: net === "slow3g" ? SLOW_WAIT : 20000 }).then(() => true, () => false);
       add("1 opens on the stored festival", await page.evaluate(id => window.FESTIVAL_CONFIG?.id === id, f.id), `active ${await page.evaluate(() => window.FESTIVAL_CONFIG?.id)}`);
       add("2 lineup renders", lineupUp, `${net} in ${ms} ms`);
       if (lineupUp) {
@@ -188,7 +208,13 @@ async function cell(f, [w, h], net) {
         add("2 no horizontal overflow", s.overflowX <= 1, `${s.overflowX}px over`);
         add("2 no stray text", s.stray.length === 0, s.stray.join("; "));
       }
-      if (net === "slow3g") add("2 usable within 20 s on slow 3G (warm cache)", ms < 20000, `${ms} ms to first paint`);
+      // Usable = set rows on screen that a thumb can read, not the root mounting.
+      if (net === "slow3g") {
+        const usable = await page.waitForFunction(() => [...document.querySelectorAll("[data-set-name]")].some(e => { const b = e.getBoundingClientRect(); return b.height > 0 && b.top < innerHeight && e.textContent.trim(); }), null, { timeout: SLOW_WAIT })
+          .then(() => Date.now() - t0, () => null);
+        add("2 usable within 20 s on slow 3G (warm cache)", usable != null && usable < 20000,
+          `${usable == null ? `no readable set row within ${SLOW_WAIT / 1000} s` : `${usable} ms to the first readable set row`} (root mounted at ${ms} ms; ${Math.round(link.bytes / 1024)} KB over the 400 kbit/s link)`);
+      }
     }
     const errs = page._errors.filter(e => !OFFLINE_NOISE.test(e));
     add("no page errors", errs.length === 0, errs.slice(0, 2).join(" | "));
@@ -198,6 +224,7 @@ async function cell(f, [w, h], net) {
   const failed = checks.filter(c => !c.ok);
   const out = { status: failed.length ? "FAIL" : "PASS", checks, ms };
   if (failed.length) out.shot = await shot(page, `${f.id}-${w}x${h}-${net}`);
+  await ctx.unrouteAll({ behavior: "ignoreErrors" }).catch(() => {});
   await ctx.close();
   return out;
 }

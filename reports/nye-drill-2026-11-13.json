@@ -1,7 +1,7 @@
 {
  "spec": "SPEC-193 P4",
  "date": "2026-11-13",
- "runtimeMs": 2100,
+ "runtimeMs": 3217,
  "pass": 9,
  "total": 9,
  "rows": [

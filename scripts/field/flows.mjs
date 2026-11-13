@@ -181,8 +181,10 @@ async function perFestival(f, { openCtx, boot, scan, shot }) {
           const clashLine = (/[^\n]*\bclash\b[^\n]*/i.exec(txt) || [""])[0].trim();
           return { banner, clashLine, tightOnly: /^\d+ tight transitions?\b/m.test(banner) };
         });
+        // A real fully-overlapping pair, both saved, at a moment inside both
+        // sets: Home MUST name the clash. Silence is a failure, not "n/a".
         const seen = r.banner || r.clashLine; seenAny = !!seen;
-        add("7 full clash reads as a clash", seen ? (/clash/i.test(seen) && !r.tightOnly) : null,
+        add("7 full clash reads as a clash", seen ? (/clash/i.test(seen) && !r.tightOnly) : false,
           seen ? `"${(r.banner || r.clashLine).slice(0, 80)}" for ${pick.names.join(" × ")}` : `Home shows no clash line for ${pick.names.join(" × ")} at ${new Date(pick.at).toISOString()}`);
       } catch (e) { add("7 clash flow ran", false, String(e.message).split("\n")[0]); }
       if (checks.slice(mark7).some(c => c.ok === false) || !seenAny) failShot ||= await shot(page, `${f.id}-flow-clash`);
