@@ -982,6 +982,14 @@ var _lineupDayWord = w => {
   var s = String(w || "");
   return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 };
+var _lineupUnsplit = stats => Array.isArray(stats) && stats.length === 1 && /^tba$/i.test(String(stats[0]?.label || "").trim());
+var _lineupUnsplitRange = n => {
+  try {
+    return FESTIVAL_CONFIG.dayDates?.[n]?.name || FESTIVAL_CONFIG.dates || "";
+  } catch {
+    return "";
+  }
+};
 function LineupScreen({
   state,
   setState
@@ -1463,7 +1471,7 @@ function LineupScreen({
   var showMini = !_schedTBA;
   var compactSummary = (() => {
     var d = dayStats.find(x => x.n === day);
-    var dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
+    var dayText = !d ? "" : _lineupUnsplit(dayStats) ? "Full lineup" : `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim();
     var stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
     var show = [stageName, filter === "saved" ? "My plan" : filter === "now" ? "Live" : null].filter(Boolean).join(" · ") || "All stages";
     var extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
@@ -1826,12 +1834,15 @@ function LineupScreen({
     }
   }, dayStats.map(d => {
     var on = d.n === day;
+    var unsplit = _lineupUnsplit(dayStats);
+    var label = unsplit ? "Full lineup" : d.label;
+    var dateText = unsplit ? _lineupUnsplitRange(d.n) : d.date.split(" ")[1];
     return React.createElement("button", {
       key: d.n,
       role: "tab",
       "aria-selected": on,
       className: "duo-tab",
-      "aria-label": `${d.label} ${d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`,
+      "aria-label": `${label} ${unsplit ? dateText : d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`,
       onClick: () => {
         setDay(d.n);
         setState(s => ({
@@ -1844,12 +1855,12 @@ function LineupScreen({
       style: {
         fontSize: 12
       }
-    }, d.label), React.createElement("span", {
+    }, label), React.createElement("span", {
       className: "duo-data-s",
       style: {
         color: on ? "var(--ink-2)" : "var(--ink-3)"
       }
-    }, d.date.split(" ")[1]), d.count > 0 && React.createElement("span", {
+    }, dateText), d.count > 0 && React.createElement("span", {
       "aria-hidden": "true",
       className: "duo-data-s",
       style: {
