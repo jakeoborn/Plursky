@@ -3469,6 +3469,120 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "outside-lands:lands-end-polo-field",
+     "names": [
+      {
+       "printed": "Lands End (Polo Field)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:sutro-lindley-meadow",
+     "names": [
+      {
+       "printed": "Sutro (Lindley Meadow)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:twin-peaks-hellman-hollow",
+     "names": [
+      {
+       "printed": "Twin Peaks (Hellman Hollow)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:panhandle-hellman-hollow",
+     "names": [
+      {
+       "printed": "Panhandle (Hellman Hollow)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:the-dome-by-heineken",
+     "names": [
+      {
+       "printed": "The Dome By Heineken",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      },
+      {
+       "printed": "The Dome by Heineken",
+       "editions": [
+        "outside-lands-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:mike-shine",
+     "names": [
+      {
+       "printed": "Mike Shine",
+       "editions": [
+        "outside-lands-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:the-house-by-heineken",
+     "names": [
+      {
+       "printed": "The House by Heineken",
+       "editions": [
+        "outside-lands-2014",
+        "outside-lands-2015",
+        "outside-lands-2016",
+        "outside-lands-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:presidio",
+     "names": [
+      {
+       "printed": "Presidio",
+       "editions": [
+        "outside-lands-2015",
+        "outside-lands-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

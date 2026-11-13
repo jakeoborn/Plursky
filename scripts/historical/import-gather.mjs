@@ -42,6 +42,7 @@ import { parseTomorrowland } from "./tml-schedule.mjs";
 import { parseElectricForest } from "./ef-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./coachella-lineup.mjs";
 import { parseShambhala } from "./shambhala-schedule.mjs";
+import { parseDoStuff, parseDoStuffBand, timeDay } from "./dostuff-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
@@ -158,7 +159,7 @@ export async function importGather(id, dir) {
     }
     const date = ed.dates[+r.day - 1]?.[0];
     if (r.date !== date) throw new Error(`row ${r.artist}: day ${r.day} is ${r.date}, the edition says ${date}`);
-    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }), ...(ex.incomplete && { incomplete: true }) }); continue; }
+    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }), ...(ex.incomplete && { incomplete: true }), ...(ex.comedy && { comedy: true }), ...(ex.food && { food: true }) }); continue; }
     const hits = rc.sources.map((s, i) => [s, i]).filter(([s]) => (r.source_ref || "").includes(s.match)
       && (!s.when?.stage || new RegExp(s.when.stage).test(r.stage)) && (!s.when?.stageNot || !new RegExp(s.when.stageNot).test(r.stage)));
     if (hits.length !== 1) throw new Error(`row d${r.day} ${r.stage} ${r.start} ${r.artist}: ${hits.length} sources match its source_ref`);
@@ -376,6 +377,40 @@ export async function importGather(id, dir) {
             ...(d.joined.length && { joined: d.joined.map(x => `${x.joinedTo} + "${x.artist}"`) }),
             ...(d.closed && { closedBlocks: d.closed }), ...(d.overlap.length && { repeatedNextDaySets: d.overlap.length }) });
         }
+      } else if (s.format === "dostuff-grid") {
+        // One page per day (Outside Lands' lineup site, dostuff-schedule.mjs),
+        // its times printed with no am/pm. The receipt's anchor, one act's own
+        // page on the same site, prints that act's set with its meridiem and
+        // fixes the day's axis; every set's clock time must then be a reading
+        // of its own print. Shows in the comedy tent, shows on the food stage
+        // (GastroMagic) and misprinted blocks
+        // must be excluded rows of that day, one for one.
+        if (days.length !== 1) throw new Error(`page ${s.match} is cited for ${days.length} days; a day grid shows one`);
+        const day = days[0], page = parseDoStuff(cap.text);
+        if (page.year !== ed.year || page.date !== ed.dates[day - 1][0]) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${page.title} ${page.date}, the sheet cites it for day ${day}`);
+        if (page.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: the day tab prints "${page.label}", the receipt says "${s.printed[day]}"`);
+        const acap = await fetchCapture(s.anchor.captureTimestamp, s.anchor.url);
+        if (acap.captureTimestamp !== s.anchor.captureTimestamp) throw new Error(`${s.anchor.url}: Wayback served ${acap.captureTimestamp}, not ${s.anchor.captureTimestamp}`);
+        const band = parseDoStuffBand(acap.text);
+        if (!band.title.endsWith(` at Outside Lands ${ed.year}`)) throw new Error(`${s.anchor.url}: "${band.title}" is not an Outside Lands ${ed.year} act page`);
+        const t = timeDay(page, band, /\/band\/([^/?#]+)/.exec(s.anchor.url)?.[1]);
+        const k = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
+        const funny = t.sets.filter(x => s.comedyStage && x.stage === s.comedyStage);
+        const pgC = funny.map(k).sort().join("\n"), shC = excluded.filter(x => x.day === day && x.comedy).map(k).sort().join("\n");
+        if (pgC !== shC) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${funny.length} show(s) in ${s.comedyStage || "no comedy tent"}, the sheet excludes others`);
+        const mk = x => [x.stage, x.artist ?? x.billing].join("|");
+        const pgM = page.misprints.map(mk).sort().join("\n"), shM = excluded.filter(x => x.day === day && x.misprint).map(mk).sort().join("\n");
+        if (pgM !== shM) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${page.misprints.length} misprinted block(s), the sheet excludes others`);
+        const fed = t.sets.filter(x => s.foodStage && x.stage === s.foodStage);
+        const pgF = fed.map(k).sort().join("\n"), shF = excluded.filter(x => x.day === day && x.food).map(k).sort().join("\n");
+        if (pgF !== shF) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${fed.length} show(s) on ${s.foodStage || "no food stage"}, the sheet excludes others`);
+        agree(day, t.sets.filter(x => !funny.includes(x) && !fed.includes(x)).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+        Object.assign(ledgerDays[day - 1].sources.at(-1), { stages: page.stages.length, axis: `${page.axis.first} … ${page.axis.last}`, pxPerMinute: page.scale,
+          axisStart: t.axisStart, meridiem: "read off the anchor act's own page on the lineup site",
+          anchor: { url: s.anchor.url, archivedUrl: acap.archivedUrl, captureTimestamp: acap.captureTimestamp, sha256: acap.sha256, bytes: acap.bytes, printed: t.anchor.text },
+          ...(funny.length && { comedyShows: funny.length, comedyStage: s.comedyStage }),
+          ...(fed.length && { foodShows: fed.length, foodStage: s.foodStage }),
+          ...(page.misprints.length && { misprints: page.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
       } else if (s.format === "day-tabs") {
         // Every day is on the page; each day's rows must equal its own pane.
         const panes = parseDayTabs(cap.text);

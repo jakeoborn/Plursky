@@ -1,0 +1,251 @@
+{
+  "id": "outside-lands-2013",
+  "method": "official_sources",
+  "official": "https://www.sfoutsidelands.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2013-08-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2013/08/09",
+          "archivedUrl": "https://web.archive.org/web/20130814052127/http://lineup.sfoutsidelands.com/events/2013/08/09",
+          "captureTimestamp": "20130814052127",
+          "printed": "Friday, August 9",
+          "sha256": "6efd4532710f7fd17de98c4e23bea72d55ea0096429ef0071f4501f01cc32fc9",
+          "bytes": 55661,
+          "rows": 36,
+          "format": "dostuff-grid",
+          "stages": 7,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/paul-mccartney",
+            "archivedUrl": "https://web.archive.org/web/20130814052832/http://lineup.sfoutsidelands.com/band/paul-mccartney",
+            "captureTimestamp": "20130814052832",
+            "sha256": "ff22165994d78332f42343c370b4922825afc0012e59b3eb609c28e8ad0f0f2e",
+            "bytes": 59682,
+            "printed": "Friday Aug 9 7:10 PM on Lands End"
+          },
+          "comedyShows": 5,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2013-08-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2013/08/10",
+          "archivedUrl": "https://web.archive.org/web/20130814064638/http://lineup.sfoutsidelands.com/events/2013/08/10",
+          "captureTimestamp": "20130814064638",
+          "printed": "Saturday, August 10",
+          "sha256": "d75ba44ae6dd281ba7286e459e2a1a5219525be71bc67518eaa81e6f7a991142",
+          "bytes": 57076,
+          "rows": 37,
+          "format": "dostuff-grid",
+          "stages": 7,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/nine-inch-nails",
+            "archivedUrl": "https://web.archive.org/web/20130814050908/http://lineup.sfoutsidelands.com/band/nine-inch-nails",
+            "captureTimestamp": "20130814050908",
+            "sha256": "4bec4a9ef1a42c20eecbcdde0205f2f8c0682c11cece79efc1f618a8236f13c7",
+            "bytes": 56278,
+            "printed": "Saturday Aug 10 8:25 PM on Lands End"
+          },
+          "comedyShows": 5,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2013-08-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2013/08/11",
+          "archivedUrl": "https://web.archive.org/web/20130814050333/http://lineup.sfoutsidelands.com/events/2013/08/11",
+          "captureTimestamp": "20130814050333",
+          "printed": "Sunday, August 11",
+          "sha256": "13d3065efb040718e32fb31f1f79029cf36f86dd57b3dc680e219dd92179411c",
+          "bytes": 56048,
+          "rows": 37,
+          "format": "dostuff-grid",
+          "stages": 7,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/red-hot-chili-peppers",
+            "archivedUrl": "https://web.archive.org/web/20130925000321/http://lineup.sfoutsidelands.com/band/red-hot-chili-peppers",
+            "captureTimestamp": "20130925000321",
+            "sha256": "4a51b2a31e2daf803f9dd39a286be75ceb96e3a9ec9191952ac8670973e102ac",
+            "bytes": 56280,
+            "printed": "Sunday Aug 11 7:45 PM on Lands End"
+          },
+          "comedyShows": 5,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "12:30",
+      "end": "13:40",
+      "billing": "Maria Bamford and Eugene Mirman hosted by Kate Berlant",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "14:00",
+      "end": "15:15",
+      "billing": "Jeffrey Ross Roasts San Francisco hosted by Moshe Kasher",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "15:45",
+      "end": "16:55",
+      "billing": "Maria Bamford and Eugene Mirman hosted by Kate Berlant",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "17:15",
+      "end": "18:30",
+      "billing": "Jeffrey Ross Roasts San Francisco hosted by Moshe Kasher",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "18:45",
+      "end": "20:00",
+      "billing": "Night Train with Wyatt Cenac with guests Kate Berlant, Boots Riley, Ari Shaffir, and Nick Thune",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "12:00",
+      "end": "13:00",
+      "billing": "Bridget Everett & The Tender Moments with Dave Hill",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "13:30",
+      "end": "14:45",
+      "billing": "Competitive Erotic Fan Fiction w/Matt Braunger, Kate Berlant, Jesse Elias, Emily Heller, Dave Hill, Natasha Leggero, Joe Mande",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "15:15",
+      "end": "16:30",
+      "billing": "Crash Test with Rob Huebel and guests Natasha Leggero, Bruce McCulloch and Morgan Murphy",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "17:00",
+      "end": "18:15",
+      "billing": "Bridget Everett & The Tender Moments hosted by Natasha Leggero and Dave Hill",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "18:45",
+      "end": "20:00",
+      "billing": "Night Train with Wyatt Cenac with guests Matt Braunger, Emily Heller, Joe Mande and Glynn Washington",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "12:00",
+      "end": "13:15",
+      "billing": "Bring The Rock w/Greg Behrendt & the Reigning Monarchs w/Matt Braunger, Dave Hill, Bruce McCulloch, Thao Nguyen and Nick Thune",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "13:45",
+      "end": "14:45",
+      "billing": "Craig Robinson hosted by Morgan Murphy",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "15:15",
+      "end": "16:30",
+      "billing": "Crash Test with Rob Huebel and guests Natasha Leggero, Joe Mande and Bruce McCulloch",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "17:00",
+      "end": "18:00",
+      "billing": "Craig Robinson hosted by Nick Thune",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "18:30",
+      "end": "20:00",
+      "billing": "Singin' & Pingin': DJ Purple + American Tripps Present Berlin-Style Ping-Pong + Karaoke Dance Party",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    }
+  ],
+  "dropped": [
+    {
+      "day": 3,
+      "stage": "Mike Shine",
+      "start": "15:50",
+      "end": "16:20",
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}
