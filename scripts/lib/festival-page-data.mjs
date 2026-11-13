@@ -70,6 +70,9 @@ export function pastEditionsFor(id, root = ROOT) {
       const src = existsSync(file) ? sourceDate(JSON.parse(readFileSync(file, 'utf8'))) : null;
       return {
         id: e.id, name: e.name, year: e.year, lineupOnly,
+        // Stages the official schedule had that are not imported (selected_stages).
+        // Only such an edition adds the key, so every other page keeps its fp.
+        ...(e.missingStages && { missingStages: e.missingStages }),
         first: e.days?.[0]?.date ?? null, last: e.days?.[e.days.length - 1]?.date ?? null,
         stages: lineupOnly ? null : e.counts?.stages ?? null,
         artists: e.counts?.artists ?? null,

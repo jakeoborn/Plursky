@@ -824,7 +824,13 @@
    "name": "Coachella 2016",
    "year": 2016,
    "timezone": "America/Los_Angeles",
-   "completeness": "complete_schedule",
+   "completeness": "selected_stages",
+   "missingStages": [
+    {
+     "stage": "Heineken House",
+     "when": "both weekends"
+    }
+   ],
    "days": [
     {
      "day": 1,
@@ -870,7 +876,13 @@
    "name": "Coachella 2015",
    "year": 2015,
    "timezone": "America/Los_Angeles",
-   "completeness": "complete_schedule",
+   "completeness": "selected_stages",
+   "missingStages": [
+    {
+     "stage": "Heineken House",
+     "when": "both weekends"
+    }
+   ],
    "days": [
     {
      "day": 1,
@@ -916,7 +928,17 @@
    "name": "Coachella 2014",
    "year": 2014,
    "timezone": "America/Los_Angeles",
-   "completeness": "complete_schedule",
+   "completeness": "selected_stages",
+   "missingStages": [
+    {
+     "stage": "Heineken House",
+     "when": "both weekends"
+    },
+    {
+     "stage": "Do Lab",
+     "when": "Weekend 1"
+    }
+   ],
    "days": [
     {
      "day": 1,
