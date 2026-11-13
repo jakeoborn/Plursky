@@ -1,0 +1,1495 @@
+{
+ "id": "outside-lands-2012",
+ "festivalId": "outside-lands",
+ "name": "Outside Lands 2012",
+ "year": 2012,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2012-08-10",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2012-08-11",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2012-08-12",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "outside-lands-2012:lands-end-polo-field",
+   "name": "Lands End (Polo Field)"
+  },
+  {
+   "id": "outside-lands-2012:sutro-lindley-meadow",
+   "name": "Sutro (Lindley Meadow)"
+  },
+  {
+   "id": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "name": "Twin Peaks (Hellman Hollow)"
+  },
+  {
+   "id": "outside-lands-2012:panhandle-hellman-hollow",
+   "name": "Panhandle (Hellman Hollow)"
+  },
+  {
+   "id": "outside-lands-2012:the-dome-by-heineken",
+   "name": "The Dome By Heineken"
+  }
+ ],
+ "artists": [
+  {
+   "id": "outside-lands-2012:dirty-dozen-brass-band",
+   "name": "Dirty Dozen Brass Band",
+   "key": "dirty-dozen-brass-band",
+   "performers": [
+    "dirty-dozen-brass-band"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:two-gallants",
+   "name": "Two Gallants",
+   "key": "two-gallants",
+   "performers": [
+    "two-gallants"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:fitz-and-the-tantrums",
+   "name": "Fitz and The Tantrums",
+   "key": "fitz-and-the-tantrums",
+   "performers": [
+    "fitz-and-the-tantrums"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:beck",
+   "name": "Beck",
+   "key": "beck",
+   "performers": [
+    "beck"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:foo-fighters",
+   "name": "Foo Fighters",
+   "key": "foo-fighters",
+   "performers": [
+    "foo-fighters"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:neil-young-and-crazy-horse",
+   "name": "Neil Young & Crazy Horse",
+   "key": "neil-young-and-crazy-horse",
+   "performers": [
+    "neil-young-and-crazy-horse"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:white-denim",
+   "name": "White Denim",
+   "key": "white-denim",
+   "performers": [
+    "white-denim"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:sharon-van-etten",
+   "name": "Sharon Van Etten",
+   "key": "sharon-van-etten",
+   "performers": [
+    "sharon-van-etten"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:reggie-watts",
+   "name": "Reggie Watts",
+   "key": "reggie-watts",
+   "performers": [
+    "reggie-watts"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:the-walkmen",
+   "name": "The Walkmen",
+   "key": "the-walkmen",
+   "performers": [
+    "the-walkmen"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:of-monsters-and-men",
+   "name": "Of Monsters and Men",
+   "key": "of-monsters-and-men",
+   "performers": [
+    "of-monsters-and-men"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:andrew-bird",
+   "name": "Andrew Bird",
+   "key": "andrew-bird",
+   "performers": [
+    "andrew-bird"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:papa",
+   "name": "PAPA",
+   "key": "papa",
+   "performers": [
+    "papa"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:wallpaper",
+   "name": "Wallpaper.",
+   "key": "wallpaper",
+   "performers": [
+    "wallpaper"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:yacht",
+   "name": "YACHT",
+   "key": "yacht",
+   "performers": [
+    "yacht"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:die-antwoord",
+   "name": "Die Antwoord",
+   "key": "die-antwoord",
+   "performers": [
+    "die-antwoord"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:mstrkrft",
+   "name": "MSTRKRFT",
+   "key": "mstrkrft",
+   "performers": [
+    "mstrkrft"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:justice",
+   "name": "Justice",
+   "key": "justice",
+   "performers": [
+    "justice"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:futurebirds",
+   "name": "Futurebirds",
+   "key": "futurebirds",
+   "performers": [
+    "futurebirds"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:tanlines",
+   "name": "Tanlines",
+   "key": "tanlines",
+   "performers": [
+    "tanlines"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:jukebox-the-ghost",
+   "name": "Jukebox the Ghost",
+   "key": "jukebox-the-ghost",
+   "performers": [
+    "jukebox-the-ghost"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:tennis",
+   "name": "Tennis",
+   "key": "tennis",
+   "performers": [
+    "tennis"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:antibalas",
+   "name": "Antibalas",
+   "key": "antibalas",
+   "performers": [
+    "antibalas"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:washed-out",
+   "name": "Washed Out",
+   "key": "washed-out",
+   "performers": [
+    "washed-out"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:dj-sake-one",
+   "name": "DJ Sake One",
+   "key": "dj-sake-one",
+   "performers": [
+    "dj-sake-one"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:the-brass-tax",
+   "name": "The Brass Tax",
+   "key": "the-brass-tax",
+   "performers": [
+    "the-brass-tax"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:zach-moore",
+   "name": "Zach Moore",
+   "key": "zach-moore",
+   "performers": [
+    "zach-moore"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:jeno",
+   "name": "Jeno",
+   "key": "jeno",
+   "performers": [
+    "jeno"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:justin-martin",
+   "name": "Justin Martin",
+   "key": "justin-martin",
+   "performers": [
+    "justin-martin"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:zola-jesus",
+   "name": "Zola Jesus",
+   "key": "zola-jesus",
+   "performers": [
+    "zola-jesus"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:tame-impala",
+   "name": "Tame Impala",
+   "key": "tame-impala",
+   "performers": [
+    "tame-impala"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:portugal-the-man",
+   "name": "Portugal. The Man",
+   "key": "portugal-the-man",
+   "performers": [
+    "portugal-the-man"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:explosions-in-the-sky",
+   "name": "Explosions in the Sky",
+   "key": "explosions-in-the-sky",
+   "performers": [
+    "explosions-in-the-sky"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:the-kills",
+   "name": "The Kills",
+   "key": "the-kills",
+   "performers": [
+    "the-kills"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:metallica",
+   "name": "Metallica",
+   "key": "metallica",
+   "performers": [
+    "metallica"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:cory-chisel-and-the-wandering-sons",
+   "name": "Cory Chisel and The Wandering Sons",
+   "key": "cory-chisel-and-the-wandering-sons",
+   "performers": [
+    "cory-chisel-and-the-wandering-sons"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:sean-hayes",
+   "name": "Sean Hayes",
+   "key": "sean-hayes",
+   "performers": [
+    "sean-hayes"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:the-be-good-tanyas",
+   "name": "The Be Good Tanyas",
+   "key": "the-be-good-tanyas",
+   "performers": [
+    "the-be-good-tanyas"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:alabama-shakes",
+   "name": "Alabama Shakes",
+   "key": "alabama-shakes",
+   "performers": [
+    "alabama-shakes"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:grandaddy",
+   "name": "Grandaddy",
+   "key": "grandaddy",
+   "performers": [
+    "grandaddy"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:norah-jones",
+   "name": "Norah Jones",
+   "key": "norah-jones",
+   "performers": [
+    "norah-jones"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:yellow-ostrich",
+   "name": "Yellow Ostrich",
+   "key": "yellow-ostrich",
+   "performers": [
+    "yellow-ostrich"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:geographer",
+   "name": "Geographer",
+   "key": "geographer",
+   "performers": [
+    "geographer"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:mimosa",
+   "name": "MiMOSA",
+   "key": "mimosa",
+   "performers": [
+    "mimosa"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:big-boi",
+   "name": "Big Boi",
+   "key": "big-boi",
+   "performers": [
+    "big-boi"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:passion-pit",
+   "name": "Passion Pit",
+   "key": "passion-pit",
+   "performers": [
+    "passion-pit"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:sigur-ros",
+   "name": "Sigur Ros",
+   "key": "sigur-ros",
+   "performers": [
+    "sigur-ros"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:honey-island-swamp-band",
+   "name": "Honey Island Swamp Band",
+   "key": "honey-island-swamp-band",
+   "performers": [
+    "honey-island-swamp-band"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:animal-kingdom",
+   "name": "Animal Kingdom",
+   "key": "animal-kingdom",
+   "performers": [
+    "animal-kingdom"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:father-john-misty",
+   "name": "Father John Misty",
+   "key": "father-john-misty",
+   "performers": [
+    "father-john-misty"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:michael-kiwanuka",
+   "name": "Michael Kiwanuka",
+   "key": "michael-kiwanuka",
+   "performers": [
+    "michael-kiwanuka"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:thee-oh-sees",
+   "name": "Thee Oh Sees",
+   "key": "thee-oh-sees",
+   "performers": [
+    "thee-oh-sees"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:dr-dog",
+   "name": "Dr. Dog",
+   "key": "dr-dog",
+   "performers": [
+    "dr-dog"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:jef-stott",
+   "name": "Jef Stott",
+   "key": "jef-stott",
+   "performers": [
+    "jef-stott"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:david-starfire",
+   "name": "David Starfire",
+   "key": "david-starfire",
+   "performers": [
+    "david-starfire"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:motion-potion",
+   "name": "Motion Potion",
+   "key": "motion-potion",
+   "performers": [
+    "motion-potion"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:gene-hunt",
+   "name": "Gene Hunt",
+   "key": "gene-hunt",
+   "performers": [
+    "gene-hunt"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:save-the-robot",
+   "name": "Save The Robot",
+   "key": "save-the-robot",
+   "performers": [
+    "save-the-robot"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:allen-stone",
+   "name": "Allen Stone",
+   "key": "allen-stone",
+   "performers": [
+    "allen-stone"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:fun",
+   "name": "fun.",
+   "key": "fun",
+   "performers": [
+    "fun"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:franz-ferdinand",
+   "name": "Franz Ferdinand",
+   "key": "franz-ferdinand",
+   "performers": [
+    "franz-ferdinand"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:regina-spektor",
+   "name": "Regina Spektor",
+   "key": "regina-spektor",
+   "performers": [
+    "regina-spektor"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:jack-white",
+   "name": "Jack White",
+   "key": "jack-white",
+   "performers": [
+    "jack-white"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:stevie-wonder",
+   "name": "Stevie Wonder",
+   "key": "stevie-wonder",
+   "performers": [
+    "stevie-wonder"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:jovanotti",
+   "name": "Jovanotti",
+   "key": "jovanotti",
+   "performers": [
+    "jovanotti"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:tom-morello-the-nightwatchman",
+   "name": "Tom Morello: The Nightwatchman",
+   "key": "tom-morello-the-nightwatchman",
+   "performers": [
+    "tom-morello-the-nightwatchman"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:trampled-by-turtles",
+   "name": "Trampled by Turtles",
+   "key": "trampled-by-turtles",
+   "performers": [
+    "trampled-by-turtles"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:city-and-colour",
+   "name": "City and Colour",
+   "key": "city-and-colour",
+   "performers": [
+    "city-and-colour"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:rebelution",
+   "name": "Rebelution",
+   "key": "rebelution",
+   "performers": [
+    "rebelution"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:dispatch",
+   "name": "Dispatch",
+   "key": "dispatch",
+   "performers": [
+    "dispatch"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:the-m-machine",
+   "name": "The M Machine",
+   "key": "the-m-machine",
+   "performers": [
+    "the-m-machine"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:big-gigantic",
+   "name": "Big Gigantic",
+   "key": "big-gigantic",
+   "performers": [
+    "big-gigantic"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:amadou-and-mariam",
+   "name": "Amadou & Mariam",
+   "key": "amadou-and-mariam",
+   "performers": [
+    "amadou-and-mariam"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:santigold",
+   "name": "Santigold",
+   "key": "santigold",
+   "performers": [
+    "santigold"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:bloc-party",
+   "name": "Bloc Party",
+   "key": "bloc-party",
+   "performers": [
+    "bloc-party"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:skrillex",
+   "name": "Skrillex",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:infantree",
+   "name": "Infantree",
+   "key": "infantree",
+   "performers": [
+    "infantree"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:birdy",
+   "name": "Birdy",
+   "key": "birdy",
+   "performers": [
+    "birdy"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:caveman",
+   "name": "Caveman",
+   "key": "caveman",
+   "performers": [
+    "caveman"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:electric-guest",
+   "name": "Electric Guest",
+   "key": "electric-guest",
+   "performers": [
+    "electric-guest"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:bomba-estereo",
+   "name": "Bomba Estereo",
+   "key": "bomba-estereo",
+   "performers": [
+    "bomba-estereo"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:wolfgang-gartner",
+   "name": "Wolfgang Gartner",
+   "key": "wolfgang-gartner",
+   "performers": [
+    "wolfgang-gartner"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:the-mom-djs",
+   "name": "The MOM DJs",
+   "key": "the-mom-djs",
+   "performers": [
+    "the-mom-djs"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:afrolicious-dj-set-by-senor-oz",
+   "name": "Afrolicious: DJ Set by Señor Oz",
+   "key": "afrolicious-dj-set-by-senor-oz",
+   "performers": [
+    "afrolicious-dj-set-by-senor-oz"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:julius-papp",
+   "name": "Julius Papp",
+   "key": "julius-papp",
+   "performers": [
+    "julius-papp"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:mark-farina",
+   "name": "Mark Farina",
+   "key": "mark-farina",
+   "performers": [
+    "mark-farina"
+   ]
+  },
+  {
+   "id": "outside-lands-2012:roy-davis-jr",
+   "name": "Roy Davis Jr.",
+   "key": "roy-davis-jr",
+   "performers": [
+    "roy-davis-jr"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "outside-lands-2012:d1:lands-end-polo-field:1230:dirty-dozen-brass-band",
+   "artistId": "outside-lands-2012:dirty-dozen-brass-band",
+   "day": 1,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "12:30",
+   "end": "13:20"
+  },
+  {
+   "id": "outside-lands-2012:d1:lands-end-polo-field:1350:two-gallants",
+   "artistId": "outside-lands-2012:two-gallants",
+   "day": 1,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "13:50",
+   "end": "14:40"
+  },
+  {
+   "id": "outside-lands-2012:d1:lands-end-polo-field:1510:fitz-and-the-tantrums",
+   "artistId": "outside-lands-2012:fitz-and-the-tantrums",
+   "day": 1,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "15:10",
+   "end": "16:00"
+  },
+  {
+   "id": "outside-lands-2012:d1:lands-end-polo-field:1630:beck",
+   "artistId": "outside-lands-2012:beck",
+   "day": 1,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "16:30",
+   "end": "17:40"
+  },
+  {
+   "id": "outside-lands-2012:d1:lands-end-polo-field:1810:foo-fighters",
+   "artistId": "outside-lands-2012:foo-fighters",
+   "day": 1,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "18:10",
+   "end": "19:25"
+  },
+  {
+   "id": "outside-lands-2012:d1:lands-end-polo-field:2000:neil-young-and-crazy-horse",
+   "artistId": "outside-lands-2012:neil-young-and-crazy-horse",
+   "day": 1,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "20:00",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2012:d1:sutro-lindley-meadow:1205:white-denim",
+   "artistId": "outside-lands-2012:white-denim",
+   "day": 1,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "12:05",
+   "end": "12:50"
+  },
+  {
+   "id": "outside-lands-2012:d1:sutro-lindley-meadow:1315:sharon-van-etten",
+   "artistId": "outside-lands-2012:sharon-van-etten",
+   "day": 1,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "13:15",
+   "end": "14:05"
+  },
+  {
+   "id": "outside-lands-2012:d1:sutro-lindley-meadow:1435:reggie-watts",
+   "artistId": "outside-lands-2012:reggie-watts",
+   "day": 1,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "14:35",
+   "end": "15:25"
+  },
+  {
+   "id": "outside-lands-2012:d1:sutro-lindley-meadow:1615:the-walkmen",
+   "artistId": "outside-lands-2012:the-walkmen",
+   "day": 1,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "outside-lands-2012:d1:sutro-lindley-meadow:1740:of-monsters-and-men",
+   "artistId": "outside-lands-2012:of-monsters-and-men",
+   "day": 1,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "17:40",
+   "end": "18:40"
+  },
+  {
+   "id": "outside-lands-2012:d1:sutro-lindley-meadow:1910:andrew-bird",
+   "artistId": "outside-lands-2012:andrew-bird",
+   "day": 1,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "19:10",
+   "end": "20:20"
+  },
+  {
+   "id": "outside-lands-2012:d1:twin-peaks-hellman-hollow:1245:papa",
+   "artistId": "outside-lands-2012:papa",
+   "day": 1,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2012:d1:twin-peaks-hellman-hollow:1415:wallpaper",
+   "artistId": "outside-lands-2012:wallpaper",
+   "day": 1,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "14:15",
+   "end": "15:05"
+  },
+  {
+   "id": "outside-lands-2012:d1:twin-peaks-hellman-hollow:1550:yacht",
+   "artistId": "outside-lands-2012:yacht",
+   "day": 1,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "15:50",
+   "end": "16:40"
+  },
+  {
+   "id": "outside-lands-2012:d1:twin-peaks-hellman-hollow:1725:die-antwoord",
+   "artistId": "outside-lands-2012:die-antwoord",
+   "day": 1,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "17:25",
+   "end": "18:15"
+  },
+  {
+   "id": "outside-lands-2012:d1:twin-peaks-hellman-hollow:1900:mstrkrft",
+   "artistId": "outside-lands-2012:mstrkrft",
+   "day": 1,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "19:00",
+   "end": "19:50"
+  },
+  {
+   "id": "outside-lands-2012:d1:twin-peaks-hellman-hollow:2040:justice",
+   "artistId": "outside-lands-2012:justice",
+   "day": 1,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "20:40",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2012:d1:panhandle-hellman-hollow:1200:futurebirds",
+   "artistId": "outside-lands-2012:futurebirds",
+   "day": 1,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2012:d1:panhandle-hellman-hollow:1330:tanlines",
+   "artistId": "outside-lands-2012:tanlines",
+   "day": 1,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "13:30",
+   "end": "14:10"
+  },
+  {
+   "id": "outside-lands-2012:d1:panhandle-hellman-hollow:1505:jukebox-the-ghost",
+   "artistId": "outside-lands-2012:jukebox-the-ghost",
+   "day": 1,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "15:05",
+   "end": "15:45"
+  },
+  {
+   "id": "outside-lands-2012:d1:panhandle-hellman-hollow:1640:tennis",
+   "artistId": "outside-lands-2012:tennis",
+   "day": 1,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "16:40",
+   "end": "17:20"
+  },
+  {
+   "id": "outside-lands-2012:d1:panhandle-hellman-hollow:1815:antibalas",
+   "artistId": "outside-lands-2012:antibalas",
+   "day": 1,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "18:15",
+   "end": "18:55"
+  },
+  {
+   "id": "outside-lands-2012:d1:panhandle-hellman-hollow:1950:washed-out",
+   "artistId": "outside-lands-2012:washed-out",
+   "day": 1,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "19:50",
+   "end": "20:35"
+  },
+  {
+   "id": "outside-lands-2012:d1:the-dome-by-heineken:1200:dj-sake-one",
+   "artistId": "outside-lands-2012:dj-sake-one",
+   "day": 1,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2012:d1:the-dome-by-heineken:1330:the-brass-tax",
+   "artistId": "outside-lands-2012:the-brass-tax",
+   "day": 1,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2012:d1:the-dome-by-heineken:1500:zach-moore",
+   "artistId": "outside-lands-2012:zach-moore",
+   "day": 1,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2012:d1:the-dome-by-heineken:1630:jeno",
+   "artistId": "outside-lands-2012:jeno",
+   "day": 1,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2012:d1:the-dome-by-heineken:1800:justin-martin",
+   "artistId": "outside-lands-2012:justin-martin",
+   "day": 1,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "outside-lands-2012:d2:lands-end-polo-field:1230:zola-jesus",
+   "artistId": "outside-lands-2012:zola-jesus",
+   "day": 2,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "12:30",
+   "end": "13:20"
+  },
+  {
+   "id": "outside-lands-2012:d2:lands-end-polo-field:1350:tame-impala",
+   "artistId": "outside-lands-2012:tame-impala",
+   "day": 2,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "13:50",
+   "end": "14:40"
+  },
+  {
+   "id": "outside-lands-2012:d2:lands-end-polo-field:1510:portugal-the-man",
+   "artistId": "outside-lands-2012:portugal-the-man",
+   "day": 2,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "15:10",
+   "end": "16:10"
+  },
+  {
+   "id": "outside-lands-2012:d2:lands-end-polo-field:1640:explosions-in-the-sky",
+   "artistId": "outside-lands-2012:explosions-in-the-sky",
+   "day": 2,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "16:40",
+   "end": "17:40"
+  },
+  {
+   "id": "outside-lands-2012:d2:lands-end-polo-field:1810:the-kills",
+   "artistId": "outside-lands-2012:the-kills",
+   "day": 2,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "18:10",
+   "end": "19:10"
+  },
+  {
+   "id": "outside-lands-2012:d2:lands-end-polo-field:1940:metallica",
+   "artistId": "outside-lands-2012:metallica",
+   "day": 2,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "19:40",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2012:d2:sutro-lindley-meadow:1200:cory-chisel-and-the-wandering-sons",
+   "artistId": "outside-lands-2012:cory-chisel-and-the-wandering-sons",
+   "day": 2,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "outside-lands-2012:d2:sutro-lindley-meadow:1315:sean-hayes",
+   "artistId": "outside-lands-2012:sean-hayes",
+   "day": 2,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2012:d2:sutro-lindley-meadow:1430:the-be-good-tanyas",
+   "artistId": "outside-lands-2012:the-be-good-tanyas",
+   "day": 2,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "14:30",
+   "end": "15:20"
+  },
+  {
+   "id": "outside-lands-2012:d2:sutro-lindley-meadow:1550:alabama-shakes",
+   "artistId": "outside-lands-2012:alabama-shakes",
+   "day": 2,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "15:50",
+   "end": "16:40"
+  },
+  {
+   "id": "outside-lands-2012:d2:sutro-lindley-meadow:1705:grandaddy",
+   "artistId": "outside-lands-2012:grandaddy",
+   "day": 2,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "17:05",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2012:d2:sutro-lindley-meadow:1830:norah-jones",
+   "artistId": "outside-lands-2012:norah-jones",
+   "day": 2,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "18:30",
+   "end": "19:40"
+  },
+  {
+   "id": "outside-lands-2012:d2:twin-peaks-hellman-hollow:1245:yellow-ostrich",
+   "artistId": "outside-lands-2012:yellow-ostrich",
+   "day": 2,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "12:45",
+   "end": "13:25"
+  },
+  {
+   "id": "outside-lands-2012:d2:twin-peaks-hellman-hollow:1410:geographer",
+   "artistId": "outside-lands-2012:geographer",
+   "day": 2,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "14:10",
+   "end": "14:55"
+  },
+  {
+   "id": "outside-lands-2012:d2:twin-peaks-hellman-hollow:1540:mimosa",
+   "artistId": "outside-lands-2012:mimosa",
+   "day": 2,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "15:40",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2012:d2:twin-peaks-hellman-hollow:1715:big-boi",
+   "artistId": "outside-lands-2012:big-boi",
+   "day": 2,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "17:15",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2012:d2:twin-peaks-hellman-hollow:1850:passion-pit",
+   "artistId": "outside-lands-2012:passion-pit",
+   "day": 2,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "18:50",
+   "end": "19:50"
+  },
+  {
+   "id": "outside-lands-2012:d2:twin-peaks-hellman-hollow:2040:sigur-ros",
+   "artistId": "outside-lands-2012:sigur-ros",
+   "day": 2,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "20:40",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2012:d2:panhandle-hellman-hollow:1200:honey-island-swamp-band",
+   "artistId": "outside-lands-2012:honey-island-swamp-band",
+   "day": 2,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2012:d2:panhandle-hellman-hollow:1325:animal-kingdom",
+   "artistId": "outside-lands-2012:animal-kingdom",
+   "day": 2,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "13:25",
+   "end": "14:05"
+  },
+  {
+   "id": "outside-lands-2012:d2:panhandle-hellman-hollow:1455:father-john-misty",
+   "artistId": "outside-lands-2012:father-john-misty",
+   "day": 2,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "14:55",
+   "end": "15:35"
+  },
+  {
+   "id": "outside-lands-2012:d2:panhandle-hellman-hollow:1630:michael-kiwanuka",
+   "artistId": "outside-lands-2012:michael-kiwanuka",
+   "day": 2,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "outside-lands-2012:d2:panhandle-hellman-hollow:1805:thee-oh-sees",
+   "artistId": "outside-lands-2012:thee-oh-sees",
+   "day": 2,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "18:05",
+   "end": "18:45"
+  },
+  {
+   "id": "outside-lands-2012:d2:panhandle-hellman-hollow:1950:dr-dog",
+   "artistId": "outside-lands-2012:dr-dog",
+   "day": 2,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "19:50",
+   "end": "20:35"
+  },
+  {
+   "id": "outside-lands-2012:d2:the-dome-by-heineken:1200:jef-stott",
+   "artistId": "outside-lands-2012:jef-stott",
+   "day": 2,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2012:d2:the-dome-by-heineken:1330:david-starfire",
+   "artistId": "outside-lands-2012:david-starfire",
+   "day": 2,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2012:d2:the-dome-by-heineken:1500:motion-potion",
+   "artistId": "outside-lands-2012:motion-potion",
+   "day": 2,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2012:d2:the-dome-by-heineken:1630:gene-hunt",
+   "artistId": "outside-lands-2012:gene-hunt",
+   "day": 2,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2012:d2:the-dome-by-heineken:1800:save-the-robot",
+   "artistId": "outside-lands-2012:save-the-robot",
+   "day": 2,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "outside-lands-2012:d3:lands-end-polo-field:1215:allen-stone",
+   "artistId": "outside-lands-2012:allen-stone",
+   "day": 3,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "outside-lands-2012:d3:lands-end-polo-field:1330:fun",
+   "artistId": "outside-lands-2012:fun",
+   "day": 3,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "outside-lands-2012:d3:lands-end-polo-field:1440:franz-ferdinand",
+   "artistId": "outside-lands-2012:franz-ferdinand",
+   "day": 3,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "14:40",
+   "end": "15:35"
+  },
+  {
+   "id": "outside-lands-2012:d3:lands-end-polo-field:1600:regina-spektor",
+   "artistId": "outside-lands-2012:regina-spektor",
+   "day": 3,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "16:00",
+   "end": "16:55"
+  },
+  {
+   "id": "outside-lands-2012:d3:lands-end-polo-field:1725:jack-white",
+   "artistId": "outside-lands-2012:jack-white",
+   "day": 3,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "17:25",
+   "end": "18:35"
+  },
+  {
+   "id": "outside-lands-2012:d3:lands-end-polo-field:1920:stevie-wonder",
+   "artistId": "outside-lands-2012:stevie-wonder",
+   "day": 3,
+   "stageId": "outside-lands-2012:lands-end-polo-field",
+   "start": "19:20",
+   "end": "21:30"
+  },
+  {
+   "id": "outside-lands-2012:d3:sutro-lindley-meadow:1200:jovanotti",
+   "artistId": "outside-lands-2012:jovanotti",
+   "day": 3,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2012:d3:sutro-lindley-meadow:1310:tom-morello-the-nightwatchman",
+   "artistId": "outside-lands-2012:tom-morello-the-nightwatchman",
+   "day": 3,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "13:10",
+   "end": "13:55"
+  },
+  {
+   "id": "outside-lands-2012:d3:sutro-lindley-meadow:1425:trampled-by-turtles",
+   "artistId": "outside-lands-2012:trampled-by-turtles",
+   "day": 3,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "14:25",
+   "end": "15:15"
+  },
+  {
+   "id": "outside-lands-2012:d3:sutro-lindley-meadow:1545:city-and-colour",
+   "artistId": "outside-lands-2012:city-and-colour",
+   "day": 3,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "15:45",
+   "end": "16:35"
+  },
+  {
+   "id": "outside-lands-2012:d3:sutro-lindley-meadow:1705:rebelution",
+   "artistId": "outside-lands-2012:rebelution",
+   "day": 3,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "17:05",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2012:d3:sutro-lindley-meadow:1835:dispatch",
+   "artistId": "outside-lands-2012:dispatch",
+   "day": 3,
+   "stageId": "outside-lands-2012:sutro-lindley-meadow",
+   "start": "18:35",
+   "end": "19:35"
+  },
+  {
+   "id": "outside-lands-2012:d3:twin-peaks-hellman-hollow:1240:the-m-machine",
+   "artistId": "outside-lands-2012:the-m-machine",
+   "day": 3,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "12:40",
+   "end": "13:20"
+  },
+  {
+   "id": "outside-lands-2012:d3:twin-peaks-hellman-hollow:1405:big-gigantic",
+   "artistId": "outside-lands-2012:big-gigantic",
+   "day": 3,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "14:05",
+   "end": "14:50"
+  },
+  {
+   "id": "outside-lands-2012:d3:twin-peaks-hellman-hollow:1535:amadou-and-mariam",
+   "artistId": "outside-lands-2012:amadou-and-mariam",
+   "day": 3,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "15:35",
+   "end": "16:25"
+  },
+  {
+   "id": "outside-lands-2012:d3:twin-peaks-hellman-hollow:1710:santigold",
+   "artistId": "outside-lands-2012:santigold",
+   "day": 3,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "17:10",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2012:d3:twin-peaks-hellman-hollow:1845:bloc-party",
+   "artistId": "outside-lands-2012:bloc-party",
+   "day": 3,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "outside-lands-2012:d3:twin-peaks-hellman-hollow:2030:skrillex",
+   "artistId": "outside-lands-2012:skrillex",
+   "day": 3,
+   "stageId": "outside-lands-2012:twin-peaks-hellman-hollow",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "outside-lands-2012:d3:panhandle-hellman-hollow:1200:infantree",
+   "artistId": "outside-lands-2012:infantree",
+   "day": 3,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2012:d3:panhandle-hellman-hollow:1320:birdy",
+   "artistId": "outside-lands-2012:birdy",
+   "day": 3,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "13:20",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2012:d3:panhandle-hellman-hollow:1450:caveman",
+   "artistId": "outside-lands-2012:caveman",
+   "day": 3,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "14:50",
+   "end": "15:30"
+  },
+  {
+   "id": "outside-lands-2012:d3:panhandle-hellman-hollow:1625:electric-guest",
+   "artistId": "outside-lands-2012:electric-guest",
+   "day": 3,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "16:25",
+   "end": "17:05"
+  },
+  {
+   "id": "outside-lands-2012:d3:panhandle-hellman-hollow:1800:bomba-estereo",
+   "artistId": "outside-lands-2012:bomba-estereo",
+   "day": 3,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "18:00",
+   "end": "18:40"
+  },
+  {
+   "id": "outside-lands-2012:d3:panhandle-hellman-hollow:1945:wolfgang-gartner",
+   "artistId": "outside-lands-2012:wolfgang-gartner",
+   "day": 3,
+   "stageId": "outside-lands-2012:panhandle-hellman-hollow",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "outside-lands-2012:d3:the-dome-by-heineken:1200:the-mom-djs",
+   "artistId": "outside-lands-2012:the-mom-djs",
+   "day": 3,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2012:d3:the-dome-by-heineken:1330:afrolicious-dj-set-by-senor-oz",
+   "artistId": "outside-lands-2012:afrolicious-dj-set-by-senor-oz",
+   "day": 3,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2012:d3:the-dome-by-heineken:1500:julius-papp",
+   "artistId": "outside-lands-2012:julius-papp",
+   "day": 3,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "outside-lands-2012:d3:the-dome-by-heineken:1600:mark-farina",
+   "artistId": "outside-lands-2012:mark-farina",
+   "day": 3,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "outside-lands-2012:d3:the-dome-by-heineken:1730:roy-davis-jr",
+   "artistId": "outside-lands-2012:roy-davis-jr",
+   "day": 3,
+   "stageId": "outside-lands-2012:the-dome-by-heineken",
+   "start": "17:30",
+   "end": "19:15"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.sfoutsidelands.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120910182325/http://lineup.sfoutsidelands.com/events/2012/08/10",
+    "captureTimestamp": "20120910182325",
+    "printed": "Friday, August 10",
+    "sha256": "e60fa740730aaa41c7cfecd01dfe1d094b9b47d81cce85902ec079f60486c9d1",
+    "rows": 29,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20120923142134/http://lineup.sfoutsidelands.com/band/neil-young",
+     "captureTimestamp": "20120923142134",
+     "printed": "Friday Aug 10 8:00 PM on Lands End (Polo Field)",
+     "sha256": "236224dd695bb66f4e748ef39d5893337b74bec02994334573f010ede77540d0"
+    }
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120905111341/http://lineup.sfoutsidelands.com/events/2012/08/11",
+    "captureTimestamp": "20120905111341",
+    "printed": "Saturday, August 11",
+    "sha256": "0cee5b13ed8106ef955fda9d91c0c2b28afcff457c68040b71f923c81cffd129",
+    "rows": 29,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20120912002547/http://lineup.sfoutsidelands.com/band/metallica",
+     "captureTimestamp": "20120912002547",
+     "printed": "Saturday Aug 11 7:40 PM on Lands End (Polo Field)",
+     "sha256": "eabfe7d910c805a84bd007bdbb28306dd4f2191a371a15c1aaafc294afc28437"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20121009083307/http://lineup.sfoutsidelands.com/events/2012/08/12/",
+    "captureTimestamp": "20121009083307",
+    "printed": "Sunday, August 12",
+    "sha256": "d8ec393164be940641380b23dafdfebf63cf9327d30c42cb29e23562f1bb3b54",
+    "rows": 29,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20120911113846/http://lineup.sfoutsidelands.com/band/stevie-wonder",
+     "captureTimestamp": "20120911113846",
+     "printed": "Sunday Aug 12 7:20 PM on Lands End (Polo Field)",
+     "sha256": "a5b13b4b50fd860ab859ab686a551746431bbbcac81abfbfc2f3f5c0a9f037a2"
+    }
+   }
+  ]
+ }
+}

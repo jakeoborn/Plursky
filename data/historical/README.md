@@ -144,6 +144,31 @@ Yoga, ceremonies, workshops and talks are dropped as `activity`; showcase and
 jam titles that name no act are dropped as `event-block`. Later years are not
 in this batch.
 
+Archived Outside Lands schedule grids (2012 to 2017, format `dostuff-grid`):
+
+    node scripts/historical/gather-dostuff.mjs <edition-id> <gather-dir> <official-url> \
+      [--comedy <stage>] [--food <stage>] <ts> <day-url> <anchor-ts> <anchor-act-url> [ … one group per day ]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+lineup.sfoutsidelands.com/events/<yyyy>/<mm>/<dd> prints one day: a tab row
+with the current day marked ("Saturday, August 10"), a stage column per stage
+whose class carries the date, a 15-minute axis printed with no am/pm
+("12:00" … "10:00") and one block per set placed on it (`top`, `height` in
+px) with its own printed range, also with no am/pm. Every block's place must
+match its printed start and length (2 px a minute); one that disagrees is a
+misprint, excluded. The meridiem is never assumed: each day cites one act's
+own page on the same site (its anchor), which prints that act's set with
+AM/PM ("Friday Aug 9 7:10 PM on Lands End" through 2014, "Friday, August 7,
+7:55 PM" from 2015, the stage after the time from 2017). The anchor's time
+minus its block's minutes past the axis fixes the axis's first row, which must
+be a reading of "12:00"; every start and end must then be a reading of its
+own print. The ledger keeps the anchor's page, hash and printed line
+(`meridiemFrom`), and the gate checks its weekday and date. The Barbary is the
+comedy tent and GastroMagic (2014 on) the chef-and-food stage: their shows are
+excluded rows, one for one with the page. Only captures taken after each
+festival are used. 2010 and 2011 use an older planner (myscheduler) not read
+yet; 2018 on has no archived grid of this kind.
+
 Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, Governors Ball 2017–2019, format `acl-grid`):
 
     node scripts/historical/gather-acl-grid.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]

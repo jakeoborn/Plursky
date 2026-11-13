@@ -608,6 +608,14 @@ function _lineupMetaValue(v) {
 }
 // "FRI" → "Fri", for the compact bar's one-line summary.
 const _lineupDayWord = (w) => { const s = String(w || ""); return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase(); };
+// A lineup published without a day split arrives as ONE bucket labelled
+// "TBA" (Dreamstate, Decadence…). As a day tab it read "TBA 20" and the
+// folded bar "Tba 20", which looks like a broken date. Name it for what it
+// is: the whole lineup, over the festival's real date range.
+const _lineupUnsplit = (stats) => Array.isArray(stats) && stats.length === 1 && /^tba$/i.test(String(stats[0]?.label || "").trim());
+const _lineupUnsplitRange = (n) => {
+  try { return FESTIVAL_CONFIG.dayDates?.[n]?.name || FESTIVAL_CONFIG.dates || ""; } catch { return ""; }
+};
 
 function LineupScreen({ state, setState }) {
   // Names are never truncated: fit each list name to its row after every
@@ -1154,7 +1162,8 @@ function LineupScreen({ state, setState }) {
   const showMini = !_schedTBA;
   const compactSummary = (() => {
     const d = dayStats.find(x => x.n === day);
-    const dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
+    const dayText = !d ? "" : _lineupUnsplit(dayStats) ? "Full lineup"
+      : `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim();
     const stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
     const show = [stageName, filter === "saved" ? "My plan" : filter === "now" ? "Live" : null].filter(Boolean).join(" · ") || "All stages";
     const extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
@@ -1335,12 +1344,15 @@ function LineupScreen({ state, setState }) {
       }}>
         {dayStats.map(d => {
           const on = d.n === day;
+          const unsplit = _lineupUnsplit(dayStats);
+          const label = unsplit ? "Full lineup" : d.label;
+          const dateText = unsplit ? _lineupUnsplitRange(d.n) : d.date.split(" ")[1];
           return (
             <button key={d.n} role="tab" aria-selected={on} className="duo-tab"
-              aria-label={`${d.label} ${d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`}
+              aria-label={`${label} ${unsplit ? dateText : d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`}
               onClick={() => { setDay(d.n); setState(s => ({ ...s, lineupDay: d.n })); }}>
-              <span className="duo-label" style={{ fontSize: 12 }}>{d.label}</span>
-              <span className="duo-data-s" style={{ color: on ? "var(--ink-2)" : "var(--ink-3)" }}>{d.date.split(" ")[1]}</span>
+              <span className="duo-label" style={{ fontSize: 12 }}>{label}</span>
+              <span className="duo-data-s" style={{ color: on ? "var(--ink-2)" : "var(--ink-3)" }}>{dateText}</span>
               {d.count > 0 && (
                 <span aria-hidden="true" className="duo-data-s" style={{ color: d.clashes ? "var(--clash)" : "var(--acc-ink)", whiteSpace: "nowrap" }}>
                   {d.count}

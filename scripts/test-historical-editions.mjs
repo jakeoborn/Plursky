@@ -26,6 +26,7 @@ import { parseAclSchedule, axisMinutes, readAxis } from "./historical/acl-schedu
 import { parseTomorrowland, eventDay } from "./historical/tml-schedule.mjs";
 import { parseElectricForest, navDay } from "./historical/ef-schedule.mjs";
 import { parseShambhala, slotLabel } from "./historical/shambhala-schedule.mjs";
+import { parseDoStuff, parseDoStuffBand, timeDay } from "./historical/dostuff-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -272,6 +273,47 @@ if (base && edc) {
     shMust("a Shambhala tab with no table", shPage.replace(`</ul>`, `<li><a href="#">Saturday</a></li></ul>`));
     shMust("a Shambhala repeated head row naming other stages", shPage.replace(`${shHead}<tr><td id="time_${shT(5, 0, 30)}"`, `${shHead.replace(">Village<", ">Grove<").replace('"Village_head"', '"Grove_head"')}<tr><td id="time_${shT(5, 0, 30)}"`));
     shMust("a Shambhala row not half an hour after the one before", shPage.replaceAll(String(shT(5, 1, 0)), String(shT(5, 1, 30))));
+    // Outside Lands' DoStuff grid: one day per page, 15-minute axis rows of
+    // 29 px (2 px a minute), times printed with no am/pm; one act's own page
+    // prints its set with a meridiem and fixes the day's axis.
+    const dsRow = (i, l) => `<li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-${i}">${l}</li>`;
+    const dsBox = (id, top, h, slug, name, range, extra = "") => `<div ${extra}class="ds-event-box ds-event-${id}" id="${id}" style="top:${top}px;height:${h}px;line-height:${h}px"><span class="ds-vert-align">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="https://web.archive.org/band/${slug}">${name}</a></strong><span class="ds-time-range" style="font-size:1.0em;">${range}</span></div></div>`;
+    const dsAxis = ["12:00", "12:15", "12:30", "12:45", "1:00", "1:15", "1:30", "1:45", "2:00", "2:15"].map((l, i) => dsRow(100 + i, l)).join("");
+    const dsPage = `<title>Outside Lands 2013</title><ul class="ds-schedule-days"><li class=""><a href="https://web.archive.org/events/2013/08/09/">Friday, August 9</a></li>`
+      + `<li class="ds-schedule-days-current-date"><a href="https://web.archive.org/events/2013/08/10/">Saturday, August 10</a></li></ul>`
+      + `<div class="ds-schedule ds-player day10"><table><tbody><tr class="ds-schedule-header"><th class="ds-time"></th><th class="ds-venue-column-1-20130810">Lands End</th><th class="ds-venue-column-2-20130810">The Barbary</th></tr>`
+      + `<tr><th class="ds-times"><ul>${dsAxis}</ul></th><td class="ds-stage ds-stage1 ds-venue-column-1-20130810"><div class="ds-bands">`
+      + dsBox(11, "0.0", "79.0", "opener", "Opener", "12:00 - 12:40") + dsBox(12, "120.0", "99.0", "headliner", "Headliner &amp; Friends", "1:00 - 1:50", `band_id="9" `)
+      + `</div></td><td class="ds-stage ds-stage2 ds-venue-column-2-20130810"><div class="ds-bands">` + dsBox(21, "30.0", "-1261.0", "comic", "Comic", "12:15 - 1:00")
+      + `</div></td></tr></tbody></table></div>`;
+    const dsBand = `<title>Headliner at Outside Lands 2013</title><div class="ds-arrange ds-performance-location"> <h2>Playing</h2> <p> <a href="https://web.archive.org/events/2013/08/10">Saturday Aug 10 1:00 PM</a> on Lands End<br> </p> </div>`;
+    const dp = parseDoStuff(dsPage), dsT = timeDay(dp, parseDoStuffBand(dsBand), "headliner");
+    ok(JSON.stringify([dp.label, dp.date, dp.stages, dp.scale, dp.misprints.map(x => x.artist), dsT.axisStart, dsT.sets.map(x => [x.stage, x.start, x.end, x.artist])])
+      === JSON.stringify(["Saturday, August 10", "2013-08-10", ["Lands End", "The Barbary"], 2, ["Comic"], "12:00", [["Lands End", "12:00", "12:40", "Opener"], ["Lands End", "13:00", "13:50", "Headliner & Friends"]]]),
+      `an Outside Lands grid must come back set by set, its axis fixed by the act's page and a misplaced block kept apart: ${JSON.stringify([dp, dsT])}`);
+    const dsMust = (what, html, band = dsBand) => { let bad = false; try { timeDay(parseDoStuff(html), parseDoStuffBand(band), "headliner"); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    dsMust("an Outside Lands block placed off its printed start", dsPage.replace("top:120.0px", "top:140.0px"));
+    dsMust("an Outside Lands block whose length is not its range", dsPage.replace("height:99.0px", "height:119.0px"));
+    dsMust("an Outside Lands tab naming another weekday", dsPage.replace(">Saturday, August 10<", ">Sunday, August 10<"));
+    dsMust("an Outside Lands stage column printed for another date", dsPage.replace("ds-venue-column-2-20130810\">The", "ds-venue-column-2-20130811\">The"));
+    dsMust("an Outside Lands axis row not 15 minutes after the one before", dsPage.replace(">12:45<", ">1:15<"));
+    dsMust("an Outside Lands page of another festival", dsPage.replace("<title>Outside Lands 2013", "<title>Other Fest 2013"));
+    dsMust("an Outside Lands grid block that cannot be read", dsPage.replace(`style="top:0.0px;height:79.0px`, `style="top: 0px; height: 79px`));
+    dsMust("an Outside Lands anchor whose time is not its block's on the axis", dsPage, dsBand.replace("1:00 PM", "1:10 PM"));
+    dsMust("an Outside Lands anchor printed for another day", dsPage, dsBand.replace("events/2013/08/10", "events/2013/08/09"));
+    dsMust("an Outside Lands anchor on another stage", dsPage, dsBand.replace("on Lands End", "on Sutro"));
+    dsMust("an Outside Lands anchor printing no meridiem", dsPage, dsBand.replace(" PM<", "<"));
+    // From 2015 the act's page prints one linked heading per set, the stage
+    // after the time only from 2017: both must time the day the same way.
+    const dsBand15 = `<title>Headliner at Outside Lands 2013</title><div class="ds-arrange ds-performance-location"> <p> </p><h2><a href="https://web.archive.org/events/2013/08/10">Saturday, August 10, 1:00 PM</a></h2> <p></p> </div>`;
+    const dsBand17 = dsBand15.replace("1:00 PM</a>", "1:00 PM Lands End<br></a>");
+    for (const b of [dsBand15, dsBand17]) {
+      const t = timeDay(dp, parseDoStuffBand(b), "headliner");
+      ok(JSON.stringify(t.sets) === JSON.stringify(dsT.sets) && t.anchor.text === parseDoStuffBand(b).sets[0].text, `a newer Outside Lands act page must time the day as the older one does: ${JSON.stringify(t)}`);
+    }
+    dsMust("a newer Outside Lands anchor on another stage", dsPage, dsBand17.replace("Lands End<br>", "Sutro<br>"));
+    dsMust("a newer Outside Lands anchor whose weekday is not its link's date", dsPage, dsBand15.replace("Saturday, August 10", "Friday, August 10"));
+    dsMust("a newer Outside Lands anchor whose time is not its block's on the axis", dsPage, dsBand15.replace("1:00 PM", "1:10 PM"));
     // Coachella's lineup cards (2016's two divs, 2015's one span): every set
     // open-ended, a card with no set unscheduled, an entry without its time
     // or stage incomplete, and nothing read off data-weekend.
