@@ -554,8 +554,82 @@ function SpotifyFullLogo({
     d: "m803.56,98.29c.82-.6,1.23-1.4,1.23-2.39s-.4-1.83-1.2-2.43c-.8-.6-1.96-.9-3.48-.9h-5.36v11.2h2.59v-4.45h1.41l3.41,4.45h3.18l-3.73-4.72c.79-.15,1.46-.4,1.96-.77Zm-3.86-.99h-2.36v-2.74h2.45c.73,0,1.29.11,1.68.34.39.23.59.58.59,1.06,0,.45-.21.79-.61,1.01-.41.23-.99.34-1.75.34Z"
   }));
 }
+function SpotifyPhotoCredit({
+  names
+}) {
+  var list = (names || []).filter(Boolean);
+  var has = () => list.some(n => getArtistImage(n)?.source === "spotify");
+  var [show, setShow] = React.useState(has);
+  var sig = list.join("|");
+  React.useEffect(() => {
+    setShow(has());
+    var on = () => setShow(has());
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, on);
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
+    return () => {
+      window.removeEventListener(ARTIST_IMAGES_WRITTEN, on);
+      window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
+    };
+  }, [sig]);
+  if (!show) return null;
+  return React.createElement("a", {
+    href: "https://open.spotify.com",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    "data-spotify-attribution": "list",
+    "aria-label": "Artist photos from Spotify",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      padding: "14px 0 6px",
+      color: "var(--ink-2)",
+      fontSize: 12,
+      textDecoration: "none"
+    }
+  }, React.createElement("span", null, "Artist photos from"), React.createElement(SpotifyFullLogo, {
+    height: 21
+  }));
+}
 var _photoQueue = [];
 var _photoActive = false;
+var SPOTIFY_PHOTO_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/spotify-artist-image";
+var _photoProxyOff = false;
+var _photoProxyPausedUntil = 0;
+function _photoProxyUsable() {
+  if (typeof navigator !== "undefined" && navigator.webdriver && !window.__plurskyPhotoProxyInTests) return false;
+  return !_photoProxyOff && Date.now() >= _photoProxyPausedUntil && (typeof navigator === "undefined" || navigator.onLine !== false);
+}
+function _spotifyNameKey(s) {
+  return String(s || "").normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "");
+}
+function _spotifyExactArtist(items, name) {
+  var k = _spotifyNameKey(name);
+  return k ? (items || []).find(x => x && _spotifyNameKey(x.name) === k) || null : null;
+}
+function _fetchProxyPhoto(name) {
+  if (!_photoProxyUsable()) return Promise.resolve(null);
+  return fetch(SPOTIFY_PHOTO_PROXY_URL + "?name=" + encodeURIComponent(name)).then(r => {
+    if (r.status === 429) {
+      _photoProxyPausedUntil = Date.now() + 1000 * Math.min(600, parseInt(r.headers.get("Retry-After")) || 60);
+      return null;
+    }
+    if (r.status === 404 || r.status === 503) {
+      _photoProxyOff = true;
+      return null;
+    }
+    return r.ok ? r.json() : null;
+  }).then(d => {
+    if (!d || !d.url) return null;
+    putArtistImage(name, d.url, "spotify", {
+      spotifyId: d.spotifyId
+    });
+    return {
+      url: d.url,
+      spotifyId: d.spotifyId || null
+    };
+  }).catch(() => null);
+}
 function _drainPhotoQueue() {
   if (_photoActive || !_photoQueue.length) return;
   _photoActive = true;
@@ -563,31 +637,32 @@ function _drainPhotoQueue() {
     name,
     resolve
   } = _photoQueue.shift();
-  var token = localStorage.getItem("spotify_token");
-  var expires = localStorage.getItem("spotify_expires");
-  if (!token || !expires || Date.now() >= parseInt(expires)) {
+  var next = () => {
     _photoActive = false;
-    resolve(null);
-    _drainPhotoQueue();
+    setTimeout(_drainPhotoQueue, 150);
+  };
+  if (!_spotifyTokenValid()) {
+    if (!_photoProxyUsable()) {
+      _photoActive = false;
+      resolve(null);
+      _drainPhotoQueue();
+      return;
+    }
+    _fetchProxyPhoto(name).then(hit => resolve(hit ? hit.url : null)).finally(next);
     return;
   }
-  fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(name)}&type=artist&limit=3`, {
+  fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(name)}&type=artist&limit=10`, {
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + localStorage.getItem("spotify_token")
     }
   }).then(r => r.ok ? r.json() : null).then(d => {
-    var ln = name.toLowerCase();
-    var items = d?.artists?.items || [];
-    var match = items.find(x => x.name.toLowerCase() === ln) || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
+    var match = _spotifyExactArtist(d?.artists?.items, name);
     var img = match?.images?.[0]?.url || null;
     if (img) putArtistImage(name, img, "spotify", {
       spotifyId: match.id
     });
     resolve(img);
-  }).catch(() => resolve(null)).finally(() => {
-    _photoActive = false;
-    setTimeout(_drainPhotoQueue, 150);
-  });
+  }).catch(() => resolve(null)).finally(next);
 }
 function _queuePhoto(name) {
   return new Promise(resolve => {
@@ -854,7 +929,7 @@ function useArtistPhotoMachine(name, {
 function useArtistPhoto(name) {
   return useArtistPhotoMachine(name, {
     lookup: _queuePhoto,
-    canFetch: _spotifyTokenValid
+    canFetch: () => _spotifyTokenValid() || _photoProxyUsable()
   }).url;
 }
 function ArtistSwatch({
@@ -1133,6 +1208,15 @@ function _duoMembers(name) {
 function _duoInitials(name) {
   return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2).map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
+function _duoFaceAccent() {
+  try {
+    var id = typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id;
+    var e = id && (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : []).find(f => f && f.config && f.config.id === id);
+    return e && /^#[0-9a-f]{6}$/i.test(e.accent || "") ? e.accent : null;
+  } catch {
+    return null;
+  }
+}
 function DuoFace({
   name,
   size,
@@ -1150,6 +1234,9 @@ function DuoFace({
     "data-face": name,
     "data-photo-source": photo ? rec?.source || "" : "initials",
     style: {
+      ...(!photo && _duoFaceAccent() ? {
+        "--face-acc": _duoFaceAccent()
+      } : {}),
       ...(size ? {
         width: size,
         height: size,
@@ -1686,6 +1773,27 @@ function clearSetTrack(festivalId) {
     window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
   } catch {}
   return true;
+}
+function setTrackVerdict(a, cfg = window.FESTIVAL_CONFIG) {
+  if (!a || !cfg || !cfg.id) return null;
+  var iv = getSetTrackIntervals(cfg.id);
+  if (!iv[a.stage] || !iv[a.stage].length) return null;
+  var v = attendanceVerdict(a, iv, cfg);
+  return v.verdict === "none" ? null : {
+    ...v,
+    label: attendanceVerdictLabel(v)
+  };
+}
+function setTrackSummary(artists, cfg = window.FESTIVAL_CONFIG) {
+  var out = {
+    full: 0,
+    partial: 0
+  };
+  for (var a of artists || []) {
+    var v = setTrackVerdict(a, cfg);
+    if (v && v.verdict === "full") out.full++;else if (v && v.verdict === "partial") out.partial++;
+  }
+  return out;
 }
 function SetTrackingWatcher() {
   var [, bump] = React.useReducer(x => x + 1, 0);
@@ -3617,7 +3725,11 @@ Object.assign(window, {
   putArtistImage,
   putArtistImages,
   SpotifyFullLogo,
+  SpotifyPhotoCredit,
   SPOTIFY_IMAGE_TTL_MS,
+  _fetchProxyPhoto,
+  _photoProxyUsable,
+  _spotifyExactArtist,
   useInstallPrompt,
   InstallBanner,
   useNotifications,

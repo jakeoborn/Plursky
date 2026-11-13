@@ -1,0 +1,5780 @@
+{
+ "ranAt": "2026-11-11T06:26:44.514Z",
+ "scope": "registry",
+ "width": 480,
+ "total": 4851,
+ "offset": 1500,
+ "nextOffset": 3000,
+ "considered": 1478,
+ "added": 357,
+ "skipped": {
+  "no-music-item": 258,
+  "no-item": 590,
+  "ambiguous": 41,
+  "no-image": 207,
+  "no-usable-credit": 18,
+  "license-not-admitted": 6,
+  "no-file": 1
+ },
+ "addedRows": [
+  {
+   "artist": "Fickle Friends",
+   "wikidata": "Q24895505",
+   "license": "CC-BY-SA-4.0",
+   "author": "SamuelWren98"
+  },
+  {
+   "artist": "FIDLAR",
+   "wikidata": "Q4038524",
+   "license": "CC-BY-2.0",
+   "author": "Weekly Dig"
+  },
+  {
+   "artist": "Fightmaster",
+   "wikidata": "Q93767201",
+   "license": "CC-BY-SA-4.0",
+   "author": "Ajt9"
+  },
+  {
+   "artist": "FINNEAS",
+   "wikidata": "Q20029978",
+   "license": "CC-BY-SA-4.0",
+   "author": "Jorge Jaramillo"
+  },
+  {
+   "artist": "FIREBEATZ",
+   "wikidata": "Q15917429",
+   "license": "CC-BY-SA-3.0-DE",
+   "author": "Moritz Kosinsky"
+  },
+  {
+   "artist": "First Aid Kit",
+   "wikidata": "Q975437",
+   "license": "CC-BY-SA-3.0",
+   "author": "Christian Düringer"
+  },
+  {
+   "artist": "Fitz & The Tantrums",
+   "wikidata": "Q3746211",
+   "license": "CC-BY-4.0",
+   "author": "Erin Mc"
+  },
+  {
+   "artist": "FKJ",
+   "wikidata": "Q30457256",
+   "license": "CC-BY-SA-4.0",
+   "author": "Jishnuchakrabortyimages"
+  },
+  {
+   "artist": "FLETCHER",
+   "wikidata": "Q61996247",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Flight Facilities",
+   "wikidata": "Q3793151",
+   "license": "Public-Domain",
+   "author": "Bull-Doser"
+  },
+  {
+   "artist": "Flora Cash",
+   "wikidata": "Q58032719",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Florence + The Machine",
+   "wikidata": "Q217360",
+   "license": "CC-BY-SA-2.0",
+   "author": "Jason Persse"
+  },
+  {
+   "artist": "Flosstradamus",
+   "wikidata": "Q5461990",
+   "license": "CC-BY-SA-2.0",
+   "author": "swimfinfan from Chicago"
+  },
+  {
+   "artist": "Flume",
+   "wikidata": "Q4038837",
+   "license": "CC-BY-SA-2.0",
+   "author": "Eva Rinaldi"
+  },
+  {
+   "artist": "Flux Pavilion",
+   "wikidata": "Q20926",
+   "license": "CC-BY-2.0",
+   "author": "(capsulated)"
+  },
+  {
+   "artist": "Foals",
+   "wikidata": "Q728958",
+   "license": "CC-BY-SA-3.0",
+   "author": "Bill Ebbesen"
+  },
+  {
+   "artist": "Foo Fighters",
+   "wikidata": "Q483718",
+   "license": "CC-BY-2.0",
+   "author": "Raph_PH"
+  },
+  {
+   "artist": "Foster The People",
+   "wikidata": "Q61113",
+   "license": "CC-BY-SA-2.0",
+   "author": "Jason Persse"
+  },
+  {
+   "artist": "Foxygen",
+   "wikidata": "Q5477342",
+   "license": "CC-BY-SA-4.0",
+   "author": "Kim Metso"
+  },
+  {
+   "artist": "Foy Vance",
+   "wikidata": "Q5477365",
+   "license": "CC-BY-SA-3.0",
+   "author": "Harald Krichel"
+  },
+  {
+   "artist": "FRANCES FOREVER",
+   "wikidata": "Q105104714",
+   "license": "CC-BY-SA-4.0",
+   "author": "Ed6767"
+  },
+  {
+   "artist": "Frankie Bones",
+   "wikidata": "Q4141264",
+   "license": "Public-Domain",
+   "author": "User:Alkivar"
+  },
+  {
+   "artist": "Freddie Gibbs",
+   "wikidata": "Q1246237",
+   "license": "CC-BY-3.0",
+   "author": "Eric Longden"
+  },
+  {
+   "artist": "Freddy Jones Band",
+   "wikidata": "Q5496876",
+   "license": "CC-BY-2.0",
+   "author": "Matthew Ginger"
+  },
+  {
+   "artist": "Frightened Rabbit",
+   "wikidata": "Q1464866",
+   "license": "CC-BY-2.0",
+   "author": "Jane from Boston, USA"
+  },
+  {
+   "artist": "Frontliner",
+   "wikidata": "Q2682241",
+   "license": "CC-BY-SA-3.0",
+   "author": "Roan Hendriks"
+  },
+  {
+   "artist": "Frost Children",
+   "wikidata": "Q117018188",
+   "license": "CC-BY-SA-4.0",
+   "author": "ReithHumphreys"
+  },
+  {
+   "artist": "FUJII KAZE",
+   "wikidata": "Q84803821",
+   "license": "CC-BY-4.0",
+   "author": "KazeQal"
+  },
+  {
+   "artist": "fun.",
+   "wikidata": "Q838984",
+   "license": "CC-BY-SA-3.0",
+   "author": "Mirandaheneghan"
+  },
+  {
+   "artist": "FUTURE ISLANDS",
+   "wikidata": "Q3091284",
+   "license": "CC-BY-2.0",
+   "author": "Roger Zender"
+  },
+  {
+   "artist": "FYÜTCH",
+   "wikidata": "Q5427433",
+   "license": "CC-BY-SA-4.0",
+   "author": "Swishaking615"
+  },
+  {
+   "artist": "G-Eazy",
+   "wikidata": "Q5511893",
+   "license": "CC-BY-SA-3.0",
+   "author": "Gage Skidmore"
+  },
+  {
+   "artist": "Gabriel & Dresden",
+   "wikidata": "Q1488859",
+   "license": "CC-BY-2.0",
+   "author": "digitalshay"
+  },
+  {
+   "artist": "Gaia",
+   "wikidata": "Q89375508",
+   "license": "CC-BY-3.0",
+   "author": "Radio Bruno"
+  },
+  {
+   "artist": "Gallant",
+   "wikidata": "Q22004445",
+   "license": "CC0-1.0",
+   "author": "Gallant"
+  },
+  {
+   "artist": "Galo",
+   "wikidata": "Q111590078",
+   "license": "CC-BY-SA-4.0",
+   "author": "la dosis inc"
+  },
+  {
+   "artist": "Gammer",
+   "wikidata": "Q3095041",
+   "license": "Public-Domain",
+   "author": "DontStayIn"
+  },
+  {
+   "artist": "Gang of Youths",
+   "wikidata": "Q22080817",
+   "license": "CC-BY-2.0",
+   "author": "Bruce from Sydney, Australia"
+  },
+  {
+   "artist": "Gary Clark Jr.",
+   "wikidata": "Q1153310",
+   "license": "CC-BY-2.0",
+   "author": "Alize Tran"
+  },
+  {
+   "artist": "Geese",
+   "wikidata": "Q110565450",
+   "license": "CC-BY-SA-4.0",
+   "author": "Lygonstreet"
+  },
+  {
+   "artist": "GELLI HAHA",
+   "wikidata": "Q135431515",
+   "license": "CC-BY-SA-4.0",
+   "author": "Hibachrach"
+  },
+  {
+   "artist": "GENESIS OWUSU",
+   "wikidata": "Q70855114",
+   "license": "CC-BY-2.0",
+   "author": "Bruce Baker"
+  },
+  {
+   "artist": "George Ezra",
+   "wikidata": "Q15459513",
+   "license": "CC-BY-2.0",
+   "author": "Raph_PH"
+  },
+  {
+   "artist": "GEORGE STRAIT",
+   "wikidata": "Q366584",
+   "license": "CC-BY-SA-2.0",
+   "author": "Craig ONeal"
+  },
+  {
+   "artist": "Gesaffelstein",
+   "wikidata": "Q381562",
+   "license": "CC-BY-2.0",
+   "author": "Amnesia Ibiza"
+  },
+  {
+   "artist": "Getter",
+   "wikidata": "Q27914910",
+   "license": "CC-BY-3.0",
+   "author": "Michael Ridley"
+  },
+  {
+   "artist": "GG MAGREE",
+   "wikidata": "Q64743664",
+   "license": "CC-BY-3.0",
+   "author": "POPDUST"
+  },
+  {
+   "artist": "Ghastly",
+   "wikidata": "Q28373766",
+   "license": "CC-BY-SA-4.0",
+   "author": "david crow"
+  },
+  {
+   "artist": "Ghostface Killah",
+   "wikidata": "Q323463",
+   "license": "CC-BY-2.0",
+   "author": "Niklas Hellerstedt"
+  },
+  {
+   "artist": "GIGI PEREZ",
+   "wikidata": "Q130235359",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "GIRL IN RED",
+   "wikidata": "Q62140662",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Girlfriend",
+   "wikidata": "Q18733030",
+   "license": "CC-BY-3.0",
+   "author": "K-POPIT 케이팝잇"
+  },
+  {
+   "artist": "GLAIVE",
+   "wikidata": "Q100978614",
+   "license": "CC-BY-SA-4.0",
+   "author": "Ryannwiki"
+  },
+  {
+   "artist": "Glass Animals",
+   "wikidata": "Q16839267",
+   "license": "CC-BY-SA-4.0",
+   "author": "Legoktm"
+  },
+  {
+   "artist": "GloRilla",
+   "wikidata": "Q114132368",
+   "license": "CC-BY-3.0",
+   "author": "HOTSPOTATL"
+  },
+  {
+   "artist": "GMS",
+   "wikidata": "Q1547848",
+   "license": "Public-Domain",
+   "author": "Wayanpalmieri"
+  },
+  {
+   "artist": "Golden Child",
+   "wikidata": "Q30007238",
+   "license": "CC-BY-3.0",
+   "author": "뉴스인스타"
+  },
+  {
+   "artist": "Goldfinger",
+   "wikidata": "Q1064319",
+   "license": "CC-BY-SA-2.0",
+   "author": "thisisbossi"
+  },
+  {
+   "artist": "Goldie Boutilier",
+   "wikidata": "Q6380134",
+   "license": "CC-BY-SA-3.0",
+   "author": "GorgeousAlex"
+  },
+  {
+   "artist": "GOODNIGHT, TEXAS",
+   "wikidata": "Q5583504",
+   "license": "CC-BY-SA-4.0",
+   "author": "aviavivino"
+  },
+  {
+   "artist": "Gorillaz",
+   "wikidata": "Q189991",
+   "license": "CC-BY-2.0",
+   "author": "Drew de F Fawkes"
+  },
+  {
+   "artist": "Grace Ives",
+   "wikidata": "Q112712642",
+   "license": "CC-BY-SA-4.0",
+   "author": "Joe Vitale 5"
+  },
+  {
+   "artist": "Grace Mitchell",
+   "wikidata": "Q24005286",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Grace VanderWaal",
+   "wikidata": "Q26897673",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi from Los Angeles"
+  },
+  {
+   "artist": "GRACIE ABRAMS",
+   "wikidata": "Q106301562",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Gramatik",
+   "wikidata": "Q14623663",
+   "license": "CC-BY-SA-2.0",
+   "author": "Mary"
+  },
+  {
+   "artist": "Greensky Bluegrass",
+   "wikidata": "Q5604524",
+   "license": "CC-BY-SA-4.0",
+   "author": "Mr.schultz"
+  },
+  {
+   "artist": "GREGORY ALAN ISAKOV",
+   "wikidata": "Q3266712",
+   "license": "CC-BY-SA-4.0",
+   "author": "Trevor Bolliger"
+  },
+  {
+   "artist": "Gregory Porter",
+   "wikidata": "Q3116385",
+   "license": "CC-BY-SA-4.0",
+   "author": "Tore Sætre"
+  },
+  {
+   "artist": "GRETA VAN FLEET",
+   "wikidata": "Q30636835",
+   "license": "CC-BY-SA-4.0",
+   "author": "Hoebele"
+  },
+  {
+   "artist": "Grimes",
+   "wikidata": "Q117970",
+   "license": "CC-BY-2.0",
+   "author": "Jordan Uhl"
+  },
+  {
+   "artist": "Groove Armada",
+   "wikidata": "Q117522",
+   "license": "CC-BY-SA-3.0",
+   "author": "Hamish2k"
+  },
+  {
+   "artist": "Grouplove",
+   "wikidata": "Q1153346",
+   "license": "CC-BY-SA-2.0",
+   "author": "Shannon Kringen"
+  },
+  {
+   "artist": "Gryffin",
+   "wikidata": "Q27956380",
+   "license": "CC-BY-2.0",
+   "author": "FifthLegend"
+  },
+  {
+   "artist": "Guns N’ Roses",
+   "wikidata": "Q11895",
+   "license": "CC-BY-2.0",
+   "author": "Raph_PH"
+  },
+  {
+   "artist": "GUS DAPPERTON",
+   "wikidata": "Q51858412",
+   "license": "CC-BY-SA-4.0",
+   "author": "Tore Sætre"
+  },
+  {
+   "artist": "Haerts",
+   "wikidata": "Q16840758",
+   "license": "CC-BY-SA-4.0",
+   "author": "Haertsmusic"
+  },
+  {
+   "artist": "HAIM",
+   "wikidata": "Q868810",
+   "license": "CC-BY-2.0",
+   "author": "Raph_PH"
+  },
+  {
+   "artist": "Halestorm",
+   "wikidata": "Q935503",
+   "license": "CC-BY-SA-4.0",
+   "author": "Sven Mandel"
+  },
+  {
+   "artist": "Haliene",
+   "wikidata": "Q3194919",
+   "license": "CC-BY-SA-4.0",
+   "author": "Max \"M4XIMUS\" Schultz"
+  },
+  {
+   "artist": "Hamilton Leithauser",
+   "wikidata": "Q17037824",
+   "license": "CC-BY-2.0",
+   "author": "Tom Purves from Toronto, canada"
+  },
+  {
+   "artist": "HANA",
+   "wikidata": "Q2066647",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "HARDY",
+   "wikidata": "Q63341424",
+   "license": "CC-BY-SA-4.0",
+   "author": "Photo taken by Tanner Gallagher"
+  },
+  {
+   "artist": "Harper O'Neill",
+   "wikidata": "Q141174807",
+   "license": "CC-BY-SA-4.0",
+   "author": "Artaxerxes"
+  },
+  {
+   "artist": "Hayla",
+   "wikidata": "Q118256148",
+   "license": "CC-BY-3.0",
+   "author": "POPDUST"
+  },
+  {
+   "artist": "HAYWYRE",
+   "wikidata": "Q24286784",
+   "license": "CC-BY-4.0",
+   "author": "Jason Siegel"
+  },
+  {
+   "artist": "HEARTLESS BASTARDS",
+   "wikidata": "Q5692913",
+   "license": "CC-BY-SA-3.0",
+   "author": "B L Zebubba"
+  },
+  {
+   "artist": "Helena Hauff",
+   "wikidata": "Q28312805",
+   "license": "CC-BY-SA-2.0",
+   "author": "deepskyobject"
+  },
+  {
+   "artist": "Hemlocke Springs",
+   "wikidata": "Q115483976",
+   "license": "CC-BY-SA-4.0",
+   "author": "CamilaAlves.raf"
+  },
+  {
+   "artist": "HERMANOS GUTIÉRREZ",
+   "wikidata": "Q117025323",
+   "license": "CC-BY-4.0",
+   "author": "Adem"
+  },
+  {
+   "artist": "HI-LO",
+   "wikidata": "Q16667903",
+   "license": "CC-BY-SA-4.0",
+   "author": "Denis Apel"
+  },
+  {
+   "artist": "High Vis",
+   "wikidata": "Q123700163",
+   "license": "CC-BY-3.0",
+   "author": "letsoulfly's stuff"
+  },
+  {
+   "artist": "Highly Suspect",
+   "wikidata": "Q20527609",
+   "license": "CC-BY-2.0",
+   "author": "Roberta"
+  },
+  {
+   "artist": "HINDS",
+   "wikidata": "Q19540128",
+   "license": "CC-BY-2.0",
+   "author": "Paul Hudson"
+  },
+  {
+   "artist": "Holly Humberstone",
+   "wikidata": "Q96217225",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Holly Williams",
+   "wikidata": "Q293149",
+   "license": "CC-BY-SA-2.0",
+   "author": "Mike's Birds"
+  },
+  {
+   "artist": "HOLYCHILD",
+   "wikidata": "Q19880303",
+   "license": "CC-BY-SA-2.0",
+   "author": "swimfinfan"
+  },
+  {
+   "artist": "Hot Mulligan",
+   "wikidata": "Q65121355",
+   "license": "CC-BY-SA-4.0",
+   "author": "Daltonfaulder"
+  },
+  {
+   "artist": "Hozier",
+   "wikidata": "Q16233232",
+   "license": "CC-BY-SA-2.0",
+   "author": "Neon Tommy/Katie Buenneke"
+  },
+  {
+   "artist": "HUDSON WESTBROOK",
+   "wikidata": "Q134125831",
+   "license": "CC-BY-SA-4.0",
+   "author": "Colleen Sturtevant"
+  },
+  {
+   "artist": "Hundred Waters",
+   "wikidata": "Q16845562",
+   "license": "CC-BY-SA-3.0",
+   "author": "Tonje Thilesen"
+  },
+  {
+   "artist": "HUXLEY",
+   "wikidata": "Q184366",
+   "license": "Public-Domain",
+   "author": "Lock & Whitfield"
+  },
+  {
+   "artist": "i-dle",
+   "wikidata": "Q51885404",
+   "license": "CC-BY-3.0",
+   "author": "K-POPIT 케이팝잇"
+  },
+  {
+   "artist": "I Hate Models",
+   "wikidata": "Q124450041",
+   "license": "CC-BY-SA-4.0",
+   "author": "Charlestpt"
+  },
+  {
+   "artist": "IAMDDB",
+   "wikidata": "Q60401547",
+   "license": "CC-BY-3.0",
+   "author": "MTV International"
+  },
+  {
+   "artist": "ICE CUBE",
+   "wikidata": "Q173637",
+   "license": "CC-BY-SA-3.0",
+   "author": "Adam Bielawski"
+  },
+  {
+   "artist": "Icona Pop",
+   "wikidata": "Q808703",
+   "license": "CC-BY-SA-4.0",
+   "author": "Kim Metso"
+  },
+  {
+   "artist": "Ida Engberg",
+   "wikidata": "Q14847912",
+   "license": "CC-BY-SA-4.0",
+   "author": "NH2501"
+  },
+  {
+   "artist": "IDK",
+   "wikidata": "Q28967759",
+   "license": "CC-BY-3.0",
+   "author": "Mr Jay Hill Network"
+  },
+  {
+   "artist": "IDKHOW",
+   "wikidata": "Q50841782",
+   "license": "CC-BY-SA-4.0",
+   "author": "Sekyaw"
+  },
+  {
+   "artist": "IDLES",
+   "wikidata": "Q39070668",
+   "license": "CC-BY-SA-4.0",
+   "author": "Alexander Kellner"
+  },
+  {
+   "artist": "Idriss D",
+   "wikidata": "Q110396410",
+   "license": "CC-BY-SA-4.0",
+   "author": "Idrissdib"
+  },
+  {
+   "artist": "Iggy Azalea",
+   "wikidata": "Q2748803",
+   "license": "CC-BY-SA-2.0",
+   "author": "Eva Rinaldi"
+  },
+  {
+   "artist": "Illenium",
+   "wikidata": "Q27662462",
+   "license": "CC-BY-SA-4.0",
+   "author": "sm_1992"
+  },
+  {
+   "artist": "Imanbek",
+   "wikidata": "Q83688261",
+   "license": "CC-BY-3.0",
+   "author": "Forbes"
+  },
+  {
+   "artist": "Imelda May",
+   "wikidata": "Q260354",
+   "license": "CC-BY-SA-2.0",
+   "author": "Yaffa Phillips"
+  },
+  {
+   "artist": "Inbal",
+   "wikidata": "Q1665209",
+   "license": "CC-BY-SA-3.0",
+   "author": "Gabrieldrogba11"
+  },
+  {
+   "artist": "Infected Mushroom",
+   "wikidata": "Q548994",
+   "license": "CC-BY-SA-2.0",
+   "author": "maxim303"
+  },
+  {
+   "artist": "Ingrid Andress",
+   "wikidata": "Q71746387",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "INJI",
+   "wikidata": "Q120984163",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Injury Reserve",
+   "wikidata": "Q24075128",
+   "license": "CC-BY-2.0",
+   "author": "The Come Up Show from Canada"
+  },
+  {
+   "artist": "ISAIAH RASHAD",
+   "wikidata": "Q16199520",
+   "license": "CC-BY-2.0",
+   "author": "The Come Up Show"
+  },
+  {
+   "artist": "ISRAEL NASH",
+   "wikidata": "Q2598662",
+   "license": "CC-BY-SA-3.0",
+   "author": "Alfio66"
+  },
+  {
+   "artist": "Ja Rule",
+   "wikidata": "Q309843",
+   "license": "CC-BY-2.0",
+   "author": "WebSummit"
+  },
+  {
+   "artist": "JACK BEATS",
+   "wikidata": "Q7205605",
+   "license": "CC-BY-2.0",
+   "author": "TheArches"
+  },
+  {
+   "artist": "Jack Garratt",
+   "wikidata": "Q21618845",
+   "license": "CC-BY-SA-2.0",
+   "author": "goatling"
+  },
+  {
+   "artist": "Jackie Venson",
+   "wikidata": "Q21063218",
+   "license": "CC-BY-SA-4.0",
+   "author": "Carrlouie"
+  },
+  {
+   "artist": "JACOB BANKS",
+   "wikidata": "Q16995276",
+   "license": "CC-BY-SA-4.0",
+   "author": "Tore Sætre"
+  },
+  {
+   "artist": "JADE BIRD",
+   "wikidata": "Q42517649",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Jake Bugg",
+   "wikidata": "Q1320912",
+   "license": "CC-BY-SA-3.0",
+   "author": "Harald Krichel"
+  },
+  {
+   "artist": "JAKE WESLEY ROGERS",
+   "wikidata": "Q107313703",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "James Bay",
+   "wikidata": "Q17811637",
+   "license": "CC-BY-2.0",
+   "author": "Ralph Arvesen"
+  },
+  {
+   "artist": "James Blake",
+   "wikidata": "Q350362",
+   "license": "CC-BY-2.0",
+   "author": "Knar Bedian"
+  },
+  {
+   "artist": "James Hype",
+   "wikidata": "Q47472388",
+   "license": "CC-BY-4.0",
+   "author": "InvadingInvader"
+  },
+  {
+   "artist": "James Kennedy",
+   "wikidata": "Q355133",
+   "license": "CC-BY-4.0",
+   "author": "Super Festivals"
+  },
+  {
+   "artist": "James Vincent McMorrow",
+   "wikidata": "Q3161463",
+   "license": "CC-BY-2.0",
+   "author": "p_a_h"
+  },
+  {
+   "artist": "Jamestown Revival",
+   "wikidata": "Q20684229",
+   "license": "CC-BY-SA-4.0",
+   "author": "Jamestown Revival"
+  },
+  {
+   "artist": "Jamila Woods",
+   "wikidata": "Q23761865",
+   "license": "CC-BY-2.0",
+   "author": "WRBB 104.9 FM"
+  },
+  {
+   "artist": "Janelle Monáe",
+   "wikidata": "Q234356",
+   "license": "CC-BY-SA-4.0",
+   "author": "Myles Kalus Anak Jihem"
+  },
+  {
+   "artist": "Japanese Breakfast",
+   "wikidata": "Q28104185",
+   "license": "CC-BY-2.0",
+   "author": "David Lee"
+  },
+  {
+   "artist": "Jauz",
+   "wikidata": "Q28053503",
+   "license": "CC-BY-3.0",
+   "author": "97.8 Dance FM"
+  },
+  {
+   "artist": "JAZMINE SULLIVAN",
+   "wikidata": "Q267070",
+   "license": "CC-BY-SA-3.0",
+   "author": "Toglenn"
+  },
+  {
+   "artist": "Jazz Cartier",
+   "wikidata": "Q20630682",
+   "license": "CC-BY-2.0",
+   "author": "The Come Up Show"
+  },
+  {
+   "artist": "Jean Dawson",
+   "wikidata": "Q113375223",
+   "license": "CC-BY-SA-4.0",
+   "author": "Tdffaman"
+  },
+  {
+   "artist": "JEEZY",
+   "wikidata": "Q342447",
+   "license": "CC-BY-3.0",
+   "author": "Sister Circle TV"
+  },
+  {
+   "artist": "JEFFREY SUTORIUS",
+   "wikidata": "Q56246452",
+   "license": "CC-BY-SA-2.0",
+   "author": "Alexander Reshnya"
+  },
+  {
+   "artist": "Jelly Roll",
+   "wikidata": "Q6176881",
+   "license": "CC-BY-SA-4.0",
+   "author": "Setoxxx"
+  },
+  {
+   "artist": "Jennie",
+   "wikidata": "Q26262599",
+   "license": "CC-BY-3.0",
+   "author": "티비텐 TV10"
+  },
+  {
+   "artist": "Jenny Lewis",
+   "wikidata": "Q435968",
+   "license": "CC-BY-SA-2.0",
+   "author": "Flickr user pinkbelt"
+  },
+  {
+   "artist": "JENSEN MCRAE",
+   "wikidata": "Q106464283",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "JESS GLYNNE",
+   "wikidata": "Q15744507",
+   "license": "CC-BY-2.0",
+   "author": "Cal Holman"
+  },
+  {
+   "artist": "Jess Williamson",
+   "wikidata": "Q65743087",
+   "license": "CC-BY-2.0",
+   "author": "Paul Hudson from United Kingdom"
+  },
+  {
+   "artist": "Jesse Welles",
+   "wikidata": "Q30599643",
+   "license": "CC-BY-3.0",
+   "author": "Justin"
+  },
+  {
+   "artist": "Jessie Murph",
+   "wikidata": "Q122157373",
+   "license": "CC-BY-SA-4.0",
+   "author": "Sharktale2000"
+  },
+  {
+   "artist": "JESSIE WARE",
+   "wikidata": "Q218042",
+   "license": "CC-BY-2.0",
+   "author": "Raph_PH"
+  },
+  {
+   "artist": "Jhené Aiko",
+   "wikidata": "Q15929781",
+   "license": "CC-BY-2.0",
+   "author": "The Come Up Show from Canada"
+  },
+  {
+   "artist": "Jimmy Cliff",
+   "wikidata": "Q109063",
+   "license": "CC-BY-SA-3.0",
+   "author": "Thesupermat"
+  },
+  {
+   "artist": "Jimmy Eat World",
+   "wikidata": "Q642988",
+   "license": "CC-BY-SA-4.0",
+   "author": "Stefan Brending ( 2eight )"
+  },
+  {
+   "artist": "Jimmy Page",
+   "wikidata": "Q165467",
+   "license": "CC-BY-SA-2.0",
+   "author": "Dina Regine"
+  },
+  {
+   "artist": "Jinx",
+   "wikidata": "Q3501691",
+   "license": "CC-BY-SA-3.0",
+   "author": "Roberta F."
+  },
+  {
+   "artist": "JOANIE LEEDS",
+   "wikidata": "Q6205698",
+   "license": "CC-BY-SA-4.0",
+   "author": "Storybird24"
+  },
+  {
+   "artist": "Joel Corry",
+   "wikidata": "Q67172196",
+   "license": "CC-BY-3.0",
+   "author": "POPDUST"
+  },
+  {
+   "artist": "JOEY VALENCE & BRAE",
+   "wikidata": "Q120068486",
+   "license": "CC-BY-2.0",
+   "author": "Drew de F Fawkes"
+  },
+  {
+   "artist": "Johan Gielen",
+   "wikidata": "Q716946",
+   "license": "CC-BY-SA-3.0",
+   "author": "Joris"
+  },
+  {
+   "artist": "JON BATISTE",
+   "wikidata": "Q6272528",
+   "license": "CC-BY-2.0",
+   "author": "Montclair Film"
+  },
+  {
+   "artist": "Jon Batiste and Stay Human",
+   "wikidata": "Q20685658",
+   "license": "CC-BY-2.0",
+   "author": "ataelw"
+  },
+  {
+   "artist": "Jon Pardi",
+   "wikidata": "Q6271354",
+   "license": "CC-BY-SA-4.0",
+   "author": "TenPoundHammer"
+  },
+  {
+   "artist": "JONAS BLUE",
+   "wikidata": "Q22246459",
+   "license": "CC-BY-SA-4.0",
+   "author": "Nils Melckenbeeck"
+  },
+  {
+   "artist": "Jorn van Deynhoven",
+   "wikidata": "Q16216521",
+   "license": "CC-BY-SA-2.0",
+   "author": "Mark Bloomfield"
+  },
+  {
+   "artist": "José González",
+   "wikidata": "Q315107",
+   "license": "CC-BY-2.0",
+   "author": "Bertrand"
+  },
+  {
+   "artist": "Joseph",
+   "wikidata": "Q128267",
+   "license": "CC-BY-SA-3.0",
+   "author": "M0tty"
+  },
+  {
+   "artist": "Joseph Capriati",
+   "wikidata": "Q16844889",
+   "license": "CC-BY-4.0",
+   "author": "Redimension Music Label"
+  },
+  {
+   "artist": "JOY OLADOKUN",
+   "wikidata": "Q97630757",
+   "license": "Public-Domain",
+   "author": "The White House"
+  },
+  {
+   "artist": "JOYRYDE",
+   "wikidata": "Q5398138",
+   "license": "CC-BY-SA-3.0",
+   "author": "Fernando Lessa"
+  },
+  {
+   "artist": "Joywave",
+   "wikidata": "Q18153761",
+   "license": "CC-BY-SA-3.0",
+   "author": "Trevorhirst"
+  },
+  {
+   "artist": "JP Saxe",
+   "wikidata": "Q86009464",
+   "license": "CC-BY-2.0",
+   "author": "vagueonthehow"
+  },
+  {
+   "artist": "JPEGMAFIA",
+   "wikidata": "Q50415953",
+   "license": "CC0-1.0",
+   "author": "Muntgodxbox"
+  },
+  {
+   "artist": "JR JR",
+   "wikidata": "Q1157840",
+   "license": "CC-BY-SA-4.0",
+   "author": "Alex Goykhman"
+  },
+  {
+   "artist": "JT",
+   "wikidata": "Q106747932",
+   "license": "CC-BY-3.0",
+   "author": "Cntrl+Alt+Delete"
+  },
+  {
+   "artist": "Juanes",
+   "wikidata": "Q43189",
+   "license": "CC-BY-SA-2.0",
+   "author": "Junta de Andalucía"
+  },
+  {
+   "artist": "Judah & the Lion",
+   "wikidata": "Q16850984",
+   "license": "CC-BY-SA-4.0",
+   "author": "Clairerex"
+  },
+  {
+   "artist": "Judge Jules",
+   "wikidata": "Q1710967",
+   "license": "CC-BY-SA-4.0",
+   "author": "Mr Jolly"
+  },
+  {
+   "artist": "JUDY BLANK",
+   "wikidata": "Q20020005",
+   "license": "CC-BY-SA-4.0",
+   "author": "Deborah van Wendel de Joode"
+  },
+  {
+   "artist": "Julia Jacklin",
+   "wikidata": "Q27573883",
+   "license": "CC-BY-2.0",
+   "author": "Krists Luhaers"
+  },
+  {
+   "artist": "Julia Wolf",
+   "wikidata": "Q136653809",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "JULY TALK",
+   "wikidata": "Q6310677",
+   "license": "CC-BY-SA-3.0",
+   "author": "Tabercil"
+  },
+  {
+   "artist": "Jungle",
+   "wikidata": "Q17405943",
+   "license": "CC-BY-4.0",
+   "author": "Elegantstickman"
+  },
+  {
+   "artist": "Justine Skye",
+   "wikidata": "Q21062706",
+   "license": "CC-BY-3.0",
+   "author": "Cntrl+Alt+Delete"
+  },
+  {
+   "artist": "JXDN",
+   "wikidata": "Q98714287",
+   "license": "CC-BY-SA-4.0",
+   "author": "Andrew Evenson"
+  },
+  {
+   "artist": "Jyoty",
+   "wikidata": "Q135298172",
+   "license": "CC-BY-SA-4.0",
+   "author": "Keepitsweet"
+  },
+  {
+   "artist": "K.Flay",
+   "wikidata": "Q6322943",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Kacey Musgraves",
+   "wikidata": "Q2783855",
+   "license": "CC-BY-SA-4.0",
+   "author": "Toglenn"
+  },
+  {
+   "artist": "Kaleo",
+   "wikidata": "Q16851422",
+   "license": "CC-BY-SA-4.0",
+   "author": "© Markus Felix | PushingPixels"
+  },
+  {
+   "artist": "Kali Uchis",
+   "wikidata": "Q19004484",
+   "license": "CC-BY-2.0",
+   "author": "Ralph Arvesen"
+  },
+  {
+   "artist": "Karen Elson",
+   "wikidata": "Q2076087",
+   "license": "CC-BY-SA-2.0",
+   "author": "Jason Persse from Brooklyn, USA"
+  },
+  {
+   "artist": "KAROL G",
+   "wikidata": "Q22001324",
+   "license": "CC-BY-SA-2.0",
+   "author": "Junta de Andalucía"
+  },
+  {
+   "artist": "Kassel",
+   "wikidata": "Q515553",
+   "license": "Public-Domain",
+   "author": "Joannes Meyssens"
+  },
+  {
+   "artist": "Kat Dahlia",
+   "wikidata": "Q6374952",
+   "license": "CC-BY-3.0",
+   "author": "Eric Longden"
+  },
+  {
+   "artist": "KATIE PRUITT",
+   "wikidata": "Q86475154",
+   "license": "CC-BY-SA-4.0",
+   "author": "HenryIngram"
+  },
+  {
+   "artist": "KATSEYE",
+   "wikidata": "Q123480242",
+   "license": "CC-BY-4.0",
+   "author": "Warmtoned"
+  },
+  {
+   "artist": "Kaytranada",
+   "wikidata": "Q17153342",
+   "license": "CC-BY-2.0",
+   "author": "The Come Up Show"
+  },
+  {
+   "artist": "Kehlani",
+   "wikidata": "Q20657541",
+   "license": "CC-BY-3.0",
+   "author": "New Zealand Warner Music"
+  },
+  {
+   "artist": "KENNY BEATS",
+   "wikidata": "Q65580480",
+   "license": "CC-BY-3.0",
+   "author": "glenjamn3"
+  },
+  {
+   "artist": "KENNY MASON",
+   "wikidata": "Q111856925",
+   "license": "CC0-1.0",
+   "author": "Nasser Boulaich"
+  },
+  {
+   "artist": "KEVIN ABSTRACT",
+   "wikidata": "Q21004712",
+   "license": "CC-BY-2.0",
+   "author": "Nicolas Padovani"
+  },
+  {
+   "artist": "Kevin Garrett",
+   "wikidata": "Q21286615",
+   "license": "CC-BY-SA-4.0",
+   "author": "Elisegard"
+  },
+  {
+   "artist": "KEVIN KAARL",
+   "wikidata": "Q110261472",
+   "license": "CC-BY-SA-4.0",
+   "author": "El Sombrerero"
+  },
+  {
+   "artist": "KEVIN MORBY",
+   "wikidata": "Q15615094",
+   "license": "CC-BY-2.0",
+   "author": "Piotr Drabik from Poland"
+  },
+  {
+   "artist": "KEY GLOCK",
+   "wikidata": "Q70235526",
+   "license": "CC-BY-3.0",
+   "author": "Durtty Daily"
+  },
+  {
+   "artist": "KEYS N KRATES",
+   "wikidata": "Q16852093",
+   "license": "CC-BY-SA-4.0",
+   "author": "Tmadeley08"
+  },
+  {
+   "artist": "Khalid",
+   "wikidata": "Q28816483",
+   "license": "CC-BY-3.0",
+   "author": "MTV UK"
+  },
+  {
+   "artist": "KHROME",
+   "wikidata": "Q97570572",
+   "license": "CC-BY-SA-2.0",
+   "author": "Marcus Shootster"
+  },
+  {
+   "artist": "Khruangbin",
+   "wikidata": "Q54555985",
+   "license": "CC-BY-2.0",
+   "author": "Raph_PH"
+  },
+  {
+   "artist": "Kill The Noise",
+   "wikidata": "Q557415",
+   "license": "CC-BY-SA-2.0",
+   "author": "swimfinfan from Chicago"
+  },
+  {
+   "artist": "Kim Gordon",
+   "wikidata": "Q240570",
+   "license": "CC-BY-SA-4.0",
+   "author": "Sarah K Joyce"
+  },
+  {
+   "artist": "King Princess",
+   "wikidata": "Q55006878",
+   "license": "CC-BY-4.0",
+   "author": "PhilipRomanoPhoto"
+  },
+  {
+   "artist": "Klangkuenstler",
+   "wikidata": "Q111655138",
+   "license": "CC-BY-3.0",
+   "author": "Medusa Festival"
+  },
+  {
+   "artist": "Koa",
+   "wikidata": "Q108678151",
+   "license": "CC-BY-SA-4.0",
+   "author": "StrangeTraveler"
+  },
+  {
+   "artist": "Kobosil",
+   "wikidata": "Q113698510",
+   "license": "CC-BY-SA-4.0",
+   "author": "Rayukk"
+  },
+  {
+   "artist": "Kodaline",
+   "wikidata": "Q2482563",
+   "license": "CC-BY-2.0",
+   "author": "Kathi Rudminat"
+  },
+  {
+   "artist": "Koffee",
+   "wikidata": "Q60926853",
+   "license": "CC-BY-3.0",
+   "author": "Mykal Cushnie"
+  },
+  {
+   "artist": "Kölsch",
+   "wikidata": "Q3816143",
+   "license": "CC-BY-SA-4.0",
+   "author": "Robin Krahl"
+  },
+  {
+   "artist": "KONGOS",
+   "wikidata": "Q6429225",
+   "license": "CC-BY-SA-2.0",
+   "author": "Steve from Austin, TX, USA"
+  },
+  {
+   "artist": "Koo Koo Kanga Roo",
+   "wikidata": "Q16858516",
+   "license": "CC-BY-SA-2.0",
+   "author": "Connie Ma"
+  },
+  {
+   "artist": "Kream",
+   "wikidata": "Q27916259",
+   "license": "CC-BY-SA-4.0",
+   "author": "Mitchell Bethea"
+  },
+  {
+   "artist": "Krewella",
+   "wikidata": "Q72349",
+   "license": "CC-BY-3.0",
+   "author": "MitchDoner"
+  },
+  {
+   "artist": "KT Tunstall",
+   "wikidata": "Q230601",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "KUNGS",
+   "wikidata": "Q23826199",
+   "license": "CC-BY-3.0",
+   "author": "Dance FM"
+  },
+  {
+   "artist": "KUTSKI",
+   "wikidata": "Q6448538",
+   "license": "CC-BY-SA-3.0",
+   "author": "Krd"
+  },
+  {
+   "artist": "kwn",
+   "wikidata": "Q134966312",
+   "license": "CC-BY-SA-4.0",
+   "author": "EGilham"
+  },
+  {
+   "artist": "Kygo",
+   "wikidata": "Q16845512",
+   "license": "CC-BY-2.0",
+   "author": "The Come Up Show"
+  },
+  {
+   "artist": "L'IMPÉRATRICE",
+   "wikidata": "Q48754425",
+   "license": "CC-BY-4.0",
+   "author": "Selbymay"
+  },
+  {
+   "artist": "La Femme",
+   "wikidata": "Q13038522",
+   "license": "CC-BY-4.0",
+   "author": "Selbymay"
+  },
+  {
+   "artist": "Labrinth",
+   "wikidata": "Q48959",
+   "license": "CC-BY-SA-4.0",
+   "author": "Walterlan Papetti"
+  },
+  {
+   "artist": "Lake Street Dive",
+   "wikidata": "Q16065508",
+   "license": "CC-BY-SA-4.0",
+   "author": "Jstengel"
+  },
+  {
+   "artist": "Lana Del Rey",
+   "wikidata": "Q37150",
+   "license": "CC-BY-2.0",
+   "author": "Mike Monaghan"
+  },
+  {
+   "artist": "LANDON BARKER",
+   "wikidata": "Q115626511",
+   "license": "CC-BY-SA-4.0",
+   "author": "Toglenn"
+  },
+  {
+   "artist": "LARRY JUNE",
+   "wikidata": "Q27975347",
+   "license": "CC-BY-SA-4.0",
+   "author": "Yoshi “36neex” Uemura"
+  },
+  {
+   "artist": "LAUNDRY DAY",
+   "wikidata": "Q104855140",
+   "license": "CC0-1.0",
+   "author": "Leafy46"
+  },
+  {
+   "artist": "Lauren Daigle",
+   "wikidata": "Q18685595",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Lauren Sanderson",
+   "wikidata": "Q90785738",
+   "license": "CC-BY-SA-4.0",
+   "author": "Frank Schwichtenberg"
+  },
+  {
+   "artist": "LEANN RIMES",
+   "wikidata": "Q120533",
+   "license": "CC-BY-2.0",
+   "author": "Erik Drost"
+  },
+  {
+   "artist": "Lee Foss",
+   "wikidata": "Q12324127",
+   "license": "CC-BY-SA-3.0",
+   "author": "Will Calcutt"
+  },
+  {
+   "artist": "Lemaitre",
+   "wikidata": "Q15052758",
+   "license": "CC-BY-2.0",
+   "author": "Carl Nenzén Lovén"
+  },
+  {
+   "artist": "Len Faki",
+   "wikidata": "Q1817211",
+   "license": "CC-BY-SA-4.0",
+   "author": "Robin Krahl"
+  },
+  {
+   "artist": "Leon Bridges",
+   "wikidata": "Q19364967",
+   "license": "CC-BY-SA-4.0",
+   "author": "Brianga"
+  },
+  {
+   "artist": "Lewis Del Mar",
+   "wikidata": "Q24259944",
+   "license": "CC-BY-2.0",
+   "author": "Peter Matthews"
+  },
+  {
+   "artist": "Lexa Gates",
+   "wikidata": "Q125436157",
+   "license": "CC-BY-4.0",
+   "author": "JD Sports"
+  },
+  {
+   "artist": "LIDO",
+   "wikidata": "Q6543718",
+   "license": "CC-BY-2.0",
+   "author": "NHD-INFO"
+  },
+  {
+   "artist": "LIDO PIMIENTA",
+   "wikidata": "Q33026662",
+   "license": "CC-BY-2.0",
+   "author": "Treefort Music Fest"
+  },
+  {
+   "artist": "Light Asylum",
+   "wikidata": "Q16960730",
+   "license": "CC-BY-2.0",
+   "author": "adam w from London, UK"
+  },
+  {
+   "artist": "LIL' LOUIS",
+   "wikidata": "Q507618",
+   "license": "CC-BY-SA-3.0",
+   "author": "Remy Golinelli"
+  },
+  {
+   "artist": "LIL NAS X",
+   "wikidata": "Q62591281",
+   "license": "CC-BY-3.0",
+   "author": "HOTSPOTATL"
+  },
+  {
+   "artist": "LIL YACHTY",
+   "wikidata": "Q23772141",
+   "license": "CC-BY-SA-4.0",
+   "author": "Lygonstreet"
+  },
+  {
+   "artist": "Lilly Palmer",
+   "wikidata": "Q124439719",
+   "license": "CC-BY-SA-4.0",
+   "author": "2cb6"
+  },
+  {
+   "artist": "Lily Allen",
+   "wikidata": "Q58735",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Lincoln Durham",
+   "wikidata": "Q23760766",
+   "license": "CC-BY-SA-4.0",
+   "author": "Rebsylee"
+  },
+  {
+   "artist": "Lion Babe",
+   "wikidata": "Q20684511",
+   "license": "CC-BY-2.0",
+   "author": "Ralph Arvesen"
+  },
+  {
+   "artist": "Little Green Cars",
+   "wikidata": "Q13232253",
+   "license": "CC-BY-2.0",
+   "author": "jareed"
+  },
+  {
+   "artist": "Little Simz",
+   "wikidata": "Q6547427",
+   "license": "CC-BY-SA-4.0",
+   "author": "Frank Schwichtenberg"
+  },
+  {
+   "artist": "Live",
+   "wikidata": "Q165714",
+   "license": "Public-Domain",
+   "author": "Gitman00 at en.wikipedia"
+  },
+  {
+   "artist": "Living Colour",
+   "wikidata": "Q1478077",
+   "license": "CC-BY-SA-3.0",
+   "author": "Alex Lozupone"
+  },
+  {
+   "artist": "Liz Cooper & The Stampede",
+   "wikidata": "Q48699549",
+   "license": "CC-BY-SA-4.0",
+   "author": "Belhum"
+  },
+  {
+   "artist": "Liza Anne",
+   "wikidata": "Q21665807",
+   "license": "CC-BY-2.0",
+   "author": "Andy Witchger"
+  },
+  {
+   "artist": "Lizzo",
+   "wikidata": "Q16232225",
+   "license": "CC-BY-3.0",
+   "author": "MILLION DOLLAZ WORTH OF GAME"
+  },
+  {
+   "artist": "Local Natives",
+   "wikidata": "Q2613632",
+   "license": "CC-BY-2.0",
+   "author": "Umberto Rotundo"
+  },
+  {
+   "artist": "Loco Dice",
+   "wikidata": "Q1867690",
+   "license": "CC-BY-2.0",
+   "author": "Amnesia Ibiza from Ibiza, Spain"
+  },
+  {
+   "artist": "Lord Huron",
+   "wikidata": "Q6679405",
+   "license": "CC-BY-2.0",
+   "author": "Abby Gillardi"
+  },
+  {
+   "artist": "Lost Frequencies",
+   "wikidata": "Q18857432",
+   "license": "CC-BY-SA-3.0",
+   "author": "Stefan Brending ( 2eight )"
+  },
+  {
+   "artist": "Loud Luxury",
+   "wikidata": "Q48697885",
+   "license": "CC-BY-SA-4.0",
+   "author": "Alex Goykhman"
+  },
+  {
+   "artist": "Louis Tomlinson",
+   "wikidata": "Q3624971",
+   "license": "CC-BY-SA-2.0",
+   "author": "Eva Rinaldi"
+  },
+  {
+   "artist": "lovelytheband",
+   "wikidata": "Q48699526",
+   "license": "CC-BY-SA-4.0",
+   "author": "Blervis"
+  },
+  {
+   "artist": "LP Giobbi",
+   "wikidata": "Q123348009",
+   "license": "CC-BY-SA-4.0",
+   "author": "Vbrunophotog"
+  },
+  {
+   "artist": "LUCA LUSH",
+   "wikidata": "Q41435635",
+   "license": "CC-BY-SA-4.0",
+   "author": "Perkuprightmeow"
+  },
+  {
+   "artist": "Lucie Silvas",
+   "wikidata": "Q241989",
+   "license": "CC-BY-SA-3.0",
+   "author": "Amw9991 at en.wikipedia"
+  },
+  {
+   "artist": "Lucky Diaz and the Family Jam Band",
+   "wikidata": "Q56280990",
+   "license": "CC-BY-SA-3.0",
+   "author": "Brian McCarthy"
+  },
+  {
+   "artist": "LUDACRIS",
+   "wikidata": "Q193676",
+   "license": "CC-BY-SA-3.0",
+   "author": "Toglenn"
+  },
+  {
+   "artist": "Luis Coronel",
+   "wikidata": "Q17486480",
+   "license": "CC-BY-SA-4.0",
+   "author": "Dulce Osuna"
+  },
+  {
+   "artist": "Lukas Nelson & Promise of the Real",
+   "wikidata": "Q6701696",
+   "license": "CC-BY-2.0",
+   "author": "Stephanie Young Merzel from USA"
+  },
+  {
+   "artist": "Luke Combs",
+   "wikidata": "Q23884740",
+   "license": "CC-BY-SA-4.0",
+   "author": "David Bergman"
+  },
+  {
+   "artist": "Luke Winslow-King",
+   "wikidata": "Q21285662",
+   "license": "CC-BY-SA-4.0",
+   "author": "Schorle"
+  },
+  {
+   "artist": "Lydia B Kollins",
+   "wikidata": "Q131386749",
+   "license": "CC-BY-SA-4.0",
+   "author": "Piigless"
+  },
+  {
+   "artist": "Mac DeMarco",
+   "wikidata": "Q14517",
+   "license": "CC-BY-2.0",
+   "author": "Paul Carless from St Albans, UK"
+  },
+  {
+   "artist": "Maceo Plex",
+   "wikidata": "Q16661959",
+   "license": "CC-BY-SA-4.0",
+   "author": "Robin Krahl"
+  },
+  {
+   "artist": "Madeon",
+   "wikidata": "Q1355154",
+   "license": "CC-BY-SA-2.0",
+   "author": "Guillaume Highwire"
+  },
+  {
+   "artist": "Madison Beer",
+   "wikidata": "Q15059490",
+   "license": "CC-BY-4.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "MADISON CUNNINGHAM",
+   "wikidata": "Q90422576",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "MAGDALENA BAY",
+   "wikidata": "Q97123456",
+   "license": "CC-BY-2.0",
+   "author": "Bruce Baker"
+  },
+  {
+   "artist": "Maggie Koerner",
+   "wikidata": "Q64877536",
+   "license": "CC-BY-2.0",
+   "author": "Carnaval.com Studios"
+  },
+  {
+   "artist": "MAGGIE ROGERS",
+   "wikidata": "Q28769131",
+   "license": "CC-BY-SA-4.0",
+   "author": "Mickwiki"
+  },
+  {
+   "artist": "MAGGIE ROSE",
+   "wikidata": "Q6730304",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Mahalia",
+   "wikidata": "Q29189033",
+   "license": "CC-BY-2.0",
+   "author": "Raph_PH"
+  },
+  {
+   "artist": "MAJOR.",
+   "wikidata": "Q37320664",
+   "license": "CC-BY-SA-4.0",
+   "author": "Danielle G. Campbell"
+  },
+  {
+   "artist": "Major Lazer",
+   "wikidata": "Q2604214",
+   "license": "CC-BY-3.0",
+   "author": "Warner Music Norway"
+  },
+  {
+   "artist": "Malaa",
+   "wikidata": "Q48976227",
+   "license": "CC-BY-SA-4.0",
+   "author": "Selbymay"
+  },
+  {
+   "artist": "MALCOLM TODD",
+   "wikidata": "Q133336769",
+   "license": "CC0-1.0",
+   "author": "Apwcow"
+  },
+  {
+   "artist": "Manchester Orchestra",
+   "wikidata": "Q3544284",
+   "license": "CC-BY-SA-2.0",
+   "author": "daniel arnold"
+  },
+  {
+   "artist": "Manics",
+   "wikidata": "Q217025",
+   "license": "CC-BY-SA-2.0",
+   "author": "Andrew King"
+  },
+  {
+   "artist": "MARC REBILLET",
+   "wikidata": "Q64996108",
+   "license": "CC-BY-SA-4.0",
+   "author": "Marc Rebillet"
+  },
+  {
+   "artist": "Marc Scibilia",
+   "wikidata": "Q6755868",
+   "license": "CC-BY-2.0",
+   "author": "ljcurletta"
+  },
+  {
+   "artist": "MARCUS MUMFORD",
+   "wikidata": "Q25554",
+   "license": "CC-BY-2.0",
+   "author": "Drew de F Fawkes"
+  },
+  {
+   "artist": "Maren Morris",
+   "wikidata": "Q21622122",
+   "license": "CC-BY-SA-4.0",
+   "author": "John Sears"
+  },
+  {
+   "artist": "Margaret Glaspy",
+   "wikidata": "Q24886765",
+   "license": "CC-BY-SA-3.0-DE",
+   "author": "Stefan Brending ( 2eight )"
+  },
+  {
+   "artist": "Margo Price",
+   "wikidata": "Q22073688",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Mariah the Scientist",
+   "wikidata": "Q84356665",
+   "license": "CC-BY-3.0",
+   "author": "the CwE"
+  },
+  {
+   "artist": "Marian Hill",
+   "wikidata": "Q20858093",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "MARINA",
+   "wikidata": "Q234174",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "MARK AMBOR",
+   "wikidata": "Q123899629",
+   "license": "CC-BY-SA-4.0",
+   "author": "Harald Krichel"
+  },
+  {
+   "artist": "MARTEN HØRGER",
+   "wikidata": "Q22947113",
+   "license": "CC-BY-SA-4.0",
+   "author": "KIM JONES 2"
+  },
+  {
+   "artist": "MASEGO",
+   "wikidata": "Q55622353",
+   "license": "CC-BY-SA-4.0",
+   "author": "Matthijs Mekking"
+  },
+  {
+   "artist": "Mat Zo",
+   "wikidata": "Q1229914",
+   "license": "Public-Domain",
+   "author": "Marco Guzman, Jr"
+  },
+  {
+   "artist": "MATTIEL",
+   "wikidata": "Q72759626",
+   "license": "CC-BY-SA-4.0",
+   "author": "MusicFans2221"
+  },
+  {
+   "artist": "Mau P",
+   "wikidata": "Q68837280",
+   "license": "CC-BY-3.0",
+   "author": "Medusa Festival"
+  },
+  {
+   "artist": "MAUDE LATOUR",
+   "wikidata": "Q113133789",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Max Frost",
+   "wikidata": "Q16729112",
+   "license": "CC-BY-3.0",
+   "author": "POPDUST"
+  },
+  {
+   "artist": "Max Jury",
+   "wikidata": "Q27063853",
+   "license": "CC-BY-SA-4.0",
+   "author": "Tore Sætre"
+  },
+  {
+   "artist": "Mednas",
+   "wikidata": "Q6807244",
+   "license": "CC-BY-SA-4.0",
+   "author": "Mednas"
+  },
+  {
+   "artist": "Meg Myers",
+   "wikidata": "Q6808002",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Mega Ran",
+   "wikidata": "Q7291909",
+   "license": "CC-BY-SA-3.0",
+   "author": "Workerbee9 at English Wikipedia"
+  },
+  {
+   "artist": "Megan Thee Stallion",
+   "wikidata": "Q59268408",
+   "license": "CC-BY-3.0",
+   "author": "ADWEEK"
+  },
+  {
+   "artist": "MELANIE C",
+   "wikidata": "Q151830",
+   "license": "CC-BY-3.0",
+   "author": "The Academy"
+  },
+  {
+   "artist": "Menno de Jong",
+   "wikidata": "Q1241387",
+   "license": "CC-BY-SA-3.0",
+   "author": "Menno de Jong"
+  },
+  {
+   "artist": "Mestiza",
+   "wikidata": "Q132976053",
+   "license": "CC0-1.0",
+   "author": "MËSTIZA(DJs)"
+  },
+  {
+   "artist": "Methyl Ethel",
+   "wikidata": "Q30069921",
+   "license": "CC-BY-2.0",
+   "author": "Paul Hudson"
+  },
+  {
+   "artist": "Michael Bibi",
+   "wikidata": "Q115631706",
+   "license": "CC-BY-SA-4.0",
+   "author": "Giacomo Russello"
+  },
+  {
+   "artist": "MICKEY GUYTON",
+   "wikidata": "Q18921828",
+   "license": "Public-Domain",
+   "author": "U.S. Department of State"
+  },
+  {
+   "artist": "Micro",
+   "wikidata": "Q11233166",
+   "license": "CC-BY-SA-3.0",
+   "author": "Takahiro Ishiwata"
+  },
+  {
+   "artist": "Middle Kids",
+   "wikidata": "Q48697943",
+   "license": "CC-BY-SA-4.0",
+   "author": "Timothy Sharp"
+  },
+  {
+   "artist": "Midland",
+   "wikidata": "Q30603462",
+   "license": "CC-BY-2.0",
+   "author": "Elstad Ranch"
+  },
+  {
+   "artist": "MIHALIS SAFRAS",
+   "wikidata": "Q6845227",
+   "license": "CC-BY-SA-4.0",
+   "author": "Petersorin"
+  },
+  {
+   "artist": "Mikaela Davis",
+   "wikidata": "Q122852380",
+   "license": "CC0-1.0",
+   "author": "LordFartquaad"
+  },
+  {
+   "artist": "MIKE WILL MADE-IT",
+   "wikidata": "Q6849262",
+   "license": "CC-BY-3.0",
+   "author": "HOTSPOTATL"
+  },
+  {
+   "artist": "Mikky Ekko",
+   "wikidata": "Q3857519",
+   "license": "CC-BY-SA-4.0",
+   "author": "Ry Fryy"
+  },
+  {
+   "artist": "MILEY CYRUS",
+   "wikidata": "Q4235",
+   "license": "CC-BY-2.0",
+   "author": "Raphael Pour-Hashemi"
+  },
+  {
+   "artist": "Milky Chance",
+   "wikidata": "Q14623684",
+   "license": "CC-BY-SA-3.0",
+   "author": "Superbass"
+  },
+  {
+   "artist": "Milo Greene",
+   "wikidata": "Q6860315",
+   "license": "CC-BY-2.0",
+   "author": "jareed"
+  },
+  {
+   "artist": "MIMI WEBB",
+   "wikidata": "Q106613064",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Mind Enterprises",
+   "wikidata": "Q138030988",
+   "license": "CC-BY-SA-4.0",
+   "author": "MFonzatti"
+  },
+  {
+   "artist": "Mindi Abair",
+   "wikidata": "Q441677",
+   "license": "CC-BY-2.0",
+   "author": "bentonjazz"
+  },
+  {
+   "artist": "MISS K8",
+   "wikidata": "Q17425403",
+   "license": "CC-BY-SA-4.0",
+   "author": "Caesar"
+  },
+  {
+   "artist": "Miss Monique",
+   "wikidata": "Q111208579",
+   "license": "CC-BY-SA-4.0",
+   "author": "Arroser"
+  },
+  {
+   "artist": "Mister G",
+   "wikidata": "Q6880126",
+   "license": "CC-BY-SA-3.0",
+   "author": "Mistergsongs"
+  },
+  {
+   "artist": "MisterWives",
+   "wikidata": "Q18608997",
+   "license": "CC-BY-2.0",
+   "author": "Abby Gillardi"
+  },
+  {
+   "artist": "MJ LENDERMAN",
+   "wikidata": "Q118994568",
+   "license": "CC-BY-SA-4.0",
+   "author": "ForksForks"
+  },
+  {
+   "artist": "MK.GEE",
+   "wikidata": "Q112323444",
+   "license": "CC-BY-SA-4.0",
+   "author": "Twundy"
+  },
+  {
+   "artist": "ML Buch",
+   "wikidata": "Q126902082",
+   "license": "CC-BY-4.0",
+   "author": "BanjoZebra"
+  },
+  {
+   "artist": "Modest Mouse",
+   "wikidata": "Q431355",
+   "license": "CC-BY-2.0",
+   "author": "John"
+  },
+  {
+   "artist": "Modestep",
+   "wikidata": "Q1860033",
+   "license": "CC-BY-2.0",
+   "author": "Stuart Sevastos"
+  },
+  {
+   "artist": "Molly Burch",
+   "wikidata": "Q29016909",
+   "license": "CC-BY-2.0",
+   "author": "Julio Enriquez"
+  },
+  {
+   "artist": "Momma",
+   "wikidata": "Q104862095",
+   "license": "CC-BY-4.0",
+   "author": "David Lee"
+  },
+  {
+   "artist": "Monaleo",
+   "wikidata": "Q108825023",
+   "license": "CC-BY-4.0",
+   "author": "HOTSPOTATL"
+  },
+  {
+   "artist": "Mondo Cozmo",
+   "wikidata": "Q6289221",
+   "license": "CC-BY-2.0",
+   "author": "Justin Higuchi"
+  },
+  {
+   "artist": "Monika Kruse",
+   "wikidata": "Q71376",
+   "license": "CC-BY-SA-3.0",
+   "author": "Markus Nisch"
+  },
+  {
+   "artist": "Monsieur Periné",
+   "wikidata": "Q15712185",
+   "license": "CC-BY-SA-3.0",
+   "author": "rs-foto"
+  },
+  {
+   "artist": "Moon Boots",
+   "wikidata": "Q66846517",
+   "license": "CC-BY-SA-4.0",
+   "author": "Peter Dougherty"
+  },
+  {
+   "artist": "MOON TAXI",
+   "wikidata": "Q15044510",
+   "license": "CC-BY-SA-4.0",
+   "author": "ThorntonDrury"
+  },
+  {
+   "artist": "MORGAN WADE",
+   "wikidata": "Q109106357",
+   "license": "CC0-1.0",
+   "author": "CusterDome"
+  }
+ ],
+ "skips": {
+  "no-music-item": [
+   {
+    "artist": "Fester"
+   },
+   {
+    "artist": "Fetish"
+   },
+   {
+    "artist": "Fiin"
+   },
+   {
+    "artist": "Fine"
+   },
+   {
+    "artist": "Fish Scale"
+   },
+   {
+    "artist": "Fisher"
+   },
+   {
+    "artist": "FIUZA"
+   },
+   {
+    "artist": "FIXION"
+   },
+   {
+    "artist": "Flatwounds"
+   },
+   {
+    "artist": "FLO"
+   },
+   {
+    "artist": "Flo Rida"
+   },
+   {
+    "artist": "flor"
+   },
+   {
+    "artist": "Florentine Opera Company"
+   },
+   {
+    "artist": "FLORES NEGRAS"
+   },
+   {
+    "artist": "FONT"
+   },
+   {
+    "artist": "FORESEER"
+   },
+   {
+    "artist": "FRECHETTE"
+   },
+   {
+    "artist": "Freedom Fighters"
+   },
+   {
+    "artist": "Friction"
+   },
+   {
+    "artist": "Friendly Fire"
+   },
+   {
+    "artist": "FUMI"
+   },
+   {
+    "artist": "Future"
+   },
+   {
+    "artist": "GABRIELS"
+   },
+   {
+    "artist": "Game & Watch"
+   },
+   {
+    "artist": "Gardella"
+   },
+   {
+    "artist": "Gaudium"
+   },
+   {
+    "artist": "GAYLE"
+   },
+   {
+    "artist": "GBENGA"
+   },
+   {
+    "artist": "Gil Glaze"
+   },
+   {
+    "artist": "Girl Math"
+   },
+   {
+    "artist": "GLOVE"
+   },
+   {
+    "artist": "GOO"
+   },
+   {
+    "artist": "GOOD LOOKS"
+   },
+   {
+    "artist": "GOOSE"
+   },
+   {
+    "artist": "Gordo"
+   },
+   {
+    "artist": "GRAHAM"
+   },
+   {
+    "artist": "GRAM"
+   },
+   {
+    "artist": "GRAVES"
+   },
+   {
+    "artist": "Greg Downey"
+   },
+   {
+    "artist": "Greg Mike"
+   },
+   {
+    "artist": "Grigoré"
+   },
+   {
+    "artist": "GTA"
+   },
+   {
+    "artist": "Guardrail"
+   },
+   {
+    "artist": "GUTI"
+   },
+   {
+    "artist": "GVX"
+   },
+   {
+    "artist": "HAAVI"
+   },
+   {
+    "artist": "Hakuna"
+   },
+   {
+    "artist": "HALÕ"
+   },
+   {
+    "artist": "Halsey"
+   },
+   {
+    "artist": "Hamdi"
+   },
+   {
+    "artist": "HAMI"
+   },
+   {
+    "artist": "Hannah Jadagu"
+   },
+   {
+    "artist": "HANZ"
+   },
+   {
+    "artist": "Happy Landing"
+   },
+   {
+    "artist": "Harmson"
+   },
+   {
+    "artist": "HAUSMAN"
+   },
+   {
+    "artist": "Hazón"
+   },
+   {
+    "artist": "Heather Collins"
+   },
+   {
+    "artist": "HEAVY"
+   },
+   {
+    "artist": "Hedex"
+   },
+   {
+    "artist": "Hekler"
+   },
+   {
+    "artist": "Hell On Heels"
+   },
+   {
+    "artist": "helloworld"
+   },
+   {
+    "artist": "Henrik"
+   },
+   {
+    "artist": "Hills"
+   },
+   {
+    "artist": "HITO"
+   },
+   {
+    "artist": "Hoang"
+   },
+   {
+    "artist": "HONNE"
+   },
+   {
+    "artist": "Hostage Situation"
+   },
+   {
+    "artist": "Houses"
+   },
+   {
+    "artist": "HUA"
+   },
+   {
+    "artist": "Human Resources"
+   },
+   {
+    "artist": "Huracán"
+   },
+   {
+    "artist": "HUSBANDS"
+   },
+   {
+    "artist": "Hush"
+   },
+   {
+    "artist": "hypernaut"
+   },
+   {
+    "artist": "IAN"
+   },
+   {
+    "artist": "IDEMI"
+   },
+   {
+    "artist": "IF FOUND"
+   },
+   {
+    "artist": "In The Know"
+   },
+   {
+    "artist": "Initiate"
+   },
+   {
+    "artist": "INK"
+   },
+   {
+    "artist": "Innellea"
+   },
+   {
+    "artist": "INOHA"
+   },
+   {
+    "artist": "INZO"
+   },
+   {
+    "artist": "Isabella"
+   },
+   {
+    "artist": "Ivarr"
+   },
+   {
+    "artist": "Ivory"
+   },
+   {
+    "artist": "Ivri"
+   },
+   {
+    "artist": "IVY"
+   },
+   {
+    "artist": "Izadi"
+   },
+   {
+    "artist": "Jaenga"
+   },
+   {
+    "artist": "Jamback"
+   },
+   {
+    "artist": "James Poole"
+   },
+   {
+    "artist": "Jantsen"
+   },
+   {
+    "artist": "JBZ"
+   },
+   {
+    "artist": "JEANIE"
+   },
+   {
+    "artist": "JESSE JAMES"
+   },
+   {
+    "artist": "Jev"
+   },
+   {
+    "artist": "Jidenna"
+   },
+   {
+    "artist": "Jinks"
+   },
+   {
+    "artist": "JOA"
+   },
+   {
+    "artist": "Johannes Schuster"
+   },
+   {
+    "artist": "John Askew"
+   },
+   {
+    "artist": "John Kelley"
+   },
+   {
+    "artist": "Joint Operations Centre"
+   },
+   {
+    "artist": "Jon Casey"
+   },
+   {
+    "artist": "JOSE ESTRADA"
+   },
+   {
+    "artist": "JOSH BUTLER"
+   },
+   {
+    "artist": "Josh Taylor"
+   },
+   {
+    "artist": "JUAN RIOS"
+   },
+   {
+    "artist": "Jubilee"
+   },
+   {
+    "artist": "JUDAS"
+   },
+   {
+    "artist": "JUDGE"
+   },
+   {
+    "artist": "Julian Gray"
+   },
+   {
+    "artist": "JULIE"
+   },
+   {
+    "artist": "Julien Baker"
+   },
+   {
+    "artist": "Juliet Fox"
+   },
+   {
+    "artist": "Junip"
+   },
+   {
+    "artist": "Juno"
+   },
+   {
+    "artist": "JUUKU"
+   },
+   {
+    "artist": "Kaiyo"
+   },
+   {
+    "artist": "Kamino"
+   },
+   {
+    "artist": "Kanine"
+   },
+   {
+    "artist": "Kasango"
+   },
+   {
+    "artist": "Kasia"
+   },
+   {
+    "artist": "Kauro"
+   },
+   {
+    "artist": "Keeper"
+   },
+   {
+    "artist": "Keith MacKenzie"
+   },
+   {
+    "artist": "Kelland"
+   },
+   {
+    "artist": "Kendo"
+   },
+   {
+    "artist": "Khami"
+   },
+   {
+    "artist": "Khiva"
+   },
+   {
+    "artist": "Kian"
+   },
+   {
+    "artist": "KILIMANJARO"
+   },
+   {
+    "artist": "Kimmo"
+   },
+   {
+    "artist": "KIRK"
+   },
+   {
+    "artist": "Kirstie Kraus"
+   },
+   {
+    "artist": "Klo"
+   },
+   {
+    "artist": "Knox Hamilton"
+   },
+   {
+    "artist": "Kori King"
+   },
+   {
+    "artist": "KRANE"
+   },
+   {
+    "artist": "KROMI"
+   },
+   {
+    "artist": "KSP"
+   },
+   {
+    "artist": "Kujo"
+   },
+   {
+    "artist": "Kuko"
+   },
+   {
+    "artist": "Kumi"
+   },
+   {
+    "artist": "Kwon"
+   },
+   {
+    "artist": "Kyle Ray"
+   },
+   {
+    "artist": "Kyle Walker"
+   },
+   {
+    "artist": "LA LOM"
+   },
+   {
+    "artist": "Ladies of Leisure"
+   },
+   {
+    "artist": "Lady Faith"
+   },
+   {
+    "artist": "Lady Sinclair"
+   },
+   {
+    "artist": "LADYBOY"
+   },
+   {
+    "artist": "Lake Drive"
+   },
+   {
+    "artist": "Lake Hills"
+   },
+   {
+    "artist": "LALA"
+   },
+   {
+    "artist": "LAMB"
+   },
+   {
+    "artist": "LANco"
+   },
+   {
+    "artist": "Landis"
+   },
+   {
+    "artist": "LANY"
+   },
+   {
+    "artist": "Last Heroes"
+   },
+   {
+    "artist": "Laszewo"
+   },
+   {
+    "artist": "LAUREN LANE"
+   },
+   {
+    "artist": "Lavern"
+   },
+   {
+    "artist": "LayD"
+   },
+   {
+    "artist": "Lazrus"
+   },
+   {
+    "artist": "LEE REYNOLDS"
+   },
+   {
+    "artist": "LEISURE"
+   },
+   {
+    "artist": "LEKAN"
+   },
+   {
+    "artist": "Lelo"
+   },
+   {
+    "artist": "Leon Knight"
+   },
+   {
+    "artist": "Leondis"
+   },
+   {
+    "artist": "Level Up"
+   },
+   {
+    "artist": "Ley Line"
+   },
+   {
+    "artist": "Lick"
+   },
+   {
+    "artist": "Link"
+   },
+   {
+    "artist": "Linney"
+   },
+   {
+    "artist": "Linska"
+   },
+   {
+    "artist": "Lizzie_mcguire"
+   },
+   {
+    "artist": "Lola Young"
+   },
+   {
+    "artist": "LOOFY"
+   },
+   {
+    "artist": "LOSMAN"
+   },
+   {
+    "artist": "Luccio"
+   },
+   {
+    "artist": "Luci"
+   },
+   {
+    "artist": "Lucii"
+   },
+   {
+    "artist": "Lucius"
+   },
+   {
+    "artist": "Lucky"
+   },
+   {
+    "artist": "Lucky Diaz"
+   },
+   {
+    "artist": "Lucky Rabbit"
+   },
+   {
+    "artist": "Lucy Guo"
+   },
+   {
+    "artist": "Luke Hunter"
+   },
+   {
+    "artist": "Lumasi"
+   },
+   {
+    "artist": "LUMI"
+   },
+   {
+    "artist": "Lunde"
+   },
+   {
+    "artist": "LUPA"
+   },
+   {
+    "artist": "Luttrell"
+   },
+   {
+    "artist": "Maccabi"
+   },
+   {
+    "artist": "Machaki"
+   },
+   {
+    "artist": "Mad Dog"
+   },
+   {
+    "artist": "Mad Hatter"
+   },
+   {
+    "artist": "MAD MAXX"
+   },
+   {
+    "artist": "MADELINE"
+   },
+   {
+    "artist": "Magic Mike"
+   },
+   {
+    "artist": "Magnus"
+   },
+   {
+    "artist": "MAHALO"
+   },
+   {
+    "artist": "Main Phase"
+   },
+   {
+    "artist": "Majestic"
+   },
+   {
+    "artist": "Malóne"
+   },
+   {
+    "artist": "MANDRAGORA"
+   },
+   {
+    "artist": "Mandy"
+   },
+   {
+    "artist": "Manolo"
+   },
+   {
+    "artist": "Mari"
+   },
+   {
+    "artist": "Maris"
+   },
+   {
+    "artist": "Mark O’Brien"
+   },
+   {
+    "artist": "Mars"
+   },
+   {
+    "artist": "Marsh"
+   },
+   {
+    "artist": "MARTE"
+   },
+   {
+    "artist": "Marvin Delgado"
+   },
+   {
+    "artist": "MASF"
+   },
+   {
+    "artist": "Mason Maynard"
+   },
+   {
+    "artist": "Massano"
+   },
+   {
+    "artist": "Masteria"
+   },
+   {
+    "artist": "Matisa"
+   },
+   {
+    "artist": "Matrix"
+   },
+   {
+    "artist": "Matt Steffanina"
+   },
+   {
+    "artist": "Matthew Hansen"
+   },
+   {
+    "artist": "Matthias"
+   },
+   {
+    "artist": "Max Dean"
+   },
+   {
+    "artist": "Max Low"
+   },
+   {
+    "artist": "Max Stern"
+   },
+   {
+    "artist": "Maximiano"
+   },
+   {
+    "artist": "Maz"
+   },
+   {
+    "artist": "MEEN"
+   },
+   {
+    "artist": "Melé"
+   },
+   {
+    "artist": "Memba"
+   },
+   {
+    "artist": "Merlyn"
+   },
+   {
+    "artist": "Mesmé"
+   },
+   {
+    "artist": "Metaphysical"
+   },
+   {
+    "artist": "Metric"
+   },
+   {
+    "artist": "MIANE"
+   },
+   {
+    "artist": "MIGS"
+   },
+   {
+    "artist": "Mija"
+   },
+   {
+    "artist": "Mink"
+   },
+   {
+    "artist": "Mish"
+   },
+   {
+    "artist": "MK"
+   },
+   {
+    "artist": "MØ"
+   },
+   {
+    "artist": "Moats"
+   },
+   {
+    "artist": "Mobley"
+   },
+   {
+    "artist": "MODOC"
+   },
+   {
+    "artist": "Mona"
+   },
+   {
+    "artist": "Moni"
+   },
+   {
+    "artist": "Monic"
+   },
+   {
+    "artist": "Monk"
+   },
+   {
+    "artist": "Montclair"
+   },
+   {
+    "artist": "Montique"
+   },
+   {
+    "artist": "Morelia"
+   }
+  ],
+  "no-item": [
+   {
+    "artist": "FieldHockey"
+   },
+   {
+    "artist": "Finn Wolfhard"
+   },
+   {
+    "artist": "FINNEAS & ASHE"
+   },
+   {
+    "artist": "FINNUH"
+   },
+   {
+    "artist": "FJAAK"
+   },
+   {
+    "artist": "FKA.M4A"
+   },
+   {
+    "artist": "FLABBERGAST"
+   },
+   {
+    "artist": "Flamingosis"
+   },
+   {
+    "artist": "FlashGang"
+   },
+   {
+    "artist": "FLEMING & LAWRENCE"
+   },
+   {
+    "artist": "Fleur Shore"
+   },
+   {
+    "artist": "Flight By Nothing"
+   },
+   {
+    "artist": "Floating Points Live"
+   },
+   {
+    "artist": "Flor Bromley"
+   },
+   {
+    "artist": "FLORA & FAWNA"
+   },
+   {
+    "artist": "FLORET LORET"
+   },
+   {
+    "artist": "Flourescents"
+   },
+   {
+    "artist": "flowersatherfeet"
+   },
+   {
+    "artist": "FLOZONE"
+   },
+   {
+    "artist": "FLUENCEE"
+   },
+   {
+    "artist": "Fly With Us (AC Slater"
+   },
+   {
+    "artist": "FOUR COLOR ZACK"
+   },
+   {
+    "artist": "Francis Mercier"
+   },
+   {
+    "artist": "FRANKY WAH"
+   },
+   {
+    "artist": "FRANKYEFFE"
+   },
+   {
+    "artist": "Freddie Gibbs & The Alchemist"
+   },
+   {
+    "artist": "Fredy Lane"
+   },
+   {
+    "artist": "Fresh Meat: Hevnfall"
+   },
+   {
+    "artist": "Fresh Meat: Keeb"
+   },
+   {
+    "artist": "Fresh Meat: NEGAT1VE5PACE"
+   },
+   {
+    "artist": "FRITZ CARLTON"
+   },
+   {
+    "artist": "Frogwater"
+   },
+   {
+    "artist": "From Ashes to Embers"
+   },
+   {
+    "artist": "Frostbyte"
+   },
+   {
+    "artist": "FrostTop"
+   },
+   {
+    "artist": "fun2bjane"
+   },
+   {
+    "artist": "Funk Assault"
+   },
+   {
+    "artist": "Funk Tribu"
+   },
+   {
+    "artist": "FURY & MC DINO"
+   },
+   {
+    "artist": "future.666"
+   },
+   {
+    "artist": "Future Exit"
+   },
+   {
+    "artist": "Future Unlimited"
+   },
+   {
+    "artist": "Fuzzysurf"
+   },
+   {
+    "artist": "FVLAKO"
+   },
+   {
+    "artist": "FYÜTCH & AURA V"
+   },
+   {
+    "artist": "Gabo Escalona"
+   },
+   {
+    "artist": "Gabriel Garzón-Montano"
+   },
+   {
+    "artist": "Gabss"
+   },
+   {
+    "artist": "GAINZ"
+   },
+   {
+    "artist": "Gammer HD"
+   },
+   {
+    "artist": "Gareth Emery"
+   },
+   {
+    "artist": "Gay Felony"
+   },
+   {
+    "artist": "Gego Y Nony"
+   },
+   {
+    "artist": "Gem & Tauri"
+   },
+   {
+    "artist": "Gene Farris"
+   },
+   {
+    "artist": "Gene Simmons Band"
+   },
+   {
+    "artist": "Generous B"
+   },
+   {
+    "artist": "GENESI"
+   },
+   {
+    "artist": "Gentlemens Club"
+   },
+   {
+    "artist": "Geo"
+   },
+   {
+    "artist": "George Smeddles"
+   },
+   {
+    "artist": "GETO GALA"
+   },
+   {
+    "artist": "Ghengar"
+   },
+   {
+    "artist": "Ghost in Real Life"
+   },
+   {
+    "artist": "Ghost Lotus"
+   },
+   {
+    "artist": "Ghost of Paul Revere"
+   },
+   {
+    "artist": "Ghosts in the Gravel"
+   },
+   {
+    "artist": "GIANNI BLU"
+   },
+   {
+    "artist": "Gibson Parker"
+   },
+   {
+    "artist": "Gigantic NGHTMRE"
+   },
+   {
+    "artist": "Gio Elia"
+   },
+   {
+    "artist": "Giorgia Angiuli"
+   },
+   {
+    "artist": "GIRL TONES"
+   },
+   {
+    "artist": "GIRLNEXTDOOR"
+   },
+   {
+    "artist": "girlsweetvoiced"
+   },
+   {
+    "artist": "Giselle Peppers"
+   },
+   {
+    "artist": "Giuseppe Ottaviani + Ilan Bluestone"
+   },
+   {
+    "artist": "Giuseppe Ottaviani Live 2.0"
+   },
+   {
+    "artist": "Giuseppe Ottaviani Live 3.0"
+   },
+   {
+    "artist": "GN AKA G$MONTANA & NEUROZIZ"
+   },
+   {
+    "artist": "GO BANANA GO! & FLULA BORG"
+   },
+   {
+    "artist": "GodBlessJai"
+   },
+   {
+    "artist": "Godisound"
+   },
+   {
+    "artist": "GODLY THE RULER"
+   },
+   {
+    "artist": "Godtripper"
+   },
+   {
+    "artist": "Gold Steps"
+   },
+   {
+    "artist": "Golden Dawn Arkestra"
+   },
+   {
+    "artist": "GOLDFORD"
+   },
+   {
+    "artist": "Golf Clap"
+   },
+   {
+    "artist": "GOOD VIBES SOUNDCLASH"
+   },
+   {
+    "artist": "GORILLA T"
+   },
+   {
+    "artist": "GorillaT"
+   },
+   {
+    "artist": "Goshfather"
+   },
+   {
+    "artist": "Gospel Silvertones"
+   },
+   {
+    "artist": "Grace Arribas"
+   },
+   {
+    "artist": "Grace London"
+   },
+   {
+    "artist": "GRACE SORENSEN"
+   },
+   {
+    "artist": "Grace Towers & Friends"
+   },
+   {
+    "artist": "Grant Sabadash"
+   },
+   {
+    "artist": "Gravagerz"
+   },
+   {
+    "artist": "Grave Rave"
+   },
+   {
+    "artist": "Gravedgr"
+   },
+   {
+    "artist": "GRAViiTY"
+   },
+   {
+    "artist": "Gray Area"
+   },
+   {
+    "artist": "Green Matter"
+   },
+   {
+    "artist": "Greg 99"
+   },
+   {
+    "artist": "Greg Koch & The Koch Marshall Trio"
+   },
+   {
+    "artist": "GRLFRND"
+   },
+   {
+    "artist": "Grlskout"
+   },
+   {
+    "artist": "Grocery Bag"
+   },
+   {
+    "artist": "Grube & Hovsepian"
+   },
+   {
+    "artist": "GRUE5OME"
+   },
+   {
+    "artist": "Grum"
+   },
+   {
+    "artist": "GUDFELLA"
+   },
+   {
+    "artist": "GumtheWrapper"
+   },
+   {
+    "artist": "Hairitage"
+   },
+   {
+    "artist": "Haley Johnsen"
+   },
+   {
+    "artist": "HALF.ALIVE"
+   },
+   {
+    "artist": "Hank Azaria And The EZ Street Band"
+   },
+   {
+    "artist": "Hanna Simone"
+   },
+   {
+    "artist": "Hannah Monica"
+   },
+   {
+    "artist": "HANS WILLIAMS"
+   },
+   {
+    "artist": "HAPPIE HOFFMAN"
+   },
+   {
+    "artist": "Hard Proof"
+   },
+   {
+    "artist": "Harrison Gordon"
+   },
+   {
+    "artist": "Harristone"
+   },
+   {
+    "artist": "Harry Paradise"
+   },
+   {
+    "artist": "Harshil Kamdar"
+   },
+   {
+    "artist": "Harvard Bass"
+   },
+   {
+    "artist": "Haylee Wood"
+   },
+   {
+    "artist": "Heidi Lawden"
+   },
+   {
+    "artist": "Heminguey"
+   },
+   {
+    "artist": "HENRY D AKA BOMBTRAXX"
+   },
+   {
+    "artist": "Hershe"
+   },
+   {
+    "artist": "HEY, NOTHING"
+   },
+   {
+    "artist": "Heyz"
+   },
+   {
+    "artist": "HI I'M GHOST"
+   },
+   {
+    "artist": "Highlnd"
+   },
+   {
+    "artist": "Hint of Lavender"
+   },
+   {
+    "artist": "HIROKO YAMAMURA"
+   },
+   {
+    "artist": "HIWATER"
+   },
+   {
+    "artist": "HNTR"
+   },
+   {
+    "artist": "Hol!"
+   },
+   {
+    "artist": "HOMESCOOL"
+   },
+   {
+    "artist": "Homicide Jenny"
+   },
+   {
+    "artist": "HoneyLuv"
+   },
+   {
+    "artist": "HoneyPacq"
+   },
+   {
+    "artist": "Horichh"
+   },
+   {
+    "artist": "\"Horizon\" The Popular Music Group Of Navy Band Great Lakes"
+   },
+   {
+    "artist": "horsegiirL"
+   },
+   {
+    "artist": "Hot & Dirty Brass Band"
+   },
+   {
+    "artist": "Hot Goth Freak Show"
+   },
+   {
+    "artist": "HOTPRETTY"
+   },
+   {
+    "artist": "Hpnotic"
+   },
+   {
+    "artist": "Hu Dat"
+   },
+   {
+    "artist": "Huda Hudia"
+   },
+   {
+    "artist": "HUDSON INGRAM"
+   },
+   {
+    "artist": "HUEGO"
+   },
+   {
+    "artist": "HUGEL & Friends"
+   },
+   {
+    "artist": "Hulk Gang (4B + Valentino Khan)"
+   },
+   {
+    "artist": "HUMAN404"
+   },
+   {
+    "artist": "Hunter Sharpe"
+   },
+   {
+    "artist": "Hurtbox"
+   },
+   {
+    "artist": "Huston-Tillotson University Jazz Collective"
+   },
+   {
+    "artist": "Huxley Anne"
+   },
+   {
+    "artist": "HVDES"
+   },
+   {
+    "artist": "Hybrid Minds"
+   },
+   {
+    "artist": "Hydrah"
+   },
+   {
+    "artist": "Hydraulix"
+   },
+   {
+    "artist": "HYFEN"
+   },
+   {
+    "artist": "Hymm Marley"
+   },
+   {
+    "artist": "Hypaton"
+   },
+   {
+    "artist": "HYPE TURNER"
+   },
+   {
+    "artist": "Ian Asher"
+   },
+   {
+    "artist": "IDKCONUNDRUM"
+   },
+   {
+    "artist": "iiry?"
+   },
+   {
+    "artist": "Ikebe Shakedown"
+   },
+   {
+    "artist": "Ilario Alicante"
+   },
+   {
+    "artist": "Indecent Noise"
+   },
+   {
+    "artist": "Infected Mushroom + Blastoyz"
+   },
+   {
+    "artist": "Infekt"
+   },
+   {
+    "artist": "INIGMA"
+   },
+   {
+    "artist": "Inntraw"
+   },
+   {
+    "artist": "INSICAL"
+   },
+   {
+    "artist": "Insomniac Records Takeover"
+   },
+   {
+    "artist": "INVT"
+   },
+   {
+    "artist": "ISABEL LAROSA"
+   },
+   {
+    "artist": "ISOKNOCK"
+   },
+   {
+    "artist": "ISOxo"
+   },
+   {
+    "artist": "It's Murph"
+   },
+   {
+    "artist": "IZNYRS"
+   },
+   {
+    "artist": "IZZY HELTAI"
+   },
+   {
+    "artist": "Izzy Vadim"
+   },
+   {
+    "artist": "$J"
+   },
+   {
+    "artist": "J PATRON"
+   },
+   {
+    "artist": "J. Roddy Walston & The Business"
+   },
+   {
+    "artist": "J SOULJA"
+   },
+   {
+    "artist": "J. SPLAT"
+   },
+   {
+    "artist": "J.V.O"
+   },
+   {
+    "artist": "J. Worra"
+   },
+   {
+    "artist": "JACK HARLOW"
+   },
+   {
+    "artist": "Jack Vice"
+   },
+   {
+    "artist": "Jackie Hollander"
+   },
+   {
+    "artist": "Jaden Thompson"
+   },
+   {
+    "artist": "Jai Malano"
+   },
+   {
+    "artist": "Jake Silva"
+   },
+   {
+    "artist": "James Dymond"
+   },
+   {
+    "artist": "JANE LEO"
+   },
+   {
+    "artist": "JANESITA"
+   },
+   {
+    "artist": "Jaogaz"
+   },
+   {
+    "artist": "Jason Rault"
+   },
+   {
+    "artist": "Jason Scott & The High Heat"
+   },
+   {
+    "artist": "Jauz: Off the Deep End"
+   },
+   {
+    "artist": "Jawns"
+   },
+   {
+    "artist": "Jay Crusoe"
+   },
+   {
+    "artist": "Jay de Lys"
+   },
+   {
+    "artist": "Jay P"
+   },
+   {
+    "artist": "Jayceeoh"
+   },
+   {
+    "artist": "Jazzteca"
+   },
+   {
+    "artist": "Jazzy Ash"
+   },
+   {
+    "artist": "Jazzy Ash & The Leaping Lizards"
+   },
+   {
+    "artist": "JC Brooks and the Uptown Sound"
+   },
+   {
+    "artist": "JD McPherson"
+   },
+   {
+    "artist": "JDUB"
+   },
+   {
+    "artist": "Jenna Shaw"
+   },
+   {
+    "artist": "Jeremy Ismael"
+   },
+   {
+    "artist": "Jerry Harrison's '50 Years Of Talking Heads'"
+   },
+   {
+    "artist": "JESSE DETOR"
+   },
+   {
+    "artist": "Jessica Audiffred"
+   },
+   {
+    "artist": "JFUSE"
+   },
+   {
+    "artist": "Jigitz"
+   },
+   {
+    "artist": "JIMMIE VAUGHAN & TILT-A-WHIRL BAND"
+   },
+   {
+    "artist": "Jimmy Ray & The Hipsters"
+   },
+   {
+    "artist": "Jimmyboy"
+   },
+   {
+    "artist": "JINN_PR"
+   },
+   {
+    "artist": "JJ ILLGEN"
+   },
+   {
+    "artist": "Jkyl & Hyde"
+   },
+   {
+    "artist": "Joanna Kuchta"
+   },
+   {
+    "artist": "Jobi Riccio"
+   },
+   {
+    "artist": "JOE P"
+   },
+   {
+    "artist": "Joe Vanditti"
+   },
+   {
+    "artist": "Joe Wray"
+   },
+   {
+    "artist": "Joey G"
+   },
+   {
+    "artist": "John Bryars"
+   },
+   {
+    "artist": "John Kocher"
+   },
+   {
+    "artist": "John Liwag"
+   },
+   {
+    "artist": "JOHN O'CALLAGHAN & GIUSEPPE OTTAVIANI"
+   },
+   {
+    "artist": "John Vincent III"
+   },
+   {
+    "artist": "Johnny Chay"
+   },
+   {
+    "artist": "Johnny Monsoon"
+   },
+   {
+    "artist": "Joint Operations Centre (JOC)"
+   },
+   {
+    "artist": "Joluca"
+   },
+   {
+    "artist": "JONNY ATOM"
+   },
+   {
+    "artist": "JONNY MAVEN"
+   },
+   {
+    "artist": "Jonny P"
+   },
+   {
+    "artist": "Jonny T-Bird & The MP's"
+   },
+   {
+    "artist": "Jordan Savage"
+   },
+   {
+    "artist": "Jorza"
+   },
+   {
+    "artist": "JORZA & TAYLOR TORRENCE"
+   },
+   {
+    "artist": "JOSH FUDGE"
+   },
+   {
+    "artist": "Josh Teed"
+   },
+   {
+    "artist": "JOSHUA DE LA CRUZ"
+   },
+   {
+    "artist": "Joshua Jensen"
+   },
+   {
+    "artist": "Joshwa"
+   },
+   {
+    "artist": "Joss Dean"
+   },
+   {
+    "artist": "Jovigibs"
+   },
+   {
+    "artist": "JSMN"
+   },
+   {
+    "artist": "JSTJR"
+   },
+   {
+    "artist": "Julia Saturno"
+   },
+   {
+    "artist": "Julian Cross"
+   },
+   {
+    "artist": "Julianna Joy"
+   },
+   {
+    "artist": "Julienne By"
+   },
+   {
+    "artist": "Juliet Mendoza"
+   },
+   {
+    "artist": "Jump Source"
+   },
+   {
+    "artist": "Junior Rivera"
+   },
+   {
+    "artist": "Junkie Kid"
+   },
+   {
+    "artist": "Juos"
+   },
+   {
+    "artist": "JUST A GENT"
+   },
+   {
+    "artist": "Justin Hawkes"
+   },
+   {
+    "artist": "Justin Jay"
+   },
+   {
+    "artist": "Justin Roberts & the Not Ready for Naptime Players"
+   },
+   {
+    "artist": "JUVENILE & The 400 Degreez Band"
+   },
+   {
+    "artist": "k?d"
+   },
+   {
+    "artist": "K.Gianni"
+   },
+   {
+    "artist": "KADILAK W/MC FREAK"
+   },
+   {
+    "artist": "Kai Wachi"
+   },
+   {
+    "artist": "KAICREWSADE"
+   },
+   {
+    "artist": "Kaivon"
+   },
+   {
+    "artist": "Kaleena Zanders"
+   },
+   {
+    "artist": "Kallaghan"
+   },
+   {
+    "artist": "KALU & THE ELECTRIC JOINT"
+   },
+   {
+    "artist": "Kana Hishiya"
+   },
+   {
+    "artist": "Kapuchon"
+   },
+   {
+    "artist": "Kashovski"
+   },
+   {
+    "artist": "Kaskade & deadmau5"
+   },
+   {
+    "artist": "Kaskade Redux"
+   },
+   {
+    "artist": "KATHRYN LEGENDRE"
+   },
+   {
+    "artist": "Katie Ox"
+   },
+   {
+    "artist": "KATY KIRBY"
+   },
+   {
+    "artist": "KAUFMANN (DE)"
+   },
+   {
+    "artist": "Kaysin"
+   },
+   {
+    "artist": "KAYTREE"
+   },
+   {
+    "artist": "Kayzo Unleashed XL"
+   },
+   {
+    "artist": "KB Whirly"
+   },
+   {
+    "artist": "Keeb"
+   },
+   {
+    "artist": "Keekz"
+   },
+   {
+    "artist": "KEENAN MATHIAS"
+   },
+   {
+    "artist": "Kendoll"
+   },
+   {
+    "artist": "Kendrick Lamar"
+   },
+   {
+    "artist": "Kenneth Brian Band"
+   },
+   {
+    "artist": "Kenny Oliver"
+   },
+   {
+    "artist": "Kenzii Scott"
+   },
+   {
+    "artist": "KEPIK"
+   },
+   {
+    "artist": "Kevin Cornine"
+   },
+   {
+    "artist": "Kevin de Vries"
+   },
+   {
+    "artist": "Kevin Devine & The Goddamn Band"
+   },
+   {
+    "artist": "Khromata"
+   },
+   {
+    "artist": "KiD CALViN"
+   },
+   {
+    "artist": "KidMaverick"
+   },
+   {
+    "artist": "Kids Rock for Kids"
+   },
+   {
+    "artist": "Kieran San Jose"
+   },
+   {
+    "artist": "KIËSTO"
+   },
+   {
+    "artist": "Kill Script"
+   },
+   {
+    "artist": "KILLERWATTS"
+   },
+   {
+    "artist": "Killmatter"
+   },
+   {
+    "artist": "Kim Theory"
+   },
+   {
+    "artist": "Kim Viera"
+   },
+   {
+    "artist": "KIMMIC"
+   },
+   {
+    "artist": "KinAhau"
+   },
+   {
+    "artist": "Kings of Harmony +1"
+   },
+   {
+    "artist": "KITSUNI"
+   },
+   {
+    "artist": "Kittamami"
+   },
+   {
+    "artist": "Kittrix"
+   },
+   {
+    "artist": "Kliptic"
+   },
+   {
+    "artist": "Knifight"
+   },
+   {
+    "artist": "Know Good"
+   },
+   {
+    "artist": "Knowmans"
+   },
+   {
+    "artist": "Known Moons"
+   },
+   {
+    "artist": "KNOXZ W/MC MOTIVE"
+   },
+   {
+    "artist": "Kofla"
+   },
+   {
+    "artist": "Konstantina Gianni"
+   },
+   {
+    "artist": "KOO KOO"
+   },
+   {
+    "artist": "Korsky"
+   },
+   {
+    "artist": "KOZIK & SUELDO"
+   },
+   {
+    "artist": "Kozmoz"
+   },
+   {
+    "artist": "Kreation"
+   },
+   {
+    "artist": "Kristin Diable & The City"
+   },
+   {
+    "artist": "Kristin Lush"
+   },
+   {
+    "artist": "Kristina Sky"
+   },
+   {
+    "artist": "KsoFresKo"
+   },
+   {
+    "artist": "KSTKO"
+   },
+   {
+    "artist": "Kupira Marimba"
+   },
+   {
+    "artist": "KUPYD"
+   },
+   {
+    "artist": "Kurt Vile and The Violators"
+   },
+   {
+    "artist": "Ky William"
+   },
+   {
+    "artist": "Kydd Jones"
+   },
+   {
+    "artist": "Kyle Arthur"
+   },
+   {
+    "artist": "KYLE DION"
+   },
+   {
+    "artist": "Kyle Kinch"
+   },
+   {
+    "artist": "La BB"
+   },
+   {
+    "artist": "Lab Group"
+   },
+   {
+    "artist": "Ladi Earth"
+   },
+   {
+    "artist": "Lady Narcisse"
+   },
+   {
+    "artist": "Lagrimas de Oro"
+   },
+   {
+    "artist": "LAMONT LANDERS"
+   },
+   {
+    "artist": "Landon Wilks"
+   },
+   {
+    "artist": "Landopolo"
+   },
+   {
+    "artist": "LANE 8 & YOTTO"
+   },
+   {
+    "artist": "Lanie Gardner"
+   },
+   {
+    "artist": "Lard Dog & The Band of Shy"
+   },
+   {
+    "artist": "Larry Loud"
+   },
+   {
+    "artist": "Latasha Lee & The BLACKTIES"
+   },
+   {
+    "artist": "LATMUN"
+   },
+   {
+    "artist": "Lauren Gottshall"
+   },
+   {
+    "artist": "Lauren Mia"
+   },
+   {
+    "artist": "Lauren Palma"
+   },
+   {
+    "artist": "LAURENCE GUY"
+   },
+   {
+    "artist": "Lavish Life"
+   },
+   {
+    "artist": "Layla Benitez"
+   },
+   {
+    "artist": "Layton Giordani"
+   },
+   {
+    "artist": "LEAH BLEVINS"
+   },
+   {
+    "artist": "Lee Ann Roberts"
+   },
+   {
+    "artist": "Lee Coombs"
+   },
+   {
+    "artist": "Left Lucid"
+   },
+   {
+    "artist": "Left on Sunset"
+   },
+   {
+    "artist": "Leiel"
+   },
+   {
+    "artist": "Lektrique"
+   },
+   {
+    "artist": "Lemony Snickettes"
+   },
+   {
+    "artist": "Lenny V"
+   },
+   {
+    "artist": "LEON III"
+   },
+   {
+    "artist": "Leopold and his Fiction"
+   },
+   {
+    "artist": "Leotrix"
+   },
+   {
+    "artist": "LESLY REYNAGA"
+   },
+   {
+    "artist": "Letha Blake"
+   },
+   {
+    "artist": "LEVELTRONICS"
+   },
+   {
+    "artist": "Levenkhan"
+   },
+   {
+    "artist": "Lil Uzi Vert"
+   },
+   {
+    "artist": "Lil Wayne"
+   },
+   {
+    "artist": "Lily Ardalan"
+   },
+   {
+    "artist": "LILYISTHATYOU"
+   },
+   {
+    "artist": "LINDSEY HERBERT"
+   },
+   {
+    "artist": "Lindsey Lomis"
+   },
+   {
+    "artist": "Liquid Dinosaurs"
+   },
+   {
+    "artist": "Lisbona Sisters"
+   },
+   {
+    "artist": "Lizdek"
+   },
+   {
+    "artist": "Lizzy Jane"
+   },
+   {
+    "artist": "LL Cool J feat. DJ Z-Trip"
+   },
+   {
+    "artist": "LLLLNNNN"
+   },
+   {
+    "artist": "LLUVII"
+   },
+   {
+    "artist": "LO'99"
+   },
+   {
+    "artist": "Lo-G"
+   },
+   {
+    "artist": "Locklead"
+   },
+   {
+    "artist": "Loco & Jam"
+   },
+   {
+    "artist": "LondonBridge"
+   },
+   {
+    "artist": "longstoryshort"
+   },
+   {
+    "artist": "Lord Rash"
+   },
+   {
+    "artist": "Lori Henriques"
+   },
+   {
+    "artist": "Los Coast"
+   },
+   {
+    "artist": "Los Colognes"
+   },
+   {
+    "artist": "Los De La Vega"
+   },
+   {
+    "artist": "Lost Like Us"
+   },
+   {
+    "artist": "Lost Orange Cat"
+   },
+   {
+    "artist": "LOST WOLVES"
+   },
+   {
+    "artist": "Lostly"
+   },
+   {
+    "artist": "Lotusoph"
+   },
+   {
+    "artist": "Louie & The Flashbombs"
+   },
+   {
+    "artist": "LOUIEJAYXX"
+   },
+   {
+    "artist": "Lousy Lover"
+   },
+   {
+    "artist": "Lovefoxy"
+   },
+   {
+    "artist": "Lowcation"
+   },
+   {
+    "artist": "LowDown Brass Band"
+   },
+   {
+    "artist": "LSDREAM"
+   },
+   {
+    "artist": "Lu.Re"
+   },
+   {
+    "artist": "Lucati"
+   },
+   {
+    "artist": "Lucaz"
+   },
+   {
+    "artist": "LUCKY DAYE"
+   },
+   {
+    "artist": "Lucky Lou"
+   },
+   {
+    "artist": "Lucky Roll"
+   },
+   {
+    "artist": "Lucy Dacus"
+   },
+   {
+    "artist": "LUCY KALANTARI & THE JAZZ CATS"
+   },
+   {
+    "artist": "Ludo Lacoste"
+   },
+   {
+    "artist": "Luella and the Sun"
+   },
+   {
+    "artist": "Luke Alessi"
+   },
+   {
+    "artist": "LUMBERJVCK"
+   },
+   {
+    "artist": "Lupreme"
+   },
+   {
+    "artist": "LUSID"
+   },
+   {
+    "artist": "Luuk van Dijk"
+   },
+   {
+    "artist": "LVVRS"
+   },
+   {
+    "artist": "Lylac"
+   },
+   {
+    "artist": "LYNY"
+   },
+   {
+    "artist": "Lyon 808"
+   },
+   {
+    "artist": "LYON808"
+   },
+   {
+    "artist": "M-High"
+   },
+   {
+    "artist": "M.I.K.E. Push"
+   },
+   {
+    "artist": "M.O.N.R.O.E."
+   },
+   {
+    "artist": "M3RCH"
+   },
+   {
+    "artist": "M81!"
+   },
+   {
+    "artist": "Maanic"
+   },
+   {
+    "artist": "MAC SATURN"
+   },
+   {
+    "artist": "Machinedrum + Holly"
+   },
+   {
+    "artist": "Macky Gee"
+   },
+   {
+    "artist": "Macy Todd"
+   },
+   {
+    "artist": "Mad Dubz"
+   },
+   {
+    "artist": "mad gavs"
+   },
+   {
+    "artist": "Madds"
+   },
+   {
+    "artist": "MADDY O'NEAL"
+   },
+   {
+    "artist": "Madgrrl"
+   },
+   {
+    "artist": "Madison Kay"
+   },
+   {
+    "artist": "MADVKTM"
+   },
+   {
+    "artist": "Maher Daniel"
+   },
+   {
+    "artist": "Mai Iachetti"
+   },
+   {
+    "artist": "Major7"
+   },
+   {
+    "artist": "Malcolm Zeller"
+   },
+   {
+    "artist": "Malcom Todd"
+   },
+   {
+    "artist": "Malixe"
+   },
+   {
+    "artist": "Malugi"
+   },
+   {
+    "artist": "MAMA DUKE"
+   },
+   {
+    "artist": "Mamafesta"
+   },
+   {
+    "artist": "MANGO & GINGER"
+   },
+   {
+    "artist": "Manny Torres"
+   },
+   {
+    "artist": "MAR-T"
+   },
+   {
+    "artist": "Marauda"
+   },
+   {
+    "artist": "Marc V"
+   },
+   {
+    "artist": "Marco Faraone"
+   },
+   {
+    "artist": "Marco Ninni"
+   },
+   {
+    "artist": "Marco Strous"
+   },
+   {
+    "artist": "Marco V"
+   },
+   {
+    "artist": "Marcus King Band"
+   },
+   {
+    "artist": "Marcya Danielle"
+   },
+   {
+    "artist": "Marian (BR)"
+   },
+   {
+    "artist": "Marianna Hadad"
+   },
+   {
+    "artist": "Marie Nyx"
+   },
+   {
+    "artist": "Marie Qrie"
+   },
+   {
+    "artist": "Mark Lizaola"
+   },
+   {
+    "artist": "MARK SHERRY & INDECENT NOISE"
+   },
+   {
+    "artist": "MARK V"
+   },
+   {
+    "artist": "MARLEY BLEU"
+   },
+   {
+    "artist": "Marlie"
+   },
+   {
+    "artist": "MARLO [TECH ENERGY]"
+   },
+   {
+    "artist": "Marlon Funaki"
+   },
+   {
+    "artist": "Marques Wyatt"
+   },
+   {
+    "artist": "Marsolo"
+   },
+   {
+    "artist": "Martin Ikin"
+   },
+   {
+    "artist": "Mary Droppinz"
+   },
+   {
+    "artist": "Marzz"
+   },
+   {
+    "artist": "Masha Mar"
+   },
+   {
+    "artist": "Mason Norris"
+   },
+   {
+    "artist": "Materia Blu"
+   },
+   {
+    "artist": "Matroda"
+   },
+   {
+    "artist": "Matroda & Friends"
+   },
+   {
+    "artist": "Matt Denuzzo"
+   },
+   {
+    "artist": "MATT ENOS & ENRIQUE NEGRON"
+   },
+   {
+    "artist": "Matt Faulk"
+   },
+   {
+    "artist": "MATT MALTESE"
+   },
+   {
+    "artist": "Matt Suave"
+   },
+   {
+    "artist": "Mattilo"
+   },
+   {
+    "artist": "Matty Ralph"
+   },
+   {
+    "artist": "Mauro Picotto + Bryan Kearney"
+   },
+   {
+    "artist": "Maximizer"
+   },
+   {
+    "artist": "MAXIMONO"
+   },
+   {
+    "artist": "MAXIMUS C"
+   },
+   {
+    "artist": "Maximus Grooves"
+   },
+   {
+    "artist": "MC Dino"
+   },
+   {
+    "artist": "MC4D"
+   },
+   {
+    "artist": "McCoy Moore"
+   },
+   {
+    "artist": "MCR-T"
+   },
+   {
+    "artist": "Me n ü"
+   },
+   {
+    "artist": "ME ND ADAM"
+   },
+   {
+    "artist": "Meedy + Pizzi"
+   },
+   {
+    "artist": "Meezu"
+   },
+   {
+    "artist": "Meghan Lee"
+   },
+   {
+    "artist": "Megusta"
+   },
+   {
+    "artist": "Mélat"
+   },
+   {
+    "artist": "MENA¢E"
+   },
+   {
+    "artist": "Mer Bear"
+   },
+   {
+    "artist": "MERAKII"
+   },
+   {
+    "artist": "Mesa & Boss"
+   },
+   {
+    "artist": "METRO BOOMIN"
+   },
+   {
+    "artist": "Metta & Glyde"
+   },
+   {
+    "artist": "Mez Monty"
+   },
+   {
+    "artist": "MGNA Crrrta"
+   },
+   {
+    "artist": "Mia Vendetta"
+   },
+   {
+    "artist": "Micah Emrich"
+   },
+   {
+    "artist": "MICHAEL & THE ROCKNESS MONSTERS"
+   },
+   {
+    "artist": "MIDNIGHT NAVY"
+   },
+   {
+    "artist": "Midnight Tyrannosaurus"
+   },
+   {
+    "artist": "Miguel Clark"
+   },
+   {
+    "artist": "Miguelle & Tons"
+   },
+   {
+    "artist": "MIKE."
+   },
+   {
+    "artist": "MIKE D 5D"
+   },
+   {
+    "artist": "MIKE MELINOE"
+   },
+   {
+    "artist": "Mike Posner: Alive Again"
+   },
+   {
+    "artist": "MIKEY BARRENECHE"
+   },
+   {
+    "artist": "Mikey Lion"
+   },
+   {
+    "artist": "Mila Gama"
+   },
+   {
+    "artist": "Mile32"
+   },
+   {
+    "artist": "Milly & The Mayhem"
+   },
+   {
+    "artist": "Milo Ziro"
+   },
+   {
+    "artist": "Miluhska"
+   },
+   {
+    "artist": "MINESWEEPA"
+   },
+   {
+    "artist": "MISCHLUFT"
+   },
+   {
+    "artist": "MISS DRE"
+   },
+   {
+    "artist": "Miss Tutti & The Fruity Band"
+   },
+   {
+    "artist": "MISSIO"
+   },
+   {
+    "artist": "Mister Lo"
+   },
+   {
+    "artist": "Mita Gami"
+   },
+   {
+    "artist": "MIYA FOLICK"
+   },
+   {
+    "artist": "Mizzo feat. Sporty-O"
+   },
+   {
+    "artist": "MKE Live Groove: Summerfest Edition"
+   },
+   {
+    "artist": "MNYLOW"
+   },
+   {
+    "artist": "MOB RICH"
+   },
+   {
+    "artist": "Mob Tactics"
+   },
+   {
+    "artist": "Modal Nodes"
+   },
+   {
+    "artist": "Modapit"
+   },
+   {
+    "artist": "Modern Alibi"
+   },
+   {
+    "artist": "MOLECULAR STEVE"
+   },
+   {
+    "artist": "Molly Santana"
+   },
+   {
+    "artist": "MON ROVÎA"
+   },
+   {
+    "artist": "Monika Santucci"
+   },
+   {
+    "artist": "Monoky"
+   },
+   {
+    "artist": "MONTY KIDDO"
+   },
+   {
+    "artist": "MOODY GOOD"
+   },
+   {
+    "artist": "MOODY JOODY"
+   },
+   {
+    "artist": "MOONFAZED"
+   },
+   {
+    "artist": "Moonlght"
+   },
+   {
+    "artist": "Moovy"
+   },
+   {
+    "artist": "Morgan Seatree"
+   },
+   {
+    "artist": "Morgan St. Jean"
+   },
+   {
+    "artist": "Morgin Madison"
+   },
+   {
+    "artist": "Morpei"
+   }
+  ],
+  "ambiguous": [
+   {
+    "artist": "FIFI"
+   },
+   {
+    "artist": "Frank Walker"
+   },
+   {
+    "artist": "Franz Ferdinand"
+   },
+   {
+    "artist": "GIGI"
+   },
+   {
+    "artist": "GoGo Penguin"
+   },
+   {
+    "artist": "GoldFish"
+   },
+   {
+    "artist": "GOOD NEIGHBOURS"
+   },
+   {
+    "artist": "Green Velvet"
+   },
+   {
+    "artist": "HABIBI"
+   },
+   {
+    "artist": "HEART OF GOLD"
+   },
+   {
+    "artist": "i_o"
+   },
+   {
+    "artist": "Interpol"
+   },
+   {
+    "artist": "Jason Brown"
+   },
+   {
+    "artist": "Jason Ross"
+   },
+   {
+    "artist": "Jazzy"
+   },
+   {
+    "artist": "John O'Callaghan"
+   },
+   {
+    "artist": "JORDY"
+   },
+   {
+    "artist": "Justice"
+   },
+   {
+    "artist": "KAINA"
+   },
+   {
+    "artist": "KAKA"
+   },
+   {
+    "artist": "KORN"
+   },
+   {
+    "artist": "LCD SOUNDSYSTEM"
+   },
+   {
+    "artist": "Lenny Dee"
+   },
+   {
+    "artist": "Leon Thomas"
+   },
+   {
+    "artist": "Lionel Richie"
+   },
+   {
+    "artist": "Liquid Soul"
+   },
+   {
+    "artist": "Lisa Loeb"
+   },
+   {
+    "artist": "LP"
+   },
+   {
+    "artist": "MACHINE GUN KELLY"
+   },
+   {
+    "artist": "Maddix"
+   },
+   {
+    "artist": "Mallrat"
+   },
+   {
+    "artist": "Mandolin Orange"
+   },
+   {
+    "artist": "Mango"
+   },
+   {
+    "artist": "MANNEQUIN PUSSY"
+   },
+   {
+    "artist": "Mark Farina"
+   },
+   {
+    "artist": "Mark Knight"
+   },
+   {
+    "artist": "Marlon Williams"
+   },
+   {
+    "artist": "Meduza"
+   },
+   {
+    "artist": "Melanie Martinez"
+   },
+   {
+    "artist": "Metallica"
+   },
+   {
+    "artist": "Miyuki"
+   }
+  ],
+  "no-image": [
+   {
+    "artist": "Fight Clvb",
+    "wikidata": "Q128995867"
+   },
+   {
+    "artist": "FISH56OCTAGON",
+    "wikidata": "Q130246976"
+   },
+   {
+    "artist": "Flava D",
+    "wikidata": "Q59387160"
+   },
+   {
+    "artist": "Flipturn",
+    "wikidata": "Q123583502"
+   },
+   {
+    "artist": "Flor de Toloache",
+    "wikidata": "Q104845110"
+   },
+   {
+    "artist": "FLORIAN PICASSO",
+    "wikidata": "Q20666586"
+   },
+   {
+    "artist": "Flowerovlove",
+    "wikidata": "Q131680668"
+   },
+   {
+    "artist": "FLY",
+    "wikidata": "Q3286786"
+   },
+   {
+    "artist": "Franky Rizardo",
+    "wikidata": "Q136637354"
+   },
+   {
+    "artist": "Friday Pilots Club",
+    "wikidata": "Q110796667"
+   },
+   {
+    "artist": "Funtcase",
+    "wikidata": "Q16239620"
+   },
+   {
+    "artist": "Fury",
+    "wikidata": "Q5509840"
+   },
+   {
+    "artist": "Gabriel Jacoby",
+    "wikidata": "Q140571436"
+   },
+   {
+    "artist": "Ganja White Night",
+    "wikidata": "Q115631633"
+   },
+   {
+    "artist": "Genix",
+    "wikidata": "Q125800317"
+   },
+   {
+    "artist": "Gina Chavez",
+    "wikidata": "Q24006003"
+   },
+   {
+    "artist": "Girlfriends",
+    "wikidata": "Q485839"
+   },
+   {
+    "artist": "Giuseppe Ottaviani",
+    "wikidata": "Q954477"
+   },
+   {
+    "artist": "Gladde Paling",
+    "wikidata": "Q123907714"
+   },
+   {
+    "artist": "GLASS BEAMS",
+    "wikidata": "Q125447845"
+   },
+   {
+    "artist": "GODLANDS",
+    "wikidata": "Q70594089"
+   },
+   {
+    "artist": "Golden Features",
+    "wikidata": "Q28530097"
+   },
+   {
+    "artist": "Good Times Ahead",
+    "wikidata": "Q21512884"
+   },
+   {
+    "artist": "GOTH BABE",
+    "wikidata": "Q124387429"
+   },
+   {
+    "artist": "Grabbitz",
+    "wikidata": "Q24298815"
+   },
+   {
+    "artist": "Grafix",
+    "wikidata": "Q108645084"
+   },
+   {
+    "artist": "GRAHAM BARHAM",
+    "wikidata": "Q136376389"
+   },
+   {
+    "artist": "GRANDTHEFT",
+    "wikidata": "Q28812933"
+   },
+   {
+    "artist": "GRiZ",
+    "wikidata": "Q18763607"
+   },
+   {
+    "artist": "Griztronics",
+    "wikidata": "Q140985903"
+   },
+   {
+    "artist": "GUS CLARK",
+    "wikidata": "Q24033406"
+   },
+   {
+    "artist": "Gustafer Yellowgold",
+    "wikidata": "Q5621028"
+   },
+   {
+    "artist": "HAAi",
+    "wikidata": "Q114797112"
+   },
+   {
+    "artist": "Habstrakt",
+    "wikidata": "Q108529670"
+   },
+   {
+    "artist": "Hailey Knox",
+    "wikidata": "Q137459065"
+   },
+   {
+    "artist": "HALLUCINATE",
+    "wikidata": "Q90735184"
+   },
+   {
+    "artist": "Hannah Laing",
+    "wikidata": "Q124332339"
+   },
+   {
+    "artist": "Harry Romero",
+    "wikidata": "Q551036"
+   },
+   {
+    "artist": "Haute & Freddy",
+    "wikidata": "Q138006421"
+   },
+   {
+    "artist": "Hazlett",
+    "wikidata": "Q139760773"
+   },
+   {
+    "artist": "Héctor Oaks",
+    "wikidata": "Q138828032"
+   },
+   {
+    "artist": "HEL:SLØWED",
+    "wikidata": "Q123989182"
+   },
+   {
+    "artist": "Henry Fong",
+    "wikidata": "Q48772130"
+   },
+   {
+    "artist": "Hex Cougar",
+    "wikidata": "Q113432613"
+   },
+   {
+    "artist": "HIPPIE SABOTAGE",
+    "wikidata": "Q17428298"
+   },
+   {
+    "artist": "Hixxy",
+    "wikidata": "Q3130257"
+   },
+   {
+    "artist": "Holy Priest",
+    "wikidata": "Q135466696"
+   },
+   {
+    "artist": "HONESTAV",
+    "wikidata": "Q137260711"
+   },
+   {
+    "artist": "Hot Since 82",
+    "wikidata": "Q16733999"
+   },
+   {
+    "artist": "Hotel Fiction",
+    "wikidata": "Q134429218"
+   },
+   {
+    "artist": "HOTLINE TNT",
+    "wikidata": "Q123468334"
+   },
+   {
+    "artist": "Houndmouth",
+    "wikidata": "Q16995930"
+   },
+   {
+    "artist": "Hugel",
+    "wikidata": "Q55217093"
+   },
+   {
+    "artist": "Hunny",
+    "wikidata": "Q65074486"
+   },
+   {
+    "artist": "Hunx And His Punx",
+    "wikidata": "Q5945971"
+   },
+   {
+    "artist": "Ilan Bluestone",
+    "wikidata": "Q129405721"
+   },
+   {
+    "artist": "Imanu",
+    "wikidata": "Q109973314"
+   },
+   {
+    "artist": "In The Valley Below",
+    "wikidata": "Q20684202"
+   },
+   {
+    "artist": "In The Whale",
+    "wikidata": "Q22080835"
+   },
+   {
+    "artist": "INA NIA",
+    "wikidata": "Q131150321"
+   },
+   {
+    "artist": "Indira Paganotto",
+    "wikidata": "Q115861435"
+   },
+   {
+    "artist": "Infinity Song",
+    "wikidata": "Q125867376"
+   },
+   {
+    "artist": "Interplanetary Criminal",
+    "wikidata": "Q114014651"
+   },
+   {
+    "artist": "ISAAC DUNBAR",
+    "wikidata": "Q86926495"
+   },
+   {
+    "artist": "IVAN CORNEJO",
+    "wikidata": "Q108984139"
+   },
+   {
+    "artist": "Ivy Lab",
+    "wikidata": "Q137590626"
+   },
+   {
+    "artist": "Izzy Escobar",
+    "wikidata": "Q138514942"
+   },
+   {
+    "artist": "JACKNIFE",
+    "wikidata": "Q127428747"
+   },
+   {
+    "artist": "JACKSON DEAN",
+    "wikidata": "Q111660058"
+   },
+   {
+    "artist": "Jacques Greene",
+    "wikidata": "Q19665126"
+   },
+   {
+    "artist": "JADE",
+    "wikidata": "Q11226816"
+   },
+   {
+    "artist": "Jade LeMac",
+    "wikidata": "Q130029506"
+   },
+   {
+    "artist": "Jaden Bojsen",
+    "wikidata": "Q20171226"
+   },
+   {
+    "artist": "Jae Stephens",
+    "wikidata": "Q137793991"
+   },
+   {
+    "artist": "JAIME WYATT",
+    "wikidata": "Q87486542"
+   },
+   {
+    "artist": "JAKE LLOYD",
+    "wikidata": "Q111335550"
+   },
+   {
+    "artist": "Jamie Jones",
+    "wikidata": "Q13581065"
+   },
+   {
+    "artist": "Jane Ellen Bryant",
+    "wikidata": "Q111529200"
+   },
+   {
+    "artist": "JANY GREEN",
+    "wikidata": "Q102247373"
+   },
+   {
+    "artist": "Jayda G",
+    "wikidata": "Q105961146"
+   },
+   {
+    "artist": "JazzMen",
+    "wikidata": "Q89671336"
+   },
+   {
+    "artist": "Jerome Isma-Ae",
+    "wikidata": "Q12319587"
+   },
+   {
+    "artist": "JESSIA",
+    "wikidata": "Q111372256"
+   },
+   {
+    "artist": "Jessica Hernandez & The Deltas",
+    "wikidata": "Q20020505"
+   },
+   {
+    "artist": "Joe Jordan",
+    "wikidata": "Q6210593"
+   },
+   {
+    "artist": "Joey Purp",
+    "wikidata": "Q24289090"
+   },
+   {
+    "artist": "John 00 Fleming",
+    "wikidata": "Q1699042"
+   },
+   {
+    "artist": "JOHNNY STIMSON",
+    "wikidata": "Q94578261"
+   },
+   {
+    "artist": "JOHNNYSWIM",
+    "wikidata": "Q6267990"
+   },
+   {
+    "artist": "JON MUQ",
+    "wikidata": "Q123702032"
+   },
+   {
+    "artist": "Jonah Kagen",
+    "wikidata": "Q137583588"
+   },
+   {
+    "artist": "JONAS RATHSMAN",
+    "wikidata": "Q19630724"
+   },
+   {
+    "artist": "Joris Voorn",
+    "wikidata": "Q1704007"
+   },
+   {
+    "artist": "Josh Baker",
+    "wikidata": "Q140658024"
+   },
+   {
+    "artist": "JOSHUA RAY WALKER",
+    "wikidata": "Q130279065"
+   },
+   {
+    "artist": "JOY ORBISON",
+    "wikidata": "Q14159313"
+   },
+   {
+    "artist": "JUJI",
+    "wikidata": "Q116184899"
+   },
+   {
+    "artist": "JUNIOR VARSITY",
+    "wikidata": "Q132746114"
+   },
+   {
+    "artist": "JUSTIN MARTIN",
+    "wikidata": "Q3190470"
+   },
+   {
+    "artist": "Kady Rain",
+    "wikidata": "Q135594406"
+   },
+   {
+    "artist": "Kamaiyah",
+    "wikidata": "Q24705696"
+   },
+   {
+    "artist": "KAMI",
+    "wikidata": "Q2734152"
+   },
+   {
+    "artist": "Kansas Bible Company",
+    "wikidata": "Q6364588"
+   },
+   {
+    "artist": "KARABA",
+    "wikidata": "Q110861676"
+   },
+   {
+    "artist": "KARMÅ",
+    "wikidata": "Q114805013"
+   },
+   {
+    "artist": "KAS:ST",
+    "wikidata": "Q116861339"
+   },
+   {
+    "artist": "Kasablanca",
+    "wikidata": "Q139801896"
+   },
+   {
+    "artist": "Kasbo",
+    "wikidata": "Q48700636"
+   },
+   {
+    "artist": "KATZU OSO",
+    "wikidata": "Q82047416"
+   },
+   {
+    "artist": "Kayoh",
+    "wikidata": "Q87411367"
+   },
+   {
+    "artist": "Kayzo",
+    "wikidata": "Q30099042"
+   },
+   {
+    "artist": "Keiji",
+    "wikidata": "Q2648884"
+   },
+   {
+    "artist": "Keltek",
+    "wikidata": "Q104733310"
+   },
+   {
+    "artist": "Ken Pomeroy",
+    "wikidata": "Q136735631"
+   },
+   {
+    "artist": "KennyHoopla",
+    "wikidata": "Q98274612"
+   },
+   {
+    "artist": "Kerala Dust",
+    "wikidata": "Q116925725"
+   },
+   {
+    "artist": "Kettama",
+    "wikidata": "Q98141350"
+   },
+   {
+    "artist": "Kevin Atwater",
+    "wikidata": "Q136171440"
+   },
+   {
+    "artist": "Khamari",
+    "wikidata": "Q123698386"
+   },
+   {
+    "artist": "KhoMha",
+    "wikidata": "Q23807403"
+   },
+   {
+    "artist": "King Buffalo",
+    "wikidata": "Q115908940"
+   },
+   {
+    "artist": "King Solomon",
+    "wikidata": "Q21600138"
+   },
+   {
+    "artist": "Kingfishr",
+    "wikidata": "Q134479385"
+   },
+   {
+    "artist": "Kitty Amor",
+    "wikidata": "Q141974106"
+   },
+   {
+    "artist": "Kloud",
+    "wikidata": "Q97142226"
+   },
+   {
+    "artist": "Knock2",
+    "wikidata": "Q130295327"
+   },
+   {
+    "artist": "Kompany",
+    "wikidata": "Q65030113"
+   },
+   {
+    "artist": "Korolova",
+    "wikidata": "Q125102002"
+   },
+   {
+    "artist": "Koven",
+    "wikidata": "Q106091172"
+   },
+   {
+    "artist": "Krafty Kuts",
+    "wikidata": "Q1264149"
+   },
+   {
+    "artist": "KSHMR",
+    "wikidata": "Q19816655"
+   },
+   {
+    "artist": "KUURO",
+    "wikidata": "Q65090284"
+   },
+   {
+    "artist": "Kyau & Albert",
+    "wikidata": "Q319320"
+   },
+   {
+    "artist": "Kyle Watson",
+    "wikidata": "Q103614653"
+   },
+   {
+    "artist": "LA DOÑA",
+    "wikidata": "Q103815772"
+   },
+   {
+    "artist": "LAILA!",
+    "wikidata": "Q129191025"
+   },
+   {
+    "artist": "LANDON CONRATH",
+    "wikidata": "Q135688627"
+   },
+   {
+    "artist": "Lanz Pierce",
+    "wikidata": "Q21642695"
+   },
+   {
+    "artist": "LATE NIGHT DRIVE HOME",
+    "wikidata": "Q130416270"
+   },
+   {
+    "artist": "LATIN MAFIA",
+    "wikidata": "Q123651586"
+   },
+   {
+    "artist": "Laura van Dam",
+    "wikidata": "Q124662352"
+   },
+   {
+    "artist": "Layz",
+    "wikidata": "Q138827893"
+   },
+   {
+    "artist": "Le Youth",
+    "wikidata": "Q17145573"
+   },
+   {
+    "artist": "LEISAN",
+    "wikidata": "Q121086804"
+   },
+   {
+    "artist": "Lettuce",
+    "wikidata": "Q6533861"
+   },
+   {
+    "artist": "Levity",
+    "wikidata": "Q11755352"
+   },
+   {
+    "artist": "LEYLA BLUE",
+    "wikidata": "Q133560847"
+   },
+   {
+    "artist": "LF SYSTEM",
+    "wikidata": "Q113022702"
+   },
+   {
+    "artist": "Lil Texas",
+    "wikidata": "Q123847078"
+   },
+   {
+    "artist": "LILY ROSE",
+    "wikidata": "Q117384141"
+   },
+   {
+    "artist": "Liquid Stranger",
+    "wikidata": "Q6557399"
+   },
+   {
+    "artist": "LNY TNZ",
+    "wikidata": "Q115003618"
+   },
+   {
+    "artist": "Lo Moon",
+    "wikidata": "Q48699948"
+   },
+   {
+    "artist": "Loadstar",
+    "wikidata": "Q15052759"
+   },
+   {
+    "artist": "Los Retros",
+    "wikidata": "Q131703707"
+   },
+   {
+    "artist": "LOST KINGS",
+    "wikidata": "Q28599226"
+   },
+   {
+    "artist": "LOUDPVCK",
+    "wikidata": "Q53338353"
+   },
+   {
+    "artist": "Louis the Child",
+    "wikidata": "Q25345325"
+   },
+   {
+    "artist": "Loukeman",
+    "wikidata": "Q137781653"
+   },
+   {
+    "artist": "Love Spells",
+    "wikidata": "Q140700544"
+   },
+   {
+    "artist": "Luca Testa",
+    "wikidata": "Q130730781"
+   },
+   {
+    "artist": "Lucky Boys Confusion",
+    "wikidata": "Q6697864"
+   },
+   {
+    "artist": "Luke Dean",
+    "wikidata": "Q138716825"
+   },
+   {
+    "artist": "LUNA LUNA",
+    "wikidata": "Q1877324"
+   },
+   {
+    "artist": "LUNAY",
+    "wikidata": "Q61641125"
+   },
+   {
+    "artist": "Machine Girl",
+    "wikidata": "Q105038535"
+   },
+   {
+    "artist": "Madison Ryann Ward",
+    "wikidata": "Q135922392"
+   },
+   {
+    "artist": "MAGGIE ANTONE",
+    "wikidata": "Q137171060"
+   },
+   {
+    "artist": "Magic City Hippies",
+    "wikidata": "Q116950804"
+   },
+   {
+    "artist": "Magna Carda",
+    "wikidata": "Q20014392"
+   },
+   {
+    "artist": "Magnus Ferrell",
+    "wikidata": "Q28059677"
+   },
+   {
+    "artist": "Marcel Dettmann",
+    "wikidata": "Q16574452"
+   },
+   {
+    "artist": "Maria Healy",
+    "wikidata": "Q132666612"
+   },
+   {
+    "artist": "Mariachi Sol De Mexico",
+    "wikidata": "Q112663724"
+   },
+   {
+    "artist": "MARIBOU STATE",
+    "wikidata": "Q20711766"
+   },
+   {
+    "artist": "Mark Lewis",
+    "wikidata": "Q120151070"
+   },
+   {
+    "artist": "Mark Sherry",
+    "wikidata": "Q30073256"
+   },
+   {
+    "artist": "MaRLo",
+    "wikidata": "Q135925395"
+   },
+   {
+    "artist": "Marlon Hoffstadt",
+    "wikidata": "Q136433410"
+   },
+   {
+    "artist": "Massimiliano Pagliara",
+    "wikidata": "Q95836888"
+   },
+   {
+    "artist": "Mathame",
+    "wikidata": "Q121536528"
+   },
+   {
+    "artist": "Matt Fax",
+    "wikidata": "Q22959098"
+   },
+   {
+    "artist": "Matt Sassari",
+    "wikidata": "Q115059725"
+   },
+   {
+    "artist": "Matt the Electrician",
+    "wikidata": "Q16728792"
+   },
+   {
+    "artist": "Mauro Picotto",
+    "wikidata": "Q279368"
+   },
+   {
+    "artist": "Max McNown",
+    "wikidata": "Q130415571"
+   },
+   {
+    "artist": "Max Styler",
+    "wikidata": "Q58009816"
+   },
+   {
+    "artist": "MEDIUM BUILD",
+    "wikidata": "Q124756450"
+   },
+   {
+    "artist": "Mefjus",
+    "wikidata": "Q21033832"
+   },
+   {
+    "artist": "Megan Moroney",
+    "wikidata": "Q116786312"
+   },
+   {
+    "artist": "Mersiv",
+    "wikidata": "Q136484017"
+   },
+   {
+    "artist": "MICHIGANDER",
+    "wikidata": "Q123592925"
+   },
+   {
+    "artist": "Midnight Generation",
+    "wikidata": "Q141514906"
+   },
+   {
+    "artist": "Mike and the Moonpies",
+    "wikidata": "Q54871306"
+   },
+   {
+    "artist": "MIKE DUNN",
+    "wikidata": "Q119311479"
+   },
+   {
+    "artist": "MILITARIE GUN",
+    "wikidata": "Q117018114"
+   },
+   {
+    "artist": "Mind Against",
+    "wikidata": "Q61679307"
+   },
+   {
+    "artist": "Mindset",
+    "wikidata": "Q3314789"
+   },
+   {
+    "artist": "Miniature Tigers",
+    "wikidata": "Q1936806"
+   },
+   {
+    "artist": "Miss Bashful",
+    "wikidata": "Q135552981"
+   },
+   {
+    "artist": "MitiS",
+    "wikidata": "Q122609508"
+   },
+   {
+    "artist": "Mochakk",
+    "wikidata": "Q124125060"
+   },
+   {
+    "artist": "Modern English",
+    "wikidata": "Q1691644"
+   },
+   {
+    "artist": "MOKSI",
+    "wikidata": "Q26271326"
+   },
+   {
+    "artist": "Mongrel",
+    "wikidata": "Q3320691"
+   },
+   {
+    "artist": "MONTELL FISH",
+    "wikidata": "Q124645289"
+   },
+   {
+    "artist": "Moore Kismet",
+    "wikidata": "Q105763507"
+   }
+  ],
+  "no-usable-credit": [
+   {
+    "artist": "G Jones",
+    "wikidata": "Q131553494"
+   },
+   {
+    "artist": "Gorgon City",
+    "wikidata": "Q16839700"
+   },
+   {
+    "artist": "GRAND FUNK RAILROAD",
+    "wikidata": "Q622815"
+   },
+   {
+    "artist": "Imagination Movers",
+    "wikidata": "Q1616474"
+   },
+   {
+    "artist": "JAY-Z",
+    "wikidata": "Q62766"
+   },
+   {
+    "artist": "Jordan Suckley",
+    "wikidata": "Q18385734"
+   },
+   {
+    "artist": "Kai Tracid",
+    "wikidata": "Q62945"
+   },
+   {
+    "artist": "Kevin Saunderson",
+    "wikidata": "Q923090"
+   },
+   {
+    "artist": "KICKFLIP",
+    "wikidata": "Q131722593"
+   },
+   {
+    "artist": "Little Feat",
+    "wikidata": "Q946124"
+   },
+   {
+    "artist": "Loathe",
+    "wikidata": "Q30610109"
+   },
+   {
+    "artist": "LTJ Bukem",
+    "wikidata": "Q921236"
+   },
+   {
+    "artist": "Lykke Li",
+    "wikidata": "Q270724"
+   },
+   {
+    "artist": "M83",
+    "wikidata": "Q615471"
+   },
+   {
+    "artist": "Marie Vaunt",
+    "wikidata": "Q3784058"
+   },
+   {
+    "artist": "Markus Schulz",
+    "wikidata": "Q57784"
+   },
+   {
+    "artist": "Miike Snow",
+    "wikidata": "Q1286603"
+   },
+   {
+    "artist": "Mon Laferte",
+    "wikidata": "Q2836528"
+   }
+  ],
+  "license-not-admitted": [
+   {
+    "artist": "Gin Blossoms",
+    "wikidata": "Q2394249",
+    "license": "GFDL 1.2"
+   },
+   {
+    "artist": "Headhunterz",
+    "wikidata": "Q223148",
+    "license": "Attribution"
+   },
+   {
+    "artist": "Kerry King",
+    "wikidata": "Q297210",
+    "license": "CC BY-SA 3.0 pl"
+   },
+   {
+    "artist": "Lissie",
+    "wikidata": "Q270239",
+    "license": "GFDL 1.2"
+   },
+   {
+    "artist": "Luisa Maita",
+    "wikidata": "Q6706876",
+    "license": "CC BY 3.0 br"
+   },
+   {
+    "artist": "MATT CHAMPION",
+    "wikidata": "Q109265400",
+    "license": "CC BY 2.5"
+   }
+  ],
+  "no-file": [
+   {
+    "artist": "Jai Wolf",
+    "wikidata": "Q29834337"
+   }
+  ]
+ }
+}

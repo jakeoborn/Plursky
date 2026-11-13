@@ -29,7 +29,13 @@ const TILE_BUDGET = 16 * 1024, TOTAL_BUDGET = 400 * 1024;   // 47 tiles at ~8 KB
 // lots of photos"). A festival allowed the tinted letter tile goes here, with
 // why. None today.
 const FALLBACK = {
-  // Empty since the photo pass (2026-11-12): every listed festival has art.
+  // Added 2026-11-12/13 by festival batch 5 and later, after the photo pass;
+  // each needs an official tile in data/festival-art.js.
+  "groove-cruise-2027": "official art not fetched yet; tile owed before the flip",
+  "day-zero-tulum-2027": "official art not fetched yet; tile owed before the flip",
+  "time-warp-2027": "official art not fetched yet; tile owed before the flip",
+  "sonar-2027": "official art not fetched yet; tile owed before the flip",
+  "ozora-2027": "official art not fetched yet; tile owed before the flip",
 };
 // Sat Oct 17, 4 pm ET: III Points is live, so all three chip kinds are on the page.
 const AT = "2026-10-17T20:00:00Z";
