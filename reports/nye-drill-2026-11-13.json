@@ -1,0 +1,540 @@
+{
+ "spec": "SPEC-193 P4",
+ "date": "2026-11-13",
+ "runtimeMs": 2100,
+ "pass": 9,
+ "total": 9,
+ "rows": [
+  {
+   "festival": "decadence-colorado-2026",
+   "moment": "2 h before gates (Dec 30 4:00 PM MST)",
+   "atUtc": "2026-12-30T23:00:00.000Z",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "opens on the NYE festival",
+     "ok": true,
+     "note": "decadence-colorado-2026"
+    },
+    {
+     "name": "phase is upcoming",
+     "ok": true,
+     "note": "upcoming"
+    },
+    {
+     "name": "tonight is night none (before the first night window)",
+     "ok": true,
+     "note": "NOW.night = 1"
+    },
+    {
+     "name": "nothing reads ended",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "no NaN / undefined / negative countdown",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "edition year holds across midnight",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "set times TBA: no act shown as playing now",
+     "ok": true,
+     "note": "0 live; no live count"
+    },
+    {
+     "name": "no page errors",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup opens",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup: nothing reads ended",
+     "ok": true,
+     "note": ""
+    }
+   ],
+   "shot": null
+  },
+  {
+   "festival": "decadence-colorado-2026",
+   "moment": "mid-set, NYE night (Dec 31 10:00 PM MST)",
+   "atUtc": "2027-01-01T05:00:00.000Z",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "opens on the NYE festival",
+     "ok": true,
+     "note": "decadence-colorado-2026"
+    },
+    {
+     "name": "phase is live",
+     "ok": true,
+     "note": "live"
+    },
+    {
+     "name": "tonight is night 2",
+     "ok": true,
+     "note": "NOW.night = 2"
+    },
+    {
+     "name": "nothing reads ended",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "no NaN / undefined / negative countdown",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "edition year holds across midnight",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "set times TBA: no act shown as playing now",
+     "ok": true,
+     "note": "0 live; 0 LIVE NOW"
+    },
+    {
+     "name": "no page errors",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup opens",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup: nothing reads ended",
+     "ok": true,
+     "note": ""
+    }
+   ],
+   "shot": null
+  },
+  {
+   "festival": "decadence-colorado-2026",
+   "moment": "11:58 PM Dec 31 (MST)",
+   "atUtc": "2027-01-01T06:58:00.000Z",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "opens on the NYE festival",
+     "ok": true,
+     "note": "decadence-colorado-2026"
+    },
+    {
+     "name": "phase is live",
+     "ok": true,
+     "note": "live"
+    },
+    {
+     "name": "tonight is night 2",
+     "ok": true,
+     "note": "NOW.night = 2"
+    },
+    {
+     "name": "nothing reads ended",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "no NaN / undefined / negative countdown",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "edition year holds across midnight",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "set times TBA: no act shown as playing now",
+     "ok": true,
+     "note": "0 live; 0 LIVE NOW"
+    },
+    {
+     "name": "no page errors",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup opens",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup: nothing reads ended",
+     "ok": true,
+     "note": ""
+    }
+   ],
+   "shot": null
+  },
+  {
+   "festival": "decadence-colorado-2026",
+   "moment": "12:03 AM Jan 1 (MST)",
+   "atUtc": "2027-01-01T07:03:00.000Z",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "opens on the NYE festival",
+     "ok": true,
+     "note": "decadence-colorado-2026"
+    },
+    {
+     "name": "phase is live",
+     "ok": true,
+     "note": "live"
+    },
+    {
+     "name": "tonight is night 2",
+     "ok": true,
+     "note": "NOW.night = 2"
+    },
+    {
+     "name": "nothing reads ended",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "no NaN / undefined / negative countdown",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "edition year holds across midnight",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "set times TBA: no act shown as playing now",
+     "ok": true,
+     "note": "0 live; 0 LIVE NOW"
+    },
+    {
+     "name": "no page errors",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup opens",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup: nothing reads ended",
+     "ok": true,
+     "note": ""
+    }
+   ],
+   "shot": null
+  },
+  {
+   "festival": "countdown-nye-2026",
+   "moment": "2 h before gates (Dec 31 2:00 PM PST)",
+   "atUtc": "2026-12-31T22:00:00.000Z",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "opens on the NYE festival",
+     "ok": true,
+     "note": "countdown-nye-2026"
+    },
+    {
+     "name": "phase is upcoming",
+     "ok": true,
+     "note": "upcoming"
+    },
+    {
+     "name": "tonight is night none (before the first night window)",
+     "ok": true,
+     "note": "NOW.night = 1"
+    },
+    {
+     "name": "nothing reads ended",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "no NaN / undefined / negative countdown",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "edition year holds across midnight",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "set times TBA: no act shown as playing now",
+     "ok": true,
+     "note": "0 live; no live count"
+    },
+    {
+     "name": "no page errors",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup opens",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup: nothing reads ended",
+     "ok": true,
+     "note": ""
+    }
+   ],
+   "shot": null
+  },
+  {
+   "festival": "countdown-nye-2026",
+   "moment": "mid-set, NYE night (Dec 31 10:00 PM PST)",
+   "atUtc": "2027-01-01T06:00:00.000Z",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "opens on the NYE festival",
+     "ok": true,
+     "note": "countdown-nye-2026"
+    },
+    {
+     "name": "phase is live",
+     "ok": true,
+     "note": "live"
+    },
+    {
+     "name": "tonight is night 1",
+     "ok": true,
+     "note": "NOW.night = 1"
+    },
+    {
+     "name": "nothing reads ended",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "no NaN / undefined / negative countdown",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "edition year holds across midnight",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "set times TBA: no act shown as playing now",
+     "ok": true,
+     "note": "0 live; 0 LIVE NOW"
+    },
+    {
+     "name": "no page errors",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup opens",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup: nothing reads ended",
+     "ok": true,
+     "note": ""
+    }
+   ],
+   "shot": null
+  },
+  {
+   "festival": "countdown-nye-2026",
+   "moment": "11:58 PM Dec 31 (PST)",
+   "atUtc": "2027-01-01T07:58:00.000Z",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "opens on the NYE festival",
+     "ok": true,
+     "note": "countdown-nye-2026"
+    },
+    {
+     "name": "phase is live",
+     "ok": true,
+     "note": "live"
+    },
+    {
+     "name": "tonight is night 1",
+     "ok": true,
+     "note": "NOW.night = 1"
+    },
+    {
+     "name": "nothing reads ended",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "no NaN / undefined / negative countdown",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "edition year holds across midnight",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "set times TBA: no act shown as playing now",
+     "ok": true,
+     "note": "0 live; 0 LIVE NOW"
+    },
+    {
+     "name": "no page errors",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup opens",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup: nothing reads ended",
+     "ok": true,
+     "note": ""
+    }
+   ],
+   "shot": null
+  },
+  {
+   "festival": "countdown-nye-2026",
+   "moment": "12:03 AM Jan 1 (PST)",
+   "atUtc": "2027-01-01T08:03:00.000Z",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "opens on the NYE festival",
+     "ok": true,
+     "note": "countdown-nye-2026"
+    },
+    {
+     "name": "phase is live",
+     "ok": true,
+     "note": "live"
+    },
+    {
+     "name": "tonight is night 1",
+     "ok": true,
+     "note": "NOW.night = 1"
+    },
+    {
+     "name": "nothing reads ended",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "no NaN / undefined / negative countdown",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "edition year holds across midnight",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "set times TBA: no act shown as playing now",
+     "ok": true,
+     "note": "0 live; 0 LIVE NOW"
+    },
+    {
+     "name": "no page errors",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup opens",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup: nothing reads ended",
+     "ok": true,
+     "note": ""
+    }
+   ],
+   "shot": null
+  },
+  {
+   "festival": "countdown-nye-2026",
+   "moment": "second night (Jan 1 9:00 PM PST)",
+   "atUtc": "2027-01-02T05:00:00.000Z",
+   "status": "PASS",
+   "checks": [
+    {
+     "name": "opens on the NYE festival",
+     "ok": true,
+     "note": "countdown-nye-2026"
+    },
+    {
+     "name": "phase is live",
+     "ok": true,
+     "note": "live"
+    },
+    {
+     "name": "tonight's night (recorded)",
+     "ok": null,
+     "note": "NOW.night = null"
+    },
+    {
+     "name": "nothing reads ended",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "no NaN / undefined / negative countdown",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "edition year holds across midnight",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "set times TBA: no act shown as playing now",
+     "ok": true,
+     "note": "0 live; 0 LIVE NOW"
+    },
+    {
+     "name": "no page errors",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup opens",
+     "ok": true,
+     "note": ""
+    },
+    {
+     "name": "lineup: nothing reads ended",
+     "ok": true,
+     "note": ""
+    }
+   ],
+   "shot": null
+  }
+ ]
+}
