@@ -685,6 +685,24 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
     mustFail("Special Guest back in a lineup", m => { m.artists.push({ id: `${m.id}:special-guest`, name: "Special Guest", key: "special-guest", performers: ["special-guest"], appearances: [{ day: 1 }] }); }, esc, undefined, /: dropped /);
   }
 
+  // selected_stages: an edition whose official schedule had stages that are
+  // not imported names them (review of merged #440, 2026-11-12). Exactly these
+  // three carry the label, and it cannot drift from the rows.
+  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016"];
+  const selected = Object.values(editions).filter(e => e.completeness === "selected_stages").map(e => e.id).sort();
+  ok(JSON.stringify(selected) === JSON.stringify(SELECTED), `selected_stages editions are ${selected.join(", ") || "none"}, want ${SELECTED.join(", ")}`);
+  const c14 = editions["coachella-2014"];
+  if (c14) {
+    ok(c14.coverage.missing.map(m => m.stage).join() === "Heineken House,Do Lab", `coachella-2014 missing ${c14.coverage.missing.map(m => m.stage)}`);
+    const dolab = c14.stages.find(x => x.name === "Do Lab");
+    mustFail("a stage listed missing gains a set that day", m => { m.sets.push({ ...m.sets.find(x => x.stageId === dolab.id), id: `${m.id}:d1:do-lab:1200:x`, day: 1, start: "12:00" }); }, c14, undefined, /listed as missing on day 1 but has sets/);
+    mustFail("selected stages relabelled complete", m => { m.completeness = "complete_schedule"; }, c14, undefined, /only selected_stages may carry one/);
+    mustFail("the missing-stage list dropped", m => { delete m.coverage; }, c14, undefined, /coverage differs from the edition registry/);
+    mustFail("a missing stage names a day the edition lacks", m => { m.coverage.missing[1].days = [7]; }, c14, undefined, /coverage differs|names day 7/);
+  }
+  const c17 = editions["coachella-2017"];
+  if (c17) mustFail("a complete schedule claims a missing stage", m => { m.coverage = { asOf: "2026-11-12", missing: [{ stage: "X", days: [1], when: "Friday" }] }; }, c17, undefined, /coverage differs from the edition registry/);
+
   // Parser fixtures: the real markup shapes, and the traps.
   const li = (name, extra = "") => `<li><span><a href="#modal-lineup-artist" data-artist-id="1" data-artist-name="${name}"${extra}>${name}</a></span></li>`;
   const page = (title, dayHeads, stages) => `<title>Lineup &#8211; ${title}</title>

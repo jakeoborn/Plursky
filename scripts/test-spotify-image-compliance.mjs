@@ -17,6 +17,11 @@
 //   4. A Spotify image expires while the app stays open: storage, the hero
 //      and a mounted useArtistPhoto all let it go at 24 h, whether it came
 //      from the cache or was fetched in this session.
+//   6. A listener with no Spotify account gets the photo through Plursky's
+//      spotify-artist-image function: the hero shows it with the full logo
+//      linking to that artist, no api.spotify.com call is made without a
+//      token, and once the function answers "not set up" (503) the faces stop
+//      asking for the rest of the session.
 //   5. Song previews are Spotify only (lane ruling 2026-09-24: the iTunes
 //      Search API's previews may only promote store content next to a store
 //      badge). No iTunes call in any app code; old "itunes" preview_urls_v1
@@ -405,6 +410,51 @@ try {
     check(mine === searched, `[f24] the write set off another search for the artist (${searched} → ${mine})`);
     await ctx.close();
   }
+  // ── 6. No Spotify account: Plursky's photo function ──────────────────────
+  {
+    const ctx = await newCtx(393, null);
+    await ctx.addInitScript(() => { window.__plurskyPhotoProxyInTests = true; localStorage.removeItem('spotify_token'); localStorage.removeItem('spotify_expires'); localStorage.removeItem('spotify_refresh_token'); });
+    const page = await ctx.newPage(); await boot(page);
+    const artist = await page.evaluate(() => { const a = window.ARTISTS.find(x => x.start && !/\bb2b\b|\(/i.test(x.name) && !getPermanentArtistImage(x.name)); return { id: a.id, name: a.name }; });
+    const img = await page.evaluate(() => { const c = document.createElement('canvas'); c.width = 60; c.height = 40; c.getContext('2d').fillRect(0, 0, 60, 40); return c.toDataURL('image/png'); });
+    let asked = 0, mine = 0, direct = 0, mode = 'ok';
+    page.on('request', r => { if (/api\.spotify\.com/.test(r.url())) direct++; });
+    await ctx.route(/spotify-artist-image/, r => {
+      asked++;
+      if (mode === 'off') return r.fulfill({ status: 503, contentType: 'application/json', body: '{"error":"not_configured"}' });
+      const name = new URL(r.request().url()).searchParams.get('name') || '';
+      const hit = name.toLowerCase() === artist.name.toLowerCase();
+      if (hit) mine++;
+      return r.fulfill({ status: 200, contentType: 'application/json', headers: { 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify(hit ? { url: img, spotifyId: 'PROXY1' } : { url: null }) });
+    });
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?artist=${encodeURIComponent(artist.id)}`, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => !!document.querySelector('[data-hero="spotify"]'), null, { timeout: 20000 }).catch(() => {});
+    const r = await page.evaluate(name => ({ hero: !!document.querySelector('[data-hero="spotify"]'),
+      link: document.querySelector('[data-hero="spotify"] [data-spotify-attribution]')?.getAttribute('href') || '',
+      rec: getArtistImage(name) }), artist.name);
+    check(r.hero && mine > 0, `[proxy] with no Spotify account the hero did not show the function's photo (asked ${asked}, for this artist ${mine})`);
+    check(/open\.spotify\.com\/artist\/PROXY1/.test(r.link), `[proxy] the hero's Spotify logo does not link to the artist (${r.link})`);
+    check(r.rec?.source === 'spotify' && r.rec?.fetchedAt > 0, '[proxy] the function\'s photo was not stored as a 24 h Spotify entry');
+    check(direct === 0, `[proxy] api.spotify.com was called ${direct} time(s) with no token`);
+    // 503: the function is not set up; one ask, then quiet for the session.
+    await page.close(); mode = 'off'; asked = 0;
+    const page2 = await ctx.newPage(); await boot(page2);
+    await page2.evaluate(() => localStorage.setItem('artist_images_v1', '{}'));
+    // Six faces with no stored photo ask through the photo queue at once.
+    const faces = await page2.evaluate(() => {
+      const names = window.ARTISTS.filter(x => !getPermanentArtistImage(x.name)).slice(0, 6).map(x => x.name);
+      const el = document.createElement('div'); document.body.appendChild(el);
+      ReactDOM.createRoot(el).render(React.createElement(React.Fragment, null, names.map(n =>
+        React.createElement(function Probe() { useArtistPhoto(n); return null; }, { key: n }))));
+      return names.length;
+    });
+    await sleep(3000);
+    const after = await page2.evaluate(async () => (await _fetchProxyPhoto('Plursky Probe Name')) === null && !_photoProxyUsable());
+    check(faces === 6 && asked === 1 && after, `[proxy] after a 503 the faces kept asking the function (${asked} asks for ${faces} faces; off: ${after})`);
+    await ctx.close();
+  }
+
   // ── 5. Song previews: Spotify only ────────────────────────────────────────
   {
     const SP = 'https://p.scdn.co/mp3-preview/plursky-test';

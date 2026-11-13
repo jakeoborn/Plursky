@@ -9,3 +9,6 @@ verify_jwt = false
 
 [functions.proxy-setlist]
 verify_jwt = false
+
+[functions.spotify-artist-image]
+verify_jwt = false

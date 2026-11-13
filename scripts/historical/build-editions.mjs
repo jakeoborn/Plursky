@@ -90,7 +90,10 @@ export function buildEdition(id, rows, ledger) {
   };
   return {
     id, festivalId: ed.festivalId, name: ed.name, year: ed.year, timezone: ed.timezone, rolloverHour: ed.rolloverHour,
-    completeness: sets.length ? "complete_schedule" : "lineup_only",
+    // An edition whose official schedule had stages we have not imported says
+    // so (coverage.missing, from the registry) instead of claiming every stage.
+    completeness: !sets.length ? "lineup_only" : ed.coverage ? "selected_stages" : "complete_schedule",
+    ...(sets.length && ed.coverage && { coverage: ed.coverage }),
     // A canceled edition keeps every row it printed and says why it never ran.
     ...(ed.status && { status: ed.status, canceled: ed.canceled }),
     days, stages, artists, sets, provenance,
@@ -156,6 +159,7 @@ export function editionIndex(editions) {
     editions: editions.filter(listedEdition).map(e => ({
       id: e.id, festivalId: e.festivalId, festivalName: e.name.replace(/\s+\d{4}$/, ""), name: e.name, year: e.year,
       timezone: e.timezone, completeness: e.completeness,
+      ...(e.coverage && { missingStages: e.coverage.missing.map(m => ({ stage: m.stage, when: m.when })) }),
       days: e.days.map(d => ({ day: d.day, date: d.date, label: d.label })),
       counts: { stages: e.stages.length, artists: e.artists.length, sets: e.sets.length },
     })).sort((a, b) => a.festivalName.localeCompare(b.festivalName) || b.year - a.year),

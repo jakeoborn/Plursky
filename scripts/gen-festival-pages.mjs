@@ -447,10 +447,11 @@ function ymdLabel(a, b) {
   return ya === yb ? `${MON[ma - 1]} ${da} – ${MON[mb - 1]} ${db}, ${ya}` : `${MON[ma - 1]} ${da}, ${ya} – ${MON[mb - 1]} ${db}, ${yb}`;
 }
 const editionHref = e => `/?tab=past&amp;edition=${esc(e.id)}`;
+const missingList = ms => { const p = ms.map(m => `${esc(m.stage)} (${esc(m.when)})`); return p.length < 2 ? p.join('') : `${p.slice(0, -1).join(', ')} and ${p[p.length - 1]}`; };
 function editionSummary(e) {
   return e.lineupOnly
     ? `${e.artists} artists from the official lineup. Set times not verified for this edition.`
-    : `${e.sets} sets on ${e.stages} stages, with the day, stage and time the festival's official schedule printed.`;
+    : `${e.sets} sets on ${e.stages} stages, with the day, stage and time the festival's official schedule printed.${e.missingStages ? ` Selected stages: the official schedule also listed ${missingList(e.missingStages)}, not included yet.` : ''}`;
 }
 
 // A festival not open in Plursky yet (a gated entry, usually next year's)
@@ -478,7 +479,7 @@ function pastSection(entry, editions) {
   <section aria-labelledby="past-h">
     <h2 id="past-h">${entry.available ? 'Past editions' : 'Earlier editions'} of ${esc(cfg.brand || cfg.name)}</h2>
     <ul>
-${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span class="sep"> — </span>${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}</li>`).join('\n')}
+${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span class="sep"> — </span>${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}${e.missingStages ? ', selected stages' : ''}</li>`).join('\n')}
     </ul>
     <p class="note">Each link opens that edition in Past Festivals in Plursky.</p>
   </section>`;
