@@ -2894,6 +2894,222 @@
    }
   },
   {
+   "id": "shambhala-2016",
+   "festivalId": "shambhala",
+   "festivalName": "Shambhala",
+   "name": "Shambhala 2016",
+   "year": 2016,
+   "timezone": "America/Vancouver",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-08-04",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2016-08-05",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2016-08-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2016-08-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 219,
+    "sets": 229
+   }
+  },
+  {
+   "id": "shambhala-2015",
+   "festivalId": "shambhala",
+   "festivalName": "Shambhala",
+   "name": "Shambhala 2015",
+   "year": 2015,
+   "timezone": "America/Vancouver",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-08-06",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2015-08-07",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2015-08-08",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2015-08-09",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 237,
+    "sets": 242
+   }
+  },
+  {
+   "id": "shambhala-2014",
+   "festivalId": "shambhala",
+   "festivalName": "Shambhala",
+   "name": "Shambhala 2014",
+   "year": 2014,
+   "timezone": "America/Vancouver",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-08-07",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2014-08-08",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2014-08-09",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2014-08-10",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 238,
+    "sets": 247
+   }
+  },
+  {
+   "id": "shambhala-2013",
+   "festivalId": "shambhala",
+   "festivalName": "Shambhala",
+   "name": "Shambhala 2013",
+   "year": 2013,
+   "timezone": "America/Vancouver",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-08-08",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2013-08-09",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2013-08-10",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2013-08-11",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 261,
+    "sets": 277
+   }
+  },
+  {
+   "id": "shambhala-2012",
+   "festivalId": "shambhala",
+   "festivalName": "Shambhala",
+   "name": "Shambhala 2012",
+   "year": 2012,
+   "timezone": "America/Vancouver",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-08-09",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2012-08-10",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2012-08-11",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2012-08-12",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 234,
+    "sets": 260
+   }
+  },
+  {
+   "id": "shambhala-2011",
+   "festivalId": "shambhala",
+   "festivalName": "Shambhala",
+   "name": "Shambhala 2011",
+   "year": 2011,
+   "timezone": "America/Vancouver",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-08-04",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2011-08-05",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2011-08-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2011-08-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 214,
+    "sets": 230
+   }
+  },
+  {
    "id": "tomorrowland-2023",
    "festivalId": "tomorrowland",
    "festivalName": "Tomorrowland",

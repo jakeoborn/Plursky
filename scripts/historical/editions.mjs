@@ -17,6 +17,18 @@ export const EDITIONS = {
   "governors-ball-2025": { festivalId: "governors-ball", name: "Governors Ball 2025", year: 2025,
     timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2025-06-06", "Friday"], ["2025-06-07", "Saturday"], ["2025-06-08", "Sunday"]] },
+  // Shambhala 2011-2016: the official shambhalamusicfestival.com schedule
+  // page, one table per day tab (format "shambhala-table",
+  // shambhala-schedule.mjs), one archived page per year, each captured after
+  // the festival. Each day runs from late morning to the next morning; the
+  // rollover hour sits between a day's last morning start and the next day's
+  // first start (2011 and 2013 print sets as late as 11:00 the next morning).
+  "shambhala-2011": { festivalId: "shambhala", name: "Shambhala 2011", year: 2011, timezone: "America/Vancouver", rolloverHour: 12, method: "official_sources", dates: [["2011-08-04","Thursday"],["2011-08-05","Friday"],["2011-08-06","Saturday"],["2011-08-07","Sunday"]] },
+  "shambhala-2012": { festivalId: "shambhala", name: "Shambhala 2012", year: 2012, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2012-08-09","Thursday"],["2012-08-10","Friday"],["2012-08-11","Saturday"],["2012-08-12","Sunday"]] },
+  "shambhala-2013": { festivalId: "shambhala", name: "Shambhala 2013", year: 2013, timezone: "America/Vancouver", rolloverHour: 12, method: "official_sources", dates: [["2013-08-08","Thursday"],["2013-08-09","Friday"],["2013-08-10","Saturday"],["2013-08-11","Sunday"]] },
+  "shambhala-2014": { festivalId: "shambhala", name: "Shambhala 2014", year: 2014, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2014-08-07","Thursday"],["2014-08-08","Friday"],["2014-08-09","Saturday"],["2014-08-10","Sunday"]] },
+  "shambhala-2015": { festivalId: "shambhala", name: "Shambhala 2015", year: 2015, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2015-08-06","Thursday"],["2015-08-07","Friday"],["2015-08-08","Saturday"],["2015-08-09","Sunday"]] },
+  "shambhala-2016": { festivalId: "shambhala", name: "Shambhala 2016", year: 2016, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2016-08-04","Thursday"],["2016-08-05","Friday"],["2016-08-06","Saturday"],["2016-08-07","Sunday"]] },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.
@@ -434,7 +446,7 @@ export const DROP_RULES = [
     reason: "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance" },
   // Electric Forest 2013 printed contest slots before their winners were
   // named ("Discovery Project Winner") and a "Secret Set".
-  { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|secret set|tba|to be announced|coming soon!*|discovery project winners?)$/i,
+  { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|secret set|tba|tbd|to be announced|coming soon!*|discovery project winners?|mystery headliner)$/i,
     reason: "unnamed slot: no performer was billed" },
   // A bare "Discovery Project" in a printed stage slot is the contest set
   // before its winner was named (EDC Orlando 2022, 2024). A lineup list's
@@ -501,6 +513,15 @@ export const PROGRAMME = {
   "electric-forest-2013": ["Love Bomb Yoga Flow with Mary Clare Sweet", "Magic Breath with Mary Clare Sweet", "Cosmic Con with Mary Clare Sweet",
     "Drum Workshop w/ Kodi", "Luna Breeze's Hula Hoop Workshop", "Hoop Troupe Showcase", "Bell's presents Kyle Hollingsworth's Brewru Experience",
     "Atmospheric Entertainment by Quixotic"],
+  // Shambhala's schedule tables print its programme in the same stage
+  // columns as the sets: ceremonies, classes, workshops, a fashion show, a
+  // band changeover and a circus act, each read on the archived page.
+  "shambhala-2011": ["Labyrinth Experience", "Inner Journeys Ecstatic Dance"],
+  "shambhala-2012": ["Opening Ceremony with Luciterra", "Labyrinth Experience", "Inner Journeys Ecstatic Dance", "Ableton Workshop w/ Vespers", "Closing Circle"],
+  "shambhala-2013": ["Opening Ceremony with Soul Fire Dance", "Dance Church w/ Emma Star & Bernice Rabbis", "Church of Reggae Yoga: Adam Tree & DJ Caçadora"],
+  "shambhala-2014": ["Opening Ceremony with Soul Fire Dance", "Fashion Show w/ Sam Demoe"],
+  "shambhala-2015": ["JoaqoPelli (Flute Ceremony, 11:11AM)", "JoaqoPelli (Flute Ceremony)", "Hoola (Band Changeover)", "Opening Ceremony w/ Soul Fire Dance", "Fashion Show"],
+  "shambhala-2016": ["Classical Hour", "Yoga of Bass w/ FreQ Nasty & Claire", "Hosted by Def3 & ThinkTank", "Opening Ceremony with Soul Fire Dance", "SubPac Sound Healing w/ FreQ Nasty", "iLoveHoolaHoops Workshop with FunkConscious", "iLoveHoolaHoops Workshop with Dubconscious", "Fashion Fiasco Fantastico w/ DJ Faiith", "Circus Acts Insomniacs"],
 };
 const PROGRAMME_REASON = "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance";
 
@@ -516,6 +537,15 @@ export const EVENT_BLOCKS = {
     "Movement Electric Music Festival Presents a Detroit Dance Party Featuring: / / Chuck Flask & Keith Kemp / / Ataxia / / Secrets",
     "Wagon Wheel Closing Party Featuring / / Up Until Now / Human Agency / and THE UNSHEATHED!",
   ],
+  // Shambhala's recurring hosted sessions (the Ragga Jungle Rinse Out, the
+  // Fractal Funk Jam, the Hip Hop Showcase, sunrise jams) print a session
+  // title, with its hosts or several acts or none, as one block.
+  "shambhala-2011": ["Reggae Jam", "Hip Hop Showcase: Click thru for full line up", "Fractal Funk Jam", "Giant Panda Showcase: The Mighty Party All Night Dance Adventure, The Vortex Ensemble, Wholesome Jones", "Freakers Corner with Tippy A GoGo & the Beach Mystic"],
+  "shambhala-2012": ["PK & friends Ragga Jungle Rinse Out", "Hip Hop Showcase", "Fractal Funk Jam w/ Smalltown DJs & friends"],
+  "shambhala-2013": ["PK & Friends present the Ragga Jungle Rinse Out, hosted by Hush", "Hip Hop Showcase - Hosted by Erica Dee", "Fractal Funk Jam, with hosts Smalltown DJs", "The Pride: Hoola & Special Closing Set by Lion-S"],
+  "shambhala-2014": ["Ragga Jungle Rinse Out", "Hip Hop Showcase - Hosted by Emotionz w/ Blockparents, Vs. Lyndi Lysh & Digs, Northwest Division", "Hip Hop Showcase w/ Grhymes & Attikus, Ashleigh Eymann, Fresh Kils, Degree One (B-Boy Jam)", "Hip Hop Showcase w/ Scott Jackson, Pigeon Hole, Sweatshop Union, Emotionz LIVE BAND SET", "Liquid Soul Sessions w/ PK & Friends", "Fractal Funk Jam Hosted by Smalltown DJs"],
+  "shambhala-2015": ["Ragga Jungle Rinse Out - Hosted by Hush", "Hip Hop Showcase ft. Grouch & Eligh", "Liquid Sunrise Jam", "Fractal Funk Jam - Hosted by Smalltown DJs"],
+  "shambhala-2016": ["Ragga Jungle Rinse Out", "Hip Hop Showcase", "Sunrise Liquid Jam", "Fractal Funk Jam - Hosted by Smalltown DJs"],
 };
 const EVENT_BLOCK_REASON = "a curated event printed as one block (an event title with several acts and extras), not one billed performance";
 
