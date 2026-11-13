@@ -102,5 +102,11 @@
  "shambhala-2013": { "stages": 6, "setsPerDay": [36, 88, 78, 75], "droppedPerDay": [0, 2, 2, 3] },
  "shambhala-2014": { "stages": 6, "setsPerDay": [27, 78, 70, 72], "droppedPerDay": [0, 2, 5, 1] },
  "shambhala-2015": { "stages": 6, "setsPerDay": [26, 76, 69, 71], "droppedPerDay": [2, 2, 4, 2] },
- "shambhala-2016": { "stages": 6, "setsPerDay": [26, 69, 68, 66], "droppedPerDay": [3, 3, 4, 3] }
+ "shambhala-2016": { "stages": 6, "setsPerDay": [26, 69, 68, 66], "droppedPerDay": [3, 3, 4, 3] },
+ "outside-lands-2012": { "stages": 5, "setsPerDay": [29, 29, 29], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2013": { "stages": 6, "setsPerDay": [36, 37, 36], "droppedPerDay": [0, 0, 1] },
+ "outside-lands-2014": { "stages": 5, "setsPerDay": [29, 29, 28], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2015": { "stages": 6, "setsPerDay": [35, 36, 36], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2016": { "stages": 5, "setsPerDay": [30, 30, 30], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2017": { "stages": 6, "setsPerDay": [36, 35, 38], "droppedPerDay": [0, 0, 0] }
 }
