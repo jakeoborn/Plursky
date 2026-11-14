@@ -3229,6 +3229,8 @@ for (const [label, file] of [
     process.stdout.write(out.split("\n").filter(l => !/^\s+✓ /.test(l) || /coachella shortlist:/.test(l)).join("\n"));
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").split("\n").filter(l => /✗|Error/.test(l)).join("\n").trim();
+    // The filtered lines can hide a startup error (CI printed only "name: 'Error'"), so print the child's full stderr too.
+    if (e?.stderr) process.stdout.write(`  shortlist gate stderr:\n${e.stderr}\n`);
     fail(`Coachella shortlist gate failed${detail ? ` — ${detail}` : ""}`);
   }
 }

@@ -31,7 +31,7 @@
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { createServer } from "node:net";
-import { readFileSync, mkdirSync } from "node:fs";
+import { readFileSync, mkdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { wireVendor } from "./lib/vendor-cdn.mjs";
@@ -96,7 +96,9 @@ async function shareText(p) {
   return p.evaluate(() => window.__shared[0]?.text || "");
 }
 
-const browser = await chromium.launch();
+// The CI runner has system Chrome only (no bundled headless shell): use it when present.
+const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
+const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 try {
   // ── 1. The flow, per viewport ──────────────────────────────────────────────
   for (const { w, h, scheme } of VIEWPORTS) {
