@@ -449,11 +449,38 @@ try {
     const names = [...new Set(acts.map(a => a.name))];
     const unseen = ledgerNames.filter(n => !names.some(m => m.toLowerCase() === n.toLowerCase()));
     check(acts.length >= ledgerNames.length && !unseen.length, `heroes: ${acts.length} hero(s) for ${names.length} of the ledger's ${ledgerNames.length} names; no reachable lineup shows: ${unseen.join(', ') || 'none'}`);
+    // One boot per festival, mode and width (f25): a cold boot per hero cost ~2,100 s of CI.
+    // Each later hero goes Back (the artist screen unmounts) and opens the next artist through
+    // the app's own link handler, so every hero still mounts a fresh artist screen.
+    const groups = new Map();
     for (const a of acts) for (const pick of ['dark', 'light']) for (const width of [390, 320]) {
+      const k = `${a.fid}|${pick}|${width}`;
+      if (!groups.has(k)) groups.set(k, []);
+      groups.get(k).push({ a, pick, width });
+    }
+    let heroRuns = 0, boots = 0;
+    for (const runs of groups.values()) {
+      let booted = null;
+      for (const { a, pick, width } of runs) {
+      heroRuns++;
       const tag = `hero ${a.name}${a.parts > 1 ? ` (${a.billing})` : ''} (${a.fid}) ${pick} ${width}`;
-      let ctx;
       try {
-        const o = await open({ fid: a.fid, at: '2026-05-01T18:00:00Z', saved: [], extra: {}, width, pick, query: `tab=lineup&artist=${encodeURIComponent(a.id)}`, ready: '[data-artist-hero]' }); ctx = o.ctx;
+        if (!booted) {
+          booted = await open({ fid: a.fid, at: '2026-05-01T18:00:00Z', saved: [], extra: {}, width, pick, query: `tab=lineup&artist=${encodeURIComponent(a.id)}`, ready: '[data-artist-hero]' });
+          boots++;
+        } else {
+          // Back until the artist screen is gone (a b2b half may have pushed a nav entry).
+          for (let i = 0; i < 6 && await booted.page.locator('[data-artist-hero]').count(); i++) {
+            await booted.page.locator('[data-artist-hero-label="back"]').first().click();
+            await booted.page.waitForTimeout(150);
+          }
+          await booted.page.waitForFunction(() => !document.querySelector('[data-artist-hero]'), null, { timeout: 15000 });
+          const opened = await booted.page.evaluate((id) => { if (!window.plurskyApplyUrlParams) return false; window.plurskyApplyUrlParams(`?tab=lineup&artist=${encodeURIComponent(id)}`); return true; }, a.id);
+          check(opened, `${tag}: the app has no link handler to open an artist`);
+          await booted.page.waitForSelector('[data-artist-hero]', { timeout: 30000 });
+          await booted.page.clock.runFor(1500); await booted.page.waitForTimeout(400);
+        }
+        const o = { page: booted.page, errors: booted.errors.splice(0) };
         if (a.part > 0) {
           // The artist screen shows one half of a b2b at a time: pick this half.
           const picked = await o.page.evaluate((name) => { const b = [...document.querySelectorAll('[data-screen="artist"] button')].find(b => b.textContent.trim().toLowerCase() === name.toLowerCase()); if (b) b.click(); return !!b; }, a.name);
@@ -493,10 +520,19 @@ try {
           check(!wrong.length, `${tag}: hero type rendered with the wrong face: ${wrong.map(s => `${s.sel} → ${s.rendered}`).join('; ')}`);
           heroLabels += ev.labels.length; heroesSeen++;
         }
+        o.errors.push(...booted.errors.splice(0));
         check(!o.errors.length, `${tag}: page errors: ${o.errors.join(' | ').slice(0, 200)}`);
-      } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
-      await ctx?.close();
+      } catch (err) {
+        check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`);
+        // A hero that threw may leave the page anywhere: the next hero boots fresh.
+        await booted?.ctx.close().catch(() => {}); booted = null;
+      }
+      }
+      await booted?.ctx.close();
     }
+    // The floor: every hero ran, each in both modes at both widths, with one boot per group.
+    check(heroRuns === acts.length * 4 && heroesSeen === heroRuns && boots >= groups.size, `heroes: ${heroesSeen} measured of ${heroRuns} runs (want ${acts.length * 4}, all of them), ${boots} boot(s) for ${groups.size} group(s)`);
+    console.log(`  heroes: ${heroRuns} runs in ${groups.size} group(s), ${boots} boot(s)`);
     await cmp.close();
   }
 
