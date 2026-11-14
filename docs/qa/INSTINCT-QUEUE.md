@@ -72,12 +72,12 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 
 | Festival | Id | Dates | Acts | Timed | No stage | Stages | Needs |
 |---|---|---|---|---|---|---|---|
+| Coachella 2027 | `coachella-2027` | Apr 9–11 & 16–18, 2027 | 155 | 0 | 155 | 0 | stage and time |
 | Awakenings Festival 2027 | `awakenings-2027` | Jul 9–11, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
 | Bass Coast 2027 | `bass-coast-2027` | Jul 9–12, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
 | Beyond Wonderland at The Gorge 2027 | `beyond-wonderland-gorge-2027` | Jun 26–27, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
 | Beyond Wonderland SoCal 2027 | `beyond-wonderland-socal-2027` | Mar 26–27, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
 | Boom Festival 2027 | `boom-festival-2027` | Jul 18–25, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
-| Coachella 2027 | `coachella-2027` | Apr 9–18, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
 | Creamfields 2027 | `creamfields-2027` | Aug 26–29, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |
 | Das Energi 2027 | `das-energi-2027` | Dates TBA | 0 | 0 | 0 | 0 | page only (no data set) |
 | Defqon.1 2027 | `defqon1-2027` | Jun 24–27, 2027 | 0 | 0 | 0 | 0 | page only (no data set) |

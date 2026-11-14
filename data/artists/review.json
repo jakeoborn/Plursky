@@ -21,6 +21,20 @@
   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "coachella-2027:coa27-kolter-x-sidney-charles",
+  "printed": "Kolter x Sidney Charles",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2027:coa27-marten-lou-x-alex-wann",
+  "printed": "Marten Lou x Alex Wann",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "acl-2013:d1:austin-kiddie-limits:1230:tim-and-the-space-cadets-with-mother-falcon",
   "printed": "Tim and the Space Cadets with Mother Falcon",
   "reason": "feat / with billing",
@@ -693,6 +707,13 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:sza",
+  "printed": "SZA",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:fun",
   "printed": "fun.",
   "reason": "very short name billed at more than one festival brand",
@@ -751,13 +772,6 @@
  {
   "id": "key:ajr",
   "printed": "AJR",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
- },
- {
-  "id": "key:sza",
-  "printed": "SZA",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."

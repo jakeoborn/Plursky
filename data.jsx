@@ -1614,29 +1614,8 @@ const FESTIVALS_REGISTRY = [
     emoji:     "🤠",
     region:    "North America",
   },
-  {
-    config: {
-      id:        "coachella-2027",
-      // Official site, checked reachable 2026-09-24. No 2027 lineup yet.
-      officialEvent: { website: "https://www.coachella.com/", observedAt: "2026-09-24" },
-      // The festival's OWN maps page ("Coachella 2026 Venue map" + directions,
-      // parking, camping). Link the page; never hotlink or re-host the images.
-      mapSource: { url: "https://www.coachella.com/maps", observedAt: "2026-09-24", mapYear: 2026 },
-      name:      "Coachella 2027",
-      shortName: "Coachella",
-      brand:     "Coachella",
-      tagline:   "Two weekends, one polo field",
-      location:  "Empire Polo Club · Indio, CA",
-      dates:     "Apr 9–18, 2027",
-      year:      2027,
-      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
-      print: { accent: "#4E6234", accent2: "#44A1A4", source: { url: "https://media.coachella.com/templates/template10c/css/style.v7.css?t=7522fab35e14c254d8ced93290f5922c", observedAt: "2026-10-09", seenAs: "Site stylesheet token `html { --color-green-2:#4e6234 }`; the default `.c-button` background is an image, `--_button-bg:url(.../coachella-2026/button-bg-green.webp)`, whose sampled mean colour is #496330 (modal bucket #405828), matching that token; page headers use a teal gradient #337190 -> #44a1a4 -> #85cfc4 and link hover is `--color-yellow-1:#ffab37`.", confidence: "medium" }, note: "No <meta theme-color> and the 2026 site spreads a 20-colour palette across gradients, so the primary button's olive green is the accent, identified by sampling the button image (sips -> BMP, 27,078 opaque pixels) and matching it to the nearest first-party token." },
-    },
-    available: false,
-    accent:    "#ec4899",
-    emoji:     "🌵",
-    region:    "North America",
-  },
+  // coachella-2027 is a festival module now: data/festivals/coachella-2027.js
+  // (registered through _WAVE1_IDS below). Never re-add a stub here.
   // ── Registry stubs from #113 (Tiers 2–3): dates + venue ONLY ──
   // No lineup, no stages, no module. Every fact below was re-read on the
   // festival's OWN site on 2026-09-10. ⚠ All three Insomniac lineup pages
@@ -1744,7 +1723,7 @@ const _FESTIVAL_STALE_MS = 7 * 24 * 60 * 60 * 1000;
 // are gated — a pure nearest-by-date pick would select one and effectively
 // flip it, which AGENTS.md §4 says only its own PR may do.
 //
-// Entries with no startMs/endMs (coachella-2027 carries a `dates` string but
+// Entries with no startMs/endMs (a registry stub that carries a `dates` string but
 // no timestamps; "Dates TBA" entries carry neither) are not comparable and
 // are skipped rather than sorted as 0 — treating a missing date as the epoch
 // would rank an unannounced festival ahead of every real one.
@@ -1852,7 +1831,7 @@ function _festivalPhase(f, now) {
   if (now > w.endMs) return "ended";
   if (now < w.startMs) return "upcoming";
   // Only an entry with real gate times can be live. A dates-only stub
-  // (Coachella 2027: "Apr 9–18", two weekends, no dayDates) is unbuilt, and
+  // (e.g. a two-weekend "Apr 9–18" string with no dayDates) is unbuilt, and
   // its printed span can't say which days it runs (Codex's third P2 on #183).
   if (!(typeof c.startMs === "number" && typeof c.endMs === "number")) return "upcoming";
   // Inside the startMs..endMs envelope, a festival that runs in blocks (ACL's
@@ -5026,6 +5005,7 @@ const _WAVE1_IDS = [
   "tomorrowland-thailand-2026",
   "groove-cruise-2027",
   "day-zero-tulum-2027",
+  "coachella-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {
