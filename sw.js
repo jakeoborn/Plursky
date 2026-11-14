@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v605';
+﻿const CACHE      = 'plursky-v606';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v605';
+const APP_VER    = 'v606';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -399,19 +399,63 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // Own-origin: network-first so deploys propagate; SW cache fallback when offline.
-  // cache:'no-store' bypasses browser HTTP cache so GH-Pages max-age=600 can't pin
-  // users to stale index.html between SW updates.
-  e.respondWith(
-    fetch(req, { cache: 'no-store' }).then(resp => {
-      if (resp && resp.status === 200)
-        caches.open(CACHE).then(c => c.put(req, resp.clone()));
-      return resp;
-    }).catch(() =>
-      caches.match(req).then(c => c || caches.match('./index.html'))
-    )
-  );
+  e.respondWith(ownOrigin(e, req));
 });
+
+// Own-origin: network-first so deploys propagate, with a deadline once a saved
+// copy exists. cache:'no-store' bypasses the browser HTTP cache so GH-Pages
+// max-age=600 can't pin users to a stale index.html between SW updates.
+//
+// The deadline is the slow-signal fix. A festival connection rarely FAILS; it
+// crawls, and the old path only fell back to the cache on a failure, so a
+// reopened lineup waited ~90 s on emulated slow 3G with every byte already
+// cached (#458 matrix). Now, when a saved copy exists and the network has not
+// delivered the WHOLE response within OWN_DEADLINE_MS, the saved copy answers
+// and the download carries on in the background to refresh the cache for the
+// next open. The whole body is awaited, not just the headers: on a slow link
+// headers arrive in about a second and the body is what crawls.
+//
+// 3 s: the largest own-origin file (build/spotify.js, ~560 KB) arrives in
+// well under a second on ordinary 4G/Wi-Fi, so a healthy connection still
+// gets the fresh copy and deploys still propagate; on slow 3G (~50 KB/s) that
+// one file alone needs 10 s+. Versions stay coherent: every script URL carries
+// ?v=, so a stale index.html asks for its own (cached) versions, and a fresh
+// index.html asks for URLs that are not cached yet, which take the
+// no-deadline path below.
+const OWN_DEADLINE_MS = 3000;
+
+async function ownOrigin(e, req) {
+  let saved = null;
+  const net = fetch(req, { cache: 'no-store' }).then(async resp => {
+    if (!resp || resp.status !== 200) return resp;
+    // Read the body here so "arrived" means all of it. A rebuilt Response
+    // also drops the redirected flag a navigation must not answer with.
+    const body = await resp.arrayBuffer();
+    const init = { status: resp.status, statusText: resp.statusText, headers: resp.headers };
+    saved = caches.open(CACHE).then(c => c.put(req, new Response(body, init)));
+    return new Response(body, init);
+  });
+  // The background refresh must outlive the response we hand back.
+  e.waitUntil(net.then(() => saved).catch(() => {}));
+
+  const cached = await caches.match(req);
+  if (!cached) {
+    // Nothing saved for this URL (first visit, or a new deploy's files): wait
+    // for the network as before; offline falls back to the app shell.
+    try { return await net; }
+    catch { return (await caches.match('./index.html')) || Response.error(); }
+  }
+  let timer;
+  const deadline = new Promise(r => { timer = setTimeout(() => r(null), OWN_DEADLINE_MS); });
+  try {
+    const first = await Promise.race([net, deadline]);
+    return first || cached;
+  } catch {
+    return cached;
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 // â”€â”€ Push (server-driven) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 self.addEventListener('push', e => {
