@@ -258,11 +258,11 @@
     tzAbbr: "ICT",
     utcOffsetHours: 7,
     dayDates: {
-      1: { y: 2026, m: 11, d: 11, name: "Dec 11", short: "FRI",
+      1: { y: 2026, m: 11, d: 11, name: "Friday", short: "FRI",
            midnightUtc: Date.UTC(2026, 11, 10, 17, 0, 0) },
-      2: { y: 2026, m: 11, d: 12, name: "Dec 12", short: "SAT",
+      2: { y: 2026, m: 11, d: 12, name: "Saturday", short: "SAT",
            midnightUtc: Date.UTC(2026, 11, 11, 17, 0, 0) },
-      3: { y: 2026, m: 11, d: 13, name: "Dec 13", short: "SUN",
+      3: { y: 2026, m: 11, d: 13, name: "Sunday", short: "SUN",
            midnightUtc: Date.UTC(2026, 11, 12, 17, 0, 0) },
     },
     // Computed (NOAA formula) at the gps point, ICT.

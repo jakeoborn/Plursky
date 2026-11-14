@@ -493,13 +493,20 @@ function readoutHonest(avatar) {
 // gpsAnchors and the gates above, so a fitted festival still pins nothing and
 // reads STAGES PENDING until its stages are checked. Only a fit whose ties
 // agree within ARTFIT_MAX_RMS_M counts; a looser one is ignored, not faded.
+// The one exception is a fit its ties file marks `approximate` (Jake,
+// 2026-11-12: "I think we can make it work with event map over the location
+// it's being held at"): art drawn too far out of proportion to agree within
+// 15 m, pinned by a spline through every tie and labelled APPROX MAP, up to
+// ARTFIT_APPROX_MAX_RMS_M leave-one-out.
 const ARTFIT_MAX_RMS_M = 15;
+const ARTFIT_APPROX_MAX_RMS_M = 60;
 function artGeorefFor(cfg) {
   const g = cfg && cfg.mapGeoref;
   if (!g || typeof g.image !== "string" || !Array.isArray(g.bounds) || g.bounds.length !== 4) return null;
   const [w, s, e, n] = g.bounds;
   if (![w, s, e, n].every(Number.isFinite) || !(e > w && n > s)) return null;
-  if (!(Number.isFinite(g.rmsM) && g.rmsM <= ARTFIT_MAX_RMS_M)) return null;
+  const maxRms = g.approximate === true ? ARTFIT_APPROX_MAX_RMS_M : ARTFIT_MAX_RMS_M;
+  if (!(Number.isFinite(g.rmsM) && g.rmsM <= maxRms)) return null;
   return g;
 }
 function posterTierFor(cfg, affine, verified) {
@@ -2151,7 +2158,7 @@ function MapScreen({ state, setState }) {
   const artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
   const artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
   const mapPostureLabel = artYear + (REAL_MAP_ONLY || (useRealMap && !REAL_MAP_PLACES_CHECKED)
-    ? (useRealMap && POSTER_TIER === "fitted" ? "OFFICIAL MAP · STAGES PENDING"
+    ? (useRealMap && POSTER_TIER === "fitted" ? (ART_GEOREF && ART_GEOREF.approximate ? "APPROX MAP · STAGES PENDING" : "OFFICIAL MAP · STAGES PENDING")
       : useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING")
     : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
         ? "OFFICIAL MAP"

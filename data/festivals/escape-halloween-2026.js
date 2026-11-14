@@ -497,6 +497,13 @@
     // `year`, so wherever that art is on screen the map label names it
     // ("2025 MAP · …"). Drop it at the flip, with the art.
     mapArtYear: 2025,
+    // The same art bent onto the NOS Events Center grounds by a thin-plate
+    // fit pinned at every measured street and building tie (Jake, 2026-11-12:
+    // "I think we can make it work with event map over the location it's being held at"). The 2025 art is drawn out of proportion, so it agrees with the
+    // ground only to ~32 m between ties: an APPROXIMATE fit, labelled so.
+    // scripts/build-geo-plate.py over map-sources/escape-halloween-2026-geo-ties.json.
+    mapGeoref: { image: "geo-maps/escape-halloween-2026.webp", bounds: [-117.2942969, 34.0863308, -117.2900206, 34.092641], model: "tps",
+                 ties: "map-sources/escape-halloween-2026-geo-ties.json", rmsM: 32.1, looRmsM: 32.1, approximate: true },
 
     // The festival's OWN map page, linked (never embedded) by the /f/ page:
     // official publication is provenance, not reuse rights. mapYear is the

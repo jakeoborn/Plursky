@@ -546,12 +546,14 @@ function readoutHonest(avatar) {
   return geometryVerifiedFor(typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
 var ARTFIT_MAX_RMS_M = 15;
+var ARTFIT_APPROX_MAX_RMS_M = 60;
 function artGeorefFor(cfg) {
   var g = cfg && cfg.mapGeoref;
   if (!g || typeof g.image !== "string" || !Array.isArray(g.bounds) || g.bounds.length !== 4) return null;
   var [w, s, e, n] = g.bounds;
   if (![w, s, e, n].every(Number.isFinite) || !(e > w && n > s)) return null;
-  if (!(Number.isFinite(g.rmsM) && g.rmsM <= ARTFIT_MAX_RMS_M)) return null;
+  var maxRms = g.approximate === true ? ARTFIT_APPROX_MAX_RMS_M : ARTFIT_MAX_RMS_M;
+  if (!(Number.isFinite(g.rmsM) && g.rmsM <= maxRms)) return null;
   return g;
 }
 function posterTierFor(cfg, affine, verified) {
@@ -2756,7 +2758,7 @@ function MapScreen({
   var canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
   var artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
   var artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
-  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "fitted" ? "OFFICIAL MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
+  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "fitted" ? ART_GEOREF && ART_GEOREF.approximate ? "APPROX MAP · STAGES PENDING" : "OFFICIAL MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
   var mapAmenities = useRealMap ? REAL_MAP_AMENITIES : typeof AMENITIES !== "undefined" ? AMENITIES : [];
   var [realMapNote, setRealMapNote] = React.useState(null);
   var _disableRealMap = why => {

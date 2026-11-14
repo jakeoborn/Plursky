@@ -1,0 +1,240 @@
+{
+  "festivalId": "governors-ball-2026",
+  "plate": "map-sources/art/governors-ball-2026-official.webp",
+  "model": "tps",
+  "smoothing": 0,
+  "measuredAt": "2026-11-12",
+  "method": "The plate is the official 2026 Gov Ball patron map: a stylised, roughly 60-degree-rotated illustration of the lawn south-east of the Unisphere in Flushing Meadows Corona Park, with grey park roads outside the green festival ground and paler paths drawn inside it. Ties are permanent park features only: the Unisphere and its ring road, the Astronaut Court roundabout, junctions of United Nations Ave S, Avenue of the States, Avenue of Africa/Asia/Pacific, Meditation Walk, Meridian Road and Path of Commerce, and the NY State Pavilion Tent of Tomorrow; never stages, tents or entrances. Art pixels were read on zoomed, contrast-stretched and high-pass crops of the plate; ground positions are OSM junction nodes (means where a junction is split over two or three nodes, or the art draws one road for a parallel pair) or way-node means for the Unisphere and the Tent.",
+  "artPolygon": [
+    [
+      560,
+      0
+    ],
+    [
+      1720,
+      0
+    ],
+    [
+      1720,
+      140
+    ],
+    [
+      2160,
+      140
+    ],
+    [
+      2160,
+      1560
+    ],
+    [
+      100,
+      1560
+    ],
+    [
+      100,
+      780
+    ],
+    [
+      340,
+      780
+    ],
+    [
+      340,
+      470
+    ],
+    [
+      560,
+      470
+    ]
+  ],
+  "ties": [
+    {
+      "name": "Unisphere centre",
+      "px": 610.0,
+      "py": 172.0,
+      "lat": 40.7463959,
+      "lng": -73.8450748,
+      "ref": "OSM way 596273458 (mean of its nodes)"
+    },
+    {
+      "name": "Unisphere ring east (axis start)",
+      "px": 725.0,
+      "py": 163.0,
+      "lat": 40.7465858,
+      "lng": -73.8445254,
+      "ref": "OSM node 13987070608 + 13987070636 (mean)"
+    },
+    {
+      "name": "Astronaut Ct west apex",
+      "px": 1160.0,
+      "py": 95.0,
+      "lat": 40.7472126,
+      "lng": -73.8426444,
+      "ref": "OSM node 42789987 + 42789994 (mean)"
+    },
+    {
+      "name": "Astronaut Ct x Eisenhower x UN Ave S",
+      "px": 1305.0,
+      "py": 100.0,
+      "lat": 40.7470398,
+      "lng": -73.8421672,
+      "ref": "OSM node 42866426"
+    },
+    {
+      "name": "UN Ave S bend",
+      "px": 1298.0,
+      "py": 445.0,
+      "lat": 40.7458782,
+      "lng": -73.8420553,
+      "ref": "OSM node 12060591832"
+    },
+    {
+      "name": "UN Ave S x Avenue of Africa",
+      "px": 1140.0,
+      "py": 578.0,
+      "lat": 40.745373,
+      "lng": -73.842308,
+      "ref": "OSM node 42886125"
+    },
+    {
+      "name": "Avenue of Africa x Avenue of Asia",
+      "px": 1415.0,
+      "py": 838.0,
+      "lat": 40.7448615,
+      "lng": -73.8408853,
+      "ref": "OSM node 7824412634"
+    },
+    {
+      "name": "Avenue of Africa x Meditation Walk",
+      "px": 1612.0,
+      "py": 1015.0,
+      "lat": 40.744604,
+      "lng": -73.840186,
+      "ref": "OSM node 42797671"
+    },
+    {
+      "name": "Meditation Walk x Avenue of the Pacific",
+      "px": 1365.0,
+      "py": 1245.0,
+      "lat": 40.7435953,
+      "lng": -73.8410015,
+      "ref": "OSM node 42797666"
+    },
+    {
+      "name": "Avenue of Asia x Avenue of the Pacific",
+      "px": 1160.0,
+      "py": 1082.0,
+      "lat": 40.7439723,
+      "lng": -73.8415696,
+      "ref": "OSM node 7824412614"
+    },
+    {
+      "name": "Meridian Rd x Meadow Lake Dr",
+      "px": 1760.0,
+      "py": 1232.0,
+      "lat": 40.7444395,
+      "lng": -73.8387828,
+      "ref": "OSM node 276095964"
+    },
+    {
+      "name": "Path of Commerce x Eisenhower",
+      "px": 2004.0,
+      "py": 365.0,
+      "lat": 40.7478699,
+      "lng": -73.8393353,
+      "ref": "OSM node 42916432"
+    },
+    {
+      "name": "UN Ave S x Avenue of the States",
+      "px": 392.0,
+      "py": 797.0,
+      "lat": 40.7441814,
+      "lng": -73.8453629,
+      "ref": "OSM node 2818398921 + 42886114 (mean)"
+    },
+    {
+      "name": "UN Ave S x Truman Promenade",
+      "px": 605.0,
+      "py": 772.0,
+      "lat": 40.7445833,
+      "lng": -73.8440793,
+      "ref": "OSM node 7823263635 + 7823263634 + 7823263633 (mean)"
+    },
+    {
+      "name": "Avenue of the States x Path of Peace",
+      "px": 405.0,
+      "py": 1295.0,
+      "lat": 40.7427538,
+      "lng": -73.8447208,
+      "ref": "OSM node 7823263641"
+    },
+    {
+      "name": "Meridian Rd x connector",
+      "px": 190.0,
+      "py": 1310.0,
+      "lat": 40.7425195,
+      "lng": -73.8455232,
+      "ref": "OSM node 42901636"
+    },
+    {
+      "name": "NY State Pavilion Tent of Tomorrow",
+      "px": 530.0,
+      "py": 1197.0,
+      "lat": 40.7435275,
+      "lng": -73.8443516,
+      "ref": "OSM way 992130159 (mean of its nodes)"
+    },
+    {
+      "name": "Avenue of the Pacific x Meridian Rd",
+      "px": 1505.0,
+      "py": 1395.0,
+      "lat": 40.7432247,
+      "lng": -73.8404477,
+      "ref": "OSM node 42901608"
+    }
+  ],
+  "source": "https://support.govball.com/hc/en-us/articles/11579732251284-Is-there-a-current-festival-map",
+  "approximate": true,
+  "output": {
+    "image": "geo-maps/governors-ball-2026.webp",
+    "size": [
+      2048,
+      1955
+    ],
+    "metresPerPixel": 0.422,
+    "bounds": {
+      "w": -73.8467699,
+      "s": 40.7415363,
+      "e": -73.8365255,
+      "n": 40.7489711
+    },
+    "rmsM": 41.3,
+    "worstM": 111.4,
+    "looRmsM": 41.3,
+    "residualsM": {
+      "Unisphere centre": 0.0,
+      "Unisphere ring east (axis start)": 0.0,
+      "Astronaut Ct west apex": 0.0,
+      "Astronaut Ct x Eisenhower x UN Ave S": 0.0,
+      "UN Ave S bend": 0.0,
+      "UN Ave S x Avenue of Africa": 0.0,
+      "Avenue of Africa x Avenue of Asia": 0.0,
+      "Avenue of Africa x Meditation Walk": 0.0,
+      "Meditation Walk x Avenue of the Pacific": 0.0,
+      "Avenue of Asia x Avenue of the Pacific": 0.0,
+      "Meridian Rd x Meadow Lake Dr": 0.0,
+      "Path of Commerce x Eisenhower": 0.0,
+      "UN Ave S x Avenue of the States": 0.0,
+      "UN Ave S x Truman Promenade": 0.0,
+      "Avenue of the States x Path of Peace": 0.0,
+      "Meridian Rd x connector": 0.0,
+      "NY State Pavilion Tent of Tomorrow": 0.0,
+      "Avenue of the Pacific x Meridian Rd": 0.0
+    },
+    "checksM": {},
+    "inputsSha256": "c2cae257b5a32bdc16f0fa960d715a935d0b6cc5b99359cec7bb4674eed30943",
+    "approximate": true,
+    "plateSha256": "6b60b1785f20430585b022122b476cf434628846d48dca9f825157ecc7ecab3a",
+    "sha256": "d0bb1a2dcc35688e1c8d686feb652079682b8d10e664d03b4c03f5f8fd54dcc9"
+  }
+}
