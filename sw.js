@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v609';
+﻿const CACHE      = 'plursky-v611';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v609';
+const APP_VER    = 'v611';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -95,10 +95,13 @@ const LOCAL = [
   './edco-tinker-2026.webp',
   './dreamstate-socal-2026-map.webp',
   // Official map art fitted to each venue (scripts/build-geo-plate.py).
+  './geo-maps/acl-2026.webp',
   './geo-maps/crssd-fall-2026.webp',
   './geo-maps/dreamstate-socal-2026.webp',
   './geo-maps/edc-orlando-2026.webp',
   './geo-maps/edc-lv-2026.webp',
+  './geo-maps/escape-halloween-2026.webp',
+  './geo-maps/governors-ball-2026.webp',
   './geo-maps/hard-summer-2026.webp',
   './geo-maps/iii-points-2026.webp',
   './geo-maps/lollapalooza-2026.webp',
@@ -169,52 +172,102 @@ const LOCAL = [
   './artist-photos/zedd.webp',
   './festival-art/acl-2026.webp',
   './festival-art/arc-2026.webp',
+  './festival-art/awakenings-2027.webp',
+  './festival-art/bass-coast-2027.webp',
   './festival-art/beyond-wonderland-gorge-2027.webp',
   './festival-art/beyond-wonderland-socal-2027.webp',
+  './festival-art/boom-festival-2027.webp',
   './festival-art/coachella-2027.webp',
   './festival-art/countdown-nye-2026.webp',
+  './festival-art/creamfields-2027.webp',
   './festival-art/crssd-fall-2026.webp',
+  './festival-art/das-energi-2027.webp',
+  './festival-art/decadence-arizona-2026.webp',
+  './festival-art/defqon1-2027.webp',
   './festival-art/dreamstate-socal-2026.webp',
+  './festival-art/dwp-2026.webp',
   './festival-art/edc-lv-2026.webp',
   './festival-art/edc-mexico-2027.webp',
   './festival-art/edc-orlando-2026.webp',
+  './festival-art/edc-thailand-2026.webp',
+  './festival-art/electric-love-2027.webp',
   './festival-art/escape-halloween-2026.webp',
+  './festival-art/forbidden-kingdom-2027.webp',
   './festival-art/governors-ball-2026.webp',
   './festival-art/hard-summer-2026.webp',
   './festival-art/iii-points-2026.webp',
+  './festival-art/kappa-futurfestival-2027.webp',
+  './festival-art/lights-all-night-2026.webp',
   './festival-art/lollapalooza-2026.webp',
   './festival-art/lost-lands-2026.webp',
+  './festival-art/movement-2027.webp',
   './festival-art/nocturnal-wonderland-2026.webp',
   './festival-art/outside-lands-2026.webp',
+  './festival-art/parookaville-2027.webp',
   './festival-art/portola-2026.webp',
+  './festival-art/primavera-sound-2027.webp',
+  './festival-art/shambhala-2027.webp',
   './festival-art/summerfest-2026.webp',
+  './festival-art/sunset-on-the-river-2027.webp',
+  './festival-art/sziget-2027.webp',
   './festival-art/tomorrowland-2027.webp',
+  './festival-art/tomorrowland-brasil-2027.webp',
+  './festival-art/tomorrowland-thailand-2026.webp',
+  './festival-art/tomorrowland-winter-2027.webp',
+  './festival-art/ubbi-dubbi-2027.webp',
+  './festival-art/ultra-europe-2027.webp',
   './festival-art/ultra-miami-2026.webp',
+  './festival-art/untold-2027.webp',
   './festival-art/tiles/acl-2026.webp',
   './festival-art/tiles/arc-2026.webp',
+  './festival-art/tiles/awakenings-2027.webp',
+  './festival-art/tiles/bass-coast-2027.webp',
   './festival-art/tiles/beyond-wonderland-gorge-2027.webp',
   './festival-art/tiles/beyond-wonderland-socal-2027.webp',
+  './festival-art/tiles/boom-festival-2027.webp',
   './festival-art/tiles/coachella-2027.webp',
   './festival-art/tiles/countdown-nye-2026.webp',
+  './festival-art/tiles/creamfields-2027.webp',
   './festival-art/tiles/crssd-fall-2026.webp',
+  './festival-art/tiles/das-energi-2027.webp',
+  './festival-art/tiles/decadence-arizona-2026.webp',
   './festival-art/tiles/decadence-colorado-2026.webp',
+  './festival-art/tiles/defqon1-2027.webp',
   './festival-art/tiles/dreamstate-socal-2026.webp',
+  './festival-art/tiles/dwp-2026.webp',
   './festival-art/tiles/edc-lv-2026.webp',
   './festival-art/tiles/edc-mexico-2027.webp',
   './festival-art/tiles/edc-orlando-2026.webp',
+  './festival-art/tiles/edc-thailand-2026.webp',
   './festival-art/tiles/electric-forest-2027.webp',
+  './festival-art/tiles/electric-love-2027.webp',
   './festival-art/tiles/escape-halloween-2026.webp',
+  './festival-art/tiles/forbidden-kingdom-2027.webp',
   './festival-art/tiles/governors-ball-2026.webp',
   './festival-art/tiles/hard-summer-2026.webp',
   './festival-art/tiles/iii-points-2026.webp',
+  './festival-art/tiles/kappa-futurfestival-2027.webp',
+  './festival-art/tiles/lights-all-night-2026.webp',
   './festival-art/tiles/lollapalooza-2026.webp',
   './festival-art/tiles/lost-lands-2026.webp',
+  './festival-art/tiles/movement-2027.webp',
   './festival-art/tiles/nocturnal-wonderland-2026.webp',
   './festival-art/tiles/outside-lands-2026.webp',
+  './festival-art/tiles/parookaville-2027.webp',
   './festival-art/tiles/portola-2026.webp',
+  './festival-art/tiles/primavera-sound-2027.webp',
+  './festival-art/tiles/shambhala-2027.webp',
   './festival-art/tiles/summerfest-2026.webp',
+  './festival-art/tiles/sunset-on-the-river-2027.webp',
+  './festival-art/tiles/sziget-2027.webp',
   './festival-art/tiles/tomorrowland-2027.webp',
+  './festival-art/tiles/tomorrowland-brasil-2027.webp',
+  './festival-art/tiles/tomorrowland-thailand-2026.webp',
+  './festival-art/tiles/tomorrowland-winter-2027.webp',
+  './festival-art/tiles/ubbi-dubbi-2027.webp',
+  './festival-art/tiles/ultra-europe-2027.webp',
   './festival-art/tiles/ultra-miami-2026.webp',
+  './festival-art/tiles/untold-2027.webp',
   `./build/ios-frame.js?v=${APP_VER}`,
   `./build/data.js?v=${APP_VER}`,
   `./build/supabase.js?v=${APP_VER}`,
@@ -350,19 +403,63 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // Own-origin: network-first so deploys propagate; SW cache fallback when offline.
-  // cache:'no-store' bypasses browser HTTP cache so GH-Pages max-age=600 can't pin
-  // users to stale index.html between SW updates.
-  e.respondWith(
-    fetch(req, { cache: 'no-store' }).then(resp => {
-      if (resp && resp.status === 200)
-        caches.open(CACHE).then(c => c.put(req, resp.clone()));
-      return resp;
-    }).catch(() =>
-      caches.match(req).then(c => c || caches.match('./index.html'))
-    )
-  );
+  e.respondWith(ownOrigin(e, req));
 });
+
+// Own-origin: network-first so deploys propagate, with a deadline once a saved
+// copy exists. cache:'no-store' bypasses the browser HTTP cache so GH-Pages
+// max-age=600 can't pin users to a stale index.html between SW updates.
+//
+// The deadline is the slow-signal fix. A festival connection rarely FAILS; it
+// crawls, and the old path only fell back to the cache on a failure, so a
+// reopened lineup waited ~90 s on emulated slow 3G with every byte already
+// cached (#458 matrix). Now, when a saved copy exists and the network has not
+// delivered the WHOLE response within OWN_DEADLINE_MS, the saved copy answers
+// and the download carries on in the background to refresh the cache for the
+// next open. The whole body is awaited, not just the headers: on a slow link
+// headers arrive in about a second and the body is what crawls.
+//
+// 3 s: the largest own-origin file (build/spotify.js, ~560 KB) arrives in
+// well under a second on ordinary 4G/Wi-Fi, so a healthy connection still
+// gets the fresh copy and deploys still propagate; on slow 3G (~50 KB/s) that
+// one file alone needs 10 s+. Versions stay coherent: every script URL carries
+// ?v=, so a stale index.html asks for its own (cached) versions, and a fresh
+// index.html asks for URLs that are not cached yet, which take the
+// no-deadline path below.
+const OWN_DEADLINE_MS = 3000;
+
+async function ownOrigin(e, req) {
+  let saved = null;
+  const net = fetch(req, { cache: 'no-store' }).then(async resp => {
+    if (!resp || resp.status !== 200) return resp;
+    // Read the body here so "arrived" means all of it. A rebuilt Response
+    // also drops the redirected flag a navigation must not answer with.
+    const body = await resp.arrayBuffer();
+    const init = { status: resp.status, statusText: resp.statusText, headers: resp.headers };
+    saved = caches.open(CACHE).then(c => c.put(req, new Response(body, init)));
+    return new Response(body, init);
+  });
+  // The background refresh must outlive the response we hand back.
+  e.waitUntil(net.then(() => saved).catch(() => {}));
+
+  const cached = await caches.match(req);
+  if (!cached) {
+    // Nothing saved for this URL (first visit, or a new deploy's files): wait
+    // for the network as before; offline falls back to the app shell.
+    try { return await net; }
+    catch { return (await caches.match('./index.html')) || Response.error(); }
+  }
+  let timer;
+  const deadline = new Promise(r => { timer = setTimeout(() => r(null), OWN_DEADLINE_MS); });
+  try {
+    const first = await Promise.race([net, deadline]);
+    return first || cached;
+  } catch {
+    return cached;
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 // â”€â”€ Push (server-driven) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 self.addEventListener('push', e => {
