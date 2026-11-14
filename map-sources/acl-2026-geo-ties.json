@@ -1,0 +1,245 @@
+{
+  "festivalId": "acl-2026",
+  "plate": "acl-park-2026.webp",
+  "model": "tps",
+  "smoothing": 0,
+  "measuredAt": "2026-11-12",
+  "method": "The plate is the app's mapImage, a crop of the official ACL Fest 2026 festival map (the legend panel of map-sources/acl-map-2026-source.png removed); a stylised top-down, north-up illustration of Zilker Park with the Great Lawn drawn enlarged. Ties are road junctions and bends the art draws (Stratford Dr, Lou Neff Rd loop, Barton Springs Rd, Andrew Zilker Rd, William Barton Dr, Azie Morton Rd, Sterzing St, Toomey Rd), the Barton Springs Rd bridge and the land tip at the Barton Creek mouth. Art pixels were read on zoomed grids and from a road-colour mask of the art; ground points are OSM nodes (bridge = mean of its four deck corner nodes). No stage, tent, gate or box office was used.",
+  "artPolygon": [
+    [
+      140,
+      165
+    ],
+    [
+      1400,
+      165
+    ],
+    [
+      1400,
+      680
+    ],
+    [
+      1765,
+      680
+    ],
+    [
+      1765,
+      1370
+    ],
+    [
+      1565,
+      1370
+    ],
+    [
+      1565,
+      1475
+    ],
+    [
+      1350,
+      1475
+    ],
+    [
+      1350,
+      1600
+    ],
+    [
+      480,
+      1600
+    ],
+    [
+      480,
+      1478
+    ],
+    [
+      195,
+      1478
+    ],
+    [
+      195,
+      1370
+    ],
+    [
+      0,
+      1370
+    ],
+    [
+      0,
+      400
+    ],
+    [
+      140,
+      400
+    ]
+  ],
+  "ties": [
+    {
+      "name": "Stratford Dr x Lou Neff Rd (NW corner)",
+      "px": 264.0,
+      "py": 484.0,
+      "lat": 30.2688959,
+      "lng": -97.7704824,
+      "ref": "OSM node 152534785"
+    },
+    {
+      "name": "Stratford Dr x Barton Springs Rd",
+      "px": 228.0,
+      "py": 925.0,
+      "lat": 30.267155,
+      "lng": -97.7708765,
+      "ref": "mean of OSM nodes 6478688587, 152612257"
+    },
+    {
+      "name": "Andrew Zilker Rd x Stratford Dr (south)",
+      "px": 272.0,
+      "py": 1160.0,
+      "lat": 30.2658242,
+      "lng": -97.7705811,
+      "ref": "OSM node 152685833"
+    },
+    {
+      "name": "William Barton Dr bend (45 to 20 deg)",
+      "px": 250.0,
+      "py": 1372.0,
+      "lat": 30.264573,
+      "lng": -97.770728,
+      "ref": "OSM node 152410699"
+    },
+    {
+      "name": "Andrew Zilker Rd x William Barton Dr",
+      "px": 513.0,
+      "py": 1123.0,
+      "lat": 30.2659055,
+      "lng": -97.7691771,
+      "ref": "OSM node 152410690"
+    },
+    {
+      "name": "William Barton Dr x Barton Springs Rd",
+      "px": 567.0,
+      "py": 1090.0,
+      "lat": 30.2660657,
+      "lng": -97.7688709,
+      "ref": "OSM node 3415266842"
+    },
+    {
+      "name": "Barton Springs Rd x Lou Neff Rd",
+      "px": 810.0,
+      "py": 1100.0,
+      "lat": 30.2659371,
+      "lng": -97.7673157,
+      "ref": "OSM node 152534766"
+    },
+    {
+      "name": "Lou Neff Rd south leg corner",
+      "px": 833.0,
+      "py": 1037.0,
+      "lat": 30.2663909,
+      "lng": -97.7671229,
+      "ref": "OSM node 152534769"
+    },
+    {
+      "name": "Lou Neff Rd south leg SE bend",
+      "px": 1380.0,
+      "py": 1036.0,
+      "lat": 30.266496,
+      "lng": -97.763471,
+      "ref": "OSM node 152534772"
+    },
+    {
+      "name": "Lou Neff Rd east hairpin",
+      "px": 1685.0,
+      "py": 856.0,
+      "lat": 30.2672504,
+      "lng": -97.7624288,
+      "ref": "OSM node 152534774"
+    },
+    {
+      "name": "Barton Creek mouth land tip",
+      "px": 1738.0,
+      "py": 872.0,
+      "lat": 30.2672162,
+      "lng": -97.7616503,
+      "ref": "OSM node 301302196"
+    },
+    {
+      "name": "Lou Neff Rd north leg bend",
+      "px": 850.0,
+      "py": 465.0,
+      "lat": 30.2691691,
+      "lng": -97.7669072,
+      "ref": "OSM node 152534783"
+    },
+    {
+      "name": "Azie Morton Rd x Barton Springs Rd",
+      "px": 1230.0,
+      "py": 1357.0,
+      "lat": 30.2647624,
+      "lng": -97.7649924,
+      "ref": "OSM node 152391046"
+    },
+    {
+      "name": "Barton Springs Rd x Sterzing St",
+      "px": 1350.0,
+      "py": 1444.0,
+      "lat": 30.2638678,
+      "lng": -97.7636388,
+      "ref": "OSM node 152466677"
+    },
+    {
+      "name": "Sterzing St x Toomey Rd",
+      "px": 1603.0,
+      "py": 1302.0,
+      "lat": 30.265305,
+      "lng": -97.762533,
+      "ref": "OSM node 152403720"
+    },
+    {
+      "name": "Barton Springs Rd bridge over Barton Creek (centre)",
+      "px": 1182.0,
+      "py": 1311.0,
+      "lat": 30.2650038,
+      "lng": -97.7653372,
+      "ref": "mean of OSM nodes 13314559735, 13314559737, 13314559738, 13314559739"
+    }
+  ],
+  "approximate": true,
+  "output": {
+    "image": "geo-maps/acl-2026.webp",
+    "size": [
+      1774,
+      1422
+    ],
+    "metresPerPixel": 0.595,
+    "bounds": {
+      "w": -97.7722556,
+      "s": 30.2628479,
+      "e": -97.7612848,
+      "n": 30.2704815
+    },
+    "rmsM": 51.6,
+    "worstM": 116.5,
+    "looRmsM": 51.6,
+    "residualsM": {
+      "Stratford Dr x Lou Neff Rd (NW corner)": 0.0,
+      "Stratford Dr x Barton Springs Rd": 0.0,
+      "Andrew Zilker Rd x Stratford Dr (south)": 0.0,
+      "William Barton Dr bend (45 to 20 deg)": 0.0,
+      "Andrew Zilker Rd x William Barton Dr": 0.0,
+      "William Barton Dr x Barton Springs Rd": 0.0,
+      "Barton Springs Rd x Lou Neff Rd": 0.0,
+      "Lou Neff Rd south leg corner": 0.0,
+      "Lou Neff Rd south leg SE bend": 0.0,
+      "Lou Neff Rd east hairpin": 0.0,
+      "Barton Creek mouth land tip": 0.0,
+      "Lou Neff Rd north leg bend": 0.0,
+      "Azie Morton Rd x Barton Springs Rd": 0.0,
+      "Barton Springs Rd x Sterzing St": 0.0,
+      "Sterzing St x Toomey Rd": 0.0,
+      "Barton Springs Rd bridge over Barton Creek (centre)": 0.0
+    },
+    "checksM": {},
+    "inputsSha256": "0d41acd2e5253c7e37525c50dac3a3d3cb35c05c445a52828355190432b6d30d",
+    "approximate": true,
+    "plateSha256": "d6e59ca186b624367c4f3185178ab656888b38eadf9e4d57cf943361e0560856",
+    "sha256": "75778477efd05e14213f6247188c85f6c855574de75b64fc12a0abb392889be0"
+  }
+}

@@ -94,10 +94,13 @@ const LOCAL = [
   './edco-tinker-2026.webp',
   './dreamstate-socal-2026-map.webp',
   // Official map art fitted to each venue (scripts/build-geo-plate.py).
+  './geo-maps/acl-2026.webp',
   './geo-maps/crssd-fall-2026.webp',
   './geo-maps/dreamstate-socal-2026.webp',
   './geo-maps/edc-orlando-2026.webp',
   './geo-maps/edc-lv-2026.webp',
+  './geo-maps/escape-halloween-2026.webp',
+  './geo-maps/governors-ball-2026.webp',
   './geo-maps/hard-summer-2026.webp',
   './geo-maps/iii-points-2026.webp',
   './geo-maps/lollapalooza-2026.webp',
