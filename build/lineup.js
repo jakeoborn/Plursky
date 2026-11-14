@@ -7,6 +7,9 @@ function isLegendary(a) {
   }
   return false;
 }
+function _searchFold(s) {
+  return String(s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+}
 function _msToIcsDate(ms) {
   var d = new Date(ms);
   var pad = n => String(n).padStart(2, "0");
@@ -1003,15 +1006,22 @@ function LineupScreen({
     }
     return state.lineupDay || NOW.day;
   });
-  var _schedTBA = typeof isScheduleTBA === "function" && isScheduleTBA();
+  var _schedTBA = typeof isScheduleTBA === "function" && isScheduleTBA() || shortlistMode();
+  var _untimed = shortlistMode();
+  var _fold = _untimed ? _searchFold : s => String(s || "").toLowerCase();
   var [filter, setFilter] = React.useState("all");
   var [stageFilter, setStageFilter] = React.useState("all");
   var [tierFilter, setTierFilter] = React.useState("all");
   var [wizardOpen, setWizardOpen] = React.useState(false);
   var [genreFilter, setGenreFilter] = React.useState("all");
   var [sortBy, setSortBy] = React.useState("time");
-  var hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
-  var [weekendFilter, setWeekendFilter] = React.useState(() => hasWeekends ? _weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1" : "all");
+  var _wkChoice = weekendIsUsersChoice();
+  var hasWeekends = _wkChoice || ARTISTS.some(a => a.weekend && a.weekend !== "both");
+  var [weekendFilter, _setWeekendFilter] = React.useState(() => _wkChoice ? chosenWeekend() || "all" : hasWeekends ? _weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1" : "all");
+  var setWeekendFilter = w => {
+    if (_wkChoice) chooseWeekend(FESTIVAL_CONFIG, w);
+    _setWeekendFilter(w);
+  };
   var [q, setQ] = React.useState("");
   var [searchOpen, setSearchOpen] = React.useState(false);
   React.useEffect(() => {
@@ -1227,7 +1237,7 @@ function LineupScreen({
     return named.length === 1 && tierFilter === "all" ? named[0] : null;
   })();
   var matchesActive = a => {
-    if (weekendFilter !== "all" && a.weekend !== weekendFilter && a.weekend !== "both") return false;
+    if (weekendFilter !== "all" && !actPlaysWeekend(a, weekendFilter)) return false;
     if (filter === "saved" && !state.saved.includes(a.id)) return false;
     if (filter === "now" && !isSetLive(a)) return false;
     if (stageFilter !== "all" && a.stage !== stageFilter) return false;
@@ -1254,9 +1264,10 @@ function LineupScreen({
   }, [day, weekendFilter]);
   var _nowBucket = filter === "now" ? Math.floor(Date.now() / 30000) : 0;
   var savedSetIds = React.useMemo(() => new Set(state.saved), [state.saved]);
+  var _acrossDays = _untimed && (!!q.trim() || filter === "saved");
   var dayArtists = React.useMemo(() => {
-    var term = q.trim().toLowerCase();
-    return lineupFor(weekendFilter).filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both").filter(a => filter === "all" || (filter === "saved" ? savedSetIds.has(a.id) : isSetLive(a))).filter(a => stageFilter === "all" || a.stage === stageFilter).filter(a => genreFilter === "all" || a.genre === genreFilter).filter(a => {
+    var term = _fold(q.trim());
+    return lineupFor(weekendFilter).filter(a => _acrossDays || a.day === day).filter(a => weekendFilter === "all" || actPlaysWeekend(a, weekendFilter)).filter(a => filter === "all" || (filter === "saved" ? savedSetIds.has(a.id) : isSetLive(a))).filter(a => stageFilter === "all" || a.stage === stageFilter).filter(a => genreFilter === "all" || a.genre === genreFilter).filter(a => {
       if (tierFilter === "all") return true;
       if (tierFilter === "head") return a.tier === 3;
       if (tierFilter === "prime") return a.tier === 2;
@@ -1266,8 +1277,9 @@ function LineupScreen({
     }).filter(a => {
       if (!term) return true;
       var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
-      return a.name.toLowerCase().includes(term) || (a.genre || "").toLowerCase().includes(term) || (st?.name || "").toLowerCase().includes(term);
+      return _fold(a.name).includes(term) || _fold(a.genre).includes(term) || _fold(st?.name).includes(term);
     }).sort((a, b) => {
+      if (_acrossDays && a.day !== b.day) return (a.day ?? 99) - (b.day ?? 99);
       if (sortBy === "tier") {
         if (a.tier !== b.tier) return b.tier - a.tier;
       } else if (sortBy === "stage") {
@@ -1277,18 +1289,23 @@ function LineupScreen({
       }
       return compareSetsByTime(a, b, STAGES);
     });
-  }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds, _nowBucket]);
+  }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds, _nowBucket, _acrossDays]);
   var _otherDayHits = React.useMemo(() => {
-    var term = q.trim().toLowerCase();
+    var term = _fold(q.trim());
     if (!term) return 0;
     return lineupFor(weekendFilter).filter(a => {
       if (a.day === day) return false;
       var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
-      return a.name.toLowerCase().includes(term) || (a.genre || "").toLowerCase().includes(term) || (st?.name || "").toLowerCase().includes(term);
+      return _fold(a.name).includes(term) || _fold(a.genre).includes(term) || _fold(st?.name).includes(term);
     }).length;
   }, [q, day, weekendFilter]);
   var attendV = useAttendVersion();
-  var dayStats = React.useMemo(() => DAYS.map(d => {
+  var _hasPendingDay = React.useMemo(() => _untimed && lineupFor(weekendFilter).some(a => a.day == null), [_untimed, weekendFilter]);
+  var dayStats = React.useMemo(() => [...DAYS, ...(_hasPendingDay ? [{
+    n: null,
+    label: "DAY",
+    date: "Day TBA"
+  }] : [])].map(d => {
     var savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     var clashes = 0;
     for (var i = 0; i < savedThisDay.length; i++) for (var j = i + 1; j < savedThisDay.length; j++) if (setsClash(savedThisDay[i], savedThisDay[j], undefined, state.saved)) clashes++;
@@ -1297,7 +1314,7 @@ function LineupScreen({
       count: savedThisDay.length,
       clashes
     };
-  }), [savedSetIds, weekendFilter, attendV]);
+  }), [savedSetIds, weekendFilter, attendV, _hasPendingDay]);
   var totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
   var savedToday = React.useMemo(() => lineupFor(weekendFilter).filter(a => a.day === day && savedSetIds.has(a.id)), [day, savedSetIds, weekendFilter]);
   var [syncOpen, setSyncOpen] = React.useState(false);
@@ -1390,7 +1407,7 @@ function LineupScreen({
       } catch {}
     }, reduceMotion ? 0 : 260);
   };
-  var overviewSets = lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both"));
+  var overviewSets = lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || actPlaysWeekend(a, weekendFilter)));
   var onOverviewStage = id => {
     if (viewMode === "grid") {
       window.dispatchEvent(new CustomEvent("plursky:grid-stage", {
@@ -1440,8 +1457,8 @@ function LineupScreen({
     d: "M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"
   })))))), [{
     id: "saved",
-    label: "My plan",
-    n: dayStats.find(x => x.n === day)?.count
+    label: _untimed ? "Shortlist" : "My plan",
+    n: _untimed ? totalSaved : dayStats.find(x => x.n === day)?.count
   }, {
     id: "now",
     label: "Live",
@@ -1475,7 +1492,7 @@ function LineupScreen({
     var stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
     var show = [stageName, filter === "saved" ? "My plan" : filter === "now" ? "Live" : null].filter(Boolean).join(" · ") || "All stages";
     var extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
-    return [dayText, hasWeekends ? weekendFilter === "W2" ? "Weekend 2" : "Weekend 1" : null, show, extra > 0 ? `+${extra} filter${extra === 1 ? "" : "s"}` : null, q.trim() ? `“${q.trim()}”` : null].filter(Boolean).join(" · ");
+    return [dayText, hasWeekends ? weekendFilter === "W2" ? "Weekend 2" : weekendFilter === "W1" ? "Weekend 1" : "Pick a weekend" : null, show, extra > 0 ? `+${extra} filter${extra === 1 ? "" : "s"}` : null, q.trim() ? `“${q.trim()}”` : null].filter(Boolean).join(" · ");
   })();
   var surpriseMe = () => {
     var savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
@@ -1588,7 +1605,7 @@ function LineupScreen({
       }
     }, "Save top picks · ", dayTopPicks.length);
   })() : null;
-  var myNight = totalSaved >= 2 ? (() => {
+  var myNight = totalSaved >= 2 && !_untimed ? (() => {
     var clash = dayStats.some(d => d.clashes > 0);
     return React.createElement("button", {
       onClick: () => setWizardOpen(true),
@@ -1611,14 +1628,22 @@ function LineupScreen({
     }), "My night");
   })() : null;
   var planActions = filter === "saved" ? React.createElement(React.Fragment, null, liveSavedCount > 0 && React.createElement(ShareLineupButton, {
-    state: state
-  }), liveSavedCount > 0 && React.createElement("button", {
+    state: state,
+    weekend: weekendFilter
+  }), liveSavedCount > 0 && !_untimed && React.createElement("button", {
     onClick: () => {
       window.plurskyHaptic?.("LIGHT");
       exportSavedSetsICS(savedInLineup(state.saved));
     },
     style: textBtn
-  }, "Calendar"), hasFeed && React.createElement("button", {
+  }, "Calendar"), liveSavedCount > 0 && _untimed && React.createElement("span", {
+    "data-untimed-note": true,
+    className: "duo-body-s duo-ink2",
+    style: {
+      fontWeight: 400,
+      padding: "0 4px"
+    }
+  }, "Calendar and My night open when set times are announced."), hasFeed && React.createElement("button", {
     "data-sched-check": true,
     onClick: () => setSyncOpen(true),
     "aria-label": "Check for schedule changes",
@@ -1827,7 +1852,7 @@ function LineupScreen({
     "aria-label": "Festival day",
     style: {
       display: "flex",
-      gap: 22,
+      gap: _hasPendingDay ? 16 : 22,
       flexShrink: 0,
       flexWrap: "wrap",
       padding: "6px 20px 8px"
@@ -1835,14 +1860,14 @@ function LineupScreen({
   }, dayStats.map(d => {
     var on = d.n === day;
     var unsplit = _lineupUnsplit(dayStats);
-    var label = unsplit ? "Full lineup" : d.label;
-    var dateText = unsplit ? _lineupUnsplitRange(d.n) : d.date.split(" ")[1];
+    var label = d.n == null ? "TBA" : unsplit ? "Full lineup" : d.label;
+    var dateText = unsplit ? _lineupUnsplitRange(d.n) : String(d.date || "").split(" ")[1];
     return React.createElement("button", {
-      key: d.n,
+      key: d.n ?? "tba",
       role: "tab",
       "aria-selected": on,
       className: "duo-tab",
-      "aria-label": `${label} ${unsplit ? dateText : d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`,
+      "aria-label": `${label} ${d.n == null ? "" : unsplit ? dateText : d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`,
       onClick: () => {
         setDay(d.n);
         setState(s => ({
@@ -1855,7 +1880,7 @@ function LineupScreen({
       style: {
         fontSize: 12
       }
-    }, label), React.createElement("span", {
+    }, label), d.n != null && React.createElement("span", {
       className: "duo-data-s",
       style: {
         color: on ? "var(--ink-2)" : "var(--ink-3)"
@@ -1868,7 +1893,14 @@ function LineupScreen({
         whiteSpace: "nowrap"
       }
     }, d.count));
-  })), hasWeekends && React.createElement("div", {
+  })), hasWeekends && _wkChoice && weekendFilter === "all" && React.createElement("div", {
+    "data-weekend-ask": true,
+    className: "duo-body-s duo-ink2",
+    style: {
+      margin: "0 20px 6px",
+      fontWeight: 500
+    }
+  }, "Which weekend are you going?"), hasWeekends && React.createElement("div", {
     role: "tablist",
     "aria-label": "Weekend",
     className: "duo-seg",
@@ -1883,13 +1915,33 @@ function LineupScreen({
     label: "Weekend 2"
   }].map(w => {
     var on = weekendFilter === w.value;
+    var dates = _wkChoice ? weekendDatesText(FESTIVAL_CONFIG, w.value).replace(/, \d{4}$/, "") : "";
     return React.createElement("button", {
       key: w.value,
       role: "tab",
       "aria-selected": on,
       "aria-pressed": on,
-      onClick: () => setWeekendFilter(w.value)
-    }, w.label);
+      "data-weekend": w.value,
+      "aria-label": dates ? `${w.label}, ${dates}` : undefined,
+      onClick: () => setWeekendFilter(w.value),
+      style: dates ? {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 2,
+        lineHeight: "18px",
+        paddingTop: 6,
+        paddingBottom: 6
+      } : undefined
+    }, React.createElement("span", null, w.label), dates && React.createElement("span", {
+      className: "duo-body-s",
+      style: {
+        fontWeight: 400,
+        opacity: 0.8,
+        whiteSpace: "nowrap"
+      }
+    }, dates));
   })), !_schedTBA && React.createElement(LineupOverview, {
     sets: overviewSets,
     savedSet: savedSetIds,
@@ -2106,6 +2158,11 @@ function LineupScreen({
       title: "Nothing is on right now",
       sub: NOW.night === day ? "Between sets on this day." : "This day isn't live right now.",
       action: "Show all sets",
+      onAction: () => setFilter("all")
+    } : _untimed ? {
+      title: "Your shortlist is empty",
+      sub: "Pick a few artists now. Set times come later.",
+      action: "Browse the lineup",
       onAction: () => setFilter("all")
     } : {
       title: liveSavedCount === 0 ? "No sets saved yet" : "Nothing saved for this day",
@@ -4361,6 +4418,68 @@ function printLineupPDF(state) {
     ok: true
   };
 }
+function shortlistText(savedIds, weekend, cfg = FESTIVAL_CONFIG) {
+  var ids = new Set(savedInLineup(savedIds));
+  if (!ids.size) return "";
+  var wk = weekend === "W1" || weekend === "W2" ? weekend : null;
+  var acts = lineupFor(wk || "all").filter(a => ids.has(a.id));
+  if (!acts.length) return "";
+  var multi = !!(cfg.weekendStartMs && cfg.weekendStartMs.W2);
+  var when = multi ? wk ? `Weekend ${wk === "W2" ? 2 : 1} · ${weekendDatesText(cfg, wk)}` : `Weekend not chosen · ${cfg.dates}` : `${cfg.dates}${cfg.year && !String(cfg.dates).includes(String(cfg.year)) ? `, ${cfg.year}` : ""}`;
+  var sh = wk ? (festivalWeekendShifts(cfg).find(s => s.weekend === wk) || {
+    shift: 0
+  }).shift : 0;
+  var M = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var dayHead = n => {
+    var d = cfg.dayDates && cfg.dayDates[n];
+    if (!d) return `DAY ${n}`;
+    if (multi && !wk) return d.name.toUpperCase();
+    var at = new Date((typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)) + sh);
+    return `${d.short} · ${M[at.getUTCMonth()]} ${at.getUTCDate()}`;
+  };
+  var byName = (a, b) => a.name.localeCompare(b.name);
+  var days = [...new Set(acts.map(a => a.day).filter(d => d != null))].sort((a, b) => a - b);
+  var blocks = days.map(n => [dayHead(n), ...acts.filter(a => a.day === n).sort(byName).map(a => `  ${a.name}`)].join("\n"));
+  var tba = acts.filter(a => a.day == null).sort(byName);
+  if (tba.length) blocks.push(["DAY TBA", ...tba.map(a => `  ${a.name}`)].join("\n"));
+  return [`My ${cfg.name} shortlist (${acts.length} artist${acts.length === 1 ? "" : "s"})`, when, "Set times not announced", "", blocks.join("\n\n"), "", "plursky.com"].join("\n");
+}
+async function shareShortlistText(state, weekend) {
+  var text = shortlistText(state.saved, weekend);
+  if (!text) return {
+    ok: false,
+    reason: "empty"
+  };
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: `My ${FESTIVAL_CONFIG.name} shortlist`,
+        text
+      });
+      return {
+        ok: true,
+        mode: "share"
+      };
+    } catch (e) {
+      if (e && e.name === "AbortError") return {
+        ok: false,
+        reason: "cancelled"
+      };
+    }
+  }
+  try {
+    await navigator.clipboard.writeText(text);
+    return {
+      ok: true,
+      mode: "copy"
+    };
+  } catch {
+    return {
+      ok: false,
+      reason: "copy_failed"
+    };
+  }
+}
 async function copyScheduleText(state) {
   var ids = savedInLineup(state.saved);
   if (!ids.length) return {
@@ -4684,9 +4803,25 @@ function PlanShareLinkSheet({
   }, "Never on the link: where you are, your notes, photos, account or crew.")));
 }
 function ShareLineupButton({
-  state
+  state,
+  weekend
 }) {
-  var [open, setOpen] = React.useState(false);
+  var untimed = shortlistMode();
+  var [open, _setOpen] = React.useState(false);
+  var btnRef = React.useRef(null);
+  var [anchor, setAnchor] = React.useState(null);
+  var setOpen = v => _setOpen(o => {
+    var next = typeof v === "function" ? v(o) : v;
+    if (next && btnRef.current) {
+      var r = btnRef.current.getBoundingClientRect();
+      setAnchor({
+        top: r.bottom + 6,
+        left: r.left,
+        right: window.innerWidth - r.right
+      });
+    }
+    return next;
+  });
   var [linkOpen, setLinkOpen] = React.useState(false);
   var [busy, setBusy] = React.useState(false);
   var [done, setDone] = React.useState(null);
@@ -4700,7 +4835,7 @@ function ShareLineupButton({
     });
     setBusy(false);
     if (r?.ok) {
-      setDone(key);
+      setDone(r.mode === "copy" ? "txt" : key);
       setTimeout(() => setDone(null), 1800);
     } else if (r?.reason === "popup_blocked") {
       alert("Popup blocked — allow popups for plursky.com and try again.");
@@ -4711,6 +4846,7 @@ function ShareLineupButton({
       position: "relative"
     }
   }, React.createElement("button", {
+    ref: btnRef,
     "data-share-lineup": true,
     onClick: () => setOpen(o => !o),
     disabled: busy,
@@ -4747,56 +4883,85 @@ function ShareLineupButton({
     d: "M7 9 L12 4 L17 9"
   }), React.createElement("path", {
     d: "M5 14 V20 H19 V14"
-  })), done === "image" ? "Saved" : done === "cal" ? "Added" : done === "pdf" ? "Printed" : done === "txt" ? "Copied" : busy ? "…" : "Share"), open && React.createElement(React.Fragment, null, React.createElement("div", {
-    onClick: () => setOpen(false),
-    style: {
-      position: "fixed",
-      inset: 0,
-      zIndex: 60,
-      background: "transparent"
-    }
-  }), React.createElement("div", {
-    style: {
-      position: "absolute",
-      right: 0,
-      top: "calc(100% + 6px)",
-      zIndex: 61,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
-      padding: 5,
-      minWidth: 200,
-      boxShadow: "var(--shadow-pop)"
-    }
-  }, React.createElement(ShareMenuItem, {
-    icon: "img",
-    label: "Image for stories",
-    sub: "1080×1920 PNG",
-    onClick: wrap("image", shareLineupImage)
-  }), React.createElement(ShareMenuItem, {
-    icon: "cal",
-    label: "Add to calendar",
-    sub: ".ics with 15-min reminders",
-    onClick: wrap("cal", exportLineupICS)
-  }), React.createElement(ShareMenuItem, {
-    icon: "prn",
-    label: "Print schedule",
-    sub: "Save as PDF from print dialog",
-    onClick: wrap("pdf", async s => printLineupPDF(s))
-  }), React.createElement(ShareMenuItem, {
-    icon: "txt",
-    label: "Copy as text",
-    sub: "Paste anywhere",
-    onClick: wrap("txt", copyScheduleText)
-  }), PLAN_SHARE_LINK_ON && React.createElement(ShareMenuItem, {
-    icon: "lnk",
-    label: "Share as a link",
-    sub: "Preview what a link shows",
-    onClick: () => {
-      setOpen(false);
-      setLinkOpen(true);
-    }
-  }))), PLAN_SHARE_LINK_ON && linkOpen && React.createElement(PlanShareLinkSheet, {
+  })), done === "image" ? "Saved" : done === "cal" ? "Added" : done === "pdf" ? "Printed" : done === "txt" ? "Copied" : done === "shared" ? "Shared" : busy ? "…" : "Share"), open && (() => {
+    var menu = React.createElement(React.Fragment, null, React.createElement("div", {
+      onClick: () => setOpen(false),
+      style: {
+        position: "fixed",
+        inset: 0,
+        zIndex: 60,
+        background: "transparent"
+      }
+    }), React.createElement("div", {
+      style: untimed ? {
+        position: "fixed",
+        top: anchor ? anchor.top : 0,
+        left: Math.max(8, anchor ? anchor.left : 8),
+        zIndex: 61,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line-2)",
+        borderRadius: 14,
+        padding: 5,
+        minWidth: 200,
+        boxShadow: "var(--shadow-pop)"
+      } : {
+        position: "absolute",
+        right: 0,
+        top: "calc(100% + 6px)",
+        zIndex: 61,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line-2)",
+        borderRadius: 14,
+        padding: 5,
+        minWidth: 200,
+        boxShadow: "var(--shadow-pop)"
+      }
+    }, untimed ? React.createElement(React.Fragment, null, React.createElement(ShareMenuItem, {
+      icon: "txt",
+      label: "Share shortlist",
+      sub: "Text · set times not announced",
+      onClick: wrap("shared", s => shareShortlistText(s, weekend))
+    }), React.createElement(ShareMenuItem, {
+      icon: "cal",
+      label: "Add to calendar",
+      sub: "Opens when set times are announced",
+      disabled: true
+    }), React.createElement(ShareMenuItem, {
+      icon: "prn",
+      label: "Print schedule",
+      sub: "Opens when set times are announced",
+      disabled: true
+    })) : React.createElement(React.Fragment, null, React.createElement(ShareMenuItem, {
+      icon: "img",
+      label: "Image for stories",
+      sub: "1080×1920 PNG",
+      onClick: wrap("image", shareLineupImage)
+    }), React.createElement(ShareMenuItem, {
+      icon: "cal",
+      label: "Add to calendar",
+      sub: ".ics with 15-min reminders",
+      onClick: wrap("cal", exportLineupICS)
+    }), React.createElement(ShareMenuItem, {
+      icon: "prn",
+      label: "Print schedule",
+      sub: "Save as PDF from print dialog",
+      onClick: wrap("pdf", async s => printLineupPDF(s))
+    }), React.createElement(ShareMenuItem, {
+      icon: "txt",
+      label: "Copy as text",
+      sub: "Paste anywhere",
+      onClick: wrap("txt", copyScheduleText)
+    })), PLAN_SHARE_LINK_ON && React.createElement(ShareMenuItem, {
+      icon: "lnk",
+      label: "Share as a link",
+      sub: "Preview what a link shows",
+      onClick: () => {
+        setOpen(false);
+        setLinkOpen(true);
+      }
+    })));
+    return untimed ? ReactDOM.createPortal(menu, document.body) : menu;
+  })(), PLAN_SHARE_LINK_ON && linkOpen && React.createElement(PlanShareLinkSheet, {
     saved: savedInLineup(state.saved),
     onClose: () => setLinkOpen(false)
   }));
@@ -4805,7 +4970,8 @@ function ShareMenuItem({
   icon,
   label,
   sub,
-  onClick
+  onClick,
+  disabled
 }) {
   var ico = icon === "img" ? React.createElement("svg", {
     width: "16",
@@ -4907,7 +5073,9 @@ function ShareMenuItem({
     height: "6"
   }));
   return React.createElement("button", {
-    onClick: onClick,
+    onClick: disabled ? undefined : onClick,
+    disabled: !!disabled,
+    "aria-disabled": disabled || undefined,
     style: {
       display: "flex",
       alignItems: "center",
@@ -4915,9 +5083,10 @@ function ShareMenuItem({
       width: "100%",
       padding: "9px 10px",
       borderRadius: 8,
+      opacity: disabled ? 0.55 : 1,
       background: "transparent",
       border: "none",
-      cursor: "pointer",
+      cursor: disabled ? "default" : "pointer",
       textAlign: "left",
       color: "var(--ink)",
       fontFamily: "inherit",
@@ -4995,7 +5164,8 @@ function toggleSave(state, setState, id) {
     var liveNext = savedInLineup(next).length;
     var isFirstSave = !has && savedInLineup(state.saved).length === 0;
     var isMilestone = !has && [5, 10, 15, 20].includes(liveNext);
-    var msg = has ? `REMOVED · ${label}` : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO` : isMilestone ? `✦ ${liveNext} SETS · ${label} · LINEUP GROWING` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${liveNext} SETS`;
+    var unit = shortlistMode() ? "ARTIST" : "SET";
+    var msg = has ? `REMOVED · ${label}` : isFirstSave ? `✦ FIRST ${unit} SAVED · ${label} · LET'S GO` : isMilestone ? `✦ ${liveNext} ${unit}S · ${label} · LINEUP GROWING` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${liveNext} ${unit}S`;
     var undo = () => {
       if (has) {
         try {

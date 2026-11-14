@@ -14,6 +14,12 @@ function isLegendary(a) {
   return false;
 }
 
+// Search folds case AND accents ("chloe" finds "Chloé Caillet"); the row
+// still shows the official spelling.
+function _searchFold(s) {
+  return String(s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+}
+
 // ── ICS calendar export ──────────────────────────────────────
 function _msToIcsDate(ms) {
   const d = new Date(ms);
@@ -636,7 +642,13 @@ function LineupScreen({ state, setState }) {
   // come (founder call 2026-09-15: show the lineup, don't hold the festival
   // back). The screen has to SAY that — a list of acts whose every time reads
   // "—" otherwise looks like the app failed to load them.
-  const _schedTBA = typeof isScheduleTBA === "function" && isScheduleTBA();
+  const _schedTBA = (typeof isScheduleTBA === "function" && isScheduleTBA()) || shortlistMode();
+  // Wholly untimed (no act has a set time): what the user saves is a
+  // SHORTLIST, and search and the shortlist span every day.
+  const _untimed = shortlistMode();
+  // Accent folding is part of the opt-in shortlist; other lineups keep
+  // today's case-only match.
+  const _fold = _untimed ? _searchFold : (s => String(s || "").toLowerCase());
   const [filter, setFilter] = React.useState("all"); // all | saved
   const [stageFilter, setStageFilter] = React.useState("all"); // all | stage id
   const [tierFilter, setTierFilter] = React.useState("all"); // all | head | prime | open | legend
@@ -644,7 +656,10 @@ function LineupScreen({ state, setState }) {
   const [genreFilter, setGenreFilter] = React.useState("all");
   // Sort: time (chronological), tier (headliners first), stage (grouped by stage order)
   const [sortBy, setSortBy] = React.useState("time");
-  const hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
+  // A choice festival (every act plays both weekends, Coachella 2027) has
+  // weekends too, but nothing in the lineup tags them: the user picks one.
+  const _wkChoice = weekendIsUsersChoice();
+  const hasWeekends = _wkChoice || ARTISTS.some(a => a.weekend && a.weekend !== "both");
   // Two-weekend festivals: pick a weekend (no "Both" — it stacked W1/W2 acts in
   // the same slot and read as clutter). Single-weekend festivals stay "all" so
   // their (untagged) sets aren't filtered out, and the selector below is hidden
@@ -657,8 +672,12 @@ function LineupScreen({ state, setState }) {
   // Saturday of Weekend 2, "now playing" would name a W2 act while this list
   // still opened on Weekend 1. The user can still switch freely — this only
   // decides which one is showing when the screen opens.
-  const [weekendFilter, setWeekendFilter] = React.useState(
-    () => hasWeekends ? (_weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1") : "all"); // W1 | W2 (| "all" only when no weekends)
+  // A choice festival opens on the weekend the user picked, or on "all" (no
+  // weekend implied) until they pick one; the toggle then asks.
+  const [weekendFilter, _setWeekendFilter] = React.useState(
+    () => _wkChoice ? (chosenWeekend() || "all")
+      : hasWeekends ? (_weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1") : "all"); // W1 | W2 (| "all" only when no weekends, or none chosen yet)
+  const setWeekendFilter = (w) => { if (_wkChoice) chooseWeekend(FESTIVAL_CONFIG, w); _setWeekendFilter(w); };
   const [q, setQ] = React.useState(""); // artist/stage/genre search
   // Search is one icon in the header (the board's), not a standing field: the
   // field opens on a tap and stays while it holds a term.
@@ -908,7 +927,7 @@ function LineupScreen({ state, setState }) {
 
 
   const matchesActive = (a) => {
-    if (weekendFilter !== "all" && a.weekend !== weekendFilter && a.weekend !== "both") return false;
+    if (weekendFilter !== "all" && !actPlaysWeekend(a, weekendFilter)) return false;
     if (filter === "saved" && !state.saved.includes(a.id)) return false;
     if (filter === "now" && !isSetLive(a)) return false;
     if (stageFilter !== "all" && a.stage !== stageFilter) return false;
@@ -942,11 +961,14 @@ function LineupScreen({ state, setState }) {
   // "Now" rows change with the clock, so that filter re-derives on each 30 s tick.
   const _nowBucket = filter === "now" ? Math.floor(Date.now() / 30000) : 0;
   const savedSetIds = React.useMemo(() => new Set(state.saved), [state.saved]);
+  // Untimed: a search term or the shortlist reads every day at once, so an
+  // act is found wherever it plays (Day TBA included) without tapping days.
+  const _acrossDays = _untimed && (!!q.trim() || filter === "saved");
   const dayArtists = React.useMemo(() => {
-    const term = q.trim().toLowerCase();
+    const term = _fold(q.trim());
     return lineupFor(weekendFilter)
-      .filter(a => a.day === day)
-      .filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both")
+      .filter(a => _acrossDays || a.day === day)
+      .filter(a => weekendFilter === "all" || actPlaysWeekend(a, weekendFilter))
       .filter(a => filter === "all" || (filter === "saved" ? savedSetIds.has(a.id) : isSetLive(a)))
       .filter(a => stageFilter === "all" || a.stage === stageFilter)
       .filter(a => genreFilter === "all" || a.genre === genreFilter)
@@ -961,11 +983,13 @@ function LineupScreen({ state, setState }) {
       .filter(a => {
         if (!term) return true;
         const st = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
-        return a.name.toLowerCase().includes(term)
-          || (a.genre || "").toLowerCase().includes(term)
-          || (st?.name || "").toLowerCase().includes(term);
+        return _fold(a.name).includes(term)
+          || _fold(a.genre).includes(term)
+          || _fold(st?.name).includes(term);
       })
       .sort((a, b) => {
+        // Across days (untimed search or shortlist): in day order, pending last.
+        if (_acrossDays && a.day !== b.day) return (a.day ?? 99) - (b.day ?? 99);
         // Ties broken by toNightMin, NOT by an hour-only slot. This used to
         // be a local `toSlot` that returned just the HOUR, so every set
         // starting in the same hour compared equal and the "time" sort fell
@@ -986,21 +1010,21 @@ function LineupScreen({ state, setState }) {
         }
         return compareSetsByTime(a, b, STAGES);
       });
-  }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds, _nowBucket]);
+  }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds, _nowBucket, _acrossDays]);
 
   // When a search empties the current day, the overwhelmingly common reason is
   // that the artist plays a DIFFERENT day — so say so rather than leaving the
   // user to tap all three chips to find out. Same name/genre/stage test as the
   // filter above, day deliberately ignored.
   const _otherDayHits = React.useMemo(() => {
-    const term = q.trim().toLowerCase();
+    const term = _fold(q.trim());
     if (!term) return 0;
     return lineupFor(weekendFilter).filter(a => {
       if (a.day === day) return false;
       const st = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
-      return a.name.toLowerCase().includes(term)
-        || (a.genre || "").toLowerCase().includes(term)
-        || (st?.name || "").toLowerCase().includes(term);
+      return _fold(a.name).includes(term)
+        || _fold(a.genre).includes(term)
+        || _fold(st?.name).includes(term);
     }).length;
   }, [q, day, weekendFilter]);
 
@@ -1010,14 +1034,15 @@ function LineupScreen({ state, setState }) {
   // counts after the toggle flipped, round 5).
   // L3: windows and kept-both pairs change clash counts on any screen.
   const attendV = useAttendVersion();
-  const dayStats = React.useMemo(() => DAYS.map(d => {
+  const _hasPendingDay = React.useMemo(() => _untimed && lineupFor(weekendFilter).some(a => a.day == null), [_untimed, weekendFilter]);
+  const dayStats = React.useMemo(() => [...DAYS, ...(_hasPendingDay ? [{ n: null, label: "DAY", date: "Day TBA" }] : [])].map(d => {
     const savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     let clashes = 0;
     for (let i = 0; i < savedThisDay.length; i++)
       for (let j = i + 1; j < savedThisDay.length; j++)
         if (setsClash(savedThisDay[i], savedThisDay[j], undefined, state.saved)) clashes++;
     return { ...d, count: savedThisDay.length, clashes };
-  }), [savedSetIds, weekendFilter, attendV]);
+  }), [savedSetIds, weekendFilter, attendV, _hasPendingDay]);
   const totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
 
   // conflicts: 2+ saved sets overlap in time
@@ -1112,7 +1137,7 @@ function LineupScreen({ state, setState }) {
   // The night's sets for the stage strip, and what a stage tap does: LIST
   // narrows to that stage (tap again for all), GRID brings its column into
   // view. The full strip and the folded bar's mini strip share both.
-  const overviewSets = lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both"));
+  const overviewSets = lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || actPlaysWeekend(a, weekendFilter)));
   const onOverviewStage = id => {
     if (viewMode === "grid") { window.dispatchEvent(new CustomEvent("plursky:grid-stage", { detail: id })); return; }
     setStageFilter(stageFilter === id ? "all" : id);
@@ -1139,7 +1164,7 @@ function LineupScreen({ state, setState }) {
           ))}
         </div>
       )}
-      {[{ id: "saved", label: "My plan", n: dayStats.find(x => x.n === day)?.count }, { id: "now", label: "Live", n: NOW.night === day ? (NOW.liveIds || []).length : 0 }].map(o => {
+      {[{ id: "saved", label: _untimed ? "Shortlist" : "My plan", n: _untimed ? totalSaved : dayStats.find(x => x.n === day)?.count }, { id: "now", label: "Live", n: NOW.night === day ? (NOW.liveIds || []).length : 0 }].map(o => {
         const on = filter === o.id;
         return (
           <button key={o.id} aria-pressed={on} className="duo-chip" style={{ flex: "none" }}
@@ -1169,7 +1194,7 @@ function LineupScreen({ state, setState }) {
     const extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
     return [
       dayText,
-      hasWeekends ? (weekendFilter === "W2" ? "Weekend 2" : "Weekend 1") : null,
+      hasWeekends ? (weekendFilter === "W2" ? "Weekend 2" : weekendFilter === "W1" ? "Weekend 1" : "Pick a weekend") : null,
       show,
       extra > 0 ? `+${extra} filter${extra === 1 ? "" : "s"}` : null,
       q.trim() ? `“${q.trim()}”` : null,
@@ -1233,15 +1258,18 @@ function LineupScreen({ state, setState }) {
   // me) or Filters, one tap away, so scanning sets is what the screen is for.
   // My night stays in the header in every view: it is the plan's entry
   // point and carries the plan-wide clash signal.
-  const myNight = totalSaved >= 2 ? (() => {
+  const myNight = totalSaved >= 2 && !_untimed ? (() => {
     const clash = dayStats.some(d => d.clashes > 0);
     return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--clash)" : "var(--acc-ink)", fontWeight: 650 }}>{clash && <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: "var(--clash)", marginRight: 6, verticalAlign: "1px" }} />}My night</button>;
   })() : null;
   const planActions = filter === "saved" ? (
     <>
-      {liveSavedCount > 0 && <ShareLineupButton state={state} />}
-      {liveSavedCount > 0 && (
+      {liveSavedCount > 0 && <ShareLineupButton state={state} weekend={weekendFilter} />}
+      {liveSavedCount > 0 && !_untimed && (
         <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(savedInLineup(state.saved)); }} style={textBtn}>Calendar</button>
+      )}
+      {liveSavedCount > 0 && _untimed && (
+        <span data-untimed-note className="duo-body-s duo-ink2" style={{ fontWeight: 400, padding: "0 4px" }}>Calendar and My night open when set times are announced.</span>
       )}
       {hasFeed && (
         <button data-sched-check onClick={() => setSyncOpen(true)} aria-label="Check for schedule changes" style={textBtn}>Updates</button>
@@ -1339,20 +1367,20 @@ function LineupScreen({ state, setState }) {
       {/* Day selector: stays on screen while the list scrolls. Per-day saved
           and clash counts ride on each day, in words for assistive tech. */}
       <div role="tablist" aria-label="Festival day" style={{
-        display: "flex", gap: 22, flexShrink: 0, flexWrap: "wrap",
+        display: "flex", gap: _hasPendingDay ? 16 : 22, flexShrink: 0, flexWrap: "wrap",
         padding: "6px 20px 8px",
       }}>
         {dayStats.map(d => {
           const on = d.n === day;
           const unsplit = _lineupUnsplit(dayStats);
-          const label = unsplit ? "Full lineup" : d.label;
-          const dateText = unsplit ? _lineupUnsplitRange(d.n) : d.date.split(" ")[1];
+          const label = d.n == null ? "TBA" : unsplit ? "Full lineup" : d.label;
+          const dateText = unsplit ? _lineupUnsplitRange(d.n) : String(d.date || "").split(" ")[1];
           return (
-            <button key={d.n} role="tab" aria-selected={on} className="duo-tab"
-              aria-label={`${label} ${unsplit ? dateText : d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`}
+            <button key={d.n ?? "tba"} role="tab" aria-selected={on} className="duo-tab"
+              aria-label={`${label} ${d.n == null ? "" : unsplit ? dateText : d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`}
               onClick={() => { setDay(d.n); setState(s => ({ ...s, lineupDay: d.n })); }}>
               <span className="duo-label" style={{ fontSize: 12 }}>{label}</span>
-              <span className="duo-data-s" style={{ color: on ? "var(--ink-2)" : "var(--ink-3)" }}>{dateText}</span>
+              {d.n != null && <span className="duo-data-s" style={{ color: on ? "var(--ink-2)" : "var(--ink-3)" }}>{dateText}</span>}
               {d.count > 0 && (
                 <span aria-hidden="true" className="duo-data-s" style={{ color: d.clashes ? "var(--clash)" : "var(--acc-ink)", whiteSpace: "nowrap" }}>
                   {d.count}
@@ -1363,13 +1391,25 @@ function LineupScreen({ state, setState }) {
         })}
       </div>
 
-      {/* Weekend toggle, only for multi-weekend festivals like ACL. */}
+      {/* Weekend toggle, only for multi-weekend festivals like ACL. On a
+          choice festival (every act plays both weekends) it carries each
+          weekend's dates and, until one is picked, asks. */}
+      {hasWeekends && _wkChoice && weekendFilter === "all" && (
+        <div data-weekend-ask className="duo-body-s duo-ink2" style={{ margin: "0 20px 6px", fontWeight: 500 }}>Which weekend are you going?</div>
+      )}
       {hasWeekends && (
         <div role="tablist" aria-label="Weekend" className="duo-seg" style={{ margin: "0 20px 8px" }}>
           {[{ value: "W1", label: "Weekend 1" }, { value: "W2", label: "Weekend 2" }].map(w => {
             const on = weekendFilter === w.value;
+            const dates = _wkChoice ? weekendDatesText(FESTIVAL_CONFIG, w.value).replace(/, \d{4}$/, "") : "";
             return (
-              <button key={w.value} role="tab" aria-selected={on} aria-pressed={on} onClick={() => setWeekendFilter(w.value)}>{w.label}</button>
+              <button key={w.value} role="tab" aria-selected={on} aria-pressed={on} data-weekend={w.value}
+                aria-label={dates ? `${w.label}, ${dates}` : undefined}
+                onClick={() => setWeekendFilter(w.value)}
+                style={dates ? { display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 2, lineHeight: "18px", paddingTop: 6, paddingBottom: 6 } : undefined}>
+                <span>{w.label}</span>
+                {dates && <span className="duo-body-s" style={{ fontWeight: 400, opacity: 0.8, whiteSpace: "nowrap" }}>{dates}</span>}
+              </button>
             );
           })}
         </div>
@@ -1524,6 +1564,10 @@ function LineupScreen({ state, setState }) {
             ? { title: "Nothing is on right now",
                 sub: NOW.night === day ? "Between sets on this day." : "This day isn't live right now.",
                 action: "Show all sets", onAction: () => setFilter("all") }
+            : _untimed
+            ? { title: "Your shortlist is empty",
+                sub: "Pick a few artists now. Set times come later.",
+                action: "Browse the lineup", onAction: () => setFilter("all") }
             : { title: liveSavedCount === 0 ? "No sets saved yet" : "Nothing saved for this day",
                 sub: liveSavedCount === 0 ? "Tap the save button on any set to add it." : "Switch to All stages to browse.",
                 action: filter !== "all" ? "Show all sets" : null, onAction: () => setFilter("all") };
@@ -2991,6 +3035,50 @@ function printLineupPDF(state) {
   return { ok: true };
 }
 
+// ── Shortlist text (an untimed lineup) ──
+// What exists, not what is promised: the festival, the weekend and its dates
+// (or "Weekend not chosen"), the saved billings by day as the festival names
+// them, Day TBA last, and "Set times not announced". No clock time, stage or
+// clash. Ids the lineup no longer carries stay saved but are not printed.
+function shortlistText(savedIds, weekend, cfg = FESTIVAL_CONFIG) {
+  const ids = new Set(savedInLineup(savedIds));
+  if (!ids.size) return "";
+  const wk = weekend === "W1" || weekend === "W2" ? weekend : null;
+  const acts = lineupFor(wk || "all").filter(a => ids.has(a.id));
+  if (!acts.length) return "";
+  const multi = !!(cfg.weekendStartMs && cfg.weekendStartMs.W2);
+  const when = multi
+    ? (wk ? `Weekend ${wk === "W2" ? 2 : 1} · ${weekendDatesText(cfg, wk)}` : `Weekend not chosen · ${cfg.dates}`)
+    : `${cfg.dates}${cfg.year && !String(cfg.dates).includes(String(cfg.year)) ? `, ${cfg.year}` : ""}`;
+  const sh = wk ? (festivalWeekendShifts(cfg).find(s => s.weekend === wk) || { shift: 0 }).shift : 0;
+  const M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const dayHead = n => {
+    const d = cfg.dayDates && cfg.dayDates[n];
+    if (!d) return `DAY ${n}`;
+    if (multi && !wk) return d.name.toUpperCase();
+    const at = new Date((typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)) + sh);
+    return `${d.short} · ${M[at.getUTCMonth()]} ${at.getUTCDate()}`;
+  };
+  const byName = (a, b) => a.name.localeCompare(b.name);
+  const days = [...new Set(acts.map(a => a.day).filter(d => d != null))].sort((a, b) => a - b);
+  const blocks = days.map(n => [dayHead(n), ...acts.filter(a => a.day === n).sort(byName).map(a => `  ${a.name}`)].join("\n"));
+  const tba = acts.filter(a => a.day == null).sort(byName);
+  if (tba.length) blocks.push(["DAY TBA", ...tba.map(a => `  ${a.name}`)].join("\n"));
+  return [`My ${cfg.name} shortlist (${acts.length} artist${acts.length === 1 ? "" : "s"})`, when,
+    "Set times not announced", "", blocks.join("\n\n"), "", "plursky.com"].join("\n");
+}
+// Native share first; a cancel is NOT a success. With no share sheet, copy.
+async function shareShortlistText(state, weekend) {
+  const text = shortlistText(state.saved, weekend);
+  if (!text) return { ok: false, reason: "empty" };
+  if (navigator.share) {
+    try { await navigator.share({ title: `My ${FESTIVAL_CONFIG.name} shortlist`, text }); return { ok: true, mode: "share" }; }
+    catch (e) { if (e && e.name === "AbortError") return { ok: false, reason: "cancelled" }; }
+  }
+  try { await navigator.clipboard.writeText(text); return { ok: true, mode: "copy" }; }
+  catch { return { ok: false, reason: "copy_failed" }; }
+}
+
 async function copyScheduleText(state) {
   const ids = savedInLineup(state.saved);
   if (!ids.length) return { ok: false, reason: "empty" };
@@ -3163,8 +3251,17 @@ function PlanShareLinkSheet({ saved, onClose }) {
   );
 }
 
-function ShareLineupButton({ state }) {
-  const [open, setOpen] = React.useState(false);
+function ShareLineupButton({ state, weekend }) {
+  const untimed = shortlistMode();
+  const [open, _setOpen] = React.useState(false);
+  // Shortlist mode anchors its portaled menu to the button's rect (below).
+  const btnRef = React.useRef(null);
+  const [anchor, setAnchor] = React.useState(null);
+  const setOpen = (v) => _setOpen(o => {
+    const next = typeof v === "function" ? v(o) : v;
+    if (next && btnRef.current) { const r = btnRef.current.getBoundingClientRect(); setAnchor({ top: r.bottom + 6, left: r.left, right: window.innerWidth - r.right }); }
+    return next;
+  });
   const [linkOpen, setLinkOpen] = React.useState(false);
   const [busy, setBusy] = React.useState(false);
   const [done, setDone] = React.useState(null); // 'image' | 'cal' | 'pdf' | 'txt' | null
@@ -3174,7 +3271,7 @@ function ShareLineupButton({ state }) {
     setOpen(false); setBusy(true);
     const r = await fn({ ...state, saved: savedInLineup(state.saved) });
     setBusy(false);
-    if (r?.ok) { setDone(key); setTimeout(() => setDone(null), 1800); }
+    if (r?.ok) { setDone(r.mode === "copy" ? "txt" : key); setTimeout(() => setDone(null), 1800); }
     else if (r?.reason === "popup_blocked") {
       alert("Popup blocked — allow popups for plursky.com and try again.");
     }
@@ -3183,7 +3280,7 @@ function ShareLineupButton({ state }) {
   return (
     <div style={{ position: "relative" }}>
       {/* Field Mode: a quiet 44pt text action; the result reads in words. */}
-      <button data-share-lineup onClick={() => setOpen(o => !o)} disabled={busy} aria-haspopup="menu" aria-expanded={open} style={{
+      <button ref={btnRef} data-share-lineup onClick={() => setOpen(o => !o)} disabled={busy} aria-haspopup="menu" aria-expanded={open} style={{
         display: "flex", alignItems: "center", gap: 6,
         minHeight: 44, padding: "0 4px", borderRadius: 14,
         background: "transparent", border: "none",
@@ -3199,30 +3296,54 @@ function ShareLineupButton({ state }) {
           : done === "cal" ? "Added"
           : done === "pdf" ? "Printed"
           : done === "txt" ? "Copied"
+          : done === "shared" ? "Shared"
           : busy ? "…" : "Share"}
       </button>
 
-      {open && (
-        <>
-          <div onClick={() => setOpen(false)} style={{
-            position: "fixed", inset: 0, zIndex: 60, background: "transparent",
-          }}/>
-          <div style={{
-            position: "absolute", right: 0, top: "calc(100% + 6px)", zIndex: 61,
-            background: "var(--paper-2)", border: "1px solid var(--line-2)",
-            borderRadius: 14, padding: 5, minWidth: 200,
-            boxShadow: "var(--shadow-pop)",
-          }}>
-            <ShareMenuItem icon="img"  label="Image for stories" sub="1080×1920 PNG" onClick={wrap("image", shareLineupImage)} />
-            <ShareMenuItem icon="cal"  label="Add to calendar"   sub=".ics with 15-min reminders" onClick={wrap("cal", exportLineupICS)} />
-            <ShareMenuItem icon="prn"  label="Print schedule"    sub="Save as PDF from print dialog" onClick={wrap("pdf", async (s) => printLineupPDF(s))} />
-            <ShareMenuItem icon="txt"  label="Copy as text"      sub="Paste anywhere" onClick={wrap("txt", copyScheduleText)} />
-            {PLAN_SHARE_LINK_ON && (
-              <ShareMenuItem icon="lnk" label="Share as a link" sub="Preview what a link shows" onClick={() => { setOpen(false); setLinkOpen(true); }} />
-            )}
-          </div>
-        </>
-      )}
+      {open && (() => {
+        const menu = (
+          <>
+            <div onClick={() => setOpen(false)} style={{
+              position: "fixed", inset: 0, zIndex: 60, background: "transparent",
+            }}/>
+            <div style={untimed ? {
+              // Shortlist: portaled to <body> and FIXED to the button's rect.
+              // Inside the folding lineup header (overflow hidden, its own
+              // stacking context) an absolute menu was clipped and the list
+              // rows painted over it. Share is the row's first action here,
+              // so the menu opens rightward from its left edge.
+              position: "fixed", top: anchor ? anchor.top : 0, left: Math.max(8, anchor ? anchor.left : 8), zIndex: 61,
+              background: "var(--paper-2)", border: "1px solid var(--line-2)",
+              borderRadius: 14, padding: 5, minWidth: 200,
+              boxShadow: "var(--shadow-pop)",
+            } : {
+              position: "absolute", right: 0, top: "calc(100% + 6px)", zIndex: 61,
+              background: "var(--paper-2)", border: "1px solid var(--line-2)",
+              borderRadius: 14, padding: 5, minWidth: 200,
+              boxShadow: "var(--shadow-pop)",
+            }}>
+              {untimed ? (
+                <>
+                  <ShareMenuItem icon="txt" label="Share shortlist" sub="Text · set times not announced" onClick={wrap("shared", (s) => shareShortlistText(s, weekend))} />
+                  <ShareMenuItem icon="cal" label="Add to calendar" sub="Opens when set times are announced" disabled />
+                  <ShareMenuItem icon="prn" label="Print schedule"  sub="Opens when set times are announced" disabled />
+                </>
+              ) : (
+                <>
+                  <ShareMenuItem icon="img"  label="Image for stories" sub="1080×1920 PNG" onClick={wrap("image", shareLineupImage)} />
+                  <ShareMenuItem icon="cal"  label="Add to calendar"   sub=".ics with 15-min reminders" onClick={wrap("cal", exportLineupICS)} />
+                  <ShareMenuItem icon="prn"  label="Print schedule"    sub="Save as PDF from print dialog" onClick={wrap("pdf", async (s) => printLineupPDF(s))} />
+                  <ShareMenuItem icon="txt"  label="Copy as text"      sub="Paste anywhere" onClick={wrap("txt", copyScheduleText)} />
+                </>
+              )}
+              {PLAN_SHARE_LINK_ON && (
+                <ShareMenuItem icon="lnk" label="Share as a link" sub="Preview what a link shows" onClick={() => { setOpen(false); setLinkOpen(true); }} />
+              )}
+            </div>
+          </>
+        );
+        return untimed ? ReactDOM.createPortal(menu, document.body) : menu;
+      })()}
       {PLAN_SHARE_LINK_ON && linkOpen && (
         <PlanShareLinkSheet saved={savedInLineup(state.saved)} onClose={() => setLinkOpen(false)} />
       )}
@@ -3230,7 +3351,7 @@ function ShareLineupButton({ state }) {
   );
 }
 
-function ShareMenuItem({ icon, label, sub, onClick }) {
+function ShareMenuItem({ icon, label, sub, onClick, disabled }) {
   const ico =
     icon === "img" ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M3 17 L9 12 L14 16 L17 13 L21 17"/></svg> :
     icon === "cal" ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9 H21"/><path d="M8 3 V7"/><path d="M16 3 V7"/></svg> :
@@ -3238,10 +3359,10 @@ function ShareMenuItem({ icon, label, sub, onClick }) {
     icon === "txt" ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8 H16"/><path d="M8 12 H16"/><path d="M8 16 H12"/></svg> :
                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9 V3 H18 V9"/><rect x="3" y="9" width="18" height="9" rx="1"/><rect x="6" y="14" width="12" height="6"/></svg>;
   return (
-    <button onClick={onClick} style={{
+    <button onClick={disabled ? undefined : onClick} disabled={!!disabled} aria-disabled={disabled || undefined} style={{
       display: "flex", alignItems: "center", gap: 10, width: "100%",
-      padding: "9px 10px", borderRadius: 8,
-      background: "transparent", border: "none", cursor: "pointer",
+      padding: "9px 10px", borderRadius: 8, opacity: disabled ? 0.55 : 1,
+      background: "transparent", border: "none", cursor: disabled ? "default" : "pointer",
       textAlign: "left", color: "var(--ink)",
       fontFamily: "inherit", transition: "background .15s",
     }}
@@ -3283,11 +3404,13 @@ function toggleSave(state, setState, id) {
     const liveNext = savedInLineup(next).length;
     const isFirstSave = !has && savedInLineup(state.saved).length === 0;
     const isMilestone = !has && [5, 10, 15, 20].includes(liveNext);
+    // Before set times exist a save is an ARTIST on a shortlist, not a set.
+    const unit = shortlistMode() ? "ARTIST" : "SET";
     const msg = has ? `REMOVED · ${label}`
-      : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO`
-      : isMilestone ? `✦ ${liveNext} SETS · ${label} · LINEUP GROWING`
+      : isFirstSave ? `✦ FIRST ${unit} SAVED · ${label} · LET'S GO`
+      : isMilestone ? `✦ ${liveNext} ${unit}S · ${label} · LINEUP GROWING`
       : hasConflict ? `SAVED · ${label} · ⚠ CLASH`
-      : `SAVED · ${liveNext} SETS`;
+      : `SAVED · ${liveNext} ${unit}S`;
     // 3s UNDO toast — restores the exact prior saved set and reverses the
     // cloud-sync tombstone so an accidental tap (or long-press) is one tap to
     // revert. Re-saving clears the removal tombstone; un-saving re-adds it.

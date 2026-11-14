@@ -3216,6 +3216,25 @@ for (const [label, file] of [
   }
 }
 
+// ── Coachella 2027 shortlist: the untimed lineup a fan can use ───────────
+// Real index.html, module served with only its gate flag flipped: weekend
+// choice, folded search, save/shortlist/reload, honest share (cancel is not a
+// success, no share sheet copies), orphan + W1-only fixture, deep link vs
+// root, ACL/Dreamstate/LAN unchanged, warm offline reopen, cold offline.
+{
+  console.log("▸ Coachella 2027 shortlist — weekend choice, save, share, offline, deep link");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-coachella-shortlist.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out.split("\n").filter(l => !/^\s+✓ /.test(l) || /coachella shortlist:/.test(l)).join("\n"));
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").split("\n").filter(l => /✗|Error/.test(l)).join("\n").trim();
+    // The filtered lines can hide a startup error (CI printed only "name: 'Error'"), so print the child's full stderr too.
+    if (e?.stderr) process.stdout.write(`  shortlist gate stderr:\n${e.stderr}\n`);
+    fail(`Coachella shortlist gate failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Escape Halloween 2026: the official set times, as shipped ────────────
 // 118 sets on 7 stages (Fri 58, Sat 60) from escapehalloween.com's per-day
 // set-times pages; every set's instant in PDT, the 02:00 close on the

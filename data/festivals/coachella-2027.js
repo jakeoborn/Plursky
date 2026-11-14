@@ -287,6 +287,9 @@
     mapPrintsStageNames: false,
     mapArtIsGeoregistered: false,
     setTimesProvisional: true,
+    // Opts into the shortlist lineup (data.jsx shortlistMode): weekend choice,
+    // Shortlist chip, text share, no My night/Calendar until set times exist.
+    untimedShortlist: true,
   };
 
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
