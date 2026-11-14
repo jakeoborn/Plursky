@@ -87,9 +87,9 @@ const out = build();
   // standing rule settles (four "Name (Act)" parentheticals, the Bunny (Rabbit
   // in the Moon) case, and WAVS (VS. + Wakcutt ft. Lyndi Lush)) and two more
   // short names billed at a second brand (TJR, R/D): 125 rows. Raised to 130
-  // under the same standing call and reported in that pull request; past it,
-  // stop and report again.
-  check(review.length <= 130, `review queue is ${review.length} rows (> 130 means stop and report)`);
+  // under the same standing call and reported in that pull request.
+  // Coachella 2027 added two x billings no standing rule settles; past 135, stop and report.
+  check(review.length <= 135, `review queue is ${review.length} rows (> 135 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

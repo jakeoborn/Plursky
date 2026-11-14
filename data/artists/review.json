@@ -23,12 +23,16 @@
  {
   "id": "coachella-2027:coa27-kolter-x-sidney-charles",
   "printed": "Kolter x Sidney Charles",
-  "reason": "\"x\" billing whose sides are not both known acts"
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
   "id": "coachella-2027:coa27-marten-lou-x-alex-wann",
   "printed": "Marten Lou x Alex Wann",
-  "reason": "\"x\" billing whose sides are not both known acts"
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
   "id": "acl-2013:d1:austin-kiddie-limits:1230:tim-and-the-space-cadets-with-mother-falcon",
