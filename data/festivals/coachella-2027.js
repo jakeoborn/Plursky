@@ -4,8 +4,9 @@
 // ═══════════════════════════════════════════════════════════════════════
 // LINEUP ONLY. The billing names and their days are official; stages, set
 // times, gates, a 2027 map and sun times are NOT published and none are
-// invented below. The one location fact is the venue's own point (below). Gated (`available: false`) in this module's own PR; the
-// activation is a separate PR.
+// invented below. The one location fact is the venue's own point (below).
+// Added gated in its own PR; opened lineup-only (available + scheduleTBA) by
+// the SPEC-195 activation PR.
 //
 // ── SOURCES (observed 2026-11-13T12:36:48Z) ──
 // Raw capture, hashes and the full reasoning live OUTSIDE the public repo in
@@ -295,7 +296,7 @@
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["coachella-2027"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
-    // Gated: this PR adds the data only. Opening it is the activation PR.
-    registry: { available: false, scheduleTBA: true, accent: "#ec4899", emoji: "🌵", region: "North America" },
+    // Open as lineup-only: available + scheduleTBA, no set times (SPEC-195 activation).
+    registry: { available: true, scheduleTBA: true, accent: "#ec4899", emoji: "🌵", region: "North America" },
   };
 })();

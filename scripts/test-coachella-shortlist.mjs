@@ -4,9 +4,9 @@
 //   node scripts/test-coachella-shortlist.mjs            # 390x844 light + 320x568 dark
 //   SHOTS=/some/dir VIEWPORTS=320x568-dark,390x844-light,430x932-dark node scripts/test-coachella-shortlist.mjs
 //
-// The module ships GATED (available: false); the activation is its own PR.
-// This gate serves data/festivals/coachella-2027.js with ONLY that flag flipped
-// (route below), so it exercises exactly what the activation PR would open.
+// The module is OPEN (available: true, scheduleTBA: true) since the activation
+// PR. The route below still serves it, so the fixture phases can swap in a
+// variant; the default body is the file as committed.
 //
 // Phases:
 //   1. Flow (per viewport): asks which weekend, picks W2, accent/case-folded
@@ -45,8 +45,8 @@ const VIEWPORTS = (process.env.VIEWPORTS || "390x844-light,320x568-dark").split(
   if (!w) throw new Error(`bad viewport ${v}`); return { w: +w, h: +h, scheme };
 });
 const MOD = readFileSync(join(ROOT, "data/festivals/coachella-2027.js"), "utf8");
-const OPEN = MOD.replace("registry: { available: false,", "registry: { available: true,");
-if (OPEN === MOD) throw new Error("coachella-2027.js: the gated registry flag moved; update this gate's route");
+const OPEN = MOD;
+if (!MOD.includes("registry: { available: true, scheduleTBA: true,")) throw new Error("coachella-2027.js is not open lineup-only; this gate tests the open festival");
 
 const PORT = await new Promise((res, rej) => { const s = createServer(); s.once("error", rej); s.listen(0, "127.0.0.1", () => { const a = s.address(); s.close(() => res(a.port)); }); });
 const ORIGIN = `http://127.0.0.1:${PORT}`;
