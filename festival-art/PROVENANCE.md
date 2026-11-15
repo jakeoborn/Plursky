@@ -43,8 +43,9 @@ The last five festivals that still showed initials now have a photo. Cards are 7
 
 | File | Source | Status |
 |---|---|---|
-| `day-zero-tulum-2027.webp` | https://dayzerofestival.com/tulum/ (site hero) | Official site; reuse terms not granted |
-| `groove-cruise-2027.webp` | https://www.groovecruise.com/ (pool-deck crowd) | Official site; reuse terms not granted |
-| `time-warp-2027.webp` | https://www.time-warp.de/ (home slider, file credit togis) | Official site; reuse terms not granted |
+| `groove-cruise-2027.webp` | https://commons.wikimedia.org/wiki/File:Markus_Schulz_Balloon_Drop_-_@RUDGRCOM.jpg | CC BY 3.0, Rutger Geerling. Replaced the official-site image 2026-11-15 (reuse never granted) |
+| `time-warp-2027.webp` | https://commons.wikimedia.org/wiki/File:Klaudia_Gawlas_Time_Warp_Mannheim_2017.jpg | CC BY-SA 4.0, MariaMarriage. Replaced the official-site image 2026-11-15 (reuse never granted) |
 | `sonar-2027.webp` | https://commons.wikimedia.org/wiki/File:S%C3%B3nar_by_Day_2016.jpg | CC BY-SA 4.0, Javier Tles. The official site serves no event photo |
 | `ozora-2027.webp` | https://commons.wikimedia.org/wiki/File:Solar_Field_(223948909).jpeg | CC0, Artem Kavalerov. The official site serves only its ticket shop |
+
+Day Zero Tulum 2027 has no art (2026-11-15): the site image's reuse was never granted, Commons has no Day Zero photo and the site publishes no press kit. It shows its tinted letter tile until a cleared image exists.

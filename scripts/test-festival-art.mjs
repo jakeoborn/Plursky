@@ -29,7 +29,9 @@ const TILE_BUDGET = 16 * 1024, TOTAL_BUDGET = 432 * 1024;   // 55 tiles at ~7.5 
 // lots of photos"). A festival allowed the tinted letter tile goes here, with
 // why. None today.
 const FALLBACK = {
-  // None today: every listed festival has a photo (photo pass 2, 2026-11-14).
+  // Jake 2026-11-15: replace official-site images whose reuse was never
+  // granted. Day Zero has no cleared image: Commons has none, the site no press kit.
+  "day-zero-tulum-2027": "no reuse-cleared photo (Commons none, site has no press kit); letter tile until one exists",
 };
 // Sat Oct 17, 4 pm ET: III Points is live, so all three chip kinds are on the page.
 const AT = "2026-10-17T20:00:00Z";
@@ -68,7 +70,15 @@ for (const id of ids) {
   check(sz <= TILE_BUDGET, `${id}: tile within ${TILE_BUDGET} B (${sz})`);
   check(sw.includes(`'./${r.tile}'`), `${id}: tile is in the SW precache`);
   if (r.card) check(existsSync(join(ROOT, r.card)) && sw.includes(`'./${r.card}'`), `${id}: card file exists and is precached`);
+  // A Commons photo is shown with its credit: author, licence deed, changes.
+  if (/commons\.wikimedia\.org/.test(r.sourcePage || "")) {
+    check(typeof r.author === "string" && r.author.length > 0 && r.author.length <= 40, `${id}: Commons photo names its author`);
+    check(/^CC(0-1\.0|-BY(-SA)?-\d\.\d)$/.test(r.licenseId || ""), `${id}: Commons photo has a licence id (${r.licenseId})`);
+    check(/^https:\/\/creativecommons\.org\/(licenses|publicdomain)\//.test(r.licenseUrl || ""), `${id}: Commons photo links its licence deed`);
+    check(typeof r.changes === "string" && r.changes.length > 0, `${id}: Commons photo states its changes`);
+  }
 }
+for (const id of Object.keys(FALLBACK)) check(!ART[id], `${id}: a fallback festival has no ledger art (${FALLBACK[id]})`);
 check(total <= TOTAL_BUDGET, `all tiles within ${TOTAL_BUDGET} B (${total})`);
 // One door: FestivalThumb resolves art only through the ledger.
 const chrome = readFileSync(join(ROOT, "chrome.jsx"), "utf8");

@@ -1906,6 +1906,57 @@ function FestivalThumb({ entry, size = 56, editorial = false }) {
     </div>
   );
 }
+// ── Photo credits (one path for every licensed photo) ──
+// A Commons or press-kit photo is shown with its credit: the author linked to
+// the source page, the licence linked to its deed, and what was changed.
+// Artist heroes, onboarding portraits and festival art all call this, so the
+// credit reads the same everywhere. Share cards export plain (no credit line).
+// "CC-BY-SA-3.0" → "CC BY-SA 3.0": the ledger's SPDX-style id, as printed.
+function photoLicenseLabel(id) {
+  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/-DE$/, " DE").replace(/^(Public|Press)-/, "$1 ");
+}
+const _photoCreditLink = { color: "inherit", textDecoration: "underline", textUnderlineOffset: 2 };
+// credit: { author, sourceUrl, license (id), licenseUrl, changes }
+function PhotoCredit({ credit, style, ...rest }) {
+  if (!credit || !credit.author || !credit.sourceUrl || !credit.license || !credit.licenseUrl) return null;
+  const lic = photoLicenseLabel(credit.license), changes = credit.changes || "";
+  return (
+    <div aria-label={"Photo credit: " + credit.author + ", " + lic + (changes ? ", " + changes.toLowerCase() : "")} {...rest} style={{
+      fontSize: "var(--fs-label)", lineHeight: "16px", color: "var(--text-3)", ...style,
+    }}>
+      <a href={credit.sourceUrl} target="_blank" rel="noopener noreferrer" style={_photoCreditLink}>{credit.author}</a>
+      {" · "}<a href={credit.licenseUrl} target="_blank" rel="noopener noreferrer" style={_photoCreditLink}>{lic}</a>
+      {changes ? " · " + changes : ""}
+    </div>
+  );
+}
+// Festival art that carries a licence (the ledger's Commons photos), as credits.
+function festivalPhotoCredits() {
+  const art = window.PLURSKY_FESTIVAL_ART || {};
+  const sets = window._DATA_SETS || {};
+  return Object.keys(art).filter(id => art[id].author && art[id].licenseId && art[id].licenseUrl).map(id => {
+    const r = art[id], cfg = sets[id]?.config;
+    return { id, name: cfg?.name || id, credit: { author: r.author, sourceUrl: r.sourcePage, license: r.licenseId, licenseUrl: r.licenseUrl, changes: r.changes } };
+  }).sort((a, b) => a.name.localeCompare(b.name));
+}
+function PhotoCreditsSheet({ onClose }) {
+  const rows = festivalPhotoCredits();
+  return (
+    <FieldSheet title="Photo credits" eyebrow="FESTIVAL PHOTOS" onClose={onClose}>
+      <p style={{ margin: "-4px 0 14px", color: "var(--ink-2)", font: "400 15px/1.4 var(--f-ui)" }}>
+        These festival photos are shared under open licences. Each links to its source and its licence.
+      </p>
+      <div data-photo-credits="1">
+        {rows.map(r => (
+          <div key={r.id} data-photo-credit-row={r.id} style={{ padding: "10px 0", borderTop: "1px solid var(--line)" }}>
+            <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, marginBottom: 2 }}>{r.name}</div>
+            <PhotoCredit credit={r.credit} />
+          </div>
+        ))}
+      </div>
+    </FieldSheet>
+  );
+}
 // Saved sets and same-day clashes for any festival, from its own saved key.
 function _festivalPlanStatus(id) {
   let ids = [];
@@ -1931,6 +1982,7 @@ function FestivalSwitcher({ onClose }) {
   const activeId = FESTIVAL_CONFIG.id;
   const [plusOpen, setPlusOpen] = React.useState(false);
   const [pastOpen, setPastOpen] = React.useState(false);
+  const [creditsOpen, setCreditsOpen] = React.useState(false);
   // Past editions (historical.jsx): a gated entry whose earlier edition is in
   // the library opens that look-back instead of sitting disabled. It never
   // switches festival and never flips the entry.
@@ -2071,7 +2123,9 @@ function FestivalSwitcher({ onClose }) {
       </button>
       <p style={{ margin: "16px 0", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
         Switching reloads the app with that festival's lineup and map.
+        {festivalPhotoCredits().length > 0 && <> <button data-photo-credits-open="1" onClick={() => setCreditsOpen(true)} style={{ background: "none", border: 0, padding: 0, font: "inherit", color: "inherit", textDecoration: "underline", textUnderlineOffset: 2, cursor: "pointer" }}>Photo credits</button></>}
       </p>
+      {creditsOpen && <PhotoCreditsSheet onClose={() => setCreditsOpen(false)} />}
       <FieldButton onClick={() => { onClose(); (window._pushNav || (() => {}))({ tab: "lineup", artist: null }); }}>Build plan</FieldButton>
     </FieldSheet>
   );
