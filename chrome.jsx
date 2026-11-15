@@ -1879,7 +1879,9 @@ function FestivalThumb({ entry, size = 56, editorial = false }) {
   // one. Compact (list rows): the ledger's 168 px tile, cover-fit on a
   // charcoal well so light or transparent art never floats on the page.
   const rec = festivalArtFor(entry?.config?.id);
-  const art = editorial ? (rec?.card || null) : (rec?.tile || null);
+  // A festival with no full card still shows its tile in the grid, cover-fit,
+  // so no grid cell ever falls back to initials while the ledger has art.
+  const art = editorial ? (rec?.card || rec?.tile || null) : (rec?.tile || null);
   const name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
   // The brand when it is already a code (EDC, ACL, CRSSD); else the
   // initials of the name's words, the year left out.
