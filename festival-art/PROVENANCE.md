@@ -37,3 +37,14 @@ Added 2026-09-30 at Jake's request ("Need photos of the festivals under the phot
 |---|---|---|
 | `tiles/decadence-colorado-2026.webp` | https://decadencenye.com/ | https://decadencenye.com/wp-content/uploads/2026/08/Decadence_2026_Header.jpg. This is the 2026 "Digital City" header key art; the tile is the portrait panel only, with no text. The site serves no festival photo (checked 2026-09-30 and 2026-10-18). |
 | `tiles/electric-forest-2027.webp` | https://www.electricforestfestival.com/ | https://media.web.aegpresents.com/content/seo_images/738/QYrsNFGnojQynQbPI7XImXi6Mun0bzyLmbThefG0.jpg. This is the logo from the official share image. The site serves only the lineup poster and illustrations, so a photo is still owed. |
+
+## Photo pass 2 (2026-11-14)
+The last five festivals that still showed initials now have a photo. Cards are 784×523 WebP q72 and tiles are 168×168 WebP q78, as above. `data/festival-art.js` holds each source page, direct asset, credit and licence.
+
+| File | Source | Status |
+|---|---|---|
+| `day-zero-tulum-2027.webp` | https://dayzerofestival.com/tulum/ (site hero) | Official site; reuse terms not granted |
+| `groove-cruise-2027.webp` | https://www.groovecruise.com/ (pool-deck crowd) | Official site; reuse terms not granted |
+| `time-warp-2027.webp` | https://www.time-warp.de/ (home slider, file credit togis) | Official site; reuse terms not granted |
+| `sonar-2027.webp` | https://commons.wikimedia.org/wiki/File:S%C3%B3nar_by_Day_2016.jpg | CC BY-SA 4.0, Javier Tles. The official site serves no event photo |
+| `ozora-2027.webp` | https://commons.wikimedia.org/wiki/File:Solar_Field_(223948909).jpeg | CC0, Artem Kavalerov. The official site serves only its ticket shop |

@@ -24,18 +24,13 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
 const check = (ok, msg) => { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } };
 
-const TILE_BUDGET = 16 * 1024, TOTAL_BUDGET = 400 * 1024;   // 47 tiles at ~8 KB (photo pass 2026-11-12)
+const TILE_BUDGET = 16 * 1024, TOTAL_BUDGET = 432 * 1024;   // 55 tiles at ~7.5 KB (photo pass 2, 2026-11-14)
 // Every listed festival carries art (Jake 2026-10-18: "a visual based app,
 // lots of photos"). A festival allowed the tinted letter tile goes here, with
 // why. None today.
 const FALLBACK = {
-  // Added 2026-11-12/13 by festival batch 5 and later, after the photo pass;
+  // Added 2026-11-15 by festival batch 6, after photo pass 2;
   // each needs an official tile in data/festival-art.js.
-  "groove-cruise-2027": "official art not fetched yet; tile owed before the flip",
-  "day-zero-tulum-2027": "official art not fetched yet; tile owed before the flip",
-  "time-warp-2027": "official art not fetched yet; tile owed before the flip",
-  "sonar-2027": "official art not fetched yet; tile owed before the flip",
-  "ozora-2027": "official art not fetched yet; tile owed before the flip",
   "lollapalooza-india-2027": "official art not fetched yet; tile owed before the flip",
   "lollapalooza-argentina-2027": "official art not fetched yet; tile owed before the flip",
   "lollapalooza-chile-2027": "official art not fetched yet; tile owed before the flip",
