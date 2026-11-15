@@ -2189,7 +2189,7 @@ function _weekendShiftMs(cfg, nowMs, savedIds) {
 function weekendIsUsersChoice(cfg, artists) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
   var w = c && c.weekendStartMs;
-  if (!c.untimedShortlist || !w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return false;
+  if (c.untimedShortlist === false || !w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return false;
   var arts = artists || (typeof _DATA_SETS !== "undefined" && _DATA_SETS[c.id] || {}).artists || [];
   return arts.length > 0 && arts.every(a => !a.weekend || a.weekend === "both");
 }
@@ -2239,7 +2239,7 @@ function lineupHasNoTimes(artists) {
 }
 function shortlistMode(cfg, artists) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
-  return !!(c && c.untimedShortlist) && lineupHasNoTimes(artists);
+  return !!c && c.untimedShortlist !== false && lineupHasNoTimes(artists);
 }
 function activeWeekend(cfg, nowMs, savedIds) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
