@@ -111,6 +111,8 @@ try {
     await page.goto(`http://127.0.0.1:${PORT}/index.html`, { waitUntil: "domcontentloaded" });
     const ok = await page.waitForSelector("[data-landing-row]", { timeout: 60000 }).then(() => true, () => false);
     check(ok, `${tag}: General Home lists festival rows`);
+    const unnamed = await page.evaluate(() => (typeof festivalPhotoCredits === "function" ? festivalPhotoCredits() : [{ id: "no festivalPhotoCredits" }]).filter(c => !c.name || c.name === c.id).map(c => c.id));
+    check(unnamed.length === 0, `${tag}: every Photo credits row names its festival (unnamed: ${unnamed.join(", ")})`);
     if (!ok) { await ctx.close(); continue; }
     await page.clock.runFor(1200); await page.waitForTimeout(600);
     // Measure the face users get: the app's faces are bundled (font-display:

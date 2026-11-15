@@ -1934,8 +1934,10 @@ function PhotoCredit({ credit, style, ...rest }) {
 function festivalPhotoCredits() {
   const art = window.PLURSKY_FESTIVAL_ART || {};
   const sets = window._DATA_SETS || {};
+  // Gated previews (Sónar, Time Warp...) are in the registry but have no data set.
+  const reg = window.FESTIVALS_REGISTRY || [];
   return Object.keys(art).filter(id => art[id].author && art[id].licenseId && art[id].licenseUrl).map(id => {
-    const r = art[id], cfg = sets[id]?.config;
+    const r = art[id], cfg = sets[id]?.config || reg.find(f => f.config?.id === id)?.config;
     return { id, name: cfg?.name || id, credit: { author: r.author, sourceUrl: r.sourcePage, license: r.licenseId, licenseUrl: r.licenseUrl, changes: r.changes } };
   }).sort((a, b) => a.name.localeCompare(b.name));
 }

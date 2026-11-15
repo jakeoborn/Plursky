@@ -2393,9 +2393,10 @@ function PhotoCredit({
 function festivalPhotoCredits() {
   var art = window.PLURSKY_FESTIVAL_ART || {};
   var sets = window._DATA_SETS || {};
+  var reg = window.FESTIVALS_REGISTRY || [];
   return Object.keys(art).filter(id => art[id].author && art[id].licenseId && art[id].licenseUrl).map(id => {
     var r = art[id],
-      cfg = sets[id]?.config;
+      cfg = sets[id]?.config || reg.find(f => f.config?.id === id)?.config;
     return {
       id,
       name: cfg?.name || id,
