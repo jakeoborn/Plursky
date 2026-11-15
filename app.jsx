@@ -299,10 +299,16 @@ function OnboardingModal({ onDone, setState, state }) {
   const cur = PAGES[story ? page : 2];
   const term = q.trim().toLowerCase();
   const now = Date.now();
-  const list = FESTIVALS_REGISTRY
+  const upcoming = FESTIVALS_REGISTRY
     .filter(f => (f.config.endMs || 0) >= now)
-    .sort((a, b) => (a.config.startMs || 0) - (b.config.startMs || 0))
-    .filter(f => !term || `${f.config.name} ${f.config.location}`.toLowerCase().includes(term));
+    .sort((a, b) => (a.config.startMs || 0) - (b.config.startMs || 0));
+  const list = upcoming.filter(f => !term || `${f.config.name} ${f.config.location}`.toLowerCase().includes(term));
+  // The bottom button never offers a festival that has already ended (a
+  // fresh install opens on the bundled default, which can be past): it
+  // offers the soonest festival the list itself would let you enter.
+  const openNow = !FESTIVAL_CONFIG.endMs || FESTIVAL_CONFIG.endMs >= now;
+  const fallback = openNow ? null : upcoming.find(f => typeof landingCanEnter === "function"
+    ? landingCanEnter(f, now, !!window._isPlusSub?.()) : f.available) || null;
   return (
     <div role="dialog" aria-modal="true" aria-label="Welcome to Plursky" style={{
       position: "absolute", inset: 0, zIndex: 100, background: "var(--paper)", color: "var(--ink)",
@@ -375,7 +381,7 @@ function OnboardingModal({ onDone, setState, state }) {
             {!list.length && <p style={{ padding: "24px 0", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>No festival by that name yet.</p>}
           </div>
           <div style={{ padding: "12px 20px 16px" }}>
-            <FieldButton onClick={() => finish(null)}>Continue with {FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name}</FieldButton>
+            <FieldButton onClick={() => finish(fallback ? fallback.config.id : null)}>Continue with {fallback ? (fallback.config.shortName || fallback.config.name) : (FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name)}</FieldButton>
           </div>
         </>
       )}

@@ -476,7 +476,10 @@ function OnboardingModal({
   var cur = PAGES[story ? page : 2];
   var term = q.trim().toLowerCase();
   var now = Date.now();
-  var list = FESTIVALS_REGISTRY.filter(f => (f.config.endMs || 0) >= now).sort((a, b) => (a.config.startMs || 0) - (b.config.startMs || 0)).filter(f => !term || `${f.config.name} ${f.config.location}`.toLowerCase().includes(term));
+  var upcoming = FESTIVALS_REGISTRY.filter(f => (f.config.endMs || 0) >= now).sort((a, b) => (a.config.startMs || 0) - (b.config.startMs || 0));
+  var list = upcoming.filter(f => !term || `${f.config.name} ${f.config.location}`.toLowerCase().includes(term));
+  var openNow = !FESTIVAL_CONFIG.endMs || FESTIVAL_CONFIG.endMs >= now;
+  var fallback = openNow ? null : upcoming.find(f => typeof landingCanEnter === "function" ? landingCanEnter(f, now, !!window._isPlusSub?.()) : f.available) || null;
   return React.createElement("div", {
     role: "dialog",
     "aria-modal": "true",
@@ -639,8 +642,8 @@ function OnboardingModal({
       padding: "12px 20px 16px"
     }
   }, React.createElement(FieldButton, {
-    onClick: () => finish(null)
-  }, "Continue with ", FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name))));
+    onClick: () => finish(fallback ? fallback.config.id : null)
+  }, "Continue with ", fallback ? fallback.config.shortName || fallback.config.name : FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name))));
 }
 function QuickNameSheet({
   onDone
