@@ -374,6 +374,7 @@ async function _renderHeroPreview(artist) {
     try {
       var img = await new Promise((res, rej) => {
         var im = new Image();
+        im.crossOrigin = "anonymous";
         im.onload = () => res(im);
         im.onerror = rej;
         im.src = rec.url;
