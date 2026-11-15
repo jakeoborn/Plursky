@@ -978,6 +978,14 @@ function App() {
           setState(prev => ({ ...prev, tab, ...(tab === "past" ? { pastEdition } : {}) }));
           setShowOnboarding(false);
         }
+        // ?artist=ID opens that artist, checked against the active lineup like
+        // the boot parser does. Before this, a link opened while the app was
+        // running (appUrlOpen) dropped the artist and showed only the tab.
+        const artist = params.get("artist");
+        if (artist && ARTISTS.find(a => a.id === artist)) {
+          setState(prev => ({ ...prev, artist }));
+          setShowOnboarding(false);
+        }
       } catch {}
     };
     window.plurskyApplyUrlParams = applyUrlParams;

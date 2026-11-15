@@ -1510,6 +1510,14 @@ function App() {
           }));
           setShowOnboarding(false);
         }
+        var artist = params.get("artist");
+        if (artist && ARTISTS.find(a => a.id === artist)) {
+          setState(prev => ({
+            ...prev,
+            artist
+          }));
+          setShowOnboarding(false);
+        }
       } catch {}
     };
     window.plurskyApplyUrlParams = applyUrlParams;
