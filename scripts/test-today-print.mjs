@@ -470,15 +470,19 @@ try {
           boots++;
         } else {
           // Back until the artist screen is gone (a b2b half may have pushed a nav entry).
+          // Waits on the unmount, not a fixed sleep: two fixed sleeps per hero were ~0.55 s x 2,928 (f25 profile).
           for (let i = 0; i < 6 && await booted.page.locator('[data-artist-hero]').count(); i++) {
             await booted.page.locator('[data-artist-hero-label="back"]').first().click();
-            await booted.page.waitForTimeout(150);
+            await booted.page.waitForFunction(() => !document.querySelector('[data-artist-hero]'), null, { timeout: 1000 }).catch(() => {});
           }
           await booted.page.waitForFunction(() => !document.querySelector('[data-artist-hero]'), null, { timeout: 15000 });
           const opened = await booted.page.evaluate((id) => { if (!window.plurskyApplyUrlParams) return false; window.plurskyApplyUrlParams(`?tab=lineup&artist=${encodeURIComponent(id)}`); return true; }, a.id);
           check(opened, `${tag}: the app has no link handler to open an artist`);
           await booted.page.waitForSelector('[data-artist-hero]', { timeout: 30000 });
-          await booted.page.clock.runFor(1500); await booted.page.waitForTimeout(400);
+          // The photo wait below is the settle; the clock still runs the app's 1.5 s of timers.
+          await booted.page.clock.runFor(1500);
+          // Then the hero's shade fade-in must finish (it paints under the labels the AA check measures).
+          await booted.page.waitForFunction(() => document.getAnimations().every(x => x.playState !== 'running'), null, { timeout: 5000 }).catch(() => {});
         }
         const o = { page: booted.page, errors: booted.errors.splice(0) };
         if (a.part > 0) {
