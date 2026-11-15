@@ -1510,6 +1510,14 @@ function App() {
           }));
           setShowOnboarding(false);
         }
+        var artist = params.get("artist");
+        if (artist && ARTISTS.find(a => a.id === artist)) {
+          setState(prev => ({
+            ...prev,
+            artist
+          }));
+          setShowOnboarding(false);
+        }
       } catch {}
     };
     window.plurskyApplyUrlParams = applyUrlParams;
@@ -1798,7 +1806,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v610"
+        version: "v613"
       }));
     } catch {}
   }
@@ -1850,7 +1858,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v610"))
+      }, "Plursky · v613"))
     );
   }
 }

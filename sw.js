@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v610';
+﻿const CACHE      = 'plursky-v613';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v610';
+const APP_VER    = 'v613';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -218,6 +218,11 @@ const LOCAL = [
   './festival-art/ultra-europe-2027.webp',
   './festival-art/ultra-miami-2026.webp',
   './festival-art/untold-2027.webp',
+  './festival-art/day-zero-tulum-2027.webp',
+  './festival-art/groove-cruise-2027.webp',
+  './festival-art/time-warp-2027.webp',
+  './festival-art/sonar-2027.webp',
+  './festival-art/ozora-2027.webp',
   './festival-art/tiles/acl-2026.webp',
   './festival-art/tiles/arc-2026.webp',
   './festival-art/tiles/awakenings-2027.webp',
@@ -268,6 +273,11 @@ const LOCAL = [
   './festival-art/tiles/ultra-europe-2027.webp',
   './festival-art/tiles/ultra-miami-2026.webp',
   './festival-art/tiles/untold-2027.webp',
+  './festival-art/tiles/day-zero-tulum-2027.webp',
+  './festival-art/tiles/groove-cruise-2027.webp',
+  './festival-art/tiles/time-warp-2027.webp',
+  './festival-art/tiles/sonar-2027.webp',
+  './festival-art/tiles/ozora-2027.webp',
   `./build/ios-frame.js?v=${APP_VER}`,
   `./build/data.js?v=${APP_VER}`,
   `./build/supabase.js?v=${APP_VER}`,

@@ -978,6 +978,14 @@ function App() {
           setState(prev => ({ ...prev, tab, ...(tab === "past" ? { pastEdition } : {}) }));
           setShowOnboarding(false);
         }
+        // ?artist=ID opens that artist, checked against the active lineup like
+        // the boot parser does. Before this, a link opened while the app was
+        // running (appUrlOpen) dropped the artist and showed only the tab.
+        const artist = params.get("artist");
+        if (artist && ARTISTS.find(a => a.id === artist)) {
+          setState(prev => ({ ...prev, artist }));
+          setShowOnboarding(false);
+        }
       } catch {}
     };
     window.plurskyApplyUrlParams = applyUrlParams;
@@ -1235,7 +1243,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v610",
+        version: "v613",
       }));
     } catch {}
   }
@@ -1266,7 +1274,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v610
+          Plursky · v613
         </div>
       </div>
     );
