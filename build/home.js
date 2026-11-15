@@ -4751,7 +4751,7 @@ function NpPoster({
   }, React.createElement("b", null, fold), React.createElement("span", null, foldRight)));
 }
 function _npPhotoCredit(rec) {
-  var lic = String(rec?.license || "").match(/^(CC BY(?:-SA)? [0-9.]+)/);
+  var lic = String(rec?.license || "").match(/^(CC BY(?:-SA)? [0-9]+(?:\.[0-9]+)*)/);
   if (!lic) return null;
   var who = String(rec?.credit || "").match(/Photo by ([^,(]+)/);
   return `${who ? `Photo: ${who[1].trim()} · ` : ""}${lic[1]} · Wikimedia Commons`;

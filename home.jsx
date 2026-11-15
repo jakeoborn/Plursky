@@ -3054,7 +3054,7 @@ function NpPoster({ countdown, stampText, fold, foldRight }) {
 // (data/festival-art.js); a festival with no card keeps the type-only poster.
 // A Creative Commons BY photo carries its credit and license on the frame.
 function _npPhotoCredit(rec) {
-  const lic = String(rec?.license || "").match(/^(CC BY(?:-SA)? [0-9.]+)/);
+  const lic = String(rec?.license || "").match(/^(CC BY(?:-SA)? [0-9]+(?:\.[0-9]+)*)/);
   if (!lic) return null;
   const who = String(rec?.credit || "").match(/Photo by ([^,(]+)/);
   return `${who ? `Photo: ${who[1].trim()} · ` : ""}${lic[1]} · Wikimedia Commons`;
