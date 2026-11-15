@@ -125,7 +125,16 @@ try {
     const page = await ctx.newPage();
     const errors = [];
     page.on("pageerror", e => errors.push(String(e)));
-    await page.goto(`http://127.0.0.1:${PORT}/?tab=me`, { waitUntil: "domcontentloaded" });
+    // A navigation that stalls before the page exists is retried once, logged: CI run
+    // 43670407725 hung 30 s here on a local file before any check ran (its sibling run
+    // passed all 102). A second stall still fails, and no check runs on a missing page.
+    for (let attempt = 1; ; attempt++) {
+      try { await page.goto(`http://127.0.0.1:${PORT}/?tab=me`, { waitUntil: "domcontentloaded", timeout: 30000 }); break; }
+      catch (e) {
+        if (attempt >= 2 || e.name !== "TimeoutError") throw e;
+        console.log(`  (navigation retry: ${String(e.message).split("\n")[0]})`);
+      }
+    }
     await page.waitForFunction(() => typeof PlusGate === "function" && typeof _rescueOffer === "function", null, { timeout: 30000 });
     await sleep(600);
     return { ctx, page, errors };
