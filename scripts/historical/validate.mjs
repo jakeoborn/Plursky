@@ -358,6 +358,10 @@ function officialSources(e, meta, p) {
         const T = +/^time_(\d+)$/.exec(c.firstSlot)?.[1], wd = new Date(date + "T12:00:00Z").toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
         if (!T || new Date(T * 1000).toISOString().slice(0, 10) !== date) p.push(`${tag}: the page's first slot ${c.firstSlot} is not on ${date}`);
         if (String(c.printed).toLowerCase() !== wd.toLowerCase()) p.push(`${tag}: the page's day tab "${c.printed}" is not ${wd}`);
+      } else if (c.firstStart) {
+        // Outside Lands' 2010-2011 planner prints no day tab: it writes each
+        // set's start with its date as data ("2011-08-12 12:00:00").
+        if (c.printed !== date || !String(c.firstStart).startsWith(date + " ")) p.push(`${tag}: the page's data writes "${c.printed}" (first start ${c.firstStart}), not ${date}`);
       } else if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
       // Outside Lands' grid prints no am/pm: the day's meridiem comes from one
       // act's own page on the official site, which must print this day.

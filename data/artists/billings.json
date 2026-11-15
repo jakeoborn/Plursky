@@ -328863,6 +328863,3450 @@
   "mainStage": null
  },
  {
+  "id": "outside-lands-2010:d1:inspire:1200:tal-m-klein",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Inspire",
+  "start": "12:00",
+  "end": "13:30",
+  "printed": "Tal M Klein",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tal-m-klein",
+    "role": "performer"
+   }
+  ],
+  "act": "tal-m-klein",
+  "closing": false,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:inspire:1330:ground-control",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Inspire",
+  "start": "13:30",
+  "end": "15:00",
+  "printed": "Ground Control",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ground-control",
+    "role": "performer"
+   }
+  ],
+  "act": "ground-control",
+  "closing": false,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:inspire:1500:motion-potion",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Inspire",
+  "start": "15:00",
+  "end": "16:30",
+  "printed": "Motion Potion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "motion-potion",
+    "role": "performer"
+   }
+  ],
+  "act": "motion-potion",
+  "closing": false,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:inspire:1630:syd-gris",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Inspire",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Syd Gris",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "syd-gris",
+    "role": "performer"
+   }
+  ],
+  "act": "syd-gris",
+  "closing": false,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:inspire:1800:kramer",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Inspire",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Kramer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kramer",
+    "role": "performer"
+   }
+  ],
+  "act": "kramer",
+  "closing": false,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:inspire:1930:dj-dan",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Inspire",
+  "start": "19:30",
+  "end": "21:30",
+  "printed": "DJ Dan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-dan",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-dan",
+  "closing": true,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:lands-end:1200:people-under-the-stairs",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "People Under The Stairs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "people-under-the-stairs",
+    "role": "performer"
+   }
+  ],
+  "act": "people-under-the-stairs",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:lands-end:1325:sierra-leone-s-refugee-all-stars",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "13:25",
+  "end": "14:15",
+  "printed": "Sierra Leone's Refugee All Stars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sierra-leone-s-refugee-all-stars",
+    "role": "performer"
+   }
+  ],
+  "act": "sierra-leone-s-refugee-all-stars",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:lands-end:1505:gogol-bordello",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "15:05",
+  "end": "16:05",
+  "printed": "Gogol Bordello",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gogol-bordello",
+    "role": "performer"
+   }
+  ],
+  "act": "gogol-bordello",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:lands-end:1700:my-morning-jacket",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "My Morning Jacket",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "my-morning-jacket",
+    "role": "performer"
+   }
+  ],
+  "act": "my-morning-jacket",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:lands-end:1925:furthur-ft-phil-lesh-and-bob-weir",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "19:25",
+  "end": "21:55",
+  "printed": "Furthur ft. Phil Lesh & Bob Weir",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "furthur",
+    "role": "project"
+   }
+  ],
+  "act": "furthur-ft-phil-lesh-and-bob-weir",
+  "closing": true,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:panhandle-solar:1200:the-whigs",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Panhandle Solar",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "The Whigs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-whigs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-whigs",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:panhandle-solar:1325:dawes",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Panhandle Solar",
+  "start": "13:25",
+  "end": "14:05",
+  "printed": "Dawes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dawes",
+    "role": "performer"
+   }
+  ],
+  "act": "dawes",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:panhandle-solar:1455:the-pimps-of-joytime",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Panhandle Solar",
+  "start": "14:55",
+  "end": "15:40",
+  "printed": "The Pimps of Joytime",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-pimps-of-joytime",
+    "role": "performer"
+   }
+  ],
+  "act": "the-pimps-of-joytime",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:panhandle-solar:1635:rebirth-brass-band",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Panhandle Solar",
+  "start": "16:35",
+  "end": "17:20",
+  "printed": "Rebirth Brass Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rebirth-brass-band",
+    "role": "performer"
+   }
+  ],
+  "act": "rebirth-brass-band",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:panhandle-solar:1815:beats-antique",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Panhandle Solar",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "Beats Antique",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beats-antique",
+    "role": "performer"
+   }
+  ],
+  "act": "beats-antique",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:panhandle-solar:1955:wild-beasts",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Panhandle Solar",
+  "start": "19:55",
+  "end": "20:40",
+  "printed": "Wild Beasts",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wild-beasts",
+    "role": "performer"
+   }
+  ],
+  "act": "wild-beasts",
+  "closing": true,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:sutro:1240:electric-six",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "12:40",
+  "end": "13:20",
+  "printed": "Electric Six",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "electric-six",
+    "role": "performer"
+   }
+  ],
+  "act": "electric-six",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:sutro:1415:pretty-lights",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "Pretty Lights",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pretty-lights",
+    "role": "performer"
+   }
+  ],
+  "act": "pretty-lights",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:sutro:1605:bassnectar",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "16:05",
+  "end": "16:55",
+  "printed": "Bassnectar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassnectar",
+    "role": "performer"
+   }
+  ],
+  "act": "bassnectar",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:sutro:1830:wolfmother",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "18:30",
+  "end": "19:20",
+  "printed": "Wolfmother",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wolfmother",
+    "role": "performer"
+   }
+  ],
+  "act": "wolfmother",
+  "closing": true,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:twin-peaks:1245:freelance-whales",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "12:45",
+  "end": "13:25",
+  "printed": "Freelance Whales",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freelance-whales",
+    "role": "performer"
+   }
+  ],
+  "act": "freelance-whales",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:twin-peaks:1410:langhorne-slim",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "14:10",
+  "end": "14:55",
+  "printed": "Langhorne Slim",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "langhorne-slim",
+    "role": "performer"
+   }
+  ],
+  "act": "langhorne-slim",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:twin-peaks:1545:the-levon-helm-band",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "15:45",
+  "end": "16:35",
+  "printed": "The Levon Helm Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-levon-helm-band",
+    "role": "performer"
+   }
+  ],
+  "act": "the-levon-helm-band",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:twin-peaks:1725:tokyo-police-club",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "17:25",
+  "end": "18:15",
+  "printed": "Tokyo Police Club",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tokyo-police-club",
+    "role": "performer"
+   }
+  ],
+  "act": "tokyo-police-club",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:twin-peaks:1905:cat-power",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "19:05",
+  "end": "19:55",
+  "printed": "Cat Power",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cat-power",
+    "role": "performer"
+   }
+  ],
+  "act": "cat-power",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d1:twin-peaks:2045:the-strokes",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "20:45",
+  "end": "21:55",
+  "printed": "The Strokes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-strokes",
+    "role": "performer"
+   }
+  ],
+  "act": "the-strokes",
+  "closing": true,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:inspire:1200:j-boogie",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Inspire",
+  "start": "12:00",
+  "end": "13:30",
+  "printed": "J. Boogie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "j-boogie",
+    "role": "performer"
+   }
+  ],
+  "act": "j-boogie",
+  "closing": false,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:inspire:1330:pigeon-john",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Inspire",
+  "start": "13:30",
+  "end": "15:00",
+  "printed": "Pigeon John",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pigeon-john",
+    "role": "performer"
+   }
+  ],
+  "act": "pigeon-john",
+  "closing": false,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:inspire:1500:jeffrey-paradise",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Inspire",
+  "start": "15:00",
+  "end": "16:30",
+  "printed": "Jeffrey Paradise",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jeffrey-paradise",
+    "role": "performer"
+   }
+  ],
+  "act": "jeffrey-paradise",
+  "closing": false,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:inspire:1630:ben-doren-ft-j-bowman",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Inspire",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Ben Doren ft. J. Bowman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-doren",
+    "role": "performer"
+   },
+   {
+    "key": "j-bowman",
+    "role": "guest"
+   }
+  ],
+  "act": "ben-doren-ft-j-bowman",
+  "closing": false,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:inspire:1800:isaiah-martin-ft-marc-d-antonio-and-dustin-hengl",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Inspire",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Isaiah Martin ft. Marc D’Antonio and Dustin Hengl",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isaiah-martin",
+    "role": "performer"
+   },
+   {
+    "key": "marc-d-antonio",
+    "role": "guest"
+   },
+   {
+    "key": "dustin-hengl",
+    "role": "guest"
+   }
+  ],
+  "act": "isaiah-martin-ft-marc-d-antonio-and-dustin-hengl",
+  "closing": false,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:inspire:1930:donald-glaude",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Inspire",
+  "start": "19:30",
+  "end": "21:00",
+  "printed": "Donald Glaude",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "donald-glaude",
+    "role": "performer"
+   }
+  ],
+  "act": "donald-glaude",
+  "closing": true,
+  "stageLineage": "outside-lands:inspire",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:lands-end:1245:amos-lee",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Amos Lee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amos-lee",
+    "role": "performer"
+   }
+  ],
+  "act": "amos-lee",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:lands-end:1415:the-temper-trap",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "14:15",
+  "end": "15:05",
+  "printed": "The Temper Trap",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-temper-trap",
+    "role": "performer"
+   }
+  ],
+  "act": "the-temper-trap",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:lands-end:1600:al-green",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Al Green",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "al-green",
+    "role": "performer"
+   }
+  ],
+  "act": "al-green",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:lands-end:1755:phoenix",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "17:55",
+  "end": "18:55",
+  "printed": "Phoenix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phoenix",
+    "role": "performer"
+   }
+  ],
+  "act": "phoenix",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:lands-end:1950:kings-of-leon",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "19:50",
+  "end": "21:20",
+  "printed": "Kings of Leon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kings-of-leon",
+    "role": "performer"
+   }
+  ],
+  "act": "kings-of-leon",
+  "closing": true,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:panhandle-solar:1200:little-wings",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Panhandle Solar",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Little Wings",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-wings",
+    "role": "performer"
+   }
+  ],
+  "act": "little-wings",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:panhandle-solar:1325:nneka",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Panhandle Solar",
+  "start": "13:25",
+  "end": "14:05",
+  "printed": "Nneka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nneka",
+    "role": "performer"
+   }
+  ],
+  "act": "nneka",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:panhandle-solar:1455:vieux-farka-toure",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Panhandle Solar",
+  "start": "14:55",
+  "end": "15:35",
+  "printed": "Vieux Farka Toure",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vieux-farka-toure",
+    "role": "performer"
+   }
+  ],
+  "act": "vieux-farka-toure",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:panhandle-solar:1630:garage-a-trois",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Panhandle Solar",
+  "start": "16:30",
+  "end": "17:10",
+  "printed": "Garage A Trois",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "garage-a-trois",
+    "role": "performer"
+   }
+  ],
+  "act": "garage-a-trois",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:panhandle-solar:1805:aterciopelados",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Panhandle Solar",
+  "start": "18:05",
+  "end": "18:45",
+  "printed": "Aterciopelados",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aterciopelados",
+    "role": "performer"
+   }
+  ],
+  "act": "aterciopelados",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:panhandle-solar:1940:the-budos-band",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Panhandle Solar",
+  "start": "19:40",
+  "end": "20:25",
+  "printed": "The Budos Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-budos-band",
+    "role": "performer"
+   }
+  ],
+  "act": "the-budos-band",
+  "closing": true,
+  "stageLineage": "outside-lands:panhandle-solar",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:sutro:1200:quinn-deveaux-and-the-blue-beat-review",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Quinn Deveaux & the Blue Beat Review",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quinn-deveaux-and-the-blue-beat-review",
+    "role": "performer"
+   }
+  ],
+  "act": "quinn-deveaux-and-the-blue-beat-review",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:sutro:1330:mayer-hawthorne-and-the-county",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "13:30",
+  "end": "14:10",
+  "printed": "Mayer Hawthorne & The County",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mayer-hawthorne-and-the-county",
+    "role": "performer"
+   }
+  ],
+  "act": "mayer-hawthorne-and-the-county",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:sutro:1505:janelle-monae",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "15:05",
+  "end": "15:55",
+  "printed": "Janelle Monáe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "janelle-monae",
+    "role": "performer"
+   }
+  ],
+  "act": "janelle-monae",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:sutro:1700:slightly-stoopid",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "17:00",
+  "end": "17:50",
+  "printed": "Slightly Stoopid",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slightly-stoopid",
+    "role": "performer"
+   }
+  ],
+  "act": "slightly-stoopid",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:sutro:1855:social-distortion",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "18:55",
+  "end": "19:45",
+  "printed": "Social Distortion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "social-distortion",
+    "role": "performer"
+   }
+  ],
+  "act": "social-distortion",
+  "closing": true,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:twin-peaks:1245:the-soft-pack",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "12:45",
+  "end": "13:25",
+  "printed": "The Soft Pack",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-soft-pack",
+    "role": "performer"
+   }
+  ],
+  "act": "the-soft-pack",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:twin-peaks:1410:the-devil-makes-three",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "14:10",
+  "end": "14:55",
+  "printed": "The Devil Makes Three",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-devil-makes-three",
+    "role": "performer"
+   }
+  ],
+  "act": "the-devil-makes-three",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:twin-peaks:1540:edward-sharpe-and-the-magnetic-zeros",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "15:40",
+  "end": "16:30",
+  "printed": "Edward Sharpe & The Magnetic Zeros",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "edward-sharpe-and-the-magnetic-zeros",
+    "role": "performer"
+   }
+  ],
+  "act": "edward-sharpe-and-the-magnetic-zeros",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:twin-peaks:1715:chromeo",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "17:15",
+  "end": "18:05",
+  "printed": "Chromeo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chromeo",
+    "role": "performer"
+   }
+  ],
+  "act": "chromeo",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:twin-peaks:1850:nas-and-damian-jr-gong-marley",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "18:50",
+  "end": "19:40",
+  "printed": "Nas & Damian \"Jr. Gong\" Marley",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nas-and-damian-jr-gong-marley",
+    "role": "performer"
+   }
+  ],
+  "act": "nas-and-damian-jr-gong-marley",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2010:d2:twin-peaks:2025:empire-of-the-sun",
+  "source": "edition",
+  "festivalId": "outside-lands-2010",
+  "festivalBrand": "outside-lands",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "20:25",
+  "end": "21:20",
+  "printed": "Empire of the Sun",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "empire-of-the-sun",
+    "role": "performer"
+   }
+  ],
+  "act": "empire-of-the-sun",
+  "closing": true,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:lands-end:1200:new-orleans-klezmer-allstars",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "12:00",
+  "end": "12:50",
+  "printed": "New Orleans Klezmer Allstars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "new-orleans-klezmer-allstars",
+    "role": "performer"
+   }
+  ],
+  "act": "new-orleans-klezmer-allstars",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:lands-end:1320:collie-buddz",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "13:20",
+  "end": "14:20",
+  "printed": "Collie Buddz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "collie-buddz",
+    "role": "performer"
+   }
+  ],
+  "act": "collie-buddz",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:lands-end:1450:the-original-meters",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "14:50",
+  "end": "16:05",
+  "printed": "The Original Meters",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-original-meters",
+    "role": "performer"
+   }
+  ],
+  "act": "the-original-meters",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:lands-end:1635:mgmt",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "16:35",
+  "end": "17:45",
+  "printed": "MGMT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mgmt",
+    "role": "performer"
+   }
+  ],
+  "act": "mgmt",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:lands-end:1830:phish",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "18:30",
+  "end": "22:00",
+  "printed": "Phish",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phish",
+    "role": "performer"
+   }
+  ],
+  "act": "phish",
+  "closing": true,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:panhandle:1200:arann-harris-and-the-farm-band",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Arann Harris & The Farm Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arann-harris-and-the-farm-band",
+    "role": "performer"
+   }
+  ],
+  "act": "arann-harris-and-the-farm-band",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:panhandle:1330:kelley-stoltz",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "13:30",
+  "end": "14:10",
+  "printed": "Kelley Stoltz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kelley-stoltz",
+    "role": "performer"
+   }
+  ],
+  "act": "kelley-stoltz",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:panhandle:1505:tamaryn",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "15:05",
+  "end": "15:45",
+  "printed": "Tamaryn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tamaryn",
+    "role": "performer"
+   }
+  ],
+  "act": "tamaryn",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:panhandle:1640:orgone",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "16:40",
+  "end": "17:20",
+  "printed": "Orgone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orgone",
+    "role": "performer"
+   }
+  ],
+  "act": "orgone",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:panhandle:1815:the-limousines",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "18:15",
+  "end": "18:55",
+  "printed": "The Limousines",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-limousines",
+    "role": "performer"
+   }
+  ],
+  "act": "the-limousines",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:panhandle:1950:best-coast",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "19:50",
+  "end": "20:35",
+  "printed": "Best Coast",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "best-coast",
+    "role": "performer"
+   }
+  ],
+  "act": "best-coast",
+  "closing": true,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:sutro:1200:release-the-sunbird",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Release The Sunbird",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "release-the-sunbird",
+    "role": "performer"
+   }
+  ],
+  "act": "release-the-sunbird",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:sutro:1310:the-joy-formidable",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "13:10",
+  "end": "13:55",
+  "printed": "The Joy Formidable",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-joy-formidable",
+    "role": "performer"
+   }
+  ],
+  "act": "the-joy-formidable",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:sutro:1425:phantogram",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "Phantogram",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phantogram",
+    "role": "performer"
+   }
+  ],
+  "act": "phantogram",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:sutro:1540:foster-the-people",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "15:40",
+  "end": "16:30",
+  "printed": "Foster the People",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "foster-the-people",
+    "role": "performer"
+   }
+  ],
+  "act": "foster-the-people",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:sutro:1700:ellie-goulding",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "17:00",
+  "end": "17:50",
+  "printed": "Ellie Goulding",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ellie-goulding",
+    "role": "performer"
+   }
+  ],
+  "act": "ellie-goulding",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:sutro:1900:big-boi",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "19:00",
+  "end": "19:45",
+  "printed": "Big Boi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-boi",
+    "role": "performer"
+   }
+  ],
+  "act": "big-boi",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:sutro:2000:erykah-badu",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "20:00",
+  "end": "21:10",
+  "printed": "Erykah Badu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "erykah-badu",
+    "role": "performer"
+   }
+  ],
+  "act": "erykah-badu",
+  "closing": true,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:the-domes-by-heineken:1200:marky",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "The Domes by Heineken",
+  "start": "12:00",
+  "end": "13:30",
+  "printed": "Marky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marky",
+    "role": "performer"
+   }
+  ],
+  "act": "marky",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:the-domes-by-heineken:1330:dj-deevice",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "The Domes by Heineken",
+  "start": "13:30",
+  "end": "14:30",
+  "printed": "DJ Deevice",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-deevice",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-deevice",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:the-domes-by-heineken:1430:dj-mes",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "The Domes by Heineken",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "DJ Mes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-mes",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-mes",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:the-domes-by-heineken:1530:mauricio-aviles",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "The Domes by Heineken",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "Mauricio Aviles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mauricio-aviles",
+    "role": "performer"
+   }
+  ],
+  "act": "mauricio-aviles",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:the-domes-by-heineken:1630:franky-boissy",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "The Domes by Heineken",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Franky Boissy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "franky-boissy",
+    "role": "performer"
+   }
+  ],
+  "act": "franky-boissy",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:the-domes-by-heineken:1730:miguel-migs",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "The Domes by Heineken",
+  "start": "17:30",
+  "end": "19:00",
+  "printed": "Miguel Migs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miguel-migs",
+    "role": "performer"
+   }
+  ],
+  "act": "miguel-migs",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:the-domes-by-heineken:1900:fred-everything",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "The Domes by Heineken",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Fred Everything",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fred-everything",
+    "role": "performer"
+   }
+  ],
+  "act": "fred-everything",
+  "closing": true,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:twin-peaks:1245:k-flay",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "K.Flay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "k-flay",
+    "role": "performer"
+   }
+  ],
+  "act": "k-flay",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:twin-peaks:1415:lotus",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "14:15",
+  "end": "15:05",
+  "printed": "Lotus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lotus",
+    "role": "performer"
+   }
+  ],
+  "act": "lotus",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:twin-peaks:1550:toro-y-moi",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "15:50",
+  "end": "16:40",
+  "printed": "Toro Y Moi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "toro-y-moi",
+    "role": "performer"
+   }
+  ],
+  "act": "toro-y-moi",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:twin-peaks:1725:clap-your-hands-say-yeah",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "17:25",
+  "end": "18:15",
+  "printed": "Clap Your Hands Say Yeah",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clap-your-hands-say-yeah",
+    "role": "performer"
+   }
+  ],
+  "act": "clap-your-hands-say-yeah",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:twin-peaks:1900:big-audio-dynamite",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "Big Audio Dynamite",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-audio-dynamite",
+    "role": "performer"
+   }
+  ],
+  "act": "big-audio-dynamite",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d1:twin-peaks:2040:the-shins",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "20:40",
+  "end": "21:50",
+  "printed": "The Shins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-shins",
+    "role": "performer"
+   }
+  ],
+  "act": "the-shins",
+  "closing": true,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:lands-end:1225:macklemore-and-ryan-lewis",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "12:25",
+  "end": "13:15",
+  "printed": "Macklemore & Ryan Lewis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "macklemore-and-ryan-lewis",
+    "role": "performer"
+   }
+  ],
+  "act": "macklemore-and-ryan-lewis",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:lands-end:1345:the-greyboy-allstars",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "The Greyboy Allstars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-greyboy-allstars",
+    "role": "performer"
+   }
+  ],
+  "act": "the-greyboy-allstars",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:lands-end:1515:ok-go",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "OK GO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ok-go",
+    "role": "performer"
+   }
+  ],
+  "act": "ok-go",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:lands-end:1645:arctic-monkeys",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Arctic Monkeys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arctic-monkeys",
+    "role": "performer"
+   }
+  ],
+  "act": "arctic-monkeys",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:lands-end:1815:the-black-keys",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "18:15",
+  "end": "19:25",
+  "printed": "The Black Keys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-black-keys",
+    "role": "performer"
+   }
+  ],
+  "act": "the-black-keys",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:lands-end:2010:muse",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "20:10",
+  "end": "21:55",
+  "printed": "Muse",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muse",
+    "role": "performer"
+   }
+  ],
+  "act": "muse",
+  "closing": true,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:panhandle:1200:cosmic-suckerpunch",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Cosmic Suckerpunch",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cosmic-suckerpunch",
+    "role": "performer"
+   }
+  ],
+  "act": "cosmic-suckerpunch",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:panhandle:1325:ximena-sarinana",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "13:25",
+  "end": "14:05",
+  "printed": "Ximena Sarinana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ximena-sarinana",
+    "role": "performer"
+   }
+  ],
+  "act": "ximena-sarinana",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:panhandle:1455:sonny-and-the-sunsets",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "14:55",
+  "end": "15:35",
+  "printed": "Sonny & the Sunsets",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sonny-and-the-sunsets",
+    "role": "performer"
+   }
+  ],
+  "act": "sonny-and-the-sunsets",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:panhandle:1630:christina-perri",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "16:30",
+  "end": "17:10",
+  "printed": "Christina Perri",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "christina-perri",
+    "role": "performer"
+   }
+  ],
+  "act": "christina-perri",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:panhandle:1805:eskmo",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "18:05",
+  "end": "18:45",
+  "printed": "Eskmo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eskmo",
+    "role": "performer"
+   }
+  ],
+  "act": "eskmo",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:panhandle:1950:paper-diamond",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "19:50",
+  "end": "20:35",
+  "printed": "Paper Diamond",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paper-diamond",
+    "role": "performer"
+   }
+  ],
+  "act": "paper-diamond",
+  "closing": true,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:sutro:1205:nicki-bluhm-and-the-gramblers",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "12:05",
+  "end": "12:55",
+  "printed": "Nicki Bluhm & The Gramblers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nicki-bluhm-and-the-gramblers",
+    "role": "performer"
+   }
+  ],
+  "act": "nicki-bluhm-and-the-gramblers",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:sutro:1325:the-stone-foxes",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "13:25",
+  "end": "14:15",
+  "printed": "The Stone Foxes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-stone-foxes",
+    "role": "performer"
+   }
+  ],
+  "act": "the-stone-foxes",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:sutro:1445:bob-schneider",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "Bob Schneider",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-schneider",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-schneider",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:sutro:1615:vetiver",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "Vetiver",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vetiver",
+    "role": "performer"
+   }
+  ],
+  "act": "vetiver",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:sutro:1745:old-97-s",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Old 97's",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "old-97-s",
+    "role": "performer"
+   }
+  ],
+  "act": "old-97-s",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:sutro:1930:warren-haynes-band",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Warren Haynes Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "warren-haynes-band",
+    "role": "performer"
+   }
+  ],
+  "act": "warren-haynes-band",
+  "closing": true,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:the-domes-by-heineken:1200:chris-orr",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "The Domes by Heineken",
+  "start": "12:00",
+  "end": "13:30",
+  "printed": "Chris Orr",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-orr",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-orr",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:the-domes-by-heineken:1330:ren-the-vinyl-archaeologist",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "The Domes by Heineken",
+  "start": "13:30",
+  "end": "15:00",
+  "printed": "Ren The Vinyl Archaeologist",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ren-the-vinyl-archaeologist",
+    "role": "performer"
+   }
+  ],
+  "act": "ren-the-vinyl-archaeologist",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:the-domes-by-heineken:1500:aaron-axelsen",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "The Domes by Heineken",
+  "start": "15:00",
+  "end": "16:30",
+  "printed": "Aaron Axelsen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aaron-axelsen",
+    "role": "performer"
+   }
+  ],
+  "act": "aaron-axelsen",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:the-domes-by-heineken:1630:mexican-institute-of-sound",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "The Domes by Heineken",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Mexican Institute of Sound",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mexican-institute-of-sound",
+    "role": "performer"
+   }
+  ],
+  "act": "mexican-institute-of-sound",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:the-domes-by-heineken:1800:david-harness",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "The Domes by Heineken",
+  "start": "18:00",
+  "end": "20:00",
+  "printed": "David Harness",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-harness",
+    "role": "performer"
+   }
+  ],
+  "act": "david-harness",
+  "closing": true,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:twin-peaks:1245:ana-tijoux",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "12:45",
+  "end": "13:25",
+  "printed": "Ana Tijoux",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ana-tijoux",
+    "role": "performer"
+   }
+  ],
+  "act": "ana-tijoux",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:twin-peaks:1410:the-vaccines",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "14:10",
+  "end": "14:55",
+  "printed": "The Vaccines",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-vaccines",
+    "role": "performer"
+   }
+  ],
+  "act": "the-vaccines",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:twin-peaks:1540:strfkr",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "15:40",
+  "end": "16:30",
+  "printed": "STRFKR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "strfkr",
+    "role": "performer"
+   }
+  ],
+  "act": "strfkr",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:twin-peaks:1715:sia",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "17:15",
+  "end": "18:05",
+  "printed": "SIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sia",
+    "role": "performer"
+   }
+  ],
+  "act": "sia",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:twin-peaks:1850:the-roots",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "18:50",
+  "end": "19:50",
+  "printed": "The Roots",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-roots",
+    "role": "performer"
+   }
+  ],
+  "act": "the-roots",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d2:twin-peaks:2040:girl-talk",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "20:40",
+  "end": "21:50",
+  "printed": "Girl Talk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "girl-talk",
+    "role": "performer"
+   }
+  ],
+  "act": "girl-talk",
+  "closing": true,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:lands-end:1215:charles-bradley-and-the-menahan-street-band",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "12:15",
+  "end": "13:15",
+  "printed": "Charles Bradley & The Menahan Street Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charles-bradley-and-the-menahan-street-band",
+    "role": "performer"
+   }
+  ],
+  "act": "charles-bradley-and-the-menahan-street-band",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:lands-end:1345:mavis-staples",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "Mavis Staples",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mavis-staples",
+    "role": "performer"
+   }
+  ],
+  "act": "mavis-staples",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:lands-end:1515:josh-ritter-and-the-royal-city-band",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Josh Ritter & The Royal City Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "josh-ritter-and-the-royal-city-band",
+    "role": "performer"
+   }
+  ],
+  "act": "josh-ritter-and-the-royal-city-band",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:lands-end:1645:john-fogerty",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "John Fogerty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-fogerty",
+    "role": "performer"
+   }
+  ],
+  "act": "john-fogerty",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:lands-end:1815:the-decemberists",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "18:15",
+  "end": "19:25",
+  "printed": "The Decemberists",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-decemberists",
+    "role": "performer"
+   }
+  ],
+  "act": "the-decemberists",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:lands-end:2010:arcade-fire",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "20:10",
+  "end": "21:40",
+  "printed": "Arcade Fire",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arcade-fire",
+    "role": "performer"
+   }
+  ],
+  "act": "arcade-fire",
+  "closing": true,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:panhandle:1245:lord-huron",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "12:45",
+  "end": "13:25",
+  "printed": "Lord Huron",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lord-huron",
+    "role": "performer"
+   }
+  ],
+  "act": "lord-huron",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:panhandle:1420:grouplove",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "14:20",
+  "end": "15:00",
+  "printed": "Grouplove",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grouplove",
+    "role": "performer"
+   }
+  ],
+  "act": "grouplove",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:panhandle:1555:ty-segall",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "15:55",
+  "end": "16:35",
+  "printed": "Ty Segall",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ty-segall",
+    "role": "performer"
+   }
+  ],
+  "act": "ty-segall",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:panhandle:1730:wye-oak",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "17:30",
+  "end": "18:10",
+  "printed": "Wye Oak",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wye-oak",
+    "role": "performer"
+   }
+  ],
+  "act": "wye-oak",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:panhandle:1915:the-infamous-stringdusters",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "19:15",
+  "end": "19:55",
+  "printed": "The Infamous Stringdusters",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-infamous-stringdusters",
+    "role": "performer"
+   }
+  ],
+  "act": "the-infamous-stringdusters",
+  "closing": true,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:sutro:1200:the-fresh-and-onlys",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "The Fresh & Onlys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-fresh-and-onlys",
+    "role": "performer"
+   }
+  ],
+  "act": "the-fresh-and-onlys",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:sutro:1315:tune-yards",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "tUnE-YarDs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tune-yards",
+    "role": "performer"
+   }
+  ],
+  "act": "tune-yards",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:sutro:1430:latyrx-feat-lyrics-born-and-lateef",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "14:30",
+  "end": "15:20",
+  "printed": "Latyrx feat. Lyrics Born & Lateef",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "latyrx",
+    "role": "project"
+   }
+  ],
+  "act": "latyrx-feat-lyrics-born-and-lateef",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:sutro:1550:julieta-venegas",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "15:50",
+  "end": "16:50",
+  "printed": "Julieta Venegas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julieta-venegas",
+    "role": "performer"
+   }
+  ],
+  "act": "julieta-venegas",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:sutro:1720:little-dragon",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "Little Dragon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-dragon",
+    "role": "performer"
+   }
+  ],
+  "act": "little-dragon",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:sutro:1850:beirut",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "18:50",
+  "end": "20:00",
+  "printed": "Beirut",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beirut",
+    "role": "performer"
+   }
+  ],
+  "act": "beirut",
+  "closing": true,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:the-domes-by-heineken:1200:dj-platurn",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "The Domes by Heineken",
+  "start": "12:00",
+  "end": "13:30",
+  "printed": "DJ Platurn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-platurn",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-platurn",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:the-domes-by-heineken:1330:8-ball",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "The Domes by Heineken",
+  "start": "13:30",
+  "end": "15:00",
+  "printed": "8 Ball",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "8-ball",
+    "role": "performer"
+   }
+  ],
+  "act": "8-ball",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:the-domes-by-heineken:1500:motion-potion",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "The Domes by Heineken",
+  "start": "15:00",
+  "end": "16:30",
+  "printed": "Motion Potion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "motion-potion",
+    "role": "performer"
+   }
+  ],
+  "act": "motion-potion",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:the-domes-by-heineken:1630:eric-sharp",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "The Domes by Heineken",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Eric Sharp",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eric-sharp",
+    "role": "performer"
+   }
+  ],
+  "act": "eric-sharp",
+  "closing": false,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:the-domes-by-heineken:1800:doc-martin",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "The Domes by Heineken",
+  "start": "18:00",
+  "end": "20:00",
+  "printed": "Doc Martin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doc-martin",
+    "role": "performer"
+   }
+  ],
+  "act": "doc-martin",
+  "closing": true,
+  "stageLineage": "outside-lands:the-domes-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:twin-peaks:1200:diego-s-umbrella",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "Diego's Umbrella",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "diego-s-umbrella",
+    "role": "performer"
+   }
+  ],
+  "act": "diego-s-umbrella",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:twin-peaks:1330:junip",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "13:30",
+  "end": "14:20",
+  "printed": "Junip",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "junip",
+    "role": "performer"
+   }
+  ],
+  "act": "junip",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:twin-peaks:1505:x",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "15:05",
+  "end": "15:55",
+  "printed": "!!!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "x",
+    "role": "performer"
+   }
+  ],
+  "act": "x",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:twin-peaks:1640:major-lazer",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "16:40",
+  "end": "17:30",
+  "printed": "Major Lazer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "major-lazer",
+    "role": "performer"
+   }
+  ],
+  "act": "major-lazer",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:twin-peaks:1815:sts9",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "STS9",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sts9",
+    "role": "performer"
+   }
+  ],
+  "act": "sts9",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2011:d3:twin-peaks:2000:deadmau5",
+  "source": "edition",
+  "festivalId": "outside-lands-2011",
+  "festivalBrand": "outside-lands",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "Deadmau5",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deadmau5",
+    "role": "performer"
+   }
+  ],
+  "act": "deadmau5",
+  "closing": true,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
   "id": "outside-lands-2012:d1:lands-end-polo-field:1230:dirty-dozen-brass-band",
   "source": "edition",
   "festivalId": "outside-lands-2012",

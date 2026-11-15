@@ -1,0 +1,1496 @@
+{
+ "id": "outside-lands-2011",
+ "festivalId": "outside-lands",
+ "name": "Outside Lands 2011",
+ "year": 2011,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2011-08-12",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2011-08-13",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2011-08-14",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "outside-lands-2011:lands-end",
+   "name": "Lands End"
+  },
+  {
+   "id": "outside-lands-2011:panhandle",
+   "name": "Panhandle"
+  },
+  {
+   "id": "outside-lands-2011:sutro",
+   "name": "Sutro"
+  },
+  {
+   "id": "outside-lands-2011:the-domes-by-heineken",
+   "name": "The Domes by Heineken"
+  },
+  {
+   "id": "outside-lands-2011:twin-peaks",
+   "name": "Twin Peaks"
+  }
+ ],
+ "artists": [
+  {
+   "id": "outside-lands-2011:new-orleans-klezmer-allstars",
+   "name": "New Orleans Klezmer Allstars",
+   "key": "new-orleans-klezmer-allstars",
+   "performers": [
+    "new-orleans-klezmer-allstars"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:collie-buddz",
+   "name": "Collie Buddz",
+   "key": "collie-buddz",
+   "performers": [
+    "collie-buddz"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-original-meters",
+   "name": "The Original Meters",
+   "key": "the-original-meters",
+   "performers": [
+    "the-original-meters"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:mgmt",
+   "name": "MGMT",
+   "key": "mgmt",
+   "performers": [
+    "mgmt"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:phish",
+   "name": "Phish",
+   "key": "phish",
+   "performers": [
+    "phish"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:arann-harris-and-the-farm-band",
+   "name": "Arann Harris & The Farm Band",
+   "key": "arann-harris-and-the-farm-band",
+   "performers": [
+    "arann-harris-and-the-farm-band"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:kelley-stoltz",
+   "name": "Kelley Stoltz",
+   "key": "kelley-stoltz",
+   "performers": [
+    "kelley-stoltz"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:tamaryn",
+   "name": "Tamaryn",
+   "key": "tamaryn",
+   "performers": [
+    "tamaryn"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:orgone",
+   "name": "Orgone",
+   "key": "orgone",
+   "performers": [
+    "orgone"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-limousines",
+   "name": "The Limousines",
+   "key": "the-limousines",
+   "performers": [
+    "the-limousines"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:best-coast",
+   "name": "Best Coast",
+   "key": "best-coast",
+   "performers": [
+    "best-coast"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:release-the-sunbird",
+   "name": "Release The Sunbird",
+   "key": "release-the-sunbird",
+   "performers": [
+    "release-the-sunbird"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-joy-formidable",
+   "name": "The Joy Formidable",
+   "key": "the-joy-formidable",
+   "performers": [
+    "the-joy-formidable"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:phantogram",
+   "name": "Phantogram",
+   "key": "phantogram",
+   "performers": [
+    "phantogram"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:foster-the-people",
+   "name": "Foster the People",
+   "key": "foster-the-people",
+   "performers": [
+    "foster-the-people"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:ellie-goulding",
+   "name": "Ellie Goulding",
+   "key": "ellie-goulding",
+   "performers": [
+    "ellie-goulding"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:big-boi",
+   "name": "Big Boi",
+   "key": "big-boi",
+   "performers": [
+    "big-boi"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:erykah-badu",
+   "name": "Erykah Badu",
+   "key": "erykah-badu",
+   "performers": [
+    "erykah-badu"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:marky",
+   "name": "Marky",
+   "key": "marky",
+   "performers": [
+    "marky"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:dj-deevice",
+   "name": "DJ Deevice",
+   "key": "dj-deevice",
+   "performers": [
+    "dj-deevice"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:dj-mes",
+   "name": "DJ Mes",
+   "key": "dj-mes",
+   "performers": [
+    "dj-mes"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:mauricio-aviles",
+   "name": "Mauricio Aviles",
+   "key": "mauricio-aviles",
+   "performers": [
+    "mauricio-aviles"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:franky-boissy",
+   "name": "Franky Boissy",
+   "key": "franky-boissy",
+   "performers": [
+    "franky-boissy"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:miguel-migs",
+   "name": "Miguel Migs",
+   "key": "miguel-migs",
+   "performers": [
+    "miguel-migs"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:fred-everything",
+   "name": "Fred Everything",
+   "key": "fred-everything",
+   "performers": [
+    "fred-everything"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:k-flay",
+   "name": "K.Flay",
+   "key": "k-flay",
+   "performers": [
+    "k-flay"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:lotus",
+   "name": "Lotus",
+   "key": "lotus",
+   "performers": [
+    "lotus"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:toro-y-moi",
+   "name": "Toro Y Moi",
+   "key": "toro-y-moi",
+   "performers": [
+    "toro-y-moi"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:clap-your-hands-say-yeah",
+   "name": "Clap Your Hands Say Yeah",
+   "key": "clap-your-hands-say-yeah",
+   "performers": [
+    "clap-your-hands-say-yeah"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:big-audio-dynamite",
+   "name": "Big Audio Dynamite",
+   "key": "big-audio-dynamite",
+   "performers": [
+    "big-audio-dynamite"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-shins",
+   "name": "The Shins",
+   "key": "the-shins",
+   "performers": [
+    "the-shins"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:macklemore-and-ryan-lewis",
+   "name": "Macklemore & Ryan Lewis",
+   "key": "macklemore-and-ryan-lewis",
+   "performers": [
+    "macklemore-and-ryan-lewis"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-greyboy-allstars",
+   "name": "The Greyboy Allstars",
+   "key": "the-greyboy-allstars",
+   "performers": [
+    "the-greyboy-allstars"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:ok-go",
+   "name": "OK GO",
+   "key": "ok-go",
+   "performers": [
+    "ok-go"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:arctic-monkeys",
+   "name": "Arctic Monkeys",
+   "key": "arctic-monkeys",
+   "performers": [
+    "arctic-monkeys"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-black-keys",
+   "name": "The Black Keys",
+   "key": "the-black-keys",
+   "performers": [
+    "the-black-keys"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:muse",
+   "name": "Muse",
+   "key": "muse",
+   "performers": [
+    "muse"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:cosmic-suckerpunch",
+   "name": "Cosmic Suckerpunch",
+   "key": "cosmic-suckerpunch",
+   "performers": [
+    "cosmic-suckerpunch"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:ximena-sarinana",
+   "name": "Ximena Sarinana",
+   "key": "ximena-sarinana",
+   "performers": [
+    "ximena-sarinana"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:sonny-and-the-sunsets",
+   "name": "Sonny & the Sunsets",
+   "key": "sonny-and-the-sunsets",
+   "performers": [
+    "sonny-and-the-sunsets"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:christina-perri",
+   "name": "Christina Perri",
+   "key": "christina-perri",
+   "performers": [
+    "christina-perri"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:eskmo",
+   "name": "Eskmo",
+   "key": "eskmo",
+   "performers": [
+    "eskmo"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:paper-diamond",
+   "name": "Paper Diamond",
+   "key": "paper-diamond",
+   "performers": [
+    "paper-diamond"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:nicki-bluhm-and-the-gramblers",
+   "name": "Nicki Bluhm & The Gramblers",
+   "key": "nicki-bluhm-and-the-gramblers",
+   "performers": [
+    "nicki-bluhm-and-the-gramblers"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-stone-foxes",
+   "name": "The Stone Foxes",
+   "key": "the-stone-foxes",
+   "performers": [
+    "the-stone-foxes"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:bob-schneider",
+   "name": "Bob Schneider",
+   "key": "bob-schneider",
+   "performers": [
+    "bob-schneider"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:vetiver",
+   "name": "Vetiver",
+   "key": "vetiver",
+   "performers": [
+    "vetiver"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:old-97-s",
+   "name": "Old 97's",
+   "key": "old-97-s",
+   "performers": [
+    "old-97-s"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:warren-haynes-band",
+   "name": "Warren Haynes Band",
+   "key": "warren-haynes-band",
+   "performers": [
+    "warren-haynes-band"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:chris-orr",
+   "name": "Chris Orr",
+   "key": "chris-orr",
+   "performers": [
+    "chris-orr"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:ren-the-vinyl-archaeologist",
+   "name": "Ren The Vinyl Archaeologist",
+   "key": "ren-the-vinyl-archaeologist",
+   "performers": [
+    "ren-the-vinyl-archaeologist"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:aaron-axelsen",
+   "name": "Aaron Axelsen",
+   "key": "aaron-axelsen",
+   "performers": [
+    "aaron-axelsen"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:mexican-institute-of-sound",
+   "name": "Mexican Institute of Sound",
+   "key": "mexican-institute-of-sound",
+   "performers": [
+    "mexican-institute-of-sound"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:david-harness",
+   "name": "David Harness",
+   "key": "david-harness",
+   "performers": [
+    "david-harness"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:ana-tijoux",
+   "name": "Ana Tijoux",
+   "key": "ana-tijoux",
+   "performers": [
+    "ana-tijoux"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-vaccines",
+   "name": "The Vaccines",
+   "key": "the-vaccines",
+   "performers": [
+    "the-vaccines"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:strfkr",
+   "name": "STRFKR",
+   "key": "strfkr",
+   "performers": [
+    "strfkr"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:sia",
+   "name": "SIA",
+   "key": "sia",
+   "performers": [
+    "sia"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-roots",
+   "name": "The Roots",
+   "key": "the-roots",
+   "performers": [
+    "the-roots"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:girl-talk",
+   "name": "Girl Talk",
+   "key": "girl-talk",
+   "performers": [
+    "girl-talk"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:charles-bradley-and-the-menahan-street-band",
+   "name": "Charles Bradley & The Menahan Street Band",
+   "key": "charles-bradley-and-the-menahan-street-band",
+   "performers": [
+    "charles-bradley-and-the-menahan-street-band"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:mavis-staples",
+   "name": "Mavis Staples",
+   "key": "mavis-staples",
+   "performers": [
+    "mavis-staples"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:josh-ritter-and-the-royal-city-band",
+   "name": "Josh Ritter & The Royal City Band",
+   "key": "josh-ritter-and-the-royal-city-band",
+   "performers": [
+    "josh-ritter-and-the-royal-city-band"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:john-fogerty",
+   "name": "John Fogerty",
+   "key": "john-fogerty",
+   "performers": [
+    "john-fogerty"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-decemberists",
+   "name": "The Decemberists",
+   "key": "the-decemberists",
+   "performers": [
+    "the-decemberists"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:arcade-fire",
+   "name": "Arcade Fire",
+   "key": "arcade-fire",
+   "performers": [
+    "arcade-fire"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:lord-huron",
+   "name": "Lord Huron",
+   "key": "lord-huron",
+   "performers": [
+    "lord-huron"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:grouplove",
+   "name": "Grouplove",
+   "key": "grouplove",
+   "performers": [
+    "grouplove"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:ty-segall",
+   "name": "Ty Segall",
+   "key": "ty-segall",
+   "performers": [
+    "ty-segall"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:wye-oak",
+   "name": "Wye Oak",
+   "key": "wye-oak",
+   "performers": [
+    "wye-oak"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-infamous-stringdusters",
+   "name": "The Infamous Stringdusters",
+   "key": "the-infamous-stringdusters",
+   "performers": [
+    "the-infamous-stringdusters"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:the-fresh-and-onlys",
+   "name": "The Fresh & Onlys",
+   "key": "the-fresh-and-onlys",
+   "performers": [
+    "the-fresh-and-onlys"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:tune-yards",
+   "name": "tUnE-YarDs",
+   "key": "tune-yards",
+   "performers": [
+    "tune-yards"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:latyrx-feat-lyrics-born-and-lateef",
+   "name": "Latyrx feat. Lyrics Born & Lateef",
+   "key": "latyrx-feat-lyrics-born-and-lateef",
+   "performers": [
+    "latyrx-feat-lyrics-born-and-lateef"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:julieta-venegas",
+   "name": "Julieta Venegas",
+   "key": "julieta-venegas",
+   "performers": [
+    "julieta-venegas"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:little-dragon",
+   "name": "Little Dragon",
+   "key": "little-dragon",
+   "performers": [
+    "little-dragon"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:beirut",
+   "name": "Beirut",
+   "key": "beirut",
+   "performers": [
+    "beirut"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:dj-platurn",
+   "name": "DJ Platurn",
+   "key": "dj-platurn",
+   "performers": [
+    "dj-platurn"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:8-ball",
+   "name": "8 Ball",
+   "key": "8-ball",
+   "performers": [
+    "8-ball"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:motion-potion",
+   "name": "Motion Potion",
+   "key": "motion-potion",
+   "performers": [
+    "motion-potion"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:eric-sharp",
+   "name": "Eric Sharp",
+   "key": "eric-sharp",
+   "performers": [
+    "eric-sharp"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:doc-martin",
+   "name": "Doc Martin",
+   "key": "doc-martin",
+   "performers": [
+    "doc-martin"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:diego-s-umbrella",
+   "name": "Diego's Umbrella",
+   "key": "diego-s-umbrella",
+   "performers": [
+    "diego-s-umbrella"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:junip",
+   "name": "Junip",
+   "key": "junip",
+   "performers": [
+    "junip"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:x",
+   "name": "!!!",
+   "key": "x",
+   "performers": [
+    "x"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:major-lazer",
+   "name": "Major Lazer",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:sts9",
+   "name": "STS9",
+   "key": "sts9",
+   "performers": [
+    "sts9"
+   ]
+  },
+  {
+   "id": "outside-lands-2011:deadmau5",
+   "name": "Deadmau5",
+   "key": "deadmau5",
+   "performers": [
+    "deadmau5"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "outside-lands-2011:d1:lands-end:1200:new-orleans-klezmer-allstars",
+   "artistId": "outside-lands-2011:new-orleans-klezmer-allstars",
+   "day": 1,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "12:00",
+   "end": "12:50"
+  },
+  {
+   "id": "outside-lands-2011:d1:lands-end:1320:collie-buddz",
+   "artistId": "outside-lands-2011:collie-buddz",
+   "day": 1,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "13:20",
+   "end": "14:20"
+  },
+  {
+   "id": "outside-lands-2011:d1:lands-end:1450:the-original-meters",
+   "artistId": "outside-lands-2011:the-original-meters",
+   "day": 1,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "14:50",
+   "end": "16:05"
+  },
+  {
+   "id": "outside-lands-2011:d1:lands-end:1635:mgmt",
+   "artistId": "outside-lands-2011:mgmt",
+   "day": 1,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "16:35",
+   "end": "17:45"
+  },
+  {
+   "id": "outside-lands-2011:d1:lands-end:1830:phish",
+   "artistId": "outside-lands-2011:phish",
+   "day": 1,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "18:30",
+   "end": "22:00"
+  },
+  {
+   "id": "outside-lands-2011:d1:panhandle:1200:arann-harris-and-the-farm-band",
+   "artistId": "outside-lands-2011:arann-harris-and-the-farm-band",
+   "day": 1,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2011:d1:panhandle:1330:kelley-stoltz",
+   "artistId": "outside-lands-2011:kelley-stoltz",
+   "day": 1,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "13:30",
+   "end": "14:10"
+  },
+  {
+   "id": "outside-lands-2011:d1:panhandle:1505:tamaryn",
+   "artistId": "outside-lands-2011:tamaryn",
+   "day": 1,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "15:05",
+   "end": "15:45"
+  },
+  {
+   "id": "outside-lands-2011:d1:panhandle:1640:orgone",
+   "artistId": "outside-lands-2011:orgone",
+   "day": 1,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "16:40",
+   "end": "17:20"
+  },
+  {
+   "id": "outside-lands-2011:d1:panhandle:1815:the-limousines",
+   "artistId": "outside-lands-2011:the-limousines",
+   "day": 1,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "18:15",
+   "end": "18:55"
+  },
+  {
+   "id": "outside-lands-2011:d1:panhandle:1950:best-coast",
+   "artistId": "outside-lands-2011:best-coast",
+   "day": 1,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "19:50",
+   "end": "20:35"
+  },
+  {
+   "id": "outside-lands-2011:d1:sutro:1200:release-the-sunbird",
+   "artistId": "outside-lands-2011:release-the-sunbird",
+   "day": 1,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2011:d1:sutro:1310:the-joy-formidable",
+   "artistId": "outside-lands-2011:the-joy-formidable",
+   "day": 1,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "13:10",
+   "end": "13:55"
+  },
+  {
+   "id": "outside-lands-2011:d1:sutro:1425:phantogram",
+   "artistId": "outside-lands-2011:phantogram",
+   "day": 1,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "14:25",
+   "end": "15:10"
+  },
+  {
+   "id": "outside-lands-2011:d1:sutro:1540:foster-the-people",
+   "artistId": "outside-lands-2011:foster-the-people",
+   "day": 1,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "15:40",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2011:d1:sutro:1700:ellie-goulding",
+   "artistId": "outside-lands-2011:ellie-goulding",
+   "day": 1,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "17:00",
+   "end": "17:50"
+  },
+  {
+   "id": "outside-lands-2011:d1:sutro:1900:big-boi",
+   "artistId": "outside-lands-2011:big-boi",
+   "day": 1,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "outside-lands-2011:d1:sutro:2000:erykah-badu",
+   "artistId": "outside-lands-2011:erykah-badu",
+   "day": 1,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "20:00",
+   "end": "21:10"
+  },
+  {
+   "id": "outside-lands-2011:d1:the-domes-by-heineken:1200:marky",
+   "artistId": "outside-lands-2011:marky",
+   "day": 1,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2011:d1:the-domes-by-heineken:1330:dj-deevice",
+   "artistId": "outside-lands-2011:dj-deevice",
+   "day": 1,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "outside-lands-2011:d1:the-domes-by-heineken:1430:dj-mes",
+   "artistId": "outside-lands-2011:dj-mes",
+   "day": 1,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "outside-lands-2011:d1:the-domes-by-heineken:1530:mauricio-aviles",
+   "artistId": "outside-lands-2011:mauricio-aviles",
+   "day": 1,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2011:d1:the-domes-by-heineken:1630:franky-boissy",
+   "artistId": "outside-lands-2011:franky-boissy",
+   "day": 1,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "outside-lands-2011:d1:the-domes-by-heineken:1730:miguel-migs",
+   "artistId": "outside-lands-2011:miguel-migs",
+   "day": 1,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "outside-lands-2011:d1:the-domes-by-heineken:1900:fred-everything",
+   "artistId": "outside-lands-2011:fred-everything",
+   "day": 1,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "outside-lands-2011:d1:twin-peaks:1245:k-flay",
+   "artistId": "outside-lands-2011:k-flay",
+   "day": 1,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2011:d1:twin-peaks:1415:lotus",
+   "artistId": "outside-lands-2011:lotus",
+   "day": 1,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "14:15",
+   "end": "15:05"
+  },
+  {
+   "id": "outside-lands-2011:d1:twin-peaks:1550:toro-y-moi",
+   "artistId": "outside-lands-2011:toro-y-moi",
+   "day": 1,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "15:50",
+   "end": "16:40"
+  },
+  {
+   "id": "outside-lands-2011:d1:twin-peaks:1725:clap-your-hands-say-yeah",
+   "artistId": "outside-lands-2011:clap-your-hands-say-yeah",
+   "day": 1,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "17:25",
+   "end": "18:15"
+  },
+  {
+   "id": "outside-lands-2011:d1:twin-peaks:1900:big-audio-dynamite",
+   "artistId": "outside-lands-2011:big-audio-dynamite",
+   "day": 1,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "19:00",
+   "end": "19:50"
+  },
+  {
+   "id": "outside-lands-2011:d1:twin-peaks:2040:the-shins",
+   "artistId": "outside-lands-2011:the-shins",
+   "day": 1,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "20:40",
+   "end": "21:50"
+  },
+  {
+   "id": "outside-lands-2011:d2:lands-end:1225:macklemore-and-ryan-lewis",
+   "artistId": "outside-lands-2011:macklemore-and-ryan-lewis",
+   "day": 2,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "12:25",
+   "end": "13:15"
+  },
+  {
+   "id": "outside-lands-2011:d2:lands-end:1345:the-greyboy-allstars",
+   "artistId": "outside-lands-2011:the-greyboy-allstars",
+   "day": 2,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "13:45",
+   "end": "14:45"
+  },
+  {
+   "id": "outside-lands-2011:d2:lands-end:1515:ok-go",
+   "artistId": "outside-lands-2011:ok-go",
+   "day": 2,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "outside-lands-2011:d2:lands-end:1645:arctic-monkeys",
+   "artistId": "outside-lands-2011:arctic-monkeys",
+   "day": 2,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "outside-lands-2011:d2:lands-end:1815:the-black-keys",
+   "artistId": "outside-lands-2011:the-black-keys",
+   "day": 2,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "18:15",
+   "end": "19:25"
+  },
+  {
+   "id": "outside-lands-2011:d2:lands-end:2010:muse",
+   "artistId": "outside-lands-2011:muse",
+   "day": 2,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "20:10",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2011:d2:panhandle:1200:cosmic-suckerpunch",
+   "artistId": "outside-lands-2011:cosmic-suckerpunch",
+   "day": 2,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2011:d2:panhandle:1325:ximena-sarinana",
+   "artistId": "outside-lands-2011:ximena-sarinana",
+   "day": 2,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "13:25",
+   "end": "14:05"
+  },
+  {
+   "id": "outside-lands-2011:d2:panhandle:1455:sonny-and-the-sunsets",
+   "artistId": "outside-lands-2011:sonny-and-the-sunsets",
+   "day": 2,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "14:55",
+   "end": "15:35"
+  },
+  {
+   "id": "outside-lands-2011:d2:panhandle:1630:christina-perri",
+   "artistId": "outside-lands-2011:christina-perri",
+   "day": 2,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "outside-lands-2011:d2:panhandle:1805:eskmo",
+   "artistId": "outside-lands-2011:eskmo",
+   "day": 2,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "18:05",
+   "end": "18:45"
+  },
+  {
+   "id": "outside-lands-2011:d2:panhandle:1950:paper-diamond",
+   "artistId": "outside-lands-2011:paper-diamond",
+   "day": 2,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "19:50",
+   "end": "20:35"
+  },
+  {
+   "id": "outside-lands-2011:d2:sutro:1205:nicki-bluhm-and-the-gramblers",
+   "artistId": "outside-lands-2011:nicki-bluhm-and-the-gramblers",
+   "day": 2,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "12:05",
+   "end": "12:55"
+  },
+  {
+   "id": "outside-lands-2011:d2:sutro:1325:the-stone-foxes",
+   "artistId": "outside-lands-2011:the-stone-foxes",
+   "day": 2,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "13:25",
+   "end": "14:15"
+  },
+  {
+   "id": "outside-lands-2011:d2:sutro:1445:bob-schneider",
+   "artistId": "outside-lands-2011:bob-schneider",
+   "day": 2,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "14:45",
+   "end": "15:45"
+  },
+  {
+   "id": "outside-lands-2011:d2:sutro:1615:vetiver",
+   "artistId": "outside-lands-2011:vetiver",
+   "day": 2,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "outside-lands-2011:d2:sutro:1745:old-97-s",
+   "artistId": "outside-lands-2011:old-97-s",
+   "day": 2,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "outside-lands-2011:d2:sutro:1930:warren-haynes-band",
+   "artistId": "outside-lands-2011:warren-haynes-band",
+   "day": 2,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "outside-lands-2011:d2:the-domes-by-heineken:1200:chris-orr",
+   "artistId": "outside-lands-2011:chris-orr",
+   "day": 2,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2011:d2:the-domes-by-heineken:1330:ren-the-vinyl-archaeologist",
+   "artistId": "outside-lands-2011:ren-the-vinyl-archaeologist",
+   "day": 2,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2011:d2:the-domes-by-heineken:1500:aaron-axelsen",
+   "artistId": "outside-lands-2011:aaron-axelsen",
+   "day": 2,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2011:d2:the-domes-by-heineken:1630:mexican-institute-of-sound",
+   "artistId": "outside-lands-2011:mexican-institute-of-sound",
+   "day": 2,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2011:d2:the-domes-by-heineken:1800:david-harness",
+   "artistId": "outside-lands-2011:david-harness",
+   "day": 2,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "outside-lands-2011:d2:twin-peaks:1245:ana-tijoux",
+   "artistId": "outside-lands-2011:ana-tijoux",
+   "day": 2,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "12:45",
+   "end": "13:25"
+  },
+  {
+   "id": "outside-lands-2011:d2:twin-peaks:1410:the-vaccines",
+   "artistId": "outside-lands-2011:the-vaccines",
+   "day": 2,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "14:10",
+   "end": "14:55"
+  },
+  {
+   "id": "outside-lands-2011:d2:twin-peaks:1540:strfkr",
+   "artistId": "outside-lands-2011:strfkr",
+   "day": 2,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "15:40",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2011:d2:twin-peaks:1715:sia",
+   "artistId": "outside-lands-2011:sia",
+   "day": 2,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "17:15",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2011:d2:twin-peaks:1850:the-roots",
+   "artistId": "outside-lands-2011:the-roots",
+   "day": 2,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "18:50",
+   "end": "19:50"
+  },
+  {
+   "id": "outside-lands-2011:d2:twin-peaks:2040:girl-talk",
+   "artistId": "outside-lands-2011:girl-talk",
+   "day": 2,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "20:40",
+   "end": "21:50"
+  },
+  {
+   "id": "outside-lands-2011:d3:lands-end:1215:charles-bradley-and-the-menahan-street-band",
+   "artistId": "outside-lands-2011:charles-bradley-and-the-menahan-street-band",
+   "day": 3,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "12:15",
+   "end": "13:15"
+  },
+  {
+   "id": "outside-lands-2011:d3:lands-end:1345:mavis-staples",
+   "artistId": "outside-lands-2011:mavis-staples",
+   "day": 3,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "13:45",
+   "end": "14:45"
+  },
+  {
+   "id": "outside-lands-2011:d3:lands-end:1515:josh-ritter-and-the-royal-city-band",
+   "artistId": "outside-lands-2011:josh-ritter-and-the-royal-city-band",
+   "day": 3,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "outside-lands-2011:d3:lands-end:1645:john-fogerty",
+   "artistId": "outside-lands-2011:john-fogerty",
+   "day": 3,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "outside-lands-2011:d3:lands-end:1815:the-decemberists",
+   "artistId": "outside-lands-2011:the-decemberists",
+   "day": 3,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "18:15",
+   "end": "19:25"
+  },
+  {
+   "id": "outside-lands-2011:d3:lands-end:2010:arcade-fire",
+   "artistId": "outside-lands-2011:arcade-fire",
+   "day": 3,
+   "stageId": "outside-lands-2011:lands-end",
+   "start": "20:10",
+   "end": "21:40"
+  },
+  {
+   "id": "outside-lands-2011:d3:panhandle:1245:lord-huron",
+   "artistId": "outside-lands-2011:lord-huron",
+   "day": 3,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "12:45",
+   "end": "13:25"
+  },
+  {
+   "id": "outside-lands-2011:d3:panhandle:1420:grouplove",
+   "artistId": "outside-lands-2011:grouplove",
+   "day": 3,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "14:20",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2011:d3:panhandle:1555:ty-segall",
+   "artistId": "outside-lands-2011:ty-segall",
+   "day": 3,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "15:55",
+   "end": "16:35"
+  },
+  {
+   "id": "outside-lands-2011:d3:panhandle:1730:wye-oak",
+   "artistId": "outside-lands-2011:wye-oak",
+   "day": 3,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "17:30",
+   "end": "18:10"
+  },
+  {
+   "id": "outside-lands-2011:d3:panhandle:1915:the-infamous-stringdusters",
+   "artistId": "outside-lands-2011:the-infamous-stringdusters",
+   "day": 3,
+   "stageId": "outside-lands-2011:panhandle",
+   "start": "19:15",
+   "end": "19:55"
+  },
+  {
+   "id": "outside-lands-2011:d3:sutro:1200:the-fresh-and-onlys",
+   "artistId": "outside-lands-2011:the-fresh-and-onlys",
+   "day": 3,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "outside-lands-2011:d3:sutro:1315:tune-yards",
+   "artistId": "outside-lands-2011:tune-yards",
+   "day": 3,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2011:d3:sutro:1430:latyrx-feat-lyrics-born-and-lateef",
+   "artistId": "outside-lands-2011:latyrx-feat-lyrics-born-and-lateef",
+   "day": 3,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "14:30",
+   "end": "15:20"
+  },
+  {
+   "id": "outside-lands-2011:d3:sutro:1550:julieta-venegas",
+   "artistId": "outside-lands-2011:julieta-venegas",
+   "day": 3,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "15:50",
+   "end": "16:50"
+  },
+  {
+   "id": "outside-lands-2011:d3:sutro:1720:little-dragon",
+   "artistId": "outside-lands-2011:little-dragon",
+   "day": 3,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "17:20",
+   "end": "18:20"
+  },
+  {
+   "id": "outside-lands-2011:d3:sutro:1850:beirut",
+   "artistId": "outside-lands-2011:beirut",
+   "day": 3,
+   "stageId": "outside-lands-2011:sutro",
+   "start": "18:50",
+   "end": "20:00"
+  },
+  {
+   "id": "outside-lands-2011:d3:the-domes-by-heineken:1200:dj-platurn",
+   "artistId": "outside-lands-2011:dj-platurn",
+   "day": 3,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2011:d3:the-domes-by-heineken:1330:8-ball",
+   "artistId": "outside-lands-2011:8-ball",
+   "day": 3,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2011:d3:the-domes-by-heineken:1500:motion-potion",
+   "artistId": "outside-lands-2011:motion-potion",
+   "day": 3,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2011:d3:the-domes-by-heineken:1630:eric-sharp",
+   "artistId": "outside-lands-2011:eric-sharp",
+   "day": 3,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2011:d3:the-domes-by-heineken:1800:doc-martin",
+   "artistId": "outside-lands-2011:doc-martin",
+   "day": 3,
+   "stageId": "outside-lands-2011:the-domes-by-heineken",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "outside-lands-2011:d3:twin-peaks:1200:diego-s-umbrella",
+   "artistId": "outside-lands-2011:diego-s-umbrella",
+   "day": 3,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "outside-lands-2011:d3:twin-peaks:1330:junip",
+   "artistId": "outside-lands-2011:junip",
+   "day": 3,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "13:30",
+   "end": "14:20"
+  },
+  {
+   "id": "outside-lands-2011:d3:twin-peaks:1505:x",
+   "artistId": "outside-lands-2011:x",
+   "day": 3,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "15:05",
+   "end": "15:55"
+  },
+  {
+   "id": "outside-lands-2011:d3:twin-peaks:1640:major-lazer",
+   "artistId": "outside-lands-2011:major-lazer",
+   "day": 3,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "16:40",
+   "end": "17:30"
+  },
+  {
+   "id": "outside-lands-2011:d3:twin-peaks:1815:sts9",
+   "artistId": "outside-lands-2011:sts9",
+   "day": 3,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "outside-lands-2011:d3:twin-peaks:2000:deadmau5",
+   "artistId": "outside-lands-2011:deadmau5",
+   "day": 3,
+   "stageId": "outside-lands-2011:twin-peaks",
+   "start": "20:00",
+   "end": "21:30"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.sfoutsidelands.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110917064709/http://myscheduler.sfoutsidelands.com/grid.html",
+    "captureTimestamp": "20110917064709",
+    "printed": "2011-08-12",
+    "sha256": "e3d131051085ec3ebd0f6b601837dfb0740c598e0def530e7725f65a8e198d15",
+    "rows": 31,
+    "firstStart": "2011-08-12 12:00:00"
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110917064709/http://myscheduler.sfoutsidelands.com/grid.html",
+    "captureTimestamp": "20110917064709",
+    "printed": "2011-08-13",
+    "sha256": "e3d131051085ec3ebd0f6b601837dfb0740c598e0def530e7725f65a8e198d15",
+    "rows": 29,
+    "firstStart": "2011-08-13 12:00:00"
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110917064709/http://myscheduler.sfoutsidelands.com/grid.html",
+    "captureTimestamp": "20110917064709",
+    "printed": "2011-08-14",
+    "sha256": "e3d131051085ec3ebd0f6b601837dfb0740c598e0def530e7725f65a8e198d15",
+    "rows": 28,
+    "firstStart": "2011-08-14 12:00:00"
+   }
+  ]
+ }
+}

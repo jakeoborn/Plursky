@@ -108,5 +108,7 @@
  "outside-lands-2014": { "stages": 5, "setsPerDay": [29, 29, 28], "droppedPerDay": [0, 0, 0] },
  "outside-lands-2015": { "stages": 6, "setsPerDay": [35, 36, 36], "droppedPerDay": [0, 0, 0] },
  "outside-lands-2016": { "stages": 5, "setsPerDay": [30, 30, 30], "droppedPerDay": [0, 0, 0] },
- "outside-lands-2017": { "stages": 6, "setsPerDay": [36, 35, 38], "droppedPerDay": [0, 0, 0] }
+ "outside-lands-2017": { "stages": 6, "setsPerDay": [36, 35, 38], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2010": { "stages": 5, "setsPerDay": [27, 28], "droppedPerDay": [0, 0] },
+ "outside-lands-2011": { "stages": 5, "setsPerDay": [31, 29, 28], "droppedPerDay": [0, 0, 0] }
 }
