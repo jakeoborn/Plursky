@@ -8,7 +8,9 @@
 //
 // SOURCE lineup: dwpfest.com/lineup, read 2026-11-11 — "In alphabetical
 // order", 25 acts, each kept exactly as printed ("Adnan Veron x HBRP",
-// "Axwell B2B Sebastian Ingrosso", "W.w").
+// "Axwell B2B Sebastian Ingrosso", "W.w"). Re-read 2026-11-16: 27 acts; the
+// page now also lists ALZENA and NENSHIN (page text as served; the site
+// uppercases every name in CSS), added in their alphabetical places.
 // SOURCE dates: dwpfest.com, read 2026-11-11 — "11 • 12 • 13 DEC 2026
 // JAKARTA, INDONESIA".
 // SOURCE venue: the official pages name only Jakarta. JIExpo Kemayoran is
@@ -51,6 +53,7 @@
     mk("dwp-afrojack", "Afrojack"),
     mk("dwp-agents-of-time", "Agents of Time"),
     mk("dwp-alok", "Alok"),
+    mk("dwp-alzena", "ALZENA"),
     mk("dwp-angger-dimas", "Angger Dimas"),
     mk("dwp-artbat", "ARTBAT"),
     mk("dwp-axwell-b2b-sebastian-ingrosso", "Axwell B2B Sebastian Ingrosso"),
@@ -67,6 +70,7 @@
     mk("dwp-lilly-palmer", "Lilly Palmer"),
     mk("dwp-maddix", "Maddix"),
     mk("dwp-marlo", "Marlo"),
+    mk("dwp-nenshin", "NENSHIN"),
     mk("dwp-r3hab", "R3hab"),
     mk("dwp-syber", "Syber"),
     mk("dwp-tye-turner", "Tye Turner"),
@@ -76,7 +80,7 @@
 
   const CONFIG = {
     id: "dwp-2026",
-    lineupSource: { url: "https://dwpfest.com/lineup", observedAt: "2026-11-11", official: true },
+    lineupSource: { url: "https://dwpfest.com/lineup", observedAt: "2026-11-16", official: true },
     name: "Djakarta Warehouse Project 2026",
     shortName: "DWP",
     brand: "Djakarta Warehouse Project",
