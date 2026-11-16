@@ -20,7 +20,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
-import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
+import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, checkedOn, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
 import { loadDayAfter, assertDayAfter, selectDayAfter, dayAfterSection, DAY_AFTER_CSS } from './lib/day-after.mjs';
 
@@ -748,6 +748,7 @@ function stub(entry, statusOverride, lastmod) {
 
   const src = cfg.scheduleSource;
   const site = cfg.officialEvent && cfg.officialEvent.website;
+  const checked = checkedOn(cfg);
   const sources = [
     site && `      <li>Official site: <a href="${esc(site)}" rel="noopener">${esc(site)}</a></li>`,
     ticketsUrl && `      <li>Tickets: <a href="${esc(ticketsUrl)}" rel="noopener">${esc(ticketsUrl)}</a> (official)</li>`,
@@ -860,6 +861,7 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   h4 { font-size:12px; font-weight:600; margin:22px 0 4px; color:var(--flare); text-transform:uppercase; letter-spacing:.12em; }
   h5 { font-size:11px; font-weight:500; margin:14px 0 4px; color:var(--text-3); text-transform:uppercase; letter-spacing:.12em; }
   .note { color:var(--text-2); font-size:14px; }
+  .checked { color:var(--text-2); font-size:13px; margin:-6px 0 14px; }
   figure { margin:16px 0; }
   figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:8px; background:var(--panel); }
   .platebox { position:relative; max-width:520px; }
@@ -960,7 +962,7 @@ ${JSON.stringify(crumbLd, null, 2)}
   <h1>${esc(cfg.name)}</h1>
   <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
   <p class="tag">${esc(cfg.tagline || '')}</p>
-  <p class="go"><a class="btn primary" href="/?f=${esc(id)}${isPast && entry.available ? '&amp;tab=memories' : ''}">${entry.available ? (isPast ? 'Relive it in Plursky' : 'Plan it in Plursky') : 'Open Plursky'}</a>${(() => { const j = sectionJumps(bodyHtml).find(x => x.id !== 'lineup-h' || names.length); return j ? `<a class="btn" href="#${j.id}">${j.hero}</a>` : ''; })()}</p>
+${checked ? `  <p class="checked">Checked on <time datetime="${checked}">${checked}</time> against the sources listed below.</p>\n` : ''}  <p class="go"><a class="btn primary" href="/?f=${esc(id)}${isPast && entry.available ? '&amp;tab=memories' : ''}">${entry.available ? (isPast ? 'Relive it in Plursky' : 'Plan it in Plursky') : 'Open Plursky'}</a>${(() => { const j = sectionJumps(bodyHtml).find(x => x.id !== 'lineup-h' || names.length); return j ? `<a class="btn" href="#${j.id}">${j.hero}</a>` : ''; })()}</p>
  </div>
 </div>
 ${(() => { const js = sectionJumps(bodyHtml); return js.length > 1 ? `<nav class="jumps" aria-label="On this page"><div class="wrap">${js.map(j => `<a href="#${j.id}">${j.label}</a>`).join('')}</div></nav>\n` : ''; })()}<div class="wrap">
