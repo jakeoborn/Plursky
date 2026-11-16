@@ -1455,13 +1455,31 @@ function _recordSetTap(festivalId, ms, stageId, hand = false) {
   try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
   return true;
 }
+// Foreground only, across the await: a fix that resolves after the app was
+// hidden is dropped, never stored. Every hide bumps the epoch, so a pending
+// tap or calibration from before the hide can tell it was interrupted even if
+// the app is visible again by the time its fix arrives. Same rule as Live
+// check-in, which cancels its attempt on hide.
+let _fgEpoch = 0;
+try { document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") _fgEpoch++; }); } catch {}
+const _appHidden = () => { try { return document.visibilityState === "hidden"; } catch { return false; } };
+// Reads one fix while the app stays in front. { hidden: true } when the app
+// was or went to the background at any point before the fix came back.
+async function _foregroundFix() {
+  if (_appHidden()) return { hidden: true };
+  const epoch = _fgEpoch;
+  const fix = typeof _checkinFix === "function" ? await _checkinFix() : null;
+  if (epoch !== _fgEpoch || _appHidden()) return { hidden: true };
+  return fix;
+}
 // "Still here": one foreground fix on the user's tap, through the one stage
 // fix gate on attendance rules and measured stages only. It asks for nothing
 // new: the same location permission Check-in and the map already use, read
 // once, while the app is open. Returns the gate's answer either way.
 async function setTrackStillHere(cfg = window.FESTIVAL_CONFIG) {
   if (setTrackEligibility(cfg, Date.now()) !== "live") return { status: "not-live" };
-  const fix = typeof _checkinFix === "function" ? await _checkinFix() : null;
+  const fix = await _foregroundFix();
+  if (fix && fix.hidden) return { status: "hidden" };
   if (!fix) return { status: "none" };
   if (fix.denied) return { status: "denied" };
   const now = Date.now();
@@ -1598,7 +1616,8 @@ function calibrateStageTap(cfg, stageId, fix, nowMs = Date.now()) {
   return { status: p ? "moved" : "first" };
 }
 async function stageCalibrateNow(cfg, stageId) {
-  const fix = typeof _checkinFix === "function" ? await _checkinFix() : null;
+  const fix = await _foregroundFix();
+  if (fix && fix.hidden) return { status: "hidden" };
   return calibrateStageTap(cfg, stageId, fix, Date.now());
 }
 function clearStageCalibration(festivalId) {
@@ -2736,6 +2755,7 @@ const _CALIB_NOTE = {
   "off-site": "You don't seem to be at the venue, so nothing was noted.",
   denied: "Location is off for Plursky, so nothing was noted.",
   "not-live": "Calibration works only while the festival is on.",
+  hidden: "You left Plursky before your location came in, so nothing was noted.",
   none: "Couldn't get a location, so nothing was noted.",
 };
 // The Calibrate stages sheet: one row per stage that needs a position.
@@ -2955,6 +2975,7 @@ function SetAttendanceRow({ a }) {
   const note = tap === "here" ? "Noted: you're here."
     : tap === "other" ? "Noted, at a different stage than this set."
     : tap === "denied" ? "Location is off for Plursky, so nothing was noted."
+    : tap === "hidden" ? "You left Plursky before your location came in, so nothing was noted."
     : tap && tap !== "busy" ? "Couldn't place you at a stage, so nothing was noted."
     : null;
   return (

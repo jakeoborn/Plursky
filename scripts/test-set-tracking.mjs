@@ -149,6 +149,14 @@ const watcher = (chrome.match(/function SetTrackingWatcher\(\)[\s\S]*?\n}\n/) ||
 sCheck(!!watcher, "SetTrackingWatcher exists in chrome.jsx");
 sCheck(/getSetTracking\(\) === "on"/.test(watcher), "the watcher runs only when the user turned it on (default off)");
 sCheck(/document\.visibilityState !== "hidden"/.test(watcher), "the watcher runs only while the page is visible");
+const fnBody = name => (chrome.match(new RegExp(`async function ${name}\\([\\s\\S]*?\\n}\\n`)) || [""])[0];
+for (const name of ["setTrackStillHere", "stageCalibrateNow"]) {
+  const b = fnBody(name);
+  sCheck(/await _foregroundFix\(\);\s*\n\s*if \(fix && fix\.hidden\) return \{ status: "hidden" \};/.test(b), `${name} reads its fix through _foregroundFix and stops when the app hid during the wait`);
+}
+const fg = (chrome.match(/async function _foregroundFix\(\)[\s\S]*?\n}\n/) || [""])[0];
+sCheck(/if \(epoch !== _fgEpoch \|\| _appHidden\(\)\) return \{ hidden: true \};/.test(fg), "_foregroundFix rechecks the hide count and visibility after its await");
+sCheck(/visibilityState === "hidden"\) _fgEpoch\+\+/.test(chrome), "a hide invalidates every pending fix");
 sCheck(/setTrackEligibility\(cfg, Date\.now\(\)\) === "live"/.test(watcher), "the watcher runs only on a live festival day with measured stages");
 sCheck(/attendQualifyFixes\(/.test(watcher) && /attendEvidenceAnchors\(cfg\)/.test(watcher), "the watcher uses the one fix gate on measured anchors");
 sCheck(/clearWatch\(id\)/.test(watcher), "the watcher clears its watch on teardown");
@@ -220,7 +228,7 @@ if (!process.env.SET_TRACKING_SKIP_BROWSER) {
         Object.defineProperty(navigator, "geolocation", { configurable: true, value: {
           watchPosition: (ok) => { const id = ++n; if (/attendQualifyFixes/.test(String(ok))) { mine.add(id); window.__geo.calls++; window.__geo.cb = ok; } return id; },
           clearWatch: (id) => { if (mine.delete(id)) window.__geo.cleared++; },
-          getCurrentPosition: () => {},
+          getCurrentPosition: (ok) => { window.__geo.pending = ok; },
         } });
         let hidden = false;
         Object.defineProperty(document, "visibilityState", { configurable: true, get: () => (hidden ? "hidden" : "visible") });
@@ -275,17 +283,47 @@ if (!process.env.SET_TRACKING_SKIP_BROWSER) {
       aCheck((await geo()).cleared === 1, `${tag} page hidden → the watch is cleared`);
       await page.evaluate(() => window.__setHidden(false)); await page.waitForTimeout(300);
       aCheck((await geo()).calls === 2, `${tag} visible again → the watch restarts`);
+      // Foreground only: a fix that lands after the app hid stores nothing,
+      // for "Still here" and for stage calibration alike.
+      const fgRun = (fn, steps) => page.evaluate(async ([fn, steps, c, t]) => {
+        window.__geo.pending = null;
+        const p = fn === "tap" ? setTrackStillHere(window.FESTIVAL_CONFIG) : stageCalibrateNow(window.FESTIVAL_CONFIG, "cove");
+        for (const s of steps) window.__setHidden(s === "hide");
+        const cb = window.__geo.pending;
+        if (cb) cb({ coords: { latitude: c.lat, longitude: c.lng, accuracy: 8 }, timestamp: t });
+        const r = await p;
+        if (steps[steps.length - 1] === "hide") window.__setHidden(false);
+        return { status: r.status, cb: !!cb };
+      }, [fn, steps, cove, LIVE + 5 * 60000]);
+      const taps = () => page.evaluate(() => (JSON.parse(localStorage.getItem("plursky_set_taps_v1") || "{}")["ultra-miami-2026"] || []).length);
+      const calib = () => page.evaluate(() => localStorage.getItem("plursky_stage_calib_v1") || "");
+      const t0 = await taps(), r0 = await fgRun("tap", []);
+      aCheck(r0.cb && r0.status === "trusted" && (await taps()) === t0 + 1, `${tag} positive control: Still here in the foreground stores one tap (${JSON.stringify(r0)})`);
+      const t1 = await taps(), r1 = await fgRun("tap", ["hide"]);
+      aCheck(r1.cb && r1.status === "hidden" && (await taps()) === t1, `${tag} Still here: app hidden before the fix lands → no tap stored (${JSON.stringify(r1)})`);
+      const r2 = await fgRun("tap", ["hide", "show"]);
+      aCheck(r2.cb && r2.status === "hidden" && (await taps()) === t1, `${tag} Still here: hidden and back before the fix lands → still no tap (${JSON.stringify(r2)})`);
+      const c0 = await fgRun("calib", []);
+      const cRaw = await calib();
+      aCheck(c0.cb && c0.status === "first" && /"pending":\{"cove"/.test(cRaw), `${tag} positive control: calibrating in the foreground stores a pending position (${c0.status})`);
+      await page.evaluate(() => clearStageCalibration("ultra-miami-2026"));
+      const c1 = await fgRun("calib", ["hide"]);
+      aCheck(c1.cb && c1.status === "hidden" && !(await calib()).includes("ultra-miami-2026"), `${tag} calibration: app hidden before the fix lands → no position stored (${JSON.stringify(c1)})`);
+      const c2 = await fgRun("calib", ["hide", "show"]);
+      aCheck(c2.cb && c2.status === "hidden" && !(await calib()).includes("ultra-miami-2026"), `${tag} calibration: hidden and back before the fix lands → still nothing stored (${JSON.stringify(c2)})`);
+      await page.evaluate(() => localStorage.removeItem("plursky_set_taps_v1")); await page.waitForTimeout(300);
+      const g0 = await geo();
       await page.locator("#__t [data-set-tracking-off]").click(); await page.waitForTimeout(300);
-      aCheck(await card.getAttribute("data-set-tracking-state") === "off" && (await geo()).cleared === 2, `${tag} Turn off → off, the watch is cleared`);
+      aCheck(await card.getAttribute("data-set-tracking-state") === "off" && (await geo()).cleared === g0.cleared + 1, `${tag} Turn off → off, the watch is cleared`);
       await page.locator("#__t [data-set-tracking-clear]").click(); await page.waitForTimeout(200);
       aCheck(!JSON.parse(await page.evaluate(() => localStorage.getItem("plursky_set_intervals_v1") || "{}"))["ultra-miami-2026"], `${tag} Clear removes this festival's times`);
       // Off the festival's days the watch never starts, even when on.
       await page.clock.setFixedTime(new Date(Date.UTC(2026, 10, 12, 18)));
       await page.evaluate(() => setSetTracking(true)); await page.waitForTimeout(300);
-      aCheck((await geo()).calls === 2 && /is over, so nothing is counting/.test(await card.innerText()), `${tag} on, festival over: no watch, and the card says nothing is counting`);
+      aCheck((await geo()).calls === g0.calls && /is over, so nothing is counting/.test(await card.innerText()), `${tag} on, festival over: no watch, and the card says nothing is counting`);
       await page.clock.setFixedTime(new Date(Date.UTC(2026, 2, 20, 18)));
       await page.evaluate(() => window.dispatchEvent(new CustomEvent("plursky-set-tracking-change"))); await page.waitForTimeout(300);
-      aCheck((await geo()).calls === 2 && /starts on .*festival days/.test(await card.innerText()), `${tag} on, a week before: no watch, and the card says when it starts`);
+      aCheck((await geo()).calls === g0.calls && /starts on .*festival days/.test(await card.innerText()), `${tag} on, a week before: no watch, and the card says when it starts`);
       // ── PR 4: the set badge and the recap line, both from attendanceVerdict.
       const pick = await page.evaluate(() => {
         const cfg = window.FESTIVAL_CONFIG, H = 60000;

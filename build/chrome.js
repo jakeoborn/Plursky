@@ -1827,11 +1827,38 @@ function _recordSetTap(festivalId, ms, stageId, hand = false) {
   } catch {}
   return true;
 }
+var _fgEpoch = 0;
+try {
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") _fgEpoch++;
+  });
+} catch {}
+var _appHidden = () => {
+  try {
+    return document.visibilityState === "hidden";
+  } catch {
+    return false;
+  }
+};
+async function _foregroundFix() {
+  if (_appHidden()) return {
+    hidden: true
+  };
+  var epoch = _fgEpoch;
+  var fix = typeof _checkinFix === "function" ? await _checkinFix() : null;
+  if (epoch !== _fgEpoch || _appHidden()) return {
+    hidden: true
+  };
+  return fix;
+}
 async function setTrackStillHere(cfg = window.FESTIVAL_CONFIG) {
   if (setTrackEligibility(cfg, Date.now()) !== "live") return {
     status: "not-live"
   };
-  var fix = typeof _checkinFix === "function" ? await _checkinFix() : null;
+  var fix = await _foregroundFix();
+  if (fix && fix.hidden) return {
+    status: "hidden"
+  };
   if (!fix) return {
     status: "none"
   };
@@ -2033,7 +2060,10 @@ function calibrateStageTap(cfg, stageId, fix, nowMs = Date.now()) {
   };
 }
 async function stageCalibrateNow(cfg, stageId) {
-  var fix = typeof _checkinFix === "function" ? await _checkinFix() : null;
+  var fix = await _foregroundFix();
+  if (fix && fix.hidden) return {
+    status: "hidden"
+  };
   return calibrateStageTap(cfg, stageId, fix, Date.now());
 }
 function clearStageCalibration(festivalId) {
@@ -3680,6 +3710,7 @@ var _CALIB_NOTE = {
   "off-site": "You don't seem to be at the venue, so nothing was noted.",
   denied: "Location is off for Plursky, so nothing was noted.",
   "not-live": "Calibration works only while the festival is on.",
+  hidden: "You left Plursky before your location came in, so nothing was noted.",
   none: "Couldn't get a location, so nothing was noted."
 };
 function StageCalibrateSheet({
@@ -4026,7 +4057,7 @@ function SetAttendanceRow({
     var r = mobile ? setTrackStillHereHand(cfg, a) : await setTrackStillHere(cfg);
     setTap(r.status === "trusted" || r.status === "hand" ? r.stageId === a.stage ? "here" : "other" : r.status);
   };
-  var note = tap === "here" ? "Noted: you're here." : tap === "other" ? "Noted, at a different stage than this set." : tap === "denied" ? "Location is off for Plursky, so nothing was noted." : tap && tap !== "busy" ? "Couldn't place you at a stage, so nothing was noted." : null;
+  var note = tap === "here" ? "Noted: you're here." : tap === "other" ? "Noted, at a different stage than this set." : tap === "denied" ? "Location is off for Plursky, so nothing was noted." : tap === "hidden" ? "You left Plursky before your location came in, so nothing was noted." : tap && tap !== "busy" ? "Couldn't place you at a stage, so nothing was noted." : null;
   return React.createElement("div", {
     "data-set-attendance": true,
     style: {
