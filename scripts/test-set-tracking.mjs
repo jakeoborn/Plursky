@@ -160,14 +160,14 @@ sCheck(/data-set-tracking-off onClick=\{\(\) => setSetTracking\(false\)\}/.test(
 sCheck(/data-set-tracking-accept onClick=\{\(\) => \{ setSetTracking\(true\)/.test(chrome) && /data-set-tracking-consent/.test(chrome), "turning it on goes through the consent panel");
 sCheck(/Lock the screen and the count pauses/.test(chrome) && /only while Plursky is open/.test(chrome), "the card states the foreground-only limit");
 const vfn = (chrome.match(/function setTrackVerdict\([\s\S]*?\n}\n/) || [""])[0];
-sCheck(/attendanceVerdict\(a, iv, cfg\)/.test(vfn) && /attendanceVerdictLabel\(v\)/.test(vfn), "PR 4: setTrackVerdict asks attendanceVerdict and its label (no second rule)");
+sCheck(/attendanceVerdict\(a, iv, cfg[,)]/.test(vfn) && /attendanceVerdictLabel\(v\)/.test(vfn), "PR 4: setTrackVerdict asks attendanceVerdict and its label (no second rule)");
 sCheck(/const tracked = setTrackVerdict\(a\);/.test(spot) && /tracked && tracked\.label &&/.test(spot), "PR 4: the set badge shows setTrackVerdict's label");
 sCheck(/const tracked = setTrackSummary\(/.test(spot) && /recap\.tracked\.full \+ recap\.tracked\.partial > 0/.test(spot), "PR 4: the recap line counts from setTrackSummary");
 const restated = [chrome.replace(/function setTrackVerdict[\s\S]*?\n}\n/, ""), spot].some(t => /ATTEND_FULL_SHARE|ATTEND_PARTIAL_MS|0\.85\s*\*|\* ?0\.85/.test(t));
 sCheck(!restated, "PR 4: no surface restates the full/partial thresholds");
 const others = readdirSync(ROOT).filter(f => f.endsWith(".jsx") && f !== "chrome.jsx");
-const leak = others.filter(f => /plursky_set_intervals_v1|SET_TRACK_STORE_KEY|getSetTrackIntervals/.test(code(f)));
-sCheck(leak.length === 0, `no other file (backup, sync, crew) reads the interval store (${leak.join(", ") || "none"})`);
+const leak = others.filter(f => /plursky_set_intervals_v1|plursky_set_taps_v1|plursky_set_manual_v1|plursky_stage_calib_v1|SET_TRACK_STORE_KEY|SET_TAP_STORE_KEY|SET_MANUAL_STORE_KEY|SET_CALIB_STORE_KEY|getSetTrackIntervals/.test(code(f)));
+sCheck(leak.length === 0, `no other file (backup, sync, crew) reads the interval, tap, correction or calibration store (${leak.join(", ") || "none"})`);
 const plist = readFileSync(join(ROOT, "ios", "App", "App", "Info.plist"), "utf8");
 sCheck(!/UIBackgroundModes/.test(plist) && !/NSLocationAlways/.test(plist), "Info.plist has no background mode and no Always permission");
 // Positive control: the plist read is real.

@@ -1764,10 +1764,259 @@ function getSetTrackIntervals(festivalId) {
 }
 function clearSetTrack(festivalId) {
   var all = _readSetTrackStore();
+  var taps = _readJsonStore(SET_TAP_STORE_KEY);
+  var had = festivalId in all,
+    hadTaps = festivalId in taps;
+  if (!had && !hadTaps) return false;
+  delete all[festivalId];
+  delete taps[festivalId];
+  try {
+    localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all));
+  } catch {}
+  try {
+    localStorage.setItem(SET_TAP_STORE_KEY, JSON.stringify(taps));
+  } catch {}
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+  return true;
+}
+var SET_TAP_STORE_KEY = "plursky_set_taps_v1";
+var SET_MANUAL_STORE_KEY = "plursky_set_manual_v1";
+var SET_MANUAL_VALUES = ["full", "partial", "absent"];
+function _readJsonStore(key) {
+  try {
+    var s = JSON.parse(localStorage.getItem(key) || "{}");
+    return s && typeof s === "object" && !Array.isArray(s) ? s : {};
+  } catch {
+    return {};
+  }
+}
+function getSetTapPoints(festivalId) {
+  var out = {};
+  for (var t of _readJsonStore(SET_TAP_STORE_KEY)[festivalId] || []) {
+    if (!t || typeof t.ms !== "number" || t.stageId == null) continue;
+    (out[t.stageId] = out[t.stageId] || []).push({
+      from: t.ms,
+      to: t.ms,
+      src: "photo",
+      via: "tap"
+    });
+  }
+  return out;
+}
+function _recordSetTap(festivalId, ms, stageId) {
+  var all = _readJsonStore(SET_TAP_STORE_KEY);
+  var list = Array.isArray(all[festivalId]) ? all[festivalId] : [];
+  if (!list.some(t => t.ms === ms && t.stageId === stageId)) list.push({
+    ms,
+    stageId
+  });
+  all[festivalId] = list;
+  try {
+    localStorage.setItem(SET_TAP_STORE_KEY, JSON.stringify(all));
+  } catch {
+    return false;
+  }
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+  return true;
+}
+async function setTrackStillHere(cfg = window.FESTIVAL_CONFIG) {
+  if (setTrackEligibility(cfg, Date.now()) !== "live") return {
+    status: "not-live"
+  };
+  var fix = typeof _checkinFix === "function" ? await _checkinFix() : null;
+  if (!fix) return {
+    status: "none"
+  };
+  if (fix.denied) return {
+    status: "denied"
+  };
+  var now = Date.now();
+  var g = stageFixGate(attendEvidenceAnchors(cfg), fix, now, STAGE_FIX_ATTEND);
+  if (g.status !== "trusted") return {
+    status: g.status
+  };
+  var ms = typeof fix.timestamp === "number" ? fix.timestamp : now;
+  _recordSetTap(cfg.id, ms, g.stageId);
+  return {
+    status: "trusted",
+    stageId: g.stageId,
+    ms
+  };
+}
+function getSetManual(festivalId, artistId) {
+  var v = (_readJsonStore(SET_MANUAL_STORE_KEY)[festivalId] || {})[artistId];
+  return SET_MANUAL_VALUES.includes(v) ? v : null;
+}
+function setSetManual(festivalId, artistId, value) {
+  if (!festivalId || !artistId) return false;
+  if (value != null && !SET_MANUAL_VALUES.includes(value)) return false;
+  var all = _readJsonStore(SET_MANUAL_STORE_KEY);
+  var fest = {
+    ...(all[festivalId] || {})
+  };
+  if (value == null) delete fest[artistId];else fest[artistId] = value;
+  all[festivalId] = fest;
+  try {
+    localStorage.setItem(SET_MANUAL_STORE_KEY, JSON.stringify(all));
+  } catch {
+    return false;
+  }
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+  return true;
+}
+var _setMomentMemo = {
+  raw: null,
+  fid: null,
+  out: {}
+};
+function _setMomentPoints(cfg) {
+  var raw = null;
+  try {
+    raw = localStorage.getItem(typeof MOMENTS_KEY !== "undefined" ? MOMENTS_KEY : "plursky_moments_v1");
+  } catch {}
+  if (_setMomentMemo.raw === raw && _setMomentMemo.fid === cfg.id) return _setMomentMemo.out;
+  var moments = {};
+  try {
+    moments = JSON.parse(raw || "{}") || {};
+  } catch {}
+  var ds = _attendedDataSets()[cfg.id] || {};
+  var out = attendMomentPoints(moments, cfg, ds.artists || window.ARTISTS || []);
+  _setMomentMemo = {
+    raw,
+    fid: cfg.id,
+    out
+  };
+  return out;
+}
+function setTrackEvidence(cfg = window.FESTIVAL_CONFIG) {
+  if (!cfg || !cfg.id) return {};
+  return attendMergeEvidence(getSetTrackIntervals(cfg.id), getSetTapPoints(cfg.id), _setMomentPoints(cfg));
+}
+var SET_CALIB_STORE_KEY = "plursky_stage_calib_v1";
+var STAGE_CALIB = {
+  maxAccM: 30,
+  minGapMs: 10 * 60000,
+  agreeM: 30,
+  venuePadM: 300
+};
+function _readCalib(festivalId) {
+  var e = _readJsonStore(SET_CALIB_STORE_KEY)[festivalId] || {};
+  return {
+    pending: e.pending && typeof e.pending === "object" ? e.pending : {},
+    anchors: e.anchors && typeof e.anchors === "object" ? e.anchors : {}
+  };
+}
+function _writeCalib(festivalId, e) {
+  var all = _readJsonStore(SET_CALIB_STORE_KEY);
+  all[festivalId] = e;
+  try {
+    localStorage.setItem(SET_CALIB_STORE_KEY, JSON.stringify(all));
+  } catch {
+    return false;
+  }
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+  return true;
+}
+function _calibStages(cfg) {
+  var ds = _attendedDataSets()[cfg.id] || {};
+  var active = window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id === cfg.id;
+  var stages = ds.stages || (active ? window.STAGES : null) || [];
+  var artists = ds.artists || (active ? window.ARTISTS : null) || [];
+  var used = new Set(artists.map(a => a && a.stage).filter(Boolean));
+  return used.size ? stages.filter(st => used.has(st.id)) : stages;
+}
+function stageCalibrationAnchors(cfg, measuredIds = new Set()) {
+  if (!cfg || !cfg.id) return [];
+  var anchors = _readCalib(cfg.id).anchors;
+  var need = _calibStages(cfg).map(st => st.id).filter(id => !measuredIds.has(id));
+  if (!need.length || need.some(id => !anchors[id])) return [];
+  return need.map(id => ({
+    stageId: id,
+    lat: anchors[id].lat,
+    lng: anchors[id].lng,
+    anchorSource: "device"
+  }));
+}
+function _calibOnSite(cfg, fix) {
+  var b = cfg && cfg.mapGeoref && cfg.mapGeoref.bounds;
+  if (!Array.isArray(b) || b.length !== 4) return true;
+  var padLat = STAGE_CALIB.venuePadM / 111320,
+    padLng = STAGE_CALIB.venuePadM / (111320 * Math.cos(fix.lat * Math.PI / 180));
+  return fix.lng >= b[0] - padLng && fix.lng <= b[2] + padLng && fix.lat >= b[1] - padLat && fix.lat <= b[3] + padLat;
+}
+function calibrateStageTap(cfg, stageId, fix, nowMs = Date.now()) {
+  if (!cfg || !cfg.id || !stageId) return {
+    status: "none"
+  };
+  var phase = typeof _festivalPhase === "function" ? _festivalPhase({
+    config: cfg
+  }, nowMs) : "upcoming";
+  if (phase !== "live") return {
+    status: "not-live"
+  };
+  if (!fix) return {
+    status: "none"
+  };
+  if (fix.denied) return {
+    status: "denied"
+  };
+  if (!Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return {
+    status: "none"
+  };
+  if (!Number.isFinite(fix.accuracy) || fix.accuracy > STAGE_CALIB.maxAccM) return {
+    status: "coarse",
+    accM: Number.isFinite(fix.accuracy) ? fix.accuracy : null
+  };
+  if (!_calibOnSite(cfg, fix)) return {
+    status: "off-site"
+  };
+  var ms = typeof fix.timestamp === "number" ? fix.timestamp : nowMs;
+  var e = _readCalib(cfg.id);
+  var p = e.pending[stageId];
+  if (p && ms - p.ms < STAGE_CALIB.minGapMs) return {
+    status: "too-soon",
+    waitMs: STAGE_CALIB.minGapMs - (ms - p.ms)
+  };
+  if (p && _haversineMeters(p.lat, p.lng, fix.lat, fix.lng) <= STAGE_CALIB.agreeM) {
+    e.anchors[stageId] = {
+      lat: (p.lat + fix.lat) / 2,
+      lng: (p.lng + fix.lng) / 2,
+      ms
+    };
+    delete e.pending[stageId];
+    _writeCalib(cfg.id, e);
+    return {
+      status: "set"
+    };
+  }
+  e.pending[stageId] = {
+    ms,
+    lat: fix.lat,
+    lng: fix.lng
+  };
+  _writeCalib(cfg.id, e);
+  return {
+    status: p ? "moved" : "first"
+  };
+}
+async function stageCalibrateNow(cfg, stageId) {
+  var fix = typeof _checkinFix === "function" ? await _checkinFix() : null;
+  return calibrateStageTap(cfg, stageId, fix, Date.now());
+}
+function clearStageCalibration(festivalId) {
+  var all = _readJsonStore(SET_CALIB_STORE_KEY);
   if (!(festivalId in all)) return false;
   delete all[festivalId];
   try {
-    localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all));
+    localStorage.setItem(SET_CALIB_STORE_KEY, JSON.stringify(all));
   } catch {}
   try {
     window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
@@ -1776,12 +2025,19 @@ function clearSetTrack(festivalId) {
 }
 function setTrackVerdict(a, cfg = window.FESTIVAL_CONFIG) {
   if (!a || !cfg || !cfg.id) return null;
-  var iv = getSetTrackIntervals(cfg.id);
-  if (!iv[a.stage] || !iv[a.stage].length) return null;
-  var v = attendanceVerdict(a, iv, cfg);
-  return v.verdict === "none" ? null : {
+  var manual = getSetManual(cfg.id, a.id);
+  if (manual === "absent") return null;
+  var iv = setTrackEvidence(cfg);
+  if (!manual && (!iv[a.stage] || !iv[a.stage].length)) return null;
+  var v = attendanceVerdict(a, iv, cfg, manual ? {
+    manual
+  } : {});
+  if (v.verdict === "none") return null;
+  var label = attendanceVerdictLabel(v);
+  return {
     ...v,
-    label: attendanceVerdictLabel(v)
+    manual,
+    label: manual && label ? `${label} · your edit` : label
   };
 }
 function setTrackSummary(artists, cfg = window.FESTIVAL_CONFIG) {
@@ -3133,7 +3389,9 @@ function SetTrackingCard() {
   var name = cfg && (cfg.shortName || cfg.name) || "this festival";
   var on = getSetTracking() === "on";
   var elig = setTrackEligibility(cfg, Date.now());
-  var hasData = !!(cfg && Object.keys(getSetTrackIntervals(cfg.id)).length);
+  var hasData = !!(cfg && (Object.keys(getSetTrackIntervals(cfg.id)).length || Object.keys(getSetTapPoints(cfg.id)).length));
+  var canReview = !!(cfg && setReviewRows(cfg).length);
+  var [reviewing, setReviewing] = React.useState(false);
   var btn = primary => ({
     background: primary ? "var(--acc)" : "var(--s3)",
     color: primary ? "var(--on-acc)" : "var(--ink)",
@@ -3152,7 +3410,13 @@ function SetTrackingCard() {
     lineHeight: 1.43,
     marginBottom: 12
   };
-  var status = elig === "no-stages" ? `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one." : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses." : elig === "ended" ? `On. ${name} is over, so nothing is counting.` : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
+  var phase = cfg && typeof _festivalPhase === "function" ? _festivalPhase({
+    config: cfg
+  }, Date.now()) : "upcoming";
+  var calib = cfg ? stageCalibrationStatus(cfg) : null;
+  var canCalibrate = !!(calib && calib.needed && phase === "live");
+  var [calibrating, setCalibrating] = React.useState(false);
+  var status = elig === "no-stages" ? canCalibrate ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.` : `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one." : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses." : elig === "ended" ? `On. ${name} is over, so nothing is counting.` : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
   return React.createElement("div", {
     "data-set-tracking-card": true,
     "data-set-tracking-state": on ? "on" : "off",
@@ -3235,11 +3499,435 @@ function SetTrackingCard() {
     "data-set-tracking-setup": true,
     onClick: () => setAsking(true),
     style: btn(false)
-  }, "Set up"), hasData && React.createElement("button", {
+  }, "Set up"), canCalibrate && React.createElement("button", {
+    "data-stage-calibrate-open": true,
+    onClick: () => setCalibrating(true),
+    style: btn(false)
+  }, "Calibrate stages"), canReview && React.createElement("button", {
+    "data-set-review-open": true,
+    onClick: () => setReviewing(true),
+    style: btn(false)
+  }, "Review your sets"), hasData && React.createElement("button", {
     "data-set-tracking-clear": true,
     onClick: () => clearSetTrack(cfg.id),
     style: btn(false)
-  }, "Clear ", name, " times")));
+  }, "Clear ", name, " times"), calib && calib.done > 0 && React.createElement("button", {
+    "data-stage-calibrate-clear": true,
+    onClick: () => clearStageCalibration(cfg.id),
+    style: btn(false)
+  }, "Clear stage calibration")), reviewing && React.createElement(SetReviewSheet, {
+    cfg: cfg,
+    onClose: () => setReviewing(false)
+  }), calibrating && React.createElement(StageCalibrateSheet, {
+    cfg: cfg,
+    onClose: () => setCalibrating(false)
+  }));
+}
+function stageCalibrationStatus(cfg) {
+  if (!cfg || !cfg.id) return null;
+  var measured = new Set((typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : []).filter(a => a.anchorSource === "osm" || a.anchorSource === "crowd").map(a => a.stageId));
+  var e = _readCalib(cfg.id);
+  var stages = _calibStages(cfg).filter(st => !measured.has(st.id));
+  return {
+    stages: stages.map(st => ({
+      id: st.id,
+      name: st.name || st.short || st.id,
+      done: !!e.anchors[st.id],
+      pendingMs: e.pending[st.id] ? e.pending[st.id].ms : null
+    })),
+    needed: stages.length,
+    done: stages.filter(st => e.anchors[st.id]).length
+  };
+}
+var _CALIB_NOTE = {
+  first: "First tap noted. Tap again from the same spot in 10 minutes or more to confirm.",
+  "too-soon": "Wait a little: the second tap needs 10 minutes after the first.",
+  moved: "That tap landed more than 30 m from the first one, so this one counts as a new first tap.",
+  set: "Stage calibrated on this phone.",
+  coarse: "Location is too rough here (needs 30 m or better). Nothing was noted.",
+  "off-site": "You don't seem to be at the venue, so nothing was noted.",
+  denied: "Location is off for Plursky, so nothing was noted.",
+  "not-live": "Calibration works only while the festival is on.",
+  none: "Couldn't get a location, so nothing was noted."
+};
+function StageCalibrateSheet({
+  cfg = window.FESTIVAL_CONFIG,
+  onClose
+}) {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  var [busy, setBusy] = React.useState(null);
+  var [note, setNote] = React.useState(null);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  var st = stageCalibrationStatus(cfg) || {
+    stages: [],
+    needed: 0,
+    done: 0
+  };
+  var tap = async id => {
+    setBusy(id);
+    setNote(null);
+    var r = await stageCalibrateNow(cfg, id);
+    setBusy(null);
+    setNote({
+      stageId: id,
+      status: r.status
+    });
+  };
+  return React.createElement(FieldSheet, {
+    title: "Calibrate stages",
+    eyebrow: (cfg.shortName || cfg.name || "").toUpperCase(),
+    onClose: onClose
+  }, React.createElement("div", {
+    "data-stage-calibrate": true,
+    style: {
+      fontSize: 14,
+      color: "var(--ink-2)",
+      lineHeight: 1.43,
+      marginBottom: 12
+    }
+  }, "Stand at a stage and tap \"I'm here\". Tap again from the same spot 10 minutes later to confirm. The stage's position stays on this phone and is never shared. Sets are timed once every stage below is done (", st.done, " of ", st.needed, ")."), st.stages.map(s => React.createElement("div", {
+    key: s.id,
+    "data-stage-calibrate-row": s.id,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      minHeight: 56,
+      borderBottom: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 650,
+      overflowWrap: "anywhere"
+    }
+  }, s.name), React.createElement("div", {
+    "data-stage-calibrate-state": true,
+    className: "duo-data-s duo-ink3"
+  }, s.done ? "Calibrated" : s.pendingMs ? `First tap at ${_setClock(s.pendingMs, cfg)}` : "Not calibrated"), note && note.stageId === s.id && React.createElement("div", {
+    "data-stage-calibrate-note": true,
+    role: "status",
+    style: {
+      fontSize: 13,
+      color: "var(--ink-2)",
+      marginTop: 4
+    }
+  }, _CALIB_NOTE[note.status] || _CALIB_NOTE.none)), React.createElement("button", {
+    className: "duo-chip",
+    "data-stage-calibrate-tap": s.id,
+    disabled: !!busy,
+    onClick: () => tap(s.id)
+  }, React.createElement("span", null, busy === s.id ? "Checking…" : s.done ? "Redo" : "I'm here")))));
+}
+function _setClock(ms, cfg) {
+  try {
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone: cfg && cfg.tz || undefined,
+      hour: "numeric",
+      minute: "2-digit"
+    }).format(new Date(ms));
+  } catch {
+    return "";
+  }
+}
+function _savedSetIds(festivalId) {
+  try {
+    var v = JSON.parse(localStorage.getItem(`${festivalId}_saved_v1`) || "[]");
+    return Array.isArray(v) ? v : [];
+  } catch {
+    return [];
+  }
+}
+var _SET_EVIDENCE_WORD = {
+  gps: "Set tracking",
+  checkin: "Check-in",
+  photo: "Photo",
+  tap: "Still here tap"
+};
+function setReviewRows(cfg = window.FESTIVAL_CONFIG) {
+  if (!cfg || !cfg.id) return [];
+  var ds = _attendedDataSets()[cfg.id] || {};
+  var artists = ds.artists || (window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id === cfg.id ? window.ARTISTS : []) || [];
+  var iv = setTrackEvidence(cfg);
+  var attended = new Set(Object.values(getAllAttended(cfg.id)).flat());
+  var saved = new Set(_savedSetIds(cfg.id));
+  var now = Date.now();
+  var rows = [];
+  for (var a of artists) {
+    var manual = getSetManual(cfg.id, a.id);
+    var ev = attendEvidenceList(a, iv, cfg);
+    var w = saved.has(a.id) && attendTimeClass(a) !== "blank" ? attendSetWindowMs(a, cfg, []) : null;
+    var savedOver = !!w && w.endMs < now;
+    if (!manual && !ev.length && !attended.has(a.id) && !savedOver) continue;
+    rows.push({
+      a,
+      manual,
+      ev,
+      verdict: setTrackVerdict(a, cfg)
+    });
+  }
+  var key = r => r.ev[0] && r.ev[0].from || 0;
+  var min = a => {
+    var n = toNightMin(a.start);
+    return Number.isFinite(n) ? n : 9999;
+  };
+  var day = a => typeof a.day === "number" ? a.day : 99;
+  return rows.sort((x, y) => day(x.a) - day(y.a) || min(x.a) - min(y.a) || key(x) - key(y) || String(x.a.id).localeCompare(String(y.a.id)));
+}
+function SetCorrectionPanel({
+  a,
+  cfg
+}) {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  var manual = getSetManual(cfg.id, a.id);
+  var v = setTrackVerdict(a, cfg);
+  var ev = attendEvidenceList(a, setTrackEvidence(cfg), cfg);
+  var said = manual === "absent" ? "You said you weren't there" : v && v.label ? v.label : ev.length ? "You were there, length unknown" : "No record";
+  var opt = (value, text) => {
+    var on = manual === value;
+    return React.createElement("button", {
+      key: text,
+      "data-set-manual": value || "clear",
+      "aria-pressed": on,
+      onClick: () => setSetManual(cfg.id, a.id, value),
+      style: {
+        minHeight: 44,
+        padding: "0 14px",
+        borderRadius: 999,
+        cursor: "pointer",
+        border: on ? "none" : "1px solid var(--line-2)",
+        background: on ? "var(--acc)" : "transparent",
+        color: on ? "var(--on-acc)" : "var(--ink)",
+        fontFamily: "var(--f-ui)",
+        fontSize: 14,
+        fontWeight: 650
+      }
+    }, text);
+  };
+  return React.createElement("div", {
+    "data-set-correction": a.id
+  }, React.createElement("div", {
+    "data-set-correction-said": true,
+    className: "duo-headline",
+    style: {
+      marginBottom: 4
+    }
+  }, said), React.createElement("div", {
+    className: "duo-data-s duo-ink3",
+    style: {
+      marginBottom: 12
+    }
+  }, a.start && a.end ? `${fmt12(a.start)} to ${fmt12(a.end)}` : "Set time not published"), React.createElement("div", {
+    className: "duo-label duo-ink3",
+    style: {
+      marginBottom: 6
+    }
+  }, "WHY"), ev.length ? React.createElement("ul", {
+    "data-set-why": true,
+    style: {
+      listStyle: "none",
+      margin: "0 0 14px",
+      padding: 0
+    }
+  }, ev.map((e, i) => React.createElement("li", {
+    key: i,
+    style: {
+      fontSize: 14,
+      color: "var(--ink-2)",
+      lineHeight: 1.6
+    }
+  }, _SET_EVIDENCE_WORD[e.kind] || "Evidence", " · ", _setClock(e.from, cfg), e.to > e.from ? ` to ${_setClock(e.to, cfg)}` : ""))) : React.createElement("div", {
+    style: {
+      fontSize: 14,
+      color: "var(--ink-2)",
+      marginBottom: 14
+    }
+  }, "Nothing on this phone places you at this stage during the set."), React.createElement("div", {
+    className: "duo-label duo-ink3",
+    style: {
+      marginBottom: 6
+    }
+  }, "YOUR ANSWER"), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, opt("full", "Full set"), opt("partial", "Part of it"), opt("absent", "I wasn't there"), manual && opt(null, "Use the evidence")));
+}
+function SetCorrectionSheet({
+  a,
+  cfg = window.FESTIVAL_CONFIG,
+  onClose
+}) {
+  return React.createElement(FieldSheet, {
+    title: a.name,
+    eyebrow: "YOUR SET",
+    onClose: onClose
+  }, React.createElement(SetCorrectionPanel, {
+    a: a,
+    cfg: cfg
+  }));
+}
+function SetReviewSheet({
+  cfg = window.FESTIVAL_CONFIG,
+  onClose
+}) {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  var [open, setOpen] = React.useState(null);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  var rows = setReviewRows(cfg);
+  var stages = (_attendedDataSets()[cfg.id] || {}).stages || window.STAGES || [];
+  if (open) {
+    var a = rows.find(r => r.a.id === open)?.a;
+    if (a) return React.createElement(SetCorrectionSheet, {
+      a: a,
+      cfg: cfg,
+      onClose: () => setOpen(null)
+    });
+  }
+  return React.createElement(FieldSheet, {
+    title: "Your sets",
+    eyebrow: (cfg.shortName || cfg.name || "").toUpperCase(),
+    onClose: onClose
+  }, rows.length ? rows.map(({
+    a,
+    manual,
+    verdict,
+    ev
+  }) => {
+    var stage = stages.find(s => s.id === a.stage);
+    var tag = manual === "absent" ? "Not there · your edit" : verdict && verdict.label ? verdict.label : ev.length ? "Length unknown" : "No record";
+    return React.createElement("button", {
+      key: a.id,
+      "data-set-review-row": a.id,
+      onClick: () => setOpen(a.id),
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        width: "100%",
+        minHeight: 56,
+        padding: "8px 0",
+        background: "transparent",
+        border: "none",
+        borderBottom: "1px solid var(--line)",
+        textAlign: "left",
+        cursor: "pointer",
+        color: "var(--ink)"
+      }
+    }, React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 15,
+        fontWeight: 650,
+        overflowWrap: "anywhere"
+      }
+    }, a.name), React.createElement("div", {
+      className: "duo-data-s duo-ink3"
+    }, [stage && (stage.short || stage.name), a.start && fmt12(a.start)].filter(Boolean).join(" · "))), React.createElement("span", {
+      "data-set-review-tag": true,
+      className: "duo-data-s",
+      style: {
+        flex: "none",
+        padding: "2px 8px",
+        borderRadius: 999,
+        background: "var(--s3)",
+        color: manual ? "var(--acc-ink)" : verdict && verdict.label ? "var(--ink)" : "var(--ink-3)",
+        fontStyle: verdict && verdict.label || manual ? "normal" : "italic"
+      }
+    }, tag));
+  }) : React.createElement("div", {
+    style: {
+      fontSize: 14,
+      color: "var(--ink-2)"
+    }
+  }, "No sets to review yet."));
+}
+function SetAttendanceRow({
+  a
+}) {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  var [tap, setTap] = React.useState(null);
+  var [fixing, setFixing] = React.useState(false);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  var cfg = window.FESTIVAL_CONFIG;
+  if (!a || !cfg || !cfg.id || !a.stage) return null;
+  var elig = setTrackEligibility(cfg, Date.now());
+  if (elig !== "live" && elig !== "ended") return null;
+  var live = elig === "live" && typeof isSetLive === "function" && isSetLive(a);
+  var v = setTrackVerdict(a, cfg);
+  var manual = getSetManual(cfg.id, a.id);
+  var w = attendTimeClass(a) === "blank" ? null : attendSetWindowMs(a, cfg, []);
+  var started = !!w && w.startMs <= Date.now();
+  if (!live && !v && !manual && !started) return null;
+  var onTap = async () => {
+    setTap("busy");
+    var r = await setTrackStillHere(cfg);
+    setTap(r.status === "trusted" ? r.stageId === a.stage ? "here" : "other" : r.status);
+  };
+  var note = tap === "here" ? "Noted: you're here." : tap === "other" ? "Noted, at a different stage than this set." : tap === "denied" ? "Location is off for Plursky, so nothing was noted." : tap && tap !== "busy" ? "Couldn't place you at a stage, so nothing was noted." : null;
+  return React.createElement("div", {
+    "data-set-attendance": true,
+    style: {
+      marginTop: 10
+    }
+  }, (v && v.label || manual === "absent") && React.createElement("div", {
+    "data-set-attendance-label": true,
+    className: "duo-data-s",
+    style: {
+      marginBottom: 6
+    }
+  }, manual === "absent" ? "Not there · your edit" : v.label), React.createElement("div", {
+    style: {
+      display: "flex",
+      columnGap: 8,
+      flexWrap: "wrap"
+    }
+  }, live && React.createElement("button", {
+    className: "duo-chip",
+    "data-set-still-here": true,
+    disabled: tap === "busy",
+    onClick: onTap
+  }, React.createElement("span", null, tap === "busy" ? "Checking…" : "Still here")), React.createElement("button", {
+    className: "duo-chip",
+    "data-set-fix": true,
+    onClick: () => setFixing(true)
+  }, React.createElement("span", null, v || manual ? "Fix" : "Were you here?"))), note && React.createElement("div", {
+    "data-set-still-here-note": true,
+    role: "status",
+    style: {
+      fontSize: 13,
+      color: "var(--ink-2)",
+      marginTop: 6
+    }
+  }, note), fixing && React.createElement(SetCorrectionSheet, {
+    a: a,
+    cfg: cfg,
+    onClose: () => setFixing(false)
+  }));
 }
 function _syncNativeAppearance(mode, choice) {
   var style = choice === "dark" || choice === "light" ? mode : "system";
