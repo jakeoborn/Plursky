@@ -105,6 +105,16 @@ function checkPage(entry, html, { verified }) {
   }
   if (/against the sources listed below/.test(html)) out.push('stamp says every listed source was checked on its date');
 
+  // f56: a billing line is an ACT (a B2B line holds 2 artists), so a count of
+  // lines may not be printed as "artists", and its number is re-derived here.
+  // "full" claims hold only when the data backs them on THIS page.
+  if (/\b\d+ artists\b/.test(text)) out.push(`counts billing lines as "${text.match(/\b\d+ artists\b/)[0]}"`);
+  const announced = text.match(/(\d+) acts? announced\./);
+  if (names.length && (!announced || +announced[1] !== names.length)) out.push(`lineup count says ${announced ? announced[1] : 'nothing'}, the data has ${names.length} acts`);
+  if (/full lineup is in/i.test(text)) out.push('says "the full lineup is in", which no data field records');
+  const allTimed = names.length > 0 && names.every(n => scheduleActs(DS[id]?.artists).some(a => a.name === n && a.start));
+  if (!allTimed && new RegExp(`full ${cfg.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} schedule`).test(text)) out.push('says "the full schedule" but some acts have no time');
+
   // Index state.
   const noindex = /<meta name="robots" content="noindex">/.test(html);
   if (noindex !== (names.length === 0)) out.push(`noindex=${noindex} but the lineup has ${names.length} names`);
@@ -131,7 +141,7 @@ function checkPage(entry, html, { verified }) {
     const look = lookText.includes(`${e.name} ·`);
     const line = look ? lookText : pastLines.find(l => l.includes(`${e.name} —`));
     if (!line) { out.push(`past editions do not list "${e.name}"`); continue; }
-    if (!look && !line.includes(`, ${e.counts.artists} artists`)) out.push(`past editions do not read "${e.name}" with ${e.counts.artists} artists`);
+    if (!look && !line.includes(`, ${e.counts.artists} act${e.counts.artists === 1 ? '' : 's'}`)) out.push(`past editions do not read "${e.name}" with ${e.counts.artists} acts`);
     if (e.completeness === 'lineup_only' ? !/set times not verified/i.test(line) : !line.includes(`${e.counts.sets} sets`))
       out.push(`past editions do not read "${e.name}" as ${e.completeness === 'lineup_only' ? 'set times not verified' : `${e.counts.sets} sets`}`);
   }
@@ -336,6 +346,11 @@ const mutants = [
   ['"Checked on" stamp dropped', withLineup, (h) => h.replace(/  <p class="checked">[^\n]*\n/, ''), false],
   ['"Checked on" date missing from every Sources row', withLineup, (h) => h.replace(/<section class="sources"[\s\S]*?<\/section>/, (sec) => sec.replace(/(read|checked) \d{4}-\d{2}-\d{2}/g, '$1 earlier')), false],
   ['old "checked against the sources listed below" wording back', withLineup, (h) => h.replace(/(<\/time>)\.<\/p>/, '$1 against the sources listed below.</p>'), false],
+  // f56: the act count and the "full" claims.
+  ['the act count printed as "artists"', withLineup, (h) => h.replace(/(\d+) acts announced/, '$1 artists announced'), false],
+  ['the act count off by one', withLineup, (h) => h.replace(/(\d+) acts announced/, (a, n) => `${+n + 1} acts announced`), false],
+  ['"the full lineup is in" back', REG.find(e => e.available && e.scheduleTBA && /lineup announced so far/.test(pageOf(e.config.id))), (h) => h.replace(' with the lineup announced so far.', ' — the full lineup is in.'), false],
+  ['"full schedule" on a page with untimed acts', REG.find(e => /set times Plursky has are/.test(pageOf(e.config.id))), (h) => h.replace(/The ([^<"]+?) set times Plursky has are/g, 'The full $1 schedule is'), false],
   ['offers whose ticket link the page does not show', withOffers, (h) => h.replace(/\n\s*<li>Tickets: [^\n]*<\/li>/, ''), false],
 ];
 for (const [label, entry, mutate, shouldPass] of mutants) {
