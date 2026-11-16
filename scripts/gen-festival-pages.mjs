@@ -750,7 +750,9 @@ function stub(entry, statusOverride, lastmod) {
   const site = cfg.officialEvent && cfg.officialEvent.website;
   const checked = checkedOn(cfg);
   const sources = [
-    site && `      <li>Official site: <a href="${esc(site)}" rel="noopener">${esc(site)}</a></li>`,
+    // The site's read date is shown like every other row's, so the stamp's
+    // date (the newest read) is always one a reader can find in this list.
+    site && `      <li>Official site: <a href="${esc(site)}" rel="noopener">${esc(site)}</a>${/^\d{4}-\d{2}-\d{2}$/.test(String(cfg.officialEvent.observedAt || '')) ? ` (read ${esc(cfg.officialEvent.observedAt)})` : ''}</li>`,
     ticketsUrl && `      <li>Tickets: <a href="${esc(ticketsUrl)}" rel="noopener">${esc(ticketsUrl)}</a> (official)</li>`,
     // The lineup's own source. Lineup-only festivals had NO source line at all
     // (III Points listed 218 acts citing nothing); a festival whose set times
@@ -962,7 +964,7 @@ ${JSON.stringify(crumbLd, null, 2)}
   <h1>${esc(cfg.name)}</h1>
   <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
   <p class="tag">${esc(cfg.tagline || '')}</p>
-${checked ? `  <p class="checked">Checked on <time datetime="${checked}">${checked}</time> against the sources listed below.</p>\n` : ''}  <p class="go"><a class="btn primary" href="/?f=${esc(id)}${isPast && entry.available ? '&amp;tab=memories' : ''}">${entry.available ? (isPast ? 'Relive it in Plursky' : 'Plan it in Plursky') : 'Open Plursky'}</a>${(() => { const j = sectionJumps(bodyHtml).find(x => x.id !== 'lineup-h' || names.length); return j ? `<a class="btn" href="#${j.id}">${j.hero}</a>` : ''; })()}</p>
+${checked ? `  <p class="checked">Sources last checked on <time datetime="${checked}">${checked}</time>.</p>\n` : ''}  <p class="go"><a class="btn primary" href="/?f=${esc(id)}${isPast && entry.available ? '&amp;tab=memories' : ''}">${entry.available ? (isPast ? 'Relive it in Plursky' : 'Plan it in Plursky') : 'Open Plursky'}</a>${(() => { const j = sectionJumps(bodyHtml).find(x => x.id !== 'lineup-h' || names.length); return j ? `<a class="btn" href="#${j.id}">${j.hero}</a>` : ''; })()}</p>
  </div>
 </div>
 ${(() => { const js = sectionJumps(bodyHtml); return js.length > 1 ? `<nav class="jumps" aria-label="On this page"><div class="wrap">${js.map(j => `<a href="#${j.id}">${j.label}</a>`).join('')}</div></nav>\n` : ''; })()}<div class="wrap">
