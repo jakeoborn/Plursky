@@ -32,7 +32,7 @@ const fail = m => { checks++; failed++; console.log(`  ✗  ${m}`); };
 const ok = () => { checks++; };
 if (!existsSync(DIR) || Object.keys(careers.artists).length < 1000) { console.log('  ✗  HARNESS DEAD: artists/ missing or careers.json is short'); process.exit(1); }
 
-const FOOT = "Past schedules are snapshots of the festivals' official pages as archived on the dates shown, not final schedules.";
+const FOOT = "Past schedules are shown as each festival printed them on its official site or its own social account, as of the dates shown, not final schedules.";
 const NEVER = /\b(final|complete|confirmed|official final)\b|full schedule|every set|all sets/i;
 const decode = s => s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
 const visible = h => decode(h.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<style[\s\S]*?<\/style>/g, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
@@ -70,6 +70,12 @@ function checkPage(k, html) {
     if (/"offers"/.test(s)) out.push(`${k}: offers in JSON-LD`);
   }
   if (/people saw|you've seen|attended|clips?\b/i.test(text)) out.push(`${k}: personal or popularity copy`);
+  // The intro's edition count is a claim: it must equal the data's distinct past editions.
+  const m = text.match(/is billed at (\d+) past festival editions? in Plursky's records/);
+  if (m) {
+    const pastN = new Set(a.b.filter(r => careers.festivals[r[1]]?.year < 2026).map(r => r[1])).size;
+    if (+m[1] !== pastN) out.push(`${k}: intro says ${m[1]} past editions, the data holds ${pastN}`);
+  }
   // "set times" is a promise: only a page with a timed 2026 row may make it.
   if (!timed26Of(k)) {
     const head = [...(html.match(/<title>[^<]*<\/title>/) || []), ...(html.match(/<h[12][^>]*>[^<]*<\/h[12]>/g) || [])].join(' ');
@@ -104,6 +110,7 @@ const pick = f => expected.find(k => dirs.has(k) && f(k, readFileSync(join(DIR, 
 const archivedK = pick((k, h) => /class="pub"/.test(h) && careers.artists[k].b.length > 2);
 const tileK = pick((k, h) => /class="tile"/.test(h));
 const photoK = pick((k, h) => /<img /.test(h));
+const pastOnlyK = pick((k, h) => /is billed at \d+ past festival edition/.test(h));
 const untimed26K = pick(k => !timed26Of(k) && careers.artists[k].b.some(r => careers.festivals[r[1]]?.year === 2026));
 const read = k => readFileSync(join(DIR, k, 'index.html'), 'utf8');
 const mutants = [
@@ -114,6 +121,7 @@ const mutants = [
   ['a photo without its credit line', photoK, h => h.replace(/<figcaption>[\s\S]*?<\/figcaption>/, '')],
   ['sameAs in JSON-LD', archivedK, h => h.replace('"@type": "MusicGroup",', '"@type": "MusicGroup", "sameAs": ["https://example.com"],')],
   ['"set times" on a page with no timed 2026 set', untimed26K, h => h.replace(/<title>([^<]*?) 2026 lineup:/, '<title>$1 set times 2026:')],
+  ['an inflated edition count in the intro', pastOnlyK, h => h.replace(/(<p class="intro">[^<]*?is billed at )(\d+)( past festival edition)/, (x, p, n, q) => `${p}${+n + 1}${q}`)],
   ['popularity copy', archivedK, h => h.replace('</h1>', '</h1><p>1,204 people saw this set.</p>')],
 ];
 let caught = 0;

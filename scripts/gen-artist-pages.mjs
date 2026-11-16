@@ -104,11 +104,13 @@ function artistPage(key) {
     ? `${name} ${timed26 ? 'set times 2026' : '2026 lineup'}: ${fest26.map(f => f.name.replace(/ 2026$/, '')).join(', ')} · Plursky`
     : `${name} festival history · Plursky`;
   const eds = new Set(bs.map(b => b.fest.id)).size;
+  const pastEds = new Set(past.map(b => b.fest.id)).size, laterEds = new Set(later.map(b => b.fest.id)).size;
   const years = past.map(b => b.fest.year).filter(Boolean);
   const intro = fest26.length
     ? `${name} is billed at ${fest26.map(f => f.name.replace(/ 2026$/, '')).join(', ').replace(/, ([^,]*)$/, ' and $1')} in 2026.`
     : years.length
-      ? `${name} is billed at ${eds} festival editions in Plursky's records, ${Math.min(...years)} to ${Math.max(...years)}.`
+      // Count only the past editions inside the past year range; upcoming ones are named apart.
+      ? `${name} is billed at ${pastEds} past festival edition${pastEds === 1 ? '' : 's'} in Plursky's records, ${Math.min(...years)} to ${Math.max(...years)}${laterEds ? `, and ${laterEds} upcoming` : ''}.`
       : `${name} is billed at ${eds} upcoming festival editions in Plursky's records.`;
 
   // 1. 2026 sets, one block per festival, with its zone and source line.
@@ -188,7 +190,7 @@ ${also.length ? `  <p class="note">Also billed as ${also.map(link).join(', ')}.<
   </div></div>
 </div></div>
 <div class="wrap">
-${block26 ? `  <section aria-labelledby="now-h">\n    <h2 id="now-h">${label26}</h2>\n${block26}  </section>\n` : ''}${upcoming ? `  <section aria-labelledby="next-h">\n    <h2 id="next-h">Upcoming</h2>\n${upcoming}  </section>\n` : ''}${history ? `  <section aria-labelledby="hist-h">\n    <h2 id="hist-h">Festival history in Plursky's records</h2>\n${history}  </section>\n` : ''}${partners.length ? `  <section aria-labelledby="with-h">\n    <h2 id="with-h">Billed with</h2>\n    <ul class="partners">\n${partners.map(([k, n]) => `      <li>${link(k)} <span class="note">${n} set${n === 1 ? '' : 's'}</span></li>`).join('\n')}\n    </ul>\n  </section>\n` : ''}${archived ? `  <p class="note foot">Past schedules are snapshots of the festivals' official pages as archived on the dates shown, not final schedules.</p>\n` : ''}  <footer><p><a href="/artists/">All artists</a> · <a href="/welcome/#festivals">All festivals</a> · <a href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the app</a></p></footer>
+${block26 ? `  <section aria-labelledby="now-h">\n    <h2 id="now-h">${label26}</h2>\n${block26}  </section>\n` : ''}${upcoming ? `  <section aria-labelledby="next-h">\n    <h2 id="next-h">Upcoming</h2>\n${upcoming}  </section>\n` : ''}${history ? `  <section aria-labelledby="hist-h">\n    <h2 id="hist-h">Festival history in Plursky's records</h2>\n${history}  </section>\n` : ''}${partners.length ? `  <section aria-labelledby="with-h">\n    <h2 id="with-h">Billed with</h2>\n    <ul class="partners">\n${partners.map(([k, n]) => `      <li>${link(k)} <span class="note">${n} set${n === 1 ? '' : 's'}</span></li>`).join('\n')}\n    </ul>\n  </section>\n` : ''}${archived ? `  <p class="note foot">Past schedules are shown as each festival printed them on its official site or its own social account, as of the dates shown, not final schedules.</p>\n` : ''}  <footer><p><a href="/artists/">All artists</a> · <a href="/welcome/#festivals">All festivals</a> · <a href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the app</a></p></footer>
 </div>
 </main>`;
   return { title, desc: intro, url, ld: [ld, crumbs], body };
@@ -245,7 +247,7 @@ ${groups.get(g).sort((x, y) => nameOf(x).localeCompare(nameOf(y), 'en', { sensit
   <footer><p><a href="/welcome/#festivals">All festivals</a> · <a href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the app</a></p></footer>
 </div>
 </main>`;
-  return { title: 'Festival artists and set times · Plursky', desc: `${pages.length} festival artists with their set times and festival history in Plursky's records.`,
+  return { title: 'Festival artists · Plursky', desc: `${pages.length} festival artists with their billings, set times where published, and festival history in Plursky's records.`,
     url: `${ORIGIN}/artists/`, ld: [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Artists', url: `${ORIGIN}/artists/` }], body };
 }
 
