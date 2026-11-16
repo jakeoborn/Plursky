@@ -66983,6 +66983,30 @@
   "mainStage": null
  },
  {
+  "id": "dwp-2026:dwp-alzena",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ALZENA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alzena",
+    "role": "performer"
+   }
+  ],
+  "act": "alzena",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "dwp-2026:dwp-angger-dimas",
   "source": "live",
   "festivalId": "dwp-2026",
@@ -67366,6 +67390,30 @@
    }
   ],
   "act": "marlo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-nenshin",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NENSHIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nenshin",
+    "role": "performer"
+   }
+  ],
+  "act": "nenshin",
   "closing": null,
   "stageLineage": null,
   "mainStage": null
@@ -69927,8 +69975,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "22:50",
+  "end": "23:50",
   "printed": "Alan Walker",
   "setTag": null,
   "performers": [
@@ -69938,7 +69986,7 @@
    }
   ],
   "act": "alan-walker",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -69951,8 +69999,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "14:25",
   "printed": "Goldfish",
   "setTag": null,
   "performers": [
@@ -69962,7 +70010,7 @@
    }
   ],
   "act": "goldfish",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -69975,8 +70023,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "20:40",
+  "end": "21:40",
   "printed": "HALŌ",
   "setTag": null,
   "performers": [
@@ -69986,7 +70034,7 @@
    }
   ],
   "act": "halo",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -69999,8 +70047,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "16:30",
+  "end": "17:30",
   "printed": "Henri PFR",
   "setTag": null,
   "performers": [
@@ -70010,7 +70058,7 @@
    }
   ],
   "act": "henri-pfr",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -70023,8 +70071,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "18:35",
+  "end": "19:35",
   "printed": "John Newman",
   "setTag": null,
   "performers": [
@@ -70034,7 +70082,7 @@
    }
   ],
   "act": "john-newman",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -70047,8 +70095,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "19:40",
+  "end": "20:40",
   "printed": "Kevin de Vries",
   "setTag": null,
   "performers": [
@@ -70058,7 +70106,7 @@
    }
   ],
   "act": "kevin-de-vries",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -70071,8 +70119,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "17:35",
+  "end": "18:35",
   "printed": "Lilly Palmer",
   "setTag": null,
   "performers": [
@@ -70082,7 +70130,7 @@
    }
   ],
   "act": "lilly-palmer",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -70095,8 +70143,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "23:50",
+  "end": "00:50",
   "printed": "Martin Garrix",
   "setTag": null,
   "performers": [
@@ -70106,7 +70154,7 @@
    }
   ],
   "act": "martin-garrix",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -70119,8 +70167,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "14:25",
+  "end": "15:25",
   "printed": "Rave Republic",
   "setTag": null,
   "performers": [
@@ -70130,7 +70178,7 @@
    }
   ],
   "act": "rave-republic",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -70143,8 +70191,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "21:45",
+  "end": "22:45",
   "printed": "Vini Vici",
   "setTag": null,
   "performers": [
@@ -70154,7 +70202,7 @@
    }
   ],
   "act": "vini-vici",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -70167,8 +70215,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "15:25",
+  "end": "16:25",
   "printed": "Youna",
   "setTag": null,
   "performers": [
@@ -70178,7 +70226,7 @@
    }
   ],
   "act": "youna",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -70191,8 +70239,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "22:00",
   "printed": "Bassjackers",
   "setTag": null,
   "performers": [
@@ -70202,7 +70250,7 @@
    }
   ],
   "act": "bassjackers",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -70215,8 +70263,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "23:00",
+  "end": "00:00",
   "printed": "Da Tweekaz",
   "setTag": null,
   "performers": [
@@ -70226,7 +70274,7 @@
    }
   ],
   "act": "da-tweekaz",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -70239,8 +70287,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "00:00",
+  "end": "01:00",
   "printed": "Flosstradamus b2b Yellow Claw",
   "setTag": null,
   "performers": [
@@ -70254,7 +70302,7 @@
    }
   ],
   "act": "flosstradamus-b2b-yellow-claw",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -70267,8 +70315,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "19:00",
+  "end": "20:00",
   "printed": "Honey Gee",
   "setTag": null,
   "performers": [
@@ -70278,7 +70326,7 @@
    }
   ],
   "act": "honey-gee",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -70291,8 +70339,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "16:00",
+  "end": "17:30",
   "printed": "Kryder",
   "setTag": null,
   "performers": [
@@ -70302,7 +70350,7 @@
    }
   ],
   "act": "kryder",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -70315,8 +70363,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "22:00",
+  "end": "23:00",
   "printed": "MANDY",
   "setTag": null,
   "performers": [
@@ -70326,7 +70374,7 @@
    }
   ],
   "act": "mandy",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -70339,8 +70387,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "14:30",
   "printed": "Mike Bond",
   "setTag": null,
   "performers": [
@@ -70350,7 +70398,7 @@
    }
   ],
   "act": "mike-bond",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -70363,8 +70411,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "17:30",
+  "end": "19:00",
   "printed": "Raiden",
   "setTag": null,
   "performers": [
@@ -70374,7 +70422,7 @@
    }
   ],
   "act": "raiden",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -70387,8 +70435,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "14:30",
+  "end": "16:00",
   "printed": "Sm1le",
   "setTag": null,
   "performers": [
@@ -70398,7 +70446,7 @@
    }
   ],
   "act": "sm1le",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -70411,8 +70459,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "20:00",
+  "end": "21:00",
   "printed": "Wukong",
   "setTag": null,
   "performers": [
@@ -70422,7 +70470,7 @@
    }
   ],
   "act": "wukong",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -70435,8 +70483,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "22:00",
+  "end": "23:30",
   "printed": "Aly & Fila",
   "setTag": null,
   "performers": [
@@ -70446,7 +70494,7 @@
    }
   ],
   "act": "aly-and-fila",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -70459,8 +70507,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "16:30",
+  "end": "18:00",
   "printed": "Amy Wiles",
   "setTag": null,
   "performers": [
@@ -70470,7 +70518,7 @@
    }
   ],
   "act": "amy-wiles",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -70483,8 +70531,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "22:00",
   "printed": "Cosmic Gate",
   "setTag": null,
   "performers": [
@@ -70494,7 +70542,7 @@
    }
   ],
   "act": "cosmic-gate",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -70507,8 +70555,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "19:30",
+  "end": "21:00",
   "printed": "Eli & Fur b2b Yotto",
   "setTag": null,
   "performers": [
@@ -70522,7 +70570,7 @@
    }
   ],
   "act": "eli-and-fur-b2b-yotto",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -70535,8 +70583,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "00:00",
+  "end": "01:00",
   "printed": "Ferry Corsten",
   "setTag": null,
   "performers": [
@@ -70546,7 +70594,7 @@
    }
   ],
   "act": "ferry-corsten",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -70559,8 +70607,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "23:30",
+  "end": "00:00",
   "printed": "Ferry Corsten b2b Marsh",
   "setTag": null,
   "performers": [
@@ -70574,7 +70622,7 @@
    }
   ],
   "act": "ferry-corsten-b2b-marsh",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -70587,8 +70635,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "15:00",
   "printed": "Jonnie B",
   "setTag": null,
   "performers": [
@@ -70598,7 +70646,7 @@
    }
   ],
   "act": "jonnie-b",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -70611,8 +70659,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "15:00",
+  "end": "16:30",
   "printed": "Lonskii",
   "setTag": null,
   "performers": [
@@ -70622,7 +70670,7 @@
    }
   ],
   "act": "lonskii",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -70635,8 +70683,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "18:00",
+  "end": "19:30",
   "printed": "Marsh",
   "setTag": null,
   "performers": [
@@ -70646,7 +70694,7 @@
    }
   ],
   "act": "marsh",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -70659,8 +70707,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "22:30",
+  "end": "00:00",
   "printed": "Camelphat",
   "setTag": null,
   "performers": [
@@ -70670,7 +70718,7 @@
    }
   ],
   "act": "camelphat",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -70683,8 +70731,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "16:30",
+  "end": "18:00",
   "printed": "Camila Jun",
   "setTag": null,
   "performers": [
@@ -70694,7 +70742,7 @@
    }
   ],
   "act": "camila-jun",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -70707,8 +70755,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "15:00",
   "printed": "DaDoo",
   "setTag": null,
   "performers": [
@@ -70718,7 +70766,7 @@
    }
   ],
   "act": "dadoo",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -70731,8 +70779,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "15:00",
+  "end": "16:30",
   "printed": "DJ Licious",
   "setTag": null,
   "performers": [
@@ -70742,7 +70790,7 @@
    }
   ],
   "act": "dj-licious",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -70755,8 +70803,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "18:00",
+  "end": "19:30",
   "printed": "Elfigo",
   "setTag": null,
   "performers": [
@@ -70766,7 +70814,7 @@
    }
   ],
   "act": "elfigo",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -70779,8 +70827,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "19:30",
+  "end": "21:00",
   "printed": "Linska",
   "setTag": null,
   "performers": [
@@ -70790,7 +70838,7 @@
    }
   ],
   "act": "linska",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -70803,8 +70851,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "22:30",
   "printed": "Solardo",
   "setTag": null,
   "performers": [
@@ -70814,7 +70862,7 @@
    }
   ],
   "act": "solardo",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -70827,8 +70875,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "14:30",
   "printed": "CLAUDINE",
   "setTag": null,
   "performers": [
@@ -70838,7 +70886,7 @@
    }
   ],
   "act": "claudine",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -70851,8 +70899,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "23:00",
+  "end": "01:00",
   "printed": "Funk Tribu",
   "setTag": null,
   "performers": [
@@ -70862,7 +70910,7 @@
    }
   ],
   "act": "funk-tribu",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -70875,8 +70923,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "14:30",
+  "end": "16:00",
   "printed": "Hyalyte",
   "setTag": null,
   "performers": [
@@ -70886,7 +70934,7 @@
    }
   ],
   "act": "hyalyte",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -70899,8 +70947,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "17:30",
+  "end": "19:00",
   "printed": "Oppidan",
   "setTag": null,
   "performers": [
@@ -70910,7 +70958,7 @@
    }
   ],
   "act": "oppidan",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -70923,8 +70971,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "19:00",
+  "end": "21:00",
   "printed": "Pegassi",
   "setTag": null,
   "performers": [
@@ -70934,7 +70982,7 @@
    }
   ],
   "act": "pegassi",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -70947,8 +70995,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "16:00",
+  "end": "17:30",
   "printed": "Saint Ludo",
   "setTag": null,
   "performers": [
@@ -70958,7 +71006,7 @@
    }
   ],
   "act": "saint-ludo",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -70971,8 +71019,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "23:00",
   "printed": "X CLUB.",
   "setTag": null,
   "performers": [
@@ -70982,7 +71030,7 @@
    }
   ],
   "act": "x-club",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -70995,8 +71043,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "15:00",
   "printed": "Jijie",
   "setTag": null,
   "performers": [
@@ -71006,7 +71054,7 @@
    }
   ],
   "act": "jijie",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -71019,8 +71067,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "20:30",
+  "end": "22:00",
   "printed": "Lennert Wolfs",
   "setTag": null,
   "performers": [
@@ -71030,7 +71078,7 @@
    }
   ],
   "act": "lennert-wolfs",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -71043,8 +71091,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "17:00",
+  "end": "19:00",
   "printed": "Makasi",
   "setTag": null,
   "performers": [
@@ -71054,7 +71102,7 @@
    }
   ],
   "act": "makasi",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -71067,8 +71115,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "19:00",
+  "end": "20:30",
   "printed": "Palmera",
   "setTag": null,
   "performers": [
@@ -71078,7 +71126,7 @@
    }
   ],
   "act": "palmera",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -71091,8 +71139,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "22:00",
+  "end": "00:00",
   "printed": "TA:REK",
   "setTag": null,
   "performers": [
@@ -71102,7 +71150,7 @@
    }
   ],
   "act": "ta-rek",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -71115,8 +71163,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "15:00",
+  "end": "17:00",
   "printed": "Vicky Kroon",
   "setTag": null,
   "performers": [
@@ -71126,7 +71174,7 @@
    }
   ],
   "act": "vicky-kroon",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -71139,8 +71187,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Moose Bar",
-  "start": null,
-  "end": null,
+  "start": "17:00",
+  "end": "21:00",
   "printed": "Jan V",
   "setTag": null,
   "performers": [
@@ -71150,7 +71198,7 @@
    }
   ],
   "act": "jan-v",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:moose-bar",
   "mainStage": null
  },
@@ -71163,8 +71211,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Moose Bar",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "17:00",
   "printed": "Jelle DK",
   "setTag": null,
   "performers": [
@@ -71174,7 +71222,7 @@
    }
   ],
   "act": "jelle-dk",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:moose-bar",
   "mainStage": null
  },
@@ -71187,8 +71235,8 @@
   "date": "2026-12-11",
   "day": 1,
   "stage": "Moose Bar",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "01:00",
   "printed": "Jerrooo",
   "setTag": null,
   "performers": [
@@ -71198,7 +71246,7 @@
    }
   ],
   "act": "jerrooo",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:moose-bar",
   "mainStage": null
  },
@@ -71211,8 +71259,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "21:45",
+  "end": "22:45",
   "printed": "Afrojack",
   "setTag": null,
   "performers": [
@@ -71222,7 +71270,7 @@
    }
   ],
   "act": "afrojack",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -71235,8 +71283,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "20:40",
+  "end": "21:40",
   "printed": "Artbat",
   "setTag": null,
   "performers": [
@@ -71246,7 +71294,7 @@
    }
   ],
   "act": "artbat",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -71259,8 +71307,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "22:50",
+  "end": "23:50",
   "printed": "Dimitri Vegas & Like Mike",
   "setTag": null,
   "performers": [
@@ -71270,7 +71318,7 @@
    }
   ],
   "act": "dimitri-vegas-and-like-mike",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -71283,8 +71331,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "16:30",
+  "end": "17:30",
   "printed": "Ian Asher",
   "setTag": null,
   "performers": [
@@ -71294,7 +71342,7 @@
    }
   ],
   "act": "ian-asher",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -71307,8 +71355,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "14:25",
+  "end": "15:25",
   "printed": "KARTY",
   "setTag": null,
   "performers": [
@@ -71318,7 +71366,7 @@
    }
   ],
   "act": "karty",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -71331,8 +71379,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "15:25",
+  "end": "16:25",
   "printed": "Meaghan",
   "setTag": null,
   "performers": [
@@ -71342,7 +71390,7 @@
    }
   ],
   "act": "meaghan",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -71355,8 +71403,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "17:35",
+  "end": "18:35",
   "printed": "Miss Monique",
   "setTag": null,
   "performers": [
@@ -71366,7 +71414,7 @@
    }
   ],
   "act": "miss-monique",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -71379,8 +71427,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "18:35",
+  "end": "19:35",
   "printed": "Nervo",
   "setTag": null,
   "performers": [
@@ -71390,7 +71438,7 @@
    }
   ],
   "act": "nervo",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -71403,8 +71451,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "14:25",
   "printed": "Riviere",
   "setTag": null,
   "performers": [
@@ -71414,7 +71462,7 @@
    }
   ],
   "act": "riviere",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -71427,8 +71475,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "23:50",
+  "end": "00:50",
   "printed": "Steve Aoki",
   "setTag": null,
   "performers": [
@@ -71438,7 +71486,7 @@
    }
   ],
   "act": "steve-aoki",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -71451,8 +71499,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "19:40",
+  "end": "20:40",
   "printed": "Sub Zero Project",
   "setTag": null,
   "performers": [
@@ -71462,7 +71510,7 @@
    }
   ],
   "act": "sub-zero-project",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -71475,8 +71523,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "19:30",
+  "end": "21:00",
   "printed": "Amber Broos b2b Space 92",
   "setTag": null,
   "performers": [
@@ -71490,7 +71538,7 @@
    }
   ],
   "act": "amber-broos-b2b-space-92",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -71503,8 +71551,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "22:30",
   "printed": "Hannah Laing",
   "setTag": null,
   "performers": [
@@ -71514,7 +71562,7 @@
    }
   ],
   "act": "hannah-laing",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -71527,8 +71575,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "16:00",
+  "end": "18:00",
   "printed": "Meguru",
   "setTag": null,
   "performers": [
@@ -71538,7 +71586,7 @@
    }
   ],
   "act": "meguru",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -71551,8 +71599,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "18:00",
+  "end": "19:30",
   "printed": "Nakadia",
   "setTag": null,
   "performers": [
@@ -71562,7 +71610,7 @@
    }
   ],
   "act": "nakadia",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -71575,8 +71623,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "22:30",
+  "end": "00:00",
   "printed": "Nico Moreno",
   "setTag": null,
   "performers": [
@@ -71586,7 +71634,7 @@
    }
   ],
   "act": "nico-moreno",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -71599,8 +71647,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "14:30",
   "printed": "Row1",
   "setTag": null,
   "performers": [
@@ -71610,7 +71658,7 @@
    }
   ],
   "act": "row1",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -71623,8 +71671,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "14:30",
+  "end": "16:00",
   "printed": "XY",
   "setTag": null,
   "performers": [
@@ -71634,7 +71682,7 @@
    }
   ],
   "act": "xy",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -71647,8 +71695,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "22:00",
   "printed": "Blastoyz b2b WHITENO1SE",
   "setTag": null,
   "performers": [
@@ -71662,7 +71710,7 @@
    }
   ],
   "act": "blastoyz-b2b-whiteno1se",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -71675,8 +71723,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "20:00",
+  "end": "21:00",
   "printed": "Blazy",
   "setTag": null,
   "performers": [
@@ -71686,7 +71734,7 @@
    }
   ],
   "act": "blazy",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -71699,8 +71747,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "16:00",
+  "end": "17:30",
   "printed": "Firaga",
   "setTag": null,
   "performers": [
@@ -71710,7 +71758,7 @@
    }
   ],
   "act": "firaga",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -71723,8 +71771,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "17:30",
+  "end": "19:00",
   "printed": "Ghost Rider",
   "setTag": null,
   "performers": [
@@ -71734,7 +71782,7 @@
    }
   ],
   "act": "ghost-rider",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -71747,8 +71795,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "00:00",
+  "end": "01:00",
   "printed": "Infected Mushroom",
   "setTag": null,
   "performers": [
@@ -71758,7 +71806,7 @@
    }
   ],
   "act": "infected-mushroom",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -71771,8 +71819,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "23:00",
+  "end": "00:00",
   "printed": "Mad Maxx b2b Stryker",
   "setTag": null,
   "performers": [
@@ -71786,7 +71834,7 @@
    }
   ],
   "act": "mad-maxx-b2b-stryker",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -71799,8 +71847,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "14:30",
   "printed": "Puffer P",
   "setTag": null,
   "performers": [
@@ -71810,7 +71858,7 @@
    }
   ],
   "act": "puffer-p",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -71823,8 +71871,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "19:00",
+  "end": "20:00",
   "printed": "Somnia",
   "setTag": null,
   "performers": [
@@ -71834,7 +71882,7 @@
    }
   ],
   "act": "somnia",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -71847,8 +71895,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "14:30",
+  "end": "16:00",
   "printed": "Tripical Note",
   "setTag": null,
   "performers": [
@@ -71858,7 +71906,7 @@
    }
   ],
   "act": "tripical-note",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -71871,8 +71919,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Vegas",
   "setTag": null,
   "performers": [
@@ -71882,7 +71930,7 @@
    }
   ],
   "act": "vegas",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -71895,8 +71943,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "20:00",
+  "end": "21:00",
   "printed": "22 Bullets",
   "setTag": null,
   "performers": [
@@ -71906,7 +71954,7 @@
    }
   ],
   "act": "22-bullets",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -71919,8 +71967,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "19:00",
+  "end": "20:00",
   "printed": "DJ Sally",
   "setTag": null,
   "performers": [
@@ -71930,7 +71978,7 @@
    }
   ],
   "act": "dj-sally",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -71943,8 +71991,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "22:00",
   "printed": "Dubvision",
   "setTag": null,
   "performers": [
@@ -71954,7 +72002,7 @@
    }
   ],
   "act": "dubvision",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -71967,8 +72015,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "00:00",
+  "end": "01:00",
   "printed": "DVBBS",
   "setTag": null,
   "performers": [
@@ -71978,7 +72026,7 @@
    }
   ],
   "act": "dvbbs",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -71991,8 +72039,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "16:00",
+  "end": "17:30",
   "printed": "Manuals",
   "setTag": null,
   "performers": [
@@ -72002,7 +72050,7 @@
    }
   ],
   "act": "manuals",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -72015,8 +72063,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "17:30",
+  "end": "19:00",
   "printed": "NOME.",
   "setTag": null,
   "performers": [
@@ -72026,7 +72074,7 @@
    }
   ],
   "act": "nome",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -72039,8 +72087,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "14:30",
   "printed": "PETRA",
   "setTag": null,
   "performers": [
@@ -72050,7 +72098,7 @@
    }
   ],
   "act": "petra",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -72063,8 +72111,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "14:30",
+  "end": "16:00",
   "printed": "Romeo Blanco",
   "setTag": null,
   "performers": [
@@ -72074,7 +72122,7 @@
    }
   ],
   "act": "romeo-blanco",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -72087,8 +72135,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "23:00",
+  "end": "00:00",
   "printed": "Third Party",
   "setTag": null,
   "performers": [
@@ -72098,7 +72146,7 @@
    }
   ],
   "act": "third-party",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -72111,8 +72159,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Yves V",
   "setTag": null,
   "performers": [
@@ -72122,7 +72170,7 @@
    }
   ],
   "act": "yves-v",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -72135,8 +72183,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "15:00",
   "printed": "An!ka",
   "setTag": null,
   "performers": [
@@ -72146,7 +72194,7 @@
    }
   ],
   "act": "an-ka",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -72159,8 +72207,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "17:00",
+  "end": "19:00",
   "printed": "Bibi Seck",
   "setTag": null,
   "performers": [
@@ -72170,7 +72218,7 @@
    }
   ],
   "act": "bibi-seck",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -72183,8 +72231,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "21:30",
+  "end": "23:00",
   "printed": "DJ Boring",
   "setTag": null,
   "performers": [
@@ -72194,7 +72242,7 @@
    }
   ],
   "act": "dj-boring",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -72207,8 +72255,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "20:30",
+  "end": "21:30",
   "printed": "DJ Boring b2b Luuk van Dijk",
   "setTag": null,
   "performers": [
@@ -72222,7 +72270,7 @@
    }
   ],
   "act": "dj-boring-b2b-luuk-van-dijk",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -72235,8 +72283,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "19:00",
+  "end": "20:30",
   "printed": "Luuk van Dijk",
   "setTag": null,
   "performers": [
@@ -72246,7 +72294,7 @@
    }
   ],
   "act": "luuk-van-dijk",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -72259,8 +72307,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "15:00",
+  "end": "17:00",
   "printed": "Meltmode",
   "setTag": null,
   "performers": [
@@ -72270,7 +72318,7 @@
    }
   ],
   "act": "meltmode",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -72283,8 +72331,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "23:00",
+  "end": "01:00",
   "printed": "Mind Against",
   "setTag": null,
   "performers": [
@@ -72294,7 +72342,7 @@
    }
   ],
   "act": "mind-against",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -72307,8 +72355,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "15:00",
   "printed": "Arten",
   "setTag": null,
   "performers": [
@@ -72318,7 +72366,7 @@
    }
   ],
   "act": "arten",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -72331,8 +72379,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "22:30",
   "printed": "Carly Wilford",
   "setTag": null,
   "performers": [
@@ -72342,7 +72390,7 @@
    }
   ],
   "act": "carly-wilford",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -72355,8 +72403,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "22:30",
+  "end": "00:00",
   "printed": "Coco Bevan",
   "setTag": null,
   "performers": [
@@ -72366,7 +72414,7 @@
    }
   ],
   "act": "coco-bevan",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -72379,8 +72427,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "19:00",
+  "end": "21:00",
   "printed": "DJ Licious",
   "setTag": null,
   "performers": [
@@ -72390,7 +72438,7 @@
    }
   ],
   "act": "dj-licious",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -72403,8 +72451,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "17:00",
+  "end": "19:00",
   "printed": "Rebeca Ark",
   "setTag": null,
   "performers": [
@@ -72414,7 +72462,7 @@
    }
   ],
   "act": "rebeca-ark",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -72427,8 +72475,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "15:00",
+  "end": "17:00",
   "printed": "Semsei",
   "setTag": null,
   "performers": [
@@ -72438,7 +72486,7 @@
    }
   ],
   "act": "semsei",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -72451,8 +72499,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Moose Bar",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "17:00",
   "printed": "Jan V",
   "setTag": null,
   "performers": [
@@ -72462,7 +72510,7 @@
    }
   ],
   "act": "jan-v",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:moose-bar",
   "mainStage": null
  },
@@ -72475,8 +72523,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Moose Bar",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "01:00",
   "printed": "Jelle DK",
   "setTag": null,
   "performers": [
@@ -72486,7 +72534,7 @@
    }
   ],
   "act": "jelle-dk",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:moose-bar",
   "mainStage": null
  },
@@ -72499,8 +72547,8 @@
   "date": "2026-12-12",
   "day": 2,
   "stage": "Moose Bar",
-  "start": null,
-  "end": null,
+  "start": "17:00",
+  "end": "21:00",
   "printed": "Jerrooo",
   "setTag": null,
   "performers": [
@@ -72510,7 +72558,7 @@
    }
   ],
   "act": "jerrooo",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:moose-bar",
   "mainStage": null
  },
@@ -72523,8 +72571,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "20:40",
+  "end": "21:40",
   "printed": "Alok",
   "setTag": null,
   "performers": [
@@ -72534,7 +72582,7 @@
    }
   ],
   "act": "alok",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -72547,8 +72595,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "15:25",
+  "end": "16:25",
   "printed": "Botcash",
   "setTag": null,
   "performers": [
@@ -72558,7 +72606,7 @@
    }
   ],
   "act": "botcash",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -72571,8 +72619,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "14:25",
+  "end": "15:25",
   "printed": "Halo",
   "setTag": null,
   "performers": [
@@ -72582,7 +72630,7 @@
    }
   ],
   "act": "halo",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -72595,8 +72643,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "17:35",
+  "end": "18:35",
   "printed": "Kölsch",
   "setTag": null,
   "performers": [
@@ -72606,7 +72654,7 @@
    }
   ],
   "act": "kolsch",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -72619,8 +72667,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "21:45",
+  "end": "22:45",
   "printed": "Lost Frequencies",
   "setTag": null,
   "performers": [
@@ -72630,7 +72678,7 @@
    }
   ],
   "act": "lost-frequencies",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -72643,8 +72691,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "16:30",
+  "end": "17:30",
   "printed": "MATTN",
   "setTag": null,
   "performers": [
@@ -72654,7 +72702,7 @@
    }
   ],
   "act": "mattn",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -72667,8 +72715,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "18:35",
+  "end": "19:35",
   "printed": "Novah",
   "setTag": null,
   "performers": [
@@ -72678,7 +72726,7 @@
    }
   ],
   "act": "novah",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -72691,8 +72739,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "14:25",
   "printed": "Nuttrix",
   "setTag": null,
   "performers": [
@@ -72702,7 +72750,7 @@
    }
   ],
   "act": "nuttrix",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -72715,8 +72763,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "19:40",
+  "end": "20:40",
   "printed": "R3hab",
   "setTag": null,
   "performers": [
@@ -72726,7 +72774,7 @@
    }
   ],
   "act": "r3hab",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -72739,8 +72787,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Mainstage",
-  "start": null,
-  "end": null,
+  "start": "22:50",
+  "end": "23:50",
   "printed": "Swedish House Mafia",
   "setTag": null,
   "performers": [
@@ -72750,7 +72798,7 @@
    }
   ],
   "act": "swedish-house-mafia",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:mainstage",
   "mainStage": null
  },
@@ -72763,8 +72811,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "19:30",
+  "end": "21:00",
   "printed": "Agents Of Time",
   "setTag": null,
   "performers": [
@@ -72774,7 +72822,7 @@
    }
   ],
   "act": "agents-of-time",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -72787,8 +72835,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "22:30",
+  "end": "00:00",
   "printed": "Artbat b2b R3hab",
   "setTag": null,
   "performers": [
@@ -72802,7 +72850,7 @@
    }
   ],
   "act": "artbat-b2b-r3hab",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -72815,8 +72863,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "18:00",
+  "end": "19:30",
   "printed": "Henri Bergmann",
   "setTag": null,
   "performers": [
@@ -72826,7 +72874,7 @@
    }
   ],
   "act": "henri-bergmann",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -72839,8 +72887,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "22:30",
   "printed": "Kevin de Vries b2b MORTEN",
   "setTag": null,
   "performers": [
@@ -72854,7 +72902,7 @@
    }
   ],
   "act": "kevin-de-vries-b2b-morten",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -72867,8 +72915,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "16:30",
+  "end": "18:00",
   "printed": "Luna & Lenthe",
   "setTag": null,
   "performers": [
@@ -72878,7 +72926,7 @@
    }
   ],
   "act": "luna-and-lenthe",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -72891,8 +72939,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "15:00",
+  "end": "16:30",
   "printed": "Xenia Dia",
   "setTag": null,
   "performers": [
@@ -72902,7 +72950,7 @@
    }
   ],
   "act": "xenia-dia",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -72915,8 +72963,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Freedom by Budweiser",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "15:00",
   "printed": "Yukio",
   "setTag": null,
   "performers": [
@@ -72926,7 +72974,7 @@
    }
   ],
   "act": "yukio",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:freedom-by-budweiser",
   "mainStage": null
  },
@@ -72939,8 +72987,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "14:30",
+  "end": "16:00",
   "printed": "Angemi",
   "setTag": null,
   "performers": [
@@ -72950,7 +72998,7 @@
    }
   ],
   "act": "angemi",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -72963,8 +73011,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "23:00",
+  "end": "00:00",
   "printed": "Brennan Heart",
   "setTag": null,
   "performers": [
@@ -72974,7 +73022,7 @@
    }
   ],
   "act": "brennan-heart",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -72987,8 +73035,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "20:30",
+  "end": "22:00",
   "printed": "Laidback Luke",
   "setTag": null,
   "performers": [
@@ -72998,7 +73046,7 @@
    }
   ],
   "act": "laidback-luke",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -73011,8 +73059,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "14:30",
   "printed": "Lora Matia",
   "setTag": null,
   "performers": [
@@ -73022,7 +73070,7 @@
    }
   ],
   "act": "lora-matia",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -73035,8 +73083,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "19:30",
+  "end": "20:30",
   "printed": "Lucas & Steve",
   "setTag": null,
   "performers": [
@@ -73046,7 +73094,7 @@
    }
   ],
   "act": "lucas-and-steve",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -73059,8 +73107,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "18:30",
+  "end": "19:30",
   "printed": "Matisse & Sadko",
   "setTag": null,
   "performers": [
@@ -73070,7 +73118,7 @@
    }
   ],
   "act": "matisse-and-sadko",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -73083,8 +73131,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Quintino",
   "setTag": null,
   "performers": [
@@ -73094,7 +73142,7 @@
    }
   ],
   "act": "quintino",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -73107,8 +73155,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "16:00",
+  "end": "17:30",
   "printed": "Tiger Drama",
   "setTag": null,
   "performers": [
@@ -73118,7 +73166,7 @@
    }
   ],
   "act": "tiger-drama",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -73131,8 +73179,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Crystal Garden by Anker",
-  "start": null,
-  "end": null,
+  "start": "17:30",
+  "end": "18:30",
   "printed": "Whisnu Santika",
   "setTag": null,
   "performers": [
@@ -73142,7 +73190,7 @@
    }
   ],
   "act": "whisnu-santika",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:crystal-garden-by-anker",
   "mainStage": null
  },
@@ -73155,8 +73203,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "20:00",
+  "end": "21:00",
   "printed": "Andromedik",
   "setTag": null,
   "performers": [
@@ -73166,7 +73214,7 @@
    }
   ],
   "act": "andromedik",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -73179,8 +73227,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "22:00",
   "printed": "APASHE",
   "setTag": null,
   "performers": [
@@ -73190,7 +73238,7 @@
    }
   ],
   "act": "apashe",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -73203,8 +73251,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "14:30",
   "printed": "J-Nana",
   "setTag": null,
   "performers": [
@@ -73214,7 +73262,7 @@
    }
   ],
   "act": "j-nana",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -73227,8 +73275,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "14:30",
+  "end": "16:00",
   "printed": "Maysaa",
   "setTag": null,
   "performers": [
@@ -73238,7 +73286,7 @@
    }
   ],
   "act": "maysaa",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -73251,8 +73299,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "17:00",
+  "end": "18:00",
   "printed": "Merow",
   "setTag": null,
   "performers": [
@@ -73262,7 +73310,7 @@
    }
   ],
   "act": "merow",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -73275,8 +73323,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Netsky",
   "setTag": null,
   "performers": [
@@ -73286,7 +73334,7 @@
    }
   ],
   "act": "netsky",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -73299,8 +73347,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Pixzy",
   "setTag": null,
   "performers": [
@@ -73310,7 +73358,7 @@
    }
   ],
   "act": "pixzy",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -73323,8 +73371,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "18:00",
+  "end": "19:00",
   "printed": "Rayray",
   "setTag": null,
   "performers": [
@@ -73334,7 +73382,7 @@
    }
   ],
   "act": "rayray",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -73347,8 +73395,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "19:00",
+  "end": "20:00",
   "printed": "Sabai",
   "setTag": null,
   "performers": [
@@ -73358,7 +73406,7 @@
    }
   ],
   "act": "sabai",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -73371,8 +73419,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Codex",
-  "start": null,
-  "end": null,
+  "start": "23:00",
+  "end": "00:00",
   "printed": "Yellow Claw",
   "setTag": null,
   "performers": [
@@ -73382,7 +73430,7 @@
    }
   ],
   "act": "yellow-claw",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:codex",
   "mainStage": null
  },
@@ -73395,8 +73443,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "19:30",
+  "end": "21:00",
   "printed": "AMÉMÉ b2b Honeyluv",
   "setTag": null,
   "performers": [
@@ -73410,7 +73458,7 @@
    }
   ],
   "act": "ameme-b2b-honeyluv",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -73423,8 +73471,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "15:00",
+  "end": "16:30",
   "printed": "Capoon",
   "setTag": null,
   "performers": [
@@ -73434,7 +73482,7 @@
    }
   ],
   "act": "capoon",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -73447,8 +73495,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "15:00",
   "printed": "Dennis Gold",
   "setTag": null,
   "performers": [
@@ -73458,7 +73506,7 @@
    }
   ],
   "act": "dennis-gold",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -73471,8 +73519,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "16:30",
+  "end": "18:00",
   "printed": "Dino Lenny",
   "setTag": null,
   "performers": [
@@ -73482,7 +73530,7 @@
    }
   ],
   "act": "dino-lenny",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -73495,8 +73543,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "22:30",
   "printed": "DJ Tennis",
   "setTag": null,
   "performers": [
@@ -73506,7 +73554,7 @@
    }
   ],
   "act": "dj-tennis",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -73519,8 +73567,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "22:30",
+  "end": "00:00",
   "printed": "Joris Voorn b2b Krystal Klear",
   "setTag": null,
   "performers": [
@@ -73534,7 +73582,7 @@
    }
   ],
   "act": "joris-voorn-b2b-krystal-klear",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -73547,8 +73595,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "CORE",
-  "start": null,
-  "end": null,
+  "start": "18:00",
+  "end": "19:30",
   "printed": "Maxi Meraki",
   "setTag": null,
   "performers": [
@@ -73558,7 +73606,7 @@
    }
   ],
   "act": "maxi-meraki",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:core",
   "mainStage": null
  },
@@ -73571,8 +73619,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "20:00",
+  "end": "21:30",
   "printed": "AdamK",
   "setTag": null,
   "performers": [
@@ -73582,7 +73630,7 @@
    }
   ],
   "act": "adamk",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -73595,8 +73643,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "15:00",
   "printed": "JOULIE",
   "setTag": null,
   "performers": [
@@ -73606,7 +73654,7 @@
    }
   ],
   "act": "joulie",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -73619,8 +73667,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "21:30",
+  "end": "23:00",
   "printed": "JoWaves",
   "setTag": null,
   "performers": [
@@ -73630,7 +73678,7 @@
    }
   ],
   "act": "jowaves",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -73643,8 +73691,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "15:00",
+  "end": "17:00",
   "printed": "Neon",
   "setTag": null,
   "performers": [
@@ -73654,7 +73702,7 @@
    }
   ],
   "act": "neon",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -73667,8 +73715,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Papillon",
-  "start": null,
-  "end": null,
+  "start": "18:30",
+  "end": "20:00",
   "printed": "Onfaya",
   "setTag": null,
   "performers": [
@@ -73678,7 +73726,7 @@
    }
   ],
   "act": "onfaya",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:papillon",
   "mainStage": null
  },
@@ -73691,8 +73739,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Moose Bar",
-  "start": null,
-  "end": null,
+  "start": "21:00",
+  "end": "00:00",
   "printed": "Jan V",
   "setTag": null,
   "performers": [
@@ -73702,7 +73750,7 @@
    }
   ],
   "act": "jan-v",
-  "closing": null,
+  "closing": true,
   "stageLineage": "tomorrowland-thailand:moose-bar",
   "mainStage": null
  },
@@ -73715,8 +73763,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Moose Bar",
-  "start": null,
-  "end": null,
+  "start": "17:00",
+  "end": "21:00",
   "printed": "Jelle DK",
   "setTag": null,
   "performers": [
@@ -73726,7 +73774,7 @@
    }
   ],
   "act": "jelle-dk",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:moose-bar",
   "mainStage": null
  },
@@ -73739,8 +73787,8 @@
   "date": "2026-12-13",
   "day": 3,
   "stage": "Moose Bar",
-  "start": null,
-  "end": null,
+  "start": "13:00",
+  "end": "17:00",
   "printed": "Jerrooo",
   "setTag": null,
   "performers": [
@@ -73750,7 +73798,7 @@
    }
   ],
   "act": "jerrooo",
-  "closing": null,
+  "closing": false,
   "stageLineage": "tomorrowland-thailand:moose-bar",
   "mainStage": null
  },

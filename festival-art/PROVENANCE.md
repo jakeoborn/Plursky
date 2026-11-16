@@ -43,8 +43,16 @@ The last five festivals that still showed initials now have a photo. Cards are 7
 
 | File | Source | Status |
 |---|---|---|
-| `day-zero-tulum-2027.webp` | https://dayzerofestival.com/tulum/ (site hero) | Official site; reuse terms not granted |
-| `groove-cruise-2027.webp` | https://www.groovecruise.com/ (pool-deck crowd) | Official site; reuse terms not granted |
-| `time-warp-2027.webp` | https://www.time-warp.de/ (home slider, file credit togis) | Official site; reuse terms not granted |
-| `sonar-2027.webp` | https://commons.wikimedia.org/wiki/File:S%C3%B3nar_by_Day_2016.jpg | CC BY-SA 4.0, Javier Tles. The official site serves no event photo |
+| `groove-cruise-2027.webp` | https://commons.wikimedia.org/wiki/File:Markus_Schulz_Balloon_Drop_-_@RUDGRCOM.jpg | CC BY 3.0, Rutger Geerling. Replaced the official-site image 2026-11-15 (reuse never granted) |
 | `ozora-2027.webp` | https://commons.wikimedia.org/wiki/File:Solar_Field_(223948909).jpeg | CC0, Artem Kavalerov. The official site serves only its ticket shop |
+
+Day Zero Tulum 2027 has no art (2026-11-15): the site image's reuse was never granted, Commons has no Day Zero photo and the site publishes no press kit. It shows its tinted letter tile until a cleared image exists.
+
+Tomorrowland Winter 2027 has no art (2026-11-15): its Commons file (File:Alok_Tomorrowland_Winter_2025.jpg) names uploader Lucas Gavi as author, but the photo's embedded EXIF author is RAFAEL DEPROST. Nothing on the page resolves the conflict, so the photo was dropped rather than guessing an owner. It shows its tinted letter tile; listed for Jake.
+
+Time Warp Germany 2027 and Sónar Barcelona 2027 have no art (Jake, 2026-11-15): on each Commons file the uploader licensed it as own work while the description names another photographer, so whether the uploader could grant the licence is unclear. Both show their tinted letter tiles until an author is confirmed:
+- Time Warp: https://commons.wikimedia.org/wiki/File:Klaudia_Gawlas_Time_Warp_Mannheim_2017.jpg (uploader MariaMarriage; description "pic by Thommy Mardo"; CC BY-SA 4.0)
+- Sónar: https://commons.wikimedia.org/wiki/File:S%C3%B3nar_by_Day_2016.jpg (uploader Nachetere; description "shoot by Javier Tles"; CC BY-SA 4.0)
+
+## Letter tiles
+- `edc-lv-2027` (added 2026-11-16): no art. No 2027 photo has been reviewed, and the 2026 card (`edc-lv-2026.webp`) is official-site art with reuse terms not granted, so it is not carried forward. It shows its letter tile until a reuse-cleared photo is found (listed for Jake).

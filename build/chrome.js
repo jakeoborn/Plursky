@@ -2634,6 +2634,97 @@ function FestivalThumb({
     }
   }) : mark);
 }
+function photoLicenseLabel(id) {
+  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/-DE$/, " DE").replace(/^(Public|Press)-/, "$1 ");
+}
+var _photoCreditLink = {
+  color: "inherit",
+  textDecoration: "underline",
+  textUnderlineOffset: 2
+};
+function PhotoCredit({
+  credit,
+  style,
+  ...rest
+}) {
+  if (!credit || !credit.author || !credit.sourceUrl || !credit.license || !credit.licenseUrl) return null;
+  var lic = photoLicenseLabel(credit.license),
+    changes = credit.changes || "";
+  return React.createElement("div", {
+    "aria-label": "Photo credit: " + credit.author + ", " + lic + (changes ? ", " + changes.toLowerCase() : ""),
+    ...rest,
+    style: {
+      fontSize: "var(--fs-label)",
+      lineHeight: "16px",
+      color: "var(--text-3)",
+      ...style
+    }
+  }, React.createElement("a", {
+    href: credit.sourceUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: _photoCreditLink
+  }, credit.author), " · ", React.createElement("a", {
+    href: credit.licenseUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: _photoCreditLink
+  }, lic), changes ? " · " + changes : "");
+}
+function festivalPhotoCredits() {
+  var art = window.PLURSKY_FESTIVAL_ART || {};
+  var sets = window._DATA_SETS || {};
+  var reg = window.FESTIVALS_REGISTRY || [];
+  return Object.keys(art).filter(id => art[id].author && art[id].licenseId && art[id].licenseUrl).map(id => {
+    var r = art[id],
+      cfg = sets[id]?.config || reg.find(f => f.config?.id === id)?.config;
+    return {
+      id,
+      name: cfg?.name || id,
+      credit: {
+        author: r.author,
+        sourceUrl: r.sourcePage,
+        license: r.licenseId,
+        licenseUrl: r.licenseUrl,
+        changes: r.changes
+      }
+    };
+  }).sort((a, b) => a.name.localeCompare(b.name));
+}
+function PhotoCreditsSheet({
+  onClose
+}) {
+  var rows = festivalPhotoCredits();
+  return React.createElement(FieldSheet, {
+    title: "Photo credits",
+    eyebrow: "FESTIVAL PHOTOS",
+    onClose: onClose
+  }, React.createElement("p", {
+    style: {
+      margin: "-4px 0 14px",
+      color: "var(--ink-2)",
+      font: "400 15px/1.4 var(--f-ui)"
+    }
+  }, "These festival photos are shared under open licences. Each links to its source and its licence. Each cropped CC BY-SA photo is distributed under the same linked licence."), React.createElement("div", {
+    "data-photo-credits": "1"
+  }, rows.map(r => React.createElement("div", {
+    key: r.id,
+    "data-photo-credit-row": r.id,
+    style: {
+      padding: "10px 0",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600,
+      marginBottom: 2
+    }
+  }, r.name), React.createElement(PhotoCredit, {
+    credit: r.credit
+  })))));
+}
 function _festivalPlanStatus(id) {
   var ids = [];
   try {
@@ -2659,6 +2750,7 @@ function FestivalSwitcher({
   var activeId = FESTIVAL_CONFIG.id;
   var [plusOpen, setPlusOpen] = React.useState(false);
   var [pastOpen, setPastOpen] = React.useState(false);
+  var [creditsOpen, setCreditsOpen] = React.useState(false);
   var pastIndex = usePastEditionIndex();
   var [viewMode, setViewMode] = React.useState(() => {
     try {
@@ -3011,7 +3103,22 @@ function FestivalSwitcher({
       lineHeight: "18px",
       color: "var(--text-2)"
     }
-  }, "Switching reloads the app with that festival's lineup and map."), React.createElement(FieldButton, {
+  }, "Switching reloads the app with that festival's lineup and map.", festivalPhotoCredits().length > 0 && React.createElement(React.Fragment, null, " ", React.createElement("button", {
+    "data-photo-credits-open": "1",
+    onClick: () => setCreditsOpen(true),
+    style: {
+      background: "none",
+      border: 0,
+      padding: 0,
+      font: "inherit",
+      color: "inherit",
+      textDecoration: "underline",
+      textUnderlineOffset: 2,
+      cursor: "pointer"
+    }
+  }, "Photo credits"))), creditsOpen && React.createElement(PhotoCreditsSheet, {
+    onClose: () => setCreditsOpen(false)
+  }), React.createElement(FieldButton, {
     onClick: () => {
       onClose();
       (window._pushNav || (() => {}))({

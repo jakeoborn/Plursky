@@ -2,9 +2,16 @@
 // TOMORROWLAND THAILAND 2026 — Wisdom Valley · Chon Buri, Thailand
 // Dec 11–13, 2026. The first Tomorrowland edition in Thailand.
 // ═══════════════════════════════════════════════════════════════════════
-// LINEUP-ONLY, OPEN (available: true, scheduleTBA: true; Jake 2026-11-11: switch on the festivals with a full lineup). Set times still TBA. The lineup, its day split
-// AND its stage split are official; set times and the site map are not
-// published.
+// OPEN WITH OFFICIAL SET TIMES (available: true, scheduleTBA: false). The
+// lineup, its day split, its stage split and its set times are official; the
+// site map is not published.
+//
+// SOURCE set times: the official timetable,
+// thailand.tomorrowland.com/en/line-up/?page=timetable&day=2026-12-11,
+// &day=2026-12-12 and &day=2026-12-13, read 2026-11-16 (ICT, UTC+7): 158 of
+// 158 acts timed (Fri 53, Sat 54, Sun 51), imported through
+// scripts/import-set-times.mjs. Sunday's Papillon "More to be announced"
+// slot (17:00-18:30) is not loaded.
 //
 // SOURCE lineup + day + stage: thailand.tomorrowland.com/en/line-up/,
 // ?day=2026-12-11, ?day=2026-12-12 and ?day=2026-12-13, read 2026-11-11,
@@ -51,7 +58,169 @@
       desc: "Bar stage" },
   ];
   const AMENITIES = [];
-  const SCHEDULE = {};
+  const SCHEDULE = {
+    // SCHEDULE:BEGIN tomorrowland-thailand-2026
+    // source: https://thailand.tomorrowland.com/en/line-up/?page=timetable · imported 2026-11-16 · 158 of 158 acts
+    "tmlth-goldfish": ["mainstage", "13:00", "14:25"],  // Goldfish
+    "tmlth-rave-republic": ["mainstage", "14:25", "15:25"],  // Rave Republic
+    "tmlth-youna": ["mainstage", "15:25", "16:25"],  // Youna
+    "tmlth-henri-pfr": ["mainstage", "16:30", "17:30"],  // Henri PFR
+    "tmlth-lilly-palmer": ["mainstage", "17:35", "18:35"],  // Lilly Palmer
+    "tmlth-john-newman": ["mainstage", "18:35", "19:35"],  // John Newman
+    "tmlth-kevin-de-vries": ["mainstage", "19:40", "20:40"],  // Kevin de Vries
+    "tmlth-halo-d1": ["mainstage", "20:40", "21:40"],  // HALŌ
+    "tmlth-vini-vici": ["mainstage", "21:45", "22:45"],  // Vini Vici
+    "tmlth-alan-walker": ["mainstage", "22:50", "23:50"],  // Alan Walker
+    "tmlth-martin-garrix": ["mainstage", "23:50", "00:50"],  // Martin Garrix
+    "tmlth-mike-bond": ["freedom", "13:00", "14:30"],  // Mike Bond
+    "tmlth-sm1le": ["freedom", "14:30", "16:00"],  // Sm1le
+    "tmlth-kryder": ["freedom", "16:00", "17:30"],  // Kryder
+    "tmlth-raiden": ["freedom", "17:30", "19:00"],  // Raiden
+    "tmlth-honey-gee": ["freedom", "19:00", "20:00"],  // Honey Gee
+    "tmlth-wukong": ["freedom", "20:00", "21:00"],  // Wukong
+    "tmlth-bassjackers": ["freedom", "21:00", "22:00"],  // Bassjackers
+    "tmlth-mandy": ["freedom", "22:00", "23:00"],  // MANDY
+    "tmlth-da-tweekaz": ["freedom", "23:00", "00:00"],  // Da Tweekaz
+    "tmlth-flosstradamus-b2b-yellow-claw": ["freedom", "00:00", "01:00"],  // Flosstradamus b2b Yellow Claw
+    "tmlth-jonnie-b": ["crystal", "13:00", "15:00"],  // Jonnie B
+    "tmlth-lonskii": ["crystal", "15:00", "16:30"],  // Lonskii
+    "tmlth-amy-wiles": ["crystal", "16:30", "18:00"],  // Amy Wiles
+    "tmlth-marsh": ["crystal", "18:00", "19:30"],  // Marsh
+    "tmlth-eli-and-fur-b2b-yotto": ["crystal", "19:30", "21:00"],  // Eli & Fur b2b Yotto
+    "tmlth-cosmic-gate": ["crystal", "21:00", "22:00"],  // Cosmic Gate
+    "tmlth-aly-and-fila": ["crystal", "22:00", "23:30"],  // Aly & Fila
+    "tmlth-ferry-corsten-b2b-marsh": ["crystal", "23:30", "00:00"],  // Ferry Corsten b2b Marsh
+    "tmlth-ferry-corsten": ["crystal", "00:00", "01:00"],  // Ferry Corsten
+    "tmlth-dadoo": ["codex", "13:00", "15:00"],  // DaDoo
+    "tmlth-dj-licious-d1": ["codex", "15:00", "16:30"],  // DJ Licious
+    "tmlth-camila-jun": ["codex", "16:30", "18:00"],  // Camila Jun
+    "tmlth-elfigo": ["codex", "18:00", "19:30"],  // Elfigo
+    "tmlth-linska": ["codex", "19:30", "21:00"],  // Linska
+    "tmlth-solardo": ["codex", "21:00", "22:30"],  // Solardo
+    "tmlth-camelphat": ["codex", "22:30", "00:00"],  // Camelphat
+    "tmlth-claudine": ["core", "13:00", "14:30"],  // CLAUDINE
+    "tmlth-hyalyte": ["core", "14:30", "16:00"],  // Hyalyte
+    "tmlth-saint-ludo": ["core", "16:00", "17:30"],  // Saint Ludo
+    "tmlth-oppidan": ["core", "17:30", "19:00"],  // Oppidan
+    "tmlth-pegassi": ["core", "19:00", "21:00"],  // Pegassi
+    "tmlth-x-club": ["core", "21:00", "23:00"],  // X CLUB.
+    "tmlth-funk-tribu": ["core", "23:00", "01:00"],  // Funk Tribu
+    "tmlth-jijie": ["papillon", "13:00", "15:00"],  // Jijie
+    "tmlth-vicky-kroon": ["papillon", "15:00", "17:00"],  // Vicky Kroon
+    "tmlth-makasi": ["papillon", "17:00", "19:00"],  // Makasi
+    "tmlth-palmera": ["papillon", "19:00", "20:30"],  // Palmera
+    "tmlth-lennert-wolfs": ["papillon", "20:30", "22:00"],  // Lennert Wolfs
+    "tmlth-ta-rek": ["papillon", "22:00", "00:00"],  // TA:REK
+    "tmlth-jelle-dk-d1": ["moose", "13:00", "17:00"],  // Jelle DK
+    "tmlth-jan-v-d1": ["moose", "17:00", "21:00"],  // Jan V
+    "tmlth-jerrooo-d1": ["moose", "21:00", "01:00"],  // Jerrooo
+    "tmlth-riviere": ["mainstage", "13:00", "14:25"],  // Riviere
+    "tmlth-karty": ["mainstage", "14:25", "15:25"],  // KARTY
+    "tmlth-meaghan": ["mainstage", "15:25", "16:25"],  // Meaghan
+    "tmlth-ian-asher": ["mainstage", "16:30", "17:30"],  // Ian Asher
+    "tmlth-miss-monique": ["mainstage", "17:35", "18:35"],  // Miss Monique
+    "tmlth-nervo": ["mainstage", "18:35", "19:35"],  // Nervo
+    "tmlth-sub-zero-project": ["mainstage", "19:40", "20:40"],  // Sub Zero Project
+    "tmlth-artbat": ["mainstage", "20:40", "21:40"],  // Artbat
+    "tmlth-afrojack": ["mainstage", "21:45", "22:45"],  // Afrojack
+    "tmlth-dimitri-vegas-and-like-mike": ["mainstage", "22:50", "23:50"],  // Dimitri Vegas & Like Mike
+    "tmlth-steve-aoki": ["mainstage", "23:50", "00:50"],  // Steve Aoki
+    "tmlth-row1": ["freedom", "13:00", "14:30"],  // Row1
+    "tmlth-xy": ["freedom", "14:30", "16:00"],  // XY
+    "tmlth-meguru": ["freedom", "16:00", "18:00"],  // Meguru
+    "tmlth-nakadia": ["freedom", "18:00", "19:30"],  // Nakadia
+    "tmlth-amber-broos-b2b-space-92": ["freedom", "19:30", "21:00"],  // Amber Broos b2b Space 92
+    "tmlth-hannah-laing": ["freedom", "21:00", "22:30"],  // Hannah Laing
+    "tmlth-nico-moreno": ["freedom", "22:30", "00:00"],  // Nico Moreno
+    "tmlth-puffer-p": ["crystal", "13:00", "14:30"],  // Puffer P
+    "tmlth-tripical-note": ["crystal", "14:30", "16:00"],  // Tripical Note
+    "tmlth-firaga": ["crystal", "16:00", "17:30"],  // Firaga
+    "tmlth-ghost-rider": ["crystal", "17:30", "19:00"],  // Ghost Rider
+    "tmlth-somnia": ["crystal", "19:00", "20:00"],  // Somnia
+    "tmlth-blazy": ["crystal", "20:00", "21:00"],  // Blazy
+    "tmlth-blastoyz-b2b-whiteno1se": ["crystal", "21:00", "22:00"],  // Blastoyz b2b WHITENO1SE
+    "tmlth-vegas": ["crystal", "22:00", "23:00"],  // Vegas
+    "tmlth-mad-maxx-b2b-stryker": ["crystal", "23:00", "00:00"],  // Mad Maxx b2b Stryker
+    "tmlth-infected-mushroom": ["crystal", "00:00", "01:00"],  // Infected Mushroom
+    "tmlth-petra": ["codex", "13:00", "14:30"],  // PETRA
+    "tmlth-romeo-blanco": ["codex", "14:30", "16:00"],  // Romeo Blanco
+    "tmlth-manuals": ["codex", "16:00", "17:30"],  // Manuals
+    "tmlth-nome": ["codex", "17:30", "19:00"],  // NOME.
+    "tmlth-dj-sally": ["codex", "19:00", "20:00"],  // DJ Sally
+    "tmlth-22-bullets": ["codex", "20:00", "21:00"],  // 22 Bullets
+    "tmlth-dubvision": ["codex", "21:00", "22:00"],  // Dubvision
+    "tmlth-yves-v": ["codex", "22:00", "23:00"],  // Yves V
+    "tmlth-third-party": ["codex", "23:00", "00:00"],  // Third Party
+    "tmlth-dvbbs": ["codex", "00:00", "01:00"],  // DVBBS
+    "tmlth-anika": ["core", "13:00", "15:00"],  // An!ka
+    "tmlth-meltmode": ["core", "15:00", "17:00"],  // Meltmode
+    "tmlth-bibi-seck": ["core", "17:00", "19:00"],  // Bibi Seck
+    "tmlth-luuk-van-dijk": ["core", "19:00", "20:30"],  // Luuk van Dijk
+    "tmlth-dj-boring-b2b-luuk-van-dijk": ["core", "20:30", "21:30"],  // DJ Boring b2b Luuk van Dijk
+    "tmlth-dj-boring": ["core", "21:30", "23:00"],  // DJ Boring
+    "tmlth-mind-against": ["core", "23:00", "01:00"],  // Mind Against
+    "tmlth-arten": ["papillon", "13:00", "15:00"],  // Arten
+    "tmlth-semsei": ["papillon", "15:00", "17:00"],  // Semsei
+    "tmlth-rebeca-ark": ["papillon", "17:00", "19:00"],  // Rebeca Ark
+    "tmlth-dj-licious-d2": ["papillon", "19:00", "21:00"],  // DJ Licious
+    "tmlth-carly-wilford": ["papillon", "21:00", "22:30"],  // Carly Wilford
+    "tmlth-coco-bevan": ["papillon", "22:30", "00:00"],  // Coco Bevan
+    "tmlth-jan-v-d2": ["moose", "13:00", "17:00"],  // Jan V
+    "tmlth-jerrooo-d2": ["moose", "17:00", "21:00"],  // Jerrooo
+    "tmlth-jelle-dk-d2": ["moose", "21:00", "01:00"],  // Jelle DK
+    "tmlth-nuttrix": ["mainstage", "13:00", "14:25"],  // Nuttrix
+    "tmlth-halo-d3": ["mainstage", "14:25", "15:25"],  // Halo
+    "tmlth-botcash": ["mainstage", "15:25", "16:25"],  // Botcash
+    "tmlth-mattn": ["mainstage", "16:30", "17:30"],  // MATTN
+    "tmlth-kolsch": ["mainstage", "17:35", "18:35"],  // Kölsch
+    "tmlth-novah": ["mainstage", "18:35", "19:35"],  // Novah
+    "tmlth-r3hab": ["mainstage", "19:40", "20:40"],  // R3hab
+    "tmlth-alok": ["mainstage", "20:40", "21:40"],  // Alok
+    "tmlth-lost-frequencies": ["mainstage", "21:45", "22:45"],  // Lost Frequencies
+    "tmlth-swedish-house-mafia": ["mainstage", "22:50", "23:50"],  // Swedish House Mafia
+    "tmlth-yukio": ["freedom", "13:00", "15:00"],  // Yukio
+    "tmlth-xenia-dia": ["freedom", "15:00", "16:30"],  // Xenia Dia
+    "tmlth-luna-and-lenthe": ["freedom", "16:30", "18:00"],  // Luna & Lenthe
+    "tmlth-henri-bergmann": ["freedom", "18:00", "19:30"],  // Henri Bergmann
+    "tmlth-agents-of-time": ["freedom", "19:30", "21:00"],  // Agents Of Time
+    "tmlth-kevin-de-vries-b2b-morten": ["freedom", "21:00", "22:30"],  // Kevin de Vries b2b MORTEN
+    "tmlth-artbat-b2b-r3hab": ["freedom", "22:30", "00:00"],  // Artbat b2b R3hab
+    "tmlth-lora-matia": ["crystal", "13:00", "14:30"],  // Lora Matia
+    "tmlth-angemi": ["crystal", "14:30", "16:00"],  // Angemi
+    "tmlth-tiger-drama": ["crystal", "16:00", "17:30"],  // Tiger Drama
+    "tmlth-whisnu-santika": ["crystal", "17:30", "18:30"],  // Whisnu Santika
+    "tmlth-matisse-and-sadko": ["crystal", "18:30", "19:30"],  // Matisse & Sadko
+    "tmlth-lucas-and-steve": ["crystal", "19:30", "20:30"],  // Lucas & Steve
+    "tmlth-laidback-luke": ["crystal", "20:30", "22:00"],  // Laidback Luke
+    "tmlth-quintino": ["crystal", "22:00", "23:00"],  // Quintino
+    "tmlth-brennan-heart": ["crystal", "23:00", "00:00"],  // Brennan Heart
+    "tmlth-j-nana": ["codex", "13:00", "14:30"],  // J-Nana
+    "tmlth-maysaa": ["codex", "14:30", "16:00"],  // Maysaa
+    "tmlth-pixzy": ["codex", "16:00", "17:00"],  // Pixzy
+    "tmlth-merow": ["codex", "17:00", "18:00"],  // Merow
+    "tmlth-rayray": ["codex", "18:00", "19:00"],  // Rayray
+    "tmlth-sabai": ["codex", "19:00", "20:00"],  // Sabai
+    "tmlth-andromedik": ["codex", "20:00", "21:00"],  // Andromedik
+    "tmlth-apashe": ["codex", "21:00", "22:00"],  // APASHE
+    "tmlth-netsky": ["codex", "22:00", "23:00"],  // Netsky
+    "tmlth-yellow-claw": ["codex", "23:00", "00:00"],  // Yellow Claw
+    "tmlth-dennis-gold": ["core", "13:00", "15:00"],  // Dennis Gold
+    "tmlth-capoon": ["core", "15:00", "16:30"],  // Capoon
+    "tmlth-dino-lenny": ["core", "16:30", "18:00"],  // Dino Lenny
+    "tmlth-maxi-meraki": ["core", "18:00", "19:30"],  // Maxi Meraki
+    "tmlth-ameme-b2b-honeyluv": ["core", "19:30", "21:00"],  // AMÉMÉ b2b Honeyluv
+    "tmlth-dj-tennis": ["core", "21:00", "22:30"],  // DJ Tennis
+    "tmlth-joris-voorn-b2b-krystal-klear": ["core", "22:30", "00:00"],  // Joris Voorn b2b Krystal Klear
+    "tmlth-joulie": ["papillon", "13:00", "15:00"],  // JOULIE
+    "tmlth-neon": ["papillon", "15:00", "17:00"],  // Neon
+    "tmlth-onfaya": ["papillon", "18:30", "20:00"],  // Onfaya
+    "tmlth-adamk": ["papillon", "20:00", "21:30"],  // AdamK
+    "tmlth-jowaves": ["papillon", "21:30", "23:00"],  // JoWaves
+    "tmlth-jerrooo-d3": ["moose", "13:00", "17:00"],  // Jerrooo
+    "tmlth-jelle-dk-d3": ["moose", "17:00", "21:00"],  // Jelle DK
+    "tmlth-jan-v-d3": ["moose", "21:00", "00:00"],  // Jan V
+    // SCHEDULE:END
+  };
   const scheduled = act => {
     const s = SCHEDULE[act.id];
     if (!s) return act;
@@ -238,6 +407,7 @@
   const CONFIG = {
     id: "tomorrowland-thailand-2026",
     lineupSource: { url: "https://thailand.tomorrowland.com/en/line-up/", observedAt: "2026-11-11", official: true },
+    scheduleSource: { url: "https://thailand.tomorrowland.com/en/line-up/?page=timetable", observedAt: "2026-11-16", official: true },
     name: "Tomorrowland Thailand 2026",
     shortName: "Tomorrowland Thailand",
     brand: "Tomorrowland",
@@ -283,12 +453,11 @@
     mapMode: "real",
     mapPrintsStageNames: false,
     mapArtIsGeoregistered: false,
-    setTimesProvisional: true,
   };
 
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["tomorrowland-thailand-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
-    registry: { available: true, scheduleTBA: true, accent: "#f59e0b", emoji: "🐘", region: "Asia" },
+    registry: { available: true, scheduleTBA: false, accent: "#f59e0b", emoji: "🐘", region: "Asia" },
   };
 })();
