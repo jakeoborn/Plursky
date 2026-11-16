@@ -32,6 +32,8 @@ const FALLBACK = {
   // Jake 2026-11-15: replace official-site images whose reuse was never
   // granted. Day Zero has no cleared image: Commons has none, the site no press kit.
   "day-zero-tulum-2027": "no reuse-cleared photo (Commons none, site has no press kit); letter tile until one exists",
+  // Commons author (Lucas Gavi) and embedded EXIF author (Rafael Deprost) disagree; no owner guessed.
+  "tomorrowland-winter-2027": "Commons author and EXIF author conflict; letter tile until resolved",
 };
 // Sat Oct 17, 4 pm ET: III Points is live, so all three chip kinds are on the page.
 const AT = "2026-10-17T20:00:00Z";

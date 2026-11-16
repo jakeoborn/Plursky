@@ -348,14 +348,6 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY 4.0. Shows the Belgian edition: the Thailand site is closed to the agent browser and Commons has no Thailand photo yet.",
     author: "Ludovic Delot", licenseId: "CC-BY-4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/", changes: "Cropped",
   },
-  "tomorrowland-winter-2027": {
-    tile: "festival-art/tiles/tomorrowland-winter-2027.webp", card: "festival-art/tomorrowland-winter-2027.webp", width: 168, height: 168,
-    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Alok_Tomorrowland_Winter_2025.jpg",
-    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Alok_Tomorrowland_Winter_2025.jpg",
-    credit: "Alok on stage at Tomorrowland Winter 2025, Alpe d Huez. Photo by Lucas Gavi, Wikimedia Commons", retrieved: "2026-11-12",
-    license: "CC BY 4.0. The Winter site is closed to the agent browser.",
-    author: "Lucas Gavi", licenseId: "CC-BY-4.0", licenseUrl: "https://creativecommons.org/licenses/by/4.0/", changes: "Cropped",
-  },
   "tomorrowland-brasil-2027": {
     tile: "festival-art/tiles/tomorrowland-brasil-2027.webp", card: "festival-art/tomorrowland-brasil-2027.webp", width: 168, height: 168,
     kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Tomorrowland_Mainstage_Nacht.jpg",
@@ -378,7 +370,7 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     assetUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Klaudia_Gawlas_Time_Warp_Mannheim_2017.jpg",
     credit: "Klaudia Gawlas under the beams at Time Warp Mannheim 2017. Photo by MariaMarriage, Wikimedia Commons", retrieved: "2026-11-15",
     license: "CC BY-SA 4.0. Replaces the official-site slider image, whose reuse was never granted (Jake 2026-11-15).",
-    author: "MariaMarriage", licenseId: "CC-BY-SA-4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", changes: "Cropped",
+    author: "Thommy Mardo / MariaMarriage", licenseId: "CC-BY-SA-4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", changes: "Cropped",
   },
   "sonar-2027": {
     tile: "festival-art/tiles/sonar-2027.webp", card: "festival-art/sonar-2027.webp", width: 168, height: 168,
@@ -386,7 +378,7 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     assetUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ee/S%C3%B3nar_by_Day_2016.jpg",
     credit: "SonarVillage stage at Sónar by Day 2016, Barcelona. Photo by Javier Tles (uploaded by Nachetere), Wikimedia Commons", retrieved: "2026-11-14",
     license: "CC BY-SA 4.0. The official Sónar site serves no event photo, only logo and banner art (checked 2026-11-14).",
-    author: "Javier Tles", licenseId: "CC-BY-SA-4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", changes: "Cropped",
+    author: "Javier Tles / Nachetere", licenseId: "CC-BY-SA-4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", changes: "Cropped",
   },
   "ozora-2027": {
     tile: "festival-art/tiles/ozora-2027.webp", card: "festival-art/ozora-2027.webp", width: 168, height: 168,

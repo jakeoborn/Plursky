@@ -2424,7 +2424,7 @@ function PhotoCreditsSheet({
       color: "var(--ink-2)",
       font: "400 15px/1.4 var(--f-ui)"
     }
-  }, "These festival photos are shared under open licences. Each links to its source and its licence."), React.createElement("div", {
+  }, "These festival photos are shared under open licences. Each links to its source and its licence. Each cropped CC BY-SA photo is distributed under the same linked licence."), React.createElement("div", {
     "data-photo-credits": "1"
   }, rows.map(r => React.createElement("div", {
     key: r.id,
