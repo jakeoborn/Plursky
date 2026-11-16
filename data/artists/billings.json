@@ -66983,6 +66983,30 @@
   "mainStage": null
  },
  {
+  "id": "dwp-2026:dwp-alzena",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ALZENA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alzena",
+    "role": "performer"
+   }
+  ],
+  "act": "alzena",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "dwp-2026:dwp-angger-dimas",
   "source": "live",
   "festivalId": "dwp-2026",
@@ -67366,6 +67390,30 @@
    }
   ],
   "act": "marlo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "dwp-2026:dwp-nenshin",
+  "source": "live",
+  "festivalId": "dwp-2026",
+  "festivalBrand": "dwp",
+  "year": 2026,
+  "date": "2026-12-11",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NENSHIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nenshin",
+    "role": "performer"
+   }
+  ],
+  "act": "nenshin",
   "closing": null,
   "stageLineage": null,
   "mainStage": null

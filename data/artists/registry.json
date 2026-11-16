@@ -5487,6 +5487,21 @@
   "links": []
  },
  {
+  "key": "alzena",
+  "name": "ALZENA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dwp-2026:dwp-alzena"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "am-i",
   "name": "AM.I",
   "aliases": [],
@@ -96494,6 +96509,21 @@
   ],
   "firstSeen": "2023-10-14",
   "lastSeen": "2023-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nenshin",
+  "name": "NENSHIN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dwp-2026:dwp-nenshin"
+  ],
+  "firstSeen": "2026-12-11",
+  "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
  },
