@@ -6,6 +6,7 @@
 //   - a genre page lists exactly the acts whose own genre string names it;
 //   - a page exists exactly for each genre with 3+ acts;
 //   - the stamp is the newest recorded read of a listed source (as on /f/);
+//   - the intro's count and named lineup match the data;
 //   - sitemap-genres.xml lists exactly the pages, and robots.txt points at it.
 // Each check then meets a mutation it has to catch.
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
@@ -43,8 +44,14 @@ function checkPage(k, html) {
   for (const a of listed) if (!exp.has(a)) { out.push(`${k}: ${a} is listed but its genre does not name ${k}`); break; }
   const rank = (html.match(/<ol class="rank">([\s\S]*?)<\/ol>/) || [])[1] || '';
   for (const n of others) if (rank.includes(`>${n}<`)) { out.push(`${k}: ${n} ranked, but only ${ALLOW.join(', ')} is ruled in`); break; }
-  const s = html.match(/<p class="checked">Checked on <time datetime="([^"]+)">/);
-  if (!s) out.push(`${k}: no "Checked on" stamp`); else if (s[1] !== stamp) out.push(`${k}: "Checked on ${s[1]}", the newest recorded read is ${stamp}`);
+  const s = html.match(/<p class="checked">Festival sources last checked on <time datetime="([^"]+)">/);
+  if (!s) out.push(`${k}: no "Festival sources last checked on" stamp`); else if (s[1] !== stamp) out.push(`${k}: "checked on ${s[1]}", the newest recorded read is ${stamp}`);
+  // The intro is a count and a scope claim: the count is this genre's acts and
+  // the scope names exactly the ruled-in lineups (never a vaguer plural).
+  const intro = decode((html.match(/<p class="intro">([^<]*)<\/p>/) || [])[1] || '');
+  const n = (want.get(k) || new Set()).size;
+  const scope = `on the ${ALLOW.map(id => cfg(id).name).join(' and ')} lineup, by Plursky's own genre tags.`;
+  if (!intro.startsWith(`${n} `) || !intro.endsWith(scope)) out.push(`${k}: intro "${intro}" is not "${n} ... ${scope}"`);
   // Other data sets carry genre strings (excluded only for missing provenance),
   // so a page may never call them untagged, and must say why they are out.
   if (/not tagged/i.test(html)) out.push(`${k}: says other festivals are "not tagged" (they carry genre strings; their source is not recorded)`);
@@ -58,6 +65,7 @@ for (const k of dirs) if (!want.has(k)) fail(`${k}: a page for a genre no allowl
 for (const k of dirs) { const p = checkPage(k, readFileSync(join(DIR, k, 'index.html'), 'utf8')); if (p.length) p.forEach(fail); else ok(); }
 const idx = readFileSync(join(DIR, 'index.html'), 'utf8');
 if (!idx.includes(`datetime="${stamp}"`)) fail('genres/ index: stamp is not the newest recorded read'); else ok();
+if (!decode(idx).includes(`${want.size} genres on the ${ALLOW.map(id => cfg(id).name).join(' and ')} lineup, by Plursky's own genre tags.`)) fail('genres/ index: intro count or named lineup does not match the data'); else ok();
 if (/not tagged/i.test(idx) || !idx.includes('have not been source-verified for these pages')) fail('genres/ index: the other-festivals note is missing or says "not tagged"'); else ok();
 const sm = existsSync(join(ROOT, 'sitemap-genres.xml')) ? readFileSync(join(ROOT, 'sitemap-genres.xml'), 'utf8') : '';
 const locs = new Set([...sm.matchAll(/<loc>https:\/\/plursky\.com\/genres\/([^<]*)<\/loc>/g)].map(m => m[1].replace(/\/$/, '')));
@@ -69,7 +77,9 @@ const mutants = [
   ['an untagged act listed', h => h.replace('<ul class="acts">', '<ul class="acts">\n      <li>Some Guessed Act</li>')],
   ['a tagged act dropped', h => h.replace(/\n      <li>Darude<\/li>/, '')],
   ['a festival outside the ruling ranked', h => h.replace('<ol class="rank">', `<ol class="rank">\n      <li><a href="/f/x/">${others[0]}</a> 3 acts</li>`)],
-  ['the stamp moved past the last read', h => h.replace(/(<p class="checked">Checked on <time datetime=")[^"]+/, '$12099-01-01')],
+  ['the stamp moved past the last read', h => h.replace(/(<p class="checked">Festival sources last checked on <time datetime=")[^"]+/, '$12099-01-01')],
+  ['the old vague "festival lineups Plursky has tagged" intro back', h => h.replace(/(<p class="intro">\d+ [^<]*? acts?) on [^<]*<\/p>/, '$1 on festival lineups Plursky has tagged.</p>')],
+  ['an inflated act count in the intro', h => h.replace(/<p class="intro">(\d+)/, (m, d) => `<p class="intro">${+d + 5}`)],
   ['the old "not tagged yet" sentence back', h => h.replace(/Only [^<]*? is included; genre tags for other festivals have not been source-verified for these pages\./g, 'Other festivals are not tagged yet, so they are not counted.')],
   ['the stamp dropped', h => h.replace(/  <p class="checked">[^\n]*\n/, '')],
 ];

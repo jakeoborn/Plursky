@@ -17,8 +17,9 @@
 //   2. A genre gets a page only with MIN_ACTS distinct acts or more; smaller
 //      genres are listed on the index without a page.
 //   3. Festivals on a genre page rank by that genre's act count.
-//   4. Every page carries "Checked on <date>" from checkedOn(), the same
-//      predicate the /f/ pages use.
+//   4. Every page carries "Festival sources last checked on <date>" from
+//      checkedOn(), the same predicate the /f/ pages use.
+//   6. The intro names exactly the lineups the page counts.
 //   5. <lastmod> moves only when a page's content changes (genres/lastmod.json).
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, rmSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -54,7 +55,13 @@ const genres = [...tally.keys()].sort((x, y) => acts(y) - acts(x) || label.get(x
 const paged = genres.filter(k => acts(k) >= MIN_ACTS);
 const cfgOf = id => REG.find(e => e.config.id === id)?.config || {};
 const stampOf = ids => ids.map(id => checkedOn(cfgOf(id))).filter(Boolean).sort().pop() || null;
-const stampHtml = d => d ? `  <p class="checked">Checked on <time datetime="${d}">${d}</time> against the sources on each festival's page.</p>\n` : '';
+// The date is the NEWEST read of a festival source (site, lineup, schedule,
+// map), not of the genre tags (Plursky's own), and older sources were read
+// earlier, so it says "last checked", never "checked against the sources".
+const stampHtml = d => d ? `  <p class="checked">Festival sources last checked on <time datetime="${d}">${d}</time>; each festival's page lists its sources.</p>\n` : '';
+// Name exactly the lineups a page counts, never a vaguer "festival lineups".
+const namesOf = ids => { const n = ids.map(id => cfgOf(id).name); return n.length < 2 ? n.join('') : `${n.slice(0, -1).join(', ')} and ${n[n.length - 1]}`; };
+const lineupOf = ids => `the ${namesOf(ids)} lineup${ids.length === 1 ? '' : 's'}`;
 
 // Other data sets DO carry genre strings; they are left out because their
 // genre source is not recorded (Instinct #481 review), so never say "not tagged".
@@ -114,11 +121,11 @@ function genrePage(k) {
 <div class="hero"><div class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/genres/">Genres</a> › <span aria-current="page">${esc(g)}</span></nav>
   <h1>${esc(g)}</h1>
-  <p class="intro">${n} ${esc(g)} act${n === 1 ? '' : 's'} on festival lineups Plursky has tagged.</p>
+  <p class="intro">${n} ${esc(g)} act${n === 1 ? '' : 's'} on ${esc(lineupOf(ranked.map(r => r[0])))}, by Plursky's own genre tags.</p>
 ${stampHtml(stampOf(ranked.map(r => r[0])))}</div></div>
 <div class="wrap">
   <section aria-labelledby="fest-h">
-    <h2 id="fest-h">Festivals by ${esc(g)} acts</h2>
+    <h2 id="fest-h">Where ${esc(g)} acts are billed</h2>
     <ol class="rank">
 ${ranked.map(([fid, s]) => `      <li><a href="/f/${esc(fid)}/">${esc(cfgOf(fid).name)}</a> <span class="n">${s.size} act${s.size === 1 ? '' : 's'}</span></li>`).join('\n')}
     </ol>
@@ -132,7 +139,7 @@ ${[...s].sort((x, y) => x.localeCompare(y, 'en', { sensitivity: 'base' })).map(a
   <p class="note">${NOTE}</p>
 </div>
 </main>`;
-  return { title: `${g} acts at festivals · Plursky`, desc: `${n} ${g} acts on festival lineups in Plursky, by festival.`, url,
+  return { title: `${g} acts at festivals · Plursky`, desc: `${n} ${g} acts on ${lineupOf(ranked.map(r => r[0]))}, by Plursky's own genre tags.`, url,
     ld: { '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${g} at festivals`, url }, body };
 }
 
@@ -141,7 +148,7 @@ function indexPage() {
 <div class="hero"><div class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <span aria-current="page">Genres</span></nav>
   <h1>Genres</h1>
-  <p class="intro">${genres.length} genres on the festival lineups Plursky has tagged.</p>
+  <p class="intro">${genres.length} genres on ${esc(lineupOf(GENRE_FESTIVALS))}, by Plursky's own genre tags.</p>
 ${stampHtml(stampOf(GENRE_FESTIVALS))}</div></div>
 <div class="wrap">
   <section aria-labelledby="g-h">
@@ -154,7 +161,7 @@ ${genres.map(k => `      <li>${paged.includes(k) ? `<a href="/genres/${k}/">${es
   <p class="note">${NOTE}</p>
 </div>
 </main>`;
-  return { title: 'Festival genres · Plursky', desc: `${genres.length} genres on festival lineups in Plursky.`, url: `${ORIGIN}/genres/`,
+  return { title: 'Festival genres · Plursky', desc: `${genres.length} genres on ${lineupOf(GENRE_FESTIVALS)}, by Plursky's own genre tags.`, url: `${ORIGIN}/genres/`,
     ld: { '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Genres', url: `${ORIGIN}/genres/` }, body };
 }
 
