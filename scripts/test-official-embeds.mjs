@@ -384,7 +384,7 @@ for (const id of pages) {
   const visible = (lists[0].match(/<li>/g) || []).length;
   const total = (sec.match(/<li>/g) || []).length;
   check(visible <= 20, `[${id}] ${visible} lineup rows shown before "Show all" (max 20)`);
-  if (total > 20) check(/<summary>Show all \d+ artists<\/summary>/.test(sec) && new RegExp(`Show all ${total} artists`).test(sec), `[${id}] lineup of ${total} has no "Show all ${total} artists"`);
+  if (total > 20) check(/<summary>Show all \d+ acts?<\/summary>/.test(sec) && new RegExp(`Show all ${total} acts`).test(sec), `[${id}] lineup of ${total} has no "Show all ${total} acts"`);
   const ld = (html.match(/"performer": \[[\s\S]*?\n  \]/) || [''])[0];
   const ldCount = (ld.match(/"MusicGroup"/g) || []).length;
   if (ldCount) check(ldCount === total, `[${id}] JSON-LD lists ${ldCount} performers, the page ${total}: folding hid names from the HTML`);
