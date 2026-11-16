@@ -37,6 +37,7 @@ const NEVER = /\b(final|complete|confirmed|official final)\b|full schedule|every
 const decode = s => s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
 const visible = h => decode(h.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<style[\s\S]*?<\/style>/g, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
 
+const timed26Of = k => careers.artists[k].b.some(r => careers.festivals[r[1]]?.year === 2026 && r[4]);
 const want = k => {
   const a = careers.artists[k];
   if (!a || a.pending) return false;
@@ -69,6 +70,11 @@ function checkPage(k, html) {
     if (/"offers"/.test(s)) out.push(`${k}: offers in JSON-LD`);
   }
   if (/people saw|you've seen|attended|clips?\b/i.test(text)) out.push(`${k}: personal or popularity copy`);
+  // "set times" is a promise: only a page with a timed 2026 row may make it.
+  if (!timed26Of(k)) {
+    const head = [...(html.match(/<title>[^<]*<\/title>/) || []), ...(html.match(/<h[12][^>]*>[^<]*<\/h[12]>/g) || [])].join(' ');
+    if (/set times/i.test(head)) out.push(`${k}: says "set times" with no timed 2026 set`);
+  }
   return out;
 }
 
@@ -78,11 +84,11 @@ const expected = Object.keys(careers.artists).filter(want);
 for (const k of expected) { if (!dirs.has(k)) fail(`${k}: qualifies but has no page`); else ok(); }
 for (const k of dirs) { if (!want(k)) fail(`${k}: has a page but ${careers.artists[k]?.pending ? 'is under review' : 'does not meet the thin-content rule'}`); else ok(); }
 
-let pages = 0, withPhoto = 0, withArchive = 0;
+let pages = 0, withPhoto = 0, withArchive = 0, untimed26 = 0;
 for (const k of expected) {
   if (!dirs.has(k)) continue;
   const html = readFileSync(join(DIR, k, 'index.html'), 'utf8');
-  pages++; if (/<img /.test(html)) withPhoto++; if (/class="pub"/.test(html)) withArchive++;
+  pages++; if (!timed26Of(k) && careers.artists[k].b.some(r => careers.festivals[r[1]]?.year === 2026)) untimed26++; if (/<img /.test(html)) withPhoto++; if (/class="pub"/.test(html)) withArchive++;
   const probs = checkPage(k, html);
   if (probs.length) probs.slice(0, 3).forEach(fail); else ok();
 }
@@ -98,6 +104,7 @@ const pick = f => expected.find(k => dirs.has(k) && f(k, readFileSync(join(DIR, 
 const archivedK = pick((k, h) => /class="pub"/.test(h) && careers.artists[k].b.length > 2);
 const tileK = pick((k, h) => /class="tile"/.test(h));
 const photoK = pick((k, h) => /<img /.test(h));
+const untimed26K = pick(k => !timed26Of(k) && careers.artists[k].b.some(r => careers.festivals[r[1]]?.year === 2026));
 const read = k => readFileSync(join(DIR, k, 'index.html'), 'utf8');
 const mutants = [
   ['a dropped billing row', archivedK, h => h.replace(/\n      <li><time[^\n]*<\/li>/, '')],
@@ -106,6 +113,7 @@ const mutants = [
   ['an image on a letter-tile artist', tileK, h => h.replace('<div class="tile"', '<img src="/x.webp" alt=""><div class="tile"')],
   ['a photo without its credit line', photoK, h => h.replace(/<figcaption>[\s\S]*?<\/figcaption>/, '')],
   ['sameAs in JSON-LD', archivedK, h => h.replace('"@type": "MusicGroup",', '"@type": "MusicGroup", "sameAs": ["https://example.com"],')],
+  ['"set times" on a page with no timed 2026 set', untimed26K, h => h.replace(/<title>([^<]*?) 2026 lineup:/, '<title>$1 set times 2026:')],
   ['popularity copy', archivedK, h => h.replace('</h1>', '</h1><p>1,204 people saw this set.</p>')],
 ];
 let caught = 0;
@@ -119,4 +127,4 @@ const pendingK = Object.keys(careers.artists).find(k => careers.artists[k].pendi
 if (pendingK && !want(pendingK)) { caught++; ok(); } else fail('mutation "a page for a key under review": the coverage rule would not catch it');
 
 if (failed) { console.log(`  ✗ artist pages: ${failed} of ${checks} checks failed`); process.exit(1); }
-console.log(`  ✓ artist pages: ${checks} checks across ${pages} pages (${withPhoto} with a licensed photo, ${withArchive} with archived billings; ${caught}/${mutants.length + 1} mutations caught)`);
+console.log(`  ✓ artist pages: ${checks} checks across ${pages} pages (${withPhoto} with a licensed photo, ${withArchive} with archived billings, ${untimed26} with untimed 2026 billings only; ${caught}/${mutants.length + 1} mutations caught)`);

@@ -96,8 +96,12 @@ function artistPage(key) {
   const past = bs.filter(b => b.fest?.year < 2026);
   const later = bs.filter(b => b.fest?.year > 2026);
   const fest26 = [...new Map(now.map(b => [b.fest.id, b.fest])).values()];
+  // "set times" only where a 2026 row is actually timed; untimed billings
+  // are a lineup, not a schedule (Instinct #480 review: 65 pages overclaimed).
+  const timed26 = now.some(b => b.start);
+  const label26 = timed26 ? '2026 set times' : '2026 lineup';
   const title = fest26.length
-    ? `${name} set times 2026: ${fest26.map(f => f.name.replace(/ 2026$/, '')).join(', ')} · Plursky`
+    ? `${name} ${timed26 ? 'set times 2026' : '2026 lineup'}: ${fest26.map(f => f.name.replace(/ 2026$/, '')).join(', ')} · Plursky`
     : `${name} festival history · Plursky`;
   const eds = new Set(bs.map(b => b.fest.id)).size;
   const years = past.map(b => b.fest.year).filter(Boolean);
@@ -184,7 +188,7 @@ ${also.length ? `  <p class="note">Also billed as ${also.map(link).join(', ')}.<
   </div></div>
 </div></div>
 <div class="wrap">
-${block26 ? `  <section aria-labelledby="now-h">\n    <h2 id="now-h">2026 set times</h2>\n${block26}  </section>\n` : ''}${upcoming ? `  <section aria-labelledby="next-h">\n    <h2 id="next-h">Upcoming</h2>\n${upcoming}  </section>\n` : ''}${history ? `  <section aria-labelledby="hist-h">\n    <h2 id="hist-h">Festival history in Plursky's records</h2>\n${history}  </section>\n` : ''}${partners.length ? `  <section aria-labelledby="with-h">\n    <h2 id="with-h">Billed with</h2>\n    <ul class="partners">\n${partners.map(([k, n]) => `      <li>${link(k)} <span class="note">${n} set${n === 1 ? '' : 's'}</span></li>`).join('\n')}\n    </ul>\n  </section>\n` : ''}${archived ? `  <p class="note foot">Past schedules are snapshots of the festivals' official pages as archived on the dates shown, not final schedules.</p>\n` : ''}  <footer><p><a href="/artists/">All artists</a> · <a href="/welcome/#festivals">All festivals</a> · <a href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the app</a></p></footer>
+${block26 ? `  <section aria-labelledby="now-h">\n    <h2 id="now-h">${label26}</h2>\n${block26}  </section>\n` : ''}${upcoming ? `  <section aria-labelledby="next-h">\n    <h2 id="next-h">Upcoming</h2>\n${upcoming}  </section>\n` : ''}${history ? `  <section aria-labelledby="hist-h">\n    <h2 id="hist-h">Festival history in Plursky's records</h2>\n${history}  </section>\n` : ''}${partners.length ? `  <section aria-labelledby="with-h">\n    <h2 id="with-h">Billed with</h2>\n    <ul class="partners">\n${partners.map(([k, n]) => `      <li>${link(k)} <span class="note">${n} set${n === 1 ? '' : 's'}</span></li>`).join('\n')}\n    </ul>\n  </section>\n` : ''}${archived ? `  <p class="note foot">Past schedules are snapshots of the festivals' official pages as archived on the dates shown, not final schedules.</p>\n` : ''}  <footer><p><a href="/artists/">All artists</a> · <a href="/welcome/#festivals">All festivals</a> · <a href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the app</a></p></footer>
 </div>
 </main>`;
   return { title, desc: intro, url, ld: [ld, crumbs], body };
