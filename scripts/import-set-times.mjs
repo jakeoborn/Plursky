@@ -245,4 +245,6 @@ try {
   die(`write failed — ${path.relative(root, target)} left untouched: ${e.message}`);
 }
 console.log(`  ✓ wrote ${sched.size} row(s) into ${path.relative(root, target)}`);
-console.log(`  next: node scripts/compile.mjs && node scripts/gen-festival-pages.mjs && git add -A && node scripts/verify.mjs`);
+// Every generator whose output reads set times: the welcome page lists open
+// festivals, artist pages print timed vs "time TBA" rows (f53).
+console.log(`  next: node scripts/compile.mjs && node scripts/build-artist-registry.mjs && node scripts/gen-welcome-page.mjs && node scripts/festival-status.mjs && node scripts/gen-festival-pages.mjs && node scripts/gen-artist-pages.mjs && git add -A && node scripts/verify.mjs`);
