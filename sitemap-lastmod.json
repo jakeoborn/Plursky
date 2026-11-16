@@ -87,10 +87,6 @@
     "fp": "e124b3381ed7ad63",
     "lastmod": "2026-11-12"
   },
-  "https://plursky.com/f/time-warp-2027/": {
-    "fp": "8043b055ef6bf1dc",
-    "lastmod": "2026-11-13"
-  },
   "https://plursky.com/f/sonar-2027/": {
     "fp": "f89a7e929882bcfe",
     "lastmod": "2026-11-13"
@@ -223,12 +219,16 @@
     "fp": "b1fff6e807f43099",
     "lastmod": "2026-11-14"
   },
+  "https://plursky.com/f/time-warp-2027/": {
+    "fp": "f3b7ab256030f422",
+    "lastmod": "2026-11-16"
+  },
   "https://plursky.com/": {
-    "fp": "faac89ef35ccca45",
+    "fp": "614e44a713e404fa",
     "lastmod": "2026-11-16"
   },
   "https://plursky.com/welcome/": {
-    "fp": "b232c31fb5ca94bd",
+    "fp": "accff4db9bd7aa5d",
     "lastmod": "2026-11-16"
   },
   "https://plursky.com/terms.html": {
