@@ -861,7 +861,7 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   h4 { font-size:12px; font-weight:600; margin:22px 0 4px; color:var(--flare); text-transform:uppercase; letter-spacing:.12em; }
   h5 { font-size:11px; font-weight:500; margin:14px 0 4px; color:var(--text-3); text-transform:uppercase; letter-spacing:.12em; }
   .note { color:var(--text-2); font-size:14px; }
-  .checked { color:var(--text-2); font-size:13px; margin:-6px 0 14px; }
+  .checked { color:var(--text-2); font-size:13px; margin:6px 0 16px; }
   figure { margin:16px 0; }
   figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:8px; background:var(--panel); }
   .platebox { position:relative; max-width:520px; }
