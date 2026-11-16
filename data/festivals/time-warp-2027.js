@@ -2,8 +2,9 @@
 // TIME WARP GERMANY 2027 — Maimarkthalle · Mannheim, Germany
 // Sat Apr 3, 2027, 21:00 to Sun Apr 4, 14:00. One night, one day.
 // ═══════════════════════════════════════════════════════════════════════
-// LINEUP-ONLY, OPEN (available: true, scheduleTBA: true; Jake 2026-11-11:
-// switch on the festivals with a full lineup). The official page prints the
+// LINEUP-ONLY, OPEN (available: true, scheduleTBA: true): lineup-only
+// festivals switched on 2026-11-16, 38 acts match the official page, set
+// times pending. The official page prints the
 // lineup "in alphabetical order" with no days, floors or set times, so every
 // act is day 1 with no stage and no time. Nothing below is invented.
 //
