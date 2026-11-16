@@ -25,7 +25,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { loadBrowser } from './lib/load-browser.mjs';
-import { plateFor, isPlaceholderStage, MAX_PAGE_IMAGE_BYTES } from './lib/festival-page-data.mjs';
+import { plateFor, isPlaceholderStage, MAX_PAGE_IMAGE_BYTES, editionHours } from './lib/festival-page-data.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const F_DIR = join(ROOT, 'f');
@@ -84,6 +84,26 @@ function checkPage(entry, html, { verified }) {
   const cfg = entry.config, id = cfg.id;
   const names = [...new Set((DS[id]?.artists || []).map(a => a.name).filter(Boolean))];
   const text = visibleText(html);
+
+  // "Checked on" (SPEC-206 C): derived here from the data, not from the
+  // generator's helper. The stamp must be the newest recorded read of a source
+  // the page links, so it can never be newer than a real check, and a page
+  // with such a read must carry it.
+  const reads = [cfg.officialEvent?.website && cfg.officialEvent, cfg.lineupSource, cfg.scheduleSource, cfg.mapSource, editionHours(cfg)]
+    .filter(s => s && (s.url || s.website) && /^\d{4}-\d{2}-\d{2}$/.test(String(s.observedAt || ''))).map(s => s.observedAt).sort();
+  const stamps = [...html.matchAll(/<p class="checked">Sources last checked on <time datetime="([^"]+)">([^<]+)<\/time>/g)];
+  if (stamps.length > 1) out.push(`${stamps.length} "Checked on" stamps`);
+  const stamp = stamps[0];
+  if (!reads.length && stamp) out.push(`"Checked on ${stamp[1]}" but the data records no read of a listed source`);
+  else if (reads.length && !stamp) out.push(`no "Checked on" stamp, but the data records a read on ${reads.at(-1)}`);
+  else if (stamp && (stamp[1] !== reads.at(-1) || stamp[2] !== stamp[1])) out.push(`"Checked on ${stamp[2]}" but the newest recorded read is ${reads.at(-1)}`);
+  // "last checked" is a claim a reader can check: the date must be printed on
+  // a Sources row, and the stamp may not say every source was checked that day.
+  if (stamp) {
+    const srcList = (html.match(/<section class="sources"[\s\S]*?<\/section>/) || [''])[0];
+    if (!new RegExp(`(read|checked) ${stamp[1]}\\b`).test(srcList)) out.push(`"Sources last checked on ${stamp[1]}" but no Sources row shows that read date`);
+  }
+  if (/against the sources listed below/.test(html)) out.push('stamp says every listed source was checked on its date');
 
   // Index state.
   const noindex = /<meta name="robots" content="noindex">/.test(html);
@@ -311,6 +331,11 @@ const mutants = [
   ['offers with an invented price', withOffers, (h) => editEvent(h, e => { e.offers.price = '199'; e.offers.priceCurrency = 'USD'; }), false],
   ['offers dropped on an upcoming edition with a ticket link', withOffers, (h) => editEvent(h, e => { delete e.offers; }), false],
   ['offers on an edition that has ended', endedWithTickets, (h) => editEvent(h, e => { e.offers = { '@type': 'Offer', url: endedWithTickets.config.officialEvent.tickets }; }), false],
+  // SPEC-206 C: a stamp newer than the last real check, and a dropped stamp.
+  ['"Checked on" moved past the last recorded read', withLineup, (h) => h.replace(/(<p class="checked">Sources last checked on <time datetime=")([^"]+)(">)([^<]+)/, (a, p, d, q) => `${p}2099-01-01${q}2099-01-01`), false],
+  ['"Checked on" stamp dropped', withLineup, (h) => h.replace(/  <p class="checked">[^\n]*\n/, ''), false],
+  ['"Checked on" date missing from every Sources row', withLineup, (h) => h.replace(/<section class="sources"[\s\S]*?<\/section>/, (sec) => sec.replace(/(read|checked) \d{4}-\d{2}-\d{2}/g, '$1 earlier')), false],
+  ['old "checked against the sources listed below" wording back', withLineup, (h) => h.replace(/(<\/time>)\.<\/p>/, '$1 against the sources listed below.</p>'), false],
   ['offers whose ticket link the page does not show', withOffers, (h) => h.replace(/\n\s*<li>Tickets: [^\n]*<\/li>/, ''), false],
 ];
 for (const [label, entry, mutate, shouldPass] of mutants) {
