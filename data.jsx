@@ -844,6 +844,35 @@ const FESTIVALS_REGISTRY = [
     region:    "Europe",
   },
   {
+    // ── EDC Las Vegas 2027 — Las Vegas Motor Speedway, Las Vegas NV ──
+    // Added 2026-11-16 as a gated preview (Jake's field-test target).
+    // SOURCE lasvegas.edc.com, read 2026-11-16: two weekends, "Dusk" May
+    // 14–16 and "Dawn" May 21–23, 2027, at Las Vegas Motor Speedway, inside
+    // the "12 Days of EDC" (May 13–24). Passes on sale through
+    // edclasvegas.frontgatetickets.com. LINEUP NOT ANNOUNCED: no artist is
+    // loaded, and the 2026 lineup (FESTIVAL_CONFIG / ARTISTS above) is never
+    // reused under this entry. No stages, map, hours or set times either;
+    // those land in the flip session from the official 2027 sources.
+    config: {
+      id:        "edc-lv-2027",
+      officialEvent: { website: "https://lasvegas.edc.com/", tickets: "https://edclasvegas.frontgatetickets.com/", observedAt: "2026-11-16" },
+      name:      "EDC Las Vegas 2027",
+      shortName: "EDC Las Vegas",
+      brand:     "EDC",
+      tagline:   "Two weekends at Las Vegas Motor Speedway",
+      location:  "Las Vegas Motor Speedway · Las Vegas, NV",
+      locationShort: "Las Vegas Motor Speedway",
+      dates:     "May 14–16 & 21–23, 2027",
+      year:      2027,
+      // Night Print accent not measured for the 2027 site yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://lasvegas.edc.com/", observedAt: "2026-11-16" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ec4899",
+    emoji:     "🌼",
+    region:    "North America",
+  },
+  {
     // ── Tomorrowland Brasil 2027 — Itu, São Paulo, Brazil ──
     // Added 2026-11-11 as a gated preview. Dates from brasil.tomorrowland.com,
     // read 2026-11-11: "April 30 - May 2, 2027 | Itu - São Paulo, Brazil".

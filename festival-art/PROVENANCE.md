@@ -53,3 +53,6 @@ Tomorrowland Winter 2027 has no art (2026-11-15): its Commons file (File:Alok_To
 Time Warp Germany 2027 and Sónar Barcelona 2027 have no art (Jake, 2026-11-15): on each Commons file the uploader licensed it as own work while the description names another photographer, so whether the uploader could grant the licence is unclear. Both show their tinted letter tiles until an author is confirmed:
 - Time Warp: https://commons.wikimedia.org/wiki/File:Klaudia_Gawlas_Time_Warp_Mannheim_2017.jpg (uploader MariaMarriage; description "pic by Thommy Mardo"; CC BY-SA 4.0)
 - Sónar: https://commons.wikimedia.org/wiki/File:S%C3%B3nar_by_Day_2016.jpg (uploader Nachetere; description "shoot by Javier Tles"; CC BY-SA 4.0)
+
+## Letter tiles
+- `edc-lv-2027` (added 2026-11-16): no art. No 2027 photo has been reviewed, and the 2026 card (`edc-lv-2026.webp`) is official-site art with reuse terms not granted, so it is not carried forward. It shows its letter tile until a reuse-cleared photo is found (listed for Jake).
