@@ -18,6 +18,12 @@
 // "EDC Thailand | December 18+19+20 | Rhythm Park"; travel/location page:
 // "Rhythm Park, Phuket", a new venue for this edition.
 //
+// NOTE official stage names (not imported): thailand.edc.com/en/experience/
+// stages/, read 2026-11-16, names six stages: Kinetic Field, Circuit
+// Grounds, Stereo Bloom, Neon Garden, Bionic Jungle, Boombox Art Car. No act
+// is assigned to a stage there and no map is published, so STAGES stays
+// empty and no act is placed. The Boombox Art Car moves: like Dreamstate's
+// art car, it is never a fixed or calibrated stage when stages are loaded.
 // SOURCE hours: NOT OFFICIAL. ra.co/events/2466189, read 2026-11-11, lists
 // "Fri 15:00 - Mon 01:00". The official site published no hours page that
 // this build could read (its FAQ path 404s). startMs/endMs use the RA span;
