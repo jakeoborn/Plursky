@@ -364,22 +364,6 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY 3.0. Replaces the official-site pool-deck image, whose reuse was never granted (Jake 2026-11-15).",
     author: "Rutger Geerling", licenseId: "CC-BY-3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", changes: "Cropped",
   },
-  "time-warp-2027": {
-    tile: "festival-art/tiles/time-warp-2027.webp", card: "festival-art/time-warp-2027.webp", width: 168, height: 168,
-    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Klaudia_Gawlas_Time_Warp_Mannheim_2017.jpg",
-    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Klaudia_Gawlas_Time_Warp_Mannheim_2017.jpg",
-    credit: "Klaudia Gawlas under the beams at Time Warp Mannheim 2017. Photo by MariaMarriage, Wikimedia Commons", retrieved: "2026-11-15",
-    license: "CC BY-SA 4.0. Replaces the official-site slider image, whose reuse was never granted (Jake 2026-11-15).",
-    author: "Thommy Mardo / MariaMarriage", licenseId: "CC-BY-SA-4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", changes: "Cropped",
-  },
-  "sonar-2027": {
-    tile: "festival-art/tiles/sonar-2027.webp", card: "festival-art/sonar-2027.webp", width: 168, height: 168,
-    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:S%C3%B3nar_by_Day_2016.jpg",
-    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ee/S%C3%B3nar_by_Day_2016.jpg",
-    credit: "SonarVillage stage at Sónar by Day 2016, Barcelona. Photo by Javier Tles (uploaded by Nachetere), Wikimedia Commons", retrieved: "2026-11-14",
-    license: "CC BY-SA 4.0. The official Sónar site serves no event photo, only logo and banner art (checked 2026-11-14).",
-    author: "Javier Tles / Nachetere", licenseId: "CC-BY-SA-4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", changes: "Cropped",
-  },
   "ozora-2027": {
     tile: "festival-art/tiles/ozora-2027.webp", card: "festival-art/ozora-2027.webp", width: 168, height: 168,
     kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Solar_Field_(223948909).jpeg",

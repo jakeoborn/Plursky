@@ -34,6 +34,9 @@ const FALLBACK = {
   "day-zero-tulum-2027": "no reuse-cleared photo (Commons none, site has no press kit); letter tile until one exists",
   // Commons author (Lucas Gavi) and embedded EXIF author (Rafael Deprost) disagree; no owner guessed.
   "tomorrowland-winter-2027": "Commons author and EXIF author conflict; letter tile until resolved",
+  // Jake 2026-11-15: uploader licensed as own work but the description names another photographer.
+  "time-warp-2027": "Commons licensor is not the named photographer; letter tile until an author is confirmed",
+  "sonar-2027": "Commons licensor is not the named photographer; letter tile until an author is confirmed",
 };
 // Sat Oct 17, 4 pm ET: III Points is live, so all three chip kinds are on the page.
 const AT = "2026-10-17T20:00:00Z";
