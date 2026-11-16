@@ -814,6 +814,35 @@ var FESTIVALS_REGISTRY = [{
   region: "Europe"
 }, {
   config: {
+    id: "edc-lv-2027",
+    officialEvent: {
+      website: "https://lasvegas.edc.com/",
+      tickets: "https://edclasvegas.frontgatetickets.com/",
+      observedAt: "2026-11-16"
+    },
+    name: "EDC Las Vegas 2027",
+    shortName: "EDC Las Vegas",
+    brand: "EDC",
+    tagline: "Two weekends at Las Vegas Motor Speedway",
+    location: "Las Vegas Motor Speedway · Las Vegas, NV",
+    locationShort: "Las Vegas Motor Speedway",
+    dates: "May 14–16 & 21–23, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://lasvegas.edc.com/",
+        observedAt: "2026-11-16"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#ec4899",
+  emoji: "🌼",
+  region: "North America"
+}, {
+  config: {
     id: "tomorrowland-brasil-2027",
     officialEvent: {
       website: "https://brasil.tomorrowland.com/",
