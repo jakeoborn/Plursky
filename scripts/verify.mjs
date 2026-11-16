@@ -3669,6 +3669,24 @@ for (const [label, file] of [
   }
 }
 
+// ── 1z-b8a2. Public artist pages (SPEC-206 B) ─────────────────────────────
+// artists/ is generated from data/artists/careers.json: --check fails on a
+// stale page, an orphan or a stale sitemap-artists.xml, and the gate holds
+// the thin-content rule, every billing as a row, the snapshot labels, the
+// banned words and the photo-licence rule, each against a mutation.
+{
+  console.log("▸ Artist pages gate — one page per qualifying artist, every billing, no unlicensed photo");
+  try {
+    execFileSync(process.execPath, ["scripts/gen-artist-pages.mjs", "--check"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    const out = execFileSync(process.execPath, ["scripts/test-artist-pages.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist pages failed${detail ? ` — ${detail.split("\n").slice(0, 6).join(" | ")}` : ""}`);
+  }
+}
+
 // ── 1z-b8b. Official embeds on festival pages ────────────────────────────
 // Watch & listen shows only the festival's OWN posts: the official site links
 // the account, the platform names that account as the author, the post is
