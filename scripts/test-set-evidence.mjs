@@ -17,7 +17,8 @@
 //   8. Calibrate stages: 30 m fixes inside the venue, two taps 10+ min apart
 //      within 30 m, counted only when every stage with a set is placed, never
 //      over a measured stage; a saved set that is over with no evidence is
-//      listed (the screens say "No record", never "Missed").
+//      listed (the screens say "No record", never "Missed"). An art car is
+//      never calibrated; its "Still here" is a hand mark with no fix.
 import vm from "node:vm";
 import { readFileSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -241,6 +242,22 @@ async function runCalib(S) {
   const rows = S.setReviewRows(nr);
   check(rows.length === 1 && rows[0].a.id === "n1" && rows[0].ev.length === 0 && rows[0].verdict === null, "a saved set that is over with no evidence is listed, with no verdict");
   check(S.setReviewRows({ ...futureCfg, id: "nr-future" }).length === 0, "a saved set still to come is not listed");
+  // Art car (Jake 2026-11-15): never in calibration; its "Still here" is a
+  // hand mark with no fix, only while the festival is on.
+  const car = { ...c, id: "car-fest" };
+  const carStages = [...stages.slice(0, 2), { id: "beatbox-art-car", name: "Beatbox Art Car" }];
+  const carActs = [...acts, { id: "x3", name: "Car Act", day: 1, stage: "beatbox-art-car", start: "20:00", end: "21:00" }];
+  S._DATA_SETS[car.id] = { config: car, artists: carActs, stages: carStages };
+  check(S.stageCalibrationStatus(car).needed === 2 && !S.stageCalibrationStatus(car).stages.some(x => x.id === "beatbox-art-car"), "the art car is never offered for calibration");
+  ["a", "b"].forEach((st, i) => { const lat = 30.2650 + i * 0.004; S.calibrateStageTap(car, st, { lat, lng: -97.77, accuracy: 10, timestamp: T0 }, T0); S.calibrateStageTap(car, st, { lat, lng: -97.77, accuracy: 10, timestamp: T0 + 10 * M }, T0 + 10 * M); });
+  check(S.setTrackEligibility(car, T0) === "live", "the two fixed stages are enough: the art car does not hold times back");
+  const h = S.setTrackStillHereHand(car, carActs[2], T0 + 20 * M);
+  const hp = S.getSetTapPoints(car.id)["beatbox-art-car"] || [];
+  check(h.status === "hand" && hp.length === 1 && hp[0].via === "hand", `an art-car "Still here" is a hand mark (${h.status})`);
+  check(!/lat|lng|accuracy/.test(JSON.stringify(JSON.parse(S.__store.plursky_set_taps_v1)[car.id])), "a hand mark stores no coordinate");
+  S._festivalPhase = () => "ended";
+  check(S.setTrackStillHereHand(car, carActs[2], T0 + 90 * M).status === "not-live" && (S.getSetTapPoints(car.id)["beatbox-art-car"] || []).length === 1, "after the festival, a hand mark notes nothing");
+  S._festivalPhase = () => "live";
   const src = readFileSync(join(ROOT, "chrome.jsx"), "utf8");
   check(/: "No record";/.test(src) && !/["'>]Missed["'<]/.test(src), "the screens say \"No record\", never \"Missed\"");
   return { checks, failed, fails };
@@ -268,6 +285,8 @@ const MUT = [
   ["chrome", "<= STAGE_CALIB.agreeM", "<= 1e9"],
   ["chrome", "if (!_calibOnSite(cfg, fix))", "if (false)"],
   ["chrome", "need.some(id => !anchors[id])", "false"],
+  ["chrome", ".filter(st => !_stageIsMobile(st.id, stages));", ";"],
+  ["chrome", 'if (phase !== "live") return {\n    status: "not-live"\n  };\n  _recordSetTap(cfg.id, nowMs, a.stage, true);', '_recordSetTap(cfg.id, nowMs, a.stage, true);'],
   ["data", "if (!cfg || !cfg.id || typeof stageCalibrationAnchors !== \"function\") return measured;", "return measured;"],
   ["chrome", "if (!manual && !ev.length && !attended.has(a.id) && !savedOver) continue;", "if (!manual && !ev.length && !attended.has(a.id)) continue;"],
 ];

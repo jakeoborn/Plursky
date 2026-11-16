@@ -1442,14 +1442,14 @@ function getSetTapPoints(festivalId) {
   const out = {};
   for (const t of (_readJsonStore(SET_TAP_STORE_KEY)[festivalId] || [])) {
     if (!t || typeof t.ms !== "number" || t.stageId == null) continue;
-    (out[t.stageId] = out[t.stageId] || []).push({ from: t.ms, to: t.ms, src: "photo", via: "tap" });
+    (out[t.stageId] = out[t.stageId] || []).push({ from: t.ms, to: t.ms, src: "photo", via: t.hand ? "hand" : "tap" });
   }
   return out;
 }
-function _recordSetTap(festivalId, ms, stageId) {
+function _recordSetTap(festivalId, ms, stageId, hand = false) {
   const all = _readJsonStore(SET_TAP_STORE_KEY);
   const list = Array.isArray(all[festivalId]) ? all[festivalId] : [];
-  if (!list.some(t => t.ms === ms && t.stageId === stageId)) list.push({ ms, stageId });
+  if (!list.some(t => t.ms === ms && t.stageId === stageId)) list.push(hand ? { ms, stageId, hand: true } : { ms, stageId });
   all[festivalId] = list;
   try { localStorage.setItem(SET_TAP_STORE_KEY, JSON.stringify(all)); } catch { return false; }
   try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
@@ -1470,6 +1470,15 @@ async function setTrackStillHere(cfg = window.FESTIVAL_CONFIG) {
   const ms = typeof fix.timestamp === "number" ? fix.timestamp : now;
   _recordSetTap(cfg.id, ms, g.stageId);
   return { status: "trusted", stageId: g.stageId, ms };
+}
+// "Still here" at an art car: no fix is read (a moving stage has no position
+// to match), so the tap is the user's own mark at that stage, labelled as one.
+function setTrackStillHereHand(cfg, a, nowMs = Date.now()) {
+  if (!cfg || !cfg.id || !a || !a.stage) return { status: "none" };
+  const phase = typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, nowMs) : "upcoming";
+  if (phase !== "live") return { status: "not-live" };
+  _recordSetTap(cfg.id, nowMs, a.stage, true);
+  return { status: "hand", stageId: a.stage, ms: nowMs };
 }
 // The user's own answer for one set, or null. "absent" means "I was not there".
 function getSetManual(festivalId, artistId) {
@@ -1527,15 +1536,23 @@ function _writeCalib(festivalId, e) {
   try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
   return true;
 }
+// An art car moves, so it has no fixed position to calibrate or to match a
+// fix against. Its sets take a hand "Still here" mark and a correction only
+// (Jake 2026-11-15).
+function _stageIsMobile(stageId, stages) {
+  const st = (stages || []).find(x => x && x.id === stageId);
+  return /art[- ]car/i.test(String(stageId || "")) || !!(st && /art[- ]car/i.test(st.name || ""));
+}
 // Stages that host a set in this festival's lineup (all stages when the
-// lineup has no stage yet). These are the ones a calibration must cover.
+// lineup has no stage yet), minus art cars. These are the ones a calibration
+// must cover.
 function _calibStages(cfg) {
   const ds = (_attendedDataSets()[cfg.id]) || {};
   const active = window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id === cfg.id;
   const stages = ds.stages || (active ? window.STAGES : null) || [];
   const artists = ds.artists || (active ? window.ARTISTS : null) || [];
   const used = new Set(artists.map(a => a && a.stage).filter(Boolean));
-  return used.size ? stages.filter(st => used.has(st.id)) : stages;
+  return (used.size ? stages.filter(st => used.has(st.id)) : stages).filter(st => !_stageIsMobile(st.id, stages));
 }
 // The calibrated stages, as anchors, for stages without a measured one. Empty
 // until every stage with a set has a position (measured or calibrated).
@@ -2715,7 +2732,7 @@ function _setClock(ms, cfg) {
 function _savedSetIds(festivalId) {
   try { const v = JSON.parse(localStorage.getItem(`${festivalId}_saved_v1`) || "[]"); return Array.isArray(v) ? v : []; } catch { return []; }
 }
-const _SET_EVIDENCE_WORD = { gps: "Set tracking", checkin: "Check-in", photo: "Photo", tap: "Still here tap" };
+const _SET_EVIDENCE_WORD = { gps: "Set tracking", checkin: "Check-in", photo: "Photo", tap: "Still here tap", hand: "Still here · your mark" };
 // The sets worth reviewing: anything with evidence at its stage in its window,
 // a correction, or a set you marked as caught. Time order.
 function setReviewRows(cfg = window.FESTIVAL_CONFIG) {
@@ -2862,7 +2879,10 @@ function SetAttendanceRow({ a }) {
   }, []);
   const cfg = window.FESTIVAL_CONFIG;
   if (!a || !cfg || !cfg.id || !a.stage) return null;
-  const elig = setTrackEligibility(cfg, Date.now());
+  const stages = ((_attendedDataSets()[cfg.id] || {}).stages) || window.STAGES || [];
+  const mobile = _stageIsMobile(a.stage, stages);
+  const phase = typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, Date.now()) : "upcoming";
+  const elig = mobile ? (phase === "live" || phase === "ended" ? phase : "not-live") : setTrackEligibility(cfg, Date.now());
   if (elig !== "live" && elig !== "ended") return null;
   const live = elig === "live" && typeof isSetLive === "function" && isSetLive(a);
   const v = setTrackVerdict(a, cfg);
@@ -2873,8 +2893,8 @@ function SetAttendanceRow({ a }) {
   if (!live && !v && !manual && !started) return null;
   const onTap = async () => {
     setTap("busy");
-    const r = await setTrackStillHere(cfg);
-    setTap(r.status === "trusted" ? (r.stageId === a.stage ? "here" : "other") : r.status);
+    const r = mobile ? setTrackStillHereHand(cfg, a) : await setTrackStillHere(cfg);
+    setTap(r.status === "trusted" || r.status === "hand" ? (r.stageId === a.stage ? "here" : "other") : r.status);
   };
   const note = tap === "here" ? "Noted: you're here."
     : tap === "other" ? "Noted, at a different stage than this set."

@@ -1800,15 +1800,19 @@ function getSetTapPoints(festivalId) {
       from: t.ms,
       to: t.ms,
       src: "photo",
-      via: "tap"
+      via: t.hand ? "hand" : "tap"
     });
   }
   return out;
 }
-function _recordSetTap(festivalId, ms, stageId) {
+function _recordSetTap(festivalId, ms, stageId, hand = false) {
   var all = _readJsonStore(SET_TAP_STORE_KEY);
   var list = Array.isArray(all[festivalId]) ? all[festivalId] : [];
-  if (!list.some(t => t.ms === ms && t.stageId === stageId)) list.push({
+  if (!list.some(t => t.ms === ms && t.stageId === stageId)) list.push(hand ? {
+    ms,
+    stageId,
+    hand: true
+  } : {
     ms,
     stageId
   });
@@ -1845,6 +1849,23 @@ async function setTrackStillHere(cfg = window.FESTIVAL_CONFIG) {
     status: "trusted",
     stageId: g.stageId,
     ms
+  };
+}
+function setTrackStillHereHand(cfg, a, nowMs = Date.now()) {
+  if (!cfg || !cfg.id || !a || !a.stage) return {
+    status: "none"
+  };
+  var phase = typeof _festivalPhase === "function" ? _festivalPhase({
+    config: cfg
+  }, nowMs) : "upcoming";
+  if (phase !== "live") return {
+    status: "not-live"
+  };
+  _recordSetTap(cfg.id, nowMs, a.stage, true);
+  return {
+    status: "hand",
+    stageId: a.stage,
+    ms: nowMs
   };
 }
 function getSetManual(festivalId, artistId) {
@@ -1925,13 +1946,17 @@ function _writeCalib(festivalId, e) {
   } catch {}
   return true;
 }
+function _stageIsMobile(stageId, stages) {
+  var st = (stages || []).find(x => x && x.id === stageId);
+  return /art[- ]car/i.test(String(stageId || "")) || !!(st && /art[- ]car/i.test(st.name || ""));
+}
 function _calibStages(cfg) {
   var ds = _attendedDataSets()[cfg.id] || {};
   var active = window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id === cfg.id;
   var stages = ds.stages || (active ? window.STAGES : null) || [];
   var artists = ds.artists || (active ? window.ARTISTS : null) || [];
   var used = new Set(artists.map(a => a && a.stage).filter(Boolean));
-  return used.size ? stages.filter(st => used.has(st.id)) : stages;
+  return (used.size ? stages.filter(st => used.has(st.id)) : stages).filter(st => !_stageIsMobile(st.id, stages));
 }
 function stageCalibrationAnchors(cfg, measuredIds = new Set()) {
   if (!cfg || !cfg.id) return [];
@@ -3650,7 +3675,8 @@ var _SET_EVIDENCE_WORD = {
   gps: "Set tracking",
   checkin: "Check-in",
   photo: "Photo",
-  tap: "Still here tap"
+  tap: "Still here tap",
+  hand: "Still here · your mark"
 };
 function setReviewRows(cfg = window.FESTIVAL_CONFIG) {
   if (!cfg || !cfg.id) return [];
@@ -3875,7 +3901,12 @@ function SetAttendanceRow({
   }, []);
   var cfg = window.FESTIVAL_CONFIG;
   if (!a || !cfg || !cfg.id || !a.stage) return null;
-  var elig = setTrackEligibility(cfg, Date.now());
+  var stages = (_attendedDataSets()[cfg.id] || {}).stages || window.STAGES || [];
+  var mobile = _stageIsMobile(a.stage, stages);
+  var phase = typeof _festivalPhase === "function" ? _festivalPhase({
+    config: cfg
+  }, Date.now()) : "upcoming";
+  var elig = mobile ? phase === "live" || phase === "ended" ? phase : "not-live" : setTrackEligibility(cfg, Date.now());
   if (elig !== "live" && elig !== "ended") return null;
   var live = elig === "live" && typeof isSetLive === "function" && isSetLive(a);
   var v = setTrackVerdict(a, cfg);
@@ -3885,8 +3916,8 @@ function SetAttendanceRow({
   if (!live && !v && !manual && !started) return null;
   var onTap = async () => {
     setTap("busy");
-    var r = await setTrackStillHere(cfg);
-    setTap(r.status === "trusted" ? r.stageId === a.stage ? "here" : "other" : r.status);
+    var r = mobile ? setTrackStillHereHand(cfg, a) : await setTrackStillHere(cfg);
+    setTap(r.status === "trusted" || r.status === "hand" ? r.stageId === a.stage ? "here" : "other" : r.status);
   };
   var note = tap === "here" ? "Noted: you're here." : tap === "other" ? "Noted, at a different stage than this set." : tap === "denied" ? "Location is off for Plursky, so nothing was noted." : tap && tap !== "busy" ? "Couldn't place you at a stage, so nothing was noted." : null;
   return React.createElement("div", {
