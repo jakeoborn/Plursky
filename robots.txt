@@ -9,3 +9,4 @@ Disallow: /share.html
 
 Sitemap: https://plursky.com/sitemap.xml
 Sitemap: https://plursky.com/sitemap-artists.xml
+Sitemap: https://plursky.com/sitemap-genres.xml
