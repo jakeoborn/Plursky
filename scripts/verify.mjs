@@ -3771,6 +3771,23 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// ── 1z-b8e. Genre hub pages (SPEC-206 A) ─────────────────────────────────
+// genres/ is generated from the EDC Las Vegas 2026 lineup's own genre tags
+// (the only festival ruled in): --check fails on a stale page, an orphan or a
+// stale sitemap-genres.xml, and the gate holds the allowlist, exact act lists
+// and the "Checked on" stamp, each against a mutation.
+{
+  console.log("▸ Genre pages gate — EDC only, own tags only, nothing guessed");
+  try {
+    execFileSync(process.execPath, ["scripts/gen-genre-pages.mjs", "--check"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    const out = execFileSync(process.execPath, ["scripts/test-genre-pages.mjs"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`genre pages failed${detail ? ` — ${detail.split("\n").slice(0, 6).join(" | ")}` : ""}`);
+  }
+}
+
 // ── 1z-b9. Shell portability ──────────────────────────────────────────────
 // Every push in this repo goes through scripts/verify-and-push.sh, and that
 // wrapper shipped with `#!/bin/zsh` until #211. On a box without zsh the kernel
