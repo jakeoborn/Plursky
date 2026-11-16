@@ -56,7 +56,9 @@ const cfgOf = id => REG.find(e => e.config.id === id)?.config || {};
 const stampOf = ids => ids.map(id => checkedOn(cfgOf(id))).filter(Boolean).sort().pop() || null;
 const stampHtml = d => d ? `  <p class="checked">Checked on <time datetime="${d}">${d}</time> against the sources on each festival's page.</p>\n` : '';
 
-const NOTE = `Genres here are Plursky's own tags on the ${GENRE_FESTIVALS.map(id => esc(cfgOf(id).name)).join(', ')} lineup. Other festivals are not tagged yet, so they are not counted.`;
+// Other data sets DO carry genre strings; they are left out because their
+// genre source is not recorded (Instinct #481 review), so never say "not tagged".
+const NOTE = `Genres here are Plursky's own tags on the ${GENRE_FESTIVALS.map(id => esc(cfgOf(id).name)).join(', ')} lineup. Only ${GENRE_FESTIVALS.map(id => esc(cfgOf(id).name)).join(', ')} is included; genre tags for other festivals have not been source-verified for these pages.`;
 const CSS = `<style>
   :root { color-scheme:dark; --paper:#151C1D; --paper-2:#1E2829; --ink:#F2F3EB; --text-2:#B9C4BE; --text-3:#A6B4AF; --line:rgba(242,243,235,.15); --signal:#88D7C8; --flare:#FFC545;
           --f-ui:Sora,-apple-system,BlinkMacSystemFont,'Helvetica Neue',system-ui,sans-serif; }

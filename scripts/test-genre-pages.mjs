@@ -45,6 +45,10 @@ function checkPage(k, html) {
   for (const n of others) if (rank.includes(`>${n}<`)) { out.push(`${k}: ${n} ranked, but only ${ALLOW.join(', ')} is ruled in`); break; }
   const s = html.match(/<p class="checked">Checked on <time datetime="([^"]+)">/);
   if (!s) out.push(`${k}: no "Checked on" stamp`); else if (s[1] !== stamp) out.push(`${k}: "Checked on ${s[1]}", the newest recorded read is ${stamp}`);
+  // Other data sets carry genre strings (excluded only for missing provenance),
+  // so a page may never call them untagged, and must say why they are out.
+  if (/not tagged/i.test(html)) out.push(`${k}: says other festivals are "not tagged" (they carry genre strings; their source is not recorded)`);
+  if (!html.includes('have not been source-verified for these pages')) out.push(`${k}: missing the source-verification note`);
   return out;
 }
 
@@ -54,6 +58,7 @@ for (const k of dirs) if (!want.has(k)) fail(`${k}: a page for a genre no allowl
 for (const k of dirs) { const p = checkPage(k, readFileSync(join(DIR, k, 'index.html'), 'utf8')); if (p.length) p.forEach(fail); else ok(); }
 const idx = readFileSync(join(DIR, 'index.html'), 'utf8');
 if (!idx.includes(`datetime="${stamp}"`)) fail('genres/ index: stamp is not the newest recorded read'); else ok();
+if (/not tagged/i.test(idx) || !idx.includes('have not been source-verified for these pages')) fail('genres/ index: the other-festivals note is missing or says "not tagged"'); else ok();
 const sm = existsSync(join(ROOT, 'sitemap-genres.xml')) ? readFileSync(join(ROOT, 'sitemap-genres.xml'), 'utf8') : '';
 const locs = new Set([...sm.matchAll(/<loc>https:\/\/plursky\.com\/genres\/([^<]*)<\/loc>/g)].map(m => m[1].replace(/\/$/, '')));
 if (!(locs.has('') && locs.size === dirs.size + 1 && [...dirs].every(d => locs.has(d)))) fail(`sitemap-genres.xml lists ${locs.size} URLs for ${dirs.size} pages + the index`); else ok();
@@ -65,6 +70,7 @@ const mutants = [
   ['a tagged act dropped', h => h.replace(/\n      <li>Darude<\/li>/, '')],
   ['a festival outside the ruling ranked', h => h.replace('<ol class="rank">', `<ol class="rank">\n      <li><a href="/f/x/">${others[0]}</a> 3 acts</li>`)],
   ['the stamp moved past the last read', h => h.replace(/(<p class="checked">Checked on <time datetime=")[^"]+/, '$12099-01-01')],
+  ['the old "not tagged yet" sentence back', h => h.replace(/Only [^<]*? is included; genre tags for other festivals have not been source-verified for these pages\./g, 'Other festivals are not tagged yet, so they are not counted.')],
   ['the stamp dropped', h => h.replace(/  <p class="checked">[^\n]*\n/, '')],
 ];
 let caught = 0;
