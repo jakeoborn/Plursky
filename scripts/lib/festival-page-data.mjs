@@ -118,8 +118,10 @@ export const editionHours = cfg => (cfg && hoursMatchEdition(cfg.hours, cfg.date
 const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
 export function checkedOn(cfg) {
   if (!cfg) return null;
-  // Only a source the page lists (it has a link) counts, so "against the
-  // sources listed below" is always true.
+  // Only a source the page lists (it has a link) counts, so the stamp's date
+  // is always the read date printed on one of the page's Sources rows. It is
+  // the NEWEST read, so the page says "Sources last checked on", never that
+  // every source was checked that day.
   const site = cfg.officialEvent && cfg.officialEvent.website ? cfg.officialEvent : null;
   const reads = [site, cfg.lineupSource, cfg.scheduleSource, cfg.mapSource, editionHours(cfg)]
     .filter(s => s && (s.url || s.website)).map(s => s.observedAt).filter(d => ISO_DAY.test(String(d || '')));
