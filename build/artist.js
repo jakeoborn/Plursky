@@ -1079,14 +1079,6 @@ function PyroStarburst({
     }
   }));
 }
-function _licenseLabel(id) {
-  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/-DE$/, " DE").replace(/^(Public|Press)-/, "$1 ");
-}
-var _creditLink = {
-  color: "inherit",
-  textDecoration: "underline",
-  textUnderlineOffset: 2
-};
 function ArtistScreen({
   state,
   setState
@@ -1615,27 +1607,20 @@ function ArtistScreen({
       right: 18,
       zIndex: 3
     }
-  }, heroNameInner(true))), heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement("div", {
+  }, heroNameInner(true))), heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement(PhotoCredit, {
     "data-artist-photo-credit": "1",
-    "aria-label": "Photo credit: " + heroCacheRec.author + ", " + _licenseLabel(heroCacheRec.license) + ", cropped",
     style: {
       padding: "8px 18px 0",
-      fontSize: "var(--fs-label)",
-      lineHeight: "16px",
-      color: "var(--text-3)",
       whiteSpace: "nowrap"
+    },
+    credit: {
+      author: heroCacheRec.author,
+      sourceUrl: heroCacheRec.sourceUrl,
+      license: heroCacheRec.license,
+      licenseUrl: heroCacheRec.licenseUrl,
+      changes: "Cropped"
     }
-  }, React.createElement("a", {
-    href: heroCacheRec.sourceUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: _creditLink
-  }, heroCacheRec.author), " · ", React.createElement("a", {
-    href: heroCacheRec.licenseUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: _creditLink
-  }, _licenseLabel(heroCacheRec.license)), " · Cropped"), isB2B && React.createElement("div", {
+  }), isB2B && React.createElement("div", {
     style: {
       display: "flex",
       background: "var(--paper-2)",
