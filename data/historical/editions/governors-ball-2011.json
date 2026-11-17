@@ -1,0 +1,240 @@
+{
+ "id": "governors-ball-2011",
+ "festivalId": "governors-ball",
+ "name": "Governors Ball 2011",
+ "year": 2011,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2011-06-18",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "governors-ball-2011:big-apple-stage",
+   "name": "Big Apple Stage"
+  },
+  {
+   "id": "governors-ball-2011:gotham-stage",
+   "name": "Gotham Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "governors-ball-2011:reptar",
+   "name": "Reptar",
+   "key": "reptar",
+   "performers": [
+    "reptar"
+   ]
+  },
+  {
+   "id": "governors-ball-2011:das-racist",
+   "name": "Das Racist",
+   "key": "das-racist",
+   "performers": [
+    "das-racist"
+   ]
+  },
+  {
+   "id": "governors-ball-2011:miami-horror",
+   "name": "Miami Horror",
+   "key": "miami-horror",
+   "performers": [
+    "miami-horror"
+   ]
+  },
+  {
+   "id": "governors-ball-2011:neon-indian",
+   "name": "Neon Indian",
+   "key": "neon-indian",
+   "performers": [
+    "neon-indian"
+   ]
+  },
+  {
+   "id": "governors-ball-2011:empire-of-the-sun",
+   "name": "Empire Of The Sun",
+   "key": "empire-of-the-sun",
+   "performers": [
+    "empire-of-the-sun"
+   ]
+  },
+  {
+   "id": "governors-ball-2011:pretty-lights",
+   "name": "Pretty Lights",
+   "key": "pretty-lights",
+   "performers": [
+    "pretty-lights"
+   ]
+  },
+  {
+   "id": "governors-ball-2011:outasight",
+   "name": "Outasight",
+   "key": "outasight",
+   "performers": [
+    "outasight"
+   ]
+  },
+  {
+   "id": "governors-ball-2011:passion-pit-dj-set",
+   "name": "Passion Pit (DJ Set)",
+   "key": "passion-pit-dj-set",
+   "performers": [
+    "passion-pit-dj-set"
+   ]
+  },
+  {
+   "id": "governors-ball-2011:mac-miller",
+   "name": "Mac Miller",
+   "key": "mac-miller",
+   "performers": [
+    "mac-miller"
+   ]
+  },
+  {
+   "id": "governors-ball-2011:people-under-the-stairs",
+   "name": "People Under The Stairs",
+   "key": "people-under-the-stairs",
+   "performers": [
+    "people-under-the-stairs"
+   ]
+  },
+  {
+   "id": "governors-ball-2011:big-boi-of-outkast",
+   "name": "Big Boi (of Outkast)",
+   "key": "big-boi-of-outkast",
+   "performers": [
+    "big-boi-of-outkast"
+   ]
+  },
+  {
+   "id": "governors-ball-2011:girl-talk",
+   "name": "Girl Talk",
+   "key": "girl-talk",
+   "performers": [
+    "girl-talk"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "governors-ball-2011:d1:big-apple-stage:1250:reptar",
+   "artistId": "governors-ball-2011:reptar",
+   "day": 1,
+   "stageId": "governors-ball-2011:big-apple-stage",
+   "start": "12:50",
+   "end": "13:25"
+  },
+  {
+   "id": "governors-ball-2011:d1:big-apple-stage:1420:das-racist",
+   "artistId": "governors-ball-2011:das-racist",
+   "day": 1,
+   "stageId": "governors-ball-2011:big-apple-stage",
+   "start": "14:20",
+   "end": "15:05"
+  },
+  {
+   "id": "governors-ball-2011:d1:big-apple-stage:1600:miami-horror",
+   "artistId": "governors-ball-2011:miami-horror",
+   "day": 1,
+   "stageId": "governors-ball-2011:big-apple-stage",
+   "start": "16:00",
+   "end": "16:50"
+  },
+  {
+   "id": "governors-ball-2011:d1:big-apple-stage:1755:neon-indian",
+   "artistId": "governors-ball-2011:neon-indian",
+   "day": 1,
+   "stageId": "governors-ball-2011:big-apple-stage",
+   "start": "17:55",
+   "end": "18:50"
+  },
+  {
+   "id": "governors-ball-2011:d1:big-apple-stage:2000:empire-of-the-sun",
+   "artistId": "governors-ball-2011:empire-of-the-sun",
+   "day": 1,
+   "stageId": "governors-ball-2011:big-apple-stage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "governors-ball-2011:d1:big-apple-stage:2230:pretty-lights",
+   "artistId": "governors-ball-2011:pretty-lights",
+   "day": 1,
+   "stageId": "governors-ball-2011:big-apple-stage",
+   "start": "22:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "governors-ball-2011:d1:gotham-stage:1215:outasight",
+   "artistId": "governors-ball-2011:outasight",
+   "day": 1,
+   "stageId": "governors-ball-2011:gotham-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2011:d1:gotham-stage:1330:passion-pit-dj-set",
+   "artistId": "governors-ball-2011:passion-pit-dj-set",
+   "day": 1,
+   "stageId": "governors-ball-2011:gotham-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2011:d1:gotham-stage:1510:mac-miller",
+   "artistId": "governors-ball-2011:mac-miller",
+   "day": 1,
+   "stageId": "governors-ball-2011:gotham-stage",
+   "start": "15:10",
+   "end": "15:55"
+  },
+  {
+   "id": "governors-ball-2011:d1:gotham-stage:1655:people-under-the-stairs",
+   "artistId": "governors-ball-2011:people-under-the-stairs",
+   "day": 1,
+   "stageId": "governors-ball-2011:gotham-stage",
+   "start": "16:55",
+   "end": "17:50"
+  },
+  {
+   "id": "governors-ball-2011:d1:gotham-stage:1855:big-boi-of-outkast",
+   "artistId": "governors-ball-2011:big-boi-of-outkast",
+   "day": 1,
+   "stageId": "governors-ball-2011:gotham-stage",
+   "start": "18:55",
+   "end": "19:55"
+  },
+  {
+   "id": "governors-ball-2011:d1:gotham-stage:2105:girl-talk",
+   "artistId": "governors-ball-2011:girl-talk",
+   "day": 1,
+   "stageId": "governors-ball-2011:gotham-stage",
+   "start": "21:05",
+   "end": "22:25"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.governorsballmusicfestival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110622073558/http://governorsballmusicfestival.com:80/lineup/schedule/",
+    "captureTimestamp": "20110622073558",
+    "printed": "Saturday, June 18th, 2011",
+    "sha256": "f66b027bde47ccd35aa51fae0530a3addf8c54a472e065388384f05f0444b62d",
+    "rows": 12,
+    "format": "govball-wp",
+    "dateFrom": "the page's description"
+   }
+  ]
+ }
+}

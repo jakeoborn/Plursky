@@ -1,0 +1,64 @@
+{
+  "id": "governors-ball-2012",
+  "method": "official_sources",
+  "official": "https://www.governorsballmusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2012-06-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://governorsballmusicfestival.com:80/lineup/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20120629130309/http://governorsballmusicfestival.com:80/lineup/schedule/",
+          "captureTimestamp": "20120629130309",
+          "printed": "SATURDAY 6/23",
+          "sha256": "17e32edaa26779e7bb3f20272882fbd0a8afefc093283ba67726985cf05b7059",
+          "bytes": 34833,
+          "rows": 13,
+          "format": "govball-wp",
+          "dateFrom": "the day's heading",
+          "stages": 2,
+          "axis": "12:00-23:00",
+          "times": "each range printed with its own am or pm"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2012-06-24",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://governorsballmusicfestival.com:80/lineup/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20120629130309/http://governorsballmusicfestival.com:80/lineup/schedule/",
+          "captureTimestamp": "20120629130309",
+          "printed": "SUNDAY 6/24",
+          "sha256": "17e32edaa26779e7bb3f20272882fbd0a8afefc093283ba67726985cf05b7059",
+          "bytes": 34833,
+          "rows": 12,
+          "format": "govball-wp",
+          "dateFrom": "the day's heading",
+          "stages": 2,
+          "axis": "12:00-23:00",
+          "times": "each range printed with its own am or pm",
+          "misprints": [
+            "Turf War: 11:45 pm - 12:10 pm (the range does not run forward within the day)"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 2,
+      "stage": "HONDA STAGE",
+      "start": "",
+      "end": "",
+      "billing": "Turf War",
+      "reason": "the page prints a range that runs backwards or off its own hour axis, so its time cannot be confirmed",
+      "misprint": true
+    }
+  ],
+  "dropped": []
+}

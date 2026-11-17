@@ -2,7 +2,9 @@
 // Returns a list of problems; empty means valid. Used by the verify gate
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
-import { EDITIONS, KEPT_STAGES, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
+import { EDITIONS, KEPT_STAGES, PRINTED_LONG_SETS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
+import { printedDate as govBallDate } from "./govball-wp-schedule.mjs";
+import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
 import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, undatedOwnPost, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
@@ -174,7 +176,7 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     return p.concat(`${e.id}: a lineup page has no times, so it cannot make a complete_schedule`);
   if (lineupOnly && !e.artists?.length) p.push(`${e.id}: lineup_only with no artists`);
 
-  const stageIds = new Set(e.stages.map(s => s.id)), artistIds = new Set(e.artists.map(a => a.id));
+  const stageIds = new Set(e.stages.map(s => s.id)), artistIds = new Set(e.artists.map(a => a.id)), artistNames = new Map(e.artists.map(a => [a.id, a.name]));
   if (stageIds.size !== e.stages.length) p.push(`${e.id}: duplicate stage id`);
   if (artistIds.size !== e.artists.length) p.push(`${e.id}: duplicate artist id`);
   // Founder rulings: the Bonus Tracks stage, fireworks, silent disco, unnamed
@@ -225,7 +227,7 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     else {
       const a = dayMinutes(s.start, e.rolloverHour), b = dayMinutes(s.end, e.rolloverHour);
       if (b <= a) p.push(`${tag}: ${s.start}–${s.end} has no positive duration after overnight normalisation`);
-      if (b - a > 8 * 60) p.push(`${tag}: ${s.start}–${s.end} runs over 8 hours — a cross-day misread`);
+      if (b - a > 8 * 60 && !(PRINTED_LONG_SETS[e.id] || []).includes(`${artistNames.get(s.artistId)}|${s.start}|${s.end}`)) p.push(`${tag}: ${s.start}–${s.end} runs over 8 hours — a cross-day misread`);
     }
     {
       const k = `${s.day}|${s.stageId}|${s.start}|${s.artistId}`;
@@ -368,6 +370,15 @@ function officialSources(e, meta, p) {
         const [, m, d] = date.split("-").map(Number);
         const md = `${new Date(date + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", timeZone: "UTC" })} ${d}`;
         if (c.tabDate !== date || c.printed !== md) p.push(`${tag}: the page's day tab "${c.printed}" (${c.tabDate}) does not print ${date}`);
+      } else if (c.format === "tml-drupal") {
+        // Tomorrowland's 2013-2016 day page prints its weekday and date with
+        // no year in its title ("Saturday/ 27 July").
+        if (tmlTitleDate(c.printed, e.year) !== date || c.titleDate !== date) p.push(`${tag}: the page's title "${c.printed}" does not print ${date}`);
+      } else if (c.format === "govball-wp") {
+        // Governors Ball's 2011-2012 schedule prints each day's heading
+        // ("SATURDAY 6/23", no year); 2011's one day is the one the page's
+        // own description prints ("Saturday, June 18th, 2011").
+        if (govBallDate(c.printed, e.year) !== date || !/^the (day's heading|page's description)$/.test(c.dateFrom || "")) p.push(`${tag}: the page's day "${c.printed}" (${c.dateFrom}) does not print ${date}`);
       } else if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
       // Outside Lands' grid prints no am/pm: the day's meridiem comes from one
       // act's own page on the official site, which must print this day.

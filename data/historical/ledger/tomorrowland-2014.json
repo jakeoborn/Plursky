@@ -1,0 +1,274 @@
+{
+  "id": "tomorrowland-2014",
+  "method": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2014-07-18",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/friday-18-july-0",
+          "archivedUrl": "https://web.archive.org/web/20140728154609/http://www.tomorrowland.com:80/en/friday-18-july-0",
+          "captureTimestamp": "20140728154609",
+          "printed": "Friday/ 18 July",
+          "sha256": "52948c18463f6a45340f51193dca8ace03f811efdc7bffe01a4514287e16f797",
+          "bytes": 76781,
+          "rows": 147,
+          "format": "tml-drupal",
+          "titleDate": "2014-07-18",
+          "stages": 15,
+          "axis": "12:00-01:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2014-07-19",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/saturday-19-july-0",
+          "archivedUrl": "https://web.archive.org/web/20140729172046/http://www.tomorrowland.com:80/en/saturday-19-july-0",
+          "captureTimestamp": "20140729172046",
+          "printed": "Saturday/ 19 July",
+          "sha256": "5d99b5742dba2862c4f0297cb8fc0d7cfe22b5f48df65351809162b3c48c0be1",
+          "bytes": 73353,
+          "rows": 135,
+          "format": "tml-drupal",
+          "titleDate": "2014-07-19",
+          "stages": 15,
+          "axis": "12:00-01:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ],
+          "misprints": [
+            "Cooper: 13:00-14:30 (printed while \"Adam De Great\" (14:00-16:00) is already on)",
+            "Adam De Great: 14:00-16:00 (printed while \"Cooper\" (13:00-14:30) is still on)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2014-07-20",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/sunday-20-july-0",
+          "archivedUrl": "https://web.archive.org/web/20140729171847/http://www.tomorrowland.com:80/en/sunday-20-july-0",
+          "captureTimestamp": "20140729171847",
+          "printed": "Sunday/ 20 July",
+          "sha256": "e2ca09199902172d9228b261193c287f9afdef9997e645714d5bd9302e777e31",
+          "bytes": 70017,
+          "rows": 127,
+          "format": "tml-drupal",
+          "titleDate": "2014-07-20",
+          "stages": 15,
+          "axis": "12:00-00:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2014-07-25",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/friday-25-july-0",
+          "archivedUrl": "https://web.archive.org/web/20140803171339/http://www.tomorrowland.com:80/en/friday-25-july-0",
+          "captureTimestamp": "20140803171339",
+          "printed": "Friday/ 25 July",
+          "sha256": "0ae54fa41e1534b1840549076b445a57b7f2e8ca4536de872477cf9d29eca42b",
+          "bytes": 76261,
+          "rows": 145,
+          "format": "tml-drupal",
+          "titleDate": "2014-07-25",
+          "stages": 15,
+          "axis": "12:00-01:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ],
+          "misprints": [
+            "Joachim Garraud: 15:30-16:15 (printed while \"Carnage\" (16:00-17:00) is already on)",
+            "Carnage: 16:00-17:00 (printed while \"Joachim Garraud\" (15:30-16:15) is still on)",
+            "Felix Cartal b2b Autoerotique: 16:15-17:00 (printed while \"Carnage\" (16:00-17:00) is still on)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2014-07-26",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/saturday-26-july-0",
+          "archivedUrl": "https://web.archive.org/web/20140729172459/http://www.tomorrowland.com:80/en/saturday-26-july-0",
+          "captureTimestamp": "20140729172459",
+          "printed": "Saturday/ 26 July",
+          "sha256": "5fa1b24395db2eddd9e7c65735a576fc4dffe0aa0e669a2eab799e75486ccdeb",
+          "bytes": 73583,
+          "rows": 137,
+          "format": "tml-drupal",
+          "titleDate": "2014-07-26",
+          "stages": 15,
+          "axis": "12:00-01:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2014-07-27",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/sunday-27-july-0",
+          "archivedUrl": "https://web.archive.org/web/20140803171025/http://www.tomorrowland.com:80/en/sunday-27-july-0",
+          "captureTimestamp": "20140803171025",
+          "printed": "Sunday/ 27 July",
+          "sha256": "4a6dd9dbc3a25e1d2428a597821519725851240c2b446942efe5dd863d657626",
+          "bytes": 69405,
+          "rows": 128,
+          "format": "tml-drupal",
+          "titleDate": "2014-07-27",
+          "stages": 15,
+          "axis": "12:00-00:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Radio Modern",
+      "start": "13:00",
+      "end": "01:00",
+      "billing": "Radio Ultra Modern - Friday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Radio Modern",
+      "start": "13:00",
+      "end": "01:00",
+      "billing": "Radio Ultra Modern - Saturday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Lotto",
+      "start": "13:00",
+      "end": "14:30",
+      "billing": "Cooper",
+      "reason": "the page prints this range against its own drawing of the stage (two sets at once, or a slot of another length), so the time cannot be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "Lotto",
+      "start": "14:00",
+      "end": "16:00",
+      "billing": "Adam De Great",
+      "reason": "the page prints this range against its own drawing of the stage (two sets at once, or a slot of another length), so the time cannot be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 3,
+      "stage": "Radio Modern",
+      "start": "13:00",
+      "end": "00:00",
+      "billing": "Radio Ultra Modern - Sunday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    },
+    {
+      "day": 4,
+      "stage": "Radio Modern",
+      "start": "13:00",
+      "end": "01:00",
+      "billing": "Radio Ultra Modern - Friday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    },
+    {
+      "day": 4,
+      "stage": "DIM MAK Fight Club",
+      "start": "15:30",
+      "end": "16:15",
+      "billing": "Joachim Garraud",
+      "reason": "the page prints this range against its own drawing of the stage (two sets at once, or a slot of another length), so the time cannot be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 4,
+      "stage": "DIM MAK Fight Club",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "Carnage",
+      "reason": "the page prints this range against its own drawing of the stage (two sets at once, or a slot of another length), so the time cannot be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 4,
+      "stage": "DIM MAK Fight Club",
+      "start": "16:15",
+      "end": "17:00",
+      "billing": "Felix Cartal b2b Autoerotique",
+      "reason": "the page prints this range against its own drawing of the stage (two sets at once, or a slot of another length), so the time cannot be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 5,
+      "stage": "Radio Modern",
+      "start": "13:00",
+      "end": "01:00",
+      "billing": "Radio Ultra Modern - Saturday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    },
+    {
+      "day": 6,
+      "stage": "Radio Modern",
+      "start": "13:00",
+      "end": "00:00",
+      "billing": "Radio Ultra Modern - Sunday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,463 @@
+{
+ "id": "governors-ball-2012",
+ "festivalId": "governors-ball",
+ "name": "Governors Ball 2012",
+ "year": 2012,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2012-06-23",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2012-06-24",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "governors-ball-2012:hype-machine-stage",
+   "name": "HYPE MACHINE STAGE"
+  },
+  {
+   "id": "governors-ball-2012:honda-stage",
+   "name": "HONDA STAGE"
+  }
+ ],
+ "artists": [
+  {
+   "id": "governors-ball-2012:art-vs-science",
+   "name": "Art vs Science",
+   "key": "art-vs-science",
+   "performers": [
+    "art-vs-science"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:penguin-prison",
+   "name": "Penguin Prison",
+   "key": "penguin-prison",
+   "performers": [
+    "penguin-prison"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:santigold",
+   "name": "Santigold",
+   "key": "santigold",
+   "performers": [
+    "santigold"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:major-lazer",
+   "name": "Major Lazer",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:chromeo",
+   "name": "Chromeo",
+   "key": "chromeo",
+   "performers": [
+    "chromeo"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:passion-pit",
+   "name": "Passion Pit",
+   "key": "passion-pit",
+   "performers": [
+    "passion-pit"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:k-flay",
+   "name": "K.Flay",
+   "key": "k-flay",
+   "performers": [
+    "k-flay"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:walk-the-moon",
+   "name": "Walk The Moon",
+   "key": "walk-the-moon",
+   "performers": [
+    "walk-the-moon"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:big-gigantic",
+   "name": "Big Gigantic",
+   "key": "big-gigantic",
+   "performers": [
+    "big-gigantic"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:special-disco-version",
+   "name": "Special Disco Version",
+   "key": "special-disco-version",
+   "performers": [
+    "special-disco-version"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:atmosphere",
+   "name": "Atmosphere",
+   "key": "atmosphere",
+   "performers": [
+    "atmosphere"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:duck-sauce",
+   "name": "Duck Sauce",
+   "key": "duck-sauce",
+   "performers": [
+    "duck-sauce"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:kid-cudi",
+   "name": "Kid Cudi",
+   "key": "kid-cudi",
+   "performers": [
+    "kid-cudi"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:alberta-cross",
+   "name": "Alberta Cross",
+   "key": "alberta-cross",
+   "performers": [
+    "alberta-cross"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:freelance-whales",
+   "name": "Freelance Whales",
+   "key": "freelance-whales",
+   "performers": [
+    "freelance-whales"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:cults",
+   "name": "Cults",
+   "key": "cults",
+   "performers": [
+    "cults"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:built-to-spill",
+   "name": "Built to Spill",
+   "key": "built-to-spill",
+   "performers": [
+    "built-to-spill"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:fiona-apple",
+   "name": "Fiona Apple",
+   "key": "fiona-apple",
+   "performers": [
+    "fiona-apple"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:modest-mouse",
+   "name": "Modest Mouse",
+   "key": "modest-mouse",
+   "performers": [
+    "modest-mouse"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:the-jezabels",
+   "name": "The Jezabels",
+   "key": "the-jezabels",
+   "performers": [
+    "the-jezabels"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:phantogram",
+   "name": "Phantogram",
+   "key": "phantogram",
+   "performers": [
+    "phantogram"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:devendra-banhart",
+   "name": "Devendra Banhart",
+   "key": "devendra-banhart",
+   "performers": [
+    "devendra-banhart"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:cage-the-elephant",
+   "name": "Cage The Elephant",
+   "key": "cage-the-elephant",
+   "performers": [
+    "cage-the-elephant"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:explosions-in-the-sky",
+   "name": "Explosions In The Sky",
+   "key": "explosions-in-the-sky",
+   "performers": [
+    "explosions-in-the-sky"
+   ]
+  },
+  {
+   "id": "governors-ball-2012:beck",
+   "name": "Beck",
+   "key": "beck",
+   "performers": [
+    "beck"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "governors-ball-2012:d1:hype-machine-stage:1215:art-vs-science",
+   "artistId": "governors-ball-2012:art-vs-science",
+   "day": 1,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2012:d1:hype-machine-stage:1325:penguin-prison",
+   "artistId": "governors-ball-2012:penguin-prison",
+   "day": 1,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "13:25",
+   "end": "14:05"
+  },
+  {
+   "id": "governors-ball-2012:d1:hype-machine-stage:1500:santigold",
+   "artistId": "governors-ball-2012:santigold",
+   "day": 1,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "15:00",
+   "end": "15:40"
+  },
+  {
+   "id": "governors-ball-2012:d1:hype-machine-stage:1635:major-lazer",
+   "artistId": "governors-ball-2012:major-lazer",
+   "day": 1,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "16:35",
+   "end": "17:20"
+  },
+  {
+   "id": "governors-ball-2012:d1:hype-machine-stage:1820:chromeo",
+   "artistId": "governors-ball-2012:chromeo",
+   "day": 1,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "18:20",
+   "end": "19:20"
+  },
+  {
+   "id": "governors-ball-2012:d1:hype-machine-stage:2030:passion-pit",
+   "artistId": "governors-ball-2012:passion-pit",
+   "day": 1,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "governors-ball-2012:d1:honda-stage:1145:k-flay",
+   "artistId": "governors-ball-2012:k-flay",
+   "day": 1,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "11:45",
+   "end": "12:10"
+  },
+  {
+   "id": "governors-ball-2012:d1:honda-stage:1250:walk-the-moon",
+   "artistId": "governors-ball-2012:walk-the-moon",
+   "day": 1,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "12:50",
+   "end": "13:20"
+  },
+  {
+   "id": "governors-ball-2012:d1:honda-stage:1410:big-gigantic",
+   "artistId": "governors-ball-2012:big-gigantic",
+   "day": 1,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "14:10",
+   "end": "14:55"
+  },
+  {
+   "id": "governors-ball-2012:d1:honda-stage:1545:special-disco-version",
+   "artistId": "governors-ball-2012:special-disco-version",
+   "day": 1,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "15:45",
+   "end": "16:30"
+  },
+  {
+   "id": "governors-ball-2012:d1:honda-stage:1725:atmosphere",
+   "artistId": "governors-ball-2012:atmosphere",
+   "day": 1,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "17:25",
+   "end": "18:15"
+  },
+  {
+   "id": "governors-ball-2012:d1:honda-stage:1925:duck-sauce",
+   "artistId": "governors-ball-2012:duck-sauce",
+   "day": 1,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "19:25",
+   "end": "20:25"
+  },
+  {
+   "id": "governors-ball-2012:d1:honda-stage:2150:kid-cudi",
+   "artistId": "governors-ball-2012:kid-cudi",
+   "day": 1,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "21:50",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2012:d2:hype-machine-stage:1215:alberta-cross",
+   "artistId": "governors-ball-2012:alberta-cross",
+   "day": 2,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2012:d2:hype-machine-stage:1335:freelance-whales",
+   "artistId": "governors-ball-2012:freelance-whales",
+   "day": 2,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "13:35",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2012:d2:hype-machine-stage:1505:cults",
+   "artistId": "governors-ball-2012:cults",
+   "day": 2,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "15:05",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2012:d2:hype-machine-stage:1640:built-to-spill",
+   "artistId": "governors-ball-2012:built-to-spill",
+   "day": 2,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "16:40",
+   "end": "17:25"
+  },
+  {
+   "id": "governors-ball-2012:d2:hype-machine-stage:1820:fiona-apple",
+   "artistId": "governors-ball-2012:fiona-apple",
+   "day": 2,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "18:20",
+   "end": "19:20"
+  },
+  {
+   "id": "governors-ball-2012:d2:hype-machine-stage:2030:modest-mouse",
+   "artistId": "governors-ball-2012:modest-mouse",
+   "day": 2,
+   "stageId": "governors-ball-2012:hype-machine-stage",
+   "start": "20:30",
+   "end": "21:40"
+  },
+  {
+   "id": "governors-ball-2012:d2:honda-stage:1250:the-jezabels",
+   "artistId": "governors-ball-2012:the-jezabels",
+   "day": 2,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "12:50",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2012:d2:honda-stage:1420:phantogram",
+   "artistId": "governors-ball-2012:phantogram",
+   "day": 2,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "14:20",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2012:d2:honda-stage:1550:devendra-banhart",
+   "artistId": "governors-ball-2012:devendra-banhart",
+   "day": 2,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "15:50",
+   "end": "16:35"
+  },
+  {
+   "id": "governors-ball-2012:d2:honda-stage:1730:cage-the-elephant",
+   "artistId": "governors-ball-2012:cage-the-elephant",
+   "day": 2,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "17:30",
+   "end": "18:15"
+  },
+  {
+   "id": "governors-ball-2012:d2:honda-stage:1925:explosions-in-the-sky",
+   "artistId": "governors-ball-2012:explosions-in-the-sky",
+   "day": 2,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "19:25",
+   "end": "20:25"
+  },
+  {
+   "id": "governors-ball-2012:d2:honda-stage:2145:beck",
+   "artistId": "governors-ball-2012:beck",
+   "day": 2,
+   "stageId": "governors-ball-2012:honda-stage",
+   "start": "21:45",
+   "end": "23:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.governorsballmusicfestival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120629130309/http://governorsballmusicfestival.com:80/lineup/schedule/",
+    "captureTimestamp": "20120629130309",
+    "printed": "SATURDAY 6/23",
+    "sha256": "17e32edaa26779e7bb3f20272882fbd0a8afefc093283ba67726985cf05b7059",
+    "rows": 13,
+    "format": "govball-wp",
+    "dateFrom": "the day's heading"
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120629130309/http://governorsballmusicfestival.com:80/lineup/schedule/",
+    "captureTimestamp": "20120629130309",
+    "printed": "SUNDAY 6/24",
+    "sha256": "17e32edaa26779e7bb3f20272882fbd0a8afefc093283ba67726985cf05b7059",
+    "rows": 12,
+    "format": "govball-wp",
+    "dateFrom": "the day's heading"
+   }
+  ]
+ }
+}
