@@ -95,13 +95,15 @@ function OnbSchedulePreview() {
 
 // The real hero-card renderer, so onboarding shows the card a user keeps. With
 // none of their own photos yet, the act's ledger portrait stands in, on screen
-// only (_renderHeroPreview), so the story never shows an empty black card.
+// only (_renderHeroPreview), so the story never shows an empty black card. A
+// ledger portrait is a licensed photo, so its credit shows under the card, as
+// under the artist page's hero (PhotoCredit).
 function OnbCardPreview({ artists, count = 1 }) {
-  const [urls, setUrls] = React.useState([]);
+  const [cards, setCards] = React.useState({});
   React.useEffect(() => {
     let live = true; const made = [];
     (async () => {
-      for (const a of artists.slice(0, count)) {
+      for (const [i, a] of artists.slice(0, count).entries()) {
         let c = null;
         try { c = typeof _renderHeroPreview === "function" ? await _renderHeroPreview(a) : typeof _renderHeroCard === "function" ? await _renderHeroCard(a) : null; } catch {}
         if (!live || !c) continue;
@@ -109,7 +111,7 @@ function OnbCardPreview({ artists, count = 1 }) {
         if (!live || !blob) continue;
         const u = URL.createObjectURL(blob);
         made.push(u);
-        setUrls(prev => [...prev, u]);
+        setCards(prev => ({ ...prev, [i]: { url: u, credit: c._photoCredit || null } }));
       }
     })();
     return () => { live = false; made.forEach(u => { try { URL.revokeObjectURL(u); } catch {} }); };
@@ -117,8 +119,13 @@ function OnbCardPreview({ artists, count = 1 }) {
   return (
     <div style={{ display: "flex", justifyContent: "center", gap: 8 }}>
       {artists.slice(0, count).map((a, i) => (
-        <div key={a.id} style={{ width: count === 1 ? "72%" : "31%", aspectRatio: "4 / 5", borderRadius: 14, overflow: "hidden", background: "var(--paper-2)" }}>
-          {urls[i] && <img src={urls[i]} alt={`${a.name} set card`} style={{ width: "100%", height: "100%", display: "block" }} />}
+        <div key={a.id} style={{ width: count === 1 ? "72%" : "31%", minWidth: 0 }}>
+          <div style={{ aspectRatio: "4 / 5", borderRadius: 14, overflow: "hidden", background: "var(--paper-2)" }}>
+            {cards[i] && <img src={cards[i].url} alt={`${a.name} set card`} style={{ width: "100%", height: "100%", display: "block" }} />}
+          </div>
+          {cards[i]?.credit && typeof PhotoCredit === "function" && (
+            <PhotoCredit data-onb-photo-credit="1" credit={cards[i].credit} style={{ marginTop: 4, overflowWrap: "anywhere" }} />
+          )}
         </div>
       ))}
     </div>
@@ -1251,7 +1258,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v630",
+        version: "v635",
       }));
     } catch {}
   }
@@ -1282,7 +1289,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v630
+          Plursky · v635
         </div>
       </div>
     );
