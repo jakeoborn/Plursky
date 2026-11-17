@@ -185,6 +185,7 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     assetUrl: "https://upload.wikimedia.org/wikipedia/commons/8/86/Electric_Forest_%2843228932051%29.jpg",
     credit: "Electric Forest 2018, Rothbury, Michigan: the heart arch in the woods. Photo by FifthLegend, Wikimedia Commons", retrieved: "2026-11-15",
     license: "CC BY 2.0 (Flickr upload reviewed by FlickreviewR 2). Replaces the logo tile: the official site serves no festival photo (checked 2026-10-18).",
+    author: "FifthLegend", licenseId: "CC-BY-2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", changes: "Cropped",
   },
   "dwp-2026": {
     tile: "festival-art/tiles/dwp-2026.webp", card: "festival-art/dwp-2026.webp", width: 168, height: 168,
