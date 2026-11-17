@@ -1,5 +1,23 @@
 {
   "permissions": {
-    "deny": ["Agent(general-purpose)", "Agent(claude)"]
+    "deny": [
+      "Agent(general-purpose)",
+      "Agent(claude)",
+      "Bash(gh pr close:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/session-note.mjs\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
   }
 }

@@ -322,6 +322,12 @@ if (landed !== 1) {
   const cmtTpl = templateFingerprint(gen.replace('// ── Page template', '// ── Page template (comment edit)'));
   if (cmtTpl === realTpl) pass('a comment-only edit moves nothing');
   else fail('a comment-only edit MOVED the template fingerprint — 25 urls would be redated for nothing');
+  // A comment ABOVE the slice that quotes its anchors must not move the slice
+  // (2026-11-12: one did, and every festival <lastmod> moved).
+  const quoted = gen.replace("const OUT_DIR", "// the slice runs from `function place(` to `const rows = [];`\nconst OUT_DIR");
+  if (quoted === gen) fail('fixture: no OUT_DIR line to put the quoting comment above');
+  else if (templateFingerprint(quoted) === realTpl) pass('a comment quoting the slice anchors moves nothing');
+  else fail('a comment quoting the slice anchors MOVED the template fingerprint — the slice anchors are not line-anchored');
 }
 
 // The homepage, terms and privacy never pass through fingerprintInput at all —

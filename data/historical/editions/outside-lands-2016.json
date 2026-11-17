@@ -1,0 +1,1543 @@
+{
+ "id": "outside-lands-2016",
+ "festivalId": "outside-lands",
+ "name": "Outside Lands 2016",
+ "year": 2016,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-08-05",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2016-08-06",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2016-08-07",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "outside-lands-2016:lands-end",
+   "name": "Lands End"
+  },
+  {
+   "id": "outside-lands-2016:sutro",
+   "name": "Sutro"
+  },
+  {
+   "id": "outside-lands-2016:twin-peaks",
+   "name": "Twin Peaks"
+  },
+  {
+   "id": "outside-lands-2016:panhandle",
+   "name": "Panhandle"
+  },
+  {
+   "id": "outside-lands-2016:the-house-by-heineken",
+   "name": "The House by Heineken"
+  }
+ ],
+ "artists": [
+  {
+   "id": "outside-lands-2016:lany",
+   "name": "LANY",
+   "key": "lany",
+   "performers": [
+    "lany"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:ra-ra-riot",
+   "name": "RA RA RIOT",
+   "key": "ra-ra-riot",
+   "performers": [
+    "ra-ra-riot"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:st-lucia",
+   "name": "ST. LUCIA",
+   "key": "st-lucia",
+   "performers": [
+    "st-lucia"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:miike-snow",
+   "name": "MIIKE SNOW",
+   "key": "miike-snow",
+   "performers": [
+    "miike-snow"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:duran-duran",
+   "name": "DURAN DURAN",
+   "key": "duran-duran",
+   "performers": [
+    "duran-duran"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:lcd-soundsystem",
+   "name": "LCD SOUNDSYSTEM",
+   "key": "lcd-soundsystem",
+   "performers": [
+    "lcd-soundsystem"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:whitney",
+   "name": "WHITNEY",
+   "key": "whitney",
+   "performers": [
+    "whitney"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:caveman",
+   "name": "CAVEMAN",
+   "key": "caveman",
+   "performers": [
+    "caveman"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:wet",
+   "name": "WET",
+   "key": "wet",
+   "performers": [
+    "wet"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:foals",
+   "name": "FOALS",
+   "key": "foals",
+   "performers": [
+    "foals"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:the-claypool-lennon-delirium",
+   "name": "THE CLAYPOOL LENNON DELIRIUM",
+   "key": "the-claypool-lennon-delirium",
+   "performers": [
+    "the-claypool-lennon-delirium"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:nathaniel-rateliff-and-the-night-sweats",
+   "name": "NATHANIEL RATELIFF & THE NIGHT SWEATS",
+   "key": "nathaniel-rateliff-and-the-night-sweats",
+   "performers": [
+    "nathaniel-rateliff-and-the-night-sweats"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:beach-house",
+   "name": "BEACH HOUSE",
+   "key": "beach-house",
+   "performers": [
+    "beach-house"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:marian-hill",
+   "name": "MARIAN HILL",
+   "key": "marian-hill",
+   "performers": [
+    "marian-hill"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:jidenna",
+   "name": "JIDENNA",
+   "key": "jidenna",
+   "performers": [
+    "jidenna"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:polica",
+   "name": "POLIÇA",
+   "key": "polica",
+   "performers": [
+    "polica"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:thomas-jack",
+   "name": "THOMAS JACK",
+   "key": "thomas-jack",
+   "performers": [
+    "thomas-jack"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:grimes",
+   "name": "GRIMES",
+   "key": "grimes",
+   "performers": [
+    "grimes"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:j-cole",
+   "name": "J. COLE",
+   "key": "j-cole",
+   "performers": [
+    "j-cole"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:down-and-outlaws",
+   "name": "DOWN AND OUTLAWS",
+   "key": "down-and-outlaws",
+   "performers": [
+    "down-and-outlaws"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:moon-taxi",
+   "name": "MOON TAXI",
+   "key": "moon-taxi",
+   "performers": [
+    "moon-taxi"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:vulfpeck",
+   "name": "VULFPECK",
+   "key": "vulfpeck",
+   "performers": [
+    "vulfpeck"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:tokimonsta",
+   "name": "TOKIMONSTA",
+   "key": "tokimonsta",
+   "performers": [
+    "tokimonsta"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:lapsley",
+   "name": "LÅPSLEY",
+   "key": "lapsley",
+   "performers": [
+    "lapsley"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:hiatus-kaiyote",
+   "name": "HIATUS KAIYOTE",
+   "key": "hiatus-kaiyote",
+   "performers": [
+    "hiatus-kaiyote"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:make-it-funky-djs",
+   "name": "Make It Funky Djs",
+   "key": "make-it-funky-djs",
+   "performers": [
+    "make-it-funky-djs"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:219-boys",
+   "name": "219 Boys",
+   "key": "219-boys",
+   "performers": [
+    "219-boys"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:fdvm",
+   "name": "FDVM",
+   "key": "fdvm",
+   "performers": [
+    "fdvm"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:redlight",
+   "name": "Redlight",
+   "key": "redlight",
+   "performers": [
+    "redlight"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:pillowtalk",
+   "name": "PillowTalk",
+   "key": "pillowtalk",
+   "performers": [
+    "pillowtalk"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:lewis-del-mar",
+   "name": "LEWIS DEL MAR",
+   "key": "lewis-del-mar",
+   "performers": [
+    "lewis-del-mar"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:the-wombats",
+   "name": "THE WOMBATS",
+   "key": "the-wombats",
+   "performers": [
+    "the-wombats"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:years-and-years",
+   "name": "YEARS & YEARS",
+   "key": "years-and-years",
+   "performers": [
+    "years-and-years"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:big-grams-big-boi-phantogram",
+   "name": "BIG GRAMS (BIG BOI + PHANTOGRAM)",
+   "key": "big-grams-big-boi-phantogram",
+   "performers": [
+    "big-grams-big-boi-phantogram"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:air",
+   "name": "AIR",
+   "key": "air",
+   "performers": [
+    "air"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:radiohead",
+   "name": "RADIOHEAD",
+   "key": "radiohead",
+   "performers": [
+    "radiohead"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:julien-baker",
+   "name": "JULIEN BAKER",
+   "key": "julien-baker",
+   "performers": [
+    "julien-baker"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:rogue-wave",
+   "name": "ROGUE WAVE",
+   "key": "rogue-wave",
+   "performers": [
+    "rogue-wave"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:ibeyi",
+   "name": "IBEYI",
+   "key": "ibeyi",
+   "performers": [
+    "ibeyi"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:lord-huron",
+   "name": "LORD HURON",
+   "key": "lord-huron",
+   "performers": [
+    "lord-huron"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:the-last-shadow-puppets",
+   "name": "THE LAST SHADOW PUPPETS",
+   "key": "the-last-shadow-puppets",
+   "performers": [
+    "the-last-shadow-puppets"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:sufjan-stevens",
+   "name": "SUFJAN STEVENS",
+   "key": "sufjan-stevens",
+   "performers": [
+    "sufjan-stevens"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:fantastic-negrito",
+   "name": "FANTASTIC NEGRITO",
+   "key": "fantastic-negrito",
+   "performers": [
+    "fantastic-negrito"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:the-knocks",
+   "name": "THE KNOCKS",
+   "key": "the-knocks",
+   "performers": [
+    "the-knocks"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:vince-staples",
+   "name": "VINCE STAPLES",
+   "key": "vince-staples",
+   "performers": [
+    "vince-staples"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:jauz",
+   "name": "JAUZ",
+   "key": "jauz",
+   "performers": [
+    "jauz"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:halsey",
+   "name": "HALSEY",
+   "key": "halsey",
+   "performers": [
+    "halsey"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:zedd",
+   "name": "ZEDD",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:methyl-ethel",
+   "name": "METHYL ETHEL",
+   "key": "methyl-ethel",
+   "performers": [
+    "methyl-ethel"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:declan-mckenna",
+   "name": "DECLAN MCKENNA",
+   "key": "declan-mckenna",
+   "performers": [
+    "declan-mckenna"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:kevin-morby",
+   "name": "KEVIN MORBY",
+   "key": "kevin-morby",
+   "performers": [
+    "kevin-morby"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:con-brio",
+   "name": "CON BRIO",
+   "key": "con-brio",
+   "performers": [
+    "con-brio"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:peaches",
+   "name": "PEACHES",
+   "key": "peaches",
+   "performers": [
+    "peaches"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:anderson-paak-and-the-free-nationals",
+   "name": "ANDERSON .PAAK & THE FREE NATIONALS",
+   "key": "anderson-paak-and-the-free-nationals",
+   "performers": [
+    "anderson-paak-and-the-free-nationals"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:motion-potion",
+   "name": "Motion Potion",
+   "key": "motion-potion",
+   "performers": [
+    "motion-potion"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:w-haze",
+   "name": "W.Haze",
+   "key": "w-haze",
+   "performers": [
+    "w-haze"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:translucent",
+   "name": "Translucent",
+   "key": "translucent",
+   "performers": [
+    "translucent"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:purple-disco-machine",
+   "name": "Purple Disco Machine",
+   "key": "purple-disco-machine",
+   "performers": [
+    "purple-disco-machine"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:victor-calderone",
+   "name": "VICTOR CALDERONE",
+   "key": "victor-calderone",
+   "performers": [
+    "victor-calderone"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:e-40-and-warren-g",
+   "name": "E-40 & Warren G",
+   "key": "e-40-and-warren-g",
+   "performers": [
+    "e-40-and-warren-g"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:kamasi-washington",
+   "name": "KAMASI WASHINGTON",
+   "key": "kamasi-washington",
+   "performers": [
+    "kamasi-washington"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:oh-wonder",
+   "name": "OH WONDER",
+   "key": "oh-wonder",
+   "performers": [
+    "oh-wonder"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:the-muppets-dr-teeth-and-the-electric-mayhem",
+   "name": "THE MUPPETS’ DR. TEETH AND THE ELECTRIC MAYHEM",
+   "key": "the-muppets-dr-teeth-and-the-electric-mayhem",
+   "performers": [
+    "the-muppets-dr-teeth-and-the-electric-mayhem"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:third-eye-blind",
+   "name": "THIRD EYE BLIND",
+   "key": "third-eye-blind",
+   "performers": [
+    "third-eye-blind"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:chance-the-rapper",
+   "name": "CHANCE THE RAPPER",
+   "key": "chance-the-rapper",
+   "performers": [
+    "chance-the-rapper"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:major-lazer",
+   "name": "MAJOR LAZER",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:lionel-richie",
+   "name": "LIONEL RICHIE",
+   "key": "lionel-richie",
+   "performers": [
+    "lionel-richie"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:frances",
+   "name": "FRANCES",
+   "key": "frances",
+   "performers": [
+    "frances"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:the-oh-hellos",
+   "name": "THE OH HELLOS",
+   "key": "the-oh-hellos",
+   "performers": [
+    "the-oh-hellos"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:jack-garratt",
+   "name": "JACK GARRATT",
+   "key": "jack-garratt",
+   "performers": [
+    "jack-garratt"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:brandi-carlile",
+   "name": "BRANDI CARLILE",
+   "key": "brandi-carlile",
+   "performers": [
+    "brandi-carlile"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:jason-isbell",
+   "name": "JASON ISBELL",
+   "key": "jason-isbell",
+   "performers": [
+    "jason-isbell"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:ryan-adams-and-the-shining",
+   "name": "RYAN ADAMS AND THE SHINING",
+   "key": "ryan-adams-and-the-shining",
+   "performers": [
+    "ryan-adams-and-the-shining"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:natalia-lafourcade",
+   "name": "NATALIA LAFOURCADE",
+   "key": "natalia-lafourcade",
+   "performers": [
+    "natalia-lafourcade"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:snakehips",
+   "name": "SNAKEHIPS",
+   "key": "snakehips",
+   "performers": [
+    "snakehips"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:kehlani",
+   "name": "KEHLANI",
+   "key": "kehlani",
+   "performers": [
+    "kehlani"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:griz",
+   "name": "GRIZ",
+   "key": "griz",
+   "performers": [
+    "griz"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:miguel",
+   "name": "MIGUEL",
+   "key": "miguel",
+   "performers": [
+    "miguel"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:lana-del-rey",
+   "name": "LANA DEL REY",
+   "key": "lana-del-rey",
+   "performers": [
+    "lana-del-rey"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:heron-oblivion",
+   "name": "HERON OBLIVION",
+   "key": "heron-oblivion",
+   "performers": [
+    "heron-oblivion"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:cloves",
+   "name": "CLOVES",
+   "key": "cloves",
+   "performers": [
+    "cloves"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:h-los",
+   "name": "HÆLOS",
+   "key": "h-los",
+   "performers": [
+    "h-los"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:diiv",
+   "name": "DIIV",
+   "key": "diiv",
+   "performers": [
+    "diiv"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:rufus-du-sol",
+   "name": "RÜFÜS DU SOL",
+   "key": "rufus-du-sol",
+   "performers": [
+    "rufus-du-sol"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:lettuce",
+   "name": "LETTUCE",
+   "key": "lettuce",
+   "performers": [
+    "lettuce"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:grensta",
+   "name": "Grensta",
+   "key": "grensta",
+   "performers": [
+    "grensta"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:derek-hena",
+   "name": "Derek Hena",
+   "key": "derek-hena",
+   "performers": [
+    "derek-hena"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:deckard",
+   "name": "Deckard",
+   "key": "deckard",
+   "performers": [
+    "deckard"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:gina-turner",
+   "name": "GINA TURNER",
+   "key": "gina-turner",
+   "performers": [
+    "gina-turner"
+   ]
+  },
+  {
+   "id": "outside-lands-2016:lee-k",
+   "name": "Lee K",
+   "key": "lee-k",
+   "performers": [
+    "lee-k"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "outside-lands-2016:d1:lands-end:1245:lany",
+   "artistId": "outside-lands-2016:lany",
+   "day": 1,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "12:45",
+   "end": "13:35"
+  },
+  {
+   "id": "outside-lands-2016:d1:lands-end:1405:ra-ra-riot",
+   "artistId": "outside-lands-2016:ra-ra-riot",
+   "day": 1,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "14:05",
+   "end": "14:55"
+  },
+  {
+   "id": "outside-lands-2016:d1:lands-end:1525:st-lucia",
+   "artistId": "outside-lands-2016:st-lucia",
+   "day": 1,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "15:25",
+   "end": "16:15"
+  },
+  {
+   "id": "outside-lands-2016:d1:lands-end:1645:miike-snow",
+   "artistId": "outside-lands-2016:miike-snow",
+   "day": 1,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "outside-lands-2016:d1:lands-end:1815:duran-duran",
+   "artistId": "outside-lands-2016:duran-duran",
+   "day": 1,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "18:15",
+   "end": "19:25"
+  },
+  {
+   "id": "outside-lands-2016:d1:lands-end:2010:lcd-soundsystem",
+   "artistId": "outside-lands-2016:lcd-soundsystem",
+   "day": 1,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "20:10",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2016:d1:sutro:1200:whitney",
+   "artistId": "outside-lands-2016:whitney",
+   "day": 1,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "outside-lands-2016:d1:sutro:1315:caveman",
+   "artistId": "outside-lands-2016:caveman",
+   "day": 1,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2016:d1:sutro:1430:wet",
+   "artistId": "outside-lands-2016:wet",
+   "day": 1,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "14:30",
+   "end": "15:20"
+  },
+  {
+   "id": "outside-lands-2016:d1:sutro:1550:foals",
+   "artistId": "outside-lands-2016:foals",
+   "day": 1,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "15:50",
+   "end": "16:40"
+  },
+  {
+   "id": "outside-lands-2016:d1:sutro:1710:the-claypool-lennon-delirium",
+   "artistId": "outside-lands-2016:the-claypool-lennon-delirium",
+   "day": 1,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "17:10",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2016:d1:sutro:1830:nathaniel-rateliff-and-the-night-sweats",
+   "artistId": "outside-lands-2016:nathaniel-rateliff-and-the-night-sweats",
+   "day": 1,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "18:30",
+   "end": "19:20"
+  },
+  {
+   "id": "outside-lands-2016:d1:sutro:1950:beach-house",
+   "artistId": "outside-lands-2016:beach-house",
+   "day": 1,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "19:50",
+   "end": "21:00"
+  },
+  {
+   "id": "outside-lands-2016:d1:twin-peaks:1245:marian-hill",
+   "artistId": "outside-lands-2016:marian-hill",
+   "day": 1,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2016:d1:twin-peaks:1410:jidenna",
+   "artistId": "outside-lands-2016:jidenna",
+   "day": 1,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "14:10",
+   "end": "14:55"
+  },
+  {
+   "id": "outside-lands-2016:d1:twin-peaks:1540:polica",
+   "artistId": "outside-lands-2016:polica",
+   "day": 1,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "15:40",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2016:d1:twin-peaks:1715:thomas-jack",
+   "artistId": "outside-lands-2016:thomas-jack",
+   "day": 1,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "17:15",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2016:d1:twin-peaks:1850:grimes",
+   "artistId": "outside-lands-2016:grimes",
+   "day": 1,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "18:50",
+   "end": "19:50"
+  },
+  {
+   "id": "outside-lands-2016:d1:twin-peaks:2040:j-cole",
+   "artistId": "outside-lands-2016:j-cole",
+   "day": 1,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "20:40",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2016:d1:panhandle:1200:down-and-outlaws",
+   "artistId": "outside-lands-2016:down-and-outlaws",
+   "day": 1,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2016:d1:panhandle:1330:moon-taxi",
+   "artistId": "outside-lands-2016:moon-taxi",
+   "day": 1,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "13:30",
+   "end": "14:10"
+  },
+  {
+   "id": "outside-lands-2016:d1:panhandle:1455:vulfpeck",
+   "artistId": "outside-lands-2016:vulfpeck",
+   "day": 1,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "14:55",
+   "end": "15:35"
+  },
+  {
+   "id": "outside-lands-2016:d1:panhandle:1630:tokimonsta",
+   "artistId": "outside-lands-2016:tokimonsta",
+   "day": 1,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "outside-lands-2016:d1:panhandle:1805:lapsley",
+   "artistId": "outside-lands-2016:lapsley",
+   "day": 1,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "18:05",
+   "end": "18:45"
+  },
+  {
+   "id": "outside-lands-2016:d1:panhandle:1950:hiatus-kaiyote",
+   "artistId": "outside-lands-2016:hiatus-kaiyote",
+   "day": 1,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "19:50",
+   "end": "20:35"
+  },
+  {
+   "id": "outside-lands-2016:d1:the-house-by-heineken:1200:make-it-funky-djs",
+   "artistId": "outside-lands-2016:make-it-funky-djs",
+   "day": 1,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2016:d1:the-house-by-heineken:1330:219-boys",
+   "artistId": "outside-lands-2016:219-boys",
+   "day": 1,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2016:d1:the-house-by-heineken:1500:fdvm",
+   "artistId": "outside-lands-2016:fdvm",
+   "day": 1,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2016:d1:the-house-by-heineken:1630:redlight",
+   "artistId": "outside-lands-2016:redlight",
+   "day": 1,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2016:d1:the-house-by-heineken:1800:pillowtalk",
+   "artistId": "outside-lands-2016:pillowtalk",
+   "day": 1,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "outside-lands-2016:d2:lands-end:1245:lewis-del-mar",
+   "artistId": "outside-lands-2016:lewis-del-mar",
+   "day": 2,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2016:d2:lands-end:1400:the-wombats",
+   "artistId": "outside-lands-2016:the-wombats",
+   "day": 2,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "14:00",
+   "end": "14:50"
+  },
+  {
+   "id": "outside-lands-2016:d2:lands-end:1520:years-and-years",
+   "artistId": "outside-lands-2016:years-and-years",
+   "day": 2,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "15:20",
+   "end": "16:10"
+  },
+  {
+   "id": "outside-lands-2016:d2:lands-end:1640:big-grams-big-boi-phantogram",
+   "artistId": "outside-lands-2016:big-grams-big-boi-phantogram",
+   "day": 2,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "16:40",
+   "end": "17:40"
+  },
+  {
+   "id": "outside-lands-2016:d2:lands-end:1810:air",
+   "artistId": "outside-lands-2016:air",
+   "day": 2,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "18:10",
+   "end": "19:10"
+  },
+  {
+   "id": "outside-lands-2016:d2:lands-end:1955:radiohead",
+   "artistId": "outside-lands-2016:radiohead",
+   "day": 2,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "19:55",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2016:d2:sutro:1200:julien-baker",
+   "artistId": "outside-lands-2016:julien-baker",
+   "day": 2,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "outside-lands-2016:d2:sutro:1315:rogue-wave",
+   "artistId": "outside-lands-2016:rogue-wave",
+   "day": 2,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "13:15",
+   "end": "14:05"
+  },
+  {
+   "id": "outside-lands-2016:d2:sutro:1435:ibeyi",
+   "artistId": "outside-lands-2016:ibeyi",
+   "day": 2,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "14:35",
+   "end": "15:25"
+  },
+  {
+   "id": "outside-lands-2016:d2:sutro:1555:lord-huron",
+   "artistId": "outside-lands-2016:lord-huron",
+   "day": 2,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "15:55",
+   "end": "16:45"
+  },
+  {
+   "id": "outside-lands-2016:d2:sutro:1715:the-last-shadow-puppets",
+   "artistId": "outside-lands-2016:the-last-shadow-puppets",
+   "day": 2,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "17:15",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2016:d2:sutro:1835:sufjan-stevens",
+   "artistId": "outside-lands-2016:sufjan-stevens",
+   "day": 2,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "18:35",
+   "end": "19:45"
+  },
+  {
+   "id": "outside-lands-2016:d2:twin-peaks:1240:fantastic-negrito",
+   "artistId": "outside-lands-2016:fantastic-negrito",
+   "day": 2,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "12:40",
+   "end": "13:25"
+  },
+  {
+   "id": "outside-lands-2016:d2:twin-peaks:1405:the-knocks",
+   "artistId": "outside-lands-2016:the-knocks",
+   "day": 2,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "14:05",
+   "end": "14:55"
+  },
+  {
+   "id": "outside-lands-2016:d2:twin-peaks:1540:vince-staples",
+   "artistId": "outside-lands-2016:vince-staples",
+   "day": 2,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "15:40",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2016:d2:twin-peaks:1715:jauz",
+   "artistId": "outside-lands-2016:jauz",
+   "day": 2,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "17:15",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2016:d2:twin-peaks:1855:halsey",
+   "artistId": "outside-lands-2016:halsey",
+   "day": 2,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "18:55",
+   "end": "19:55"
+  },
+  {
+   "id": "outside-lands-2016:d2:twin-peaks:2040:zedd",
+   "artistId": "outside-lands-2016:zedd",
+   "day": 2,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "20:40",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2016:d2:panhandle:1200:methyl-ethel",
+   "artistId": "outside-lands-2016:methyl-ethel",
+   "day": 2,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2016:d2:panhandle:1325:declan-mckenna",
+   "artistId": "outside-lands-2016:declan-mckenna",
+   "day": 2,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "13:25",
+   "end": "14:05"
+  },
+  {
+   "id": "outside-lands-2016:d2:panhandle:1455:kevin-morby",
+   "artistId": "outside-lands-2016:kevin-morby",
+   "day": 2,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "14:55",
+   "end": "15:35"
+  },
+  {
+   "id": "outside-lands-2016:d2:panhandle:1630:con-brio",
+   "artistId": "outside-lands-2016:con-brio",
+   "day": 2,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "outside-lands-2016:d2:panhandle:1805:peaches",
+   "artistId": "outside-lands-2016:peaches",
+   "day": 2,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "18:05",
+   "end": "18:50"
+  },
+  {
+   "id": "outside-lands-2016:d2:panhandle:1955:anderson-paak-and-the-free-nationals",
+   "artistId": "outside-lands-2016:anderson-paak-and-the-free-nationals",
+   "day": 2,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "19:55",
+   "end": "20:40"
+  },
+  {
+   "id": "outside-lands-2016:d2:the-house-by-heineken:1200:motion-potion",
+   "artistId": "outside-lands-2016:motion-potion",
+   "day": 2,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "12:00",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2016:d2:the-house-by-heineken:1500:w-haze",
+   "artistId": "outside-lands-2016:w-haze",
+   "day": 2,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2016:d2:the-house-by-heineken:1630:translucent",
+   "artistId": "outside-lands-2016:translucent",
+   "day": 2,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "outside-lands-2016:d2:the-house-by-heineken:1730:purple-disco-machine",
+   "artistId": "outside-lands-2016:purple-disco-machine",
+   "day": 2,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "outside-lands-2016:d2:the-house-by-heineken:1830:victor-calderone",
+   "artistId": "outside-lands-2016:victor-calderone",
+   "day": 2,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "18:30",
+   "end": "19:10"
+  },
+  {
+   "id": "outside-lands-2016:d2:the-house-by-heineken:1910:e-40-and-warren-g",
+   "artistId": "outside-lands-2016:e-40-and-warren-g",
+   "day": 2,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "19:10",
+   "end": "19:35"
+  },
+  {
+   "id": "outside-lands-2016:d3:lands-end:1200:kamasi-washington",
+   "artistId": "outside-lands-2016:kamasi-washington",
+   "day": 3,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "outside-lands-2016:d3:lands-end:1315:oh-wonder",
+   "artistId": "outside-lands-2016:oh-wonder",
+   "day": 3,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2016:d3:lands-end:1430:the-muppets-dr-teeth-and-the-electric-mayhem",
+   "artistId": "outside-lands-2016:the-muppets-dr-teeth-and-the-electric-mayhem",
+   "day": 3,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "outside-lands-2016:d3:lands-end:1525:third-eye-blind",
+   "artistId": "outside-lands-2016:third-eye-blind",
+   "day": 3,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "15:25",
+   "end": "16:25"
+  },
+  {
+   "id": "outside-lands-2016:d3:lands-end:1655:chance-the-rapper",
+   "artistId": "outside-lands-2016:chance-the-rapper",
+   "day": 3,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "16:55",
+   "end": "17:55"
+  },
+  {
+   "id": "outside-lands-2016:d3:lands-end:1825:major-lazer",
+   "artistId": "outside-lands-2016:major-lazer",
+   "day": 3,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "18:25",
+   "end": "19:25"
+  },
+  {
+   "id": "outside-lands-2016:d3:lands-end:2005:lionel-richie",
+   "artistId": "outside-lands-2016:lionel-richie",
+   "day": 3,
+   "stageId": "outside-lands-2016:lands-end",
+   "start": "20:05",
+   "end": "21:35"
+  },
+  {
+   "id": "outside-lands-2016:d3:sutro:1205:frances",
+   "artistId": "outside-lands-2016:frances",
+   "day": 3,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "12:05",
+   "end": "12:50"
+  },
+  {
+   "id": "outside-lands-2016:d3:sutro:1320:the-oh-hellos",
+   "artistId": "outside-lands-2016:the-oh-hellos",
+   "day": 3,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "13:20",
+   "end": "14:05"
+  },
+  {
+   "id": "outside-lands-2016:d3:sutro:1435:jack-garratt",
+   "artistId": "outside-lands-2016:jack-garratt",
+   "day": 3,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "14:35",
+   "end": "15:25"
+  },
+  {
+   "id": "outside-lands-2016:d3:sutro:1555:brandi-carlile",
+   "artistId": "outside-lands-2016:brandi-carlile",
+   "day": 3,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "15:55",
+   "end": "16:45"
+  },
+  {
+   "id": "outside-lands-2016:d3:sutro:1715:jason-isbell",
+   "artistId": "outside-lands-2016:jason-isbell",
+   "day": 3,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "17:15",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2016:d3:sutro:1835:ryan-adams-and-the-shining",
+   "artistId": "outside-lands-2016:ryan-adams-and-the-shining",
+   "day": 3,
+   "stageId": "outside-lands-2016:sutro",
+   "start": "18:35",
+   "end": "19:50"
+  },
+  {
+   "id": "outside-lands-2016:d3:twin-peaks:1240:natalia-lafourcade",
+   "artistId": "outside-lands-2016:natalia-lafourcade",
+   "day": 3,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "12:40",
+   "end": "13:20"
+  },
+  {
+   "id": "outside-lands-2016:d3:twin-peaks:1400:snakehips",
+   "artistId": "outside-lands-2016:snakehips",
+   "day": 3,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "14:00",
+   "end": "14:45"
+  },
+  {
+   "id": "outside-lands-2016:d3:twin-peaks:1530:kehlani",
+   "artistId": "outside-lands-2016:kehlani",
+   "day": 3,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "15:30",
+   "end": "16:20"
+  },
+  {
+   "id": "outside-lands-2016:d3:twin-peaks:1705:griz",
+   "artistId": "outside-lands-2016:griz",
+   "day": 3,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "17:05",
+   "end": "17:55"
+  },
+  {
+   "id": "outside-lands-2016:d3:twin-peaks:1840:miguel",
+   "artistId": "outside-lands-2016:miguel",
+   "day": 3,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "18:40",
+   "end": "19:40"
+  },
+  {
+   "id": "outside-lands-2016:d3:twin-peaks:2025:lana-del-rey",
+   "artistId": "outside-lands-2016:lana-del-rey",
+   "day": 3,
+   "stageId": "outside-lands-2016:twin-peaks",
+   "start": "20:25",
+   "end": "21:35"
+  },
+  {
+   "id": "outside-lands-2016:d3:panhandle:1200:heron-oblivion",
+   "artistId": "outside-lands-2016:heron-oblivion",
+   "day": 3,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2016:d3:panhandle:1320:cloves",
+   "artistId": "outside-lands-2016:cloves",
+   "day": 3,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "13:20",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2016:d3:panhandle:1445:h-los",
+   "artistId": "outside-lands-2016:h-los",
+   "day": 3,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "14:45",
+   "end": "15:25"
+  },
+  {
+   "id": "outside-lands-2016:d3:panhandle:1620:diiv",
+   "artistId": "outside-lands-2016:diiv",
+   "day": 3,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "16:20",
+   "end": "17:00"
+  },
+  {
+   "id": "outside-lands-2016:d3:panhandle:1755:rufus-du-sol",
+   "artistId": "outside-lands-2016:rufus-du-sol",
+   "day": 3,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "17:55",
+   "end": "18:35"
+  },
+  {
+   "id": "outside-lands-2016:d3:panhandle:1940:lettuce",
+   "artistId": "outside-lands-2016:lettuce",
+   "day": 3,
+   "stageId": "outside-lands-2016:panhandle",
+   "start": "19:40",
+   "end": "20:30"
+  },
+  {
+   "id": "outside-lands-2016:d3:the-house-by-heineken:1200:grensta",
+   "artistId": "outside-lands-2016:grensta",
+   "day": 3,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2016:d3:the-house-by-heineken:1330:derek-hena",
+   "artistId": "outside-lands-2016:derek-hena",
+   "day": 3,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2016:d3:the-house-by-heineken:1500:deckard",
+   "artistId": "outside-lands-2016:deckard",
+   "day": 3,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2016:d3:the-house-by-heineken:1630:gina-turner",
+   "artistId": "outside-lands-2016:gina-turner",
+   "day": 3,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2016:d3:the-house-by-heineken:1800:lee-k",
+   "artistId": "outside-lands-2016:lee-k",
+   "day": 3,
+   "stageId": "outside-lands-2016:the-house-by-heineken",
+   "start": "18:00",
+   "end": "20:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.sfoutsidelands.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20160808155622/http://lineup.sfoutsidelands.com/events/2016/08/05/",
+    "captureTimestamp": "20160808155622",
+    "printed": "Friday, August 5",
+    "sha256": "c1280cb2e7e5ba5cd0a350473f7a2b8885b3a443705745ef5badc17f8a6a2c41",
+    "rows": 30,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20160820121939/http://lineup.sfoutsidelands.com/band/lcd-soundsystem",
+     "captureTimestamp": "20160820121939",
+     "printed": "Friday, August 5, 8:10 PM",
+     "sha256": "42f08fe4530829bdffc69c4df206debabc1e6bcbf2e25a0763b8a4b30a96fbfe"
+    }
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20160808210052/http://lineup.sfoutsidelands.com/events/2016/08/06",
+    "captureTimestamp": "20160808210052",
+    "printed": "Saturday, August 6",
+    "sha256": "c586e100c7d8bc667ea3b2d74919762a0525317efad147a18c1d080e38bc31d4",
+    "rows": 30,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20160809132311/http://lineup.sfoutsidelands.com/band/radiohead-",
+     "captureTimestamp": "20160809132311",
+     "printed": "Saturday, August 6, 7:55 PM",
+     "sha256": "285a373b7415f9492667c36510b659e8d3121b745d65b1768d404f58e5a579d5"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20160808205901/http://lineup.sfoutsidelands.com/events/2016/08/07",
+    "captureTimestamp": "20160808205901",
+    "printed": "Sunday, August 7",
+    "sha256": "f1b1716bce8349d1da70071a35913b3c45ddc79ef2f339ec3f74dc81831cbffe",
+    "rows": 30,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20160807101036/http://lineup.sfoutsidelands.com/band/lionel-richie",
+     "captureTimestamp": "20160807101036",
+     "printed": "Sunday, August 7, 8:05 PM",
+     "sha256": "4e37490fb0ccf8ae189f12b16be1fbc88ba6a54dd7d62d3e888cc0ce5247bbc7"
+    }
+   }
+  ]
+ }
+}

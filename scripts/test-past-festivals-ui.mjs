@@ -102,7 +102,7 @@ try {
   await page.getByRole("heading", { name: "Past festivals", level: 1 }).waitFor({ timeout: 10000 });
   await page.getByText(INDEX.editions[0].festivalName, { exact: true }).first().waitFor({ timeout: 10000 });
   for (const e of INDEX.editions) {
-    const want = e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets`;
+    const want = e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets${e.completeness === "selected_stages" ? " · selected stages" : ""}`;
     ok(await page.getByText(want, { exact: true }).count() >= 1, `library row for ${e.id} does not read "${want}"`);
   }
   ok(await page.getByText("3 artists · lineup only", { exact: true }).count() === 1, "the lineup_only row does not say it is lineup only");
@@ -309,6 +309,20 @@ try {
       .getByRole("button", { name: /^Dreamstate SoCal/ }).click();
     await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
     ok(await page.getByText(/\d:\d\d ?[AP]M/).count() > 0, "Dreamstate 2025 day 1 shows no set times");
+  }
+  {
+    // selected_stages: the header says so and the note names what is missing,
+    // on every day; a complete schedule (Dreamstate 2025, open now) says neither.
+    ok(await page.getByText(/Not every stage is here yet/).count() === 0, "Dreamstate 2025, a complete schedule, carries the selected-stages note");
+    ok(await page.getByText(/selected stages/).count() === 0, "Dreamstate 2025, a complete schedule, is labelled selected stages");
+    await page.getByRole("button", { name: "Back" }).click();
+    await page.locator("section", { has: page.getByRole("heading", { name: "2014", exact: true }) })
+      .getByRole("button", { name: /^Coachella/ }).click();
+    await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
+    ok(await page.getByText("Official 2014 schedule, selected stages · archived", { exact: true }).count() === 1, "Coachella 2014's header does not say selected stages");
+    const note = page.getByText(/Not every stage is here yet\. The official schedule also listed Heineken House \(both weekends\) and Do Lab \(Weekend 1\)/);
+    ok(await note.count() === 1, "Coachella 2014 does not name Heineken House and the Weekend 1 Do Lab as missing");
+    await shot("selected-stages-coachella-2014");
   }
 
   // ── a failed edition fetch offers a retry that recovers ──

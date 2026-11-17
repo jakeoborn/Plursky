@@ -24,40 +24,23 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
 const check = (ok, msg) => { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } };
 
-const TILE_BUDGET = 16 * 1024, TOTAL_BUDGET = 256 * 1024;   // 25 tiles at ~8 KB
+const TILE_BUDGET = 16 * 1024, TOTAL_BUDGET = 432 * 1024;   // 55 tiles at ~7.5 KB (photo pass 2, 2026-11-14)
 // Every listed festival carries art (Jake 2026-10-18: "a visual based app,
 // lots of photos"). A festival allowed the tinted letter tile goes here, with
 // why. None today.
 const FALLBACK = {
-  // Added 2026-11-10 as gated previews. Their official art hosts (the LAN
-  // poster on 2026-lightsallnight-com.imgix.net among them) could not be
-  // downloaded from the build environment that scaffolded them. Each needs an
-  // official tile in data/festival-art.js before it flips to available.
-  "lights-all-night-2026": "official art not fetched yet; tile owed before the flip",
-  "decadence-arizona-2026": "official art not fetched yet; tile owed before the flip",
-  "sunset-on-the-river-2027": "official art not fetched yet; tile owed before the flip",
-  "ubbi-dubbi-2027": "official art not fetched yet; tile owed before the flip",
-  "movement-2027": "official art not fetched yet; tile owed before the flip",
-  "shambhala-2027": "official art not fetched yet; tile owed before the flip",
-  "defqon1-2027": "official art not fetched yet; tile owed before the flip",
-  "untold-2027": "official art not fetched yet; tile owed before the flip",
-  "creamfields-2027": "official art not fetched yet; tile owed before the flip",
-  "das-energi-2027": "official art not fetched yet; tile owed before the flip",
-  "dwp-2026": "official art not fetched yet; tile owed before the flip",
-  "edc-thailand-2026": "official art not fetched yet; tile owed before the flip",
-  "tomorrowland-thailand-2026": "official art not fetched yet; tile owed before the flip",
-  "kappa-futurfestival-2027": "official art not fetched yet; tile owed before the flip",
-  "ultra-europe-2027": "official art not fetched yet; tile owed before the flip",
-  "awakenings-2027": "official art not fetched yet; tile owed before the flip",
-  "parookaville-2027": "official art not fetched yet; tile owed before the flip",
-  "electric-love-2027": "official art not fetched yet; tile owed before the flip",
-  "bass-coast-2027": "official art not fetched yet; tile owed before the flip",
-  "tomorrowland-winter-2027": "official art not fetched yet; tile owed before the flip",
-  "tomorrowland-brasil-2027": "official art not fetched yet; tile owed before the flip",
-  "primavera-sound-2027": "official art not fetched yet; tile owed before the flip",
-  "boom-festival-2027": "official art not fetched yet; tile owed before the flip",
-  "sziget-2027": "official art not fetched yet; tile owed before the flip",
-  "forbidden-kingdom-2027": "official art not fetched yet; tile owed before the flip",
+  // Jake 2026-11-15: replace official-site images whose reuse was never
+  // granted. Day Zero has no cleared image: Commons has none, the site no press kit.
+  "day-zero-tulum-2027": "no reuse-cleared photo (Commons none, site has no press kit); letter tile until one exists",
+  // Commons author (Lucas Gavi) and embedded EXIF author (Rafael Deprost) disagree; no owner guessed.
+  "tomorrowland-winter-2027": "Commons author and EXIF author conflict; letter tile until resolved",
+  // Jake 2026-11-15: uploader licensed as own work but the description names another photographer.
+  "time-warp-2027": "Commons licensor is not the named photographer; letter tile until an author is confirmed",
+  "sonar-2027": "Commons licensor is not the named photographer; letter tile until an author is confirmed",
+  // EDC Las Vegas 2027 (added 2026-11-16): no 2027 photo has been reviewed, and
+  // the 2026 card is "reuse terms not granted" interim art, so it is not
+  // carried forward. Letter tile until a reuse-cleared photo is found.
+  "edc-lv-2027": "no reuse-cleared 2027 photo; 2026 card art is not licensed for reuse",
 };
 // Sat Oct 17, 4 pm ET: III Points is live, so all three chip kinds are on the page.
 const AT = "2026-10-17T20:00:00Z";
@@ -96,7 +79,15 @@ for (const id of ids) {
   check(sz <= TILE_BUDGET, `${id}: tile within ${TILE_BUDGET} B (${sz})`);
   check(sw.includes(`'./${r.tile}'`), `${id}: tile is in the SW precache`);
   if (r.card) check(existsSync(join(ROOT, r.card)) && sw.includes(`'./${r.card}'`), `${id}: card file exists and is precached`);
+  // A Commons photo is shown with its credit: author, licence deed, changes.
+  if (/commons\.wikimedia\.org/.test(r.sourcePage || "")) {
+    check(typeof r.author === "string" && r.author.length > 0 && r.author.length <= 40, `${id}: Commons photo names its author`);
+    check(/^CC(0-1\.0|-BY(-SA)?-\d\.\d)$/.test(r.licenseId || ""), `${id}: Commons photo has a licence id (${r.licenseId})`);
+    check(/^https:\/\/creativecommons\.org\/(licenses|publicdomain)\//.test(r.licenseUrl || ""), `${id}: Commons photo links its licence deed`);
+    check(typeof r.changes === "string" && r.changes.length > 0, `${id}: Commons photo states its changes`);
+  }
 }
+for (const id of Object.keys(FALLBACK)) check(!ART[id], `${id}: a fallback festival has no ledger art (${FALLBACK[id]})`);
 check(total <= TOTAL_BUDGET, `all tiles within ${TOTAL_BUDGET} B (${total})`);
 // One door: FestivalThumb resolves art only through the ledger.
 const chrome = readFileSync(join(ROOT, "chrome.jsx"), "utf8");
@@ -129,6 +120,8 @@ try {
     await page.goto(`http://127.0.0.1:${PORT}/index.html`, { waitUntil: "domcontentloaded" });
     const ok = await page.waitForSelector("[data-landing-row]", { timeout: 60000 }).then(() => true, () => false);
     check(ok, `${tag}: General Home lists festival rows`);
+    const unnamed = await page.evaluate(() => (typeof festivalPhotoCredits === "function" ? festivalPhotoCredits() : [{ id: "no festivalPhotoCredits" }]).filter(c => !c.name || c.name === c.id).map(c => c.id));
+    check(unnamed.length === 0, `${tag}: every Photo credits row names its festival (unnamed: ${unnamed.join(", ")})`);
     if (!ok) { await ctx.close(); continue; }
     await page.clock.runFor(1200); await page.waitForTimeout(600);
     // Measure the face users get: the app's faces are bundled (font-display:

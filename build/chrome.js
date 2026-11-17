@@ -25,6 +25,7 @@ var ScrollBody = React.forwardRef(function ScrollBody({
 }, fwdRef) {
   return React.createElement("div", {
     ref: fwdRef,
+    "data-scroll-body": "",
     ...rest,
     style: {
       flex: 1,
@@ -112,26 +113,61 @@ function TabBar({
     label: "Me",
     icon: MeIcon
   }];
+  var idx = Math.max(0, tabs.findIndex(t => t.id === active));
+  var lit = tabs.some(t => t.id === active);
   return React.createElement("div", {
+    className: "ps-tabbar",
     style: {
+      position: "relative",
       background: "var(--chrome)",
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       borderTop: "1px solid var(--line)",
-      padding: "0 10px 10px",
+      padding: "0 10px max(10px, env(safe-area-inset-bottom, 0px))",
       display: "flex",
       justifyContent: "space-around"
     }
-  }, tabs.map(t => {
+  }, lit && React.createElement("span", {
+    "aria-hidden": "true",
+    className: "ps-tab-ind",
+    style: {
+      position: "absolute",
+      top: 0,
+      left: 10,
+      height: 53,
+      width: `calc((100% - 20px) / ${tabs.length})`,
+      transform: `translateX(${idx * 100}%)`,
+      transition: "transform var(--t-move) var(--ease-spring)",
+      pointerEvents: "none",
+      display: "flex",
+      justifyContent: "center"
+    }
+  }, React.createElement("span", {
+    style: {
+      marginTop: 6,
+      width: 58,
+      height: 30,
+      borderRadius: 999,
+      background: "var(--acc-14)",
+      boxShadow: "inset 0 0 0 1px var(--acc-30)"
+    }
+  })), tabs.map(t => {
     var Icon = t.icon;
     var on = active === t.id;
     return React.createElement("button", {
       key: t.id,
       onClick: () => {
         haptic.light();
+        if (on) document.querySelectorAll(".ps-view [data-scroll-body]").forEach(sc => {
+          if (sc.scrollTop > 0) sc.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        });
         onChange(t.id);
       },
       "aria-current": on ? "page" : undefined,
+      className: "ps-tab",
       style: {
         position: "relative",
         background: "transparent",
@@ -149,21 +185,16 @@ function TabBar({
         minHeight: 53,
         transition: "color var(--t-tap) var(--ease-decay)"
       }
-    }, on && React.createElement("span", {
-      "aria-hidden": "true",
+    }, React.createElement("span", {
+      className: "ps-tab-icon",
       style: {
-        position: "absolute",
-        top: -1,
-        left: "28%",
-        right: "28%",
-        height: 2,
-        borderRadius: 2,
-        background: "var(--acc)",
-        boxShadow: "0 0 12px var(--acc-55)"
+        display: "flex",
+        transition: "transform var(--t-move) var(--ease-spring)",
+        transform: on ? "translateY(-1px)" : "none"
       }
-    }), React.createElement(Icon, {
+    }, React.createElement(Icon, {
       on: on
-    }), React.createElement("span", {
+    })), React.createElement("span", {
       "data-fit-words": true,
       "data-fit-group": "tab",
       "data-fit-min": "9",
@@ -173,7 +204,7 @@ function TabBar({
         fontSize: 11,
         lineHeight: 1.17,
         letterSpacing: ".01em",
-        fontWeight: 500,
+        fontWeight: on ? 600 : 500,
         textAlign: "center"
       }
     }, t.label));
@@ -523,8 +554,82 @@ function SpotifyFullLogo({
     d: "m803.56,98.29c.82-.6,1.23-1.4,1.23-2.39s-.4-1.83-1.2-2.43c-.8-.6-1.96-.9-3.48-.9h-5.36v11.2h2.59v-4.45h1.41l3.41,4.45h3.18l-3.73-4.72c.79-.15,1.46-.4,1.96-.77Zm-3.86-.99h-2.36v-2.74h2.45c.73,0,1.29.11,1.68.34.39.23.59.58.59,1.06,0,.45-.21.79-.61,1.01-.41.23-.99.34-1.75.34Z"
   }));
 }
+function SpotifyPhotoCredit({
+  names
+}) {
+  var list = (names || []).filter(Boolean);
+  var has = () => list.some(n => getArtistImage(n)?.source === "spotify");
+  var [show, setShow] = React.useState(has);
+  var sig = list.join("|");
+  React.useEffect(() => {
+    setShow(has());
+    var on = () => setShow(has());
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, on);
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
+    return () => {
+      window.removeEventListener(ARTIST_IMAGES_WRITTEN, on);
+      window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
+    };
+  }, [sig]);
+  if (!show) return null;
+  return React.createElement("a", {
+    href: "https://open.spotify.com",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    "data-spotify-attribution": "list",
+    "aria-label": "Artist photos from Spotify",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      padding: "14px 0 6px",
+      color: "var(--ink-2)",
+      fontSize: 12,
+      textDecoration: "none"
+    }
+  }, React.createElement("span", null, "Artist photos from"), React.createElement(SpotifyFullLogo, {
+    height: 21
+  }));
+}
 var _photoQueue = [];
 var _photoActive = false;
+var SPOTIFY_PHOTO_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/spotify-artist-image";
+var _photoProxyOff = false;
+var _photoProxyPausedUntil = 0;
+function _photoProxyUsable() {
+  if (typeof navigator !== "undefined" && navigator.webdriver && !window.__plurskyPhotoProxyInTests) return false;
+  return !_photoProxyOff && Date.now() >= _photoProxyPausedUntil && (typeof navigator === "undefined" || navigator.onLine !== false);
+}
+function _spotifyNameKey(s) {
+  return String(s || "").normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "");
+}
+function _spotifyExactArtist(items, name) {
+  var k = _spotifyNameKey(name);
+  return k ? (items || []).find(x => x && _spotifyNameKey(x.name) === k) || null : null;
+}
+function _fetchProxyPhoto(name) {
+  if (!_photoProxyUsable()) return Promise.resolve(null);
+  return fetch(SPOTIFY_PHOTO_PROXY_URL + "?name=" + encodeURIComponent(name)).then(r => {
+    if (r.status === 429) {
+      _photoProxyPausedUntil = Date.now() + 1000 * Math.min(600, parseInt(r.headers.get("Retry-After")) || 60);
+      return null;
+    }
+    if (r.status === 404 || r.status === 503) {
+      _photoProxyOff = true;
+      return null;
+    }
+    return r.ok ? r.json() : null;
+  }).then(d => {
+    if (!d || !d.url) return null;
+    putArtistImage(name, d.url, "spotify", {
+      spotifyId: d.spotifyId
+    });
+    return {
+      url: d.url,
+      spotifyId: d.spotifyId || null
+    };
+  }).catch(() => null);
+}
 function _drainPhotoQueue() {
   if (_photoActive || !_photoQueue.length) return;
   _photoActive = true;
@@ -532,31 +637,32 @@ function _drainPhotoQueue() {
     name,
     resolve
   } = _photoQueue.shift();
-  var token = localStorage.getItem("spotify_token");
-  var expires = localStorage.getItem("spotify_expires");
-  if (!token || !expires || Date.now() >= parseInt(expires)) {
+  var next = () => {
     _photoActive = false;
-    resolve(null);
-    _drainPhotoQueue();
+    setTimeout(_drainPhotoQueue, 150);
+  };
+  if (!_spotifyTokenValid()) {
+    if (!_photoProxyUsable()) {
+      _photoActive = false;
+      resolve(null);
+      _drainPhotoQueue();
+      return;
+    }
+    _fetchProxyPhoto(name).then(hit => resolve(hit ? hit.url : null)).finally(next);
     return;
   }
-  fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(name)}&type=artist&limit=3`, {
+  fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(name)}&type=artist&limit=10`, {
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + localStorage.getItem("spotify_token")
     }
   }).then(r => r.ok ? r.json() : null).then(d => {
-    var ln = name.toLowerCase();
-    var items = d?.artists?.items || [];
-    var match = items.find(x => x.name.toLowerCase() === ln) || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
+    var match = _spotifyExactArtist(d?.artists?.items, name);
     var img = match?.images?.[0]?.url || null;
     if (img) putArtistImage(name, img, "spotify", {
       spotifyId: match.id
     });
     resolve(img);
-  }).catch(() => resolve(null)).finally(() => {
-    _photoActive = false;
-    setTimeout(_drainPhotoQueue, 150);
-  });
+  }).catch(() => resolve(null)).finally(next);
 }
 function _queuePhoto(name) {
   return new Promise(resolve => {
@@ -823,7 +929,7 @@ function useArtistPhotoMachine(name, {
 function useArtistPhoto(name) {
   return useArtistPhotoMachine(name, {
     lookup: _queuePhoto,
-    canFetch: _spotifyTokenValid
+    canFetch: () => _spotifyTokenValid() || _photoProxyUsable()
   }).url;
 }
 function ArtistSwatch({
@@ -1102,6 +1208,15 @@ function _duoMembers(name) {
 function _duoInitials(name) {
   return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2).map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
+function _duoFaceAccent() {
+  try {
+    var id = typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id;
+    var e = id && (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : []).find(f => f && f.config && f.config.id === id);
+    return e && /^#[0-9a-f]{6}$/i.test(e.accent || "") ? e.accent : null;
+  } catch {
+    return null;
+  }
+}
 function DuoFace({
   name,
   size,
@@ -1119,6 +1234,9 @@ function DuoFace({
     "data-face": name,
     "data-photo-source": photo ? rec?.source || "" : "initials",
     style: {
+      ...(!photo && _duoFaceAccent() ? {
+        "--face-acc": _duoFaceAccent()
+      } : {}),
       ...(size ? {
         width: size,
         height: size,
@@ -1595,6 +1713,140 @@ function recordAttendanceFromGps(lat, lng, opts) {
   if (!hit) return null;
   var added = markAttended(hit.night, hit.artistId, "gps");
   return added ? hit : null;
+}
+var SET_TRACK_PREF_KEY = "plursky_set_tracking_v1";
+var SET_TRACK_STORE_KEY = "plursky_set_intervals_v1";
+var SET_TRACK_EVENT = "plursky-set-tracking-change";
+function getSetTracking() {
+  try {
+    var v = localStorage.getItem(SET_TRACK_PREF_KEY);
+    return v === "on" || v === "off" ? v : null;
+  } catch {
+    return null;
+  }
+}
+function setSetTracking(on) {
+  try {
+    localStorage.setItem(SET_TRACK_PREF_KEY, on ? "on" : "off");
+  } catch {}
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+}
+function _readSetTrackStore() {
+  try {
+    var s = JSON.parse(localStorage.getItem(SET_TRACK_STORE_KEY) || "{}");
+    return s && typeof s === "object" ? s : {};
+  } catch {
+    return {};
+  }
+}
+function setTrackRecord(festivalId, fix) {
+  if (!festivalId) return false;
+  var all = _readSetTrackStore();
+  all[festivalId] = setTrackAppend(all[festivalId], {
+    ms: fix && fix.ms,
+    stageId: fix && fix.stageId
+  });
+  try {
+    localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all));
+  } catch {
+    return false;
+  }
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+  return true;
+}
+function getSetTrackIntervals(festivalId) {
+  var e = _readSetTrackStore()[festivalId];
+  return e && e.runs || {};
+}
+function clearSetTrack(festivalId) {
+  var all = _readSetTrackStore();
+  if (!(festivalId in all)) return false;
+  delete all[festivalId];
+  try {
+    localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all));
+  } catch {}
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+  return true;
+}
+function setTrackVerdict(a, cfg = window.FESTIVAL_CONFIG) {
+  if (!a || !cfg || !cfg.id) return null;
+  var iv = getSetTrackIntervals(cfg.id);
+  if (!iv[a.stage] || !iv[a.stage].length) return null;
+  var v = attendanceVerdict(a, iv, cfg);
+  return v.verdict === "none" ? null : {
+    ...v,
+    label: attendanceVerdictLabel(v)
+  };
+}
+function setTrackSummary(artists, cfg = window.FESTIVAL_CONFIG) {
+  var out = {
+    full: 0,
+    partial: 0
+  };
+  for (var a of artists || []) {
+    var v = setTrackVerdict(a, cfg);
+    if (v && v.verdict === "full") out.full++;else if (v && v.verdict === "partial") out.partial++;
+  }
+  return out;
+}
+function SetTrackingWatcher() {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  var {
+    active: bsActive
+  } = useBatterySaver();
+  React.useEffect(() => {
+    var on = () => bump();
+    window.addEventListener(SET_TRACK_EVENT, on);
+    document.addEventListener("visibilitychange", on);
+    var t = setInterval(on, 60000);
+    return () => {
+      window.removeEventListener(SET_TRACK_EVENT, on);
+      document.removeEventListener("visibilitychange", on);
+      clearInterval(t);
+    };
+  }, []);
+  var cfg = window.FESTIVAL_CONFIG;
+  var fid = cfg && cfg.id;
+  var run = getSetTracking() === "on" && document.visibilityState !== "hidden" && setTrackEligibility(cfg, Date.now()) === "live";
+  React.useEffect(() => {
+    if (!run || !navigator.geolocation) return;
+    var anchors = attendEvidenceAnchors(cfg);
+    var rules = bsActive ? STAGE_FIX_ATTEND_SAVER : STAGE_FIX_ATTEND;
+    var opts = bsActive ? {
+      enableHighAccuracy: false,
+      maximumAge: 30000,
+      timeout: 30000
+    } : {
+      enableHighAccuracy: true,
+      maximumAge: 4000,
+      timeout: 15000
+    };
+    var alive = true;
+    var id = navigator.geolocation.watchPosition(p => {
+      if (!alive || !p || !p.coords) return;
+      var q = attendQualifyFixes([{
+        lat: p.coords.latitude,
+        lng: p.coords.longitude,
+        accuracy: p.coords.accuracy,
+        timestamp: p.timestamp,
+        atMs: Date.now()
+      }], anchors, rules);
+      if (q.length) setTrackRecord(fid, q[0]);
+    }, () => {}, opts);
+    return () => {
+      alive = false;
+      try {
+        navigator.geolocation.clearWatch(id);
+      } catch {}
+    };
+  }, [run, fid, bsActive]);
+  return null;
 }
 function _artistStartMs(artist) {
   return _wallMs(artistDayDate(artist), artist && artist.start, FESTIVAL_CONFIG && FESTIVAL_CONFIG.tz);
@@ -2101,6 +2353,97 @@ function FestivalThumb({
     }
   }) : mark);
 }
+function photoLicenseLabel(id) {
+  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/-DE$/, " DE").replace(/^(Public|Press)-/, "$1 ");
+}
+var _photoCreditLink = {
+  color: "inherit",
+  textDecoration: "underline",
+  textUnderlineOffset: 2
+};
+function PhotoCredit({
+  credit,
+  style,
+  ...rest
+}) {
+  if (!credit || !credit.author || !credit.sourceUrl || !credit.license || !credit.licenseUrl) return null;
+  var lic = photoLicenseLabel(credit.license),
+    changes = credit.changes || "";
+  return React.createElement("div", {
+    "aria-label": "Photo credit: " + credit.author + ", " + lic + (changes ? ", " + changes.toLowerCase() : ""),
+    ...rest,
+    style: {
+      fontSize: "var(--fs-label)",
+      lineHeight: "16px",
+      color: "var(--text-3)",
+      ...style
+    }
+  }, React.createElement("a", {
+    href: credit.sourceUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: _photoCreditLink
+  }, credit.author), " · ", React.createElement("a", {
+    href: credit.licenseUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: _photoCreditLink
+  }, lic), changes ? " · " + changes : "");
+}
+function festivalPhotoCredits() {
+  var art = window.PLURSKY_FESTIVAL_ART || {};
+  var sets = window._DATA_SETS || {};
+  var reg = window.FESTIVALS_REGISTRY || [];
+  return Object.keys(art).filter(id => art[id].author && art[id].licenseId && art[id].licenseUrl).map(id => {
+    var r = art[id],
+      cfg = sets[id]?.config || reg.find(f => f.config?.id === id)?.config;
+    return {
+      id,
+      name: cfg?.name || id,
+      credit: {
+        author: r.author,
+        sourceUrl: r.sourcePage,
+        license: r.licenseId,
+        licenseUrl: r.licenseUrl,
+        changes: r.changes
+      }
+    };
+  }).sort((a, b) => a.name.localeCompare(b.name));
+}
+function PhotoCreditsSheet({
+  onClose
+}) {
+  var rows = festivalPhotoCredits();
+  return React.createElement(FieldSheet, {
+    title: "Photo credits",
+    eyebrow: "FESTIVAL PHOTOS",
+    onClose: onClose
+  }, React.createElement("p", {
+    style: {
+      margin: "-4px 0 14px",
+      color: "var(--ink-2)",
+      font: "400 15px/1.4 var(--f-ui)"
+    }
+  }, "These festival photos are shared under open licences. Each links to its source and its licence. Each cropped CC BY-SA photo is distributed under the same linked licence."), React.createElement("div", {
+    "data-photo-credits": "1"
+  }, rows.map(r => React.createElement("div", {
+    key: r.id,
+    "data-photo-credit-row": r.id,
+    style: {
+      padding: "10px 0",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600,
+      marginBottom: 2
+    }
+  }, r.name), React.createElement(PhotoCredit, {
+    credit: r.credit
+  })))));
+}
 function _festivalPlanStatus(id) {
   var ids = [];
   try {
@@ -2126,6 +2469,7 @@ function FestivalSwitcher({
   var activeId = FESTIVAL_CONFIG.id;
   var [plusOpen, setPlusOpen] = React.useState(false);
   var [pastOpen, setPastOpen] = React.useState(false);
+  var [creditsOpen, setCreditsOpen] = React.useState(false);
   var pastIndex = usePastEditionIndex();
   var [viewMode, setViewMode] = React.useState(() => {
     try {
@@ -2478,7 +2822,22 @@ function FestivalSwitcher({
       lineHeight: "18px",
       color: "var(--text-2)"
     }
-  }, "Switching reloads the app with that festival's lineup and map."), React.createElement(FieldButton, {
+  }, "Switching reloads the app with that festival's lineup and map.", festivalPhotoCredits().length > 0 && React.createElement(React.Fragment, null, " ", React.createElement("button", {
+    "data-photo-credits-open": "1",
+    onClick: () => setCreditsOpen(true),
+    style: {
+      background: "none",
+      border: 0,
+      padding: 0,
+      font: "inherit",
+      color: "inherit",
+      textDecoration: "underline",
+      textUnderlineOffset: 2,
+      cursor: "pointer"
+    }
+  }, "Photo credits"))), creditsOpen && React.createElement(PhotoCreditsSheet, {
+    onClose: () => setCreditsOpen(false)
+  }), React.createElement(FieldButton, {
     onClick: () => {
       onClose();
       (window._pushNav || (() => {}))({
@@ -2869,6 +3228,125 @@ function BatterySaverCard() {
       fontWeight: 600
     }
   }, battPct, "% ", battery.charging ? "· CHARGING" : "")));
+}
+function SetTrackingCard() {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  var [asking, setAsking] = React.useState(false);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  var cfg = window.FESTIVAL_CONFIG;
+  var name = cfg && (cfg.shortName || cfg.name) || "this festival";
+  var on = getSetTracking() === "on";
+  var elig = setTrackEligibility(cfg, Date.now());
+  var hasData = !!(cfg && Object.keys(getSetTrackIntervals(cfg.id)).length);
+  var btn = primary => ({
+    background: primary ? "var(--acc)" : "var(--s3)",
+    color: primary ? "var(--on-acc)" : "var(--ink)",
+    border: "none",
+    borderRadius: 999,
+    padding: "0 16px",
+    minHeight: 44,
+    fontFamily: "var(--f-ui)",
+    fontSize: 14,
+    fontWeight: 650,
+    cursor: "pointer"
+  });
+  var body = {
+    fontSize: 14,
+    color: "var(--ink-2)",
+    lineHeight: 1.43,
+    marginBottom: 12
+  };
+  var status = elig === "no-stages" ? `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one." : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses." : elig === "ended" ? `On. ${name} is over, so nothing is counting.` : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
+  return React.createElement("div", {
+    "data-set-tracking-card": true,
+    "data-set-tracking-state": on ? "on" : "off",
+    "data-set-tracking-elig": elig,
+    style: {
+      padding: 16,
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      marginBottom: 12
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 6
+    }
+  }, React.createElement("div", {
+    className: "duo-label",
+    style: {
+      color: "var(--ink-3)"
+    }
+  }, "SET TRACKING"), React.createElement("span", {
+    className: "duo-label",
+    style: {
+      color: on ? "var(--acc-ink)" : "var(--ink-2)"
+    }
+  }, on ? "ON" : "OFF")), React.createElement("div", {
+    className: "duo-headline",
+    style: {
+      marginBottom: 4
+    }
+  }, "Time the sets you catch"), React.createElement("div", {
+    "data-set-tracking-status": true,
+    style: body
+  }, status), asking && !on ? React.createElement("div", {
+    "data-set-tracking-consent": true
+  }, React.createElement("div", {
+    style: body
+  }, React.createElement("b", {
+    style: {
+      color: "var(--ink)"
+    }
+  }, "Recorded:"), " which stage you were at and when, during sets.", React.createElement("br", null), React.createElement("b", {
+    style: {
+      color: "var(--ink)"
+    }
+  }, "Not recorded:"), " your exact location. Nothing leaves this phone.", React.createElement("br", null), "It counts only while Plursky is open, and you can turn it off here any time."), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, React.createElement("button", {
+    "data-set-tracking-accept": true,
+    onClick: () => {
+      setSetTracking(true);
+      setAsking(false);
+    },
+    style: btn(true)
+  }, "Turn on"), React.createElement("button", {
+    onClick: () => {
+      setSetTracking(false);
+      setAsking(false);
+    },
+    style: btn(false)
+  }, "Not now"))) : React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, on ? React.createElement("button", {
+    "data-set-tracking-off": true,
+    onClick: () => setSetTracking(false),
+    style: btn(false)
+  }, "Turn off") : elig !== "no-stages" && React.createElement("button", {
+    "data-set-tracking-setup": true,
+    onClick: () => setAsking(true),
+    style: btn(false)
+  }, "Set up"), hasData && React.createElement("button", {
+    "data-set-tracking-clear": true,
+    onClick: () => clearSetTrack(cfg.id),
+    style: btn(false)
+  }, "Clear ", name, " times")));
 }
 function _syncNativeAppearance(mode, choice) {
   var style = choice === "dark" || choice === "light" ? mode : "system";
@@ -3354,7 +3832,11 @@ Object.assign(window, {
   putArtistImage,
   putArtistImages,
   SpotifyFullLogo,
+  SpotifyPhotoCredit,
   SPOTIFY_IMAGE_TTL_MS,
+  _fetchProxyPhoto,
+  _photoProxyUsable,
+  _spotifyExactArtist,
   useInstallPrompt,
   InstallBanner,
   useNotifications,

@@ -70,6 +70,9 @@ export function pastEditionsFor(id, root = ROOT) {
       const src = existsSync(file) ? sourceDate(JSON.parse(readFileSync(file, 'utf8'))) : null;
       return {
         id: e.id, name: e.name, year: e.year, lineupOnly,
+        // Stages the official schedule had that are not imported (selected_stages).
+        // Only such an edition adds the key, so every other page keeps its fp.
+        ...(e.missingStages && { missingStages: e.missingStages }),
         first: e.days?.[0]?.date ?? null, last: e.days?.[e.days.length - 1]?.date ?? null,
         stages: lineupOnly ? null : e.counts?.stages ?? null,
         artists: e.counts?.artists ?? null,
@@ -105,6 +108,25 @@ export function hoursMatchEdition(h, dates) {
   return +year === ed.year && days.some(m => m[1].toLowerCase() === ed.mon && +m[2] === ed.day);
 }
 export const editionHours = cfg => (cfg && hoursMatchEdition(cfg.hours, cfg.dates) ? cfg.hours : null);
+
+// "Checked on <date>" (SPEC-206 C): the newest date a source for this edition
+// was actually read, taken only from the observedAt fields the data records
+// for the facts the page shows (official site, lineup, set times, map, hours).
+// Never TODAY, never the page's lastmod, and never the colour source in
+// cfg.print, so the stamp cannot claim a check that did not happen. A
+// festival with no recorded read gets no stamp.
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
+export function checkedOn(cfg) {
+  if (!cfg) return null;
+  // Only a source the page lists (it has a link) counts, so the stamp's date
+  // is always the read date printed on one of the page's Sources rows. It is
+  // the NEWEST read, so the page says "Sources last checked on", never that
+  // every source was checked that day.
+  const site = cfg.officialEvent && cfg.officialEvent.website ? cfg.officialEvent : null;
+  const reads = [site, cfg.lineupSource, cfg.scheduleSource, cfg.mapSource, editionHours(cfg)]
+    .filter(s => s && (s.url || s.website)).map(s => s.observedAt).filter(d => ISO_DAY.test(String(d || '')));
+  return reads.sort().pop() || null;
+}
 
 // Amenity TYPES and counts, never positions: a list of what the app carries
 // says nothing about where anything is, so it needs no verified geometry.

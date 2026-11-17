@@ -1,0 +1,203 @@
+{
+  "id": "shambhala-2015",
+  "method": "official_sources",
+  "official": "https://www.shambhalamusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2015-08-06",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2015-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20150925134427/http://www.shambhalamusicfestival.com/2015-schedule/",
+          "captureTimestamp": "20150925134427",
+          "printed": "Thursday",
+          "sha256": "91727f1455dba7ac622189769e4cc64b11a72ea69b113bb79e81aaeba1f8bdf8",
+          "bytes": 193349,
+          "rows": 28,
+          "format": "shambhala-table",
+          "firstSlot": "time_1438855200",
+          "stages": 6,
+          "axis": "10:00AM … 10:00AM",
+          "slots": 49,
+          "openEnded": 28,
+          "closedBlocks": 2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2015-08-07",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2015-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20150925134427/http://www.shambhalamusicfestival.com/2015-schedule/",
+          "captureTimestamp": "20150925134427",
+          "printed": "Friday",
+          "sha256": "91727f1455dba7ac622189769e4cc64b11a72ea69b113bb79e81aaeba1f8bdf8",
+          "bytes": 193349,
+          "rows": 78,
+          "format": "shambhala-table",
+          "firstSlot": "time_1438941600",
+          "stages": 6,
+          "axis": "10:00AM … 10:00AM",
+          "slots": 49,
+          "openEnded": 77,
+          "printedRanges": [
+            "Subscura: (10:15-10:30PM)"
+          ],
+          "closedBlocks": 8
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2015-08-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2015-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20150925134427/http://www.shambhalamusicfestival.com/2015-schedule/",
+          "captureTimestamp": "20150925134427",
+          "printed": "Saturday",
+          "sha256": "91727f1455dba7ac622189769e4cc64b11a72ea69b113bb79e81aaeba1f8bdf8",
+          "bytes": 193349,
+          "rows": 73,
+          "format": "shambhala-table",
+          "firstSlot": "time_1439028000",
+          "stages": 6,
+          "axis": "10:00AM … 10:00AM",
+          "slots": 49,
+          "openEnded": 73,
+          "closedBlocks": 12
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2015-08-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2015-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20150925134427/http://www.shambhalamusicfestival.com/2015-schedule/",
+          "captureTimestamp": "20150925134427",
+          "printed": "Sunday",
+          "sha256": "91727f1455dba7ac622189769e4cc64b11a72ea69b113bb79e81aaeba1f8bdf8",
+          "bytes": 193349,
+          "rows": 73,
+          "format": "shambhala-table",
+          "firstSlot": "time_1439114400",
+          "stages": 6,
+          "axis": "10:00AM … 12:00PM",
+          "slots": 53,
+          "openEnded": 70,
+          "printedRanges": [
+            "Mat The Alien & The Librarian: (3:30-5am)",
+            "Huglife: (9-10:20PM)",
+            "Subscura: (10:20-10:30PM)"
+          ],
+          "joined": [
+            "Mat The Alien + \"& The Librarian (3:30-5am)\""
+          ],
+          "closedBlocks": 12
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Living Room",
+      "start": "11:00",
+      "end": null,
+      "billing": "JoaqoPelli (Flute Ceremony, 11:11AM)",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "Living Room",
+      "start": "20:30",
+      "end": null,
+      "billing": "Hoola (Band Changeover)",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Grove",
+      "start": "13:00",
+      "end": null,
+      "billing": "Opening Ceremony w/ Soul Fire Dance",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Village",
+      "start": "14:00",
+      "end": null,
+      "billing": "Ragga Jungle Rinse Out - Hosted by Hush",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Amphitheatre",
+      "start": "15:30",
+      "end": null,
+      "billing": "Fashion Show",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Pagoda",
+      "start": "02:30",
+      "end": null,
+      "billing": "Mystery Headliner",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "Village",
+      "start": "13:30",
+      "end": null,
+      "billing": "Hip Hop Showcase ft. Grouch & Eligh",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Village",
+      "start": "04:30",
+      "end": null,
+      "billing": "Liquid Sunrise Jam",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Living Room",
+      "start": "11:00",
+      "end": null,
+      "billing": "JoaqoPelli (Flute Ceremony)",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Fractal Forest",
+      "start": "14:00",
+      "end": null,
+      "billing": "Fractal Funk Jam - Hosted by Smalltown DJs",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    }
+  ]
+}

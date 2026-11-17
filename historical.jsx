@@ -143,10 +143,16 @@ function openPastEdition(id) {
 // The one-line summary a past edition row carries: dates, then what the
 // official record holds. A lineup-only edition says its times are not
 // verified instead of showing an empty schedule.
+// "Heineken House (both weekends) and Do Lab (Weekend 1)".
+function _histMissingList(missing) {
+  const parts = missing.map(m => `${m.stage} (${m.when})`);
+  return parts.length < 2 ? parts.join("") : `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
+}
+
 function pastEditionLine(e) {
   const what = e.completeness === "lineup_only"
     ? `${e.counts.artists} artists · set times not verified`
-    : `${e.counts.sets} sets · ${e.counts.stages} stages`;
+    : `${e.counts.sets} sets · ${e.counts.stages} stages${e.completeness === "selected_stages" ? " · selected stages" : ""}`;
   return `${_histDateRange(e.days)} · ${what}`;
 }
 
@@ -241,7 +247,7 @@ function _HistLibrary({ state, setState }) {
                   <div className="duo-data-s duo-ink2" style={{ marginTop: 3 }}>
                     {e.completeness === "lineup_only"
                       ? `${e.counts.artists} artists · lineup only`
-                      : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets`}
+                      : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets${e.completeness === "selected_stages" ? " · selected stages" : ""}`}
                   </div>
                 </div>
                 <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 L15 12 L9 18"/></svg>
@@ -411,7 +417,7 @@ function _HistEdition({ meta, back }) {
     const ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || c.published?.replace(/-/g, "")).filter(t => /^\d{8}/.test(t || "")).sort().pop();
     return ts ? _histDate(`${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`, { month: "short", day: "numeric", year: "numeric" }) : "";
   }, [e]);
-  const frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"} · archived`;
+  const frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"}${meta.completeness === "selected_stages" ? ", selected stages" : ""} · archived`;
 
   const view = React.useMemo(() => {
     if (!e) return null;
@@ -433,6 +439,10 @@ function _HistEdition({ meta, back }) {
   // The edition's dated notes that bear on what is on screen: edition-wide
   // ones always, a day's own only on that day (all of them while searching).
   const notes = (e?.notes || []).filter(n => !n.days || query || n.days.includes(day));
+  // selected_stages: name what the official schedule had that is not here,
+  // on every day, so a missing stage never reads as "nothing played there".
+  const missing = e?.coverage?.missing || [];
+  if (missing.length) notes.unshift({ asOf: e.coverage.asOf, text: `Not every stage is here yet. The official schedule also listed ${_histMissingList(missing)}, whose set times are not in this edition.` });
   const noteBlock = notes.length > 0 && (
     <div data-edition-notes style={{ margin: "8px 0 4px", display: "grid", gap: 6 }}>
       {notes.map((n, i) => (

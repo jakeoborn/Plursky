@@ -546,16 +546,19 @@ function readoutHonest(avatar) {
   return geometryVerifiedFor(typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
 var ARTFIT_MAX_RMS_M = 15;
+var ARTFIT_APPROX_MAX_RMS_M = 60;
 function artGeorefFor(cfg) {
   var g = cfg && cfg.mapGeoref;
   if (!g || typeof g.image !== "string" || !Array.isArray(g.bounds) || g.bounds.length !== 4) return null;
   var [w, s, e, n] = g.bounds;
   if (![w, s, e, n].every(Number.isFinite) || !(e > w && n > s)) return null;
-  if (!(Number.isFinite(g.rmsM) && g.rmsM <= ARTFIT_MAX_RMS_M)) return null;
+  var maxRms = g.approximate === true ? ARTFIT_APPROX_MAX_RMS_M : ARTFIT_MAX_RMS_M;
+  if (!(Number.isFinite(g.rmsM) && g.rmsM <= maxRms)) return null;
   return g;
 }
 function posterTierFor(cfg, affine, verified) {
-  if (!cfg || cfg.mapMode === "real") return "none";
+  if (!cfg) return "none";
+  if (cfg.mapMode === "real") return artGeorefFor(cfg) ? "fitted" : "none";
   if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
   if (affine && verified) return "checked";
   if (artGeorefFor(cfg)) return "fitted";
@@ -609,8 +612,19 @@ function _groundsLngLats(cfg) {
 }
 function _realMapPanLimit(cfg, lib) {
   var v = cfg && cfg.venue;
-  if (!v || !v.festivalBounds) return null;
+  if (!v) return null;
   var fb = v.festivalBounds;
+  if (!fb && Array.isArray(v.footprint) && v.footprint.length >= 3) {
+    var la = v.footprint.map(p => p[0]),
+      lo = v.footprint.map(p => p[1]);
+    if ([...la, ...lo].every(Number.isFinite)) fb = {
+      south: Math.min(...la),
+      north: Math.max(...la),
+      west: Math.min(...lo),
+      east: Math.max(...lo)
+    };
+  }
+  if (!fb) return null;
   return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
 }
 function _liveFixUnplaced(liveOnSite, hasAffine, onRealMap) {
@@ -2744,7 +2758,7 @@ function MapScreen({
   var canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
   var artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
   var artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
-  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "fitted" ? "OFFICIAL MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
+  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "fitted" ? ART_GEOREF && ART_GEOREF.approximate ? "APPROX MAP · STAGES PENDING" : "OFFICIAL MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
   var mapAmenities = useRealMap ? REAL_MAP_AMENITIES : typeof AMENITIES !== "undefined" ? AMENITIES : [];
   var [realMapNote, setRealMapNote] = React.useState(null);
   var _disableRealMap = why => {
@@ -7015,7 +7029,7 @@ function RealMap({
         }
         applyPlurskyPalette();
         _safeLayer("outside-mask", () => {
-          if (FESTIVAL_CONFIG.mapMode === "real") return;
+          if (FESTIVAL_CONFIG.mapMode === "real" && !(_footprintRing() && FESTIVAL_CONFIG.venue?.footprintIsGrounds === true)) return;
           var _hole = _footprintRing() || _boundsRing();
           if (!_hole) return;
           var _maskFeature = () => {
@@ -7097,7 +7111,7 @@ function RealMap({
           })
         });
         var _addOfficialMap = () => {
-          if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
+          if (!ART_GEOREF && (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage)) return;
           if (!MAP_AFFINE && !ART_GEOREF) return;
           if (officialMapFailedRef.current) return;
           var dims = officialMapDimsRef.current;
@@ -7134,7 +7148,7 @@ function RealMap({
           }
         };
         _safeLayer("official-map", _addOfficialMap);
-        if (!officialMapDimsRef.current && FESTIVAL_CONFIG.mapImage) {
+        if (!officialMapDimsRef.current && (FESTIVAL_CONFIG.mapImage || ART_GEOREF)) {
           _officialMapDims(OFFICIAL_MAP_SRC).then(d => {
             if (cancelled || !d || !mapRef.current) return;
             officialMapDimsRef.current = d;
