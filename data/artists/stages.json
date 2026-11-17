@@ -3583,6 +3583,45 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "outside-lands:inspire",
+     "names": [
+      {
+       "printed": "Inspire",
+       "editions": [
+        "outside-lands-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:panhandle-solar",
+     "names": [
+      {
+       "printed": "Panhandle Solar",
+       "editions": [
+        "outside-lands-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:the-domes-by-heineken",
+     "names": [
+      {
+       "printed": "The Domes by Heineken",
+       "editions": [
+        "outside-lands-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
