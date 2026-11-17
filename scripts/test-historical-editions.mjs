@@ -29,6 +29,7 @@ import { parseShambhala, slotLabel } from "./historical/shambhala-schedule.mjs";
 import { parseDoStuff, parseDoStuffBand, timeDay } from "./historical/dostuff-schedule.mjs";
 import { parseMyScheduler, restoreSets } from "./historical/myscheduler-schedule.mjs";
 import { parseEfScheduler } from "./historical/ef-scheduler-schedule.mjs";
+import { parseGovBallWp, printedDate as govBallDate } from "./historical/govball-wp-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -435,6 +436,40 @@ if (base && edc) {
     esMust("an Electric Forest programme entry not named as programme", esPage(), []);
     esMust("an Electric Forest Scheduler skipping a day", esPage().replaceAll("2015-06-26", "2015-06-28").replace(">June 26<", ">June 28<").replace(String(Date.parse("2015-06-26T15:00:00Z") / 1000), String(Date.parse("2015-06-28T15:00:00Z") / 1000)));
     msMust("a restored Outside Lands name that reads no billing", msPage, ["Headéliner"]);
+    // Governors Ball's 2011-2012 WordPress schedule: a grid per day, a column
+    // per stage, every range with its own am or pm.
+    const gbBlock = (pre, cls, name, range, head = "") => `<div class="${pre}-block ${cls}">${head}<h2>${name}</h2><h3>${range}</h3></div>`;
+    const gbAxis = `<div class="time-column"><h3>12:00 PM</h3><h3>1:00 PM</h3><h3>2:00 PM</h3><h3>3:00 PM</h3></div>`;
+    const gbDay = (heading, cols) => `<div class="schedule-header">${heading ? `<div class="stage-heading">${heading}</div>` : ""}${cols.map(([st]) => `<h2>${st}</h2>`).join("")}</div>`
+      + gbAxis + cols.map(([, pre, blocks]) => `<div class="${pre}-column">${blocks.join("")}</div>`).join("");
+    const gbD1 = [["HYPE MACHINE<br>STAGE", "hypem", [gbBlock("hypem", "a", "Opener", "12:15 pm - 12:45 pm"), gbBlock("hypem", "b", "Closer", "2:30 pm - 3:30 pm", `<h3 class="headline">Headline Set By</h3>`)]],
+      ["HONDA STAGE", "honda", [gbBlock("honda", "c", "Early &amp; Act", "11:45 am - 12:10 pm"), gbBlock("honda", "d", "Backwards", "11:45 pm - 12:10 pm"), gbBlock("honda", "e", "Last", "1:00 pm - ???")]]];
+    const gbD2 = [["HYPE MACHINE<br>STAGE", "hypem", [gbBlock("hypem", "f", "Day Two", "1:00 pm - 1:40 pm")]], ["HONDA STAGE", "honda", [gbBlock("honda", "g", "Two Honda", "2:00 pm - 2:30 pm")]]];
+    const gbDesc = `<meta name="description" content="The Governors Ball returns to Randall&#039;s Island in 2012" />`;
+    const gbPage = (d1 = gbD1, d2 = gbD2, desc = gbDesc) => desc + `<div id="schedule">` + gbDay("SATURDAY 6/23", d1) + gbDay("SUNDAY 6/24", d2) + `<!-- END main-content -->`;
+    const gbp = parseGovBallWp(gbPage(), { year: 2012 });
+    ok(JSON.stringify(gbp.days.map(d => [d.date, d.label, d.dateFrom, d.stages, d.axis, d.sets.map(x => [x.stage, x.start, x.end, x.artist, !!x.openEnd]), d.misprints.map(x => [x.artist, x.printed])]))
+      === JSON.stringify([["2012-06-23", "SATURDAY 6/23", "the day's heading", ["HYPE MACHINE STAGE", "HONDA STAGE"], "12:00-15:00",
+        [["HYPE MACHINE STAGE", "12:15", "12:45", "Opener", false], ["HYPE MACHINE STAGE", "14:30", "15:30", "Closer", false], ["HONDA STAGE", "11:45", "12:10", "Early & Act", false], ["HONDA STAGE", "13:00", "", "Last", true]],
+        [["Backwards", "11:45 pm - 12:10 pm"]]],
+        ["2012-06-24", "SUNDAY 6/24", "the day's heading", ["HYPE MACHINE STAGE", "HONDA STAGE"], "12:00-15:00", [["HYPE MACHINE STAGE", "13:00", "13:40", "Day Two", false], ["HONDA STAGE", "14:00", "14:30", "Two Honda", false]], []]]),
+      `a Governors Ball schedule must come back set by set, a "???" end open and a backwards range a misprint: ${JSON.stringify(gbp)}`);
+    const gbOne = `<meta name="description" content="A one-day, two-stage festival on Randall&#039;s Island on Saturday, June 18th, 2011" />` + `<div id="schedule">` + gbDay("", gbD2) + `<!-- END main-content -->`;
+    ok(parseGovBallWp(gbOne, { year: 2011 }).days.map(d => [d.date, d.dateFrom]).join() === "2011-06-18,the page's description", "a one-day Governors Ball page must be dated by its own description");
+    ok(govBallDate("SATURDAY 6/23", 2012) === "2012-06-23" && govBallDate("SUNDAY 6/23", 2012) === null && govBallDate("Saturday, June 18th, 2011", 2011) === "2011-06-18" && govBallDate("Saturday, June 18th, 2011", 2012) === null, "a Governors Ball day label must print its own weekday and year");
+    const gbMust = (what, html, year = 2012) => { let bad = false; try { parseGovBallWp(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    gbMust("a Governors Ball page of another year", gbPage(), 2013);
+    gbMust("a Governors Ball heading whose weekday is not its date", gbPage().replace("SATURDAY 6/23", "FRIDAY 6/23"));
+    gbMust("a Governors Ball page skipping a day", gbPage().replace("SUNDAY 6/24", "MONDAY 6/25"));
+    gbMust("a Governors Ball one-day page with two grids and no headings", gbOne.replace("<!-- END", gbDay("", gbD2) + "<!-- END"), 2011);
+    gbMust("a Governors Ball page with no heading that is not one day", gbOne.replace("A one-day, two-stage festival", "A festival"), 2011);
+    gbMust("a Governors Ball range with no meridiem", gbPage().replace("1:00 pm - 1:40 pm", "1:00 - 1:40 pm"));
+    gbMust("a Governors Ball hour axis that skips an hour", gbPage().replace("<h3>2:00 PM</h3>", "<h3>2:30 PM</h3>"));
+    gbMust("a Governors Ball day with more stage headers than columns", gbPage().replace("<h2>HONDA STAGE</h2>", "<h2>HONDA STAGE</h2><h2>THIRD STAGE</h2>"));
+    gbMust("a Governors Ball open end before a column's last block", gbPage(undefined, [[gbD2[0][0], "hypem", [gbBlock("hypem", "f", "Day Two", "1:00 pm - ???"), gbBlock("hypem", "h", "After", "2:00 pm - 2:30 pm")]], gbD2[1]]));
+    gbMust("two Governors Ball sets overlapping on one stage", gbPage(undefined, [[gbD2[0][0], "hypem", [gbBlock("hypem", "f", "Day Two", "1:00 pm - 1:40 pm"), gbBlock("hypem", "h", "Clash", "1:30 pm - 2:00 pm")]], gbD2[1]]));
+    gbMust("a Governors Ball block in another stage's column", gbPage().replace('class="honda-block g"', 'class="hypem-block g"'));
+    gbMust("a Governors Ball block with two names", gbPage().replace("<h2>Two Honda</h2>", "<h2>Two</h2><h2>Honda</h2>"));
     // Coachella's lineup cards (2016's two divs, 2015's one span): every set
     // open-ended, a card with no set unscheduled, an entry without its time
     // or stage incomplete, and nothing read off data-weekend.
@@ -763,6 +798,13 @@ for (const [id, e] of Object.entries(editions)) {
         if (s.format === "ef-scheduler") {
           ok(s.tabDate === d.date && s.printed === `${MONTH[m - 1][0]}${MONTH[m - 1].slice(1).toLowerCase()} ${dd}` && s.pxPerMinute > 0 && /^\d{2}:\d{2}$/.test(s.axisStart || ""),
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" for tab ${s.tabDate}, not ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // Governors Ball's 2011-2012 schedule prints each day's heading
+        // ("SATURDAY 6/23"); 2011's one day is the one its description prints.
+        if (s.format === "govball-wp") {
+          ok(govBallDate(s.printed, e.year) === d.date && /^the (day's heading|page's description)$/.test(s.dateFrom || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (${s.dateFrom}), not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         ok(s.kind === "page" ? datedLabel(s.printed, e.year) === d.date : graphicPrints(s.printed, d.date, e.year, e.days.map(x => x.date)),

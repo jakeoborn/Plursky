@@ -79,6 +79,23 @@ act are dropped as `event-block`; the Silent Disco is dropped as operational.
 2014 and 2015 come from the newer Scheduler (below); 2024's schedule page has
 not been read yet.
 
+Archived Governors Ball schedule (2011, 2012, format `govball-wp`):
+
+    node scripts/historical/gather-govball-wp.mjs <edition-id> <gather-dir> <official-url> <ts> <url>
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+governorsballmusicfestival.com/lineup/schedule/ was a WordPress page that drew
+one grid per day: a header with the day's heading ("SATURDAY 6/23") and one
+stage name per column, an hour axis one hour apart, then one column per stage
+whose blocks print a name and a range ("12:50 pm - 1:25 pm"). Every time
+prints its own am or pm, so no anchor is needed. 2011 was one day and prints no
+heading: its date is the one the page's own description prints ("A one-day,
+two-stage festival … on Saturday, June 18th, 2011"). A "???" end is an open
+end, only on a column's last block (2011's Pretty Lights). A range that runs
+backwards or more than six hours, or starts off the axis by over an hour, is a
+misprint and an excluded row, never read another way (2012's Turf War, printed
+"11:45 pm - 12:10 pm"). Sets in a column must run in order with no overlap.
+
 Archived Electric Forest Scheduler (2014, 2015, format `ef-scheduler`):
 
     node scripts/historical/gather-ef-scheduler.mjs <edition-id> <gather-dir> <official-url> <ts> <url> \

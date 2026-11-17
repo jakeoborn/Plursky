@@ -2222,6 +2222,45 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "governors-ball:big-apple-stage",
+     "names": [
+      {
+       "printed": "Big Apple Stage",
+       "editions": [
+        "governors-ball-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:gotham-stage",
+     "names": [
+      {
+       "printed": "Gotham Stage",
+       "editions": [
+        "governors-ball-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:hype-machine-stage",
+     "names": [
+      {
+       "printed": "HYPE MACHINE STAGE",
+       "editions": [
+        "governors-ball-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

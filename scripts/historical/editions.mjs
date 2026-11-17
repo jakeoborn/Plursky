@@ -46,6 +46,19 @@ export const EDITIONS = {
   "outside-lands-2015": { festivalId: "outside-lands", name: "Outside Lands 2015", year: 2015, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2015-08-07","Friday"],["2015-08-08","Saturday"],["2015-08-09","Sunday"]] },
   "outside-lands-2016": { festivalId: "outside-lands", name: "Outside Lands 2016", year: 2016, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2016-08-05","Friday"],["2016-08-06","Saturday"],["2016-08-07","Sunday"]] },
   "outside-lands-2017": { festivalId: "outside-lands", name: "Outside Lands 2017", year: 2017, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2017-08-11","Friday"],["2017-08-12","Saturday"],["2017-08-13","Sunday"]] },
+  // Governors Ball 2011-2012: the official governorsballmusicfestival.com
+  // schedule page (/lineup/schedule/, a WordPress template, format
+  // "govball-wp", govball-wp-schedule.mjs), one archived page per year, each
+  // captured after the festival. Every time prints its own am or pm. 2011 was
+  // one day on Governors Island, dated by the page's own description; 2012
+  // moved to Randall's Island and prints each day's heading ("SATURDAY
+  // 6/23"). Music ends by 11 PM.
+  "governors-ball-2011": { festivalId: "governors-ball", name: "Governors Ball 2011", year: 2011,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2011-06-18", "Saturday"]] },
+  "governors-ball-2012": { festivalId: "governors-ball", name: "Governors Ball 2012", year: 2012,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2012-06-23", "Saturday"], ["2012-06-24", "Sunday"]] },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.

@@ -2313,6 +2313,53 @@
    }
   },
   {
+   "id": "governors-ball-2012",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2012",
+   "year": 2012,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-06-23",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2012-06-24",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 2,
+    "artists": 25,
+    "sets": 25
+   }
+  },
+  {
+   "id": "governors-ball-2011",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2011",
+   "year": 2011,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-06-18",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 2,
+    "artists": 12,
+    "sets": 12
+   }
+  },
+  {
    "id": "hard-summer-2025",
    "festivalId": "hard-summer",
    "festivalName": "HARD Summer",
