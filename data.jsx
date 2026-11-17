@@ -3201,9 +3201,17 @@ function photoFixAccClass(acc) {
 // Only measured stage positions (osm / crowd) may fire automatic attendance.
 // A poster read, a provisional pin or a derived point is a guess about where
 // a stage is, and a guess must not mark a set (founder, 2026-10-20).
+// A stage this phone calibrated on site (two agreeing taps, chrome.jsx
+// stageCalibrationAnchors) also counts, on this phone only, and only for a
+// stage with no measured position. Those come back only once every stage with
+// a set has one, so a fix near an unplaced stage is never pinned to its
+// neighbour.
 function attendEvidenceAnchors(cfg) {
-  return ((typeof resolvedStageAnchors === "function") ? resolvedStageAnchors(cfg) : ((cfg && cfg.gpsAnchors) || []))
+  const measured = ((typeof resolvedStageAnchors === "function") ? resolvedStageAnchors(cfg) : ((cfg && cfg.gpsAnchors) || []))
     .filter(a => { const s = a.anchorSource || a.src; return s === "osm" || s === "crowd"; });
+  if (!cfg || !cfg.id || typeof stageCalibrationAnchors !== "function") return measured;
+  const have = new Set(measured.map(a => a.stageId));
+  return measured.concat(stageCalibrationAnchors(cfg, have));
 }
 
 // Raw samples ({ lat, lng, accuracy, timestamp, atMs }) → the qualifying
@@ -3338,6 +3346,99 @@ function setTrackEligibility(cfg, nowMs) {
   if (!attendEvidenceAnchors(cfg).length) return "no-stages";
   const phase = typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, nowMs) : "upcoming";
   return phase === "live" ? "live" : phase === "ended" ? "ended" : "not-live";
+}
+
+// ── Set attendance evidence (SPEC-200 Build 2) ─────────────────────────────
+// Points of evidence beside the GPS runs: a Live Set Check-in, a photo the
+// tagger placed by a trusted fix, and a "Still here" tap. The engine reads
+// every point one way (src "photo"): it makes a set caught, never full and
+// never a length. Nothing here changes a threshold.
+
+// A moment's capture instant. takenAt is the festival's local wall clock
+// ("YYYY-MM-DD HH:MM[:SS]"), so it is read in the festival's zone, never the
+// phone's. Null without a takenAt: an import time is not a capture time.
+function attendMomentMs(m, cfg) {
+  const t = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?/.exec((m && m.takenAt) || "");
+  if (!t) return null;
+  const naive = Date.UTC(+t[1], +t[2] - 1, +t[3], +t[4], +t[5], +(t[6] || 0));
+  const tz = cfg && cfg.tz;
+  if (!tz || typeof Intl === "undefined") return naive - ((cfg && cfg.utcOffsetHours) || 0) * 3600000;
+  try { return naive - _utcOffsetMs(tz, naive - _utcOffsetMs(tz, naive)); } catch { return null; }
+}
+
+// Which moments say you were at a stage, as points per stage:
+// { [stageId]: [{ from, to, src: "photo", via: "checkin" | "photo", momentId }] }.
+//  - a Live Set Check-in whose fix the gate trusted (locationSource "gps-live")
+//  - a photo or video the tagger placed by a trusted fix ("stage-gps" or
+//    "trusted-gps" evidence), not flagged ambiguous, and not retagged by hand
+//    (a hand tag says which set, not where the phone was)
+// Only this festival's moments, and only at a stage with a measured position:
+// a poster-placed stage never marks a set. A capture time the importer could
+// not confirm (dateUnverified) is not evidence. No coordinate is read.
+function attendMomentPoints(moments, cfg, artists) {
+  const out = {};
+  if (!cfg || !cfg.id) return out;
+  const measured = new Set(attendEvidenceAnchors(cfg).map(a => a.stageId));
+  const stageOf = new Map((artists || []).map(a => [a.id, a.stage]));
+  const all = Array.isArray(moments) ? moments : Object.values(moments || {}).flat();
+  for (const m of all) {
+    if (!m || m.dateUnverified || m.festivalId !== cfg.id) continue;
+    let stageId = null, via = null;
+    if (m.kind === "checkin") {
+      if (m.locationSource === "gps-live" && m.stageId) { stageId = m.stageId; via = "checkin"; }
+    } else if (m.artistId && m.autoTagged && !m.tagAmbiguous && m.tagSource !== "manual"
+      && /(stage-gps|trusted-gps)/.test(m.matchEvidence || "")) {
+      stageId = stageOf.get(m.artistId) || null; via = "photo";
+    }
+    if (!stageId || !measured.has(stageId)) continue;
+    const ms = attendMomentMs(m, cfg);
+    if (ms == null) continue;
+    (out[stageId] = out[stageId] || []).push({ from: ms, to: ms, src: "photo", via, momentId: m.id || null });
+  }
+  for (const k of Object.keys(out)) out[k].sort((x, y) => x.from - y.from || String(x.momentId).localeCompare(String(y.momentId)));
+  return out;
+}
+
+// GPS runs plus points, per stage, in time order. The same point twice
+// (a re-imported photo, a double tap) counts once: duplicates never add up.
+function attendMergeEvidence(...sources) {
+  const out = {};
+  for (const src of sources) {
+    for (const [stageId, list] of Object.entries(src || {})) {
+      for (const r of list || []) {
+        if (!r || typeof r.from !== "number" || typeof r.to !== "number") continue;
+        const rows = (out[stageId] = out[stageId] || []);
+        if (r.src === "photo" && rows.some(x => x.src === "photo" && x.from === r.from)) continue;
+        rows.push({ ...r });
+      }
+    }
+  }
+  for (const k of Object.keys(out)) {
+    out[k].sort((x, y) => x.from - y.from || x.to - y.to);
+    // Overlapping runs from two sources are one stretch of time, not two.
+    const merged = [];
+    for (const r of out[k]) {
+      // The last GPS run so far (a loop, not findLast: iOS 15.4+ only).
+      let prev = null;
+      if (r.src !== "photo") for (let i = merged.length - 1; i >= 0; i--) if (merged[i].src !== "photo") { prev = merged[i]; break; }
+      if (prev && r.from <= prev.to) { if (r.to > prev.to) prev.to = r.to; continue; }
+      merged.push(r);
+    }
+    out[k] = merged;
+  }
+  return out;
+}
+
+// The "why" behind a verdict: the evidence at this set's stage inside its
+// window (with the engine's own grace), as times and kinds only, never a place.
+function attendEvidenceList(a, intervals, cfg) {
+  if (!a || !a.stage) return [];
+  const runs = (intervals && intervals[a.stage]) || [];
+  const w = attendTimeClass(a) === "blank" ? null : attendSetWindowMs(a, cfg, runs);
+  const lo = w ? w.startMs - ATTEND_GRACE_MS - ATTEND_PHOTO_MS : -Infinity;
+  const hi = w ? w.endMs + ATTEND_GRACE_MS + ATTEND_PHOTO_MS : Infinity;
+  return runs.filter(r => r.to >= lo && r.from <= hi)
+    .map(r => ({ kind: r.src === "photo" ? (r.via || "photo") : "gps", from: r.from, to: r.to }));
 }
 
 // ── Schedule Sync: the feed shape, the diff, the replay ────────────────────
