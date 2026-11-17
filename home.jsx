@@ -3052,22 +3052,21 @@ function NpPoster({ countdown, stampText, fold, foldRight }) {
 // The festival's own photo across the poster, above the fold (Jake, Nov 13:
 // "design looks weak need photos"). Same ledger frame as the switcher card
 // (data/festival-art.js); a festival with no card keeps the type-only poster.
-// A Creative Commons BY photo carries its credit and license on the frame.
-function _npPhotoCredit(rec) {
-  const lic = String(rec?.license || "").match(/^(CC BY(?:-SA)? [0-9]+(?:\.[0-9]+)*)/);
-  if (!lic) return null;
-  const who = String(rec?.credit || "").match(/Photo by ([^,(]+)/);
-  return `${who ? `Photo: ${who[1].trim()} · ` : ""}${lic[1]} · Wikimedia Commons`;
-}
+// A licensed photo carries the shared PhotoCredit (author, licence deed,
+// changes) on the frame, the same line as everywhere else in the app.
 function NpPhoto() {
   const rec = typeof festivalArtFor === "function" ? festivalArtFor(FESTIVAL_CONFIG.id) : null;
   const [failed, setFailed] = React.useState(false);
   if (!rec || !rec.card || !/^festival-art\/[a-z0-9-]+\.webp$/.test(rec.card) || failed) return null;
-  const credit = _npPhotoCredit(rec);
+  const credit = rec.author && rec.licenseId && rec.licenseUrl
+    ? { author: rec.author, sourceUrl: rec.sourcePage, license: rec.licenseId, licenseUrl: rec.licenseUrl, changes: rec.changes }
+    : null;
   return (
     <figure className="np-photo" data-np-photo>
       <img src={`./${rec.card}`} alt="" decoding="async" onError={() => setFailed(true)} />
-      {credit && <figcaption className="np-photo-credit">{credit}</figcaption>}
+      {credit && typeof PhotoCredit === "function" && (
+        <figcaption className="np-photo-credit"><PhotoCredit credit={credit} style={{ color: "#fff" }} /></figcaption>
+      )}
     </figure>
   );
 }
