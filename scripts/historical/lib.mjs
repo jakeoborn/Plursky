@@ -38,7 +38,9 @@ export function datedLabel(label, year) {
   const mi = word.length === 3 ? MONTHS.findIndex(n => n.slice(0, 3) === word) : MONTHS.indexOf(word);
   if (mi < 0) return null;
   const iso = `${year}-${String(mi + 1).padStart(2, "0")}-${String(+m[3]).padStart(2, "0")}`;
-  return weekdayOf(iso) === m[1].toLowerCase() ? iso : null;
+  // Lollapalooza 2011 abbreviates the weekday ("Fri, Aug 5").
+  const wd = weekdayOf(iso), w = m[1].toLowerCase();
+  return wd === w || (w.length === 3 && wd.slice(0, 3) === w) ? iso : null;
 }
 
 // Whether a graphic's printed header prints festival day `date`: it names

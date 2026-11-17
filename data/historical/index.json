@@ -548,6 +548,68 @@
    }
   },
   {
+   "id": "acl-2012",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2012",
+   "year": 2012,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-10-12",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-10-13",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2012-10-14",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 127,
+    "sets": 134
+   }
+  },
+  {
+   "id": "acl-2011",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2011",
+   "year": 2011,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-09-16",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2011-09-17",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2011-09-18",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 125,
+    "sets": 132
+   }
+  },
+  {
    "id": "beyond-wonderland-gorge-2026",
    "festivalId": "beyond-wonderland-gorge",
    "festivalName": "Beyond Wonderland at The Gorge",
@@ -2646,6 +2708,68 @@
     "stages": 8,
     "artists": 138,
     "sets": 147
+   }
+  },
+  {
+   "id": "lollapalooza-2012",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2012",
+   "year": 2012,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-08-03",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-08-04",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2012-08-05",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 133,
+    "sets": 142
+   }
+  },
+  {
+   "id": "lollapalooza-2011",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2011",
+   "year": 2011,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-08-05",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2011-08-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2011-08-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 143,
+    "sets": 152
    }
   },
   {

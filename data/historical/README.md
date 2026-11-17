@@ -193,6 +193,48 @@ excluded rows, one for one with the page. Only captures taken after each
 festival are used. 2010 and 2011 use an older planner (below); 2018 on has
 no archived grid of this kind.
 
+Lollapalooza 2012 ran on the same platform (lineup.lollapalooza.com, same
+format and tools, `festivalId` checked against the page). Its titles print
+the name alone ("Lollapalooza", "Dev at Lollapalooza"), so the year is the
+day tab's own; a printed year must match it. The axis starts at "11:00", and
+each day's anchor is one act's page captured after the festival (Dev on
+Friday, Avicii on Saturday, Childish Gambino on Sunday). Kidz is the
+Kidzapalooza stage, kept as music, as in 2013. Saturday's grid changed during
+the festival: the capture used (20120807041117) is the grid printed after it,
+with the evening moved later and eight afternoon sets no longer listed, and
+the edition carries a note saying so.
+
+Lollapalooza 2011 is the same site's older layout, read by the same tools.
+Its title prints the year ("Lollapalooza 2011"); the days are a drop-down
+(the current one as plain text, "Fri, Aug 5", the others as links whose
+label must be their link's date) and the grid's "dayN" class must be the
+current day. Stage headers are plain, in column order (`ds-stage1` …), and
+the axis prints no row heights: the scale is the one the blocks keep
+(height + 1 px per printed minute, 2 px a minute), and at least three blocks
+in four must keep it. The f.y.e. Autograph Tent signings listed under the
+grid have clock times but are not sets: they are never read as any, only
+counted (`signingsNotSets` in the ledger). The act pages print the day and
+stage, then the linked time ("Sunday, Aug. 7 / Music Unlimited / 4:00pm").
+Act pages captured after about August 9, 2011 print "Date & Time TBA", so
+the anchors are earlier captures: Kerli (Friday, captured Aug 8), Big Audio
+Dynamite (Saturday, captured Aug 7) and The Cars (Sunday, captured that
+afternoon, before the set). An anchor only fixes the day's meridiem: its time
+must still sit on its own block on the grid captured after the festival
+(Aug 20), and all three do.
+
+ACL 2011 and 2012 ran on the same site too (lineup.aclfestival.com, titled
+"ACL 2011", "ACL 2012"): the newer tab row ("Friday, September 16") over the
+older grid (plain stage headers, no axis heights, the "dayN" class checked),
+with the Waterloo Autograph Tent's signings just after the table, counted and
+never read as sets. The grids are captures taken after each festival (2011:
+Sep 23; 2012: Nov 8 for Friday, May 12, 2013 for Saturday and Sunday). The
+anchors are the headliners' own pages: Kanye West, Stevie Wonder and Arcade
+Fire for 2011 (captured in August and September, before the festival), The
+Black Keys, Jack White and Red Hot Chili Peppers for 2012 (captured Nov 8,
+after it). The kids' stage keeps its printed name each year ("Austin Kiddie
+Limits presented by H-E-B", "HEB-Kids"), kept as music as in 2013, and one
+unnamed "Special Guest" slot there each year is dropped.
+
 Archived Outside Lands schedule planner (2010 and 2011, format `myscheduler-data`):
 
     node scripts/historical/gather-myscheduler.mjs <edition-id> <gather-dir> <official-url> <ts> <url> \

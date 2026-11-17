@@ -63,6 +63,19 @@ export const EDITIONS = {
   "lollapalooza-2025": { festivalId: "lollapalooza", name: "Lollapalooza 2025", year: 2025,
     timezone: "America/Chicago", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2025-07-31", "Thursday"], ["2025-08-01", "Friday"], ["2025-08-02", "Saturday"], ["2025-08-03", "Sunday"]] },
+  // Lollapalooza 2012: the official lineup.lollapalooza.com day grids, the
+  // same DoStuff page as Outside Lands' (format "dostuff-grid",
+  // dostuff-schedule.mjs). The grid prints no am/pm; each day's meridiem is
+  // read off one act's own page on the same site. Music runs from 11 AM to
+  // 10:45 PM in Grant Park, so no set crosses midnight.
+  "lollapalooza-2011": { festivalId: "lollapalooza", name: "Lollapalooza 2011", year: 2011,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2011-08-05", "Friday"], ["2011-08-06", "Saturday"], ["2011-08-07", "Sunday"]] },
+  "lollapalooza-2012": { festivalId: "lollapalooza", name: "Lollapalooza 2012", year: 2012,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2012-08-03", "Friday"], ["2012-08-04", "Saturday"], ["2012-08-05", "Sunday"]],
+    notes: [{ asOf: "2026-11-17", days: [2], text: "Saturday's schedule changed during the festival. The official grid printed after the festival moves the evening sets later, to 10:45 PM, and no longer lists eight afternoon sets that its earlier version did. The times shown are that later grid's.",
+      source: "https://web.archive.org/web/20120807041117/http://lineup.lollapalooza.com:80/events/2012/08/04" }] },
   // Lollapalooza 2013-2017 and 2019: the official lollapalooza.com schedule
   // grid, the same C3 page as ACL's (format "acl-grid"), one archived page per
   // year, each start read off the page's own hour axis.
@@ -139,6 +152,16 @@ export const EDITIONS = {
       ["2025-10-10", "Friday"], ["2025-10-11", "Saturday"], ["2025-10-12", "Sunday"]],
     dayLabels: ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
       "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"] },
+  // ACL 2011 and 2012: the official lineup.aclfestival.com day grids, the
+  // same DoStuff site as Outside Lands and Lollapalooza (format
+  // "dostuff-grid"), the grid's times with no am/pm fixed by one act's own
+  // page per day.
+  "acl-2011": { festivalId: "acl", name: "Austin City Limits 2011", year: 2011,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2011-09-16", "Friday"], ["2011-09-17", "Saturday"], ["2011-09-18", "Sunday"]] },
+  "acl-2012": { festivalId: "acl", name: "Austin City Limits 2012", year: 2012,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2012-10-12", "Friday"], ["2012-10-13", "Saturday"], ["2012-10-14", "Sunday"]] },
   // ACL 2014-2016, 2018, 2019: the official aclfestival.com schedule grid, one
   // archived page per weekend (format "acl-grid", acl-schedule.mjs). The grid
   // prints ranges with no am/pm; each start is read off the page's own printed
