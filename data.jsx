@@ -972,30 +972,7 @@ const FESTIVALS_REGISTRY = [
     emoji:     "🏝️",
     region:    "Europe",
   },
-  {
-    // ── Time Warp Germany 2027 — Maimarkthalle, Mannheim ──
-    // Added 2026-11-12 as a gated preview. Date and venue from time-warp.de,
-    // read 2026-11-12: "03 April 2027 Maimarkthalle Mannheim Time Warp
-    // Germany". One night. No 2027 lineup yet.
-    config: {
-      id:        "time-warp-2027",
-      officialEvent: { website: "https://www.time-warp.de/", observedAt: "2026-11-12" },
-      name:      "Time Warp Germany 2027",
-      shortName: "Time Warp",
-      brand:     "Time Warp",
-      tagline:   "One night of techno in Mannheim",
-      location:  "Maimarkthalle · Mannheim, Germany",
-      locationShort: "Maimarkthalle",
-      dates:     "Apr 3, 2027",
-      year:      2027,
-      // Night Print accent not measured yet (accent null = neutral print).
-      print: { accent: null, source: { url: "https://www.time-warp.de/", observedAt: "2026-11-12" }, note: "Not measured yet; the theme-color meta is #0048FF, so confirm against the site's own CSS before setting it." },
-    },
-    available: false,
-    accent:    "#3b82f6",
-    emoji:     "⏱️",
-    region:    "Europe",
-  },
+  // time-warp-2027 is a festival module now: data/festivals/time-warp-2027.js
   {
     // ── Sónar Barcelona 2027 — Barcelona, Spain ──
     // Added 2026-11-12 as a gated preview. Dates from sonar.es, read
@@ -5200,6 +5177,7 @@ const _WAVE1_IDS = [
   "groove-cruise-2027",
   "day-zero-tulum-2027",
   "coachella-2027",
+  "time-warp-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {
