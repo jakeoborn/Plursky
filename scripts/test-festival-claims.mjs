@@ -99,8 +99,8 @@ if (!verifiedIds.length || !blindIds.length) {
 // plus every stage carrying coordinates. map.jsx falls back to the SVG
 // TopDownMap, which with no placed stages "would render an empty plate with no
 // stages and no art" (map.jsx:1933).
-const PRODUCT_NOTE_MAP = 'Plursky is a free festival companion — build a personal schedule from the official lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.';
-const PRODUCT_NOTE_PLAIN = 'Plursky is a free festival companion — build a personal schedule from the official lineup, meet your crew, and turn the weekend into a shareable recap.';
+const PRODUCT_NOTE_MAP = 'Plursky is a free festival companion — build a personal schedule from the lineup, find stages on a live map, meet your crew, and turn the weekend into a shareable recap.';
+const PRODUCT_NOTE_PLAIN = 'Plursky is a free festival companion — build a personal schedule from the lineup, meet your crew, and turn the weekend into a shareable recap.';
 
 const MAP_CLAIMS = [
   /\blive map\b/i,

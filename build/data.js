@@ -814,6 +814,35 @@ var FESTIVALS_REGISTRY = [{
   region: "Europe"
 }, {
   config: {
+    id: "edc-lv-2027",
+    officialEvent: {
+      website: "https://lasvegas.edc.com/",
+      tickets: "https://edclasvegas.frontgatetickets.com/",
+      observedAt: "2026-11-16"
+    },
+    name: "EDC Las Vegas 2027",
+    shortName: "EDC Las Vegas",
+    brand: "EDC",
+    tagline: "Two weekends at Las Vegas Motor Speedway",
+    location: "Las Vegas Motor Speedway · Las Vegas, NV",
+    locationShort: "Las Vegas Motor Speedway",
+    dates: "May 14–16 & 21–23, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://lasvegas.edc.com/",
+        observedAt: "2026-11-16"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#ec4899",
+  emoji: "🌼",
+  region: "North America"
+}, {
+  config: {
     id: "tomorrowland-brasil-2027",
     officialEvent: {
       website: "https://brasil.tomorrowland.com/",
@@ -923,34 +952,6 @@ var FESTIVALS_REGISTRY = [{
   available: false,
   accent: "#ef4444",
   emoji: "🏝️",
-  region: "Europe"
-}, {
-  config: {
-    id: "time-warp-2027",
-    officialEvent: {
-      website: "https://www.time-warp.de/",
-      observedAt: "2026-11-12"
-    },
-    name: "Time Warp Germany 2027",
-    shortName: "Time Warp",
-    brand: "Time Warp",
-    tagline: "One night of techno in Mannheim",
-    location: "Maimarkthalle · Mannheim, Germany",
-    locationShort: "Maimarkthalle",
-    dates: "Apr 3, 2027",
-    year: 2027,
-    print: {
-      accent: null,
-      source: {
-        url: "https://www.time-warp.de/",
-        observedAt: "2026-11-12"
-      },
-      note: "Not measured yet; the theme-color meta is #0048FF, so confirm against the site's own CSS before setting it."
-    }
-  },
-  available: false,
-  accent: "#3b82f6",
-  emoji: "⏱️",
   region: "Europe"
 }, {
   config: {
@@ -4375,7 +4376,7 @@ var UNPLACED_STAGE = {
   color: "#8a8580",
   size: 1
 };
-var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026", "tomorrowland-thailand-2026", "groove-cruise-2027", "day-zero-tulum-2027", "coachella-2027"];
+var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026", "tomorrowland-thailand-2026", "groove-cruise-2027", "day-zero-tulum-2027", "coachella-2027", "time-warp-2027"];
 var _WAVE1 = typeof window !== "undefined" && window.PLURSKY_FESTIVALS || {};
 for (var _id of _WAVE1_IDS) {
   var _f = _WAVE1[_id];
