@@ -94,6 +94,23 @@ async function open(browser, { url, width, big, reduced, themePref, font, liveAt
   await page.goto(url, { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => Array.isArray(window.ARTISTS) && window.ARTISTS.length > 0, null, { timeout: 30000 });
   await sleep(1300);
+  // The fixture's photos have no blobs and no backup, so Memories tiles end in
+  // the "Missing" state, but whether one is mounted when the audit runs
+  // depended on timing: the clipped "Missing" label failed CI on some runs and
+  // not others (#475 run 43968972833). So the real _ThumbMedia is mounted in
+  // that state at the review-thumb sizes, in the page, before the audit.
+  if (/tab=memories/.test(url)) {
+    await page.evaluate(() => {
+      const host = document.createElement('div'); host.id = '__missing_tiles';
+      host.style.cssText = 'display:flex;gap:12px;padding:16px;background:var(--paper)';
+      document.body.appendChild(host);
+      const moment = { id: 'mt', kind: 'photo', night: 1, photoId: 'p-missing', artistId: null, takenAt: '2026-05-15T23:00:00.000Z' };
+      const tile = size => React.createElement('div', { key: size, style: { width: size, height: size, position: 'relative', overflow: 'hidden', borderRadius: 8, flex: '0 0 auto' } },
+        React.createElement(_ThumbMedia, { moment, thumb: { url: null, status: 'unavailable' }, showLength: false }));
+      ReactDOM.createRoot(host).render(React.createElement(React.Fragment, null, [44, 56].map(tile)));
+    });
+    await page.waitForFunction(() => document.querySelectorAll('#__missing_tiles [role="img"]').length === 2, null, { timeout: 10000 });
+  }
   if (big) {
     // Double every RESOLVED font size. The app styles in px, so a browser
     // font-size preference does nothing — this reproduces what iOS Dynamic
@@ -245,6 +262,12 @@ try {
         `${tag} @${width}: the pinned clock put a festival under HAPPENING NOW with its "Happening now" chip (positive control: otherwise the chip is never measured)`);
       if (label === 'memories') check(a.h1.includes('Memories') && a.currentTab === 'Memories',
         `${tag} @${width}: the Memories screen is what mounted (h1 ${JSON.stringify(a.h1)}, tab "${a.currentTab}")`);
+      if (label === 'memories') {
+        const miss = await page.evaluate(() => [...document.querySelectorAll('#__missing_tiles [role="img"]')]
+          .map(el => `${el.textContent}:${Math.round(el.getBoundingClientRect().width)}`));
+        check(miss.length === 2 && miss.every(m => /Missing:(44|56)$/.test(m)),
+          `${tag} @${width}: "Missing" tiles at 44 and 56 px are in the audited page (positive control: otherwise the label is never measured) ${JSON.stringify(miss)}`);
+      }
       await page.screenshot({ path: join(OUT, `${tag}-largetext__${width}.png`) });
       check(a.docPan <= 0, `${tag} @${width} 200% text: no horizontal document pan (got ${a.docPan})`);
       check(a.worstPan <= 1, `${tag} @${width} 200% text: no nested pan (got ${a.worstPan}) ${JSON.stringify(a.panWho)}`);

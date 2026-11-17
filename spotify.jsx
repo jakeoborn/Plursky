@@ -1829,6 +1829,36 @@ function useMomentThumb(moment, enabled = true) {
 // where the tile already carries a _VideoBadge.
 function _ThumbMedia({ moment, thumb, showLength = true }) {
   const fill = { width: "100%", height: "100%", display: "block" };
+  // The terminal-state word ("Missing", "Offline", "Error") is shown only
+  // when it fits the tile whole: first as set, then with no letter-spacing,
+  // else not at all (the glyph stays, and the aria-label always carries the
+  // full meaning). A clipped half-word is never drawn. It re-fits when the
+  // type size changes (iOS text size, 200% text), not only on mount.
+  const termBox = React.useRef(null), termWord = React.useRef(null);
+  const termStatus = thumb && !thumb.url ? thumb.status : null;
+  React.useLayoutEffect(() => {
+    const box = termBox.current, word = termWord.current;
+    if (!box || !word) return;
+    const glyph = box.firstChild;
+    const fit = () => {
+      word.style.letterSpacing = "";
+      word.style.display = "";
+      const bs = getComputedStyle(box);
+      const roomW = box.clientWidth - (parseFloat(bs.paddingLeft) || 0) - (parseFloat(bs.paddingRight) || 0);
+      const roomH = box.clientHeight - (parseFloat(bs.paddingTop) || 0) - (parseFloat(bs.paddingBottom) || 0);
+      const fits = () => word.scrollWidth <= roomW && (glyph ? glyph.offsetHeight : 0) + 2 + word.offsetHeight <= roomH;
+      if (fits()) return;
+      word.style.letterSpacing = "0";
+      if (fits()) return;
+      word.style.display = "none";
+    };
+    fit();
+    if (typeof ResizeObserver !== "function") return;
+    const ro = new ResizeObserver(fit);
+    ro.observe(box);
+    if (glyph) ro.observe(glyph);
+    return () => ro.disconnect();
+  }, [termStatus]);
   const label = _momentMediaLabel(moment);
   if (thumb && thumb.url) return <img src={thumb.url} alt={label} loading="lazy" decoding="async" style={{ ...fill, objectFit: "cover" }}/>;
   if (moment && moment.kind === "video" && thumb && thumb.noPoster) {
@@ -1853,15 +1883,14 @@ function _ThumbMedia({ moment, thumb, showLength = true }) {
     const copy = st === _MEDIA_OFFLINE ? { glyph: "☁", line: "Offline" }
                : st === _MEDIA_ERROR   ? { glyph: "!", line: "Error" }
                :                         { glyph: "✕", line: "Missing" };
-    // overflow hidden + a shrinkable label: "Missing" at 8px mono is a hair
-    // wider than a 44px review thumb, and on CI's bundled Chromium that
-    // pushed the tile 3px past its own box. The word may clip inside an
-    // already-bounded thumbnail — the aria-label carries the full meaning
-    // either way — but the tile must not grow.
+    // The tile never grows (overflow hidden on the box). The word is fitted
+    // by the layout effect at the top of _ThumbMedia: whole, tighter, or not
+    // at all. It used to clip instead, and at 200% text the a11y gate caught
+    // "Missing" squeezed to 20 of 28 px (#475 CI run 43968972833).
     return (
-      <div role="img" aria-label={`${label} — ${st === _MEDIA_OFFLINE ? "unavailable offline, retry when connected" : st === _MEDIA_ERROR ? "could not be read" : "media unavailable"}`} style={{
+      <div ref={termBox} role="img" aria-label={`${label} — ${st === _MEDIA_OFFLINE ? "unavailable offline, retry when connected" : st === _MEDIA_ERROR ? "could not be read" : "media unavailable"}`} style={{
         ...fill, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-        gap: 2, boxSizing: "border-box", padding: 4, overflow: "hidden",
+        gap: 2, boxSizing: "border-box", padding: "4px 2px", overflow: "hidden",
         background: "var(--paper-3)", color: "var(--text-2)", textAlign: "center",
       }}>
         <span aria-hidden="true" style={{ fontSize: 13, lineHeight: 1 }}>{copy.glyph}</span>
@@ -1869,7 +1898,7 @@ function _ThumbMedia({ moment, thumb, showLength = true }) {
             DURATION on tiles that already carry a badge, and "Missing" is not
             a duration. Gating it hid the state on covers and peak thumbs and
             left a glyph the user has to guess at. */}
-        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.6, fontWeight: 700, maxWidth: "100%", overflow: "hidden" }}>{copy.line}</span>
+        <span ref={termWord} className="mono" style={{ fontSize: 8, lineHeight: 1.2, letterSpacing: 0.6, fontWeight: 700, whiteSpace: "nowrap" }}>{copy.line}</span>
       </div>
     );
   }
