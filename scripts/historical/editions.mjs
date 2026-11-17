@@ -68,6 +68,9 @@ export const EDITIONS = {
   // dostuff-schedule.mjs). The grid prints no am/pm; each day's meridiem is
   // read off one act's own page on the same site. Music runs from 11 AM to
   // 10:45 PM in Grant Park, so no set crosses midnight.
+  "lollapalooza-2011": { festivalId: "lollapalooza", name: "Lollapalooza 2011", year: 2011,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2011-08-05", "Friday"], ["2011-08-06", "Saturday"], ["2011-08-07", "Sunday"]] },
   "lollapalooza-2012": { festivalId: "lollapalooza", name: "Lollapalooza 2012", year: 2012,
     timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
     dates: [["2012-08-03", "Friday"], ["2012-08-04", "Saturday"], ["2012-08-05", "Sunday"]],

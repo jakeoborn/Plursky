@@ -3030,6 +3030,32 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "lollapalooza:google",
+     "names": [
+      {
+       "printed": "Google+",
+       "editions": [
+        "lollapalooza-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:music-unlimited",
+     "names": [
+      {
+       "printed": "Music Unlimited",
+       "editions": [
+        "lollapalooza-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

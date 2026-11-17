@@ -411,6 +411,7 @@ export async function importGather(id, dir) {
         Object.assign(ledgerDays[day - 1].sources.at(-1), { stages: page.stages.length, axis: `${page.axis.first} … ${page.axis.last}`, pxPerMinute: page.scale,
           axisStart: t.axisStart, meridiem: "read off the anchor act's own page on the lineup site",
           anchor: { url: s.anchor.url, archivedUrl: acap.archivedUrl, captureTimestamp: acap.captureTimestamp, sha256: acap.sha256, bytes: acap.bytes, printed: t.anchor.text },
+          ...(page.lower && { signingsNotSets: page.lower }),
           ...(funny.length && { comedyShows: funny.length, comedyStage: s.comedyStage }),
           ...(fed.length && { foodShows: fed.length, foodStage: s.foodStage }),
           ...(page.misprints.length && { misprints: page.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
@@ -443,7 +444,8 @@ export async function importGather(id, dir) {
           const restored = d.sets.filter(x => x.undecoded);
           Object.assign(ledgerDays[day - 1].sources.at(-1), { firstStart: d.firstStart, stages: d.stages.length, festivalStart: page.festivalStart,
             times: "written as data: each set's date, 24-hour start and length in minutes",
-            ...(funny.length && { comedyShows: funny.length, comedyStage: s.comedyStage }),
+            ...(page.lower && { signingsNotSets: page.lower }),
+          ...(funny.length && { comedyShows: funny.length, comedyStage: s.comedyStage }),
             ...(restored.length && { restored: restored.map(x => `${x.undecoded} → ${x.artist}`) }) });
         }
         if (page.unscheduled.length) unscheduledLedger.push({ archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp, acts: page.unscheduled });

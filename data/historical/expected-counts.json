@@ -75,6 +75,7 @@
  "nocturnal-wonderland-2015": { "artists": 126, "stages": 0, "appearancesPerDay": [52, 41, 39], "dropped": 0 },
  "nocturnal-wonderland-2016": { "artists": 140, "stages": 0, "appearancesPerDay": [40, 54, 46], "dropped": 2 },
  "beyond-wonderland-socal-2016": { "artists": 68, "stages": 0, "appearancesPerDay": [38, 38], "dropped": 1 },
+ "lollapalooza-2011": { "stages": 8, "setsPerDay": [51, 50, 51], "droppedPerDay": [0, 0, 0] },
  "lollapalooza-2012": { "stages": 8, "setsPerDay": [49, 42, 51], "droppedPerDay": [1, 0, 0] },
  "lollapalooza-2013": { "stages": 8, "setsPerDay": [50, 48, 49], "droppedPerDay": [0, 0, 0] },
  "lollapalooza-2014": { "stages": 8, "setsPerDay": [50, 51, 50], "droppedPerDay": [0, 0, 0] },

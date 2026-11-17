@@ -202,8 +202,25 @@ Friday, Avicii on Saturday, Childish Gambino on Sunday). Kidz is the
 Kidzapalooza stage, kept as music, as in 2013. Saturday's grid changed during
 the festival: the capture used (20120807041117) is the grid printed after it,
 with the evening moved later and eight afternoon sets no longer listed, and
-the edition carries a note saying so. 2011's grid prints no am/pm and its
-captured act pages print no set time, so it waits for a printed meridiem.
+the edition carries a note saying so.
+
+Lollapalooza 2011 is the same site's older layout, read by the same tools.
+Its title prints the year ("Lollapalooza 2011"); the days are a drop-down
+(the current one as plain text, "Fri, Aug 5", the others as links whose
+label must be their link's date) and the grid's "dayN" class must be the
+current day. Stage headers are plain, in column order (`ds-stage1` …), and
+the axis prints no row heights: the scale is the one the blocks keep
+(height + 1 px per printed minute, 2 px a minute), and at least three blocks
+in four must keep it. The f.y.e. Autograph Tent signings listed under the
+grid have clock times but are not sets: they are never read as any, only
+counted (`signingsNotSets` in the ledger). The act pages print the day and
+stage, then the linked time ("Sunday, Aug. 7 / Music Unlimited / 4:00pm").
+Act pages captured after about August 9, 2011 print "Date & Time TBA", so
+the anchors are earlier captures: Kerli (Friday, captured Aug 8), Big Audio
+Dynamite (Saturday, captured Aug 7) and The Cars (Sunday, captured that
+afternoon, before the set). An anchor only fixes the day's meridiem: its time
+must still sit on its own block on the grid captured after the festival
+(Aug 20), and all three do.
 
 Archived Outside Lands schedule planner (2010 and 2011, format `myscheduler-data`):
 
