@@ -381,6 +381,13 @@ async function _renderHeroPreview(artist) {
       });
       var _c = _drawHeroCard(artist, img);
       _c.getContext("2d").getImageData(0, 0, 1, 1);
+      _c._photoCredit = {
+        author: rec.author,
+        sourceUrl: rec.sourceUrl,
+        license: rec.license,
+        licenseUrl: rec.licenseUrl,
+        changes: "Cropped"
+      };
       return _c;
     } catch {}
   }

@@ -444,8 +444,7 @@ export async function importGather(id, dir) {
           const restored = d.sets.filter(x => x.undecoded);
           Object.assign(ledgerDays[day - 1].sources.at(-1), { firstStart: d.firstStart, stages: d.stages.length, festivalStart: page.festivalStart,
             times: "written as data: each set's date, 24-hour start and length in minutes",
-            ...(page.lower && { signingsNotSets: page.lower }),
-          ...(funny.length && { comedyShows: funny.length, comedyStage: s.comedyStage }),
+            ...(funny.length && { comedyShows: funny.length, comedyStage: s.comedyStage }),
             ...(restored.length && { restored: restored.map(x => `${x.undecoded} → ${x.artist}`) }) });
         }
         if (page.unscheduled.length) unscheduledLedger.push({ archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp, acts: page.unscheduled });
