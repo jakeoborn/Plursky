@@ -2739,10 +2739,13 @@ function photoFixAccClass(acc) {
   return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";
 }
 function attendEvidenceAnchors(cfg) {
-  return (typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg && cfg.gpsAnchors || []).filter(a => {
+  var measured = (typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg && cfg.gpsAnchors || []).filter(a => {
     var s = a.anchorSource || a.src;
     return s === "osm" || s === "crowd";
   });
+  if (!cfg || !cfg.id || typeof stageCalibrationAnchors !== "function") return measured;
+  var have = new Set(measured.map(a => a.stageId));
+  return measured.concat(stageCalibrationAnchors(cfg, have));
 }
 function attendQualifyFixes(samples, anchors, rules = STAGE_FIX_ATTEND) {
   var out = [];
@@ -2888,6 +2891,101 @@ function setTrackEligibility(cfg, nowMs) {
   }, nowMs) : "upcoming";
   return phase === "live" ? "live" : phase === "ended" ? "ended" : "not-live";
 }
+function attendMomentMs(m, cfg) {
+  var t = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?/.exec(m && m.takenAt || "");
+  if (!t) return null;
+  var naive = Date.UTC(+t[1], +t[2] - 1, +t[3], +t[4], +t[5], +(t[6] || 0));
+  var tz = cfg && cfg.tz;
+  if (!tz || typeof Intl === "undefined") return naive - (cfg && cfg.utcOffsetHours || 0) * 3600000;
+  try {
+    return naive - _utcOffsetMs(tz, naive - _utcOffsetMs(tz, naive));
+  } catch {
+    return null;
+  }
+}
+function attendMomentPoints(moments, cfg, artists) {
+  var out = {};
+  if (!cfg || !cfg.id) return out;
+  var measured = new Set(attendEvidenceAnchors(cfg).map(a => a.stageId));
+  var stageOf = new Map((artists || []).map(a => [a.id, a.stage]));
+  var all = Array.isArray(moments) ? moments : Object.values(moments || {}).flat();
+  for (var m of all) {
+    if (!m || m.dateUnverified || m.festivalId !== cfg.id) continue;
+    var stageId = null,
+      via = null;
+    if (m.kind === "checkin") {
+      if (m.locationSource === "gps-live" && m.stageId) {
+        stageId = m.stageId;
+        via = "checkin";
+      }
+    } else if (m.artistId && m.autoTagged && !m.tagAmbiguous && m.tagSource !== "manual" && /(stage-gps|trusted-gps)/.test(m.matchEvidence || "")) {
+      stageId = stageOf.get(m.artistId) || null;
+      via = "photo";
+    }
+    if (!stageId || !measured.has(stageId)) continue;
+    var ms = attendMomentMs(m, cfg);
+    if (ms == null) continue;
+    (out[stageId] = out[stageId] || []).push({
+      from: ms,
+      to: ms,
+      src: "photo",
+      via,
+      momentId: m.id || null
+    });
+  }
+  for (var k of Object.keys(out)) out[k].sort((x, y) => x.from - y.from || String(x.momentId).localeCompare(String(y.momentId)));
+  return out;
+}
+function attendMergeEvidence(...sources) {
+  var out = {};
+  for (var src of sources) {
+    for (var [stageId, list] of Object.entries(src || {})) {
+      var _loop3 = function (r) {
+          if (!r || typeof r.from !== "number" || typeof r.to !== "number") return 0;
+          var rows = out[stageId] = out[stageId] || [];
+          if (r.src === "photo" && rows.some(x => x.src === "photo" && x.from === r.from)) return 0;
+          rows.push({
+            ...r
+          });
+        },
+        _ret2;
+      for (var r of list || []) {
+        _ret2 = _loop3(r);
+        if (_ret2 === 0) continue;
+      }
+    }
+  }
+  for (var k of Object.keys(out)) {
+    out[k].sort((x, y) => x.from - y.from || x.to - y.to);
+    var merged = [];
+    for (var _r of out[k]) {
+      var prev = null;
+      if (_r.src !== "photo") for (var i = merged.length - 1; i >= 0; i--) if (merged[i].src !== "photo") {
+        prev = merged[i];
+        break;
+      }
+      if (prev && _r.from <= prev.to) {
+        if (_r.to > prev.to) prev.to = _r.to;
+        continue;
+      }
+      merged.push(_r);
+    }
+    out[k] = merged;
+  }
+  return out;
+}
+function attendEvidenceList(a, intervals, cfg) {
+  if (!a || !a.stage) return [];
+  var runs = intervals && intervals[a.stage] || [];
+  var w = attendTimeClass(a) === "blank" ? null : attendSetWindowMs(a, cfg, runs);
+  var lo = w ? w.startMs - ATTEND_GRACE_MS - ATTEND_PHOTO_MS : -Infinity;
+  var hi = w ? w.endMs + ATTEND_GRACE_MS + ATTEND_PHOTO_MS : Infinity;
+  return runs.filter(r => r.to >= lo && r.from <= hi).map(r => ({
+    kind: r.src === "photo" ? r.via || "photo" : "gps",
+    from: r.from,
+    to: r.to
+  }));
+}
 function _scheduleActs(artists) {
   return (artists || []).map(a => {
     var o = {
@@ -2938,7 +3036,7 @@ function diffSchedule(oldActs, newActs, cfg) {
   var changes = [];
   var at = s => _wallMs(_cfgActDayDate(cfg, s), s.start, cfg && cfg.tz);
   var unchanged = 0;
-  var _loop3 = function () {
+  var _loop4 = function () {
       var b = _schedSlot(o),
         n = after.get(id);
       if (!n) {
@@ -2971,10 +3069,10 @@ function diffSchedule(oldActs, newActs, cfg) {
         startDeltaMin: s0 != null && s1 != null ? Math.round((s1 - s0) / 60000) : null
       });
     },
-    _ret2;
+    _ret3;
   for (var [id, o] of before) {
-    _ret2 = _loop3();
-    if (_ret2 === 0) continue;
+    _ret3 = _loop4();
+    if (_ret3 === 0) continue;
   }
   for (var [_id2, n] of after) {
     if (before.has(_id2)) continue;
@@ -3095,7 +3193,7 @@ function _pinUnresolvedTimes(acts, ev, attach) {
 function _applyScheduleOverlays(sets) {
   var all = _schedOverlays();
   var dirty = false;
-  var _loop4 = function () {
+  var _loop5 = function () {
     var ds = sets[fid],
       ov = all[fid];
     if (!ds || !ov || !ov.diff || ov.base !== _schedFingerprint(_scheduleActs(ds.artists))) {
@@ -3113,7 +3211,7 @@ function _applyScheduleOverlays(sets) {
     }
   };
   for (var fid of Object.keys(all)) {
-    if (_loop4()) continue;
+    if (_loop5()) continue;
   }
   if (dirty) _schedOverlaysWrite(all);
 }
