@@ -2549,6 +2549,33 @@ function _ThumbMedia({
     height: "100%",
     display: "block"
   };
+  var termBox = React.useRef(null),
+    termWord = React.useRef(null);
+  var termStatus = thumb && !thumb.url ? thumb.status : null;
+  React.useLayoutEffect(() => {
+    var box = termBox.current,
+      word = termWord.current;
+    if (!box || !word) return;
+    var glyph = box.firstChild;
+    var fit = () => {
+      word.style.letterSpacing = "";
+      word.style.display = "";
+      var bs = getComputedStyle(box);
+      var roomW = box.clientWidth - (parseFloat(bs.paddingLeft) || 0) - (parseFloat(bs.paddingRight) || 0);
+      var roomH = box.clientHeight - (parseFloat(bs.paddingTop) || 0) - (parseFloat(bs.paddingBottom) || 0);
+      var fits = () => word.scrollWidth <= roomW && (glyph ? glyph.offsetHeight : 0) + 2 + word.offsetHeight <= roomH;
+      if (fits()) return;
+      word.style.letterSpacing = "0";
+      if (fits()) return;
+      word.style.display = "none";
+    };
+    fit();
+    if (typeof ResizeObserver !== "function") return;
+    var ro = new ResizeObserver(fit);
+    ro.observe(box);
+    if (glyph) ro.observe(glyph);
+    return () => ro.disconnect();
+  }, [termStatus]);
   var label = _momentMediaLabel(moment);
   if (thumb && thumb.url) return React.createElement("img", {
     src: thumb.url,
@@ -2596,6 +2623,7 @@ function _ThumbMedia({
       line: "Missing"
     };
     return React.createElement("div", {
+      ref: termBox,
       role: "img",
       "aria-label": `${label} — ${st === _MEDIA_OFFLINE ? "unavailable offline, retry when connected" : st === _MEDIA_ERROR ? "could not be read" : "media unavailable"}`,
       style: {
@@ -2606,7 +2634,7 @@ function _ThumbMedia({
         justifyContent: "center",
         gap: 2,
         boxSizing: "border-box",
-        padding: 4,
+        padding: "4px 2px",
         overflow: "hidden",
         background: "var(--paper-3)",
         color: "var(--text-2)",
@@ -2619,13 +2647,14 @@ function _ThumbMedia({
         lineHeight: 1
       }
     }, copy.glyph), React.createElement("span", {
+      ref: termWord,
       className: "mono",
       style: {
         fontSize: 8,
+        lineHeight: 1.2,
         letterSpacing: 0.6,
         fontWeight: 700,
-        maxWidth: "100%",
-        overflow: "hidden"
+        whiteSpace: "nowrap"
       }
     }, copy.line));
   }
