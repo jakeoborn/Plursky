@@ -1,0 +1,124 @@
+{
+  "id": "tomorrowland-2013",
+  "method": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2013-07-26",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/node/8",
+          "archivedUrl": "https://web.archive.org/web/20130801231540/http://www.tomorrowland.com:80/en/node/8",
+          "captureTimestamp": "20130801231540",
+          "printed": "Friday 26 July",
+          "sha256": "42caca617d19debd497ed7cc65d404854546723bbf8332a439d38bbd55d1c581",
+          "bytes": 68474,
+          "rows": 130,
+          "format": "tml-drupal",
+          "titleDate": "2013-07-26",
+          "stages": 15,
+          "axis": "12:00-01:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "stagesWithNoSlot": [
+            "More Artists"
+          ],
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2013-07-27",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/saturday-27-july",
+          "archivedUrl": "https://web.archive.org/web/20130801025624/http://www.tomorrowland.com:80/en/saturday-27-july",
+          "captureTimestamp": "20130801025624",
+          "printed": "Saturday/ 27 July",
+          "sha256": "d0dad9e9d1ae7c9103425568283c840ed633c95071b7b1d8b8cc088ccea3705a",
+          "bytes": 71202,
+          "rows": 137,
+          "format": "tml-drupal",
+          "titleDate": "2013-07-27",
+          "stages": 15,
+          "axis": "12:00-01:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "stagesWithNoSlot": [
+            "More Artists"
+          ],
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2013-07-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/sunday-28-july",
+          "archivedUrl": "https://web.archive.org/web/20130805111401/http://www.tomorrowland.com:80/en/sunday-28-july",
+          "captureTimestamp": "20130805111401",
+          "printed": "Sunday/ 28 July",
+          "sha256": "b5e8bcfa6c0db8d183cab90edae6d58473d44bf81c6807dcd641ae7354faa691",
+          "bytes": 68076,
+          "rows": 129,
+          "format": "tml-drupal",
+          "titleDate": "2013-07-28",
+          "stages": 15,
+          "axis": "12:00-00:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "stagesWithNoSlot": [
+            "More Artists"
+          ],
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Radio Modern",
+      "start": "12:00",
+      "end": "01:00",
+      "billing": "Radio Ultra Modern - Friday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Radio Modern",
+      "start": "12:00",
+      "end": "01:00",
+      "billing": "Radio Ultra Modern - Saturday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Radio Modern",
+      "start": "13:00",
+      "end": "00:00",
+      "billing": "Radio Ultra Modern - Sunday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,6785 @@
+{
+ "id": "tomorrowland-2016",
+ "festivalId": "tomorrowland",
+ "name": "Tomorrowland 2016",
+ "year": 2016,
+ "timezone": "Europe/Brussels",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-07-22",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2016-07-23",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2016-07-24",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "tomorrowland-2016:mainstage",
+   "name": "Mainstage"
+  },
+  {
+   "id": "tomorrowland-2016:mau5trap",
+   "name": "Mau5Trap"
+  },
+  {
+   "id": "tomorrowland-2016:v-sessions",
+   "name": "V Sessions"
+  },
+  {
+   "id": "tomorrowland-2016:super-you-and-me",
+   "name": "Super You&Me"
+  },
+  {
+   "id": "tomorrowland-2016:jamie-jones-pr-paradise",
+   "name": "Jamie Jones pr. Paradise"
+  },
+  {
+   "id": "tomorrowland-2016:tranceaddict",
+   "name": "TranceAddict"
+  },
+  {
+   "id": "tomorrowland-2016:hush-hush",
+   "name": "Hush Hush"
+  },
+  {
+   "id": "tomorrowland-2016:cafeina",
+   "name": "Cafeina"
+  },
+  {
+   "id": "tomorrowland-2016:we-play-house-recordings",
+   "name": "We Play House Recordings"
+  },
+  {
+   "id": "tomorrowland-2016:i-love-the-90-s",
+   "name": "I love the 90's"
+  },
+  {
+   "id": "tomorrowland-2016:dirty-workz",
+   "name": "Dirty Workz"
+  },
+  {
+   "id": "tomorrowland-2016:winterclubbing",
+   "name": "Winterclubbing"
+  },
+  {
+   "id": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "name": "Mazda The Sound of Tomorrow Island"
+  },
+  {
+   "id": "tomorrowland-2016:leaf-by-lipton",
+   "name": "LEAF by Lipton"
+  },
+  {
+   "id": "tomorrowland-2016:cubanisto",
+   "name": "Cubanisto"
+  },
+  {
+   "id": "tomorrowland-2016:lost-frequencies",
+   "name": "Lost Frequencies"
+  },
+  {
+   "id": "tomorrowland-2016:axtone",
+   "name": "Axtone"
+  },
+  {
+   "id": "tomorrowland-2016:diynamic",
+   "name": "Diynamic"
+  },
+  {
+   "id": "tomorrowland-2016:star-warz",
+   "name": "Star Warz"
+  },
+  {
+   "id": "tomorrowland-2016:kozzmozz",
+   "name": "Kozzmozz"
+  },
+  {
+   "id": "tomorrowland-2016:cafe-d-anvers",
+   "name": "Café d'Anvers"
+  },
+  {
+   "id": "tomorrowland-2016:bonzai",
+   "name": "Bonzai"
+  },
+  {
+   "id": "tomorrowland-2016:q-dance",
+   "name": "Q-dance"
+  },
+  {
+   "id": "tomorrowland-2016:b2b",
+   "name": "B2B"
+  },
+  {
+   "id": "tomorrowland-2016:generation-smash",
+   "name": "Generation Smash"
+  },
+  {
+   "id": "tomorrowland-2016:woody-weekend",
+   "name": "Woody Weekend"
+  },
+  {
+   "id": "tomorrowland-2016:smash-the-house",
+   "name": "Smash The House"
+  },
+  {
+   "id": "tomorrowland-2016:my-house",
+   "name": "My House"
+  },
+  {
+   "id": "tomorrowland-2016:dave-clarke-presents",
+   "name": "Dave Clarke presents"
+  },
+  {
+   "id": "tomorrowland-2016:cocoon",
+   "name": "Cocoon"
+  },
+  {
+   "id": "tomorrowland-2016:barong-family",
+   "name": "Barong Family"
+  },
+  {
+   "id": "tomorrowland-2016:bakermat-and-friends",
+   "name": "Bakermat & Friends"
+  },
+  {
+   "id": "tomorrowland-2016:forma-t",
+   "name": "Forma.T"
+  },
+  {
+   "id": "tomorrowland-2016:footworxx",
+   "name": "Footworxx"
+  },
+  {
+   "id": "tomorrowland-2016:pussylounge",
+   "name": "PussyLounge"
+  },
+  {
+   "id": "tomorrowland-2016:age-of-love",
+   "name": "Age Of Love"
+  },
+  {
+   "id": "tomorrowland-2016:coincidence",
+   "name": "Coincidence"
+  }
+ ],
+ "artists": [
+  {
+   "id": "tomorrowland-2016:fedde-le-grand",
+   "name": "Fedde Le Grand",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dimitri-vangelis-and-wyman",
+   "name": "Dimitri Vangelis & Wyman",
+   "key": "dimitri-vangelis-and-wyman",
+   "performers": [
+    "dimitri-vangelis-and-wyman"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:otto-knows",
+   "name": "Otto Knows",
+   "key": "otto-knows",
+   "performers": [
+    "otto-knows"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:r3hab",
+   "name": "R3hab",
+   "key": "r3hab",
+   "performers": [
+    "r3hab"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:galantis",
+   "name": "Galantis",
+   "key": "galantis",
+   "performers": [
+    "galantis"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dvbbs",
+   "name": "DVBBS",
+   "key": "dvbbs",
+   "performers": [
+    "dvbbs"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:w-and-w",
+   "name": "W&W",
+   "key": "w-and-w",
+   "performers": [
+    "w-and-w"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:yotto",
+   "name": "Yotto",
+   "key": "yotto",
+   "performers": [
+    "yotto"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:rezz",
+   "name": "Rezz",
+   "key": "rezz",
+   "performers": [
+    "rezz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:attlas",
+   "name": "ATTLAS",
+   "key": "attlas",
+   "performers": [
+    "attlas"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:gregor-tresher",
+   "name": "Gregor Tresher",
+   "key": "gregor-tresher",
+   "performers": [
+    "gregor-tresher"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:pig-and-dan",
+   "name": "Pig&Dan",
+   "key": "pig-and-dan",
+   "performers": [
+    "pig-and-dan"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sasha",
+   "name": "Sasha",
+   "key": "sasha",
+   "performers": [
+    "sasha"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:adam-beyer-vs-ida-engberg",
+   "name": "Adam Beyer vs Ida Engberg",
+   "key": "adam-beyer-vs-ida-engberg",
+   "performers": [
+    "adam-beyer-vs-ida-engberg"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:deadmau5-b2b-eric-prydz",
+   "name": "Deadmau5 B2B Eric Prydz",
+   "key": "deadmau5-b2b-eric-prydz",
+   "performers": [
+    "deadmau5",
+    "eric-prydz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:kenn-colt",
+   "name": "Kenn Colt",
+   "key": "kenn-colt",
+   "performers": [
+    "kenn-colt"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sem-thomasson",
+   "name": "Sem Thomasson",
+   "key": "sem-thomasson",
+   "performers": [
+    "sem-thomasson"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:brian-cross",
+   "name": "Brian Cross",
+   "key": "brian-cross",
+   "performers": [
+    "brian-cross"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jack-novak",
+   "name": "Jack Novak",
+   "key": "jack-novak",
+   "performers": [
+    "jack-novak"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:alan-walker",
+   "name": "Alan Walker",
+   "key": "alan-walker",
+   "performers": [
+    "alan-walker"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:vinai",
+   "name": "VINAI",
+   "key": "vinai",
+   "performers": [
+    "vinai"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jay-hardway",
+   "name": "Jay Hardway",
+   "key": "jay-hardway",
+   "performers": [
+    "jay-hardway"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:kura",
+   "name": "Kura",
+   "key": "kura",
+   "performers": [
+    "kura"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sidney-samson",
+   "name": "Sidney Samson",
+   "key": "sidney-samson",
+   "performers": [
+    "sidney-samson"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:yves-v-b2b-quintino",
+   "name": "Yves V B2B Quintino",
+   "key": "yves-v-b2b-quintino",
+   "performers": [
+    "yves-v",
+    "quintino"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:swanky-tunes",
+   "name": "Swanky Tunes",
+   "key": "swanky-tunes",
+   "performers": [
+    "swanky-tunes"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:herve-pagez",
+   "name": "Herve Pagez",
+   "key": "herve-pagez",
+   "performers": [
+    "herve-pagez"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mark-villa",
+   "name": "Mark Villa",
+   "key": "mark-villa",
+   "performers": [
+    "mark-villa"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:inpetto",
+   "name": "Inpetto",
+   "key": "inpetto",
+   "performers": [
+    "inpetto"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:twoloud",
+   "name": "Twoloud",
+   "key": "twoloud",
+   "performers": [
+    "twoloud"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:tujamo",
+   "name": "Tujamo",
+   "key": "tujamo",
+   "performers": [
+    "tujamo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:matisse-and-sadko",
+   "name": "Matisse & Sadko",
+   "key": "matisse-and-sadko",
+   "performers": [
+    "matisse-and-sadko"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dannic",
+   "name": "Dannic",
+   "key": "dannic",
+   "performers": [
+    "dannic"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:timmy-trumpet",
+   "name": "Timmy Trumpet",
+   "key": "timmy-trumpet",
+   "performers": [
+    "timmy-trumpet"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dyro",
+   "name": "Dyro",
+   "key": "dyro",
+   "performers": [
+    "dyro"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:laidback-luke",
+   "name": "Laidback Luke",
+   "key": "laidback-luke",
+   "performers": [
+    "laidback-luke"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:blasterjaxx",
+   "name": "Blasterjaxx",
+   "key": "blasterjaxx",
+   "performers": [
+    "blasterjaxx"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sander-van-doorn",
+   "name": "Sander van Doorn",
+   "key": "sander-van-doorn",
+   "performers": [
+    "sander-van-doorn"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:michael-thoelen",
+   "name": "Michael Thoelen",
+   "key": "michael-thoelen",
+   "performers": [
+    "michael-thoelen"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:nukov-and-yelmet",
+   "name": "Nukov & Yelmet",
+   "key": "nukov-and-yelmet",
+   "performers": [
+    "nukov-and-yelmet"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:denney",
+   "name": "Denney",
+   "key": "denney",
+   "performers": [
+    "denney"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:russ-yallop",
+   "name": "Russ Yallop",
+   "key": "russ-yallop",
+   "performers": [
+    "russ-yallop"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:waff",
+   "name": "wAFF",
+   "key": "waff",
+   "performers": [
+    "waff"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:matador-live",
+   "name": "Matador (Live)",
+   "key": "matador-live",
+   "performers": [
+    "matador-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:patrick-topping",
+   "name": "Patrick Topping",
+   "key": "patrick-topping",
+   "performers": [
+    "patrick-topping"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:richy-ahmed",
+   "name": "Richy Ahmed",
+   "key": "richy-ahmed",
+   "performers": [
+    "richy-ahmed"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:the-martinez-brothers",
+   "name": "The Martinez Brothers",
+   "key": "the-martinez-brothers",
+   "performers": [
+    "the-martinez-brothers"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:fred-baker",
+   "name": "Fred Baker",
+   "key": "fred-baker",
+   "performers": [
+    "fred-baker"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dimension",
+   "name": "Dimension",
+   "key": "dimension",
+   "performers": [
+    "dimension"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:standerwick",
+   "name": "Standerwick",
+   "key": "standerwick",
+   "performers": [
+    "standerwick"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:ben-gold",
+   "name": "Ben Gold",
+   "key": "ben-gold",
+   "performers": [
+    "ben-gold"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:m-i-k-e-push",
+   "name": "M.I.K.E. Push",
+   "key": "m-i-k-e-push",
+   "performers": [
+    "m-i-k-e-push"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:khomha",
+   "name": "KhoMha",
+   "key": "khomha",
+   "performers": [
+    "khomha"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:marlo",
+   "name": "MaRLo",
+   "key": "marlo",
+   "performers": [
+    "marlo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:orjan-nilsen",
+   "name": "Orjan Nilsen",
+   "key": "orjan-nilsen",
+   "performers": [
+    "orjan-nilsen"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:gareth-emery",
+   "name": "Gareth Emery",
+   "key": "gareth-emery",
+   "performers": [
+    "gareth-emery"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sean-tyas",
+   "name": "Sean Tyas",
+   "key": "sean-tyas",
+   "performers": [
+    "sean-tyas"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:pure-nrg-live",
+   "name": "Pure NRG (Live)",
+   "key": "pure-nrg-live",
+   "performers": [
+    "pure-nrg-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:aly-and-fila",
+   "name": "Aly & Fila",
+   "key": "aly-and-fila",
+   "performers": [
+    "aly-and-fila"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:ferry-corsten-pres-gouryella",
+   "name": "Ferry Corsten pres Gouryella",
+   "key": "ferry-corsten-pres-gouryella",
+   "performers": [
+    "ferry-corsten-pres-gouryella"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:hush",
+   "name": "Hush",
+   "key": "hush",
+   "performers": [
+    "hush"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:london-future",
+   "name": "London Future",
+   "key": "london-future",
+   "performers": [
+    "london-future"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:the-whatevers",
+   "name": "The Whatevers",
+   "key": "the-whatevers",
+   "performers": [
+    "the-whatevers"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:blackout-boy",
+   "name": "Blackout Boy",
+   "key": "blackout-boy",
+   "performers": [
+    "blackout-boy"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:hush-hefner",
+   "name": "Hush Hefner",
+   "key": "hush-hefner",
+   "performers": [
+    "hush-hefner"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dj-diesel",
+   "name": "DJ Diesel",
+   "key": "dj-diesel",
+   "performers": [
+    "dj-diesel"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:marshmello",
+   "name": "Marshmello",
+   "key": "marshmello",
+   "performers": [
+    "marshmello"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:snails",
+   "name": "Snails",
+   "key": "snails",
+   "performers": [
+    "snails"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:nghtmre-vs-slander",
+   "name": "NGHTMRE vs Slander",
+   "key": "nghtmre-vs-slander",
+   "performers": [
+    "nghtmre-vs-slander"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:ookay",
+   "name": "Ookay",
+   "key": "ookay",
+   "performers": [
+    "ookay"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:tommy-and-alec",
+   "name": "Tommy & Alec",
+   "key": "tommy-and-alec",
+   "performers": [
+    "tommy-and-alec"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:khlr-and-phill-da-cunha",
+   "name": "KHLR & Phill Da Cunha",
+   "key": "khlr-and-phill-da-cunha",
+   "performers": [
+    "khlr-and-phill-da-cunha"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:b2b-sound-system",
+   "name": "B2B Sound System",
+   "key": "b2b-sound-system",
+   "performers": [
+    "b2b-sound-system"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:cemode-ft-seelen",
+   "name": "Cemode ft. Seelen",
+   "key": "cemode-ft-seelen",
+   "performers": [
+    "cemode-ft-seelen"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:kolombo",
+   "name": "Kolombo",
+   "key": "kolombo",
+   "performers": [
+    "kolombo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mr-grammy-and-dj-licious",
+   "name": "Mr Grammy & Dj Licious",
+   "key": "mr-grammy-and-dj-licious",
+   "performers": [
+    "mr-grammy-and-dj-licious"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:disco-dasco",
+   "name": "Disco Dasco",
+   "key": "disco-dasco",
+   "performers": [
+    "disco-dasco"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:joeri-and-philip",
+   "name": "Joeri & Philip",
+   "key": "joeri-and-philip",
+   "performers": [
+    "joeri-and-philip"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:roma",
+   "name": "Roma",
+   "key": "roma",
+   "performers": [
+    "roma"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:hot-since-82",
+   "name": "Hot Since 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:metrobox",
+   "name": "Metrobox",
+   "key": "metrobox",
+   "performers": [
+    "metrobox"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:locked-groove",
+   "name": "Locked Groove",
+   "key": "locked-groove",
+   "performers": [
+    "locked-groove"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:axel-boman",
+   "name": "Axel Boman",
+   "key": "axel-boman",
+   "performers": [
+    "axel-boman"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:fcl-ft-lady-linn",
+   "name": "FCL ft. Lady Linn",
+   "key": "fcl-ft-lady-linn",
+   "performers": [
+    "fcl-ft-lady-linn"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:frankey-and-sandrino",
+   "name": "Frankey & Sandrino",
+   "key": "frankey-and-sandrino",
+   "performers": [
+    "frankey-and-sandrino"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:derrick-may",
+   "name": "Derrick May",
+   "key": "derrick-may",
+   "performers": [
+    "derrick-may"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:ward",
+   "name": "Ward",
+   "key": "ward",
+   "performers": [
+    "ward"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dj-f-r-a-n-k",
+   "name": "DJ F.R.A.N.K.",
+   "key": "dj-f-r-a-n-k",
+   "performers": [
+    "dj-f-r-a-n-k"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:wout",
+   "name": "Wout",
+   "key": "wout",
+   "performers": [
+    "wout"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dj-sash",
+   "name": "DJ SASH!",
+   "key": "dj-sash",
+   "performers": [
+    "dj-sash"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:klubbheads-ft-boozywoozy",
+   "name": "Klubbheads ft Boozywoozy",
+   "key": "klubbheads-ft-boozywoozy",
+   "performers": [
+    "klubbheads-ft-boozywoozy"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:back-in-time",
+   "name": "Back In Time",
+   "key": "back-in-time",
+   "performers": [
+    "back-in-time"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dune",
+   "name": "Dune",
+   "key": "dune",
+   "performers": [
+    "dune"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sephyx",
+   "name": "Sephyx",
+   "key": "sephyx",
+   "performers": [
+    "sephyx"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:nsclt",
+   "name": "NSCLT",
+   "key": "nsclt",
+   "performers": [
+    "nsclt"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:wasted-penguinz",
+   "name": "Wasted Penguinz",
+   "key": "wasted-penguinz",
+   "performers": [
+    "wasted-penguinz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dj-isaac",
+   "name": "Dj Isaac",
+   "key": "dj-isaac",
+   "performers": [
+    "dj-isaac"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:coone",
+   "name": "Coone",
+   "key": "coone",
+   "performers": [
+    "coone"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:da-tweekaz",
+   "name": "Da Tweekaz",
+   "key": "da-tweekaz",
+   "performers": [
+    "da-tweekaz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:hard-driver",
+   "name": "Hard Driver",
+   "key": "hard-driver",
+   "performers": [
+    "hard-driver"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sub-zero-project",
+   "name": "Sub Zero Project",
+   "key": "sub-zero-project",
+   "performers": [
+    "sub-zero-project"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:korsakoff",
+   "name": "Korsakoff",
+   "key": "korsakoff",
+   "performers": [
+    "korsakoff"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:tall-and-small",
+   "name": "Tall & Small",
+   "key": "tall-and-small",
+   "performers": [
+    "tall-and-small"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jean-de-gand",
+   "name": "Jean De Gand",
+   "key": "jean-de-gand",
+   "performers": [
+    "jean-de-gand"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:double-u-ft-eugene-vs-dj-luk",
+   "name": "Double-U ft. Eugene vs Dj Luk",
+   "key": "double-u-ft-eugene-vs-dj-luk",
+   "performers": [
+    "double-u-ft-eugene-vs-dj-luk"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:thierry-von-der-warth-vs-laurent-wery",
+   "name": "Thierry von der Warth vs Laurent Wery",
+   "key": "thierry-von-der-warth-vs-laurent-wery",
+   "performers": [
+    "thierry-von-der-warth-vs-laurent-wery"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:thunderbuds-vs-dj-luk",
+   "name": "Thunderbuds vs Dj Luk",
+   "key": "thunderbuds-vs-dj-luk",
+   "performers": [
+    "thunderbuds-vs-dj-luk"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dimitri-wouters",
+   "name": "Dimitri Wouters",
+   "key": "dimitri-wouters",
+   "performers": [
+    "dimitri-wouters"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dj-barto-vs-dj-luk",
+   "name": "Dj Barto vs Dj Luk",
+   "key": "dj-barto-vs-dj-luk",
+   "performers": [
+    "dj-barto-vs-dj-luk"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:funk-d",
+   "name": "Funk D",
+   "key": "funk-d",
+   "performers": [
+    "funk-d"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:deve-and-matizz",
+   "name": "Deve & Matizz",
+   "key": "deve-and-matizz",
+   "performers": [
+    "deve-and-matizz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:winterclubbing-all-stars",
+   "name": "Winterclubbing All Stars",
+   "key": "winterclubbing-all-stars",
+   "performers": [
+    "winterclubbing-all-stars"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:steve-rush",
+   "name": "Steve Rush",
+   "key": "steve-rush",
+   "performers": [
+    "steve-rush"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dominico",
+   "name": "Dominico",
+   "key": "dominico",
+   "performers": [
+    "dominico"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:bodalia",
+   "name": "Bodalia",
+   "key": "bodalia",
+   "performers": [
+    "bodalia"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:shaun-frank",
+   "name": "Shaun Frank",
+   "key": "shaun-frank",
+   "performers": [
+    "shaun-frank"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:miss-ghyss",
+   "name": "Miss Ghyss",
+   "key": "miss-ghyss",
+   "performers": [
+    "miss-ghyss"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mike-williams",
+   "name": "Mike Williams",
+   "key": "mike-williams",
+   "performers": [
+    "mike-williams"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:tigerlily",
+   "name": "Tigerlily",
+   "key": "tigerlily",
+   "performers": [
+    "tigerlily"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:selectro",
+   "name": "Selectro",
+   "key": "selectro",
+   "performers": [
+    "selectro"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:king-arthur",
+   "name": "King Arthur",
+   "key": "king-arthur",
+   "performers": [
+    "king-arthur"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:hosted-by-bongo",
+   "name": "Hosted by Bongo",
+   "key": "hosted-by-bongo",
+   "performers": [
+    "hosted-by-bongo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:xavier-shimtshack",
+   "name": "Xavier Shimtshack",
+   "key": "xavier-shimtshack",
+   "performers": [
+    "xavier-shimtshack"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:davidov",
+   "name": "Davidov",
+   "key": "davidov",
+   "performers": [
+    "davidov"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jose-maria-ramon",
+   "name": "Jose Maria Ramon",
+   "key": "jose-maria-ramon",
+   "performers": [
+    "jose-maria-ramon"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sven-van-hees",
+   "name": "Sven Van Hees",
+   "key": "sven-van-hees",
+   "performers": [
+    "sven-van-hees"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:double-pleasure",
+   "name": "Double Pleasure",
+   "key": "double-pleasure",
+   "performers": [
+    "double-pleasure"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:redondo",
+   "name": "Redondo",
+   "key": "redondo",
+   "performers": [
+    "redondo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:yamo",
+   "name": "Yamo",
+   "key": "yamo",
+   "performers": [
+    "yamo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jules-dime",
+   "name": "Jules Dime",
+   "key": "jules-dime",
+   "performers": [
+    "jules-dime"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:djaxx-and-neurotique",
+   "name": "Djaxx & Neurotique",
+   "key": "djaxx-and-neurotique",
+   "performers": [
+    "djaxx-and-neurotique"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:lopezhouse",
+   "name": "Lopezhouse",
+   "key": "lopezhouse",
+   "performers": [
+    "lopezhouse"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:the-golden-boy",
+   "name": "The Golden Boy",
+   "key": "the-golden-boy",
+   "performers": [
+    "the-golden-boy"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:compuphonic",
+   "name": "Compuphonic",
+   "key": "compuphonic",
+   "performers": [
+    "compuphonic"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:99-souls",
+   "name": "99 Souls",
+   "key": "99-souls",
+   "performers": [
+    "99-souls"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:igor-vicente",
+   "name": "Igor Vicente",
+   "key": "igor-vicente",
+   "performers": [
+    "igor-vicente"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:niels-feijen-b2b-lya",
+   "name": "Niels Feijen B2B LYA",
+   "key": "niels-feijen-b2b-lya",
+   "performers": [
+    "niels-feijen",
+    "lya"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:andrew-rayel",
+   "name": "Andrew Rayel",
+   "key": "andrew-rayel",
+   "performers": [
+    "andrew-rayel"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:regi",
+   "name": "Regi",
+   "key": "regi",
+   "performers": [
+    "regi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sunnery-james-and-ryan-marciano",
+   "name": "Sunnery James & Ryan Marciano",
+   "key": "sunnery-james-and-ryan-marciano",
+   "performers": [
+    "sunnery-james-and-ryan-marciano"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:kshmr",
+   "name": "KSHMR",
+   "key": "kshmr",
+   "performers": [
+    "kshmr"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:yves-v",
+   "name": "Yves V",
+   "key": "yves-v",
+   "performers": [
+    "yves-v"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:nicky-romero",
+   "name": "Nicky Romero",
+   "key": "nicky-romero",
+   "performers": [
+    "nicky-romero"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dimitri-vegas-and-like-mike",
+   "name": "Dimitri Vegas & Like Mike",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:axwell-ingrosso",
+   "name": "Axwell Λ Ingrosso",
+   "key": "axwell-ingrosso",
+   "performers": [
+    "axwell-ingrosso"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:chris-niveda-ft-mc-reign",
+   "name": "Chris Niveda ft. Mc Reign",
+   "key": "chris-niveda-ft-mc-reign",
+   "performers": [
+    "chris-niveda-ft-mc-reign"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:frank-caro-and-alemany",
+   "name": "Frank Caro & Alemany",
+   "key": "frank-caro-and-alemany",
+   "performers": [
+    "frank-caro-and-alemany"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:paula-serra",
+   "name": "Paula Serra",
+   "key": "paula-serra",
+   "performers": [
+    "paula-serra"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mikael-weermets",
+   "name": "Mikael Weermets",
+   "key": "mikael-weermets",
+   "performers": [
+    "mikael-weermets"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:pat-farrell",
+   "name": "Pat Farrell",
+   "key": "pat-farrell",
+   "performers": [
+    "pat-farrell"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:pep-and-rash",
+   "name": "Pep & Rash",
+   "key": "pep-and-rash",
+   "performers": [
+    "pep-and-rash"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:john-christian",
+   "name": "John Christian",
+   "key": "john-christian",
+   "performers": [
+    "john-christian"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jacob-plant",
+   "name": "Jacob Plant",
+   "key": "jacob-plant",
+   "performers": [
+    "jacob-plant"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:no-mondays",
+   "name": "No Mondays",
+   "key": "no-mondays",
+   "performers": [
+    "no-mondays"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dave-lambert",
+   "name": "Dave Lambert",
+   "key": "dave-lambert",
+   "performers": [
+    "dave-lambert"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:const-live-guitar-act",
+   "name": "Const + Live Guitar Act",
+   "key": "const-live-guitar-act",
+   "performers": [
+    "const-live-guitar-act"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:magic-wand",
+   "name": "Magic Wand",
+   "key": "magic-wand",
+   "performers": [
+    "magic-wand"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:anna-tur",
+   "name": "ANNA TUR",
+   "key": "anna-tur",
+   "performers": [
+    "anna-tur"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:ferreck-dawn",
+   "name": "Ferreck Dawn",
+   "key": "ferreck-dawn",
+   "performers": [
+    "ferreck-dawn"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:franky-rizardo",
+   "name": "Franky Rizardo",
+   "key": "franky-rizardo",
+   "performers": [
+    "franky-rizardo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:c-me",
+   "name": "C-ME",
+   "key": "c-me",
+   "performers": [
+    "c-me"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:bastin-vs-lebawski",
+   "name": "Bastin vs Lebawski",
+   "key": "bastin-vs-lebawski",
+   "performers": [
+    "bastin-vs-lebawski"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:vision-machine",
+   "name": "Vision Machine",
+   "key": "vision-machine",
+   "performers": [
+    "vision-machine"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:iris-menza",
+   "name": "Iris Menza",
+   "key": "iris-menza",
+   "performers": [
+    "iris-menza"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:tcts",
+   "name": "TCTS",
+   "key": "tcts",
+   "performers": [
+    "tcts"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:blonde",
+   "name": "Blonde",
+   "key": "blonde",
+   "performers": [
+    "blonde"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:anotr",
+   "name": "ANOTR",
+   "key": "anotr",
+   "performers": [
+    "anotr"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:maxim-lany",
+   "name": "Maxim Lany",
+   "key": "maxim-lany",
+   "performers": [
+    "maxim-lany"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:bender",
+   "name": "Bender",
+   "key": "bender",
+   "performers": [
+    "bender"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:saint-wknd",
+   "name": "Saint WKND",
+   "key": "saint-wknd",
+   "performers": [
+    "saint-wknd"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:lucas-and-steve",
+   "name": "Lucas & Steve",
+   "key": "lucas-and-steve",
+   "performers": [
+    "lucas-and-steve"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:feder",
+   "name": "FEDER",
+   "key": "feder",
+   "performers": [
+    "feder"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sigala",
+   "name": "Sigala",
+   "key": "sigala",
+   "performers": [
+    "sigala"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:lost-frequencies",
+   "name": "Lost Frequencies",
+   "key": "lost-frequencies",
+   "performers": [
+    "lost-frequencies"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:robin-schulz",
+   "name": "Robin Schulz",
+   "key": "robin-schulz",
+   "performers": [
+    "robin-schulz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:felix-jaehn",
+   "name": "Felix Jaehn",
+   "key": "felix-jaehn",
+   "performers": [
+    "felix-jaehn"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:delafino",
+   "name": "Delafino",
+   "key": "delafino",
+   "performers": [
+    "delafino"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:peter-luts",
+   "name": "Peter Luts",
+   "key": "peter-luts",
+   "performers": [
+    "peter-luts"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:klahr",
+   "name": "Klahr",
+   "key": "klahr",
+   "performers": [
+    "klahr"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:m-e-g-and-n-e-r-a-k",
+   "name": "M.E.G. & N.E.R.A.K.",
+   "key": "m-e-g-and-n-e-r-a-k",
+   "performers": [
+    "m-e-g-and-n-e-r-a-k"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:new-id",
+   "name": "New_ID",
+   "key": "new-id",
+   "performers": [
+    "new-id"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:tom-staar",
+   "name": "Tom Staar",
+   "key": "tom-staar",
+   "performers": [
+    "tom-staar"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:kryder",
+   "name": "Kryder",
+   "key": "kryder",
+   "performers": [
+    "kryder"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:axwell",
+   "name": "Axwell",
+   "key": "axwell",
+   "performers": [
+    "axwell"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:shapov",
+   "name": "Shapov",
+   "key": "shapov",
+   "performers": [
+    "shapov"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dirty-south",
+   "name": "Dirty South",
+   "key": "dirty-south",
+   "performers": [
+    "dirty-south"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sick-individuals",
+   "name": "Sick Individuals",
+   "key": "sick-individuals",
+   "performers": [
+    "sick-individuals"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:hard-rock-sofa",
+   "name": "Hard Rock Sofa",
+   "key": "hard-rock-sofa",
+   "performers": [
+    "hard-rock-sofa"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:magdalena",
+   "name": "Magdalena",
+   "key": "magdalena",
+   "performers": [
+    "magdalena"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:karmon-b2b-ntfo",
+   "name": "Karmon b2b NTFO",
+   "key": "karmon-b2b-ntfo",
+   "performers": [
+    "karmon",
+    "ntfo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:h-o-s-h",
+   "name": "H.O.S.H.",
+   "key": "h-o-s-h",
+   "performers": [
+    "h-o-s-h"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:johannes-brecht-live",
+   "name": "Johannes Brecht (live)",
+   "key": "johannes-brecht-live",
+   "performers": [
+    "johannes-brecht-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:adriatique",
+   "name": "Adriatique",
+   "key": "adriatique",
+   "performers": [
+    "adriatique"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:kollektiv-turmstrasse-live",
+   "name": "Kollektiv Turmstrasse (live)",
+   "key": "kollektiv-turmstrasse-live",
+   "performers": [
+    "kollektiv-turmstrasse-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:solomun",
+   "name": "Solomun",
+   "key": "solomun",
+   "performers": [
+    "solomun"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:snap-ah",
+   "name": "Snap-Ah",
+   "key": "snap-ah",
+   "performers": [
+    "snap-ah"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:the-offenders",
+   "name": "The Offenders",
+   "key": "the-offenders",
+   "performers": [
+    "the-offenders"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:gunman-and-judah",
+   "name": "Gunman & Judah",
+   "key": "gunman-and-judah",
+   "performers": [
+    "gunman-and-judah"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:steamteam-ft-3xb-and-mc-nice",
+   "name": "Steamteam ft. 3XB & Mc Nice",
+   "key": "steamteam-ft-3xb-and-mc-nice",
+   "performers": [
+    "steamteam-ft-3xb-and-mc-nice"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:m-and-t-ft-mc-mota",
+   "name": "M&T ft. Mc Mota",
+   "key": "m-and-t-ft-mc-mota",
+   "performers": [
+    "m-and-t-ft-mc-mota"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:one87-and-phase-ft-mc-mush",
+   "name": "One87 & Phase ft. Mc Mush",
+   "key": "one87-and-phase-ft-mc-mush",
+   "performers": [
+    "one87-and-phase-ft-mc-mush"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:murdock",
+   "name": "Murdock",
+   "key": "murdock",
+   "performers": [
+    "murdock"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:level-2-alibi",
+   "name": "Level 2 (Alibi)",
+   "key": "level-2-alibi",
+   "performers": [
+    "level-2-alibi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:culture-shock-ft-mc-mota",
+   "name": "Culture Shock ft. Mc Mota",
+   "key": "culture-shock-ft-mc-mota",
+   "performers": [
+    "culture-shock-ft-mc-mota"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:s-p-y-ft-mc-mota",
+   "name": "S.P.Y. ft. Mc Mota",
+   "key": "s-p-y-ft-mc-mota",
+   "performers": [
+    "s-p-y-ft-mc-mota"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:calyx-and-teebee-ft-lx-one",
+   "name": "Calyx & Teebee ft. LX One",
+   "key": "calyx-and-teebee-ft-lx-one",
+   "performers": [
+    "calyx-and-teebee-ft-lx-one"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:spacid",
+   "name": "Spacid",
+   "key": "spacid",
+   "performers": [
+    "spacid"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:kr-z",
+   "name": "Kr!z",
+   "key": "kr-z",
+   "performers": [
+    "kr-z"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jonas-kopp",
+   "name": "Jonas Kopp",
+   "key": "jonas-kopp",
+   "performers": [
+    "jonas-kopp"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:marcel-dettmann",
+   "name": "Marcel Dettmann",
+   "key": "marcel-dettmann",
+   "performers": [
+    "marcel-dettmann"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:cheap-charly-men",
+   "name": "Cheap Charly Men",
+   "key": "cheap-charly-men",
+   "performers": [
+    "cheap-charly-men"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:flapjackers",
+   "name": "Flapjackers",
+   "key": "flapjackers",
+   "performers": [
+    "flapjackers"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:smos",
+   "name": "Smos",
+   "key": "smos",
+   "performers": [
+    "smos"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:chantal",
+   "name": "Chantal",
+   "key": "chantal",
+   "performers": [
+    "chantal"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dj-tennis",
+   "name": "Dj Tennis",
+   "key": "dj-tennis",
+   "performers": [
+    "dj-tennis"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:bollen-and-fichtner",
+   "name": "Bollen & Fichtner",
+   "key": "bollen-and-fichtner",
+   "performers": [
+    "bollen-and-fichtner"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:agents-of-time",
+   "name": "Agents Of Time",
+   "key": "agents-of-time",
+   "performers": [
+    "agents-of-time"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:bountyhunter",
+   "name": "Bountyhunter",
+   "key": "bountyhunter",
+   "performers": [
+    "bountyhunter"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dj-fire",
+   "name": "DJ Fire",
+   "key": "dj-fire",
+   "performers": [
+    "dj-fire"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:phi-phi",
+   "name": "Phi Phi",
+   "key": "phi-phi",
+   "performers": [
+    "phi-phi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:airwave",
+   "name": "Airwave",
+   "key": "airwave",
+   "performers": [
+    "airwave"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jan-vervloet",
+   "name": "Jan Vervloet",
+   "key": "jan-vervloet",
+   "performers": [
+    "jan-vervloet"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dj-ghost",
+   "name": "DJ Ghost",
+   "key": "dj-ghost",
+   "performers": [
+    "dj-ghost"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:yves-deruyter",
+   "name": "Yves Deruyter",
+   "key": "yves-deruyter",
+   "performers": [
+    "yves-deruyter"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:franky-kloeck",
+   "name": "Franky Kloeck",
+   "key": "franky-kloeck",
+   "performers": [
+    "franky-kloeck"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:bonzai-all-stars",
+   "name": "Bonzai All Stars",
+   "key": "bonzai-all-stars",
+   "performers": [
+    "bonzai-all-stars"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:lowriderz",
+   "name": "Lowriderz",
+   "key": "lowriderz",
+   "performers": [
+    "lowriderz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:cyber",
+   "name": "Cyber",
+   "key": "cyber",
+   "performers": [
+    "cyber"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:code-black",
+   "name": "Code Black",
+   "key": "code-black",
+   "performers": [
+    "code-black"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:audiotricz",
+   "name": "Audiotricz",
+   "key": "audiotricz",
+   "performers": [
+    "audiotricz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:brennan-heart",
+   "name": "Brennan Heart",
+   "key": "brennan-heart",
+   "performers": [
+    "brennan-heart"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:bass-modulators",
+   "name": "Bass Modulators",
+   "key": "bass-modulators",
+   "performers": [
+    "bass-modulators"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:wildstylez-and-noisecontrollers",
+   "name": "Wildstylez & Noisecontrollers",
+   "key": "wildstylez-and-noisecontrollers",
+   "performers": [
+    "wildstylez-and-noisecontrollers"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:atmozfears",
+   "name": "Atmozfears",
+   "key": "atmozfears",
+   "performers": [
+    "atmozfears"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:zatox",
+   "name": "Zatox",
+   "key": "zatox",
+   "performers": [
+    "zatox"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:frequencerz",
+   "name": "Frequencerz",
+   "key": "frequencerz",
+   "performers": [
+    "frequencerz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:crypsis",
+   "name": "Crypsis",
+   "key": "crypsis",
+   "performers": [
+    "crypsis"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:r-deem",
+   "name": "R'Deem",
+   "key": "r-deem",
+   "performers": [
+    "r-deem"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:neelix",
+   "name": "Neelix",
+   "key": "neelix",
+   "performers": [
+    "neelix"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:liquid-soul",
+   "name": "Liquid Soul",
+   "key": "liquid-soul",
+   "performers": [
+    "liquid-soul"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:avalon",
+   "name": "Avalon",
+   "key": "avalon",
+   "performers": [
+    "avalon"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:talamasca",
+   "name": "Talamasca",
+   "key": "talamasca",
+   "performers": [
+    "talamasca"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:firaga-vs-synsun",
+   "name": "Firaga vs SynSun",
+   "key": "firaga-vs-synsun",
+   "performers": [
+    "firaga-vs-synsun"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:brainhunters-vs-d-maniac",
+   "name": "Brainhunters vs D-Maniac",
+   "key": "brainhunters-vs-d-maniac",
+   "performers": [
+    "brainhunters-vs-d-maniac"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:2-faced-funks",
+   "name": "2 Faced Funks",
+   "key": "2-faced-funks",
+   "performers": [
+    "2-faced-funks"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:nexuz-vs-luka-caro",
+   "name": "Nexuz vs Luka Caro",
+   "key": "nexuz-vs-luka-caro",
+   "performers": [
+    "nexuz-vs-luka-caro"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:makasi-vs-neon",
+   "name": "Makasi vs Neon",
+   "key": "makasi-vs-neon",
+   "performers": [
+    "makasi-vs-neon"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:playmen-and-mad-m-a-c",
+   "name": "Playmen & MAD M.A.C",
+   "key": "playmen-and-mad-m-a-c",
+   "performers": [
+    "playmen-and-mad-m-a-c"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:diego-miranda",
+   "name": "Diego Miranda",
+   "key": "diego-miranda",
+   "performers": [
+    "diego-miranda"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mystique-vs-dimaro",
+   "name": "Mystique vs DiMaro",
+   "key": "mystique-vs-dimaro",
+   "performers": [
+    "mystique-vs-dimaro"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:fox-stevenson",
+   "name": "Fox Stevenson",
+   "key": "fox-stevenson",
+   "performers": [
+    "fox-stevenson"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:julian-jordan",
+   "name": "Julian Jordan",
+   "key": "julian-jordan",
+   "performers": [
+    "julian-jordan"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:moti",
+   "name": "MOTi",
+   "key": "moti",
+   "performers": [
+    "moti"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:wolfpack",
+   "name": "Wolfpack",
+   "key": "wolfpack",
+   "performers": [
+    "wolfpack"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:firebeatz",
+   "name": "Firebeatz",
+   "key": "firebeatz",
+   "performers": [
+    "firebeatz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:bassjackers",
+   "name": "Bassjackers",
+   "key": "bassjackers",
+   "performers": [
+    "bassjackers"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dj-que-9",
+   "name": "DJ Que 9",
+   "key": "dj-que-9",
+   "performers": [
+    "dj-que-9"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:maximo-ft-coin",
+   "name": "Maximo ft. Coin",
+   "key": "maximo-ft-coin",
+   "performers": [
+    "maximo-ft-coin"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:basement-sounds",
+   "name": "Basement Sounds",
+   "key": "basement-sounds",
+   "performers": [
+    "basement-sounds"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:wezlee",
+   "name": "Wezlee",
+   "key": "wezlee",
+   "performers": [
+    "wezlee"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mathy",
+   "name": "Mathy",
+   "key": "mathy",
+   "performers": [
+    "mathy"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:thim",
+   "name": "Thim",
+   "key": "thim",
+   "performers": [
+    "thim"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:luca-barassii",
+   "name": "Luca Barassii",
+   "key": "luca-barassii",
+   "performers": [
+    "luca-barassii"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:freaquency",
+   "name": "Freaquency",
+   "key": "freaquency",
+   "performers": [
+    "freaquency"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dj-eu",
+   "name": "DJ EU",
+   "key": "dj-eu",
+   "performers": [
+    "dj-eu"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:greg-lamore-vs-jay-lee-hudson",
+   "name": "Greg Lamore vs Jay Lee Hudson",
+   "key": "greg-lamore-vs-jay-lee-hudson",
+   "performers": [
+    "greg-lamore-vs-jay-lee-hudson"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:many-moore",
+   "name": "Many Moore",
+   "key": "many-moore",
+   "performers": [
+    "many-moore"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:ferry-corsten",
+   "name": "Ferry Corsten",
+   "key": "ferry-corsten",
+   "performers": [
+    "ferry-corsten"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:ftampa",
+   "name": "FTampa",
+   "key": "ftampa",
+   "performers": [
+    "ftampa"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dada-life",
+   "name": "Dada Life",
+   "key": "dada-life",
+   "performers": [
+    "dada-life"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:don-diablo",
+   "name": "Don Diablo",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:paul-kalkbrenner",
+   "name": "Paul Kalkbrenner",
+   "key": "paul-kalkbrenner",
+   "performers": [
+    "paul-kalkbrenner"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:steve-aoki",
+   "name": "Steve Aoki",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:steve-angello",
+   "name": "Steve Angello",
+   "key": "steve-angello",
+   "performers": [
+    "steve-angello"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:masari",
+   "name": "Masari",
+   "key": "masari",
+   "performers": [
+    "masari"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:norde",
+   "name": "Norde",
+   "key": "norde",
+   "performers": [
+    "norde"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:swift-d",
+   "name": "Swift D",
+   "key": "swift-d",
+   "performers": [
+    "swift-d"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:throttle",
+   "name": "Throttle",
+   "key": "throttle",
+   "performers": [
+    "throttle"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:kris-kross-amsterdam",
+   "name": "Kris Kross Amsterdam",
+   "key": "kris-kross-amsterdam",
+   "performers": [
+    "kris-kross-amsterdam"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:kill-the-buzz-b2b-thomas-newson",
+   "name": "Kill The Buzz b2b Thomas Newson",
+   "key": "kill-the-buzz-b2b-thomas-newson",
+   "performers": [
+    "kill-the-buzz",
+    "thomas-newson"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:edo-denova",
+   "name": "Edo Denova",
+   "key": "edo-denova",
+   "performers": [
+    "edo-denova"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:this-is-crob",
+   "name": "This is CROB",
+   "key": "this-is-crob",
+   "performers": [
+    "this-is-crob"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:that-s-who",
+   "name": "That's Who",
+   "key": "that-s-who",
+   "performers": [
+    "that-s-who"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:licious",
+   "name": "Licious",
+   "key": "licious",
+   "performers": [
+    "licious"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:luis-del-villar",
+   "name": "Luis del Villar",
+   "key": "luis-del-villar",
+   "performers": [
+    "luis-del-villar"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:nathan-fix",
+   "name": "Nathan Fix",
+   "key": "nathan-fix",
+   "performers": [
+    "nathan-fix"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:barry-fore",
+   "name": "Barry Fore",
+   "key": "barry-fore",
+   "performers": [
+    "barry-fore"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:joe-stone",
+   "name": "Joe Stone",
+   "key": "joe-stone",
+   "performers": [
+    "joe-stone"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:les-enchanted",
+   "name": "Les Enchanted",
+   "key": "les-enchanted",
+   "performers": [
+    "les-enchanted"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:himperson",
+   "name": "Himperson",
+   "key": "himperson",
+   "performers": [
+    "himperson"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:nick-bril",
+   "name": "Nick Bril",
+   "key": "nick-bril",
+   "performers": [
+    "nick-bril"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:the-oddword",
+   "name": "The Oddword",
+   "key": "the-oddword",
+   "performers": [
+    "the-oddword"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:josh-butler",
+   "name": "Josh Butler",
+   "key": "josh-butler",
+   "performers": [
+    "josh-butler"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:low-steppa",
+   "name": "Low Steppa",
+   "key": "low-steppa",
+   "performers": [
+    "low-steppa"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:camelphat",
+   "name": "Camelphat",
+   "key": "camelphat",
+   "performers": [
+    "camelphat"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:les-mecs",
+   "name": "Les Mecs",
+   "key": "les-mecs",
+   "performers": [
+    "les-mecs"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dave-till",
+   "name": "Dave Till",
+   "key": "dave-till",
+   "performers": [
+    "dave-till"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:rockstarz-vs-boostedkids",
+   "name": "Rockstarz vs Boostedkids",
+   "key": "rockstarz-vs-boostedkids",
+   "performers": [
+    "rockstarz-vs-boostedkids"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:anton-powers",
+   "name": "Anton Powers",
+   "key": "anton-powers",
+   "performers": [
+    "anton-powers"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:danny-howard",
+   "name": "Danny Howard",
+   "key": "danny-howard",
+   "performers": [
+    "danny-howard"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:angemi",
+   "name": "Angemi",
+   "key": "angemi",
+   "performers": [
+    "angemi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mattn",
+   "name": "MATTN",
+   "key": "mattn",
+   "performers": [
+    "mattn"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:ummet-ozcan",
+   "name": "Ummet Ozcan",
+   "key": "ummet-ozcan",
+   "performers": [
+    "ummet-ozcan"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:nervo",
+   "name": "Nervo",
+   "key": "nervo",
+   "performers": [
+    "nervo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:smash-the-house-family",
+   "name": "Smash The House Family",
+   "key": "smash-the-house-family",
+   "performers": [
+    "smash-the-house-family"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:tom-leclercq",
+   "name": "Tom Leclercq",
+   "key": "tom-leclercq",
+   "performers": [
+    "tom-leclercq"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:alok",
+   "name": "ALOK",
+   "key": "alok",
+   "performers": [
+    "alok"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:watermat",
+   "name": "Watermät",
+   "key": "watermat",
+   "performers": [
+    "watermat"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:gta",
+   "name": "GTA",
+   "key": "gta",
+   "performers": [
+    "gta"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:martin-solveig",
+   "name": "Martin Solveig",
+   "key": "martin-solveig",
+   "performers": [
+    "martin-solveig"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:the-magician",
+   "name": "The Magician",
+   "key": "the-magician",
+   "performers": [
+    "the-magician"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:pierre",
+   "name": "Pierre",
+   "key": "pierre",
+   "performers": [
+    "pierre"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:marcel-fengler",
+   "name": "Marcel Fengler",
+   "key": "marcel-fengler",
+   "performers": [
+    "marcel-fengler"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:scuba",
+   "name": "Scuba",
+   "key": "scuba",
+   "performers": [
+    "scuba"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:green-velvet",
+   "name": "Green Velvet",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:vitalic",
+   "name": "Vitalic",
+   "key": "vitalic",
+   "performers": [
+    "vitalic"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dave-clarke",
+   "name": "Dave Clarke",
+   "key": "dave-clarke",
+   "performers": [
+    "dave-clarke"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:fred-hush",
+   "name": "Fred Hush",
+   "key": "fred-hush",
+   "performers": [
+    "fred-hush"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:einzelkind",
+   "name": "Einzelkind",
+   "key": "einzelkind",
+   "performers": [
+    "einzelkind"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:nastia",
+   "name": "Nastia",
+   "key": "nastia",
+   "performers": [
+    "nastia"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:apollonia",
+   "name": "Apollonia",
+   "key": "apollonia",
+   "performers": [
+    "apollonia"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sonja-moonear",
+   "name": "Sonja Moonear",
+   "key": "sonja-moonear",
+   "performers": [
+    "sonja-moonear"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:maceo-plex",
+   "name": "Maceo Plex",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:chace",
+   "name": "Chace",
+   "key": "chace",
+   "performers": [
+    "chace"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:the-galaxy",
+   "name": "The Galaxy",
+   "key": "the-galaxy",
+   "performers": [
+    "the-galaxy"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:san-holo",
+   "name": "San Holo",
+   "key": "san-holo",
+   "performers": [
+    "san-holo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mightyfools",
+   "name": "Mightyfools",
+   "key": "mightyfools",
+   "performers": [
+    "mightyfools"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mike-cervello",
+   "name": "Mike Cervello",
+   "key": "mike-cervello",
+   "performers": [
+    "mike-cervello"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:cesqeaux",
+   "name": "Cesqeaux",
+   "key": "cesqeaux",
+   "performers": [
+    "cesqeaux"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mustard",
+   "name": "Mustard",
+   "key": "mustard",
+   "performers": [
+    "mustard"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:wiwek",
+   "name": "Wiwek",
+   "key": "wiwek",
+   "performers": [
+    "wiwek"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:moksi",
+   "name": "Moksi",
+   "key": "moksi",
+   "performers": [
+    "moksi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:yellow-claw",
+   "name": "Yellow Claw",
+   "key": "yellow-claw",
+   "performers": [
+    "yellow-claw"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jauz",
+   "name": "Jauz",
+   "key": "jauz",
+   "performers": [
+    "jauz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:lny-tnz",
+   "name": "LNY TNZ",
+   "key": "lny-tnz",
+   "performers": [
+    "lny-tnz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:deepend",
+   "name": "Deepend",
+   "key": "deepend",
+   "performers": [
+    "deepend"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dante-klein",
+   "name": "Dante Klein",
+   "key": "dante-klein",
+   "performers": [
+    "dante-klein"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jonas-blue-ft-dakota",
+   "name": "Jonas Blue ft. Dakota",
+   "key": "jonas-blue-ft-dakota",
+   "performers": [
+    "jonas-blue-ft-dakota"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mike-mago",
+   "name": "Mike Mago",
+   "key": "mike-mago",
+   "performers": [
+    "mike-mago"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sam-feldt",
+   "name": "Sam Feldt",
+   "key": "sam-feldt",
+   "performers": [
+    "sam-feldt"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:klingande",
+   "name": "Klingande",
+   "key": "klingande",
+   "performers": [
+    "klingande"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:matoma",
+   "name": "Matoma",
+   "key": "matoma",
+   "performers": [
+    "matoma"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:bakermat",
+   "name": "Bakermat",
+   "key": "bakermat",
+   "performers": [
+    "bakermat"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:michael-calfan",
+   "name": "Michael Calfan",
+   "key": "michael-calfan",
+   "performers": [
+    "michael-calfan"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dc-salas",
+   "name": "DC Salas",
+   "key": "dc-salas",
+   "performers": [
+    "dc-salas"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:ed-banger-house-party-ft-busy-p-para-one-boston-bun",
+   "name": "Ed Banger House party ft. Busy P, Para One, Boston Bun",
+   "key": "ed-banger-house-party-ft-busy-p-para-one-boston-bun",
+   "performers": [
+    "ed-banger-house-party-ft-busy-p-para-one-boston-bun"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sebastian",
+   "name": "Sebastian",
+   "key": "sebastian",
+   "performers": [
+    "sebastian"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:surfing-leons",
+   "name": "Surfing Leons",
+   "key": "surfing-leons",
+   "performers": [
+    "surfing-leons"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:claude-aka-fulgeance",
+   "name": "CLAUDE (Aka Fulgeance)",
+   "key": "claude-aka-fulgeance",
+   "performers": [
+    "claude-aka-fulgeance"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:partyharders",
+   "name": "Partyharders",
+   "key": "partyharders",
+   "performers": [
+    "partyharders"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:vandal-sm-vs-spitnoise",
+   "name": "Vandal!sm vs Spitnoise",
+   "key": "vandal-sm-vs-spitnoise",
+   "performers": [
+    "vandal-sm-vs-spitnoise"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:system-overload-vs-dark-controller",
+   "name": "System Overload vs Dark Controller",
+   "key": "system-overload-vs-dark-controller",
+   "performers": [
+    "system-overload-vs-dark-controller"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:lenny-dee",
+   "name": "Lenny Dee",
+   "key": "lenny-dee",
+   "performers": [
+    "lenny-dee"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:detest-vs-i-gor",
+   "name": "Detest vs I:Gor",
+   "key": "detest-vs-i-gor",
+   "performers": [
+    "detest-vs-i-gor"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sei2ure-vs-n-vitral",
+   "name": "Sei2ure vs N-Vitral",
+   "key": "sei2ure-vs-n-vitral",
+   "performers": [
+    "sei2ure-vs-n-vitral"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mc-da-mouth-of-madness-live",
+   "name": "MC Da Mouth Of Madness LIVE",
+   "key": "mc-da-mouth-of-madness-live",
+   "performers": [
+    "mc-da-mouth-of-madness-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:a-kriv-vs-bartoch",
+   "name": "A-Kriv vs Bartoch",
+   "key": "a-kriv-vs-bartoch",
+   "performers": [
+    "a-kriv-vs-bartoch"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sandy-warez-vs-section-grabuge",
+   "name": "Sandy Warez vs Section Grabuge",
+   "key": "sandy-warez-vs-section-grabuge",
+   "performers": [
+    "sandy-warez-vs-section-grabuge"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:angerfist-vs-miss-k8",
+   "name": "Angerfist vs Miss K8",
+   "key": "angerfist-vs-miss-k8",
+   "performers": [
+    "angerfist-vs-miss-k8"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:deterrent-man-vs-miss-enemy",
+   "name": "Deterrent Man vs Miss Enemy",
+   "key": "deterrent-man-vs-miss-enemy",
+   "performers": [
+    "deterrent-man-vs-miss-enemy"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:goetia",
+   "name": "Goetia",
+   "key": "goetia",
+   "performers": [
+    "goetia"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:dark-e",
+   "name": "Dark-E",
+   "key": "dark-e",
+   "performers": [
+    "dark-e"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:davoodi",
+   "name": "Davoodi",
+   "key": "davoodi",
+   "performers": [
+    "davoodi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:akyra",
+   "name": "Akyra",
+   "key": "akyra",
+   "performers": [
+    "akyra"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:mark-with-a-k",
+   "name": "Mark with a K",
+   "key": "mark-with-a-k",
+   "performers": [
+    "mark-with-a-k"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:ruthless",
+   "name": "Ruthless",
+   "key": "ruthless",
+   "performers": [
+    "ruthless"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:kutski",
+   "name": "Kutski",
+   "key": "kutski",
+   "performers": [
+    "kutski"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:darkraver",
+   "name": "Darkraver",
+   "key": "darkraver",
+   "performers": [
+    "darkraver"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:the-viper",
+   "name": "The Viper",
+   "key": "the-viper",
+   "performers": [
+    "the-viper"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:paul-elstak",
+   "name": "Paul Elstak",
+   "key": "paul-elstak",
+   "performers": [
+    "paul-elstak"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:re-style",
+   "name": "Re-Style",
+   "key": "re-style",
+   "performers": [
+    "re-style"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:cosmo",
+   "name": "Cosmo",
+   "key": "cosmo",
+   "performers": [
+    "cosmo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:sven-van-hees-b2b-steve-cop",
+   "name": "Sven Van Hees B2B Steve Cop",
+   "key": "sven-van-hees-b2b-steve-cop",
+   "performers": [
+    "sven-van-hees",
+    "steve-cop"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:olivier-pieters",
+   "name": "Olivier Pieters",
+   "key": "olivier-pieters",
+   "performers": [
+    "olivier-pieters"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:quincy",
+   "name": "Quincy",
+   "key": "quincy",
+   "performers": [
+    "quincy"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:marko-de-la-rocca",
+   "name": "Marko de La Rocca",
+   "key": "marko-de-la-rocca",
+   "performers": [
+    "marko-de-la-rocca"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:franky-jones",
+   "name": "Franky Jones",
+   "key": "franky-jones",
+   "performers": [
+    "franky-jones"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:da-hool",
+   "name": "Da Hool",
+   "key": "da-hool",
+   "performers": [
+    "da-hool"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:zolex",
+   "name": "Zolex",
+   "key": "zolex",
+   "performers": [
+    "zolex"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:push-live",
+   "name": "Push (Live)",
+   "key": "push-live",
+   "performers": [
+    "push-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:didier-beydts",
+   "name": "Didier Beydts",
+   "key": "didier-beydts",
+   "performers": [
+    "didier-beydts"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:rupert-harvey-and-jln",
+   "name": "Rupert Harvey & JLN",
+   "key": "rupert-harvey-and-jln",
+   "performers": [
+    "rupert-harvey-and-jln"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:rafi-khan",
+   "name": "Rafi Khan",
+   "key": "rafi-khan",
+   "performers": [
+    "rafi-khan"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:tom-dazing",
+   "name": "Tom Dazing",
+   "key": "tom-dazing",
+   "performers": [
+    "tom-dazing"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:nicole-rosie",
+   "name": "Nicole Rosie",
+   "key": "nicole-rosie",
+   "performers": [
+    "nicole-rosie"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:jeff-rushin",
+   "name": "Jeff Rushin",
+   "key": "jeff-rushin",
+   "performers": [
+    "jeff-rushin"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ]
+  },
+  {
+   "id": "tomorrowland-2016:massimo-mephisto",
+   "name": "Massimo Mephisto",
+   "key": "massimo-mephisto",
+   "performers": [
+    "massimo-mephisto"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "tomorrowland-2016:d1:mainstage:1200:fedde-le-grand",
+   "artistId": "tomorrowland-2016:fedde-le-grand",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "12:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mainstage:1500:dimitri-vangelis-and-wyman",
+   "artistId": "tomorrowland-2016:dimitri-vangelis-and-wyman",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mainstage:1600:otto-knows",
+   "artistId": "tomorrowland-2016:otto-knows",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mainstage:1700:r3hab",
+   "artistId": "tomorrowland-2016:r3hab",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mainstage:1800:galantis",
+   "artistId": "tomorrowland-2016:galantis",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mainstage:1900:dvbbs",
+   "artistId": "tomorrowland-2016:dvbbs",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mainstage:2000:w-and-w",
+   "artistId": "tomorrowland-2016:w-and-w",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mainstage:2100:david-guetta",
+   "artistId": "tomorrowland-2016:david-guetta",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mainstage:2200:armin-van-buuren",
+   "artistId": "tomorrowland-2016:armin-van-buuren",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mainstage:2300:tiesto",
+   "artistId": "tomorrowland-2016:tiesto",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mainstage:0000:alesso",
+   "artistId": "tomorrowland-2016:alesso",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mau5trap:1230:yotto",
+   "artistId": "tomorrowland-2016:yotto",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mau5trap",
+   "start": "12:30",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mau5trap:1400:rezz",
+   "artistId": "tomorrowland-2016:rezz",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mau5trap",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mau5trap:1500:attlas",
+   "artistId": "tomorrowland-2016:attlas",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mau5trap",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mau5trap:1600:gregor-tresher",
+   "artistId": "tomorrowland-2016:gregor-tresher",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mau5trap",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mau5trap:1700:pig-and-dan",
+   "artistId": "tomorrowland-2016:pig-and-dan",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mau5trap",
+   "start": "17:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mau5trap:1900:sasha",
+   "artistId": "tomorrowland-2016:sasha",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mau5trap",
+   "start": "19:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mau5trap:2100:adam-beyer-vs-ida-engberg",
+   "artistId": "tomorrowland-2016:adam-beyer-vs-ida-engberg",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mau5trap",
+   "start": "21:00",
+   "end": "23:25"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mau5trap:2325:deadmau5-b2b-eric-prydz",
+   "artistId": "tomorrowland-2016:deadmau5-b2b-eric-prydz",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mau5trap",
+   "start": "23:25",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:1200:kenn-colt",
+   "artistId": "tomorrowland-2016:kenn-colt",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:1300:sem-thomasson",
+   "artistId": "tomorrowland-2016:sem-thomasson",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:1400:brian-cross",
+   "artistId": "tomorrowland-2016:brian-cross",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:1500:jack-novak",
+   "artistId": "tomorrowland-2016:jack-novak",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:1600:alan-walker",
+   "artistId": "tomorrowland-2016:alan-walker",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:1700:vinai",
+   "artistId": "tomorrowland-2016:vinai",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:1800:jay-hardway",
+   "artistId": "tomorrowland-2016:jay-hardway",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:1900:kura",
+   "artistId": "tomorrowland-2016:kura",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:2000:sidney-samson",
+   "artistId": "tomorrowland-2016:sidney-samson",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:2100:yves-v-b2b-quintino",
+   "artistId": "tomorrowland-2016:yves-v-b2b-quintino",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:2230:r3hab",
+   "artistId": "tomorrowland-2016:r3hab",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:v-sessions:0000:swanky-tunes",
+   "artistId": "tomorrowland-2016:swanky-tunes",
+   "day": 1,
+   "stageId": "tomorrowland-2016:v-sessions",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:1200:herve-pagez",
+   "artistId": "tomorrowland-2016:herve-pagez",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:1300:mark-villa",
+   "artistId": "tomorrowland-2016:mark-villa",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:1400:inpetto",
+   "artistId": "tomorrowland-2016:inpetto",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:1500:twoloud",
+   "artistId": "tomorrowland-2016:twoloud",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:1600:tujamo",
+   "artistId": "tomorrowland-2016:tujamo",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:1700:matisse-and-sadko",
+   "artistId": "tomorrowland-2016:matisse-and-sadko",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:1800:dannic",
+   "artistId": "tomorrowland-2016:dannic",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:1900:timmy-trumpet",
+   "artistId": "tomorrowland-2016:timmy-trumpet",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:2000:dyro",
+   "artistId": "tomorrowland-2016:dyro",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:2100:laidback-luke",
+   "artistId": "tomorrowland-2016:laidback-luke",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:2230:blasterjaxx",
+   "artistId": "tomorrowland-2016:blasterjaxx",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:super-you-and-me:0000:sander-van-doorn",
+   "artistId": "tomorrowland-2016:sander-van-doorn",
+   "day": 1,
+   "stageId": "tomorrowland-2016:super-you-and-me",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:jamie-jones-pr-paradise:1200:michael-thoelen",
+   "artistId": "tomorrowland-2016:michael-thoelen",
+   "day": 1,
+   "stageId": "tomorrowland-2016:jamie-jones-pr-paradise",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:jamie-jones-pr-paradise:1330:nukov-and-yelmet",
+   "artistId": "tomorrowland-2016:nukov-and-yelmet",
+   "day": 1,
+   "stageId": "tomorrowland-2016:jamie-jones-pr-paradise",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:jamie-jones-pr-paradise:1500:denney",
+   "artistId": "tomorrowland-2016:denney",
+   "day": 1,
+   "stageId": "tomorrowland-2016:jamie-jones-pr-paradise",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:jamie-jones-pr-paradise:1600:russ-yallop",
+   "artistId": "tomorrowland-2016:russ-yallop",
+   "day": 1,
+   "stageId": "tomorrowland-2016:jamie-jones-pr-paradise",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:jamie-jones-pr-paradise:1700:waff",
+   "artistId": "tomorrowland-2016:waff",
+   "day": 1,
+   "stageId": "tomorrowland-2016:jamie-jones-pr-paradise",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:jamie-jones-pr-paradise:1800:matador-live",
+   "artistId": "tomorrowland-2016:matador-live",
+   "day": 1,
+   "stageId": "tomorrowland-2016:jamie-jones-pr-paradise",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:jamie-jones-pr-paradise:1900:patrick-topping",
+   "artistId": "tomorrowland-2016:patrick-topping",
+   "day": 1,
+   "stageId": "tomorrowland-2016:jamie-jones-pr-paradise",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:jamie-jones-pr-paradise:2000:richy-ahmed",
+   "artistId": "tomorrowland-2016:richy-ahmed",
+   "day": 1,
+   "stageId": "tomorrowland-2016:jamie-jones-pr-paradise",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:jamie-jones-pr-paradise:2130:the-martinez-brothers",
+   "artistId": "tomorrowland-2016:the-martinez-brothers",
+   "day": 1,
+   "stageId": "tomorrowland-2016:jamie-jones-pr-paradise",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:jamie-jones-pr-paradise:2300:jamie-jones",
+   "artistId": "tomorrowland-2016:jamie-jones",
+   "day": 1,
+   "stageId": "tomorrowland-2016:jamie-jones-pr-paradise",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:1200:fred-baker",
+   "artistId": "tomorrowland-2016:fred-baker",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:1300:dimension",
+   "artistId": "tomorrowland-2016:dimension",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:1400:standerwick",
+   "artistId": "tomorrowland-2016:standerwick",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:1500:ben-gold",
+   "artistId": "tomorrowland-2016:ben-gold",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:1600:m-i-k-e-push",
+   "artistId": "tomorrowland-2016:m-i-k-e-push",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:1700:khomha",
+   "artistId": "tomorrowland-2016:khomha",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:1800:marlo",
+   "artistId": "tomorrowland-2016:marlo",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:1900:orjan-nilsen",
+   "artistId": "tomorrowland-2016:orjan-nilsen",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:2000:gareth-emery",
+   "artistId": "tomorrowland-2016:gareth-emery",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:2100:sean-tyas",
+   "artistId": "tomorrowland-2016:sean-tyas",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:2200:pure-nrg-live",
+   "artistId": "tomorrowland-2016:pure-nrg-live",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:2300:aly-and-fila",
+   "artistId": "tomorrowland-2016:aly-and-fila",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:tranceaddict:0000:ferry-corsten-pres-gouryella",
+   "artistId": "tomorrowland-2016:ferry-corsten-pres-gouryella",
+   "day": 1,
+   "stageId": "tomorrowland-2016:tranceaddict",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:hush-hush:1230:hush",
+   "artistId": "tomorrowland-2016:hush",
+   "day": 1,
+   "stageId": "tomorrowland-2016:hush-hush",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:hush-hush:1330:london-future",
+   "artistId": "tomorrowland-2016:london-future",
+   "day": 1,
+   "stageId": "tomorrowland-2016:hush-hush",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:hush-hush:1430:the-whatevers",
+   "artistId": "tomorrowland-2016:the-whatevers",
+   "day": 1,
+   "stageId": "tomorrowland-2016:hush-hush",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:hush-hush:1530:blackout-boy",
+   "artistId": "tomorrowland-2016:blackout-boy",
+   "day": 1,
+   "stageId": "tomorrowland-2016:hush-hush",
+   "start": "15:30",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:hush-hush:1700:hush-hefner",
+   "artistId": "tomorrowland-2016:hush-hefner",
+   "day": 1,
+   "stageId": "tomorrowland-2016:hush-hush",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:hush-hush:1830:dj-diesel",
+   "artistId": "tomorrowland-2016:dj-diesel",
+   "day": 1,
+   "stageId": "tomorrowland-2016:hush-hush",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:hush-hush:1930:alison-wonderland",
+   "artistId": "tomorrowland-2016:alison-wonderland",
+   "day": 1,
+   "stageId": "tomorrowland-2016:hush-hush",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:hush-hush:2100:marshmello",
+   "artistId": "tomorrowland-2016:marshmello",
+   "day": 1,
+   "stageId": "tomorrowland-2016:hush-hush",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:hush-hush:2200:snails",
+   "artistId": "tomorrowland-2016:snails",
+   "day": 1,
+   "stageId": "tomorrowland-2016:hush-hush",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:hush-hush:2300:nghtmre-vs-slander",
+   "artistId": "tomorrowland-2016:nghtmre-vs-slander",
+   "day": 1,
+   "stageId": "tomorrowland-2016:hush-hush",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:hush-hush:0000:ookay",
+   "artistId": "tomorrowland-2016:ookay",
+   "day": 1,
+   "stageId": "tomorrowland-2016:hush-hush",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cafeina:1200:tommy-and-alec",
+   "artistId": "tomorrowland-2016:tommy-and-alec",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cafeina",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cafeina:1300:khlr-and-phill-da-cunha",
+   "artistId": "tomorrowland-2016:khlr-and-phill-da-cunha",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cafeina",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cafeina:1400:b2b-sound-system",
+   "artistId": "tomorrowland-2016:b2b-sound-system",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cafeina",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cafeina:1530:cemode-ft-seelen",
+   "artistId": "tomorrowland-2016:cemode-ft-seelen",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cafeina",
+   "start": "15:30",
+   "end": "16:45"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cafeina:1645:kolombo",
+   "artistId": "tomorrowland-2016:kolombo",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cafeina",
+   "start": "16:45",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cafeina:1800:mr-grammy-and-dj-licious",
+   "artistId": "tomorrowland-2016:mr-grammy-and-dj-licious",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cafeina",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cafeina:1930:disco-dasco",
+   "artistId": "tomorrowland-2016:disco-dasco",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cafeina",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cafeina:2100:joeri-and-philip",
+   "artistId": "tomorrowland-2016:joeri-and-philip",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cafeina",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cafeina:2215:roma",
+   "artistId": "tomorrowland-2016:roma",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cafeina",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cafeina:2330:hot-since-82",
+   "artistId": "tomorrowland-2016:hot-since-82",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cafeina",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:we-play-house-recordings:1200:metrobox",
+   "artistId": "tomorrowland-2016:metrobox",
+   "day": 1,
+   "stageId": "tomorrowland-2016:we-play-house-recordings",
+   "start": "12:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:we-play-house-recordings:1400:locked-groove",
+   "artistId": "tomorrowland-2016:locked-groove",
+   "day": 1,
+   "stageId": "tomorrowland-2016:we-play-house-recordings",
+   "start": "14:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:we-play-house-recordings:1600:axel-boman",
+   "artistId": "tomorrowland-2016:axel-boman",
+   "day": 1,
+   "stageId": "tomorrowland-2016:we-play-house-recordings",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:we-play-house-recordings:1800:fcl-ft-lady-linn",
+   "artistId": "tomorrowland-2016:fcl-ft-lady-linn",
+   "day": 1,
+   "stageId": "tomorrowland-2016:we-play-house-recordings",
+   "start": "18:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:we-play-house-recordings:2030:frankey-and-sandrino",
+   "artistId": "tomorrowland-2016:frankey-and-sandrino",
+   "day": 1,
+   "stageId": "tomorrowland-2016:we-play-house-recordings",
+   "start": "20:30",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:we-play-house-recordings:2230:derrick-may",
+   "artistId": "tomorrowland-2016:derrick-may",
+   "day": 1,
+   "stageId": "tomorrowland-2016:we-play-house-recordings",
+   "start": "22:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:i-love-the-90-s:1200:ward",
+   "artistId": "tomorrowland-2016:ward",
+   "day": 1,
+   "stageId": "tomorrowland-2016:i-love-the-90-s",
+   "start": "12:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:i-love-the-90-s:1630:dj-f-r-a-n-k",
+   "artistId": "tomorrowland-2016:dj-f-r-a-n-k",
+   "day": 1,
+   "stageId": "tomorrowland-2016:i-love-the-90-s",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:i-love-the-90-s:1800:wout",
+   "artistId": "tomorrowland-2016:wout",
+   "day": 1,
+   "stageId": "tomorrowland-2016:i-love-the-90-s",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:i-love-the-90-s:1930:dj-sash",
+   "artistId": "tomorrowland-2016:dj-sash",
+   "day": 1,
+   "stageId": "tomorrowland-2016:i-love-the-90-s",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:i-love-the-90-s:2100:ward",
+   "artistId": "tomorrowland-2016:ward",
+   "day": 1,
+   "stageId": "tomorrowland-2016:i-love-the-90-s",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:i-love-the-90-s:2200:klubbheads-ft-boozywoozy",
+   "artistId": "tomorrowland-2016:klubbheads-ft-boozywoozy",
+   "day": 1,
+   "stageId": "tomorrowland-2016:i-love-the-90-s",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:i-love-the-90-s:2300:back-in-time",
+   "artistId": "tomorrowland-2016:back-in-time",
+   "day": 1,
+   "stageId": "tomorrowland-2016:i-love-the-90-s",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:i-love-the-90-s:0000:dune",
+   "artistId": "tomorrowland-2016:dune",
+   "day": 1,
+   "stageId": "tomorrowland-2016:i-love-the-90-s",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:dirty-workz:1200:sephyx",
+   "artistId": "tomorrowland-2016:sephyx",
+   "day": 1,
+   "stageId": "tomorrowland-2016:dirty-workz",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:dirty-workz:1330:nsclt",
+   "artistId": "tomorrowland-2016:nsclt",
+   "day": 1,
+   "stageId": "tomorrowland-2016:dirty-workz",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:dirty-workz:1500:wasted-penguinz",
+   "artistId": "tomorrowland-2016:wasted-penguinz",
+   "day": 1,
+   "stageId": "tomorrowland-2016:dirty-workz",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:dirty-workz:1630:dj-isaac",
+   "artistId": "tomorrowland-2016:dj-isaac",
+   "day": 1,
+   "stageId": "tomorrowland-2016:dirty-workz",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:dirty-workz:1800:coone",
+   "artistId": "tomorrowland-2016:coone",
+   "day": 1,
+   "stageId": "tomorrowland-2016:dirty-workz",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:dirty-workz:1930:da-tweekaz",
+   "artistId": "tomorrowland-2016:da-tweekaz",
+   "day": 1,
+   "stageId": "tomorrowland-2016:dirty-workz",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:dirty-workz:2100:hard-driver",
+   "artistId": "tomorrowland-2016:hard-driver",
+   "day": 1,
+   "stageId": "tomorrowland-2016:dirty-workz",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:dirty-workz:2230:sub-zero-project",
+   "artistId": "tomorrowland-2016:sub-zero-project",
+   "day": 1,
+   "stageId": "tomorrowland-2016:dirty-workz",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:dirty-workz:0000:korsakoff",
+   "artistId": "tomorrowland-2016:korsakoff",
+   "day": 1,
+   "stageId": "tomorrowland-2016:dirty-workz",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:winterclubbing:1300:tall-and-small",
+   "artistId": "tomorrowland-2016:tall-and-small",
+   "day": 1,
+   "stageId": "tomorrowland-2016:winterclubbing",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:winterclubbing:1400:jean-de-gand",
+   "artistId": "tomorrowland-2016:jean-de-gand",
+   "day": 1,
+   "stageId": "tomorrowland-2016:winterclubbing",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:winterclubbing:1500:double-u-ft-eugene-vs-dj-luk",
+   "artistId": "tomorrowland-2016:double-u-ft-eugene-vs-dj-luk",
+   "day": 1,
+   "stageId": "tomorrowland-2016:winterclubbing",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:winterclubbing:1630:thierry-von-der-warth-vs-laurent-wery",
+   "artistId": "tomorrowland-2016:thierry-von-der-warth-vs-laurent-wery",
+   "day": 1,
+   "stageId": "tomorrowland-2016:winterclubbing",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:winterclubbing:1800:thunderbuds-vs-dj-luk",
+   "artistId": "tomorrowland-2016:thunderbuds-vs-dj-luk",
+   "day": 1,
+   "stageId": "tomorrowland-2016:winterclubbing",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:winterclubbing:1930:dimitri-wouters",
+   "artistId": "tomorrowland-2016:dimitri-wouters",
+   "day": 1,
+   "stageId": "tomorrowland-2016:winterclubbing",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:winterclubbing:2030:dj-barto-vs-dj-luk",
+   "artistId": "tomorrowland-2016:dj-barto-vs-dj-luk",
+   "day": 1,
+   "stageId": "tomorrowland-2016:winterclubbing",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:winterclubbing:2200:funk-d",
+   "artistId": "tomorrowland-2016:funk-d",
+   "day": 1,
+   "stageId": "tomorrowland-2016:winterclubbing",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:winterclubbing:2300:deve-and-matizz",
+   "artistId": "tomorrowland-2016:deve-and-matizz",
+   "day": 1,
+   "stageId": "tomorrowland-2016:winterclubbing",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:winterclubbing:0030:winterclubbing-all-stars",
+   "artistId": "tomorrowland-2016:winterclubbing-all-stars",
+   "day": 1,
+   "stageId": "tomorrowland-2016:winterclubbing",
+   "start": "00:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mazda-the-sound-of-tomorrow-island:1230:steve-rush",
+   "artistId": "tomorrowland-2016:steve-rush",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "12:30",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mazda-the-sound-of-tomorrow-island:1400:dominico",
+   "artistId": "tomorrowland-2016:dominico",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mazda-the-sound-of-tomorrow-island:1530:bodalia",
+   "artistId": "tomorrowland-2016:bodalia",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mazda-the-sound-of-tomorrow-island:1630:shaun-frank",
+   "artistId": "tomorrowland-2016:shaun-frank",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mazda-the-sound-of-tomorrow-island:1800:miss-ghyss",
+   "artistId": "tomorrowland-2016:miss-ghyss",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mazda-the-sound-of-tomorrow-island:1900:mike-williams",
+   "artistId": "tomorrowland-2016:mike-williams",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mazda-the-sound-of-tomorrow-island:2030:tigerlily",
+   "artistId": "tomorrowland-2016:tigerlily",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mazda-the-sound-of-tomorrow-island:2200:selectro",
+   "artistId": "tomorrowland-2016:selectro",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:mazda-the-sound-of-tomorrow-island:2300:king-arthur",
+   "artistId": "tomorrowland-2016:king-arthur",
+   "day": 1,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:leaf-by-lipton:1200:hosted-by-bongo",
+   "artistId": "tomorrowland-2016:hosted-by-bongo",
+   "day": 1,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:leaf-by-lipton:1230:xavier-shimtshack",
+   "artistId": "tomorrowland-2016:xavier-shimtshack",
+   "day": 1,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "12:30",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:leaf-by-lipton:1430:davidov",
+   "artistId": "tomorrowland-2016:davidov",
+   "day": 1,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:leaf-by-lipton:1600:jose-maria-ramon",
+   "artistId": "tomorrowland-2016:jose-maria-ramon",
+   "day": 1,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:leaf-by-lipton:1730:sven-van-hees",
+   "artistId": "tomorrowland-2016:sven-van-hees",
+   "day": 1,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:leaf-by-lipton:1900:double-pleasure",
+   "artistId": "tomorrowland-2016:double-pleasure",
+   "day": 1,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:leaf-by-lipton:2030:redondo",
+   "artistId": "tomorrowland-2016:redondo",
+   "day": 1,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:leaf-by-lipton:2200:yamo",
+   "artistId": "tomorrowland-2016:yamo",
+   "day": 1,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cubanisto:1300:jules-dime",
+   "artistId": "tomorrowland-2016:jules-dime",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cubanisto:1400:djaxx-and-neurotique",
+   "artistId": "tomorrowland-2016:djaxx-and-neurotique",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cubanisto:1500:lopezhouse",
+   "artistId": "tomorrowland-2016:lopezhouse",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cubanisto:1600:the-golden-boy",
+   "artistId": "tomorrowland-2016:the-golden-boy",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cubanisto:1700:compuphonic",
+   "artistId": "tomorrowland-2016:compuphonic",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cubanisto:1800:99-souls",
+   "artistId": "tomorrowland-2016:99-souls",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cubanisto:1930:igor-vicente",
+   "artistId": "tomorrowland-2016:igor-vicente",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d1:cubanisto:2100:niels-feijen-b2b-lya",
+   "artistId": "tomorrowland-2016:niels-feijen-b2b-lya",
+   "day": 1,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mainstage:1200:laidback-luke",
+   "artistId": "tomorrowland-2016:laidback-luke",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "12:00",
+   "end": "14:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mainstage:1445:andrew-rayel",
+   "artistId": "tomorrowland-2016:andrew-rayel",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "14:45",
+   "end": "15:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mainstage:1545:regi",
+   "artistId": "tomorrowland-2016:regi",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mainstage:1645:sunnery-james-and-ryan-marciano",
+   "artistId": "tomorrowland-2016:sunnery-james-and-ryan-marciano",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mainstage:1745:kshmr",
+   "artistId": "tomorrowland-2016:kshmr",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mainstage:1845:the-chainsmokers",
+   "artistId": "tomorrowland-2016:the-chainsmokers",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mainstage:1945:yves-v",
+   "artistId": "tomorrowland-2016:yves-v",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mainstage:2045:nicky-romero",
+   "artistId": "tomorrowland-2016:nicky-romero",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mainstage:2145:afrojack",
+   "artistId": "tomorrowland-2016:afrojack",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mainstage:2245:dimitri-vegas-and-like-mike",
+   "artistId": "tomorrowland-2016:dimitri-vegas-and-like-mike",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "22:45",
+   "end": "23:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mainstage:2345:axwell-ingrosso",
+   "artistId": "tomorrowland-2016:axwell-ingrosso",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "23:45",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mazda-the-sound-of-tomorrow-island:1230:chris-niveda-ft-mc-reign",
+   "artistId": "tomorrowland-2016:chris-niveda-ft-mc-reign",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "12:30",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mazda-the-sound-of-tomorrow-island:1400:frank-caro-and-alemany",
+   "artistId": "tomorrowland-2016:frank-caro-and-alemany",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mazda-the-sound-of-tomorrow-island:1530:paula-serra",
+   "artistId": "tomorrowland-2016:paula-serra",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mazda-the-sound-of-tomorrow-island:1630:mikael-weermets",
+   "artistId": "tomorrowland-2016:mikael-weermets",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mazda-the-sound-of-tomorrow-island:1800:pat-farrell",
+   "artistId": "tomorrowland-2016:pat-farrell",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mazda-the-sound-of-tomorrow-island:1900:pep-and-rash",
+   "artistId": "tomorrowland-2016:pep-and-rash",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mazda-the-sound-of-tomorrow-island:2030:john-christian",
+   "artistId": "tomorrowland-2016:john-christian",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mazda-the-sound-of-tomorrow-island:2200:jacob-plant",
+   "artistId": "tomorrowland-2016:jacob-plant",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:mazda-the-sound-of-tomorrow-island:2300:no-mondays",
+   "artistId": "tomorrowland-2016:no-mondays",
+   "day": 2,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:leaf-by-lipton:1200:hosted-by-bongo",
+   "artistId": "tomorrowland-2016:hosted-by-bongo",
+   "day": 2,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:leaf-by-lipton:1230:dave-lambert",
+   "artistId": "tomorrowland-2016:dave-lambert",
+   "day": 2,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "12:30",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:leaf-by-lipton:1430:const-live-guitar-act",
+   "artistId": "tomorrowland-2016:const-live-guitar-act",
+   "day": 2,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:leaf-by-lipton:1600:magic-wand",
+   "artistId": "tomorrowland-2016:magic-wand",
+   "day": 2,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:leaf-by-lipton:1730:jose-maria-ramon",
+   "artistId": "tomorrowland-2016:jose-maria-ramon",
+   "day": 2,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:leaf-by-lipton:1900:anna-tur",
+   "artistId": "tomorrowland-2016:anna-tur",
+   "day": 2,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:leaf-by-lipton:2030:ferreck-dawn",
+   "artistId": "tomorrowland-2016:ferreck-dawn",
+   "day": 2,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:leaf-by-lipton:2200:franky-rizardo",
+   "artistId": "tomorrowland-2016:franky-rizardo",
+   "day": 2,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cubanisto:1300:c-me",
+   "artistId": "tomorrowland-2016:c-me",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cubanisto:1400:bastin-vs-lebawski",
+   "artistId": "tomorrowland-2016:bastin-vs-lebawski",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cubanisto:1500:vision-machine",
+   "artistId": "tomorrowland-2016:vision-machine",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cubanisto:1600:iris-menza",
+   "artistId": "tomorrowland-2016:iris-menza",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cubanisto:1700:tcts",
+   "artistId": "tomorrowland-2016:tcts",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cubanisto:1830:blonde",
+   "artistId": "tomorrowland-2016:blonde",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cubanisto:2000:anotr",
+   "artistId": "tomorrowland-2016:anotr",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cubanisto:2100:maxim-lany",
+   "artistId": "tomorrowland-2016:maxim-lany",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:lost-frequencies:1230:bender",
+   "artistId": "tomorrowland-2016:bender",
+   "day": 2,
+   "stageId": "tomorrowland-2016:lost-frequencies",
+   "start": "12:30",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:lost-frequencies:1400:saint-wknd",
+   "artistId": "tomorrowland-2016:saint-wknd",
+   "day": 2,
+   "stageId": "tomorrowland-2016:lost-frequencies",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:lost-frequencies:1530:lucas-and-steve",
+   "artistId": "tomorrowland-2016:lucas-and-steve",
+   "day": 2,
+   "stageId": "tomorrowland-2016:lost-frequencies",
+   "start": "15:30",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:lost-frequencies:1700:feder",
+   "artistId": "tomorrowland-2016:feder",
+   "day": 2,
+   "stageId": "tomorrowland-2016:lost-frequencies",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:lost-frequencies:1830:sigala",
+   "artistId": "tomorrowland-2016:sigala",
+   "day": 2,
+   "stageId": "tomorrowland-2016:lost-frequencies",
+   "start": "18:30",
+   "end": "19:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:lost-frequencies:2115:lost-frequencies",
+   "artistId": "tomorrowland-2016:lost-frequencies",
+   "day": 2,
+   "stageId": "tomorrowland-2016:lost-frequencies",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:lost-frequencies:2230:robin-schulz",
+   "artistId": "tomorrowland-2016:robin-schulz",
+   "day": 2,
+   "stageId": "tomorrowland-2016:lost-frequencies",
+   "start": "22:30",
+   "end": "23:45"
+  },
+  {
+   "id": "tomorrowland-2016:d2:lost-frequencies:2345:felix-jaehn",
+   "artistId": "tomorrowland-2016:felix-jaehn",
+   "day": 2,
+   "stageId": "tomorrowland-2016:lost-frequencies",
+   "start": "23:45",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:1200:delafino",
+   "artistId": "tomorrowland-2016:delafino",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:1300:peter-luts",
+   "artistId": "tomorrowland-2016:peter-luts",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:1400:klahr",
+   "artistId": "tomorrowland-2016:klahr",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:1500:m-e-g-and-n-e-r-a-k",
+   "artistId": "tomorrowland-2016:m-e-g-and-n-e-r-a-k",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:1600:new-id",
+   "artistId": "tomorrowland-2016:new-id",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:1700:tom-staar",
+   "artistId": "tomorrowland-2016:tom-staar",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:1800:kryder",
+   "artistId": "tomorrowland-2016:kryder",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:1900:axwell",
+   "artistId": "tomorrowland-2016:axwell",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:2030:shapov",
+   "artistId": "tomorrowland-2016:shapov",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:2130:dirty-south",
+   "artistId": "tomorrowland-2016:dirty-south",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:2300:sick-individuals",
+   "artistId": "tomorrowland-2016:sick-individuals",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:axtone:0000:hard-rock-sofa",
+   "artistId": "tomorrowland-2016:hard-rock-sofa",
+   "day": 2,
+   "stageId": "tomorrowland-2016:axtone",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:diynamic:1200:magdalena",
+   "artistId": "tomorrowland-2016:magdalena",
+   "day": 2,
+   "stageId": "tomorrowland-2016:diynamic",
+   "start": "12:00",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:diynamic:1430:karmon-b2b-ntfo",
+   "artistId": "tomorrowland-2016:karmon-b2b-ntfo",
+   "day": 2,
+   "stageId": "tomorrowland-2016:diynamic",
+   "start": "14:30",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:diynamic:1700:h-o-s-h",
+   "artistId": "tomorrowland-2016:h-o-s-h",
+   "day": 2,
+   "stageId": "tomorrowland-2016:diynamic",
+   "start": "17:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:diynamic:1900:johannes-brecht-live",
+   "artistId": "tomorrowland-2016:johannes-brecht-live",
+   "day": 2,
+   "stageId": "tomorrowland-2016:diynamic",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:diynamic:2000:adriatique",
+   "artistId": "tomorrowland-2016:adriatique",
+   "day": 2,
+   "stageId": "tomorrowland-2016:diynamic",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:diynamic:2200:kollektiv-turmstrasse-live",
+   "artistId": "tomorrowland-2016:kollektiv-turmstrasse-live",
+   "day": 2,
+   "stageId": "tomorrowland-2016:diynamic",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:diynamic:2300:solomun",
+   "artistId": "tomorrowland-2016:solomun",
+   "day": 2,
+   "stageId": "tomorrowland-2016:diynamic",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:star-warz:1200:snap-ah",
+   "artistId": "tomorrowland-2016:snap-ah",
+   "day": 2,
+   "stageId": "tomorrowland-2016:star-warz",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:star-warz:1300:the-offenders",
+   "artistId": "tomorrowland-2016:the-offenders",
+   "day": 2,
+   "stageId": "tomorrowland-2016:star-warz",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:star-warz:1400:gunman-and-judah",
+   "artistId": "tomorrowland-2016:gunman-and-judah",
+   "day": 2,
+   "stageId": "tomorrowland-2016:star-warz",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:star-warz:1500:steamteam-ft-3xb-and-mc-nice",
+   "artistId": "tomorrowland-2016:steamteam-ft-3xb-and-mc-nice",
+   "day": 2,
+   "stageId": "tomorrowland-2016:star-warz",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:star-warz:1600:m-and-t-ft-mc-mota",
+   "artistId": "tomorrowland-2016:m-and-t-ft-mc-mota",
+   "day": 2,
+   "stageId": "tomorrowland-2016:star-warz",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:star-warz:1700:one87-and-phase-ft-mc-mush",
+   "artistId": "tomorrowland-2016:one87-and-phase-ft-mc-mush",
+   "day": 2,
+   "stageId": "tomorrowland-2016:star-warz",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:star-warz:1800:murdock",
+   "artistId": "tomorrowland-2016:murdock",
+   "day": 2,
+   "stageId": "tomorrowland-2016:star-warz",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:star-warz:1900:level-2-alibi",
+   "artistId": "tomorrowland-2016:level-2-alibi",
+   "day": 2,
+   "stageId": "tomorrowland-2016:star-warz",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:star-warz:2030:culture-shock-ft-mc-mota",
+   "artistId": "tomorrowland-2016:culture-shock-ft-mc-mota",
+   "day": 2,
+   "stageId": "tomorrowland-2016:star-warz",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:star-warz:2200:s-p-y-ft-mc-mota",
+   "artistId": "tomorrowland-2016:s-p-y-ft-mc-mota",
+   "day": 2,
+   "stageId": "tomorrowland-2016:star-warz",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:star-warz:2330:calyx-and-teebee-ft-lx-one",
+   "artistId": "tomorrowland-2016:calyx-and-teebee-ft-lx-one",
+   "day": 2,
+   "stageId": "tomorrowland-2016:star-warz",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:kozzmozz:1300:spacid",
+   "artistId": "tomorrowland-2016:spacid",
+   "day": 2,
+   "stageId": "tomorrowland-2016:kozzmozz",
+   "start": "13:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:kozzmozz:1500:len-faki",
+   "artistId": "tomorrowland-2016:len-faki",
+   "day": 2,
+   "stageId": "tomorrowland-2016:kozzmozz",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:kozzmozz:1630:kr-z",
+   "artistId": "tomorrowland-2016:kr-z",
+   "day": 2,
+   "stageId": "tomorrowland-2016:kozzmozz",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:kozzmozz:1800:jonas-kopp",
+   "artistId": "tomorrowland-2016:jonas-kopp",
+   "day": 2,
+   "stageId": "tomorrowland-2016:kozzmozz",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:kozzmozz:1930:marcel-dettmann",
+   "artistId": "tomorrowland-2016:marcel-dettmann",
+   "day": 2,
+   "stageId": "tomorrowland-2016:kozzmozz",
+   "start": "19:30",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:kozzmozz:2130:adam-beyer",
+   "artistId": "tomorrowland-2016:adam-beyer",
+   "day": 2,
+   "stageId": "tomorrowland-2016:kozzmozz",
+   "start": "21:30",
+   "end": "23:15"
+  },
+  {
+   "id": "tomorrowland-2016:d2:kozzmozz:2315:nina-kraviz",
+   "artistId": "tomorrowland-2016:nina-kraviz",
+   "day": 2,
+   "stageId": "tomorrowland-2016:kozzmozz",
+   "start": "23:15",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cafe-d-anvers:1200:cheap-charly-men",
+   "artistId": "tomorrowland-2016:cheap-charly-men",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cafe-d-anvers",
+   "start": "12:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cafe-d-anvers:1400:flapjackers",
+   "artistId": "tomorrowland-2016:flapjackers",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cafe-d-anvers",
+   "start": "14:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cafe-d-anvers:1600:smos",
+   "artistId": "tomorrowland-2016:smos",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cafe-d-anvers",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cafe-d-anvers:1800:chantal",
+   "artistId": "tomorrowland-2016:chantal",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cafe-d-anvers",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cafe-d-anvers:2000:dj-tennis",
+   "artistId": "tomorrowland-2016:dj-tennis",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cafe-d-anvers",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cafe-d-anvers:2200:bollen-and-fichtner",
+   "artistId": "tomorrowland-2016:bollen-and-fichtner",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cafe-d-anvers",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:cafe-d-anvers:2330:agents-of-time",
+   "artistId": "tomorrowland-2016:agents-of-time",
+   "day": 2,
+   "stageId": "tomorrowland-2016:cafe-d-anvers",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:bonzai:1300:bountyhunter",
+   "artistId": "tomorrowland-2016:bountyhunter",
+   "day": 2,
+   "stageId": "tomorrowland-2016:bonzai",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:bonzai:1400:dj-fire",
+   "artistId": "tomorrowland-2016:dj-fire",
+   "day": 2,
+   "stageId": "tomorrowland-2016:bonzai",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:bonzai:1500:phi-phi",
+   "artistId": "tomorrowland-2016:phi-phi",
+   "day": 2,
+   "stageId": "tomorrowland-2016:bonzai",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:bonzai:1630:airwave",
+   "artistId": "tomorrowland-2016:airwave",
+   "day": 2,
+   "stageId": "tomorrowland-2016:bonzai",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:bonzai:1800:jan-vervloet",
+   "artistId": "tomorrowland-2016:jan-vervloet",
+   "day": 2,
+   "stageId": "tomorrowland-2016:bonzai",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:bonzai:1900:dj-ghost",
+   "artistId": "tomorrowland-2016:dj-ghost",
+   "day": 2,
+   "stageId": "tomorrowland-2016:bonzai",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:bonzai:2030:yves-deruyter",
+   "artistId": "tomorrowland-2016:yves-deruyter",
+   "day": 2,
+   "stageId": "tomorrowland-2016:bonzai",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:bonzai:2200:franky-kloeck",
+   "artistId": "tomorrowland-2016:franky-kloeck",
+   "day": 2,
+   "stageId": "tomorrowland-2016:bonzai",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:bonzai:2330:bonzai-all-stars",
+   "artistId": "tomorrowland-2016:bonzai-all-stars",
+   "day": 2,
+   "stageId": "tomorrowland-2016:bonzai",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:1200:lowriderz",
+   "artistId": "tomorrowland-2016:lowriderz",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:1300:cyber",
+   "artistId": "tomorrowland-2016:cyber",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:1400:code-black",
+   "artistId": "tomorrowland-2016:code-black",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:1500:audiotricz",
+   "artistId": "tomorrowland-2016:audiotricz",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:1600:brennan-heart",
+   "artistId": "tomorrowland-2016:brennan-heart",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:1700:bass-modulators",
+   "artistId": "tomorrowland-2016:bass-modulators",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:1800:wildstylez-and-noisecontrollers",
+   "artistId": "tomorrowland-2016:wildstylez-and-noisecontrollers",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:1900:atmozfears",
+   "artistId": "tomorrowland-2016:atmozfears",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:2000:coone",
+   "artistId": "tomorrowland-2016:coone",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:2100:zatox",
+   "artistId": "tomorrowland-2016:zatox",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:2200:frequencerz",
+   "artistId": "tomorrowland-2016:frequencerz",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:q-dance:2300:crypsis",
+   "artistId": "tomorrowland-2016:crypsis",
+   "day": 2,
+   "stageId": "tomorrowland-2016:q-dance",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:b2b:1200:r-deem",
+   "artistId": "tomorrowland-2016:r-deem",
+   "day": 2,
+   "stageId": "tomorrowland-2016:b2b",
+   "start": "12:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:b2b:1400:neelix",
+   "artistId": "tomorrowland-2016:neelix",
+   "day": 2,
+   "stageId": "tomorrowland-2016:b2b",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:b2b:1500:liquid-soul",
+   "artistId": "tomorrowland-2016:liquid-soul",
+   "day": 2,
+   "stageId": "tomorrowland-2016:b2b",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:b2b:1630:avalon",
+   "artistId": "tomorrowland-2016:avalon",
+   "day": 2,
+   "stageId": "tomorrowland-2016:b2b",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:b2b:1800:talamasca",
+   "artistId": "tomorrowland-2016:talamasca",
+   "day": 2,
+   "stageId": "tomorrowland-2016:b2b",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:b2b:1930:firaga-vs-synsun",
+   "artistId": "tomorrowland-2016:firaga-vs-synsun",
+   "day": 2,
+   "stageId": "tomorrowland-2016:b2b",
+   "start": "19:30",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:b2b:2130:brainhunters-vs-d-maniac",
+   "artistId": "tomorrowland-2016:brainhunters-vs-d-maniac",
+   "day": 2,
+   "stageId": "tomorrowland-2016:b2b",
+   "start": "21:30",
+   "end": "23:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:b2b:2330:vini-vici",
+   "artistId": "tomorrowland-2016:vini-vici",
+   "day": 2,
+   "stageId": "tomorrowland-2016:b2b",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:1300:2-faced-funks",
+   "artistId": "tomorrowland-2016:2-faced-funks",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:1400:nexuz-vs-luka-caro",
+   "artistId": "tomorrowland-2016:nexuz-vs-luka-caro",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:1500:makasi-vs-neon",
+   "artistId": "tomorrowland-2016:makasi-vs-neon",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:1600:playmen-and-mad-m-a-c",
+   "artistId": "tomorrowland-2016:playmen-and-mad-m-a-c",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:1700:diego-miranda",
+   "artistId": "tomorrowland-2016:diego-miranda",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:1800:mystique-vs-dimaro",
+   "artistId": "tomorrowland-2016:mystique-vs-dimaro",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:1900:fox-stevenson",
+   "artistId": "tomorrowland-2016:fox-stevenson",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:2000:julian-jordan",
+   "artistId": "tomorrowland-2016:julian-jordan",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:2100:moti",
+   "artistId": "tomorrowland-2016:moti",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:2200:wolfpack",
+   "artistId": "tomorrowland-2016:wolfpack",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:2300:firebeatz",
+   "artistId": "tomorrowland-2016:firebeatz",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:generation-smash:0000:bassjackers",
+   "artistId": "tomorrowland-2016:bassjackers",
+   "day": 2,
+   "stageId": "tomorrowland-2016:generation-smash",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:woody-weekend:1200:dj-que-9",
+   "artistId": "tomorrowland-2016:dj-que-9",
+   "day": 2,
+   "stageId": "tomorrowland-2016:woody-weekend",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:woody-weekend:1330:maximo-ft-coin",
+   "artistId": "tomorrowland-2016:maximo-ft-coin",
+   "day": 2,
+   "stageId": "tomorrowland-2016:woody-weekend",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:woody-weekend:1430:basement-sounds",
+   "artistId": "tomorrowland-2016:basement-sounds",
+   "day": 2,
+   "stageId": "tomorrowland-2016:woody-weekend",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:woody-weekend:1530:wezlee",
+   "artistId": "tomorrowland-2016:wezlee",
+   "day": 2,
+   "stageId": "tomorrowland-2016:woody-weekend",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:woody-weekend:1630:mathy",
+   "artistId": "tomorrowland-2016:mathy",
+   "day": 2,
+   "stageId": "tomorrowland-2016:woody-weekend",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:woody-weekend:1730:thim",
+   "artistId": "tomorrowland-2016:thim",
+   "day": 2,
+   "stageId": "tomorrowland-2016:woody-weekend",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2016:d2:woody-weekend:1830:luca-barassii",
+   "artistId": "tomorrowland-2016:luca-barassii",
+   "day": 2,
+   "stageId": "tomorrowland-2016:woody-weekend",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:woody-weekend:2000:freaquency",
+   "artistId": "tomorrowland-2016:freaquency",
+   "day": 2,
+   "stageId": "tomorrowland-2016:woody-weekend",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:woody-weekend:2100:dj-eu",
+   "artistId": "tomorrowland-2016:dj-eu",
+   "day": 2,
+   "stageId": "tomorrowland-2016:woody-weekend",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:woody-weekend:2200:greg-lamore-vs-jay-lee-hudson",
+   "artistId": "tomorrowland-2016:greg-lamore-vs-jay-lee-hudson",
+   "day": 2,
+   "stageId": "tomorrowland-2016:woody-weekend",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d2:woody-weekend:0000:many-moore",
+   "artistId": "tomorrowland-2016:many-moore",
+   "day": 2,
+   "stageId": "tomorrowland-2016:woody-weekend",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mainstage:1200:ferry-corsten",
+   "artistId": "tomorrowland-2016:ferry-corsten",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "12:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mainstage:1500:ftampa",
+   "artistId": "tomorrowland-2016:ftampa",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mainstage:1600:dada-life",
+   "artistId": "tomorrowland-2016:dada-life",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mainstage:1700:don-diablo",
+   "artistId": "tomorrowland-2016:don-diablo",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mainstage:1800:oliver-heldens",
+   "artistId": "tomorrowland-2016:oliver-heldens",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mainstage:1900:paul-kalkbrenner",
+   "artistId": "tomorrowland-2016:paul-kalkbrenner",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mainstage:2000:steve-aoki",
+   "artistId": "tomorrowland-2016:steve-aoki",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mainstage:2115:steve-angello",
+   "artistId": "tomorrowland-2016:steve-angello",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mainstage:2230:martin-garrix",
+   "artistId": "tomorrowland-2016:martin-garrix",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "22:30",
+   "end": "23:40"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mainstage:2340:dimitri-vegas-and-like-mike",
+   "artistId": "tomorrowland-2016:dimitri-vegas-and-like-mike",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mainstage",
+   "start": "23:40",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mazda-the-sound-of-tomorrow-island:1230:masari",
+   "artistId": "tomorrowland-2016:masari",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "12:30",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mazda-the-sound-of-tomorrow-island:1400:norde",
+   "artistId": "tomorrowland-2016:norde",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mazda-the-sound-of-tomorrow-island:1500:swift-d",
+   "artistId": "tomorrowland-2016:swift-d",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mazda-the-sound-of-tomorrow-island:1600:mathy",
+   "artistId": "tomorrowland-2016:mathy",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mazda-the-sound-of-tomorrow-island:1700:throttle",
+   "artistId": "tomorrowland-2016:throttle",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mazda-the-sound-of-tomorrow-island:1800:kris-kross-amsterdam",
+   "artistId": "tomorrowland-2016:kris-kross-amsterdam",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mazda-the-sound-of-tomorrow-island:1900:kill-the-buzz-b2b-thomas-newson",
+   "artistId": "tomorrowland-2016:kill-the-buzz-b2b-thomas-newson",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mazda-the-sound-of-tomorrow-island:2030:edo-denova",
+   "artistId": "tomorrowland-2016:edo-denova",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:mazda-the-sound-of-tomorrow-island:2200:this-is-crob",
+   "artistId": "tomorrowland-2016:this-is-crob",
+   "day": 3,
+   "stageId": "tomorrowland-2016:mazda-the-sound-of-tomorrow-island",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:leaf-by-lipton:1200:hosted-by-bongo",
+   "artistId": "tomorrowland-2016:hosted-by-bongo",
+   "day": 3,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:leaf-by-lipton:1230:that-s-who",
+   "artistId": "tomorrowland-2016:that-s-who",
+   "day": 3,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "12:30",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:leaf-by-lipton:1400:licious",
+   "artistId": "tomorrowland-2016:licious",
+   "day": 3,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:leaf-by-lipton:1530:delafino",
+   "artistId": "tomorrowland-2016:delafino",
+   "day": 3,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "15:30",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:leaf-by-lipton:1700:luis-del-villar",
+   "artistId": "tomorrowland-2016:luis-del-villar",
+   "day": 3,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:leaf-by-lipton:1830:nathan-fix",
+   "artistId": "tomorrowland-2016:nathan-fix",
+   "day": 3,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:leaf-by-lipton:2000:barry-fore",
+   "artistId": "tomorrowland-2016:barry-fore",
+   "day": 3,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:leaf-by-lipton:2130:joe-stone",
+   "artistId": "tomorrowland-2016:joe-stone",
+   "day": 3,
+   "stageId": "tomorrowland-2016:leaf-by-lipton",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cubanisto:1300:les-enchanted",
+   "artistId": "tomorrowland-2016:les-enchanted",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cubanisto:1400:himperson",
+   "artistId": "tomorrowland-2016:himperson",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cubanisto:1500:nick-bril",
+   "artistId": "tomorrowland-2016:nick-bril",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cubanisto:1600:the-oddword",
+   "artistId": "tomorrowland-2016:the-oddword",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cubanisto:1700:josh-butler",
+   "artistId": "tomorrowland-2016:josh-butler",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cubanisto:1800:low-steppa",
+   "artistId": "tomorrowland-2016:low-steppa",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cubanisto:1930:camelphat",
+   "artistId": "tomorrowland-2016:camelphat",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cubanisto:2100:les-mecs",
+   "artistId": "tomorrowland-2016:les-mecs",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cubanisto",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:smash-the-house:1230:dave-till",
+   "artistId": "tomorrowland-2016:dave-till",
+   "day": 3,
+   "stageId": "tomorrowland-2016:smash-the-house",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:smash-the-house:1330:rockstarz-vs-boostedkids",
+   "artistId": "tomorrowland-2016:rockstarz-vs-boostedkids",
+   "day": 3,
+   "stageId": "tomorrowland-2016:smash-the-house",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:smash-the-house:1430:anton-powers",
+   "artistId": "tomorrowland-2016:anton-powers",
+   "day": 3,
+   "stageId": "tomorrowland-2016:smash-the-house",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:smash-the-house:1530:danny-howard",
+   "artistId": "tomorrowland-2016:danny-howard",
+   "day": 3,
+   "stageId": "tomorrowland-2016:smash-the-house",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:smash-the-house:1630:angemi",
+   "artistId": "tomorrowland-2016:angemi",
+   "day": 3,
+   "stageId": "tomorrowland-2016:smash-the-house",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:smash-the-house:1730:mattn",
+   "artistId": "tomorrowland-2016:mattn",
+   "day": 3,
+   "stageId": "tomorrowland-2016:smash-the-house",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:smash-the-house:1830:ummet-ozcan",
+   "artistId": "tomorrowland-2016:ummet-ozcan",
+   "day": 3,
+   "stageId": "tomorrowland-2016:smash-the-house",
+   "start": "18:30",
+   "end": "19:45"
+  },
+  {
+   "id": "tomorrowland-2016:d3:smash-the-house:1945:nervo",
+   "artistId": "tomorrowland-2016:nervo",
+   "day": 3,
+   "stageId": "tomorrowland-2016:smash-the-house",
+   "start": "19:45",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:smash-the-house:2100:smash-the-house-family",
+   "artistId": "tomorrowland-2016:smash-the-house-family",
+   "day": 3,
+   "stageId": "tomorrowland-2016:smash-the-house",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:smash-the-house:2300:wolfpack",
+   "artistId": "tomorrowland-2016:wolfpack",
+   "day": 3,
+   "stageId": "tomorrowland-2016:smash-the-house",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:my-house:1230:tom-leclercq",
+   "artistId": "tomorrowland-2016:tom-leclercq",
+   "day": 3,
+   "stageId": "tomorrowland-2016:my-house",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:my-house:1330:dave-lambert",
+   "artistId": "tomorrowland-2016:dave-lambert",
+   "day": 3,
+   "stageId": "tomorrowland-2016:my-house",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:my-house:1430:alok",
+   "artistId": "tomorrowland-2016:alok",
+   "day": 3,
+   "stageId": "tomorrowland-2016:my-house",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:my-house:1600:watermat",
+   "artistId": "tomorrowland-2016:watermat",
+   "day": 3,
+   "stageId": "tomorrowland-2016:my-house",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:my-house:1730:gta",
+   "artistId": "tomorrowland-2016:gta",
+   "day": 3,
+   "stageId": "tomorrowland-2016:my-house",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:my-house:1900:martin-solveig",
+   "artistId": "tomorrowland-2016:martin-solveig",
+   "day": 3,
+   "stageId": "tomorrowland-2016:my-house",
+   "start": "19:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:my-house:2100:the-magician",
+   "artistId": "tomorrowland-2016:the-magician",
+   "day": 3,
+   "stageId": "tomorrowland-2016:my-house",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:my-house:2230:oliver-heldens",
+   "artistId": "tomorrowland-2016:oliver-heldens",
+   "day": 3,
+   "stageId": "tomorrowland-2016:my-house",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:dave-clarke-presents:1300:pierre",
+   "artistId": "tomorrowland-2016:pierre",
+   "day": 3,
+   "stageId": "tomorrowland-2016:dave-clarke-presents",
+   "start": "13:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:dave-clarke-presents:1500:marcel-fengler",
+   "artistId": "tomorrowland-2016:marcel-fengler",
+   "day": 3,
+   "stageId": "tomorrowland-2016:dave-clarke-presents",
+   "start": "15:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:dave-clarke-presents:1700:scuba",
+   "artistId": "tomorrowland-2016:scuba",
+   "day": 3,
+   "stageId": "tomorrowland-2016:dave-clarke-presents",
+   "start": "17:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:dave-clarke-presents:1900:green-velvet",
+   "artistId": "tomorrowland-2016:green-velvet",
+   "day": 3,
+   "stageId": "tomorrowland-2016:dave-clarke-presents",
+   "start": "19:00",
+   "end": "20:45"
+  },
+  {
+   "id": "tomorrowland-2016:d3:dave-clarke-presents:2045:vitalic",
+   "artistId": "tomorrowland-2016:vitalic",
+   "day": 3,
+   "stageId": "tomorrowland-2016:dave-clarke-presents",
+   "start": "20:45",
+   "end": "22:15"
+  },
+  {
+   "id": "tomorrowland-2016:d3:dave-clarke-presents:2215:dave-clarke",
+   "artistId": "tomorrowland-2016:dave-clarke",
+   "day": 3,
+   "stageId": "tomorrowland-2016:dave-clarke-presents",
+   "start": "22:15",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cocoon:1200:fred-hush",
+   "artistId": "tomorrowland-2016:fred-hush",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cocoon",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cocoon:1300:einzelkind",
+   "artistId": "tomorrowland-2016:einzelkind",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cocoon",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cocoon:1430:nastia",
+   "artistId": "tomorrowland-2016:nastia",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cocoon",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cocoon:1600:apollonia",
+   "artistId": "tomorrowland-2016:apollonia",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cocoon",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cocoon:1800:sonja-moonear",
+   "artistId": "tomorrowland-2016:sonja-moonear",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cocoon",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cocoon:1930:maceo-plex",
+   "artistId": "tomorrowland-2016:maceo-plex",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cocoon",
+   "start": "19:30",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:cocoon:2130:sven-vath",
+   "artistId": "tomorrowland-2016:sven-vath",
+   "day": 3,
+   "stageId": "tomorrowland-2016:cocoon",
+   "start": "21:30",
+   "end": "23:50"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:1200:chace",
+   "artistId": "tomorrowland-2016:chace",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:1300:the-galaxy",
+   "artistId": "tomorrowland-2016:the-galaxy",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:1400:san-holo",
+   "artistId": "tomorrowland-2016:san-holo",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:1500:mightyfools",
+   "artistId": "tomorrowland-2016:mightyfools",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:1600:mike-cervello",
+   "artistId": "tomorrowland-2016:mike-cervello",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:1700:cesqeaux",
+   "artistId": "tomorrowland-2016:cesqeaux",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:1800:mustard",
+   "artistId": "tomorrowland-2016:mustard",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:1900:wiwek",
+   "artistId": "tomorrowland-2016:wiwek",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:2000:moksi",
+   "artistId": "tomorrowland-2016:moksi",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:2100:yellow-claw",
+   "artistId": "tomorrowland-2016:yellow-claw",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:2200:jauz",
+   "artistId": "tomorrowland-2016:jauz",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:barong-family:2300:lny-tnz",
+   "artistId": "tomorrowland-2016:lny-tnz",
+   "day": 3,
+   "stageId": "tomorrowland-2016:barong-family",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:bakermat-and-friends:1230:deepend",
+   "artistId": "tomorrowland-2016:deepend",
+   "day": 3,
+   "stageId": "tomorrowland-2016:bakermat-and-friends",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:bakermat-and-friends:1330:dante-klein",
+   "artistId": "tomorrowland-2016:dante-klein",
+   "day": 3,
+   "stageId": "tomorrowland-2016:bakermat-and-friends",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:bakermat-and-friends:1500:jonas-blue-ft-dakota",
+   "artistId": "tomorrowland-2016:jonas-blue-ft-dakota",
+   "day": 3,
+   "stageId": "tomorrowland-2016:bakermat-and-friends",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:bakermat-and-friends:1600:mike-mago",
+   "artistId": "tomorrowland-2016:mike-mago",
+   "day": 3,
+   "stageId": "tomorrowland-2016:bakermat-and-friends",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:bakermat-and-friends:1700:sam-feldt",
+   "artistId": "tomorrowland-2016:sam-feldt",
+   "day": 3,
+   "stageId": "tomorrowland-2016:bakermat-and-friends",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "tomorrowland-2016:d3:bakermat-and-friends:1815:klingande",
+   "artistId": "tomorrowland-2016:klingande",
+   "day": 3,
+   "stageId": "tomorrowland-2016:bakermat-and-friends",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:bakermat-and-friends:1930:matoma",
+   "artistId": "tomorrowland-2016:matoma",
+   "day": 3,
+   "stageId": "tomorrowland-2016:bakermat-and-friends",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:bakermat-and-friends:2100:bakermat",
+   "artistId": "tomorrowland-2016:bakermat",
+   "day": 3,
+   "stageId": "tomorrowland-2016:bakermat-and-friends",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:bakermat-and-friends:2230:michael-calfan",
+   "artistId": "tomorrowland-2016:michael-calfan",
+   "day": 3,
+   "stageId": "tomorrowland-2016:bakermat-and-friends",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:forma-t:1300:dc-salas",
+   "artistId": "tomorrowland-2016:dc-salas",
+   "day": 3,
+   "stageId": "tomorrowland-2016:forma-t",
+   "start": "13:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:forma-t:1500:ed-banger-house-party-ft-busy-p-para-one-boston-bun",
+   "artistId": "tomorrowland-2016:ed-banger-house-party-ft-busy-p-para-one-boston-bun",
+   "day": 3,
+   "stageId": "tomorrowland-2016:forma-t",
+   "start": "15:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:forma-t:1800:sebastian",
+   "artistId": "tomorrowland-2016:sebastian",
+   "day": 3,
+   "stageId": "tomorrowland-2016:forma-t",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:forma-t:1930:surfing-leons",
+   "artistId": "tomorrowland-2016:surfing-leons",
+   "day": 3,
+   "stageId": "tomorrowland-2016:forma-t",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:forma-t:2100:claude-aka-fulgeance",
+   "artistId": "tomorrowland-2016:claude-aka-fulgeance",
+   "day": 3,
+   "stageId": "tomorrowland-2016:forma-t",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:forma-t:2230:partyharders",
+   "artistId": "tomorrowland-2016:partyharders",
+   "day": 3,
+   "stageId": "tomorrowland-2016:forma-t",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:footworxx:1200:vandal-sm-vs-spitnoise",
+   "artistId": "tomorrowland-2016:vandal-sm-vs-spitnoise",
+   "day": 3,
+   "stageId": "tomorrowland-2016:footworxx",
+   "start": "12:00",
+   "end": "13:15"
+  },
+  {
+   "id": "tomorrowland-2016:d3:footworxx:1315:system-overload-vs-dark-controller",
+   "artistId": "tomorrowland-2016:system-overload-vs-dark-controller",
+   "day": 3,
+   "stageId": "tomorrowland-2016:footworxx",
+   "start": "13:15",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:footworxx:1430:lenny-dee",
+   "artistId": "tomorrowland-2016:lenny-dee",
+   "day": 3,
+   "stageId": "tomorrowland-2016:footworxx",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:footworxx:1530:detest-vs-i-gor",
+   "artistId": "tomorrowland-2016:detest-vs-i-gor",
+   "day": 3,
+   "stageId": "tomorrowland-2016:footworxx",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:footworxx:1630:sei2ure-vs-n-vitral",
+   "artistId": "tomorrowland-2016:sei2ure-vs-n-vitral",
+   "day": 3,
+   "stageId": "tomorrowland-2016:footworxx",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:footworxx:1730:mc-da-mouth-of-madness-live",
+   "artistId": "tomorrowland-2016:mc-da-mouth-of-madness-live",
+   "day": 3,
+   "stageId": "tomorrowland-2016:footworxx",
+   "start": "17:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:footworxx:1800:a-kriv-vs-bartoch",
+   "artistId": "tomorrowland-2016:a-kriv-vs-bartoch",
+   "day": 3,
+   "stageId": "tomorrowland-2016:footworxx",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "tomorrowland-2016:d3:footworxx:1915:sandy-warez-vs-section-grabuge",
+   "artistId": "tomorrowland-2016:sandy-warez-vs-section-grabuge",
+   "day": 3,
+   "stageId": "tomorrowland-2016:footworxx",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:footworxx:2030:angerfist-vs-miss-k8",
+   "artistId": "tomorrowland-2016:angerfist-vs-miss-k8",
+   "day": 3,
+   "stageId": "tomorrowland-2016:footworxx",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "tomorrowland-2016:d3:footworxx:2145:deterrent-man-vs-miss-enemy",
+   "artistId": "tomorrowland-2016:deterrent-man-vs-miss-enemy",
+   "day": 3,
+   "stageId": "tomorrowland-2016:footworxx",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:footworxx:2300:goetia",
+   "artistId": "tomorrowland-2016:goetia",
+   "day": 3,
+   "stageId": "tomorrowland-2016:footworxx",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:pussylounge:1200:dark-e",
+   "artistId": "tomorrowland-2016:dark-e",
+   "day": 3,
+   "stageId": "tomorrowland-2016:pussylounge",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:pussylounge:1330:davoodi",
+   "artistId": "tomorrowland-2016:davoodi",
+   "day": 3,
+   "stageId": "tomorrowland-2016:pussylounge",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:pussylounge:1430:akyra",
+   "artistId": "tomorrowland-2016:akyra",
+   "day": 3,
+   "stageId": "tomorrowland-2016:pussylounge",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:pussylounge:1530:mark-with-a-k",
+   "artistId": "tomorrowland-2016:mark-with-a-k",
+   "day": 3,
+   "stageId": "tomorrowland-2016:pussylounge",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:pussylounge:1630:ruthless",
+   "artistId": "tomorrowland-2016:ruthless",
+   "day": 3,
+   "stageId": "tomorrowland-2016:pussylounge",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:pussylounge:1730:kutski",
+   "artistId": "tomorrowland-2016:kutski",
+   "day": 3,
+   "stageId": "tomorrowland-2016:pussylounge",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:pussylounge:1830:da-tweekaz",
+   "artistId": "tomorrowland-2016:da-tweekaz",
+   "day": 3,
+   "stageId": "tomorrowland-2016:pussylounge",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:pussylounge:1930:darkraver",
+   "artistId": "tomorrowland-2016:darkraver",
+   "day": 3,
+   "stageId": "tomorrowland-2016:pussylounge",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:pussylounge:2030:the-viper",
+   "artistId": "tomorrowland-2016:the-viper",
+   "day": 3,
+   "stageId": "tomorrowland-2016:pussylounge",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:pussylounge:2130:paul-elstak",
+   "artistId": "tomorrowland-2016:paul-elstak",
+   "day": 3,
+   "stageId": "tomorrowland-2016:pussylounge",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:pussylounge:2230:re-style",
+   "artistId": "tomorrowland-2016:re-style",
+   "day": 3,
+   "stageId": "tomorrowland-2016:pussylounge",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:age-of-love:1230:cosmo",
+   "artistId": "tomorrowland-2016:cosmo",
+   "day": 3,
+   "stageId": "tomorrowland-2016:age-of-love",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:age-of-love:1330:sven-van-hees-b2b-steve-cop",
+   "artistId": "tomorrowland-2016:sven-van-hees-b2b-steve-cop",
+   "day": 3,
+   "stageId": "tomorrowland-2016:age-of-love",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:age-of-love:1500:olivier-pieters",
+   "artistId": "tomorrowland-2016:olivier-pieters",
+   "day": 3,
+   "stageId": "tomorrowland-2016:age-of-love",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:age-of-love:1600:quincy",
+   "artistId": "tomorrowland-2016:quincy",
+   "day": 3,
+   "stageId": "tomorrowland-2016:age-of-love",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:age-of-love:1730:marko-de-la-rocca",
+   "artistId": "tomorrowland-2016:marko-de-la-rocca",
+   "day": 3,
+   "stageId": "tomorrowland-2016:age-of-love",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:age-of-love:1900:franky-jones",
+   "artistId": "tomorrowland-2016:franky-jones",
+   "day": 3,
+   "stageId": "tomorrowland-2016:age-of-love",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:age-of-love:2030:da-hool",
+   "artistId": "tomorrowland-2016:da-hool",
+   "day": 3,
+   "stageId": "tomorrowland-2016:age-of-love",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:age-of-love:2130:zolex",
+   "artistId": "tomorrowland-2016:zolex",
+   "day": 3,
+   "stageId": "tomorrowland-2016:age-of-love",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:age-of-love:2300:push-live",
+   "artistId": "tomorrowland-2016:push-live",
+   "day": 3,
+   "stageId": "tomorrowland-2016:age-of-love",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:coincidence:1220:didier-beydts",
+   "artistId": "tomorrowland-2016:didier-beydts",
+   "day": 3,
+   "stageId": "tomorrowland-2016:coincidence",
+   "start": "12:20",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:coincidence:1330:rupert-harvey-and-jln",
+   "artistId": "tomorrowland-2016:rupert-harvey-and-jln",
+   "day": 3,
+   "stageId": "tomorrowland-2016:coincidence",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:coincidence:1500:rafi-khan",
+   "artistId": "tomorrowland-2016:rafi-khan",
+   "day": 3,
+   "stageId": "tomorrowland-2016:coincidence",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:coincidence:1630:tom-dazing",
+   "artistId": "tomorrowland-2016:tom-dazing",
+   "day": 3,
+   "stageId": "tomorrowland-2016:coincidence",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:coincidence:1800:nicole-rosie",
+   "artistId": "tomorrowland-2016:nicole-rosie",
+   "day": 3,
+   "stageId": "tomorrowland-2016:coincidence",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:coincidence:1930:jeff-rushin",
+   "artistId": "tomorrowland-2016:jeff-rushin",
+   "day": 3,
+   "stageId": "tomorrowland-2016:coincidence",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2016:d3:coincidence:2100:amelie-lens",
+   "artistId": "tomorrowland-2016:amelie-lens",
+   "day": 3,
+   "stageId": "tomorrowland-2016:coincidence",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2016:d3:coincidence:2230:massimo-mephisto",
+   "artistId": "tomorrowland-2016:massimo-mephisto",
+   "day": 3,
+   "stageId": "tomorrowland-2016:coincidence",
+   "start": "22:30",
+   "end": "00:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20160804225323/http://www.tomorrowland.com:80/en/friday-22-july",
+    "captureTimestamp": "20160804225323",
+    "printed": "Friday 22 July",
+    "sha256": "957528673e301356513aa78aa6104cdcccf5e32ebe94d1c1193173b6e4a03490",
+    "rows": 145,
+    "format": "tml-drupal",
+    "titleDate": "2016-07-22"
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20160802011626/http://www.tomorrowland.com:80/en/saturday-23-july",
+    "captureTimestamp": "20160802011626",
+    "printed": "Saturday 23 July",
+    "sha256": "18622f04081d7ff07c0b9f96fcd3e43edee2b89ef0b92af15cbf247df3e56e90",
+    "rows": 140,
+    "format": "tml-drupal",
+    "titleDate": "2016-07-23"
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20160802193853/http://www.tomorrowland.com:80/en/sunday-24-july",
+    "captureTimestamp": "20160802193853",
+    "printed": "Sunday 24 July",
+    "sha256": "1fe1f0ea8057fb1b160c243ec296b1093740ea85e336c1c9dce79a55d340fb62",
+    "rows": 132,
+    "format": "tml-drupal",
+    "titleDate": "2016-07-24"
+   }
+  ]
+ }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "governors-ball-2011",
+  "method": "official_sources",
+  "official": "https://www.governorsballmusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2011-06-18",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://governorsballmusicfestival.com:80/lineup/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20110622073558/http://governorsballmusicfestival.com:80/lineup/schedule/",
+          "captureTimestamp": "20110622073558",
+          "printed": "Saturday, June 18th, 2011",
+          "sha256": "f66b027bde47ccd35aa51fae0530a3addf8c54a472e065388384f05f0444b62d",
+          "bytes": 26463,
+          "rows": 12,
+          "format": "govball-wp",
+          "dateFrom": "the page's description",
+          "stages": 2,
+          "axis": "12:00-23:00",
+          "times": "each range printed with its own am or pm",
+          "openEnded": [
+            "Pretty Lights: 10:30 pm - ???"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

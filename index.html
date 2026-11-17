@@ -490,6 +490,10 @@
      above (background-clip keeps the band's ink out of the border box). */
   .np-cut{margin:0 -18px;padding:16px 18px;background:var(--np-ink);background-clip:padding-box;color:var(--np-paper);border-top:1px dashed var(--np-paper);display:flex;justify-content:space-between;align-items:center;gap:12px;font:500 11px/1.3 var(--f-data);letter-spacing:.04em;text-transform:uppercase}
   .np-cut>span{min-width:0}
+  /* The festival photo, full bleed between the poster's foot and the fold. */
+  .np-photo{position:relative;margin:0 -18px;aspect-ratio:16/9;overflow:hidden;background:#1C1B19}
+  .np-photo>img{display:block;width:100%;height:100%;object-fit:cover;animation:fadeIn .4s}
+  .np-photo-credit{position:absolute;left:0;right:0;bottom:0;padding:18px 12px 6px;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0));color:#fff;font:500 10px/1.3 var(--f-data);letter-spacing:.03em;text-align:right}
   /* The claim block and the saved list under the fold. */
   .np-block{padding:25px 18px;border-bottom:1px solid var(--np-ink)}
   .np-block .np-body{margin-top:20px;max-width:288px}

@@ -94,8 +94,14 @@ const out = build();
   // rows. Raised to 140 under the same standing call and reported in that
   // pull request. ACL 2011 and 2012 then added two more (Dev and WAX,
   // both also at Lollapalooza 2012) and one more "+" billing:
-  // 139 rows. Past 140, stop and report.
-  check(review.length <= 140, `review queue is ${review.length} rows (> 140 means stop and report)`);
+  // 139 rows. Governors Ball 2011 and 2012 added one (Big Boi (of
+  // Outkast)): 140. Tomorrowland 2013 to 2016 (2,079 sets) ruled 41 billings
+  // under the existing feat., MC and aka rules and left six as printed: an
+  // "ID" guest, an ambiguous "vs", two one-name parentheticals, a "+" billing
+  // and the short name GMS (seven rows: the "ID" billing prints on both
+  // weekends). 147 rows, raised here and reported in that pull
+  // request. Past 147, stop and report.
+  check(review.length <= 147, `review queue is ${review.length} rows (> 147 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
