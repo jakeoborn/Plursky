@@ -130,12 +130,12 @@ function OnbCardPreview({
   artists,
   count = 1
 }) {
-  var [urls, setUrls] = React.useState([]);
+  var [cards, setCards] = React.useState({});
   React.useEffect(() => {
     var live = true;
     var made = [];
     (async () => {
-      var _loop = async function () {
+      var _loop = async function (i) {
           var c = null;
           try {
             c = typeof _renderHeroPreview === "function" ? await _renderHeroPreview(a) : typeof _renderHeroCard === "function" ? await _renderHeroCard(a) : null;
@@ -145,11 +145,17 @@ function OnbCardPreview({
           if (!live || !blob) return 0;
           var u = URL.createObjectURL(blob);
           made.push(u);
-          setUrls(prev => [...prev, u]);
+          setCards(prev => ({
+            ...prev,
+            [i]: {
+              url: u,
+              credit: c._photoCredit || null
+            }
+          }));
         },
         _ret;
-      for (var a of artists.slice(0, count)) {
-        _ret = await _loop();
+      for (var [i, a] of artists.slice(0, count).entries()) {
+        _ret = await _loop(i);
         if (_ret === 0) continue;
       }
     })();
@@ -172,18 +178,29 @@ function OnbCardPreview({
     key: a.id,
     style: {
       width: count === 1 ? "72%" : "31%",
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
       aspectRatio: "4 / 5",
       borderRadius: 14,
       overflow: "hidden",
       background: "var(--paper-2)"
     }
-  }, urls[i] && React.createElement("img", {
-    src: urls[i],
+  }, cards[i] && React.createElement("img", {
+    src: cards[i].url,
     alt: `${a.name} set card`,
     style: {
       width: "100%",
       height: "100%",
       display: "block"
+    }
+  })), cards[i]?.credit && typeof PhotoCredit === "function" && React.createElement(PhotoCredit, {
+    "data-onb-photo-credit": "1",
+    credit: cards[i].credit,
+    style: {
+      marginTop: 4,
+      overflowWrap: "anywhere"
     }
   }))));
 }
@@ -1864,7 +1881,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v635"
+        version: "v639"
       }));
     } catch {}
   }
@@ -1916,7 +1933,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v635"))
+      }, "Plursky · v639"))
     );
   }
 }
