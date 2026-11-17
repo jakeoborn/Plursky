@@ -1,0 +1,605 @@
+{
+  "id": "electric-forest-2015",
+  "method": "official_sources",
+  "official": "https://electricforestfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2015-06-25",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.electricforestfestival.com/scheduler/",
+          "archivedUrl": "https://web.archive.org/web/20150906033019/http://www.electricforestfestival.com/scheduler/",
+          "captureTimestamp": "20150906033019",
+          "printed": "June 25",
+          "sha256": "95684c3b6d68ae964993eb2f33728066ee4c37bada59c033a939f5b8457983a1",
+          "bytes": 232470,
+          "rows": 49,
+          "format": "ef-scheduler",
+          "tabDate": "2015-06-25",
+          "stages": 10,
+          "axisStart": "16:00",
+          "pxPerMinute": 11,
+          "times": "each block's place on the page's minute scale checked against its printed range",
+          "programmeShows": 3,
+          "programmeStages": [
+            "Workshops",
+            "The Electric Glen"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2015-06-26",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.electricforestfestival.com/scheduler/",
+          "archivedUrl": "https://web.archive.org/web/20150906033019/http://www.electricforestfestival.com/scheduler/",
+          "captureTimestamp": "20150906033019",
+          "printed": "June 26",
+          "sha256": "95684c3b6d68ae964993eb2f33728066ee4c37bada59c033a939f5b8457983a1",
+          "bytes": 232470,
+          "rows": 65,
+          "format": "ef-scheduler",
+          "tabDate": "2015-06-26",
+          "stages": 10,
+          "axisStart": "12:00",
+          "pxPerMinute": 11,
+          "times": "each block's place on the page's minute scale checked against its printed range",
+          "programmeShows": 6,
+          "programmeStages": [
+            "Workshops",
+            "The Electric Glen"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2015-06-27",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.electricforestfestival.com/scheduler/",
+          "archivedUrl": "https://web.archive.org/web/20150906033019/http://www.electricforestfestival.com/scheduler/",
+          "captureTimestamp": "20150906033019",
+          "printed": "June 27",
+          "sha256": "95684c3b6d68ae964993eb2f33728066ee4c37bada59c033a939f5b8457983a1",
+          "bytes": 232470,
+          "rows": 62,
+          "format": "ef-scheduler",
+          "tabDate": "2015-06-27",
+          "stages": 10,
+          "axisStart": "12:00",
+          "pxPerMinute": 11,
+          "times": "each block's place on the page's minute scale checked against its printed range",
+          "programmeShows": 6,
+          "programmeStages": [
+            "Workshops",
+            "The Electric Glen"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2015-06-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.electricforestfestival.com/scheduler/",
+          "archivedUrl": "https://web.archive.org/web/20150906033019/http://www.electricforestfestival.com/scheduler/",
+          "captureTimestamp": "20150906033019",
+          "printed": "June 28",
+          "sha256": "95684c3b6d68ae964993eb2f33728066ee4c37bada59c033a939f5b8457983a1",
+          "bytes": 232470,
+          "rows": 61,
+          "format": "ef-scheduler",
+          "tabDate": "2015-06-28",
+          "stages": 10,
+          "axisStart": "11:30",
+          "pxPerMinute": 11,
+          "times": "each block's place on the page's minute scale checked against its printed range",
+          "programmeShows": 5,
+          "programmeStages": [
+            "Workshops",
+            "The Electric Glen"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Workshops",
+      "start": "18:00",
+      "end": "19:00",
+      "billing": "Electric Forces Workshop: Flow Arts & Freewriting for Healing at The Silent Disco",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Workshops",
+      "start": "20:30",
+      "end": "21:30",
+      "billing": "Electric Forces: Flow Arts & Mindfulness Workshop at The Grand Artique",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Workshops",
+      "start": "22:00",
+      "end": "23:00",
+      "billing": "The Great American Talent Show: Bring your talents to The Grand Artique",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "The Electric Glen",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "All About That Bass: Panel with Minnesota, Dabin, and Ed Rush & Optical",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "The Electric Glen",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "The Future of Jam: Panel with The Werks, Dopapod, and TAUK",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "The Electric Glen",
+      "start": "18:00",
+      "end": "19:00",
+      "billing": "The Perfect Remix: A Panel with jackLNDN, Vaski, and Illenium",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Workshops",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "Hoop Troupe Workshop Flash Mob Choreography at Jubilee",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Workshops",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "Electric Forces: Resilience Workshop at The Grand Artique",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Workshops",
+      "start": "22:00",
+      "end": "23:00",
+      "billing": "The Great American Talent Show: Bring your talents to The Grand Artique",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "The Electric Glen",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "The Power of Women in Festivals: A Panel with Lindsey Sterling, Allie Kral, Nattali Rize, Hannah Muse, and Alicia Karlin",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "The Electric Glen",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "Coming to America: A Panel with MartyParty, Son of Kick, and Black Tiger Sex Machine",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "The Electric Glen",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "Tour Life: A panel with Luke Miller (Lotus), Jesse Miller (Lotus), and Jason Hann (EOTO)",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "The Electric Glen",
+      "start": "18:00",
+      "end": "19:00",
+      "billing": "MAKO: A live interview with MAKO",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Workshops",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "Electric Forces Workshop: Transformation through Love, Meditation, and Breathing Techniques at The Grand Artique",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Workshops",
+      "start": "22:00",
+      "end": "23:00",
+      "billing": "The Great American Talent Show: Bring your talents to The Grand Artique",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 4,
+      "stage": "The Electric Glen",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "Big Gigantic: A live interview with Big Gigantic",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 4,
+      "stage": "The Electric Glen",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "Burning Up the House: A panel with MATOMA",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 4,
+      "stage": "Workshops",
+      "start": "12:00",
+      "end": "13:00",
+      "billing": "Hoop Troupe Workshop Trick Share & Flash Mob Choreography Review at Jubilee",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 4,
+      "stage": "Workshops",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "Electric Forces Workshop: Guided Meditation at The Silent Disco",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    },
+    {
+      "day": 4,
+      "stage": "Workshops",
+      "start": "22:00",
+      "end": "23:00",
+      "billing": "The Great American Talent Show: Bring your talents to The Grand Artique",
+      "reason": "Workshops and The Electric Glen hold only workshops, panels and interviews, not music sets",
+      "programme": true
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "The Silent Disco",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "Green channel all night: HUSHconcerts residents Motion Potion and U9lift",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "The Silent Disco",
+      "start": "20:00",
+      "end": "21:15",
+      "billing": "GeoVybe",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "The Silent Disco",
+      "start": "21:15",
+      "end": "22:30",
+      "billing": "Moon Frog",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "The Silent Disco",
+      "start": "22:30",
+      "end": "23:45",
+      "billing": "Vibe Street",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "The Silent Disco",
+      "start": "23:45",
+      "end": "00:45",
+      "billing": "Little People",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "The Silent Disco",
+      "start": "00:45",
+      "end": "02:00",
+      "billing": "Phutureprimitive",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Sherwood Court",
+      "start": "14:30",
+      "end": "16:00",
+      "billing": "Group Hug World Record Attempt Hosted by Lafa Taylor",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Tripolee",
+      "start": "12:00",
+      "end": "13:15",
+      "billing": "Yoga with Hannah Muse",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Silent Disco",
+      "start": "12:00",
+      "end": "13:00",
+      "billing": "Green channel all night: HUSHconcerts residents Motion Potion and U9lift",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Silent Disco",
+      "start": "19:00",
+      "end": "20:15",
+      "billing": "Night Movers",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Silent Disco",
+      "start": "20:15",
+      "end": "22:00",
+      "billing": "DJ Psycho",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Silent Disco",
+      "start": "22:00",
+      "end": "23:30",
+      "billing": "The Craigslist Hookup",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Silent Disco",
+      "start": "23:30",
+      "end": "01:00",
+      "billing": "Vibe Street",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Silent Disco",
+      "start": "01:00",
+      "end": "02:30",
+      "billing": "jackLNDN",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Silent Disco",
+      "start": "02:30",
+      "end": "03:30",
+      "billing": "To Be Announced!",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Sherwood Court",
+      "start": "17:30",
+      "end": "18:30",
+      "billing": "Bell's Brewery Tasting at Sherwood Court Bar",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Tripolee",
+      "start": "12:00",
+      "end": "13:15",
+      "billing": "Yoga with Hannah Muse",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Jubilee",
+      "start": "13:30",
+      "end": "14:45",
+      "billing": "Hoop Troupe Showcase",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Silent Disco",
+      "start": "12:00",
+      "end": "13:00",
+      "billing": "Green channel all night: HUSHconcerts residents Motion Potion and U9lift",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Silent Disco",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "Dreamers Delight",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Silent Disco",
+      "start": "20:00",
+      "end": "21:00",
+      "billing": "Orphic",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Silent Disco",
+      "start": "21:00",
+      "end": "00:30",
+      "billing": "Detroit Techno Militia feat. DJ Psycho, T.Linder, DJ Seoul, darkcube & Neil V.",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Silent Disco",
+      "start": "00:30",
+      "end": "01:30",
+      "billing": "MAKO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Silent Disco",
+      "start": "01:30",
+      "end": "02:30",
+      "billing": "Son of Kick",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Tripolee",
+      "start": "11:30",
+      "end": "12:45",
+      "billing": "Yoga with Hannah Muse",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "The Silent Disco",
+      "start": "11:30",
+      "end": "12:30",
+      "billing": "Green channel all night: HUSHconcerts residents Motion Potion and U9lift",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "The Silent Disco",
+      "start": "18:00",
+      "end": "19:00",
+      "billing": "Mass Relay",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "The Silent Disco",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "Solstis",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "The Silent Disco",
+      "start": "20:00",
+      "end": "21:00",
+      "billing": "White Noise",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "The Silent Disco",
+      "start": "21:00",
+      "end": "22:00",
+      "billing": "Dreamers Delight",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "The Silent Disco",
+      "start": "22:00",
+      "end": "22:45",
+      "billing": "Mekato",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "The Silent Disco",
+      "start": "22:45",
+      "end": "23:30",
+      "billing": "Nortroniks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "The Silent Disco",
+      "start": "23:30",
+      "end": "00:45",
+      "billing": "Gosh Pith",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "The Silent Disco",
+      "start": "00:45",
+      "end": "01:45",
+      "billing": "Jonah Baseball",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    }
+  ]
+}

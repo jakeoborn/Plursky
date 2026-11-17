@@ -169,6 +169,7 @@
    "edc-las-vegas-2022:d3:parliament-art-car:2245:12th-planet",
    "edc-orlando-2022:d1:circuit-grounds:1815:12th-planet",
    "electric-forest-2012:d3:tripolee:2230:12th-planet",
+   "electric-forest-2014:d2:tripolee:2230:12th-planet",
    "nocturnal-wonderland-2011:d1:sunken-garden:0100:12th-planet",
    "nocturnal-wonderland-2012:d2:sunken-garden:2330:12th-planet",
    "nocturnal-wonderland-2021:d1:labyrinth:2100:12th-planet",
@@ -2039,6 +2040,21 @@
   "links": []
  },
  {
+  "key": "adam-deitch",
+  "name": "Adam Deitch",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:forest-stage:1600:adam-deitch-dj-set"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "adam-freeland",
   "name": "Adam Freeland",
   "aliases": [],
@@ -2958,6 +2974,21 @@
   ],
   "firstSeen": "2026-06-07",
   "lastSeen": "2027-04-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "after-funk",
+  "name": "After Funk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d2:the-observatory:1515:after-funk"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
   "photo": null,
   "links": []
  },
@@ -4201,6 +4232,21 @@
   "links": []
  },
  {
+  "key": "alex-metric",
+  "name": "Alex Metric",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d4:tripolee:1815:alex-metric"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alex-niggemann",
   "name": "Alex Niggemann",
   "aliases": [],
@@ -4670,6 +4716,7 @@
    "edc-orlando-2022:d1:kinetic-field:2107:alison-wonderland",
    "edc-orlando-2023:d3:circuit-grounds:2255:alison-wonderland",
    "edc-orlando-2024:d1:kinetic-field:2114:kaskade-b2b-alison-wonderland",
+   "electric-forest-2015:d4:tripolee:1700:alison-wonderland",
    "escape-halloween-2024:d1:the-grimm:2315:alison-wonderland",
    "lollapalooza-2015:d3:perry-s:1330:alison-wonderland",
    "lollapalooza-2017:d3:perry-s:1800:alison-wonderland",
@@ -5097,10 +5144,11 @@
   "projects": [],
   "billings": [
    "coachella-2014:d1:mojave:1615:aloe-blacc",
-   "coachella-2014:d4:mojave:1615:aloe-blacc"
+   "coachella-2014:d4:mojave:1615:aloe-blacc",
+   "electric-forest-2014:d4:ranch-arena:1645:aloe-blacc"
   ],
   "firstSeen": "2014-04-11",
-  "lastSeen": "2014-04-18",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -6048,6 +6096,21 @@
   "links": []
  },
  {
+  "key": "american-babies",
+  "name": "American Babies",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:the-observatory:1815:american-babies"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "american-football",
   "name": "American Football",
   "aliases": [],
@@ -6682,6 +6745,21 @@
   "links": []
  },
  {
+  "key": "anders-osborne",
+  "name": "Anders Osborne",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d2:ranch-arena:1515:anders-osborne"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "anderson-east",
   "name": "Anderson East",
   "aliases": [
@@ -7108,6 +7186,7 @@
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2255:andy-c",
    "edc-las-vegas-2025:d1:basspod:2230:andy-c",
    "edc-orlando-2019:d2:circuitgrounds:2000:andy-c",
+   "electric-forest-2014:d2:tripolee:0030:andy-c",
    "nocturnal-wonderland-2012:d1:sunken-garden:2300:andy-c",
    "nocturnal-wonderland-2013:d1:queen-s-grounds:2300:andy-c",
    "nocturnal-wonderland-2022:d2:labyrinth:2100:andy-c",
@@ -7161,6 +7240,21 @@
   ],
   "firstSeen": "2017-07-30",
   "lastSeen": "2023-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "andy-frasco-and-the-u-n",
+  "name": "Andy Frasco & the U.N.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d4:the-observatory:1815:andy-frasco-and-the-u-n"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -7695,6 +7789,7 @@
    "coachella-2014:d6:sahara:1305:anna-lunoe",
    "coachella-2017:d3:sahara:1410:anna-lunoe",
    "coachella-2017:d6:sahara:1410:anna-lunoe",
+   "electric-forest-2014:d3:tripolee:1500:anna-lunoe",
    "lollapalooza-2014:d2:perry-s:1200:anna-lunoe",
    "tomorrowland-2018:d4:arch:1830:anna-lunoe"
   ],
@@ -7932,6 +8027,21 @@
   ],
   "firstSeen": "2014-04-11",
   "lastSeen": "2014-04-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "anthony-hall",
+  "name": "Anthony Hall",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:the-observatory:1815:anthony-hall"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -8694,6 +8804,21 @@
   "links": []
  },
  {
+  "key": "armstrong-leigh",
+  "name": "Armstrong Leigh",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:forest-stage:1445:armstrong-leigh"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "arno-stolz",
   "name": "Arno Stolz",
   "aliases": [],
@@ -8740,6 +8865,7 @@
    "beyond-wonderland-socal-2013:d1:cheshire-woods:0015:art-department",
    "coachella-2014:d3:yuma:1745:art-department",
    "coachella-2014:d6:yuma:1745:art-department",
+   "electric-forest-2014:d3:tripolee:0145:art-department",
    "lollapalooza-2013:d3:perry-s:1630:art-department",
    "tomorrowland-2017:d1:elrow:2130:art-department"
   ],
@@ -12086,11 +12212,17 @@
  {
   "key": "bart-and-baker",
   "name": "Bart & Baker",
-  "aliases": [],
+  "aliases": [
+   "Bart&Baker"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2015:d1:the-hangar:2000:bart-and-baker",
+   "electric-forest-2015:d2:the-hangar:0130:bart-and-baker",
+   "electric-forest-2015:d3:the-hangar:1915:bart-and-baker",
+   "electric-forest-2015:d4:the-hangar:2330:bart-and-baker",
    "tomorrowland-2017:d4:radio-ultra-modern:1500:bart-and-baker",
    "tomorrowland-2018:d5:harbour-house:2000:bart-and-baker",
    "tomorrowland-2018:d6:harbour-house:1300:bart-and-baker",
@@ -12098,7 +12230,7 @@
    "tomorrowland-2022:d7:harbour-house:1700:bart-and-baker",
    "tomorrowland-2023:d6:elixir:1430:bart-and-baker"
   ],
-  "firstSeen": "2017-07-28",
+  "firstSeen": "2015-06-25",
   "lastSeen": "2023-07-30",
   "photo": null,
   "links": []
@@ -12470,7 +12602,9 @@
  {
   "key": "bassnectar",
   "name": "Bassnectar",
-  "aliases": [],
+  "aliases": [
+   "BASSNECTAR"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -12478,6 +12612,7 @@
    "acl-2015:d2:homeaway:1930:bassnectar",
    "acl-2015:d5:homeaway:1930:bassnectar",
    "electric-forest-2012:d4:ranch-arena:2300:bassnectar",
+   "electric-forest-2015:d3:ranch-arena:0030:bassnectar",
    "lollapalooza-2015:d3:bud-light:2100:bassnectar",
    "outside-lands-2010:d1:sutro:1605:bassnectar",
    "shambhala-2011:d4:village:0030:bassnectar",
@@ -12500,6 +12635,186 @@
   ],
   "firstSeen": "2015-08-08",
   "lastSeen": "2015-08-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-carnage",
+  "name": "Bassrush: Carnage",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:0030:bassrush-carnage"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-crizzly",
+  "name": "Bassrush: Crizzly",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:2130:bassrush-crizzly"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-datsik",
+  "name": "Bassrush: Datsik",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:2330:bassrush-datsik"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-ed-rush-and-optical",
+  "name": "Bassrush: Ed Rush & Optical",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:2030:bassrush-ed-rush-and-optical"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-flux-pavilion",
+  "name": "Bassrush: Flux Pavilion",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:0145:bassrush-flux-pavilion"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-illenium",
+  "name": "Bassrush: Illenium",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:1330:bassrush-illenium"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-koan-sound",
+  "name": "Bassrush: KOAN Sound",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:1830:bassrush-koan-sound"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-minnesota",
+  "name": "Bassrush: Minnesota",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:1930:bassrush-minnesota"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-mt-eden",
+  "name": "Bassrush: Mt Eden",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:1730:bassrush-mt-eden"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-snails",
+  "name": "Bassrush: SNAILS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:2230:bassrush-snails"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-son-of-kick",
+  "name": "Bassrush: Son of Kick",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:1445:bassrush-son-of-kick"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassrush-vaski",
+  "name": "Bassrush: Vaski",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:tripolee:1615:bassrush-vaski"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
   "photo": null,
   "links": []
  },
@@ -14756,6 +15071,7 @@
    "coachella-2017:d1:sahara:1635:big-gigantic",
    "coachella-2017:d4:sahara:1635:big-gigantic",
    "electric-forest-2012:d4:sherwood-court:0030:big-gigantic",
+   "electric-forest-2015:d4:sherwood-court:0030:big-gigantic-feat-the-motet",
    "lollapalooza-2016:d3:perry-s:1900:big-gigantic",
    "outside-lands-2012:d3:twin-peaks-hellman-hollow:1405:big-gigantic",
    "shambhala-2013:d3:pagoda:0000:big-gigantic",
@@ -15744,6 +16060,21 @@
   "links": []
  },
  {
+  "key": "black-tiger-sex-machine-featuring-the-great-glow-flash-mob",
+  "name": "Black Tiger Sex Machine Featuring The Great Glow Flash Mob",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:tripolee:2200:black-tiger-sex-machine-featuring-the-great-glow-flash-mob"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "black-v-neck",
   "name": "Black V Neck",
   "aliases": [
@@ -16651,6 +16982,21 @@
   "links": []
  },
  {
+  "key": "blue-sky-black-death",
+  "name": "Blue Sky Black Death",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:the-observatory:2245:blue-sky-black-death"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "blues-disciples",
   "name": "Blues Disciples",
   "aliases": [],
@@ -16874,11 +17220,12 @@
    "acl-2023:d5:miller-lite:1900:bob-moses",
    "coachella-2016:d1:gobi:1635:bob-moses",
    "coachella-2016:d4:gobi:1635:bob-moses",
+   "electric-forest-2014:d3:tripolee:1730:bob-moses",
    "escape-halloween-2022:d2:sanitarium:2300:bob-moses-club-set",
    "governors-ball-2019:d3:american-eagle-stage:1950:bob-moses",
    "lollapalooza-2016:d1:pepsi:1450:bob-moses"
   ],
-  "firstSeen": "2016-04-15",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2023-10-14",
   "photo": null,
   "links": []
@@ -17021,6 +17368,21 @@
   ],
   "firstSeen": "2013-10-05",
   "lastSeen": "2013-10-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bobby-mcmanus",
+  "name": "Bobby McManus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:forest-stage:1315:bobby-mcmanus"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -17257,6 +17619,7 @@
    "acl-2016:d4:tito-s-handmade-vodka:1530:bombino",
    "coachella-2014:d3:gobi:1345:bombino",
    "coachella-2014:d6:gobi:1345:bombino",
+   "electric-forest-2014:d4:ranch-arena:1500:bombino",
    "outside-lands-2013:d2:panhandle:1630:bombino"
   ],
   "firstSeen": "2013-08-10",
@@ -17500,14 +17863,17 @@
  {
   "key": "booka-shade",
   "name": "Booka Shade",
-  "aliases": [],
+  "aliases": [
+   "BOOKA SHADE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d3:sherwood-court:2315:booka-shade",
    "tomorrowland-2017:d3:claptone:1930:booka-shade"
   ],
-  "firstSeen": "2017-07-23",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2017-07-23",
   "photo": null,
   "links": []
@@ -17626,6 +17992,21 @@
   "links": []
  },
  {
+  "key": "borahm-lee",
+  "name": "Borahm Lee",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:tripolee:1430:borahm-lee-dj-set"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "boray",
   "name": "Boray",
   "aliases": [],
@@ -17652,6 +18033,21 @@
   ],
   "firstSeen": "2017-07-28",
   "lastSeen": "2017-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "borgeous",
+  "name": "Borgeous",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:ranch-arena:1845:borgeous"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
   "photo": null,
   "links": []
  },
@@ -18604,10 +19000,26 @@
    "acl-2016:d6:tito-s-handmade-vodka:1530:break-science",
    "electric-forest-2012:d2:sherwood-court:1845:break-science-featuring-chali-2na",
    "electric-forest-2013:d2:sherwood-court:1900:break-science",
+   "electric-forest-2015:d4:jubilee:0100:break-science",
    "shambhala-2012:d4:rock-pit:0200:break-science"
   ],
   "firstSeen": "2012-06-29",
   "lastSeen": "2016-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "break-science-live-band",
+  "name": "Break Science Live Band",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:sherwood-court:2045:break-science-live-band"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
   "photo": null,
   "links": []
  },
@@ -19229,6 +19641,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d2:tripolee:2330:bro-safari",
    "lollapalooza-2016:d2:perry-s:1645:bro-safari",
    "nocturnal-wonderland-2013:d1:queen-s-grounds:2000:bro-safari"
   ],
@@ -19281,9 +19694,10 @@
   "billings": [
    "coachella-2017:d2:sahara:1555:brodinski",
    "coachella-2017:d5:sahara:1555:brodinski",
+   "electric-forest-2015:d1:jubilee:2115:brodinski",
    "outside-lands-2017:d1:the-house-by-heineken:1800:brodinski"
   ],
-  "firstSeen": "2017-04-15",
+  "firstSeen": "2015-06-25",
   "lastSeen": "2017-08-11",
   "photo": null,
   "links": []
@@ -21645,6 +22059,96 @@
   "links": []
  },
  {
+  "key": "carl-cox-and-friends-carl-cox",
+  "name": "Carl Cox & Friends: Carl Cox",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:tripolee:0030:carl-cox-and-friends-carl-cox"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carl-cox-and-friends-dubfire",
+  "name": "Carl Cox & Friends: Dubfire",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:tripolee:2200:carl-cox-and-friends-dubfire"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carl-cox-and-friends-john-digweed",
+  "name": "Carl Cox & Friends: John Digweed",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:tripolee:2315:carl-cox-and-friends-john-digweed"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carl-cox-and-friends-matrixxman",
+  "name": "Carl Cox & Friends: Matrixxman",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:tripolee:1900:carl-cox-and-friends-matrixxman"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carl-cox-and-friends-pete-tong",
+  "name": "Carl Cox & Friends: Pete Tong",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:tripolee:2030:carl-cox-and-friends-pete-tong"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carl-cox-and-friends-saeed-younan",
+  "name": "Carl Cox & Friends: Saeed Younan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:tripolee:1645:carl-cox-and-friends-saeed-younan"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "carl-craig",
   "name": "Carl Craig",
   "aliases": [],
@@ -22143,9 +22647,10 @@
   "projects": [],
   "billings": [
    "edc-orlando-2021:d2:kinetic-field:1626:cash-cash",
+   "electric-forest-2014:d1:ranch-arena:1845:cash-cash",
    "lollapalooza-2014:d1:bmi:1740:cash-cash"
   ],
-  "firstSeen": "2014-08-01",
+  "firstSeen": "2014-06-26",
   "lastSeen": "2021-11-13",
   "photo": null,
   "links": []
@@ -22160,9 +22665,10 @@
   "billings": [
    "coachella-2015:d2:gobi:1645:cashmere-cat",
    "coachella-2015:d5:gobi:1645:cashmere-cat",
+   "electric-forest-2014:d4:tripolee:2200:cashmere-cat",
    "lollapalooza-2016:d1:pepsi:1945:cashmere-cat"
   ],
-  "firstSeen": "2015-04-11",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2016-07-28",
   "photo": null,
   "links": []
@@ -22551,15 +23057,18 @@
  {
   "key": "catz-n-dogz",
   "name": "Catz 'n Dogz",
-  "aliases": [],
+  "aliases": [
+   "Catz n Dogz"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d1:tripolee:2045:catz-n-dogz",
    "tomorrowland-2019:d2:core:1700:catz-n-dogz",
    "tomorrowland-2022:d5:kara-savi:1700:catz-n-dogz"
   ],
-  "firstSeen": "2019-07-20",
+  "firstSeen": "2014-06-26",
   "lastSeen": "2022-07-23",
   "photo": null,
   "links": []
@@ -23042,10 +23551,11 @@
   "projects": [],
   "billings": [
    "electric-forest-2012:d2:sherwood-court:1845:break-science-featuring-chali-2na",
+   "electric-forest-2015:d3:jubilee:2145:the-funk-hunters-feat-chali-2na",
    "shambhala-2012:d2:rock-pit:1400:chali-2na"
   ],
   "firstSeen": "2012-06-29",
-  "lastSeen": "2012-08-10",
+  "lastSeen": "2015-06-27",
   "photo": null,
   "links": []
  },
@@ -23469,9 +23979,9 @@
  },
  {
   "key": "charles-bradley-and-his-extraordinaires",
-  "name": "Charles Bradley and His Extraordinaires",
+  "name": "Charles Bradley & His Extraordinaires",
   "aliases": [
-   "Charles Bradley & His Extraordinaires"
+   "Charles Bradley and His Extraordinaires"
   ],
   "kind": "performer",
   "parents": [],
@@ -23479,6 +23989,7 @@
   "billings": [
    "coachella-2015:d1:coachella:1545:charles-bradley-and-his-extraordinaires",
    "coachella-2015:d4:coachella:1540:charles-bradley-and-his-extraordinaires",
+   "electric-forest-2015:d2:jubilee:2315:charles-bradley-and-his-extraordinaires",
    "governors-ball-2017:d1:bacardi:1545:charles-bradley-and-his-extraordinaires"
   ],
   "firstSeen": "2015-04-10",
@@ -23975,6 +24486,21 @@
   "links": []
  },
  {
+  "key": "chaz-french",
+  "name": "Chaz French",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:jubilee:1700:chaz-french"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "che",
   "name": "Che",
   "aliases": [],
@@ -24192,6 +24718,7 @@
    "acl-2015:d1:miller-lite:1500:cherub",
    "acl-2015:d4:miller-lite:1500:cherub",
    "electric-forest-2012:d2:tripolee:1500:cherub",
+   "electric-forest-2014:d1:ranch-arena:1700:cherub",
    "lollapalooza-2013:d2:perry-s:untimed:cherub",
    "lollapalooza-2016:d2:bud-light:1645:cherub",
    "outside-lands-2013:d2:panhandle:1325:cherub"
@@ -25304,6 +25831,21 @@
   "links": []
  },
  {
+  "key": "chrome-sparks",
+  "name": "Chrome Sparks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d2:forest-stage:1700:chrome-sparks"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chromeo",
   "name": "Chromeo",
   "aliases": [
@@ -26032,6 +26574,7 @@
    "acl-2015:d6:tito-s-handmade-vodka:1630:classixx",
    "coachella-2014:d3:mojave:1535:classixx",
    "coachella-2014:d6:mojave:1535:classixx",
+   "electric-forest-2014:d1:tripolee:0045:classixx",
    "lollapalooza-2016:d4:petrillo-bandshell:1345:classixx",
    "outside-lands-2015:d2:panhandle:1955:classixx"
   ],
@@ -26081,6 +26624,7 @@
   "billings": [
    "coachella-2015:d3:sahara:1420:claude-vonstroke",
    "coachella-2015:d6:sahara:1420:claude-vonstroke",
+   "electric-forest-2015:d3:tripolee:0145:claude-vonstroke",
    "outside-lands-2017:d2:twin-peaks:1900:claude-vonstroke",
    "shambhala-2012:d2:pagoda:0130:claude-vonstroke",
    "shambhala-2015:d2:pagoda:0200:claude-vonstroke",
@@ -27306,6 +27850,111 @@
   "links": []
  },
  {
+  "key": "communion-autograf",
+  "name": "Communion: Autograf",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:the-observatory:2230:communion-autograf"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "communion-delta-spirit",
+  "name": "Communion: Delta Spirit",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:the-observatory:1645:communion-delta-spirit"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "communion-devon-baldwin",
+  "name": "Communion: Devon Baldwin",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:the-observatory:1515:communion-devon-baldwin"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "communion-joseph",
+  "name": "Communion: Joseph",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:the-observatory:1815:communion-joseph"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "communion-kevin-garrett",
+  "name": "Communion: Kevin Garrett",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:the-observatory:1945:communion-kevin-garrett"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "communion-pan-astral",
+  "name": "Communion: Pan Astral",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:the-observatory:1345:communion-pan-astral"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "communion-teemid",
+  "name": "Communion: Teemid",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:the-observatory:2115:communion-teemid"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "como-las-movies",
   "name": "COMO LAS MOVIES",
   "aliases": [],
@@ -27564,10 +28213,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "electric-forest-2012:d1:sherwood-court:2100:conspirator"
+   "electric-forest-2012:d1:sherwood-court:2100:conspirator",
+   "electric-forest-2014:d2:sherwood-court:2045:conspirator"
   ],
   "firstSeen": "2012-06-28",
-  "lastSeen": "2012-06-28",
+  "lastSeen": "2014-06-27",
   "photo": null,
   "links": []
  },
@@ -27963,10 +28613,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "electric-forest-2013:d1:forest-stage:1745:cosby-sweater-ft-joel-cummins"
+   "electric-forest-2013:d1:forest-stage:1745:cosby-sweater-ft-joel-cummins",
+   "electric-forest-2014:d1:sherwood-court:0000:cosby-sweater",
+   "electric-forest-2014:d4:sherwood-court:1545:cosby-sweater"
   ],
   "firstSeen": "2013-06-27",
-  "lastSeen": "2013-06-27",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -28539,6 +29191,127 @@
   ],
   "firstSeen": "2025-11-07",
   "lastSeen": "2026-11-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "crew-love-bamboozle",
+  "name": "Crew Love: Bamboozle",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:forest-stage:2015:crew-love-bamboozle",
+   "electric-forest-2015:d2:forest-stage:2115:crew-love-bamboozle"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "crew-love-life-on-planets-live",
+  "name": "Crew Love: Life on Planets Live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:forest-stage:2130:crew-love-life-on-planets-live"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "crew-love-midnight-magic-live",
+  "name": "Crew Love: Midnight Magic Live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:forest-stage:2330:crew-love-midnight-magic-live"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "crew-love-nick-monaco-live",
+  "name": "Crew Love: Nick Monaco Live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:forest-stage:1930:crew-love-nick-monaco-live"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "crew-love-slow-hands-live",
+  "name": "Crew Love: Slow Hands Live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:forest-stage:2030:crew-love-slow-hands-live"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "crew-love-soul-clap-and-friends",
+  "name": "Crew Love: Soul Clap & Friends",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:forest-stage:0030:crew-love-soul-clap-and-friends"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "crew-love-throwdown",
+  "name": "Crew Love Throwdown",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:forest-stage:1700:crew-love-throwdown"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "crew-love-wolf-lamb-the-wolf",
+  "name": "Crew Love: Wolf + Lamb / The Wolf",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:forest-stage:2215:crew-love-wolf-lamb-the-wolf"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
   "photo": null,
   "links": []
  },
@@ -29157,11 +29930,12 @@
   "projects": [],
   "billings": [
    "acl-2017:d2:honda:1800:cut-copy",
+   "electric-forest-2014:d4:sherwood-court:0030:cut-copy",
    "governors-ball-2018:d2:gov-ball-nyc-stage:1645:cut-copy",
    "lollapalooza-2014:d2:the-grove:2100:cut-copy",
    "outside-lands-2014:d3:twin-peaks:1840:cut-copy"
   ],
-  "firstSeen": "2014-08-02",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2018-06-02",
   "photo": null,
   "links": []
@@ -29755,9 +30529,10 @@
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:0100:dabin",
    "edc-las-vegas-2024:d1:cosmic-meadow:2305:dabin",
    "edc-orlando-2021:d3:circuit-grounds:1905:dabin",
+   "electric-forest-2015:d1:ranch-arena:1600:dabin",
    "escape-halloween-2021:d2:psycho-circus:2045:dabin"
   ],
-  "firstSeen": "2021-10-30",
+  "firstSeen": "2015-06-25",
   "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
@@ -30040,6 +30815,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dam-funk",
+  "name": "DāM-FunK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:jubilee:2315:dam-funk"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -30839,6 +31629,21 @@
   ],
   "firstSeen": "2017-07-30",
   "lastSeen": "2017-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dantiez-saunderson",
+  "name": "Dantiez Saunderson",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d2:forest-stage:2300:dantiez-saunderson-b2b-kevin-saunderson"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
   "photo": null,
   "links": []
  },
@@ -32413,6 +33218,21 @@
   "links": []
  },
  {
+  "key": "dead-confederate",
+  "name": "Dead Confederate",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:forest-stage:2345:dead-confederate"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dead-space",
   "name": "DEAD SPACE",
   "aliases": [],
@@ -33359,10 +34179,11 @@
   "billings": [
    "electric-forest-2013:d4:forest-stage:1830:delhi-2-dublin",
    "electric-forest-2013:d4:the-observatory:0000:delhi-2-dublin",
+   "electric-forest-2015:d2:jubilee:2130:delhi-2-dublin",
    "shambhala-2012:d1:rock-pit:1930:delhi-2-dublin"
   ],
   "firstSeen": "2012-08-09",
-  "lastSeen": "2013-06-30",
+  "lastSeen": "2015-06-26",
   "photo": null,
   "links": []
  },
@@ -34074,6 +34895,7 @@
   "billings": [
    "coachella-2012:d2:sahara:1225:destructo",
    "coachella-2012:d5:sahara:1225:destructo",
+   "electric-forest-2014:d3:tripolee:2130:destructo",
    "lollapalooza-2015:d1:perry-s:1400:destructo",
    "shambhala-2015:d3:pagoda:2230:destructo"
   ],
@@ -35305,6 +36127,7 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls18",
+   "electric-forest-2014:d2:tripolee:2030:dirtyphonics",
    "nocturnal-wonderland-2012:d1:sunken-garden:0030:dirtyphonics",
    "shambhala-2013:d3:village:0030:dirtyphonics",
    "tomorrowland-2018:d3:arch:2200:dirtyphonics",
@@ -35920,10 +36743,17 @@
    "electric-forest-2012:d1:forest-stage:1900:dixon-s-violin",
    "electric-forest-2012:d3:forest-stage:1730:dixon-s-violin",
    "electric-forest-2013:d1:the-observatory:1715:dixon-s-violin",
-   "electric-forest-2013:d4:the-observatory:0115:dixon-s-violin"
+   "electric-forest-2013:d4:the-observatory:0115:dixon-s-violin",
+   "electric-forest-2014:d1:forest-stage:1645:dixon-s-violin",
+   "electric-forest-2014:d2:the-observatory:1945:dixon-s-violin",
+   "electric-forest-2014:d4:the-observatory:2115:dixon-s-violin",
+   "electric-forest-2015:d1:the-observatory:1630:dixon-s-violin",
+   "electric-forest-2015:d2:the-observatory:0230:dixon-s-violin",
+   "electric-forest-2015:d3:forest-stage:1430:dixon-s-violin",
+   "electric-forest-2015:d4:the-observatory:0045:dixon-s-violin"
   ],
   "firstSeen": "2012-06-28",
-  "lastSeen": "2013-06-30",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -39881,10 +40711,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "electric-forest-2013:d4:forest-stage:1445:dopapod"
+   "electric-forest-2013:d4:forest-stage:1445:dopapod",
+   "electric-forest-2015:d3:jubilee:2330:dopapod",
+   "electric-forest-2015:d4:sherwood-court:1845:dopapod"
   ],
   "firstSeen": "2013-06-30",
-  "lastSeen": "2013-06-30",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -41690,10 +42522,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d1:tripolee:2315:dusky",
    "shambhala-2015:d2:pagoda:0320:dusky",
    "tomorrowland-2017:d6:pryda:1600:dusky"
   ],
-  "firstSeen": "2015-08-07",
+  "firstSeen": "2014-06-26",
   "lastSeen": "2017-07-30",
   "photo": null,
   "links": []
@@ -41772,10 +42605,11 @@
   "billings": [
    "electric-forest-2013:d2:forest-stage:1630:dustin-thomas",
    "electric-forest-2013:d2:the-observatory:2115:dustin-thomas",
-   "electric-forest-2013:d3:the-observatory:0130:dustin-thomas"
+   "electric-forest-2013:d3:the-observatory:0130:dustin-thomas",
+   "electric-forest-2014:d1:the-observatory:2130:dustin-thomas"
   ],
   "firstSeen": "2013-06-28",
-  "lastSeen": "2013-06-29",
+  "lastSeen": "2014-06-26",
   "photo": null,
   "links": []
  },
@@ -42216,6 +43050,21 @@
   ],
   "firstSeen": "2022-10-14",
   "lastSeen": "2022-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "earphunk",
+  "name": "Earphunk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d4:forest-stage:1615:earphunk"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -42845,7 +43694,8 @@
   "key": "edward-sharpe-and-the-magnetic-zeros",
   "name": "Edward Sharpe and the Magnetic Zeros",
   "aliases": [
-   "Edward Sharpe & The Magnetic Zeros"
+   "Edward Sharpe & The Magnetic Zeros",
+   "Edward Sharpe And The Magnetic Zeros"
   ],
   "kind": "performer",
   "parents": [],
@@ -42853,6 +43703,7 @@
   "billings": [
    "coachella-2016:d3:outdoor:1900:edward-sharpe-and-the-magnetic-zeros",
    "coachella-2016:d6:outdoor:1900:edward-sharpe-and-the-magnetic-zeros",
+   "electric-forest-2015:d3:ranch-arena:1800:edward-sharpe-and-the-magnetic-zeros",
    "outside-lands-2010:d2:twin-peaks:1540:edward-sharpe-and-the-magnetic-zeros"
   ],
   "firstSeen": "2010-08-15",
@@ -43404,6 +44255,21 @@
   ],
   "firstSeen": "2013-08-10",
   "lastSeen": "2013-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "electron",
+  "name": "Electron",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:sherwood-court:2300:electron"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
   "photo": null,
   "links": []
  },
@@ -44186,6 +45052,21 @@
   "links": []
  },
  {
+  "key": "emancipator-ensemble",
+  "name": "Emancipator Ensemble",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:sherwood-court:1945:emancipator-ensemble"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "emei",
   "name": "Emei",
   "aliases": [
@@ -44230,6 +45111,21 @@
   ],
   "firstSeen": "2013-08-02",
   "lastSeen": "2013-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "emerson-jay",
+  "name": "Emerson Jay",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d4:the-observatory:1345:emerson-jay"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -44740,12 +45636,14 @@
   "billings": [
    "electric-forest-2012:d1:sherwood-court:2245:eoto",
    "electric-forest-2013:d1:sherwood-court:2245:eoto",
+   "electric-forest-2014:d1:sherwood-court:2100:eoto",
+   "electric-forest-2015:d1:jubilee:0015:eoto",
    "shambhala-2012:d2:village:0000:eoto",
    "shambhala-2012:d3:rock-pit:0000:eoto",
    "shambhala-2014:d2:village:2100:eoto"
   ],
   "firstSeen": "2012-06-28",
-  "lastSeen": "2014-08-08",
+  "lastSeen": "2015-06-25",
   "photo": null,
   "links": []
  },
@@ -44963,6 +45861,21 @@
   ],
   "firstSeen": "2022-10-09",
   "lastSeen": "2022-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "eric-volta",
+  "name": "Eric Volta",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:tripolee:1615:eric-volta"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -45609,6 +46522,22 @@
   "links": []
  },
  {
+  "key": "everyone-orchestra",
+  "name": "Everyone Orchestra",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:jubilee:1645:everyone-orchestra",
+   "electric-forest-2015:d3:the-observatory:0145:everyone-orchestra"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "eviction",
   "name": "Eviction",
   "aliases": [],
@@ -45741,6 +46670,7 @@
    "edc-orlando-2021:d2:circuit-grounds:2300:excision",
    "edc-orlando-2023:d2:circuit-grounds:2300:excision",
    "edc-orlando-2025:d2:circuitgrounds:2300:excision",
+   "electric-forest-2014:d2:tripolee:0145:excision",
    "escape-halloween-2019:d1:psycho-circus:0100:excision",
    "lollapalooza-2016:d1:perry-s:1900:excision",
    "nocturnal-wonderland-2013:d1:labyrinth:1900:excision",
@@ -45755,6 +46685,21 @@
   ],
   "firstSeen": "2011-08-06",
   "lastSeen": "2026-12-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "exmag",
+  "name": "Exmag",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:jubilee:1945:exmag"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -48212,9 +49157,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2015:d1:the-observatory:2115:flint-eastwood",
    "lollapalooza-2017:d3:tito-s-handmade-vodka:1230:flint-eastwood"
   ],
-  "firstSeen": "2017-08-05",
+  "firstSeen": "2015-06-25",
   "lastSeen": "2017-08-05",
   "photo": null,
   "links": []
@@ -48866,6 +49812,7 @@
    "coachella-2012:d5:gobi:2100:flying-lotus",
    "coachella-2015:d1:mojave:2200:flying-lotus",
    "coachella-2015:d4:mojave:2200:flying-lotus",
+   "electric-forest-2014:d3:sherwood-court:2130:flying-lotus",
    "lollapalooza-2015:d1:pepsi:2100:flying-lotus"
   ],
   "firstSeen": "2012-04-14",
@@ -49369,6 +50316,7 @@
   "projects": [],
   "billings": [
    "beyond-wonderland-socal-2013:d1:cheshire-woods:1600:francesca-lombardo",
+   "electric-forest-2014:d1:forest-stage:2130:francesca-lombardo",
    "nocturnal-wonderland-2013:d1:alice-s-house:1500:francesca-lombardo",
    "tomorrowland-2017:d3:feestgedruis:1630:francesca-lombardo",
    "tomorrowland-2022:d9:crystal-garden:1530:francesca-lombardo",
@@ -50891,6 +51839,7 @@
    "edc-orlando-2023:d2:circuit-grounds:1300:fury-with-mc-dino",
    "edc-orlando-2024:d2:circuit-grounds:1300:fury-with-mc-dino",
    "edc-orlando-2025:d2:circuitgrounds:1300:fury-mc-dino",
+   "electric-forest-2014:d2:tripolee:1330:fury-mc-dino",
    "nocturnal-wonderland-2012:d1:sunken-garden:1700:fury"
   ],
   "firstSeen": "2012-03-17",
@@ -50973,6 +51922,111 @@
   ],
   "firstSeen": "2026-03-28",
   "lastSeen": "2026-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "future-classic-flume",
+  "name": "Future Classic: Flume",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:sherwood-court:0045:future-classic-flume"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "future-classic-four-tet",
+  "name": "Future Classic: Four Tet",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:sherwood-court:2315:future-classic-four-tet"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "future-classic-goldlink",
+  "name": "Future Classic: GoldLink",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:sherwood-court:2200:future-classic-goldlink"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "future-classic-lido",
+  "name": "Future Classic: Lido",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:sherwood-court:2045:future-classic-lido"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "future-classic-mr-carmack",
+  "name": "Future Classic: Mr. Carmack",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:sherwood-court:1830:future-classic-mr-carmack"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "future-classic-nadus",
+  "name": "Future Classic: Nadus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:sherwood-court:1730:future-classic-nadus"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "future-classic-wave-racer",
+  "name": "Future Classic: Wave Racer",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:sherwood-court:1945:future-classic-wave-racer"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
   "photo": null,
   "links": []
  },
@@ -51181,11 +52235,12 @@
    "acl-2015:d5:homeaway:1730:g-eazy",
    "coachella-2016:d1:sahara:2110:g-eazy",
    "coachella-2016:d4:sahara:2110:g-eazy",
+   "electric-forest-2015:d2:ranch-arena:1730:g-eazy",
    "lollapalooza-2015:d2:pepsi:2100:g-eazy",
    "lollapalooza-2016:d1:samsung:1830:g-eazy",
    "outside-lands-2015:d2:twin-peaks:1855:g-eazy"
   ],
-  "firstSeen": "2015-08-01",
+  "firstSeen": "2015-06-26",
   "lastSeen": "2016-07-28",
   "photo": null,
   "links": []
@@ -51438,6 +52493,21 @@
   "links": []
  },
  {
+  "key": "galactic",
+  "name": "Galactic",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:jubilee:0115:galactic-with-macy-gray"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "galantis",
   "name": "Galantis",
   "aliases": [
@@ -51455,6 +52525,7 @@
    "edc-orlando-2017:d2:kineticfield:2114:galantis",
    "edc-orlando-2021:d2:kinetic-field:2111:galantis",
    "edc-orlando-2024:d3:kinetic-field:2006:galantis",
+   "electric-forest-2015:d1:ranch-arena:1700:galantis",
    "governors-ball-2018:d2:honda-stage:1845:galantis",
    "lollapalooza-2015:d3:perry-s:1710:galantis",
    "tomorrowland-2018:d2:freedom-stage-by-budweiser:2115:galantis"
@@ -51999,9 +53070,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d3:forest-stage:1730:gemini-club",
    "lollapalooza-2014:d3:the-grove:1300:gemini-club"
   ],
-  "firstSeen": "2014-08-03",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2014-08-03",
   "photo": null,
   "links": []
@@ -54048,9 +55120,9 @@
  },
  {
   "key": "goldfish",
-  "name": "GoldFish",
+  "name": "Goldfish",
   "aliases": [
-   "Goldfish",
+   "GoldFish",
    "GOLDFISH"
   ],
   "kind": "performer",
@@ -54060,9 +55132,11 @@
    "tomorrowland-thailand-2026:tmlth-goldfish",
    "acl-2017:d3:tito-s-handmade-vodka:1615:goldfish",
    "acl-2017:d6:tito-s-handmade-vodka:untimed:goldfish",
+   "electric-forest-2015:d4:tripolee:2045:goldfish",
+   "electric-forest-2015:d4:forest-stage:2345:goldfish",
    "nocturnal-wonderland-2017:d1:labyrinth:2105:goldfish"
   ],
-  "firstSeen": "2017-09-15",
+  "firstSeen": "2015-06-28",
   "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
@@ -54176,6 +55250,36 @@
   "links": []
  },
  {
+  "key": "goldroom-dj-set",
+  "name": "Goldroom DJ Set",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:forest-stage:2230:goldroom-dj-set"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "goldroom-live",
+  "name": "Goldroom Live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:sherwood-court:2045:goldroom-live"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "goldrush",
   "name": "GoldRush",
   "aliases": [],
@@ -54201,10 +55305,11 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d3:parliament-art-car:0100:golf-clap",
+   "electric-forest-2014:d2:forest-stage:2130:golf-clap",
    "lollapalooza-2017:d1:perry-s:1200:golf-clap",
    "nocturnal-wonderland-2017:d2:sunken-garden:1750:golf-clap"
   ],
-  "firstSeen": "2017-08-03",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2022-05-22",
   "photo": null,
   "links": []
@@ -54960,6 +56065,7 @@
    "coachella-2015:d2:sahara:1535:gramatik",
    "coachella-2015:d5:sahara:1635:gramatik",
    "electric-forest-2012:d4:tripolee:1830:gramatik",
+   "electric-forest-2015:d4:sherwood-court:2245:gramatik",
    "lollapalooza-2014:d2:perry-s:1630:gramatik",
    "lollapalooza-2017:d2:perry-s:1915:gramatik",
    "shambhala-2013:d2:village:0000:gramatik"
@@ -55248,6 +56354,7 @@
    "edc-orlando-2017:d2:neongarden:2030:green-velvet",
    "edc-orlando-2019:d3:neongarden:2130:green-velvet",
    "edc-orlando-2025:d3:kineticfield:1726:green-velvet-b2b-alok-sunset-set",
+   "electric-forest-2015:d3:tripolee:0030:green-velvet",
    "escape-halloween-2017:d1:cannibals-tea-party:2230:green-velvet",
    "escape-halloween-2021:d1:sewer-district:1930:green-velvet",
    "nocturnal-wonderland-2011:d2:upside-down-room:2030:green-velvet",
@@ -55951,6 +57058,7 @@
   "billings": [
    "coachella-2014:d2:sahara:1730:gta",
    "coachella-2014:d5:sahara:1730:gta",
+   "electric-forest-2014:d4:tripolee:2315:gta",
    "lollapalooza-2014:d3:perry-s:1500:gta",
    "nocturnal-wonderland-2017:d1:wolves-den:0000:gta",
    "shambhala-2015:d4:village:0300:gta",
@@ -57573,11 +58681,12 @@
   "projects": [],
   "billings": [
    "coachella-2017:d1:do-lab:2115:haywyre",
+   "electric-forest-2015:d4:forest-stage:1715:haywyre",
    "nocturnal-wonderland-2017:d2:labyrinth:2330:haywyre",
    "shambhala-2015:d4:village:2100:haywyre",
    "shambhala-2016:d4:village:2100:haywyre"
   ],
-  "firstSeen": "2015-08-09",
+  "firstSeen": "2015-06-28",
   "lastSeen": "2017-09-16",
   "photo": null,
   "links": []
@@ -60624,6 +61733,21 @@
   "links": []
  },
  {
+  "key": "i-am-legion",
+  "name": "I Am Legion",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d2:tripolee:2130:i-am-legion"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "i-dle",
   "name": "i-dle",
   "aliases": [],
@@ -62159,10 +63283,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2014:d4:do-lab:1700:isaac-tichauer"
+   "coachella-2014:d4:do-lab:1700:isaac-tichauer",
+   "electric-forest-2014:d4:forest-stage:1915:isaac-tichauer"
   ],
   "firstSeen": "2014-04-18",
-  "lastSeen": "2014-04-18",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -62748,9 +63873,9 @@
  },
  {
   "key": "j-phlip",
-  "name": "J Phlip",
+  "name": "J. Phlip",
   "aliases": [
-   "J. Phlip",
+   "J Phlip",
    "J.Phlip"
   ],
   "kind": "performer",
@@ -62758,10 +63883,11 @@
   "projects": [],
   "billings": [
    "coachella-2015:d6:do-lab:2115:j-phlip",
+   "electric-forest-2014:d1:tripolee:1930:j-phlip",
    "shambhala-2014:d2:pagoda:2000:j-phlip",
    "shambhala-2015:d2:pagoda:2200:j-phlip"
   ],
-  "firstSeen": "2014-08-08",
+  "firstSeen": "2014-06-26",
   "lastSeen": "2015-08-07",
   "photo": null,
   "links": []
@@ -63207,10 +64333,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2015:d1:forest-stage:2300:jacklndn",
+   "electric-forest-2015:d3:tripolee:1500:jacklndn",
+   "electric-forest-2015:d4:tripolee:1545:jacklndn",
    "lollapalooza-2015:d3:perry-s:1200:jacklndn",
    "shambhala-2015:d3:pagoda:2000:jacklndn"
   ],
-  "firstSeen": "2015-08-02",
+  "firstSeen": "2015-06-25",
   "lastSeen": "2015-08-08",
   "photo": null,
   "links": []
@@ -63507,6 +64636,21 @@
   "links": []
  },
  {
+  "key": "jaga-jazzist",
+  "name": "Jaga Jazzist",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:the-hangar:2230:jaga-jazzist"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jaguar-skills",
   "name": "Jaguar Skills",
   "aliases": [],
@@ -63716,6 +64860,21 @@
   ],
   "firstSeen": null,
   "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jakubi",
+  "name": "Jakubi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:forest-stage:1730:jakubi"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
   "photo": null,
   "links": []
  },
@@ -65727,6 +66886,23 @@
   "links": []
  },
  {
+  "key": "jerk-church",
+  "name": "Jerk Church",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:the-hangar:2230:jerk-church",
+   "electric-forest-2015:d3:the-hangar:1430:jerk-church",
+   "electric-forest-2015:d4:the-hangar:2030:jerk-church"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jeroen-delodder",
   "name": "Jeroen Delodder",
   "aliases": [],
@@ -66475,9 +67651,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d1:tripolee:1815:jimmy-edgar",
    "outside-lands-2015:d2:the-house-by-heineken:1830:jimmy-edgar"
   ],
-  "firstSeen": "2015-08-08",
+  "firstSeen": "2014-06-26",
   "lastSeen": "2015-08-08",
   "photo": null,
   "links": []
@@ -66920,6 +68097,21 @@
   "links": []
  },
  {
+  "key": "joe-hertler-and-the-rainbow-seekers",
+  "name": "Joe Hertler & The Rainbow Seekers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:forest-stage:1430:joe-hertler-and-the-rainbow-seekers"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "joe-jordan",
   "name": "Joe Jordan",
   "aliases": [],
@@ -66963,6 +68155,21 @@
   ],
   "firstSeen": "2024-10-12",
   "lastSeen": "2025-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "joe-russo-s-almost-dead",
+  "name": "Joe Russo's Almost Dead",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:sherwood-court:0100:joe-russo-s-almost-dead"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
   "photo": null,
   "links": []
  },
@@ -67905,6 +69112,21 @@
   "links": []
  },
  {
+  "key": "jon-wayne-and-the-pain",
+  "name": "Jon Wayne and The Pain",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d1:forest-stage:1830:jon-wayne-and-the-pain"
+  ],
+  "firstSeen": "2014-06-26",
+  "lastSeen": "2014-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jonah-kagen",
   "name": "Jonah Kagen",
   "aliases": [
@@ -67956,10 +69178,11 @@
   "projects": [],
   "billings": [
    "coachella-2017:d4:do-lab:2200:jonas-rathsman",
+   "electric-forest-2014:d4:forest-stage:2115:jonas-rathsman",
    "nocturnal-wonderland-2018:d1:sunken-garden:2100:jonas-rathsman",
    "outside-lands-2015:d2:the-house-by-heineken:1730:jonas-rathsman"
   ],
-  "firstSeen": "2015-08-08",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2018-09-14",
   "photo": null,
   "links": []
@@ -68443,10 +69666,11 @@
    "acl-2019:d6:american-express:1400:joseph",
    "coachella-2017:d1:mojave:1400:joseph",
    "coachella-2017:d4:mojave:1400:joseph",
+   "electric-forest-2015:d3:the-observatory:1645:joseph",
    "lollapalooza-2017:d4:tito-s-handmade-vodka:1400:joseph",
    "outside-lands-2017:d2:sutro:1315:joseph"
   ],
-  "firstSeen": "2017-04-14",
+  "firstSeen": "2015-06-27",
   "lastSeen": "2019-10-13",
   "photo": null,
   "links": []
@@ -69011,6 +70235,24 @@
   ],
   "firstSeen": "2025-06-06",
   "lastSeen": "2025-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jpod",
+  "name": "JPOD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:the-hangar:0030:jpod",
+   "electric-forest-2015:d2:the-hangar:1400:jpod",
+   "electric-forest-2015:d3:the-hangar:0130:jpod",
+   "electric-forest-2015:d4:the-hangar:1545:jpod"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -70038,6 +71280,7 @@
    "coachella-2016:d5:yuma:2130:justin-martin",
    "coachella-2017:d5:do-lab:1845:justin-martin",
    "edc-orlando-2022:d2:stereo-bloom:2130:justin-martin",
+   "electric-forest-2014:d1:tripolee:2200:justin-martin",
    "outside-lands-2012:d1:the-dome-by-heineken:1800:justin-martin",
    "shambhala-2011:d2:pagoda:0230:justin-martin",
    "shambhala-2013:d4:pagoda:2230:justin-martin",
@@ -70374,6 +71617,21 @@
   ],
   "firstSeen": "2013-08-08",
   "lastSeen": "2016-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "k-theory",
+  "name": "K Theory",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d4:tripolee:1700:k-theory"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -71429,6 +72687,7 @@
    "edc-orlando-2021:d1:kinetic-field:2233:kaskade",
    "edc-orlando-2023:d1:kinetic-field:2232:kaskade",
    "edc-orlando-2024:d1:kinetic-field:2114:kaskade-b2b-alison-wonderland",
+   "electric-forest-2015:d1:ranch-arena:0000:kaskade",
    "lollapalooza-2015:d1:perry-s:2030:kaskade",
    "lollapalooza-2017:d3:perry-s:2030:kaskade",
    "nocturnal-wonderland-2011:d2:alice-s-house:0000:kaskade",
@@ -71525,11 +72784,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d3:tripolee:1845:kastle",
    "shambhala-2012:d2:rock-pit:0300:kastle",
    "shambhala-2013:d3:amphitheatre:0230:kastle-live"
   ],
   "firstSeen": "2012-08-10",
-  "lastSeen": "2013-08-10",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -71592,6 +72852,22 @@
   ],
   "firstSeen": "2023-10-15",
   "lastSeen": "2023-10-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "katie-boeck",
+  "name": "Katie Boeck",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:the-observatory:1515:katie-boeck",
+   "electric-forest-2015:d4:the-observatory:1345:katie-boeck"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -71790,12 +73066,13 @@
    "coachella-2015:d6:gobi:2245:kaytranada",
    "coachella-2017:d3:sahara:1745:kaytranada",
    "coachella-2017:d6:sahara:1745:kaytranada",
+   "electric-forest-2014:d1:tripolee:1700:kaytranada",
    "governors-ball-2019:d3:american-eagle-stage:2130:kaytranada",
    "hard-summer-2025:d1:hard-stage:1905:kaytranada",
    "lollapalooza-2017:d1:pepsi:1930:kaytranada",
    "outside-lands-2017:d2:twin-peaks:1720:kaytranada"
   ],
-  "firstSeen": "2015-04-12",
+  "firstSeen": "2014-06-26",
   "lastSeen": "2025-08-02",
   "photo": null,
   "links": []
@@ -72096,6 +73373,21 @@
   ],
   "firstSeen": "2012-07-01",
   "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "keller-williams-grateful-grass",
+  "name": "Keller Williams’ Grateful Grass",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:ranch-arena:1600:keller-williams-grateful-grass"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -72653,9 +73945,10 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2024:d2:stereo-bloom:2200:kevin-saunderson-b2b-dj-minx",
+   "electric-forest-2014:d2:forest-stage:2300:dantiez-saunderson-b2b-kevin-saunderson",
    "tomorrowland-2022:d1:core:2100:kevin-saunderson"
   ],
-  "firstSeen": "2022-07-15",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2024-05-18",
   "photo": null,
   "links": []
@@ -75620,6 +76913,21 @@
   "links": []
  },
  {
+  "key": "kung-fu",
+  "name": "Kung Fu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d4:forest-stage:1300:kung-fu"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kungs",
   "name": "Kungs",
   "aliases": [
@@ -75969,10 +77277,11 @@
    "coachella-2015:d3:mojave:2300:kygo",
    "coachella-2015:d6:mojave:2300:kygo",
    "edc-orlando-2021:d3:kinetic-field:1728:kygo-sunset",
+   "electric-forest-2014:d4:forest-stage:1745:kygo",
    "lollapalooza-2015:d3:pepsi:2130:kygo",
    "shambhala-2015:d4:pagoda:0100:kygo"
   ],
-  "firstSeen": "2015-04-12",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2027-04-11",
   "photo": null,
   "links": []
@@ -76629,10 +77938,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2014:d5:do-lab:1215:lafa-taylor"
+   "coachella-2014:d5:do-lab:1215:lafa-taylor",
+   "electric-forest-2015:d1:forest-stage:1830:lafa-taylor",
+   "electric-forest-2015:d2:the-hangar:1730:lafa-taylor"
   ],
   "firstSeen": "2014-04-19",
-  "lastSeen": "2014-04-19",
+  "lastSeen": "2015-06-26",
   "photo": null,
   "links": []
  },
@@ -76845,10 +78156,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "electric-forest-2013:d4:forest-stage:2330:lance-herbstrong"
+   "electric-forest-2013:d4:forest-stage:2330:lance-herbstrong",
+   "electric-forest-2015:d2:the-hangar:1600:lance-herbstrong"
   ],
   "firstSeen": "2013-06-30",
-  "lastSeen": "2013-06-30",
+  "lastSeen": "2015-06-26",
   "photo": null,
   "links": []
  },
@@ -77297,6 +78609,21 @@
   ],
   "firstSeen": "2024-10-11",
   "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "late-night-radio",
+  "name": "Late Night Radio",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d1:the-observatory:1830:late-night-radio"
+  ],
+  "firstSeen": "2014-06-26",
+  "lastSeen": "2014-06-26",
   "photo": null,
   "links": []
  },
@@ -78058,6 +79385,7 @@
   "billings": [
    "coachella-2014:d3:yuma:1630:lee-burridge",
    "coachella-2014:d6:yuma:1630:lee-burridge",
+   "electric-forest-2014:d3:tripolee:0030:lee-burridge",
    "nocturnal-wonderland-2011:d2:upside-down-room:2300:lee-burridge",
    "nocturnal-wonderland-2013:d1:alice-s-house:2300:lee-burridge",
    "tomorrowland-2017:d5:all-day-i-dream:1230:lee-burridge",
@@ -78335,6 +79663,21 @@
   ],
   "firstSeen": "2011-08-04",
   "lastSeen": "2016-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "leikeli47",
+  "name": "Leikeli47",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:sherwood-court:1730:leikeli47"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -78886,6 +80229,7 @@
    "acl-2014:d3:sculpture:1800:lettuce",
    "acl-2014:d6:zilker:1800:lettuce",
    "electric-forest-2013:d3:ranch-arena:1800:lettuce",
+   "electric-forest-2015:d2:sherwood-court:2230:lettuce",
    "lollapalooza-2016:d2:petrillo-bandshell:1545:lettuce",
    "outside-lands-2016:d3:panhandle:1940:lettuce"
   ],
@@ -79779,10 +81123,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d2:tripolee:1530:lindsay-lowend",
    "lollapalooza-2014:d3:perry-s:1300:lindsay-lowend",
    "shambhala-2014:d2:amphitheatre:2130:lindsay-lowend"
   ],
-  "firstSeen": "2014-08-03",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2014-08-08",
   "photo": null,
   "links": []
@@ -79825,10 +81170,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2015:d3:jubilee:1830:lindsey-stirling",
    "lollapalooza-2016:d4:perry-s:1415:lindsey-stirling",
    "outside-lands-2015:d1:twin-peaks:1540:lindsey-stirling"
   ],
-  "firstSeen": "2015-08-07",
+  "firstSeen": "2015-06-27",
   "lastSeen": "2016-07-31",
   "photo": null,
   "links": []
@@ -80233,6 +81579,21 @@
   ],
   "firstSeen": "2017-08-04",
   "lastSeen": "2017-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "little-people",
+  "name": "Little People",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:forest-stage:2130:little-people"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
   "photo": null,
   "links": []
  },
@@ -81327,9 +82688,10 @@
   "projects": [],
   "billings": [
    "coachella-2015:d1:mojave:1140:los-rakas",
-   "coachella-2015:d4:mojave:1140:los-rakas"
+   "coachella-2015:d4:mojave:1140:los-rakas",
+   "electric-forest-2014:d2:forest-stage:1400:los-rakas"
   ],
-  "firstSeen": "2015-04-10",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2015-04-17",
   "photo": null,
   "links": []
@@ -81611,10 +82973,11 @@
   "projects": [],
   "billings": [
    "electric-forest-2013:d1:sherwood-court:0030:lotus",
+   "electric-forest-2015:d2:sherwood-court:0030:lotus",
    "outside-lands-2011:d1:twin-peaks:1415:lotus"
   ],
   "firstSeen": "2011-08-12",
-  "lastSeen": "2013-06-27",
+  "lastSeen": "2015-06-26",
   "photo": null,
   "links": []
  },
@@ -81981,6 +83344,81 @@
   ],
   "firstSeen": "2022-07-22",
   "lastSeen": "2022-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "low-temp-ben-negative",
+  "name": "Low Temp: Ben Negative",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:forest-stage:2030:low-temp-ben-negative"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "low-temp-branx",
+  "name": "Low Temp: Branx",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:forest-stage:2330:low-temp-branx"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "low-temp-freddy-todd",
+  "name": "Low Temp: Freddy Todd",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:forest-stage:2200:low-temp-freddy-todd"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "low-temp-gibbz",
+  "name": "Low Temp: GiBBZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:forest-stage:0100:low-temp-gibbz"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "low-temp-russ-liquid",
+  "name": "Low Temp: Russ Liquid",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:forest-stage:0200:low-temp-russ-liquid"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
   "photo": null,
   "links": []
  },
@@ -82849,15 +84287,18 @@
  {
   "key": "luke-the-knife",
   "name": "Luke the Knife",
-  "aliases": [],
+  "aliases": [
+   "Luke The Knife"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "electric-forest-2013:d2:forest-stage:0000:luke-the-knife"
+   "electric-forest-2013:d2:forest-stage:0000:luke-the-knife",
+   "electric-forest-2014:d4:tripolee:1315:luke-the-knife"
   ],
   "firstSeen": "2013-06-28",
-  "lastSeen": "2013-06-28",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -82948,6 +84389,21 @@
   ],
   "firstSeen": "2022-07-17",
   "lastSeen": "2022-07-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "luminox",
+  "name": "Luminox",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d2:tripolee:1630:luminox"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
   "photo": null,
   "links": []
  },
@@ -83410,9 +84866,11 @@
   "projects": [
    "latyrx"
   ],
-  "billings": [],
-  "firstSeen": null,
-  "lastSeen": null,
+  "billings": [
+   "electric-forest-2015:d2:jubilee:2000:lyrics-born"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
   "photo": null,
   "links": []
  },
@@ -83923,6 +85381,21 @@
   "links": []
  },
  {
+  "key": "macy-gray",
+  "name": "Macy Gray",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:jubilee:0115:galactic-with-macy-gray"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "macy-todd",
   "name": "Macy Todd",
   "aliases": [],
@@ -84163,15 +85636,18 @@
  {
   "key": "made-in-heights",
   "name": "Made in Heights",
-  "aliases": [],
+  "aliases": [
+   "Made In Heights"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2015:d4:jubilee:1815:made-in-heights",
    "outside-lands-2014:d3:twin-peaks:1240:made-in-heights"
   ],
   "firstSeen": "2014-08-10",
-  "lastSeen": "2014-08-10",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -85070,13 +86546,16 @@
  {
   "key": "mako",
   "name": "Mako",
-  "aliases": [],
+  "aliases": [
+   "MAKO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2014:d1:sahara:1340:mako",
    "coachella-2014:d4:sahara:1340:mako",
+   "electric-forest-2015:d3:tripolee:1615:mako",
    "lollapalooza-2015:d3:perry-s:1600:mako"
   ],
   "firstSeen": "2014-04-11",
@@ -85598,6 +87077,21 @@
   "links": []
  },
  {
+  "key": "manic-menert",
+  "name": "Manic Menert",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d4:forest-stage:2345:manic-menert"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "manics",
   "name": "Manics",
   "aliases": [],
@@ -85972,6 +87466,37 @@
   "links": []
  },
  {
+  "key": "marcella-puppini",
+  "name": "Marcella Puppini",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:the-hangar:1745:marcella-puppini",
+   "electric-forest-2015:d4:the-hangar:2200:marcella-puppini"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "marcelo-moxy",
+  "name": "Marcelo Moxy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d4:the-observatory:1645:marcelo-moxy"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "marco-bailey",
   "name": "Marco Bailey",
   "aliases": [],
@@ -85994,9 +87519,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2015:d4:the-observatory:1945:marco-benevento",
    "outside-lands-2017:d3:panhandle:1320:marco-benevento"
   ],
-  "firstSeen": "2017-08-13",
+  "firstSeen": "2015-06-28",
   "lastSeen": "2017-08-13",
   "photo": null,
   "links": []
@@ -87389,10 +88915,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2015:d1:jubilee:1815:martyparty",
+   "electric-forest-2015:d1:forest-stage:0030:martyparty",
    "nocturnal-wonderland-2011:d1:sunken-garden:1830:martyparty"
   ],
   "firstSeen": "2011-09-23",
-  "lastSeen": "2011-09-23",
+  "lastSeen": "2015-06-25",
   "photo": null,
   "links": []
  },
@@ -88033,10 +89561,11 @@
   "billings": [
    "coachella-2016:d2:sahara:1725:matoma",
    "coachella-2016:d5:sahara:1725:matoma",
+   "electric-forest-2015:d3:tripolee:2300:matoma",
    "lollapalooza-2019:d2:perry-s:untimed:matoma",
    "tomorrowland-2018:d2:youphoria:1800:matoma"
   ],
-  "firstSeen": "2016-04-16",
+  "firstSeen": "2015-06-27",
   "lastSeen": "2019-08-02",
   "photo": null,
   "links": []
@@ -88132,6 +89661,7 @@
   "billings": [
    "coachella-2016:d3:coachella:1655:matt-and-kim",
    "coachella-2016:d6:coachella:1655:matt-and-kim",
+   "electric-forest-2014:d4:ranch-arena:1845:matt-and-kim",
    "lollapalooza-2013:d2:petrillo:untimed:matt-and-kim",
    "outside-lands-2013:d3:twin-peaks:1845:matt-and-kim"
   ],
@@ -89296,9 +90826,10 @@
    "edc-orlando-2023:d2:circuit-grounds:1300:fury-with-mc-dino",
    "edc-orlando-2024:d2:circuit-grounds:1300:fury-with-mc-dino",
    "edc-orlando-2025:d2:circuitgrounds:1300:fury-mc-dino",
+   "electric-forest-2014:d2:tripolee:1330:fury-mc-dino",
    "nocturnal-wonderland-2021:d1:owloch-grove:1930:crissy-criss-mc-dino"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
@@ -90750,9 +92281,10 @@
   "projects": [],
   "billings": [
    "coachella-2016:d1:mojave:1545:miami-horror",
-   "coachella-2016:d4:mojave:1545:miami-horror"
+   "coachella-2016:d4:mojave:1545:miami-horror",
+   "electric-forest-2015:d4:forest-stage:2000:miami-horror"
   ],
-  "firstSeen": "2016-04-15",
+  "firstSeen": "2015-06-28",
   "lastSeen": "2016-04-22",
   "photo": null,
   "links": []
@@ -91723,6 +93255,21 @@
   "links": []
  },
  {
+  "key": "mike-love",
+  "name": "MIKE LOVE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:the-observatory:1930:mike-love"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mike-mago",
   "name": "Mike Mago",
   "aliases": [],
@@ -92422,10 +93969,11 @@
   "projects": [],
   "billings": [
    "electric-forest-2012:d2:tripolee:1845:minnesota",
+   "electric-forest-2015:d3:forest-stage:1900:minnesota",
    "shambhala-2013:d2:village:2300:minnesota"
   ],
   "firstSeen": "2012-06-29",
-  "lastSeen": "2013-08-09",
+  "lastSeen": "2015-06-27",
   "photo": null,
   "links": []
  },
@@ -92955,6 +94503,21 @@
   "links": []
  },
  {
+  "key": "mj-cole",
+  "name": "MJ Cole",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:tripolee:2130:mj-cole"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mj-lenderman",
   "name": "MJ LENDERMAN",
   "aliases": [],
@@ -92983,12 +94546,13 @@
    "coachella-2016:d5:do-lab:2330:mk",
    "edc-las-vegas-2024:d1:kinetic-field:2206:mk",
    "edc-las-vegas-2024:d2:circuit-grounds:0430:mk-sunrise-set",
+   "electric-forest-2014:d3:tripolee:2000:mk",
    "nocturnal-wonderland-2018:d2:sunken-garden:0100:mk",
    "shambhala-2015:d3:pagoda:2330:mk",
    "tomorrowland-2017:d6:potion:2130:mk",
    "tomorrowland-2019:d6:kara-savi:1830:mk"
   ],
-  "firstSeen": "2015-04-10",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2024-05-18",
   "photo": null,
   "links": []
@@ -93159,9 +94723,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d4:tripolee:0030:moby",
    "shambhala-2014:d2:pagoda:0030:moby-dj-set"
   ],
-  "firstSeen": "2014-08-08",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2014-08-08",
   "photo": null,
   "links": []
@@ -94004,9 +95569,10 @@
   "projects": [],
   "billings": [
    "edc-orlando-2021:d2:neon-garden:1530:moon-boots",
+   "electric-forest-2014:d4:forest-stage:2215:moon-boots",
    "outside-lands-2015:d2:the-house-by-heineken:1630:moon-boots"
   ],
-  "firstSeen": "2015-08-08",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2021-11-13",
   "photo": null,
   "links": []
@@ -94042,10 +95608,11 @@
    "acl-2015:d4:austin-ventures:1700:moon-taxi",
    "coachella-2016:d2:coachella:1430:moon-taxi",
    "coachella-2016:d5:coachella:1430:moon-taxi",
+   "electric-forest-2014:d4:sherwood-court:1730:moon-taxi",
    "lollapalooza-2015:d3:bud-light:1600:moon-taxi",
    "outside-lands-2016:d1:panhandle:1330:moon-taxi"
   ],
-  "firstSeen": "2015-08-02",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2016-08-05",
   "photo": null,
   "links": []
@@ -95273,6 +96840,21 @@
   "links": []
  },
  {
+  "key": "ms-lauryn-hill",
+  "name": "Ms. Lauryn Hill",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d2:ranch-arena:1730:ms-lauryn-hill"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ms-mada",
   "name": "Ms. Mada",
   "aliases": [],
@@ -95833,6 +97415,21 @@
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2026-05-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "muzzy",
+  "name": "Muzzy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:the-observatory:1945:muzzy"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -96398,14 +97995,32 @@
   "links": []
  },
  {
-  "key": "nahko-and-medicine-for-the-people",
-  "name": "Nahko and Medicine for the People",
+  "key": "nahko",
+  "name": "Nahko",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d2:the-observatory:1645:nahko-solo"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nahko-and-medicine-for-the-people",
+  "name": "Nahko and Medicine for the People",
+  "aliases": [
+   "Nahko and Medicine For The People"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
    "electric-forest-2013:d3:sherwood-court:1800:nahko-and-medicine-for-the-people",
+   "electric-forest-2014:d1:sherwood-court:1915:nahko-and-medicine-for-the-people",
    "outside-lands-2014:d1:panhandle:1455:nahko-and-medicine-for-the-people"
   ],
   "firstSeen": "2013-06-29",
@@ -96791,6 +98406,21 @@
   "links": []
  },
  {
+  "key": "natasha-kmeto",
+  "name": "Natasha Kmeto",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d4:tripolee:1430:natasha-kmeto"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "natasja",
   "name": "Natasja",
   "aliases": [],
@@ -96984,6 +98614,22 @@
   ],
   "firstSeen": "2022-10-07",
   "lastSeen": "2022-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nattali-rize-and-notis",
+  "name": "Nattali Rize & NOTIS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:sherwood-court:1800:nattali-rize-and-notis",
+   "electric-forest-2015:d4:jubilee:1645:nattali-rize-and-notis"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -101174,6 +102820,7 @@
    "coachella-2014:d5:do-lab:2345:odesza",
    "coachella-2015:d3:gobi:2135:odesza",
    "coachella-2015:d6:gobi:2135:odesza",
+   "electric-forest-2015:d1:ranch-arena:2215:odesza",
    "lollapalooza-2015:d3:bud-light:1730:odesza",
    "outside-lands-2015:d3:twin-peaks:1705:odesza",
    "shambhala-2014:d4:grove:2330:odesza"
@@ -103647,6 +105294,21 @@
   "links": []
  },
  {
+  "key": "pan-astral",
+  "name": "Pan Astral",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:the-observatory:1945:pan-astral"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pan-pot",
   "name": "Pan-Pot",
   "aliases": [
@@ -103861,10 +105523,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "electric-forest-2012:d4:sherwood-court:1600:papadosio"
+   "electric-forest-2012:d4:sherwood-court:1600:papadosio",
+   "electric-forest-2014:d2:sherwood-court:1900:papadosio"
   ],
   "firstSeen": "2012-07-01",
-  "lastSeen": "2012-07-01",
+  "lastSeen": "2014-06-27",
   "photo": null,
   "links": []
  },
@@ -103879,6 +105542,7 @@
    "acl-2013:d3:bud-light:1500:paper-diamond",
    "coachella-2016:d2:do-lab:2115:paper-diamond",
    "electric-forest-2012:d2:sherwood-court:2200:paper-diamond",
+   "electric-forest-2014:d1:ranch-arena:2030:paper-diamond",
    "lollapalooza-2017:d1:perry-s:1430:paper-diamond",
    "outside-lands-2011:d2:panhandle:1950:paper-diamond",
    "shambhala-2013:d3:pagoda:2230:paper-diamond",
@@ -104838,10 +106502,11 @@
    "dreamstate-socal-2025:d2:the-vision:2200:paul-oakenfold",
    "edc-las-vegas-2024:d1:quantum-valley:2000:paul-oakenfold-full-on-fluoro",
    "edc-las-vegas-2025:d1:quantum-valley:2100:paul-oakenfold",
+   "electric-forest-2015:d4:tripolee:0030:paul-oakenfold",
    "tomorrowland-2017:d5:tranceaddict:1800:paul-oakenfold",
    "tomorrowland-2018:d3:mainstage:1200:paul-oakenfold"
   ],
-  "firstSeen": "2016-11-26",
+  "firstSeen": "2015-06-28",
   "lastSeen": "2026-05-16",
   "photo": null,
   "links": []
@@ -105252,13 +106917,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d2:tripolee:1830:pegboard-nerds",
    "shambhala-2014:d4:village:0200:pegboard-nerds",
    "tomorrowland-2017:d1:monstercat:1700:pegboard-nerds",
    "tomorrowland-2018:d1:rose-garden:1800:pegboard-nerds",
    "tomorrowland-2019:d1:rose-garden:1800:pegboard-nerds-b2b-tokyo-machine",
    "tomorrowland-2019:d3:l-orangerie:1730:pegboard-nerds"
   ],
-  "firstSeen": "2014-08-10",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2019-07-21",
   "photo": null,
   "links": []
@@ -105294,6 +106960,7 @@
   "billings": [
    "coachella-2015:d1:sahara:1320:peking-duk",
    "coachella-2015:d4:sahara:1330:peking-duk",
+   "electric-forest-2015:d4:tripolee:1930:peking-duk",
    "lollapalooza-2015:d1:perry-s:1300:peking-duk"
   ],
   "firstSeen": "2015-04-10",
@@ -105360,6 +107027,21 @@
   ],
   "firstSeen": "2026-06-20",
   "lastSeen": "2026-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "penguin-prison-dj-set",
+  "name": "Penguin Prison DJ Set",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d1:forest-stage:2000:penguin-prison-dj-set"
+  ],
+  "firstSeen": "2014-06-26",
+  "lastSeen": "2014-06-26",
   "photo": null,
   "links": []
  },
@@ -105453,6 +107135,22 @@
   ],
   "firstSeen": "2025-08-02",
   "lastSeen": "2025-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "people-s-blues-of-richmond",
+  "name": "People's Blues of Richmond",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:sherwood-court:1615:people-s-blues-of-richmond",
+   "electric-forest-2015:d4:the-observatory:2130:people-s-blues-of-richmond"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -105609,10 +107307,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2014:d4:do-lab:1545:perseus"
+   "coachella-2014:d4:do-lab:1545:perseus",
+   "electric-forest-2014:d4:forest-stage:2015:perseus"
   ],
   "firstSeen": "2014-04-18",
-  "lastSeen": "2014-04-18",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -105973,6 +107672,7 @@
    "acl-2025:d3:beatbox:1930:phantogram",
    "coachella-2017:d1:outdoor:2000:phantogram",
    "coachella-2017:d4:outdoor:2000:phantogram",
+   "electric-forest-2015:d3:sherwood-court:2130:phantogram",
    "governors-ball-2017:d3:honda:1845:phantogram",
    "lollapalooza-2014:d1:the-grove:2045:phantogram",
    "lollapalooza-2017:d2:grant-park:1645:phantogram",
@@ -106434,6 +108134,21 @@
   ],
   "firstSeen": "2017-07-30",
   "lastSeen": "2022-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "phutureprimitive",
+  "name": "Phutureprimitive",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:jubilee:2230:phutureprimitive"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
   "photo": null,
   "links": []
  },
@@ -107525,7 +109240,8 @@
    "acl-2023:d2:miller-lite:1700:poolside",
    "acl-2023:d5:miller-lite:1700:poolside",
    "coachella-2014:d3:mojave:1430:poolside",
-   "coachella-2014:d6:mojave:1430:poolside"
+   "coachella-2014:d6:mojave:1430:poolside",
+   "electric-forest-2014:d1:forest-stage:0030:poolside"
   ],
   "firstSeen": "2014-04-13",
   "lastSeen": "2023-10-14",
@@ -107864,7 +109580,11 @@
    "coachella-2014:d3:mojave:1320:preservation-hall-jazz-band",
    "coachella-2014:d6:mojave:1320:preservation-hall-jazz-band",
    "coachella-2017:d1:coachella:1530:preservation-hall-jazz-band",
-   "coachella-2017:d4:coachella:1530:preservation-hall-jazz-band"
+   "coachella-2017:d4:coachella:1530:preservation-hall-jazz-band",
+   "electric-forest-2015:d2:the-hangar:0000:preservation-hall-jazz-band",
+   "electric-forest-2015:d3:the-hangar:1615:preservation-hall-jazz-band",
+   "electric-forest-2015:d3:the-hangar:0000:preservation-hall-jazz-band",
+   "electric-forest-2015:d4:the-hangar:0115:preservation-hall-jazz-band"
   ],
   "firstSeen": "2014-04-13",
   "lastSeen": "2017-04-21",
@@ -108325,9 +110045,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d2:tripolee:1730:protohype",
    "shambhala-2014:d3:village:0330:protohype"
   ],
-  "firstSeen": "2014-08-09",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2014-08-09",
   "photo": null,
   "links": []
@@ -108426,6 +110147,24 @@
   ],
   "firstSeen": "2012-06-30",
   "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "psychedelic-friendship-bingo",
+  "name": "Psychedelic Friendship Bingo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d1:the-observatory:2300:psychedelic-friendship-bingo",
+   "electric-forest-2014:d2:the-observatory:0000:psychedelic-friendship-bingo",
+   "electric-forest-2014:d3:the-observatory:0015:psychedelic-friendship-bingo",
+   "electric-forest-2014:d4:the-observatory:2245:psychedelic-friendship-bingo"
+  ],
+  "firstSeen": "2014-06-26",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -109701,11 +111440,13 @@
   "billings": [
    "coachella-2015:d3:mojave:1610:rac",
    "coachella-2015:d6:mojave:1610:rac",
+   "electric-forest-2014:d3:forest-stage:0130:rac",
+   "electric-forest-2014:d4:sherwood-court:2100:rac",
    "lollapalooza-2014:d3:the-grove:1530:rac",
    "outside-lands-2017:d1:lands-end:1700:rac",
    "outside-lands-2017:d1:panhandle:1950:rac"
   ],
-  "firstSeen": "2014-08-03",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2017-08-11",
   "photo": null,
   "links": []
@@ -111031,9 +112772,11 @@
   "projects": [],
   "billings": [
    "acl-2015:d2:bmi:1830:rayland-baxter",
+   "electric-forest-2014:d2:forest-stage:1530:rayland-baxter",
+   "electric-forest-2014:d2:the-observatory:2115:rayland-baxter",
    "outside-lands-2014:d1:sutro:1200:rayland-baxter"
   ],
-  "firstSeen": "2014-08-08",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2015-10-03",
   "photo": null,
   "links": []
@@ -113490,9 +115233,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2014:d1:sherwood-court:1730:rising-appalachia",
    "shambhala-2015:d4:grove:2200:rising-appalachia"
   ],
-  "firstSeen": "2015-08-09",
+  "firstSeen": "2014-06-26",
   "lastSeen": "2015-08-09",
   "photo": null,
   "links": []
@@ -113679,6 +115423,7 @@
   "projects": [],
   "billings": [
    "acl-2013:d3:austin-ventures:1320:roadkill-ghost-choir",
+   "electric-forest-2014:d2:forest-stage:2000:roadkill-ghost-choir",
    "lollapalooza-2014:d1:the-grove:1200:roadkill-ghost-choir"
   ],
   "firstSeen": "2013-10-06",
@@ -113902,6 +115647,22 @@
   ],
   "firstSeen": "2022-07-24",
   "lastSeen": "2022-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "robbie-fitzsimmons",
+  "name": "Robbie Fitzsimmons",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:forest-stage:1300:robbie-fitzsimmons",
+   "electric-forest-2014:d4:the-observatory:1515:robbie-fitzsimmons"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -114955,10 +116716,14 @@
    "electric-forest-2013:d3:forest-stage:1630:rosin-coven",
    "electric-forest-2013:d3:the-observatory:1530:rosin-coven",
    "electric-forest-2013:d3:the-observatory:0230:rosin-coven",
-   "electric-forest-2013:d4:the-observatory:1415:rosin-coven"
+   "electric-forest-2013:d4:the-observatory:1415:rosin-coven",
+   "electric-forest-2014:d1:forest-stage:2300:rosin-coven",
+   "electric-forest-2014:d2:the-observatory:1815:rosin-coven",
+   "electric-forest-2014:d3:forest-stage:1900:rosin-coven",
+   "electric-forest-2014:d4:forest-stage:1445:rosin-coven"
   ],
   "firstSeen": "2013-06-27",
-  "lastSeen": "2013-06-30",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -116093,6 +117858,21 @@
   ],
   "firstSeen": "2026-10-09",
   "lastSeen": "2026-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "s-he",
+  "name": "S/HE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d2:forest-stage:1830:s-he"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
   "photo": null,
   "links": []
  },
@@ -117554,6 +119334,21 @@
   "links": []
  },
  {
+  "key": "sango",
+  "name": "Sango",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:jubilee:1945:sango"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "santigold",
   "name": "Santigold",
   "aliases": [
@@ -117755,6 +119550,21 @@
   ],
   "firstSeen": "2026-06-20",
   "lastSeen": "2026-06-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "saritah",
+  "name": "Saritah",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:the-observatory:1645:saritah"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -118440,10 +120250,11 @@
    "acl-2016:d5:samsung:1830:schoolboy-q",
    "coachella-2017:d2:outdoor:2025:schoolboy-q",
    "coachella-2017:d5:outdoor:2025:schoolboy-q",
+   "electric-forest-2014:d3:sherwood-court:1800:schoolboy-q",
    "governors-ball-2017:d1:honda:1845:schoolboy-q",
    "outside-lands-2017:d3:twin-peaks:1840:schoolboy-q"
   ],
-  "firstSeen": "2016-10-01",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2017-08-13",
   "photo": null,
   "links": []
@@ -119714,10 +121525,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d3:outdoor:1510:seun-kuti-and-egypt-80",
-   "coachella-2012:d6:outdoor:1510:seun-kuti-and-egypt-80"
+   "coachella-2012:d6:outdoor:1510:seun-kuti-and-egypt-80",
+   "electric-forest-2015:d3:ranch-arena:1545:seun-kuti-and-egypt-80"
   ],
   "firstSeen": "2012-04-15",
-  "lastSeen": "2012-04-22",
+  "lastSeen": "2015-06-27",
   "photo": null,
   "links": []
  },
@@ -119776,6 +121588,7 @@
    "edc-orlando-2021:d3:kinetic-field:2117:seven-lions",
    "edc-orlando-2023:d3:circuit-grounds:2150:seven-lions",
    "edc-orlando-2025:d3:circuitgrounds:1725:seven-lions-sunset-set",
+   "electric-forest-2014:d4:tripolee:2045:seven-lions",
    "escape-halloween-2024:d2:the-grimm:2325:seven-lions",
    "lollapalooza-2016:d4:perry-s:1630:seven-lions",
    "nocturnal-wonderland-2021:d2:wolves-den:2300:seven-lions",
@@ -119784,7 +121597,7 @@
    "tomorrowland-2019:d1:rose-garden:2000:seven-lions-b2b-kill-the-noise",
    "tomorrowland-2019:d1:youphoria:0000:seven-lions"
   ],
-  "firstSeen": "2016-07-31",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2027-01-01",
   "photo": null,
   "links": []
@@ -121144,9 +122957,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2019:d1:the-sequence:2100:shpongle-simon-posford-live-set"
+   "dreamstate-socal-2019:d1:the-sequence:2100:shpongle-simon-posford-live-set",
+   "electric-forest-2015:d1:ranch-arena:2030:shpongle-simon-posford-dj-set"
   ],
-  "firstSeen": "2019-11-22",
+  "firstSeen": "2015-06-25",
   "lastSeen": "2019-11-22",
   "photo": null,
   "links": []
@@ -122493,9 +124307,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2016:d3:bmi:1800:sister-sparrow-and-the-dirty-birds"
+   "acl-2016:d3:bmi:1800:sister-sparrow-and-the-dirty-birds",
+   "electric-forest-2014:d3:forest-stage:1600:sister-sparrow-and-the-dirty-birds"
   ],
-  "firstSeen": "2016-10-02",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2016-10-02",
   "photo": null,
   "links": []
@@ -122997,6 +124812,7 @@
    "acl-2014:d5:honda:2030:skrillex",
    "coachella-2014:d2:sahara:2325:skrillex",
    "coachella-2014:d5:sahara:2325:skrillex",
+   "electric-forest-2015:d2:ranch-arena:0030:skrillex",
    "lollapalooza-2014:d3:bud-light:2030:skrillex",
    "outside-lands-2012:d3:twin-peaks-hellman-hollow:2030:skrillex",
    "shambhala-2011:d4:pagoda:0100:skrillex",
@@ -123095,9 +124911,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2015:d3:tripolee:1845:skylar-spence",
+   "electric-forest-2015:d3:the-observatory:2245:skylar-spence",
    "lollapalooza-2015:d3:bmi:1745:skylar-spence"
   ],
-  "firstSeen": "2015-08-02",
+  "firstSeen": "2015-06-27",
   "lastSeen": "2015-08-02",
   "photo": null,
   "links": []
@@ -123720,6 +125538,21 @@
   "links": []
  },
  {
+  "key": "slow-magic",
+  "name": "Slow Magic",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:tripolee:1730:slow-magic"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "slowbody",
   "name": "Slowbody",
   "aliases": [
@@ -124194,10 +126027,13 @@
   "billings": [
    "coachella-2017:d1:sahara:1410:snbrn",
    "coachella-2017:d4:sahara:1410:snbrn",
+   "electric-forest-2015:d3:tripolee:2000:snbrn",
+   "electric-forest-2015:d3:forest-stage:1600:snbrn",
+   "electric-forest-2015:d4:forest-stage:1830:snbrn",
    "lollapalooza-2015:d2:perry-s:1300:snbrn",
    "shambhala-2016:d2:pagoda:2100:snbrn"
   ],
-  "firstSeen": "2015-08-01",
+  "firstSeen": "2015-06-27",
   "lastSeen": "2017-04-21",
   "photo": null,
   "links": []
@@ -125372,9 +127208,10 @@
   "billings": [
    "coachella-2016:d3:yuma:1625:soul-clap",
    "coachella-2016:d6:yuma:1625:soul-clap",
+   "electric-forest-2014:d3:tripolee:2300:soul-clap",
    "outside-lands-2015:d1:the-house-by-heineken:1630:wolf-lamb-vs-soul-clap"
   ],
-  "firstSeen": "2015-08-07",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2016-04-24",
   "photo": null,
   "links": []
@@ -125439,6 +127276,21 @@
   ],
   "firstSeen": "2022-07-16",
   "lastSeen": "2023-07-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "soul-visions",
+  "name": "Soul Visions",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d2:forest-stage:0145:soul-visions"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
   "photo": null,
   "links": []
  },
@@ -126541,6 +128393,7 @@
    "acl-2024:d4:ihg-hotels-and-resorts:1730:st-lucia",
    "coachella-2015:d3:coachella:1630:st-lucia",
    "coachella-2015:d6:coachella:1625:st-lucia",
+   "electric-forest-2014:d4:sherwood-court:1915:st-lucia",
    "lollapalooza-2013:d2:the-grove:untimed:st-lucia",
    "lollapalooza-2016:d3:pepsi:1945:st-lucia",
    "outside-lands-2016:d1:lands-end:1525:st-lucia"
@@ -127126,6 +128979,21 @@
   "links": []
  },
  {
+  "key": "stephen-ragga-marley",
+  "name": "Stephen Ragga Marley",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:ranch-arena:1800:stephen-ragga-marley"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "stephen-sanchez",
   "name": "STEPHEN SANCHEZ",
   "aliases": [],
@@ -127231,6 +129099,7 @@
    "beyond-wonderland-socal-2026:d1:queen-s-domain:2340:steve-angello",
    "coachella-2017:d1:sahara:2035:steve-angello",
    "coachella-2017:d4:sahara:2035:steve-angello",
+   "electric-forest-2014:d3:ranch-arena:0030:steve-angello",
    "lollapalooza-2013:d2:perry-s:untimed:steve-angello",
    "tomorrowland-2017:d2:stmpd-rcrds:2200:steve-angello",
    "tomorrowland-2017:d3:mainstage:2200:steve-angello",
@@ -128014,10 +129883,12 @@
   "billings": [
    "electric-forest-2012:d2:sherwood-court:0000:sts9",
    "electric-forest-2012:d3:sherwood-court:0000:sts9",
+   "electric-forest-2014:d2:sherwood-court:2230:sts9",
+   "electric-forest-2014:d3:sherwood-court:0100:sts9",
    "outside-lands-2011:d3:twin-peaks:1815:sts9"
   ],
   "firstSeen": "2011-08-14",
-  "lastSeen": "2012-06-30",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -129218,6 +131089,22 @@
   "links": []
  },
  {
+  "key": "superhuman-happiness",
+  "name": "Superhuman Happiness",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:the-observatory:2245:superhuman-happiness",
+   "electric-forest-2015:d2:sherwood-court:1700:superhuman-happiness"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "superjane",
   "name": "SUPERJANE",
   "aliases": [],
@@ -130266,6 +132153,21 @@
   "links": []
  },
  {
+  "key": "t-hardy-morris",
+  "name": "T. Hardy Morris",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:the-observatory:1645:t-hardy-morris"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "t-pain",
   "name": "T-PAIN",
   "aliases": [],
@@ -130610,6 +132512,21 @@
   ],
   "firstSeen": "2015-04-11",
   "lastSeen": "2023-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "talia-keys",
+  "name": "Talia Keys",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:the-observatory:1515:talia-keys"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -131077,6 +132994,22 @@
   ],
   "firstSeen": "2024-10-25",
   "lastSeen": "2025-10-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tauk",
+  "name": "TAUK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:jubilee:1645:tauk",
+   "electric-forest-2015:d4:jubilee:2130:tauk"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -131634,6 +133567,21 @@
   ],
   "firstSeen": "2016-08-06",
   "lastSeen": "2016-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "teengirl-fantasy",
+  "name": "Teengirl Fantasy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d3:the-observatory:2115:teengirl-fantasy"
+  ],
+  "firstSeen": "2015-06-27",
+  "lastSeen": "2015-06-27",
   "photo": null,
   "links": []
  },
@@ -132361,6 +134309,23 @@
   ],
   "firstSeen": "2026-06-20",
   "lastSeen": "2026-06-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-accidentals",
+  "name": "The Accidentals",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:the-observatory:1800:the-accidentals",
+   "electric-forest-2015:d3:jubilee:1515:the-accidentals",
+   "electric-forest-2015:d4:jubilee:1515:the-accidentals"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -133914,10 +135879,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "electric-forest-2013:d4:tripolee:1430:the-floozies"
+   "electric-forest-2013:d4:tripolee:1430:the-floozies",
+   "electric-forest-2014:d3:sherwood-court:1615:the-floozies"
   ],
   "firstSeen": "2013-06-30",
-  "lastSeen": "2013-06-30",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -134036,10 +136002,32 @@
    "electric-forest-2013:d4:forest-stage:1330:the-fungineers",
    "electric-forest-2013:d4:the-observatory:1500:the-fungineers",
    "electric-forest-2013:d4:the-observatory:2030:the-fungineers",
-   "electric-forest-2013:d4:the-observatory:2300:the-fungineers"
+   "electric-forest-2013:d4:the-observatory:2300:the-fungineers",
+   "electric-forest-2014:d1:the-observatory:2000:the-fungineers",
+   "electric-forest-2014:d2:the-observatory:2230:the-fungineers",
+   "electric-forest-2014:d3:the-observatory:2115:the-fungineers",
+   "electric-forest-2014:d4:the-observatory:1945:the-fungineers"
   ],
   "firstSeen": "2013-06-27",
-  "lastSeen": "2013-06-30",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-fungineers-and-bubble-gutter",
+  "name": "The Fungineers & Bubble Gutter",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:the-observatory:0030:the-fungineers-and-bubble-gutter",
+   "electric-forest-2015:d2:the-observatory:0000:the-fungineers-and-bubble-gutter",
+   "electric-forest-2015:d3:the-observatory:0015:the-fungineers-and-bubble-gutter",
+   "electric-forest-2015:d4:the-observatory:2315:the-fungineers-and-bubble-gutter"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -134052,6 +136040,8 @@
   "projects": [],
   "billings": [
    "coachella-2016:d2:do-lab:1500:the-funk-hunters",
+   "electric-forest-2015:d2:the-observatory:0115:the-funk-hunters",
+   "electric-forest-2015:d3:jubilee:2145:the-funk-hunters-feat-chali-2na",
    "shambhala-2011:d1:rock-pit:1400:the-funk-hunters",
    "shambhala-2011:d3:fractal-forest:1730:the-funk-hunters",
    "shambhala-2012:d2:fractal-forest:2200:the-funk-hunters-a-v-set",
@@ -134200,6 +136190,24 @@
   "links": []
  },
  {
+  "key": "the-gentlemen-callers",
+  "name": "The Gentlemen Callers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:the-hangar:1800:the-gentlemen-callers",
+   "electric-forest-2015:d2:the-hangar:1900:the-gentlemen-callers",
+   "electric-forest-2015:d3:the-hangar:2230:the-gentlemen-callers",
+   "electric-forest-2015:d4:the-hangar:1900:the-gentlemen-callers"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-ghost-of-a-saber-tooth-tiger",
   "name": "The Ghost of a Saber Tooth Tiger",
   "aliases": [],
@@ -134244,6 +136252,7 @@
    "acl-2014:d4:miller-lite:1915:the-glitch-mob",
    "coachella-2014:d1:sahara:1930:the-glitch-mob",
    "coachella-2014:d4:sahara:1930:the-glitch-mob",
+   "electric-forest-2014:d1:ranch-arena:2215:the-glitch-mob",
    "governors-ball-2018:d1:american-eagle-stage:2000:the-glitch-mob",
    "lollapalooza-2014:d1:perry-s:1915:the-glitch-mob",
    "nocturnal-wonderland-2021:d2:wolves-den:2000:the-glitch-mob"
@@ -134408,6 +136417,21 @@
   ],
   "firstSeen": "2012-04-14",
   "lastSeen": "2017-10-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-heard",
+  "name": "The Heard",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:sherwood-court:1545:the-heard"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -134621,6 +136645,21 @@
   ],
   "firstSeen": "2022-10-14",
   "lastSeen": "2025-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-imagine-nation",
+  "name": "The Imagine Nation",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:forest-stage:1600:the-imagine-nation"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
   "photo": null,
   "links": []
  },
@@ -135608,6 +137647,23 @@
   "links": []
  },
  {
+  "key": "the-motet",
+  "name": "The Motet",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:sherwood-court:1900:the-motet",
+   "electric-forest-2015:d2:jubilee:0100:the-motet-mixtape-1975",
+   "electric-forest-2015:d4:sherwood-court:0030:big-gigantic-feat-the-motet"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-mother-hips",
   "name": "The Mother Hips",
   "aliases": [],
@@ -135679,6 +137735,21 @@
   ],
   "firstSeen": "2013-08-04",
   "lastSeen": "2013-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-ms-lauryn-hill-incident",
+  "name": "The Ms. Lauryn Hill Incident",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:ranch-arena:2145:the-ms-lauryn-hill-incident"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -136407,6 +138478,22 @@
   "links": []
  },
  {
+  "key": "the-ragbirds",
+  "name": "The Ragbirds",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:ranch-arena:1530:the-ragbirds",
+   "electric-forest-2015:d3:jubilee:2015:the-ragbirds"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-range",
   "name": "The Range",
   "aliases": [],
@@ -136531,10 +138618,11 @@
    "acl-2017:d4:honda:untimed:the-revivalists",
    "acl-2023:d1:ihg-hotels-and-resorts:1910:the-revivalists",
    "acl-2023:d4:ihg-hotels-and-resorts:1910:the-revivalists",
+   "electric-forest-2014:d2:sherwood-court:1530:the-revivalists",
    "lollapalooza-2019:d4:t-mobile:untimed:the-revivalists",
    "outside-lands-2015:d1:panhandle:1455:the-revivalists"
   ],
-  "firstSeen": "2015-08-07",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2026-06-26",
   "photo": null,
   "links": []
@@ -136766,6 +138854,21 @@
   ],
   "firstSeen": "2014-08-09",
   "lastSeen": "2014-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-shadowboxers",
+  "name": "The Shadowboxers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:the-hangar:1730:the-shadowboxers"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -137086,10 +139189,16 @@
    "electric-forest-2012:d4:ranch-arena:1845:the-string-cheese-incident",
    "electric-forest-2013:d2:ranch-arena:2230:the-string-cheese-incident",
    "electric-forest-2013:d3:ranch-arena:2030:the-string-cheese-incident",
-   "electric-forest-2013:d4:ranch-arena:1845:the-string-cheese-incident"
+   "electric-forest-2013:d4:ranch-arena:1845:the-string-cheese-incident",
+   "electric-forest-2014:d2:ranch-arena:2000:the-string-cheese-incident",
+   "electric-forest-2014:d3:ranch-arena:2015:the-string-cheese-incident",
+   "electric-forest-2014:d4:ranch-arena:2030:the-string-cheese-incident",
+   "electric-forest-2015:d2:ranch-arena:2000:the-string-cheese-incident",
+   "electric-forest-2015:d3:ranch-arena:2015:the-string-cheese-incident",
+   "electric-forest-2015:d4:ranch-arena:2030:the-string-cheese-incident"
   ],
   "firstSeen": "2012-06-29",
-  "lastSeen": "2013-06-30",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -137423,6 +139532,26 @@
   "links": []
  },
  {
+  "key": "the-unsheathed",
+  "name": "The Unsheathed!",
+  "aliases": [
+   "The UNSHEATHED!"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:tripolee:1345:the-unsheathed",
+   "electric-forest-2015:d2:forest-stage:1530:the-unsheathed",
+   "electric-forest-2015:d3:forest-stage:1300:the-unsheathed",
+   "electric-forest-2015:d4:tripolee:1315:the-unsheathed"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-upbeats",
   "name": "The Upbeats",
   "aliases": [],
@@ -137686,10 +139815,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "electric-forest-2013:d1:sherwood-court:1915:the-werks"
+   "electric-forest-2013:d1:sherwood-court:1915:the-werks",
+   "electric-forest-2015:d3:sherwood-court:1945:the-werks"
   ],
   "firstSeen": "2013-06-27",
-  "lastSeen": "2013-06-27",
+  "lastSeen": "2015-06-27",
   "photo": null,
   "links": []
  },
@@ -139669,9 +141799,11 @@
    "coachella-2016:d6:sahara:1650:tokimonsta",
    "edc-las-vegas-2025:d3:cosmic-meadow:2100:tokimonsta",
    "edc-las-vegas-2025:d3:metaphoenix:0030:tokimonsta",
+   "electric-forest-2015:d4:tripolee:1815:tokimonsta",
+   "electric-forest-2015:d4:forest-stage:2115:tokimonsta",
    "outside-lands-2016:d1:panhandle:1630:tokimonsta"
   ],
-  "firstSeen": "2016-04-17",
+  "firstSeen": "2015-06-28",
   "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
@@ -140434,6 +142566,21 @@
   "links": []
  },
  {
+  "key": "topher-jones",
+  "name": "Topher Jones",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:forest-stage:2030:topher-jones"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "topic",
   "name": "Topic",
   "aliases": [],
@@ -141081,6 +143228,21 @@
   "links": []
  },
  {
+  "key": "trevor-hall",
+  "name": "Trevor Hall",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d2:jubilee:1830:trevor-hall"
+  ],
+  "firstSeen": "2015-06-26",
+  "lastSeen": "2015-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "triceradrops",
   "name": "Triceradrops",
   "aliases": [],
@@ -141264,9 +143426,10 @@
   "billings": [
    "coachella-2015:d1:sahara:1430:trippy-turtle",
    "coachella-2015:d4:sahara:1435:trippy-turtle",
+   "electric-forest-2014:d4:tripolee:1545:trippy-turtle",
    "nocturnal-wonderland-2017:d1:labyrinth:0100:trippy-turtle"
   ],
-  "firstSeen": "2015-04-10",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2017-09-15",
   "photo": null,
   "links": []
@@ -142545,9 +144708,10 @@
    "coachella-2015:d5:mojave:2130:tycho",
    "coachella-2017:d2:outdoor:1905:tycho",
    "coachella-2017:d5:outdoor:1905:tycho",
+   "electric-forest-2014:d4:sherwood-court:2245:tycho",
    "outside-lands-2014:d2:twin-peaks:1540:tycho"
   ],
-  "firstSeen": "2014-08-09",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2017-04-22",
   "photo": null,
   "links": []
@@ -143096,6 +145260,23 @@
   "links": []
  },
  {
+  "key": "umphrey-s-mcgee",
+  "name": "Umphrey's McGee",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d1:sherwood-court:2245:umphrey-s-mcgee",
+   "electric-forest-2014:d1:sherwood-court:0030:umphrey-s-mcgee",
+   "electric-forest-2014:d2:sherwood-court:0030:umphrey-s-mcgee"
+  ],
+  "firstSeen": "2014-06-26",
+  "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "uncle-jumbo",
   "name": "UNCLE JUMBO",
   "aliases": [],
@@ -143465,15 +145646,18 @@
  {
   "key": "until-the-ribbon-breaks",
   "name": "Until the Ribbon Breaks",
-  "aliases": [],
+  "aliases": [
+   "Until The Ribbon Breaks"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2015:d2:gobi:1145:until-the-ribbon-breaks",
-   "coachella-2015:d5:gobi:1145:until-the-ribbon-breaks"
+   "coachella-2015:d5:gobi:1145:until-the-ribbon-breaks",
+   "electric-forest-2014:d3:forest-stage:2215:until-the-ribbon-breaks"
   ],
-  "firstSeen": "2015-04-11",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-04-18",
   "photo": null,
   "links": []
@@ -144067,6 +146251,21 @@
   "links": []
  },
  {
+  "key": "vaski",
+  "name": "Vaski",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:forest-stage:2000:vaski"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vastive",
   "name": "Vastive",
   "aliases": [
@@ -144507,6 +146706,23 @@
   ],
   "firstSeen": "2023-11-11",
   "lastSeen": "2023-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vibe-street",
+  "name": "Vibe Street",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:forest-stage:1700:vibe-street",
+   "electric-forest-2015:d2:forest-stage:1400:vibe-street",
+   "electric-forest-2015:d3:tripolee:1345:vibe-street"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-27",
   "photo": null,
   "links": []
  },
@@ -145679,6 +147895,24 @@
   ],
   "firstSeen": "2012-08-10",
   "lastSeen": "2012-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vourteque",
+  "name": "Vourteque",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d1:the-hangar:1600:vourteque",
+   "electric-forest-2015:d2:the-hangar:2030:vourteque",
+   "electric-forest-2015:d3:the-hangar:2045:vourteque",
+   "electric-forest-2015:d4:the-hangar:1430:vourteque"
+  ],
+  "firstSeen": "2015-06-25",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -147396,6 +149630,7 @@
    "coachella-2015:d6:sahara:1535:what-so-not",
    "coachella-2017:d3:gobi:2305:what-so-not",
    "coachella-2017:d6:gobi:2305:what-so-not",
+   "electric-forest-2014:d4:tripolee:1930:what-so-not",
    "escape-halloween-2019:d2:sanitarium:2245:what-so-not",
    "escape-halloween-2025:d2:the-warehouse:0000:what-so-not",
    "lollapalooza-2015:d1:perry-s:1515:what-so-not",
@@ -147403,7 +149638,7 @@
    "shambhala-2016:d4:pagoda:0230:what-so-not",
    "tomorrowland-2022:d2:crystal-garden:1830:what-so-not"
   ],
-  "firstSeen": "2014-08-09",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2025-11-01",
   "photo": null,
   "links": []
@@ -148187,9 +150422,10 @@
    "edc-orlando-2022:d1:circuit-grounds:1915:wilkinson",
    "edc-orlando-2023:d2:circuit-grounds:1900:wilkinson",
    "edc-orlando-2025:d3:stereobloom:2115:wilkinson",
+   "electric-forest-2014:d2:tripolee:1930:wilkinson",
    "tomorrowland-2017:d6:star-warz-invites-ram-records:2200:wilkinson-ft-mc-ad-apt"
   ],
-  "firstSeen": "2017-07-30",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2026-06-27",
   "photo": null,
   "links": []
@@ -148700,10 +150936,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "electric-forest-2015:d4:tripolee:2315:wiwek",
    "tomorrowland-2017:d2:jacked:0000:wiwek",
    "tomorrowland-2018:d5:youphoria:2150:wiwek-b2b-juyen-sebulba"
   ],
-  "firstSeen": "2017-07-22",
+  "firstSeen": "2015-06-28",
   "lastSeen": "2018-07-28",
   "photo": null,
   "links": []
@@ -149246,6 +151483,21 @@
   "links": []
  },
  {
+  "key": "woven-tangles",
+  "name": "Woven Tangles",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:the-observatory:1515:woven-tangles"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wrabel",
   "name": "Wrabel",
   "aliases": [],
@@ -149720,6 +151972,21 @@
   ],
   "firstSeen": "2017-08-06",
   "lastSeen": "2017-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "xavier-rudd",
+  "name": "Xavier Rudd",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2014:d3:ranch-arena:1545:xavier-rudd"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -150569,6 +152836,21 @@
   "links": []
  },
  {
+  "key": "yojimbo",
+  "name": "Yojimbo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:the-observatory:1815:yojimbo"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "yokai",
   "name": "Yokai",
   "aliases": [
@@ -150648,6 +152930,21 @@
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2022-05-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "yonder-mountain-string-band",
+  "name": "Yonder Mountain String Band",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "electric-forest-2015:d4:ranch-arena:1815:yonder-mountain-string-band"
+  ],
+  "firstSeen": "2015-06-28",
+  "lastSeen": "2015-06-28",
   "photo": null,
   "links": []
  },
@@ -151524,6 +153821,7 @@
    "edc-orlando-2021:d1:circuit-grounds:2245:zedd",
    "edc-orlando-2023:d2:kinetic-field:2232:zedd",
    "edc-orlando-2025:d2:kineticfield:2223:zedd",
+   "electric-forest-2014:d2:ranch-arena:0030:zedd",
    "escape-halloween-2017:d2:ghouls-graveyard:2300:zedd",
    "escape-halloween-2021:d2:the-grimm:0045:zedd",
    "lollapalooza-2014:d1:perry-s:2030:zedd",
@@ -151555,6 +153853,7 @@
    "edc-orlando-2022:d1:circuit-grounds:2245:zeds-dead",
    "edc-orlando-2024:d1:circuit-grounds:2245:zeds-dead",
    "electric-forest-2012:d2:tripolee:2345:zeds-dead",
+   "electric-forest-2014:d1:ranch-arena:0000:zeds-dead",
    "lollapalooza-2017:d4:perry-s:2030:zeds-dead",
    "nocturnal-wonderland-2019:d1:labyrinth:2300:zeds-dead",
    "shambhala-2011:d4:pagoda:2300:zeds-dead",
@@ -152081,10 +154380,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "electric-forest-2012:d3:sherwood-court:1600:zoogma"
+   "electric-forest-2012:d3:sherwood-court:1600:zoogma",
+   "electric-forest-2014:d2:sherwood-court:1715:zoogma"
   ],
   "firstSeen": "2012-06-30",
-  "lastSeen": "2012-06-30",
+  "lastSeen": "2014-06-27",
   "photo": null,
   "links": []
  },

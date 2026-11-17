@@ -187,6 +187,14 @@ export const EDITIONS = {
   "electric-forest-2013": { festivalId: "electric-forest", name: "Electric Forest 2013", year: 2013,
     timezone: "America/Detroit", rolloverHour: 6, method: "official_sources",
     dates: [["2013-06-27", "Thursday"], ["2013-06-28", "Friday"], ["2013-06-29", "Saturday"], ["2013-06-30", "Sunday"]] },
+  // 2014 and 2015 read from the festival's own Scheduler (format
+  // "ef-scheduler"): one row per stage, each set a block on a minute scale.
+  "electric-forest-2014": { festivalId: "electric-forest", name: "Electric Forest 2014", year: 2014,
+    timezone: "America/Detroit", rolloverHour: 6, method: "official_sources",
+    dates: [["2014-06-26", "Thursday"], ["2014-06-27", "Friday"], ["2014-06-28", "Saturday"], ["2014-06-29", "Sunday"]] },
+  "electric-forest-2015": { festivalId: "electric-forest", name: "Electric Forest 2015", year: 2015,
+    timezone: "America/Detroit", rolloverHour: 6, method: "official_sources",
+    dates: [["2015-06-25", "Thursday"], ["2015-06-26", "Friday"], ["2015-06-27", "Saturday"], ["2015-06-28", "Sunday"]] },
   // Coachella's own lineup page (coachella.com/lineup/): one card per act
   // with each set's date, start and stage, and no end time, so every set is
   // open-ended. 2016's page prints both weekends; 2014's and 2015's print
@@ -530,6 +538,9 @@ export const PROGRAMME = {
   "electric-forest-2013": ["Love Bomb Yoga Flow with Mary Clare Sweet", "Magic Breath with Mary Clare Sweet", "Cosmic Con with Mary Clare Sweet",
     "Drum Workshop w/ Kodi", "Luna Breeze's Hula Hoop Workshop", "Hoop Troupe Showcase", "Bell's presents Kyle Hollingsworth's Brewru Experience",
     "Atmospheric Entertainment by Quixotic"],
+  "electric-forest-2014": ["Kyle Hollingsworth's Brewru Experience", "Hoop Troupe Showcase"],
+  "electric-forest-2015": ["Yoga with Hannah Muse", "Hoop Troupe Showcase", "Group Hug World Record Attempt Hosted by Lafa Taylor",
+    "Bell's Brewery Tasting at Sherwood Court Bar"],
   // Shambhala's schedule tables print its programme in the same stage
   // columns as the sets: ceremonies, classes, workshops, a fashion show, a
   // band changeover and a circus act, each read on the archived page.
