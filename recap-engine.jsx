@@ -367,6 +367,8 @@ async function _renderHeroPreview(artist) {
       });
       const c = _drawHeroCard(artist, img);
       c.getContext("2d").getImageData(0, 0, 1, 1);
+      // A licensed ledger photo carries its credit to whoever shows the canvas.
+      c._photoCredit = { author: rec.author, sourceUrl: rec.sourceUrl, license: rec.license, licenseUrl: rec.licenseUrl, changes: "Cropped" };
       return c;
     } catch {}
   }

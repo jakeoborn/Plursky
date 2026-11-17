@@ -1775,6 +1775,78 @@
    }
   },
   {
+   "id": "electric-forest-2015",
+   "festivalId": "electric-forest",
+   "festivalName": "Electric Forest",
+   "name": "Electric Forest 2015",
+   "year": 2015,
+   "timezone": "America/Detroit",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-06-25",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2015-06-26",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2015-06-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2015-06-28",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 153,
+    "sets": 203
+   }
+  },
+  {
+   "id": "electric-forest-2014",
+   "festivalId": "electric-forest",
+   "festivalName": "Electric Forest",
+   "name": "Electric Forest 2014",
+   "year": 2014,
+   "timezone": "America/Detroit",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-06-26",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2014-06-27",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2014-06-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2014-06-29",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 118,
+    "sets": 138
+   }
+  },
+  {
    "id": "electric-forest-2013",
    "festivalId": "electric-forest",
    "festivalName": "Electric Forest",

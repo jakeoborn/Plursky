@@ -362,6 +362,12 @@ function officialSources(e, meta, p) {
         // Outside Lands' 2010-2011 planner prints no day tab: it writes each
         // set's start with its date as data ("2011-08-12 12:00:00").
         if (c.printed !== date || !String(c.firstStart).startsWith(date + " ")) p.push(`${tag}: the page's data writes "${c.printed}" (first start ${c.firstStart}), not ${date}`);
+      } else if (c.tabDate) {
+        // Electric Forest's 2014-2015 Scheduler tab prints the month and day
+        // ("June 25") and carries its date as data-target.
+        const [, m, d] = date.split("-").map(Number);
+        const md = `${new Date(date + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", timeZone: "UTC" })} ${d}`;
+        if (c.tabDate !== date || c.printed !== md) p.push(`${tag}: the page's day tab "${c.printed}" (${c.tabDate}) does not print ${date}`);
       } else if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
       // Outside Lands' grid prints no am/pm: the day's meridiem comes from one
       // act's own page on the official site, which must print this day.

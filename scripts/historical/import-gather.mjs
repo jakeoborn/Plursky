@@ -31,7 +31,7 @@ import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { EDITIONS } from "./editions.mjs";
+import { EDITIONS, PROGRAMME } from "./editions.mjs";
 import { fetchCapture, listCaptures } from "./wayback.mjs";
 import { citeToken, postSlides, setTimesGraphics, sameGraphic, receiptGaps } from "./lib.mjs";
 import { parseDay } from "../fetch-insomniac-settimes.mjs";
@@ -44,6 +44,7 @@ import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./coache
 import { parseShambhala } from "./shambhala-schedule.mjs";
 import { parseDoStuff, parseDoStuffBand, timeDay } from "./dostuff-schedule.mjs";
 import { parseMyScheduler, restoreSets } from "./myscheduler-schedule.mjs";
+import { parseEfScheduler } from "./ef-scheduler-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
@@ -160,7 +161,7 @@ export async function importGather(id, dir) {
     }
     const date = ed.dates[+r.day - 1]?.[0];
     if (r.date !== date) throw new Error(`row ${r.artist}: day ${r.day} is ${r.date}, the edition says ${date}`);
-    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }), ...(ex.incomplete && { incomplete: true }), ...(ex.comedy && { comedy: true }), ...(ex.food && { food: true }) }); continue; }
+    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }), ...(ex.incomplete && { incomplete: true }), ...(ex.comedy && { comedy: true }), ...(ex.food && { food: true }), ...(ex.programme && { programme: true }) }); continue; }
     const hits = rc.sources.map((s, i) => [s, i]).filter(([s]) => (r.source_ref || "").includes(s.match)
       && (!s.when?.stage || new RegExp(s.when.stage).test(r.stage)) && (!s.when?.stageNot || !new RegExp(s.when.stageNot).test(r.stage)));
     if (hits.length !== 1) throw new Error(`row d${r.day} ${r.stage} ${r.start} ${r.artist}: ${hits.length} sources match its source_ref`);
@@ -445,6 +446,35 @@ export async function importGather(id, dir) {
             ...(restored.length && { restored: restored.map(x => `${x.undecoded} → ${x.artist}`) }) });
         }
         if (page.unscheduled.length) unscheduledLedger.push({ archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp, acts: page.unscheduled });
+      } else if (s.format === "ef-scheduler") {
+        // One page draws every day: a tab with its date, one row per stage,
+        // each set a block on one minute scale (Electric Forest 2014-2015,
+        // ef-scheduler-schedule.mjs). Every day it prints is the edition's
+        // and is cited. Rows on a programme-only stage, and blocks whose
+        // place disagrees with their printed range, must be the sheet's
+        // excluded rows of that day, one for one.
+        const page = parseEfScheduler(cap.text, { year: ed.year, programme: PROGRAMME[id] || [] });
+        const dayOf = date => ed.dates.findIndex(([d]) => d === date) + 1;
+        const printedDays = page.days.map(d => dayOf(d.date));
+        if (printedDays.some(d => d < 1)) throw new Error(`${s.url} @${s.captureTimestamp}: prints a day that is not the edition's (${page.days.map(d => d.date).join(", ")})`);
+        if (printedDays.join() !== days.join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints days ${printedDays.join(",")}, the sheet cites it for ${days.join(",")}`);
+        const progStages = s.programmeStages || [];
+        for (const d of page.days) {
+          const day = dayOf(d.date);
+          if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day}'s tab prints "${d.label}", the receipt says "${s.printed[day]}"`);
+          const k = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
+          const prog = d.sets.filter(x => progStages.includes(x.stage));
+          for (const [flag, list] of [["programme", prog], ["misprint", d.misprints]]) {
+            const pg = list.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x[flag]).map(k).sort().join("\n");
+            if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${list.length} ${flag} entr(ies), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+          }
+          agree(day, d.sets.filter(x => !prog.includes(x)).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { tabDate: d.date, stages: d.stages.length, axisStart: d.axisStart, pxPerMinute: page.scale,
+            times: "each block's place on the page's minute scale checked against its printed range",
+            ...(prog.length && { programmeShows: prog.length, programmeStages: progStages.filter(x => d.stages.includes(x)) }),
+            ...(d.repeats.length && { drawnTwice: d.repeats.map(x => `${x.artist} (${x.stage} ${x.printed})`) }),
+            ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
+        }
       } else if (s.format === "day-tabs") {
         // Every day is on the page; each day's rows must equal its own pane.
         const panes = parseDayTabs(cap.text);
