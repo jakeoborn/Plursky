@@ -421,6 +421,9 @@ function LandingSpotlight({ ordered, now, plus, onEnter }) {
           const c = f.config;
           const rec = festivalArtFor(c.id);
           const when = _spotlightWhen(f, now);
+          // Full name without the trailing year: "DWP" or "LAN" means nothing
+          // to someone who has not been yet. Long names step down a size.
+          const spotTitle = String(c.name || c.shortName || "").replace(/\s+(19|20)\d{2}$/, "");
           const credit = rec.author && rec.licenseId && rec.licenseUrl
             ? { author: rec.author, sourceUrl: rec.sourcePage, license: rec.licenseId, licenseUrl: rec.licenseUrl, changes: rec.changes }
             : null;
@@ -435,7 +438,7 @@ function LandingSpotlight({ ordered, now, plus, onEnter }) {
                 <span className="spot-scrim" aria-hidden="true" />
                 <span className={`spot-when${when.live ? " live" : ""}`}>{when.live && <i aria-hidden="true" />}{when.label}</span>
                 <span className="spot-text">
-                  <span className="spot-name">{c.shortName || c.name}</span>
+                  <span className={`spot-name${spotTitle.length > 16 ? " long" : ""}`}>{spotTitle}</span>
                   <span className="spot-meta">{c.location}{c.dates ? " · " + c.dates : ""}</span>
                 </span>
               </button>

@@ -420,6 +420,7 @@ function LandingSpotlight({
     var c = f.config;
     var rec = festivalArtFor(c.id);
     var when = _spotlightWhen(f, now);
+    var spotTitle = String(c.name || c.shortName || "").replace(/\s+(19|20)\d{2}$/, "");
     var credit = rec.author && rec.licenseId && rec.licenseUrl ? {
       author: rec.author,
       sourceUrl: rec.sourcePage,
@@ -453,8 +454,8 @@ function LandingSpotlight({
     }), when.label), React.createElement("span", {
       className: "spot-text"
     }, React.createElement("span", {
-      className: "spot-name"
-    }, c.shortName || c.name), React.createElement("span", {
+      className: `spot-name${spotTitle.length > 16 ? " long" : ""}`
+    }, spotTitle), React.createElement("span", {
       className: "spot-meta"
     }, c.location, c.dates ? " · " + c.dates : ""))), credit && typeof PhotoCredit === "function" && React.createElement(PhotoCredit, {
       credit: credit,
