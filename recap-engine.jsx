@@ -345,6 +345,34 @@ function _drawHeroCard(artist, source) {
   return c;
 }
 
+// Onboarding's preview of a set card, before the user has photos of their own.
+// Their own moment wins, as on the real card; otherwise the act's reviewed
+// ledger portrait fills the frame (same origin on plursky.com; asked for with
+// CORS so a mirror that redirects to another host still draws, not taints).
+// On screen only: the ledger allows display, not export (allowExport false),
+// so nothing shares or saves this canvas. _renderHeroCard stays the export.
+async function _renderHeroPreview(artist) {
+  const own = await _heroCardSource(artist);
+  if (own) {
+    const c = _drawHeroCard(artist, own.src);
+    try { own.revoke?.(); } catch {}
+    return c;
+  }
+  const rec = typeof getPermanentArtistImage === "function" ? getPermanentArtistImage(artist.name || "") : null;
+  if (rec && rec.url) {
+    try {
+      const img = await new Promise((res, rej) => {
+        const im = new Image(); im.crossOrigin = "anonymous";
+        im.onload = () => res(im); im.onerror = rej; im.src = rec.url;
+      });
+      const c = _drawHeroCard(artist, img);
+      c.getContext("2d").getImageData(0, 0, 1, 1);
+      return c;
+    } catch {}
+  }
+  return _drawHeroCard(artist, null);
+}
+
 async function _renderHeroCard(artist) {
   const source = await _heroCardSource(artist);
   let canvas = _drawHeroCard(artist, source && source.src);

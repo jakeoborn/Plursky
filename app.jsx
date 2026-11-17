@@ -47,10 +47,17 @@ function VfxParticleField({ count = 14, scale = 1 }) {
 // invented stats or placeholder art), then the festival list. No permission
 // prompts here: name, Spotify and reminders are asked when the user opens
 // Personalize (Home's setup notice, Me), each with one sentence of why.
+// Acts with a reviewed portrait in the ledger come first, so the story shows
+// faces, not initials (Jake, Nov 13: "need photos ... not initials"); then the
+// top of the bill, then the running order. One act per name. `keep` filters the
+// pool first, and acts with no day sort after timed ones.
 function _onbHeadliners(n, keep = () => true) {
   const lineup = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
+  const face = a => (typeof getPermanentArtistImage === "function" && getPermanentArtistImage(a.name)) ? 1 : 0;
+  const seen = new Set();
   return lineup.filter(keep)
-    .sort((a, b) => ((a.day == null) - (b.day == null)) || (b.tier || 0) - (a.tier || 0) || (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
+    .sort((a, b) => ((a.day == null) - (b.day == null)) || (face(b) - face(a)) || (b.tier || 0) - (a.tier || 0) || (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
+    .filter(a => { const k = String(a.name || "").toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; })
     .slice(0, n);
 }
 
@@ -89,7 +96,9 @@ function OnbSchedulePreview() {
   );
 }
 
-// The real hero-card renderer, so onboarding shows exactly what a user keeps.
+// The real hero-card renderer, so onboarding shows the card a user keeps. With
+// none of their own photos yet, the act's ledger portrait stands in, on screen
+// only (_renderHeroPreview), so the story never shows an empty black card.
 function OnbCardPreview({ artists, count = 1 }) {
   const [urls, setUrls] = React.useState([]);
   React.useEffect(() => {
@@ -97,7 +106,7 @@ function OnbCardPreview({ artists, count = 1 }) {
     (async () => {
       for (const a of artists.slice(0, count)) {
         let c = null;
-        try { c = typeof _renderHeroCard === "function" ? await _renderHeroCard(a) : null; } catch {}
+        try { c = typeof _renderHeroPreview === "function" ? await _renderHeroPreview(a) : typeof _renderHeroCard === "function" ? await _renderHeroCard(a) : null; } catch {}
         if (!live || !c) continue;
         const blob = await new Promise(r => c.toBlob(r, "image/png"));
         if (!live || !blob) continue;
@@ -1286,7 +1295,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v627",
+        version: "v634",
       }));
     } catch {}
   }
@@ -1317,7 +1326,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v627
+          Plursky · v634
         </div>
       </div>
     );
