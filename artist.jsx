@@ -902,11 +902,6 @@ function PyroStarburst({ color }) {
   );
 }
 
-// "CC-BY-SA-3.0" → "CC BY-SA 3.0": the ledger's SPDX-style id, as printed.
-function _licenseLabel(id) {
-  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/-DE$/, " DE").replace(/^(Public|Press)-/, "$1 ");
-}
-const _creditLink = { color: "inherit", textDecoration: "underline", textUnderlineOffset: 2 };
 
 function ArtistScreen({ state, setState }) {
   const a = ARTISTS.find(ar => ar.id === state.artist);
@@ -938,7 +933,8 @@ function ArtistScreen({ state, setState }) {
   const heroPhotoMachine = useArtistPhotoMachine(activeName, {
     key: a.id + "|" + activeName,
     canFetch: reason => reason === "mount"
-      && !!(localStorage.getItem("spotify_token") || localStorage.getItem("spotify_refresh_token")),
+      && (!!(localStorage.getItem("spotify_token") || localStorage.getItem("spotify_refresh_token"))
+        || (typeof _photoProxyUsable === "function" && _photoProxyUsable())),
   });
   const heroCacheRec = heroPhotoMachine.rec;
   // heroPhoto is computed further down, with the rest of the hero's state.
@@ -1027,23 +1023,35 @@ function ArtistScreen({ state, setState }) {
       if (cached) { setSpotifyStats(cached); hasCachedStats = true; }
       else setSpotifyStats(null);
     } catch { setSpotifyStats(null); }
-    // A disconnected user gets no photo (the gradient); see the hero chain.
     const ln = activeName.toLowerCase();
     // Skip Spotify network call if we already have both photo and stats cached
     if (heroCacheRec && hasCachedStats) return;
-    if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
+    // A disconnected listener gets the photo from Plursky's photo function
+    // (Spotify, exact name, 24 h); stats need their own token, so none.
+    if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) {
+      if (heroCacheRec) return;
+      let live = true;
+      const viaProxy = typeof _fetchProxyPhoto === "function" ? _fetchProxyPhoto(lookupName) : Promise.resolve(null);
+      viaProxy.then(hit => {
+        if (!live) return;
+        if (hit && lookupName !== activeName) putArtistImage(activeName, hit.url, "spotify", { spotifyId: hit.spotifyId });
+        heroPhotoMachine.report(hit ? hit.url : null);
+      });
+      return () => { live = false; };
+    }
     const ctrl = new AbortController();
     getValidToken().then(token => {
     // The hero machine must not wait in loading: no token means no lookup
     // could be made (none); a failed request below is offline.
     if (!token) { if (!heroCacheRec) heroPhotoMachine.noLookup(); return; }
-    fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(lookupName)}&type=artist&limit=3`, {
+    fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(lookupName)}&type=artist&limit=10`, {
       headers: { Authorization: "Bearer " + token }, signal: ctrl.signal,
     }).then(r => r.ok ? r.json() : null).then(async d => {
-      const ln = activeName.toLowerCase();
       const items = d?.artists?.items || [];
-      const match = items.find(x => x.name.toLowerCase() === ln)
-        || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
+      // Exact name only (chrome.jsx): a near name is another act's face.
+      const match = (typeof _spotifyExactArtist === "function"
+        ? _spotifyExactArtist(items, lookupName) || _spotifyExactArtist(items, activeName)
+        : items.find(x => x.name.toLowerCase() === activeName.toLowerCase())) || null;
       if (!match) { if (!heroCacheRec) heroPhotoMachine.report(null); return; }
       // Photo
       if (!heroCacheRec) {
@@ -1356,14 +1364,8 @@ function ArtistScreen({ state, setState }) {
           name to its deed; "Cropped" is the change notice. One line at 320:
           the ledger caps author length (scripts/lib/artist-photo-ledger.mjs). */}
       {heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && (
-        <div data-artist-photo-credit="1" aria-label={"Photo credit: " + heroCacheRec.author + ", " + _licenseLabel(heroCacheRec.license) + ", cropped"} style={{
-          padding: "8px 18px 0", fontSize: "var(--fs-label)", lineHeight: "16px",
-          color: "var(--text-3)", whiteSpace: "nowrap",
-        }}>
-          <a href={heroCacheRec.sourceUrl} target="_blank" rel="noopener noreferrer" style={_creditLink}>{heroCacheRec.author}</a>
-          {" · "}<a href={heroCacheRec.licenseUrl} target="_blank" rel="noopener noreferrer" style={_creditLink}>{_licenseLabel(heroCacheRec.license)}</a>
-          {" · Cropped"}
-        </div>
+        <PhotoCredit data-artist-photo-credit="1" style={{ padding: "8px 18px 0", whiteSpace: "nowrap" }}
+          credit={{ author: heroCacheRec.author, sourceUrl: heroCacheRec.sourceUrl, license: heroCacheRec.license, licenseUrl: heroCacheRec.licenseUrl, changes: "Cropped" }} />
       )}
 
       {/* B2B artist tabs — one per individual artist */}

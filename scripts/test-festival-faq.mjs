@@ -47,7 +47,7 @@ const NO_TIMES_TAIL = ' The announced lineup is listed on this page; the schedul
 // answer bounded to that provenance.
 const COMMUNITY_NOTE = 'Set times gathered from community sources.';
 const COMMUNITY_TAIL = ', gathered from community sources.';
-let neutralSeen = 0, communitySeen = 0;
+let neutralSeen = 0, communitySeen = 0, countSeen = 0;
 
 const decode = (s) => String(s)
   .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
@@ -152,12 +152,15 @@ for (const id of pages) {
       }
     }
 
-    // A stated artist count must equal the one the lineup section prints.
-    const stated = /^(\d+) artists are announced/.exec(answer);
-    const printed = /(\d+) artists announced\./.exec(text);
+    // A stated act count must equal the one the lineup section prints.
+    // f56: the count is of billing lines, so it reads "acts", never "artists".
+    if (/^\d+ artists (?:are|is) announced/.test(answer)) fail(`${id}: answer counts billing lines as artists`);
+    const stated = /^(\d+) acts? (?:are|is) announced/.exec(answer);
+    const printed = /(\d+) acts? announced\./.exec(text);
     if (stated) {
+      countSeen++;
       if (!printed || printed[1] !== stated[1]) {
-        fail(`${id}: answer says ${stated[1]} artists, page prints ${printed ? printed[1] : 'no count'}`);
+        fail(`${id}: answer says ${stated[1]} acts, page prints ${printed ? printed[1] : 'no count'}`);
       } else ok();
     }
   }
@@ -168,6 +171,7 @@ for (const id of pages) {
 // that branch never ran — and an unexercised rule reads exactly like a
 // satisfied one. This is the dead-control failure mode, so it gets an
 // assertion rather than trust.
+if (!countSeen) fail("no FAQ answer stated an act count: the count check never ran (wording drift?)"); else ok();
 if (!neutralSeen) {
   fail('no page exercised the neutral no-ingested-times branch — the neutrality rule is UNPROVEN, not satisfied');
 } else ok();

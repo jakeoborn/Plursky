@@ -1,0 +1,188 @@
+{
+  "id": "shambhala-2014",
+  "method": "official_sources",
+  "official": "https://www.shambhalamusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2014-08-07",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/schedule-2014/",
+          "archivedUrl": "https://web.archive.org/web/20140826181214/http://www.shambhalamusicfestival.com/schedule-2014/",
+          "captureTimestamp": "20140826181214",
+          "printed": "Thursday",
+          "sha256": "3a0a928822fa7eef1b252ff81e792d29c202371dea5782009c47111f934130b2",
+          "bytes": 148346,
+          "rows": 27,
+          "format": "shambhala-table",
+          "firstSlot": "time_1407405600",
+          "stages": 6,
+          "axis": "10:00AM … 10:00AM",
+          "slots": 49,
+          "openEnded": 26,
+          "printedRanges": [
+            "Deeps vs. Wakcutt: (12-1:30pm)"
+          ],
+          "joined": [
+            "Deeps + \"vs. Wakcutt (12-1:30pm)\""
+          ],
+          "closedBlocks": 2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2014-08-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/schedule-2014/",
+          "archivedUrl": "https://web.archive.org/web/20140826181214/http://www.shambhalamusicfestival.com/schedule-2014/",
+          "captureTimestamp": "20140826181214",
+          "printed": "Friday",
+          "sha256": "3a0a928822fa7eef1b252ff81e792d29c202371dea5782009c47111f934130b2",
+          "bytes": 148346,
+          "rows": 80,
+          "format": "shambhala-table",
+          "firstSlot": "time_1407492000",
+          "stages": 6,
+          "axis": "10:00AM … 10:00AM",
+          "slots": 49,
+          "openEnded": 78,
+          "printedRanges": [
+            "Ragga Jungle Rinse Out: (2-5:15pm)",
+            "Erica Dee: (5:15-5:30pm)"
+          ],
+          "closedBlocks": 8
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2014-08-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/schedule-2014/",
+          "archivedUrl": "https://web.archive.org/web/20140826181214/http://www.shambhalamusicfestival.com/schedule-2014/",
+          "captureTimestamp": "20140826181214",
+          "printed": "Saturday",
+          "sha256": "3a0a928822fa7eef1b252ff81e792d29c202371dea5782009c47111f934130b2",
+          "bytes": 148346,
+          "rows": 75,
+          "format": "shambhala-table",
+          "firstSlot": "time_1407578400",
+          "stages": 6,
+          "axis": "10:00AM … 10:00AM",
+          "slots": 49,
+          "openEnded": 73,
+          "printedRanges": [
+            "The Human Experience: (8:30-9:45pm)",
+            "Subscura: (9:45-10pm)"
+          ],
+          "closedBlocks": 12
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2014-08-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/schedule-2014/",
+          "archivedUrl": "https://web.archive.org/web/20140826181214/http://www.shambhalamusicfestival.com/schedule-2014/",
+          "captureTimestamp": "20140826181214",
+          "printed": "Sunday",
+          "sha256": "3a0a928822fa7eef1b252ff81e792d29c202371dea5782009c47111f934130b2",
+          "bytes": 148346,
+          "rows": 73,
+          "format": "shambhala-table",
+          "firstSlot": "time_1407664800",
+          "stages": 6,
+          "axis": "10:00AM … 10:00AM",
+          "slots": 49,
+          "openEnded": 73,
+          "closedBlocks": 12
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "Grove",
+      "start": "13:00",
+      "end": null,
+      "billing": "Opening Ceremony with Soul Fire Dance",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Village",
+      "start": "14:00",
+      "end": "17:15",
+      "billing": "Ragga Jungle Rinse Out",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Amphitheatre",
+      "start": "12:00",
+      "end": null,
+      "billing": "Fashion Show w/ Sam Demoe",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Village",
+      "start": "13:30",
+      "end": null,
+      "billing": "Hip Hop Showcase - Hosted by Emotionz w/ Blockparents, Vs. Lyndi Lysh & Digs, Northwest Division",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Village",
+      "start": "14:00",
+      "end": null,
+      "billing": "Hip Hop Showcase w/ Grhymes & Attikus, Ashleigh Eymann, Fresh Kils, Degree One (B-Boy Jam)",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Village",
+      "start": "15:00",
+      "end": null,
+      "billing": "Hip Hop Showcase w/ Scott Jackson, Pigeon Hole, Sweatshop Union, Emotionz LIVE BAND SET",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Village",
+      "start": "05:30",
+      "end": null,
+      "billing": "Liquid Soul Sessions w/ PK & Friends",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Fractal Forest",
+      "start": "14:00",
+      "end": null,
+      "billing": "Fractal Funk Jam Hosted by Smalltown DJs",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    }
+  ]
+}

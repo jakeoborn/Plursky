@@ -814,6 +814,35 @@ var FESTIVALS_REGISTRY = [{
   region: "Europe"
 }, {
   config: {
+    id: "edc-lv-2027",
+    officialEvent: {
+      website: "https://lasvegas.edc.com/",
+      tickets: "https://edclasvegas.frontgatetickets.com/",
+      observedAt: "2026-11-16"
+    },
+    name: "EDC Las Vegas 2027",
+    shortName: "EDC Las Vegas",
+    brand: "EDC",
+    tagline: "Two weekends at Las Vegas Motor Speedway",
+    location: "Las Vegas Motor Speedway · Las Vegas, NV",
+    locationShort: "Las Vegas Motor Speedway",
+    dates: "May 14–16 & 21–23, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://lasvegas.edc.com/",
+        observedAt: "2026-11-16"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#ec4899",
+  emoji: "🌼",
+  region: "North America"
+}, {
+  config: {
     id: "tomorrowland-brasil-2027",
     officialEvent: {
       website: "https://brasil.tomorrowland.com/",
@@ -923,6 +952,62 @@ var FESTIVALS_REGISTRY = [{
   available: false,
   accent: "#ef4444",
   emoji: "🏝️",
+  region: "Europe"
+}, {
+  config: {
+    id: "sonar-2027",
+    officialEvent: {
+      website: "https://sonar.es/en",
+      observedAt: "2026-11-12"
+    },
+    name: "Sónar Barcelona 2027",
+    shortName: "Sónar",
+    brand: "Sónar",
+    tagline: "Music, creativity and technology in Barcelona",
+    location: "Barcelona, Spain",
+    locationShort: "Barcelona",
+    dates: "Jun 17–19, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://sonar.es/en",
+        observedAt: "2026-11-12"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#facc15",
+  emoji: "🔊",
+  region: "Europe"
+}, {
+  config: {
+    id: "ozora-2027",
+    officialEvent: {
+      website: "https://ozorafestival.eu/",
+      observedAt: "2026-11-12"
+    },
+    name: "O.Z.O.R.A. Festival 2027",
+    shortName: "O.Z.O.R.A.",
+    brand: "O.Z.O.R.A.",
+    tagline: "A week and more of psytrance in the Hungarian countryside",
+    location: "Hungary",
+    locationShort: "Hungary",
+    dates: "Jul 23, 2027 – Aug 3, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://ozorafestival.eu/",
+        observedAt: "2026-11-12"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#a3e635",
+  emoji: "🍄",
   region: "Europe"
 }, {
   config: {
@@ -1305,25 +1390,56 @@ var FESTIVALS_REGISTRY = [{
       stageId: "amex",
       lat: 30.267233,
       lng: -97.763236,
-      src: "osm"
+      src: "osm",
+      assumed: "satellite 2023, assumed for 2026"
     }, {
       stageId: "miller",
       lat: 30.269017,
       lng: -97.769316,
-      src: "osm"
+      src: "osm",
+      assumed: "satellite 2023, assumed for 2026"
     }, {
       stageId: "tmobile",
       lat: 30.268021,
       lng: -97.770282,
-      src: "osm"
+      src: "osm",
+      assumed: "satellite 2023, assumed for 2026"
     }, {
       stageId: "snapchat",
       lat: 30.266712,
       lng: -97.766540,
-      src: "osm"
+      src: "osm",
+      assumed: "satellite 2023, assumed for 2026"
+    }, {
+      stageId: "titos",
+      lat: 30.267785,
+      lng: -97.765064,
+      src: "osm",
+      assumed: "satellite 2023, assumed for 2026"
+    }, {
+      stageId: "bmi",
+      lat: 30.266537,
+      lng: -97.769236,
+      src: "osm",
+      assumed: "satellite 2023, assumed for 2026"
+    }, {
+      stageId: "beatbox",
+      lat: 30.265399,
+      lng: -97.768634,
+      src: "osm",
+      assumed: "satellite 2023, assumed for 2026"
     }],
     mainStageId: "amex",
     mapImage: "acl-park-2026.webp",
+    mapGeoref: {
+      image: "geo-maps/acl-2026.webp",
+      bounds: [-97.7722556, 30.2628479, -97.7612848, 30.2704815],
+      model: "tps",
+      ties: "map-sources/acl-2026-geo-ties.json",
+      rmsM: 51.6,
+      looRmsM: 51.6,
+      approximate: true
+    },
     mapSource: {
       url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map",
       observedAt: "2026-09-25",
@@ -1336,41 +1452,6 @@ var FESTIVALS_REGISTRY = [{
   available: true,
   accent: "#e85d2e",
   emoji: "🤠",
-  region: "North America"
-}, {
-  config: {
-    id: "coachella-2027",
-    officialEvent: {
-      website: "https://www.coachella.com/",
-      observedAt: "2026-09-24"
-    },
-    mapSource: {
-      url: "https://www.coachella.com/maps",
-      observedAt: "2026-09-24",
-      mapYear: 2026
-    },
-    name: "Coachella 2027",
-    shortName: "Coachella",
-    brand: "Coachella",
-    tagline: "Two weekends, one polo field",
-    location: "Empire Polo Club · Indio, CA",
-    dates: "Apr 9–18, 2027",
-    year: 2027,
-    print: {
-      accent: "#4E6234",
-      accent2: "#44A1A4",
-      source: {
-        url: "https://media.coachella.com/templates/template10c/css/style.v7.css?t=7522fab35e14c254d8ced93290f5922c",
-        observedAt: "2026-10-09",
-        seenAs: "Site stylesheet token `html { --color-green-2:#4e6234 }`; the default `.c-button` background is an image, `--_button-bg:url(.../coachella-2026/button-bg-green.webp)`, whose sampled mean colour is #496330 (modal bucket #405828), matching that token; page headers use a teal gradient #337190 -> #44a1a4 -> #85cfc4 and link hover is `--color-yellow-1:#ffab37`.",
-        confidence: "medium"
-      },
-      note: "No <meta theme-color> and the 2026 site spreads a 20-colour palette across gradients, so the primary button's olive green is the accent, identified by sampling the button image (sips -> BMP, 27,078 opaque pixels) and matching it to the nearest first-party token."
-    }
-  },
-  available: false,
-  accent: "#ec4899",
-  emoji: "🌵",
   region: "North America"
 }, {
   config: {
@@ -1512,6 +1593,11 @@ function _festivalEventDates(cfg) {
   if (x && MONTHS[x[1]] && MONTHS[x[4]]) return {
     start: ymd(x[1], x[2], x[3]),
     end: ymd(x[4], x[5], x[6])
+  };
+  var one = /^([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || "");
+  if (one && MONTHS[one[1]]) return {
+    start: ymd(one[1], one[2], one[3]),
+    end: ymd(one[1], one[2], one[3])
   };
   var dd = cfg.dayDates && Object.values(cfg.dayDates);
   if (dd && dd.length) {
@@ -2085,6 +2171,8 @@ function _weekendShiftMs(cfg, nowMs, savedIds) {
   if (!(shift > 0)) return 0;
   var now = typeof nowMs === "number" ? nowMs : Date.now();
   if (now >= _w1WrappedMs(cfg, w, shift)) return shift;
+  var chosen = chosenWeekend(cfg);
+  if (chosen) return chosen === "W2" ? shift : 0;
   try {
     if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
     var raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";
@@ -2098,6 +2186,61 @@ function _weekendShiftMs(cfg, nowMs, savedIds) {
     return out;
   } catch {}
   return 0;
+}
+function weekendIsUsersChoice(cfg, artists) {
+  var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  var w = c && c.weekendStartMs;
+  if (c.untimedShortlist === false || !w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return false;
+  var arts = artists || (typeof _DATA_SETS !== "undefined" && _DATA_SETS[c.id] || {}).artists || [];
+  return arts.length > 0 && arts.every(a => !a.weekend || a.weekend === "both");
+}
+function chosenWeekend(cfg) {
+  var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  if (!c || !c.id || !c.weekendStartMs) return null;
+  try {
+    var v = localStorage.getItem(`${c.id}_weekend_v1`);
+    return v === "W1" || v === "W2" ? v : null;
+  } catch {
+    return null;
+  }
+}
+function chooseWeekend(cfg, wk) {
+  var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  if (!c || !c.id || wk !== "W1" && wk !== "W2" || !weekendIsUsersChoice(c)) return false;
+  try {
+    localStorage.setItem(`${c.id}_weekend_v1`, wk);
+  } catch {
+    return false;
+  }
+  _wkMemo = null;
+  _nowCache = null;
+  return true;
+}
+function weekendDatesText(cfg, wk) {
+  var c = cfg || FESTIVAL_CONFIG;
+  var nums = Object.keys(c && c.dayDates || {}).map(Number).sort((a, b) => a - b);
+  if (!nums.length) return "";
+  var sh = (festivalWeekendShifts(c).find(s => s.weekend === wk) || {
+    shift: 0
+  }).shift;
+  var M = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var at = n => {
+    var d = c.dayDates[n];
+    return new Date((typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)) + sh);
+  };
+  var a = at(nums[0]),
+    b = at(nums[nums.length - 1]);
+  var am = M[a.getUTCMonth()],
+    bm = M[b.getUTCMonth()];
+  return am === bm ? `${am} ${a.getUTCDate()}–${b.getUTCDate()}, ${b.getUTCFullYear()}` : `${am} ${a.getUTCDate()} – ${bm} ${b.getUTCDate()}, ${b.getUTCFullYear()}`;
+}
+function lineupHasNoTimes(artists) {
+  var arts = artists || typeof window !== "undefined" && window.ARTISTS || ARTISTS || [];
+  return arts.length > 0 && arts.every(a => !a.start);
+}
+function shortlistMode(cfg, artists) {
+  var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
+  return !!c && c.untimedShortlist !== false && lineupHasNoTimes(artists);
 }
 function activeWeekend(cfg, nowMs, savedIds) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
@@ -2709,6 +2852,41 @@ function attendanceVerdictLabel(v) {
   if (v.verdict === "partial") return v.minutes != null && v.setMin ? `≈ ${r5(v.minutes)} of ${r5(v.setMin)} min` : "Part of the set";
   if (v.verdict === "unknown" && v.caught && v.minutes) return `≈ ${r5(v.minutes)} min`;
   return "";
+}
+function setTrackAppend(entry, fix, gapMs = ATTEND_GAP_MS) {
+  var e = {
+    last: entry && entry.last ? {
+      ...entry.last
+    } : null,
+    runs: {}
+  };
+  for (var k of Object.keys(entry && entry.runs || {})) e.runs[k] = entry.runs[k].map(r => ({
+    from: r.from,
+    to: r.to,
+    src: r.src
+  }));
+  if (!fix || typeof fix.ms !== "number" || !isFinite(fix.ms) || fix.stageId == null) return e;
+  if (e.last && fix.ms < e.last.ms) return e;
+  var runs = e.runs[fix.stageId] = e.runs[fix.stageId] || [];
+  var top = runs[runs.length - 1];
+  if (e.last && e.last.stageId === fix.stageId && top && fix.ms - top.to <= gapMs) top.to = fix.ms;else runs.push({
+    from: fix.ms,
+    to: fix.ms,
+    src: "gps"
+  });
+  e.last = {
+    stageId: fix.stageId,
+    ms: fix.ms
+  };
+  return e;
+}
+function setTrackEligibility(cfg, nowMs) {
+  if (!cfg) return "no-festival";
+  if (!attendEvidenceAnchors(cfg).length) return "no-stages";
+  var phase = typeof _festivalPhase === "function" ? _festivalPhase({
+    config: cfg
+  }, nowMs) : "upcoming";
+  return phase === "live" ? "live" : phase === "ended" ? "ended" : "not-live";
 }
 function _scheduleActs(artists) {
   return (artists || []).map(a => {
@@ -4198,7 +4376,7 @@ var UNPLACED_STAGE = {
   color: "#8a8580",
   size: 1
 };
-var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026", "tomorrowland-thailand-2026"];
+var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026", "tomorrowland-thailand-2026", "groove-cruise-2027", "day-zero-tulum-2027", "coachella-2027", "time-warp-2027"];
 var _WAVE1 = typeof window !== "undefined" && window.PLURSKY_FESTIVALS || {};
 for (var _id of _WAVE1_IDS) {
   var _f = _WAVE1[_id];

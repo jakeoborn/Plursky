@@ -1,0 +1,236 @@
+{
+  "id": "shambhala-2016",
+  "method": "official_sources",
+  "official": "https://www.shambhalamusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2016-08-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2016-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20160823070223/http://www.shambhalamusicfestival.com/2016-schedule/",
+          "captureTimestamp": "20160823070223",
+          "printed": "Thursday",
+          "sha256": "2b5da3f96fa213adbf3eda22fd4dced6f5f5999ab5b78d8721bda909577d3a7a",
+          "bytes": 142448,
+          "rows": 29,
+          "format": "shambhala-table",
+          "firstSlot": "time_1470304800",
+          "stages": 6,
+          "axis": "10:00AM … 10:00AM",
+          "slots": 49,
+          "openEnded": 29,
+          "closedBlocks": 2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2016-08-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2016-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20160823070223/http://www.shambhalamusicfestival.com/2016-schedule/",
+          "captureTimestamp": "20160823070223",
+          "printed": "Friday",
+          "sha256": "2b5da3f96fa213adbf3eda22fd4dced6f5f5999ab5b78d8721bda909577d3a7a",
+          "bytes": 142448,
+          "rows": 72,
+          "format": "shambhala-table",
+          "firstSlot": "time_1470391200",
+          "stages": 6,
+          "axis": "10:00AM … 10:00AM",
+          "slots": 49,
+          "openEnded": 70,
+          "printedRanges": [
+            "Michael Red: (4:30-5:45am)",
+            "Goopsteppa: (5:45-7am)"
+          ],
+          "closedBlocks": 8
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2016-08-06",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2016-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20160823070223/http://www.shambhalamusicfestival.com/2016-schedule/",
+          "captureTimestamp": "20160823070223",
+          "printed": "Saturday",
+          "sha256": "2b5da3f96fa213adbf3eda22fd4dced6f5f5999ab5b78d8721bda909577d3a7a",
+          "bytes": 142448,
+          "rows": 72,
+          "format": "shambhala-table",
+          "firstSlot": "time_1470477600",
+          "stages": 6,
+          "axis": "10:00AM … 10:00AM",
+          "slots": 49,
+          "openEnded": 68,
+          "printedRanges": [
+            "Autograf: (10-11:20pm)",
+            "Mat The Alien: (11:20-11:40pm)",
+            "Beats Antique ft. David Satori & Tommy Sidecar: (11:40pm-1am)",
+            "The Gaff ft. Mat The Alien: (6:30-8pm)"
+          ],
+          "joined": [
+            "The Gaff + \"ft. Mat The Alien (6:30-8pm)\""
+          ],
+          "closedBlocks": 12
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2016-08-07",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.shambhalamusicfestival.com/2016-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20160823070223/http://www.shambhalamusicfestival.com/2016-schedule/",
+          "captureTimestamp": "20160823070223",
+          "printed": "Sunday",
+          "sha256": "2b5da3f96fa213adbf3eda22fd4dced6f5f5999ab5b78d8721bda909577d3a7a",
+          "bytes": 142448,
+          "rows": 69,
+          "format": "shambhala-table",
+          "firstSlot": "time_1470564000",
+          "stages": 6,
+          "axis": "10:00AM … 12:00PM",
+          "slots": 53,
+          "openEnded": 67,
+          "printedRanges": [
+            "Jpod The Beat Chef: (9:30-10:45pm)",
+            "Circus Acts Insomniacs: (10:45-11pm)"
+          ],
+          "closedBlocks": 12
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Living Room",
+      "start": "11:00",
+      "end": null,
+      "billing": "Classical Hour",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "Living Room",
+      "start": "12:00",
+      "end": null,
+      "billing": "Yoga of Bass w/ FreQ Nasty & Claire",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "Amphitheatre",
+      "start": "11:30",
+      "end": null,
+      "billing": "Hosted by Def3 & ThinkTank",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Living Room",
+      "start": "11:00",
+      "end": null,
+      "billing": "SubPac Sound Healing w/ FreQ Nasty",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Grove",
+      "start": "13:00",
+      "end": null,
+      "billing": "Opening Ceremony with Soul Fire Dance",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Village",
+      "start": "15:00",
+      "end": null,
+      "billing": "Ragga Jungle Rinse Out",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Living Room",
+      "start": "11:30",
+      "end": null,
+      "billing": "iLoveHoolaHoops Workshop with FunkConscious",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Amphitheatre",
+      "start": "14:00",
+      "end": null,
+      "billing": "Fashion Fiasco Fantastico w/ DJ Faiith",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Village",
+      "start": "13:30",
+      "end": null,
+      "billing": "Hip Hop Showcase",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Village",
+      "start": "04:30",
+      "end": null,
+      "billing": "Sunrise Liquid Jam",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Living Room",
+      "start": "11:00",
+      "end": null,
+      "billing": "iLoveHoolaHoops Workshop with Dubconscious",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Fractal Forest",
+      "start": "14:30",
+      "end": null,
+      "billing": "Fractal Funk Jam - Hosted by Smalltown DJs",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Grove",
+      "start": "22:45",
+      "end": "23:00",
+      "billing": "Circus Acts Insomniacs",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    }
+  ]
+}

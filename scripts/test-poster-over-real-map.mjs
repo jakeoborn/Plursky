@@ -77,7 +77,7 @@ function load(fid, mapSrc = MAP) {
     realStages: REAL_MAP_STAGES, placed: PLACED_STAGES, posterTierFor, _solveMapAffine, geometryVerifiedFor,
     placesChecked: REAL_MAP_PLACES_CHECKED, realAmenities: REAL_MAP_AMENITIES, amenities: AMENITIES,
     unchecked: POSTER_OPACITY_UNCHECKED, fittedOpacity: POSTER_OPACITY_FITTED, cfg: FESTIVAL_CONFIG, stagesAll: STAGES,
-    artGeorefFor, artGeoref: ART_GEOREF, officialSrc: OFFICIAL_MAP_SRC, maxRms: ARTFIT_MAX_RMS_M,
+    artGeorefFor, artGeoref: ART_GEOREF, officialSrc: OFFICIAL_MAP_SRC, maxRms: ARTFIT_MAX_RMS_M, maxApproxRms: ARTFIT_APPROX_MAX_RMS_M,
     _realMapTarget, _meetTargetFor, _groundsLngLats, _showYou, distMiles })`, ctx);
 }
 
@@ -85,15 +85,19 @@ function load(fid, mapSrc = MAP) {
 // evidence per anchor); edit this table in the same PR that registers them.
 const EXPECTED = {
   checked:   ["summerfest-2026", "lollapalooza-2026", "outside-lands-2026"],
-  unchecked: ["acl-2026", "governors-ball-2026"],
+  unchecked: [],
   // The festival's own art fitted to the ground by street ties
   // (scripts/build-geo-plate.py, map-sources/<id>-geo-ties.json). The ART is
   // placed; stages are not, so these still pin nothing.
   // Jake, 2026-11-12: "let's try to get each map overlayed on top of the real
   // ground" added Ultra, EDC LV, Dreamstate and CRSSD (CRSSD keeps its real
-  // basemap and lays its fitted art on it).
+  // basemap and lays its fitted art on it). Jake, 2026-11-12: "I think we can
+  // make it work with event map over the location it's being held at" added
+  // Escape, ACL and Gov Ball as APPROXIMATE fits (art too far out of
+  // proportion to agree within 15 m, pinned at every tie).
   fitted:    ["edc-orlando-2026", "hard-summer-2026", "iii-points-2026",
-              "ultra-miami-2026", "edc-lv-2026", "dreamstate-socal-2026", "crssd-fall-2026"],
+              "ultra-miami-2026", "edc-lv-2026", "dreamstate-socal-2026", "crssd-fall-2026",
+              "escape-halloween-2026", "acl-2026", "governors-ball-2026"],
 };
 // Festivals whose own official art is fitted to the streets, whatever their
 // tier: the real map lays the warped plate at its measured bounds. A checked
@@ -127,6 +131,11 @@ function fleet(mapSrc) {
     ok(!P.artGeorefFor({ mapGeoref: { ...g, rmsM: P.maxRms + 1 } }), `artGeorefFor: a fit looser than ${P.maxRms} m is accepted`);
     ok(!P.artGeorefFor({ mapGeoref: { ...g, rmsM: undefined } }), "artGeorefFor: a fit with no rms is accepted");
     ok(!P.artGeorefFor({ mapGeoref: { ...g, bounds: [1, 1, -1, 2] } }), "artGeorefFor: inverted bounds are accepted");
+    // An approximate fit gets the looser ceiling, and only when flagged exactly.
+    ok(P.maxApproxRms > P.maxRms, `artGeorefFor: approximate ceiling ${P.maxApproxRms} m must be looser than ${P.maxRms} m`);
+    ok(!!P.artGeorefFor({ mapGeoref: { ...g, rmsM: P.maxRms + 1, approximate: true } }), "artGeorefFor: control — an approximate fit past 15 m is accepted");
+    ok(!P.artGeorefFor({ mapGeoref: { ...g, rmsM: P.maxApproxRms + 1, approximate: true } }), `artGeorefFor: an approximate fit looser than ${P.maxApproxRms} m is accepted`);
+    ok(!P.artGeorefFor({ mapGeoref: { ...g, rmsM: P.maxRms + 1, approximate: "true" } }), "artGeorefFor: a fit flagged approximate by a string is accepted");
   }
   // The active-festival constants agree with the function (one policy).
   // EDC Orlando is gated (it cannot be the active festival); its tier is pinned above.
@@ -168,7 +177,7 @@ const SRC = [
   ["a failed real map holds for the session", /sessionStorage\.getItem\("plursky_realmap_failed"\) === "1"\) return false/],
   ["a failure does not erase the user's choice", s => !/removeItem\("plursky_use_realmap"\)/.test(s)],
   ["the toggle records both choices", /setItem\("plursky_use_realmap", v \? "1" : "0"\)/],
-  ["posture: unplaced pins on the real map read STAGES PENDING", /REAL_MAP_ONLY \|\| useRealMap && !REAL_MAP_PLACES_CHECKED \? useRealMap && POSTER_TIER === "fitted" \? "OFFICIAL MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" \? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING"/],
+  ["posture: unplaced pins on the real map read STAGES PENDING", /REAL_MAP_ONLY \|\| useRealMap && !REAL_MAP_PLACES_CHECKED \? useRealMap && POSTER_TIER === "fitted" \? ART_GEOREF && ART_GEOREF\.approximate \? "APPROX MAP · STAGES PENDING" : "OFFICIAL MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" \? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING"/],
   ["landmarks need checked placement", /SUB_LANDMARKS = REAL_MAP_PLACES_CHECKED \?/],
   ["RealMap gets the checked amenities", /amenities:\s*REAL_MAP_AMENITIES/],
   ["Water/Medical chips follow the map on screen", /has = t => mapAmenities\.some/],
@@ -275,7 +284,10 @@ const MUT = [
   ["tier ignores verification", "if (affine && verified) return \"checked\";", "if (affine) return \"checked\";", "fleet"],
   ["tier ignores the affine", "return affine ? \"unchecked\" : \"none\";", "return \"unchecked\";", "fleet"],
   ["fitted art ignored", "if (artGeorefFor(cfg)) return \"fitted\";", "", "fleet"],
-  ["a loose fit places art", "g.rmsM <= ARTFIT_MAX_RMS_M", "g.rmsM <= 1e9", "fleet"],
+  ["a loose fit places art", ": ARTFIT_MAX_RMS_M;", ": 1e9;", "fleet"],
+  ["an approximate fit places art at any error", "g.approximate === true ? ARTFIT_APPROX_MAX_RMS_M", "g.approximate === true ? 1e9", "fleet"],
+  ["an approximate fit needs no flag", "g.approximate === true ?", "true ?", "fleet"],
+  ["approximate art reads OFFICIAL MAP", "ART_GEOREF.approximate ? \"APPROX MAP", "false ? \"APPROX MAP", "src"],
   ["fitted art placed through the stage affine", "coordinates = ART_GEOREF ? _geoPlateCorners(ART_GEOREF) :", "coordinates = false ? _geoPlateCorners(ART_GEOREF) :", "src"],
   ["fitted art loads the raw poster", "OFFICIAL_MAP_SRC = ART_GEOREF ? ART_GEOREF.image : FESTIVAL_CONFIG.mapImage;", "OFFICIAL_MAP_SRC = FESTIVAL_CONFIG.mapImage;", "fleet"],
   ["no-affine festivals pin every stage", "REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];", "REAL_MAP_STAGES = PLACED_STAGES;", "fleet"],

@@ -118,9 +118,9 @@
     tzAbbr: "MST",
     utcOffsetHours: -7,
     dayDates: {
-      1: { y: 2026, m: 11, d: 30, name: "Dec 30", short: "WED",
+      1: { y: 2026, m: 11, d: 30, name: "Wednesday", short: "WED",
            midnightUtc: Date.UTC(2026, 11, 30, 7, 0, 0) },
-      2: { y: 2026, m: 11, d: 31, name: "Dec 31", short: "NYE",
+      2: { y: 2026, m: 11, d: 31, name: "Thursday", short: "NYE",
            midnightUtc: Date.UTC(2026, 11, 31, 7, 0, 0) },
     },
     // Computed (NOAA formula) at the gps point, MST.

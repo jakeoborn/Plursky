@@ -844,6 +844,35 @@ const FESTIVALS_REGISTRY = [
     region:    "Europe",
   },
   {
+    // ── EDC Las Vegas 2027 — Las Vegas Motor Speedway, Las Vegas NV ──
+    // Added 2026-11-16 as a gated preview (Jake's field-test target).
+    // SOURCE lasvegas.edc.com, read 2026-11-16: two weekends, "Dusk" May
+    // 14–16 and "Dawn" May 21–23, 2027, at Las Vegas Motor Speedway, inside
+    // the "12 Days of EDC" (May 13–24). Passes on sale through
+    // edclasvegas.frontgatetickets.com. LINEUP NOT ANNOUNCED: no artist is
+    // loaded, and the 2026 lineup (FESTIVAL_CONFIG / ARTISTS above) is never
+    // reused under this entry. No stages, map, hours or set times either;
+    // those land in the flip session from the official 2027 sources.
+    config: {
+      id:        "edc-lv-2027",
+      officialEvent: { website: "https://lasvegas.edc.com/", tickets: "https://edclasvegas.frontgatetickets.com/", observedAt: "2026-11-16" },
+      name:      "EDC Las Vegas 2027",
+      shortName: "EDC Las Vegas",
+      brand:     "EDC",
+      tagline:   "Two weekends at Las Vegas Motor Speedway",
+      location:  "Las Vegas Motor Speedway · Las Vegas, NV",
+      locationShort: "Las Vegas Motor Speedway",
+      dates:     "May 14–16 & 21–23, 2027",
+      year:      2027,
+      // Night Print accent not measured for the 2027 site yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://lasvegas.edc.com/", observedAt: "2026-11-16" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ec4899",
+    emoji:     "🌼",
+    region:    "North America",
+  },
+  {
     // ── Tomorrowland Brasil 2027 — Itu, São Paulo, Brazil ──
     // Added 2026-11-11 as a gated preview. Dates from brasil.tomorrowland.com,
     // read 2026-11-11: "April 30 - May 2, 2027 | Itu - São Paulo, Brazil".
@@ -941,6 +970,61 @@ const FESTIVALS_REGISTRY = [
     available: false,
     accent:    "#ef4444",
     emoji:     "🏝️",
+    region:    "Europe",
+  },
+  // time-warp-2027 is a festival module now: data/festivals/time-warp-2027.js
+  {
+    // ── Sónar Barcelona 2027 — Barcelona, Spain ──
+    // Added 2026-11-12 as a gated preview. Dates from sonar.es, read
+    // 2026-11-12: "Sónar - 17.18.19 June 2027"; "Sónar by Day on 17th, 18th
+    // and 19th June 2027 and ... Sónar by Night on 18th and 19th June 2027".
+    // The 2027 format and sites are changing, so no venue is loaded. Only
+    // first acts are announced, so no lineup yet.
+    config: {
+      id:        "sonar-2027",
+      officialEvent: { website: "https://sonar.es/en", observedAt: "2026-11-12" },
+      name:      "Sónar Barcelona 2027",
+      shortName: "Sónar",
+      brand:     "Sónar",
+      tagline:   "Music, creativity and technology in Barcelona",
+      location:  "Barcelona, Spain",
+      locationShort: "Barcelona",
+      dates:     "Jun 17–19, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://sonar.es/en", observedAt: "2026-11-12" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#facc15",
+    emoji:     "🔊",
+    region:    "Europe",
+  },
+  {
+    // ── O.Z.O.R.A. Festival 2027 — Hungary ──
+    // Added 2026-11-12 as a gated preview. Dates from the official ticket
+    // page (ozorafestival.eu → ticket.ozorafestival.eu), read 2026-11-12:
+    // "Gate opening: 23 July, Friday at 12:00 noon", "Opening Ceremony: 26
+    // July, Monday at 20:00", "Gate closing: 3 August, Tuesday at 12:00
+    // noon", with "Ticket prices will remain unchanged for 2027". Loaded as
+    // gate opening to gate closing. The page names no site, so only the
+    // country is loaded. No lineup yet.
+    config: {
+      id:        "ozora-2027",
+      officialEvent: { website: "https://ozorafestival.eu/", observedAt: "2026-11-12" },
+      name:      "O.Z.O.R.A. Festival 2027",
+      shortName: "O.Z.O.R.A.",
+      brand:     "O.Z.O.R.A.",
+      tagline:   "A week and more of psytrance in the Hungarian countryside",
+      location:  "Hungary",
+      locationShort: "Hungary",
+      dates:     "Jul 23, 2027 – Aug 3, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://ozorafestival.eu/", observedAt: "2026-11-12" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#a3e635",
+    emoji:     "🍄",
     region:    "Europe",
   },
   {
@@ -1409,15 +1493,20 @@ const FESTIVALS_REGISTRY = [
       // Rd bridge (beatbox). Re-measured, the old anchors were 448–539 m out.
       //
       // The three below are SATELLITE measurements: Esri World Imagery
-      // Wayback, capture vintage 2024-11-18 (ACL 2024 mid-teardown — stage
-      // roofs, FOH towers and crowd fans all visible), read at z=19
-      // (~0.26 m/px) against the tile grid. Not poster reads.
+      // Wayback, read at z=19 (~0.26 m/px) against the tile grid. Not poster
+      // reads. ⚠ "2024-11-18" here and below is the Wayback RELEASE, not the
+      // capture: Esri's metadata for every release since 2024-06-27 gives
+      // Zilker's imagery as Nearmap 7.5 cm, captured 2023-10-08, i.e. ACL
+      // 2023 weekend-one Sunday (stage roofs, FOH towers, crowds all visible).
+      // Stage identities are therefore read against the 2023 patron map
+      // (2023 Honda = 2026 T-Mobile footprint; 2023 T-Mobile = the grove).
+      // src "osm" is the historical label for these satellite reads.
       gpsAnchors: [
         // Calibrated basis — do NOT reorder; _solveMapAffine() (map.jsx)
         // reads only the first three.
-        { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm" },
-        { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm" },
-        { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm" },
+        { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm", assumed: "satellite 2023, assumed for 2026" },
         // Independent evidence, NOT in the basis: the grove-footprint stage
         // structure, measured on the same Esri Wayback 2024-11-18 capture at
         // z19. The official patron maps run that footprint T-Mobile (2024) ->
@@ -1426,24 +1515,52 @@ const FESTIVALS_REGISTRY = [
         // 2026-09-06 desk survey (as "ladybird"); re-anchored to snapchat
         // 2026-10-18 after the 2024/2025 archived patron maps settled the
         // footprint. Centre of the main stage roof.
-        { stageId: "snapchat", lat: 30.266712, lng: -97.766540, src: "osm" },
+        { stageId: "snapchat", lat: 30.266712, lng: -97.766540, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        // Tito's, BMI and BEATBOX — measured 2026-11-12 on the same capture
+        // (Nearmap 2023-10-08, Wayback release 2026-10-29) at z20-21, each at
+        // the centre of the stage roof, identified by roof + front barricade
+        // + FOH position + cable run, and named by footprint against the
+        // official "MUSIC FEST 2023 MAP" (third-party mirror:
+        // https://dulljack.blogspot.com/2023/09/acl-2023-map.html; the same art
+        // is in the Internet Archive's 2023 capture of support.aclfestival.com
+        // attachment 20003152073748, sha256 a9a126c5…). The official support
+        // links now 301 to the help homepage (help.aclfestival.com), so they
+        // can't be checked live. The 2026 map (map-sources/
+        // acl-map-2026-source.png, sha256 83a95f15…) puts the same stage in the
+        // same place relative to the park:
+        //   titos   — NE lake edge, west of the Cabanas, facing SW (2023 and
+        //             2026 both "Tito's").
+        //   bmi     — SW, beside the West VIP lounge (2026 "VIP Grove West" /
+        //             Bungalows) above the Barton Springs West entrance; a
+        //             cable cover runs from the stage front to a two-box FOH.
+        //             ~150 m WEST of the old derived point (30.266404,
+        //             -97.767698) dropped 2026-09-23.
+        //   beatbox — the south lobe by William Barton Dr; 2023 billed this
+        //             footprint "IHG Hotels & Resorts". Roof faces east to a
+        //             square FOH.
+        // Stages are rebuilt every year: ALL SEVEN ACL anchors are 2023
+        // positions taken to hold for 2026, and each carries `assumed` saying
+        // so. Each roof is named against the 2023 map (the imagery's year),
+        // then carried to the 2026 stage on the same footprint. Names do move
+        // between footprints (2023 Honda -> 2026 T-Mobile, 2023 T-Mobile ->
+        // 2026 Snapchat); Tito's, BMI and BEATBOX (2023 "IHG") kept theirs.
+        // These are 2023 imagery measurements assumed for 2026, not a 2026
+        // survey. Proof packet with both maps: PR #460.
+        // A crowdAnchors entry for the same stage (measured from 2026 photos)
+        // overrides it in resolvedStageAnchors(); test-acl-map-2026 pins that
+        // override.
+        { stageId: "titos",   lat: 30.267785, lng: -97.765064, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "bmi",     lat: 30.266537, lng: -97.769236, src: "osm", assumed: "satellite 2023, assumed for 2026" },
+        { stageId: "beatbox", lat: 30.265399, lng: -97.768634, src: "osm", assumed: "satellite 2023, assumed for 2026" },
         //
-        // ⛔ NOT ANCHORED, deliberately — three reasons:
-        //
-        // `bmi`: dropped 2026-09-23 (founder ruling). It was never measured:
-        // tree cover and teardown hid it in the capture, so it was derived
-        // arithmetic (30.266404, -97.767698) through the basis above, fixed
-        // against the 2025 art. Re-measured against the 2026 plate by
-        // scripts/anchor-residuals.mjs, it sits 57 m from where the new fit
-        // draws BMI. resolvedStageAnchors() hands every gpsAnchor to the photo
-        // tagger, so a known-bad anchor tags photos to the wrong stage.
-        // Re-add only from a satellite or ground measurement.
-        //
-        // `titos` + `beatbox`: deleted 2026-09-05. The poster's NE and S edges
-        // are distorted enough that new-affine derivations put them in water
-        // and on a road bridge. No anchor beats a wrong anchor — photo-tag.jsx
-        // declines to geo-match a stage it cannot place, which is the correct
-        // failure mode.
+        // History of the three anchors above (kept so nobody re-derives them):
+        // `bmi` was dropped 2026-09-23 (founder ruling) as derived arithmetic
+        // through the basis against the 2025 art, 57 m from the 2026 fit;
+        // `titos` + `beatbox` were deleted 2026-09-05 because new-affine
+        // derivations off the poster put them in the lake and on a road
+        // bridge. Neither problem applies to a satellite read of the stage
+        // itself, which is what replaced them on 2026-11-12. Never derive a
+        // stage's world position from the poster.
         //
         // `snapchat`: ANCHORED 2026-10-18 (see above), so no longer in this
         // list. The 2026 patron map places it on the art by The Grove; the
@@ -1478,6 +1595,12 @@ const FESTIVALS_REGISTRY = [
       // directly. Built by scripts/build-acl-map-2026.mjs from the unedited
       // source in map-sources/.
       mapImage: "acl-park-2026.webp",
+      // The same art bent onto Zilker Park by a thin-plate fit pinned at every
+      // measured road, path and shoreline tie (Jake, 2026-11-12: "I think we can make it work with event map over the location it's being held at").
+      // The art is out of proportion, ~52 m between ties: an APPROXIMATE fit,
+      // labelled so. scripts/build-geo-plate.py over map-sources/acl-2026-geo-ties.json.
+      mapGeoref: { image: "geo-maps/acl-2026.webp", bounds: [-97.7722556, 30.2628479, -97.7612848, 30.2704815], model: "tps",
+                   ties: "map-sources/acl-2026-geo-ties.json", rmsM: 51.6, looRmsM: 51.6, approximate: true },
 
       // The festival's OWN map page, linked (never embedded) by the /f/ page:
       // official publication is provenance, not reuse rights. mapYear is the
@@ -1497,29 +1620,8 @@ const FESTIVALS_REGISTRY = [
     emoji:     "🤠",
     region:    "North America",
   },
-  {
-    config: {
-      id:        "coachella-2027",
-      // Official site, checked reachable 2026-09-24. No 2027 lineup yet.
-      officialEvent: { website: "https://www.coachella.com/", observedAt: "2026-09-24" },
-      // The festival's OWN maps page ("Coachella 2026 Venue map" + directions,
-      // parking, camping). Link the page; never hotlink or re-host the images.
-      mapSource: { url: "https://www.coachella.com/maps", observedAt: "2026-09-24", mapYear: 2026 },
-      name:      "Coachella 2027",
-      shortName: "Coachella",
-      brand:     "Coachella",
-      tagline:   "Two weekends, one polo field",
-      location:  "Empire Polo Club · Indio, CA",
-      dates:     "Apr 9–18, 2027",
-      year:      2027,
-      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
-      print: { accent: "#4E6234", accent2: "#44A1A4", source: { url: "https://media.coachella.com/templates/template10c/css/style.v7.css?t=7522fab35e14c254d8ced93290f5922c", observedAt: "2026-10-09", seenAs: "Site stylesheet token `html { --color-green-2:#4e6234 }`; the default `.c-button` background is an image, `--_button-bg:url(.../coachella-2026/button-bg-green.webp)`, whose sampled mean colour is #496330 (modal bucket #405828), matching that token; page headers use a teal gradient #337190 -> #44a1a4 -> #85cfc4 and link hover is `--color-yellow-1:#ffab37`.", confidence: "medium" }, note: "No <meta theme-color> and the 2026 site spreads a 20-colour palette across gradients, so the primary button's olive green is the accent, identified by sampling the button image (sips -> BMP, 27,078 opaque pixels) and matching it to the nearest first-party token." },
-    },
-    available: false,
-    accent:    "#ec4899",
-    emoji:     "🌵",
-    region:    "North America",
-  },
+  // coachella-2027 is a festival module now: data/festivals/coachella-2027.js
+  // (registered through _WAVE1_IDS below). Never re-add a stub here.
   // ── Registry stubs from #113 (Tiers 2–3): dates + venue ONLY ──
   // No lineup, no stages, no module. Every fact below was re-read on the
   // festival's OWN site on 2026-09-10. ⚠ All three Insomniac lineup pages
@@ -1627,7 +1729,7 @@ const _FESTIVAL_STALE_MS = 7 * 24 * 60 * 60 * 1000;
 // are gated — a pure nearest-by-date pick would select one and effectively
 // flip it, which AGENTS.md §4 says only its own PR may do.
 //
-// Entries with no startMs/endMs (coachella-2027 carries a `dates` string but
+// Entries with no startMs/endMs (a registry stub that carries a `dates` string but
 // no timestamps; "Dates TBA" entries carry neither) are not comparable and
 // are skipped rather than sorted as 0 — treating a missing date as the epoch
 // would rank an unannounced festival ahead of every real one.
@@ -1676,6 +1778,9 @@ function _festivalEventDates(cfg) {
   if (m) return { start: ymd(m[1], m[2], m[6]), end: ymd(m[1], m[5] || m[3], m[6]) };
   const x = /^([A-Z][a-z]{2}) (\d+), (\d{4}) [–-] ([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || "");
   if (x && MONTHS[x[1]] && MONTHS[x[4]]) return { start: ymd(x[1], x[2], x[3]), end: ymd(x[4], x[5], x[6]) };
+  // One-night events print one date ("Apr 3, 2027").
+  const one = /^([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || "");
+  if (one && MONTHS[one[1]]) return { start: ymd(one[1], one[2], one[3]), end: ymd(one[1], one[2], one[3]) };
   const dd = cfg.dayDates && Object.values(cfg.dayDates);
   if (dd && dd.length) {
     const f = (d) => `${d.y}-${String(d.m + 1).padStart(2, "0")}-${String(d.d).padStart(2, "0")}`;
@@ -1732,7 +1837,7 @@ function _festivalPhase(f, now) {
   if (now > w.endMs) return "ended";
   if (now < w.startMs) return "upcoming";
   // Only an entry with real gate times can be live. A dates-only stub
-  // (Coachella 2027: "Apr 9–18", two weekends, no dayDates) is unbuilt, and
+  // (e.g. a two-weekend "Apr 9–18" string with no dayDates) is unbuilt, and
   // its printed span can't say which days it runs (Codex's third P2 on #183).
   if (!(typeof c.startMs === "number" && typeof c.endMs === "number")) return "upcoming";
   // Inside the startMs..endMs envelope, a festival that runs in blocks (ACL's
@@ -2478,6 +2583,8 @@ function _weekendShiftMs(cfg, nowMs, savedIds) {
   if (!(shift > 0)) return 0;
   const now = typeof nowMs === "number" ? nowMs : Date.now();
   if (now >= _w1WrappedMs(cfg, w, shift)) return shift; // clock wins outright
+  const chosen = chosenWeekend(cfg);                   // else: the weekend they picked
+  if (chosen) return chosen === "W2" ? shift : 0;
   try {                                                // else: what did they save?
     if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
     const raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";
@@ -2487,6 +2594,68 @@ function _weekendShiftMs(cfg, nowMs, savedIds) {
     return out;
   } catch {}
   return 0;
+}
+
+// ── A weekend the USER picks ──
+// When every act plays both weekends (Coachella 2027's announced lineup: the
+// same acts on the same weekday, W1 and W2), the lineup cannot say which
+// weekend someone is going to, and the saved-majority rule above has nothing
+// to count — it would silently answer W1. Then the weekend is the user's
+// choice, stored per festival in `${fid}_weekend_v1` ("W1" | "W2"); unset
+// means not chosen yet, and the lineup ASKS. A festival whose acts are tagged
+// per weekend (ACL) is not a choice festival: nothing writes the key for it,
+// so the clock-then-majority resolver above is unchanged there.
+// One saved id = one billing on whichever weekend is chosen: switching the
+// weekend never adds, drops or duplicates a save.
+function weekendIsUsersChoice(cfg, artists) {
+  const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  const w = c && c.weekendStartMs;
+  if (c.untimedShortlist === false || !w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return false;
+  const arts = artists || ((typeof _DATA_SETS !== "undefined" && _DATA_SETS[c.id]) || {}).artists || [];
+  return arts.length > 0 && arts.every(a => !a.weekend || a.weekend === "both");
+}
+function chosenWeekend(cfg) {
+  const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  if (!c || !c.id || !c.weekendStartMs) return null;
+  try { const v = localStorage.getItem(`${c.id}_weekend_v1`); return v === "W1" || v === "W2" ? v : null; }
+  catch { return null; }
+}
+function chooseWeekend(cfg, wk) {
+  const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  if (!c || !c.id || (wk !== "W1" && wk !== "W2") || !weekendIsUsersChoice(c)) return false;
+  try { localStorage.setItem(`${c.id}_weekend_v1`, wk); } catch { return false; }
+  _wkMemo = null; _nowCache = null;
+  return true;
+}
+// "Apr 16–18, 2027": a weekend's own dates, from dayDates + its shift.
+function weekendDatesText(cfg, wk) {
+  const c = cfg || FESTIVAL_CONFIG;
+  const nums = Object.keys((c && c.dayDates) || {}).map(Number).sort((a, b) => a - b);
+  if (!nums.length) return "";
+  const sh = (festivalWeekendShifts(c).find(s => s.weekend === wk) || { shift: 0 }).shift;
+  const M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const at = n => { const d = c.dayDates[n]; return new Date((typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)) + sh); };
+  const a = at(nums[0]), b = at(nums[nums.length - 1]);
+  const am = M[a.getUTCMonth()], bm = M[b.getUTCMonth()];
+  return am === bm ? `${am} ${a.getUTCDate()}–${b.getUTCDate()}, ${b.getUTCFullYear()}`
+                   : `${am} ${a.getUTCDate()} – ${bm} ${b.getUTCDate()}, ${b.getUTCFullYear()}`;
+}
+// A lineup with NO published set time at all (announced lineup, schedule to
+// come). Timing-dependent doors — the timetable, Build My Night, calendar
+// export, a printed schedule — have nothing true to say, and the saved list
+// is a SHORTLIST, not a plan.
+function lineupHasNoTimes(artists) {
+  // weekend-exempt: "is any set timed at all" spans both weekends; one timed
+  // set on either weekend ends the shortlist for the whole festival.
+  const arts = artists || (typeof window !== "undefined" && window.ARTISTS) || ARTISTS || [];
+  return arts.length > 0 && arts.every(a => !a.start);
+}
+// The shortlist experience (weekend choice, Shortlist chip, text share, no
+// My night/Calendar) applies to EVERY lineup with no set time yet; a festival
+// opts out with config.untimedShortlist: false.
+function shortlistMode(cfg, artists) {
+  const c = cfg || (typeof window !== "undefined" && window.FESTIVAL_CONFIG) || FESTIVAL_CONFIG;
+  return !!c && c.untimedShortlist !== false && lineupHasNoTimes(artists);
 }
 
 // Which weekend is active, as a label. Null when the festival has only one.
@@ -3141,6 +3310,34 @@ function attendanceVerdictLabel(v) {
   if (v.verdict === "partial") return v.minutes != null && v.setMin ? `≈ ${r5(v.minutes)} of ${r5(v.setMin)} min` : "Part of the set";
   if (v.verdict === "unknown" && v.caught && v.minutes) return `≈ ${r5(v.minutes)} min`;
   return "";
+}
+
+// Set tracking (spec PR 3) keeps runs one fix at a time; chrome.jsx owns the
+// store and the watcher, these two pure rules live beside the engine.
+// One qualifying fix ({ ms, stageId }) onto a festival's entry. The same rule
+// as attendFixesToIntervals, one fix at a time: it extends the newest run when
+// that run is this stage and the gap is ≤ gapMs; a fix at another stage or a
+// longer gap starts a new run. A fix older than the last one is dropped (the
+// watch delivers in order; a repeat must not reopen a closed run).
+function setTrackAppend(entry, fix, gapMs = ATTEND_GAP_MS) {
+  const e = { last: entry && entry.last ? { ...entry.last } : null, runs: {} };
+  for (const k of Object.keys((entry && entry.runs) || {})) e.runs[k] = entry.runs[k].map(r => ({ from: r.from, to: r.to, src: r.src }));
+  if (!fix || typeof fix.ms !== "number" || !isFinite(fix.ms) || fix.stageId == null) return e;
+  if (e.last && fix.ms < e.last.ms) return e;
+  const runs = (e.runs[fix.stageId] = e.runs[fix.stageId] || []);
+  const top = runs[runs.length - 1];
+  if (e.last && e.last.stageId === fix.stageId && top && fix.ms - top.to <= gapMs) top.to = fix.ms;
+  else runs.push({ from: fix.ms, to: fix.ms, src: "gps" });
+  e.last = { stageId: fix.stageId, ms: fix.ms };
+  return e;
+}
+// Can sets be timed for this festival right now? "no-stages" means none of
+// its stages has a measured position, so tracking is never offered for it.
+function setTrackEligibility(cfg, nowMs) {
+  if (!cfg) return "no-festival";
+  if (!attendEvidenceAnchors(cfg).length) return "no-stages";
+  const phase = typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, nowMs) : "upcoming";
+  return phase === "live" ? "live" : phase === "ended" ? "ended" : "not-live";
 }
 
 // ── Schedule Sync: the feed shape, the diff, the replay ────────────────────
@@ -4876,6 +5073,10 @@ const _WAVE1_IDS = [
   "dwp-2026",
   "edc-thailand-2026",
   "tomorrowland-thailand-2026",
+  "groove-cruise-2027",
+  "day-zero-tulum-2027",
+  "coachella-2027",
+  "time-warp-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {

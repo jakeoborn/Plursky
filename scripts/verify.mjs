@@ -24,6 +24,8 @@ const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 
 execFileSync(process.execPath, ["scripts/build-artist-photo-ledger.mjs", "--check"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-commons-photos.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-map-mask-grounds.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-poster-billing.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-no-stray-jsx-comments.mjs"], { cwd: ROOT, stdio: "inherit" });
@@ -561,6 +563,9 @@ if (fdata.length) {
     if (!Array.isArray(g.bounds) || g.bounds.length !== 4 || [B.w, B.s, B.e, B.n].some((v, i) => Math.abs(v - g.bounds[i]) > 1e-7)) why.push("bounds differ from the build");
     if (g.rmsM !== O.rmsM || g.looRmsM !== O.looRmsM) why.push(`rms ${g.rmsM}/${g.looRmsM} != built ${O.rmsM}/${O.looRmsM}`);
     if (g.model !== T.model) why.push(`model ${g.model} != ${T.model}`);
+    // An approximate fit (Jake, 2026-11-12) is a choice made in the ties file and
+    // measured by the build; the config may not claim or drop it on its own.
+    if ((g.approximate === true) !== (O.approximate === true) || (O.approximate === true) !== (T.approximate === true)) why.push(`approximate ${g.approximate} != built ${O.approximate} / ties ${T.approximate}`);
     // The plate is the festival's own art: either its mapImage, or the official
     // map kept as a source under map-sources/art/ (Jake, 2026-11-11: "use the
     // map we do it for other festivals") with the first-party page it came from.
@@ -569,7 +574,7 @@ if (fdata.length) {
     else if (!existsSync(join(ROOT, T.plate))) why.push(`fitted plate ${T.plate} is missing`);
     if (artPlate && !/^https:\/\//.test(T.source || "")) why.push(`official art ${T.plate} names no https source page`);
     if (why.length) { console.log(`  ✗ ${id.padEnd(26)} ${why.join("; ")}`); gbad++; }
-    else console.log(`  ok ${id.padEnd(26)} ${T.model} over ${T.ties.length} ties · rms ${O.rmsM} m · leave-one-out ${O.looRmsM} m`);
+    else console.log(`  ok ${id.padEnd(26)} ${T.model} over ${T.ties.length} ties · rms ${O.rmsM} m · leave-one-out ${O.looRmsM} m${O.approximate ? " · approximate" : ""}`);
   }
   try {
     execFileSync("python3", [join(ROOT, "scripts", "build-geo-plate.py"), "check"], { cwd: ROOT, stdio: "inherit" });
@@ -1403,7 +1408,11 @@ const REGISTRATION_TOL_M = 25;
     // the shipped art coordinates agree with the measured world.
     "acl-2026": {
       expires: "2026-12-01",
-      note: "acl-park-2026.webp art is locally distorted near The Grove; the satellite-measured snapchat anchor sits 5.19 grid units (~35 m) off the affine. Re-derive stage x/y against the measured anchors, then delete this waiver.",
+      // 2026-11-12: titos/bmi/beatbox joined as satellite reads, 76/101/96 m
+      // from where the basis affine draws them (anchor-residuals.mjs): the art
+      // is distorted at its NE and S edges too, the same defect that put
+      // poster-derived positions in the lake. Same waiver, same fix.
+      note: "acl-park-2026.webp art is locally distorted (The Grove, NE lake edge, S lobe); the satellite-measured snapchat/titos/bmi/beatbox anchors sit 35-101 m off the affine. Re-derive stage x/y against the measured anchors, then delete this waiver.",
     },
     "ultra-miami-2026": {
       // Chosen to force the redraw into the quiet window before the 2027
@@ -1710,6 +1719,11 @@ const REGISTRATION_TOL_M = 25;
       // re-derives the six dependent anchors and manufactures precision
       // nobody measured. They stay put until a real geo source exists.
       stageIds: ["kinetic", "cosmic", "bionic"],
+      // SPEC-192 ws2, option A (2026-11-11): all nine EDC LV positions stay
+      // poster-read and provisional, and this date is when they must be
+      // re-measured: before EDC LV 2027 opens. On it the gate goes red and
+      // someone measures them or re-dates this deliberately, with a reason.
+      recheckBy: "2027-05-01",
       note:
         "3 of 9 anchors sit outside the LVMS oval (kinetic 16 m, cosmic 95 m, " +
         "bionic 152 m). They were derived from poster space, which does not " +
@@ -1726,6 +1740,15 @@ const REGISTRATION_TOL_M = 25;
     }
     return c;
   };
+  // OSM park boundaries, verify-only (SPEC-192 ws2, 2026-11-11). For a
+  // festival with measured anchors but no surveyed festival footprint, the
+  // park the festival is held in is still a real, sourced outline, and an
+  // anchor outside it is wrong. Deliberately NOT venue.footprint: the app
+  // reads that for the opening camera, the offline pack and the 3D mask, and
+  // a park is bigger than the grounds (Zilker is 397 acres; ACL uses a
+  // corner). The app never loads this file. See its _about.
+  const PARK_BOUNDARIES = JSON.parse(readFileSync(join(ROOT, "map-sources", "osm-park-boundaries.json"), "utf8")).boundaries;
+  const parkUsed = new Set();
   console.log("▸ Venue footprint gate — anchors must fall inside the real venue");
   let fpHard = 0, fpChecked = 0, fpWaived = 0, fpArmed = 0, fpUnbounded = 0, fpReal = 0;
   for (const f of REG) {
@@ -1762,6 +1785,19 @@ const REGISTRATION_TOL_M = 25;
       console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), footprint INFERRED (not surveyed) — UNGUARDED by this gate`);
       continue;
     }
+    if (!poly?.length && an.length && PARK_BOUNDARIES[cfg.id]) {
+      const pb = PARK_BOUNDARIES[cfg.id];
+      parkUsed.add(cfg.id);
+      const outPark = an.filter(a => !inside(a.lat, a.lng, pb.ring)).map(a => a.stageId);
+      fpChecked++;
+      if (outPark.length) {
+        fpHard++;
+        console.log(`  ✗  ${cfg.id.padEnd(22)} ${outPark.length}/${an.length} anchor(s) OUTSIDE ${pb.name} (OSM ${pb.osm}): ${outPark.join(", ")}`);
+      } else {
+        console.log(`  ok ${cfg.id.padEnd(22)} all ${an.length} anchors inside ${pb.name} (OSM ${pb.osm}) — park boundary, not a festival footprint`);
+      }
+      continue;
+    }
     if (!poly?.length && an.length) {
       fpUnbounded++;
       console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), NO footprint — UNGUARDED by this gate`);
@@ -1780,9 +1816,22 @@ const REGISTRATION_TOL_M = 25;
 
     if (!out.length && !waiver) { console.log(`  ok ${cfg.id.padEnd(22)} all ${an.length} anchors inside`); continue; }
 
+    // A pending waiver carries a re-check date, and the date is the
+    // mechanism: without one it is a warning nobody reads (see the
+    // REGISTRATION_WAIVERS comment above).
+    if (waiver && !/^\d{4}-\d{2}-\d{2}$/.test(waiver.recheckBy || "")) {
+      fpHard++;
+      console.log(`  ✗  ${cfg.id.padEnd(22)} pending waiver has no recheckBy date (YYYY-MM-DD)`);
+      continue;
+    }
+    if (waiver && waiver.recheckBy <= TODAY) {
+      fpHard++;
+      console.log(`  ✗  ${cfg.id.padEnd(22)} pending waiver EXPIRED ${waiver.recheckBy} (today ${TODAY}) — re-measure ${waiver.stageIds.join(", ")} or re-date it deliberately`);
+      continue;
+    }
     if (waiver && !unexcused.length && !stale.length) {
       fpWaived++;
-      console.log(`  !  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")}) — PENDING`);
+      console.log(`  !  ${cfg.id.padEnd(22)} ${out.length}/${an.length} OUTSIDE (${out.join(", ")}) — PENDING, re-check by ${waiver.recheckBy}`);
       console.log(`     ${waiver.note}`);
     } else if (waiver && stale.length) {
       fpHard++;
@@ -1810,6 +1859,12 @@ const REGISTRATION_TOL_M = 25;
     }
   }
   if (!fpChecked && !fpArmed && !fpUnbounded && !fpReal) console.log("  (no festival declares venue.footprint yet)");
+  for (const id of Object.keys(PARK_BOUNDARIES)) {
+    if (!parkUsed.has(id)) {
+      console.log(`  ✗  ${id.padEnd(22)} park boundary is STALE — the festival is gone, has a surveyed footprint now, or has no anchors. Remove it from map-sources/osm-park-boundaries.json.`);
+      fpHard++;
+    }
+  }
   if (fpHard) fail(`${fpHard} festival(s) failed the venue footprint gate — see above`);
   if (fpWaived) console.log(`  ${fpWaived} festival(s) waived pending ground truth — see notes above`);
   if (fpReal) console.log(`  ${fpReal} festival(s) on a real basemap — anchors not applicable`);
@@ -2804,6 +2859,21 @@ for (const [script, label] of [
   }
 }
 
+// gen-festival-pages.mjs reads sitemap-lastmod.json before it clears f/: a
+// ledger a merge left conflicted must stop the build with every page intact
+// (one such merge dropped all 75 pages). Real generator, scratch copy.
+{
+  console.log("▸ Pages safe-clear gate — a conflicted sitemap-lastmod.json stops gen with f/ intact");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-gen-pages-safe-clear.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`gen pages safe clear failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b6. Memories grouping reachability ─────────────────────────────────
 // Every moment the TIMELINE lens COUNTS must be REACHABLE, exactly once, in
 // exactly one rendered group. Before this gate, a truthy artistId the ACTIVE
@@ -3026,6 +3096,22 @@ for (const [script, label] of [
   }
 }
 
+// The service worker on a slow-but-alive link: a warm app opens from its saved
+// copy when the network has not delivered within the deadline, a fast network
+// still wins (deploys propagate), a slow one refreshes the cache behind it, and
+// main's previous network-first handler fails the same open (negative control).
+{
+  console.log("▸ Service worker slow link — saved copy on a held network, fresh on a fast one");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-sw-slow-link.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 300000 });
+    process.stdout.write(out.split("\n").filter(l => /✗|^✓/.test(l.trim())).join("\n") + "\n");
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`sw slow link failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // SPEC-178: your tagged photos/videos pinned at capture GPS on the real map.
 // No GPS = no pin; coordinates never leave the device (cloud backup strips
 // them, no request carries one); a tap opens the item with night/stage/artist
@@ -3110,6 +3196,42 @@ for (const [label, file] of [
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`III Points day split failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Coachella 2027: the official roster, and nothing the source doesn't say ──
+// 155 billings from coachella.com's lineup widget, days confirmed by its public
+// BY DAY view, no time/stage/sun time, gps = the venue row, two PDT weekends
+// with Apr 12-15 never live, one id across both weekends, saved ids stable
+// across a source reorder, open lineup-only; 13 mutations must each go red.
+{
+  console.log("▸ Coachella 2027 — 155 official billings, no placeholder times, two weekends, open lineup-only");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-coachella-2027.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Coachella 2027 gate failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Coachella 2027 shortlist: the untimed lineup a fan can use ───────────
+// Real index.html with the open module as committed: weekend
+// choice, folded search, save/shortlist/reload, honest share (cancel is not a
+// success, no share sheet copies), orphan + W1-only fixture, deep link vs
+// root, ACL/Dreamstate/LAN unchanged, warm offline reopen, cold offline.
+{
+  console.log("▸ Coachella 2027 shortlist — weekend choice, save, share, offline, deep link");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-coachella-shortlist.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out.split("\n").filter(l => !/^\s+✓ /.test(l) || /coachella shortlist:/.test(l)).join("\n"));
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").split("\n").filter(l => /✗|Error/.test(l)).join("\n").trim();
+    // The filtered lines can hide a startup error (CI printed only "name: 'Error'"), so print the child's full stderr too.
+    if (e?.stderr) process.stdout.write(`  shortlist gate stderr:\n${e.stderr}\n`);
+    fail(`Coachella shortlist gate failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -3547,6 +3669,24 @@ for (const [label, file] of [
   }
 }
 
+// ── 1z-b8a2. Public artist pages (SPEC-206 B) ─────────────────────────────
+// artists/ is generated from data/artists/careers.json: --check fails on a
+// stale page, an orphan or a stale sitemap-artists.xml, and the gate holds
+// the thin-content rule, every billing as a row, the snapshot labels, the
+// banned words and the photo-licence rule, each against a mutation.
+{
+  console.log("▸ Artist pages gate — one page per qualifying artist, every billing, no unlicensed photo");
+  try {
+    execFileSync(process.execPath, ["scripts/gen-artist-pages.mjs", "--check"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    const out = execFileSync(process.execPath, ["scripts/test-artist-pages.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist pages failed${detail ? ` — ${detail.split("\n").slice(0, 6).join(" | ")}` : ""}`);
+  }
+}
+
 // ── 1z-b8b. Official embeds on festival pages ────────────────────────────
 // Watch & listen shows only the festival's OWN posts: the official site links
 // the account, the platform names that account as the author, the post is
@@ -3649,6 +3789,23 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// ── 1z-b8e. Genre hub pages (SPEC-206 A) ─────────────────────────────────
+// genres/ is generated from the EDC Las Vegas 2026 lineup's own genre tags
+// (the only festival ruled in): --check fails on a stale page, an orphan or a
+// stale sitemap-genres.xml, and the gate holds the allowlist, exact act lists
+// and the "Checked on" stamp, each against a mutation.
+{
+  console.log("▸ Genre pages gate — EDC only, own tags only, nothing guessed");
+  try {
+    execFileSync(process.execPath, ["scripts/gen-genre-pages.mjs", "--check"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    const out = execFileSync(process.execPath, ["scripts/test-genre-pages.mjs"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`genre pages failed${detail ? ` — ${detail.split("\n").slice(0, 6).join(" | ")}` : ""}`);
+  }
+}
+
 // ── 1z-b9. Shell portability ──────────────────────────────────────────────
 // Every push in this repo goes through scripts/verify-and-push.sh, and that
 // wrapper shipped with `#!/bin/zsh` until #211. On a box without zsh the kernel
@@ -3665,6 +3822,21 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`shell portability failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b10. Session note (SessionStart hook) ─────────────────────────────
+// .claude/settings.json runs scripts/session-note.mjs at every new session.
+// It must stay short, read-only, offline, credential-safe, and never fail.
+{
+  console.log("▸ Session-note gate — the SessionStart note is short, read-only, offline and never fails");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-session-note.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`session note failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -3903,6 +4075,16 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`set attendance failed${detail ? ` — ${detail}` : ""}`);
+  }
+
+  console.log("▸ Set-tracking gate — opt-in, foreground, measured stages, runs equal the engine's, no coordinates stored");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-tracking.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set tracking failed${detail ? ` — ${detail}` : ""}`);
   }
 
   console.log("▸ Signal-aware gate — 2G/Data Saver/queued sends = weak signal, heartbeat 60s, strip + card, export key, mutations");

@@ -62,8 +62,10 @@ const CASES = [
   // the warped plate is drawn at its measured bounds, still with no stage pins.
   { fid: "iii-points-2026",  at: "2026-10-17T02:00:00Z", pins: false, overlay: "fitted", w: 320 },
   // ACL: no venue box or footprint, and its configured centre is off the park.
-  { fid: "acl-2026",         at: "2026-10-10T22:00:00Z", pins: false, overlay: "unchecked", fix: { stage: "amex",   latitude: 30.267233, longitude: -97.763236 } },
-  { fid: "acl-2026",         at: "2026-10-10T22:00:00Z", pins: false, overlay: "unchecked", fix: { stage: "miller", latitude: 30.269017, longitude: -97.769316 }, only: "fix" },
+  // ACL's official art is laid on Zilker Park as an APPROXIMATE fit (Jake,
+  // 2026-11-12, map-sources/acl-2026-geo-ties.json): pinned at every tie.
+  { fid: "acl-2026",         at: "2026-10-10T22:00:00Z", pins: false, overlay: "fitted", approx: true, fix: { stage: "amex",   latitude: 30.267233, longitude: -97.763236 } },
+  { fid: "acl-2026",         at: "2026-10-10T22:00:00Z", pins: false, overlay: "fitted", approx: true, fix: { stage: "miller", latitude: 30.269017, longitude: -97.769316 }, only: "fix" },
 ];
 try {
   await serverReady(`http://127.0.0.1:${PORT}/index.html`);
@@ -194,7 +196,8 @@ try {
       check(r.dots === 0, `${tag}: no amenity dots from poster positions (got ${r.dots})`);
       check(/STAGES PENDING/.test(r.posture || ""), `${tag}: posture "${r.posture}" must read STAGES PENDING`);
       if (C.overlay === "unchecked") check(/NOT TO SCALE/.test(r.posture || ""), `${tag}: unchecked art says NOT TO SCALE ("${r.posture}")`);
-      if (C.overlay === "fitted") check(r.posture === "OFFICIAL MAP · STAGES PENDING", `${tag}: fitted art reads OFFICIAL MAP · STAGES PENDING ("${r.posture}")`);
+      if (C.overlay === "fitted" && !C.approx) check(r.posture === "OFFICIAL MAP · STAGES PENDING", `${tag}: fitted art reads OFFICIAL MAP · STAGES PENDING ("${r.posture}")`);
+      if (C.overlay === "fitted" && C.approx) check(r.posture === "APPROX MAP · STAGES PENDING", `${tag}: approximate fitted art reads APPROX MAP · STAGES PENDING ("${r.posture}")`);
     }
     const clash = r.title && r.postureBox && r.title.l < r.postureBox.r && r.title.r > r.postureBox.l && r.title.t < r.postureBox.b && r.title.b > r.postureBox.t;
     check(!clash, `${tag}: posture label prints over the "Map" title at ${C.w || 393} pt`);

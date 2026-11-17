@@ -119,6 +119,56 @@ the ledger's `respelled`. Names keep their own HTML entities in the data
 is an empty shell and 2019's Set Times page loads its times by script, so
 neither is readable from the archive.
 
+Archived Shambhala schedule pages (2011 to 2016, format `shambhala-table`):
+
+    node scripts/historical/gather-shambhala.mjs <edition-id> <gather-dir> <official-url> <ts> <url>
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+shambhalamusicfestival.com/<year>-schedule/ (`/schedule-2014/` in 2014) prints
+a tab per day ("Thursday", the weekday alone) and one table per tab: a head
+row naming the six stages, then a row per half hour whose time cell is
+`<td id="time_T">`, T being the slot's wall time written as a UTC epoch. The
+day's date is its table's first slot; the tab must name that date's weekday,
+and the ledger keeps the slot (`firstSlot`) so the gate can check it. A set is
+the billing in its block's first cell with its start printed under it, which
+must fall inside that half hour. The page prints no end, so a set is
+open-ended unless its billing prints its own range ("Subscura (10:15-10:30PM)"),
+which is read only when its start falls within 30 minutes of the block's. A
+billing split over two blocks ("Deeps", then "vs. Wakcutt (12-1:30pm)") is one
+set, joined in the ledger's `joined`. Closed blocks print CLOSED and empty
+blocks nothing; anything else is not read. A table's last row is the next
+table's first printed again: a set starting there is the next day's, must be
+printed there too, and is excluded from the earlier day as a duplicate. Only
+captures taken after each festival are used, since earlier ones are drafts.
+Yoga, ceremonies, workshops and talks are dropped as `activity`; showcase and
+jam titles that name no act are dropped as `event-block`. Later years are not
+in this batch.
+
+Archived Outside Lands schedule grids (2012 to 2017, format `dostuff-grid`):
+
+    node scripts/historical/gather-dostuff.mjs <edition-id> <gather-dir> <official-url> \
+      [--comedy <stage>] [--food <stage>] <ts> <day-url> <anchor-ts> <anchor-act-url> [ … one group per day ]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+lineup.sfoutsidelands.com/events/<yyyy>/<mm>/<dd> prints one day: a tab row
+with the current day marked ("Saturday, August 10"), a stage column per stage
+whose class carries the date, a 15-minute axis printed with no am/pm
+("12:00" … "10:00") and one block per set placed on it (`top`, `height` in
+px) with its own printed range, also with no am/pm. Every block's place must
+match its printed start and length (2 px a minute); one that disagrees is a
+misprint, excluded. The meridiem is never assumed: each day cites one act's
+own page on the same site (its anchor), which prints that act's set with
+AM/PM ("Friday Aug 9 7:10 PM on Lands End" through 2014, "Friday, August 7,
+7:55 PM" from 2015, the stage after the time from 2017). The anchor's time
+minus its block's minutes past the axis fixes the axis's first row, which must
+be a reading of "12:00"; every start and end must then be a reading of its
+own print. The ledger keeps the anchor's page, hash and printed line
+(`meridiemFrom`), and the gate checks its weekday and date. The Barbary is the
+comedy tent and GastroMagic (2014 on) the chef-and-food stage: their shows are
+excluded rows, one for one with the page. Only captures taken after each
+festival are used. 2010 and 2011 use an older planner (myscheduler) not read
+yet; 2018 on has no archived grid of this kind.
+
 Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, Governors Ball 2017–2019, format `acl-grid`):
 
     node scripts/historical/gather-acl-grid.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]

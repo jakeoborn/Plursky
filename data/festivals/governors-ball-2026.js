@@ -244,14 +244,23 @@
     ],
     weatherEndpoint: "https://api.weather.gov/points/40.75,-73.84",
     mainStageId: "verizon",
-    // Generated abstract overlay, NOT the official patron map — that art is
-    // rights-restricted and is never copied into this repo (lostlands-2026.jpg
-    // precedent). Authored in the same 0-100 frame as the stages above.
+    // Generated abstract overlay for the drawn map, authored in the same 0-100
+    // frame as the stages above. The official patron map is laid on the real
+    // map instead (mapGeoref below).
     mapImage: "govball-2026.svg",
     mapStyle: "image-overlay",
     mapTheme: "park",
     // The overlay prints no stage names, so pills carry them.
     mapPrintsStageNames: false,
+    // On the real map, the OFFICIAL 2026 patron map (map-sources/art/
+    // governors-ball-2026-official.webp, from the festival's own help-centre
+    // map article) is laid on Flushing Meadows by a thin-plate fit pinned at
+    // every measured path and road tie (Jake, 2026-11-11: "use the map we do
+    // it for other festivals"; 2026-11-12: "I think we can make it work with event map over the location it's being held at"). The
+    // art is out of proportion, ~41 m between ties: an APPROXIMATE fit,
+    // labelled so. scripts/build-geo-plate.py over the ties file below.
+    mapGeoref: { image: "geo-maps/governors-ball-2026.webp", bounds: [-73.8467699, 40.7415363, -73.8365255, 40.7489711], model: "tps",
+                 ties: "map-sources/governors-ball-2026-geo-ties.json", rmsM: 41.3, looRmsM: 41.3, approximate: true },
   };
 
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};

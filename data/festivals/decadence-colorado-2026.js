@@ -225,9 +225,9 @@
     // cross-checked (see header). This is the first of the recent gated
     // scaffolds that did not need the III Points workaround.
     dayDates: {
-      1: { y: 2026, m: 11, d: 30, name: "Dec 30", short: "WED",
+      1: { y: 2026, m: 11, d: 30, name: "Wednesday", short: "WED",
            midnightUtc: Date.UTC(2026, 11, 30, 7, 0, 0) },
-      2: { y: 2026, m: 11, d: 31, name: "Dec 31", short: "NYE",
+      2: { y: 2026, m: 11, d: 31, name: "Thursday", short: "NYE",
            midnightUtc: Date.UTC(2026, 11, 31, 7, 0, 0) },
     },
     // api.sunrise-sunset.org at 39.742394,-104.996650, converted to MST.
@@ -249,6 +249,9 @@
       // reader to wonder about. 100,416 m². This is the BUILDING; the event
       // uses 400,000+ sq ft of it. See the header before reading it as the
       // festival perimeter.
+      // The footprint is the festival grounds (an indoor show, so the building is the festival), so the real map
+      // masks everything outside it.
+      footprintIsGrounds: true,
       footprint: [
         [39.7443483, -104.996556], [39.744366, -104.9965002], [39.7443708, -104.9964503],
         [39.7443689, -104.9964085], [39.7444321, -104.9963955], [39.7444184, -104.9963271],

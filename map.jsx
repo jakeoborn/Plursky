@@ -493,13 +493,20 @@ function readoutHonest(avatar) {
 // gpsAnchors and the gates above, so a fitted festival still pins nothing and
 // reads STAGES PENDING until its stages are checked. Only a fit whose ties
 // agree within ARTFIT_MAX_RMS_M counts; a looser one is ignored, not faded.
+// The one exception is a fit its ties file marks `approximate` (Jake,
+// 2026-11-12: "I think we can make it work with event map over the location
+// it's being held at"): art drawn too far out of proportion to agree within
+// 15 m, pinned by a spline through every tie and labelled APPROX MAP, up to
+// ARTFIT_APPROX_MAX_RMS_M leave-one-out.
 const ARTFIT_MAX_RMS_M = 15;
+const ARTFIT_APPROX_MAX_RMS_M = 60;
 function artGeorefFor(cfg) {
   const g = cfg && cfg.mapGeoref;
   if (!g || typeof g.image !== "string" || !Array.isArray(g.bounds) || g.bounds.length !== 4) return null;
   const [w, s, e, n] = g.bounds;
   if (![w, s, e, n].every(Number.isFinite) || !(e > w && n > s)) return null;
-  if (!(Number.isFinite(g.rmsM) && g.rmsM <= ARTFIT_MAX_RMS_M)) return null;
+  const maxRms = g.approximate === true ? ARTFIT_APPROX_MAX_RMS_M : ARTFIT_MAX_RMS_M;
+  if (!(Number.isFinite(g.rmsM) && g.rmsM <= maxRms)) return null;
   return g;
 }
 function posterTierFor(cfg, affine, verified) {
@@ -586,10 +593,17 @@ function _groundsLngLats(cfg) {
 // venue box with its ±0.004° (~440 m) margin. null = no limit. A lock to the
 // footprint waits on a SURVEYED perimeter; an estimated one never limits the
 // map (Item 1, held 2026-10-18).
+// With no venue box, a surveyed footprint (OSM ring) gives the same margin
+// around its own extent, so a masked venue cannot be panned off screen.
 function _realMapPanLimit(cfg, lib) {
   const v = cfg && cfg.venue;
-  if (!v || !v.festivalBounds) return null;
-  const fb = v.festivalBounds;
+  if (!v) return null;
+  let fb = v.festivalBounds;
+  if (!fb && Array.isArray(v.footprint) && v.footprint.length >= 3) {
+    const la = v.footprint.map(p => p[0]), lo = v.footprint.map(p => p[1]);
+    if ([...la, ...lo].every(Number.isFinite)) fb = { south: Math.min(...la), north: Math.max(...la), west: Math.min(...lo), east: Math.max(...lo) };
+  }
+  if (!fb) return null;
   return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
 }
 
@@ -2144,7 +2158,7 @@ function MapScreen({ state, setState }) {
   const artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
   const artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
   const mapPostureLabel = artYear + (REAL_MAP_ONLY || (useRealMap && !REAL_MAP_PLACES_CHECKED)
-    ? (useRealMap && POSTER_TIER === "fitted" ? "OFFICIAL MAP · STAGES PENDING"
+    ? (useRealMap && POSTER_TIER === "fitted" ? (ART_GEOREF && ART_GEOREF.approximate ? "APPROX MAP · STAGES PENDING" : "OFFICIAL MAP · STAGES PENDING")
       : useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING")
     : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
         ? "OFFICIAL MAP"
@@ -5201,13 +5215,14 @@ function RealMap({
           // the only thing you read. That is right at EDC, where outside the
           // speedway is empty desert and parking — nothing you need.
           //
-          // It is WRONG for a mapMode:"real" festival. Mana Wynwood is a
-          // building on a city street grid, and the streets are exactly how
-          // you find the door: you arrive on NW 5th Ave, not inside the
-          // venue. Masking them leaves a grey block floating in beige. With
-          // no stage pins to draw yet, the surroundings are the whole value
-          // of this screen.
-          if (FESTIVAL_CONFIG.mapMode === "real") return;
+          // A mapMode:"real" festival masks too, but only around a SURVEYED
+          // footprint (venue.footprint, an OSM ring): Jake, 2026-11-10, "should
+          // just have the venue on the map not anything else". An estimated
+          // bounds box is not the venue's shape, so it never masks a real map.
+          // Nor does a footprint that is only a building on the grounds (Portola's
+          // cargo shed, with the pier apron outside it): a real map masks only
+          // where the data says venue.footprintIsGrounds.
+          if (FESTIVAL_CONFIG.mapMode === "real" && !(_footprintRing() && FESTIVAL_CONFIG.venue?.footprintIsGrounds === true)) return;
           const _hole = _footprintRing() || _boundsRing();
           if (!_hole) return;
           const _maskFeature = () => {
