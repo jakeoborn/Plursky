@@ -1,0 +1,2959 @@
+{
+ "id": "electric-forest-2015",
+ "festivalId": "electric-forest",
+ "name": "Electric Forest 2015",
+ "year": 2015,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-06-25",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2015-06-26",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2015-06-27",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2015-06-28",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "electric-forest-2015:ranch-arena",
+   "name": "Ranch Arena"
+  },
+  {
+   "id": "electric-forest-2015:sherwood-court",
+   "name": "Sherwood Court"
+  },
+  {
+   "id": "electric-forest-2015:tripolee",
+   "name": "Tripolee"
+  },
+  {
+   "id": "electric-forest-2015:the-hangar",
+   "name": "The Hangar"
+  },
+  {
+   "id": "electric-forest-2015:jubilee",
+   "name": "Jubilee"
+  },
+  {
+   "id": "electric-forest-2015:forest-stage",
+   "name": "Forest Stage"
+  },
+  {
+   "id": "electric-forest-2015:the-observatory",
+   "name": "The Observatory"
+  }
+ ],
+ "artists": [
+  {
+   "id": "electric-forest-2015:dabin",
+   "name": "Dabin",
+   "key": "dabin",
+   "performers": [
+    "dabin"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:galantis",
+   "name": "Galantis",
+   "key": "galantis",
+   "performers": [
+    "galantis"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:borgeous",
+   "name": "Borgeous",
+   "key": "borgeous",
+   "performers": [
+    "borgeous"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:shpongle-simon-posford-dj-set",
+   "name": "Shpongle (Simon Posford DJ Set)",
+   "key": "shpongle-simon-posford-dj-set",
+   "performers": [
+    "shpongle-simon-posford-dj-set"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:odesza",
+   "name": "ODESZA",
+   "key": "odesza",
+   "performers": [
+    "odesza"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:future-classic-nadus",
+   "name": "Future Classic: Nadus",
+   "key": "future-classic-nadus",
+   "performers": [
+    "future-classic-nadus"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:future-classic-mr-carmack",
+   "name": "Future Classic: Mr. Carmack",
+   "key": "future-classic-mr-carmack",
+   "performers": [
+    "future-classic-mr-carmack"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:future-classic-wave-racer",
+   "name": "Future Classic: Wave Racer",
+   "key": "future-classic-wave-racer",
+   "performers": [
+    "future-classic-wave-racer"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:future-classic-lido",
+   "name": "Future Classic: Lido",
+   "key": "future-classic-lido",
+   "performers": [
+    "future-classic-lido"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:future-classic-goldlink",
+   "name": "Future Classic: GoldLink",
+   "key": "future-classic-goldlink",
+   "performers": [
+    "future-classic-goldlink"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:future-classic-four-tet",
+   "name": "Future Classic: Four Tet",
+   "key": "future-classic-four-tet",
+   "performers": [
+    "future-classic-four-tet"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:future-classic-flume",
+   "name": "Future Classic: Flume",
+   "key": "future-classic-flume",
+   "performers": [
+    "future-classic-flume"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:carl-cox-and-friends-saeed-younan",
+   "name": "Carl Cox & Friends: Saeed Younan",
+   "key": "carl-cox-and-friends-saeed-younan",
+   "performers": [
+    "carl-cox-and-friends-saeed-younan"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:carl-cox-and-friends-matrixxman",
+   "name": "Carl Cox & Friends: Matrixxman",
+   "key": "carl-cox-and-friends-matrixxman",
+   "performers": [
+    "carl-cox-and-friends-matrixxman"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:carl-cox-and-friends-pete-tong",
+   "name": "Carl Cox & Friends: Pete Tong",
+   "key": "carl-cox-and-friends-pete-tong",
+   "performers": [
+    "carl-cox-and-friends-pete-tong"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:carl-cox-and-friends-dubfire",
+   "name": "Carl Cox & Friends: Dubfire",
+   "key": "carl-cox-and-friends-dubfire",
+   "performers": [
+    "carl-cox-and-friends-dubfire"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:carl-cox-and-friends-john-digweed",
+   "name": "Carl Cox & Friends: John Digweed",
+   "key": "carl-cox-and-friends-john-digweed",
+   "performers": [
+    "carl-cox-and-friends-john-digweed"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:carl-cox-and-friends-carl-cox",
+   "name": "Carl Cox & Friends: Carl Cox",
+   "key": "carl-cox-and-friends-carl-cox",
+   "performers": [
+    "carl-cox-and-friends-carl-cox"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:vourteque",
+   "name": "Vourteque",
+   "key": "vourteque",
+   "performers": [
+    "vourteque"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-gentlemen-callers",
+   "name": "The Gentlemen Callers",
+   "key": "the-gentlemen-callers",
+   "performers": [
+    "the-gentlemen-callers"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bart-and-baker",
+   "name": "Bart&Baker",
+   "key": "bart-and-baker",
+   "performers": [
+    "bart-and-baker"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:jaga-jazzist",
+   "name": "Jaga Jazzist",
+   "key": "jaga-jazzist",
+   "performers": [
+    "jaga-jazzist"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:jpod",
+   "name": "JPOD",
+   "key": "jpod",
+   "performers": [
+    "jpod"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:chaz-french",
+   "name": "Chaz French",
+   "key": "chaz-french",
+   "performers": [
+    "chaz-french"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:martyparty",
+   "name": "MartyParty",
+   "key": "martyparty",
+   "performers": [
+    "martyparty"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:sango",
+   "name": "Sango",
+   "key": "sango",
+   "performers": [
+    "sango"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:brodinski",
+   "name": "Brodinski",
+   "key": "brodinski",
+   "performers": [
+    "brodinski"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:phutureprimitive",
+   "name": "Phutureprimitive",
+   "key": "phutureprimitive",
+   "performers": [
+    "phutureprimitive"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:eoto",
+   "name": "EOTO",
+   "key": "eoto",
+   "performers": [
+    "eoto"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-imagine-nation",
+   "name": "The Imagine Nation",
+   "key": "the-imagine-nation",
+   "performers": [
+    "the-imagine-nation"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:vibe-street",
+   "name": "Vibe Street",
+   "key": "vibe-street",
+   "performers": [
+    "vibe-street"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:lafa-taylor",
+   "name": "Lafa Taylor",
+   "key": "lafa-taylor",
+   "performers": [
+    "lafa-taylor"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:vaski",
+   "name": "Vaski",
+   "key": "vaski",
+   "performers": [
+    "vaski"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:little-people",
+   "name": "Little People",
+   "key": "little-people",
+   "performers": [
+    "little-people"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:jacklndn",
+   "name": "jackLNDN",
+   "key": "jacklndn",
+   "performers": [
+    "jacklndn"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:dixon-s-violin",
+   "name": "Dixon's Violin",
+   "key": "dixon-s-violin",
+   "performers": [
+    "dixon-s-violin"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-accidentals",
+   "name": "The Accidentals",
+   "key": "the-accidentals",
+   "performers": [
+    "the-accidentals"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:mike-love",
+   "name": "MIKE LOVE",
+   "key": "mike-love",
+   "performers": [
+    "mike-love"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:flint-eastwood",
+   "name": "Flint Eastwood",
+   "key": "flint-eastwood",
+   "performers": [
+    "flint-eastwood"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:superhuman-happiness",
+   "name": "Superhuman Happiness",
+   "key": "superhuman-happiness",
+   "performers": [
+    "superhuman-happiness"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-fungineers-and-bubble-gutter",
+   "name": "The Fungineers & Bubble Gutter",
+   "key": "the-fungineers-and-bubble-gutter",
+   "performers": [
+    "the-fungineers-and-bubble-gutter"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-ragbirds",
+   "name": "The Ragbirds",
+   "key": "the-ragbirds",
+   "performers": [
+    "the-ragbirds"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:g-eazy",
+   "name": "G-Eazy",
+   "key": "g-eazy",
+   "performers": [
+    "g-eazy"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-string-cheese-incident",
+   "name": "The String Cheese Incident",
+   "key": "the-string-cheese-incident",
+   "performers": [
+    "the-string-cheese-incident"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:skrillex",
+   "name": "Skrillex",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-motet",
+   "name": "The Motet",
+   "key": "the-motet",
+   "performers": [
+    "the-motet"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:break-science-live-band",
+   "name": "Break Science Live Band",
+   "key": "break-science-live-band",
+   "performers": [
+    "break-science-live-band"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:lettuce",
+   "name": "Lettuce",
+   "key": "lettuce",
+   "performers": [
+    "lettuce"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:lotus",
+   "name": "Lotus",
+   "key": "lotus",
+   "performers": [
+    "lotus"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-illenium",
+   "name": "Bassrush: Illenium",
+   "key": "bassrush-illenium",
+   "performers": [
+    "bassrush-illenium"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-son-of-kick",
+   "name": "Bassrush: Son of Kick",
+   "key": "bassrush-son-of-kick",
+   "performers": [
+    "bassrush-son-of-kick"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-vaski",
+   "name": "Bassrush: Vaski",
+   "key": "bassrush-vaski",
+   "performers": [
+    "bassrush-vaski"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-mt-eden",
+   "name": "Bassrush: Mt Eden",
+   "key": "bassrush-mt-eden",
+   "performers": [
+    "bassrush-mt-eden"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-koan-sound",
+   "name": "Bassrush: KOAN Sound",
+   "key": "bassrush-koan-sound",
+   "performers": [
+    "bassrush-koan-sound"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-minnesota",
+   "name": "Bassrush: Minnesota",
+   "key": "bassrush-minnesota",
+   "performers": [
+    "bassrush-minnesota"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-ed-rush-and-optical",
+   "name": "Bassrush: Ed Rush & Optical",
+   "key": "bassrush-ed-rush-and-optical",
+   "performers": [
+    "bassrush-ed-rush-and-optical"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-crizzly",
+   "name": "Bassrush: Crizzly",
+   "key": "bassrush-crizzly",
+   "performers": [
+    "bassrush-crizzly"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-snails",
+   "name": "Bassrush: SNAILS",
+   "key": "bassrush-snails",
+   "performers": [
+    "bassrush-snails"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-datsik",
+   "name": "Bassrush: Datsik",
+   "key": "bassrush-datsik",
+   "performers": [
+    "bassrush-datsik"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-carnage",
+   "name": "Bassrush: Carnage",
+   "key": "bassrush-carnage",
+   "performers": [
+    "bassrush-carnage"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassrush-flux-pavilion",
+   "name": "Bassrush: Flux Pavilion",
+   "key": "bassrush-flux-pavilion",
+   "performers": [
+    "bassrush-flux-pavilion"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:lance-herbstrong",
+   "name": "Lance Herbstrong",
+   "key": "lance-herbstrong",
+   "performers": [
+    "lance-herbstrong"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:jerk-church",
+   "name": "Jerk Church",
+   "key": "jerk-church",
+   "performers": [
+    "jerk-church"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:preservation-hall-jazz-band",
+   "name": "Preservation Hall Jazz Band",
+   "key": "preservation-hall-jazz-band",
+   "performers": [
+    "preservation-hall-jazz-band"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:everyone-orchestra",
+   "name": "Everyone Orchestra",
+   "key": "everyone-orchestra",
+   "performers": [
+    "everyone-orchestra"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:trevor-hall",
+   "name": "Trevor Hall",
+   "key": "trevor-hall",
+   "performers": [
+    "trevor-hall"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:lyrics-born",
+   "name": "Lyrics Born",
+   "key": "lyrics-born",
+   "performers": [
+    "lyrics-born"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:delhi-2-dublin",
+   "name": "Delhi 2 Dublin",
+   "key": "delhi-2-dublin",
+   "performers": [
+    "delhi-2-dublin"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:charles-bradley-and-his-extraordinaires",
+   "name": "Charles Bradley & His Extraordinaires",
+   "key": "charles-bradley-and-his-extraordinaires",
+   "performers": [
+    "charles-bradley-and-his-extraordinaires"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-motet-mixtape-1975",
+   "name": "The Motet (Mixtape 1975)",
+   "key": "the-motet-mixtape-1975",
+   "performers": [
+    "the-motet-mixtape-1975"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-unsheathed",
+   "name": "The Unsheathed!",
+   "key": "the-unsheathed",
+   "performers": [
+    "the-unsheathed"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:crew-love-throwdown",
+   "name": "Crew Love Throwdown",
+   "key": "crew-love-throwdown",
+   "performers": [
+    "crew-love-throwdown"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:crew-love-nick-monaco-live",
+   "name": "Crew Love: Nick Monaco Live",
+   "key": "crew-love-nick-monaco-live",
+   "performers": [
+    "crew-love-nick-monaco-live"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:crew-love-bamboozle",
+   "name": "Crew Love: Bamboozle",
+   "key": "crew-love-bamboozle",
+   "performers": [
+    "crew-love-bamboozle"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:crew-love-slow-hands-live",
+   "name": "Crew Love: Slow Hands Live",
+   "key": "crew-love-slow-hands-live",
+   "performers": [
+    "crew-love-slow-hands-live"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:crew-love-life-on-planets-live",
+   "name": "Crew Love: Life on Planets Live",
+   "key": "crew-love-life-on-planets-live",
+   "performers": [
+    "crew-love-life-on-planets-live"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:crew-love-wolf-lamb-the-wolf",
+   "name": "Crew Love: Wolf + Lamb / The Wolf",
+   "key": "crew-love-wolf-lamb-the-wolf",
+   "performers": [
+    "crew-love-wolf-lamb-the-wolf"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:crew-love-midnight-magic-live",
+   "name": "Crew Love: Midnight Magic Live",
+   "key": "crew-love-midnight-magic-live",
+   "performers": [
+    "crew-love-midnight-magic-live"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:crew-love-soul-clap-and-friends",
+   "name": "Crew Love: Soul Clap & Friends",
+   "key": "crew-love-soul-clap-and-friends",
+   "performers": [
+    "crew-love-soul-clap-and-friends"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:communion-pan-astral",
+   "name": "Communion: Pan Astral",
+   "key": "communion-pan-astral",
+   "performers": [
+    "communion-pan-astral"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:communion-devon-baldwin",
+   "name": "Communion: Devon Baldwin",
+   "key": "communion-devon-baldwin",
+   "performers": [
+    "communion-devon-baldwin"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:communion-delta-spirit",
+   "name": "Communion: Delta Spirit",
+   "key": "communion-delta-spirit",
+   "performers": [
+    "communion-delta-spirit"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:communion-joseph",
+   "name": "Communion: Joseph",
+   "key": "communion-joseph",
+   "performers": [
+    "communion-joseph"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:communion-kevin-garrett",
+   "name": "Communion: Kevin Garrett",
+   "key": "communion-kevin-garrett",
+   "performers": [
+    "communion-kevin-garrett"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:communion-teemid",
+   "name": "Communion: Teemid",
+   "key": "communion-teemid",
+   "performers": [
+    "communion-teemid"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:communion-autograf",
+   "name": "Communion: Autograf",
+   "key": "communion-autograf",
+   "performers": [
+    "communion-autograf"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-funk-hunters",
+   "name": "The Funk Hunters",
+   "key": "the-funk-hunters",
+   "performers": [
+    "the-funk-hunters"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:seun-kuti-and-egypt-80",
+   "name": "Seun Kuti & Egypt 80",
+   "key": "seun-kuti-and-egypt-80",
+   "performers": [
+    "seun-kuti-and-egypt-80"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:edward-sharpe-and-the-magnetic-zeros",
+   "name": "Edward Sharpe And The Magnetic Zeros",
+   "key": "edward-sharpe-and-the-magnetic-zeros",
+   "performers": [
+    "edward-sharpe-and-the-magnetic-zeros"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bassnectar",
+   "name": "BASSNECTAR",
+   "key": "bassnectar",
+   "performers": [
+    "bassnectar"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:people-s-blues-of-richmond",
+   "name": "People's Blues of Richmond",
+   "key": "people-s-blues-of-richmond",
+   "performers": [
+    "people-s-blues-of-richmond"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:nattali-rize-and-notis",
+   "name": "Nattali Rize & NOTIS",
+   "key": "nattali-rize-and-notis",
+   "performers": [
+    "nattali-rize-and-notis"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-werks",
+   "name": "The Werks",
+   "key": "the-werks",
+   "performers": [
+    "the-werks"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:phantogram",
+   "name": "Phantogram",
+   "key": "phantogram",
+   "performers": [
+    "phantogram"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:electron",
+   "name": "Electron",
+   "key": "electron",
+   "performers": [
+    "electron"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:joe-russo-s-almost-dead",
+   "name": "Joe Russo's Almost Dead",
+   "key": "joe-russo-s-almost-dead",
+   "performers": [
+    "joe-russo-s-almost-dead"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:mako",
+   "name": "MAKO",
+   "key": "mako",
+   "performers": [
+    "mako"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:slow-magic",
+   "name": "Slow Magic",
+   "key": "slow-magic",
+   "performers": [
+    "slow-magic"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:skylar-spence",
+   "name": "Skylar Spence",
+   "key": "skylar-spence",
+   "performers": [
+    "skylar-spence"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:snbrn",
+   "name": "SNBRN",
+   "key": "snbrn",
+   "performers": [
+    "snbrn"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:mj-cole",
+   "name": "MJ Cole",
+   "key": "mj-cole",
+   "performers": [
+    "mj-cole"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:matoma",
+   "name": "Matoma",
+   "key": "matoma",
+   "performers": [
+    "matoma"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:green-velvet",
+   "name": "Green Velvet",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:claude-vonstroke",
+   "name": "Claude VonStroke",
+   "key": "claude-vonstroke",
+   "performers": [
+    "claude-vonstroke"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:marcella-puppini",
+   "name": "Marcella Puppini",
+   "key": "marcella-puppini",
+   "performers": [
+    "marcella-puppini"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:tauk",
+   "name": "TAUK",
+   "key": "tauk",
+   "performers": [
+    "tauk"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:lindsey-stirling",
+   "name": "Lindsey Stirling",
+   "key": "lindsey-stirling",
+   "performers": [
+    "lindsey-stirling"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-funk-hunters-feat-chali-2na",
+   "name": "The Funk Hunters Feat. Chali 2na",
+   "key": "the-funk-hunters-feat-chali-2na",
+   "performers": [
+    "the-funk-hunters-feat-chali-2na"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:dopapod",
+   "name": "Dopapod",
+   "key": "dopapod",
+   "performers": [
+    "dopapod"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:galactic-with-macy-gray",
+   "name": "Galactic with Macy Gray",
+   "key": "galactic-with-macy-gray",
+   "performers": [
+    "galactic-with-macy-gray"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:jakubi",
+   "name": "Jakubi",
+   "key": "jakubi",
+   "performers": [
+    "jakubi"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:minnesota",
+   "name": "Minnesota",
+   "key": "minnesota",
+   "performers": [
+    "minnesota"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:low-temp-ben-negative",
+   "name": "Low Temp: Ben Negative",
+   "key": "low-temp-ben-negative",
+   "performers": [
+    "low-temp-ben-negative"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:low-temp-freddy-todd",
+   "name": "Low Temp: Freddy Todd",
+   "key": "low-temp-freddy-todd",
+   "performers": [
+    "low-temp-freddy-todd"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:low-temp-branx",
+   "name": "Low Temp: Branx",
+   "key": "low-temp-branx",
+   "performers": [
+    "low-temp-branx"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:low-temp-gibbz",
+   "name": "Low Temp: GiBBZ",
+   "key": "low-temp-gibbz",
+   "performers": [
+    "low-temp-gibbz"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:low-temp-russ-liquid",
+   "name": "Low Temp: Russ Liquid",
+   "key": "low-temp-russ-liquid",
+   "performers": [
+    "low-temp-russ-liquid"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:katie-boeck",
+   "name": "Katie Boeck",
+   "key": "katie-boeck",
+   "performers": [
+    "katie-boeck"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:joseph",
+   "name": "Joseph",
+   "key": "joseph",
+   "performers": [
+    "joseph"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:american-babies",
+   "name": "American Babies",
+   "key": "american-babies",
+   "performers": [
+    "american-babies"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:pan-astral",
+   "name": "Pan Astral",
+   "key": "pan-astral",
+   "performers": [
+    "pan-astral"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:teengirl-fantasy",
+   "name": "Teengirl Fantasy",
+   "key": "teengirl-fantasy",
+   "performers": [
+    "teengirl-fantasy"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:keller-williams-grateful-grass",
+   "name": "Keller Williams’ Grateful Grass",
+   "key": "keller-williams-grateful-grass",
+   "performers": [
+    "keller-williams-grateful-grass"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:yonder-mountain-string-band",
+   "name": "Yonder Mountain String Band",
+   "key": "yonder-mountain-string-band",
+   "performers": [
+    "yonder-mountain-string-band"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-heard",
+   "name": "The Heard",
+   "key": "the-heard",
+   "performers": [
+    "the-heard"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:leikeli47",
+   "name": "Leikeli47",
+   "key": "leikeli47",
+   "performers": [
+    "leikeli47"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:goldroom-live",
+   "name": "Goldroom Live",
+   "key": "goldroom-live",
+   "performers": [
+    "goldroom-live"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:gramatik",
+   "name": "Gramatik",
+   "key": "gramatik",
+   "performers": [
+    "gramatik"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:big-gigantic-feat-the-motet",
+   "name": "Big Gigantic feat. The Motet",
+   "key": "big-gigantic-feat-the-motet",
+   "performers": [
+    "big-gigantic-feat-the-motet"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:borahm-lee-dj-set",
+   "name": "Borahm Lee (DJ Set)",
+   "key": "borahm-lee-dj-set",
+   "performers": [
+    "borahm-lee-dj-set"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:tokimonsta",
+   "name": "TOKiMONSTA",
+   "key": "tokimonsta",
+   "performers": [
+    "tokimonsta"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:peking-duk",
+   "name": "Peking Duk",
+   "key": "peking-duk",
+   "performers": [
+    "peking-duk"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:goldfish",
+   "name": "Goldfish",
+   "key": "goldfish",
+   "performers": [
+    "goldfish"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:black-tiger-sex-machine-featuring-the-great-glow-flash-mob",
+   "name": "Black Tiger Sex Machine Featuring The Great Glow Flash Mob",
+   "key": "black-tiger-sex-machine-featuring-the-great-glow-flash-mob",
+   "performers": [
+    "black-tiger-sex-machine-featuring-the-great-glow-flash-mob"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:wiwek",
+   "name": "Wiwek",
+   "key": "wiwek",
+   "performers": [
+    "wiwek"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:paul-oakenfold",
+   "name": "Paul Oakenfold",
+   "key": "paul-oakenfold",
+   "performers": [
+    "paul-oakenfold"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:the-shadowboxers",
+   "name": "The Shadowboxers",
+   "key": "the-shadowboxers",
+   "performers": [
+    "the-shadowboxers"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:made-in-heights",
+   "name": "Made In Heights",
+   "key": "made-in-heights",
+   "performers": [
+    "made-in-heights"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:exmag",
+   "name": "Exmag",
+   "key": "exmag",
+   "performers": [
+    "exmag"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:dam-funk",
+   "name": "DāM-FunK",
+   "key": "dam-funk",
+   "performers": [
+    "dam-funk"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:break-science",
+   "name": "Break Science",
+   "key": "break-science",
+   "performers": [
+    "break-science"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:bobby-mcmanus",
+   "name": "Bobby McManus",
+   "key": "bobby-mcmanus",
+   "performers": [
+    "bobby-mcmanus"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:armstrong-leigh",
+   "name": "Armstrong Leigh",
+   "key": "armstrong-leigh",
+   "performers": [
+    "armstrong-leigh"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:adam-deitch-dj-set",
+   "name": "Adam Deitch (DJ Set)",
+   "key": "adam-deitch-dj-set",
+   "performers": [
+    "adam-deitch-dj-set"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:haywyre",
+   "name": "Haywyre",
+   "key": "haywyre",
+   "performers": [
+    "haywyre"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:miami-horror",
+   "name": "Miami Horror",
+   "key": "miami-horror",
+   "performers": [
+    "miami-horror"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:goldroom-dj-set",
+   "name": "Goldroom DJ Set",
+   "key": "goldroom-dj-set",
+   "performers": [
+    "goldroom-dj-set"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:talia-keys",
+   "name": "Talia Keys",
+   "key": "talia-keys",
+   "performers": [
+    "talia-keys"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:saritah",
+   "name": "Saritah",
+   "key": "saritah",
+   "performers": [
+    "saritah"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:yojimbo",
+   "name": "Yojimbo",
+   "key": "yojimbo",
+   "performers": [
+    "yojimbo"
+   ]
+  },
+  {
+   "id": "electric-forest-2015:marco-benevento",
+   "name": "Marco Benevento",
+   "key": "marco-benevento",
+   "performers": [
+    "marco-benevento"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "electric-forest-2015:d1:ranch-arena:1600:dabin",
+   "artistId": "electric-forest-2015:dabin",
+   "day": 1,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "electric-forest-2015:d1:ranch-arena:1700:galantis",
+   "artistId": "electric-forest-2015:galantis",
+   "day": 1,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "electric-forest-2015:d1:ranch-arena:1845:borgeous",
+   "artistId": "electric-forest-2015:borgeous",
+   "day": 1,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:ranch-arena:2030:shpongle-simon-posford-dj-set",
+   "artistId": "electric-forest-2015:shpongle-simon-posford-dj-set",
+   "day": 1,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "electric-forest-2015:d1:ranch-arena:2215:odesza",
+   "artistId": "electric-forest-2015:odesza",
+   "day": 1,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:ranch-arena:0000:kaskade",
+   "artistId": "electric-forest-2015:kaskade",
+   "day": 1,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "00:00",
+   "end": "01:15"
+  },
+  {
+   "id": "electric-forest-2015:d1:sherwood-court:1730:future-classic-nadus",
+   "artistId": "electric-forest-2015:future-classic-nadus",
+   "day": 1,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:sherwood-court:1830:future-classic-mr-carmack",
+   "artistId": "electric-forest-2015:future-classic-mr-carmack",
+   "day": 1,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "18:30",
+   "end": "19:45"
+  },
+  {
+   "id": "electric-forest-2015:d1:sherwood-court:1945:future-classic-wave-racer",
+   "artistId": "electric-forest-2015:future-classic-wave-racer",
+   "day": 1,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "electric-forest-2015:d1:sherwood-court:2045:future-classic-lido",
+   "artistId": "electric-forest-2015:future-classic-lido",
+   "day": 1,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:sherwood-court:2200:future-classic-goldlink",
+   "artistId": "electric-forest-2015:future-classic-goldlink",
+   "day": 1,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "electric-forest-2015:d1:sherwood-court:2315:future-classic-four-tet",
+   "artistId": "electric-forest-2015:future-classic-four-tet",
+   "day": 1,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:sherwood-court:0045:future-classic-flume",
+   "artistId": "electric-forest-2015:future-classic-flume",
+   "day": 1,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:tripolee:1645:carl-cox-and-friends-saeed-younan",
+   "artistId": "electric-forest-2015:carl-cox-and-friends-saeed-younan",
+   "day": 1,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "16:45",
+   "end": "19:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:tripolee:1900:carl-cox-and-friends-matrixxman",
+   "artistId": "electric-forest-2015:carl-cox-and-friends-matrixxman",
+   "day": 1,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:tripolee:2030:carl-cox-and-friends-pete-tong",
+   "artistId": "electric-forest-2015:carl-cox-and-friends-pete-tong",
+   "day": 1,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:tripolee:2200:carl-cox-and-friends-dubfire",
+   "artistId": "electric-forest-2015:carl-cox-and-friends-dubfire",
+   "day": 1,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "electric-forest-2015:d1:tripolee:2315:carl-cox-and-friends-john-digweed",
+   "artistId": "electric-forest-2015:carl-cox-and-friends-john-digweed",
+   "day": 1,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:tripolee:0030:carl-cox-and-friends-carl-cox",
+   "artistId": "electric-forest-2015:carl-cox-and-friends-carl-cox",
+   "day": 1,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:the-hangar:1600:vourteque",
+   "artistId": "electric-forest-2015:vourteque",
+   "day": 1,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "16:00",
+   "end": "17:15"
+  },
+  {
+   "id": "electric-forest-2015:d1:the-hangar:1800:the-gentlemen-callers",
+   "artistId": "electric-forest-2015:the-gentlemen-callers",
+   "day": 1,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:the-hangar:2000:bart-and-baker",
+   "artistId": "electric-forest-2015:bart-and-baker",
+   "day": 1,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:the-hangar:2230:jaga-jazzist",
+   "artistId": "electric-forest-2015:jaga-jazzist",
+   "day": 1,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:the-hangar:0030:jpod",
+   "artistId": "electric-forest-2015:jpod",
+   "day": 1,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:jubilee:1700:chaz-french",
+   "artistId": "electric-forest-2015:chaz-french",
+   "day": 1,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:jubilee:1815:martyparty",
+   "artistId": "electric-forest-2015:martyparty",
+   "day": 1,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:jubilee:1945:sango",
+   "artistId": "electric-forest-2015:sango",
+   "day": 1,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "19:45",
+   "end": "21:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:jubilee:2115:brodinski",
+   "artistId": "electric-forest-2015:brodinski",
+   "day": 1,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "electric-forest-2015:d1:jubilee:2230:phutureprimitive",
+   "artistId": "electric-forest-2015:phutureprimitive",
+   "day": 1,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "22:30",
+   "end": "23:45"
+  },
+  {
+   "id": "electric-forest-2015:d1:jubilee:0015:eoto",
+   "artistId": "electric-forest-2015:eoto",
+   "day": 1,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "00:15",
+   "end": "01:45"
+  },
+  {
+   "id": "electric-forest-2015:d1:forest-stage:1600:the-imagine-nation",
+   "artistId": "electric-forest-2015:the-imagine-nation",
+   "day": 1,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "16:00",
+   "end": "16:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:forest-stage:1700:vibe-street",
+   "artistId": "electric-forest-2015:vibe-street",
+   "day": 1,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:forest-stage:1830:lafa-taylor",
+   "artistId": "electric-forest-2015:lafa-taylor",
+   "day": 1,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:forest-stage:2000:vaski",
+   "artistId": "electric-forest-2015:vaski",
+   "day": 1,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:forest-stage:2130:little-people",
+   "artistId": "electric-forest-2015:little-people",
+   "day": 1,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:forest-stage:2300:jacklndn",
+   "artistId": "electric-forest-2015:jacklndn",
+   "day": 1,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:forest-stage:0030:martyparty",
+   "artistId": "electric-forest-2015:martyparty",
+   "day": 1,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:the-observatory:1630:dixon-s-violin",
+   "artistId": "electric-forest-2015:dixon-s-violin",
+   "day": 1,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "electric-forest-2015:d1:the-observatory:1800:the-accidentals",
+   "artistId": "electric-forest-2015:the-accidentals",
+   "day": 1,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:the-observatory:1930:mike-love",
+   "artistId": "electric-forest-2015:mike-love",
+   "day": 1,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "19:30",
+   "end": "20:45"
+  },
+  {
+   "id": "electric-forest-2015:d1:the-observatory:2115:flint-eastwood",
+   "artistId": "electric-forest-2015:flint-eastwood",
+   "day": 1,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "electric-forest-2015:d1:the-observatory:2245:superhuman-happiness",
+   "artistId": "electric-forest-2015:superhuman-happiness",
+   "day": 1,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "electric-forest-2015:d1:the-observatory:0030:the-fungineers-and-bubble-gutter",
+   "artistId": "electric-forest-2015:the-fungineers-and-bubble-gutter",
+   "day": 1,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:ranch-arena:1530:the-ragbirds",
+   "artistId": "electric-forest-2015:the-ragbirds",
+   "day": 2,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "15:30",
+   "end": "16:45"
+  },
+  {
+   "id": "electric-forest-2015:d2:ranch-arena:1730:g-eazy",
+   "artistId": "electric-forest-2015:g-eazy",
+   "day": 2,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:ranch-arena:2000:the-string-cheese-incident",
+   "artistId": "electric-forest-2015:the-string-cheese-incident",
+   "day": 2,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "20:00",
+   "end": "23:45"
+  },
+  {
+   "id": "electric-forest-2015:d2:ranch-arena:0030:skrillex",
+   "artistId": "electric-forest-2015:skrillex",
+   "day": 2,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:sherwood-court:1700:superhuman-happiness",
+   "artistId": "electric-forest-2015:superhuman-happiness",
+   "day": 2,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "electric-forest-2015:d2:sherwood-court:1900:the-motet",
+   "artistId": "electric-forest-2015:the-motet",
+   "day": 2,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "electric-forest-2015:d2:sherwood-court:2045:break-science-live-band",
+   "artistId": "electric-forest-2015:break-science-live-band",
+   "day": 2,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:sherwood-court:2230:lettuce",
+   "artistId": "electric-forest-2015:lettuce",
+   "day": 2,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:sherwood-court:0030:lotus",
+   "artistId": "electric-forest-2015:lotus",
+   "day": 2,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "00:30",
+   "end": "02:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:1330:bassrush-illenium",
+   "artistId": "electric-forest-2015:bassrush-illenium",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "13:30",
+   "end": "14:45"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:1445:bassrush-son-of-kick",
+   "artistId": "electric-forest-2015:bassrush-son-of-kick",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "14:45",
+   "end": "16:15"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:1615:bassrush-vaski",
+   "artistId": "electric-forest-2015:bassrush-vaski",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "16:15",
+   "end": "17:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:1730:bassrush-mt-eden",
+   "artistId": "electric-forest-2015:bassrush-mt-eden",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:1830:bassrush-koan-sound",
+   "artistId": "electric-forest-2015:bassrush-koan-sound",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:1930:bassrush-minnesota",
+   "artistId": "electric-forest-2015:bassrush-minnesota",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:2030:bassrush-ed-rush-and-optical",
+   "artistId": "electric-forest-2015:bassrush-ed-rush-and-optical",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:2130:bassrush-crizzly",
+   "artistId": "electric-forest-2015:bassrush-crizzly",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:2230:bassrush-snails",
+   "artistId": "electric-forest-2015:bassrush-snails",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:2330:bassrush-datsik",
+   "artistId": "electric-forest-2015:bassrush-datsik",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:0030:bassrush-carnage",
+   "artistId": "electric-forest-2015:bassrush-carnage",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "00:30",
+   "end": "01:45"
+  },
+  {
+   "id": "electric-forest-2015:d2:tripolee:0145:bassrush-flux-pavilion",
+   "artistId": "electric-forest-2015:bassrush-flux-pavilion",
+   "day": 2,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "01:45",
+   "end": "03:15"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-hangar:1400:jpod",
+   "artistId": "electric-forest-2015:jpod",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-hangar:1600:lance-herbstrong",
+   "artistId": "electric-forest-2015:lance-herbstrong",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-hangar:1730:lafa-taylor",
+   "artistId": "electric-forest-2015:lafa-taylor",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-hangar:1900:the-gentlemen-callers",
+   "artistId": "electric-forest-2015:the-gentlemen-callers",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-hangar:2030:vourteque",
+   "artistId": "electric-forest-2015:vourteque",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-hangar:2230:jerk-church",
+   "artistId": "electric-forest-2015:jerk-church",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-hangar:0000:preservation-hall-jazz-band",
+   "artistId": "electric-forest-2015:preservation-hall-jazz-band",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-hangar:0130:bart-and-baker",
+   "artistId": "electric-forest-2015:bart-and-baker",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:jubilee:1645:everyone-orchestra",
+   "artistId": "electric-forest-2015:everyone-orchestra",
+   "day": 2,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "16:45",
+   "end": "18:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:jubilee:1830:trevor-hall",
+   "artistId": "electric-forest-2015:trevor-hall",
+   "day": 2,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:jubilee:2000:lyrics-born",
+   "artistId": "electric-forest-2015:lyrics-born",
+   "day": 2,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:jubilee:2130:delhi-2-dublin",
+   "artistId": "electric-forest-2015:delhi-2-dublin",
+   "day": 2,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "electric-forest-2015:d2:jubilee:2315:charles-bradley-and-his-extraordinaires",
+   "artistId": "electric-forest-2015:charles-bradley-and-his-extraordinaires",
+   "day": 2,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:jubilee:0100:the-motet-mixtape-1975",
+   "artistId": "electric-forest-2015:the-motet-mixtape-1975",
+   "day": 2,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "01:00",
+   "end": "03:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:forest-stage:1400:vibe-street",
+   "artistId": "electric-forest-2015:vibe-street",
+   "day": 2,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:forest-stage:1530:the-unsheathed",
+   "artistId": "electric-forest-2015:the-unsheathed",
+   "day": 2,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:forest-stage:1700:crew-love-throwdown",
+   "artistId": "electric-forest-2015:crew-love-throwdown",
+   "day": 2,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "17:00",
+   "end": "19:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:forest-stage:1930:crew-love-nick-monaco-live",
+   "artistId": "electric-forest-2015:crew-love-nick-monaco-live",
+   "day": 2,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "19:30",
+   "end": "20:15"
+  },
+  {
+   "id": "electric-forest-2015:d2:forest-stage:2015:crew-love-bamboozle",
+   "artistId": "electric-forest-2015:crew-love-bamboozle",
+   "day": 2,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "20:15",
+   "end": "20:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:forest-stage:2030:crew-love-slow-hands-live",
+   "artistId": "electric-forest-2015:crew-love-slow-hands-live",
+   "day": 2,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "20:30",
+   "end": "21:15"
+  },
+  {
+   "id": "electric-forest-2015:d2:forest-stage:2115:crew-love-bamboozle",
+   "artistId": "electric-forest-2015:crew-love-bamboozle",
+   "day": 2,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "21:15",
+   "end": "21:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:forest-stage:2130:crew-love-life-on-planets-live",
+   "artistId": "electric-forest-2015:crew-love-life-on-planets-live",
+   "day": 2,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "21:30",
+   "end": "22:15"
+  },
+  {
+   "id": "electric-forest-2015:d2:forest-stage:2215:crew-love-wolf-lamb-the-wolf",
+   "artistId": "electric-forest-2015:crew-love-wolf-lamb-the-wolf",
+   "day": 2,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:forest-stage:2330:crew-love-midnight-magic-live",
+   "artistId": "electric-forest-2015:crew-love-midnight-magic-live",
+   "day": 2,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:forest-stage:0030:crew-love-soul-clap-and-friends",
+   "artistId": "electric-forest-2015:crew-love-soul-clap-and-friends",
+   "day": 2,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "00:30",
+   "end": "02:45"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-observatory:1345:communion-pan-astral",
+   "artistId": "electric-forest-2015:communion-pan-astral",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "13:45",
+   "end": "14:45"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-observatory:1515:communion-devon-baldwin",
+   "artistId": "electric-forest-2015:communion-devon-baldwin",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-observatory:1645:communion-delta-spirit",
+   "artistId": "electric-forest-2015:communion-delta-spirit",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-observatory:1815:communion-joseph",
+   "artistId": "electric-forest-2015:communion-joseph",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-observatory:1945:communion-kevin-garrett",
+   "artistId": "electric-forest-2015:communion-kevin-garrett",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-observatory:2115:communion-teemid",
+   "artistId": "electric-forest-2015:communion-teemid",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-observatory:2230:communion-autograf",
+   "artistId": "electric-forest-2015:communion-autograf",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-observatory:0000:the-fungineers-and-bubble-gutter",
+   "artistId": "electric-forest-2015:the-fungineers-and-bubble-gutter",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-observatory:0115:the-funk-hunters",
+   "artistId": "electric-forest-2015:the-funk-hunters",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "01:15",
+   "end": "02:15"
+  },
+  {
+   "id": "electric-forest-2015:d2:the-observatory:0230:dixon-s-violin",
+   "artistId": "electric-forest-2015:dixon-s-violin",
+   "day": 2,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:ranch-arena:1545:seun-kuti-and-egypt-80",
+   "artistId": "electric-forest-2015:seun-kuti-and-egypt-80",
+   "day": 3,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "15:45",
+   "end": "17:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:ranch-arena:1800:edward-sharpe-and-the-magnetic-zeros",
+   "artistId": "electric-forest-2015:edward-sharpe-and-the-magnetic-zeros",
+   "day": 3,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:ranch-arena:2015:the-string-cheese-incident",
+   "artistId": "electric-forest-2015:the-string-cheese-incident",
+   "day": 3,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "20:15",
+   "end": "23:45"
+  },
+  {
+   "id": "electric-forest-2015:d3:ranch-arena:0030:bassnectar",
+   "artistId": "electric-forest-2015:bassnectar",
+   "day": 3,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:sherwood-court:1615:people-s-blues-of-richmond",
+   "artistId": "electric-forest-2015:people-s-blues-of-richmond",
+   "day": 3,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "16:15",
+   "end": "17:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:sherwood-court:1800:nattali-rize-and-notis",
+   "artistId": "electric-forest-2015:nattali-rize-and-notis",
+   "day": 3,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:sherwood-court:1945:the-werks",
+   "artistId": "electric-forest-2015:the-werks",
+   "day": 3,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "19:45",
+   "end": "21:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:sherwood-court:2130:phantogram",
+   "artistId": "electric-forest-2015:phantogram",
+   "day": 3,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:sherwood-court:2300:electron",
+   "artistId": "electric-forest-2015:electron",
+   "day": 3,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:sherwood-court:0100:joe-russo-s-almost-dead",
+   "artistId": "electric-forest-2015:joe-russo-s-almost-dead",
+   "day": 3,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:tripolee:1345:vibe-street",
+   "artistId": "electric-forest-2015:vibe-street",
+   "day": 3,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "13:45",
+   "end": "15:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:tripolee:1500:jacklndn",
+   "artistId": "electric-forest-2015:jacklndn",
+   "day": 3,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "15:00",
+   "end": "16:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:tripolee:1615:mako",
+   "artistId": "electric-forest-2015:mako",
+   "day": 3,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "16:15",
+   "end": "17:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:tripolee:1730:slow-magic",
+   "artistId": "electric-forest-2015:slow-magic",
+   "day": 3,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "17:30",
+   "end": "18:45"
+  },
+  {
+   "id": "electric-forest-2015:d3:tripolee:1845:skylar-spence",
+   "artistId": "electric-forest-2015:skylar-spence",
+   "day": 3,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:tripolee:2000:snbrn",
+   "artistId": "electric-forest-2015:snbrn",
+   "day": 3,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:tripolee:2130:mj-cole",
+   "artistId": "electric-forest-2015:mj-cole",
+   "day": 3,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:tripolee:2300:matoma",
+   "artistId": "electric-forest-2015:matoma",
+   "day": 3,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:tripolee:0030:green-velvet",
+   "artistId": "electric-forest-2015:green-velvet",
+   "day": 3,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "00:30",
+   "end": "01:45"
+  },
+  {
+   "id": "electric-forest-2015:d3:tripolee:0145:claude-vonstroke",
+   "artistId": "electric-forest-2015:claude-vonstroke",
+   "day": 3,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "01:45",
+   "end": "03:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-hangar:1430:jerk-church",
+   "artistId": "electric-forest-2015:jerk-church",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "14:30",
+   "end": "15:45"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-hangar:1615:preservation-hall-jazz-band",
+   "artistId": "electric-forest-2015:preservation-hall-jazz-band",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-hangar:1745:marcella-puppini",
+   "artistId": "electric-forest-2015:marcella-puppini",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-hangar:1915:bart-and-baker",
+   "artistId": "electric-forest-2015:bart-and-baker",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-hangar:2045:vourteque",
+   "artistId": "electric-forest-2015:vourteque",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-hangar:2230:the-gentlemen-callers",
+   "artistId": "electric-forest-2015:the-gentlemen-callers",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-hangar:0000:preservation-hall-jazz-band",
+   "artistId": "electric-forest-2015:preservation-hall-jazz-band",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-hangar:0130:jpod",
+   "artistId": "electric-forest-2015:jpod",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "01:30",
+   "end": "03:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:jubilee:1515:the-accidentals",
+   "artistId": "electric-forest-2015:the-accidentals",
+   "day": 3,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:jubilee:1645:tauk",
+   "artistId": "electric-forest-2015:tauk",
+   "day": 3,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "16:45",
+   "end": "18:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:jubilee:1830:lindsey-stirling",
+   "artistId": "electric-forest-2015:lindsey-stirling",
+   "day": 3,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "18:30",
+   "end": "19:45"
+  },
+  {
+   "id": "electric-forest-2015:d3:jubilee:2015:the-ragbirds",
+   "artistId": "electric-forest-2015:the-ragbirds",
+   "day": 3,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "20:15",
+   "end": "21:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:jubilee:2145:the-funk-hunters-feat-chali-2na",
+   "artistId": "electric-forest-2015:the-funk-hunters-feat-chali-2na",
+   "day": 3,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:jubilee:2330:dopapod",
+   "artistId": "electric-forest-2015:dopapod",
+   "day": 3,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "electric-forest-2015:d3:jubilee:0115:galactic-with-macy-gray",
+   "artistId": "electric-forest-2015:galactic-with-macy-gray",
+   "day": 3,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "01:15",
+   "end": "03:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:forest-stage:1300:the-unsheathed",
+   "artistId": "electric-forest-2015:the-unsheathed",
+   "day": 3,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:forest-stage:1430:dixon-s-violin",
+   "artistId": "electric-forest-2015:dixon-s-violin",
+   "day": 3,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:forest-stage:1600:snbrn",
+   "artistId": "electric-forest-2015:snbrn",
+   "day": 3,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:forest-stage:1730:jakubi",
+   "artistId": "electric-forest-2015:jakubi",
+   "day": 3,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:forest-stage:1900:minnesota",
+   "artistId": "electric-forest-2015:minnesota",
+   "day": 3,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:forest-stage:2030:low-temp-ben-negative",
+   "artistId": "electric-forest-2015:low-temp-ben-negative",
+   "day": 3,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:forest-stage:2200:low-temp-freddy-todd",
+   "artistId": "electric-forest-2015:low-temp-freddy-todd",
+   "day": 3,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:forest-stage:2330:low-temp-branx",
+   "artistId": "electric-forest-2015:low-temp-branx",
+   "day": 3,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:forest-stage:0100:low-temp-gibbz",
+   "artistId": "electric-forest-2015:low-temp-gibbz",
+   "day": 3,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2015:d3:forest-stage:0200:low-temp-russ-liquid",
+   "artistId": "electric-forest-2015:low-temp-russ-liquid",
+   "day": 3,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "02:00",
+   "end": "03:30"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-observatory:1515:katie-boeck",
+   "artistId": "electric-forest-2015:katie-boeck",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-observatory:1645:joseph",
+   "artistId": "electric-forest-2015:joseph",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-observatory:1815:american-babies",
+   "artistId": "electric-forest-2015:american-babies",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-observatory:1945:pan-astral",
+   "artistId": "electric-forest-2015:pan-astral",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-observatory:2115:teengirl-fantasy",
+   "artistId": "electric-forest-2015:teengirl-fantasy",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-observatory:2245:skylar-spence",
+   "artistId": "electric-forest-2015:skylar-spence",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "22:45",
+   "end": "23:45"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-observatory:0015:the-fungineers-and-bubble-gutter",
+   "artistId": "electric-forest-2015:the-fungineers-and-bubble-gutter",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "00:15",
+   "end": "01:15"
+  },
+  {
+   "id": "electric-forest-2015:d3:the-observatory:0145:everyone-orchestra",
+   "artistId": "electric-forest-2015:everyone-orchestra",
+   "day": 3,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "01:45",
+   "end": "03:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:ranch-arena:1600:keller-williams-grateful-grass",
+   "artistId": "electric-forest-2015:keller-williams-grateful-grass",
+   "day": 4,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "electric-forest-2015:d4:ranch-arena:1815:yonder-mountain-string-band",
+   "artistId": "electric-forest-2015:yonder-mountain-string-band",
+   "day": 4,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "18:15",
+   "end": "19:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:ranch-arena:2030:the-string-cheese-incident",
+   "artistId": "electric-forest-2015:the-string-cheese-incident",
+   "day": 4,
+   "stageId": "electric-forest-2015:ranch-arena",
+   "start": "20:30",
+   "end": "00:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:sherwood-court:1545:the-heard",
+   "artistId": "electric-forest-2015:the-heard",
+   "day": 4,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "15:45",
+   "end": "17:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:sherwood-court:1730:leikeli47",
+   "artistId": "electric-forest-2015:leikeli47",
+   "day": 4,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "17:30",
+   "end": "18:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:sherwood-court:1845:dopapod",
+   "artistId": "electric-forest-2015:dopapod",
+   "day": 4,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "18:45",
+   "end": "20:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:sherwood-court:2045:goldroom-live",
+   "artistId": "electric-forest-2015:goldroom-live",
+   "day": 4,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:sherwood-court:2245:gramatik",
+   "artistId": "electric-forest-2015:gramatik",
+   "day": 4,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:sherwood-court:0030:big-gigantic-feat-the-motet",
+   "artistId": "electric-forest-2015:big-gigantic-feat-the-motet",
+   "day": 4,
+   "stageId": "electric-forest-2015:sherwood-court",
+   "start": "00:30",
+   "end": "01:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:tripolee:1315:the-unsheathed",
+   "artistId": "electric-forest-2015:the-unsheathed",
+   "day": 4,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "13:15",
+   "end": "14:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:tripolee:1430:borahm-lee-dj-set",
+   "artistId": "electric-forest-2015:borahm-lee-dj-set",
+   "day": 4,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "electric-forest-2015:d4:tripolee:1545:jacklndn",
+   "artistId": "electric-forest-2015:jacklndn",
+   "day": 4,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:tripolee:1700:alison-wonderland",
+   "artistId": "electric-forest-2015:alison-wonderland",
+   "day": 4,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:tripolee:1815:tokimonsta",
+   "artistId": "electric-forest-2015:tokimonsta",
+   "day": 4,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:tripolee:1930:peking-duk",
+   "artistId": "electric-forest-2015:peking-duk",
+   "day": 4,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "electric-forest-2015:d4:tripolee:2045:goldfish",
+   "artistId": "electric-forest-2015:goldfish",
+   "day": 4,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:tripolee:2200:black-tiger-sex-machine-featuring-the-great-glow-flash-mob",
+   "artistId": "electric-forest-2015:black-tiger-sex-machine-featuring-the-great-glow-flash-mob",
+   "day": 4,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:tripolee:2315:wiwek",
+   "artistId": "electric-forest-2015:wiwek",
+   "day": 4,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "23:15",
+   "end": "00:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:tripolee:0030:paul-oakenfold",
+   "artistId": "electric-forest-2015:paul-oakenfold",
+   "day": 4,
+   "stageId": "electric-forest-2015:tripolee",
+   "start": "00:30",
+   "end": "01:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-hangar:1430:vourteque",
+   "artistId": "electric-forest-2015:vourteque",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-hangar:1545:jpod",
+   "artistId": "electric-forest-2015:jpod",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "15:45",
+   "end": "17:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-hangar:1730:the-shadowboxers",
+   "artistId": "electric-forest-2015:the-shadowboxers",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-hangar:1900:the-gentlemen-callers",
+   "artistId": "electric-forest-2015:the-gentlemen-callers",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-hangar:2030:jerk-church",
+   "artistId": "electric-forest-2015:jerk-church",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-hangar:2200:marcella-puppini",
+   "artistId": "electric-forest-2015:marcella-puppini",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-hangar:2330:bart-and-baker",
+   "artistId": "electric-forest-2015:bart-and-baker",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-hangar:0115:preservation-hall-jazz-band",
+   "artistId": "electric-forest-2015:preservation-hall-jazz-band",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-hangar",
+   "start": "01:15",
+   "end": "02:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:jubilee:1515:the-accidentals",
+   "artistId": "electric-forest-2015:the-accidentals",
+   "day": 4,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:jubilee:1645:nattali-rize-and-notis",
+   "artistId": "electric-forest-2015:nattali-rize-and-notis",
+   "day": 4,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:jubilee:1815:made-in-heights",
+   "artistId": "electric-forest-2015:made-in-heights",
+   "day": 4,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:jubilee:1945:exmag",
+   "artistId": "electric-forest-2015:exmag",
+   "day": 4,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "19:45",
+   "end": "21:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:jubilee:2130:tauk",
+   "artistId": "electric-forest-2015:tauk",
+   "day": 4,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:jubilee:2315:dam-funk",
+   "artistId": "electric-forest-2015:dam-funk",
+   "day": 4,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "electric-forest-2015:d4:jubilee:0100:break-science",
+   "artistId": "electric-forest-2015:break-science",
+   "day": 4,
+   "stageId": "electric-forest-2015:jubilee",
+   "start": "01:00",
+   "end": "02:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:forest-stage:1315:bobby-mcmanus",
+   "artistId": "electric-forest-2015:bobby-mcmanus",
+   "day": 4,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "13:15",
+   "end": "14:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:forest-stage:1445:armstrong-leigh",
+   "artistId": "electric-forest-2015:armstrong-leigh",
+   "day": 4,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "14:45",
+   "end": "15:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:forest-stage:1600:adam-deitch-dj-set",
+   "artistId": "electric-forest-2015:adam-deitch-dj-set",
+   "day": 4,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:forest-stage:1715:haywyre",
+   "artistId": "electric-forest-2015:haywyre",
+   "day": 4,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:forest-stage:1830:snbrn",
+   "artistId": "electric-forest-2015:snbrn",
+   "day": 4,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "electric-forest-2015:d4:forest-stage:2000:miami-horror",
+   "artistId": "electric-forest-2015:miami-horror",
+   "day": 4,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:forest-stage:2115:tokimonsta",
+   "artistId": "electric-forest-2015:tokimonsta",
+   "day": 4,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:forest-stage:2230:goldroom-dj-set",
+   "artistId": "electric-forest-2015:goldroom-dj-set",
+   "day": 4,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "electric-forest-2015:d4:forest-stage:2345:goldfish",
+   "artistId": "electric-forest-2015:goldfish",
+   "day": 4,
+   "stageId": "electric-forest-2015:forest-stage",
+   "start": "23:45",
+   "end": "01:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-observatory:1345:katie-boeck",
+   "artistId": "electric-forest-2015:katie-boeck",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "13:45",
+   "end": "14:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-observatory:1515:talia-keys",
+   "artistId": "electric-forest-2015:talia-keys",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-observatory:1645:saritah",
+   "artistId": "electric-forest-2015:saritah",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-observatory:1815:yojimbo",
+   "artistId": "electric-forest-2015:yojimbo",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-observatory:1945:marco-benevento",
+   "artistId": "electric-forest-2015:marco-benevento",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "19:45",
+   "end": "21:00"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-observatory:2130:people-s-blues-of-richmond",
+   "artistId": "electric-forest-2015:people-s-blues-of-richmond",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-observatory:2315:the-fungineers-and-bubble-gutter",
+   "artistId": "electric-forest-2015:the-fungineers-and-bubble-gutter",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "23:15",
+   "end": "00:15"
+  },
+  {
+   "id": "electric-forest-2015:d4:the-observatory:0045:dixon-s-violin",
+   "artistId": "electric-forest-2015:dixon-s-violin",
+   "day": 4,
+   "stageId": "electric-forest-2015:the-observatory",
+   "start": "00:45",
+   "end": "01:45"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://electricforestfestival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150906033019/http://www.electricforestfestival.com/scheduler/",
+    "captureTimestamp": "20150906033019",
+    "printed": "June 25",
+    "sha256": "95684c3b6d68ae964993eb2f33728066ee4c37bada59c033a939f5b8457983a1",
+    "rows": 49,
+    "tabDate": "2015-06-25"
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150906033019/http://www.electricforestfestival.com/scheduler/",
+    "captureTimestamp": "20150906033019",
+    "printed": "June 26",
+    "sha256": "95684c3b6d68ae964993eb2f33728066ee4c37bada59c033a939f5b8457983a1",
+    "rows": 65,
+    "tabDate": "2015-06-26"
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150906033019/http://www.electricforestfestival.com/scheduler/",
+    "captureTimestamp": "20150906033019",
+    "printed": "June 27",
+    "sha256": "95684c3b6d68ae964993eb2f33728066ee4c37bada59c033a939f5b8457983a1",
+    "rows": 62,
+    "tabDate": "2015-06-27"
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150906033019/http://www.electricforestfestival.com/scheduler/",
+    "captureTimestamp": "20150906033019",
+    "printed": "June 28",
+    "sha256": "95684c3b6d68ae964993eb2f33728066ee4c37bada59c033a939f5b8457983a1",
+    "rows": 61,
+    "tabDate": "2015-06-28"
+   }
+  ]
+ }
+}

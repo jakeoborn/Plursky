@@ -1,0 +1,218 @@
+{
+  "id": "electric-forest-2014",
+  "method": "official_sources",
+  "official": "https://electricforestfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2014-06-26",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://scheduler.electricforestfestival.com/",
+          "archivedUrl": "https://web.archive.org/web/20140702113840/http://scheduler.electricforestfestival.com/",
+          "captureTimestamp": "20140702113840",
+          "printed": "June 26",
+          "sha256": "577ee075c9740b1502047e4ef084f8b4a01897f4dc6c47ce3158d1ec571488a4",
+          "bytes": 181049,
+          "rows": 29,
+          "format": "ef-scheduler",
+          "tabDate": "2014-06-26",
+          "stages": 6,
+          "axisStart": "16:45",
+          "pxPerMinute": 10,
+          "times": "each block's place on the page's minute scale checked against its printed range"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2014-06-27",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://scheduler.electricforestfestival.com/",
+          "archivedUrl": "https://web.archive.org/web/20140702113840/http://scheduler.electricforestfestival.com/",
+          "captureTimestamp": "20140702113840",
+          "printed": "June 27",
+          "sha256": "577ee075c9740b1502047e4ef084f8b4a01897f4dc6c47ce3158d1ec571488a4",
+          "bytes": 181049,
+          "rows": 42,
+          "format": "ef-scheduler",
+          "tabDate": "2014-06-27",
+          "stages": 6,
+          "axisStart": "13:30",
+          "pxPerMinute": 10,
+          "times": "each block's place on the page's minute scale checked against its printed range"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2014-06-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://scheduler.electricforestfestival.com/",
+          "archivedUrl": "https://web.archive.org/web/20140702113840/http://scheduler.electricforestfestival.com/",
+          "captureTimestamp": "20140702113840",
+          "printed": "June 28",
+          "sha256": "577ee075c9740b1502047e4ef084f8b4a01897f4dc6c47ce3158d1ec571488a4",
+          "bytes": 181049,
+          "rows": 42,
+          "format": "ef-scheduler",
+          "tabDate": "2014-06-28",
+          "stages": 6,
+          "axisStart": "13:00",
+          "pxPerMinute": 10,
+          "times": "each block's place on the page's minute scale checked against its printed range"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2014-06-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://scheduler.electricforestfestival.com/",
+          "archivedUrl": "https://web.archive.org/web/20140702113840/http://scheduler.electricforestfestival.com/",
+          "captureTimestamp": "20140702113840",
+          "printed": "June 29",
+          "sha256": "577ee075c9740b1502047e4ef084f8b4a01897f4dc6c47ce3158d1ec571488a4",
+          "bytes": 181049,
+          "rows": 38,
+          "format": "ef-scheduler",
+          "tabDate": "2014-06-29",
+          "stages": 6,
+          "axisStart": "13:00",
+          "pxPerMinute": 10,
+          "times": "each block's place on the page's minute scale checked against its printed range",
+          "drawnTwice": [
+            "Cosby Sweater (Sherwood Court 3:45pm - 5:00pm)"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Silent Disco",
+      "start": "23:00",
+      "end": "01:00",
+      "billing": "Ryan Viser",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Observatory",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "Kyle Hollingsworth's Brewru Experience",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "21:00",
+      "end": "23:00",
+      "billing": "Marcelo Moxy",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "23:00",
+      "end": "00:30",
+      "billing": "Muzzy",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "00:30",
+      "end": "02:00",
+      "billing": "Golf Clap",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "02:00",
+      "end": "03:00",
+      "billing": "Dantiez Saunderson",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Observatory",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "Hoop Troupe Showcase",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Silent Disco",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Graff",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Silent Disco",
+      "start": "22:00",
+      "end": "00:00",
+      "billing": "Craigslist Hookup",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Silent Disco",
+      "start": "00:00",
+      "end": "02:00",
+      "billing": "Topher Jones",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Silent Disco",
+      "start": "02:00",
+      "end": "03:00",
+      "billing": "Soul Clap",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Silent Disco",
+      "start": "21:00",
+      "end": "23:00",
+      "billing": "Marcelo Moxy",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Silent Disco",
+      "start": "23:00",
+      "end": "01:00",
+      "billing": "Filibusta",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    }
+  ]
+}

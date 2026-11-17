@@ -266004,6 +266004,8211 @@
   "mainStage": null
  },
  {
+  "id": "electric-forest-2014:d1:ranch-arena:1700:cherub",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Ranch Arena",
+  "start": "17:00",
+  "end": "18:15",
+  "printed": "Cherub",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cherub",
+    "role": "performer"
+   }
+  ],
+  "act": "cherub",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:ranch-arena:1845:cash-cash",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Ranch Arena",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Cash Cash",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cash-cash",
+    "role": "performer"
+   }
+  ],
+  "act": "cash-cash",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:ranch-arena:2030:paper-diamond",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Ranch Arena",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "Paper Diamond",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paper-diamond",
+    "role": "performer"
+   }
+  ],
+  "act": "paper-diamond",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:ranch-arena:2215:the-glitch-mob",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Ranch Arena",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "The Glitch Mob",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-glitch-mob",
+    "role": "performer"
+   }
+  ],
+  "act": "the-glitch-mob",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:ranch-arena:0000:zeds-dead",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Ranch Arena",
+  "start": "00:00",
+  "end": "01:15",
+  "printed": "Zeds Dead",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zeds-dead",
+    "role": "performer"
+   }
+  ],
+  "act": "zeds-dead",
+  "closing": true,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:sherwood-court:1730:rising-appalachia",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Rising Appalachia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rising-appalachia",
+    "role": "performer"
+   }
+  ],
+  "act": "rising-appalachia",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:sherwood-court:1915:nahko-and-medicine-for-the-people",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "19:15",
+  "end": "20:30",
+  "printed": "Nahko and Medicine For The People",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nahko-and-medicine-for-the-people",
+    "role": "performer"
+   }
+  ],
+  "act": "nahko-and-medicine-for-the-people",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:sherwood-court:2100:eoto",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "21:00",
+  "end": "22:15",
+  "printed": "EOTO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eoto",
+    "role": "performer"
+   }
+  ],
+  "act": "eoto",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:sherwood-court:2245:umphrey-s-mcgee",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "22:45",
+  "end": "00:00",
+  "printed": "Umphrey's McGee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "umphrey-s-mcgee",
+    "role": "performer"
+   }
+  ],
+  "act": "umphrey-s-mcgee",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:sherwood-court:0000:cosby-sweater",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "00:00",
+  "end": "00:30",
+  "printed": "Cosby Sweater",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cosby-sweater",
+    "role": "performer"
+   }
+  ],
+  "act": "cosby-sweater",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:sherwood-court:0030:umphrey-s-mcgee",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Umphrey's McGee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "umphrey-s-mcgee",
+    "role": "performer"
+   }
+  ],
+  "act": "umphrey-s-mcgee",
+  "closing": true,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:tripolee:1700:kaytranada",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "17:00",
+  "end": "18:15",
+  "printed": "Kaytranada",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaytranada",
+    "role": "performer"
+   }
+  ],
+  "act": "kaytranada",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:tripolee:1815:jimmy-edgar",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "18:15",
+  "end": "19:30",
+  "printed": "Jimmy Edgar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jimmy-edgar",
+    "role": "performer"
+   }
+  ],
+  "act": "jimmy-edgar",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:tripolee:1930:j-phlip",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "19:30",
+  "end": "20:45",
+  "printed": "J. Phlip",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "j-phlip",
+    "role": "performer"
+   }
+  ],
+  "act": "j-phlip",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:tripolee:2045:catz-n-dogz",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Catz n Dogz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "catz-n-dogz",
+    "role": "performer"
+   }
+  ],
+  "act": "catz-n-dogz",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:tripolee:2200:justin-martin",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "22:00",
+  "end": "23:15",
+  "printed": "Justin Martin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-martin",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-martin",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:tripolee:2315:dusky",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "Dusky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dusky",
+    "role": "performer"
+   }
+  ],
+  "act": "dusky",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:tripolee:0045:classixx",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Classixx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "classixx",
+    "role": "performer"
+   }
+  ],
+  "act": "classixx",
+  "closing": true,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:forest-stage:1645:dixon-s-violin",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "16:45",
+  "end": "18:00",
+  "printed": "Dixon's Violin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dixon-s-violin",
+    "role": "performer"
+   }
+  ],
+  "act": "dixon-s-violin",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:forest-stage:1830:jon-wayne-and-the-pain",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Jon Wayne and The Pain",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jon-wayne-and-the-pain",
+    "role": "performer"
+   }
+  ],
+  "act": "jon-wayne-and-the-pain",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:forest-stage:2000:penguin-prison-dj-set",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Penguin Prison DJ Set",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "penguin-prison-dj-set",
+    "role": "performer"
+   }
+  ],
+  "act": "penguin-prison-dj-set",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:forest-stage:2130:francesca-lombardo",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Francesca Lombardo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "francesca-lombardo",
+    "role": "performer"
+   }
+  ],
+  "act": "francesca-lombardo",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:forest-stage:2300:rosin-coven",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Rosin Coven",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rosin-coven",
+    "role": "performer"
+   }
+  ],
+  "act": "rosin-coven",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:forest-stage:0030:poolside",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "00:30",
+  "end": "01:45",
+  "printed": "Poolside",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "poolside",
+    "role": "performer"
+   }
+  ],
+  "act": "poolside",
+  "closing": true,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:the-observatory:1830:late-night-radio",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "The Observatory",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Late Night Radio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "late-night-radio",
+    "role": "performer"
+   }
+  ],
+  "act": "late-night-radio",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:the-observatory:2000:the-fungineers",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "The Observatory",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "The Fungineers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-fungineers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-fungineers",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:the-observatory:2130:dustin-thomas",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "The Observatory",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Dustin Thomas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dustin-thomas",
+    "role": "performer"
+   }
+  ],
+  "act": "dustin-thomas",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d1:the-observatory:2300:psychedelic-friendship-bingo",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-26",
+  "day": 1,
+  "stage": "The Observatory",
+  "start": "23:00",
+  "end": "02:00",
+  "printed": "Psychedelic Friendship Bingo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "psychedelic-friendship-bingo",
+    "role": "performer"
+   }
+  ],
+  "act": "psychedelic-friendship-bingo",
+  "closing": true,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:ranch-arena:1515:anders-osborne",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Ranch Arena",
+  "start": "15:15",
+  "end": "16:45",
+  "printed": "Anders Osborne",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anders-osborne",
+    "role": "performer"
+   }
+  ],
+  "act": "anders-osborne",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:ranch-arena:1730:ms-lauryn-hill",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Ranch Arena",
+  "start": "17:30",
+  "end": "19:00",
+  "printed": "Ms. Lauryn Hill",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ms-lauryn-hill",
+    "role": "performer"
+   }
+  ],
+  "act": "ms-lauryn-hill",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:ranch-arena:2000:the-string-cheese-incident",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Ranch Arena",
+  "start": "20:00",
+  "end": "23:45",
+  "printed": "The String Cheese Incident",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-string-cheese-incident",
+    "role": "performer"
+   }
+  ],
+  "act": "the-string-cheese-incident",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:ranch-arena:0030:zedd",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Ranch Arena",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Zedd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": true,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:sherwood-court:1530:the-revivalists",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Sherwood Court",
+  "start": "15:30",
+  "end": "16:45",
+  "printed": "The Revivalists",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-revivalists",
+    "role": "performer"
+   }
+  ],
+  "act": "the-revivalists",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:sherwood-court:1715:zoogma",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Sherwood Court",
+  "start": "17:15",
+  "end": "18:30",
+  "printed": "Zoogma",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zoogma",
+    "role": "performer"
+   }
+  ],
+  "act": "zoogma",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:sherwood-court:1900:papadosio",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Sherwood Court",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "Papadosio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "papadosio",
+    "role": "performer"
+   }
+  ],
+  "act": "papadosio",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:sherwood-court:2045:conspirator",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Sherwood Court",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Conspirator",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "conspirator",
+    "role": "performer"
+   }
+  ],
+  "act": "conspirator",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:sherwood-court:2230:sts9",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Sherwood Court",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "STS9",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sts9",
+    "role": "performer"
+   }
+  ],
+  "act": "sts9",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:sherwood-court:0030:umphrey-s-mcgee",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Sherwood Court",
+  "start": "00:30",
+  "end": "02:30",
+  "printed": "Umphrey's McGee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "umphrey-s-mcgee",
+    "role": "performer"
+   }
+  ],
+  "act": "umphrey-s-mcgee",
+  "closing": true,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:1330:fury-mc-dino",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "13:30",
+  "end": "15:30",
+  "printed": "Fury + MC Dino",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fury",
+    "role": "performer"
+   },
+   {
+    "key": "mc-dino",
+    "role": "mc"
+   }
+  ],
+  "act": "fury-mc-dino",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:1530:lindsay-lowend",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "Lindsay Lowend",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lindsay-lowend",
+    "role": "performer"
+   }
+  ],
+  "act": "lindsay-lowend",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:1630:luminox",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Luminox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luminox",
+    "role": "performer"
+   }
+  ],
+  "act": "luminox",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:1730:protohype",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Protohype",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "protohype",
+    "role": "performer"
+   }
+  ],
+  "act": "protohype",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:1830:pegboard-nerds",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Pegboard Nerds",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pegboard-nerds",
+    "role": "performer"
+   }
+  ],
+  "act": "pegboard-nerds",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:1930:wilkinson",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Wilkinson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wilkinson",
+    "role": "performer"
+   }
+  ],
+  "act": "wilkinson",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:2030:dirtyphonics",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "Dirtyphonics",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dirtyphonics",
+    "role": "performer"
+   }
+  ],
+  "act": "dirtyphonics",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:2130:i-am-legion",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "I Am Legion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "i-am-legion",
+    "role": "performer"
+   }
+  ],
+  "act": "i-am-legion",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:2230:12th-planet",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "12th Planet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "12th-planet",
+    "role": "performer"
+   }
+  ],
+  "act": "12th-planet",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:2330:bro-safari",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Bro Safari",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bro-safari",
+    "role": "performer"
+   }
+  ],
+  "act": "bro-safari",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:0030:andy-c",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "00:30",
+  "end": "01:45",
+  "printed": "Andy C",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andy-c",
+    "role": "performer"
+   }
+  ],
+  "act": "andy-c",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:tripolee:0145:excision",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "01:45",
+  "end": "03:00",
+  "printed": "Excision",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "excision",
+    "role": "performer"
+   }
+  ],
+  "act": "excision",
+  "closing": true,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:forest-stage:1400:los-rakas",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Los Rakas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-rakas",
+    "role": "performer"
+   }
+  ],
+  "act": "los-rakas",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:forest-stage:1530:rayland-baxter",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "Rayland Baxter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rayland-baxter",
+    "role": "performer"
+   }
+  ],
+  "act": "rayland-baxter",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:forest-stage:1700:chrome-sparks",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Chrome Sparks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chrome-sparks",
+    "role": "performer"
+   }
+  ],
+  "act": "chrome-sparks",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:forest-stage:1830:s-he",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "S/HE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "s-he",
+    "role": "performer"
+   }
+  ],
+  "act": "s-he",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:forest-stage:2000:roadkill-ghost-choir",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Roadkill Ghost Choir",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roadkill-ghost-choir",
+    "role": "performer"
+   }
+  ],
+  "act": "roadkill-ghost-choir",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:forest-stage:2130:golf-clap",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Golf Clap",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "golf-clap",
+    "role": "performer"
+   }
+  ],
+  "act": "golf-clap",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:forest-stage:2300:dantiez-saunderson-b2b-kevin-saunderson",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "23:00",
+  "end": "01:15",
+  "printed": "Dantiez Saunderson B2B Kevin Saunderson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dantiez-saunderson",
+    "role": "b2b"
+   },
+   {
+    "key": "kevin-saunderson",
+    "role": "b2b"
+   }
+  ],
+  "act": "dantiez-saunderson-b2b-kevin-saunderson",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:forest-stage:0145:soul-visions",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "01:45",
+  "end": "03:00",
+  "printed": "Soul Visions",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soul-visions",
+    "role": "performer"
+   }
+  ],
+  "act": "soul-visions",
+  "closing": true,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:the-observatory:1515:after-funk",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "After Funk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "after-funk",
+    "role": "performer"
+   }
+  ],
+  "act": "after-funk",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:the-observatory:1645:nahko-solo",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Nahko (Solo)",
+  "setTag": "Solo",
+  "performers": [
+   {
+    "key": "nahko",
+    "role": "performer"
+   }
+  ],
+  "act": "nahko",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:the-observatory:1815:rosin-coven",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Rosin Coven",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rosin-coven",
+    "role": "performer"
+   }
+  ],
+  "act": "rosin-coven",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:the-observatory:1945:dixon-s-violin",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "Dixon's Violin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dixon-s-violin",
+    "role": "performer"
+   }
+  ],
+  "act": "dixon-s-violin",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:the-observatory:2115:rayland-baxter",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "21:15",
+  "end": "22:00",
+  "printed": "Rayland Baxter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rayland-baxter",
+    "role": "performer"
+   }
+  ],
+  "act": "rayland-baxter",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:the-observatory:2230:the-fungineers",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "The Fungineers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-fungineers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-fungineers",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d2:the-observatory:0000:psychedelic-friendship-bingo",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "00:00",
+  "end": "03:00",
+  "printed": "Psychedelic Friendship Bingo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "psychedelic-friendship-bingo",
+    "role": "performer"
+   }
+  ],
+  "act": "psychedelic-friendship-bingo",
+  "closing": true,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:ranch-arena:1545:xavier-rudd",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Ranch Arena",
+  "start": "15:45",
+  "end": "17:15",
+  "printed": "Xavier Rudd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xavier-rudd",
+    "role": "performer"
+   }
+  ],
+  "act": "xavier-rudd",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:ranch-arena:1800:stephen-ragga-marley",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Ranch Arena",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Stephen Ragga Marley",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stephen-ragga-marley",
+    "role": "performer"
+   }
+  ],
+  "act": "stephen-ragga-marley",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:ranch-arena:2015:the-string-cheese-incident",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Ranch Arena",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "The String Cheese Incident",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-string-cheese-incident",
+    "role": "performer"
+   }
+  ],
+  "act": "the-string-cheese-incident",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:ranch-arena:2145:the-ms-lauryn-hill-incident",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Ranch Arena",
+  "start": "21:45",
+  "end": "23:45",
+  "printed": "The Ms. Lauryn Hill Incident",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-ms-lauryn-hill-incident",
+    "role": "performer"
+   }
+  ],
+  "act": "the-ms-lauryn-hill-incident",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:ranch-arena:0030:steve-angello",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Ranch Arena",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Steve Angello",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steve-angello",
+    "role": "performer"
+   }
+  ],
+  "act": "steve-angello",
+  "closing": true,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:sherwood-court:1615:the-floozies",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "The Floozies",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-floozies",
+    "role": "performer"
+   }
+  ],
+  "act": "the-floozies",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:sherwood-court:1800:schoolboy-q",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "18:00",
+  "end": "19:15",
+  "printed": "ScHoolboy Q",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "schoolboy-q",
+    "role": "performer"
+   }
+  ],
+  "act": "schoolboy-q",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:sherwood-court:1945:emancipator-ensemble",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "19:45",
+  "end": "21:00",
+  "printed": "Emancipator Ensemble",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emancipator-ensemble",
+    "role": "performer"
+   }
+  ],
+  "act": "emancipator-ensemble",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:sherwood-court:2130:flying-lotus",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "21:30",
+  "end": "22:45",
+  "printed": "Flying Lotus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flying-lotus",
+    "role": "performer"
+   }
+  ],
+  "act": "flying-lotus",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:sherwood-court:2315:booka-shade",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "BOOKA SHADE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "booka-shade",
+    "role": "performer"
+   }
+  ],
+  "act": "booka-shade",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:sherwood-court:0100:sts9",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "01:00",
+  "end": "02:30",
+  "printed": "STS9",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sts9",
+    "role": "performer"
+   }
+  ],
+  "act": "sts9",
+  "closing": true,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:tripolee:1345:the-unsheathed",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "13:45",
+  "end": "15:00",
+  "printed": "The UNSHEATHED!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-unsheathed",
+    "role": "performer"
+   }
+  ],
+  "act": "the-unsheathed",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:tripolee:1500:anna-lunoe",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "Anna Lunoe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anna-lunoe",
+    "role": "performer"
+   }
+  ],
+  "act": "anna-lunoe",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:tripolee:1615:eric-volta",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "Eric Volta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eric-volta",
+    "role": "performer"
+   }
+  ],
+  "act": "eric-volta",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:tripolee:1730:bob-moses",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Bob Moses",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-moses",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-moses",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:tripolee:1845:kastle",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Kastle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kastle",
+    "role": "performer"
+   }
+  ],
+  "act": "kastle",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:tripolee:2000:mk",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "MK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mk",
+    "role": "performer"
+   }
+  ],
+  "act": "mk",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:tripolee:2130:destructo",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Destructo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "destructo",
+    "role": "performer"
+   }
+  ],
+  "act": "destructo",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:tripolee:2300:soul-clap",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "Soul Clap",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soul-clap",
+    "role": "performer"
+   }
+  ],
+  "act": "soul-clap",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:tripolee:0030:lee-burridge",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "00:30",
+  "end": "01:45",
+  "printed": "Lee Burridge",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lee-burridge",
+    "role": "performer"
+   }
+  ],
+  "act": "lee-burridge",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:tripolee:0145:art-department",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "01:45",
+  "end": "03:15",
+  "printed": "Art Department",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "art-department",
+    "role": "performer"
+   }
+  ],
+  "act": "art-department",
+  "closing": true,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:forest-stage:1300:robbie-fitzsimmons",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Robbie Fitzsimmons",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "robbie-fitzsimmons",
+    "role": "performer"
+   }
+  ],
+  "act": "robbie-fitzsimmons",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:forest-stage:1430:joe-hertler-and-the-rainbow-seekers",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Joe Hertler & The Rainbow Seekers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joe-hertler-and-the-rainbow-seekers",
+    "role": "performer"
+   }
+  ],
+  "act": "joe-hertler-and-the-rainbow-seekers",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:forest-stage:1600:sister-sparrow-and-the-dirty-birds",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Sister Sparrow & The Dirty Birds",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sister-sparrow-and-the-dirty-birds",
+    "role": "performer"
+   }
+  ],
+  "act": "sister-sparrow-and-the-dirty-birds",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:forest-stage:1730:gemini-club",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Gemini Club",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gemini-club",
+    "role": "performer"
+   }
+  ],
+  "act": "gemini-club",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:forest-stage:1900:rosin-coven",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Rosin Coven",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rosin-coven",
+    "role": "performer"
+   }
+  ],
+  "act": "rosin-coven",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:forest-stage:2030:topher-jones",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "Topher Jones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "topher-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "topher-jones",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:forest-stage:2215:until-the-ribbon-breaks",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "22:15",
+  "end": "23:15",
+  "printed": "Until The Ribbon Breaks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "until-the-ribbon-breaks",
+    "role": "performer"
+   }
+  ],
+  "act": "until-the-ribbon-breaks",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:forest-stage:2345:dead-confederate",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "23:45",
+  "end": "01:00",
+  "printed": "Dead Confederate",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dead-confederate",
+    "role": "performer"
+   }
+  ],
+  "act": "dead-confederate",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:forest-stage:0130:rac",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "01:30",
+  "end": "03:00",
+  "printed": "RAC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rac",
+    "role": "performer"
+   }
+  ],
+  "act": "rac",
+  "closing": true,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:the-observatory:1515:woven-tangles",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Woven Tangles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "woven-tangles",
+    "role": "performer"
+   }
+  ],
+  "act": "woven-tangles",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:the-observatory:1645:t-hardy-morris",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "T. Hardy Morris",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "t-hardy-morris",
+    "role": "performer"
+   }
+  ],
+  "act": "t-hardy-morris",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:the-observatory:1815:anthony-hall",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Anthony Hall",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anthony-hall",
+    "role": "performer"
+   }
+  ],
+  "act": "anthony-hall",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:the-observatory:1945:muzzy",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "Muzzy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muzzy",
+    "role": "performer"
+   }
+  ],
+  "act": "muzzy",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:the-observatory:2115:the-fungineers",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "The Fungineers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-fungineers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-fungineers",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:the-observatory:2245:blue-sky-black-death",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "22:45",
+  "end": "23:45",
+  "printed": "Blue Sky Black Death",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blue-sky-black-death",
+    "role": "performer"
+   }
+  ],
+  "act": "blue-sky-black-death",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d3:the-observatory:0015:psychedelic-friendship-bingo",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "00:15",
+  "end": "03:15",
+  "printed": "Psychedelic Friendship Bingo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "psychedelic-friendship-bingo",
+    "role": "performer"
+   }
+  ],
+  "act": "psychedelic-friendship-bingo",
+  "closing": true,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:ranch-arena:1500:bombino",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Ranch Arena",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "Bombino",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bombino",
+    "role": "performer"
+   }
+  ],
+  "act": "bombino",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:ranch-arena:1645:aloe-blacc",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Ranch Arena",
+  "start": "16:45",
+  "end": "18:00",
+  "printed": "Aloe Blacc",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aloe-blacc",
+    "role": "performer"
+   }
+  ],
+  "act": "aloe-blacc",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:ranch-arena:1845:matt-and-kim",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Ranch Arena",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "Matt & Kim",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matt-and-kim",
+    "role": "performer"
+   }
+  ],
+  "act": "matt-and-kim",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:ranch-arena:2030:the-string-cheese-incident",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Ranch Arena",
+  "start": "20:30",
+  "end": "00:45",
+  "printed": "The String Cheese Incident",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-string-cheese-incident",
+    "role": "performer"
+   }
+  ],
+  "act": "the-string-cheese-incident",
+  "closing": true,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:sherwood-court:1545:cosby-sweater",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "15:45",
+  "end": "17:00",
+  "printed": "Cosby Sweater",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cosby-sweater",
+    "role": "performer"
+   }
+  ],
+  "act": "cosby-sweater",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:sherwood-court:1730:moon-taxi",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Moon Taxi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moon-taxi",
+    "role": "performer"
+   }
+  ],
+  "act": "moon-taxi",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:sherwood-court:1915:st-lucia",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "19:15",
+  "end": "20:30",
+  "printed": "St. Lucia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "st-lucia",
+    "role": "performer"
+   }
+  ],
+  "act": "st-lucia",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:sherwood-court:2100:rac",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "21:00",
+  "end": "22:15",
+  "printed": "RAC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rac",
+    "role": "performer"
+   }
+  ],
+  "act": "rac",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:sherwood-court:2245:tycho",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "22:45",
+  "end": "00:00",
+  "printed": "Tycho",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tycho",
+    "role": "performer"
+   }
+  ],
+  "act": "tycho",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:sherwood-court:0030:cut-copy",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "00:30",
+  "end": "01:45",
+  "printed": "Cut Copy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cut-copy",
+    "role": "performer"
+   }
+  ],
+  "act": "cut-copy",
+  "closing": true,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:tripolee:1315:luke-the-knife",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "13:15",
+  "end": "14:15",
+  "printed": "Luke The Knife",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luke-the-knife",
+    "role": "performer"
+   }
+  ],
+  "act": "luke-the-knife",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:tripolee:1430:natasha-kmeto",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Natasha Kmeto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "natasha-kmeto",
+    "role": "performer"
+   }
+  ],
+  "act": "natasha-kmeto",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:tripolee:1545:trippy-turtle",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "Trippy Turtle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trippy-turtle",
+    "role": "performer"
+   }
+  ],
+  "act": "trippy-turtle",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:tripolee:1700:k-theory",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "K Theory",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "k-theory",
+    "role": "performer"
+   }
+  ],
+  "act": "k-theory",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:tripolee:1815:alex-metric",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Alex Metric",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-metric",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-metric",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:tripolee:1930:what-so-not",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "What So Not",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "what-so-not",
+    "role": "performer"
+   }
+  ],
+  "act": "what-so-not",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:tripolee:2045:seven-lions",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "Seven Lions",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seven-lions",
+    "role": "performer"
+   }
+  ],
+  "act": "seven-lions",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:tripolee:2200:cashmere-cat",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Cashmere Cat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cashmere-cat",
+    "role": "performer"
+   }
+  ],
+  "act": "cashmere-cat",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:tripolee:2315:gta",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "23:15",
+  "end": "00:15",
+  "printed": "GTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gta",
+    "role": "performer"
+   }
+  ],
+  "act": "gta",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:tripolee:0030:moby",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "00:30",
+  "end": "01:45",
+  "printed": "Moby",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moby",
+    "role": "performer"
+   }
+  ],
+  "act": "moby",
+  "closing": true,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:forest-stage:1300:kung-fu",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "13:00",
+  "end": "14:15",
+  "printed": "Kung Fu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kung-fu",
+    "role": "performer"
+   }
+  ],
+  "act": "kung-fu",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:forest-stage:1445:rosin-coven",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "Rosin Coven",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rosin-coven",
+    "role": "performer"
+   }
+  ],
+  "act": "rosin-coven",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:forest-stage:1615:earphunk",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "Earphunk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "earphunk",
+    "role": "performer"
+   }
+  ],
+  "act": "earphunk",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:forest-stage:1745:kygo",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Kygo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kygo",
+    "role": "performer"
+   }
+  ],
+  "act": "kygo",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:forest-stage:1915:isaac-tichauer",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "Isaac Tichauer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isaac-tichauer",
+    "role": "performer"
+   }
+  ],
+  "act": "isaac-tichauer",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:forest-stage:2015:perseus",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "20:15",
+  "end": "21:15",
+  "printed": "Perseus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "perseus",
+    "role": "performer"
+   }
+  ],
+  "act": "perseus",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:forest-stage:2115:jonas-rathsman",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "Jonas Rathsman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jonas-rathsman",
+    "role": "performer"
+   }
+  ],
+  "act": "jonas-rathsman",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:forest-stage:2215:moon-boots",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "22:15",
+  "end": "23:15",
+  "printed": "Moon Boots",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moon-boots",
+    "role": "performer"
+   }
+  ],
+  "act": "moon-boots",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:forest-stage:2345:manic-menert",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "23:45",
+  "end": "01:00",
+  "printed": "Manic Menert",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "manic-menert",
+    "role": "performer"
+   }
+  ],
+  "act": "manic-menert",
+  "closing": true,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:the-observatory:1345:emerson-jay",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "Emerson Jay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emerson-jay",
+    "role": "performer"
+   }
+  ],
+  "act": "emerson-jay",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:the-observatory:1515:robbie-fitzsimmons",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Robbie Fitzsimmons",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "robbie-fitzsimmons",
+    "role": "performer"
+   }
+  ],
+  "act": "robbie-fitzsimmons",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:the-observatory:1645:marcelo-moxy",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Marcelo Moxy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marcelo-moxy",
+    "role": "performer"
+   }
+  ],
+  "act": "marcelo-moxy",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:the-observatory:1815:andy-frasco-and-the-u-n",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Andy Frasco & the U.N.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andy-frasco-and-the-u-n",
+    "role": "performer"
+   }
+  ],
+  "act": "andy-frasco-and-the-u-n",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:the-observatory:1945:the-fungineers",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "The Fungineers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-fungineers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-fungineers",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:the-observatory:2115:dixon-s-violin",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "Dixon's Violin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dixon-s-violin",
+    "role": "performer"
+   }
+  ],
+  "act": "dixon-s-violin",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2014:d4:the-observatory:2245:psychedelic-friendship-bingo",
+  "source": "edition",
+  "festivalId": "electric-forest-2014",
+  "festivalBrand": "electric-forest",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "22:45",
+  "end": "01:45",
+  "printed": "Psychedelic Friendship Bingo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "psychedelic-friendship-bingo",
+    "role": "performer"
+   }
+  ],
+  "act": "psychedelic-friendship-bingo",
+  "closing": true,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:ranch-arena:1600:dabin",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Ranch Arena",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "Dabin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dabin",
+    "role": "performer"
+   }
+  ],
+  "act": "dabin",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:ranch-arena:1700:galantis",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Ranch Arena",
+  "start": "17:00",
+  "end": "18:15",
+  "printed": "Galantis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "galantis",
+    "role": "performer"
+   }
+  ],
+  "act": "galantis",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:ranch-arena:1845:borgeous",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Ranch Arena",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Borgeous",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "borgeous",
+    "role": "performer"
+   }
+  ],
+  "act": "borgeous",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:ranch-arena:2030:shpongle-simon-posford-dj-set",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Ranch Arena",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "Shpongle (Simon Posford DJ Set)",
+  "setTag": "Simon Posford DJ Set",
+  "performers": [
+   {
+    "key": "shpongle",
+    "role": "performer"
+   }
+  ],
+  "act": "shpongle",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:ranch-arena:2215:odesza",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Ranch Arena",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "ODESZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odesza",
+    "role": "performer"
+   }
+  ],
+  "act": "odesza",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:ranch-arena:0000:kaskade",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Ranch Arena",
+  "start": "00:00",
+  "end": "01:15",
+  "printed": "Kaskade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaskade",
+    "role": "performer"
+   }
+  ],
+  "act": "kaskade",
+  "closing": true,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:sherwood-court:1730:future-classic-nadus",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Future Classic: Nadus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future-classic-nadus",
+    "role": "performer"
+   }
+  ],
+  "act": "future-classic-nadus",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:sherwood-court:1830:future-classic-mr-carmack",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "18:30",
+  "end": "19:45",
+  "printed": "Future Classic: Mr. Carmack",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future-classic-mr-carmack",
+    "role": "performer"
+   }
+  ],
+  "act": "future-classic-mr-carmack",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:sherwood-court:1945:future-classic-wave-racer",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "Future Classic: Wave Racer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future-classic-wave-racer",
+    "role": "performer"
+   }
+  ],
+  "act": "future-classic-wave-racer",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:sherwood-court:2045:future-classic-lido",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Future Classic: Lido",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future-classic-lido",
+    "role": "performer"
+   }
+  ],
+  "act": "future-classic-lido",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:sherwood-court:2200:future-classic-goldlink",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "22:00",
+  "end": "23:15",
+  "printed": "Future Classic: GoldLink",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future-classic-goldlink",
+    "role": "performer"
+   }
+  ],
+  "act": "future-classic-goldlink",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:sherwood-court:2315:future-classic-four-tet",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "Future Classic: Four Tet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future-classic-four-tet",
+    "role": "performer"
+   }
+  ],
+  "act": "future-classic-four-tet",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:sherwood-court:0045:future-classic-flume",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Sherwood Court",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Future Classic: Flume",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future-classic-flume",
+    "role": "performer"
+   }
+  ],
+  "act": "future-classic-flume",
+  "closing": true,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:tripolee:1645:carl-cox-and-friends-saeed-younan",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "16:45",
+  "end": "19:00",
+  "printed": "Carl Cox & Friends: Saeed Younan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carl-cox-and-friends-saeed-younan",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox-and-friends-saeed-younan",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:tripolee:1900:carl-cox-and-friends-matrixxman",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Carl Cox & Friends: Matrixxman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carl-cox-and-friends-matrixxman",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox-and-friends-matrixxman",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:tripolee:2030:carl-cox-and-friends-pete-tong",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Carl Cox & Friends: Pete Tong",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carl-cox-and-friends-pete-tong",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox-and-friends-pete-tong",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:tripolee:2200:carl-cox-and-friends-dubfire",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "22:00",
+  "end": "23:15",
+  "printed": "Carl Cox & Friends: Dubfire",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carl-cox-and-friends-dubfire",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox-and-friends-dubfire",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:tripolee:2315:carl-cox-and-friends-john-digweed",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "Carl Cox & Friends: John Digweed",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carl-cox-and-friends-john-digweed",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox-and-friends-john-digweed",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:tripolee:0030:carl-cox-and-friends-carl-cox",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Tripolee",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Carl Cox & Friends: Carl Cox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carl-cox-and-friends-carl-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox-and-friends-carl-cox",
+  "closing": true,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:the-hangar:1600:vourteque",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "The Hangar",
+  "start": "16:00",
+  "end": "17:15",
+  "printed": "Vourteque",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vourteque",
+    "role": "performer"
+   }
+  ],
+  "act": "vourteque",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:the-hangar:1800:the-gentlemen-callers",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "The Hangar",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "The Gentlemen Callers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-gentlemen-callers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-gentlemen-callers",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:the-hangar:2000:bart-and-baker",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "The Hangar",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "Bart&Baker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bart-and-baker",
+    "role": "performer"
+   }
+  ],
+  "act": "bart-and-baker",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:the-hangar:2230:jaga-jazzist",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "The Hangar",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "Jaga Jazzist",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jaga-jazzist",
+    "role": "performer"
+   }
+  ],
+  "act": "jaga-jazzist",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:the-hangar:0030:jpod",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "The Hangar",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "JPOD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jpod",
+    "role": "performer"
+   }
+  ],
+  "act": "jpod",
+  "closing": true,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:jubilee:1700:chaz-french",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Jubilee",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Chaz French",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chaz-french",
+    "role": "performer"
+   }
+  ],
+  "act": "chaz-french",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:jubilee:1815:martyparty",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Jubilee",
+  "start": "18:15",
+  "end": "19:30",
+  "printed": "MartyParty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "martyparty",
+    "role": "performer"
+   }
+  ],
+  "act": "martyparty",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:jubilee:1945:sango",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Jubilee",
+  "start": "19:45",
+  "end": "21:00",
+  "printed": "Sango",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sango",
+    "role": "performer"
+   }
+  ],
+  "act": "sango",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:jubilee:2115:brodinski",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Jubilee",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "Brodinski",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brodinski",
+    "role": "performer"
+   }
+  ],
+  "act": "brodinski",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:jubilee:2230:phutureprimitive",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Jubilee",
+  "start": "22:30",
+  "end": "23:45",
+  "printed": "Phutureprimitive",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phutureprimitive",
+    "role": "performer"
+   }
+  ],
+  "act": "phutureprimitive",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:jubilee:0015:eoto",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Jubilee",
+  "start": "00:15",
+  "end": "01:45",
+  "printed": "EOTO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eoto",
+    "role": "performer"
+   }
+  ],
+  "act": "eoto",
+  "closing": true,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:forest-stage:1600:the-imagine-nation",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "16:00",
+  "end": "16:30",
+  "printed": "The Imagine Nation",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-imagine-nation",
+    "role": "performer"
+   }
+  ],
+  "act": "the-imagine-nation",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:forest-stage:1700:vibe-street",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Vibe Street",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vibe-street",
+    "role": "performer"
+   }
+  ],
+  "act": "vibe-street",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:forest-stage:1830:lafa-taylor",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Lafa Taylor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lafa-taylor",
+    "role": "performer"
+   }
+  ],
+  "act": "lafa-taylor",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:forest-stage:2000:vaski",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Vaski",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vaski",
+    "role": "performer"
+   }
+  ],
+  "act": "vaski",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:forest-stage:2130:little-people",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Little People",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-people",
+    "role": "performer"
+   }
+  ],
+  "act": "little-people",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:forest-stage:2300:jacklndn",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "jackLNDN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jacklndn",
+    "role": "performer"
+   }
+  ],
+  "act": "jacklndn",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:forest-stage:0030:martyparty",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "Forest Stage",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "MartyParty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "martyparty",
+    "role": "performer"
+   }
+  ],
+  "act": "martyparty",
+  "closing": true,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:the-observatory:1630:dixon-s-violin",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "The Observatory",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Dixon's Violin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dixon-s-violin",
+    "role": "performer"
+   }
+  ],
+  "act": "dixon-s-violin",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:the-observatory:1800:the-accidentals",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "The Observatory",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "The Accidentals",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-accidentals",
+    "role": "performer"
+   }
+  ],
+  "act": "the-accidentals",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:the-observatory:1930:mike-love",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "The Observatory",
+  "start": "19:30",
+  "end": "20:45",
+  "printed": "MIKE LOVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mike-love",
+    "role": "performer"
+   }
+  ],
+  "act": "mike-love",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:the-observatory:2115:flint-eastwood",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "The Observatory",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "Flint Eastwood",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flint-eastwood",
+    "role": "performer"
+   }
+  ],
+  "act": "flint-eastwood",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:the-observatory:2245:superhuman-happiness",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "The Observatory",
+  "start": "22:45",
+  "end": "00:00",
+  "printed": "Superhuman Happiness",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "superhuman-happiness",
+    "role": "performer"
+   }
+  ],
+  "act": "superhuman-happiness",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d1:the-observatory:0030:the-fungineers-and-bubble-gutter",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-25",
+  "day": 1,
+  "stage": "The Observatory",
+  "start": "00:30",
+  "end": "01:30",
+  "printed": "The Fungineers & Bubble Gutter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-fungineers-and-bubble-gutter",
+    "role": "performer"
+   }
+  ],
+  "act": "the-fungineers-and-bubble-gutter",
+  "closing": true,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:ranch-arena:1530:the-ragbirds",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Ranch Arena",
+  "start": "15:30",
+  "end": "16:45",
+  "printed": "The Ragbirds",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-ragbirds",
+    "role": "performer"
+   }
+  ],
+  "act": "the-ragbirds",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:ranch-arena:1730:g-eazy",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Ranch Arena",
+  "start": "17:30",
+  "end": "19:00",
+  "printed": "G-Eazy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "g-eazy",
+    "role": "performer"
+   }
+  ],
+  "act": "g-eazy",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:ranch-arena:2000:the-string-cheese-incident",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Ranch Arena",
+  "start": "20:00",
+  "end": "23:45",
+  "printed": "The String Cheese Incident",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-string-cheese-incident",
+    "role": "performer"
+   }
+  ],
+  "act": "the-string-cheese-incident",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:ranch-arena:0030:skrillex",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Ranch Arena",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Skrillex",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skrillex",
+    "role": "performer"
+   }
+  ],
+  "act": "skrillex",
+  "closing": true,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:sherwood-court:1700:superhuman-happiness",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Sherwood Court",
+  "start": "17:00",
+  "end": "18:15",
+  "printed": "Superhuman Happiness",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "superhuman-happiness",
+    "role": "performer"
+   }
+  ],
+  "act": "superhuman-happiness",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:sherwood-court:1900:the-motet",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Sherwood Court",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "The Motet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-motet",
+    "role": "performer"
+   }
+  ],
+  "act": "the-motet",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:sherwood-court:2045:break-science-live-band",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Sherwood Court",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Break Science Live Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "break-science-live-band",
+    "role": "performer"
+   }
+  ],
+  "act": "break-science-live-band",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:sherwood-court:2230:lettuce",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Sherwood Court",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "Lettuce",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lettuce",
+    "role": "performer"
+   }
+  ],
+  "act": "lettuce",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:sherwood-court:0030:lotus",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Sherwood Court",
+  "start": "00:30",
+  "end": "02:30",
+  "printed": "Lotus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lotus",
+    "role": "performer"
+   }
+  ],
+  "act": "lotus",
+  "closing": true,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:1330:bassrush-illenium",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "13:30",
+  "end": "14:45",
+  "printed": "Bassrush: Illenium",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-illenium",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-illenium",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:1445:bassrush-son-of-kick",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "14:45",
+  "end": "16:15",
+  "printed": "Bassrush: Son of Kick",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-son-of-kick",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-son-of-kick",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:1615:bassrush-vaski",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "Bassrush: Vaski",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-vaski",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-vaski",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:1730:bassrush-mt-eden",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Bassrush: Mt Eden",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-mt-eden",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-mt-eden",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:1830:bassrush-koan-sound",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Bassrush: KOAN Sound",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-koan-sound",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-koan-sound",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:1930:bassrush-minnesota",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Bassrush: Minnesota",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-minnesota",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-minnesota",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:2030:bassrush-ed-rush-and-optical",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "Bassrush: Ed Rush & Optical",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-ed-rush-and-optical",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-ed-rush-and-optical",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:2130:bassrush-crizzly",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Bassrush: Crizzly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-crizzly",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-crizzly",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:2230:bassrush-snails",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "Bassrush: SNAILS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-snails",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-snails",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:2330:bassrush-datsik",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Bassrush: Datsik",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-datsik",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-datsik",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:0030:bassrush-carnage",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "00:30",
+  "end": "01:45",
+  "printed": "Bassrush: Carnage",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-carnage",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-carnage",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:tripolee:0145:bassrush-flux-pavilion",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Tripolee",
+  "start": "01:45",
+  "end": "03:15",
+  "printed": "Bassrush: Flux Pavilion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassrush-flux-pavilion",
+    "role": "performer"
+   }
+  ],
+  "act": "bassrush-flux-pavilion",
+  "closing": true,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-hangar:1400:jpod",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Hangar",
+  "start": "14:00",
+  "end": "15:30",
+  "printed": "JPOD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jpod",
+    "role": "performer"
+   }
+  ],
+  "act": "jpod",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-hangar:1600:lance-herbstrong",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Hangar",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Lance Herbstrong",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lance-herbstrong",
+    "role": "performer"
+   }
+  ],
+  "act": "lance-herbstrong",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-hangar:1730:lafa-taylor",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Hangar",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Lafa Taylor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lafa-taylor",
+    "role": "performer"
+   }
+  ],
+  "act": "lafa-taylor",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-hangar:1900:the-gentlemen-callers",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Hangar",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "The Gentlemen Callers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-gentlemen-callers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-gentlemen-callers",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-hangar:2030:vourteque",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Hangar",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Vourteque",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vourteque",
+    "role": "performer"
+   }
+  ],
+  "act": "vourteque",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-hangar:2230:jerk-church",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Hangar",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "Jerk Church",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jerk-church",
+    "role": "performer"
+   }
+  ],
+  "act": "jerk-church",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-hangar:0000:preservation-hall-jazz-band",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Hangar",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Preservation Hall Jazz Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "preservation-hall-jazz-band",
+    "role": "performer"
+   }
+  ],
+  "act": "preservation-hall-jazz-band",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-hangar:0130:bart-and-baker",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Hangar",
+  "start": "01:30",
+  "end": "03:00",
+  "printed": "Bart&Baker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bart-and-baker",
+    "role": "performer"
+   }
+  ],
+  "act": "bart-and-baker",
+  "closing": true,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:jubilee:1645:everyone-orchestra",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Jubilee",
+  "start": "16:45",
+  "end": "18:00",
+  "printed": "Everyone Orchestra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "everyone-orchestra",
+    "role": "performer"
+   }
+  ],
+  "act": "everyone-orchestra",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:jubilee:1830:trevor-hall",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Jubilee",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Trevor Hall",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trevor-hall",
+    "role": "performer"
+   }
+  ],
+  "act": "trevor-hall",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:jubilee:2000:lyrics-born",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Jubilee",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Lyrics Born",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lyrics-born",
+    "role": "performer"
+   }
+  ],
+  "act": "lyrics-born",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:jubilee:2130:delhi-2-dublin",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Jubilee",
+  "start": "21:30",
+  "end": "22:45",
+  "printed": "Delhi 2 Dublin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "delhi-2-dublin",
+    "role": "performer"
+   }
+  ],
+  "act": "delhi-2-dublin",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:jubilee:2315:charles-bradley-and-his-extraordinaires",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Jubilee",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "Charles Bradley & His Extraordinaires",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charles-bradley-and-his-extraordinaires",
+    "role": "performer"
+   }
+  ],
+  "act": "charles-bradley-and-his-extraordinaires",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:jubilee:0100:the-motet-mixtape-1975",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Jubilee",
+  "start": "01:00",
+  "end": "03:00",
+  "printed": "The Motet (Mixtape 1975)",
+  "setTag": "Mixtape 1975",
+  "performers": [
+   {
+    "key": "the-motet",
+    "role": "performer"
+   }
+  ],
+  "act": "the-motet",
+  "closing": true,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:forest-stage:1400:vibe-street",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Vibe Street",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vibe-street",
+    "role": "performer"
+   }
+  ],
+  "act": "vibe-street",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:forest-stage:1530:the-unsheathed",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "The Unsheathed!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-unsheathed",
+    "role": "performer"
+   }
+  ],
+  "act": "the-unsheathed",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:forest-stage:1700:crew-love-throwdown",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "17:00",
+  "end": "19:30",
+  "printed": "Crew Love Throwdown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crew-love-throwdown",
+    "role": "performer"
+   }
+  ],
+  "act": "crew-love-throwdown",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:forest-stage:1930:crew-love-nick-monaco-live",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "19:30",
+  "end": "20:15",
+  "printed": "Crew Love: Nick Monaco Live",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crew-love-nick-monaco-live",
+    "role": "performer"
+   }
+  ],
+  "act": "crew-love-nick-monaco-live",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:forest-stage:2015:crew-love-bamboozle",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "20:15",
+  "end": "20:30",
+  "printed": "Crew Love: Bamboozle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crew-love-bamboozle",
+    "role": "performer"
+   }
+  ],
+  "act": "crew-love-bamboozle",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:forest-stage:2030:crew-love-slow-hands-live",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "20:30",
+  "end": "21:15",
+  "printed": "Crew Love: Slow Hands Live",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crew-love-slow-hands-live",
+    "role": "performer"
+   }
+  ],
+  "act": "crew-love-slow-hands-live",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:forest-stage:2115:crew-love-bamboozle",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "21:15",
+  "end": "21:30",
+  "printed": "Crew Love: Bamboozle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crew-love-bamboozle",
+    "role": "performer"
+   }
+  ],
+  "act": "crew-love-bamboozle",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:forest-stage:2130:crew-love-life-on-planets-live",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "21:30",
+  "end": "22:15",
+  "printed": "Crew Love: Life on Planets Live",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crew-love-life-on-planets-live",
+    "role": "performer"
+   }
+  ],
+  "act": "crew-love-life-on-planets-live",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:forest-stage:2215:crew-love-wolf-lamb-the-wolf",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "Crew Love: Wolf + Lamb / The Wolf",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crew-love-wolf-lamb-the-wolf",
+    "role": "act"
+   }
+  ],
+  "act": "crew-love-wolf-lamb-the-wolf",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "electric-forest-2015:d2:forest-stage:2330:crew-love-midnight-magic-live",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Crew Love: Midnight Magic Live",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crew-love-midnight-magic-live",
+    "role": "performer"
+   }
+  ],
+  "act": "crew-love-midnight-magic-live",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:forest-stage:0030:crew-love-soul-clap-and-friends",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "Forest Stage",
+  "start": "00:30",
+  "end": "02:45",
+  "printed": "Crew Love: Soul Clap & Friends",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crew-love-soul-clap-and-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "crew-love-soul-clap-and-friends",
+  "closing": true,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-observatory:1345:communion-pan-astral",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "Communion: Pan Astral",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "communion-pan-astral",
+    "role": "performer"
+   }
+  ],
+  "act": "communion-pan-astral",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-observatory:1515:communion-devon-baldwin",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Communion: Devon Baldwin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "communion-devon-baldwin",
+    "role": "performer"
+   }
+  ],
+  "act": "communion-devon-baldwin",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-observatory:1645:communion-delta-spirit",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Communion: Delta Spirit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "communion-delta-spirit",
+    "role": "performer"
+   }
+  ],
+  "act": "communion-delta-spirit",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-observatory:1815:communion-joseph",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Communion: Joseph",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "communion-joseph",
+    "role": "performer"
+   }
+  ],
+  "act": "communion-joseph",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-observatory:1945:communion-kevin-garrett",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "Communion: Kevin Garrett",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "communion-kevin-garrett",
+    "role": "performer"
+   }
+  ],
+  "act": "communion-kevin-garrett",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-observatory:2115:communion-teemid",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "Communion: Teemid",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "communion-teemid",
+    "role": "performer"
+   }
+  ],
+  "act": "communion-teemid",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-observatory:2230:communion-autograf",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "Communion: Autograf",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "communion-autograf",
+    "role": "performer"
+   }
+  ],
+  "act": "communion-autograf",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-observatory:0000:the-fungineers-and-bubble-gutter",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "The Fungineers & Bubble Gutter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-fungineers-and-bubble-gutter",
+    "role": "performer"
+   }
+  ],
+  "act": "the-fungineers-and-bubble-gutter",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-observatory:0115:the-funk-hunters",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "01:15",
+  "end": "02:15",
+  "printed": "The Funk Hunters",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-funk-hunters",
+    "role": "performer"
+   }
+  ],
+  "act": "the-funk-hunters",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d2:the-observatory:0230:dixon-s-violin",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-26",
+  "day": 2,
+  "stage": "The Observatory",
+  "start": "02:30",
+  "end": "03:30",
+  "printed": "Dixon's Violin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dixon-s-violin",
+    "role": "performer"
+   }
+  ],
+  "act": "dixon-s-violin",
+  "closing": true,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:ranch-arena:1545:seun-kuti-and-egypt-80",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Ranch Arena",
+  "start": "15:45",
+  "end": "17:15",
+  "printed": "Seun Kuti & Egypt 80",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seun-kuti-and-egypt-80",
+    "role": "performer"
+   }
+  ],
+  "act": "seun-kuti-and-egypt-80",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:ranch-arena:1800:edward-sharpe-and-the-magnetic-zeros",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Ranch Arena",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Edward Sharpe And The Magnetic Zeros",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "edward-sharpe-and-the-magnetic-zeros",
+    "role": "performer"
+   }
+  ],
+  "act": "edward-sharpe-and-the-magnetic-zeros",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:ranch-arena:2015:the-string-cheese-incident",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Ranch Arena",
+  "start": "20:15",
+  "end": "23:45",
+  "printed": "The String Cheese Incident",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-string-cheese-incident",
+    "role": "performer"
+   }
+  ],
+  "act": "the-string-cheese-incident",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:ranch-arena:0030:bassnectar",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Ranch Arena",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "BASSNECTAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassnectar",
+    "role": "performer"
+   }
+  ],
+  "act": "bassnectar",
+  "closing": true,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:sherwood-court:1615:people-s-blues-of-richmond",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "People's Blues of Richmond",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "people-s-blues-of-richmond",
+    "role": "performer"
+   }
+  ],
+  "act": "people-s-blues-of-richmond",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:sherwood-court:1800:nattali-rize-and-notis",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "18:00",
+  "end": "19:15",
+  "printed": "Nattali Rize & NOTIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nattali-rize-and-notis",
+    "role": "performer"
+   }
+  ],
+  "act": "nattali-rize-and-notis",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:sherwood-court:1945:the-werks",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "19:45",
+  "end": "21:00",
+  "printed": "The Werks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-werks",
+    "role": "performer"
+   }
+  ],
+  "act": "the-werks",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:sherwood-court:2130:phantogram",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Phantogram",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phantogram",
+    "role": "performer"
+   }
+  ],
+  "act": "phantogram",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:sherwood-court:2300:electron",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "Electron",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "electron",
+    "role": "performer"
+   }
+  ],
+  "act": "electron",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:sherwood-court:0100:joe-russo-s-almost-dead",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Sherwood Court",
+  "start": "01:00",
+  "end": "02:30",
+  "printed": "Joe Russo's Almost Dead",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joe-russo-s-almost-dead",
+    "role": "performer"
+   }
+  ],
+  "act": "joe-russo-s-almost-dead",
+  "closing": true,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:tripolee:1345:vibe-street",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "13:45",
+  "end": "15:00",
+  "printed": "Vibe Street",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vibe-street",
+    "role": "performer"
+   }
+  ],
+  "act": "vibe-street",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:tripolee:1500:jacklndn",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "jackLNDN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jacklndn",
+    "role": "performer"
+   }
+  ],
+  "act": "jacklndn",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:tripolee:1615:mako",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "MAKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mako",
+    "role": "performer"
+   }
+  ],
+  "act": "mako",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:tripolee:1730:slow-magic",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Slow Magic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slow-magic",
+    "role": "performer"
+   }
+  ],
+  "act": "slow-magic",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:tripolee:1845:skylar-spence",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Skylar Spence",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skylar-spence",
+    "role": "performer"
+   }
+  ],
+  "act": "skylar-spence",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:tripolee:2000:snbrn",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "SNBRN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snbrn",
+    "role": "performer"
+   }
+  ],
+  "act": "snbrn",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:tripolee:2130:mj-cole",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "MJ Cole",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mj-cole",
+    "role": "performer"
+   }
+  ],
+  "act": "mj-cole",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:tripolee:2300:matoma",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "Matoma",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matoma",
+    "role": "performer"
+   }
+  ],
+  "act": "matoma",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:tripolee:0030:green-velvet",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "00:30",
+  "end": "01:45",
+  "printed": "Green Velvet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "green-velvet",
+    "role": "performer"
+   }
+  ],
+  "act": "green-velvet",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:tripolee:0145:claude-vonstroke",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Tripolee",
+  "start": "01:45",
+  "end": "03:15",
+  "printed": "Claude VonStroke",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "claude-vonstroke",
+    "role": "performer"
+   }
+  ],
+  "act": "claude-vonstroke",
+  "closing": true,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-hangar:1430:jerk-church",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Hangar",
+  "start": "14:30",
+  "end": "15:45",
+  "printed": "Jerk Church",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jerk-church",
+    "role": "performer"
+   }
+  ],
+  "act": "jerk-church",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-hangar:1615:preservation-hall-jazz-band",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Hangar",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "Preservation Hall Jazz Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "preservation-hall-jazz-band",
+    "role": "performer"
+   }
+  ],
+  "act": "preservation-hall-jazz-band",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-hangar:1745:marcella-puppini",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Hangar",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Marcella Puppini",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marcella-puppini",
+    "role": "performer"
+   }
+  ],
+  "act": "marcella-puppini",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-hangar:1915:bart-and-baker",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Hangar",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "Bart&Baker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bart-and-baker",
+    "role": "performer"
+   }
+  ],
+  "act": "bart-and-baker",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-hangar:2045:vourteque",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Hangar",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Vourteque",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vourteque",
+    "role": "performer"
+   }
+  ],
+  "act": "vourteque",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-hangar:2230:the-gentlemen-callers",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Hangar",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "The Gentlemen Callers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-gentlemen-callers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-gentlemen-callers",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-hangar:0000:preservation-hall-jazz-band",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Hangar",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Preservation Hall Jazz Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "preservation-hall-jazz-band",
+    "role": "performer"
+   }
+  ],
+  "act": "preservation-hall-jazz-band",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-hangar:0130:jpod",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Hangar",
+  "start": "01:30",
+  "end": "03:30",
+  "printed": "JPOD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jpod",
+    "role": "performer"
+   }
+  ],
+  "act": "jpod",
+  "closing": true,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:jubilee:1515:the-accidentals",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Jubilee",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "The Accidentals",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-accidentals",
+    "role": "performer"
+   }
+  ],
+  "act": "the-accidentals",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:jubilee:1645:tauk",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Jubilee",
+  "start": "16:45",
+  "end": "18:00",
+  "printed": "TAUK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tauk",
+    "role": "performer"
+   }
+  ],
+  "act": "tauk",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:jubilee:1830:lindsey-stirling",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Jubilee",
+  "start": "18:30",
+  "end": "19:45",
+  "printed": "Lindsey Stirling",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lindsey-stirling",
+    "role": "performer"
+   }
+  ],
+  "act": "lindsey-stirling",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:jubilee:2015:the-ragbirds",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Jubilee",
+  "start": "20:15",
+  "end": "21:15",
+  "printed": "The Ragbirds",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-ragbirds",
+    "role": "performer"
+   }
+  ],
+  "act": "the-ragbirds",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:jubilee:2145:the-funk-hunters-feat-chali-2na",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Jubilee",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "The Funk Hunters Feat. Chali 2na",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-funk-hunters",
+    "role": "performer"
+   },
+   {
+    "key": "chali-2na",
+    "role": "guest"
+   }
+  ],
+  "act": "the-funk-hunters-feat-chali-2na",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:jubilee:2330:dopapod",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Jubilee",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "Dopapod",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dopapod",
+    "role": "performer"
+   }
+  ],
+  "act": "dopapod",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:jubilee:0115:galactic-with-macy-gray",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Jubilee",
+  "start": "01:15",
+  "end": "03:00",
+  "printed": "Galactic with Macy Gray",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "galactic",
+    "role": "performer"
+   },
+   {
+    "key": "macy-gray",
+    "role": "guest"
+   }
+  ],
+  "act": "galactic-with-macy-gray",
+  "closing": true,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:forest-stage:1300:the-unsheathed",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "The Unsheathed!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-unsheathed",
+    "role": "performer"
+   }
+  ],
+  "act": "the-unsheathed",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:forest-stage:1430:dixon-s-violin",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Dixon's Violin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dixon-s-violin",
+    "role": "performer"
+   }
+  ],
+  "act": "dixon-s-violin",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:forest-stage:1600:snbrn",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "SNBRN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snbrn",
+    "role": "performer"
+   }
+  ],
+  "act": "snbrn",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:forest-stage:1730:jakubi",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Jakubi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jakubi",
+    "role": "performer"
+   }
+  ],
+  "act": "jakubi",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:forest-stage:1900:minnesota",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Minnesota",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "minnesota",
+    "role": "performer"
+   }
+  ],
+  "act": "minnesota",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:forest-stage:2030:low-temp-ben-negative",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Low Temp: Ben Negative",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "low-temp-ben-negative",
+    "role": "performer"
+   }
+  ],
+  "act": "low-temp-ben-negative",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:forest-stage:2200:low-temp-freddy-todd",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "22:00",
+  "end": "23:30",
+  "printed": "Low Temp: Freddy Todd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "low-temp-freddy-todd",
+    "role": "performer"
+   }
+  ],
+  "act": "low-temp-freddy-todd",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:forest-stage:2330:low-temp-branx",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "23:30",
+  "end": "01:00",
+  "printed": "Low Temp: Branx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "low-temp-branx",
+    "role": "performer"
+   }
+  ],
+  "act": "low-temp-branx",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:forest-stage:0100:low-temp-gibbz",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Low Temp: GiBBZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "low-temp-gibbz",
+    "role": "performer"
+   }
+  ],
+  "act": "low-temp-gibbz",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:forest-stage:0200:low-temp-russ-liquid",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "Forest Stage",
+  "start": "02:00",
+  "end": "03:30",
+  "printed": "Low Temp: Russ Liquid",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "low-temp-russ-liquid",
+    "role": "performer"
+   }
+  ],
+  "act": "low-temp-russ-liquid",
+  "closing": true,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-observatory:1515:katie-boeck",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Katie Boeck",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "katie-boeck",
+    "role": "performer"
+   }
+  ],
+  "act": "katie-boeck",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-observatory:1645:joseph",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Joseph",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joseph",
+    "role": "performer"
+   }
+  ],
+  "act": "joseph",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-observatory:1815:american-babies",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "American Babies",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "american-babies",
+    "role": "performer"
+   }
+  ],
+  "act": "american-babies",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-observatory:1945:pan-astral",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "Pan Astral",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pan-astral",
+    "role": "performer"
+   }
+  ],
+  "act": "pan-astral",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-observatory:2115:teengirl-fantasy",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "Teengirl Fantasy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teengirl-fantasy",
+    "role": "performer"
+   }
+  ],
+  "act": "teengirl-fantasy",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-observatory:2245:skylar-spence",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "22:45",
+  "end": "23:45",
+  "printed": "Skylar Spence",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skylar-spence",
+    "role": "performer"
+   }
+  ],
+  "act": "skylar-spence",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-observatory:0015:the-fungineers-and-bubble-gutter",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "00:15",
+  "end": "01:15",
+  "printed": "The Fungineers & Bubble Gutter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-fungineers-and-bubble-gutter",
+    "role": "performer"
+   }
+  ],
+  "act": "the-fungineers-and-bubble-gutter",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d3:the-observatory:0145:everyone-orchestra",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-27",
+  "day": 3,
+  "stage": "The Observatory",
+  "start": "01:45",
+  "end": "03:15",
+  "printed": "Everyone Orchestra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "everyone-orchestra",
+    "role": "performer"
+   }
+  ],
+  "act": "everyone-orchestra",
+  "closing": true,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:ranch-arena:1600:keller-williams-grateful-grass",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Ranch Arena",
+  "start": "16:00",
+  "end": "17:30",
+  "printed": "Keller Williams’ Grateful Grass",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "keller-williams-grateful-grass",
+    "role": "performer"
+   }
+  ],
+  "act": "keller-williams-grateful-grass",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:ranch-arena:1815:yonder-mountain-string-band",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Ranch Arena",
+  "start": "18:15",
+  "end": "19:45",
+  "printed": "Yonder Mountain String Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yonder-mountain-string-band",
+    "role": "performer"
+   }
+  ],
+  "act": "yonder-mountain-string-band",
+  "closing": false,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:ranch-arena:2030:the-string-cheese-incident",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Ranch Arena",
+  "start": "20:30",
+  "end": "00:45",
+  "printed": "The String Cheese Incident",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-string-cheese-incident",
+    "role": "performer"
+   }
+  ],
+  "act": "the-string-cheese-incident",
+  "closing": true,
+  "stageLineage": "electric-forest:ranch-arena",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:sherwood-court:1545:the-heard",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "15:45",
+  "end": "17:00",
+  "printed": "The Heard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-heard",
+    "role": "performer"
+   }
+  ],
+  "act": "the-heard",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:sherwood-court:1730:leikeli47",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "17:30",
+  "end": "18:15",
+  "printed": "Leikeli47",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leikeli47",
+    "role": "performer"
+   }
+  ],
+  "act": "leikeli47",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:sherwood-court:1845:dopapod",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "18:45",
+  "end": "20:15",
+  "printed": "Dopapod",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dopapod",
+    "role": "performer"
+   }
+  ],
+  "act": "dopapod",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:sherwood-court:2045:goldroom-live",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Goldroom Live",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldroom-live",
+    "role": "performer"
+   }
+  ],
+  "act": "goldroom-live",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:sherwood-court:2245:gramatik",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "22:45",
+  "end": "00:00",
+  "printed": "Gramatik",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gramatik",
+    "role": "performer"
+   }
+  ],
+  "act": "gramatik",
+  "closing": false,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:sherwood-court:0030:big-gigantic-feat-the-motet",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Sherwood Court",
+  "start": "00:30",
+  "end": "01:45",
+  "printed": "Big Gigantic feat. The Motet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-gigantic",
+    "role": "performer"
+   },
+   {
+    "key": "the-motet",
+    "role": "guest"
+   }
+  ],
+  "act": "big-gigantic-feat-the-motet",
+  "closing": true,
+  "stageLineage": "electric-forest:sherwood-court",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:tripolee:1315:the-unsheathed",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "13:15",
+  "end": "14:15",
+  "printed": "The Unsheathed!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-unsheathed",
+    "role": "performer"
+   }
+  ],
+  "act": "the-unsheathed",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:tripolee:1430:borahm-lee-dj-set",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Borahm Lee (DJ Set)",
+  "setTag": "DJ Set",
+  "performers": [
+   {
+    "key": "borahm-lee",
+    "role": "performer"
+   }
+  ],
+  "act": "borahm-lee",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:tripolee:1545:jacklndn",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "jackLNDN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jacklndn",
+    "role": "performer"
+   }
+  ],
+  "act": "jacklndn",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:tripolee:1700:alison-wonderland",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Alison Wonderland",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alison-wonderland",
+    "role": "performer"
+   }
+  ],
+  "act": "alison-wonderland",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:tripolee:1815:tokimonsta",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "TOKiMONSTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tokimonsta",
+    "role": "performer"
+   }
+  ],
+  "act": "tokimonsta",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:tripolee:1930:peking-duk",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Peking Duk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peking-duk",
+    "role": "performer"
+   }
+  ],
+  "act": "peking-duk",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:tripolee:2045:goldfish",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "Goldfish",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldfish",
+    "role": "performer"
+   }
+  ],
+  "act": "goldfish",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:tripolee:2200:black-tiger-sex-machine-featuring-the-great-glow-flash-mob",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Black Tiger Sex Machine Featuring The Great Glow Flash Mob",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-tiger-sex-machine-featuring-the-great-glow-flash-mob",
+    "role": "performer"
+   }
+  ],
+  "act": "black-tiger-sex-machine-featuring-the-great-glow-flash-mob",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:tripolee:2315:wiwek",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "23:15",
+  "end": "00:15",
+  "printed": "Wiwek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wiwek",
+    "role": "performer"
+   }
+  ],
+  "act": "wiwek",
+  "closing": false,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:tripolee:0030:paul-oakenfold",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Tripolee",
+  "start": "00:30",
+  "end": "01:45",
+  "printed": "Paul Oakenfold",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paul-oakenfold",
+    "role": "performer"
+   }
+  ],
+  "act": "paul-oakenfold",
+  "closing": true,
+  "stageLineage": "electric-forest:tripolee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-hangar:1430:vourteque",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Hangar",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Vourteque",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vourteque",
+    "role": "performer"
+   }
+  ],
+  "act": "vourteque",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-hangar:1545:jpod",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Hangar",
+  "start": "15:45",
+  "end": "17:00",
+  "printed": "JPOD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jpod",
+    "role": "performer"
+   }
+  ],
+  "act": "jpod",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-hangar:1730:the-shadowboxers",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Hangar",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "The Shadowboxers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-shadowboxers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-shadowboxers",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-hangar:1900:the-gentlemen-callers",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Hangar",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "The Gentlemen Callers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-gentlemen-callers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-gentlemen-callers",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-hangar:2030:jerk-church",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Hangar",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "Jerk Church",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jerk-church",
+    "role": "performer"
+   }
+  ],
+  "act": "jerk-church",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-hangar:2200:marcella-puppini",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Hangar",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Marcella Puppini",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marcella-puppini",
+    "role": "performer"
+   }
+  ],
+  "act": "marcella-puppini",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-hangar:2330:bart-and-baker",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Hangar",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "Bart&Baker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bart-and-baker",
+    "role": "performer"
+   }
+  ],
+  "act": "bart-and-baker",
+  "closing": false,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-hangar:0115:preservation-hall-jazz-band",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Hangar",
+  "start": "01:15",
+  "end": "02:15",
+  "printed": "Preservation Hall Jazz Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "preservation-hall-jazz-band",
+    "role": "performer"
+   }
+  ],
+  "act": "preservation-hall-jazz-band",
+  "closing": true,
+  "stageLineage": "electric-forest:the-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:jubilee:1515:the-accidentals",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Jubilee",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "The Accidentals",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-accidentals",
+    "role": "performer"
+   }
+  ],
+  "act": "the-accidentals",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:jubilee:1645:nattali-rize-and-notis",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Jubilee",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Nattali Rize & NOTIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nattali-rize-and-notis",
+    "role": "performer"
+   }
+  ],
+  "act": "nattali-rize-and-notis",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:jubilee:1815:made-in-heights",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Jubilee",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Made In Heights",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "made-in-heights",
+    "role": "performer"
+   }
+  ],
+  "act": "made-in-heights",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:jubilee:1945:exmag",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Jubilee",
+  "start": "19:45",
+  "end": "21:00",
+  "printed": "Exmag",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "exmag",
+    "role": "performer"
+   }
+  ],
+  "act": "exmag",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:jubilee:2130:tauk",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Jubilee",
+  "start": "21:30",
+  "end": "22:45",
+  "printed": "TAUK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tauk",
+    "role": "performer"
+   }
+  ],
+  "act": "tauk",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:jubilee:2315:dam-funk",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Jubilee",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "DāM-FunK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dam-funk",
+    "role": "performer"
+   }
+  ],
+  "act": "dam-funk",
+  "closing": false,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:jubilee:0100:break-science",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Jubilee",
+  "start": "01:00",
+  "end": "02:15",
+  "printed": "Break Science",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "break-science",
+    "role": "performer"
+   }
+  ],
+  "act": "break-science",
+  "closing": true,
+  "stageLineage": "electric-forest:jubilee",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:forest-stage:1315:bobby-mcmanus",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "13:15",
+  "end": "14:15",
+  "printed": "Bobby McManus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bobby-mcmanus",
+    "role": "performer"
+   }
+  ],
+  "act": "bobby-mcmanus",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:forest-stage:1445:armstrong-leigh",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "Armstrong Leigh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armstrong-leigh",
+    "role": "performer"
+   }
+  ],
+  "act": "armstrong-leigh",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:forest-stage:1600:adam-deitch-dj-set",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Adam Deitch (DJ Set)",
+  "setTag": "DJ Set",
+  "performers": [
+   {
+    "key": "adam-deitch",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-deitch",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:forest-stage:1715:haywyre",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "Haywyre",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "haywyre",
+    "role": "performer"
+   }
+  ],
+  "act": "haywyre",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:forest-stage:1830:snbrn",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "SNBRN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snbrn",
+    "role": "performer"
+   }
+  ],
+  "act": "snbrn",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:forest-stage:2000:miami-horror",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Miami Horror",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miami-horror",
+    "role": "performer"
+   }
+  ],
+  "act": "miami-horror",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:forest-stage:2115:tokimonsta",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "TOKiMONSTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tokimonsta",
+    "role": "performer"
+   }
+  ],
+  "act": "tokimonsta",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:forest-stage:2230:goldroom-dj-set",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "Goldroom DJ Set",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldroom-dj-set",
+    "role": "performer"
+   }
+  ],
+  "act": "goldroom-dj-set",
+  "closing": false,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:forest-stage:2345:goldfish",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "Forest Stage",
+  "start": "23:45",
+  "end": "01:00",
+  "printed": "Goldfish",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldfish",
+    "role": "performer"
+   }
+  ],
+  "act": "goldfish",
+  "closing": true,
+  "stageLineage": "electric-forest:forest-stage",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-observatory:1345:katie-boeck",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "Katie Boeck",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "katie-boeck",
+    "role": "performer"
+   }
+  ],
+  "act": "katie-boeck",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-observatory:1515:talia-keys",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Talia Keys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "talia-keys",
+    "role": "performer"
+   }
+  ],
+  "act": "talia-keys",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-observatory:1645:saritah",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Saritah",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saritah",
+    "role": "performer"
+   }
+  ],
+  "act": "saritah",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-observatory:1815:yojimbo",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Yojimbo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yojimbo",
+    "role": "performer"
+   }
+  ],
+  "act": "yojimbo",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-observatory:1945:marco-benevento",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "19:45",
+  "end": "21:00",
+  "printed": "Marco Benevento",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marco-benevento",
+    "role": "performer"
+   }
+  ],
+  "act": "marco-benevento",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-observatory:2130:people-s-blues-of-richmond",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "21:30",
+  "end": "22:45",
+  "printed": "People's Blues of Richmond",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "people-s-blues-of-richmond",
+    "role": "performer"
+   }
+  ],
+  "act": "people-s-blues-of-richmond",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-observatory:2315:the-fungineers-and-bubble-gutter",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "23:15",
+  "end": "00:15",
+  "printed": "The Fungineers & Bubble Gutter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-fungineers-and-bubble-gutter",
+    "role": "performer"
+   }
+  ],
+  "act": "the-fungineers-and-bubble-gutter",
+  "closing": false,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
+  "id": "electric-forest-2015:d4:the-observatory:0045:dixon-s-violin",
+  "source": "edition",
+  "festivalId": "electric-forest-2015",
+  "festivalBrand": "electric-forest",
+  "year": 2015,
+  "date": "2015-06-28",
+  "day": 4,
+  "stage": "The Observatory",
+  "start": "00:45",
+  "end": "01:45",
+  "printed": "Dixon's Violin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dixon-s-violin",
+    "role": "performer"
+   }
+  ],
+  "act": "dixon-s-violin",
+  "closing": true,
+  "stageLineage": "electric-forest:the-observatory",
+  "mainStage": null
+ },
+ {
   "id": "escape-halloween-2017:d1:slaughterhouse:1600:two-owls",
   "source": "edition",
   "festivalId": "escape-halloween-2017",

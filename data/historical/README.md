@@ -76,8 +76,32 @@ Disco channels, several sets in one block, each inside its span. Yoga,
 workshops, talks, showcases and brand experiences are dropped as `activity`
 (`PROGRAMME` in editions.mjs); 2012's Wagon Wheel event titles that name no
 act are dropped as `event-block`; the Silent Disco is dropped as operational.
-2014's archived pages print a lineup only, and 2024's schedule page has not
-been read yet.
+2014 and 2015 come from the newer Scheduler (below); 2024's schedule page has
+not been read yet.
+
+Archived Electric Forest Scheduler (2014, 2015, format `ef-scheduler`):
+
+    node scripts/historical/gather-ef-scheduler.mjs <edition-id> <gather-dir> <official-url> <ts> <url> \
+      [--programme-stage <stage>] …
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+scheduler.electricforestfestival.com (2014) and
+electricforestfestival.com/scheduler/ (2015) print a tab per day ("June 25",
+its target the date), then one container per day in the same order. The
+container writes its axis's first minute as `data-date-min` (a UTC epoch of
+the festival's wall clock), which must be the first hour the axis prints. Each
+stage row holds one block per set, placed on a pixel scale (10 px a minute in
+2014, 11 in 2015, one scale per page): a block's left edge must be its printed
+start and its width and `minute-N` class its printed length, which settles am
+and pm and the night past midnight. A block that disagrees is a misprint and
+an excluded row. A block drawn twice in the same place (2014's Cosby Sweater)
+is one set (`drawnTwice` in the ledger). 2015's Silent Disco channels print
+their range only in the block's title. 2015's Workshops and The Electric Glen
+rows hold only workshops, panels and interviews (`--programme-stage`): their
+rows are excluded one for one. Yoga, hoop showcases, a brewery tasting and the
+like printed in a music stage's row are dropped by the build as `activity`
+(`PROGRAMME`), and the parser leaves them out of its overlap check. Both
+captures were taken after the festival.
 
 Archived Coachella lineup pages (2014, 2015, 2016, format `coachella-cards`;
 2012, `coachella-overlays`; 2017, `coachella-data`):
