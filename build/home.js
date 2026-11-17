@@ -4745,10 +4745,38 @@ function NpPoster({
     className: "np-stamp",
     "data-np-stamp": true,
     "aria-label": stampText.replace(/\s+/g, " ")
-  }, stampText)), React.createElement("div", {
+  }, stampText)), React.createElement(NpPhoto, null), React.createElement("div", {
     className: "np-cut",
     "data-np-cut": true
   }, React.createElement("b", null, fold), React.createElement("span", null, foldRight)));
+}
+function NpPhoto() {
+  var rec = typeof festivalArtFor === "function" ? festivalArtFor(FESTIVAL_CONFIG.id) : null;
+  var [failed, setFailed] = React.useState(false);
+  if (!rec || !rec.card || !/^festival-art\/[a-z0-9-]+\.webp$/.test(rec.card) || failed) return null;
+  var credit = rec.author && rec.licenseId && rec.licenseUrl ? {
+    author: rec.author,
+    sourceUrl: rec.sourcePage,
+    license: rec.licenseId,
+    licenseUrl: rec.licenseUrl,
+    changes: rec.changes
+  } : null;
+  return React.createElement("figure", {
+    className: "np-photo",
+    "data-np-photo": true
+  }, React.createElement("img", {
+    src: `./${rec.card}`,
+    alt: "",
+    decoding: "async",
+    onError: () => setFailed(true)
+  }), credit && typeof PhotoCredit === "function" && React.createElement("figcaption", {
+    className: "np-photo-credit"
+  }, React.createElement(PhotoCredit, {
+    credit: credit,
+    style: {
+      color: "#fff"
+    }
+  })));
 }
 function NpStrip({
   status,
