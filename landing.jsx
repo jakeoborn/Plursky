@@ -390,9 +390,15 @@ function _spotlightWhen(entry, now) {
   if (phase === "live") return { live: true, label: "Happening now" };
   const start = entry?.config?.startMs;
   if (!start) return { live: false, label: entry?.config?.dates || "Upcoming" };
-  const days = Math.ceil((start - now) / 86400000);
-  if (days <= 0) return { live: false, label: "Starts today" };
-  if (days === 1) return { live: false, label: "Tomorrow" };
+  // Counted the way the festival's own Today hero counts (whole days down),
+  // so the card and the screen it opens never disagree by a day.
+  const ms = start - now;
+  const days = Math.floor(ms / 86400000);
+  if (days <= 0) {
+    const hrs = Math.floor(ms / 3600000);
+    return { live: false, label: hrs > 0 ? `In ${hrs} hr` : "Starting soon" };
+  }
+  if (days === 1) return { live: false, label: "In 1 day" };
   if (days < 14) return { live: false, label: `In ${days} days` };
   if (days < 63) return { live: false, label: `In ${Math.round(days / 7)} weeks` };
   return { live: false, label: `In ${Math.round(days / 30.4)} months` };

@@ -350,6 +350,10 @@
   .duo-av{--face-bg:22%;--face-tx:45%}
   :root[data-mode="light"] .duo-av{--face-bg:18%;--face-tx:30%}
   .duo-av[data-photo-source="initials"]{background:color-mix(in srgb,var(--face-acc,var(--s3)) var(--face-bg),var(--s3));color:color-mix(in srgb,var(--face-acc,var(--ink-2)) var(--face-tx),var(--ink))}
+  /* A soft top-left light on the initials disc so it reads as an object, not a flat dot.
+     Kept at 9% white over the tinted base so the AA mix above still holds. */
+  .duo-av[data-photo-source="initials"]{background-image:radial-gradient(120% 120% at 28% 22%,rgba(255,255,255,.09),rgba(255,255,255,0) 58%)}
+  :root[data-mode="light"] .duo-av[data-photo-source="initials"]{background-image:radial-gradient(120% 120% at 28% 22%,rgba(255,255,255,.35),rgba(255,255,255,0) 58%)}
   .duo-av>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%}
   .duo-av.on{box-shadow:0 0 0 2px var(--acc),0 0 14px var(--acc-30)}
   .duo-av.cl{box-shadow:0 0 0 2px var(--clash)}

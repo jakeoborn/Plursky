@@ -350,14 +350,18 @@ function _spotlightWhen(entry, now) {
     live: false,
     label: entry?.config?.dates || "Upcoming"
   };
-  var days = Math.ceil((start - now) / 86400000);
-  if (days <= 0) return {
-    live: false,
-    label: "Starts today"
-  };
+  var ms = start - now;
+  var days = Math.floor(ms / 86400000);
+  if (days <= 0) {
+    var hrs = Math.floor(ms / 3600000);
+    return {
+      live: false,
+      label: hrs > 0 ? `In ${hrs} hr` : "Starting soon"
+    };
+  }
   if (days === 1) return {
     live: false,
-    label: "Tomorrow"
+    label: "In 1 day"
   };
   if (days < 14) return {
     live: false,
