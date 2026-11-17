@@ -844,6 +844,35 @@ const FESTIVALS_REGISTRY = [
     region:    "Europe",
   },
   {
+    // ── EDC Las Vegas 2027 — Las Vegas Motor Speedway, Las Vegas NV ──
+    // Added 2026-11-16 as a gated preview (Jake's field-test target).
+    // SOURCE lasvegas.edc.com, read 2026-11-16: two weekends, "Dusk" May
+    // 14–16 and "Dawn" May 21–23, 2027, at Las Vegas Motor Speedway, inside
+    // the "12 Days of EDC" (May 13–24). Passes on sale through
+    // edclasvegas.frontgatetickets.com. LINEUP NOT ANNOUNCED: no artist is
+    // loaded, and the 2026 lineup (FESTIVAL_CONFIG / ARTISTS above) is never
+    // reused under this entry. No stages, map, hours or set times either;
+    // those land in the flip session from the official 2027 sources.
+    config: {
+      id:        "edc-lv-2027",
+      officialEvent: { website: "https://lasvegas.edc.com/", tickets: "https://edclasvegas.frontgatetickets.com/", observedAt: "2026-11-16" },
+      name:      "EDC Las Vegas 2027",
+      shortName: "EDC Las Vegas",
+      brand:     "EDC",
+      tagline:   "Two weekends at Las Vegas Motor Speedway",
+      location:  "Las Vegas Motor Speedway · Las Vegas, NV",
+      locationShort: "Las Vegas Motor Speedway",
+      dates:     "May 14–16 & 21–23, 2027",
+      year:      2027,
+      // Night Print accent not measured for the 2027 site yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://lasvegas.edc.com/", observedAt: "2026-11-16" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ec4899",
+    emoji:     "🌼",
+    region:    "North America",
+  },
+  {
     // ── Tomorrowland Brasil 2027 — Itu, São Paulo, Brazil ──
     // Added 2026-11-11 as a gated preview. Dates from brasil.tomorrowland.com,
     // read 2026-11-11: "April 30 - May 2, 2027 | Itu - São Paulo, Brazil".
@@ -943,30 +972,7 @@ const FESTIVALS_REGISTRY = [
     emoji:     "🏝️",
     region:    "Europe",
   },
-  {
-    // ── Time Warp Germany 2027 — Maimarkthalle, Mannheim ──
-    // Added 2026-11-12 as a gated preview. Date and venue from time-warp.de,
-    // read 2026-11-12: "03 April 2027 Maimarkthalle Mannheim Time Warp
-    // Germany". One night. No 2027 lineup yet.
-    config: {
-      id:        "time-warp-2027",
-      officialEvent: { website: "https://www.time-warp.de/", observedAt: "2026-11-12" },
-      name:      "Time Warp Germany 2027",
-      shortName: "Time Warp",
-      brand:     "Time Warp",
-      tagline:   "One night of techno in Mannheim",
-      location:  "Maimarkthalle · Mannheim, Germany",
-      locationShort: "Maimarkthalle",
-      dates:     "Apr 3, 2027",
-      year:      2027,
-      // Night Print accent not measured yet (accent null = neutral print).
-      print: { accent: null, source: { url: "https://www.time-warp.de/", observedAt: "2026-11-12" }, note: "Not measured yet; the theme-color meta is #0048FF, so confirm against the site's own CSS before setting it." },
-    },
-    available: false,
-    accent:    "#3b82f6",
-    emoji:     "⏱️",
-    region:    "Europe",
-  },
+  // time-warp-2027 is a festival module now: data/festivals/time-warp-2027.js
   {
     // ── Sónar Barcelona 2027 — Barcelona, Spain ──
     // Added 2026-11-12 as a gated preview. Dates from sonar.es, read
@@ -1020,6 +1026,199 @@ const FESTIVALS_REGISTRY = [
     accent:    "#a3e635",
     emoji:     "🍄",
     region:    "Europe",
+  },
+  {
+    // ── Lollapalooza India 2027 — Mahalaxmi Race Course, Mumbai ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from lollaindia.com, read 2026-11-15: "Lollapalooza
+    // India 2027 — 23 & 24 January 2027, Mahalaxmi Race Course, Mumbai". No
+    // 2027 lineup in text yet.
+    config: {
+      id:        "lollapalooza-india-2027",
+      officialEvent: { website: "https://lollaindia.com/", observedAt: "2026-11-15" },
+      name:      "Lollapalooza India 2027",
+      shortName: "Lolla India",
+      brand:     "Lollapalooza",
+      tagline:   "Two days of Lollapalooza in Mumbai",
+      location:  "Mahalaxmi Race Course · Mumbai, India",
+      locationShort: "Mahalaxmi Race Course",
+      dates:     "Jan 23–24, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://lollaindia.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#f97316",
+    emoji:     "🎪",
+    region:    "Asia",
+  },
+  {
+    // ── Lollapalooza Argentina 2027 — Hipódromo de San Isidro ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from lollapaloozaar.com, read 2026-11-15: "Hipódromo de
+    // San Isidro 12, 13 y 14 de Marzo 2027". No 2027 lineup in text yet.
+    config: {
+      id:        "lollapalooza-argentina-2027",
+      officialEvent: { website: "https://www.lollapaloozaar.com/", observedAt: "2026-11-15" },
+      name:      "Lollapalooza Argentina 2027",
+      shortName: "Lolla Argentina",
+      brand:     "Lollapalooza",
+      tagline:   "Three days of Lollapalooza outside Buenos Aires",
+      location:  "Hipódromo de San Isidro · San Isidro, Argentina",
+      locationShort: "Hipódromo de San Isidro",
+      dates:     "Mar 12–14, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.lollapaloozaar.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#38bdf8",
+    emoji:     "🎪",
+    region:    "Latin America",
+  },
+  {
+    // ── Lollapalooza Chile 2027 — Parque O'Higgins, Santiago ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from lollapaloozacl.com, read 2026-11-15: page title
+    // "Lollapalooza Chile – 12, 13 Y 14 DE MARZ0 2027 | PARQUE O'HIGGINS". No
+    // 2027 lineup in text yet.
+    config: {
+      id:        "lollapalooza-chile-2027",
+      officialEvent: { website: "https://www.lollapaloozacl.com/", observedAt: "2026-11-15" },
+      name:      "Lollapalooza Chile 2027",
+      shortName: "Lolla Chile",
+      brand:     "Lollapalooza",
+      tagline:   "Three days of Lollapalooza in Santiago",
+      location:  "Parque O'Higgins · Santiago, Chile",
+      locationShort: "Parque O'Higgins",
+      dates:     "Mar 12–14, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.lollapaloozacl.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ef4444",
+    emoji:     "🎪",
+    region:    "Latin America",
+  },
+  {
+    // ── Lollapalooza Brasil 2027 — Autódromo de Interlagos, São Paulo ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from lollapaloozabr.com, read 2026-11-15: "19, 20 e 21 de
+    // Março 2027 / Autódromo de Interlagos - SP". The site gives only the
+    // three headliners per day in text (the full poster is an image), so no
+    // lineup is loaded yet.
+    config: {
+      id:        "lollapalooza-brasil-2027",
+      officialEvent: { website: "https://www.lollapaloozabr.com/", observedAt: "2026-11-15" },
+      name:      "Lollapalooza Brasil 2027",
+      shortName: "Lolla Brasil",
+      brand:     "Lollapalooza",
+      tagline:   "Three days of Lollapalooza in São Paulo",
+      location:  "Autódromo de Interlagos · São Paulo, Brazil",
+      locationShort: "Autódromo de Interlagos",
+      dates:     "Mar 19–21, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.lollapaloozabr.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#22c55e",
+    emoji:     "🎪",
+    region:    "Latin America",
+  },
+  {
+    // ── Ultra South Africa 2027 — Cape Town and Johannesburg ──
+    // Added 2026-11-15 as a gated preview. Dates from ultrasouthafrica.com, read 2026-11-15: page title "Ultra
+    // South Africa - 30 April, 1 May 2027". The CSV notes Cape Town on 30 April
+    // and Johannesburg on 1 May; the page names no venues, so only the
+    // country is loaded. No lineup yet.
+    config: {
+      id:        "ultra-south-africa-2027",
+      officialEvent: { website: "https://ultrasouthafrica.com/", observedAt: "2026-11-15" },
+      name:      "Ultra South Africa 2027",
+      shortName: "Ultra SA",
+      brand:     "Ultra",
+      tagline:   "Two days of Ultra in South Africa",
+      location:  "South Africa",
+      locationShort: "South Africa",
+      dates:     "Apr 30, 2027 – May 1, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://ultrasouthafrica.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#a855f7",
+    emoji:     "🌍",
+    region:    "Africa",
+  },
+  {
+    // ── BottleRock Napa Valley 2027 — Napa Valley Expo, Napa CA ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from bottlerocknapavalley.com/info, read 2026-11-15:
+    // "BottleRock 2027 is taking place May 28-30, 2027" at "the Napa Valley
+    // Expo in Napa, California". No 2027 lineup yet.
+    config: {
+      id:        "bottlerock-2027",
+      officialEvent: { website: "https://www.bottlerocknapavalley.com/", observedAt: "2026-11-15" },
+      name:      "BottleRock Napa Valley 2027",
+      shortName: "BottleRock",
+      brand:     "BottleRock",
+      tagline:   "Music, food and wine in Napa",
+      location:  "Napa Valley Expo · Napa, CA",
+      locationShort: "Napa Valley Expo",
+      dates:     "May 28–30, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.bottlerocknapavalley.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#dc2626",
+    emoji:     "🍷",
+    region:    "North America",
+  },
+  {
+    // ── Sueños Music Festival 2027 — Grant Park, Chicago IL ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from suenosmusicfestival.com/lineup, read 2026-11-15:
+    // "La gozadera continúa en Grant Park May 29-30, 2027. Stay tuned for the
+    // Year 6 lineup." No lineup yet.
+    config: {
+      id:        "suenos-2027",
+      officialEvent: { website: "https://suenosmusicfestival.com/", observedAt: "2026-11-15" },
+      name:      "Sueños Music Festival 2027",
+      shortName: "Sueños",
+      brand:     "Sueños",
+      tagline:   "Chicago's Latin music festival in Grant Park",
+      location:  "Grant Park · Chicago, IL",
+      locationShort: "Grant Park",
+      dates:     "May 29–30, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://suenosmusicfestival.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ec4899",
+    emoji:     "🌺",
+    region:    "North America",
+  },
+  {
+    // ── Bumbershoot 2027 — Seattle Center, Seattle WA ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from bumbershoot.com, read 2026-11-15: "See you Sept 4 +
+    // 5, 2027!" and page title "Bumbershoot - September 4th-5th, 2027 @ Seattle
+    // Center". No 2027 lineup yet.
+    config: {
+      id:        "bumbershoot-2027",
+      officialEvent: { website: "https://bumbershoot.com/", observedAt: "2026-11-15" },
+      name:      "Bumbershoot 2027",
+      shortName: "Bumbershoot",
+      brand:     "Bumbershoot",
+      tagline:   "Music and arts at Seattle Center over Labor Day weekend",
+      location:  "Seattle Center · Seattle, WA",
+      locationShort: "Seattle Center",
+      dates:     "Sep 4–5, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://bumbershoot.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#eab308",
+    emoji:     "☂️",
+    region:    "North America",
   },
   {
     // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
@@ -3195,9 +3394,17 @@ function photoFixAccClass(acc) {
 // Only measured stage positions (osm / crowd) may fire automatic attendance.
 // A poster read, a provisional pin or a derived point is a guess about where
 // a stage is, and a guess must not mark a set (founder, 2026-10-20).
+// A stage this phone calibrated on site (two agreeing taps, chrome.jsx
+// stageCalibrationAnchors) also counts, on this phone only, and only for a
+// stage with no measured position. Those come back only once every stage with
+// a set has one, so a fix near an unplaced stage is never pinned to its
+// neighbour.
 function attendEvidenceAnchors(cfg) {
-  return ((typeof resolvedStageAnchors === "function") ? resolvedStageAnchors(cfg) : ((cfg && cfg.gpsAnchors) || []))
+  const measured = ((typeof resolvedStageAnchors === "function") ? resolvedStageAnchors(cfg) : ((cfg && cfg.gpsAnchors) || []))
     .filter(a => { const s = a.anchorSource || a.src; return s === "osm" || s === "crowd"; });
+  if (!cfg || !cfg.id || typeof stageCalibrationAnchors !== "function") return measured;
+  const have = new Set(measured.map(a => a.stageId));
+  return measured.concat(stageCalibrationAnchors(cfg, have));
 }
 
 // Raw samples ({ lat, lng, accuracy, timestamp, atMs }) → the qualifying
@@ -3332,6 +3539,99 @@ function setTrackEligibility(cfg, nowMs) {
   if (!attendEvidenceAnchors(cfg).length) return "no-stages";
   const phase = typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, nowMs) : "upcoming";
   return phase === "live" ? "live" : phase === "ended" ? "ended" : "not-live";
+}
+
+// ── Set attendance evidence (SPEC-200 Build 2) ─────────────────────────────
+// Points of evidence beside the GPS runs: a Live Set Check-in, a photo the
+// tagger placed by a trusted fix, and a "Still here" tap. The engine reads
+// every point one way (src "photo"): it makes a set caught, never full and
+// never a length. Nothing here changes a threshold.
+
+// A moment's capture instant. takenAt is the festival's local wall clock
+// ("YYYY-MM-DD HH:MM[:SS]"), so it is read in the festival's zone, never the
+// phone's. Null without a takenAt: an import time is not a capture time.
+function attendMomentMs(m, cfg) {
+  const t = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?/.exec((m && m.takenAt) || "");
+  if (!t) return null;
+  const naive = Date.UTC(+t[1], +t[2] - 1, +t[3], +t[4], +t[5], +(t[6] || 0));
+  const tz = cfg && cfg.tz;
+  if (!tz || typeof Intl === "undefined") return naive - ((cfg && cfg.utcOffsetHours) || 0) * 3600000;
+  try { return naive - _utcOffsetMs(tz, naive - _utcOffsetMs(tz, naive)); } catch { return null; }
+}
+
+// Which moments say you were at a stage, as points per stage:
+// { [stageId]: [{ from, to, src: "photo", via: "checkin" | "photo", momentId }] }.
+//  - a Live Set Check-in whose fix the gate trusted (locationSource "gps-live")
+//  - a photo or video the tagger placed by a trusted fix ("stage-gps" or
+//    "trusted-gps" evidence), not flagged ambiguous, and not retagged by hand
+//    (a hand tag says which set, not where the phone was)
+// Only this festival's moments, and only at a stage with a measured position:
+// a poster-placed stage never marks a set. A capture time the importer could
+// not confirm (dateUnverified) is not evidence. No coordinate is read.
+function attendMomentPoints(moments, cfg, artists) {
+  const out = {};
+  if (!cfg || !cfg.id) return out;
+  const measured = new Set(attendEvidenceAnchors(cfg).map(a => a.stageId));
+  const stageOf = new Map((artists || []).map(a => [a.id, a.stage]));
+  const all = Array.isArray(moments) ? moments : Object.values(moments || {}).flat();
+  for (const m of all) {
+    if (!m || m.dateUnverified || m.festivalId !== cfg.id) continue;
+    let stageId = null, via = null;
+    if (m.kind === "checkin") {
+      if (m.locationSource === "gps-live" && m.stageId) { stageId = m.stageId; via = "checkin"; }
+    } else if (m.artistId && m.autoTagged && !m.tagAmbiguous && m.tagSource !== "manual"
+      && /(stage-gps|trusted-gps)/.test(m.matchEvidence || "")) {
+      stageId = stageOf.get(m.artistId) || null; via = "photo";
+    }
+    if (!stageId || !measured.has(stageId)) continue;
+    const ms = attendMomentMs(m, cfg);
+    if (ms == null) continue;
+    (out[stageId] = out[stageId] || []).push({ from: ms, to: ms, src: "photo", via, momentId: m.id || null });
+  }
+  for (const k of Object.keys(out)) out[k].sort((x, y) => x.from - y.from || String(x.momentId).localeCompare(String(y.momentId)));
+  return out;
+}
+
+// GPS runs plus points, per stage, in time order. The same point twice
+// (a re-imported photo, a double tap) counts once: duplicates never add up.
+function attendMergeEvidence(...sources) {
+  const out = {};
+  for (const src of sources) {
+    for (const [stageId, list] of Object.entries(src || {})) {
+      for (const r of list || []) {
+        if (!r || typeof r.from !== "number" || typeof r.to !== "number") continue;
+        const rows = (out[stageId] = out[stageId] || []);
+        if (r.src === "photo" && rows.some(x => x.src === "photo" && x.from === r.from)) continue;
+        rows.push({ ...r });
+      }
+    }
+  }
+  for (const k of Object.keys(out)) {
+    out[k].sort((x, y) => x.from - y.from || x.to - y.to);
+    // Overlapping runs from two sources are one stretch of time, not two.
+    const merged = [];
+    for (const r of out[k]) {
+      // The last GPS run so far (a loop, not findLast: iOS 15.4+ only).
+      let prev = null;
+      if (r.src !== "photo") for (let i = merged.length - 1; i >= 0; i--) if (merged[i].src !== "photo") { prev = merged[i]; break; }
+      if (prev && r.from <= prev.to) { if (r.to > prev.to) prev.to = r.to; continue; }
+      merged.push(r);
+    }
+    out[k] = merged;
+  }
+  return out;
+}
+
+// The "why" behind a verdict: the evidence at this set's stage inside its
+// window (with the engine's own grace), as times and kinds only, never a place.
+function attendEvidenceList(a, intervals, cfg) {
+  if (!a || !a.stage) return [];
+  const runs = (intervals && intervals[a.stage]) || [];
+  const w = attendTimeClass(a) === "blank" ? null : attendSetWindowMs(a, cfg, runs);
+  const lo = w ? w.startMs - ATTEND_GRACE_MS - ATTEND_PHOTO_MS : -Infinity;
+  const hi = w ? w.endMs + ATTEND_GRACE_MS + ATTEND_PHOTO_MS : Infinity;
+  return runs.filter(r => r.to >= lo && r.from <= hi)
+    .map(r => ({ kind: r.src === "photo" ? (r.via || "photo") : "gps", from: r.from, to: r.to }));
 }
 
 // ── Schedule Sync: the feed shape, the diff, the replay ────────────────────
@@ -5070,6 +5370,7 @@ const _WAVE1_IDS = [
   "groove-cruise-2027",
   "day-zero-tulum-2027",
   "coachella-2027",
+  "time-warp-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {

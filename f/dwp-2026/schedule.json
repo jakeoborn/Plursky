@@ -1,12 +1,13 @@
 {
   "festivalId": "dwp-2026",
   "source": null,
-  "scheduleHash": "9bca5f208cc03719",
+  "scheduleHash": "f35a205a5cee13c8",
   "acts": [
     {"id":"dwp-adnan-veron-x-hbrp","name":"Adnan Veron x HBRP","day":1,"stage":null,"start":"","end":""},
     {"id":"dwp-afrojack","name":"Afrojack","day":1,"stage":null,"start":"","end":""},
     {"id":"dwp-agents-of-time","name":"Agents of Time","day":1,"stage":null,"start":"","end":""},
     {"id":"dwp-alok","name":"Alok","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-alzena","name":"ALZENA","day":1,"stage":null,"start":"","end":""},
     {"id":"dwp-angger-dimas","name":"Angger Dimas","day":1,"stage":null,"start":"","end":""},
     {"id":"dwp-artbat","name":"ARTBAT","day":1,"stage":null,"start":"","end":""},
     {"id":"dwp-axwell-b2b-sebastian-ingrosso","name":"Axwell B2B Sebastian Ingrosso","day":1,"stage":null,"start":"","end":""},
@@ -23,6 +24,7 @@
     {"id":"dwp-lilly-palmer","name":"Lilly Palmer","day":1,"stage":null,"start":"","end":""},
     {"id":"dwp-maddix","name":"Maddix","day":1,"stage":null,"start":"","end":""},
     {"id":"dwp-marlo","name":"Marlo","day":1,"stage":null,"start":"","end":""},
+    {"id":"dwp-nenshin","name":"NENSHIN","day":1,"stage":null,"start":"","end":""},
     {"id":"dwp-r3hab","name":"R3hab","day":1,"stage":null,"start":"","end":""},
     {"id":"dwp-syber","name":"Syber","day":1,"stage":null,"start":"","end":""},
     {"id":"dwp-tye-turner","name":"Tye Turner","day":1,"stage":null,"start":"","end":""},
