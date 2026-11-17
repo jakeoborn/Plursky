@@ -375,8 +375,9 @@ function officialSources(e, meta, p) {
         const m = c.meridiemFrom;
         officialArchive(m.archivedUrl, e.festivalId, e.year, p, `${tag} meridiem`);
         if (!/^[0-9a-f]{64}$/.test(m.sha256 || "")) p.push(`${tag}: the meridiem page's hash is missing`);
-        // "Friday Aug 9 7:10 PM on Lands End" (through 2014) or "Friday, August 7, 7:55 PM" (2015 on).
-        const pm = /^([A-Za-z]+),? ([A-Za-z]{3,9}) (\d{1,2}),? \d{1,2}:\d{2} [AP]M(?: .+)?$/.exec(m.printed || "");
+        // "Friday Aug 9 7:10 PM on Lands End" (through 2014), "Friday, August 7, 7:55 PM" (2015 on)
+        // or Lollapalooza 2011's "Sunday, Aug. 7 4:00pm on Music Unlimited".
+        const pm = /^([A-Za-z]+),? ([A-Za-z]{3,9})\.? (\d{1,2}),? \d{1,2}:\d{2} ?(?:[AP]M|[ap]m)(?: .+)?$/.exec(m.printed || "");
         const d = new Date(date + "T12:00:00Z");
         if (!pm || pm[1] !== d.toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" }) || pm[2].slice(0, 3) !== d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })
           || (pm[2].length > 3 && pm[2] !== d.toLocaleDateString("en-US", { month: "long", timeZone: "UTC" })) || +pm[3] !== d.getUTCDate())

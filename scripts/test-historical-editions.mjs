@@ -316,6 +316,67 @@ if (base && edc) {
     dsMust("a newer Outside Lands anchor on another stage", dsPage, dsBand17.replace("Lands End<br>", "Sutro<br>"));
     dsMust("a newer Outside Lands anchor whose weekday is not its link's date", dsPage, dsBand15.replace("Saturday, August 10", "Friday, August 10"));
     dsMust("a newer Outside Lands anchor whose time is not its block's on the axis", dsPage, dsBand15.replace("1:00 PM", "1:10 PM"));
+    // Lollapalooza 2012 ran on the same platform: its pages print the name
+    // alone ("Lollapalooza", "Dev at Lollapalooza"), the year then the day
+    // tab's own. A printed year must still be the tab's.
+    const lpPage = dsPage.replace("<title>Outside Lands 2013", "<title>Lollapalooza"), lpBand = dsBand.replace("at Outside Lands 2013", "at Lollapalooza");
+    const lp = parseDoStuff(lpPage), lpB = parseDoStuffBand(lpBand), lpT = timeDay(lp, lpB, "headliner");
+    ok(dp.festival === "outside-lands" && dp.year === 2013 && lp.festival === "lollapalooza" && lp.year === 2013 && lpB.festival === "lollapalooza" && lpB.year === null
+      && parseDoStuffBand(dsBand).festival === "outside-lands" && parseDoStuffBand(dsBand).year === 2013 && JSON.stringify(lpT.sets) === JSON.stringify(dsT.sets),
+      `a Lollapalooza grid that prints no year must read as its tab's year, and time as Outside Lands' does: ${JSON.stringify([lp.festival, lp.year, lpB])}`);
+    dsMust("a Lollapalooza page printing a year that is not its tab's", dsPage.replace("<title>Outside Lands 2013", "<title>Lollapalooza 2012"), lpBand);
+    dsMust("a DoStuff act's page of another festival", lpPage, dsBand.replace("at Outside Lands 2013", "at Other Fest"));
+    dsMust("a DoStuff act's page naming no festival", lpPage, dsBand.replace("Headliner at Outside Lands 2013", "Headliner"));
+    // Lollapalooza 2011's older page: the days as a drop-down (the current
+    // one as plain text, "Sat, Aug 6"), plain stage headers in column order,
+    // an axis with no row heights (the blocks keep the scale) and autograph
+    // signings listed below the grid, never read as sets. Its act page prints
+    // the day and stage, then the linked time ("4:00<span>pm</span>").
+    const oBox = (id, top, h, slug, name, range) => `<div band_id="${id}" class="ds-event-box   ds-player-show-state" id="${id}" style="top:${top}px;height:${h}px;line-height:${h}px"><span class="ds-vert-align">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.4em;"><a href="https://web.archive.org/band/${slug}">${name}</a></strong><span class="ds-time-range" style="font-size:1.4em;">${range}</span></div></div>`;
+    const oAxis = ["12:00", "12:15", "12:30", "12:45", "1:00", "1:15", "1:30", "1:45", "2:00", "2:15"].map(l => `<li>${l}</li>`).join("\n");
+    const oPage = `<title>Lollapalooza 2011</title><div class="fl-vb-drop"><span>Sat, Aug 6</span><div><a href="https://web.archive.org/events/2011/08/05/">Fri, Aug 5</a><a href="https://web.archive.org/events/2011/08/07/">Sun, Aug 7</a></div>\n  </div>`
+      + `<div class="ds-schedule ds-player day6"><table><tbody><tr class="ds-schedule-header"><th class="ds-time"></th><th> Bud Light </th><th> Perry's </th></tr>`
+      + `<tr><th class="ds-times"><ul class="fl-schedule-times">${oAxis}</ul></th><td class="ds-stage ds-stage1"><div class="ds-bands">`
+      + oBox(1, "0.0", "79.0", "opener", "Opener", "12:00 - 12:40") + oBox(2, "120.0", "99.0", "headliner", "Headliner", "1:00 - 1:50")
+      + `</div></td><td class="ds-stage ds-stage2"><div class="ds-bands">` + oBox(3, "30.0", "59.0", "dj-one", "DJ One", "12:15 - 12:45") + oBox(4, "90.0", "89.0", "dj-two", "DJ Two", "12:45 - 1:30")
+      + `</div></td></tr></tbody><div class="ds-schedule-lower"><div class="ds-stage-lower"><h3>f.y.e. Autograph Tent</h3><div class="ds-event-lower"><div class="ds-event-lower-time">1:15 PM</div><a href="https://web.archive.org/band/opener" class="ds-event-lower" id="9">Opener</a></div></div></div></table></div>`;
+    const oBand = `<title>Headliner at Lollapalooza 2011</title><div class="fl-time">\n <p>Saturday, Aug. 6<br>Bud Light</p>\n <a href="https://web.archive.org/events/2011/08/06">\n <strong> 1:00<span>pm</span></strong>\n </a>\n </div>`;
+    const op = parseDoStuff(oPage), oB = parseDoStuffBand(oBand), oT = timeDay(op, oB, "headliner");
+    ok(JSON.stringify([op.festival, op.year, op.label, op.date, op.tabs.map(t => t.date), op.stages, op.scale, op.lower, oB.festival, oB.year, oT.anchor.text, oT.sets.map(x => [x.stage, x.start, x.end, x.artist])])
+      === JSON.stringify(["lollapalooza", 2011, "Sat, Aug 6", "2011-08-06", ["2011-08-05", "2011-08-06", "2011-08-07"], ["Bud Light", "Perry's"], 2, 1, "lollapalooza", 2011, "Saturday, Aug. 6 1:00pm on Bud Light",
+        [["Bud Light", "12:00", "12:40", "Opener"], ["Bud Light", "13:00", "13:50", "Headliner"], ["Perry's", "12:15", "12:45", "DJ One"], ["Perry's", "12:45", "13:30", "DJ Two"]]]),
+      `a Lollapalooza 2011 grid must come back set by set, its scale kept by its blocks, its signings counted and never read as sets: ${JSON.stringify([op, oT])}`);
+    const oMust = (what, html, band = oBand) => { let bad = false; try { timeDay(parseDoStuff(html), parseDoStuffBand(band), "headliner"); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    oMust("a Lollapalooza 2011 current day naming another weekday", oPage.replace("<span>Sat, Aug 6</span>", "<span>Sun, Aug 6</span>"));
+    oMust("a Lollapalooza 2011 day link whose label is not its date", oPage.replace(">Fri, Aug 5<", ">Fri, Aug 12<"));
+    oMust("a Lollapalooza 2011 grid marked for another day", oPage.replace("ds-player day6", "ds-player day7"));
+    oMust("a Lollapalooza 2011 page whose title prints no year", oPage.replace("<title>Lollapalooza 2011", "<title>Lollapalooza"));
+    oMust("a Lollapalooza 2011 page whose title prints another year", oPage.replace("<title>Lollapalooza 2011", "<title>Lollapalooza 2010"));
+    oMust("a Lollapalooza 2011 column out of order", oPage.replace("ds-stage ds-stage2", "ds-stage ds-stage3"));
+    oMust("a Lollapalooza 2011 column with no stage header", oPage.replace("<th> Perry's </th>", ""));
+    oMust("a Lollapalooza 2011 axis row not 15 minutes after the one before", oPage.replace("<li>12:45</li>", "<li>1:15</li>"));
+    oMust("Lollapalooza 2011 blocks that keep no one scale", oPage.replace("height:79.0px", "height:99.0px").replace("height:59.0px", "height:69.0px"));
+    oMust("a Lollapalooza 2011 anchor whose time is not its block's on the axis", oPage, oBand.replace(" 1:00<span>", " 1:10<span>"));
+    oMust("a Lollapalooza 2011 anchor printed for another day", oPage, oBand.replace("events/2011/08/06", "events/2011/08/07"));
+    oMust("a Lollapalooza 2011 anchor whose weekday is not its link's date", oPage, oBand.replace("Saturday, Aug. 6", "Friday, Aug. 6"));
+    oMust("a Lollapalooza 2011 anchor on another stage", oPage, oBand.replace("<br>Bud Light</p>", "<br>Perry's</p>"));
+    oMust("a Lollapalooza 2011 anchor printing no time (Date & Time TBA)", oPage, oBand.replace(/<a href[\s\S]*<\/a>/, "Date &amp; Time TBA"));
+    // ACL 2011 and 2012 mix the two: the newer tab row over the older grid
+    // (plain headers, no axis heights), the signings just after the table,
+    // and the older act page's "Playing" line.
+    const aPage = oPage.replace("<title>Lollapalooza 2011", "<title>ACL 2011")
+      .replace(/<div class="fl-vb-drop">[\s\S]*?<\/div>\n  <\/div>/, `<ul class="ds-schedule-days"><li class=""><a href="https://web.archive.org/events/2011/08/05/">Friday, August 5</a></li><li class="ds-schedule-days-current-date"><a href="https://web.archive.org/events/2011/08/06/">Saturday, August 6</a></li></ul>`)
+      .replace(`<th class="ds-times"><ul class="fl-schedule-times">`, `<th class="ds-times"><ul>`)
+      .replace(`</tbody><div class="ds-schedule-lower">`, `</tbody></table><div class="ds-schedule-lower">`);
+    const aBand = `<title>Headliner at ACL 2011</title><div class="ds-arrange ds-performance-location"> <h2>Playing</h2> <p> <a href="https://web.archive.org/events/2011/08/06">Saturday Aug 6 1:00 PM</a> on Bud Light<br> </p> </div>`;
+    const ap = parseDoStuff(aPage), aT = timeDay(ap, parseDoStuffBand(aBand), "headliner");
+    ok(JSON.stringify([ap.festival, ap.label, ap.date, ap.stages, ap.scale, ap.lower, aT.sets]) === JSON.stringify(["acl", "Saturday, August 6", "2011-08-06", ["Bud Light", "Perry's"], 2, 1, oT.sets]),
+      `an ACL 2011 grid (tab row over the older grid) must read as Lollapalooza 2011's does: ${JSON.stringify([ap, aT])}`);
+    const aMust = (what, html, band = aBand) => { let bad = false; try { timeDay(parseDoStuff(html), parseDoStuffBand(band), "headliner"); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    aMust("an ACL 2011 grid marked for another day than its current tab", aPage.replace("ds-player day6", "ds-player day5"));
+    aMust("an ACL 2011 current tab naming another weekday", aPage.replace(">Saturday, August 6<", ">Sunday, August 6<"));
+    aMust("an ACL 2011 page with no day tabs at all", aPage.replace(/<ul class="ds-schedule-days">[\s\S]*?<\/ul>/, ""));
+    aMust("an ACL 2011 page of another festival", aPage.replace("<title>ACL 2011", "<title>Other Fest 2011"));
     // Outside Lands' 2010-2011 planner: the page writes its stages and sets
     // as data (each set's date, 24-hour start and length), twice in 2011.
     const msEnt = (id, v, name, start, dur, extra = "") => `\t${id}: {\n\t\tid: ${id},\n\t\tvenueId: ${v},\n\t\tline1: '${name}',\n\t\tline2: '${extra}',\n\t\tstart: ${start === null ? "null" : `'${start}'`},\n\t\tduration: ${dur},\n\t\tminor: false\n\t}`;

@@ -1,0 +1,109 @@
+{
+  "id": "lollapalooza-2012",
+  "method": "official_sources",
+  "official": "https://www.lollapalooza.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2012-08-03",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.lollapalooza.com/events/2012/08/03",
+          "archivedUrl": "https://web.archive.org/web/20120806024925/http://lineup.lollapalooza.com/events/2012/08/03",
+          "captureTimestamp": "20120806024925",
+          "printed": "Friday, August 3",
+          "sha256": "475d435d67860632460ad4ea761c5f5c2f527a9e033a6371131e3e971ef73363",
+          "bytes": 92667,
+          "rows": 50,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.lollapalooza.com/band/dev",
+            "archivedUrl": "https://web.archive.org/web/20120807041543/http://lineup.lollapalooza.com/band/dev",
+            "captureTimestamp": "20120807041543",
+            "sha256": "598628bd8b1c08f2f665e7e6fa3aa627395fcf5f5c957b18083be4f3ddc44b92",
+            "bytes": 78032,
+            "printed": "Friday Aug 3 6:50 PM on BMI"
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2012-08-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.lollapalooza.com/events/2012/08/04",
+          "archivedUrl": "https://web.archive.org/web/20120807041117/http://lineup.lollapalooza.com/events/2012/08/04",
+          "captureTimestamp": "20120807041117",
+          "printed": "Saturday, August 4",
+          "sha256": "311c1b513e2d2302a0caac3957244d17a798423e0c42f885f01dbc6e9300852f",
+          "bytes": 81844,
+          "rows": 42,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.lollapalooza.com/band/avicii",
+            "archivedUrl": "https://web.archive.org/web/20120810084558/http://lineup.lollapalooza.com/band/avicii",
+            "captureTimestamp": "20120810084558",
+            "sha256": "dd4c33f99be3b95bc7b81bb50464170633b1bad8d13cdbc6ee38ba66f85c23f7",
+            "bytes": 87370,
+            "printed": "Saturday Aug 4 9:15 PM on Bud Light"
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2012-08-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.lollapalooza.com/events/2012/08/05/",
+          "archivedUrl": "https://web.archive.org/web/20120806043505/http://lineup.lollapalooza.com/events/2012/08/05/",
+          "captureTimestamp": "20120806043505",
+          "printed": "Sunday, August 5",
+          "sha256": "e3b17f0d1c080a26ef18f4c853907e56c83af8a4bf67fdd292d0b1ebed3442cb",
+          "bytes": 90888,
+          "rows": 51,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.lollapalooza.com/band/childish-gambino",
+            "archivedUrl": "https://web.archive.org/web/20120807041800/http://lineup.lollapalooza.com/band/childish-gambino",
+            "captureTimestamp": "20120807041800",
+            "sha256": "3e1746b10a7f9c98b52ff3f4e2f06ff73b12283f0ea257b33608d30d6d17b611",
+            "bytes": 73956,
+            "printed": "Sunday Aug 5 8:45 PM on Google Play"
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Kidz",
+      "start": "15:45",
+      "end": "16:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

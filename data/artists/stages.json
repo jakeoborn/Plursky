@@ -404,6 +404,71 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "acl:austin-kiddie-limits-presented-by-h-e-b",
+     "names": [
+      {
+       "printed": "Austin Kiddie Limits presented by H-E-B",
+       "editions": [
+        "acl-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:vista-equity",
+     "names": [
+      {
+       "printed": "Vista Equity",
+       "editions": [
+        "acl-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:google",
+     "names": [
+      {
+       "printed": "Google+",
+       "editions": [
+        "acl-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:heb-kids",
+     "names": [
+      {
+       "printed": "HEB-Kids",
+       "editions": [
+        "acl-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:zilker-stage",
+     "names": [
+      {
+       "printed": "Zilker Stage",
+       "editions": [
+        "acl-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -2960,6 +3025,97 @@
        "printed": "VIP Lolla Lounge",
        "editions": [
         "lollapalooza-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:playstation",
+     "names": [
+      {
+       "printed": "PlayStation",
+       "editions": [
+        "lollapalooza-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:google-play",
+     "names": [
+      {
+       "printed": "Google Play",
+       "editions": [
+        "lollapalooza-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:kidz",
+     "names": [
+      {
+       "printed": "Kidz",
+       "editions": [
+        "lollapalooza-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:sony",
+     "names": [
+      {
+       "printed": "Sony",
+       "editions": [
+        "lollapalooza-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:red-bull-soundstage",
+     "names": [
+      {
+       "printed": "Red Bull Soundstage",
+       "editions": [
+        "lollapalooza-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:google",
+     "names": [
+      {
+       "printed": "Google+",
+       "editions": [
+        "lollapalooza-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:music-unlimited",
+     "names": [
+      {
+       "printed": "Music Unlimited",
+       "editions": [
+        "lollapalooza-2011"
        ]
       }
      ],

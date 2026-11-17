@@ -1,0 +1,102 @@
+{
+  "id": "lollapalooza-2011",
+  "method": "official_sources",
+  "official": "https://www.lollapalooza.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2011-08-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.lollapalooza.com/events/2011/08/05/",
+          "archivedUrl": "https://web.archive.org/web/20110820024548/http://lineup.lollapalooza.com/events/2011/08/05/",
+          "captureTimestamp": "20110820024548",
+          "printed": "Fri, Aug 5",
+          "sha256": "5a651892b45cb796ccc85e0afd3ab2078ff2eeb658b6e3d0d025cceec26df2a2",
+          "bytes": 64145,
+          "rows": 51,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:30 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:30",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.lollapalooza.com/band/kerli",
+            "archivedUrl": "https://web.archive.org/web/20110808141722/http://lineup.lollapalooza.com/band/kerli",
+            "captureTimestamp": "20110808141722",
+            "sha256": "1d97c5a698221306db69633d39324ba5673b21785b26a9f507977e66076b95cb",
+            "bytes": 51551,
+            "printed": "Friday, Aug. 5 3:00pm on BMI"
+          },
+          "signingsNotSets": 18
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2011-08-06",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.lollapalooza.com/events/2011/08/06",
+          "archivedUrl": "https://web.archive.org/web/20110820024609/http://lineup.lollapalooza.com/events/2011/08/06",
+          "captureTimestamp": "20110820024609",
+          "printed": "Sat, Aug 6",
+          "sha256": "1360272e6ba0ef87339d29f1186a85f2343ec7af3752afdc030b4a8ded95e7ab",
+          "bytes": 62705,
+          "rows": 50,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:30 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:30",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.lollapalooza.com/band/big-audio-dynamite",
+            "archivedUrl": "https://web.archive.org/web/20110807091316/http://lineup.lollapalooza.com/band/big-audio-dynamite",
+            "captureTimestamp": "20110807091316",
+            "sha256": "0388a5c031e68ce33a2e1445da368ff3f886e4dd596bcc2042fbdc9080749489",
+            "bytes": 50783,
+            "printed": "Saturday, Aug. 6 4:30pm on Music Unlimited"
+          },
+          "signingsNotSets": 16
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2011-08-07",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.lollapalooza.com/events/2011/08/07/",
+          "archivedUrl": "https://web.archive.org/web/20110820024644/http://lineup.lollapalooza.com/events/2011/08/07/",
+          "captureTimestamp": "20110820024644",
+          "printed": "Sun, Aug 7",
+          "sha256": "0787959639913d3d53e1d810ea094a7cec7d0bc51beacb6f2fa5d17da87d39c0",
+          "bytes": 62917,
+          "rows": 51,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:30 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:30",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.lollapalooza.com/band/the-cars",
+            "archivedUrl": "https://web.archive.org/web/20110807190704/http://lineup.lollapalooza.com/band/the-cars",
+            "captureTimestamp": "20110807190704",
+            "sha256": "058f94b0ba0435f32a32271addc5431e96ebe685100ba197d43771a55299742a",
+            "bytes": 63728,
+            "printed": "Sunday, Aug. 7 4:00pm on Music Unlimited"
+          },
+          "signingsNotSets": 17
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}
