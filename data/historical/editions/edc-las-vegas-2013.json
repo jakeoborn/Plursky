@@ -1,0 +1,3803 @@
+{
+ "id": "edc-las-vegas-2013",
+ "festivalId": "edc-lv",
+ "name": "EDC Las Vegas 2013",
+ "year": 2013,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 12,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2013-06-21",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2013-06-22",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2013-06-23",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "edc-las-vegas-2013:kineticfield",
+   "name": "kineticFIELD"
+  },
+  {
+   "id": "edc-las-vegas-2013:cosmicmeadow",
+   "name": "cosmicMEADOW"
+  },
+  {
+   "id": "edc-las-vegas-2013:circuitgrounds",
+   "name": "circuitGROUNDS"
+  },
+  {
+   "id": "edc-las-vegas-2013:neongarden",
+   "name": "neonGARDEN"
+  },
+  {
+   "id": "edc-las-vegas-2013:basspod",
+   "name": "bassPOD"
+  },
+  {
+   "id": "edc-las-vegas-2013:basscon",
+   "name": "Basscon"
+  },
+  {
+   "id": "edc-las-vegas-2013:discovery-project",
+   "name": "Discovery Project"
+  },
+  {
+   "id": "edc-las-vegas-2013:wide-awake-art-car",
+   "name": "Wide Awake Art Car"
+  }
+ ],
+ "artists": [
+  {
+   "id": "edc-las-vegas-2013:dannic",
+   "name": "Dannic",
+   "key": "dannic",
+   "performers": [
+    "dannic"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dyro",
+   "name": "Dyro",
+   "key": "dyro",
+   "performers": [
+    "dyro"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:cedric-gervais",
+   "name": "Cedric Gervais",
+   "key": "cedric-gervais",
+   "performers": [
+    "cedric-gervais"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:nicky-romero",
+   "name": "Nicky Romero",
+   "key": "nicky-romero",
+   "performers": [
+    "nicky-romero"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:atb",
+   "name": "ATB",
+   "key": "atb",
+   "performers": [
+    "atb"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:porter-robinson",
+   "name": "Porter Robinson",
+   "key": "porter-robinson",
+   "performers": [
+    "porter-robinson"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:knife-party",
+   "name": "Knife Party",
+   "key": "knife-party",
+   "performers": [
+    "knife-party"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dada-life",
+   "name": "Dada Life",
+   "key": "dada-life",
+   "performers": [
+    "dada-life"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:borgore",
+   "name": "Borgore",
+   "key": "borgore",
+   "performers": [
+    "borgore"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:alex-metric",
+   "name": "Alex Metric",
+   "key": "alex-metric",
+   "performers": [
+    "alex-metric"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:jacques-lu-cont",
+   "name": "Jacques Lu Cont",
+   "key": "jacques-lu-cont",
+   "performers": [
+    "jacques-lu-cont"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:alvin-risk",
+   "name": "Alvin Risk",
+   "key": "alvin-risk",
+   "performers": [
+    "alvin-risk"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:fake-blood",
+   "name": "Fake Blood",
+   "key": "fake-blood",
+   "performers": [
+    "fake-blood"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:crookers",
+   "name": "Crookers",
+   "key": "crookers",
+   "performers": [
+    "crookers"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:boys-noize",
+   "name": "Boys Noize",
+   "key": "boys-noize",
+   "performers": [
+    "boys-noize"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:the-bloody-beetroots-live",
+   "name": "The Bloody Beetroots live",
+   "key": "the-bloody-beetroots-live",
+   "performers": [
+    "the-bloody-beetroots-live"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:booka-shade",
+   "name": "Booka Shade",
+   "key": "booka-shade",
+   "performers": [
+    "booka-shade"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:proxy",
+   "name": "Proxy",
+   "key": "proxy",
+   "performers": [
+    "proxy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:adrian-lux",
+   "name": "Adrian Lux",
+   "key": "adrian-lux",
+   "performers": [
+    "adrian-lux"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:bassjackers",
+   "name": "Bassjackers",
+   "key": "bassjackers",
+   "performers": [
+    "bassjackers"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:r3hab",
+   "name": "R3hab",
+   "key": "r3hab",
+   "performers": [
+    "r3hab"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dirty-south",
+   "name": "Dirty South",
+   "key": "dirty-south",
+   "performers": [
+    "dirty-south"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:thomas-gold",
+   "name": "Thomas Gold",
+   "key": "thomas-gold",
+   "performers": [
+    "thomas-gold"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:gareth-emery",
+   "name": "Gareth Emery",
+   "key": "gareth-emery",
+   "performers": [
+    "gareth-emery"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:madeon",
+   "name": "Madeon",
+   "key": "madeon",
+   "performers": [
+    "madeon"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:tommy-trash",
+   "name": "Tommy Trash",
+   "key": "tommy-trash",
+   "performers": [
+    "tommy-trash"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:arty",
+   "name": "Arty",
+   "key": "arty",
+   "performers": [
+    "arty"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:manufactured-superstars",
+   "name": "Manufactured Superstars",
+   "key": "manufactured-superstars",
+   "performers": [
+    "manufactured-superstars"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:ean-golden",
+   "name": "Ean Golden",
+   "key": "ean-golden",
+   "performers": [
+    "ean-golden"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:hobo",
+   "name": "Hobo",
+   "key": "hobo",
+   "performers": [
+    "hobo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:victor-calderone",
+   "name": "Victor Calderone",
+   "key": "victor-calderone",
+   "performers": [
+    "victor-calderone"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:paco-osuna",
+   "name": "Paco Osuna",
+   "key": "paco-osuna",
+   "performers": [
+    "paco-osuna"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:matador-live",
+   "name": "Matador live",
+   "key": "matador-live",
+   "performers": [
+    "matador-live"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:etc-etc",
+   "name": "ETC!ETC!",
+   "key": "etc-etc",
+   "performers": [
+    "etc-etc"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dub-phizix",
+   "name": "Dub Phizix",
+   "key": "dub-phizix",
+   "performers": [
+    "dub-phizix"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:just-blaze",
+   "name": "Just Blaze",
+   "key": "just-blaze",
+   "performers": [
+    "just-blaze"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:koan-sound",
+   "name": "Koan Sound",
+   "key": "koan-sound",
+   "performers": [
+    "koan-sound"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:z",
+   "name": "ƱZ",
+   "key": "z",
+   "performers": [
+    "z"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:bro-safari",
+   "name": "Bro Safari",
+   "key": "bro-safari",
+   "performers": [
+    "bro-safari"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:sub-focus",
+   "name": "Sub Focus",
+   "key": "sub-focus",
+   "performers": [
+    "sub-focus"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:flosstradamus",
+   "name": "Flosstradamus",
+   "key": "flosstradamus",
+   "performers": [
+    "flosstradamus"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:datsik",
+   "name": "Datsik",
+   "key": "datsik",
+   "performers": [
+    "datsik"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dj-fresh",
+   "name": "DJ Fresh",
+   "key": "dj-fresh",
+   "performers": [
+    "dj-fresh"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:figure",
+   "name": "Figure",
+   "key": "figure",
+   "performers": [
+    "figure"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:luminox",
+   "name": "Luminox",
+   "key": "luminox",
+   "performers": [
+    "luminox"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dj-delirium",
+   "name": "DJ Delirium",
+   "key": "dj-delirium",
+   "performers": [
+    "dj-delirium"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:stana",
+   "name": "Stana",
+   "key": "stana",
+   "performers": [
+    "stana"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:bryan-kearney",
+   "name": "Bryan Kearney",
+   "key": "bryan-kearney",
+   "performers": [
+    "bryan-kearney"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:alex-kidd",
+   "name": "Alex Kidd",
+   "key": "alex-kidd",
+   "performers": [
+    "alex-kidd"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:darksiderz",
+   "name": "Darksiderz",
+   "key": "darksiderz",
+   "performers": [
+    "darksiderz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:tuneboy",
+   "name": "Tuneboy",
+   "key": "tuneboy",
+   "performers": [
+    "tuneboy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:the-pitcher",
+   "name": "The Pitcher",
+   "key": "the-pitcher",
+   "performers": [
+    "the-pitcher"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:a-lusion",
+   "name": "A-lusion",
+   "key": "a-lusion",
+   "performers": [
+    "a-lusion"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:blutonium-boy",
+   "name": "Blutonium Boy",
+   "key": "blutonium-boy",
+   "performers": [
+    "blutonium-boy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:crisis-era",
+   "name": "Crisis Era",
+   "key": "crisis-era",
+   "performers": [
+    "crisis-era"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:t-wrecks",
+   "name": "T-Wrecks",
+   "key": "t-wrecks",
+   "performers": [
+    "t-wrecks"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:modus",
+   "name": "Modus",
+   "key": "modus",
+   "performers": [
+    "modus"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:fiasko-daniels",
+   "name": "Fiasko Daniels",
+   "key": "fiasko-daniels",
+   "performers": [
+    "fiasko-daniels"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:the-beat-kidz",
+   "name": "The Beat Kidz",
+   "key": "the-beat-kidz",
+   "performers": [
+    "the-beat-kidz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:indo",
+   "name": "IndO",
+   "key": "indo",
+   "performers": [
+    "indo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:psognar",
+   "name": "PsoGnar",
+   "key": "psognar",
+   "performers": [
+    "psognar"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:party-ghost",
+   "name": "Party Ghost",
+   "key": "party-ghost",
+   "performers": [
+    "party-ghost"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:singularity",
+   "name": "Singularity",
+   "key": "singularity",
+   "performers": [
+    "singularity"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:monkey-freakz",
+   "name": "Monkey Freakz",
+   "key": "monkey-freakz",
+   "performers": [
+    "monkey-freakz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:david-hiller",
+   "name": "David Hiller",
+   "key": "david-hiller",
+   "performers": [
+    "david-hiller"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:sweet-and-low",
+   "name": "Sweet & Low",
+   "key": "sweet-and-low",
+   "performers": [
+    "sweet-and-low"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:january-black",
+   "name": "January Black",
+   "key": "january-black",
+   "performers": [
+    "january-black"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:bisharat",
+   "name": "Bisharat",
+   "key": "bisharat",
+   "performers": [
+    "bisharat"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:animale",
+   "name": "Animale",
+   "key": "animale",
+   "performers": [
+    "animale"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:beat-bros",
+   "name": "Beat Bros",
+   "key": "beat-bros",
+   "performers": [
+    "beat-bros"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:inphinity",
+   "name": "Inphinity",
+   "key": "inphinity",
+   "performers": [
+    "inphinity"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:ruff-hauser",
+   "name": "Ruff Hauser",
+   "key": "ruff-hauser",
+   "performers": [
+    "ruff-hauser"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:black-22-s",
+   "name": "Black 22's",
+   "key": "black-22-s",
+   "performers": [
+    "black-22-s"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:brainchild",
+   "name": "Brainchild",
+   "key": "brainchild",
+   "performers": [
+    "brainchild"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:audien",
+   "name": "Audien",
+   "key": "audien",
+   "performers": [
+    "audien"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:tritonal",
+   "name": "Tritonal",
+   "key": "tritonal",
+   "performers": [
+    "tritonal"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:sunnery-james-and-ryan-marciano",
+   "name": "Sunnery James & Ryan Marciano",
+   "key": "sunnery-james-and-ryan-marciano",
+   "performers": [
+    "sunnery-james-and-ryan-marciano"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:sander-van-doorn",
+   "name": "Sander van Doorn",
+   "key": "sander-van-doorn",
+   "performers": [
+    "sander-van-doorn"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:eric-prydz",
+   "name": "Eric Prydz",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:avicii",
+   "name": "AVICII",
+   "key": "avicii",
+   "performers": [
+    "avicii"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:hardwell",
+   "name": "Hardwell",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:zeds-dead",
+   "name": "Zeds Dead",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:headhunterz",
+   "name": "Headhunterz",
+   "key": "headhunterz",
+   "performers": [
+    "headhunterz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:tommie-sunshine",
+   "name": "Tommie Sunshine",
+   "key": "tommie-sunshine",
+   "performers": [
+    "tommie-sunshine"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:oliver",
+   "name": "Oliver",
+   "key": "oliver",
+   "performers": [
+    "oliver"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:destructo",
+   "name": "Destructo",
+   "key": "destructo",
+   "performers": [
+    "destructo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:tiga",
+   "name": "Tiga",
+   "key": "tiga",
+   "performers": [
+    "tiga"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:empire-of-the-sun",
+   "name": "Empire Of The Sun",
+   "key": "empire-of-the-sun",
+   "performers": [
+    "empire-of-the-sun"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:major-lazer",
+   "name": "Major Lazer",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dog-blood",
+   "name": "Dog Blood",
+   "key": "dog-blood",
+   "performers": [
+    "dog-blood"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:a-trak",
+   "name": "A-Trak",
+   "key": "a-trak",
+   "performers": [
+    "a-trak"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:claude-vonstroke",
+   "name": "Claude VonStroke",
+   "key": "claude-vonstroke",
+   "performers": [
+    "claude-vonstroke"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:david-steven",
+   "name": "DAVID STEVEN",
+   "key": "david-steven",
+   "performers": [
+    "david-steven"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:super8-and-tab",
+   "name": "Super8 & Tab",
+   "key": "super8-and-tab",
+   "performers": [
+    "super8-and-tab"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:rebecca-and-fiona",
+   "name": "Rebecca and Fiona",
+   "key": "rebecca-and-fiona",
+   "performers": [
+    "rebecca-and-fiona"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:mat-zo",
+   "name": "Mat Zo",
+   "key": "mat-zo",
+   "performers": [
+    "mat-zo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:morgan-page",
+   "name": "Morgan Page",
+   "key": "morgan-page",
+   "performers": [
+    "morgan-page"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:cosmic-gate",
+   "name": "Cosmic Gate",
+   "key": "cosmic-gate",
+   "performers": [
+    "cosmic-gate"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:bingo-players",
+   "name": "Bingo Players",
+   "key": "bingo-players",
+   "performers": [
+    "bingo-players"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:wolfgang-gartner",
+   "name": "Wolfgang Gartner",
+   "key": "wolfgang-gartner",
+   "performers": [
+    "wolfgang-gartner"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:benny-benassi",
+   "name": "Benny Benassi",
+   "key": "benny-benassi",
+   "performers": [
+    "benny-benassi"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:fatboy-slim",
+   "name": "Fatboy Slim",
+   "key": "fatboy-slim",
+   "performers": [
+    "fatboy-slim"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:markus-schulz",
+   "name": "Markus Schulz",
+   "key": "markus-schulz",
+   "performers": [
+    "markus-schulz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:jon-rundell",
+   "name": "Jon Rundell",
+   "key": "jon-rundell",
+   "performers": [
+    "jon-rundell"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:green-velvet",
+   "name": "Green Velvet",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:yousef",
+   "name": "Yousef",
+   "key": "yousef",
+   "performers": [
+    "yousef"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:metrik",
+   "name": "Metrik",
+   "key": "metrik",
+   "performers": [
+    "metrik"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:terravita",
+   "name": "Terravita",
+   "key": "terravita",
+   "performers": [
+    "terravita"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:mt-eden-live",
+   "name": "Mt Eden LIVE",
+   "key": "mt-eden-live",
+   "performers": [
+    "mt-eden-live"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:foreign-beggars",
+   "name": "Foreign Beggars",
+   "key": "foreign-beggars",
+   "performers": [
+    "foreign-beggars"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:carnage",
+   "name": "Carnage",
+   "key": "carnage",
+   "performers": [
+    "carnage"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:camo-and-krooked",
+   "name": "Camo & Krooked",
+   "key": "camo-and-krooked",
+   "performers": [
+    "camo-and-krooked"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:funtcase-vs-cookie-monsta",
+   "name": "Funtcase vs Cookie Monsta",
+   "key": "funtcase-vs-cookie-monsta",
+   "performers": [
+    "funtcase-vs-cookie-monsta"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:12th-planet",
+   "name": "12th Planet",
+   "key": "12th-planet",
+   "performers": [
+    "12th-planet"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:baauer",
+   "name": "Baauer",
+   "key": "baauer",
+   "performers": [
+    "baauer"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dillon-francis",
+   "name": "Dillon Francis",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dirtyphonics",
+   "name": "Dirtyphonics",
+   "key": "dirtyphonics",
+   "performers": [
+    "dirtyphonics"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:nadastrom",
+   "name": "Nadastrom",
+   "key": "nadastrom",
+   "performers": [
+    "nadastrom"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:mitchell-claxton",
+   "name": "Mitchell Claxton",
+   "key": "mitchell-claxton",
+   "performers": [
+    "mitchell-claxton"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:lisa-lashes",
+   "name": "Lisa Lashes",
+   "key": "lisa-lashes",
+   "performers": [
+    "lisa-lashes"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:a-s-y-s",
+   "name": "A*S*Y*S*",
+   "key": "a-s-y-s",
+   "performers": [
+    "a-s-y-s"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:yoji",
+   "name": "Yoji",
+   "key": "yoji",
+   "performers": [
+    "yoji"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:lady-faith",
+   "name": "Lady Faith",
+   "key": "lady-faith",
+   "performers": [
+    "lady-faith"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:technoboy",
+   "name": "Technoboy",
+   "key": "technoboy",
+   "performers": [
+    "technoboy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:zany",
+   "name": "Zany",
+   "key": "zany",
+   "performers": [
+    "zany"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:darren-styles",
+   "name": "Darren Styles",
+   "key": "darren-styles",
+   "performers": [
+    "darren-styles"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:caffeine",
+   "name": "Caffeine",
+   "key": "caffeine",
+   "performers": [
+    "caffeine"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:zya",
+   "name": "ZYA",
+   "key": "zya",
+   "performers": [
+    "zya"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:eelrack-b2b-sweet-and-low",
+   "name": "Eelrack B2B Sweet & Low",
+   "key": "eelrack-b2b-sweet-and-low",
+   "performers": [
+    "eelrack",
+    "sweet-and-low"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:anddrop",
+   "name": "AndDrop!",
+   "key": "anddrop",
+   "performers": [
+    "anddrop"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:next-order",
+   "name": "Next Order",
+   "key": "next-order",
+   "performers": [
+    "next-order"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:sirensceol",
+   "name": "SirensCeol",
+   "key": "sirensceol",
+   "performers": [
+    "sirensceol"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:toer",
+   "name": "TOER",
+   "key": "toer",
+   "performers": [
+    "toer"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:rhythmics",
+   "name": "Rhythmics",
+   "key": "rhythmics",
+   "performers": [
+    "rhythmics"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:city-17",
+   "name": "City 17",
+   "key": "city-17",
+   "performers": [
+    "city-17"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:castor-troy",
+   "name": "Castor Troy",
+   "key": "castor-troy",
+   "performers": [
+    "castor-troy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:funk-effect",
+   "name": "FUNK EFFECT",
+   "key": "funk-effect",
+   "performers": [
+    "funk-effect"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:oh-doyle",
+   "name": "Oh Doyle",
+   "key": "oh-doyle",
+   "performers": [
+    "oh-doyle"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:sah",
+   "name": "SAH",
+   "key": "sah",
+   "performers": [
+    "sah"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:tropicool",
+   "name": "Tropicool",
+   "key": "tropicool",
+   "performers": [
+    "tropicool"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:shae-b",
+   "name": "Shae B.",
+   "key": "shae-b",
+   "performers": [
+    "shae-b"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:bones-and-troy-kurtz",
+   "name": "Bones & Troy Kurtz",
+   "key": "bones-and-troy-kurtz",
+   "performers": [
+    "bones-and-troy-kurtz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:bixel-boys",
+   "name": "Bixel Boys",
+   "key": "bixel-boys",
+   "performers": [
+    "bixel-boys"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:astronomar",
+   "name": "Astronomar",
+   "key": "astronomar",
+   "performers": [
+    "astronomar"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:wax-motif",
+   "name": "Wax Motif",
+   "key": "wax-motif",
+   "performers": [
+    "wax-motif"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:craig-williams",
+   "name": "Craig Williams",
+   "key": "craig-williams",
+   "performers": [
+    "craig-williams"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:burn-unit",
+   "name": "Burn Unit",
+   "key": "burn-unit",
+   "performers": [
+    "burn-unit"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:alex-sibley-and-eelrack",
+   "name": "Alex Sibley & Eelrack",
+   "key": "alex-sibley-and-eelrack",
+   "performers": [
+    "alex-sibley-and-eelrack"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:mark-knight",
+   "name": "Mark Knight",
+   "key": "mark-knight",
+   "performers": [
+    "mark-knight"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:umek",
+   "name": "Umek",
+   "key": "umek",
+   "performers": [
+    "umek"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:above-and-beyond",
+   "name": "Above & Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:calvin-harris",
+   "name": "Calvin Harris",
+   "key": "calvin-harris",
+   "performers": [
+    "calvin-harris"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:steve-angello",
+   "name": "Steve Angello",
+   "key": "steve-angello",
+   "performers": [
+    "steve-angello"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:night-owl-experience",
+   "name": "Night Owl Experience",
+   "key": "night-owl-experience",
+   "performers": [
+    "night-owl-experience"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dash-berlin",
+   "name": "Dash Berlin",
+   "key": "dash-berlin",
+   "performers": [
+    "dash-berlin"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:mumbai-science",
+   "name": "Mumbai Science",
+   "key": "mumbai-science",
+   "performers": [
+    "mumbai-science"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dj-craze",
+   "name": "DJ Craze",
+   "key": "dj-craze",
+   "performers": [
+    "dj-craze"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:araabmuzik",
+   "name": "AraabMuzik",
+   "key": "araabmuzik",
+   "performers": [
+    "araabmuzik"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:jack-beats",
+   "name": "Jack Beats",
+   "key": "jack-beats",
+   "performers": [
+    "jack-beats"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:kill-the-noise",
+   "name": "Kill The Noise",
+   "key": "kill-the-noise",
+   "performers": [
+    "kill-the-noise"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:rusko",
+   "name": "Rusko",
+   "key": "rusko",
+   "performers": [
+    "rusko"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:justin-martin",
+   "name": "Justin Martin",
+   "key": "justin-martin",
+   "performers": [
+    "justin-martin"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:altern8",
+   "name": "Altern8",
+   "key": "altern8",
+   "performers": [
+    "altern8"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:julian-jordan",
+   "name": "Julian Jordan",
+   "key": "julian-jordan",
+   "performers": [
+    "julian-jordan"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:clockwork",
+   "name": "Clockwork",
+   "key": "clockwork",
+   "performers": [
+    "clockwork"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:la-roux",
+   "name": "La Roux",
+   "key": "la-roux",
+   "performers": [
+    "la-roux"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:an21-and-max-vangeli",
+   "name": "AN21 and Max Vangeli",
+   "key": "an21-and-max-vangeli",
+   "performers": [
+    "an21-and-max-vangeli"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:nervo",
+   "name": "NERVO",
+   "key": "nervo",
+   "performers": [
+    "nervo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:fedde-le-grand",
+   "name": "Fedde le Grand",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:krewella",
+   "name": "Krewella",
+   "key": "krewella",
+   "performers": [
+    "krewella"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:laidback-luke",
+   "name": "Laidback Luke",
+   "key": "laidback-luke",
+   "performers": [
+    "laidback-luke"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:ferry-corsten",
+   "name": "Ferry Corsten",
+   "key": "ferry-corsten",
+   "performers": [
+    "ferry-corsten"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:cazzette",
+   "name": "CAZZETTE",
+   "key": "cazzette",
+   "performers": [
+    "cazzette"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:francesca-lombardo",
+   "name": "Francesca Lombardo",
+   "key": "francesca-lombardo",
+   "performers": [
+    "francesca-lombardo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:subb-an",
+   "name": "Subb-An",
+   "key": "subb-an",
+   "performers": [
+    "subb-an"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:infinity-ink",
+   "name": "Infinity Ink",
+   "key": "infinity-ink",
+   "performers": [
+    "infinity-ink"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:pete-tong",
+   "name": "Pete Tong",
+   "key": "pete-tong",
+   "performers": [
+    "pete-tong"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:damian-lazarus",
+   "name": "Damian Lazarus",
+   "key": "damian-lazarus",
+   "performers": [
+    "damian-lazarus"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:art-department",
+   "name": "Art Department",
+   "key": "art-department",
+   "performers": [
+    "art-department"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:sasha",
+   "name": "Sasha",
+   "key": "sasha",
+   "performers": [
+    "sasha"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:rene-lavice",
+   "name": "Rene LaVice",
+   "key": "rene-lavice",
+   "performers": [
+    "rene-lavice"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dj-hype",
+   "name": "DJ Hype",
+   "key": "dj-hype",
+   "performers": [
+    "dj-hype"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:culture-shock",
+   "name": "Culture Shock",
+   "key": "culture-shock",
+   "performers": [
+    "culture-shock"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:wilkinson",
+   "name": "Wilkinson",
+   "key": "wilkinson",
+   "performers": [
+    "wilkinson"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:loadstar",
+   "name": "Loadstar",
+   "key": "loadstar",
+   "performers": [
+    "loadstar"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:crizzly",
+   "name": "Crizzly",
+   "key": "crizzly",
+   "performers": [
+    "crizzly"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:noisia",
+   "name": "Noisia",
+   "key": "noisia",
+   "performers": [
+    "noisia"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:andy-c-w-armanni-reign",
+   "name": "Andy C w/ Armanni Reign",
+   "key": "andy-c-w-armanni-reign",
+   "performers": [
+    "andy-c-w-armanni-reign"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:doctor-p",
+   "name": "Doctor P",
+   "key": "doctor-p",
+   "performers": [
+    "doctor-p"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:ed-rush-and-optical",
+   "name": "Ed Rush & Optical",
+   "key": "ed-rush-and-optical",
+   "performers": [
+    "ed-rush-and-optical"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:delta-heavy",
+   "name": "Delta Heavy",
+   "key": "delta-heavy",
+   "performers": [
+    "delta-heavy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:audio-punk",
+   "name": "Audio Punk",
+   "key": "audio-punk",
+   "performers": [
+    "audio-punk"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:indecent-noise",
+   "name": "Indecent Noise",
+   "key": "indecent-noise",
+   "performers": [
+    "indecent-noise"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:simon-patterson",
+   "name": "Simon Patterson",
+   "key": "simon-patterson",
+   "performers": [
+    "simon-patterson"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:scot-project",
+   "name": "Scot Project",
+   "key": "scot-project",
+   "performers": [
+    "scot-project"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:organ-donors",
+   "name": "Organ Donors",
+   "key": "organ-donors",
+   "performers": [
+    "organ-donors"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:d-block-and-s-te-fan",
+   "name": "D-Block & S-te-Fan",
+   "key": "d-block-and-s-te-fan",
+   "performers": [
+    "d-block-and-s-te-fan"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:isaac",
+   "name": "Isaac",
+   "key": "isaac",
+   "performers": [
+    "isaac"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:t-n-t",
+   "name": "T'N'T",
+   "key": "t-n-t",
+   "performers": [
+    "t-n-t"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dj-venom",
+   "name": "DJ Venom",
+   "key": "dj-venom",
+   "performers": [
+    "dj-venom"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:cappa-regime",
+   "name": "Cappa Regime",
+   "key": "cappa-regime",
+   "performers": [
+    "cappa-regime"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:dj-denise",
+   "name": "DJ Denise",
+   "key": "dj-denise",
+   "performers": [
+    "dj-denise"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:falcon",
+   "name": "Falcon",
+   "key": "falcon",
+   "performers": [
+    "falcon"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:von-don",
+   "name": "Von Don",
+   "key": "von-don",
+   "performers": [
+    "von-don"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:posso",
+   "name": "Posso",
+   "key": "posso",
+   "performers": [
+    "posso"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:mako",
+   "name": "MAKO",
+   "key": "mako",
+   "performers": [
+    "mako"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:soulspeak-and-wordy",
+   "name": "Soulspeak & Wordy",
+   "key": "soulspeak-and-wordy",
+   "performers": [
+    "soulspeak-and-wordy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:saymyname",
+   "name": "SAYMYNAME!",
+   "key": "saymyname",
+   "performers": [
+    "saymyname"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:free-drinkz",
+   "name": "FREE DRINKZ",
+   "key": "free-drinkz",
+   "performers": [
+    "free-drinkz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:orville-kline",
+   "name": "Orville Kline",
+   "key": "orville-kline",
+   "performers": [
+    "orville-kline"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:nick-g",
+   "name": "Nick G",
+   "key": "nick-g",
+   "performers": [
+    "nick-g"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:anthony-cardinale",
+   "name": "Anthony Cardinale",
+   "key": "anthony-cardinale",
+   "performers": [
+    "anthony-cardinale"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:brett-rubin",
+   "name": "Brett Rubin",
+   "key": "brett-rubin",
+   "performers": [
+    "brett-rubin"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:joaquin-bamaca",
+   "name": "Joaquin Bamaca",
+   "key": "joaquin-bamaca",
+   "performers": [
+    "joaquin-bamaca"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:eelrack",
+   "name": "Eelrack",
+   "key": "eelrack",
+   "performers": [
+    "eelrack"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:alex-sibley",
+   "name": "Alex Sibley",
+   "key": "alex-sibley",
+   "performers": [
+    "alex-sibley"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:jaceo",
+   "name": "Jaceo",
+   "key": "jaceo",
+   "performers": [
+    "jaceo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2013:fabian-campos",
+   "name": "Fabian Campos",
+   "key": "fabian-campos",
+   "performers": [
+    "fabian-campos"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "edc-las-vegas-2013:d1:kineticfield:1900:dannic",
+   "artistId": "edc-las-vegas-2013:dannic",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "19:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:kineticfield:1930:dyro",
+   "artistId": "edc-las-vegas-2013:dyro",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:kineticfield:2030:cedric-gervais",
+   "artistId": "edc-las-vegas-2013:cedric-gervais",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:kineticfield:2130:nicky-romero",
+   "artistId": "edc-las-vegas-2013:nicky-romero",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:kineticfield:2230:atb",
+   "artistId": "edc-las-vegas-2013:atb",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:kineticfield:2330:porter-robinson",
+   "artistId": "edc-las-vegas-2013:porter-robinson",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:kineticfield:0030:armin-van-buuren",
+   "artistId": "edc-las-vegas-2013:armin-van-buuren",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:kineticfield:0130:afrojack",
+   "artistId": "edc-las-vegas-2013:afrojack",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:kineticfield:0230:knife-party",
+   "artistId": "edc-las-vegas-2013:knife-party",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:kineticfield:0330:dada-life",
+   "artistId": "edc-las-vegas-2013:dada-life",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:kineticfield:0430:borgore",
+   "artistId": "edc-las-vegas-2013:borgore",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:cosmicmeadow:1900:alex-metric",
+   "artistId": "edc-las-vegas-2013:alex-metric",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:cosmicmeadow:1945:jacques-lu-cont",
+   "artistId": "edc-las-vegas-2013:jacques-lu-cont",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:cosmicmeadow:2045:alvin-risk",
+   "artistId": "edc-las-vegas-2013:alvin-risk",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:cosmicmeadow:2145:fake-blood",
+   "artistId": "edc-las-vegas-2013:fake-blood",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:cosmicmeadow:2245:crookers",
+   "artistId": "edc-las-vegas-2013:crookers",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "22:45",
+   "end": "23:55"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:cosmicmeadow:2355:boys-noize",
+   "artistId": "edc-las-vegas-2013:boys-noize",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "23:55",
+   "end": "01:25"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:cosmicmeadow:0155:the-bloody-beetroots-live",
+   "artistId": "edc-las-vegas-2013:the-bloody-beetroots-live",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "01:55",
+   "end": "02:55"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:cosmicmeadow:0315:booka-shade",
+   "artistId": "edc-las-vegas-2013:booka-shade",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "03:15",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:cosmicmeadow:0430:proxy",
+   "artistId": "edc-las-vegas-2013:proxy",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:circuitgrounds:1900:adrian-lux",
+   "artistId": "edc-las-vegas-2013:adrian-lux",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:circuitgrounds:2000:bassjackers",
+   "artistId": "edc-las-vegas-2013:bassjackers",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:circuitgrounds:2100:r3hab",
+   "artistId": "edc-las-vegas-2013:r3hab",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:circuitgrounds:2200:dirty-south",
+   "artistId": "edc-las-vegas-2013:dirty-south",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:circuitgrounds:2300:thomas-gold",
+   "artistId": "edc-las-vegas-2013:thomas-gold",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:circuitgrounds:0000:gareth-emery",
+   "artistId": "edc-las-vegas-2013:gareth-emery",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:circuitgrounds:0100:madeon",
+   "artistId": "edc-las-vegas-2013:madeon",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:circuitgrounds:0200:tommy-trash",
+   "artistId": "edc-las-vegas-2013:tommy-trash",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:circuitgrounds:0300:arty",
+   "artistId": "edc-las-vegas-2013:arty",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:circuitgrounds:0400:manufactured-superstars",
+   "artistId": "edc-las-vegas-2013:manufactured-superstars",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:neongarden:1900:ean-golden",
+   "artistId": "edc-las-vegas-2013:ean-golden",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:neongarden:2030:hobo",
+   "artistId": "edc-las-vegas-2013:hobo",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:neongarden:2200:victor-calderone",
+   "artistId": "edc-las-vegas-2013:victor-calderone",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:neongarden:2330:loco-dice",
+   "artistId": "edc-las-vegas-2013:loco-dice",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:neongarden:0100:richie-hawtin",
+   "artistId": "edc-las-vegas-2013:richie-hawtin",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "01:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:neongarden:0300:paco-osuna",
+   "artistId": "edc-las-vegas-2013:paco-osuna",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "03:00",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:neongarden:0430:matador-live",
+   "artistId": "edc-las-vegas-2013:matador-live",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:1900:etc-etc",
+   "artistId": "edc-las-vegas-2013:etc-etc",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "19:00",
+   "end": "19:40"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:1940:dub-phizix",
+   "artistId": "edc-las-vegas-2013:dub-phizix",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "19:40",
+   "end": "20:35"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:2035:just-blaze",
+   "artistId": "edc-las-vegas-2013:just-blaze",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "20:35",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:2130:koan-sound",
+   "artistId": "edc-las-vegas-2013:koan-sound",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "21:30",
+   "end": "22:25"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:2225:z",
+   "artistId": "edc-las-vegas-2013:z",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "22:25",
+   "end": "23:20"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:2320:bro-safari",
+   "artistId": "edc-las-vegas-2013:bro-safari",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "23:20",
+   "end": "00:15"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:0015:sub-focus",
+   "artistId": "edc-las-vegas-2013:sub-focus",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "00:15",
+   "end": "01:10"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:0110:flosstradamus",
+   "artistId": "edc-las-vegas-2013:flosstradamus",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "01:10",
+   "end": "02:05"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:0205:datsik",
+   "artistId": "edc-las-vegas-2013:datsik",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "02:05",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:0300:dj-fresh",
+   "artistId": "edc-las-vegas-2013:dj-fresh",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "03:00",
+   "end": "03:55"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:0355:figure",
+   "artistId": "edc-las-vegas-2013:figure",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "03:55",
+   "end": "04:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basspod:0445:luminox",
+   "artistId": "edc-las-vegas-2013:luminox",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "04:45",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basscon:1900:dj-delirium",
+   "artistId": "edc-las-vegas-2013:dj-delirium",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "19:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basscon:1930:stana",
+   "artistId": "edc-las-vegas-2013:stana",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basscon:2100:bryan-kearney",
+   "artistId": "edc-las-vegas-2013:bryan-kearney",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basscon:2200:alex-kidd",
+   "artistId": "edc-las-vegas-2013:alex-kidd",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basscon:2300:darksiderz",
+   "artistId": "edc-las-vegas-2013:darksiderz",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basscon:0000:tuneboy",
+   "artistId": "edc-las-vegas-2013:tuneboy",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basscon:0100:the-pitcher",
+   "artistId": "edc-las-vegas-2013:the-pitcher",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basscon:0200:a-lusion",
+   "artistId": "edc-las-vegas-2013:a-lusion",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basscon:0300:blutonium-boy",
+   "artistId": "edc-las-vegas-2013:blutonium-boy",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:basscon:0400:crisis-era",
+   "artistId": "edc-las-vegas-2013:crisis-era",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:discovery-project:1900:t-wrecks",
+   "artistId": "edc-las-vegas-2013:t-wrecks",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:discovery-project:2000:modus",
+   "artistId": "edc-las-vegas-2013:modus",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:discovery-project:2100:fiasko-daniels",
+   "artistId": "edc-las-vegas-2013:fiasko-daniels",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:discovery-project:2200:the-beat-kidz",
+   "artistId": "edc-las-vegas-2013:the-beat-kidz",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:discovery-project:2300:indo",
+   "artistId": "edc-las-vegas-2013:indo",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:discovery-project:0000:psognar",
+   "artistId": "edc-las-vegas-2013:psognar",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:discovery-project:0100:party-ghost",
+   "artistId": "edc-las-vegas-2013:party-ghost",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:discovery-project:0200:singularity",
+   "artistId": "edc-las-vegas-2013:singularity",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:discovery-project:0300:monkey-freakz",
+   "artistId": "edc-las-vegas-2013:monkey-freakz",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:discovery-project:0400:david-hiller",
+   "artistId": "edc-las-vegas-2013:david-hiller",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:wide-awake-art-car:1900:sweet-and-low",
+   "artistId": "edc-las-vegas-2013:sweet-and-low",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:wide-awake-art-car:2000:january-black",
+   "artistId": "edc-las-vegas-2013:january-black",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:wide-awake-art-car:2100:bisharat",
+   "artistId": "edc-las-vegas-2013:bisharat",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:wide-awake-art-car:2200:animale",
+   "artistId": "edc-las-vegas-2013:animale",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:wide-awake-art-car:2300:beat-bros",
+   "artistId": "edc-las-vegas-2013:beat-bros",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:wide-awake-art-car:0100:inphinity",
+   "artistId": "edc-las-vegas-2013:inphinity",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:wide-awake-art-car:0200:ruff-hauser",
+   "artistId": "edc-las-vegas-2013:ruff-hauser",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:wide-awake-art-car:0300:black-22-s",
+   "artistId": "edc-las-vegas-2013:black-22-s",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d1:wide-awake-art-car:0400:brainchild",
+   "artistId": "edc-las-vegas-2013:brainchild",
+   "day": 1,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:kineticfield:1900:audien",
+   "artistId": "edc-las-vegas-2013:audien",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:kineticfield:2000:tritonal",
+   "artistId": "edc-las-vegas-2013:tritonal",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:kineticfield:2100:sunnery-james-and-ryan-marciano",
+   "artistId": "edc-las-vegas-2013:sunnery-james-and-ryan-marciano",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:kineticfield:2200:sander-van-doorn",
+   "artistId": "edc-las-vegas-2013:sander-van-doorn",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:kineticfield:2300:eric-prydz",
+   "artistId": "edc-las-vegas-2013:eric-prydz",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:kineticfield:0000:avicii",
+   "artistId": "edc-las-vegas-2013:avicii",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:kineticfield:0130:tiesto",
+   "artistId": "edc-las-vegas-2013:tiesto",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:kineticfield:0300:hardwell",
+   "artistId": "edc-las-vegas-2013:hardwell",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:kineticfield:0400:zeds-dead",
+   "artistId": "edc-las-vegas-2013:zeds-dead",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "04:00",
+   "end": "04:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:kineticfield:0445:headhunterz",
+   "artistId": "edc-las-vegas-2013:headhunterz",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "04:45",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:cosmicmeadow:1900:tommie-sunshine",
+   "artistId": "edc-las-vegas-2013:tommie-sunshine",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "19:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:cosmicmeadow:1930:oliver",
+   "artistId": "edc-las-vegas-2013:oliver",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "19:30",
+   "end": "20:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:cosmicmeadow:2045:destructo",
+   "artistId": "edc-las-vegas-2013:destructo",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:cosmicmeadow:2200:tiga",
+   "artistId": "edc-las-vegas-2013:tiga",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:cosmicmeadow:2345:empire-of-the-sun",
+   "artistId": "edc-las-vegas-2013:empire-of-the-sun",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "23:45",
+   "end": "00:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:cosmicmeadow:0105:major-lazer",
+   "artistId": "edc-las-vegas-2013:major-lazer",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "01:05",
+   "end": "02:05"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:cosmicmeadow:0210:dog-blood",
+   "artistId": "edc-las-vegas-2013:dog-blood",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "02:10",
+   "end": "03:10"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:cosmicmeadow:0315:a-trak",
+   "artistId": "edc-las-vegas-2013:a-trak",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "03:15",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:cosmicmeadow:0415:claude-vonstroke",
+   "artistId": "edc-las-vegas-2013:claude-vonstroke",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "04:15",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:circuitgrounds:1900:david-steven",
+   "artistId": "edc-las-vegas-2013:david-steven",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "19:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:circuitgrounds:1930:super8-and-tab",
+   "artistId": "edc-las-vegas-2013:super8-and-tab",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:circuitgrounds:2030:rebecca-and-fiona",
+   "artistId": "edc-las-vegas-2013:rebecca-and-fiona",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:circuitgrounds:2130:mat-zo",
+   "artistId": "edc-las-vegas-2013:mat-zo",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:circuitgrounds:2230:morgan-page",
+   "artistId": "edc-las-vegas-2013:morgan-page",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:circuitgrounds:2330:cosmic-gate",
+   "artistId": "edc-las-vegas-2013:cosmic-gate",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:circuitgrounds:0030:bingo-players",
+   "artistId": "edc-las-vegas-2013:bingo-players",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:circuitgrounds:0130:wolfgang-gartner",
+   "artistId": "edc-las-vegas-2013:wolfgang-gartner",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:circuitgrounds:0230:benny-benassi",
+   "artistId": "edc-las-vegas-2013:benny-benassi",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:circuitgrounds:0330:fatboy-slim",
+   "artistId": "edc-las-vegas-2013:fatboy-slim",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:circuitgrounds:0430:markus-schulz",
+   "artistId": "edc-las-vegas-2013:markus-schulz",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:neongarden:1900:jon-rundell",
+   "artistId": "edc-las-vegas-2013:jon-rundell",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:neongarden:2030:green-velvet",
+   "artistId": "edc-las-vegas-2013:green-velvet",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:neongarden:2200:dubfire",
+   "artistId": "edc-las-vegas-2013:dubfire",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:neongarden:2330:john-digweed",
+   "artistId": "edc-las-vegas-2013:john-digweed",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:neongarden:0100:adam-beyer",
+   "artistId": "edc-las-vegas-2013:adam-beyer",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:neongarden:0230:carl-cox",
+   "artistId": "edc-las-vegas-2013:carl-cox",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "02:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:neongarden:0430:yousef",
+   "artistId": "edc-las-vegas-2013:yousef",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:1900:metrik",
+   "artistId": "edc-las-vegas-2013:metrik",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "19:00",
+   "end": "19:20"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:1920:terravita",
+   "artistId": "edc-las-vegas-2013:terravita",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "19:20",
+   "end": "20:10"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:2010:mt-eden-live",
+   "artistId": "edc-las-vegas-2013:mt-eden-live",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "20:10",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:2100:foreign-beggars",
+   "artistId": "edc-las-vegas-2013:foreign-beggars",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "21:00",
+   "end": "21:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:2145:carnage",
+   "artistId": "edc-las-vegas-2013:carnage",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "21:45",
+   "end": "22:35"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:2235:camo-and-krooked",
+   "artistId": "edc-las-vegas-2013:camo-and-krooked",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "22:35",
+   "end": "23:25"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:2325:funtcase-vs-cookie-monsta",
+   "artistId": "edc-las-vegas-2013:funtcase-vs-cookie-monsta",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "23:25",
+   "end": "00:25"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:0025:borgore",
+   "artistId": "edc-las-vegas-2013:borgore",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "00:25",
+   "end": "01:15"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:0115:12th-planet",
+   "artistId": "edc-las-vegas-2013:12th-planet",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "01:15",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:0200:baauer",
+   "artistId": "edc-las-vegas-2013:baauer",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "02:00",
+   "end": "02:50"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:0250:dillon-francis",
+   "artistId": "edc-las-vegas-2013:dillon-francis",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "02:50",
+   "end": "03:40"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:0340:dirtyphonics",
+   "artistId": "edc-las-vegas-2013:dirtyphonics",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "03:40",
+   "end": "04:40"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basspod:0440:nadastrom",
+   "artistId": "edc-las-vegas-2013:nadastrom",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "04:40",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basscon:1900:mitchell-claxton",
+   "artistId": "edc-las-vegas-2013:mitchell-claxton",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "19:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basscon:1930:lisa-lashes",
+   "artistId": "edc-las-vegas-2013:lisa-lashes",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basscon:2100:a-s-y-s",
+   "artistId": "edc-las-vegas-2013:a-s-y-s",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basscon:2230:yoji",
+   "artistId": "edc-las-vegas-2013:yoji",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basscon:2330:lady-faith",
+   "artistId": "edc-las-vegas-2013:lady-faith",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basscon:0030:technoboy",
+   "artistId": "edc-las-vegas-2013:technoboy",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basscon:0130:zany",
+   "artistId": "edc-las-vegas-2013:zany",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basscon:0230:darren-styles",
+   "artistId": "edc-las-vegas-2013:darren-styles",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:basscon:0400:caffeine",
+   "artistId": "edc-las-vegas-2013:caffeine",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:discovery-project:1900:zya",
+   "artistId": "edc-las-vegas-2013:zya",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:discovery-project:2000:eelrack-b2b-sweet-and-low",
+   "artistId": "edc-las-vegas-2013:eelrack-b2b-sweet-and-low",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "20:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:discovery-project:2030:january-black",
+   "artistId": "edc-las-vegas-2013:january-black",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "20:30",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:discovery-project:2100:anddrop",
+   "artistId": "edc-las-vegas-2013:anddrop",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:discovery-project:2200:next-order",
+   "artistId": "edc-las-vegas-2013:next-order",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:discovery-project:2300:sirensceol",
+   "artistId": "edc-las-vegas-2013:sirensceol",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:discovery-project:0000:toer",
+   "artistId": "edc-las-vegas-2013:toer",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:discovery-project:0100:rhythmics",
+   "artistId": "edc-las-vegas-2013:rhythmics",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:discovery-project:0200:city-17",
+   "artistId": "edc-las-vegas-2013:city-17",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:discovery-project:0300:castor-troy",
+   "artistId": "edc-las-vegas-2013:castor-troy",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:discovery-project:0400:funk-effect",
+   "artistId": "edc-las-vegas-2013:funk-effect",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:wide-awake-art-car:1900:oh-doyle",
+   "artistId": "edc-las-vegas-2013:oh-doyle",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:wide-awake-art-car:2000:sah",
+   "artistId": "edc-las-vegas-2013:sah",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "20:00",
+   "end": "20:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:wide-awake-art-car:2045:tropicool",
+   "artistId": "edc-las-vegas-2013:tropicool",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "20:45",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:wide-awake-art-car:2130:shae-b",
+   "artistId": "edc-las-vegas-2013:shae-b",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:wide-awake-art-car:2230:bones-and-troy-kurtz",
+   "artistId": "edc-las-vegas-2013:bones-and-troy-kurtz",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "22:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:wide-awake-art-car:0030:bixel-boys",
+   "artistId": "edc-las-vegas-2013:bixel-boys",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:wide-awake-art-car:0130:astronomar",
+   "artistId": "edc-las-vegas-2013:astronomar",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:wide-awake-art-car:0230:wax-motif",
+   "artistId": "edc-las-vegas-2013:wax-motif",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:wide-awake-art-car:0330:craig-williams",
+   "artistId": "edc-las-vegas-2013:craig-williams",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d2:wide-awake-art-car:0430:burn-unit",
+   "artistId": "edc-las-vegas-2013:burn-unit",
+   "day": 2,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:kineticfield:1900:alex-sibley-and-eelrack",
+   "artistId": "edc-las-vegas-2013:alex-sibley-and-eelrack",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:kineticfield:2000:mark-knight",
+   "artistId": "edc-las-vegas-2013:mark-knight",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:kineticfield:2100:umek",
+   "artistId": "edc-las-vegas-2013:umek",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:kineticfield:2200:richie-hawtin",
+   "artistId": "edc-las-vegas-2013:richie-hawtin",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:kineticfield:2300:carl-cox",
+   "artistId": "edc-las-vegas-2013:carl-cox",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:kineticfield:0030:above-and-beyond",
+   "artistId": "edc-las-vegas-2013:above-and-beyond",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:kineticfield:0130:calvin-harris",
+   "artistId": "edc-las-vegas-2013:calvin-harris",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:kineticfield:0230:steve-angello",
+   "artistId": "edc-las-vegas-2013:steve-angello",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:kineticfield:0330:night-owl-experience",
+   "artistId": "edc-las-vegas-2013:night-owl-experience",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:kineticfield:0430:dash-berlin",
+   "artistId": "edc-las-vegas-2013:dash-berlin",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:kineticfield",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:cosmicmeadow:1900:mumbai-science",
+   "artistId": "edc-las-vegas-2013:mumbai-science",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "19:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:cosmicmeadow:1930:dj-craze",
+   "artistId": "edc-las-vegas-2013:dj-craze",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:cosmicmeadow:2100:araabmuzik",
+   "artistId": "edc-las-vegas-2013:araabmuzik",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:cosmicmeadow:2200:jack-beats",
+   "artistId": "edc-las-vegas-2013:jack-beats",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:cosmicmeadow:2315:kill-the-noise",
+   "artistId": "edc-las-vegas-2013:kill-the-noise",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:cosmicmeadow:0030:knife-party",
+   "artistId": "edc-las-vegas-2013:knife-party",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:cosmicmeadow:0200:rusko",
+   "artistId": "edc-las-vegas-2013:rusko",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "02:00",
+   "end": "03:15"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:cosmicmeadow:0315:justin-martin",
+   "artistId": "edc-las-vegas-2013:justin-martin",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "03:15",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:cosmicmeadow:0430:altern8",
+   "artistId": "edc-las-vegas-2013:altern8",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:cosmicmeadow",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:circuitgrounds:1900:julian-jordan",
+   "artistId": "edc-las-vegas-2013:julian-jordan",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "19:00",
+   "end": "19:55"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:circuitgrounds:1955:clockwork",
+   "artistId": "edc-las-vegas-2013:clockwork",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "19:55",
+   "end": "20:55"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:circuitgrounds:2125:la-roux",
+   "artistId": "edc-las-vegas-2013:la-roux",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "21:25",
+   "end": "22:10"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:circuitgrounds:2230:an21-and-max-vangeli",
+   "artistId": "edc-las-vegas-2013:an21-and-max-vangeli",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:circuitgrounds:2330:nervo",
+   "artistId": "edc-las-vegas-2013:nervo",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:circuitgrounds:0030:fedde-le-grand",
+   "artistId": "edc-las-vegas-2013:fedde-le-grand",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:circuitgrounds:0130:krewella",
+   "artistId": "edc-las-vegas-2013:krewella",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:circuitgrounds:0230:laidback-luke",
+   "artistId": "edc-las-vegas-2013:laidback-luke",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:circuitgrounds:0330:ferry-corsten",
+   "artistId": "edc-las-vegas-2013:ferry-corsten",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:circuitgrounds:0430:cazzette",
+   "artistId": "edc-las-vegas-2013:cazzette",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:circuitgrounds",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:neongarden:1900:francesca-lombardo",
+   "artistId": "edc-las-vegas-2013:francesca-lombardo",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "19:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:neongarden:1930:subb-an",
+   "artistId": "edc-las-vegas-2013:subb-an",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:neongarden:2100:infinity-ink",
+   "artistId": "edc-las-vegas-2013:infinity-ink",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:neongarden:2200:pete-tong",
+   "artistId": "edc-las-vegas-2013:pete-tong",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:neongarden:2300:damian-lazarus",
+   "artistId": "edc-las-vegas-2013:damian-lazarus",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:neongarden:0030:art-department",
+   "artistId": "edc-las-vegas-2013:art-department",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:neongarden:0200:sasha",
+   "artistId": "edc-las-vegas-2013:sasha",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "02:00",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:neongarden:0330:jamie-jones",
+   "artistId": "edc-las-vegas-2013:jamie-jones",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:neongarden",
+   "start": "03:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basspod:1900:rene-lavice",
+   "artistId": "edc-las-vegas-2013:rene-lavice",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "19:00",
+   "end": "19:25"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basspod:1925:dj-hype",
+   "artistId": "edc-las-vegas-2013:dj-hype",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "19:25",
+   "end": "20:20"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basspod:2020:culture-shock",
+   "artistId": "edc-las-vegas-2013:culture-shock",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "20:20",
+   "end": "21:20"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basspod:2120:wilkinson",
+   "artistId": "edc-las-vegas-2013:wilkinson",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "21:20",
+   "end": "22:20"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basspod:2220:loadstar",
+   "artistId": "edc-las-vegas-2013:loadstar",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "22:20",
+   "end": "23:20"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basspod:2320:crizzly",
+   "artistId": "edc-las-vegas-2013:crizzly",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "23:20",
+   "end": "00:20"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basspod:0020:noisia",
+   "artistId": "edc-las-vegas-2013:noisia",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "00:20",
+   "end": "01:20"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basspod:0120:andy-c-w-armanni-reign",
+   "artistId": "edc-las-vegas-2013:andy-c-w-armanni-reign",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "01:20",
+   "end": "02:40"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basspod:0240:doctor-p",
+   "artistId": "edc-las-vegas-2013:doctor-p",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "02:40",
+   "end": "03:40"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basspod:0340:ed-rush-and-optical",
+   "artistId": "edc-las-vegas-2013:ed-rush-and-optical",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "03:40",
+   "end": "04:40"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basspod:0440:delta-heavy",
+   "artistId": "edc-las-vegas-2013:delta-heavy",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basspod",
+   "start": "04:40",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basscon:1900:audio-punk",
+   "artistId": "edc-las-vegas-2013:audio-punk",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "19:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basscon:1930:indecent-noise",
+   "artistId": "edc-las-vegas-2013:indecent-noise",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basscon:2100:simon-patterson",
+   "artistId": "edc-las-vegas-2013:simon-patterson",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basscon:2200:scot-project",
+   "artistId": "edc-las-vegas-2013:scot-project",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basscon:2300:organ-donors",
+   "artistId": "edc-las-vegas-2013:organ-donors",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basscon:0000:d-block-and-s-te-fan",
+   "artistId": "edc-las-vegas-2013:d-block-and-s-te-fan",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basscon:0100:isaac",
+   "artistId": "edc-las-vegas-2013:isaac",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basscon:0200:headhunterz",
+   "artistId": "edc-las-vegas-2013:headhunterz",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basscon:0300:t-n-t",
+   "artistId": "edc-las-vegas-2013:t-n-t",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:basscon:0400:dj-venom",
+   "artistId": "edc-las-vegas-2013:dj-venom",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:basscon",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:discovery-project:1900:cappa-regime",
+   "artistId": "edc-las-vegas-2013:cappa-regime",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:discovery-project:2000:dj-denise",
+   "artistId": "edc-las-vegas-2013:dj-denise",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:discovery-project:2100:falcon",
+   "artistId": "edc-las-vegas-2013:falcon",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:discovery-project:2200:von-don",
+   "artistId": "edc-las-vegas-2013:von-don",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:discovery-project:2300:posso",
+   "artistId": "edc-las-vegas-2013:posso",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:discovery-project:0000:mako",
+   "artistId": "edc-las-vegas-2013:mako",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:discovery-project:0100:soulspeak-and-wordy",
+   "artistId": "edc-las-vegas-2013:soulspeak-and-wordy",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "01:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:discovery-project:0300:saymyname",
+   "artistId": "edc-las-vegas-2013:saymyname",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:discovery-project:0400:free-drinkz",
+   "artistId": "edc-las-vegas-2013:free-drinkz",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:discovery-project",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:wide-awake-art-car:1900:orville-kline",
+   "artistId": "edc-las-vegas-2013:orville-kline",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:wide-awake-art-car:1945:nick-g",
+   "artistId": "edc-las-vegas-2013:nick-g",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:wide-awake-art-car:2045:anthony-cardinale",
+   "artistId": "edc-las-vegas-2013:anthony-cardinale",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:wide-awake-art-car:2145:brett-rubin",
+   "artistId": "edc-las-vegas-2013:brett-rubin",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:wide-awake-art-car:2245:joaquin-bamaca",
+   "artistId": "edc-las-vegas-2013:joaquin-bamaca",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:wide-awake-art-car:0100:eelrack",
+   "artistId": "edc-las-vegas-2013:eelrack",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:wide-awake-art-car:0200:alex-sibley",
+   "artistId": "edc-las-vegas-2013:alex-sibley",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:wide-awake-art-car:0300:jaceo",
+   "artistId": "edc-las-vegas-2013:jaceo",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2013:d3:wide-awake-art-car:0400:fabian-campos",
+   "artistId": "edc-las-vegas-2013:fabian-campos",
+   "day": 3,
+   "stageId": "edc-las-vegas-2013:wide-awake-art-car",
+   "start": "04:00",
+   "end": "05:30"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://lasvegas.electricdaisycarnival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20130719203755/http://www.electricdaisycarnival.com/music.php",
+    "captureTimestamp": "20130719203755",
+    "printed": "Fri - June 21st",
+    "sha256": "4c268954748711f6278d95e6a8fc4f9d02c07602a7c74aa16fc067d243fd4491",
+    "rows": 78,
+    "format": "insomniac-music",
+    "yearFrom": "the page's description",
+    "place": "the page's title"
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20130719203755/http://www.electricdaisycarnival.com/music.php",
+    "captureTimestamp": "20130719203755",
+    "printed": "Sat - June 22nd",
+    "sha256": "4c268954748711f6278d95e6a8fc4f9d02c07602a7c74aa16fc067d243fd4491",
+    "rows": 80,
+    "format": "insomniac-music",
+    "yearFrom": "the page's description",
+    "place": "the page's title"
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20130719203755/http://www.electricdaisycarnival.com/music.php",
+    "captureTimestamp": "20130719203755",
+    "printed": "Sun - June 23rd",
+    "sha256": "4c268954748711f6278d95e6a8fc4f9d02c07602a7c74aa16fc067d243fd4491",
+    "rows": 76,
+    "format": "insomniac-music",
+    "yearFrom": "the page's description",
+    "place": "the page's title"
+   }
+  ]
+ }
+}

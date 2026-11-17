@@ -120,6 +120,30 @@ not read. Markus Schulz's 13:00 to 01:00 slot in 2013 is printed 12 hours
 wide and is allowed past the eight-hour check by name (`PRINTED_LONG_SETS`).
 Every capture was taken after the weekend it prints.
 
+Archived EDC Las Vegas music pages (2012, 2013, format `insomniac-music`):
+
+    node scripts/historical/gather-insomniac-music.mjs <edition-id> <gather-dir> <official-url> <ts> <url>
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+electricdaisycarnival.com's music.php printed every stage and every day on one
+page. 2012 (/LasVegas/music.php?stage=all) groups by stage, each with one block
+per day ("Friday - June 8th", the block's class its weekday), a "Hosted By"
+line where a stage was hosted, and each act's heading followed by its range.
+2013 (/music.php) puts everything after a STAGE SORT marker: one block per
+stage, a "Fri - June 21st" heading per day, and each act drawn twice (a name
+and range over a name and range) that must agree. Headings print no year: it
+is the page's own (2012's title, 2013's description), which must name
+Electric Daisy Carnival, and the page must name Las Vegas (title or its own
+og:url). Every heading's weekday and ordinal must match its date, days run
+consecutively and every stage prints the same days; the stage menu must name
+the same stages. Every time prints AM or PM, and one before noon is the
+night's. A backwards range, one over eight hours, two sets on one stage at
+once, or a block whose two readings disagree is a misprint and an excluded
+row. A block printed twice with the same range is one set. The archived URL
+must be on the brand's root host, never a city subdomain. 2013's "Discovery
+Project" stage is a stage of named DJs (KEPT_STAGES), as on the other 2012 and
+2013 Insomniac pages.
+
 Archived Shambhala set-times pages (2024, 2025, format `shambhala-webflow`):
 
     node scripts/historical/gather-shambhala-webflow.mjs <edition-id> <gather-dir> <official-url> \

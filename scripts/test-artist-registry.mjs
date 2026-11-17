@@ -105,8 +105,12 @@ const out = build();
   // "Name (Act)" parentheticals (Shawna (KMLN), on both years; DJ Pee .Wee
   // (Anderson .Paak); GUNFINGAZ (WRAZ & SUBSTANCE)) and one "x" billing
   // (Parkbreezy x TF Marz): 152 rows, raised here and reported in that pull
-  // request. Past 152, stop and report.
-  check(review.length <= 152, `review queue is ${review.length} rows (> 152 means stop and report)`);
+  // request. EDC Las Vegas 2012 and 2013 ruled two billings under the
+  // feat./with rule and left three as printed: "Lee Curtiss, Ryan Crosson,
+  // Shaun Reeves (Visionquest)", the short name BT, and Cosmic Gate feat.
+  // Emma Hewitt (already pending, now printed in 2012 too): 155 rows, raised
+  // here and reported in that pull request. Past 155, stop and report.
+  check(review.length <= 155, `review queue is ${review.length} rows (> 155 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
