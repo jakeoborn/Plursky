@@ -553,6 +553,48 @@
   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "tomorrowland-2014:d2:star-warz:2300:special-guest-sub-focus-ft-id",
+  "printed": "Special Guest: Sub Focus ft. ID",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: the guest is printed only as \"ID\" (unannounced), and no ruling covers a \"Special Guest:\" lead-in, so the billing is neither split nor credited to Sub Focus. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "tomorrowland-2014:d4:carl-cox-and-friends:1400:just-be-bushwacka",
+  "printed": "Just Be (Bushwacka!)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+ },
+ {
+  "id": "tomorrowland-2014:d5:star-warz:2300:special-guest-sub-focus-ft-id",
+  "printed": "Special Guest: Sub Focus ft. ID",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: the guest is printed only as \"ID\" (unannounced), and no ruling covers a \"Special Guest:\" lead-in, so the billing is neither split nor credited to Sub Focus. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "tomorrowland-2016:d1:winterclubbing:1500:double-u-ft-eugene-vs-dj-luk",
+  "printed": "Double-U ft. Eugene vs Dj Luk",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: the printing does not say whether \"vs Dj Luk\" faces Double-U or the guest, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "tomorrowland-2016:d2:leaf-by-lipton:1430:const-live-guitar-act",
+  "printed": "Const + Live Guitar Act",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "tomorrowland-2016:d2:star-warz:1900:level-2-alibi",
+  "printed": "Level 2 (Alibi)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+ },
+ {
   "id": "tomorrowland-2018:d1:freedom-stage-by-budweiser:1230:lost-stories-x-zaeden",
   "printed": "Lost Stories x ZAEDEN",
   "reason": "\"x\" billing whose sides are not both known acts",
@@ -716,6 +758,13 @@
  {
   "id": "key:k-d",
   "printed": "k?d",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:gms",
+  "printed": "GMS",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."

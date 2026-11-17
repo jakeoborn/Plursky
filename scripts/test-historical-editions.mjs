@@ -30,6 +30,7 @@ import { parseDoStuff, parseDoStuffBand, timeDay } from "./historical/dostuff-sc
 import { parseMyScheduler, restoreSets } from "./historical/myscheduler-schedule.mjs";
 import { parseEfScheduler } from "./historical/ef-scheduler-schedule.mjs";
 import { parseGovBallWp, printedDate as govBallDate } from "./historical/govball-wp-schedule.mjs";
+import { parseTmlDrupal, titleDate as tmlTitleDate } from "./historical/tml-drupal-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -86,6 +87,13 @@ if (base && edc) {
   mustFail("overnight set misread across days (EDC)", m => { const s = m.sets.find(x => x.start === "04:13"); s.start = "16:13"; }, edc);
   mustFail("a dropped Fireworks row left out of the ledger (EDC)", () => {}, edc, d => { d.pop(); });
   mustFail("Cyrillic look-alike in a billing (Lolla OCR)", m => { m.artists[0].name = "ОTОBOKE BEAVER"; });
+  // A printed set over 8 hours stands only as its edition lists it.
+  const tml13 = editions["tomorrowland-2013"];
+  if (tml13) {
+    const longSet = m => m.sets.find(x => x.start === "13:00" && x.end === "01:00");
+    mustFail("a listed long set read an hour longer (Tomorrowland 2013)", m => { longSet(m).end = "02:00"; }, tml13, () => {}, /over 8 hours/);
+    mustFail("a listed long set credited to another act (Tomorrowland 2013)", m => { const s = longSet(m); s.artistId = m.sets.find(x => x.artistId !== s.artistId).artistId; }, tml13, () => {}, /over 8 hours/);
+  }
   const lolla = editions["lollapalooza-2025"], acl = editions["acl-2025"];
   if (lolla && acl) {
     const withReview = (label, mutateEdition, mutateReview, e) => {
@@ -436,6 +444,33 @@ if (base && edc) {
     esMust("an Electric Forest programme entry not named as programme", esPage(), []);
     esMust("an Electric Forest Scheduler skipping a day", esPage().replaceAll("2015-06-26", "2015-06-28").replace(">June 26<", ">June 28<").replace(String(Date.parse("2015-06-26T15:00:00Z") / 1000), String(Date.parse("2015-06-28T15:00:00Z") / 1000)));
     msMust("a restored Outside Lands name that reads no billing", msPage, ["Headéliner"]);
+    // Tomorrowland's 2013-2016 day page: a title with the day, an hour axis,
+    // one row per stage whose slots and gaps are drawn at the axis's scale.
+    const tdSlot = (w, name, range) => name ? `<div class="time-slot performance" style="width:${w}px;"><div class="facebook-bookmark follow"><span class="tml-heart"></span>\n<a href="/en/artist/x" title="${name}">${name}</a>\n<span class="time">${range}</span></div></div>` : `<div class="time-slot empty" style=" width: ${w}px;"></div>`;
+    const tdAxis = ["22:00", "23:00", "0:00", "1:00"].map((h, i) => `<div class="pull-left" style="width:${i === 3 ? 40 : 60}px;">${h}</div>`).join("");
+    const tdRows = [["5", [tdSlot(30, "Opener", "22:00-22:30"), tdSlot(30, "Late &amp; Co", "22:30-23:00"), tdSlot(15), tdSlot(45, "Past Midnight", "23:15-0:00"), tdSlot(60, "Night", "0:00-1:00")]],
+      ["32", [tdSlot(60, "Clash One", "22:00-23:00"), tdSlot(60, "Clash Two", "22:30-23:30")]], ["350", [tdSlot(180, "Radio Show", "22:00-1:00")]], ["76", []]];
+    const tdNames = [["5", `<img class="stage-icon" alt="Mainstage">`], ["32", `<img alt="Super You&amp;amp;Me">`], ["350", `<img alt="Radio Modern">`], ["76", "More Artists"]];
+    const tdPage = (title = "Saturday/ 27 July", rows = tdRows, names = tdNames, axis = tdAxis) => `<h1 class="page-title">${title}</h1><div class="stages" style="width: 240px;"><div class="hours">${axis}</div>`
+      + rows.map(([id, s]) => `<div class="stage" data-id="${id}">${s.length ? `<div class="artists">${s.join("")}</div>` : ""}</div>`).join("")
+      + `</div><div class="wrap stage-titles">` + names.map(([id, n]) => `<div class="stage-logo-wrap"><div class="stage-logo" data-id="${id}">${n}</div></div>`).join("") + `</div><div class="row"></div>`;
+    const tdp = parseTmlDrupal(tdPage(), { year: 2013 });
+    ok(JSON.stringify([tdp.date, tdp.label, tdp.axis, tdp.pxPerHour, tdp.stages, tdp.blank, tdp.sets.map(x => [x.stage, x.start, x.end, x.artist]), tdp.misprints.map(x => [x.artist, x.printed])])
+      === JSON.stringify(["2013-07-27", "Saturday/ 27 July", "22:00-01:40", 60, ["Mainstage", "Super You&Me", "Radio Modern"], ["More Artists"],
+        [["Mainstage", "22:00", "22:30", "Opener"], ["Mainstage", "22:30", "23:00", "Late & Co"], ["Mainstage", "23:15", "00:00", "Past Midnight"], ["Mainstage", "00:00", "01:00", "Night"], ["Radio Modern", "22:00", "01:00", "Radio Show"]],
+        [["Clash One", "22:00-23:00"], ["Clash Two", "22:30-23:30"]]]),
+      `a Tomorrowland day page must come back set by set past midnight, a stage with no slot apart and two sets at once misprints: ${JSON.stringify(tdp)}`);
+    ok(tmlTitleDate("Friday 26 July", 2013) === "2013-07-26" && tmlTitleDate("Saturday 26 July", 2013) === null, "a Tomorrowland title must print its own weekday");
+    const tdMust = (what, html, year = 2013) => { let bad = false; try { const p = parseTmlDrupal(html, { year }); bad = p.misprints.length !== 2; } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    tdMust("a Tomorrowland title whose weekday is not its date", tdPage("Sunday/ 27 July"));
+    tdMust("a Tomorrowland page of another year", tdPage(), 2014);
+    tdMust("a Tomorrowland axis that skips an hour", tdPage(undefined, undefined, undefined, tdAxis.replace(">23:00<", ">23:30<")));
+    tdMust("a Tomorrowland axis drawn at two widths", tdPage(undefined, undefined, undefined, tdAxis.replace("width:60px;\">23:00", "width:50px;\">23:00")));
+    tdMust("a Tomorrowland slot drawn wider than its range", tdPage(undefined, [[tdRows[0][0], [tdSlot(45, "Opener", "22:00-22:30"), ...tdRows[0][1].slice(1)]], ...tdRows.slice(1)]));
+    tdMust("a Tomorrowland gap that is not the time between two sets", tdPage(undefined, [[tdRows[0][0], tdRows[0][1].map(s => s.replace("width: 15px", "width: 30px"))], ...tdRows.slice(1)]));
+    tdMust("Tomorrowland stage names in another order than the rows", tdPage(undefined, undefined, [tdNames[1], tdNames[0], ...tdNames.slice(2)]));
+    tdMust("a Tomorrowland stage named twice", tdPage(undefined, undefined, [...tdNames, ["5", "Again"]]));
+    tdMust("a Tomorrowland range with no time", tdPage().replace("22:30-23:00", "22:30"));
     // Governors Ball's 2011-2012 WordPress schedule: a grid per day, a column
     // per stage, every range with its own am or pm.
     const gbBlock = (pre, cls, name, range, head = "") => `<div class="${pre}-block ${cls}">${head}<h2>${name}</h2><h3>${range}</h3></div>`;
@@ -798,6 +833,13 @@ for (const [id, e] of Object.entries(editions)) {
         if (s.format === "ef-scheduler") {
           ok(s.tabDate === d.date && s.printed === `${MONTH[m - 1][0]}${MONTH[m - 1].slice(1).toLowerCase()} ${dd}` && s.pxPerMinute > 0 && /^\d{2}:\d{2}$/.test(s.axisStart || ""),
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" for tab ${s.tabDate}, not ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // Tomorrowland's 2013-2016 day page prints its weekday and date in
+        // its title, with no year.
+        if (s.format === "tml-drupal") {
+          ok(tmlTitleDate(s.printed, e.year) === d.date && s.titleDate === d.date && s.pxPerHour > 0,
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (title date ${s.titleDate}), not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         // Governors Ball's 2011-2012 schedule prints each day's heading

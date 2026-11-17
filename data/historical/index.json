@@ -3839,6 +3839,145 @@
     "artists": 757,
     "sets": 878
    }
+  },
+  {
+   "id": "tomorrowland-2016",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2016",
+   "year": 2016,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-07-22",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-07-23",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2016-07-24",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 37,
+    "artists": 403,
+    "sets": 417
+   }
+  },
+  {
+   "id": "tomorrowland-2015",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2015",
+   "year": 2015,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-07-24",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-07-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-07-26",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 38,
+    "artists": 423,
+    "sets": 447
+   }
+  },
+  {
+   "id": "tomorrowland-2014",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2014",
+   "year": 2014,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-07-18",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-07-19",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-07-20",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2014-07-25",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2014-07-26",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2014-07-27",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 38,
+    "artists": 540,
+    "sets": 819
+   }
+  },
+  {
+   "id": "tomorrowland-2013",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2013",
+   "year": 2013,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-07-26",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2013-07-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2013-07-28",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 34,
+    "artists": 386,
+    "sets": 396
+   }
   }
  ]
 }

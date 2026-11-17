@@ -96,6 +96,30 @@ backwards or more than six hours, or starts off the axis by over an hour, is a
 misprint and an excluded row, never read another way (2012's Turf War, printed
 "11:45 pm - 12:10 pm"). Sets in a column must run in order with no overlap.
 
+Archived Tomorrowland day timetables (2013 to 2016, format `tml-drupal`):
+
+    node scripts/historical/gather-tml-drupal.mjs <edition-id> <gather-dir> <official-url> \
+      <ts> <url> [<ts> <url> …] [--programme-stage <stage>]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+tomorrowland.com/en/<weekday>-<d>-<month> was a Drupal page, one per day: its
+title prints the weekday and date with no year ("Saturday/ 27 July"), which
+must be the date's own weekday in the edition's year. The grid is an hour axis
+(one label an hour, every full hour the same width in pixels) and one row per
+stage, matched by `data-id` to the stage names under it. Each row is drawn
+slot after slot: a set's slot must be exactly as wide as its printed range
+("12:15-13:15", 24-hour; before 6 AM is the day's night) and every gap exactly
+as wide as the time between one set's end and the next one's start. A range
+that disagrees, falls off the axis, or overlaps another set on the same stage
+(the page then draws the later one where the earlier ends, 2014's Lotto and
+DIM MAK Fight Club) is a misprint and an excluded row. The stage names are the
+hosts the page prints for that day (Tomorrowland prints no fixed stage names
+these years). Radio Modern's all-day radio broadcast is a programme row
+(`--programme-stage`); a name with no row ("More Artists", 2013) is checked,
+not read. Markus Schulz's 13:00 to 01:00 slot in 2013 is printed 12 hours
+wide and is allowed past the eight-hour check by name (`PRINTED_LONG_SETS`).
+Every capture was taken after the weekend it prints.
+
 Archived Electric Forest Scheduler (2014, 2015, format `ef-scheduler`):
 
     node scripts/historical/gather-ef-scheduler.mjs <edition-id> <gather-dir> <official-url> <ts> <url> \

@@ -1,0 +1,115 @@
+{
+  "id": "tomorrowland-2016",
+  "method": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2016-07-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/friday-22-july",
+          "archivedUrl": "https://web.archive.org/web/20160804225323/http://www.tomorrowland.com:80/en/friday-22-july",
+          "captureTimestamp": "20160804225323",
+          "printed": "Friday 22 July",
+          "sha256": "957528673e301356513aa78aa6104cdcccf5e32ebe94d1c1193173b6e4a03490",
+          "bytes": 73426,
+          "rows": 145,
+          "format": "tml-drupal",
+          "titleDate": "2016-07-22",
+          "stages": 16,
+          "axis": "12:00-01:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2016-07-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/saturday-23-july",
+          "archivedUrl": "https://web.archive.org/web/20160802011626/http://www.tomorrowland.com:80/en/saturday-23-july",
+          "captureTimestamp": "20160802011626",
+          "printed": "Saturday 23 July",
+          "sha256": "18622f04081d7ff07c0b9f96fcd3e43edee2b89ef0b92af15cbf247df3e56e90",
+          "bytes": 76058,
+          "rows": 140,
+          "format": "tml-drupal",
+          "titleDate": "2016-07-23",
+          "stages": 16,
+          "axis": "12:00-01:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2016-07-24",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.com:80/en/sunday-24-july",
+          "archivedUrl": "https://web.archive.org/web/20160802193853/http://www.tomorrowland.com:80/en/sunday-24-july",
+          "captureTimestamp": "20160802193853",
+          "printed": "Sunday 24 July",
+          "sha256": "1fe1f0ea8057fb1b160c243ec296b1093740ea85e336c1c9dce79a55d340fb62",
+          "bytes": 69473,
+          "rows": 132,
+          "format": "tml-drupal",
+          "titleDate": "2016-07-24",
+          "stages": 16,
+          "axis": "12:00-00:05",
+          "pxPerHour": 450,
+          "times": "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          "programmeShows": 1,
+          "programmeStages": [
+            "Radio Modern"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Radio Modern",
+      "start": "13:00",
+      "end": "00:00",
+      "billing": "Radio Ultra Modern - Friday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Radio Modern",
+      "start": "13:00",
+      "end": "00:00",
+      "billing": "Radio Ultra Modern - Saturday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Radio Modern",
+      "start": "13:00",
+      "end": "00:00",
+      "billing": "Radio Ultra Modern - Sunday",
+      "reason": "Radio Modern carries an all-day radio broadcast, not music sets",
+      "programme": true
+    }
+  ],
+  "dropped": []
+}

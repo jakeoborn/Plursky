@@ -5519,6 +5519,585 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "tomorrowland:carl-cox-and-friends",
+     "names": [
+      {
+       "printed": "Carl Cox & Friends",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014",
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:dim-mak-fight-club",
+     "names": [
+      {
+       "printed": "DIM MAK Fight Club",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:jamie-jones-pr-paradise",
+     "names": [
+      {
+       "printed": "Jamie Jones pr. Paradise",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014",
+        "tomorrowland-2015",
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:markus-schulz",
+     "names": [
+      {
+       "printed": "Markus Schulz",
+       "editions": [
+        "tomorrowland-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:forma-t",
+     "names": [
+      {
+       "printed": "Forma.T",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014",
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:tape",
+     "names": [
+      {
+       "printed": "TAPE",
+       "editions": [
+        "tomorrowland-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:we-play-house-recordings",
+     "names": [
+      {
+       "printed": "We Play House Recordings",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014",
+        "tomorrowland-2015",
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:desperados",
+     "names": [
+      {
+       "printed": "Desperados",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014",
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:samsung-secret-forest",
+     "names": [
+      {
+       "printed": "Samsung Secret Forest",
+       "editions": [
+        "tomorrowland-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cocoon",
+     "names": [
+      {
+       "printed": "Cocoon",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014",
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:derrick-carter-presents-family-and-friends",
+     "names": [
+      {
+       "printed": "Derrick Carter presents \"Family & Friends\"",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014",
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:ferry-corsten-pr-full-on",
+     "names": [
+      {
+       "printed": "Ferry Corsten Pr. FULL ON",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014",
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:star-warz",
+     "names": [
+      {
+       "printed": "Star Warz",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014",
+        "tomorrowland-2015",
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:ketaloco",
+     "names": [
+      {
+       "printed": "Ketaloco",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014",
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:smash-the-house-vs-dirty-dutch",
+     "names": [
+      {
+       "printed": "Smash The House vs Dirty Dutch",
+       "editions": [
+        "tomorrowland-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:minus",
+     "names": [
+      {
+       "printed": "MINUS",
+       "editions": [
+        "tomorrowland-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:profound-sounds",
+     "names": [
+      {
+       "printed": "Profound Sounds",
+       "editions": [
+        "tomorrowland-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:kne-deep",
+     "names": [
+      {
+       "printed": "Kne'Deep",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:daily-dubstep",
+     "names": [
+      {
+       "printed": "Daily Dubstep",
+       "editions": [
+        "tomorrowland-2013",
+        "tomorrowland-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:mad-decent",
+     "names": [
+      {
+       "printed": "Mad Decent",
+       "editions": [
+        "tomorrowland-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:blueflame",
+     "names": [
+      {
+       "printed": "BlueFlame",
+       "editions": [
+        "tomorrowland-2014",
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:qult",
+     "names": [
+      {
+       "printed": "Qult",
+       "editions": [
+        "tomorrowland-2014",
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:lotto",
+     "names": [
+      {
+       "printed": "Lotto",
+       "editions": [
+        "tomorrowland-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:v-sessions-vs-doorn",
+     "names": [
+      {
+       "printed": "V Sessions vs Doorn",
+       "editions": [
+        "tomorrowland-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:richie-hawtin-pr-minus",
+     "names": [
+      {
+       "printed": "Richie Hawtin pr. MINUS",
+       "editions": [
+        "tomorrowland-2014",
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:legends-of-trance",
+     "names": [
+      {
+       "printed": "Legends of Trance",
+       "editions": [
+        "tomorrowland-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:bakermat-and-friends",
+     "names": [
+      {
+       "printed": "Bakermat & Friends",
+       "editions": [
+        "tomorrowland-2014",
+        "tomorrowland-2015",
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:pussylounge",
+     "names": [
+      {
+       "printed": "PussyLounge",
+       "editions": [
+        "tomorrowland-2014",
+        "tomorrowland-2015",
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cafe-d-anvers-25-years",
+     "names": [
+      {
+       "printed": "Café d'Anvers 25 Years",
+       "editions": [
+        "tomorrowland-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:mazda-journey-island",
+     "names": [
+      {
+       "printed": "Mazda Journey Island",
+       "editions": [
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:leaf-by-mastercard",
+     "names": [
+      {
+       "printed": "LEAF by Mastercard",
+       "editions": [
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:revealed",
+     "names": [
+      {
+       "printed": "Revealed",
+       "editions": [
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cocoon-vinyl-only",
+     "names": [
+      {
+       "printed": "Cocoon - Vinyl only",
+       "editions": [
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:opera",
+     "names": [
+      {
+       "printed": "Opera",
+       "editions": [
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:forma-t-invites-mk",
+     "names": [
+      {
+       "printed": "Forma.T invites MK",
+       "editions": [
+        "tomorrowland-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:mau5trap",
+     "names": [
+      {
+       "printed": "Mau5Trap",
+       "editions": [
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:hush-hush",
+     "names": [
+      {
+       "printed": "Hush Hush",
+       "editions": [
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:dirty-workz",
+     "names": [
+      {
+       "printed": "Dirty Workz",
+       "editions": [
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:mazda-the-sound-of-tomorrow-island",
+     "names": [
+      {
+       "printed": "Mazda The Sound of Tomorrow Island",
+       "editions": [
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:leaf-by-lipton",
+     "names": [
+      {
+       "printed": "LEAF by Lipton",
+       "editions": [
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:lost-frequencies",
+     "names": [
+      {
+       "printed": "Lost Frequencies",
+       "editions": [
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cafe-d-anvers",
+     "names": [
+      {
+       "printed": "Café d'Anvers",
+       "editions": [
+        "tomorrowland-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

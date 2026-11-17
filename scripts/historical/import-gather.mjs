@@ -46,6 +46,7 @@ import { parseDoStuff, parseDoStuffBand, timeDay } from "./dostuff-schedule.mjs"
 import { parseMyScheduler, restoreSets } from "./myscheduler-schedule.mjs";
 import { parseEfScheduler } from "./ef-scheduler-schedule.mjs";
 import { parseGovBallWp } from "./govball-wp-schedule.mjs";
+import { parseTmlDrupal } from "./tml-drupal-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
@@ -501,6 +502,29 @@ export async function importGather(id, dir) {
             ...(d.sets.some(x => x.openEnd) && { openEnded: d.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }),
             ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
         }
+      } else if (s.format === "tml-drupal") {
+        // One page per day (Tomorrowland 2013-2016, tml-drupal-schedule.mjs):
+        // its title prints the day, and every slot's width and gap on the
+        // hour axis agree with its printed range. Rows on a broadcast-only
+        // stage, and ranges the page's drawing cannot confirm, must be the
+        // sheet's excluded rows of that day, one for one.
+        if (days.length !== 1) throw new Error(`page ${s.match} is cited for ${days.length} days; a Tomorrowland day page shows one`);
+        const day = days[0], d = parseTmlDrupal(cap.text, { year: ed.year });
+        if (d.date !== ed.dates[day - 1][0]) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${d.date}, the sheet cites it for day ${day} (${ed.dates[day - 1][0]})`);
+        if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: its title prints "${d.label}", the receipt says "${s.printed[day]}"`);
+        const progStages = s.programmeStages || [];
+        const k = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
+        const prog = d.sets.filter(x => progStages.includes(x.stage));
+        for (const [flag, list] of [["programme", prog], ["misprint", d.misprints]]) {
+          const pg = list.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x[flag]).map(k).sort().join("\n");
+          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${list.length} ${flag} entr(ies), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+        }
+        agree(day, d.sets.filter(x => !prog.includes(x)).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+        Object.assign(ledgerDays[day - 1].sources.at(-1), { titleDate: d.date, stages: d.stages.length, axis: d.axis, pxPerHour: d.pxPerHour,
+          times: "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
+          ...(d.blank.length && { stagesWithNoSlot: d.blank }),
+          ...(prog.length && { programmeShows: prog.length, programmeStages: progStages.filter(x => d.stages.includes(x)) }),
+          ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
       } else if (s.format === "day-tabs") {
         // Every day is on the page; each day's rows must equal its own pane.
         const panes = parseDayTabs(cap.text);

@@ -269,6 +269,21 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2017-04-14", "Friday"], ["2017-04-15", "Saturday"], ["2017-04-16", "Sunday"], ["2017-04-21", "Friday"], ["2017-04-22", "Saturday"], ["2017-04-23", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
+  // Tomorrowland 2013-2016: the official tomorrowland.com day timetables (a
+  // Drupal page per day, format "tml-drupal", tml-drupal-schedule.mjs), each
+  // captured after the festival. The page names each stage by its host that
+  // day ("Q-dance", "Woody Weekend"), which is how the stages are kept. Times
+  // are 24-hour and every slot's width and gap on the page's own hour axis
+  // must agree with its printed range. 2014 ran two weekends.
+  "tomorrowland-2013": { festivalId: "tomorrowland", name: "Tomorrowland 2013", year: 2013,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2013-07-26", "Friday"], ["2013-07-27", "Saturday"], ["2013-07-28", "Sunday"]] },
+  "tomorrowland-2014": { festivalId: "tomorrowland", name: "Tomorrowland 2014", year: 2014,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2014-07-18", "Friday"], ["2014-07-19", "Saturday"], ["2014-07-20", "Sunday"], ["2014-07-25", "Friday"], ["2014-07-26", "Saturday"], ["2014-07-27", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "tomorrowland-2015": { festivalId: "tomorrowland", name: "Tomorrowland 2015", year: 2015,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2015-07-24", "Friday"], ["2015-07-25", "Saturday"], ["2015-07-26", "Sunday"]] },
+  "tomorrowland-2016": { festivalId: "tomorrowland", name: "Tomorrowland 2016", year: 2016,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2016-07-22", "Friday"], ["2016-07-23", "Saturday"], ["2016-07-24", "Sunday"]] },
   "tomorrowland-2017": { festivalId: "tomorrowland", name: "Tomorrowland 2017", year: 2017,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2017-07-21", "Friday"], ["2017-07-22", "Saturday"], ["2017-07-23", "Sunday"], ["2017-07-28", "Friday"], ["2017-07-29", "Saturday"], ["2017-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
@@ -548,6 +563,14 @@ export const ACTIVITIES = {
     "KATSEYE INTERVIEW WITH DAVIS BURLESON", "HOW LONG GONE WITH THE DARE", "HOW LONG GONE WITH THE BEAR'S COREY HENDRIX",
   ],
 };
+// Sets the official page prints longer than 8 hours, each also drawn that
+// long on the page's own hour axis, so the length is not a cross-day misread.
+// Keyed by edition: "<billing>|<start>|<end>", times as the edition stores them.
+export const PRINTED_LONG_SETS = {
+  // Markus Schulz hosting his own stage, one slot from 13:00 to 01:00, 720
+  // minutes wide on Tomorrowland's Friday 26 July 2013 timetable.
+  "tomorrowland-2013": ["Markus Schulz|13:00|01:00"],
+};
 // Billings whose non-Latin letters are the artist's own styling, as the
 // festival's structured page printed them (not OCR). Each one was read on
 // the archived page; the look-alike rule in validate.mjs still applies to
@@ -559,6 +582,9 @@ export const PRINTED_NON_LATIN = {
   // The duo's own Greek lambda, in the page's artist_data list.
   "edc-las-vegas-2016": ["Axwell Λ Ingrosso"],
   "edc-las-vegas-2017": ["Axwell Λ Ingrosso"],
+  // The same lambda on Tomorrowland's own day timetables.
+  "tomorrowland-2015": ["Axwell Λ Ingrosso"],
+  "tomorrowland-2016": ["Axwell Λ Ingrosso"],
   // The trio's own Greek lambda, as Coachella's 2012 lineup page prints it.
   "coachella-2012": ["NOISIΛ"],
 };
