@@ -1638,6 +1638,32 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "electric-forest:the-hangar",
+     "names": [
+      {
+       "printed": "The Hangar",
+       "editions": [
+        "electric-forest-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "electric-forest:jubilee",
+     "names": [
+      {
+       "printed": "Jubilee",
+       "editions": [
+        "electric-forest-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

@@ -413,6 +413,13 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "electric-forest-2015:d2:forest-stage:2215:crew-love-wolf-lamb-the-wolf",
+  "printed": "Crew Love: Wolf + Lamb / The Wolf",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "A label showcase billing (\"Crew Love:\") whose list joins names with \"+\" and \"/\": the page does not say which names are acts of their own (Wolf + Lamb is itself one duo's name). The billing renders as printed until a source rules it."
+ },
+ {
   "id": "escape-halloween-2021:d2:psycho-circus:1830:machinedrum-holly",
   "printed": "Machinedrum + Holly",
   "reason": "\"+\" billing",

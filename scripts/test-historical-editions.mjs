@@ -28,6 +28,7 @@ import { parseElectricForest, navDay } from "./historical/ef-schedule.mjs";
 import { parseShambhala, slotLabel } from "./historical/shambhala-schedule.mjs";
 import { parseDoStuff, parseDoStuffBand, timeDay } from "./historical/dostuff-schedule.mjs";
 import { parseMyScheduler, restoreSets } from "./historical/myscheduler-schedule.mjs";
+import { parseEfScheduler } from "./historical/ef-scheduler-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -343,6 +344,35 @@ if (base && edc) {
     msMust("an undecodable Outside Lands billing with no restored name", msLost, []);
     msMust("an undecodable Outside Lands billing restored by a name that changes another letter", msLost, ["Heaxéliner"]);
     msMust("an undecodable Outside Lands billing restored by two letters for one lost run", msLost, ["Headéeliner"]);
+    // Electric Forest's 2014-2015 Scheduler: a tab per day, then one
+    // container per day whose blocks sit on a minute scale from the axis.
+    const esBlock = (name, range, left, mins, px = 10, inner = true) => `<a class="timeslot minute-${mins}" style="left: ${left}px; width: ${mins * px}px;" title="${name} - ${range}"><div class="timeslot-title">${name}</div>${inner ? `<div class="timeslot-time">${range}</div>` : ""}</a>`;
+    const esDay = (date, axisIso, first, rows) => `<div class="container date-${date}" data-date-min="${Date.parse(axisIso) / 1000}" data-date-max="${Date.parse(axisIso) / 1000 + 36000}"><div class="time-gauge"><div>${first}</div></div>`
+      + rows.map(([st]) => `<div class="stage-label" title="${st}">`).join("</div>") + `</div><div class="schedule">` + rows.map(([, b]) => `<div class="row clearfix">${b.join("")}</div>`).join("") + `</div></div>`;
+    const esTabs = `<a class="date-switcher" data-target="2015-06-25">June 25</a><a class="date-switcher active" data-target="2015-06-26">June 26</a>`;
+    const esD1 = [["Ranch Arena", [esBlock("Opener", "4:00pm - 4:45pm", 0, 45), esBlock("Opener", "4:00pm - 4:45pm", 0, 45), esBlock("Brewery Tasting", "4:15pm - 4:30pm", 150, 15), esBlock("Headliner", "11:30pm - 12:45am", 4500, 75)]],
+      ["Tripolee", [esBlock("Wrong Spot", "5:00pm - 5:30pm", 1200, 30), esBlock("Late DJ", "1:00am - 2:00am", 5400, 60)]]];
+    const esD2 = [["Ranch Arena", [esBlock("Day Two", "3:00pm - 3:30pm", 0, 30)]], ["Tripolee", [esBlock("Channel Act", "4:00pm - 5:00pm", 600, 60, 10, false)]]];
+    const esPage = (d1 = esD1, d2 = esD2, tabs = esTabs) => tabs + esDay("2015-06-25", "2015-06-25T16:00:00Z", "4:00pm", d1) + esDay("2015-06-26", "2015-06-26T15:00:00Z", "3:00pm", d2);
+    const esp = parseEfScheduler(esPage(), { year: 2015, programme: ["Brewery Tasting"] });
+    ok(JSON.stringify([esp.scale, esp.days.map(d => [d.date, d.label, d.weekday, d.axisStart, d.stages, d.sets.map(x => [x.stage, x.start, x.end, x.artist]), d.misprints.map(x => [x.artist, x.misprint]), d.repeats.map(x => x.artist)])])
+      === JSON.stringify([10, [["2015-06-25", "June 25", "Thursday", "16:00", ["Ranch Arena", "Tripolee"],
+        [["Ranch Arena", "16:00", "16:45", "Opener"], ["Ranch Arena", "16:15", "16:30", "Brewery Tasting"], ["Ranch Arena", "23:30", "00:45", "Headliner"], ["Tripolee", "01:00", "02:00", "Late DJ"]],
+        [["Wrong Spot", "the block starts at 18:00 and runs 30 minutes"]], ["Opener"]],
+        ["2015-06-26", "June 26", "Friday", "15:00", ["Ranch Arena", "Tripolee"], [["Ranch Arena", "15:00", "15:30", "Day Two"], ["Tripolee", "16:00", "17:00", "Channel Act"]], [], []]]]),
+      `an Electric Forest Scheduler must come back set by set, past midnight on its own night, a misplaced block apart and a block drawn twice once: ${JSON.stringify(esp)}`);
+    const esMust = (what, html, programme = ["Brewery Tasting"]) => { let bad = false; try { parseEfScheduler(html, { year: 2015, programme }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    esMust("an Electric Forest tab whose label is not its date", esPage(esD1, esD2, esTabs.replace(">June 25<", ">June 24<")));
+    esMust("an Electric Forest Scheduler of another year", esPage().replaceAll("2015-06-2", "2014-06-2"));
+    esMust("Electric Forest containers in another order than the tabs", esPage(esD1, esD2, esTabs.replace('data-target="2015-06-25">June 25', 'data-target="2015-06-27">June 27')));
+    esMust("an Electric Forest axis that prints another first hour", esPage().replace("<div>4:00pm</div>", "<div>5:00pm</div>"));
+    esMust("an Electric Forest day with more stage labels than rows", esPage().replace('<div class="stage-label" title="Tripolee">', '<div class="stage-label" title="Tripolee"></div><div class="stage-label" title="Sherwood Court">'));
+    esMust("an Electric Forest block drawn at another scale", esPage().replace("minute-45", "minute-40"));
+    esMust("an Electric Forest block whose title is not its name and range", esPage().replace('title="Opener - 4:00pm', 'title="Openers - 4:00pm'));
+    esMust("an Electric Forest range with no meridiem", esPage().replaceAll("4:00pm - 4:45pm", "4:00 - 4:45pm"));
+    esMust("two Electric Forest sets overlapping on one stage", esPage([[esD1[0][0], [...esD1[0][1], esBlock("Clash", "4:30pm - 5:00pm", 300, 30)]], esD1[1]]));
+    esMust("an Electric Forest programme entry not named as programme", esPage(), []);
+    esMust("an Electric Forest Scheduler skipping a day", esPage().replaceAll("2015-06-26", "2015-06-28").replace(">June 26<", ">June 28<").replace(String(Date.parse("2015-06-26T15:00:00Z") / 1000), String(Date.parse("2015-06-28T15:00:00Z") / 1000)));
     msMust("a restored Outside Lands name that reads no billing", msPage, ["Headéliner"]);
     // Coachella's lineup cards (2016's two divs, 2015's one span): every set
     // open-ended, a card with no set unscheduled, an entry without its time
@@ -665,6 +695,13 @@ for (const [id, e] of Object.entries(editions)) {
         if (s.format === "myscheduler-data") {
           ok(s.printed === d.date && String(s.firstStart || "").startsWith(d.date + " "),
             `${id} day ${d.day}: page ${s.captureTimestamp} writes "${s.printed}" (first start ${s.firstStart}), not ${d.date}`);
+          continue;
+        }
+        // Electric Forest's 2014-2015 Scheduler prints the month and day on
+        // its tab ("June 25") and writes the date as the tab's target.
+        if (s.format === "ef-scheduler") {
+          ok(s.tabDate === d.date && s.printed === `${MONTH[m - 1][0]}${MONTH[m - 1].slice(1).toLowerCase()} ${dd}` && s.pxPerMinute > 0 && /^\d{2}:\d{2}$/.test(s.axisStart || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" for tab ${s.tabDate}, not ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         ok(s.kind === "page" ? datedLabel(s.printed, e.year) === d.date : graphicPrints(s.printed, d.date, e.year, e.days.map(x => x.date)),
