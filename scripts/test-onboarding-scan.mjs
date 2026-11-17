@@ -104,6 +104,19 @@ async function scenario(browser, build, { name, native = true, access = "authori
       const txt = await dlgText();
       // The story's first page is the editorial plan page (#250), not the old "1 / 3".
       t(/01 \/ THE PLAN/.test(txt) && /Your night\./.test(txt), `${name}: "Continue on the web" did not open the story ("${txt.slice(0, 80)}")`);
+      // A card drawn over a ledger portrait (a licensed photo) shows that
+      // photo's credit under it, as the artist page's hero does. Pages 2 and 3
+      // show 1 and 3 cards; the control requires at least one portrait.
+      const faces = await page.evaluate(() => _onbHeadliners(3).map(a => getPermanentArtistImage(a.name)?.author || null));
+      t(faces.some(Boolean), `${name}: no story card uses a ledger portrait, so the credit check would prove nothing (${JSON.stringify(faces)})`);
+      for (const [pg, count] of [[2, 1], [3, 3]]) {
+        await page.getByRole("button", { name: "Continue", exact: true }).click();
+        await page.waitForFunction(([sel, k]) => document.querySelector(sel)?.querySelectorAll('img[alt$="set card"]').length >= k, [DLG, count], { timeout: 20000 }).catch(() => {});
+        const want = faces.slice(0, count).filter(Boolean);
+        const got = await page.$$eval(`${DLG} [data-onb-photo-credit]`, els => els.map(e => e.textContent));
+        t(got.length === want.length && want.every((a, i) => (got[i] || "").includes(a)),
+          `${name}: page ${pg} credits ${JSON.stringify(got)} (want one per ledger portrait: ${JSON.stringify(want)})`);
+      }
       t(errs.length === 0, `${name}: page errors ${errs.slice(0, 2).join(" | ")}`);
       return;
     }
@@ -227,6 +240,7 @@ try {
     ["nothing found leaves the user on the scan screen", mut("app", /if \(!sum\.total\) \{\s*onNext\(\);\s*return;\s*\}/, "if (!sum.total) { return; }"), ["empty"]],
     ["Memories ignores what the first run found", mut("spotify", "var handed = _pastScanHandoffTake();", "var handed = null;"), ["found"]],
     ["Memories does not import on arrival", mut("spotify", /onHandoff\(\);\s*window\.addEventListener/, "window.addEventListener"), ["found"]],
+    ["a ledger portrait shows on a story card without its credit", mut("app", "credit: c._photoCredit || null", "credit: null"), ["web"]],
     ["an open Memories screen is not told", mut("photoTag", 'if (result) window.dispatchEvent(new Event("plursky:past-scan-handoff"));', ""), ["found-on-memories"]],
   ];
   let caught = 0;

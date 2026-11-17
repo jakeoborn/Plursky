@@ -2693,6 +2693,75 @@
    ],
    "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
    "source": "https://www.sfoutsidelands.com/"
+  },
+  {
+   "printed": "Nahko (Solo)",
+   "performers": [
+    {
+     "name": "Nahko",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Solo",
+   "why": "\"(Solo)\" marks a solo set by the billed artist: it is the set tag, and the set counts as Nahko billed alone.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "The Motet (Mixtape 1975)",
+   "performers": [
+    {
+     "name": "The Motet",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Mixtape 1975",
+   "why": "\"(Mixtape 1975)\" names the theme of the set the billed band plays: it is the set tag, not a person.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "The Funk Hunters Feat. Chali 2na",
+   "performers": [
+    {
+     "name": "The Funk Hunters",
+     "role": "performer"
+    },
+    {
+     "name": "Chali 2na",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Galactic with Macy Gray",
+   "performers": [
+    {
+     "name": "Galactic",
+     "role": "performer"
+    },
+    {
+     "name": "Macy Gray",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://electricforestfestival.com/"
+  },
+  {
+   "printed": "Big Gigantic feat. The Motet",
+   "performers": [
+    {
+     "name": "Big Gigantic",
+     "role": "performer"
+    },
+    {
+     "name": "The Motet",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://electricforestfestival.com/"
   }
  ],
  "pending": [
@@ -3167,6 +3236,10 @@
   {
    "key": "x",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Crew Love: Wolf + Lamb / The Wolf",
+   "why": "A label showcase billing (\"Crew Love:\") whose list joins names with \"+\" and \"/\": the page does not say which names are acts of their own (Wolf + Lamb is itself one duo's name). The billing renders as printed until a source rules it."
   }
  ]
 }
