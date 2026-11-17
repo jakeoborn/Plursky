@@ -414,13 +414,16 @@ try {
     await sleep(1200);
   };
   {
+    // The "same festival" path needs a festival still open at the pinned
+    // clock: on an ended one the button offers the next open festival
+    // instead (and switches to it), which the next block covers.
     const { ctx, page } = await open(browser, { init: {
-      __onboarding: '1', active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+      __onboarding: '1', active_festival_id: 'edc-orlando-2026', active_festival_explicit: '1',
     }});
     const t0 = await text(page);
     check(/find your festival memories|plan the night|your night|where are you raving|1 of 3/i.test(t0),
       `onboarding: first run shows the wizard (saw ${JSON.stringify(t0.slice(0, 60))})`);
-    await finishOnboarding(page, null);   // "Continue with EDC Las Vegas"
+    await finishOnboarding(page, null);   // "Continue with EDC Orlando"
     const t = await text(page);
     check(!/browse festivals/i.test(t),
       'onboarding (same festival): does NOT hand the user back to the chooser');
@@ -431,6 +434,29 @@ try {
     check(!wiz, 'onboarding (same festival): the wizard is dismissed, not still sitting over the screen');
     const onb = await page.evaluate(() => localStorage.getItem('onboarded'));
     check(onb === 'v1', `onboarding (same festival): first run is recorded as done (onboarded=${onb})`);
+    await ctx.close();
+  }
+  {
+    // An ended active festival is never the button's offer: EDC Las Vegas
+    // closed in May, so at the pinned clock the button names an open one.
+    const { ctx, page } = await open(browser, { init: {
+      __onboarding: '1', active_festival_id: 'edc-lv-2026', active_festival_explicit: '1',
+    }});
+    await page.evaluate((sel) => document.querySelector(sel)?.querySelector('[data-onb-scan-skip]')?.click(), DLG);
+    await sleep(300);
+    await page.evaluate((sel) => {
+      const d = document.querySelector(sel); if (!d) return;
+      const b = [...d.querySelectorAll('button')].find(e => (e.textContent || '').trim() === 'Skip');
+      if (b) b.click();
+    }, DLG);
+    await sleep(500);
+    const label = await page.evaluate((sel) => {
+      const d = document.querySelector(sel);
+      const b = d && [...d.querySelectorAll('button')].find(e => /^Continue with /.test((e.textContent || '').trim()));
+      return b ? b.textContent.trim() : null;
+    }, DLG);
+    check(!!label && !/Las Vegas|EDC LV/i.test(label),
+      `onboarding (ended festival): the button offers an open festival, not the ended one (${JSON.stringify(label)})`);
     await ctx.close();
   }
   {
