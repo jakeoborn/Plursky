@@ -1,0 +1,2475 @@
+{
+ "id": "lollapalooza-2011",
+ "festivalId": "lollapalooza",
+ "name": "Lollapalooza 2011",
+ "year": 2011,
+ "timezone": "America/Chicago",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2011-08-05",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2011-08-06",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2011-08-07",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "lollapalooza-2011:bud-light",
+   "name": "Bud Light"
+  },
+  {
+   "id": "lollapalooza-2011:playstation",
+   "name": "PlayStation"
+  },
+  {
+   "id": "lollapalooza-2011:google",
+   "name": "Google+"
+  },
+  {
+   "id": "lollapalooza-2011:bmi",
+   "name": "BMI"
+  },
+  {
+   "id": "lollapalooza-2011:kidzapalooza",
+   "name": "Kidzapalooza"
+  },
+  {
+   "id": "lollapalooza-2011:perry-s",
+   "name": "Perry's"
+  },
+  {
+   "id": "lollapalooza-2011:sony",
+   "name": "Sony"
+  },
+  {
+   "id": "lollapalooza-2011:music-unlimited",
+   "name": "Music Unlimited"
+  }
+ ],
+ "artists": [
+  {
+   "id": "lollapalooza-2011:young-the-giant",
+   "name": "Young The Giant",
+   "key": "young-the-giant",
+   "performers": [
+    "young-the-giant"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:grace-potter-and-the-nocturnals",
+   "name": "Grace Potter & the Nocturnals",
+   "key": "grace-potter-and-the-nocturnals",
+   "performers": [
+    "grace-potter-and-the-nocturnals"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-kills",
+   "name": "The Kills",
+   "key": "the-kills",
+   "performers": [
+    "the-kills"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:bright-eyes",
+   "name": "Bright Eyes",
+   "key": "bright-eyes",
+   "performers": [
+    "bright-eyes"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:coldplay",
+   "name": "Coldplay",
+   "key": "coldplay",
+   "performers": [
+    "coldplay"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:tab-the-band",
+   "name": "TAB the Band",
+   "key": "tab-the-band",
+   "performers": [
+    "tab-the-band"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:los-bunkers",
+   "name": "Los Bunkers",
+   "key": "los-bunkers",
+   "performers": [
+    "los-bunkers"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:smith-westerns",
+   "name": "Smith Westerns",
+   "key": "smith-westerns",
+   "performers": [
+    "smith-westerns"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-mountain-goats",
+   "name": "The Mountain Goats",
+   "key": "the-mountain-goats",
+   "performers": [
+    "the-mountain-goats"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:dani-deahl",
+   "name": "Dani Deahl",
+   "key": "dani-deahl",
+   "performers": [
+    "dani-deahl"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:ryan-leslie",
+   "name": "Ryan Leslie",
+   "key": "ryan-leslie",
+   "performers": [
+    "ryan-leslie"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:tennis",
+   "name": "Tennis",
+   "key": "tennis",
+   "performers": [
+    "tennis"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:reptar",
+   "name": "Reptar",
+   "key": "reptar",
+   "performers": [
+    "reptar"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:le-butcherettes",
+   "name": "Le Butcherettes",
+   "key": "le-butcherettes",
+   "performers": [
+    "le-butcherettes"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:cults",
+   "name": "Cults",
+   "key": "cults",
+   "performers": [
+    "cults"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:tinie-tempah",
+   "name": "Tinie Tempah",
+   "key": "tinie-tempah",
+   "performers": [
+    "tinie-tempah"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:ok-go",
+   "name": "Ok Go",
+   "key": "ok-go",
+   "performers": [
+    "ok-go"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:ratatat",
+   "name": "Ratatat",
+   "key": "ratatat",
+   "performers": [
+    "ratatat"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:ruby-jane",
+   "name": "Ruby Jane",
+   "key": "ruby-jane",
+   "performers": [
+    "ruby-jane"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:ceci-bastida",
+   "name": "Ceci Bastida",
+   "key": "ceci-bastida",
+   "performers": [
+    "ceci-bastida"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:electric-touch",
+   "name": "Electric Touch",
+   "key": "electric-touch",
+   "performers": [
+    "electric-touch"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:kerli",
+   "name": "Kerli",
+   "key": "kerli",
+   "performers": [
+    "kerli"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:kids-these-days",
+   "name": "Kids These Days",
+   "key": "kids-these-days",
+   "performers": [
+    "kids-these-days"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:black-cards",
+   "name": "Black Cards",
+   "key": "black-cards",
+   "performers": [
+    "black-cards"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:christina-perri",
+   "name": "Christina Perri",
+   "key": "christina-perri",
+   "performers": [
+    "christina-perri"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:big-bang-boom",
+   "name": "Big Bang Boom",
+   "key": "big-bang-boom",
+   "performers": [
+    "big-bang-boom"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:happiness-club",
+   "name": "Happiness Club",
+   "key": "happiness-club",
+   "performers": [
+    "happiness-club"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:northbrook-garage",
+   "name": "Northbrook Garage",
+   "key": "northbrook-garage",
+   "performers": [
+    "northbrook-garage"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:kate-diaz",
+   "name": "Kate Diaz",
+   "key": "kate-diaz",
+   "performers": [
+    "kate-diaz"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:brady-rymer",
+   "name": "Brady Rymer",
+   "key": "brady-rymer",
+   "performers": [
+    "brady-rymer"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:elizaveta",
+   "name": "ELIZAVETA",
+   "key": "elizaveta",
+   "performers": [
+    "elizaveta"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:haley-bonar",
+   "name": "Haley Bonar",
+   "key": "haley-bonar",
+   "performers": [
+    "haley-bonar"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:narcisse",
+   "name": "Narcisse",
+   "key": "narcisse",
+   "performers": [
+    "narcisse"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:lady-d",
+   "name": "LADY D",
+   "key": "lady-d",
+   "performers": [
+    "lady-d"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:ana-tijoux",
+   "name": "Ana Tijoux",
+   "key": "ana-tijoux",
+   "performers": [
+    "ana-tijoux"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:collie-buddz",
+   "name": "Collie Buddz",
+   "key": "collie-buddz",
+   "performers": [
+    "collie-buddz"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:feed-me",
+   "name": "Feed Me",
+   "key": "feed-me",
+   "performers": [
+    "feed-me"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-bloody-beetroots-death-crew-77",
+   "name": "The Bloody Beetroots Death Crew 77",
+   "key": "the-bloody-beetroots-death-crew-77",
+   "performers": [
+    "the-bloody-beetroots-death-crew-77"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:skrillex",
+   "name": "Skrillex",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:girl-talk",
+   "name": "Girl Talk",
+   "key": "girl-talk",
+   "performers": [
+    "girl-talk"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:wye-oak",
+   "name": "Wye Oak",
+   "key": "wye-oak",
+   "performers": [
+    "wye-oak"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-naked-and-famous",
+   "name": "The Naked and Famous",
+   "key": "the-naked-and-famous",
+   "performers": [
+    "the-naked-and-famous"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:foster-the-people",
+   "name": "Foster The People",
+   "key": "foster-the-people",
+   "performers": [
+    "foster-the-people"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:two-door-cinema-club",
+   "name": "Two Door Cinema Club",
+   "key": "two-door-cinema-club",
+   "performers": [
+    "two-door-cinema-club"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:crystal-castles",
+   "name": "Crystal Castles",
+   "key": "crystal-castles",
+   "performers": [
+    "crystal-castles"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-vaccines",
+   "name": "The Vaccines",
+   "key": "the-vaccines",
+   "performers": [
+    "the-vaccines"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:delta-spirit",
+   "name": "Delta Spirit",
+   "key": "delta-spirit",
+   "performers": [
+    "delta-spirit"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:white-lies",
+   "name": "White Lies",
+   "key": "white-lies",
+   "performers": [
+    "white-lies"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:a-perfect-circle",
+   "name": "A Perfect Circle",
+   "key": "a-perfect-circle",
+   "performers": [
+    "a-perfect-circle"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:muse",
+   "name": "Muse",
+   "key": "muse",
+   "performers": [
+    "muse"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:disappears",
+   "name": "Disappears",
+   "key": "disappears",
+   "performers": [
+    "disappears"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:friendly-fires",
+   "name": "Friendly Fires",
+   "key": "friendly-fires",
+   "performers": [
+    "friendly-fires"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:death-from-above-1979",
+   "name": "Death From Above 1979",
+   "key": "death-from-above-1979",
+   "performers": [
+    "death-from-above-1979"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:ween",
+   "name": "Ween",
+   "key": "ween",
+   "performers": [
+    "ween"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:my-morning-jacket",
+   "name": "My Morning Jacket",
+   "key": "my-morning-jacket",
+   "performers": [
+    "my-morning-jacket"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:j-roddy-walston-and-the-business",
+   "name": "J Roddy Walston and The Business",
+   "key": "j-roddy-walston-and-the-business",
+   "performers": [
+    "j-roddy-walston-and-the-business"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:chico-trujillo",
+   "name": "Chico Trujillo",
+   "key": "chico-trujillo",
+   "performers": [
+    "chico-trujillo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:black-lips",
+   "name": "Black Lips",
+   "key": "black-lips",
+   "performers": [
+    "black-lips"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:deftones",
+   "name": "Deftones",
+   "key": "deftones",
+   "performers": [
+    "deftones"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:beats-antique",
+   "name": "Beats Antique",
+   "key": "beats-antique",
+   "performers": [
+    "beats-antique"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:julia-easterlin",
+   "name": "Julia Easterlin",
+   "key": "julia-easterlin",
+   "performers": [
+    "julia-easterlin"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:an-horse",
+   "name": "An Horse",
+   "key": "an-horse",
+   "performers": [
+    "an-horse"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:maps-and-atlases",
+   "name": "Maps & Atlases",
+   "key": "maps-and-atlases",
+   "performers": [
+    "maps-and-atlases"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:dom",
+   "name": "Dom",
+   "key": "dom",
+   "performers": [
+    "dom"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-drums",
+   "name": "The Drums",
+   "key": "the-drums",
+   "performers": [
+    "the-drums"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:ellie-goulding",
+   "name": "Ellie Goulding",
+   "key": "ellie-goulding",
+   "performers": [
+    "ellie-goulding"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:lykke-li",
+   "name": "Lykke Li",
+   "key": "lykke-li",
+   "performers": [
+    "lykke-li"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:beirut",
+   "name": "Beirut",
+   "key": "beirut",
+   "performers": [
+    "beirut"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:ximena-sarinana",
+   "name": "Ximena Sarinana",
+   "key": "ximena-sarinana",
+   "performers": [
+    "ximena-sarinana"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:typhoon",
+   "name": "Typhoon",
+   "key": "typhoon",
+   "performers": [
+    "typhoon"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:skylar-grey",
+   "name": "Skylar Grey",
+   "key": "skylar-grey",
+   "performers": [
+    "skylar-grey"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-chain-gang-of-1974",
+   "name": "The Chain Gang of 1974",
+   "key": "the-chain-gang-of-1974",
+   "performers": [
+    "the-chain-gang-of-1974"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:patrick-stump",
+   "name": "Patrick Stump",
+   "key": "patrick-stump",
+   "performers": [
+    "patrick-stump"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-pretty-reckless",
+   "name": "The Pretty Reckless",
+   "key": "the-pretty-reckless",
+   "performers": [
+    "the-pretty-reckless"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:ralph-s-world",
+   "name": "Ralph's World",
+   "key": "ralph-s-world",
+   "performers": [
+    "ralph-s-world"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:little-hurricane",
+   "name": "little hurricane",
+   "key": "little-hurricane",
+   "performers": [
+    "little-hurricane"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:l1ght",
+   "name": "L1ght",
+   "key": "l1ght",
+   "performers": [
+    "l1ght"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:dj-neil-armstrong",
+   "name": "DJ Neil Armstrong",
+   "key": "dj-neil-armstrong",
+   "performers": [
+    "dj-neil-armstrong"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:savoy",
+   "name": "Savoy",
+   "key": "savoy",
+   "performers": [
+    "savoy"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:super-mash-bros",
+   "name": "Super Mash Bros.",
+   "key": "super-mash-bros",
+   "performers": [
+    "super-mash-bros"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:perryetty-vs-chris-cox",
+   "name": "PerryEtty vs. Chris Cox",
+   "key": "perryetty-vs-chris-cox",
+   "performers": [
+    "perryetty-vs-chris-cox"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:joachim-garraud",
+   "name": "Joachim Garraud",
+   "key": "joachim-garraud",
+   "performers": [
+    "joachim-garraud"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:chuckie",
+   "name": "Chuckie",
+   "key": "chuckie",
+   "performers": [
+    "chuckie"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-glitch-mob",
+   "name": "The Glitch Mob",
+   "key": "the-glitch-mob",
+   "performers": [
+    "the-glitch-mob"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:pretty-lights",
+   "name": "Pretty Lights",
+   "key": "pretty-lights",
+   "performers": [
+    "pretty-lights"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:grouplove",
+   "name": "Grouplove",
+   "key": "grouplove",
+   "performers": [
+    "grouplove"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:phantogram",
+   "name": "Phantogram",
+   "key": "phantogram",
+   "performers": [
+    "phantogram"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:mayer-hawthorne-and-the-county",
+   "name": "Mayer Hawthorne & The County",
+   "key": "mayer-hawthorne-and-the-county",
+   "performers": [
+    "mayer-hawthorne-and-the-county"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:local-natives",
+   "name": "Local Natives",
+   "key": "local-natives",
+   "performers": [
+    "local-natives"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:atmosphere",
+   "name": "Atmosphere",
+   "key": "atmosphere",
+   "performers": [
+    "atmosphere"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:walk-the-moon",
+   "name": "Walk The Moon",
+   "key": "walk-the-moon",
+   "performers": [
+    "walk-the-moon"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:fitz-and-the-tantrums",
+   "name": "Fitz & The Tantrums",
+   "key": "fitz-and-the-tantrums",
+   "performers": [
+    "fitz-and-the-tantrums"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:big-audio-dynamite",
+   "name": "Big Audio Dynamite",
+   "key": "big-audio-dynamite",
+   "performers": [
+    "big-audio-dynamite"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:cee-lo",
+   "name": "Cee Lo",
+   "key": "cee-lo",
+   "performers": [
+    "cee-lo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:eminem",
+   "name": "Eminem",
+   "key": "eminem",
+   "performers": [
+    "eminem"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-joy-formidable",
+   "name": "The Joy Formidable",
+   "key": "the-joy-formidable",
+   "performers": [
+    "the-joy-formidable"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:noah-and-the-whale",
+   "name": "Noah & The Whale",
+   "key": "noah-and-the-whale",
+   "performers": [
+    "noah-and-the-whale"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:flogging-molly",
+   "name": "Flogging Molly",
+   "key": "flogging-molly",
+   "performers": [
+    "flogging-molly"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:damian-jr-gong-marley-and-nas",
+   "name": "Damian \"Jr. Gong\" Marley & Nas",
+   "key": "damian-jr-gong-marley-and-nas",
+   "performers": [
+    "damian-jr-gong-marley-and-nas"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:deadmau5",
+   "name": "Deadmau5",
+   "key": "deadmau5",
+   "performers": [
+    "deadmau5"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:gold-motel",
+   "name": "Gold Motel",
+   "key": "gold-motel",
+   "performers": [
+    "gold-motel"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:rival-schools",
+   "name": "Rival Schools",
+   "key": "rival-schools",
+   "performers": [
+    "rival-schools"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:city-and-colour",
+   "name": "City and Colour",
+   "key": "city-and-colour",
+   "performers": [
+    "city-and-colour"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:cage-the-elephant",
+   "name": "Cage the Elephant",
+   "key": "cage-the-elephant",
+   "performers": [
+    "cage-the-elephant"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:dj-mel",
+   "name": "DJ Mel",
+   "key": "dj-mel",
+   "performers": [
+    "dj-mel"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:iration",
+   "name": "Iration",
+   "key": "iration",
+   "performers": [
+    "iration"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:fences",
+   "name": "Fences",
+   "key": "fences",
+   "performers": [
+    "fences"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:dale-earnhardt-jr-jr",
+   "name": "Dale Earnhardt Jr. Jr.",
+   "key": "dale-earnhardt-jr-jr",
+   "performers": [
+    "dale-earnhardt-jr-jr"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:lissie",
+   "name": "Lissie",
+   "key": "lissie",
+   "performers": [
+    "lissie"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:best-coast",
+   "name": "Best Coast",
+   "key": "best-coast",
+   "performers": [
+    "best-coast"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:manchester-orchestra",
+   "name": "Manchester Orchestra",
+   "key": "manchester-orchestra",
+   "performers": [
+    "manchester-orchestra"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:cold-war-kids",
+   "name": "Cold War Kids",
+   "key": "cold-war-kids",
+   "performers": [
+    "cold-war-kids"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-kingston-springs",
+   "name": "The Kingston Springs",
+   "key": "the-kingston-springs",
+   "performers": [
+    "the-kingston-springs"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:deluka",
+   "name": "Deluka",
+   "key": "deluka",
+   "performers": [
+    "deluka"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:lia-ices",
+   "name": "Lia Ices",
+   "key": "lia-ices",
+   "performers": [
+    "lia-ices"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:young-man",
+   "name": "Young Man",
+   "key": "young-man",
+   "performers": [
+    "young-man"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:boy-and-bear",
+   "name": "Boy & Bear",
+   "key": "boy-and-bear",
+   "performers": [
+    "boy-and-bear"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:sam-adams",
+   "name": "Sam Adams",
+   "key": "sam-adams",
+   "performers": [
+    "sam-adams"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:q-brothers",
+   "name": "Q Brothers",
+   "key": "q-brothers",
+   "performers": [
+    "q-brothers"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:keller-williams",
+   "name": "Keller Williams",
+   "key": "keller-williams",
+   "performers": [
+    "keller-williams"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:peter-distefano-and-tor",
+   "name": "Peter DiStefano & Tor",
+   "key": "peter-distefano-and-tor",
+   "performers": [
+    "peter-distefano-and-tor"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:lance-herbstrong",
+   "name": "Lance Herbstrong",
+   "key": "lance-herbstrong",
+   "performers": [
+    "lance-herbstrong"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:perry-farrell",
+   "name": "Perry Farrell",
+   "key": "perry-farrell",
+   "performers": [
+    "perry-farrell"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:midnight-conspiracy",
+   "name": "Midnight Conspiracy",
+   "key": "midnight-conspiracy",
+   "performers": [
+    "midnight-conspiracy"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:kyle-lucas-and-captain-midnite",
+   "name": "Kyle Lucas & Captain Midnite",
+   "key": "kyle-lucas-and-captain-midnite",
+   "performers": [
+    "kyle-lucas-and-captain-midnite"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:daedelus",
+   "name": "Daedelus",
+   "key": "daedelus",
+   "performers": [
+    "daedelus"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-cool-kids",
+   "name": "The Cool Kids",
+   "key": "the-cool-kids",
+   "performers": [
+    "the-cool-kids"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:switch",
+   "name": "Switch",
+   "key": "switch",
+   "performers": [
+    "switch"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:12th-planet",
+   "name": "12th Planet",
+   "key": "12th-planet",
+   "performers": [
+    "12th-planet"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:busy-p",
+   "name": "Busy P",
+   "key": "busy-p",
+   "performers": [
+    "busy-p"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:modeselektor",
+   "name": "Modeselektor",
+   "key": "modeselektor",
+   "performers": [
+    "modeselektor"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:kid-cudi",
+   "name": "KiD CuDi",
+   "key": "kid-cudi",
+   "performers": [
+    "kid-cudi"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:lord-huron",
+   "name": "Lord Huron",
+   "key": "lord-huron",
+   "performers": [
+    "lord-huron"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:imelda-may",
+   "name": "Imelda May",
+   "key": "imelda-may",
+   "performers": [
+    "imelda-may"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-pains-of-being-pure-at-heart",
+   "name": "The Pains of Being Pure at Heart",
+   "key": "the-pains-of-being-pure-at-heart",
+   "performers": [
+    "the-pains-of-being-pure-at-heart"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:portugal-the-man",
+   "name": "Portugal. The Man",
+   "key": "portugal-the-man",
+   "performers": [
+    "portugal-the-man"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:explosions-in-the-sky",
+   "name": "Explosions in the Sky",
+   "key": "explosions-in-the-sky",
+   "performers": [
+    "explosions-in-the-sky"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:titus-andronicus",
+   "name": "Titus Andronicus",
+   "key": "titus-andronicus",
+   "performers": [
+    "titus-andronicus"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:ryan-bingham-and-the-dead-horses",
+   "name": "Ryan Bingham & The Dead Horses",
+   "key": "ryan-bingham-and-the-dead-horses",
+   "performers": [
+    "ryan-bingham-and-the-dead-horses"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:the-cars",
+   "name": "The Cars",
+   "key": "the-cars",
+   "performers": [
+    "the-cars"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:arctic-monkeys",
+   "name": "Arctic Monkeys",
+   "key": "arctic-monkeys",
+   "performers": [
+    "arctic-monkeys"
+   ]
+  },
+  {
+   "id": "lollapalooza-2011:foo-fighters",
+   "name": "Foo Fighters",
+   "key": "foo-fighters",
+   "performers": [
+    "foo-fighters"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "lollapalooza-2011:d1:bud-light:1300:young-the-giant",
+   "artistId": "lollapalooza-2011:young-the-giant",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2011:d1:bud-light:1430:grace-potter-and-the-nocturnals",
+   "artistId": "lollapalooza-2011:grace-potter-and-the-nocturnals",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:bud-light:1630:the-kills",
+   "artistId": "lollapalooza-2011:the-kills",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:bud-light:1830:bright-eyes",
+   "artistId": "lollapalooza-2011:bright-eyes",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:bud-light:2015:coldplay",
+   "artistId": "lollapalooza-2011:coldplay",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "20:15",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2011:d1:playstation:1215:tab-the-band",
+   "artistId": "lollapalooza-2011:tab-the-band",
+   "day": 1,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "lollapalooza-2011:d1:playstation:1345:los-bunkers",
+   "artistId": "lollapalooza-2011:los-bunkers",
+   "day": 1,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:playstation:1530:smith-westerns",
+   "artistId": "lollapalooza-2011:smith-westerns",
+   "day": 1,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:playstation:1730:the-mountain-goats",
+   "artistId": "lollapalooza-2011:the-mountain-goats",
+   "day": 1,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:playstation:1930:dani-deahl",
+   "artistId": "lollapalooza-2011:dani-deahl",
+   "day": 1,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "19:30",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2011:d1:google:1200:ryan-leslie",
+   "artistId": "lollapalooza-2011:ryan-leslie",
+   "day": 1,
+   "stageId": "lollapalooza-2011:google",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:google:1300:tennis",
+   "artistId": "lollapalooza-2011:tennis",
+   "day": 1,
+   "stageId": "lollapalooza-2011:google",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2011:d1:google:1415:reptar",
+   "artistId": "lollapalooza-2011:reptar",
+   "day": 1,
+   "stageId": "lollapalooza-2011:google",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2011:d1:google:1530:le-butcherettes",
+   "artistId": "lollapalooza-2011:le-butcherettes",
+   "day": 1,
+   "stageId": "lollapalooza-2011:google",
+   "start": "15:30",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2011:d1:google:1645:cults",
+   "artistId": "lollapalooza-2011:cults",
+   "day": 1,
+   "stageId": "lollapalooza-2011:google",
+   "start": "16:45",
+   "end": "17:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:google:1800:tinie-tempah",
+   "artistId": "lollapalooza-2011:tinie-tempah",
+   "day": 1,
+   "stageId": "lollapalooza-2011:google",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "lollapalooza-2011:d1:google:1915:ok-go",
+   "artistId": "lollapalooza-2011:ok-go",
+   "day": 1,
+   "stageId": "lollapalooza-2011:google",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2011:d1:google:2045:ratatat",
+   "artistId": "lollapalooza-2011:ratatat",
+   "day": 1,
+   "stageId": "lollapalooza-2011:google",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "lollapalooza-2011:d1:bmi:1200:ruby-jane",
+   "artistId": "lollapalooza-2011:ruby-jane",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:bmi:1300:ceci-bastida",
+   "artistId": "lollapalooza-2011:ceci-bastida",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "13:00",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:bmi:1400:electric-touch",
+   "artistId": "lollapalooza-2011:electric-touch",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "14:00",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:bmi:1500:kerli",
+   "artistId": "lollapalooza-2011:kerli",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "lollapalooza-2011:d1:bmi:1615:kids-these-days",
+   "artistId": "lollapalooza-2011:kids-these-days",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "16:15",
+   "end": "17:00"
+  },
+  {
+   "id": "lollapalooza-2011:d1:bmi:1730:black-cards",
+   "artistId": "lollapalooza-2011:black-cards",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "17:30",
+   "end": "18:15"
+  },
+  {
+   "id": "lollapalooza-2011:d1:bmi:1845:christina-perri",
+   "artistId": "lollapalooza-2011:christina-perri",
+   "day": 1,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "18:45",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:kidzapalooza:1130:big-bang-boom",
+   "artistId": "lollapalooza-2011:big-bang-boom",
+   "day": 1,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "11:30",
+   "end": "11:55"
+  },
+  {
+   "id": "lollapalooza-2011:d1:kidzapalooza:1230:happiness-club",
+   "artistId": "lollapalooza-2011:happiness-club",
+   "day": 1,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "lollapalooza-2011:d1:kidzapalooza:1330:northbrook-garage",
+   "artistId": "lollapalooza-2011:northbrook-garage",
+   "day": 1,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "lollapalooza-2011:d1:kidzapalooza:1430:kate-diaz",
+   "artistId": "lollapalooza-2011:kate-diaz",
+   "day": 1,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "lollapalooza-2011:d1:kidzapalooza:1515:brady-rymer",
+   "artistId": "lollapalooza-2011:brady-rymer",
+   "day": 1,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "15:15",
+   "end": "15:45"
+  },
+  {
+   "id": "lollapalooza-2011:d1:kidzapalooza:1550:elizaveta",
+   "artistId": "lollapalooza-2011:elizaveta",
+   "day": 1,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "15:50",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2011:d1:kidzapalooza:1620:haley-bonar",
+   "artistId": "lollapalooza-2011:haley-bonar",
+   "day": 1,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "16:20",
+   "end": "16:50"
+  },
+  {
+   "id": "lollapalooza-2011:d1:perry-s:1200:narcisse",
+   "artistId": "lollapalooza-2011:narcisse",
+   "day": 1,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2011:d1:perry-s:1245:lady-d",
+   "artistId": "lollapalooza-2011:lady-d",
+   "day": 1,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "12:45",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2011:d1:perry-s:1345:ana-tijoux",
+   "artistId": "lollapalooza-2011:ana-tijoux",
+   "day": 1,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:perry-s:1445:collie-buddz",
+   "artistId": "lollapalooza-2011:collie-buddz",
+   "day": 1,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "14:45",
+   "end": "15:45"
+  },
+  {
+   "id": "lollapalooza-2011:d1:perry-s:1545:feed-me",
+   "artistId": "lollapalooza-2011:feed-me",
+   "day": 1,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "lollapalooza-2011:d1:perry-s:1700:the-bloody-beetroots-death-crew-77",
+   "artistId": "lollapalooza-2011:the-bloody-beetroots-death-crew-77",
+   "day": 1,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2011:d1:perry-s:1815:skrillex",
+   "artistId": "lollapalooza-2011:skrillex",
+   "day": 1,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2011:d1:perry-s:1915:afrojack",
+   "artistId": "lollapalooza-2011:afrojack",
+   "day": 1,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2011:d1:perry-s:2045:girl-talk",
+   "artistId": "lollapalooza-2011:girl-talk",
+   "day": 1,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2011:d1:sony:1200:wye-oak",
+   "artistId": "lollapalooza-2011:wye-oak",
+   "day": 1,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2011:d1:sony:1330:the-naked-and-famous",
+   "artistId": "lollapalooza-2011:the-naked-and-famous",
+   "day": 1,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2011:d1:sony:1500:foster-the-people",
+   "artistId": "lollapalooza-2011:foster-the-people",
+   "day": 1,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2011:d1:sony:1700:two-door-cinema-club",
+   "artistId": "lollapalooza-2011:two-door-cinema-club",
+   "day": 1,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2011:d1:sony:1915:crystal-castles",
+   "artistId": "lollapalooza-2011:crystal-castles",
+   "day": 1,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2011:d1:music-unlimited:1245:the-vaccines",
+   "artistId": "lollapalooza-2011:the-vaccines",
+   "day": 1,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2011:d1:music-unlimited:1415:delta-spirit",
+   "artistId": "lollapalooza-2011:delta-spirit",
+   "day": 1,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2011:d1:music-unlimited:1600:white-lies",
+   "artistId": "lollapalooza-2011:white-lies",
+   "day": 1,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "lollapalooza-2011:d1:music-unlimited:1800:a-perfect-circle",
+   "artistId": "lollapalooza-2011:a-perfect-circle",
+   "day": 1,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2011:d1:music-unlimited:2015:muse",
+   "artistId": "lollapalooza-2011:muse",
+   "day": 1,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "20:15",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:bud-light:1245:disappears",
+   "artistId": "lollapalooza-2011:disappears",
+   "day": 2,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:bud-light:1415:friendly-fires",
+   "artistId": "lollapalooza-2011:friendly-fires",
+   "day": 2,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:bud-light:1600:death-from-above-1979",
+   "artistId": "lollapalooza-2011:death-from-above-1979",
+   "day": 2,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:bud-light:1800:ween",
+   "artistId": "lollapalooza-2011:ween",
+   "day": 2,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:bud-light:2000:my-morning-jacket",
+   "artistId": "lollapalooza-2011:my-morning-jacket",
+   "day": 2,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:playstation:1200:j-roddy-walston-and-the-business",
+   "artistId": "lollapalooza-2011:j-roddy-walston-and-the-business",
+   "day": 2,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2011:d2:playstation:1330:chico-trujillo",
+   "artistId": "lollapalooza-2011:chico-trujillo",
+   "day": 2,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2011:d2:playstation:1500:black-lips",
+   "artistId": "lollapalooza-2011:black-lips",
+   "day": 2,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:playstation:1700:deftones",
+   "artistId": "lollapalooza-2011:deftones",
+   "day": 2,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:playstation:1900:beats-antique",
+   "artistId": "lollapalooza-2011:beats-antique",
+   "day": 2,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:google:1200:julia-easterlin",
+   "artistId": "lollapalooza-2011:julia-easterlin",
+   "day": 2,
+   "stageId": "lollapalooza-2011:google",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:google:1300:an-horse",
+   "artistId": "lollapalooza-2011:an-horse",
+   "day": 2,
+   "stageId": "lollapalooza-2011:google",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2011:d2:google:1415:maps-and-atlases",
+   "artistId": "lollapalooza-2011:maps-and-atlases",
+   "day": 2,
+   "stageId": "lollapalooza-2011:google",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:google:1530:dom",
+   "artistId": "lollapalooza-2011:dom",
+   "day": 2,
+   "stageId": "lollapalooza-2011:google",
+   "start": "15:30",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2011:d2:google:1645:the-drums",
+   "artistId": "lollapalooza-2011:the-drums",
+   "day": 2,
+   "stageId": "lollapalooza-2011:google",
+   "start": "16:45",
+   "end": "17:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:google:1800:ellie-goulding",
+   "artistId": "lollapalooza-2011:ellie-goulding",
+   "day": 2,
+   "stageId": "lollapalooza-2011:google",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "lollapalooza-2011:d2:google:1915:lykke-li",
+   "artistId": "lollapalooza-2011:lykke-li",
+   "day": 2,
+   "stageId": "lollapalooza-2011:google",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2011:d2:google:2045:beirut",
+   "artistId": "lollapalooza-2011:beirut",
+   "day": 2,
+   "stageId": "lollapalooza-2011:google",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "lollapalooza-2011:d2:bmi:1200:ximena-sarinana",
+   "artistId": "lollapalooza-2011:ximena-sarinana",
+   "day": 2,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2011:d2:bmi:1315:typhoon",
+   "artistId": "lollapalooza-2011:typhoon",
+   "day": 2,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:bmi:1430:skylar-grey",
+   "artistId": "lollapalooza-2011:skylar-grey",
+   "day": 2,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "lollapalooza-2011:d2:bmi:1545:the-chain-gang-of-1974",
+   "artistId": "lollapalooza-2011:the-chain-gang-of-1974",
+   "day": 2,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "15:45",
+   "end": "16:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:bmi:1700:patrick-stump",
+   "artistId": "lollapalooza-2011:patrick-stump",
+   "day": 2,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "lollapalooza-2011:d2:bmi:1815:the-pretty-reckless",
+   "artistId": "lollapalooza-2011:the-pretty-reckless",
+   "day": 2,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "18:15",
+   "end": "19:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:kidzapalooza:1130:northbrook-garage",
+   "artistId": "lollapalooza-2011:northbrook-garage",
+   "day": 2,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "11:30",
+   "end": "11:55"
+  },
+  {
+   "id": "lollapalooza-2011:d2:kidzapalooza:1230:happiness-club",
+   "artistId": "lollapalooza-2011:happiness-club",
+   "day": 2,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "lollapalooza-2011:d2:kidzapalooza:1330:big-bang-boom",
+   "artistId": "lollapalooza-2011:big-bang-boom",
+   "day": 2,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "lollapalooza-2011:d2:kidzapalooza:1430:haley-bonar",
+   "artistId": "lollapalooza-2011:haley-bonar",
+   "day": 2,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "lollapalooza-2011:d2:kidzapalooza:1515:ralph-s-world",
+   "artistId": "lollapalooza-2011:ralph-s-world",
+   "day": 2,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "15:15",
+   "end": "15:45"
+  },
+  {
+   "id": "lollapalooza-2011:d2:kidzapalooza:1545:little-hurricane",
+   "artistId": "lollapalooza-2011:little-hurricane",
+   "day": 2,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "15:45",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:kidzapalooza:1605:brady-rymer",
+   "artistId": "lollapalooza-2011:brady-rymer",
+   "day": 2,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "16:05",
+   "end": "16:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:perry-s:1200:l1ght",
+   "artistId": "lollapalooza-2011:l1ght",
+   "day": 2,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "lollapalooza-2011:d2:perry-s:1245:dj-neil-armstrong",
+   "artistId": "lollapalooza-2011:dj-neil-armstrong",
+   "day": 2,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "12:45",
+   "end": "13:35"
+  },
+  {
+   "id": "lollapalooza-2011:d2:perry-s:1345:savoy",
+   "artistId": "lollapalooza-2011:savoy",
+   "day": 2,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "13:45",
+   "end": "14:40"
+  },
+  {
+   "id": "lollapalooza-2011:d2:perry-s:1445:super-mash-bros",
+   "artistId": "lollapalooza-2011:super-mash-bros",
+   "day": 2,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "14:45",
+   "end": "15:35"
+  },
+  {
+   "id": "lollapalooza-2011:d2:perry-s:1545:perryetty-vs-chris-cox",
+   "artistId": "lollapalooza-2011:perryetty-vs-chris-cox",
+   "day": 2,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "lollapalooza-2011:d2:perry-s:1650:joachim-garraud",
+   "artistId": "lollapalooza-2011:joachim-garraud",
+   "day": 2,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "16:50",
+   "end": "17:45"
+  },
+  {
+   "id": "lollapalooza-2011:d2:perry-s:1750:chuckie",
+   "artistId": "lollapalooza-2011:chuckie",
+   "day": 2,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "17:50",
+   "end": "18:45"
+  },
+  {
+   "id": "lollapalooza-2011:d2:perry-s:1900:the-glitch-mob",
+   "artistId": "lollapalooza-2011:the-glitch-mob",
+   "day": 2,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:perry-s:2030:pretty-lights",
+   "artistId": "lollapalooza-2011:pretty-lights",
+   "day": 2,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2011:d2:sony:1200:grouplove",
+   "artistId": "lollapalooza-2011:grouplove",
+   "day": 2,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2011:d2:sony:1330:phantogram",
+   "artistId": "lollapalooza-2011:phantogram",
+   "day": 2,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:sony:1530:mayer-hawthorne-and-the-county",
+   "artistId": "lollapalooza-2011:mayer-hawthorne-and-the-county",
+   "day": 2,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:sony:1730:local-natives",
+   "artistId": "lollapalooza-2011:local-natives",
+   "day": 2,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:sony:1930:atmosphere",
+   "artistId": "lollapalooza-2011:atmosphere",
+   "day": 2,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:music-unlimited:1245:walk-the-moon",
+   "artistId": "lollapalooza-2011:walk-the-moon",
+   "day": 2,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:music-unlimited:1430:fitz-and-the-tantrums",
+   "artistId": "lollapalooza-2011:fitz-and-the-tantrums",
+   "day": 2,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:music-unlimited:1630:big-audio-dynamite",
+   "artistId": "lollapalooza-2011:big-audio-dynamite",
+   "day": 2,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:music-unlimited:1830:cee-lo",
+   "artistId": "lollapalooza-2011:cee-lo",
+   "day": 2,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2011:d2:music-unlimited:2030:eminem",
+   "artistId": "lollapalooza-2011:eminem",
+   "day": 2,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:bud-light:1300:the-joy-formidable",
+   "artistId": "lollapalooza-2011:the-joy-formidable",
+   "day": 3,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2011:d3:bud-light:1430:noah-and-the-whale",
+   "artistId": "lollapalooza-2011:noah-and-the-whale",
+   "day": 3,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "lollapalooza-2011:d3:bud-light:1615:flogging-molly",
+   "artistId": "lollapalooza-2011:flogging-molly",
+   "day": 3,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "lollapalooza-2011:d3:bud-light:1815:damian-jr-gong-marley-and-nas",
+   "artistId": "lollapalooza-2011:damian-jr-gong-marley-and-nas",
+   "day": 3,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2011:d3:bud-light:2030:deadmau5",
+   "artistId": "lollapalooza-2011:deadmau5",
+   "day": 3,
+   "stageId": "lollapalooza-2011:bud-light",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:playstation:1215:gold-motel",
+   "artistId": "lollapalooza-2011:gold-motel",
+   "day": 3,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:playstation:1345:rival-schools",
+   "artistId": "lollapalooza-2011:rival-schools",
+   "day": 3,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2011:d3:playstation:1515:city-and-colour",
+   "artistId": "lollapalooza-2011:city-and-colour",
+   "day": 3,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2011:d3:playstation:1715:cage-the-elephant",
+   "artistId": "lollapalooza-2011:cage-the-elephant",
+   "day": 3,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "lollapalooza-2011:d3:playstation:1930:dj-mel",
+   "artistId": "lollapalooza-2011:dj-mel",
+   "day": 3,
+   "stageId": "lollapalooza-2011:playstation",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2011:d3:google:1200:iration",
+   "artistId": "lollapalooza-2011:iration",
+   "day": 3,
+   "stageId": "lollapalooza-2011:google",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2011:d3:google:1300:fences",
+   "artistId": "lollapalooza-2011:fences",
+   "day": 3,
+   "stageId": "lollapalooza-2011:google",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2011:d3:google:1405:little-hurricane",
+   "artistId": "lollapalooza-2011:little-hurricane",
+   "day": 3,
+   "stageId": "lollapalooza-2011:google",
+   "start": "14:05",
+   "end": "14:45"
+  },
+  {
+   "id": "lollapalooza-2011:d3:google:1515:dale-earnhardt-jr-jr",
+   "artistId": "lollapalooza-2011:dale-earnhardt-jr-jr",
+   "day": 3,
+   "stageId": "lollapalooza-2011:google",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:google:1630:lissie",
+   "artistId": "lollapalooza-2011:lissie",
+   "day": 3,
+   "stageId": "lollapalooza-2011:google",
+   "start": "16:30",
+   "end": "17:15"
+  },
+  {
+   "id": "lollapalooza-2011:d3:google:1745:best-coast",
+   "artistId": "lollapalooza-2011:best-coast",
+   "day": 3,
+   "stageId": "lollapalooza-2011:google",
+   "start": "17:45",
+   "end": "18:30"
+  },
+  {
+   "id": "lollapalooza-2011:d3:google:1900:manchester-orchestra",
+   "artistId": "lollapalooza-2011:manchester-orchestra",
+   "day": 3,
+   "stageId": "lollapalooza-2011:google",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:google:2030:cold-war-kids",
+   "artistId": "lollapalooza-2011:cold-war-kids",
+   "day": 3,
+   "stageId": "lollapalooza-2011:google",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "lollapalooza-2011:d3:bmi:1200:the-kingston-springs",
+   "artistId": "lollapalooza-2011:the-kingston-springs",
+   "day": 3,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2011:d3:bmi:1315:deluka",
+   "artistId": "lollapalooza-2011:deluka",
+   "day": 3,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:bmi:1430:lia-ices",
+   "artistId": "lollapalooza-2011:lia-ices",
+   "day": 3,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "lollapalooza-2011:d3:bmi:1545:young-man",
+   "artistId": "lollapalooza-2011:young-man",
+   "day": 3,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "15:45",
+   "end": "16:30"
+  },
+  {
+   "id": "lollapalooza-2011:d3:bmi:1700:boy-and-bear",
+   "artistId": "lollapalooza-2011:boy-and-bear",
+   "day": 3,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "lollapalooza-2011:d3:bmi:1815:sam-adams",
+   "artistId": "lollapalooza-2011:sam-adams",
+   "day": 3,
+   "stageId": "lollapalooza-2011:bmi",
+   "start": "18:15",
+   "end": "19:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:kidzapalooza:1130:kate-diaz",
+   "artistId": "lollapalooza-2011:kate-diaz",
+   "day": 3,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "11:30",
+   "end": "11:55"
+  },
+  {
+   "id": "lollapalooza-2011:d3:kidzapalooza:1230:q-brothers",
+   "artistId": "lollapalooza-2011:q-brothers",
+   "day": 3,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "lollapalooza-2011:d3:kidzapalooza:1330:happiness-club",
+   "artistId": "lollapalooza-2011:happiness-club",
+   "day": 3,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "lollapalooza-2011:d3:kidzapalooza:1430:keller-williams",
+   "artistId": "lollapalooza-2011:keller-williams",
+   "day": 3,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "lollapalooza-2011:d3:kidzapalooza:1505:peter-distefano-and-tor",
+   "artistId": "lollapalooza-2011:peter-distefano-and-tor",
+   "day": 3,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "15:05",
+   "end": "15:25"
+  },
+  {
+   "id": "lollapalooza-2011:d3:kidzapalooza:1525:lance-herbstrong",
+   "artistId": "lollapalooza-2011:lance-herbstrong",
+   "day": 3,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "15:25",
+   "end": "15:45"
+  },
+  {
+   "id": "lollapalooza-2011:d3:kidzapalooza:1545:perry-farrell",
+   "artistId": "lollapalooza-2011:perry-farrell",
+   "day": 3,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "15:45",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:kidzapalooza:1615:ralph-s-world",
+   "artistId": "lollapalooza-2011:ralph-s-world",
+   "day": 3,
+   "stageId": "lollapalooza-2011:kidzapalooza",
+   "start": "16:15",
+   "end": "16:40"
+  },
+  {
+   "id": "lollapalooza-2011:d3:perry-s:1200:midnight-conspiracy",
+   "artistId": "lollapalooza-2011:midnight-conspiracy",
+   "day": 3,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "12:00",
+   "end": "12:55"
+  },
+  {
+   "id": "lollapalooza-2011:d3:perry-s:1300:kyle-lucas-and-captain-midnite",
+   "artistId": "lollapalooza-2011:kyle-lucas-and-captain-midnite",
+   "day": 3,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2011:d3:perry-s:1355:daedelus",
+   "artistId": "lollapalooza-2011:daedelus",
+   "day": 3,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "13:55",
+   "end": "14:50"
+  },
+  {
+   "id": "lollapalooza-2011:d3:perry-s:1500:the-cool-kids",
+   "artistId": "lollapalooza-2011:the-cool-kids",
+   "day": 3,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "15:00",
+   "end": "15:50"
+  },
+  {
+   "id": "lollapalooza-2011:d3:perry-s:1600:switch",
+   "artistId": "lollapalooza-2011:switch",
+   "day": 3,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "16:00",
+   "end": "16:55"
+  },
+  {
+   "id": "lollapalooza-2011:d3:perry-s:1700:12th-planet",
+   "artistId": "lollapalooza-2011:12th-planet",
+   "day": 3,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "17:00",
+   "end": "17:55"
+  },
+  {
+   "id": "lollapalooza-2011:d3:perry-s:1800:busy-p",
+   "artistId": "lollapalooza-2011:busy-p",
+   "day": 3,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:perry-s:1915:modeselektor",
+   "artistId": "lollapalooza-2011:modeselektor",
+   "day": 3,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2011:d3:perry-s:2100:kid-cudi",
+   "artistId": "lollapalooza-2011:kid-cudi",
+   "day": 3,
+   "stageId": "lollapalooza-2011:perry-s",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:sony:1200:lord-huron",
+   "artistId": "lollapalooza-2011:lord-huron",
+   "day": 3,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2011:d3:sony:1330:imelda-may",
+   "artistId": "lollapalooza-2011:imelda-may",
+   "day": 3,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2011:d3:sony:1500:the-pains-of-being-pure-at-heart",
+   "artistId": "lollapalooza-2011:the-pains-of-being-pure-at-heart",
+   "day": 3,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:sony:1700:portugal-the-man",
+   "artistId": "lollapalooza-2011:portugal-the-man",
+   "day": 3,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:sony:1900:explosions-in-the-sky",
+   "artistId": "lollapalooza-2011:explosions-in-the-sky",
+   "day": 3,
+   "stageId": "lollapalooza-2011:sony",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:music-unlimited:1245:titus-andronicus",
+   "artistId": "lollapalooza-2011:titus-andronicus",
+   "day": 3,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2011:d3:music-unlimited:1415:ryan-bingham-and-the-dead-horses",
+   "artistId": "lollapalooza-2011:ryan-bingham-and-the-dead-horses",
+   "day": 3,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:music-unlimited:1600:the-cars",
+   "artistId": "lollapalooza-2011:the-cars",
+   "day": 3,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:music-unlimited:1800:arctic-monkeys",
+   "artistId": "lollapalooza-2011:arctic-monkeys",
+   "day": 3,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "lollapalooza-2011:d3:music-unlimited:2000:foo-fighters",
+   "artistId": "lollapalooza-2011:foo-fighters",
+   "day": 3,
+   "stageId": "lollapalooza-2011:music-unlimited",
+   "start": "20:00",
+   "end": "22:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.lollapalooza.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110820024548/http://lineup.lollapalooza.com/events/2011/08/05/",
+    "captureTimestamp": "20110820024548",
+    "printed": "Fri, Aug 5",
+    "sha256": "5a651892b45cb796ccc85e0afd3ab2078ff2eeb658b6e3d0d025cceec26df2a2",
+    "rows": 51,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20110808141722/http://lineup.lollapalooza.com/band/kerli",
+     "captureTimestamp": "20110808141722",
+     "printed": "Friday, Aug. 5 3:00pm on BMI",
+     "sha256": "1d97c5a698221306db69633d39324ba5673b21785b26a9f507977e66076b95cb"
+    }
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110820024609/http://lineup.lollapalooza.com/events/2011/08/06",
+    "captureTimestamp": "20110820024609",
+    "printed": "Sat, Aug 6",
+    "sha256": "1360272e6ba0ef87339d29f1186a85f2343ec7af3752afdc030b4a8ded95e7ab",
+    "rows": 50,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20110807091316/http://lineup.lollapalooza.com/band/big-audio-dynamite",
+     "captureTimestamp": "20110807091316",
+     "printed": "Saturday, Aug. 6 4:30pm on Music Unlimited",
+     "sha256": "0388a5c031e68ce33a2e1445da368ff3f886e4dd596bcc2042fbdc9080749489"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110820024644/http://lineup.lollapalooza.com/events/2011/08/07/",
+    "captureTimestamp": "20110820024644",
+    "printed": "Sun, Aug 7",
+    "sha256": "0787959639913d3d53e1d810ea094a7cec7d0bc51beacb6f2fa5d17da87d39c0",
+    "rows": 51,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20110807190704/http://lineup.lollapalooza.com/band/the-cars",
+     "captureTimestamp": "20110807190704",
+     "printed": "Sunday, Aug. 7 4:00pm on Music Unlimited",
+     "sha256": "058f94b0ba0435f32a32271addc5431e96ebe685100ba197d43771a55299742a"
+    }
+   }
+  ]
+ }
+}

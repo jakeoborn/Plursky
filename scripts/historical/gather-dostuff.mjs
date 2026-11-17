@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // gather-dostuff.mjs — a gather folder (sheet.tsv + receipts.json) for an
-// Outside Lands edition read from its official per-day schedule grids
+// Outside Lands or Lollapalooza edition read from its official per-day schedule grids
 // (format "dostuff-grid", dostuff-schedule.mjs), from the research cache.
 // import-gather.mjs then re-reads every page and must agree.
 //
@@ -39,11 +39,13 @@ const rows = [], sources = [];
 for (let i = 0; i < groups.length; i += 4) {
   const [ts, url, ats, aurl] = groups.slice(i, i + 4);
   const page = parseDoStuff((await capture(ts, url)).text);
-  if (page.year !== ed.year) throw new Error(`${url} @${ts}: prints ${page.title}, not ${ed.year}`);
+  if (page.festival !== ed.festivalId || page.year !== ed.year) throw new Error(`${url} @${ts}: prints ${page.title} ${page.date}, not ${ed.name}`);
   const day = ed.dates.findIndex(([x]) => x === page.date) + 1;
   if (!day) throw new Error(`${url} @${ts}: prints ${page.label} (${page.date}), not a day of ${id}`);
   const slug = /\/band\/([^/?#]+)/.exec(aurl)?.[1];
-  const t = timeDay(page, parseDoStuffBand((await capture(ats, aurl)).text), slug);
+  const band = parseDoStuffBand((await capture(ats, aurl)).text);
+  if (band.festival !== ed.festivalId || (band.year !== null && band.year !== ed.year)) throw new Error(`${aurl}: "${band.title}" is not an act's page of ${ed.name}`);
+  const t = timeDay(page, band, slug);
   const ref = `page ${ts}`;
   for (const x of t.sets) rows.push({ day, date: page.date, stage: x.stage, start: x.start, end: x.end, artist: x.artist, source_ref: ref,
     note: comedy && x.stage === comedy ? "show in the comedy tent" : food && x.stage === food ? "show on the food stage" : "" });
