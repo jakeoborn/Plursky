@@ -43,7 +43,14 @@ function VfxParticleField({
 }
 function _onbHeadliners(n) {
   var lineup = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
-  return [...lineup].sort((a, b) => (b.tier || 0) - (a.tier || 0) || a.day - b.day || toNightMin(a.start) - toNightMin(b.start)).slice(0, n);
+  var face = a => typeof getPermanentArtistImage === "function" && getPermanentArtistImage(a.name) ? 1 : 0;
+  var seen = new Set();
+  return [...lineup].sort((a, b) => face(b) - face(a) || (b.tier || 0) - (a.tier || 0) || a.day - b.day || toNightMin(a.start) - toNightMin(b.start)).filter(a => {
+    var k = String(a.name || "").toLowerCase();
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  }).slice(0, n);
 }
 function OnbSchedulePreview() {
   var rows = _onbHeadliners(4).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start)).slice(0, 3);
@@ -131,7 +138,7 @@ function OnbCardPreview({
       var _loop = async function () {
           var c = null;
           try {
-            c = typeof _renderHeroCard === "function" ? await _renderHeroCard(a) : null;
+            c = typeof _renderHeroPreview === "function" ? await _renderHeroPreview(a) : typeof _renderHeroCard === "function" ? await _renderHeroCard(a) : null;
           } catch {}
           if (!live || !c) return 0;
           var blob = await new Promise(r => c.toBlob(r, "image/png"));
@@ -1806,7 +1813,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v629"
+        version: "v630"
       }));
     } catch {}
   }
@@ -1858,7 +1865,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v629"))
+      }, "Plursky · v630"))
     );
   }
 }
