@@ -1428,6 +1428,7 @@ function ArtistScreen({ state, setState }) {
                 <button className="duo-chip" onClick={() => go({ tab: "map", focusStage: a.stage, artist: null })}><span>On map</span></button>
                 {a.day != null && <button className="duo-chip" onClick={() => go({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })}><span>Schedule</span></button>}
               </div>
+              {typeof SetAttendanceRow === "function" && <SetAttendanceRow a={a} />}
             </div>
           );
         })()}

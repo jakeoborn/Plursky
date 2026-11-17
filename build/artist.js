@@ -1757,7 +1757,9 @@ function ArtistScreen({
         lineupHighlight: a.id,
         artist: null
       })
-    }, React.createElement("span", null, "Schedule"))));
+    }, React.createElement("span", null, "Schedule"))), typeof SetAttendanceRow === "function" && React.createElement(SetAttendanceRow, {
+      a: a
+    }));
   })(), (() => {
     if (a.day == null || !a.start || !a.stage) return null;
     var sameWk = x => !a.weekend || a.weekend === "both" || !x.weekend || x.weekend === "both" || x.weekend === a.weekend;
