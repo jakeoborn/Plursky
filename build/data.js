@@ -1011,6 +1011,230 @@ var FESTIVALS_REGISTRY = [{
   region: "Europe"
 }, {
   config: {
+    id: "lollapalooza-india-2027",
+    officialEvent: {
+      website: "https://lollaindia.com/",
+      observedAt: "2026-11-15"
+    },
+    name: "Lollapalooza India 2027",
+    shortName: "Lolla India",
+    brand: "Lollapalooza",
+    tagline: "Two days of Lollapalooza in Mumbai",
+    location: "Mahalaxmi Race Course · Mumbai, India",
+    locationShort: "Mahalaxmi Race Course",
+    dates: "Jan 23–24, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://lollaindia.com/",
+        observedAt: "2026-11-15"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#f97316",
+  emoji: "🎪",
+  region: "Asia"
+}, {
+  config: {
+    id: "lollapalooza-argentina-2027",
+    officialEvent: {
+      website: "https://www.lollapaloozaar.com/",
+      observedAt: "2026-11-15"
+    },
+    name: "Lollapalooza Argentina 2027",
+    shortName: "Lolla Argentina",
+    brand: "Lollapalooza",
+    tagline: "Three days of Lollapalooza outside Buenos Aires",
+    location: "Hipódromo de San Isidro · San Isidro, Argentina",
+    locationShort: "Hipódromo de San Isidro",
+    dates: "Mar 12–14, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.lollapaloozaar.com/",
+        observedAt: "2026-11-15"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#38bdf8",
+  emoji: "🎪",
+  region: "Latin America"
+}, {
+  config: {
+    id: "lollapalooza-chile-2027",
+    officialEvent: {
+      website: "https://www.lollapaloozacl.com/",
+      observedAt: "2026-11-15"
+    },
+    name: "Lollapalooza Chile 2027",
+    shortName: "Lolla Chile",
+    brand: "Lollapalooza",
+    tagline: "Three days of Lollapalooza in Santiago",
+    location: "Parque O'Higgins · Santiago, Chile",
+    locationShort: "Parque O'Higgins",
+    dates: "Mar 12–14, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.lollapaloozacl.com/",
+        observedAt: "2026-11-15"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#ef4444",
+  emoji: "🎪",
+  region: "Latin America"
+}, {
+  config: {
+    id: "lollapalooza-brasil-2027",
+    officialEvent: {
+      website: "https://www.lollapaloozabr.com/",
+      observedAt: "2026-11-15"
+    },
+    name: "Lollapalooza Brasil 2027",
+    shortName: "Lolla Brasil",
+    brand: "Lollapalooza",
+    tagline: "Three days of Lollapalooza in São Paulo",
+    location: "Autódromo de Interlagos · São Paulo, Brazil",
+    locationShort: "Autódromo de Interlagos",
+    dates: "Mar 19–21, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.lollapaloozabr.com/",
+        observedAt: "2026-11-15"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#22c55e",
+  emoji: "🎪",
+  region: "Latin America"
+}, {
+  config: {
+    id: "ultra-south-africa-2027",
+    officialEvent: {
+      website: "https://ultrasouthafrica.com/",
+      observedAt: "2026-11-15"
+    },
+    name: "Ultra South Africa 2027",
+    shortName: "Ultra SA",
+    brand: "Ultra",
+    tagline: "Two days of Ultra in South Africa",
+    location: "South Africa",
+    locationShort: "South Africa",
+    dates: "Apr 30, 2027 – May 1, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://ultrasouthafrica.com/",
+        observedAt: "2026-11-15"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#a855f7",
+  emoji: "🌍",
+  region: "Africa"
+}, {
+  config: {
+    id: "bottlerock-2027",
+    officialEvent: {
+      website: "https://www.bottlerocknapavalley.com/",
+      observedAt: "2026-11-15"
+    },
+    name: "BottleRock Napa Valley 2027",
+    shortName: "BottleRock",
+    brand: "BottleRock",
+    tagline: "Music, food and wine in Napa",
+    location: "Napa Valley Expo · Napa, CA",
+    locationShort: "Napa Valley Expo",
+    dates: "May 28–30, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.bottlerocknapavalley.com/",
+        observedAt: "2026-11-15"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#dc2626",
+  emoji: "🍷",
+  region: "North America"
+}, {
+  config: {
+    id: "suenos-2027",
+    officialEvent: {
+      website: "https://suenosmusicfestival.com/",
+      observedAt: "2026-11-15"
+    },
+    name: "Sueños Music Festival 2027",
+    shortName: "Sueños",
+    brand: "Sueños",
+    tagline: "Chicago's Latin music festival in Grant Park",
+    location: "Grant Park · Chicago, IL",
+    locationShort: "Grant Park",
+    dates: "May 29–30, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://suenosmusicfestival.com/",
+        observedAt: "2026-11-15"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#ec4899",
+  emoji: "🌺",
+  region: "North America"
+}, {
+  config: {
+    id: "bumbershoot-2027",
+    officialEvent: {
+      website: "https://bumbershoot.com/",
+      observedAt: "2026-11-15"
+    },
+    name: "Bumbershoot 2027",
+    shortName: "Bumbershoot",
+    brand: "Bumbershoot",
+    tagline: "Music and arts at Seattle Center over Labor Day weekend",
+    location: "Seattle Center · Seattle, WA",
+    locationShort: "Seattle Center",
+    dates: "Sep 4–5, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://bumbershoot.com/",
+        observedAt: "2026-11-15"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#eab308",
+  emoji: "☂️",
+  region: "North America"
+}, {
+  config: {
     id: "lost-lands-2026",
     officialEvent: {
       website: "https://www.lostlandsfestival.com/",

@@ -1028,6 +1028,199 @@ const FESTIVALS_REGISTRY = [
     region:    "Europe",
   },
   {
+    // ── Lollapalooza India 2027 — Mahalaxmi Race Course, Mumbai ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from lollaindia.com, read 2026-11-15: "Lollapalooza
+    // India 2027 — 23 & 24 January 2027, Mahalaxmi Race Course, Mumbai". No
+    // 2027 lineup in text yet.
+    config: {
+      id:        "lollapalooza-india-2027",
+      officialEvent: { website: "https://lollaindia.com/", observedAt: "2026-11-15" },
+      name:      "Lollapalooza India 2027",
+      shortName: "Lolla India",
+      brand:     "Lollapalooza",
+      tagline:   "Two days of Lollapalooza in Mumbai",
+      location:  "Mahalaxmi Race Course · Mumbai, India",
+      locationShort: "Mahalaxmi Race Course",
+      dates:     "Jan 23–24, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://lollaindia.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#f97316",
+    emoji:     "🎪",
+    region:    "Asia",
+  },
+  {
+    // ── Lollapalooza Argentina 2027 — Hipódromo de San Isidro ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from lollapaloozaar.com, read 2026-11-15: "Hipódromo de
+    // San Isidro 12, 13 y 14 de Marzo 2027". No 2027 lineup in text yet.
+    config: {
+      id:        "lollapalooza-argentina-2027",
+      officialEvent: { website: "https://www.lollapaloozaar.com/", observedAt: "2026-11-15" },
+      name:      "Lollapalooza Argentina 2027",
+      shortName: "Lolla Argentina",
+      brand:     "Lollapalooza",
+      tagline:   "Three days of Lollapalooza outside Buenos Aires",
+      location:  "Hipódromo de San Isidro · San Isidro, Argentina",
+      locationShort: "Hipódromo de San Isidro",
+      dates:     "Mar 12–14, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.lollapaloozaar.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#38bdf8",
+    emoji:     "🎪",
+    region:    "Latin America",
+  },
+  {
+    // ── Lollapalooza Chile 2027 — Parque O'Higgins, Santiago ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from lollapaloozacl.com, read 2026-11-15: page title
+    // "Lollapalooza Chile – 12, 13 Y 14 DE MARZ0 2027 | PARQUE O'HIGGINS". No
+    // 2027 lineup in text yet.
+    config: {
+      id:        "lollapalooza-chile-2027",
+      officialEvent: { website: "https://www.lollapaloozacl.com/", observedAt: "2026-11-15" },
+      name:      "Lollapalooza Chile 2027",
+      shortName: "Lolla Chile",
+      brand:     "Lollapalooza",
+      tagline:   "Three days of Lollapalooza in Santiago",
+      location:  "Parque O'Higgins · Santiago, Chile",
+      locationShort: "Parque O'Higgins",
+      dates:     "Mar 12–14, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.lollapaloozacl.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ef4444",
+    emoji:     "🎪",
+    region:    "Latin America",
+  },
+  {
+    // ── Lollapalooza Brasil 2027 — Autódromo de Interlagos, São Paulo ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from lollapaloozabr.com, read 2026-11-15: "19, 20 e 21 de
+    // Março 2027 / Autódromo de Interlagos - SP". The site gives only the
+    // three headliners per day in text (the full poster is an image), so no
+    // lineup is loaded yet.
+    config: {
+      id:        "lollapalooza-brasil-2027",
+      officialEvent: { website: "https://www.lollapaloozabr.com/", observedAt: "2026-11-15" },
+      name:      "Lollapalooza Brasil 2027",
+      shortName: "Lolla Brasil",
+      brand:     "Lollapalooza",
+      tagline:   "Three days of Lollapalooza in São Paulo",
+      location:  "Autódromo de Interlagos · São Paulo, Brazil",
+      locationShort: "Autódromo de Interlagos",
+      dates:     "Mar 19–21, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.lollapaloozabr.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#22c55e",
+    emoji:     "🎪",
+    region:    "Latin America",
+  },
+  {
+    // ── Ultra South Africa 2027 — Cape Town and Johannesburg ──
+    // Added 2026-11-15 as a gated preview. Dates from ultrasouthafrica.com, read 2026-11-15: page title "Ultra
+    // South Africa - 30 April, 1 May 2027". The CSV notes Cape Town on 30 April
+    // and Johannesburg on 1 May; the page names no venues, so only the
+    // country is loaded. No lineup yet.
+    config: {
+      id:        "ultra-south-africa-2027",
+      officialEvent: { website: "https://ultrasouthafrica.com/", observedAt: "2026-11-15" },
+      name:      "Ultra South Africa 2027",
+      shortName: "Ultra SA",
+      brand:     "Ultra",
+      tagline:   "Two days of Ultra in South Africa",
+      location:  "South Africa",
+      locationShort: "South Africa",
+      dates:     "Apr 30, 2027 – May 1, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://ultrasouthafrica.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#a855f7",
+    emoji:     "🌍",
+    region:    "Africa",
+  },
+  {
+    // ── BottleRock Napa Valley 2027 — Napa Valley Expo, Napa CA ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from bottlerocknapavalley.com/info, read 2026-11-15:
+    // "BottleRock 2027 is taking place May 28-30, 2027" at "the Napa Valley
+    // Expo in Napa, California". No 2027 lineup yet.
+    config: {
+      id:        "bottlerock-2027",
+      officialEvent: { website: "https://www.bottlerocknapavalley.com/", observedAt: "2026-11-15" },
+      name:      "BottleRock Napa Valley 2027",
+      shortName: "BottleRock",
+      brand:     "BottleRock",
+      tagline:   "Music, food and wine in Napa",
+      location:  "Napa Valley Expo · Napa, CA",
+      locationShort: "Napa Valley Expo",
+      dates:     "May 28–30, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.bottlerocknapavalley.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#dc2626",
+    emoji:     "🍷",
+    region:    "North America",
+  },
+  {
+    // ── Sueños Music Festival 2027 — Grant Park, Chicago IL ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from suenosmusicfestival.com/lineup, read 2026-11-15:
+    // "La gozadera continúa en Grant Park May 29-30, 2027. Stay tuned for the
+    // Year 6 lineup." No lineup yet.
+    config: {
+      id:        "suenos-2027",
+      officialEvent: { website: "https://suenosmusicfestival.com/", observedAt: "2026-11-15" },
+      name:      "Sueños Music Festival 2027",
+      shortName: "Sueños",
+      brand:     "Sueños",
+      tagline:   "Chicago's Latin music festival in Grant Park",
+      location:  "Grant Park · Chicago, IL",
+      locationShort: "Grant Park",
+      dates:     "May 29–30, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://suenosmusicfestival.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ec4899",
+    emoji:     "🌺",
+    region:    "North America",
+  },
+  {
+    // ── Bumbershoot 2027 — Seattle Center, Seattle WA ──
+    // Added 2026-11-15 as a gated preview. Dates and venue from bumbershoot.com, read 2026-11-15: "See you Sept 4 +
+    // 5, 2027!" and page title "Bumbershoot - September 4th-5th, 2027 @ Seattle
+    // Center". No 2027 lineup yet.
+    config: {
+      id:        "bumbershoot-2027",
+      officialEvent: { website: "https://bumbershoot.com/", observedAt: "2026-11-15" },
+      name:      "Bumbershoot 2027",
+      shortName: "Bumbershoot",
+      brand:     "Bumbershoot",
+      tagline:   "Music and arts at Seattle Center over Labor Day weekend",
+      location:  "Seattle Center · Seattle, WA",
+      locationShort: "Seattle Center",
+      dates:     "Sep 4–5, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://bumbershoot.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#eab308",
+    emoji:     "☂️",
+    region:    "North America",
+  },
+  {
     // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
     // Flip 2026-09-11: stage + set time per act come from the Lost Lands app
     // schedule (app v10.0.0, as captured 2026-09-10); the SCHEDULE block
