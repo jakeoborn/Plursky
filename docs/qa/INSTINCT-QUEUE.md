@@ -135,7 +135,7 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 | Decadence Colorado 2026 | `decadence-colorado-2026` | Dec 30–31, 2026 | 23 | 0 | 23 | 0 | live |
 | Lights All Night 2026 | `lights-all-night-2026` | Dec 30–31, 2026 | 39 | 0 | 39 | 0 | live |
 | Decadence Arizona 2026 | `decadence-arizona-2026` | Dec 30–31, 2026 | 39 | 0 | 39 | 0 | live |
-| Countdown NYE 2026 | `countdown-nye-2026` | Dec 31, 2026 – Jan 1, 2027 | 71 | 0 | 71 | 0 | live |
+| Countdown NYE 2026 | `countdown-nye-2026` | Dec 31, 2026 – Jan 1, 2027 | 70 | 0 | 70 | 0 | live |
 | Day Zero Tulum 2027 | `day-zero-tulum-2027` | Jan 9, 2027 | 30 | 0 | 30 | 0 | live |
 | Groove Cruise Miami 2027 | `groove-cruise-2027` | Jan 21–25, 2027 | 106 | 0 | 106 | 0 | live |
 | Sunset On The River 2027 | `sunset-on-the-river-2027` | Feb 20–21, 2027 | 16 | 0 | 16 | 0 | live |

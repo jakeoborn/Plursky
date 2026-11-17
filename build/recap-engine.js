@@ -360,6 +360,32 @@ function _drawHeroCard(artist, source) {
   ctx.fillText(`${CFG.shortName || CFG.name || ""}${CFG.year ? " · " + CFG.year : ""}`.toUpperCase(), PAD, y);
   return c;
 }
+async function _renderHeroPreview(artist) {
+  var own = await _heroCardSource(artist);
+  if (own) {
+    var c = _drawHeroCard(artist, own.src);
+    try {
+      own.revoke?.();
+    } catch {}
+    return c;
+  }
+  var rec = typeof getPermanentArtistImage === "function" ? getPermanentArtistImage(artist.name || "") : null;
+  if (rec && rec.url) {
+    try {
+      var img = await new Promise((res, rej) => {
+        var im = new Image();
+        im.crossOrigin = "anonymous";
+        im.onload = () => res(im);
+        im.onerror = rej;
+        im.src = rec.url;
+      });
+      var _c = _drawHeroCard(artist, img);
+      _c.getContext("2d").getImageData(0, 0, 1, 1);
+      return _c;
+    } catch {}
+  }
+  return _drawHeroCard(artist, null);
+}
 async function _renderHeroCard(artist) {
   var source = await _heroCardSource(artist);
   var canvas = _drawHeroCard(artist, source && source.src);
