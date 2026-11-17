@@ -29,6 +29,12 @@ export const EDITIONS = {
   "shambhala-2014": { festivalId: "shambhala", name: "Shambhala 2014", year: 2014, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2014-08-07","Thursday"],["2014-08-08","Friday"],["2014-08-09","Saturday"],["2014-08-10","Sunday"]] },
   "shambhala-2015": { festivalId: "shambhala", name: "Shambhala 2015", year: 2015, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2015-08-06","Thursday"],["2015-08-07","Friday"],["2015-08-08","Saturday"],["2015-08-09","Sunday"]] },
   "shambhala-2016": { festivalId: "shambhala", name: "Shambhala 2016", year: 2016, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2016-08-04","Thursday"],["2016-08-05","Friday"],["2016-08-06","Saturday"],["2016-08-07","Sunday"]] },
+  // Outside Lands 2010-2011: the official schedule planner on
+  // myscheduler.sfoutsidelands.com, one archived page per year that writes
+  // every set as data (format "myscheduler-data", myscheduler-schedule.mjs).
+  // 2010 was two days.
+  "outside-lands-2010": { festivalId: "outside-lands", name: "Outside Lands 2010", year: 2010, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2010-08-14","Saturday"],["2010-08-15","Sunday"]] },
+  "outside-lands-2011": { festivalId: "outside-lands", name: "Outside Lands 2011", year: 2011, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2011-08-12","Friday"],["2011-08-13","Saturday"],["2011-08-14","Sunday"]] },
   // Outside Lands 2012-2017: the official lineup.sfoutsidelands.com schedule
   // grid, one archived page per day (format "dostuff-grid",
   // dostuff-schedule.mjs). The grid prints no am/pm; each day's meridiem is

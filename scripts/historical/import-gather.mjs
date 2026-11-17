@@ -43,6 +43,7 @@ import { parseElectricForest } from "./ef-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./coachella-lineup.mjs";
 import { parseShambhala } from "./shambhala-schedule.mjs";
 import { parseDoStuff, parseDoStuffBand, timeDay } from "./dostuff-schedule.mjs";
+import { parseMyScheduler, restoreSets } from "./myscheduler-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
@@ -411,6 +412,39 @@ export async function importGather(id, dir) {
           ...(funny.length && { comedyShows: funny.length, comedyStage: s.comedyStage }),
           ...(fed.length && { foodShows: fed.length, foodStage: s.foodStage }),
           ...(page.misprints.length && { misprints: page.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
+      } else if (s.format === "myscheduler-data") {
+        // One page writes every day's sets as data, each with its date, its
+        // 24-hour start and its length (Outside Lands 2010-2011,
+        // myscheduler-schedule.mjs). Every day it schedules is the edition's
+        // and is cited. Shows on the comedy-and-variety stage must be the
+        // sheet's excluded rows of that day, one for one; a billing whose
+        // letters the capture cannot decode is read by one of the receipt's
+        // restored names, and entries with no stage or time stay in the
+        // ledger, never as sets.
+        const page = restoreSets(parseMyScheduler(cap.text, { year: ed.year }), s.restore || []);
+        const dayOf = date => ed.dates.findIndex(([d]) => d === date) + 1;
+        const printedDays = page.days.map(d => dayOf(d.date));
+        if (printedDays.some(d => d < 1)) throw new Error(`${s.url} @${s.captureTimestamp}: schedules a day that is not the edition's (${page.days.map(d => d.date).join(", ")})`);
+        if (printedDays.join() !== days.join()) throw new Error(`${s.url} @${s.captureTimestamp}: schedules days ${printedDays.join(",")}, the sheet cites it for ${days.join(",")}`);
+        if (page.festivalStart !== ed.dates[0][0]) throw new Error(`${s.url} @${s.captureTimestamp}: festivalStart is ${page.festivalStart}, the edition starts ${ed.dates[0][0]}`);
+        for (const d of page.days) {
+          const day = dayOf(d.date);
+          if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is written as ${d.label}, the receipt says "${s.printed[day]}"`);
+          const k = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
+          const funny = d.sets.filter(x => s.comedyStage && x.stage === s.comedyStage);
+          const pg = funny.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x.comedy).map(k).sort().join("\n");
+          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} schedules ${funny.length} show(s) on ${s.comedyStage || "no comedy and variety stage"}, the sheet excludes others`);
+          const music = d.sets.filter(x => !funny.includes(x));
+          const sub = music.find(x => x.subtitle);
+          if (sub) throw new Error(`${s.url} @${s.captureTimestamp}: "${sub.artist}" on ${sub.stage} prints a subtitle, which no music set does`);
+          agree(day, music.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          const restored = d.sets.filter(x => x.undecoded);
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { firstStart: d.firstStart, stages: d.stages.length, festivalStart: page.festivalStart,
+            times: "written as data: each set's date, 24-hour start and length in minutes",
+            ...(funny.length && { comedyShows: funny.length, comedyStage: s.comedyStage }),
+            ...(restored.length && { restored: restored.map(x => `${x.undecoded} → ${x.artist}`) }) });
+        }
+        if (page.unscheduled.length) unscheduledLedger.push({ archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp, acts: page.unscheduled });
       } else if (s.format === "day-tabs") {
         // Every day is on the page; each day's rows must equal its own pane.
         const panes = parseDayTabs(cap.text);

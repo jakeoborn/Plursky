@@ -1,0 +1,953 @@
+{
+ "id": "outside-lands-2010",
+ "festivalId": "outside-lands",
+ "name": "Outside Lands 2010",
+ "year": 2010,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2010-08-14",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2010-08-15",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "outside-lands-2010:inspire",
+   "name": "Inspire"
+  },
+  {
+   "id": "outside-lands-2010:lands-end",
+   "name": "Lands End"
+  },
+  {
+   "id": "outside-lands-2010:panhandle-solar",
+   "name": "Panhandle Solar"
+  },
+  {
+   "id": "outside-lands-2010:sutro",
+   "name": "Sutro"
+  },
+  {
+   "id": "outside-lands-2010:twin-peaks",
+   "name": "Twin Peaks"
+  }
+ ],
+ "artists": [
+  {
+   "id": "outside-lands-2010:tal-m-klein",
+   "name": "Tal M Klein",
+   "key": "tal-m-klein",
+   "performers": [
+    "tal-m-klein"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:ground-control",
+   "name": "Ground Control",
+   "key": "ground-control",
+   "performers": [
+    "ground-control"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:motion-potion",
+   "name": "Motion Potion",
+   "key": "motion-potion",
+   "performers": [
+    "motion-potion"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:syd-gris",
+   "name": "Syd Gris",
+   "key": "syd-gris",
+   "performers": [
+    "syd-gris"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:kramer",
+   "name": "Kramer",
+   "key": "kramer",
+   "performers": [
+    "kramer"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:dj-dan",
+   "name": "DJ Dan",
+   "key": "dj-dan",
+   "performers": [
+    "dj-dan"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:people-under-the-stairs",
+   "name": "People Under The Stairs",
+   "key": "people-under-the-stairs",
+   "performers": [
+    "people-under-the-stairs"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:sierra-leone-s-refugee-all-stars",
+   "name": "Sierra Leone's Refugee All Stars",
+   "key": "sierra-leone-s-refugee-all-stars",
+   "performers": [
+    "sierra-leone-s-refugee-all-stars"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:gogol-bordello",
+   "name": "Gogol Bordello",
+   "key": "gogol-bordello",
+   "performers": [
+    "gogol-bordello"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:my-morning-jacket",
+   "name": "My Morning Jacket",
+   "key": "my-morning-jacket",
+   "performers": [
+    "my-morning-jacket"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:furthur-ft-phil-lesh-and-bob-weir",
+   "name": "Furthur ft. Phil Lesh & Bob Weir",
+   "key": "furthur-ft-phil-lesh-and-bob-weir",
+   "performers": [
+    "furthur-ft-phil-lesh-and-bob-weir"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:the-whigs",
+   "name": "The Whigs",
+   "key": "the-whigs",
+   "performers": [
+    "the-whigs"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:dawes",
+   "name": "Dawes",
+   "key": "dawes",
+   "performers": [
+    "dawes"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:the-pimps-of-joytime",
+   "name": "The Pimps of Joytime",
+   "key": "the-pimps-of-joytime",
+   "performers": [
+    "the-pimps-of-joytime"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:rebirth-brass-band",
+   "name": "Rebirth Brass Band",
+   "key": "rebirth-brass-band",
+   "performers": [
+    "rebirth-brass-band"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:beats-antique",
+   "name": "Beats Antique",
+   "key": "beats-antique",
+   "performers": [
+    "beats-antique"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:wild-beasts",
+   "name": "Wild Beasts",
+   "key": "wild-beasts",
+   "performers": [
+    "wild-beasts"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:electric-six",
+   "name": "Electric Six",
+   "key": "electric-six",
+   "performers": [
+    "electric-six"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:pretty-lights",
+   "name": "Pretty Lights",
+   "key": "pretty-lights",
+   "performers": [
+    "pretty-lights"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:bassnectar",
+   "name": "Bassnectar",
+   "key": "bassnectar",
+   "performers": [
+    "bassnectar"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:wolfmother",
+   "name": "Wolfmother",
+   "key": "wolfmother",
+   "performers": [
+    "wolfmother"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:freelance-whales",
+   "name": "Freelance Whales",
+   "key": "freelance-whales",
+   "performers": [
+    "freelance-whales"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:langhorne-slim",
+   "name": "Langhorne Slim",
+   "key": "langhorne-slim",
+   "performers": [
+    "langhorne-slim"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:the-levon-helm-band",
+   "name": "The Levon Helm Band",
+   "key": "the-levon-helm-band",
+   "performers": [
+    "the-levon-helm-band"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:tokyo-police-club",
+   "name": "Tokyo Police Club",
+   "key": "tokyo-police-club",
+   "performers": [
+    "tokyo-police-club"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:cat-power",
+   "name": "Cat Power",
+   "key": "cat-power",
+   "performers": [
+    "cat-power"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:the-strokes",
+   "name": "The Strokes",
+   "key": "the-strokes",
+   "performers": [
+    "the-strokes"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:j-boogie",
+   "name": "J. Boogie",
+   "key": "j-boogie",
+   "performers": [
+    "j-boogie"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:pigeon-john",
+   "name": "Pigeon John",
+   "key": "pigeon-john",
+   "performers": [
+    "pigeon-john"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:jeffrey-paradise",
+   "name": "Jeffrey Paradise",
+   "key": "jeffrey-paradise",
+   "performers": [
+    "jeffrey-paradise"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:ben-doren-ft-j-bowman",
+   "name": "Ben Doren ft. J. Bowman",
+   "key": "ben-doren-ft-j-bowman",
+   "performers": [
+    "ben-doren-ft-j-bowman"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:isaiah-martin-ft-marc-d-antonio-and-dustin-hengl",
+   "name": "Isaiah Martin ft. Marc D’Antonio and Dustin Hengl",
+   "key": "isaiah-martin-ft-marc-d-antonio-and-dustin-hengl",
+   "performers": [
+    "isaiah-martin-ft-marc-d-antonio-and-dustin-hengl"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:donald-glaude",
+   "name": "Donald Glaude",
+   "key": "donald-glaude",
+   "performers": [
+    "donald-glaude"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:amos-lee",
+   "name": "Amos Lee",
+   "key": "amos-lee",
+   "performers": [
+    "amos-lee"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:the-temper-trap",
+   "name": "The Temper Trap",
+   "key": "the-temper-trap",
+   "performers": [
+    "the-temper-trap"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:al-green",
+   "name": "Al Green",
+   "key": "al-green",
+   "performers": [
+    "al-green"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:phoenix",
+   "name": "Phoenix",
+   "key": "phoenix",
+   "performers": [
+    "phoenix"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:kings-of-leon",
+   "name": "Kings of Leon",
+   "key": "kings-of-leon",
+   "performers": [
+    "kings-of-leon"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:little-wings",
+   "name": "Little Wings",
+   "key": "little-wings",
+   "performers": [
+    "little-wings"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:nneka",
+   "name": "Nneka",
+   "key": "nneka",
+   "performers": [
+    "nneka"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:vieux-farka-toure",
+   "name": "Vieux Farka Toure",
+   "key": "vieux-farka-toure",
+   "performers": [
+    "vieux-farka-toure"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:garage-a-trois",
+   "name": "Garage A Trois",
+   "key": "garage-a-trois",
+   "performers": [
+    "garage-a-trois"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:aterciopelados",
+   "name": "Aterciopelados",
+   "key": "aterciopelados",
+   "performers": [
+    "aterciopelados"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:the-budos-band",
+   "name": "The Budos Band",
+   "key": "the-budos-band",
+   "performers": [
+    "the-budos-band"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:quinn-deveaux-and-the-blue-beat-review",
+   "name": "Quinn Deveaux & the Blue Beat Review",
+   "key": "quinn-deveaux-and-the-blue-beat-review",
+   "performers": [
+    "quinn-deveaux-and-the-blue-beat-review"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:mayer-hawthorne-and-the-county",
+   "name": "Mayer Hawthorne & The County",
+   "key": "mayer-hawthorne-and-the-county",
+   "performers": [
+    "mayer-hawthorne-and-the-county"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:janelle-monae",
+   "name": "Janelle Monáe",
+   "key": "janelle-monae",
+   "performers": [
+    "janelle-monae"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:slightly-stoopid",
+   "name": "Slightly Stoopid",
+   "key": "slightly-stoopid",
+   "performers": [
+    "slightly-stoopid"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:social-distortion",
+   "name": "Social Distortion",
+   "key": "social-distortion",
+   "performers": [
+    "social-distortion"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:the-soft-pack",
+   "name": "The Soft Pack",
+   "key": "the-soft-pack",
+   "performers": [
+    "the-soft-pack"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:the-devil-makes-three",
+   "name": "The Devil Makes Three",
+   "key": "the-devil-makes-three",
+   "performers": [
+    "the-devil-makes-three"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:edward-sharpe-and-the-magnetic-zeros",
+   "name": "Edward Sharpe & The Magnetic Zeros",
+   "key": "edward-sharpe-and-the-magnetic-zeros",
+   "performers": [
+    "edward-sharpe-and-the-magnetic-zeros"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:chromeo",
+   "name": "Chromeo",
+   "key": "chromeo",
+   "performers": [
+    "chromeo"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:nas-and-damian-jr-gong-marley",
+   "name": "Nas & Damian \"Jr. Gong\" Marley",
+   "key": "nas-and-damian-jr-gong-marley",
+   "performers": [
+    "nas-and-damian-jr-gong-marley"
+   ]
+  },
+  {
+   "id": "outside-lands-2010:empire-of-the-sun",
+   "name": "Empire of the Sun",
+   "key": "empire-of-the-sun",
+   "performers": [
+    "empire-of-the-sun"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "outside-lands-2010:d1:inspire:1200:tal-m-klein",
+   "artistId": "outside-lands-2010:tal-m-klein",
+   "day": 1,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2010:d1:inspire:1330:ground-control",
+   "artistId": "outside-lands-2010:ground-control",
+   "day": 1,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2010:d1:inspire:1500:motion-potion",
+   "artistId": "outside-lands-2010:motion-potion",
+   "day": 1,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2010:d1:inspire:1630:syd-gris",
+   "artistId": "outside-lands-2010:syd-gris",
+   "day": 1,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2010:d1:inspire:1800:kramer",
+   "artistId": "outside-lands-2010:kramer",
+   "day": 1,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "outside-lands-2010:d1:inspire:1930:dj-dan",
+   "artistId": "outside-lands-2010:dj-dan",
+   "day": 1,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "19:30",
+   "end": "21:30"
+  },
+  {
+   "id": "outside-lands-2010:d1:lands-end:1200:people-under-the-stairs",
+   "artistId": "outside-lands-2010:people-under-the-stairs",
+   "day": 1,
+   "stageId": "outside-lands-2010:lands-end",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2010:d1:lands-end:1325:sierra-leone-s-refugee-all-stars",
+   "artistId": "outside-lands-2010:sierra-leone-s-refugee-all-stars",
+   "day": 1,
+   "stageId": "outside-lands-2010:lands-end",
+   "start": "13:25",
+   "end": "14:15"
+  },
+  {
+   "id": "outside-lands-2010:d1:lands-end:1505:gogol-bordello",
+   "artistId": "outside-lands-2010:gogol-bordello",
+   "day": 1,
+   "stageId": "outside-lands-2010:lands-end",
+   "start": "15:05",
+   "end": "16:05"
+  },
+  {
+   "id": "outside-lands-2010:d1:lands-end:1700:my-morning-jacket",
+   "artistId": "outside-lands-2010:my-morning-jacket",
+   "day": 1,
+   "stageId": "outside-lands-2010:lands-end",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "outside-lands-2010:d1:lands-end:1925:furthur-ft-phil-lesh-and-bob-weir",
+   "artistId": "outside-lands-2010:furthur-ft-phil-lesh-and-bob-weir",
+   "day": 1,
+   "stageId": "outside-lands-2010:lands-end",
+   "start": "19:25",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2010:d1:panhandle-solar:1200:the-whigs",
+   "artistId": "outside-lands-2010:the-whigs",
+   "day": 1,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2010:d1:panhandle-solar:1325:dawes",
+   "artistId": "outside-lands-2010:dawes",
+   "day": 1,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "13:25",
+   "end": "14:05"
+  },
+  {
+   "id": "outside-lands-2010:d1:panhandle-solar:1455:the-pimps-of-joytime",
+   "artistId": "outside-lands-2010:the-pimps-of-joytime",
+   "day": 1,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "14:55",
+   "end": "15:40"
+  },
+  {
+   "id": "outside-lands-2010:d1:panhandle-solar:1635:rebirth-brass-band",
+   "artistId": "outside-lands-2010:rebirth-brass-band",
+   "day": 1,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "16:35",
+   "end": "17:20"
+  },
+  {
+   "id": "outside-lands-2010:d1:panhandle-solar:1815:beats-antique",
+   "artistId": "outside-lands-2010:beats-antique",
+   "day": 1,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "18:15",
+   "end": "19:00"
+  },
+  {
+   "id": "outside-lands-2010:d1:panhandle-solar:1955:wild-beasts",
+   "artistId": "outside-lands-2010:wild-beasts",
+   "day": 1,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "19:55",
+   "end": "20:40"
+  },
+  {
+   "id": "outside-lands-2010:d1:sutro:1240:electric-six",
+   "artistId": "outside-lands-2010:electric-six",
+   "day": 1,
+   "stageId": "outside-lands-2010:sutro",
+   "start": "12:40",
+   "end": "13:20"
+  },
+  {
+   "id": "outside-lands-2010:d1:sutro:1415:pretty-lights",
+   "artistId": "outside-lands-2010:pretty-lights",
+   "day": 1,
+   "stageId": "outside-lands-2010:sutro",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2010:d1:sutro:1605:bassnectar",
+   "artistId": "outside-lands-2010:bassnectar",
+   "day": 1,
+   "stageId": "outside-lands-2010:sutro",
+   "start": "16:05",
+   "end": "16:55"
+  },
+  {
+   "id": "outside-lands-2010:d1:sutro:1830:wolfmother",
+   "artistId": "outside-lands-2010:wolfmother",
+   "day": 1,
+   "stageId": "outside-lands-2010:sutro",
+   "start": "18:30",
+   "end": "19:20"
+  },
+  {
+   "id": "outside-lands-2010:d1:twin-peaks:1245:freelance-whales",
+   "artistId": "outside-lands-2010:freelance-whales",
+   "day": 1,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "12:45",
+   "end": "13:25"
+  },
+  {
+   "id": "outside-lands-2010:d1:twin-peaks:1410:langhorne-slim",
+   "artistId": "outside-lands-2010:langhorne-slim",
+   "day": 1,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "14:10",
+   "end": "14:55"
+  },
+  {
+   "id": "outside-lands-2010:d1:twin-peaks:1545:the-levon-helm-band",
+   "artistId": "outside-lands-2010:the-levon-helm-band",
+   "day": 1,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "15:45",
+   "end": "16:35"
+  },
+  {
+   "id": "outside-lands-2010:d1:twin-peaks:1725:tokyo-police-club",
+   "artistId": "outside-lands-2010:tokyo-police-club",
+   "day": 1,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "17:25",
+   "end": "18:15"
+  },
+  {
+   "id": "outside-lands-2010:d1:twin-peaks:1905:cat-power",
+   "artistId": "outside-lands-2010:cat-power",
+   "day": 1,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "19:05",
+   "end": "19:55"
+  },
+  {
+   "id": "outside-lands-2010:d1:twin-peaks:2045:the-strokes",
+   "artistId": "outside-lands-2010:the-strokes",
+   "day": 1,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "20:45",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2010:d2:inspire:1200:j-boogie",
+   "artistId": "outside-lands-2010:j-boogie",
+   "day": 2,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2010:d2:inspire:1330:pigeon-john",
+   "artistId": "outside-lands-2010:pigeon-john",
+   "day": 2,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2010:d2:inspire:1500:jeffrey-paradise",
+   "artistId": "outside-lands-2010:jeffrey-paradise",
+   "day": 2,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2010:d2:inspire:1630:ben-doren-ft-j-bowman",
+   "artistId": "outside-lands-2010:ben-doren-ft-j-bowman",
+   "day": 2,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2010:d2:inspire:1800:isaiah-martin-ft-marc-d-antonio-and-dustin-hengl",
+   "artistId": "outside-lands-2010:isaiah-martin-ft-marc-d-antonio-and-dustin-hengl",
+   "day": 2,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "outside-lands-2010:d2:inspire:1930:donald-glaude",
+   "artistId": "outside-lands-2010:donald-glaude",
+   "day": 2,
+   "stageId": "outside-lands-2010:inspire",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "outside-lands-2010:d2:lands-end:1245:amos-lee",
+   "artistId": "outside-lands-2010:amos-lee",
+   "day": 2,
+   "stageId": "outside-lands-2010:lands-end",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2010:d2:lands-end:1415:the-temper-trap",
+   "artistId": "outside-lands-2010:the-temper-trap",
+   "day": 2,
+   "stageId": "outside-lands-2010:lands-end",
+   "start": "14:15",
+   "end": "15:05"
+  },
+  {
+   "id": "outside-lands-2010:d2:lands-end:1600:al-green",
+   "artistId": "outside-lands-2010:al-green",
+   "day": 2,
+   "stageId": "outside-lands-2010:lands-end",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "outside-lands-2010:d2:lands-end:1755:phoenix",
+   "artistId": "outside-lands-2010:phoenix",
+   "day": 2,
+   "stageId": "outside-lands-2010:lands-end",
+   "start": "17:55",
+   "end": "18:55"
+  },
+  {
+   "id": "outside-lands-2010:d2:lands-end:1950:kings-of-leon",
+   "artistId": "outside-lands-2010:kings-of-leon",
+   "day": 2,
+   "stageId": "outside-lands-2010:lands-end",
+   "start": "19:50",
+   "end": "21:20"
+  },
+  {
+   "id": "outside-lands-2010:d2:panhandle-solar:1200:little-wings",
+   "artistId": "outside-lands-2010:little-wings",
+   "day": 2,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2010:d2:panhandle-solar:1325:nneka",
+   "artistId": "outside-lands-2010:nneka",
+   "day": 2,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "13:25",
+   "end": "14:05"
+  },
+  {
+   "id": "outside-lands-2010:d2:panhandle-solar:1455:vieux-farka-toure",
+   "artistId": "outside-lands-2010:vieux-farka-toure",
+   "day": 2,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "14:55",
+   "end": "15:35"
+  },
+  {
+   "id": "outside-lands-2010:d2:panhandle-solar:1630:garage-a-trois",
+   "artistId": "outside-lands-2010:garage-a-trois",
+   "day": 2,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "outside-lands-2010:d2:panhandle-solar:1805:aterciopelados",
+   "artistId": "outside-lands-2010:aterciopelados",
+   "day": 2,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "18:05",
+   "end": "18:45"
+  },
+  {
+   "id": "outside-lands-2010:d2:panhandle-solar:1940:the-budos-band",
+   "artistId": "outside-lands-2010:the-budos-band",
+   "day": 2,
+   "stageId": "outside-lands-2010:panhandle-solar",
+   "start": "19:40",
+   "end": "20:25"
+  },
+  {
+   "id": "outside-lands-2010:d2:sutro:1200:quinn-deveaux-and-the-blue-beat-review",
+   "artistId": "outside-lands-2010:quinn-deveaux-and-the-blue-beat-review",
+   "day": 2,
+   "stageId": "outside-lands-2010:sutro",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2010:d2:sutro:1330:mayer-hawthorne-and-the-county",
+   "artistId": "outside-lands-2010:mayer-hawthorne-and-the-county",
+   "day": 2,
+   "stageId": "outside-lands-2010:sutro",
+   "start": "13:30",
+   "end": "14:10"
+  },
+  {
+   "id": "outside-lands-2010:d2:sutro:1505:janelle-monae",
+   "artistId": "outside-lands-2010:janelle-monae",
+   "day": 2,
+   "stageId": "outside-lands-2010:sutro",
+   "start": "15:05",
+   "end": "15:55"
+  },
+  {
+   "id": "outside-lands-2010:d2:sutro:1700:slightly-stoopid",
+   "artistId": "outside-lands-2010:slightly-stoopid",
+   "day": 2,
+   "stageId": "outside-lands-2010:sutro",
+   "start": "17:00",
+   "end": "17:50"
+  },
+  {
+   "id": "outside-lands-2010:d2:sutro:1855:social-distortion",
+   "artistId": "outside-lands-2010:social-distortion",
+   "day": 2,
+   "stageId": "outside-lands-2010:sutro",
+   "start": "18:55",
+   "end": "19:45"
+  },
+  {
+   "id": "outside-lands-2010:d2:twin-peaks:1245:the-soft-pack",
+   "artistId": "outside-lands-2010:the-soft-pack",
+   "day": 2,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "12:45",
+   "end": "13:25"
+  },
+  {
+   "id": "outside-lands-2010:d2:twin-peaks:1410:the-devil-makes-three",
+   "artistId": "outside-lands-2010:the-devil-makes-three",
+   "day": 2,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "14:10",
+   "end": "14:55"
+  },
+  {
+   "id": "outside-lands-2010:d2:twin-peaks:1540:edward-sharpe-and-the-magnetic-zeros",
+   "artistId": "outside-lands-2010:edward-sharpe-and-the-magnetic-zeros",
+   "day": 2,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "15:40",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2010:d2:twin-peaks:1715:chromeo",
+   "artistId": "outside-lands-2010:chromeo",
+   "day": 2,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "17:15",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2010:d2:twin-peaks:1850:nas-and-damian-jr-gong-marley",
+   "artistId": "outside-lands-2010:nas-and-damian-jr-gong-marley",
+   "day": 2,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "18:50",
+   "end": "19:40"
+  },
+  {
+   "id": "outside-lands-2010:d2:twin-peaks:2025:empire-of-the-sun",
+   "artistId": "outside-lands-2010:empire-of-the-sun",
+   "day": 2,
+   "stageId": "outside-lands-2010:twin-peaks",
+   "start": "20:25",
+   "end": "21:20"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.sfoutsidelands.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20100818165735/http://myscheduler.sfoutsidelands.com/outsidelands-2010-schedule.html",
+    "captureTimestamp": "20100818165735",
+    "printed": "2010-08-14",
+    "sha256": "74230dcf47447dd9ba1e01ea6bf7ac9abedd462df808b3f9501497e2d25890b3",
+    "rows": 27,
+    "firstStart": "2010-08-14 12:00:00"
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20100818165735/http://myscheduler.sfoutsidelands.com/outsidelands-2010-schedule.html",
+    "captureTimestamp": "20100818165735",
+    "printed": "2010-08-15",
+    "sha256": "74230dcf47447dd9ba1e01ea6bf7ac9abedd462df808b3f9501497e2d25890b3",
+    "rows": 28,
+    "firstStart": "2010-08-15 12:00:00"
+   }
+  ]
+ }
+}

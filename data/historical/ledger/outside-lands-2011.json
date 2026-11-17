@@ -1,0 +1,331 @@
+{
+  "id": "outside-lands-2011",
+  "method": "official_sources",
+  "official": "https://www.sfoutsidelands.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2011-08-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://myscheduler.sfoutsidelands.com/grid.html",
+          "archivedUrl": "https://web.archive.org/web/20110917064709/http://myscheduler.sfoutsidelands.com/grid.html",
+          "captureTimestamp": "20110917064709",
+          "printed": "2011-08-12",
+          "sha256": "e3d131051085ec3ebd0f6b601837dfb0740c598e0def530e7725f65a8e198d15",
+          "bytes": 179952,
+          "rows": 31,
+          "format": "myscheduler-data",
+          "firstStart": "2011-08-12 12:00:00",
+          "stages": 6,
+          "festivalStart": "2011-08-12",
+          "times": "written as data: each set's date, 24-hour start and length in minutes",
+          "comedyShows": 9,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2011-08-13",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://myscheduler.sfoutsidelands.com/grid.html",
+          "archivedUrl": "https://web.archive.org/web/20110917064709/http://myscheduler.sfoutsidelands.com/grid.html",
+          "captureTimestamp": "20110917064709",
+          "printed": "2011-08-13",
+          "sha256": "e3d131051085ec3ebd0f6b601837dfb0740c598e0def530e7725f65a8e198d15",
+          "bytes": 179952,
+          "rows": 29,
+          "format": "myscheduler-data",
+          "firstStart": "2011-08-13 12:00:00",
+          "stages": 6,
+          "festivalStart": "2011-08-12",
+          "times": "written as data: each set's date, 24-hour start and length in minutes",
+          "comedyShows": 9,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2011-08-14",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://myscheduler.sfoutsidelands.com/grid.html",
+          "archivedUrl": "https://web.archive.org/web/20110917064709/http://myscheduler.sfoutsidelands.com/grid.html",
+          "captureTimestamp": "20110917064709",
+          "printed": "2011-08-14",
+          "sha256": "e3d131051085ec3ebd0f6b601837dfb0740c598e0def530e7725f65a8e198d15",
+          "bytes": 179952,
+          "rows": 28,
+          "format": "myscheduler-data",
+          "firstStart": "2011-08-14 12:00:00",
+          "stages": 6,
+          "festivalStart": "2011-08-12",
+          "times": "written as data: each set's date, 24-hour start and length in minutes",
+          "comedyShows": 9,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "12:50",
+      "end": "13:20",
+      "billing": "Comedy: Ali Wong & Melissa Villasenor",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "13:30",
+      "end": "14:05",
+      "billing": "Contortionists, Cyr Wheel and More",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "14:15",
+      "end": "14:40",
+      "billing": "Sideshow with Space Cowboy and Electric Dollhouse",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "15:00",
+      "end": "16:00",
+      "billing": "Freestyle Love Supreme",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "16:10",
+      "end": "16:45",
+      "billing": "Contortionists, Impersonators, Acrobatics, Cyr Wheel and More",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "16:55",
+      "end": "17:20",
+      "billing": "Sideshow with Space Cowboy and Electric Dollhouse",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "17:30",
+      "end": "18:05",
+      "billing": "Magician Jay Alexander, Cyr Wheel Ethan Law, Bullwhip and more",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "18:15",
+      "end": "18:40",
+      "billing": "Sideshow with Space Cowboy and Electric Dollhouse",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "Freestyle Love Supreme",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "12:50",
+      "end": "13:20",
+      "billing": "Comedy: Moshe Kasher & Melissa Villasenor",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "13:30",
+      "end": "14:05",
+      "billing": "Contortionists, Acrobatics, Cyr Wheel and More",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "14:15",
+      "end": "14:40",
+      "billing": "Sideshow with Space Cowboy and Electric Dollhouse",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "15:00",
+      "end": "16:00",
+      "billing": "Comedy: Paul F. Tompkins & Moshe Kasher",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "16:10",
+      "end": "16:45",
+      "billing": "Contortionists, Impersonators, Acrobatics, Cyr Wheel and More",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "16:55",
+      "end": "17:20",
+      "billing": "Sideshow with Space Cowboy and Electric Dollhouse",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "17:30",
+      "end": "18:05",
+      "billing": "Contortionists, Acrobatics, Cyr Wheel and More",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "18:15",
+      "end": "18:40",
+      "billing": "Sideshow with Space Cowboy and Electric Dollhouse",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "Comedy: Paul F. Tompkins & Moshe Kasher",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "12:50",
+      "end": "13:20",
+      "billing": "Comedy: Matt Braunger & Deon Cole",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "13:30",
+      "end": "14:05",
+      "billing": "Magicians, swords, breakdancing, cyr wheel and more",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "14:15",
+      "end": "14:40",
+      "billing": "Sideshow with Space Cowboy and Electric Dollhouse",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "15:00",
+      "end": "16:00",
+      "billing": "Comedy: Deon Cole, Matt Braunger, Ali Wong",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "16:10",
+      "end": "16:45",
+      "billing": "Magician Jay Alexander, Cyr Wheel Ethan Law, Bullwhip and more",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "16:55",
+      "end": "17:20",
+      "billing": "Sideshow with Space Cowboy and Electric Dollhouse",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "17:30",
+      "end": "18:05",
+      "billing": "Magicians, swords, breakdancing, cyr wheel and more",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "18:15",
+      "end": "18:50",
+      "billing": "Sideshow with Space Cowboy and Electric Dollhouse",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "Gallagher",
+      "reason": "The Barbary is the festival's comedy and variety stage: its shows are stand-up, sideshow, magic and circus acts, not music sets",
+      "comedy": true
+    }
+  ],
+  "unscheduledActs": [
+    {
+      "archivedUrl": "https://web.archive.org/web/20110917064709/http://myscheduler.sfoutsidelands.com/grid.html",
+      "captureTimestamp": "20110917064709",
+      "acts": [
+        "DJ Proof"
+      ]
+    }
+  ],
+  "dropped": []
+}
