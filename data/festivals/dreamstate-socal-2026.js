@@ -363,6 +363,13 @@
     // The official 2026 map as an image-overlay plate (see SOURCE). The art
     // is oblique and unregistered: no gpsAnchors, so no distance claims.
     mapImage: "dreamstate-socal-2026-map.webp",
+    // The same art fitted to the ground by its own ties (shoreline, the lot,
+    // the dome, the Queen Mary; never a stage), Jake 2026-11-12: "let's try to
+    // get each map overlayed on top of the real ground". Oblique art, so a
+    // homography: scripts/build-geo-plate.py over map-sources/dreamstate-socal-2026-geo-ties.json.
+    // The real map lays this plate down at its bounds; still no distance claims.
+    mapGeoref: { image: "geo-maps/dreamstate-socal-2026.webp", bounds: [-118.1955541, 33.7505923, -118.1880717, 33.7552658], model: "homography",
+                 ties: "map-sources/dreamstate-socal-2026-geo-ties.json", rmsM: 13.8, looRmsM: 19.8 },
     mapStyle: "image-overlay",
     mapTheme: "park",
     mapPrintsStageNames: true,

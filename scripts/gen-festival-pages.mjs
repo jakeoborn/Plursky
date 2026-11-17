@@ -20,13 +20,33 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
-import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
+import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, checkedOn, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
 import { loadDayAfter, assertDayAfter, selectDayAfter, dayAfterSection, DAY_AFTER_CSS } from './lib/day-after.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://plursky.com';
 const OUT_DIR = path.join(root, 'f');
+
+// Inputs are read before f/ is cleared. A ledger that does not parse (a
+// merge once left conflict markers in sitemap-lastmod.json) used to crash
+// the build AFTER the rmSync, and that commit dropped all 75 pages. Now it
+// stops here with f/ intact (scripts/test-gen-pages-safe-clear.mjs).
+// This check sits ABOVE the render path on purpose: that slice of this file
+// is hashed into every festival page's fingerprint (lib/sitemap-fingerprint.mjs),
+// so code added inside it moves every <lastmod>. Do not quote the slice's
+// anchor strings in comments up here either: the slicer finds them by indexOf.
+{
+  const ledger = path.join(root, 'sitemap-lastmod.json');
+  if (existsSync(ledger)) {
+    try { JSON.parse(readFileSync(ledger, 'utf8')); }
+    catch (e) {
+      console.error(`[gen] ✗ sitemap-lastmod.json does not parse (${e.message}); f/ left untouched. Resolve the file (a merge conflict?) and rerun.`);
+      process.exit(1);
+    }
+  }
+}
+
 const EMBEDS = loadEmbedData(root);
 const NOW_MS = Date.now();
 // Day-after cards (row 9): every record is checked, whatever its status, so a
@@ -333,12 +353,12 @@ function lineupSection(entry, blocks, dates, names, hasTimes) {
   return `
   <section aria-labelledby="lineup-h">
     <h2 id="lineup-h">${esc(cfg.name)} lineup</h2>
-    <p>${names.length} artists announced.</p>
+    <p>${actsN(names.length)} announced.</p>
 ${hasTimes ? '' : `    <p class="note">Plursky does not have stage assignments or set times for every act at ${esc(cfg.name)} yet; each row shows what it has.</p>\n`}    <ul class="lineup">
 ${rows.slice(0, LINEUP_SHOWN).join('\n')}
     </ul>
 ${rows.length > LINEUP_SHOWN ? `    <details class="more">
-      <summary>Show all ${rows.length} artists</summary>
+      <summary>Show all ${actsN(rows.length)}</summary>
       <ul class="lineup">
 ${rows.slice(LINEUP_SHOWN).map(r => '  ' + r).join('\n')}
       </ul>
@@ -426,11 +446,15 @@ function ymdLabel(a, b) {
   if (ya === yb && ma === mb) return `${MON[ma - 1]} ${da}–${db}, ${ya}`;
   return ya === yb ? `${MON[ma - 1]} ${da} – ${MON[mb - 1]} ${db}, ${ya}` : `${MON[ma - 1]} ${da}, ${ya} – ${MON[mb - 1]} ${db}, ${yb}`;
 }
+// A billing line is one ACT: a B2B or a duo is one line and more than one
+// artist, so a count of lines is never printed as "artists" (f56).
+const actsN = n => `${n} act${n === 1 ? '' : 's'}`;
 const editionHref = e => `/?tab=past&amp;edition=${esc(e.id)}`;
+const missingList = ms => { const p = ms.map(m => `${esc(m.stage)} (${esc(m.when)})`); return p.length < 2 ? p.join('') : `${p.slice(0, -1).join(', ')} and ${p[p.length - 1]}`; };
 function editionSummary(e) {
   return e.lineupOnly
-    ? `${e.artists} artists from the official lineup. Set times not verified for this edition.`
-    : `${e.sets} sets on ${e.stages} stages, with the day, stage and time the festival's official schedule printed.`;
+    ? `${actsN(e.artists)} from the official lineup. Set times not verified for this edition.`
+    : `${e.sets} sets on ${e.stages} stages, with the day, stage and time the festival's official schedule printed.${e.missingStages ? ` Selected stages: the official schedule also listed ${missingList(e.missingStages)}, not included yet.` : ''}`;
 }
 
 // A festival not open in Plursky yet (a gated entry, usually next year's)
@@ -458,7 +482,7 @@ function pastSection(entry, editions) {
   <section aria-labelledby="past-h">
     <h2 id="past-h">${entry.available ? 'Past editions' : 'Earlier editions'} of ${esc(cfg.brand || cfg.name)}</h2>
     <ul>
-${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span class="sep"> — </span>${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}</li>`).join('\n')}
+${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span class="sep"> — </span>${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${actsN(e.artists)}` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}${e.missingStages ? ', selected stages' : ''}</li>`).join('\n')}
     </ul>
     <p class="note">Each link opens that edition in Past Festivals in Plursky.</p>
   </section>`;
@@ -476,7 +500,7 @@ ${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span c
 // fingerprint, so an answer cannot go stale behind a frozen <lastmod>.
 // Nothing here is written by hand per festival: a sentence nobody can source
 // is a sentence this page does not get to say.
-function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
+function faqItems(entry, { names, hasTimes, allTimed, stages, blocks, plate }) {
   const cfg = entry.config;
   const where = cfg.location || '';
   const items = [];
@@ -501,14 +525,16 @@ function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
     items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, from III Points\' official updated set-time grids published October 16.'});
   } else if (hasTimes) {
     const src = cfg.scheduleSource;
+    // "full" only when every billed act has a time; otherwise say what is here (f56).
+    const schedLead = allTimed ? `The full ${cfg.name} schedule is` : `The ${cfg.name} set times Plursky has are`;
     items.push({
       q: `Have the ${cfg.name} set times been announced?`,
       a: src && src.official === true
-        ? `Yes. The full ${cfg.name} schedule is on this page, day by day and stage by stage${src.observedAt ? `, from the official times confirmed ${src.observedAt}` : ''}.`
+        ? `Yes. ${schedLead} on this page, day by day and stage by stage${src.observedAt ? `, from the official times confirmed ${src.observedAt}` : ''}.`
         // Stops at where OUR times came from. "until the official grid is
         // published" asserted the publisher had not published one — the same
         // defect class as reporting our data absence as their silence.
-        : `Yes. The full ${cfg.name} schedule is on this page, day by day and stage by stage, gathered from community sources.`,
+        : `Yes. ${schedLead} on this page, day by day and stage by stage, gathered from community sources.`,
     });
   } else if (names.length) {
     // NEUTRAL BY REQUIREMENT. `hasTimes === false` proves only that Plursky has
@@ -525,7 +551,7 @@ function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
   if (names.length) {
     items.push({
       q: `Who is playing ${cfg.name}?`,
-      a: `${names.length} artists are announced for ${cfg.name}, and every one of them is listed on this page.`,
+      a: `${actsN(names.length)} ${names.length === 1 ? 'is' : 'are'} announced for ${cfg.name}, and every one of them is listed on this page.`,
     });
   }
 
@@ -640,7 +666,8 @@ function stub(entry, statusOverride, lastmod) {
   const mapBacked = allStages.length > 0
     && allStages.every(s => s && s.x != null && s.y != null)
     && !!(cfg.mapImage || cfg.mapMode);
-  const answers = faqItems(entry, { names, hasTimes, stages, blocks, plate });
+  const allTimed = names.length > 0 && names.every(n => scheduleActs(artists).some(a => a.name === n && a.start && a.start !== ''));
+  const answers = faqItems(entry, { names, hasTimes, allTimed, stages, blocks, plate });
   const sel = selectEmbeds(id, EMBEDS, embedWindowStart(cfg, dates));
   // A recap's day and act are claims about the edition: each must match the
   // official schedule this page renders, or the build stops.
@@ -659,9 +686,9 @@ function stub(entry, statusOverride, lastmod) {
   });
 
   const desc = hasTimes
-    ? `${cfg.name} set times and lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Full schedule by day and stage. Plan your weekend with Plursky.`
+    ? `${cfg.name} set times and lineup — ${actsN(names.length)} at ${venue}, ${cfg.dates}. Set times by day and stage. Plan your weekend with Plursky.`
     : names.length
-      ? `${cfg.name} lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Build your schedule and share your weekend with Plursky.`
+      ? `${cfg.name} lineup — ${actsN(names.length)} at ${venue}, ${cfg.dates}. Build your schedule and share your weekend with Plursky.`
       : `${cfg.name} at ${venue}, ${cfg.dates}. Build your schedule and share your weekend with Plursky.`;
 
   // Real URLs from our data only (GSC Events, 2026-11-11). https or nothing.
@@ -727,8 +754,11 @@ function stub(entry, statusOverride, lastmod) {
 
   const src = cfg.scheduleSource;
   const site = cfg.officialEvent && cfg.officialEvent.website;
+  const checked = checkedOn(cfg);
   const sources = [
-    site && `      <li>Official site: <a href="${esc(site)}" rel="noopener">${esc(site)}</a></li>`,
+    // The site's read date is shown like every other row's, so the stamp's
+    // date (the newest read) is always one a reader can find in this list.
+    site && `      <li>Official site: <a href="${esc(site)}" rel="noopener">${esc(site)}</a>${/^\d{4}-\d{2}-\d{2}$/.test(String(cfg.officialEvent.observedAt || '')) ? ` (read ${esc(cfg.officialEvent.observedAt)})` : ''}</li>`,
     ticketsUrl && `      <li>Tickets: <a href="${esc(ticketsUrl)}" rel="noopener">${esc(ticketsUrl)}</a> (official)</li>`,
     // The lineup's own source. Lineup-only festivals had NO source line at all
     // (III Points listed 218 acts citing nothing); a festival whose set times
@@ -839,6 +869,7 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   h4 { font-size:12px; font-weight:600; margin:22px 0 4px; color:var(--flare); text-transform:uppercase; letter-spacing:.12em; }
   h5 { font-size:11px; font-weight:500; margin:14px 0 4px; color:var(--text-3); text-transform:uppercase; letter-spacing:.12em; }
   .note { color:var(--text-2); font-size:14px; }
+  .checked { color:var(--text-2); font-size:13px; margin:6px 0 16px; }
   figure { margin:16px 0; }
   figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:8px; background:var(--panel); }
   .platebox { position:relative; max-width:520px; }
@@ -939,7 +970,7 @@ ${JSON.stringify(crumbLd, null, 2)}
   <h1>${esc(cfg.name)}</h1>
   <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
   <p class="tag">${esc(cfg.tagline || '')}</p>
-  <p class="go"><a class="btn primary" href="/?f=${esc(id)}${isPast && entry.available ? '&amp;tab=memories' : ''}">${entry.available ? (isPast ? 'Relive it in Plursky' : 'Plan it in Plursky') : 'Open Plursky'}</a>${(() => { const j = sectionJumps(bodyHtml).find(x => x.id !== 'lineup-h' || names.length); return j ? `<a class="btn" href="#${j.id}">${j.hero}</a>` : ''; })()}</p>
+${checked ? `  <p class="checked">Sources last checked on <time datetime="${checked}">${checked}</time>.</p>\n` : ''}  <p class="go"><a class="btn primary" href="/?f=${esc(id)}${isPast && entry.available ? '&amp;tab=memories' : ''}">${entry.available ? (isPast ? 'Relive it in Plursky' : 'Plan it in Plursky') : 'Open Plursky'}</a>${(() => { const j = sectionJumps(bodyHtml).find(x => x.id !== 'lineup-h' || names.length); return j ? `<a class="btn" href="#${j.id}">${j.hero}</a>` : ''; })()}</p>
  </div>
 </div>
 ${(() => { const js = sectionJumps(bodyHtml); return js.length > 1 ? `<nav class="jumps" aria-label="On this page"><div class="wrap">${js.map(j => `<a href="#${j.id}">${j.label}</a>`).join('')}</div></nav>\n` : ''; })()}<div class="wrap">
@@ -951,10 +982,10 @@ ${bodyHtml}
       <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
       <a class="cta-secondary" href="/?f=${esc(id)}">${entry.available ? (isPast ? 'Relive it in the browser' : 'Open in your browser') : 'Open Plursky in the browser'}</a>
     </p>
-    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
 ${entry.available
   ? (entry.scheduleTBA
-      ? (cfg.id === 'iii-points-2026' ? `    <p class="note">The full stage timetable is on this website. The app uses the same stage timetable.</p>\n` : `    <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>\n`)
+      ? (cfg.id === 'iii-points-2026' ? `    <p class="note">The full stage timetable is on this website. The app uses the same stage timetable.</p>\n` : `    <p class="note">${esc(cfg.name)} is open in the app with the lineup announced so far. Set times appear as soon as the festival publishes them.</p>\n`)
       : '')
   : `    <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>\n`}${isPast && entry.available ? `    <p><a href="/?f=${esc(id)}&amp;tab=memories">Your ${esc(cfg.name)} Memories in Plursky</a>${next ? ` · Next edition: <a href="/f/${esc(next.config.id)}/">${esc(next.config.name)}</a>` : ''}</p>\n` : ''}  </section>
 

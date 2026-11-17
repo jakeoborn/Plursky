@@ -1,0 +1,287 @@
+{
+  "festivalId": "escape-halloween-2026",
+  "plate": "escape-2025-map.webp",
+  "model": "tps",
+  "smoothing": 0,
+  "measuredAt": "2026-11-12",
+  "method": "The plate is Insomniac's 2025 Escape Halloween map, a cartoon of the NOS Events Center drawn rotated about 90 degrees (east is up, south is right) and badly out of proportion. Ties are the Orange Show Speedway track (apexes, bends and straight ends traced on the drawn oval), the four corners of the Orange Pavilion (the drawn Warehouse block), the Lagoon (footbridge and south bulb), the paved footpaths and spur round the Lagoon, and the service-road corners on the drawn Boulevard of Bones; art pixels were read on zoomed grids and a colour mask of the drawn roads, ground positions from OSM nodes (means where noted). No stage, tent, booth or truss was used.",
+  "artPolygon": [
+    [
+      60,
+      195
+    ],
+    [
+      250,
+      178
+    ],
+    [
+      480,
+      190
+    ],
+    [
+      700,
+      185
+    ],
+    [
+      795,
+      230
+    ],
+    [
+      805,
+      420
+    ],
+    [
+      785,
+      465
+    ],
+    [
+      965,
+      470
+    ],
+    [
+      975,
+      820
+    ],
+    [
+      760,
+      845
+    ],
+    [
+      120,
+      862
+    ],
+    [
+      70,
+      800
+    ],
+    [
+      58,
+      600
+    ]
+  ],
+  "ties": [
+    {
+      "name": "Speedway track east apex",
+      "px": 867,
+      "py": 499,
+      "lat": 34.0867986,
+      "lng": -117.2917124,
+      "ref": "OSM node 4139520536"
+    },
+    {
+      "name": "Speedway track NE bend (45 deg)",
+      "px": 810,
+      "py": 520,
+      "lat": 34.0870616,
+      "lng": -117.2918247,
+      "ref": "OSM node 4139520530"
+    },
+    {
+      "name": "Speedway track SE bend (45 deg)",
+      "px": 911,
+      "py": 517,
+      "lat": 34.0866,
+      "lng": -117.2918178,
+      "ref": "OSM node 4139520541"
+    },
+    {
+      "name": "Track north straight, east end",
+      "px": 786,
+      "py": 572,
+      "lat": 34.0871571,
+      "lng": -117.2921005,
+      "ref": "OSM node 4139520525"
+    },
+    {
+      "name": "Track south straight, east end",
+      "px": 938,
+      "py": 575,
+      "lat": 34.0864861,
+      "lng": -117.2921572,
+      "ref": "OSM node 4139520546"
+    },
+    {
+      "name": "Track north straight, west end",
+      "px": 786,
+      "py": 738,
+      "lat": 34.0871571,
+      "lng": -117.2930282,
+      "ref": "OSM node 4139520524"
+    },
+    {
+      "name": "Track south straight, west end",
+      "px": 938,
+      "py": 738,
+      "lat": 34.0864842,
+      "lng": -117.2930048,
+      "ref": "OSM node 4139520547"
+    },
+    {
+      "name": "Speedway track NW bend (45 deg)",
+      "px": 798,
+      "py": 777,
+      "lat": 34.0870342,
+      "lng": -117.2933181,
+      "ref": "OSM node 4139520558"
+    },
+    {
+      "name": "Speedway track SW bend (45 deg)",
+      "px": 926,
+      "py": 777,
+      "lat": 34.0865932,
+      "lng": -117.2933059,
+      "ref": "OSM node 4139520551"
+    },
+    {
+      "name": "Speedway track west apex",
+      "px": 860,
+      "py": 789,
+      "lat": 34.0868423,
+      "lng": -117.2934055,
+      "ref": "OSM node 4139520555"
+    },
+    {
+      "name": "Orange Pavilion NE corner",
+      "px": 508,
+      "py": 493,
+      "lat": 34.0884872,
+      "lng": -117.2916802,
+      "ref": "OSM node 5424913118"
+    },
+    {
+      "name": "Orange Pavilion SE corner",
+      "px": 752,
+      "py": 493,
+      "lat": 34.0878787,
+      "lng": -117.2916742,
+      "ref": "OSM node 5424913117"
+    },
+    {
+      "name": "Orange Pavilion SW corner",
+      "px": 752,
+      "py": 605,
+      "lat": 34.087879,
+      "lng": -117.292498,
+      "ref": "OSM node 5424913116"
+    },
+    {
+      "name": "Orange Pavilion NW corner",
+      "px": 508,
+      "py": 605,
+      "lat": 34.0884799,
+      "lng": -117.2924995,
+      "ref": "OSM node 5424913115"
+    },
+    {
+      "name": "Lagoon footbridge midpoint",
+      "px": 461,
+      "py": 408,
+      "lat": 34.0898911,
+      "lng": -117.2910684,
+      "ref": "OSM way node mean of 5424917773, 5424917774"
+    },
+    {
+      "name": "Lagoon south bulb centre",
+      "px": 495,
+      "py": 410,
+      "lat": 34.0891944,
+      "lng": -117.2910106,
+      "ref": "OSM way node mean of 5424917723, 5424917747, 12810951005, 5424917753"
+    },
+    {
+      "name": "Service road corner NW of Orange Pavilion (Promenade x Boulevard of Bones)",
+      "px": 500,
+      "py": 618,
+      "lat": 34.08889,
+      "lng": -117.2926264,
+      "ref": "OSM node 6106305477"
+    },
+    {
+      "name": "Lagoon east path junction (Haunted Hay Road plaza)",
+      "px": 500,
+      "py": 352,
+      "lat": 34.0893261,
+      "lng": -117.2908102,
+      "ref": "OSM node 5424917760"
+    },
+    {
+      "name": "East spur path end at Lytle Creek",
+      "px": 487,
+      "py": 237,
+      "lat": 34.0893612,
+      "lng": -117.2905008,
+      "ref": "OSM node 12810951017"
+    },
+    {
+      "name": "Path junction north of Lagoon (Haunted Hay Road branch)",
+      "px": 372,
+      "py": 358,
+      "lat": 34.0900446,
+      "lng": -117.2907467,
+      "ref": "OSM node 5424917768"
+    },
+    {
+      "name": "West end of path north of Lagoon",
+      "px": 372,
+      "py": 488,
+      "lat": 34.0899579,
+      "lng": -117.2916038,
+      "ref": "OSM node 5424917781"
+    },
+    {
+      "name": "Boulevard of Bones north end T (road end at EE exit)",
+      "px": 130,
+      "py": 618,
+      "lat": 34.0918655,
+      "lng": -117.2926451,
+      "ref": "OSM node 6106306185"
+    }
+  ],
+  "approximate": true,
+  "output": {
+    "image": "geo-maps/escape-halloween-2026.webp",
+    "size": [
+      1155,
+      2048
+    ],
+    "metresPerPixel": 0.342,
+    "bounds": {
+      "w": -117.2942969,
+      "s": 34.0863308,
+      "e": -117.2900206,
+      "n": 34.092641
+    },
+    "rmsM": 32.1,
+    "worstM": 66.7,
+    "looRmsM": 32.1,
+    "residualsM": {
+      "Speedway track east apex": 0.0,
+      "Speedway track NE bend (45 deg)": 0.0,
+      "Speedway track SE bend (45 deg)": 0.0,
+      "Track north straight, east end": 0.0,
+      "Track south straight, east end": 0.0,
+      "Track north straight, west end": 0.0,
+      "Track south straight, west end": 0.0,
+      "Speedway track NW bend (45 deg)": 0.0,
+      "Speedway track SW bend (45 deg)": 0.0,
+      "Speedway track west apex": 0.0,
+      "Orange Pavilion NE corner": 0.0,
+      "Orange Pavilion SE corner": 0.0,
+      "Orange Pavilion SW corner": 0.0,
+      "Orange Pavilion NW corner": 0.0,
+      "Lagoon footbridge midpoint": 0.0,
+      "Lagoon south bulb centre": 0.0,
+      "Service road corner NW of Orange Pavilion (Promenade x Boulevard of Bones)": 0.0,
+      "Lagoon east path junction (Haunted Hay Road plaza)": 0.0,
+      "East spur path end at Lytle Creek": 0.0,
+      "Path junction north of Lagoon (Haunted Hay Road branch)": 0.0,
+      "West end of path north of Lagoon": 0.0,
+      "Boulevard of Bones north end T (road end at EE exit)": 0.0
+    },
+    "checksM": {},
+    "inputsSha256": "be74188a458abfb665a86682a752f4740d460786701df993b37204bdbde5f908",
+    "approximate": true,
+    "plateSha256": "36123dcab173ba342101d067dc557cf2b35d91ddc2debab536f9574ff83d7621",
+    "sha256": "c50528c34b58ab709d5478d08c5da71ca90379a735457326ac869fdd3150c388"
+  }
+}

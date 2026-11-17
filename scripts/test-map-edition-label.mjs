@@ -9,12 +9,14 @@
 //
 // The rule is tested on a FIXTURE: `mapArtYear` is set on ACL in the page, so
 // it keeps testing after Escape's own field is dropped at the flip. ACL ships
-// art with anchors at tier "unchecked", so both of its maps draw the art:
+// art laid on Zilker Park as an approximate fit (tier "fitted", Jake
+// 2026-11-12), so both of its maps draw the art:
 //   drawn map  — "OFFICIAL MAP" → "2025 MAP · OFFICIAL MAP"
-//   real map   — "NOT TO SCALE · STAGES PENDING" → prefixed the same way
+//   real map   — "APPROX MAP · STAGES PENDING" → prefixed the same way
 // Escape itself is opened once on each map with its live config: its art has
-// no anchors (tier "none"), so the drawn map reads "2025 MAP · LAYOUT ONLY"
-// and the real map, which draws no art, stays "VENUE MAP · STAGES PENDING".
+// no stage anchors, so the drawn map reads "2025 MAP · LAYOUT ONLY", and the
+// real map lays that 2025 art as an approximate fit, so it reads
+// "2025 MAP · APPROX MAP · STAGES PENDING".
 //
 // Cases: no mapArtYear (control), mapArtYear equal to the festival's year,
 // and mapArtYear a year behind. The long label is then measured at 280, 320
@@ -115,14 +117,14 @@ try {
   check(same.text === "OFFICIAL MAP", `a mapArtYear equal to the festival's year changes nothing (got "${same.text}")`);
   const realControl = await open(393, undefined, ACL, true);
   check(realControl.realMap, "control: the real map mounted (else the real-map cases test nothing)");
-  check(realControl.text === "NOT TO SCALE · STAGES PENDING", `control: real map, unchecked art reads NOT TO SCALE · STAGES PENDING (got "${realControl.text}")`);
+  check(realControl.text === "APPROX MAP · STAGES PENDING", `control: real map, approximately fitted art reads APPROX MAP · STAGES PENDING (got "${realControl.text}")`);
 
   const prev = control.year - 1;
   const cases = [
     { width: 393, real: false, label: `${prev} MAP · OFFICIAL MAP` },
-    { width: 393, real: true, label: `${prev} MAP · NOT TO SCALE · STAGES PENDING` },
-    { width: 320, real: true, label: `${prev} MAP · NOT TO SCALE · STAGES PENDING` },
-    { width: 280, real: true, label: `${prev} MAP · NOT TO SCALE · STAGES PENDING` },
+    { width: 393, real: true, label: `${prev} MAP · APPROX MAP · STAGES PENDING` },
+    { width: 320, real: true, label: `${prev} MAP · APPROX MAP · STAGES PENDING` },
+    { width: 280, real: true, label: `${prev} MAP · APPROX MAP · STAGES PENDING` },
   ];
   for (const { width, real, label } of cases) {
     const s = await open(width, prev, ACL, real);
@@ -136,13 +138,13 @@ try {
     check(!s.pageOverflow, `${at}: no horizontal page scroll`);
   }
 
-  // Escape as shipped: art without anchors (tier "none").
+  // Escape as shipped: art without stage anchors, laid on the real map as an approximate fit.
   const escDrawn = await open(320, KEEP, ESC, false);
   check(escDrawn.errors.length === 0, `Escape drawn map throws nothing (${JSON.stringify(escDrawn.errors)})`);
   check(escDrawn.text === "2025 MAP · LAYOUT ONLY", `Escape drawn map names its 2025 art (got "${escDrawn.text}")`);
   const escReal = await open(320, KEEP, ESC, true);
   check(escReal.realMap, "Escape real map mounted");
-  check(escReal.text === "VENUE MAP · STAGES PENDING", `Escape real map draws no art, so no art year (got "${escReal.text}")`);
+  check(escReal.text === "2025 MAP · APPROX MAP · STAGES PENDING", `Escape real map lays its 2025 art, so it names it (got "${escReal.text}")`);
   await browser.close();
 } finally {
   server.kill();

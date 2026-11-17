@@ -1,0 +1,289 @@
+{
+  "festivalId": "dreamstate-socal-2026",
+  "plate": "dreamstate-socal-2026-map.webp",
+  "model": "homography",
+  "measuredAt": "2026-11-12",
+  "method": "The art is a stylised north-up 2.5D drawing of the Queen Mary waterfront: one pink-outlined festival ground (Harry Bridges Memorial Park plus the Queen Mary surface lots and the Spruce Goose dome) with the ship drawn in 3D alongside. Ties are corners of that ground outline matched to the park and shoreline vertices, Queensway Drive at Queens Highway, the main parking lot corners and the dome's south and east extremes, plus the ship's bow, stern and three funnels (OSM building parts), with ship features taken at their ground point (waterline, or directly below the drawn funnel base) because the ship is extruded upward. Art pixels were read on zoomed grids and a mask of the pink outline; ground positions are OSM nodes. No stage, tent, gate or booth is used. Fitted as a homography (one perspective stretch): rms 13.8 m in-sample, 19.8 m leave-one-out; a thin-plate fit over the same ties gives 16.4 m leave-one-out, just over the gate.",
+  "artPolygon": [
+    [
+      80,
+      262
+    ],
+    [
+      92,
+      228
+    ],
+    [
+      100,
+      214
+    ],
+    [
+      178,
+      214
+    ],
+    [
+      186,
+      250
+    ],
+    [
+      248,
+      383
+    ],
+    [
+      600,
+      535
+    ],
+    [
+      650,
+      500
+    ],
+    [
+      672,
+      452
+    ],
+    [
+      700,
+      458
+    ],
+    [
+      770,
+      480
+    ],
+    [
+      950,
+      480
+    ],
+    [
+      1005,
+      555
+    ],
+    [
+      1046,
+      620
+    ],
+    [
+      1046,
+      700
+    ],
+    [
+      1040,
+      742
+    ],
+    [
+      1038,
+      800
+    ],
+    [
+      1000,
+      835
+    ],
+    [
+      915,
+      888
+    ],
+    [
+      880,
+      876
+    ],
+    [
+      675,
+      738
+    ],
+    [
+      668,
+      736
+    ],
+    [
+      530,
+      862
+    ],
+    [
+      500,
+      862
+    ],
+    [
+      258,
+      615
+    ],
+    [
+      240,
+      575
+    ],
+    [
+      244,
+      545
+    ],
+    [
+      252,
+      527
+    ],
+    [
+      100,
+      452
+    ],
+    [
+      80,
+      425
+    ]
+  ],
+  "ties": [
+    {
+      "name": "Park west tip (Sequence block NW corner)",
+      "px": 85,
+      "py": 262,
+      "lat": 33.754843,
+      "lng": -118.195804,
+      "ref": "OSM node 388212486 (Harry Bridges Memorial Park)"
+    },
+    {
+      "name": "Park north peak on shoreline (Sequence block NE corner)",
+      "px": 180,
+      "py": 250,
+      "lat": 33.755037,
+      "lng": -118.194906,
+      "ref": "OSM node 388212487 (park/shoreline)"
+    },
+    {
+      "name": "Shoreline bend, park east (strip NE edge bend)",
+      "px": 245,
+      "py": 385,
+      "lat": 33.75417,
+      "lng": -118.194269,
+      "ref": "OSM node 388212489 (park/shoreline)"
+    },
+    {
+      "name": "Queensway Drive x Queens Highway (Sequence block SW corner)",
+      "px": 95,
+      "py": 445,
+      "lat": 33.753768,
+      "lng": -118.195441,
+      "ref": "OSM node 13599635863"
+    },
+    {
+      "name": "Main lot NW corner (entrance notch)",
+      "px": 258,
+      "py": 525,
+      "lat": 33.753224,
+      "lng": -118.194265,
+      "ref": "OSM node 1968168240 (parking 186112219)"
+    },
+    {
+      "name": "Main lot west corner",
+      "px": 247,
+      "py": 597,
+      "lat": 33.752832,
+      "lng": -118.194343,
+      "ref": "OSM node 1968168217 (parking 186112219)"
+    },
+    {
+      "name": "Main lot SW edge south end (branch tip)",
+      "px": 510,
+      "py": 856,
+      "lat": 33.751146,
+      "lng": -118.192761,
+      "ref": "OSM node 1968168245 (parking 186112219)"
+    },
+    {
+      "name": "Main lot east corner at Windsor Way (notch)",
+      "px": 670,
+      "py": 733,
+      "lat": 33.751946,
+      "lng": -118.191334,
+      "ref": "OSM node 1968168264 (parking 186112219)"
+    },
+    {
+      "name": "Dome south extreme (Dream area southernmost point)",
+      "px": 905,
+      "py": 880,
+      "lat": 33.7506128,
+      "lng": -118.1893981,
+      "ref": "OSM node 4370085847 (Spruce Goose dome 721199801)"
+    },
+    {
+      "name": "Dome east extreme (Dream area east edge, midpoint)",
+      "px": 1030,
+      "py": 775,
+      "lat": 33.7512774,
+      "lng": -118.188177,
+      "ref": "OSM node 4094897118 (dome)"
+    },
+    {
+      "name": "Queen Mary bow (stem at waterline)",
+      "px": 710,
+      "py": 520,
+      "lat": 33.753464,
+      "lng": -118.191317,
+      "ref": "OSM node 4370578921 (ship 438331516)"
+    },
+    {
+      "name": "Queen Mary stern (waterline)",
+      "px": 1028,
+      "py": 672,
+      "lat": 33.752339,
+      "lng": -118.188254,
+      "ref": "OSM node 4360641180 (ship 438331516)"
+    },
+    {
+      "name": "Funnel 1 (forward), ground point below drawn base on hull centreline",
+      "px": 826,
+      "py": 573,
+      "lat": 33.753097,
+      "lng": -118.19037,
+      "ref": "OSM way 439768915 (funnel, mean of nodes)"
+    },
+    {
+      "name": "Funnel 2, ground point below drawn base",
+      "px": 864,
+      "py": 592,
+      "lat": 33.75294,
+      "lng": -118.189932,
+      "ref": "OSM way 439768916 (funnel, mean of nodes)"
+    },
+    {
+      "name": "Funnel 3 (aft), ground point below drawn base",
+      "px": 909,
+      "py": 614,
+      "lat": 33.752774,
+      "lng": -118.189485,
+      "ref": "OSM way 439768917 (funnel, mean of nodes)"
+    }
+  ],
+  "output": {
+    "image": "geo-maps/dreamstate-socal-2026.webp",
+    "size": [
+      1021,
+      764
+    ],
+    "metresPerPixel": 0.679,
+    "bounds": {
+      "w": -118.1955541,
+      "s": 33.7505923,
+      "e": -118.1880717,
+      "n": 33.7552658
+    },
+    "rmsM": 13.8,
+    "worstM": 26.1,
+    "looRmsM": 19.8,
+    "residualsM": {
+      "Park west tip (Sequence block NW corner)": 26.0,
+      "Park north peak on shoreline (Sequence block NE corner)": 9.7,
+      "Shoreline bend, park east (strip NE edge bend)": 26.1,
+      "Queensway Drive x Queens Highway (Sequence block SW corner)": 8.4,
+      "Main lot NW corner (entrance notch)": 13.3,
+      "Main lot west corner": 6.3,
+      "Main lot SW edge south end (branch tip)": 17.5,
+      "Main lot east corner at Windsor Way (notch)": 15.3,
+      "Dome south extreme (Dream area southernmost point)": 5.7,
+      "Dome east extreme (Dream area east edge, midpoint)": 16.5,
+      "Queen Mary bow (stem at waterline)": 6.5,
+      "Queen Mary stern (waterline)": 6.7,
+      "Funnel 1 (forward), ground point below drawn base on hull centreline": 12.3,
+      "Funnel 2, ground point below drawn base": 4.0,
+      "Funnel 3 (aft), ground point below drawn base": 2.6
+    },
+    "checksM": {},
+    "inputsSha256": "c67427096468ab5e1d5f3b32af4ef32f12fc7628625a4173ea3c29912e81761d",
+    "plateSha256": "619bf0bb0fe79dc489957cb4bd5a2795b828dc858d7517229d7034567fa189a0",
+    "sha256": "390f3adf53a50a99463fba6ce01611a008414264b1de96f4f5de30d25eb9bbc7"
+  }
+}

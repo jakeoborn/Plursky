@@ -1,0 +1,1135 @@
+{
+ "id": "governors-ball-2019",
+ "festivalId": "governors-ball",
+ "name": "Governors Ball 2019",
+ "year": 2019,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-05-31",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2019-06-01",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2019-06-02",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "governors-ball-2019:govballnyc-stage",
+   "name": "GOVBALLNYC Stage"
+  },
+  {
+   "id": "governors-ball-2019:bacardi-stage",
+   "name": "BACARDÍ Stage"
+  },
+  {
+   "id": "governors-ball-2019:honda-stage",
+   "name": "Honda Stage"
+  },
+  {
+   "id": "governors-ball-2019:american-eagle-stage",
+   "name": "American Eagle Stage"
+  },
+  {
+   "id": "governors-ball-2019:bud-light-dive-bar-sessions",
+   "name": "Bud Light Dive Bar Sessions"
+  }
+ ],
+ "artists": [
+  {
+   "id": "governors-ball-2019:deal-casino",
+   "name": "DEAL CASINO",
+   "key": "deal-casino",
+   "performers": [
+    "deal-casino"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:dennis-lloyd",
+   "name": "DENNIS LLOYD",
+   "key": "dennis-lloyd",
+   "performers": [
+    "dennis-lloyd"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:amber-mark",
+   "name": "AMBER MARK",
+   "key": "amber-mark",
+   "performers": [
+    "amber-mark"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:the-internet",
+   "name": "THE INTERNET",
+   "key": "the-internet",
+   "performers": [
+    "the-internet"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:brockhampton",
+   "name": "BROCKHAMPTON",
+   "key": "brockhampton",
+   "performers": [
+    "brockhampton"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:tyler-the-creator",
+   "name": "TYLER, THE CREATOR",
+   "key": "tyler-the-creator",
+   "performers": [
+    "tyler-the-creator"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:hundredth",
+   "name": "HUNDREDTH",
+   "key": "hundredth",
+   "performers": [
+    "hundredth"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:cautious-clay",
+   "name": "CAUTIOUS CLAY",
+   "key": "cautious-clay",
+   "performers": [
+    "cautious-clay"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:jessie-reyez",
+   "name": "JESSIE REYEZ",
+   "key": "jessie-reyez",
+   "performers": [
+    "jessie-reyez"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:blood-orange",
+   "name": "BLOOD ORANGE",
+   "key": "blood-orange",
+   "performers": [
+    "blood-orange"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:lil-wayne",
+   "name": "LIL WAYNE",
+   "key": "lil-wayne",
+   "performers": [
+    "lil-wayne"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:njomza",
+   "name": "NJOMZA",
+   "key": "njomza",
+   "performers": [
+    "njomza"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:injury-reserve",
+   "name": "INJURY RESERVE",
+   "key": "injury-reserve",
+   "performers": [
+    "injury-reserve"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:rolling-blackouts-coastal-fever",
+   "name": "ROLLING BLACKOUTS COASTAL FEVER",
+   "key": "rolling-blackouts-coastal-fever",
+   "performers": [
+    "rolling-blackouts-coastal-fever"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:mitski",
+   "name": "MITSKI",
+   "key": "mitski",
+   "performers": [
+    "mitski"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:jorja-smith",
+   "name": "JORJA SMITH",
+   "key": "jorja-smith",
+   "performers": [
+    "jorja-smith"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:gesaffelstein",
+   "name": "GESAFFELSTEIN",
+   "key": "gesaffelstein",
+   "performers": [
+    "gesaffelstein"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:still-woozy",
+   "name": "STILL WOOZY",
+   "key": "still-woozy",
+   "performers": [
+    "still-woozy"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:jeremy-zucker",
+   "name": "JEREMY ZUCKER",
+   "key": "jeremy-zucker",
+   "performers": [
+    "jeremy-zucker"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:hippo-campus",
+   "name": "HIPPO CAMPUS",
+   "key": "hippo-campus",
+   "performers": [
+    "hippo-campus"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:m",
+   "name": "MØ",
+   "key": "m",
+   "performers": [
+    "m"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:the-voidz",
+   "name": "THE VOIDZ",
+   "key": "the-voidz",
+   "performers": [
+    "the-voidz"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:tyla-yaweh",
+   "name": "TYLA YAWEH",
+   "key": "tyla-yaweh",
+   "performers": [
+    "tyla-yaweh"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:dreamers",
+   "name": "DREAMERS",
+   "key": "dreamers",
+   "performers": [
+    "dreamers"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:calpurnia",
+   "name": "CALPURNIA",
+   "key": "calpurnia",
+   "performers": [
+    "calpurnia"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:clairo",
+   "name": "CLAIRO",
+   "key": "clairo",
+   "performers": [
+    "clairo"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:kacey-musgraves",
+   "name": "KACEY MUSGRAVES",
+   "key": "kacey-musgraves",
+   "performers": [
+    "kacey-musgraves"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:the-1975",
+   "name": "THE 1975",
+   "key": "the-1975",
+   "performers": [
+    "the-1975"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:florence-the-machine",
+   "name": "FLORENCE + THE MACHINE",
+   "key": "florence-the-machine",
+   "performers": [
+    "florence-the-machine"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:suzi-wu",
+   "name": "SUZI WU",
+   "key": "suzi-wu",
+   "performers": [
+    "suzi-wu"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:sunflower-bean",
+   "name": "SUNFLOWER BEAN",
+   "key": "sunflower-bean",
+   "performers": [
+    "sunflower-bean"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:ravyn-lenae",
+   "name": "RAVYN LENAE",
+   "key": "ravyn-lenae",
+   "performers": [
+    "ravyn-lenae"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:king-princess",
+   "name": "KING PRINCESS",
+   "key": "king-princess",
+   "performers": [
+    "king-princess"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:zhu",
+   "name": "ZHU",
+   "key": "zhu",
+   "performers": [
+    "zhu"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:tobi-lou",
+   "name": "TOBI LOU",
+   "key": "tobi-lou",
+   "performers": [
+    "tobi-lou"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:u-s-girls",
+   "name": "U.S. GIRLS",
+   "key": "u-s-girls",
+   "performers": [
+    "u-s-girls"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:denzel-curry",
+   "name": "DENZEL CURRY",
+   "key": "denzel-curry",
+   "performers": [
+    "denzel-curry"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:playboi-carti",
+   "name": "PLAYBOI CARTI",
+   "key": "playboi-carti",
+   "performers": [
+    "playboi-carti"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:vince-staples",
+   "name": "VINCE STAPLES",
+   "key": "vince-staples",
+   "performers": [
+    "vince-staples"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:major-lazer",
+   "name": "MAJOR LAZER",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:easy-life",
+   "name": "EASY LIFE",
+   "key": "easy-life",
+   "performers": [
+    "easy-life"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:elohim",
+   "name": "ELOHIM",
+   "key": "elohim",
+   "performers": [
+    "elohim"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:saba",
+   "name": "SABA",
+   "key": "saba",
+   "performers": [
+    "saba"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:ty-dolla-ign",
+   "name": "TY DOLLA $IGN",
+   "key": "ty-dolla-ign",
+   "performers": [
+    "ty-dolla-ign"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:lord-huron",
+   "name": "LORD HURON",
+   "key": "lord-huron",
+   "performers": [
+    "lord-huron"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:vincint",
+   "name": "VINCINT",
+   "key": "vincint",
+   "performers": [
+    "vincint"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:leland",
+   "name": "LELAND",
+   "key": "leland",
+   "performers": [
+    "leland"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:lauren-sanderson",
+   "name": "LAUREN SANDERSON",
+   "key": "lauren-sanderson",
+   "performers": [
+    "lauren-sanderson"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:lily-allen",
+   "name": "LILY ALLEN",
+   "key": "lily-allen",
+   "performers": [
+    "lily-allen"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:nas",
+   "name": "NAS",
+   "key": "nas",
+   "performers": [
+    "nas"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:the-strokes",
+   "name": "THE STROKES",
+   "key": "the-strokes",
+   "performers": [
+    "the-strokes"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:noname",
+   "name": "NONAME",
+   "key": "noname",
+   "performers": [
+    "noname"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:bazzi",
+   "name": "BAZZI",
+   "key": "bazzi",
+   "performers": [
+    "bazzi"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:beast-coast-joey-bada-flatbush-zombies",
+   "name": "BEAST COAST (JOEY BADA$$ + FLATBUSH ZOMBIES)",
+   "key": "beast-coast-joey-bada-flatbush-zombies",
+   "performers": [
+    "beast-coast-joey-bada-flatbush-zombies"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:sheck-wes",
+   "name": "SHECK WES",
+   "key": "sheck-wes",
+   "performers": [
+    "sheck-wes"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:louis-the-child",
+   "name": "LOUIS THE CHILD",
+   "key": "louis-the-child",
+   "performers": [
+    "louis-the-child"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:sza",
+   "name": "SZA",
+   "key": "sza",
+   "performers": [
+    "sza"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:chelsea-cutler",
+   "name": "CHELSEA CUTLER",
+   "key": "chelsea-cutler",
+   "performers": [
+    "chelsea-cutler"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:bob-moses",
+   "name": "BOB MOSES",
+   "key": "bob-moses",
+   "performers": [
+    "bob-moses"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:070shake",
+   "name": "070SHAKE",
+   "key": "070shake",
+   "performers": [
+    "070shake"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:kaytranada",
+   "name": "KAYTRANADA",
+   "key": "kaytranada",
+   "performers": [
+    "kaytranada"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:shaed",
+   "name": "SHAED",
+   "key": "shaed",
+   "performers": [
+    "shaed"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:taylor-bennet",
+   "name": "TAYLOR BENNET",
+   "key": "taylor-bennet",
+   "performers": [
+    "taylor-bennet"
+   ]
+  },
+  {
+   "id": "governors-ball-2019:aaron-aye",
+   "name": "AARON AYE",
+   "key": "aaron-aye",
+   "performers": [
+    "aaron-aye"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "governors-ball-2019:d1:govballnyc-stage:1215:deal-casino",
+   "artistId": "governors-ball-2019:deal-casino",
+   "day": 1,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:govballnyc-stage:1330:dennis-lloyd",
+   "artistId": "governors-ball-2019:dennis-lloyd",
+   "day": 1,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2019:d1:govballnyc-stage:1500:amber-mark",
+   "artistId": "governors-ball-2019:amber-mark",
+   "day": 1,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:govballnyc-stage:1645:the-internet",
+   "artistId": "governors-ball-2019:the-internet",
+   "day": 1,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:govballnyc-stage:1845:brockhampton",
+   "artistId": "governors-ball-2019:brockhampton",
+   "day": 1,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2019:d1:govballnyc-stage:2145:tyler-the-creator",
+   "artistId": "governors-ball-2019:tyler-the-creator",
+   "day": 1,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2019:d1:bacardi-stage:1245:hundredth",
+   "artistId": "governors-ball-2019:hundredth",
+   "day": 1,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2019:d1:bacardi-stage:1415:cautious-clay",
+   "artistId": "governors-ball-2019:cautious-clay",
+   "day": 1,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2019:d1:bacardi-stage:1545:jessie-reyez",
+   "artistId": "governors-ball-2019:jessie-reyez",
+   "day": 1,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:bacardi-stage:1745:blood-orange",
+   "artistId": "governors-ball-2019:blood-orange",
+   "day": 1,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:bacardi-stage:2000:lil-wayne",
+   "artistId": "governors-ball-2019:lil-wayne",
+   "day": 1,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2019:d1:honda-stage:1215:njomza",
+   "artistId": "governors-ball-2019:njomza",
+   "day": 1,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:honda-stage:1330:injury-reserve",
+   "artistId": "governors-ball-2019:injury-reserve",
+   "day": 1,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2019:d1:honda-stage:1500:rolling-blackouts-coastal-fever",
+   "artistId": "governors-ball-2019:rolling-blackouts-coastal-fever",
+   "day": 1,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:honda-stage:1645:mitski",
+   "artistId": "governors-ball-2019:mitski",
+   "day": 1,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:honda-stage:1845:jorja-smith",
+   "artistId": "governors-ball-2019:jorja-smith",
+   "day": 1,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:honda-stage:2045:gesaffelstein",
+   "artistId": "governors-ball-2019:gesaffelstein",
+   "day": 1,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "governors-ball-2019:d1:american-eagle-stage:1245:still-woozy",
+   "artistId": "governors-ball-2019:still-woozy",
+   "day": 1,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2019:d1:american-eagle-stage:1415:jeremy-zucker",
+   "artistId": "governors-ball-2019:jeremy-zucker",
+   "day": 1,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2019:d1:american-eagle-stage:1545:hippo-campus",
+   "artistId": "governors-ball-2019:hippo-campus",
+   "day": 1,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:american-eagle-stage:1745:m",
+   "artistId": "governors-ball-2019:m",
+   "day": 1,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:american-eagle-stage:1945:the-voidz",
+   "artistId": "governors-ball-2019:the-voidz",
+   "day": 1,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "governors-ball-2019:d1:bud-light-dive-bar-sessions:1420:njomza",
+   "artistId": "governors-ball-2019:njomza",
+   "day": 1,
+   "stageId": "governors-ball-2019:bud-light-dive-bar-sessions",
+   "start": "14:20",
+   "end": "14:50"
+  },
+  {
+   "id": "governors-ball-2019:d1:bud-light-dive-bar-sessions:1550:tyla-yaweh",
+   "artistId": "governors-ball-2019:tyla-yaweh",
+   "day": 1,
+   "stageId": "governors-ball-2019:bud-light-dive-bar-sessions",
+   "start": "15:50",
+   "end": "16:20"
+  },
+  {
+   "id": "governors-ball-2019:d1:bud-light-dive-bar-sessions:1750:jeremy-zucker",
+   "artistId": "governors-ball-2019:jeremy-zucker",
+   "day": 1,
+   "stageId": "governors-ball-2019:bud-light-dive-bar-sessions",
+   "start": "17:50",
+   "end": "18:20"
+  },
+  {
+   "id": "governors-ball-2019:d2:govballnyc-stage:1215:dreamers",
+   "artistId": "governors-ball-2019:dreamers",
+   "day": 2,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2019:d2:govballnyc-stage:1330:calpurnia",
+   "artistId": "governors-ball-2019:calpurnia",
+   "day": 2,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2019:d2:govballnyc-stage:1500:clairo",
+   "artistId": "governors-ball-2019:clairo",
+   "day": 2,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2019:d2:govballnyc-stage:1645:kacey-musgraves",
+   "artistId": "governors-ball-2019:kacey-musgraves",
+   "day": 2,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2019:d2:govballnyc-stage:1845:the-1975",
+   "artistId": "governors-ball-2019:the-1975",
+   "day": 2,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2019:d2:govballnyc-stage:2115:florence-the-machine",
+   "artistId": "governors-ball-2019:florence-the-machine",
+   "day": 2,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2019:d2:bacardi-stage:1245:suzi-wu",
+   "artistId": "governors-ball-2019:suzi-wu",
+   "day": 2,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2019:d2:bacardi-stage:1415:sunflower-bean",
+   "artistId": "governors-ball-2019:sunflower-bean",
+   "day": 2,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2019:d2:bacardi-stage:1545:ravyn-lenae",
+   "artistId": "governors-ball-2019:ravyn-lenae",
+   "day": 2,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2019:d2:bacardi-stage:1745:king-princess",
+   "artistId": "governors-ball-2019:king-princess",
+   "day": 2,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2019:d2:bacardi-stage:2000:zhu",
+   "artistId": "governors-ball-2019:zhu",
+   "day": 2,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2019:d2:honda-stage:1215:tobi-lou",
+   "artistId": "governors-ball-2019:tobi-lou",
+   "day": 2,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2019:d2:honda-stage:1330:u-s-girls",
+   "artistId": "governors-ball-2019:u-s-girls",
+   "day": 2,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2019:d2:honda-stage:1500:denzel-curry",
+   "artistId": "governors-ball-2019:denzel-curry",
+   "day": 2,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2019:d2:honda-stage:1645:playboi-carti",
+   "artistId": "governors-ball-2019:playboi-carti",
+   "day": 2,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2019:d2:honda-stage:1845:vince-staples",
+   "artistId": "governors-ball-2019:vince-staples",
+   "day": 2,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2019:d2:honda-stage:2145:major-lazer",
+   "artistId": "governors-ball-2019:major-lazer",
+   "day": 2,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2019:d2:american-eagle-stage:1245:easy-life",
+   "artistId": "governors-ball-2019:easy-life",
+   "day": 2,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2019:d2:american-eagle-stage:1415:elohim",
+   "artistId": "governors-ball-2019:elohim",
+   "day": 2,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2019:d2:american-eagle-stage:1545:saba",
+   "artistId": "governors-ball-2019:saba",
+   "day": 2,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2019:d2:american-eagle-stage:1745:ty-dolla-ign",
+   "artistId": "governors-ball-2019:ty-dolla-ign",
+   "day": 2,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2019:d2:american-eagle-stage:2015:lord-huron",
+   "artistId": "governors-ball-2019:lord-huron",
+   "day": 2,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "20:15",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2019:d2:bud-light-dive-bar-sessions:1420:vincint",
+   "artistId": "governors-ball-2019:vincint",
+   "day": 2,
+   "stageId": "governors-ball-2019:bud-light-dive-bar-sessions",
+   "start": "14:20",
+   "end": "14:50"
+  },
+  {
+   "id": "governors-ball-2019:d2:bud-light-dive-bar-sessions:1550:leland",
+   "artistId": "governors-ball-2019:leland",
+   "day": 2,
+   "stageId": "governors-ball-2019:bud-light-dive-bar-sessions",
+   "start": "15:50",
+   "end": "16:20"
+  },
+  {
+   "id": "governors-ball-2019:d2:bud-light-dive-bar-sessions:1750:lauren-sanderson",
+   "artistId": "governors-ball-2019:lauren-sanderson",
+   "day": 2,
+   "stageId": "governors-ball-2019:bud-light-dive-bar-sessions",
+   "start": "17:50",
+   "end": "18:20"
+  },
+  {
+   "id": "governors-ball-2019:d3:govballnyc-stage:1910:lily-allen",
+   "artistId": "governors-ball-2019:lily-allen",
+   "day": 3,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "19:10",
+   "end": "19:50"
+  },
+  {
+   "id": "governors-ball-2019:d3:govballnyc-stage:2020:nas",
+   "artistId": "governors-ball-2019:nas",
+   "day": 3,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "20:20",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2019:d3:govballnyc-stage:2215:the-strokes",
+   "artistId": "governors-ball-2019:the-strokes",
+   "day": 3,
+   "stageId": "governors-ball-2019:govballnyc-stage",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "governors-ball-2019:d3:bacardi-stage:1845:noname",
+   "artistId": "governors-ball-2019:noname",
+   "day": 3,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "18:45",
+   "end": "19:10"
+  },
+  {
+   "id": "governors-ball-2019:d3:bacardi-stage:1950:bazzi",
+   "artistId": "governors-ball-2019:bazzi",
+   "day": 3,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "19:50",
+   "end": "20:20"
+  },
+  {
+   "id": "governors-ball-2019:d3:bacardi-stage:2130:beast-coast-joey-bada-flatbush-zombies",
+   "artistId": "governors-ball-2019:beast-coast-joey-bada-flatbush-zombies",
+   "day": 3,
+   "stageId": "governors-ball-2019:bacardi-stage",
+   "start": "21:30",
+   "end": "22:15"
+  },
+  {
+   "id": "governors-ball-2019:d3:honda-stage:1910:sheck-wes",
+   "artistId": "governors-ball-2019:sheck-wes",
+   "day": 3,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "19:10",
+   "end": "19:50"
+  },
+  {
+   "id": "governors-ball-2019:d3:honda-stage:2045:louis-the-child",
+   "artistId": "governors-ball-2019:louis-the-child",
+   "day": 3,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "20:45",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2019:d3:honda-stage:2215:sza",
+   "artistId": "governors-ball-2019:sza",
+   "day": 3,
+   "stageId": "governors-ball-2019:honda-stage",
+   "start": "22:15",
+   "end": "23:15"
+  },
+  {
+   "id": "governors-ball-2019:d3:american-eagle-stage:1845:chelsea-cutler",
+   "artistId": "governors-ball-2019:chelsea-cutler",
+   "day": 3,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "18:45",
+   "end": "19:10"
+  },
+  {
+   "id": "governors-ball-2019:d3:american-eagle-stage:1950:bob-moses",
+   "artistId": "governors-ball-2019:bob-moses",
+   "day": 3,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "19:50",
+   "end": "20:20"
+  },
+  {
+   "id": "governors-ball-2019:d3:american-eagle-stage:2030:070shake",
+   "artistId": "governors-ball-2019:070shake",
+   "day": 3,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "20:30",
+   "end": "20:45"
+  },
+  {
+   "id": "governors-ball-2019:d3:american-eagle-stage:2130:kaytranada",
+   "artistId": "governors-ball-2019:kaytranada",
+   "day": 3,
+   "stageId": "governors-ball-2019:american-eagle-stage",
+   "start": "21:30",
+   "end": "22:15"
+  },
+  {
+   "id": "governors-ball-2019:d3:bud-light-dive-bar-sessions:1845:shaed",
+   "artistId": "governors-ball-2019:shaed",
+   "day": 3,
+   "stageId": "governors-ball-2019:bud-light-dive-bar-sessions",
+   "start": "18:45",
+   "end": "19:05"
+  },
+  {
+   "id": "governors-ball-2019:d3:bud-light-dive-bar-sessions:1950:taylor-bennet",
+   "artistId": "governors-ball-2019:taylor-bennet",
+   "day": 3,
+   "stageId": "governors-ball-2019:bud-light-dive-bar-sessions",
+   "start": "19:50",
+   "end": "20:15"
+  },
+  {
+   "id": "governors-ball-2019:d3:bud-light-dive-bar-sessions:2130:aaron-aye",
+   "artistId": "governors-ball-2019:aaron-aye",
+   "day": 3,
+   "stageId": "governors-ball-2019:bud-light-dive-bar-sessions",
+   "start": "21:30",
+   "end": "21:50"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.governorsballmusicfestival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190709043321/https://www.governorsballmusicfestival.com/schedule/",
+    "captureTimestamp": "20190709043321",
+    "printed": "Friday May 31st",
+    "sha256": "20e859c506b376986dbcd4de32ceabc6cac04d17148514a3cfe5488274825dbc",
+    "rows": 25
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190709043321/https://www.governorsballmusicfestival.com/schedule/",
+    "captureTimestamp": "20190709043321",
+    "printed": "Saturday Jun 1st",
+    "sha256": "20e859c506b376986dbcd4de32ceabc6cac04d17148514a3cfe5488274825dbc",
+    "rows": 25
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190709043321/https://www.governorsballmusicfestival.com/schedule/",
+    "captureTimestamp": "20190709043321",
+    "printed": "Sunday Jun 2nd",
+    "sha256": "20e859c506b376986dbcd4de32ceabc6cac04d17148514a3cfe5488274825dbc",
+    "rows": 16
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-11",
+   "days": [
+    3
+   ],
+   "text": "Sunday was evacuated for storms. The schedule shown is the revised one the official page printed after the festival, with gates reopening in the evening; acts that were canceled are not listed.",
+   "source": "https://web.archive.org/web/20190709043321/https://www.governorsballmusicfestival.com/schedule/"
+  }
+ ]
+}

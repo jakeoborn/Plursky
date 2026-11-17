@@ -1,5 +1,8 @@
 {
  "_comment": "Locked from the reviewed source sheets. setsPerDay is what each edition keeps; droppedPerDay is the printed rows the founder rulings leave out (ledger/<id>.json lists each with its reason). A change here is a data change: re-review the source before editing a number. Lineup-only editions lock artists, stages, appearancesPerDay (billed appearances on each day) and dropped.",
+ "governors-ball-2017": { "stages": 4, "setsPerDay": [23, 22, 22], "droppedPerDay": [0, 0, 0] },
+ "governors-ball-2018": { "stages": 4, "setsPerDay": [23, 22, 21], "droppedPerDay": [0, 0, 0] },
+ "governors-ball-2019": { "stages": 5, "setsPerDay": [25, 25, 16], "droppedPerDay": [0, 0, 0] },
  "governors-ball-2025": { "stages": 3, "setsPerDay": [20, 13, 20], "droppedPerDay": [0, 0, 0] },
  "lollapalooza-2025": { "stages": 11, "setsPerDay": [55, 56, 58, 56], "droppedPerDay": [3, 4, 2, 3] },
  "hard-summer-2025": { "stages": 7, "setsPerDay": [46, 45], "droppedPerDay": [0, 0] },
@@ -93,5 +96,17 @@
  "tomorrowland-2018": { "stages": 16, "setsPerDay": [143, 141, 138, 140, 147, 133], "droppedPerDay": [0, 0, 0, 0, 0, 0] },
  "tomorrowland-2019": { "stages": 17, "setsPerDay": [142, 148, 149, 152, 148, 148], "droppedPerDay": [0, 1, 0, 0, 0, 0] },
  "tomorrowland-2022": { "stages": 14, "setsPerDay": [116, 120, 116, 118, 120, 117, 115, 122, 113], "droppedPerDay": [0, 1, 1, 0, 0, 0, 0, 0, 1] },
- "tomorrowland-2023": { "stages": 14, "setsPerDay": [121, 123, 123, 129, 121, 119], "droppedPerDay": [0, 0, 1, 0, 0, 0] }
+ "tomorrowland-2023": { "stages": 14, "setsPerDay": [121, 123, 123, 129, 121, 119], "droppedPerDay": [0, 0, 1, 0, 0, 0] },
+ "shambhala-2011": { "stages": 6, "setsPerDay": [33, 67, 67, 63], "droppedPerDay": [0, 1, 5, 2] },
+ "shambhala-2012": { "stages": 6, "setsPerDay": [33, 77, 75, 75], "droppedPerDay": [1, 2, 3, 4] },
+ "shambhala-2013": { "stages": 6, "setsPerDay": [36, 88, 78, 75], "droppedPerDay": [0, 2, 2, 3] },
+ "shambhala-2014": { "stages": 6, "setsPerDay": [27, 78, 70, 72], "droppedPerDay": [0, 2, 5, 1] },
+ "shambhala-2015": { "stages": 6, "setsPerDay": [26, 76, 69, 71], "droppedPerDay": [2, 2, 4, 2] },
+ "shambhala-2016": { "stages": 6, "setsPerDay": [26, 69, 68, 66], "droppedPerDay": [3, 3, 4, 3] },
+ "outside-lands-2012": { "stages": 5, "setsPerDay": [29, 29, 29], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2013": { "stages": 6, "setsPerDay": [36, 37, 36], "droppedPerDay": [0, 0, 1] },
+ "outside-lands-2014": { "stages": 5, "setsPerDay": [29, 29, 28], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2015": { "stages": 6, "setsPerDay": [35, 36, 36], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2016": { "stages": 5, "setsPerDay": [30, 30, 30], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2017": { "stages": 6, "setsPerDay": [36, 35, 38], "droppedPerDay": [0, 0, 0] }
 }

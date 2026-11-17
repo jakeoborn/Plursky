@@ -7,7 +7,8 @@
 //     a computed style alone would hide.
 //   - faces: every act face on the sheet and where its image came from (the
 //     reviewed ledger, a transient platform photo, or initials); b2b pairs.
-//   - ledgerActs: every ledger portrait that a reachable lineup can show,
+//   - ledgerActs: every ledger portrait that a reachable lineup can show
+//     (every hand-reviewed one must be reachable),
 //     including each half of a b2b billing.
 //   - heroEvidence: the artist hero's labels against the pixels really behind
 //     them, plus the name's type, the backing's colour, the schedule line and
@@ -106,7 +107,12 @@ export const ledgerActs = (page) => page.evaluate(() => {
       parts.forEach((half, part) => { const row = led[key(half)]; if (row) out.push({ fid, id: a.id, billing: a.name, name: half.trim(), part, parts: parts.length, asset: row.asset }); });
     }
   }
-  return { acts: out, ledgerNames: Object.values(led).map(r => r.artist) };
+  // Every hand-reviewed portrait must be reachable. A Commons pipeline row
+  // (reviewedBy "Commons pipeline: ...") covers the whole artist catalog,
+  // past editions included, so only the ones a reachable lineup shows are
+  // drawn here; the rest are checked by test-artist-photo-ledger.
+  const handReviewed = (r) => !/^Commons pipeline/.test(r.reviewedBy || '');
+  return { acts: out, ledgerNames: Object.values(led).filter(handReviewed).map(r => r.artist) };
 });
 
 // The artist hero under the approved direction. The labels (back, day, genre,

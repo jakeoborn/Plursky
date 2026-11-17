@@ -1986,6 +1986,151 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "governors-ball:gov-ball-nyc",
+     "names": [
+      {
+       "printed": "Gov Ball NYC",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:honda",
+     "names": [
+      {
+       "printed": "Honda",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:big-apple",
+     "names": [
+      {
+       "printed": "Big Apple",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bacardi",
+     "names": [
+      {
+       "printed": "Bacardi",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:gov-ball-nyc-stage",
+     "names": [
+      {
+       "printed": "Gov Ball NYC Stage",
+       "editions": [
+        "governors-ball-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bacardi-stage",
+     "names": [
+      {
+       "printed": "Bacardi Stage",
+       "editions": [
+        "governors-ball-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:honda-stage",
+     "names": [
+      {
+       "printed": "Honda Stage",
+       "editions": [
+        "governors-ball-2018",
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:american-eagle-stage",
+     "names": [
+      {
+       "printed": "American Eagle Stage",
+       "editions": [
+        "governors-ball-2018",
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:govballnyc-stage",
+     "names": [
+      {
+       "printed": "GOVBALLNYC Stage",
+       "editions": [
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bacardi-stage-2",
+     "names": [
+      {
+       "printed": "BACARDÍ Stage",
+       "editions": [
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bud-light-dive-bar-sessions",
+     "names": [
+      {
+       "printed": "Bud Light Dive Bar Sessions",
+       "editions": [
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -3324,6 +3469,120 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "outside-lands:lands-end-polo-field",
+     "names": [
+      {
+       "printed": "Lands End (Polo Field)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:sutro-lindley-meadow",
+     "names": [
+      {
+       "printed": "Sutro (Lindley Meadow)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:twin-peaks-hellman-hollow",
+     "names": [
+      {
+       "printed": "Twin Peaks (Hellman Hollow)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:panhandle-hellman-hollow",
+     "names": [
+      {
+       "printed": "Panhandle (Hellman Hollow)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:the-dome-by-heineken",
+     "names": [
+      {
+       "printed": "The Dome By Heineken",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      },
+      {
+       "printed": "The Dome by Heineken",
+       "editions": [
+        "outside-lands-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:mike-shine",
+     "names": [
+      {
+       "printed": "Mike Shine",
+       "editions": [
+        "outside-lands-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:the-house-by-heineken",
+     "names": [
+      {
+       "printed": "The House by Heineken",
+       "editions": [
+        "outside-lands-2014",
+        "outside-lands-2015",
+        "outside-lands-2016",
+        "outside-lands-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:presidio",
+     "names": [
+      {
+       "printed": "Presidio",
+       "editions": [
+        "outside-lands-2015",
+        "outside-lands-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -3388,6 +3647,142 @@
        "printed": "Despacio",
        "editions": [
         "portola-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "shambhala": {
+   "lineages": [
+    {
+     "id": "shambhala:living-room",
+     "names": [
+      {
+       "printed": "Living Room",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:rock-pit",
+     "names": [
+      {
+       "printed": "Rock Pit",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:pagoda",
+     "names": [
+      {
+       "printed": "Pagoda",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:fractal-forest",
+     "names": [
+      {
+       "printed": "Fractal Forest",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:labyrinth",
+     "names": [
+      {
+       "printed": "Labyrinth",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:village",
+     "names": [
+      {
+       "printed": "Village",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:amphitheatre",
+     "names": [
+      {
+       "printed": "Amphitheatre",
+       "editions": [
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:grove",
+     "names": [
+      {
+       "printed": "Grove",
+       "editions": [
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
        ]
       }
      ],

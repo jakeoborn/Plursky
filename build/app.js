@@ -1510,6 +1510,14 @@ function App() {
           }));
           setShowOnboarding(false);
         }
+        var artist = params.get("artist");
+        if (artist && ARTISTS.find(a => a.id === artist)) {
+          setState(prev => ({
+            ...prev,
+            artist
+          }));
+          setShowOnboarding(false);
+        }
       } catch {}
     };
     window.plurskyApplyUrlParams = applyUrlParams;
@@ -1665,7 +1673,16 @@ function App() {
       flex: 1,
       position: "relative"
     }
-  }, body, React.createElement(ToastHost, null)), !state.artist && state.tab !== "landing" && (() => {
+  }, React.createElement("div", {
+    key: state.artist ? "artist" : state.tab,
+    className: state.artist ? "ps-view ps-view-push" : "ps-view",
+    style: {
+      position: "absolute",
+      inset: 0,
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, body), React.createElement(ToastHost, null)), !state.artist && state.tab !== "landing" && (() => {
     var postFest = (() => {
       try {
         return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity);
@@ -1697,7 +1714,7 @@ function App() {
     onClose: () => setPersonalizeOpen(false)
   }), quickNameOpen && !showOnboarding && React.createElement(QuickNameSheet, {
     onDone: quickNameDone
-  }), state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null));
+  }), state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null), state.tab !== "landing" && React.createElement(SetTrackingWatcher, null));
 }
 var styleTag = document.createElement("style");
 styleTag.textContent = `
@@ -1789,7 +1806,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v583"
+        version: "v629"
       }));
     } catch {}
   }
@@ -1841,7 +1858,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v583"))
+      }, "Plursky · v629"))
     );
   }
 }

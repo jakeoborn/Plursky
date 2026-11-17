@@ -1,0 +1,394 @@
+{
+  "festivalId": "crssd-fall-2026",
+  "plate": "map-sources/art/crssd-fall-2026-official.webp",
+  "source": "https://www.crssdfest.com/wp-content/uploads/Map-IG-Post-4x5-1.jpg",
+  "model": "tps",
+  "smoothing": 0.05,
+  "measuredAt": "2026-11-12",
+  "method": "Official CRSSD Fall 2026 map: an illustrated oblique (slight perspective) view of Waterfront Park with north to the right, Harbor Dr along the top and Pacific Hwy along the bottom; the lawn is drawn about twice as deep as it is, so a thin-plate spline is used. Ties are the fountain-pool ends and dividers, County Administration Center corners (ground line read as roof edge plus drawn wall height), lawn footpath ends, the round fountain plaza, and the Harbor/Ash, Pacific/Ash (Ash centreline extrapolated just off the left frame), Pacific/Beech and Pacific/Cedar crossings. Art pixels read on zoomed grids, ground from OSM nodes (means where a feature spans several nodes); no stage, tent or booth was used.",
+  "artPolygon": [
+    [
+      143,
+      626
+    ],
+    [
+      997,
+      626
+    ],
+    [
+      997,
+      1068
+    ],
+    [
+      143,
+      1068
+    ]
+  ],
+  "ties": [
+    {
+      "name": "Southern fountain pools, south end, west corner",
+      "px": 240,
+      "py": 864,
+      "lat": 32.720252,
+      "lng": -117.1723118,
+      "ref": "OSM node 3673414065"
+    },
+    {
+      "name": "Southern fountain pools, south end, east corner",
+      "px": 230,
+      "py": 892,
+      "lat": 32.7202523,
+      "lng": -117.1721904,
+      "ref": "OSM node 3673412721"
+    },
+    {
+      "name": "Southern pools, 1st divider, west side",
+      "px": 284,
+      "py": 864,
+      "lat": 32.7205393,
+      "lng": -117.1723131,
+      "ref": "mean of OSM nodes 3673412722, 3673414109"
+    },
+    {
+      "name": "Southern pools, 1st divider, east side",
+      "px": 276,
+      "py": 892,
+      "lat": 32.7205394,
+      "lng": -117.1721898,
+      "ref": "mean of OSM nodes 3673414073, 3673414039"
+    },
+    {
+      "name": "Southern pools, 2nd divider, west side",
+      "px": 340,
+      "py": 864,
+      "lat": 32.7208995,
+      "lng": -117.1723122,
+      "ref": "mean of OSM nodes 3673414055, 3673414030"
+    },
+    {
+      "name": "Southern pools, 2nd divider, east side",
+      "px": 333,
+      "py": 892,
+      "lat": 32.7208996,
+      "lng": -117.1721895,
+      "ref": "mean of OSM nodes 3673414047, 3673414026"
+    },
+    {
+      "name": "Southern pools, north end, west corner",
+      "px": 410,
+      "py": 864,
+      "lat": 32.7211888,
+      "lng": -117.1723121,
+      "ref": "OSM node 3673414086"
+    },
+    {
+      "name": "Southern pools, north end, east corner",
+      "px": 406,
+      "py": 892,
+      "lat": 32.721189,
+      "lng": -117.1721916,
+      "ref": "OSM node 3673414027"
+    },
+    {
+      "name": "Northern pools, south end, west corner",
+      "px": 683,
+      "py": 863,
+      "lat": 32.722722,
+      "lng": -117.172308,
+      "ref": "OSM node 3673414081"
+    },
+    {
+      "name": "Northern pools, 1st divider, west side",
+      "px": 742,
+      "py": 863,
+      "lat": 32.7230098,
+      "lng": -117.1723082,
+      "ref": "mean of OSM nodes 3673412713, 3673414035"
+    },
+    {
+      "name": "Northern pools, 1st divider, east side",
+      "px": 752,
+      "py": 892,
+      "lat": 32.7230106,
+      "lng": -117.1721924,
+      "ref": "mean of OSM nodes 3673414049, 3673414028"
+    },
+    {
+      "name": "Northern pools, 2nd divider, west side",
+      "px": 810,
+      "py": 863,
+      "lat": 32.7233416,
+      "lng": -117.1723081,
+      "ref": "mean of OSM nodes 3673412714, 3673414068"
+    },
+    {
+      "name": "Northern pools, 2nd divider, east side",
+      "px": 822,
+      "py": 892,
+      "lat": 32.7233782,
+      "lng": -117.1721924,
+      "ref": "mean of OSM nodes 3673414059, 3673414048"
+    },
+    {
+      "name": "Northern pools, 3rd divider, west side",
+      "px": 883,
+      "py": 863,
+      "lat": 32.7237165,
+      "lng": -117.1723099,
+      "ref": "mean of OSM nodes 3673414031, 3673414093"
+    },
+    {
+      "name": "Northern pools, 3rd divider, east side",
+      "px": 897,
+      "py": 892,
+      "lat": 32.7237532,
+      "lng": -117.1721948,
+      "ref": "mean of OSM nodes 3673414043, 3673414077"
+    },
+    {
+      "name": "Northern pools, north end, west corner",
+      "px": 947,
+      "py": 863,
+      "lat": 32.7240318,
+      "lng": -117.172313,
+      "ref": "OSM node 3666690324"
+    },
+    {
+      "name": "Northern pools, north end, east corner",
+      "px": 963,
+      "py": 892,
+      "lat": 32.724068,
+      "lng": -117.1721954,
+      "ref": "OSM node 3666690327"
+    },
+    {
+      "name": "County Admin Bldg, main block SW corner",
+      "px": 446,
+      "py": 874,
+      "lat": 32.7213243,
+      "lng": -117.1722709,
+      "ref": "OSM node 293394643"
+    },
+    {
+      "name": "County Admin Bldg, main block NW corner",
+      "px": 672,
+      "py": 874,
+      "lat": 32.7225725,
+      "lng": -117.1722766,
+      "ref": "OSM node 293394637"
+    },
+    {
+      "name": "County Admin Bldg, S wing meets east face",
+      "px": 480,
+      "py": 900,
+      "lat": 32.7215136,
+      "lng": -117.1719521,
+      "ref": "OSM node 293394630"
+    },
+    {
+      "name": "County Admin Bldg, N wing meets east face",
+      "px": 637,
+      "py": 900,
+      "lat": 32.7223932,
+      "lng": -117.1719536,
+      "ref": "OSM node 293394632"
+    },
+    {
+      "name": "County Admin Bldg, S wing SE corner",
+      "px": 403,
+      "py": 968,
+      "lat": 32.721194,
+      "lng": -117.1714586,
+      "ref": "OSM node 293394628"
+    },
+    {
+      "name": "County Admin Bldg, S wing NE corner",
+      "px": 478,
+      "py": 968,
+      "lat": 32.7215142,
+      "lng": -117.1714592,
+      "ref": "OSM node 293394629"
+    },
+    {
+      "name": "County Admin Bldg, S wing end-block SW corner",
+      "px": 403,
+      "py": 949,
+      "lat": 32.7211938,
+      "lng": -117.1716484,
+      "ref": "OSM node 293394627"
+    },
+    {
+      "name": "County Admin Bldg, N wing SE corner",
+      "px": 640,
+      "py": 968,
+      "lat": 32.7223938,
+      "lng": -117.1714655,
+      "ref": "OSM node 293394633"
+    },
+    {
+      "name": "County Admin Bldg, N wing NE corner",
+      "px": 702,
+      "py": 968,
+      "lat": 32.7227051,
+      "lng": -117.171466,
+      "ref": "OSM node 293394634"
+    },
+    {
+      "name": "County Admin Bldg, N wing end-block NW corner",
+      "px": 702,
+      "py": 949,
+      "lat": 32.7227049,
+      "lng": -117.1716459,
+      "ref": "OSM node 293394635"
+    },
+    {
+      "name": "Lawn path (32.7209) at bay-side lawn edge",
+      "px": 383,
+      "py": 690,
+      "lat": 32.7209012,
+      "lng": -117.1728459,
+      "ref": "mean of OSM nodes 6561971828, 6561971893"
+    },
+    {
+      "name": "Lawn path (32.7209) at pool-side lawn edge",
+      "px": 351,
+      "py": 847,
+      "lat": 32.7209007,
+      "lng": -117.1723651,
+      "ref": "mean of OSM nodes 6561971858, 6561971844"
+    },
+    {
+      "name": "Lawn path (32.7225) at pool-side lawn edge",
+      "px": 650,
+      "py": 847,
+      "lat": 32.722484,
+      "lng": -117.1723634,
+      "ref": "mean of OSM nodes 6561971832, 6561971868"
+    },
+    {
+      "name": "Lawn path (32.7230) at bay-side lawn edge",
+      "px": 705,
+      "py": 690,
+      "lat": 32.7230125,
+      "lng": -117.1728459,
+      "ref": "mean of OSM nodes 3666690243, 6561971803"
+    },
+    {
+      "name": "Lawn path (32.7230) at pool-side lawn edge",
+      "px": 737,
+      "py": 847,
+      "lat": 32.72301,
+      "lng": -117.1723631,
+      "ref": "mean of OSM nodes 6561958275, 6561971883"
+    },
+    {
+      "name": "Central round fountain plaza, centre",
+      "px": 560,
+      "py": 727,
+      "lat": 32.7219561,
+      "lng": -117.1726783,
+      "ref": "OSM way 363151142 (round fountain), mean of its 18 outline nodes"
+    },
+    {
+      "name": "Lawn path (32.7225) at bay-side lawn edge",
+      "px": 631,
+      "py": 690,
+      "lat": 32.7224853,
+      "lng": -117.1728459,
+      "ref": "mean of OSM nodes 2800750774, 6561971821"
+    },
+    {
+      "name": "Pacific Hwy x W Ash St (off frame, extrapolated)",
+      "px": 96,
+      "py": 1010,
+      "lat": 32.7198559,
+      "lng": -117.1710446,
+      "ref": "mean of OSM nodes 2802972916, 2802972942, 2802972943, 49601276"
+    },
+    {
+      "name": "N Harbor Dr x W Ash St",
+      "px": 254,
+      "py": 648,
+      "lat": 32.7198615,
+      "lng": -117.1731176,
+      "ref": "mean of OSM nodes 4613031478, 49627940, 3011386421, 4613031477"
+    },
+    {
+      "name": "Pacific Hwy x W Beech St",
+      "px": 298,
+      "py": 1010,
+      "lat": 32.7209045,
+      "lng": -117.1710384,
+      "ref": "mean of OSM nodes 49047367, 4341619374"
+    },
+    {
+      "name": "Pacific Hwy x W Cedar St",
+      "px": 574,
+      "py": 1010,
+      "lat": 32.7219458,
+      "lng": -117.171048,
+      "ref": "mean of OSM nodes 2802972911, 49135043"
+    }
+  ],
+  "output": {
+    "image": "geo-maps/crssd-fall-2026.webp",
+    "size": [
+      441,
+      990
+    ],
+    "metresPerPixel": 0.594,
+    "bounds": {
+      "w": -117.1733317,
+      "s": 32.7191649,
+      "e": -117.1705385,
+      "n": 32.724466
+    },
+    "rmsM": 9.7,
+    "worstM": 33.4,
+    "looRmsM": 9.7,
+    "residualsM": {
+      "Southern fountain pools, south end, west corner": 1.1,
+      "Southern fountain pools, south end, east corner": 2.5,
+      "Southern pools, 1st divider, west side": 1.0,
+      "Southern pools, 1st divider, east side": 1.5,
+      "Southern pools, 2nd divider, west side": 1.8,
+      "Southern pools, 2nd divider, east side": 2.3,
+      "Southern pools, north end, west corner": 0.8,
+      "Southern pools, north end, east corner": 2.7,
+      "Northern pools, south end, west corner": 3.8,
+      "Northern pools, 1st divider, west side": 0.3,
+      "Northern pools, 1st divider, east side": 2.5,
+      "Northern pools, 2nd divider, west side": 1.0,
+      "Northern pools, 2nd divider, east side": 1.0,
+      "Northern pools, 3rd divider, west side": 0.6,
+      "Northern pools, 3rd divider, east side": 0.7,
+      "Northern pools, north end, west corner": 0.7,
+      "Northern pools, north end, east corner": 0.8,
+      "County Admin Bldg, main block SW corner": 3.4,
+      "County Admin Bldg, main block NW corner": 5.0,
+      "County Admin Bldg, S wing meets east face": 2.6,
+      "County Admin Bldg, N wing meets east face": 2.4,
+      "County Admin Bldg, S wing SE corner": 1.6,
+      "County Admin Bldg, S wing NE corner": 1.0,
+      "County Admin Bldg, S wing end-block SW corner": 0.6,
+      "County Admin Bldg, N wing SE corner": 2.1,
+      "County Admin Bldg, N wing NE corner": 2.2,
+      "County Admin Bldg, N wing end-block NW corner": 0.9,
+      "Lawn path (32.7209) at bay-side lawn edge": 1.4,
+      "Lawn path (32.7209) at pool-side lawn edge": 1.9,
+      "Lawn path (32.7225) at pool-side lawn edge": 1.1,
+      "Lawn path (32.7230) at bay-side lawn edge": 1.5,
+      "Lawn path (32.7230) at pool-side lawn edge": 1.4,
+      "Central round fountain plaza, centre": 1.4,
+      "Lawn path (32.7225) at bay-side lawn edge": 0.5,
+      "Pacific Hwy x W Ash St (off frame, extrapolated)": 0.5,
+      "N Harbor Dr x W Ash St": 1.2,
+      "Pacific Hwy x W Beech St": 2.3,
+      "Pacific Hwy x W Cedar St": 1.9
+    },
+    "checksM": {},
+    "inputsSha256": "5e464d9b7bea4f652997010e3f250fea5e68bd41f3abaab4ed0f892253bc42e7",
+    "plateSha256": "a7a7bb3c1df70178dcf249bd560fa654352c485292090230a9ea48be4caf573d",
+    "sha256": "06b2c7a79115fe62aa66d7dbe19e788720bdfacb4e94fe6262f80965f8da0818"
+  }
+}

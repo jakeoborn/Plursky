@@ -30,13 +30,20 @@ const clone = x => JSON.parse(JSON.stringify(x));
 // (founder ruling) after measuring 57 m off the 2026 fit; it must not come
 // back. `snapchat` joined 2026-10-18 as the INDEPENDENT anchor: the grove
 // footprint's stage structure measured on the same Esri Wayback 2024-11-18
-// capture (that footprint ran T-Mobile 2024 / Lady Bird 2025 / Snapchat
+// release (that footprint ran T-Mobile 2024 / Lady Bird 2025 / Snapchat
 // 2026 on the official patron maps), clearing the 2026-10-19 waiver.
+// titos, bmi and beatbox joined 2026-11-12: each stage roof read on the same
+// imagery (Nearmap, captured 2023-10-08 — the release date is not the
+// capture date) and named by footprint against the 2023 and 2026 patron
+// maps. All seven are satellite reads; none comes from the poster.
 const ANCHORS = [
   { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm" },
   { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm" },
   { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm" },
   { stageId: "snapchat", lat: 30.266712, lng: -97.766540, src: "osm" },
+  { stageId: "titos",   lat: 30.267785, lng: -97.765064, src: "osm" },
+  { stageId: "bmi",     lat: 30.266537, lng: -97.769236, src: "osm" },
+  { stageId: "beatbox", lat: 30.265399, lng: -97.768634, src: "osm" },
 ];
 const STAGE_IDS = ["amex", "snapchat", "titos", "miller", "tmobile", "bmi", "beatbox"];
 
@@ -81,9 +88,11 @@ function validate(ds, { local = LOCAL, start = ctx.__o.avatarStartFor(ds) } = {}
   const an = cfg.gpsAnchors || [];
   if (JSON.stringify(an.map(a => [a.stageId, a.lat, a.lng, a.src])) !== JSON.stringify(ANCHORS.map(a => [a.stageId, a.lat, a.lng, a.src])))
     p.push(`gpsAnchors changed: ${an.map(a => a.stageId).join(",")}`);
-  for (const id of ["titos", "beatbox"]) if (an.some(a => a.stageId === id)) p.push(`${id} has a GPS anchor; the poster is not a survey`);
-  const snapAn = an.find(a => a.stageId === "snapchat");
-  if (snapAn && snapAn.src !== "osm") p.push("snapchat has a GPS anchor that is not a satellite measurement");
+  // Every anchor is a satellite read: a poster/derived/provisional source
+  // here is a guess about where a stage is, and attendance must not fire on it.
+  for (const a of an) if (a.src !== "osm") p.push(`${a.stageId} has a ${a.src} GPS anchor; only a satellite or crowd measurement may place a stage`);
+  // All seven are read off the 2023 capture: each must say it is assumed for 2026.
+  for (const a of an) if (!/^satellite 2023, assumed for 2026$/.test(a.assumed || "")) p.push(`${a.stageId} anchor does not say it is a 2023 position assumed for 2026`);
   // Art coordinates: every x/y is a measured row, and nothing unmeasured ships.
   const rows = [...ds.stages.map(s => ["stages", s]), ...(ds.amenities || []).map(a => ["amenities", a])];
   for (const [kind, item] of rows) {
@@ -138,10 +147,12 @@ mustFail("render the 2025 plate", m => { m.config.mapImage = "acl-park.webp"; })
 mustFail("drop the plate from the precache", () => {}, { local: new Set([...LOCAL].filter(x => x !== M.derivative)) });
 mustFail("precache the 4 MB source", () => {}, { local: new Set([...LOCAL, M.source]) });
 mustFail("add a Snapchat GPS anchor from the poster", m => { m.config.gpsAnchors.push({ stageId: "snapchat", lat: 30.2665, lng: -97.7672, src: "poster" }); });
-mustFail("add a Tito's anchor", m => { m.config.gpsAnchors.push({ stageId: "titos", lat: 30.2685, lng: -97.7652, src: "derived" }); });
+mustFail("swap Tito's satellite read for a poster-derived one", m => { Object.assign(m.config.gpsAnchors.find(a => a.stageId === "titos"), { lat: 30.2685, lng: -97.7652, src: "derived" }); });
+mustFail("drop the 2023-assumption label from BMI", m => { delete m.config.gpsAnchors.find(a => a.stageId === "bmi").assumed; });
+mustFail("relabel the BEATBOX read as a poster pin", m => { m.config.gpsAnchors.find(a => a.stageId === "beatbox").src = "poster"; });
 mustFail("reorder the affine basis", m => { const a = m.config.gpsAnchors; [a[0], a[1]] = [a[1], a[0]]; });
 mustFail("move a satellite anchor", m => { m.config.gpsAnchors[2].lat += 0.0005; });
-mustFail("restore the derived BMI anchor", m => { m.config.gpsAnchors.push({ stageId: "bmi", lat: 30.266404, lng: -97.767698, src: "derived" }); });
+mustFail("restore the derived BMI anchor", m => { Object.assign(m.config.gpsAnchors.find(a => a.stageId === "bmi"), { lat: 30.266404, lng: -97.767698, src: "derived" }); });
 mustFail("restore Lady Bird as a stage", m => { m.stages.push({ id: "ladybird", name: "Lady Bird", x: 50, y: 50 }); });
 mustFail("drop a programmed stage", m => { m.stages = m.stages.filter(s => s.id !== "beatbox"); });
 mustFail("nudge a stage off its measurement", m => { m.stages.find(s => s.id === "snapchat").x += 1; });
@@ -184,12 +195,11 @@ ok(near(edcSet, edcSet.amenities[0].id, () => false) !== null, "EDC lost its ame
 delete ctx.geometryVerifiedFor;
 
 // ── 6. off_stage needs every programmed stage anchored (lane ruling 2026-09-23) ──
-// ACL has 4 of its 7 stages anchored. A photo in the BMI crowd is well over
-// 120 m from all four, so "far from every anchor" says nothing about whether
-// you were between sets; it must fall through to the time matcher. EDC LV has
-// every stage anchored, so there far-from-everything still means off_stage.
-// Runs the COMPILED matcher, and again with the coverage check cut out, which
-// must break (a).
+// Since 2026-11-12 ACL anchors all 7 stages, so far-from-everything there now
+// means off_stage, as at EDC LV. The coverage rule itself is proven on ACL
+// with BMI's anchor taken away (6 of 7): a photo far from all six must fall
+// through to the time matcher, and cutting the coverage check out of the
+// COMPILED matcher must bring off_stage back.
 const PHOTO_TAG = readFileSync(join(ROOT, "build/photo-tag.js"), "utf8");
 const COVERAGE_CALL = "&& _allProgrammedStagesAnchored(artists, night, anchors)";
 ok(PHOTO_TAG.includes(COVERAGE_CALL), "compiled photo-tag no longer gates off_stage on anchor coverage");
@@ -202,43 +212,63 @@ const matcherFrom = src => {
   return c.__m;
 };
 const toMin = t => { const [h, m] = t.split(":").map(Number); return (h < 8 ? h + 24 : h) * 60 + m; };
-const photoAt = (M2, dsId, artistId, plusMin, lat, lng) => {
-  const ds = { id: dsId, ...M2.DS[dsId] }, a = ds.artists.find(x => x.id === artistId);
+const photoAt = (M2, dsId, artistId, plusMin, lat, lng, edit = ds => ds) => {
+  const ds = edit({ id: dsId, ...M2.DS[dsId] }), a = ds.artists.find(x => x.id === artistId);
   const date = M2.wall(ds.config.dayDates[a.day].midnightUtc + (toMin(a.start) + plusMin) * 60000, ds.config);
   return M2.match({ date, lat, lng, acc: 10 }, [], [], ds);
 };
-// A spot in the BMI crowd under the 2026 fit: 159-481 m from every ACL
-// anchor, snapchat nearest (a photo position, not an anchor).
-const BMI_CROWD = [30.266677, -97.768198];
+const withoutBmi = ds => ({ ...ds, config: { ...ds.config, gpsAnchors: ds.config.gpsAnchors.filter(a => a.stageId !== "bmi") } });
+// In the BMI crowd: between the satellite-read stage roof and its FOH.
+const BMI_CROWD = [30.266640, -97.769140];
+// South of the grounds, over Barton Creek: >120 m from every ACL anchor
+// (BEATBOX, the nearest, is ~200 m away).
+const FAR = [30.2640, -97.7700];
 const liveM = matcherFrom(PHOTO_TAG);
 const aclA = ctx.__o.DS["acl-2026"].artists;
 const bmiSolo = aclA.find(a => a.stage === "bmi" && a.day === 3 && a.start === "12:45" && a.weekend === "W1");
 const bmiBusy = aclA.find(a => a.stage === "bmi" && a.day === 1 && a.start === "13:45" && a.weekend === "W1");
 ok(bmiSolo && bmiBusy, "the ACL BMI fixture sets moved; re-pick them");
-// a. BMI set, GPS far from all three anchors: tagged to the BMI set, not off_stage.
+// a. In the BMI crowd during a BMI set: tagged to it (or BMI offered first), never off_stage.
 const ra = bmiSolo && photoAt(liveM, "acl-2026", bmiSolo.id, 5, ...BMI_CROWD);
-// SPEC-179: the precise fix rules out every pinned stage; BMI and Tito's (both
-// unpinned) start at 12:45, so nobody is tagged and BMI is offered first.
 ok(ra?.reason !== "off_stage" && (ra?.artistId === bmiSolo.id || (ra?.artistId === null && ra?.alternatives?.[0] === bmiSolo.id)),
   `ACL photo in the BMI crowd during ${bmiSolo?.id} was ${ra?.reason} / ${ra?.artistId}, not tagged to the BMI set`);
 // a'. Mid-afternoon, 11 sets overlap: still not off_stage, and BMI stays one tap away.
 const rb = bmiBusy && photoAt(liveM, "acl-2026", bmiBusy.id, 20, ...BMI_CROWD);
-// SPEC-179: with several unpinned stages playing, nobody is tagged; BMI is
-// one of the offered acts.
 ok(rb?.reason !== "off_stage" && (rb?.artistId === bmiBusy.id || (rb?.ambiguous && rb.alternatives?.includes(bmiBusy.id))),
   `ACL photo in the BMI crowd during a busy slot was ${rb?.reason} / ${rb?.artistId}; BMI must be the tag or a FIX TAG alternative`);
-// b. Positive control: EDC LV anchors every stage, so a photo >120 m from all of them is off_stage.
+// b. Every ACL stage anchored: far from all of them is off_stage (EDC LV is the second control).
+const rf = bmiSolo && photoAt(liveM, "acl-2026", bmiSolo.id, 5, ...FAR);
+ok(rf?.reason === "off_stage" && rf.artistId === null, `ACL (all 7 anchored) photo far from every stage was ${rf?.reason}, not off_stage`);
 const edcA = ctx.__o.DS["edc-lv-2026"].artists.find(a => a.day === 1);
 const rc = photoAt(liveM, "edc-lv-2026", edcA.id, 10, 36.265, -115.005);
 ok(rc.reason === "off_stage" && rc.artistId === null && rc.distMeters > 120,
   `EDC LV (every stage anchored) photo far from all anchors was ${rc.reason}, not off_stage`);
-// c. Mutation: cut the coverage check out of the compiled matcher; (a) must break.
+// c. Coverage rule: with BMI unanchored (6 of 7), far-from-everything during a BMI set is not off_stage...
+const rd = bmiSolo && photoAt(liveM, "acl-2026", bmiSolo.id, 5, ...FAR, withoutBmi);
+ok(rd && rd.reason !== "off_stage", `ACL with BMI unanchored: a far photo during a BMI set was ${rd?.reason}; it must fall through to the time matcher`);
+// ...and cutting the coverage check out of the compiled matcher must make it off_stage.
 const cut = matcherFrom(PHOTO_TAG.replace(COVERAGE_CALL, ""));
 mutations++;
-ok(bmiSolo && photoAt(cut, "acl-2026", bmiSolo.id, 5, ...BMI_CROWD).reason === "off_stage",
-  "mutation not caught: removing the all-stages-anchored check did not bring back off_stage for the BMI photo");
+ok(bmiSolo && photoAt(cut, "acl-2026", bmiSolo.id, 5, ...FAR, withoutBmi).reason === "off_stage",
+  "mutation not caught: removing the all-stages-anchored check did not bring back off_stage with BMI unanchored");
+
+// ── 7. a crowd measurement from 2026 photos overrides a 2023 satellite spot ──
+{
+  const R = vm.runInContext("resolvedStageAnchors", ctx);
+  const crowd = { stageId: "bmi", lat: 30.266600, lng: -97.769100, n: 5, nights: 1, spreadM: 40, soleSetInWindow: true };
+  const cfg2 = { ...acl.config, crowdAnchors: [crowd] };
+  const got = R(cfg2).filter(a => a.stageId === "bmi");
+  ok(got.length === 1 && got[0].lat === crowd.lat && got[0].lng === crowd.lng && got[0].anchorSource === "crowd",
+    `a 2026 crowd anchor for BMI did not replace the 2023 satellite spot: ${JSON.stringify(got)}`);
+  const titos = R(cfg2).find(a => a.stageId === "titos");
+  ok(titos && titos.anchorSource === "osm" && titos.lat === 30.267785, "a crowd anchor for one stage disturbed another stage's satellite spot");
+  // Mutation: a resolver that ignores crowdAnchors must be caught.
+  mutations++;
+  const satOnly = c => (c.gpsAnchors || []).map(g => ({ stageId: g.stageId, lat: g.lat, lng: g.lng, anchorSource: g.src }));
+  ok(satOnly(cfg2).find(a => a.stageId === "bmi").anchorSource !== "crowd", "mutation not caught: a satellite-only resolver passes the override check");
+}
 
 if (fails.length) { fails.forEach(f => console.error(`  ✗ ${f}`)); console.error(`  ${fails.length} of ${checks} ACL map checks failed`); process.exit(1); }
 console.log(`  ✓ ACL 2026 map: plate is the verified 2026 patron map (square ${M.derivativeSize.join("×")}), ` +
-  `${acl.stages.length} stages + ${acl.amenities.length} amenities on measured rows, 4 satellite anchors in order, no derived anchor, off_stage only with every stage anchored, YOU starts at (${ctx.__o.avatarStartFor(acl).x},${ctx.__o.avatarStartFor(acl).y}), ` +
+  `${acl.stages.length} stages + ${acl.amenities.length} amenities on measured rows, 7 satellite anchors in order, no derived anchor, off_stage only with every stage anchored, YOU starts at (${ctx.__o.avatarStartFor(acl).x},${ctx.__o.avatarStartFor(acl).y}), ` +
   `${checks} checks (${mutations} mutations, each caught)`);
