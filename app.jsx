@@ -49,19 +49,22 @@ function VfxParticleField({ count = 14, scale = 1 }) {
 // Personalize (Home's setup notice, Me), each with one sentence of why.
 // Acts with a reviewed portrait in the ledger come first, so the story shows
 // faces, not initials (Jake, Nov 13: "need photos ... not initials"); then the
-// top of the bill, then the running order. One act per name.
-function _onbHeadliners(n) {
+// top of the bill, then the running order. One act per name. `keep` filters the
+// pool first, and acts with no day sort after timed ones.
+function _onbHeadliners(n, keep = () => true) {
   const lineup = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
   const face = a => (typeof getPermanentArtistImage === "function" && getPermanentArtistImage(a.name)) ? 1 : 0;
   const seen = new Set();
-  return [...lineup]
-    .sort((a, b) => (face(b) - face(a)) || (b.tier || 0) - (a.tier || 0) || (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
+  return lineup.filter(keep)
+    .sort((a, b) => ((a.day == null) - (b.day == null)) || (face(b) - face(a)) || (b.tier || 0) - (a.tier || 0) || (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
     .filter(a => { const k = String(a.name || "").toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; })
     .slice(0, n);
 }
 
 function OnbSchedulePreview() {
-  const rows = _onbHeadliners(4)
+  // A schedule row needs a day to sort and print. A billed act the official
+  // schedule never placed (CRSSD's day-null acts) is not an example of one.
+  const rows = _onbHeadliners(4, a => a.day != null)
     .sort((a, b) => (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
     .slice(0, 3);
   // The Lineup list row as it now looks: mono time, face, name over stage,
@@ -95,13 +98,15 @@ function OnbSchedulePreview() {
 
 // The real hero-card renderer, so onboarding shows the card a user keeps. With
 // none of their own photos yet, the act's ledger portrait stands in, on screen
-// only (_renderHeroPreview), so the story never shows an empty black card.
+// only (_renderHeroPreview), so the story never shows an empty black card. A
+// ledger portrait is a licensed photo, so its credit shows under the card, as
+// under the artist page's hero (PhotoCredit).
 function OnbCardPreview({ artists, count = 1 }) {
-  const [urls, setUrls] = React.useState([]);
+  const [cards, setCards] = React.useState({});
   React.useEffect(() => {
     let live = true; const made = [];
     (async () => {
-      for (const a of artists.slice(0, count)) {
+      for (const [i, a] of artists.slice(0, count).entries()) {
         let c = null;
         try { c = typeof _renderHeroPreview === "function" ? await _renderHeroPreview(a) : typeof _renderHeroCard === "function" ? await _renderHeroCard(a) : null; } catch {}
         if (!live || !c) continue;
@@ -109,7 +114,7 @@ function OnbCardPreview({ artists, count = 1 }) {
         if (!live || !blob) continue;
         const u = URL.createObjectURL(blob);
         made.push(u);
-        setUrls(prev => [...prev, u]);
+        setCards(prev => ({ ...prev, [i]: { url: u, credit: c._photoCredit || null } }));
       }
     })();
     return () => { live = false; made.forEach(u => { try { URL.revokeObjectURL(u); } catch {} }); };
@@ -117,10 +122,46 @@ function OnbCardPreview({ artists, count = 1 }) {
   return (
     <div style={{ display: "flex", justifyContent: "center", gap: 8 }}>
       {artists.slice(0, count).map((a, i) => (
-        <div key={a.id} style={{ width: count === 1 ? "72%" : "31%", aspectRatio: "4 / 5", borderRadius: 14, overflow: "hidden", background: "var(--paper-2)" }}>
-          {urls[i] && <img src={urls[i]} alt={`${a.name} set card`} style={{ width: "100%", height: "100%", display: "block" }} />}
+        <div key={a.id} style={{ width: count === 1 ? "72%" : "31%", minWidth: 0 }}>
+          <div style={{ aspectRatio: "4 / 5", borderRadius: 14, overflow: "hidden", background: "var(--paper-2)" }}>
+            {cards[i] && <img src={cards[i].url} alt={`${a.name} set card`} style={{ width: "100%", height: "100%", display: "block" }} />}
+          </div>
+          {cards[i]?.credit && typeof PhotoCredit === "function" && (
+            <PhotoCredit data-onb-photo-credit="1" credit={cards[i].credit} style={{ marginTop: 4, overflowWrap: "anywhere" }} />
+          )}
         </div>
       ))}
+    </div>
+  );
+}
+
+// Editorial first page. The licensed crowd photograph supplies atmosphere;
+// the artwork tile is non-personal so no artist likeness implies endorsement.
+function OnbEditorialPlan({ heads }) {
+  const lineup = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
+  const isCrssd = FESTIVAL_CONFIG.id === "crssd-fall-2026";
+  const featured = isCrssd && lineup.find(a => a.id === "crssd-chris-lake-b2b-disclosure" && a.day === 2 && a.start === "20:30");
+  const other = heads.find(a => a.day != null && a.start);
+  const act = featured || other;
+  const st = act && STAGES.find(s => s.id === act.stage);
+  const day = act && FESTIVAL_CONFIG.dayDates?.[act.day]?.name;
+  return (
+    <div className="onb-editorial">
+      <div className="onb-editorial-content">
+        <div className="onb-editorial-kicker">01 / THE PLAN</div>
+        <h1>Your night.<br/>Already<br/>taking shape.</h1>
+        <p className="onb-editorial-sub">Find the set. Save it. Know exactly where to be.</p>
+        {act && <div className="onb-editorial-hero">
+          <div className="onb-editorial-art" aria-hidden="true"><span>LIVE<br/>SETS</span></div>
+          <div className="onb-editorial-detail">
+            <span className="onb-editorial-label">{day?.toUpperCase()}{st ? ` · ${st.name.toUpperCase()}` : ""}</span>
+            <strong>{act.name}</strong>
+            <span className="onb-editorial-time">{fmt12(act.start)}{act.end ? `–${fmt12(act.end)}` : ""}<br/>{FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name}</span>
+            <span className="onb-editorial-save">+ SAVE SET</span>
+          </div>
+        </div>}
+        <OnbSchedulePreview />
+      </div>
     </div>
   );
 }
@@ -317,14 +358,24 @@ function OnboardingModal({ onDone, setState, state }) {
       display: "flex", flexDirection: "column",
       paddingTop: "var(--top-pad, 0px)", paddingBottom: "env(safe-area-inset-bottom, 0px)",
       animation: "fadeIn .25s",
-    }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 52, padding: "0 8px 0 20px" }}>
-        <span className={story ? "duo-data-s duo-ink2" : "duo-label duo-ink3"}>{scanFirst ? "Welcome" : story ? `${page + 1} / 3` : "Almost there"}</span>
+    }} className={page === 0 ? "onb-editorial-modal media-scope" : ""}>
+      <div className={page === 0 ? "onb-editorial-top" : ""} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 52, padding: "0 8px 0 20px" }}>
+        <span className={story ? "duo-data-s duo-ink2" : "duo-label duo-ink3"}>{scanFirst ? "Welcome" : story ? (page === 0 ? "PLURSKY / FIELD MODE" : `${page + 1} / 3`) : "Almost there"}</span>
         {story && <button onClick={() => setPage(3)} style={{ ...fieldIconBtn, width: "auto", padding: "0 12px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>Skip</button>}
       </div>
       {scanFirst ? (
         <OnbScanStep native={native} onFound={addFound} onNext={() => setPage(native ? 3 : 0)} />
-      ) : story ? (
+      ) : story ? page === 0 ? (
+        <div className="onb-editorial-page">
+          <OnbEditorialPlan heads={heads} />
+          <div className="onb-editorial-bottom">
+            <div className="onb-editorial-rule" />
+            <p>Build your own route through the weekend.</p>
+            <button onClick={() => setPage(1)} className="onb-editorial-continue">Continue <span aria-hidden="true">→</span></button>
+            <div className="onb-editorial-dots" aria-label="Page 1 of 3"><i/><i/><i/></div>
+          </div>
+        </div>
+      ) : (
         <>
           <div key={page} style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "8px 20px 0", display: "flex", flexDirection: "column", justifyContent: "center", animation: "fadeIn .2s" }}>
             {cur.preview}
@@ -1251,7 +1302,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v636",
+        version: "v640",
       }));
     } catch {}
   }
@@ -1282,7 +1333,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v636
+          Plursky · v640
         </div>
       </div>
     );
