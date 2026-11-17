@@ -3044,8 +3044,30 @@ function NpPoster({ countdown, stampText, fold, foldRight }) {
         </div>
         <div className="np-stamp" data-np-stamp aria-label={stampText.replace(/\s+/g, " ")}>{stampText}</div>
       </div>
+      <NpPhoto />
       <div className="np-cut" data-np-cut><b>{fold}</b><span>{foldRight}</span></div>
     </section>
+  );
+}
+// The festival's own photo across the poster, above the fold (Jake, Nov 13:
+// "design looks weak need photos"). Same ledger frame as the switcher card
+// (data/festival-art.js); a festival with no card keeps the type-only poster.
+// A licensed photo carries the shared PhotoCredit (author, licence deed,
+// changes) on the frame, the same line as everywhere else in the app.
+function NpPhoto() {
+  const rec = typeof festivalArtFor === "function" ? festivalArtFor(FESTIVAL_CONFIG.id) : null;
+  const [failed, setFailed] = React.useState(false);
+  if (!rec || !rec.card || !/^festival-art\/[a-z0-9-]+\.webp$/.test(rec.card) || failed) return null;
+  const credit = rec.author && rec.licenseId && rec.licenseUrl
+    ? { author: rec.author, sourceUrl: rec.sourcePage, license: rec.licenseId, licenseUrl: rec.licenseUrl, changes: rec.changes }
+    : null;
+  return (
+    <figure className="np-photo" data-np-photo>
+      <img src={`./${rec.card}`} alt="" decoding="async" onError={() => setFailed(true)} />
+      {credit && typeof PhotoCredit === "function" && (
+        <figcaption className="np-photo-credit"><PhotoCredit credit={credit} style={{ color: "#fff" }} /></figcaption>
+      )}
+    </figure>
   );
 }
 // On the night and after: the poster compresses into an edition strip, so

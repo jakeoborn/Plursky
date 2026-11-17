@@ -490,6 +490,10 @@
      above (background-clip keeps the band's ink out of the border box). */
   .np-cut{margin:0 -18px;padding:16px 18px;background:var(--np-ink);background-clip:padding-box;color:var(--np-paper);border-top:1px dashed var(--np-paper);display:flex;justify-content:space-between;align-items:center;gap:12px;font:500 11px/1.3 var(--f-data);letter-spacing:.04em;text-transform:uppercase}
   .np-cut>span{min-width:0}
+  /* The festival photo, full bleed between the poster's foot and the fold. */
+  .np-photo{position:relative;margin:0 -18px;aspect-ratio:16/9;overflow:hidden;background:#1C1B19}
+  .np-photo>img{display:block;width:100%;height:100%;object-fit:cover;animation:fadeIn .4s}
+  .np-photo-credit{position:absolute;left:0;right:0;bottom:0;padding:18px 12px 6px;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0));color:#fff;font:500 10px/1.3 var(--f-data);letter-spacing:.03em;text-align:right}
   /* The claim block and the saved list under the fold. */
   .np-block{padding:25px 18px;border-bottom:1px solid var(--np-ink)}
   .np-block .np-body{margin-top:20px;max-width:288px}
@@ -1003,66 +1007,66 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script src="build/ios-frame.js?v=v639"></script>
+  <script src="build/ios-frame.js?v=v640"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v639"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v639"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v639"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v639"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v639"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v639"></script>
-  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v639"></script>
-  <script src="data/festivals/crssd-fall-2026.js?v=v639"></script>
-  <script src="data/festivals/portola-2026.js?v=v639"></script>
-  <script src="data/festivals/hard-summer-2026.js?v=v639"></script>
-  <script src="data/festivals/arc-2026.js?v=v639"></script>
-  <script src="data/festivals/escape-halloween-2026.js?v=v639"></script>
-  <script src="data/festivals/dreamstate-socal-2026.js?v=v639"></script>
-  <script src="data/festivals/decadence-colorado-2026.js?v=v639"></script>
-  <script src="data/festivals/countdown-nye-2026.js?v=v639"></script>
-  <script src="data/festivals/lights-all-night-2026.js?v=v639"></script>
-  <script src="data/festivals/decadence-arizona-2026.js?v=v639"></script>
-  <script src="data/festivals/sunset-on-the-river-2027.js?v=v639"></script>
-  <script src="data/festivals/dwp-2026.js?v=v639"></script>
-  <script src="data/festivals/edc-thailand-2026.js?v=v639"></script>
-  <script src="data/festivals/tomorrowland-thailand-2026.js?v=v639"></script>
-  <script src="data/festivals/groove-cruise-2027.js?v=v639"></script>
-  <script src="data/festivals/day-zero-tulum-2027.js?v=v639"></script>
-  <script src="data/festivals/coachella-2027.js?v=v639"></script>
-  <script src="data/festivals/time-warp-2027.js?v=v639"></script>
-  <script src="build/data.js?v=v639"></script>
-  <script src="build/supabase.js?v=v639"></script>
-<script src="build/machine.js?v=v639"></script>
-  <script src="data/artist-key.js?v=v639"></script>
-  <script src="data/artist-photos.js?v=v639"></script>
-  <script src="data/festival-art.js?v=v639"></script>
-  <script src="data/plan-share-contract.js?v=v639"></script>
-  <script src="build/chrome.js?v=v639"></script>
-  <script src="build/home.js?v=v639"></script>
-  <script src="build/map.js?v=v639"></script>
-  <script src="build/survey.js?v=v639"></script>
-  <script src="build/lineup.js?v=v639"></script>
-  <script src="build/artist.js?v=v639"></script>
-  <script src="build/photo-tag.js?v=v639"></script>
-  <script src="build/spotify-api.js?v=v639"></script>
-  <script src="build/recap-engine.js?v=v639"></script>
-  <script src="build/historical.js?v=v639"></script>
-  <script src="build/artists.js?v=v639"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v640"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v640"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v640"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v640"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v640"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v640"></script>
+  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v640"></script>
+  <script src="data/festivals/crssd-fall-2026.js?v=v640"></script>
+  <script src="data/festivals/portola-2026.js?v=v640"></script>
+  <script src="data/festivals/hard-summer-2026.js?v=v640"></script>
+  <script src="data/festivals/arc-2026.js?v=v640"></script>
+  <script src="data/festivals/escape-halloween-2026.js?v=v640"></script>
+  <script src="data/festivals/dreamstate-socal-2026.js?v=v640"></script>
+  <script src="data/festivals/decadence-colorado-2026.js?v=v640"></script>
+  <script src="data/festivals/countdown-nye-2026.js?v=v640"></script>
+  <script src="data/festivals/lights-all-night-2026.js?v=v640"></script>
+  <script src="data/festivals/decadence-arizona-2026.js?v=v640"></script>
+  <script src="data/festivals/sunset-on-the-river-2027.js?v=v640"></script>
+  <script src="data/festivals/dwp-2026.js?v=v640"></script>
+  <script src="data/festivals/edc-thailand-2026.js?v=v640"></script>
+  <script src="data/festivals/tomorrowland-thailand-2026.js?v=v640"></script>
+  <script src="data/festivals/groove-cruise-2027.js?v=v640"></script>
+  <script src="data/festivals/day-zero-tulum-2027.js?v=v640"></script>
+  <script src="data/festivals/coachella-2027.js?v=v640"></script>
+  <script src="data/festivals/time-warp-2027.js?v=v640"></script>
+  <script src="build/data.js?v=v640"></script>
+  <script src="build/supabase.js?v=v640"></script>
+<script src="build/machine.js?v=v640"></script>
+  <script src="data/artist-key.js?v=v640"></script>
+  <script src="data/artist-photos.js?v=v640"></script>
+  <script src="data/festival-art.js?v=v640"></script>
+  <script src="data/plan-share-contract.js?v=v640"></script>
+  <script src="build/chrome.js?v=v640"></script>
+  <script src="build/home.js?v=v640"></script>
+  <script src="build/map.js?v=v640"></script>
+  <script src="build/survey.js?v=v640"></script>
+  <script src="build/lineup.js?v=v640"></script>
+  <script src="build/artist.js?v=v640"></script>
+  <script src="build/photo-tag.js?v=v640"></script>
+  <script src="build/spotify-api.js?v=v640"></script>
+  <script src="build/recap-engine.js?v=v640"></script>
+  <script src="build/historical.js?v=v640"></script>
+  <script src="build/artists.js?v=v640"></script>
   <!-- General Landing + saved festivals. Before spotify.js per CLAUDE.md §4;
        everything it borrows from there is called at runtime by bare name. -->
-  <script src="build/landing.js?v=v639"></script>
-  <script src="build/spotify.js?v=v639"></script>
-  <script src="build/app.js?v=v639"></script>
+  <script src="build/landing.js?v=v640"></script>
+  <script src="build/spotify.js?v=v640"></script>
+  <script src="build/app.js?v=v640"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v639';
+    const APP_VERSION = 'v640';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -1083,11 +1087,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v639' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v640' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v639', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v640', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 
