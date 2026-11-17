@@ -120,6 +120,34 @@ not read. Markus Schulz's 13:00 to 01:00 slot in 2013 is printed 12 hours
 wide and is allowed past the eight-hour check by name (`PRINTED_LONG_SETS`).
 Every capture was taken after the weekend it prints.
 
+Archived Shambhala set-times pages (2024, 2025, format `shambhala-webflow`):
+
+    node scripts/historical/gather-shambhala-webflow.mjs <edition-id> <gather-dir> <official-url> \
+      --dates <ts> <post-url> <ts> <url> [<ts> <url> …] [--stage-by-logo <class>=<name>]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+shambhalamusicfestival.com/set-times/<weekday> is a Webflow page, one per
+weekday. It prints its weekday (title and active tab) and no date, and its
+title keeps a stale year, so the year is the page's own "Last Published"
+stamp, which must fall in the edition's year. The date is the run the
+festival's own dated blog post prints ("July 26-29, 2024", "July 25th to
+28th, 2025"): Friday to Monday, every run in the post the same, its Thursday
+the night before (`--dates`, re-read off the official host at import). The
+grid is an hour axis from 10 AM (one label an hour) and one column per stage,
+named by its heading or its logo's alt. Each block carries its range three
+ways (24-hour data, the printed 12-hour time, its place and height on the
+axis at 70 px an hour), and all three must agree. Two acts drawn in one slot
+(2024's "P Money x Whiney" and "P Monay x Whiney") are misprints and excluded
+rows. A block the CMS draws once per performer is one set (`drawnTwice` in
+the ledger); 2024's mystery set, printed only as question marks, names no act
+(`unnamedSlots`). 2025's Secret Garden column carries the Village logo's alt:
+`--stage-by-logo secret-garden="Secret Garden"` names it, and only when the
+column's class and its logo's file name both spell that name. Several 2025
+days were captured in one second, so a row cites its page by timestamp and
+path. Secret Garden's daytime classes and talks are PROGRAMME, hosted
+sessions are EVENT_BLOCKS, and Skream & Friends' 12:30 to 9:00 AM closing
+set (2025) is allowed past the eight-hour check by name.
+
 Archived Electric Forest Scheduler (2014, 2015, format `ef-scheduler`):
 
     node scripts/historical/gather-ef-scheduler.mjs <edition-id> <gather-dir> <official-url> <ts> <url> \

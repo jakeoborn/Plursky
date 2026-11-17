@@ -1,0 +1,349 @@
+{
+  "id": "shambhala-2024",
+  "method": "official_sources",
+  "official": "https://www.shambhalamusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2024-07-25",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.shambhalamusicfestival.com/set-times/thursday",
+          "archivedUrl": "https://web.archive.org/web/20240812142326/https://www.shambhalamusicfestival.com/set-times/thursday",
+          "captureTimestamp": "20240812142326",
+          "printed": "Thursday",
+          "sha256": "20d3aca2f57063e1b50051b2d9433990b889c5a3d8ed3dce60d2295135a48c24",
+          "bytes": 61331,
+          "rows": 23,
+          "format": "shambhala-webflow",
+          "weekday": "Thursday",
+          "published": "2024-07-29",
+          "stages": 2,
+          "axis": "10:00-09:00",
+          "pxPerHour": 70,
+          "datesFrom": {
+            "url": "https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+            "archivedUrl": "https://web.archive.org/web/20240812144505/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+            "captureTimestamp": "20240812144505",
+            "sha256": "26a7cace1ccfdeeb81b44dd7afd8d418bad7901464f1d021c3308408aa7e6b04",
+            "printed": "July 26-29, 2024"
+          },
+          "times": "each block's 24-hour data, its printed 12-hour time and its place on the page's hour axis agree",
+          "stagesWithNoSets": [
+            "Fractal Forest",
+            "Grove",
+            "The Pagoda",
+            "The Village",
+            "Secret Garden"
+          ],
+          "drawnTwice": [
+            "Pav4n & Strategy (AMP 10:30 pm - 11:30 pm)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-07-26",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.shambhalamusicfestival.com/set-times/friday",
+          "archivedUrl": "https://web.archive.org/web/20240918135115/https://www.shambhalamusicfestival.com/set-times/friday",
+          "captureTimestamp": "20240918135115",
+          "printed": "Friday",
+          "sha256": "2017f4d0ae7b3e8dea2ba8434f86cefa029a9fa6f0820e86fe175c548341f6b1",
+          "bytes": 85521,
+          "rows": 81,
+          "format": "shambhala-webflow",
+          "weekday": "Friday",
+          "published": "2024-09-17",
+          "stages": 7,
+          "axis": "10:00-09:00",
+          "pxPerHour": 70,
+          "datesFrom": {
+            "url": "https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+            "archivedUrl": "https://web.archive.org/web/20240812144505/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+            "captureTimestamp": "20240812144505",
+            "sha256": "26a7cace1ccfdeeb81b44dd7afd8d418bad7901464f1d021c3308408aa7e6b04",
+            "printed": "July 26-29, 2024"
+          },
+          "times": "each block's 24-hour data, its printed 12-hour time and its place on the page's hour axis agree",
+          "drawnTwice": [
+            "Dr. Fresch B2B Destructo (The Pagoda 2:45 am - 4:45 am)",
+            "Dr. Fresch B2B Destructo (The Pagoda 2:45 am - 4:45 am)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 7:00 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 7:00 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 7:00 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 7:00 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 7:00 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 7:00 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 7:00 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 7:00 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 7:00 pm)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-07-27",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.shambhalamusicfestival.com/set-times/saturday",
+          "archivedUrl": "https://web.archive.org/web/20240918143101/https://www.shambhalamusicfestival.com/set-times/saturday",
+          "captureTimestamp": "20240918143101",
+          "printed": "Saturday",
+          "sha256": "d2c1dfb0dfb8dfde17f11ea036d8b53fe26b2a045b1c9b6c0719e29e96d83d3f",
+          "bytes": 84958,
+          "rows": 74,
+          "format": "shambhala-webflow",
+          "weekday": "Saturday",
+          "published": "2024-09-17",
+          "stages": 7,
+          "axis": "10:00-09:00",
+          "pxPerHour": 70,
+          "datesFrom": {
+            "url": "https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+            "archivedUrl": "https://web.archive.org/web/20240812144505/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+            "captureTimestamp": "20240812144505",
+            "sha256": "26a7cace1ccfdeeb81b44dd7afd8d418bad7901464f1d021c3308408aa7e6b04",
+            "printed": "July 26-29, 2024"
+          },
+          "times": "each block's 24-hour data, its printed 12-hour time and its place on the page's hour axis agree",
+          "drawnTwice": [
+            "TF Marz B2B Parkbreezy (Grove 8:00 pm - 9:30 pm)",
+            "TF Marz B2B Parkbreezy (Grove 8:00 pm - 9:30 pm)",
+            "Mikey Lion B2B DJ SOUP (The Pagoda 7:30 pm - 9:00 pm)",
+            "Mikey Lion B2B DJ SOUP (The Pagoda 7:30 pm - 9:00 pm)",
+            "The Chillage - Ill.Gates, Mr. Bill, Shmani, Slowform (The Village 3:30 am - 6:00 am)",
+            "The Chillage - Ill.Gates, Mr. Bill, Shmani, Slowform (The Village 3:30 am - 6:00 am)",
+            "The Chillage - Ill.Gates, Mr. Bill, Shmani, Slowform (The Village 3:30 am - 6:00 am)",
+            "The Chillage - Ill.Gates, Mr. Bill, Shmani, Slowform (The Village 3:30 am - 6:00 am)",
+            "DNB Girls Takeover Hosted By Crystal Fresh (The Village 5:30 pm - 8:30 pm)",
+            "DNB Girls Takeover Hosted By Crystal Fresh (The Village 5:30 pm - 8:30 pm)",
+            "DNB Girls Takeover Hosted By Crystal Fresh (The Village 5:30 pm - 8:30 pm)",
+            "DNB Girls Takeover Hosted By Crystal Fresh (The Village 5:30 pm - 8:30 pm)",
+            "DNB Girls Takeover Hosted By Crystal Fresh (The Village 5:30 pm - 8:30 pm)",
+            "DNB Girls Takeover Hosted By Crystal Fresh (The Village 5:30 pm - 8:30 pm)",
+            "DNB Girls Takeover Hosted By Crystal Fresh (The Village 5:30 pm - 8:30 pm)",
+            "DNB Girls Takeover Hosted By Crystal Fresh (The Village 5:30 pm - 8:30 pm)",
+            "DNB Girls Takeover Hosted By Crystal Fresh (The Village 5:30 pm - 8:30 pm)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-07-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.shambhalamusicfestival.com/set-times/sunday",
+          "archivedUrl": "https://web.archive.org/web/20240918133803/https://www.shambhalamusicfestival.com/set-times/sunday",
+          "captureTimestamp": "20240918133803",
+          "printed": "Sunday",
+          "sha256": "65bc6da233e02cabbeba2cc9c878a6247db812132aa597e051e4d60eb2699618",
+          "bytes": 82619,
+          "rows": 80,
+          "format": "shambhala-webflow",
+          "weekday": "Sunday",
+          "published": "2024-09-17",
+          "stages": 7,
+          "axis": "10:00-09:00",
+          "pxPerHour": 70,
+          "datesFrom": {
+            "url": "https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+            "archivedUrl": "https://web.archive.org/web/20240812144505/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+            "captureTimestamp": "20240812144505",
+            "sha256": "26a7cace1ccfdeeb81b44dd7afd8d418bad7901464f1d021c3308408aa7e6b04",
+            "printed": "July 26-29, 2024"
+          },
+          "times": "each block's 24-hour data, its printed 12-hour time and its place on the page's hour axis agree",
+          "drawnTwice": [
+            "Pineo & Loeb (Fractal Forest 7:00 pm - 8:00 pm)",
+            "The Pride W/ Lion-S & Hoola (Living Room 7:00 am - 8:00 am)",
+            "The Pride W/ Lion-S & Hoola (Living Room 7:00 am - 8:00 am)",
+            "HOOLAANDTHEGANG (Living Room 2:15 pm - 3:00 pm)",
+            "P Money x Whiney (The Village 10:00 pm - 11:00 pm)"
+          ],
+          "unnamedSlots": [
+            "AMP 4:00 am - 5:00 am: \"?????????? B2B ?????\""
+          ],
+          "misprints": [
+            "P Money x Whiney: 10:00 pm - 11:00 pm (drawn while \"P Monay x Whiney\" (10:00 pm - 11:00 pm) is on)",
+            "P Monay x Whiney: 10:00 pm - 11:00 pm (drawn while \"P Money x Whiney\" (10:00 pm - 11:00 pm) is on)"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 4,
+      "stage": "The Village",
+      "start": "22:00",
+      "end": "23:00",
+      "billing": "P Money x Whiney",
+      "reason": "the page draws two acts in one stage's slot, or prints a range its own block does not show, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 4,
+      "stage": "The Village",
+      "start": "22:00",
+      "end": "23:00",
+      "billing": "P Monay x Whiney",
+      "reason": "the page draws two acts in one stage's slot, or prints a range its own block does not show, so neither the act nor the time can be confirmed",
+      "misprint": true
+    }
+  ],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "Living Room",
+      "start": "12:00",
+      "end": "13:00",
+      "billing": "Yoga w/ Celeste",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Village",
+      "start": "15:00",
+      "end": "19:00",
+      "billing": "Village Rinse Out Hosted by John Rolodex",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Secret Garden",
+      "start": "14:00",
+      "end": "15:30",
+      "billing": "Church of Central Raving",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Secret Garden",
+      "start": "15:30",
+      "end": "17:00",
+      "billing": "Fly With Me Acro Yoga - John Early & Brenna Bote",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Secret Garden",
+      "start": "17:00",
+      "end": "18:30",
+      "billing": "Music, Healing and the History of Dance Culture",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "AMP",
+      "start": "15:30",
+      "end": "17:00",
+      "billing": "Afternoon Saloon with Marin & Friends",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Village",
+      "start": "17:30",
+      "end": "20:30",
+      "billing": "DNB Girls Takeover Hosted By Crystal Fresh",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Village",
+      "start": "03:30",
+      "end": "06:00",
+      "billing": "The Chillage - Ill.Gates, Mr. Bill, Shmani, Slowform",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Secret Garden",
+      "start": "11:00",
+      "end": "12:30",
+      "billing": "Kali Yoga Flow - Danya Buac",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Secret Garden",
+      "start": "12:30",
+      "end": "14:00",
+      "billing": "Transformational Reset Yoga - Matthew Yausie",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Secret Garden",
+      "start": "15:30",
+      "end": "17:00",
+      "billing": "Astro Herbalism - House of Origins",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Living Room",
+      "start": "07:00",
+      "end": "08:00",
+      "billing": "The Pride W/ Lion-S & Hoola",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Fractal Forest",
+      "start": "14:00",
+      "end": "19:00",
+      "billing": "Fractal Funk Jam (Hosted by Smalltown DJS)",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Secret Garden",
+      "start": "12:00",
+      "end": "13:30",
+      "billing": "Pratyahara Blindfold Yoga - Brenna Bote & John Early",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Secret Garden",
+      "start": "15:00",
+      "end": "16:30",
+      "billing": "Flipped Perspective Inversions - Matthew Yausie",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Secret Garden",
+      "start": "16:30",
+      "end": "18:00",
+      "billing": "Deep Bass Breathwork - Mala Wellness Collective",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    }
+  ]
+}

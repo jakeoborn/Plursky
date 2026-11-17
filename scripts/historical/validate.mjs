@@ -5,6 +5,7 @@
 import { EDITIONS, KEPT_STAGES, PRINTED_LONG_SETS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
 import { printedDate as govBallDate } from "./govball-wp-schedule.mjs";
 import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
+import { datesFromPost as shambhalaRun } from "./shambhala-webflow-schedule.mjs";
 import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, undatedOwnPost, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
@@ -374,6 +375,14 @@ function officialSources(e, meta, p) {
         // Tomorrowland's 2013-2016 day page prints its weekday and date with
         // no year in its title ("Saturday/ 27 July").
         if (tmlTitleDate(c.printed, e.year) !== date || c.titleDate !== date) p.push(`${tag}: the page's title "${c.printed}" does not print ${date}`);
+      } else if (c.format === "shambhala-webflow") {
+        // Shambhala's 2024-2025 page prints its weekday alone; the date is
+        // the run the festival's own dated post prints ("July 26-29, 2024").
+        const f = c.datesFrom || {};
+        officialArchive(f.archivedUrl, e.festivalId, e.year, p, `${tag} dates`);
+        if (!/^[0-9a-f]{64}$/.test(f.sha256 || "")) p.push(`${tag}: the dated post's hash is missing`);
+        if (shambhalaRun(f.printed, e.year)?.[c.printed] !== date || c.weekday !== c.printed || !String(c.published || "").startsWith(String(e.year)))
+          p.push(`${tag}: the page prints "${c.printed}" (published ${c.published}) and the post "${f.printed}", not ${date}`);
       } else if (c.format === "govball-wp") {
         // Governors Ball's 2011-2012 schedule prints each day's heading
         // ("SATURDAY 6/23", no year); 2011's one day is the one the page's

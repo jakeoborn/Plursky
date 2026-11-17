@@ -53,9 +53,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "outside-lands-2026:os77"
+   "outside-lands-2026:os77",
+   "shambhala-2025:d3:grove:2130:1-800-girls"
   ],
-  "firstSeen": "2026-08-08",
+  "firstSeen": "2025-07-26",
   "lastSeen": "2026-08-08",
   "photo": null,
   "links": []
@@ -267,16 +268,19 @@
  },
  {
   "key": "1tbsp",
-  "name": "1tbsp",
-  "aliases": [],
+  "name": "1Tbsp",
+  "aliases": [
+   "1tbsp"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "iii-points-2026:iiip-1tbsp",
-   "hard-summer-2026:hs2-1tbsp"
+   "hard-summer-2026:hs2-1tbsp",
+   "shambhala-2025:d4:living-room:2230:1tbsp"
   ],
-  "firstSeen": "2026-08-02",
+  "firstSeen": "2025-07-27",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -572,6 +576,21 @@
   ],
   "firstSeen": "2016-04-15",
   "lastSeen": "2018-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "2tall",
+  "name": "2TALL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:amp:1700:2tall"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -1258,6 +1277,7 @@
   "billings": [
    "edc-lv-2026:bp32",
    "edc-las-vegas-2022:d3:basspod:2230:a-m-c",
+   "shambhala-2024:d4:the-village:2300:a-m-c-w-armanni-reign",
    "tomorrowland-2023:d4:the-rose-garden:2300:a-m-c-ft-phantom"
   ],
   "firstSeen": "2022-05-22",
@@ -1392,10 +1412,12 @@
    "shambhala-2013:d3:fractal-forest:2330:a-skillz",
    "shambhala-2014:d3:fractal-forest:2200:a-skillz",
    "shambhala-2015:d3:fractal-forest:2330:a-skillz",
-   "shambhala-2016:d3:fractal-forest:0130:a-skillz"
+   "shambhala-2016:d3:fractal-forest:0130:a-skillz",
+   "shambhala-2024:d3:fractal-forest:0100:a-skillz",
+   "shambhala-2025:d3:fractal-forest:0200:a-skillz"
   ],
   "firstSeen": "2011-08-06",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -1928,6 +1950,21 @@
   ],
   "firstSeen": "2026-06-05",
   "lastSeen": "2026-06-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "abstrakt-sonance",
+  "name": "Abstrakt Sonance",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:secret-garden:2230:abstrakt-sonance"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -2647,10 +2684,12 @@
    "shambhala-2015:d2:grove:1400:adham-shaikh",
    "shambhala-2015:d4:living-room:1630:adham-shaikh",
    "shambhala-2016:d2:grove:1400:adham-shaikh",
-   "shambhala-2016:d4:living-room:1400:adham-shaikh"
+   "shambhala-2016:d4:living-room:1400:adham-shaikh",
+   "shambhala-2024:d1:living-room:1900:adham-shaikh",
+   "shambhala-2025:d1:living-room:2030:adham-shaikh"
   ],
   "firstSeen": "2011-08-07",
-  "lastSeen": "2016-08-07",
+  "lastSeen": "2025-07-24",
   "photo": null,
   "links": []
  },
@@ -3430,14 +3469,17 @@
  {
   "key": "ahadadream",
   "name": "Ahadadream",
-  "aliases": [],
+  "aliases": [
+   "AHADADREAM"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "crssd-fall-2026:crssd-ahadadream"
+   "crssd-fall-2026:crssd-ahadadream",
+   "shambhala-2025:d3:the-pagoda:2200:ahadadream"
   ],
-  "firstSeen": "2026-09-26",
+  "firstSeen": "2025-07-26",
   "lastSeen": "2026-09-26",
   "photo": null,
   "links": []
@@ -3454,9 +3496,11 @@
   "billings": [
    "edc-lv-2026:bp18",
    "countdown-nye-2026:cdny-ahee",
-   "edc-las-vegas-2025:d1:basspod:2040:ahee"
+   "edc-las-vegas-2025:d1:basspod:2040:ahee",
+   "shambhala-2024:d1:amp:1900:ahee",
+   "shambhala-2024:d2:the-village:0300:ahee"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2024-07-25",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -3804,6 +3848,21 @@
   ],
   "firstSeen": "2024-05-17",
   "lastSeen": "2024-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "akiiba",
+  "name": "Akiiba",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:secret-garden:0300:akiiba"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -4674,6 +4733,22 @@
   "links": []
  },
  {
+  "key": "alex-moon",
+  "name": "Alex Moon",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:grove:1700:alex-moon",
+   "shambhala-2025:d3:grove:0515:alex-moon"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alex-niggemann",
   "name": "Alex Niggemann",
   "aliases": [],
@@ -4760,6 +4835,21 @@
   ],
   "firstSeen": "2023-07-29",
   "lastSeen": "2023-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "alex-unger",
+  "name": "Alex Unger",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:secret-garden:0015:alex-unger"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -5190,6 +5280,21 @@
   "links": []
  },
  {
+  "key": "alissa-arnason",
+  "name": "Alissa Arnason",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:living-room:1200:alissa-arnason"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alix-alvarez",
   "name": "Alix Alvarez",
   "aliases": [],
@@ -5468,7 +5573,8 @@
    "edc-thailand-2026:edcth-alleycvt",
    "edc-las-vegas-2025:d3:circuit-grounds:1900:alleycvt",
    "edc-orlando-2025:d3:stereobloom:2000:alleycvt",
-   "lollapalooza-2025:d2:perry-s:1515:alleycvt"
+   "lollapalooza-2025:d2:perry-s:1515:alleycvt",
+   "shambhala-2025:d3:the-village:0200:alleycvt"
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2026-12-31",
@@ -6901,6 +7007,22 @@
   "links": []
  },
  {
+  "key": "amp-live",
+  "name": "AMP Live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:living-room:2230:amp-live",
+   "shambhala-2025:d1:amp:1730:amp-live"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ampe",
   "name": "Ampe",
   "aliases": [],
@@ -7098,16 +7220,19 @@
  {
   "key": "an-ten-nae",
   "name": "An-ten-nae",
-  "aliases": [],
+  "aliases": [
+   "An-Ten-Nae"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2015:d2:do-lab:1815:an-ten-nae",
-   "shambhala-2016:d1:living-room:0100:an-ten-nae"
+   "shambhala-2016:d1:living-room:0100:an-ten-nae",
+   "shambhala-2025:d4:living-room:1930:an-ten-nae"
   ],
   "firstSeen": "2015-04-11",
-  "lastSeen": "2016-08-04",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -7853,7 +7978,8 @@
    "nocturnal-wonderland-2012:d1:sunken-garden:2300:andy-c",
    "nocturnal-wonderland-2013:d1:queen-s-grounds:2300:andy-c",
    "nocturnal-wonderland-2022:d2:labyrinth:2100:andy-c",
-   "shambhala-2014:d4:village:0030:andy-c"
+   "shambhala-2014:d4:village:0030:andy-c",
+   "shambhala-2025:d4:the-village:2300:andy-c"
   ],
   "firstSeen": "2012-09-21",
   "lastSeen": "2026-12-18",
@@ -8793,6 +8919,21 @@
   "links": []
  },
  {
+  "key": "antidote-collective",
+  "name": "Antidote Collective",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:living-room:0300:antidote-collective"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "anton-powers",
   "name": "Anton Powers",
   "aliases": [],
@@ -8900,6 +9041,7 @@
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:0030:apashe",
    "edc-las-vegas-2025:d1:basspod:2330:apashe",
    "edc-orlando-2025:d2:circuitgrounds:2000:apashe",
+   "shambhala-2025:d4:amp:0000:apashe",
    "tomorrowland-2017:d2:the-sound-of-tomorrow:2200:apashe",
    "tomorrowland-2022:d1:rose-garden:1900:apashe"
   ],
@@ -9498,6 +9640,23 @@
   "links": []
  },
  {
+  "key": "armanni-reign",
+  "name": "Armanni Reign",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:the-village:2200:subvert-w-armanni-reign",
+   "shambhala-2024:d4:the-village:2300:a-m-c-w-armanni-reign",
+   "shambhala-2025:d2:the-village:2200:subvert-w-armanni-reign"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "armin-van-buuren",
   "name": "Armin van Buuren",
   "aliases": [
@@ -9991,6 +10150,22 @@
   "links": []
  },
  {
+  "key": "ashez",
+  "name": "Ashez",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:secret-garden:0000:ashez",
+   "shambhala-2025:d2:grove:1930:ashez"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ashley-cleveland",
   "name": "Ashley Cleveland",
   "aliases": [],
@@ -10255,6 +10430,22 @@
   "links": []
  },
  {
+  "key": "astrocolor",
+  "name": "Astrocolor",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:living-room:2100:astrocolor",
+   "shambhala-2025:d3:living-room:2045:astrocolor"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "astronautica",
   "name": "Astronautica",
   "aliases": [],
@@ -10411,9 +10602,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "hard-summer-2025:d1:beatbox-boombox-art-car:2030:athena"
+   "hard-summer-2025:d1:beatbox-boombox-art-car:2030:athena",
+   "shambhala-2025:d3:amp:1630:athena"
   ],
-  "firstSeen": "2025-08-02",
+  "firstSeen": "2025-07-26",
   "lastSeen": "2025-08-02",
   "photo": null,
   "links": []
@@ -10708,16 +10900,19 @@
  {
   "key": "atyya",
   "name": "AtYyA",
-  "aliases": [],
+  "aliases": [
+   "Atyya"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "shambhala-2014:d3:grove:1800:atyya",
-   "shambhala-2015:d3:grove:0500:atyya"
+   "shambhala-2015:d3:grove:0500:atyya",
+   "shambhala-2024:d2:grove:2130:atyya"
   ],
   "firstSeen": "2014-08-09",
-  "lastSeen": "2015-08-08",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -11357,6 +11552,21 @@
   "links": []
  },
  {
+  "key": "average-citizens",
+  "name": "Average Citizens",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:the-pagoda:1530:average-citizens"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "average-rob",
   "name": "Average Rob",
   "aliases": [],
@@ -11508,6 +11718,21 @@
   ],
   "firstSeen": "2011-09-18",
   "lastSeen": "2016-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "awood",
+  "name": "Awood",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:the-pagoda:1630:awood"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -12235,6 +12460,21 @@
   ],
   "firstSeen": "2026-06-05",
   "lastSeen": "2026-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "baby-lemonade",
+  "name": "Baby Lemonade",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:secret-garden:1930:baby-lemonade"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -13160,10 +13400,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2017:d4:do-lab:1645:barclay-crenshaw"
+   "coachella-2017:d4:do-lab:1645:barclay-crenshaw",
+   "shambhala-2024:d4:the-pagoda:0230:barclay-crenshaw"
   ],
   "firstSeen": "2017-04-21",
-  "lastSeen": "2017-04-21",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -13258,10 +13499,12 @@
   "projects": [],
   "billings": [
    "shambhala-2015:d4:living-room:1830:barisone",
-   "shambhala-2016:d3:grove:0400:barisone"
+   "shambhala-2016:d3:grove:0400:barisone",
+   "shambhala-2024:d3:grove:0515:barisone",
+   "shambhala-2025:d4:grove:2000:barisone"
   ],
   "firstSeen": "2015-08-09",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -14163,6 +14406,21 @@
   "links": []
  },
  {
+  "key": "basura",
+  "name": "Basura",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:amp:1930:basura"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bat-for-lashes",
   "name": "Bat for Lashes",
   "aliases": [],
@@ -14365,6 +14623,21 @@
   ],
   "firstSeen": "2014-08-08",
   "lastSeen": "2015-08-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "be-hazzy",
+  "name": "Be Hazzy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:the-pagoda:1600:be-hazzy"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -15259,10 +15532,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2012:d3:labyrinth:1530:ben-fox"
+   "shambhala-2012:d3:labyrinth:1530:ben-fox",
+   "shambhala-2024:d2:the-pagoda:0445:ben-fox"
   ],
   "firstSeen": "2012-08-11",
-  "lastSeen": "2012-08-11",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -15563,7 +15837,8 @@
    "arc-2026:arc-joy-orbison-b2b-ben-ufo-area909-d1",
    "time-warp-2027:tw27-ben-ufo-b2b-enzo-siragusa",
    "coachella-2017:d2:yuma:1630:ben-ufo",
-   "coachella-2017:d5:yuma:1630:ben-ufo"
+   "coachella-2017:d5:yuma:1630:ben-ufo",
+   "shambhala-2024:d4:grove:0100:ben-ufo"
   ],
   "firstSeen": "2017-04-15",
   "lastSeen": "2027-04-03",
@@ -16198,13 +16473,16 @@
  {
   "key": "bianca-oblivion",
   "name": "Bianca Oblivion",
-  "aliases": [],
+  "aliases": [
+   "BIANCA OBLIVION"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "hard-summer-2026:hs2-bianca-oblivion-b2b-star-eyes",
-   "edc-las-vegas-2024:d2:bionic-jungle:1900:bianca-oblivion"
+   "edc-las-vegas-2024:d2:bionic-jungle:1900:bianca-oblivion",
+   "shambhala-2025:d4:living-room:2330:bianca-oblivion"
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-08-02",
@@ -16507,10 +16785,11 @@
    "lollapalooza-2016:d3:perry-s:1900:big-gigantic",
    "outside-lands-2012:d3:twin-peaks-hellman-hollow:1405:big-gigantic",
    "shambhala-2013:d3:pagoda:0000:big-gigantic",
-   "shambhala-2015:d4:village:2300:big-gigantic"
+   "shambhala-2015:d4:village:2300:big-gigantic",
+   "shambhala-2025:d2:fractal-forest:0000:big-gigantic-dj-set"
   ],
   "firstSeen": "2012-06-23",
-  "lastSeen": "2022-10-15",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -16699,6 +16978,21 @@
   "links": []
  },
  {
+  "key": "biishop",
+  "name": "Biishop",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:secret-garden:2100:biishop"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bijou",
   "name": "BIJOU",
   "aliases": [],
@@ -16712,10 +17006,11 @@
    "edc-orlando-2019:d1:kineticfield:1330:bijou",
    "escape-halloween-2022:d1:the-grimm:1800:bijou",
    "nocturnal-wonderland-2017:d1:sunken-garden:1800:bijou",
-   "nocturnal-wonderland-2018:d1:wolves-den:1805:bijou"
+   "nocturnal-wonderland-2018:d1:wolves-den:1805:bijou",
+   "shambhala-2024:d4:fractal-forest:0200:bijou"
   ],
   "firstSeen": "2017-09-15",
-  "lastSeen": "2022-10-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -17008,6 +17303,21 @@
   "links": []
  },
  {
+  "key": "binks",
+  "name": "Binks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:living-room:1300:binks"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2024-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "biome",
   "name": "Biome",
   "aliases": [],
@@ -17079,6 +17389,21 @@
   ],
   "firstSeen": "2011-08-05",
   "lastSeen": "2011-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "birdhaus",
+  "name": "Birdhaus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:the-pagoda:1700:birdhaus"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -18488,6 +18813,21 @@
   "links": []
  },
  {
+  "key": "blu-detiger",
+  "name": "Blu DeTiger",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:fractal-forest:2200:blu-detiger-dj-set"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "blue-bear",
   "name": "Blue Bear",
   "aliases": [],
@@ -18808,10 +19148,11 @@
    "escape-halloween-2022:d2:sanitarium:2300:bob-moses-club-set",
    "governors-ball-2019:d3:american-eagle-stage:1950:bob-moses",
    "lollapalooza-2016:d1:pepsi:1450:bob-moses",
+   "shambhala-2025:d3:living-room:0015:bob-moses-club-set",
    "tomorrowland-2015:d3:forma-t-invites-mk:2230:bob-moses"
   ],
   "firstSeen": "2014-06-28",
-  "lastSeen": "2023-10-14",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -19079,6 +19420,21 @@
   "links": []
  },
  {
+  "key": "bodysync",
+  "name": "Bodysync",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:the-pagoda:2100:bodysync"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "boehm",
   "name": "BOEHM",
   "aliases": [],
@@ -19105,10 +19461,11 @@
   "billings": [
    "coachella-2017:d3:do-lab:1245:bogl",
    "shambhala-2011:d1:living-room:2300:bogl",
-   "shambhala-2014:d1:living-room:2300:bogl"
+   "shambhala-2014:d1:living-room:2300:bogl",
+   "shambhala-2025:d4:living-room:0500:bogl"
   ],
   "firstSeen": "2011-08-04",
-  "lastSeen": "2017-04-16",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -19397,10 +19754,11 @@
    "coachella-2017:d1:coachella:1645:bonobo",
    "coachella-2017:d4:coachella:1645:bonobo",
    "shambhala-2011:d3:rock-pit:0100:bonobo-dj-set",
-   "shambhala-2015:d4:grove:2330:bonobo-dj-set"
+   "shambhala-2015:d4:grove:2330:bonobo-dj-set",
+   "shambhala-2024:d4:grove:0230:bonobo"
   ],
   "firstSeen": "2011-08-06",
-  "lastSeen": "2017-10-13",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -19831,15 +20189,19 @@
  },
  {
   "key": "borne",
-  "name": "borne",
-  "aliases": [],
+  "name": "Borne",
+  "aliases": [
+   "borne"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "countdown-nye-2026:cdny-borne"
+   "countdown-nye-2026:cdny-borne",
+   "shambhala-2024:d2:amp:0300:borne",
+   "shambhala-2025:d1:amp:2330:borne"
   ],
-  "firstSeen": "2027-01-01",
+  "firstSeen": "2024-07-26",
   "lastSeen": "2027-01-01",
   "photo": null,
   "links": []
@@ -20024,6 +20386,7 @@
    "escape-halloween-2026:esc-bou-d2",
    "edc-las-vegas-2024:d2:basspod:2130:bou",
    "hard-summer-2025:d1:green-stage:1800:bou",
+   "shambhala-2025:d2:the-village:0200:bou",
    "tomorrowland-2022:d2:crystal-garden:2030:bou"
   ],
   "firstSeen": "2022-07-16",
@@ -20667,6 +21030,21 @@
   "links": []
  },
  {
+  "key": "bray",
+  "name": "Bray",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:the-pagoda:1630:bray"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "brayden-terzo",
   "name": "Brayden Terzo",
   "aliases": [],
@@ -20837,10 +21215,11 @@
    "shambhala-2013:d2:living-room:1930:breakfluid",
    "shambhala-2014:d3:living-room:2000:breakfluid",
    "shambhala-2015:d2:living-room:0430:breakfluid",
-   "shambhala-2016:d1:living-room:0000:breakfluid"
+   "shambhala-2016:d1:living-room:0000:breakfluid",
+   "shambhala-2025:d3:living-room:1500:breakfluid"
   ],
   "firstSeen": "2011-08-04",
-  "lastSeen": "2016-08-04",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -21561,6 +21940,21 @@
   "links": []
  },
  {
+  "key": "broken-future",
+  "name": "Broken Future",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:the-pagoda:1730:stund-b2b-broken-future"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "broken-minds",
   "name": "Broken Minds",
   "aliases": [],
@@ -22189,6 +22583,21 @@
   "links": []
  },
  {
+  "key": "buddy-and-the-buffalo",
+  "name": "Buddy & The Buffalo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:the-village:0400:buddy-and-the-buffalo"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "buffalo-nichols",
   "name": "BUFFALO NICHOLS",
   "aliases": [],
@@ -22419,6 +22828,22 @@
   "links": []
  },
  {
+  "key": "burchill",
+  "name": "Burchill",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:fractal-forest:0400:burchill",
+   "shambhala-2025:d2:fractal-forest:1900:burchill"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "burd",
   "name": "Burd",
   "aliases": [],
@@ -22580,6 +23005,21 @@
   ],
   "firstSeen": "2011-08-07",
   "lastSeen": "2018-07-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "busy-patterns",
+  "name": "Busy Patterns",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:secret-garden:2100:busy-patterns"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -23320,9 +23760,10 @@
   "projects": [],
   "billings": [
    "outside-lands-2026:os78",
-   "arc-2026:arc-camoufly-area909-d1"
+   "arc-2026:arc-camoufly-area909-d1",
+   "shambhala-2025:d4:amp:2030:camoufly"
   ],
-  "firstSeen": "2026-08-08",
+  "firstSeen": "2025-07-27",
   "lastSeen": "2026-09-04",
   "photo": null,
   "links": []
@@ -24501,6 +24942,21 @@
   "links": []
  },
  {
+  "key": "cartridge",
+  "name": "Cartridge",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:grove:0230:cartridge"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cascada",
   "name": "Cascada",
   "aliases": [],
@@ -24535,6 +24991,22 @@
   "links": []
  },
  {
+  "key": "case-of-the-mondays",
+  "name": "Case of the Mondays",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:the-pagoda:1915:case-of-the-mondays",
+   "shambhala-2025:d2:the-pagoda:1815:case-of-the-mondays"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "casey-club",
   "name": "Casey Club",
   "aliases": [],
@@ -24542,9 +25014,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llf9"
+   "lost-lands-2026:llf9",
+   "shambhala-2025:d1:amp:1400:casey-club"
   ],
-  "firstSeen": "2026-09-18",
+  "firstSeen": "2025-07-24",
   "lastSeen": "2026-09-18",
   "photo": null,
   "links": []
@@ -24597,7 +25070,8 @@
    "lost-lands-2026:llw3",
    "edc-las-vegas-2024:d2:basspod:0330:caspa",
    "edc-las-vegas-2025:d1:basspod:0230:caspa-b2b-rusko",
-   "edc-orlando-2025:d3:stereobloom:1730:caspa-sunset-set"
+   "edc-orlando-2025:d3:stereobloom:1730:caspa-sunset-set",
+   "shambhala-2025:d3:amp:2300:caspa"
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-09-16",
@@ -25071,9 +25545,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "groove-cruise-2027:gc-cazztek"
+   "groove-cruise-2027:gc-cazztek",
+   "shambhala-2024:d4:fractal-forest:0300:cazztek"
   ],
-  "firstSeen": "2027-01-21",
+  "firstSeen": "2024-07-28",
   "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
@@ -25800,15 +26275,18 @@
  },
  {
   "key": "channel-tres",
-  "name": "CHANNEL TRES",
-  "aliases": [],
+  "name": "Channel Tres",
+  "aliases": [
+   "CHANNEL TRES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "portola-2026:pt2-channel-tres",
    "acl-2021:d3:vrbo:1730:channel-tres",
-   "acl-2021:d6:vrbo:1730:channel-tres"
+   "acl-2021:d6:vrbo:1730:channel-tres",
+   "shambhala-2025:d4:grove:0000:channel-tres-dj-set"
   ],
   "firstSeen": "2021-10-03",
   "lastSeen": "2026-09-27",
@@ -26600,7 +27078,8 @@
   "projects": [],
   "billings": [
    "edc-orlando-2026:ecu8",
-   "edc-las-vegas-2024:d2:basspod:1930:chef-boyarbeatz"
+   "edc-las-vegas-2024:d2:basspod:1930:chef-boyarbeatz",
+   "shambhala-2024:d2:amp:2130:chef-boyarbeatz"
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-11-08",
@@ -27122,6 +27601,21 @@
   "links": []
  },
  {
+  "key": "chimp-it",
+  "name": "Chimp It",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:living-room:1830:chimp-it"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chini",
   "name": "Chini",
   "aliases": [],
@@ -27163,6 +27657,21 @@
   ],
   "firstSeen": "2022-07-17",
   "lastSeen": "2022-07-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chixy-guap",
+  "name": "CHIXY GUAP",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:living-room:1500:chixy-guap"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -27246,6 +27755,22 @@
   ],
   "firstSeen": "2022-09-17",
   "lastSeen": "2022-09-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chmura",
+  "name": "Chmura",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:amp:2030:chmura",
+   "shambhala-2025:d3:grove:0400:chmura"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -27478,6 +28003,7 @@
    "edc-orlando-2025:d1:kineticfield:2105:chris-lake",
    "escape-halloween-2019:d2:psycho-circus:2230:chris-lake",
    "nocturnal-wonderland-2012:d2:labyrinth:1830:chris-lake",
+   "shambhala-2025:d2:the-pagoda:0100:chris-lake",
    "tomorrowland-2017:d6:heldeep:1600:chris-lake",
    "tomorrowland-2019:d6:kara-savi:2230:chris-lake"
   ],
@@ -27533,6 +28059,7 @@
    "nocturnal-wonderland-2019:d2:wolves-den:1830:chris-lorenzo",
    "shambhala-2014:d4:pagoda:0300:chris-lorenzo",
    "shambhala-2016:d2:pagoda:0400:chris-lorenzo",
+   "shambhala-2024:d2:the-pagoda:0030:chris-lorenzo",
    "tomorrowland-2015:d1:dim-mak:2130:chris-lorenzo"
   ],
   "firstSeen": "2014-08-10",
@@ -27704,6 +28231,21 @@
   ],
   "firstSeen": "2013-08-09",
   "lastSeen": "2014-04-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "christian-loffler",
+  "name": "Christian Löffler",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:grove:0230:christian-loffler"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -27896,6 +28438,21 @@
   "links": []
  },
  {
+  "key": "chrizpy-chriz",
+  "name": "Chrizpy Chriz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:amp:1730:chrizpy-chriz"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chroma",
   "name": "Chroma",
   "aliases": [],
@@ -27944,6 +28501,21 @@
   "links": []
  },
  {
+  "key": "chrome-wolves",
+  "name": "Chrome Wolves",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:secret-garden:0000:chrome-wolves"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chromeo",
   "name": "Chromeo",
   "aliases": [
@@ -27962,10 +28534,11 @@
    "governors-ball-2012:d1:hype-machine-stage:1820:chromeo",
    "lollapalooza-2014:d3:bud-light:1645:chromeo",
    "outside-lands-2010:d2:twin-peaks:1715:chromeo",
-   "outside-lands-2014:d1:lands-end:1705:chromeo"
+   "outside-lands-2014:d1:lands-end:1705:chromeo",
+   "shambhala-2024:d2:fractal-forest:2300:chromeo-dj-set"
   ],
   "firstSeen": "2010-08-15",
-  "lastSeen": "2023-10-07",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -28516,6 +29089,22 @@
   ],
   "firstSeen": "2012-10-13",
   "lastSeen": "2012-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "civillian",
+  "name": "Civillian",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:grove:1500:civillian",
+   "shambhala-2025:d2:secret-garden:0000:civillian"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -29169,10 +29758,11 @@
   "billings": [
    "coachella-2015:d1:do-lab:1130:clozee",
    "lollapalooza-2019:d1:perry-s:untimed:clozee",
-   "shambhala-2016:d4:grove:2300:clozee"
+   "shambhala-2016:d4:grove:2300:clozee",
+   "shambhala-2024:d4:the-pagoda:2330:clozee"
   ],
   "firstSeen": "2015-04-10",
-  "lastSeen": "2019-08-01",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -29618,6 +30208,21 @@
   "links": []
  },
  {
+  "key": "coki",
+  "name": "Coki",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:amp:0030:skream-and-friends-ft-sgt-pokes-coki-distinct-motive-and-more"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "colby-acuff",
   "name": "COLBY ACUFF",
   "aliases": [],
@@ -29936,6 +30541,21 @@
   ],
   "firstSeen": "2012-10-12",
   "lastSeen": "2012-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "coltcuts",
+  "name": "ColtCuts",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:the-pagoda:1900:coltcuts"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -31533,6 +32153,22 @@
   "links": []
  },
  {
+  "key": "creek-st",
+  "name": "Creek St.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:secret-garden:1400:creek-st",
+   "shambhala-2025:d4:secret-garden:1500:creek-st"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "crespi-drum-syndicate",
   "name": "Crespi Drum Syndicate",
   "aliases": [],
@@ -31709,10 +32345,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2014:d3:amphitheatre:1600:crimson"
+   "shambhala-2014:d3:amphitheatre:1600:crimson",
+   "shambhala-2025:d4:secret-garden:2230:crimson"
   ],
   "firstSeen": "2014-08-09",
-  "lastSeen": "2014-08-09",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -33205,15 +33842,18 @@
  },
  {
   "key": "daily-bread",
-  "name": "daily bread",
-  "aliases": [],
+  "name": "Daily Bread",
+  "aliases": [
+   "daily bread"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "decadence-arizona-2026:daz-daily-bread"
+   "decadence-arizona-2026:daz-daily-bread",
+   "shambhala-2024:d2:fractal-forest:0200:daily-bread"
   ],
-  "firstSeen": "2026-12-31",
+  "firstSeen": "2024-07-26",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -33953,6 +34593,21 @@
   ],
   "firstSeen": "2019-07-26",
   "lastSeen": "2019-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "danni-g",
+  "name": "Danni G",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:living-room:1500:danni-g"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -36829,6 +37484,39 @@
   "links": []
  },
  {
+  "key": "def3",
+  "name": "Def3",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:grove:1730:def3"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "defied",
+  "name": "Defied",
+  "aliases": [
+   "DEFIED"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:the-pagoda:1800:defied",
+   "shambhala-2025:d3:grove:1800:defied"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "definitive",
   "name": "Definitive",
   "aliases": [],
@@ -37110,6 +37798,7 @@
    "beyond-wonderland-socal-2013:d1:chess-village:0100:delta-heavy",
    "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:2350:delta-heavy",
    "edc-las-vegas-2022:d2:basspod:2230:delta-heavy-b2b-koven-b2b-muzz",
+   "shambhala-2025:d3:the-village:2330:delta-heavy",
    "tomorrowland-2013:d2:star-warz:0000:delta-heavy"
   ],
   "firstSeen": "2013-03-16",
@@ -37881,10 +38570,26 @@
    "coachella-2012:d5:sahara:1225:destructo",
    "electric-forest-2014:d3:tripolee:2130:destructo",
    "lollapalooza-2015:d1:perry-s:1400:destructo",
-   "shambhala-2015:d3:pagoda:2230:destructo"
+   "shambhala-2015:d3:pagoda:2230:destructo",
+   "shambhala-2024:d2:the-pagoda:0245:dr-fresch-b2b-destructo"
   ],
   "firstSeen": "2012-04-14",
-  "lastSeen": "2015-08-08",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "destructo-sermon-set",
+  "name": "Destructo Sermon Set",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:the-pagoda:0345:destructo-sermon-set"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -38784,6 +39489,7 @@
    "nocturnal-wonderland-2022:d2:wolves-den:2145:dillon-francis",
    "outside-lands-2013:d3:panhandle:1935:dillon-francis",
    "shambhala-2012:d3:pagoda:0100:dillon-francis",
+   "shambhala-2024:d4:fractal-forest:0000:dillon-francis",
    "tomorrowland-2014:d1:mad-decent:2230:dillon-francis",
    "tomorrowland-2014:d4:mad-decent:2130:dillon-francis",
    "tomorrowland-2015:d2:mainstage:1830:dillon-francis",
@@ -38844,6 +39550,7 @@
    "edc-las-vegas-2024:d3:basspod:2330:dimension",
    "edc-las-vegas-2025:d2:kinetic-field:2000:dimension",
    "edc-orlando-2021:d2:circuit-grounds:1800:dimension",
+   "shambhala-2024:d4:the-village:0000:dimension",
    "tomorrowland-2016:d1:tranceaddict:1300:dimension",
    "tomorrowland-2017:d4:netsky-and-friends:1700:dimension",
    "tomorrowland-2022:d5:crystal-garden:2030:dimension"
@@ -39066,10 +39773,12 @@
   "projects": [],
   "billings": [
    "shambhala-2014:d4:village:0430:dimond-saints",
-   "shambhala-2015:d2:grove:0100:dimond-saints"
+   "shambhala-2015:d2:grove:0100:dimond-saints",
+   "shambhala-2024:d2:grove:0100:dimond-saints",
+   "shambhala-2025:d2:grove:0100:dimond-saints"
   ],
   "firstSeen": "2014-08-10",
-  "lastSeen": "2015-08-07",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -39135,6 +39844,7 @@
   "billings": [
    "lost-lands-2026:llf11",
    "nocturnal-wonderland-2021:d1:labyrinth:2000:dion-timmer",
+   "shambhala-2024:d2:the-village:0200:dion-timmer",
    "tomorrowland-2018:d1:rose-garden:1600:dion-timmer"
   ],
   "firstSeen": "2018-07-20",
@@ -39184,7 +39894,8 @@
   "billings": [
    "lost-lands-2026:llh3",
    "edc-orlando-2023:d1:circuit-grounds:1815:dirt-monkey-b2b-subdocta",
-   "nocturnal-wonderland-2018:d1:labyrinth:1900:dirt-monkey"
+   "nocturnal-wonderland-2018:d1:labyrinth:1900:dirt-monkey",
+   "shambhala-2025:d4:the-village:0300:dirt-monkey"
   ],
   "firstSeen": "2018-09-14",
   "lastSeen": "2026-09-17",
@@ -39232,10 +39943,11 @@
   "projects": [],
   "billings": [
    "coachella-2015:d1:do-lab:1425:dirtwire",
-   "shambhala-2016:d2:living-room:2200:dirtwire"
+   "shambhala-2016:d2:living-room:2200:dirtwire",
+   "shambhala-2024:d3:living-room:0200:dirtwire"
   ],
   "firstSeen": "2015-04-10",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -39517,7 +40229,8 @@
    "coachella-2016:d5:coachella:1935:disclosure",
    "lollapalooza-2013:d1:the-grove:1800:disclosure",
    "lollapalooza-2016:d3:bud-light:2030:disclosure",
-   "outside-lands-2014:d1:lands-end:1835:disclosure"
+   "outside-lands-2014:d1:lands-end:1835:disclosure",
+   "shambhala-2024:d3:the-pagoda:2330:disclosure"
   ],
   "firstSeen": "2013-08-02",
   "lastSeen": "2026-12-31",
@@ -39639,7 +40352,8 @@
    "edc-orlando-2022:d3:stereo-bloom:1745:disco-lines",
    "edc-orlando-2023:d3:circuit-grounds:1945:disco-lines",
    "edc-orlando-2024:d2:kinetic-field:2119:dillon-francis-b2b-disco-lines",
-   "nocturnal-wonderland-2022:d2:wolves-den:1645:disco-lines"
+   "nocturnal-wonderland-2022:d2:wolves-den:1645:disco-lines",
+   "shambhala-2024:d3:the-pagoda:0100:disco-lines"
   ],
   "firstSeen": "2022-09-18",
   "lastSeen": "2027-02-20",
@@ -39865,7 +40579,8 @@
    "edc-lv-2026:bp20",
    "lost-lands-2026:llw5",
    "ultra-miami-2026:ul59",
-   "edc-las-vegas-2025:d1:basspod:0430:distinct-motive"
+   "edc-las-vegas-2025:d1:basspod:0430:distinct-motive",
+   "shambhala-2025:d3:amp:0030:skream-and-friends-ft-sgt-pokes-coki-distinct-motive-and-more"
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2026-09-16",
@@ -40444,6 +41159,21 @@
   ],
   "firstSeen": "2025-11-07",
   "lastSeen": "2025-11-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-co-kr",
+  "name": "DJ co.kr",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:amp:2030:dj-co-kr"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -41151,9 +41881,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul45"
+   "ultra-miami-2026:ul45",
+   "shambhala-2024:d2:fractal-forest:1800:dj-hannah"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2024-07-26",
   "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
@@ -41235,7 +41966,8 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d3:bionic-jungle:2130:dj-heather",
-   "lollapalooza-2025:d1:dollapalooza:1200:dj-heather"
+   "lollapalooza-2025:d1:dollapalooza:1200:dj-heather",
+   "shambhala-2025:d2:living-room:2030:dj-heather"
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2025-07-31",
@@ -41472,6 +42204,7 @@
    "summerfest-2026:su350",
    "outside-lands-2017:d1:the-house-by-heineken:1700:dj-jazzy-jeff",
    "shambhala-2015:d3:fractal-forest:2100:dj-jazzy-jeff",
+   "shambhala-2025:d4:fractal-forest:1800:dj-jazzy-jeff",
    "tomorrowland-2018:d1:organ-of-harmony:2245:dj-jazzy-jeff"
   ],
   "firstSeen": "2015-08-08",
@@ -41565,16 +42298,19 @@
  },
  {
   "key": "dj-k-tel",
-  "name": "DJ K-Tel",
-  "aliases": [],
+  "name": "DJ K-tel",
+  "aliases": [
+   "DJ K-Tel"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2015:d2:living-room:1430:dj-k-tel"
+   "shambhala-2015:d2:living-room:1430:dj-k-tel",
+   "shambhala-2025:d2:living-room:1200:dj-k-tel"
   ],
   "firstSeen": "2015-08-07",
-  "lastSeen": "2015-08-07",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -41652,6 +42388,21 @@
   ],
   "firstSeen": "2022-11-12",
   "lastSeen": "2022-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-koco-aka-shimokita",
+  "name": "DJ KOCO aka SHIMOKITA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:living-room:1700:dj-koco-aka-shimokita"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -41751,15 +42502,18 @@
  {
   "key": "dj-lefy",
   "name": "Dj Lefy",
-  "aliases": [],
+  "aliases": [
+   "DJ Lefy"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2011:d2:fractal-forest:1900:dj-lefy"
+   "shambhala-2011:d2:fractal-forest:1900:dj-lefy",
+   "shambhala-2024:d3:fractal-forest:1900:dj-lefy"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2011-08-05",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -42063,7 +42817,8 @@
   "billings": [
    "outside-lands-2026:os134",
    "edc-las-vegas-2024:d2:stereo-bloom:2200:kevin-saunderson-b2b-dj-minx",
-   "edc-las-vegas-2024:d2:beatbox-boombox-art-car:0015:dj-minx"
+   "edc-las-vegas-2024:d2:beatbox-boombox-art-car:0015:dj-minx",
+   "shambhala-2025:d2:living-room:2330:dj-minx"
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-08-09",
@@ -42254,10 +43009,11 @@
   "projects": [],
   "billings": [
    "shambhala-2014:d3:village:2300:dj-nu-mark",
-   "shambhala-2016:d3:fractal-forest:2000:dj-nu-mark"
+   "shambhala-2016:d3:fractal-forest:2000:dj-nu-mark",
+   "shambhala-2025:d2:living-room:1800:dj-nu-mark"
   ],
   "firstSeen": "2014-08-09",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -42311,6 +43067,21 @@
   ],
   "firstSeen": "2015-08-09",
   "lastSeen": "2015-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-pee-wee-anderson-paak",
+  "name": "DJ Pee .Wee (Anderson .Paak)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:fractal-forest:2300:dj-pee-wee-anderson-paak"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -42702,6 +43473,21 @@
   "links": []
  },
  {
+  "key": "dj-shakey",
+  "name": "DJ Shakey",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:living-room:1400:dj-shakey"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-shawna",
   "name": "Dj Shawna",
   "aliases": [],
@@ -42883,7 +43669,9 @@
  {
   "key": "dj-soup",
   "name": "DJ Soup",
-  "aliases": [],
+  "aliases": [
+   "DJ SOUP"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -42891,10 +43679,12 @@
    "shambhala-2012:d2:pagoda:2230:dj-soup",
    "shambhala-2015:d4:pagoda:1830:dj-soup",
    "shambhala-2016:d1:amphitheatre:1830:dj-soup",
-   "shambhala-2016:d2:pagoda:1830:dj-soup"
+   "shambhala-2016:d2:pagoda:1830:dj-soup",
+   "shambhala-2024:d3:the-pagoda:1930:mikey-lion-b2b-dj-soup",
+   "shambhala-2025:d2:the-pagoda:1930:dj-soup"
   ],
   "firstSeen": "2012-08-10",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -43628,6 +44418,22 @@
   "links": []
  },
  {
+  "key": "dlb",
+  "name": "DLB",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:the-village:1800:dlb",
+   "shambhala-2025:d4:the-village:1700:dlb-b2b-trevor-galore"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dma-s",
   "name": "DMA's",
   "aliases": [
@@ -44005,6 +44811,7 @@
    "edc-orlando-2025:d2:stereobloom:2230:dombresky",
    "escape-halloween-2019:d2:psycho-circus:1800:dombresky",
    "nocturnal-wonderland-2017:d1:sunken-garden:2000:dombresky",
+   "shambhala-2025:d4:fractal-forest:0000:dombresky",
    "tomorrowland-2022:d2:mainstage:1530:dombresky-b2b-noizu",
    "tomorrowland-2022:d5:the-library:1500:dombresky"
   ],
@@ -44337,6 +45144,21 @@
   ],
   "firstSeen": "2026-12-30",
   "lastSeen": "2026-12-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "donna-dada",
+  "name": "Donna Dada",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d1:living-room:1845:donna-dada"
+  ],
+  "firstSeen": "2025-07-24",
+  "lastSeen": "2025-07-24",
   "photo": null,
   "links": []
  },
@@ -44696,6 +45518,21 @@
   "links": []
  },
  {
+  "key": "double-trouble",
+  "name": "Double Trouble",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:the-pagoda:1800:double-trouble"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "double-u",
   "name": "Double-U",
   "aliases": [
@@ -44953,7 +45790,8 @@
    "nocturnal-wonderland-2019:d2:wolves-den:1730:dr-fresch",
    "nocturnal-wonderland-2021:d2:labyrinth:2100:dr-fresch",
    "nocturnal-wonderland-2022:d1:wolves-den:2000:dr-fresch",
-   "shambhala-2016:d4:fractal-forest:0300:dr-fresch"
+   "shambhala-2016:d4:fractal-forest:0300:dr-fresch",
+   "shambhala-2024:d2:the-pagoda:0245:dr-fresch-b2b-destructo"
   ],
   "firstSeen": "2013-09-21",
   "lastSeen": "2026-10-31",
@@ -45923,10 +46761,12 @@
    "shambhala-2011:d1:living-room:0130:dubconscious",
    "shambhala-2014:d1:living-room:0400:dubconscious",
    "shambhala-2015:d1:living-room:2330:dubconscious",
-   "shambhala-2016:d3:living-room:2000:dubconscious"
+   "shambhala-2016:d3:living-room:2000:dubconscious",
+   "shambhala-2024:d2:living-room:1400:dubconscious",
+   "shambhala-2025:d4:living-room:1200:dubconscious"
   ],
   "firstSeen": "2011-08-04",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -46355,6 +47195,21 @@
   ],
   "firstSeen": "2018-10-06",
   "lastSeen": "2021-10-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "duskus",
+  "name": "Duskus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:the-pagoda:2045:duskus"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -47032,16 +47887,19 @@
  },
  {
   "key": "eater",
-  "name": "EATER",
-  "aliases": [],
+  "name": "Eater",
+  "aliases": [
+   "EATER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-orlando-2025:d3:stereobloom:1500:eater",
-   "escape-halloween-2025:d1:sewer-district:1745:eater"
+   "escape-halloween-2025:d1:sewer-district:1745:eater",
+   "shambhala-2025:d4:the-pagoda:0345:eater"
   ],
-  "firstSeen": "2025-10-31",
+  "firstSeen": "2025-07-27",
   "lastSeen": "2025-11-09",
   "photo": null,
   "links": []
@@ -47061,6 +47919,7 @@
    "edc-orlando-2023:d3:neon-garden:1600:eats-everything",
    "nocturnal-wonderland-2022:d1:sunken-garden:2000:eats-everything",
    "shambhala-2013:d4:pagoda:0030:eats-everything",
+   "shambhala-2025:d2:the-pagoda:2200:eats-everything",
    "tomorrowland-2014:d2:ketaloco:1400:eats-everything",
    "tomorrowland-2014:d5:ketaloco:1530:eats-everything",
    "tomorrowland-2015:d1:derrick-carter-presents-family-and-friends:2000:derrick-carter-b2b-eats-everything",
@@ -47069,7 +47928,7 @@
    "tomorrowland-2023:d3:crystal-garden:2030:eats-everything"
   ],
   "firstSeen": "2013-08-11",
-  "lastSeen": "2023-11-12",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -47115,7 +47974,8 @@
   "billings": [
    "edc-lv-2026:bp14",
    "edc-orlando-2021:d2:circuit-grounds:1700:eazybaked",
-   "edc-orlando-2024:d2:circuit-grounds:1555:eazybaked"
+   "edc-orlando-2024:d2:circuit-grounds:1555:eazybaked",
+   "shambhala-2024:d4:amp:2245:eazybaked"
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2026-05-17",
@@ -47575,6 +48435,21 @@
   "links": []
  },
  {
+  "key": "edit",
+  "name": "edIT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:living-room:1630:edit"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "edo-denova",
   "name": "Edo Denova",
   "aliases": [],
@@ -47770,7 +48645,8 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls20",
-   "nocturnal-wonderland-2022:d1:labyrinth:1700:effin"
+   "nocturnal-wonderland-2022:d1:labyrinth:1700:effin",
+   "shambhala-2025:d1:amp:2100:effin"
   ],
   "firstSeen": "2022-09-17",
   "lastSeen": "2026-09-19",
@@ -48055,10 +48931,11 @@
   "billings": [
    "shambhala-2015:d4:living-room:2330:el-papachango",
    "shambhala-2016:d1:amphitheatre:0130:el-papachango",
-   "shambhala-2016:d4:living-room:0230:el-papachango"
+   "shambhala-2016:d4:living-room:0230:el-papachango",
+   "shambhala-2024:d2:living-room:1830:el-papachango"
   ],
   "firstSeen": "2015-08-09",
-  "lastSeen": "2016-08-07",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -48074,6 +48951,22 @@
   ],
   "firstSeen": "2026-07-02",
   "lastSeen": "2026-07-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "el-toro",
+  "name": "El Toro",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:secret-garden:0130:el-toro",
+   "shambhala-2025:d3:grove:1430:el-toro"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -48136,6 +49029,7 @@
    "summerfest-2026:su207",
    "acl-2024:d1:miller-lite:1710:elderbrook",
    "acl-2024:d4:miller-lite:1910:elderbrook",
+   "shambhala-2025:d3:the-pagoda:2315:elderbrook-dj-set",
    "tomorrowland-2022:d9:crystal-garden:1700:elderbrook"
   ],
   "firstSeen": "2022-07-31",
@@ -48326,6 +49220,21 @@
   ],
   "firstSeen": "2013-08-10",
   "lastSeen": "2013-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "elektric-collective",
+  "name": "Elektric Collective",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:living-room:2330:elektric-collective-with-hoola"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -49092,10 +50001,11 @@
   "billings": [
    "electric-forest-2013:d4:sherwood-court:2045:emancipator",
    "shambhala-2014:d3:grove:2330:emancipator",
-   "shambhala-2016:d4:grove:0030:emancipator"
+   "shambhala-2016:d4:grove:0030:emancipator",
+   "shambhala-2025:d4:grove:0400:emancipator"
   ],
   "firstSeen": "2013-06-30",
-  "lastSeen": "2016-08-07",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -49777,10 +50687,11 @@
    "edc-las-vegas-2022:d3:basspod:0430:eprom",
    "nocturnal-wonderland-2018:d1:labyrinth:2200:eprom",
    "nocturnal-wonderland-2019:d1:labyrinth:1900:eprom",
-   "shambhala-2016:d2:amphitheatre:0300:eprom"
+   "shambhala-2016:d2:amphitheatre:0300:eprom",
+   "shambhala-2024:d3:amp:0300:eprom"
   ],
   "firstSeen": "2016-08-05",
-  "lastSeen": "2022-05-22",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -50822,6 +51733,8 @@
    "shambhala-2014:d2:village:0030:excision",
    "shambhala-2015:d3:village:0130:excision",
    "shambhala-2016:d2:village:0200:excision",
+   "shambhala-2024:d2:the-village:0030:excision",
+   "shambhala-2025:d2:the-village:0030:excision",
    "tomorrowland-2017:d5:barong-family:2350:excision"
   ],
   "firstSeen": "2011-08-06",
@@ -51099,6 +52012,21 @@
   ],
   "firstSeen": "2017-07-23",
   "lastSeen": "2018-07-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fabula",
+  "name": "Fabula",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:secret-garden:0300:fabula"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -51495,6 +52423,21 @@
   "links": []
  },
  {
+  "key": "farbsie-funk",
+  "name": "Farbsie Funk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:fractal-forest:1800:farbsie-funk"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fareoh",
   "name": "Fareoh",
   "aliases": [],
@@ -51654,10 +52597,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2016:d2:fractal-forest:1830:father-funk"
+   "shambhala-2016:d2:fractal-forest:1830:father-funk",
+   "shambhala-2024:d3:fractal-forest:0400:father-funk",
+   "shambhala-2025:d3:fractal-forest:0400:father-funk"
   ],
   "firstSeen": "2016-08-05",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -51687,6 +52632,21 @@
   ],
   "firstSeen": "2012-08-11",
   "lastSeen": "2026-06-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "father-son",
+  "name": "Father Son",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:the-pagoda:0500:father-son"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -51731,10 +52691,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2016:d3:fractal-forest:1600:fattycakes"
+   "shambhala-2016:d3:fractal-forest:1600:fattycakes",
+   "shambhala-2024:d3:fractal-forest:1800:fattycakes",
+   "shambhala-2025:d3:fractal-forest:1900:fattycakes"
   ],
   "firstSeen": "2016-08-06",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -53093,10 +54055,11 @@
   "billings": [
    "shambhala-2011:d4:rock-pit:0030:five-alarm-funk",
    "shambhala-2013:d4:amphitheatre:2130:five-alarm-funk",
-   "shambhala-2016:d4:grove:2000:five-alarm-funk"
+   "shambhala-2016:d4:grove:2000:five-alarm-funk",
+   "shambhala-2024:d4:grove:2000:five-alarm-funk"
   ],
   "firstSeen": "2011-08-07",
-  "lastSeen": "2016-08-07",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -53364,6 +54327,21 @@
   "links": []
  },
  {
+  "key": "fleetmac-wood",
+  "name": "Fleetmac Wood",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:living-room:0300:fleetmac-wood"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fleming-and-lawrence",
   "name": "FLEMING & LAWRENCE",
   "aliases": [],
@@ -53474,6 +54452,21 @@
   ],
   "firstSeen": "2015-06-25",
   "lastSeen": "2017-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "flipout",
+  "name": "Flipout",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:living-room:1600:flipout"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -54076,10 +55069,11 @@
   "projects": [],
   "billings": [
    "shambhala-2012:d1:rock-pit:1400:fluxo",
-   "shambhala-2013:d3:living-room:1530:fluxo"
+   "shambhala-2013:d3:living-room:1530:fluxo",
+   "shambhala-2025:d3:living-room:1730:fluxo"
   ],
   "firstSeen": "2012-08-09",
-  "lastSeen": "2013-08-10",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -54145,7 +55139,8 @@
    "coachella-2015:d1:mojave:2200:flying-lotus",
    "coachella-2015:d4:mojave:2200:flying-lotus",
    "electric-forest-2014:d3:sherwood-court:2130:flying-lotus",
-   "lollapalooza-2015:d1:pepsi:2100:flying-lotus"
+   "lollapalooza-2015:d1:pepsi:2100:flying-lotus",
+   "shambhala-2025:d3:grove:0100:flying-lotus"
   ],
   "firstSeen": "2012-04-14",
   "lastSeen": "2026-10-16",
@@ -54314,10 +55309,12 @@
   "billings": [
    "shambhala-2014:d4:grove:1800:footprints",
    "shambhala-2015:d4:grove:1930:footprints",
-   "shambhala-2016:d1:living-room:1500:footprints"
+   "shambhala-2016:d1:living-room:1500:footprints",
+   "shambhala-2024:d4:grove:1900:footprints",
+   "shambhala-2025:d3:grove:2000:footprints"
   ],
   "firstSeen": "2014-08-10",
-  "lastSeen": "2016-08-04",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -54429,10 +55426,27 @@
   "billings": [
    "coachella-2015:d1:do-lab:2115:fort-knox-five",
    "shambhala-2011:d2:living-room:1700:fort-knox-five",
-   "shambhala-2015:d2:fractal-forest:2200:fort-knox-five"
+   "shambhala-2015:d2:fractal-forest:2200:fort-knox-five",
+   "shambhala-2024:d1:living-room:1500:fort-knox-five",
+   "shambhala-2024:d3:fractal-forest:0300:fort-knox-five"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2015-08-07",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fort-knox-five-and-qdup",
+  "name": "Fort Knox Five & Qdup",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:fractal-forest:0300:fort-knox-five-and-qdup"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -54613,10 +55627,12 @@
    "shambhala-2013:d2:living-room:1200:foxy-moron",
    "shambhala-2014:d2:living-room:1130:foxy-moron",
    "shambhala-2015:d2:living-room:1130:foxy-moron",
-   "shambhala-2016:d2:living-room:1300:foxy-moron"
+   "shambhala-2016:d2:living-room:1300:foxy-moron",
+   "shambhala-2024:d4:living-room:1730:foxy-moron",
+   "shambhala-2025:d2:living-room:1300:foxy-moron"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -54666,6 +55682,21 @@
   ],
   "firstSeen": "2013-09-21",
   "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "frameworks",
+  "name": "Frameworks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:grove:0530:frameworks"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -55445,10 +56476,12 @@
    "shambhala-2013:d3:fractal-forest:0530:freddy-j",
    "shambhala-2014:d2:fractal-forest:0530:freddy-j",
    "shambhala-2015:d2:fractal-forest:0530:freddy-j",
-   "shambhala-2016:d2:fractal-forest:1500:freddy-j"
+   "shambhala-2016:d2:fractal-forest:1500:freddy-j",
+   "shambhala-2024:d2:fractal-forest:1600:freddy-j",
+   "shambhala-2025:d2:fractal-forest:1630:freddy-j"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -55778,7 +56811,8 @@
   "projects": [],
   "billings": [
    "nocturnal-wonderland-2026:nw-friction",
-   "edc-las-vegas-2022:d3:basspod:2040:friction-b2b-kanine"
+   "edc-las-vegas-2022:d3:basspod:2040:friction-b2b-kanine",
+   "shambhala-2024:d2:the-village:2300:friction"
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2026-09-20",
@@ -56159,6 +57193,21 @@
   "links": []
  },
  {
+  "key": "fully-tilted",
+  "name": "Fully Tilted",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:the-village:1800:fully-tilted"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fumi",
   "name": "FUMI",
   "aliases": [],
@@ -56208,6 +57257,22 @@
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fungineers",
+  "name": "Fungineers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:living-room:0000:fungineers",
+   "shambhala-2024:d4:grove:2115:fungineers"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -56367,6 +57432,21 @@
   ],
   "firstSeen": "2022-07-17",
   "lastSeen": "2023-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "funkin-matt",
+  "name": "Funkin Matt",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:the-pagoda:0330:funkin-matt"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -56930,10 +58010,11 @@
    "nocturnal-wonderland-2019:d2:labyrinth:2050:g-jones",
    "shambhala-2014:d4:amphitheatre:0000:g-jones",
    "shambhala-2015:d1:amphitheatre:0000:g-jones",
-   "shambhala-2016:d4:village:0300:g-jones"
+   "shambhala-2016:d4:village:0300:g-jones",
+   "shambhala-2024:d3:amp:0130:g-jones"
   ],
   "firstSeen": "2014-08-10",
-  "lastSeen": "2022-05-20",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -56980,6 +58061,22 @@
   ],
   "firstSeen": "2014-04-11",
   "lastSeen": "2014-04-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gabby-haze",
+  "name": "Gabby Haze",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:secret-garden:0300:gabby-haze",
+   "shambhala-2025:d1:living-room:1730:gabby-haze"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-24",
   "photo": null,
   "links": []
  },
@@ -57337,7 +58434,8 @@
    "edc-orlando-2024:d2:circuit-grounds:2300:ganja-white-night",
    "escape-halloween-2021:d1:psycho-circus:0000:ganja-white-night",
    "nocturnal-wonderland-2019:d1:labyrinth:2200:ganja-white-night",
-   "nocturnal-wonderland-2022:d2:labyrinth:2300:ganja-white-night"
+   "nocturnal-wonderland-2022:d2:labyrinth:2300:ganja-white-night",
+   "shambhala-2024:d3:the-village:0030:ganja-white-night"
   ],
   "firstSeen": "2019-09-14",
   "lastSeen": "2026-09-19",
@@ -57565,6 +58663,21 @@
   ],
   "firstSeen": "2019-11-22",
   "lastSeen": "2019-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gavin-hardkiss",
+  "name": "Gavin Hardkiss",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d1:living-room:0030:gavin-hardkiss"
+  ],
+  "firstSeen": "2025-07-24",
+  "lastSeen": "2025-07-24",
   "photo": null,
   "links": []
  },
@@ -58020,10 +59133,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2019:d1:labyrinth:2000:gentlemens-club"
+   "nocturnal-wonderland-2019:d1:labyrinth:2000:gentlemens-club",
+   "shambhala-2024:d2:amp:0130:gentlemens-club"
   ],
   "firstSeen": "2019-09-14",
-  "lastSeen": "2019-09-14",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -58176,6 +59290,21 @@
   ],
   "firstSeen": "2021-10-01",
   "lastSeen": "2021-10-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "georgie-riot",
+  "name": "Georgie Riot",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:the-village:2230:georgie-riot"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -58444,6 +59573,21 @@
   ],
   "firstSeen": "2014-07-27",
   "lastSeen": "2014-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ghillie-and-skbr",
+  "name": "Ghillie & Skbr",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:secret-garden:2100:ghillie-and-skbr"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -59314,15 +60458,18 @@
  },
  {
   "key": "glass-beams",
-  "name": "GLASS BEAMS",
-  "aliases": [],
+  "name": "Glass Beams",
+  "aliases": [
+   "GLASS BEAMS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2024:d3:tito-s-handmade-vodka:1445:glass-beams",
    "acl-2024:d6:tito-s-handmade-vodka:1445:glass-beams",
-   "lollapalooza-2025:d1:the-grove:1715:glass-beams"
+   "lollapalooza-2025:d1:the-grove:1715:glass-beams",
+   "shambhala-2025:d3:living-room:2230:glass-beams"
   ],
   "firstSeen": "2024-10-06",
   "lastSeen": "2025-07-31",
@@ -60398,10 +61545,11 @@
   "billings": [
    "shambhala-2014:d2:grove:0530:goopsteppa",
    "shambhala-2015:d2:grove:1900:goopsteppa",
-   "shambhala-2016:d2:grove:0545:goopsteppa"
+   "shambhala-2016:d2:grove:0545:goopsteppa",
+   "shambhala-2024:d2:grove:0515:goopsteppa"
   ],
   "firstSeen": "2014-08-08",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -61190,6 +62338,21 @@
   ],
   "firstSeen": "2019-09-15",
   "lastSeen": "2019-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "great-dane",
+  "name": "Great Dane",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d1:amp:1300:great-dane"
+  ],
+  "firstSeen": "2025-07-24",
+  "lastSeen": "2025-07-24",
   "photo": null,
   "links": []
  },
@@ -62235,6 +63398,21 @@
   "links": []
  },
  {
+  "key": "gunfingaz-wraz-and-substance",
+  "name": "GUNFINGAZ (WRAZ & SUBSTANCE)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d1:amp:1930:gunfingaz-wraz-and-substance"
+  ],
+  "firstSeen": "2025-07-24",
+  "lastSeen": "2025-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "gunman-and-judah",
   "name": "Gunman & Judah",
   "aliases": [],
@@ -63049,6 +64227,22 @@
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2022-05-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "handsome-tiger",
+  "name": "Handsome Tiger",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:grove:1700:handsome-tiger",
+   "shambhala-2025:d4:living-room:1600:handsome-tiger"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -64114,7 +65308,8 @@
    "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:2040:hedex",
    "edc-las-vegas-2024:d2:basspod:2330:hedex",
    "edc-las-vegas-2025:d2:cosmic-meadow:0430:hedex",
-   "edc-orlando-2024:d1:circuit-grounds:1920:hedex"
+   "edc-orlando-2024:d1:circuit-grounds:1920:hedex",
+   "shambhala-2024:d3:the-village:2330:hedex"
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-09-20",
@@ -65573,6 +66768,37 @@
   "links": []
  },
  {
+  "key": "honeycomb",
+  "name": "Honeycomb",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:living-room:2030:honeycomb",
+   "shambhala-2025:d4:living-room:2130:honeycomb"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "honeydrip",
+  "name": "Honeydrip",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:living-room:2130:honeydrip"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "honeyhoney",
   "name": "honeyhoney",
   "aliases": [],
@@ -65707,10 +66933,28 @@
    "shambhala-2013:d1:living-room:0300:hoola",
    "shambhala-2014:d2:living-room:1500:hoola",
    "shambhala-2015:d1:living-room:1730:hoola",
-   "shambhala-2016:d1:living-room:1330:hoola"
+   "shambhala-2016:d1:living-room:1330:hoola",
+   "shambhala-2024:d1:living-room:1630:hoola",
+   "shambhala-2025:d1:living-room:1200:hoola",
+   "shambhala-2025:d3:living-room:2330:elektric-collective-with-hoola"
   ],
   "firstSeen": "2012-08-10",
-  "lastSeen": "2016-08-04",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hoolaandthegang",
+  "name": "HOOLAANDTHEGANG",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:living-room:1415:hoolaandthegang"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -67084,6 +68328,21 @@
   "links": []
  },
  {
+  "key": "hypho",
+  "name": "Hypho",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:amp:1930:hypho"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hypoxia",
   "name": "Hypoxia",
   "aliases": [],
@@ -67691,7 +68950,8 @@
   "key": "ill-gates",
   "name": "ill.Gates",
   "aliases": [
-   "Ill Gates"
+   "Ill Gates",
+   "Ill.Gates"
   ],
   "kind": "performer",
   "parents": [],
@@ -67701,10 +68961,12 @@
    "shambhala-2012:d4:village:2200:ill-gates",
    "shambhala-2013:d4:village:2100:ill-gates",
    "shambhala-2014:d3:village:2100:ill-gates",
-   "shambhala-2016:d3:village:2200:ill-gates"
+   "shambhala-2016:d3:village:2200:ill-gates",
+   "shambhala-2024:d4:the-village:2000:ill-gates",
+   "shambhala-2025:d4:the-village:2000:ill-gates"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -67746,10 +69008,26 @@
    "escape-halloween-2024:d1:the-grimm:0035:illenium",
    "lollapalooza-2016:d2:perry-s:1240:illenium",
    "nocturnal-wonderland-2018:d1:wolves-den:0030:illenium",
-   "nocturnal-wonderland-2022:d1:wolves-den:2300:illenium"
+   "nocturnal-wonderland-2022:d1:wolves-den:2300:illenium",
+   "shambhala-2025:d4:the-village:0030:illenium"
   ],
   "firstSeen": "2016-07-29",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "illexxandra",
+  "name": "Illexxandra",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:living-room:1300:illexxandra"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -68380,6 +69658,21 @@
   "links": []
  },
  {
+  "key": "innocent",
+  "name": "INNOCENT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:amp:1830:innocent"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "inntraw",
   "name": "Inntraw",
   "aliases": [],
@@ -68867,6 +70160,21 @@
   "links": []
  },
  {
+  "key": "island-haze",
+  "name": "Island Haze",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:fractal-forest:1600:island-haze"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "isoknock",
   "name": "ISOKNOCK",
   "aliases": [],
@@ -68918,9 +70226,10 @@
  },
  {
   "key": "it-s-murph",
-  "name": "It's Murph",
+  "name": "it's Murph",
   "aliases": [
    "it's murph",
+   "It's Murph",
    "it’s murph",
    "It’s murph"
   ],
@@ -68933,7 +70242,8 @@
    "decadence-colorado-2026:dec-its-murph",
    "beyond-wonderland-socal-2026:d1:queen-s-domain:2040:it-s-murph",
    "edc-las-vegas-2025:d3:cosmic-meadow:0330:it-s-murph",
-   "hard-summer-2025:d2:harder-stage:1715:it-s-murph"
+   "hard-summer-2025:d2:harder-stage:1715:it-s-murph",
+   "shambhala-2025:d4:fractal-forest:2300:it-s-murph"
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2026-12-31",
@@ -69058,9 +70368,10 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llf21",
-   "iii-points-2026:iiip-ivy-lab"
+   "iii-points-2026:iiip-ivy-lab",
+   "shambhala-2025:d2:grove:2200:ivy-lab"
   ],
-  "firstSeen": "2026-09-18",
+  "firstSeen": "2025-07-25",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -70081,9 +71392,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-jacques-greene"
+   "iii-points-2026:iiip-jacques-greene",
+   "shambhala-2024:d3:grove:0100:jacques-greene"
   ],
-  "firstSeen": "2026-10-16",
+  "firstSeen": "2024-07-27",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -71511,6 +72823,21 @@
   ],
   "firstSeen": "2019-07-27",
   "lastSeen": "2022-07-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jasper-tygner",
+  "name": "Jasper Tygner",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:grove:0400:jasper-tygner"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -73217,10 +74544,12 @@
    "shambhala-2013:d2:fractal-forest:0830:jgirl-and-manousos",
    "shambhala-2014:d2:fractal-forest:1730:jgirl-and-manousos",
    "shambhala-2015:d2:fractal-forest:1500:jgirl-and-manousos",
-   "shambhala-2016:d3:fractal-forest:1700:jgirl-and-manousos"
+   "shambhala-2016:d3:fractal-forest:1700:jgirl-and-manousos",
+   "shambhala-2024:d3:fractal-forest:1700:jgirl-and-manousos",
+   "shambhala-2025:d3:fractal-forest:1700:jgirl-and-manousos"
   ],
   "firstSeen": "2012-08-10",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -73811,6 +75140,22 @@
   "links": []
  },
  {
+  "key": "joanna-magik",
+  "name": "Joanna Magik",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:fractal-forest:1900:joanna-magik",
+   "shambhala-2025:d2:fractal-forest:0400:joanna-magik"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "joaquin-bamaca",
   "name": "Joaquin Bamaca",
   "aliases": [],
@@ -74239,8 +75584,10 @@
  },
  {
   "key": "joey-valence-and-brae",
-  "name": "JOEY VALENCE & BRAE",
-  "aliases": [],
+  "name": "Joey Valence & Brae",
+  "aliases": [
+   "JOEY VALENCE & BRAE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -74248,7 +75595,8 @@
    "acl-2025:d2:beatbox:1530:joey-valence-and-brae",
    "acl-2025:d5:beatbox:1530:joey-valence-and-brae",
    "governors-ball-2025:d3:govballnyc:1400:joey-valence-and-brae",
-   "lollapalooza-2025:d4:the-grove:1715:joey-valence-and-brae"
+   "lollapalooza-2025:d4:the-grove:1715:joey-valence-and-brae",
+   "shambhala-2025:d3:fractal-forest:2100:joey-valence-and-brae"
   ],
   "firstSeen": "2025-06-08",
   "lastSeen": "2025-10-11",
@@ -74984,7 +76332,8 @@
    "edc-las-vegas-2024:d3:beatbox-boombox-art-car:0000:jon-casey",
    "edc-las-vegas-2025:d1:ubuntu:0400:jon-casey",
    "edc-orlando-2022:d2:circuit-grounds:1500:jon-casey",
-   "edc-orlando-2024:d1:circuit-grounds:1610:jon-casey"
+   "edc-orlando-2024:d1:circuit-grounds:1610:jon-casey",
+   "shambhala-2025:d4:the-pagoda:1930:jon-casey"
   ],
   "firstSeen": "2022-11-12",
   "lastSeen": "2026-12-30",
@@ -75766,10 +77115,12 @@
    "shambhala-2013:d2:fractal-forest:0700:joseph-martin",
    "shambhala-2014:d2:fractal-forest:0830:joseph-martin",
    "shambhala-2015:d2:fractal-forest:0700:joseph-martin",
-   "shambhala-2016:d2:fractal-forest:0500:joseph-martin"
+   "shambhala-2016:d2:fractal-forest:0500:joseph-martin",
+   "shambhala-2024:d2:fractal-forest:0500:joseph-martin",
+   "shambhala-2025:d2:fractal-forest:0500:joseph-martin"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -75914,9 +77265,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:lls34"
+   "lost-lands-2026:lls34",
+   "shambhala-2025:d1:amp:1830:josh-teed"
   ],
-  "firstSeen": "2026-09-19",
+  "firstSeen": "2025-07-24",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -76321,10 +77673,11 @@
    "electric-forest-2015:d1:the-hangar:0030:jpod",
    "electric-forest-2015:d2:the-hangar:1400:jpod",
    "electric-forest-2015:d3:the-hangar:0130:jpod",
-   "electric-forest-2015:d4:the-hangar:1545:jpod"
+   "electric-forest-2015:d4:the-hangar:1545:jpod",
+   "shambhala-2025:d2:grove:1500:jpod"
   ],
   "firstSeen": "2015-06-25",
-  "lastSeen": "2015-06-28",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -76478,9 +77831,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-eli-escobar-b2b-jubilee"
+   "iii-points-2026:iiip-eli-escobar-b2b-jubilee",
+   "shambhala-2025:d4:living-room:0100:jubilee"
   ],
-  "firstSeen": "2026-10-16",
+  "firstSeen": "2025-07-27",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -76561,6 +77915,21 @@
   ],
   "firstSeen": "2025-10-10",
   "lastSeen": "2025-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "juelz",
+  "name": "Juelz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:the-village:0300:juelz"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -77316,15 +78685,18 @@
  {
   "key": "just-b",
   "name": "Just B",
-  "aliases": [],
+  "aliases": [
+   "Just-B"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2011:d1:living-room:1600:just-b"
+   "shambhala-2011:d1:living-room:1600:just-b",
+   "shambhala-2024:d3:the-pagoda:1530:just-b"
   ],
   "firstSeen": "2011-08-04",
-  "lastSeen": "2011-08-04",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -77355,6 +78727,21 @@
   ],
   "firstSeen": "2013-06-29",
   "lastSeen": "2013-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "just-john",
+  "name": "Just John",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:amp:1830:just-john"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -77423,10 +78810,12 @@
    "shambhala-2012:d2:fractal-forest:1800:justin-hale",
    "shambhala-2013:d2:fractal-forest:1730:justin-hale",
    "shambhala-2014:d2:fractal-forest:1600:justin-hale",
-   "shambhala-2015:d2:fractal-forest:1630:justin-hale"
+   "shambhala-2015:d2:fractal-forest:1630:justin-hale",
+   "shambhala-2024:d4:fractal-forest:0630:justin-hale",
+   "shambhala-2025:d4:fractal-forest:0630:justin-hale"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2015-08-07",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -77476,7 +78865,8 @@
    "edc-las-vegas-2024:d1:bionic-jungle:0400:justin-jay",
    "escape-halloween-2024:d2:the-cauldron:2045:justin-jay",
    "escape-halloween-2025:d1:the-warehouse:2330:justin-jay",
-   "nocturnal-wonderland-2012:d1:wide-awake-art-car:2000:justin-jay"
+   "nocturnal-wonderland-2012:d1:wide-awake-art-car:2000:justin-jay",
+   "shambhala-2025:d3:the-pagoda:0345:justin-jay"
   ],
   "firstSeen": "2012-09-21",
   "lastSeen": "2026-06-28",
@@ -77519,10 +78909,12 @@
    "shambhala-2013:d4:pagoda:2230:justin-martin",
    "shambhala-2014:d4:pagoda:0000:justin-martin",
    "shambhala-2015:d2:pagoda:0040:justin-martin",
-   "shambhala-2016:d2:pagoda:2200:justin-martin"
+   "shambhala-2016:d2:pagoda:2200:justin-martin",
+   "shambhala-2024:d2:the-pagoda:2300:justin-martin",
+   "shambhala-2025:d2:the-pagoda:0230:justin-martin"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2022-11-12",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -77847,10 +79239,26 @@
   "billings": [
    "shambhala-2013:d1:amphitheatre:2330:k-lab",
    "shambhala-2015:d2:fractal-forest:0400:k-lab",
-   "shambhala-2016:d2:fractal-forest:2000:k-lab"
+   "shambhala-2016:d2:fractal-forest:2000:k-lab",
+   "shambhala-2025:d2:fractal-forest:2100:k-lab"
   ],
   "firstSeen": "2013-08-08",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "k-os",
+  "name": "K-OS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:fractal-forest:1900:pineo-and-loeb-ft-k-os"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -78068,6 +79476,21 @@
   ],
   "firstSeen": "2019-10-06",
   "lastSeen": "2019-10-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kaipora",
+  "name": "Kaipora",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:amp:1730:kaipora"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -78369,6 +79792,21 @@
   "links": []
  },
  {
+  "key": "kamauu",
+  "name": "KAMAUU",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:grove:0000:kamauu"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kami",
   "name": "KAMI",
   "aliases": [],
@@ -78469,7 +79907,9 @@
  {
   "key": "kanine",
   "name": "Kanine",
-  "aliases": [],
+  "aliases": [
+   "KANINE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -78477,6 +79917,7 @@
    "edc-orlando-2026:ecf8",
    "edc-thailand-2026:edcth-kanine-b2b-sota",
    "edc-las-vegas-2022:d3:basspod:2040:friction-b2b-kanine",
+   "shambhala-2025:d3:the-village:2230:kanine",
    "tomorrowland-2022:d5:crystal-garden:1930:kanine",
    "tomorrowland-2022:d7:rose-garden:2000:kanine"
   ],
@@ -79630,6 +81071,21 @@
   ],
   "firstSeen": "2018-06-02",
   "lastSeen": "2027-04-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kellan-it",
+  "name": "Kellan It",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:secret-garden:2100:kellan-it"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -81694,10 +83150,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2016:d2:village:2100:kj-sawka"
+   "shambhala-2016:d2:village:2100:kj-sawka",
+   "shambhala-2024:d4:the-village:2100:wolfy-lights-ft-kj-sawka"
   ],
   "firstSeen": "2016-08-05",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -81876,6 +83333,21 @@
   ],
   "firstSeen": "2022-11-13",
   "lastSeen": "2026-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kll-smth",
+  "name": "kLL sMTH",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:amp:1400:kll-smth"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2024-07-25",
   "photo": null,
   "links": []
  },
@@ -82215,10 +83687,11 @@
   "billings": [
    "shambhala-2012:d3:rock-pit:0130:koan-sound",
    "shambhala-2015:d3:village:2300:koan-sound",
+   "shambhala-2024:d4:the-pagoda:0330:koan-sound",
    "tomorrowland-2013:d1:tape:2345:koan-sound"
   ],
   "firstSeen": "2012-08-11",
-  "lastSeen": "2015-08-08",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -82709,6 +84182,7 @@
    "edc-las-vegas-2022:d2:basspod:2230:delta-heavy-b2b-koven-b2b-muzz",
    "edc-las-vegas-2024:d3:circuit-grounds:2000:koven",
    "nocturnal-wonderland-2022:d2:labyrinth:1900:koven",
+   "shambhala-2025:d4:the-village:2200:koven",
    "tomorrowland-2015:d2:star-warz:2000:koven",
    "tomorrowland-2022:d2:crystal-garden:1930:koven",
    "tomorrowland-2022:d9:youphoria:1930:koven",
@@ -82716,7 +84190,7 @@
    "tomorrowland-2023:d5:youphoria:1900:koven"
   ],
   "firstSeen": "2015-07-25",
-  "lastSeen": "2024-05-19",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -82817,10 +84291,11 @@
    "nocturnal-wonderland-2021:d1:owloch-grove:1800:krafty-kuts",
    "outside-lands-2013:d2:the-dome-by-heineken:1800:krafty-kuts",
    "shambhala-2011:d4:fractal-forest:2330:krafty-kuts",
-   "shambhala-2013:d4:fractal-forest:0100:krafty-kuts"
+   "shambhala-2013:d4:fractal-forest:0100:krafty-kuts",
+   "shambhala-2025:d3:fractal-forest:0100:krafty-kuts"
   ],
   "firstSeen": "2011-08-07",
-  "lastSeen": "2021-09-18",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -83505,6 +84980,37 @@
   "links": []
  },
  {
+  "key": "kurei",
+  "name": "Kurei",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:amp:1715:kurei",
+   "shambhala-2025:d4:the-pagoda:1730:kurei"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kursa",
+  "name": "Kursa",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:amp:0300:kursa"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kursa-and-fat-pat",
   "name": "Kursa & Fat Pat",
   "aliases": [],
@@ -83922,9 +85428,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2025:d1:stereo-bloom:2115:kyle-watson"
+   "edc-las-vegas-2025:d1:stereo-bloom:2115:kyle-watson",
+   "shambhala-2024:d2:the-pagoda:2140:kyle-watson"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2024-07-26",
   "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
@@ -85656,6 +87163,21 @@
   "links": []
  },
  {
+  "key": "law",
+  "name": "LAW",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:the-pagoda:0445:law"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lawrence",
   "name": "Lawrence",
   "aliases": [],
@@ -85808,10 +87330,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2016:d3:grove:1530:lazy-syrup-orchestra"
+   "shambhala-2016:d3:grove:1530:lazy-syrup-orchestra",
+   "shambhala-2024:d2:grove:1330:lazy-syrup-orchestra",
+   "shambhala-2025:d3:grove:1530:lazy-syrup-orchestra"
   ],
   "firstSeen": "2016-08-06",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -86417,6 +87941,22 @@
   ],
   "firstSeen": "2016-08-06",
   "lastSeen": "2016-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "leland-river",
+  "name": "Leland River",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:grove:1845:leland-river",
+   "shambhala-2025:d4:secret-garden:0300:leland-river"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -87038,7 +88578,8 @@
    "decadence-colorado-2026:dec-levity",
    "decadence-arizona-2026:daz-levity",
    "edc-las-vegas-2025:d3:basspod:2130:levity",
-   "lollapalooza-2025:d3:perry-s:1815:levity"
+   "lollapalooza-2025:d3:perry-s:1815:levity",
+   "shambhala-2025:d4:the-pagoda:2200:levity"
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2026-12-31",
@@ -87091,6 +88632,21 @@
   ],
   "firstSeen": "2019-07-26",
   "lastSeen": "2019-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lex-amor",
+  "name": "Lex Amor",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:grove:2130:lex-amor"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -87482,6 +89038,21 @@
   "links": []
  },
  {
+  "key": "lightcode-by-lsdream",
+  "name": "Lightcode by LSDREAM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:living-room:1200:lightcode-by-lsdream"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lights",
   "name": "Lights",
   "aliases": [],
@@ -87571,6 +89142,22 @@
   ],
   "firstSeen": "2019-08-01",
   "lastSeen": "2019-08-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lil-bones",
+  "name": "Lil Bones",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:secret-garden:2100:lil-bones",
+   "shambhala-2025:d3:grove:1900:lil-bones"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -88079,17 +89666,20 @@
   "billings": [
    "acl-2015:d3:honda:1245:lion-babe",
    "acl-2015:d6:honda:1245:lion-babe",
-   "lollapalooza-2015:d3:pepsi:1250:lion-babe"
+   "lollapalooza-2015:d3:pepsi:1250:lion-babe",
+   "shambhala-2024:d3:living-room:2230:lion-babe"
   ],
   "firstSeen": "2015-08-02",
-  "lastSeen": "2015-10-11",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
  {
   "key": "lion-s",
   "name": "Lion-S",
-  "aliases": [],
+  "aliases": [
+   "Lion S"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -88099,10 +89689,12 @@
    "shambhala-2013:d4:living-room:2200:lion-s",
    "shambhala-2014:d4:living-room:0630:lion-s",
    "shambhala-2015:d4:living-room:0730:lion-s",
-   "shambhala-2016:d3:living-room:0200:lion-s"
+   "shambhala-2016:d3:living-room:0200:lion-s",
+   "shambhala-2024:d3:living-room:1600:lion-s",
+   "shambhala-2025:d4:living-room:0630:lion-s"
   ],
   "firstSeen": "2011-08-04",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -88928,6 +90520,21 @@
   "links": []
  },
  {
+  "key": "loefah",
+  "name": "Loefah",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:grove:0230:loefah"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "logan-hart",
   "name": "Logan Hart",
   "aliases": [],
@@ -88939,10 +90546,12 @@
    "shambhala-2013:d2:pagoda:1700:logan-hart",
    "shambhala-2014:d4:pagoda:1700:logan-hart",
    "shambhala-2015:d2:pagoda:1500:logan-hart",
-   "shambhala-2016:d2:pagoda:1500:logan-hart"
+   "shambhala-2016:d2:pagoda:1500:logan-hart",
+   "shambhala-2024:d2:the-pagoda:1600:logan-hart",
+   "shambhala-2025:d2:the-pagoda:1600:logan-hart"
   ],
   "firstSeen": "2012-08-11",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -88961,6 +90570,21 @@
   ],
   "firstSeen": "2015-08-02",
   "lastSeen": "2017-06-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "logic1000",
+  "name": "Logic1000",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:grove:2330:logic1000"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -89179,10 +90803,12 @@
    "shambhala-2013:d1:amphitheatre:0100:longwalkshortdock",
    "shambhala-2014:d1:amphitheatre:0330:longwalkshortdock",
    "shambhala-2015:d4:amphitheatre:0300:longwalkshortdock",
-   "shambhala-2016:d4:amphitheatre:0430:longwalkshortdock"
+   "shambhala-2016:d4:amphitheatre:0430:longwalkshortdock",
+   "shambhala-2024:d1:amp:0030:longwalkshortdock",
+   "shambhala-2025:d1:amp:0100:longwalkshortdock"
   ],
   "firstSeen": "2012-08-10",
-  "lastSeen": "2016-08-07",
+  "lastSeen": "2025-07-24",
   "photo": null,
   "links": []
  },
@@ -90200,6 +91826,21 @@
   "links": []
  },
  {
+  "key": "lovefingers",
+  "name": "Lovefingers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:living-room:0100:lovefingers"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lovefoxy",
   "name": "Lovefoxy",
   "aliases": [],
@@ -90463,10 +92104,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2024:d1:cosmic-meadow:0150:lsdream"
+   "edc-las-vegas-2024:d1:cosmic-meadow:0150:lsdream",
+   "shambhala-2024:d4:the-pagoda:0100:lsdream"
   ],
   "firstSeen": "2024-05-17",
-  "lastSeen": "2024-05-17",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -91331,6 +92973,21 @@
   "links": []
  },
  {
+  "key": "luke-petruzzi",
+  "name": "Luke Petruzzi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:amp:1930:luke-petruzzi"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "luke-slater",
   "name": "Luke Slater",
   "aliases": [],
@@ -91480,6 +93137,21 @@
   ],
   "firstSeen": "2014-06-27",
   "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lun",
+  "name": "LŪN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:fractal-forest:2100:lun"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -91711,10 +93383,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "shambhala-2025:d2:the-village:0300:luude",
    "tomorrowland-2022:d5:crystal-garden:1830:luude"
   ],
   "firstSeen": "2022-07-23",
-  "lastSeen": "2022-07-23",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -91755,6 +93428,21 @@
   ],
   "firstSeen": "2013-08-09",
   "lastSeen": "2013-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "luxuryus",
+  "name": "Luxuryus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:living-room:1300:luxuryus"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -91927,9 +93615,10 @@
    "lollapalooza-2026:lo64",
    "countdown-nye-2026:cdny-lyny-b2b-peekaboo",
    "lights-all-night-2026:lan-lyny",
-   "decadence-arizona-2026:daz-lyny"
+   "decadence-arizona-2026:daz-lyny",
+   "shambhala-2024:d4:the-pagoda:2000:lyny"
   ],
-  "firstSeen": "2026-07-31",
+  "firstSeen": "2024-07-28",
   "lastSeen": "2027-01-01",
   "photo": null,
   "links": []
@@ -92768,15 +94457,18 @@
  },
  {
   "key": "maddy-o-neal",
-  "name": "MADDY O'NEAL",
-  "aliases": [],
+  "name": "Maddy O'Neal",
+  "aliases": [
+   "MADDY O'NEAL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2025:d2:circuitgrounds:1500:maddy-o-neal"
+   "edc-orlando-2025:d2:circuitgrounds:1500:maddy-o-neal",
+   "shambhala-2024:d2:fractal-forest:2000:maddy-o-neal"
   ],
-  "firstSeen": "2025-11-08",
+  "firstSeen": "2024-07-26",
   "lastSeen": "2025-11-08",
   "photo": null,
   "links": []
@@ -93057,6 +94749,21 @@
   ],
   "firstSeen": "2026-11-07",
   "lastSeen": "2027-01-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mae-b",
+  "name": "Mae B",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:secret-garden:2030:mae-b"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -93606,15 +95313,18 @@
  {
   "key": "major-league-djz",
   "name": "Major League DJz",
-  "aliases": [],
+  "aliases": [
+   "Major League DJZ"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "shambhala-2025:d4:grove:2230:major-league-djz",
    "tomorrowland-2023:d5:core:1700:major-league-djz"
   ],
   "firstSeen": "2023-07-29",
-  "lastSeen": "2023-07-29",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -93815,6 +95525,7 @@
    "edc-orlando-2023:d2:kinetic-field:1727:malaa-b2b-wax-motif-sunset-set",
    "nocturnal-wonderland-2019:d2:wolves-den:2130:malaa",
    "nocturnal-wonderland-2021:d2:labyrinth:2300:malaa",
+   "shambhala-2025:d4:fractal-forest:0100:malaa",
    "tomorrowland-2022:d6:crystal-garden:2230:malaa",
    "tomorrowland-2023:d6:mainstage:1630:malaa"
   ],
@@ -94612,6 +96323,21 @@
   ],
   "firstSeen": "2026-03-27",
   "lastSeen": "2026-03-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "marah",
+  "name": "MARAH",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:amp:1700:marah"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -95416,10 +97142,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2015:d3:amphitheatre:1500:marin-patenaude"
+   "shambhala-2015:d3:amphitheatre:1500:marin-patenaude",
+   "shambhala-2025:d4:amp:1630:afternoon-saloon-with-marin-patenaude"
   ],
   "firstSeen": "2015-08-08",
-  "lastSeen": "2015-08-08",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -95549,11 +97276,12 @@
    "outside-lands-2012:d3:the-dome-by-heineken:1600:mark-farina",
    "shambhala-2014:d3:amphitheatre:0200:mark-farina",
    "shambhala-2014:d4:living-room:1800:mark-farina-extended-mushroom-jazz-set",
+   "shambhala-2025:d2:living-room:2200:mark-farina",
    "tomorrowland-2014:d3:derrick-carter-presents-family-and-friends:2000:dj-sneak-b2b-mark-farina",
    "tomorrowland-2015:d1:derrick-carter-presents-family-and-friends:2200:mark-farina-b2b-seth-troxler"
   ],
   "firstSeen": "2012-08-12",
-  "lastSeen": "2022-05-21",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -95846,6 +97574,21 @@
   ],
   "firstSeen": "2019-07-21",
   "lastSeen": "2019-07-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mark-woodyard",
+  "name": "Mark Woodyard",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:living-room:1630:mark-woodyard"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -96277,11 +98020,12 @@
   "billings": [
    "nocturnal-wonderland-2022:d2:sunken-garden:1800:marten-h-rger",
    "shambhala-2013:d3:fractal-forest:0230:marten-h-rger",
+   "shambhala-2024:d4:fractal-forest:0100:marten-h-rger",
    "tomorrowland-2023:d1:the-library:1900:marten-h-rger",
    "tomorrowland-2023:d6:mainstage:1430:marten-h-rger"
   ],
   "firstSeen": "2013-08-10",
-  "lastSeen": "2023-07-30",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -96505,10 +98249,12 @@
    "shambhala-2013:d3:living-room:0700:marty-carter",
    "shambhala-2014:d2:pagoda:1600:marty-carter",
    "shambhala-2015:d3:living-room:1100:marty-carter",
-   "shambhala-2016:d3:living-room:1230:marty-carter-w-russ"
+   "shambhala-2016:d3:living-room:1230:marty-carter-w-russ",
+   "shambhala-2024:d1:living-room:1200:marty-carter",
+   "shambhala-2025:d3:living-room:1300:marty-carter"
   ],
   "firstSeen": "2011-08-04",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -96626,7 +98372,8 @@
    "edc-orlando-2024:d3:circuit-grounds:1430:mary-droppinz",
    "escape-halloween-2024:d2:feeding-grounds:1800:mary-droppinz-ukg-set",
    "lollapalooza-2025:d2:perry-s:1200:mary-droppinz",
-   "lollapalooza-2025:d2:tito-s-handmade-vodka:1930:mary-droppinz"
+   "lollapalooza-2025:d2:tito-s-handmade-vodka:1930:mary-droppinz",
+   "shambhala-2024:d2:living-room:0130:mary-droppinz"
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2026-10-16",
@@ -97149,10 +98896,12 @@
    "shambhala-2014:d3:pagoda:2000:mat-the-alien",
    "shambhala-2016:d3:pagoda:2320:mat-the-alien",
    "shambhala-2016:d3:fractal-forest:1830:the-gaff-ft-mat-the-alien",
-   "shambhala-2016:d4:pagoda:1800:mat-the-alien"
+   "shambhala-2016:d4:pagoda:1800:mat-the-alien",
+   "shambhala-2024:d4:living-room:2130:mat-the-alien",
+   "shambhala-2025:d4:living-room:2030:mat-the-alien"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2016-08-07",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -97397,6 +99146,7 @@
    "escape-halloween-2025:d2:feeding-grounds:0030:matroda",
    "nocturnal-wonderland-2021:d2:wolves-den:1800:matroda",
    "nocturnal-wonderland-2022:d2:sunken-garden:2300:matroda",
+   "shambhala-2024:d2:the-pagoda:0130:matroda",
    "tomorrowland-2023:d5:the-library:1800:matroda"
   ],
   "firstSeen": "2021-09-19",
@@ -98208,7 +99958,8 @@
    "edc-las-vegas-2024:d1:stereo-bloom:2200:max-styler",
    "edc-las-vegas-2025:d1:circuit-grounds:2015:max-styler",
    "edc-orlando-2024:d1:stereo-bloom:1730:max-styler-sunset-set",
-   "edc-orlando-2025:d3:circuitgrounds:1840:max-styler"
+   "edc-orlando-2025:d3:circuitgrounds:1840:max-styler",
+   "shambhala-2024:d3:the-pagoda:0215:max-styler"
   ],
   "firstSeen": "2024-05-17",
   "lastSeen": "2026-12-20",
@@ -99643,10 +101394,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2016:d3:grove:1900:melo-nade"
+   "shambhala-2016:d3:grove:1900:melo-nade",
+   "shambhala-2024:d2:secret-garden:2230:melo-nade",
+   "shambhala-2025:d4:grove:1700:melo-nade"
   ],
   "firstSeen": "2016-08-06",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -99833,6 +101586,22 @@
   "links": []
  },
  {
+  "key": "meowmix",
+  "name": "Meowmix",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:living-room:2030:meowmix",
+   "shambhala-2025:d1:living-room:1600:meowmix"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2025-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mer-bear",
   "name": "Mer Bear",
   "aliases": [],
@@ -99936,7 +101705,8 @@
   "billings": [
    "edc-las-vegas-2024:d1:basspod:0430:mersiv",
    "escape-halloween-2021:d2:psycho-circus:1730:mersiv",
-   "hard-summer-2025:d1:green-stage:2000:tape-b-b2b-mersiv"
+   "hard-summer-2025:d1:green-stage:2000:tape-b-b2b-mersiv",
+   "shambhala-2025:d4:the-pagoda:0145:mersiv"
   ],
   "firstSeen": "2021-10-30",
   "lastSeen": "2025-08-02",
@@ -100042,10 +101812,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2015:d4:amphitheatre:0430:metafloor"
+   "shambhala-2015:d4:amphitheatre:0430:metafloor",
+   "shambhala-2024:d2:grove:1915:metafloor"
   ],
   "firstSeen": "2015-08-09",
-  "lastSeen": "2015-08-09",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -100230,6 +102001,21 @@
   "links": []
  },
  {
+  "key": "mews",
+  "name": "Mews",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:grove:1600:mews"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mexican-institute-of-sound",
   "name": "Mexican Institute of Sound",
   "aliases": [],
@@ -100256,6 +102042,21 @@
   ],
   "firstSeen": "2026-08-02",
   "lastSeen": "2026-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mfinity",
+  "name": "Mfinity",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:amp:1900:mfinity"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -100321,6 +102122,21 @@
   ],
   "firstSeen": "2022-07-15",
   "lastSeen": "2022-07-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mia-koden",
+  "name": "Mia Koden",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:grove:2330:mia-koden"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -101619,10 +103435,11 @@
   "billings": [
    "coachella-2014:d5:do-lab:1330:mikey-lion",
    "nocturnal-wonderland-2018:d2:sunken-garden:2030:mikey-lion-b2b-lee-reynolds",
-   "nocturnal-wonderland-2021:d1:sunken-garden:2100:mikey-lion"
+   "nocturnal-wonderland-2021:d1:sunken-garden:2100:mikey-lion",
+   "shambhala-2024:d3:the-pagoda:1930:mikey-lion-b2b-dj-soup"
   ],
   "firstSeen": "2014-04-19",
-  "lastSeen": "2021-09-18",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -102060,6 +103877,21 @@
   ],
   "firstSeen": "2026-09-26",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mindchatter",
+  "name": "Mindchatter",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:grove:2230:mindchatter-dj-set"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -102896,6 +104728,21 @@
   "links": []
  },
  {
+  "key": "mntra",
+  "name": "MNTRA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d1:amp:1500:mntra"
+  ],
+  "firstSeen": "2025-07-24",
+  "lastSeen": "2025-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mnylow",
   "name": "MNYLOW",
   "aliases": [],
@@ -103576,6 +105423,21 @@
   "links": []
  },
  {
+  "key": "monkey-twerk",
+  "name": "Monkey Twerk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:living-room:1300:monkey-twerk"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "monoky",
   "name": "Monoky",
   "aliases": [
@@ -103813,6 +105675,36 @@
   "links": []
  },
  {
+  "key": "mood-change",
+  "name": "Mood Change",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:grove:1615:mood-change"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mood-swing-and-chevy-bass",
+  "name": "Mood Swing & Chevy Bass",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:fractal-forest:2000:mood-swing-and-chevy-bass-ft-wilma"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "moodprint",
   "name": "Moodprint",
   "aliases": [],
@@ -103829,15 +105721,18 @@
  },
  {
   "key": "moody-good",
-  "name": "MOODY GOOD",
-  "aliases": [],
+  "name": "Moody Good",
+  "aliases": [
+   "MOODY GOOD"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2025:d2:sewer-district:1900:moody-good"
+   "escape-halloween-2025:d2:sewer-district:1900:moody-good",
+   "shambhala-2025:d3:amp:2130:moody-good"
   ],
-  "firstSeen": "2025-11-01",
+  "firstSeen": "2025-07-26",
   "lastSeen": "2025-11-01",
   "photo": null,
   "links": []
@@ -103915,10 +105810,11 @@
   "billings": [
    "electric-forest-2013:d3:tripolee:1500:moon-hooch",
    "electric-forest-2013:d3:the-observatory:0030:moon-hooch",
-   "electric-forest-2013:d4:the-observatory:2200:moon-hooch"
+   "electric-forest-2013:d4:the-observatory:2200:moon-hooch",
+   "shambhala-2025:d2:living-room:1930:moon-hooch"
   ],
   "firstSeen": "2013-06-29",
-  "lastSeen": "2013-06-30",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -104038,10 +105934,12 @@
    "shambhala-2013:d1:living-room:2230:moontricks-nog-and-mr-mercy",
    "shambhala-2014:d4:grove:2030:moontricks",
    "shambhala-2015:d4:grove:2045:moontricks",
-   "shambhala-2016:d4:grove:1900:moontricks"
+   "shambhala-2016:d4:grove:1900:moontricks",
+   "shambhala-2024:d3:living-room:0000:moontricks",
+   "shambhala-2025:d4:living-room:1815:moontricks"
   ],
   "firstSeen": "2013-08-08",
-  "lastSeen": "2016-08-07",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -104073,6 +105971,7 @@
    "edc-las-vegas-2022:d3:circuit-grounds:0430:moore-kismet",
    "escape-halloween-2022:d2:feeding-grounds:1945:moore-kismet",
    "escape-halloween-2025:d2:the-warehouse:1900:moore-kismet",
+   "shambhala-2024:d4:amp:2030:moore-kismet",
    "tomorrowland-2022:d2:crystal-garden:1630:moore-kismet"
   ],
   "firstSeen": "2022-05-22",
@@ -104465,6 +106364,21 @@
   "links": []
  },
  {
+  "key": "mother-mary",
+  "name": "Mother Mary",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:grove:1730:mother-mary"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mother-mother",
   "name": "Mother Mother",
   "aliases": [
@@ -104743,7 +106657,8 @@
    "edc-las-vegas-2025:d3:stereo-bloom:0315:33-below-b2b-mph",
    "edc-las-vegas-2025:d3:metaphoenix:2300:mph",
    "edc-orlando-2025:d3:stereobloom:1615:mph",
-   "hard-summer-2025:d2:purple-stage:1730:mph"
+   "hard-summer-2025:d2:purple-stage:1730:mph",
+   "shambhala-2025:d3:the-pagoda:0215:mph"
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2027-04-09",
@@ -104778,10 +106693,11 @@
    "shambhala-2012:d3:rock-pit:2030:mr-b",
    "shambhala-2013:d4:village:1400:mr-b",
    "shambhala-2014:d2:village:0530:mr-b",
-   "shambhala-2015:d2:village:0530:mr-b"
+   "shambhala-2015:d2:village:0530:mr-b",
+   "shambhala-2025:d2:secret-garden:2230:mr-b"
   ],
   "firstSeen": "2011-08-07",
-  "lastSeen": "2015-08-07",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -104958,6 +106874,21 @@
   ],
   "firstSeen": "2013-07-28",
   "lastSeen": "2018-07-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mr-jennings",
+  "name": "Mr. Jennings",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:amp:1615:mr-jennings"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2024-07-25",
   "photo": null,
   "links": []
  },
@@ -105204,6 +107135,36 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mr-wu",
+  "name": "Mr. Wu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:secret-garden:2230:mr-wu"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mraki",
+  "name": "Mraki",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:grove:1800:mraki"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -105575,10 +107536,11 @@
   "billings": [
    "coachella-2017:d2:mojave:1845:mura-masa",
    "coachella-2017:d5:mojave:1845:mura-masa",
-   "lollapalooza-2017:d2:pepsi:1600:mura-masa"
+   "lollapalooza-2017:d2:pepsi:1600:mura-masa",
+   "shambhala-2025:d3:grove:2345:mura-masa"
   ],
   "firstSeen": "2017-04-15",
-  "lastSeen": "2017-08-04",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -105653,6 +107615,23 @@
   ],
   "firstSeen": "2019-07-21",
   "lastSeen": "2019-07-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "murge",
+  "name": "Murge",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "tor-x-murge"
+  ],
+  "billings": [
+   "shambhala-2024:d4:living-room:1930:murge"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -106270,6 +108249,21 @@
   "links": []
  },
  {
+  "key": "mystic-state",
+  "name": "Mystic State",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:grove:0400:mystic-state"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mystique",
   "name": "Mystique",
   "aliases": [],
@@ -106329,9 +108323,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:lls43"
+   "lost-lands-2026:lls43",
+   "shambhala-2024:d3:amp:2000:mythm"
   ],
-  "firstSeen": "2026-09-19",
+  "firstSeen": "2024-07-27",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -106409,6 +108404,21 @@
   ],
   "firstSeen": "2018-07-22",
   "lastSeen": "2019-07-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "n2n",
+  "name": "N2N",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:the-pagoda:2045:n2n"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -106826,6 +108836,21 @@
   ],
   "firstSeen": "2010-08-15",
   "lastSeen": "2011-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nasaya",
+  "name": "NASAYA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:living-room:1630:nasaya"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -107308,6 +109333,21 @@
   "links": []
  },
  {
+  "key": "naturalist",
+  "name": "Naturalist",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:the-pagoda:1700:naturalist"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "naty-seres",
   "name": "Naty Seres",
   "aliases": [],
@@ -107558,10 +109598,12 @@
    "shambhala-2014:d3:fractal-forest:0530:neighbour",
    "shambhala-2015:d3:pagoda:1900:neighbour",
    "shambhala-2015:d3:fractal-forest:0530:neighbour",
-   "shambhala-2016:d3:fractal-forest:0430:neighbour"
+   "shambhala-2016:d3:fractal-forest:0430:neighbour",
+   "shambhala-2024:d3:fractal-forest:0500:neighbour",
+   "shambhala-2025:d3:fractal-forest:0500:neighbour"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -107577,6 +109619,21 @@
   ],
   "firstSeen": "2022-10-15",
   "lastSeen": "2022-10-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "neil-jam3s",
+  "name": "NEIL JAM3S",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:living-room:1945:neil-jam3s"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -107838,10 +109895,12 @@
    "shambhala-2013:d3:fractal-forest:2030:neon-steve",
    "shambhala-2014:d4:fractal-forest:2030:neon-steve",
    "shambhala-2015:d4:fractal-forest:2200:neon-steve",
-   "shambhala-2016:d2:fractal-forest:2130:neon-steve"
+   "shambhala-2016:d2:fractal-forest:2130:neon-steve",
+   "shambhala-2024:d4:fractal-forest:2200:neon-steve",
+   "shambhala-2025:d3:fractal-forest:2300:neon-steve"
   ],
   "firstSeen": "2012-08-12",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -108576,6 +110635,21 @@
   ],
   "firstSeen": "2011-09-18",
   "lastSeen": "2011-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nick-bike",
+  "name": "Nick Bike",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:living-room:1500:nick-bike"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -109819,6 +111893,21 @@
   "links": []
  },
  {
+  "key": "nina",
+  "name": "Nina",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:grove:2030:nina"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nina-black",
   "name": "Nina Black",
   "aliases": [],
@@ -110281,7 +112370,8 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d1:allegiant-rave-hangar:2200:no-thanks",
-   "edc-orlando-2025:d3:kineticfield:1426:no-thanks"
+   "edc-orlando-2025:d3:kineticfield:1426:no-thanks",
+   "shambhala-2025:d2:fractal-forest:0300:no-thanks"
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2025-11-09",
@@ -111085,9 +113175,10 @@
   "billings": [
    "edc-lv-2026:c8",
    "lollapalooza-2026:lo66",
-   "crssd-fall-2026:crssd-notion"
+   "crssd-fall-2026:crssd-notion",
+   "shambhala-2025:d4:amp:2130:notion"
   ],
-  "firstSeen": "2026-05-15",
+  "firstSeen": "2025-07-27",
   "lastSeen": "2026-09-26",
   "photo": null,
   "links": []
@@ -111561,6 +113652,21 @@
   "links": []
  },
  {
+  "key": "o-flynn",
+  "name": "O'Flynn",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:grove:2215:o-flynn"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "o-rappa",
   "name": "O Rappa",
   "aliases": [],
@@ -111590,6 +113696,22 @@
   ],
   "firstSeen": "2019-07-26",
   "lastSeen": "2019-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "oakk",
+  "name": "OAKK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:grove:2130:oakk",
+   "shambhala-2025:d2:grove:0400:oakk"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -111756,6 +113878,21 @@
   "links": []
  },
  {
+  "key": "ocean-wisdom",
+  "name": "Ocean Wisdom",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:grove:0000:ocean-wisdom"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ocho-ojos",
   "name": "Ocho Ojos",
   "aliases": [],
@@ -111840,7 +113977,8 @@
    "edc-las-vegas-2025:d2:cosmic-meadow:0330:odd-mob",
    "edc-las-vegas-2025:d3:stereo-bloom:2200:odd-mob",
    "edc-orlando-2024:d1:stereo-bloom:1845:odd-mob",
-   "escape-halloween-2024:d2:feeding-grounds:2130:odd-mob"
+   "escape-halloween-2024:d2:feeding-grounds:2130:odd-mob",
+   "shambhala-2025:d4:amp:0130:odd-mob"
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2027-04-11",
@@ -112257,6 +114395,21 @@
   "links": []
  },
  {
+  "key": "okayjake",
+  "name": "OkayJake",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:amp:2000:okayjake"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "okayval",
   "name": "OKAYVAL",
   "aliases": [],
@@ -112284,6 +114437,22 @@
   ],
   "firstSeen": "2017-10-15",
   "lastSeen": "2017-10-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "okiro",
+  "name": "Okiro",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:secret-garden:0300:okiro",
+   "shambhala-2025:d3:secret-garden:2145:okiro"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -113059,6 +115228,21 @@
   "links": []
  },
  {
+  "key": "ondamike",
+  "name": "OnDaMiKe",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:the-village:2100:ondamike"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "one-more-time-dj-crew",
   "name": "One more Time DJ crew",
   "aliases": [],
@@ -113100,10 +115284,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2022:d2:rynobus:0030:one-true-god"
+   "edc-las-vegas-2022:d2:rynobus:0030:one-true-god",
+   "shambhala-2024:d4:the-pagoda:2100:one-true-god"
   ],
   "firstSeen": "2022-05-21",
-  "lastSeen": "2022-05-21",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -113188,6 +115373,21 @@
   "links": []
  },
  {
+  "key": "onhell",
+  "name": "ONHELL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:living-room:2330:onhell"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "only-now",
   "name": "Only Now",
   "aliases": [],
@@ -113258,15 +115458,18 @@
  {
   "key": "ooah",
   "name": "Ooah",
-  "aliases": [],
+  "aliases": [
+   "OOAH"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2015:d2:do-lab:2330:ooah"
+   "coachella-2015:d2:do-lab:2330:ooah",
+   "shambhala-2024:d2:living-room:1730:ooah"
   ],
   "firstSeen": "2015-04-11",
-  "lastSeen": "2015-04-11",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -113372,10 +115575,11 @@
    "lollapalooza-2019:d4:perry-s:untimed:opiuo",
    "shambhala-2013:d2:amphitheatre:0100:opiuo",
    "shambhala-2014:d2:grove:0100:opiuo",
-   "shambhala-2016:d2:fractal-forest:2300:opiuo"
+   "shambhala-2016:d2:fractal-forest:2300:opiuo",
+   "shambhala-2025:d2:fractal-forest:2300:opiuo"
   ],
   "firstSeen": "2013-08-09",
-  "lastSeen": "2019-08-04",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -113389,7 +115593,8 @@
   "billings": [
    "hard-summer-2026:hs2-oppidan",
    "tomorrowland-thailand-2026:tmlth-oppidan",
-   "edc-las-vegas-2025:d2:cosmic-meadow:2000:oppidan"
+   "edc-las-vegas-2025:d2:cosmic-meadow:2000:oppidan",
+   "shambhala-2025:d4:amp:2245:oppidan"
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2026-12-11",
@@ -114561,6 +116766,21 @@
   "links": []
  },
  {
+  "key": "paint-department",
+  "name": "Paint Department",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:secret-garden:0130:paint-department"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pako-marckx",
   "name": "Pako Marckx",
   "aliases": [],
@@ -115154,6 +117374,36 @@
   "links": []
  },
  {
+  "key": "parkbreezy",
+  "name": "Parkbreezy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:grove:2000:tf-marz-b2b-parkbreezy"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "parkbreezy-x-tf-marz",
+  "name": "Parkbreezy x TF Marz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:grove:0530:parkbreezy-x-tf-marz"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "parker",
   "name": "Parker",
   "aliases": [],
@@ -115323,10 +117573,11 @@
    "edc-orlando-2017:d1:corona-electric-beach:2030:party-favor",
    "edc-orlando-2019:d1:circuitgrounds:1940:party-favor",
    "lollapalooza-2016:d2:perry-s:1330:party-favor",
-   "lollapalooza-2019:d2:perry-s:untimed:party-favor"
+   "lollapalooza-2019:d2:perry-s:untimed:party-favor",
+   "shambhala-2024:d3:the-village:0200:party-favor"
   ],
   "firstSeen": "2016-07-29",
-  "lastSeen": "2019-11-08",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -116274,6 +118525,21 @@
   "links": []
  },
  {
+  "key": "pav4n-and-strategy",
+  "name": "Pav4n & Strategy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:amp:2230:pav4n-and-strategy"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2024-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pawpaw-rod",
   "name": "PawPaw Rod",
   "aliases": [
@@ -116465,7 +118731,8 @@
    "escape-halloween-2025:d2:sewer-district:2215:nghtmre-b2b-peekaboo",
    "hard-summer-2025:d1:green-stage:1900:peekaboo",
    "nocturnal-wonderland-2019:d2:labyrinth:1945:peekaboo",
-   "nocturnal-wonderland-2022:d2:labyrinth:2200:peekaboo"
+   "nocturnal-wonderland-2022:d2:labyrinth:2200:peekaboo",
+   "shambhala-2024:d3:amp:0000:peekaboo"
   ],
   "firstSeen": "2019-09-15",
   "lastSeen": "2027-01-01",
@@ -117533,6 +119800,21 @@
   "links": []
  },
  {
+  "key": "pheel",
+  "name": "Pheel",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:secret-garden:0130:pheel"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "phi-phi",
   "name": "Phi Phi",
   "aliases": [
@@ -117551,6 +119833,22 @@
   ],
   "firstSeen": "2013-07-27",
   "lastSeen": "2023-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "phibes",
+  "name": "Phibes",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:the-village:2130:phibes",
+   "shambhala-2025:d3:the-village:2130:phibes"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -117930,9 +120228,10 @@
   "billings": [
    "lost-lands-2026:llh8",
    "edc-orlando-2026:ecu28",
-   "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:1640:phrva"
+   "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:1640:phrva",
+   "shambhala-2025:d1:amp:2215:phrva"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2025-07-24",
   "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
@@ -118143,10 +120442,11 @@
   "projects": [],
   "billings": [
    "shambhala-2013:d4:amphitheatre:1500:pigeon-hole",
-   "shambhala-2016:d1:amphitheatre:1430:pigeon-hole"
+   "shambhala-2016:d1:amphitheatre:1430:pigeon-hole",
+   "shambhala-2024:d1:amp:1500:pigeon-hole"
   ],
   "firstSeen": "2013-08-11",
-  "lastSeen": "2016-08-04",
+  "lastSeen": "2024-07-25",
   "photo": null,
   "links": []
  },
@@ -118284,6 +120584,22 @@
   ],
   "firstSeen": "2016-07-28",
   "lastSeen": "2027-04-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pineo-and-loeb",
+  "name": "Pineo & Loeb",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:fractal-forest:1900:pineo-and-loeb",
+   "shambhala-2025:d4:fractal-forest:1900:pineo-and-loeb-ft-k-os"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -118679,9 +120995,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "hard-summer-2025:d2:purple-stage:1515:player-dave"
+   "hard-summer-2025:d2:purple-stage:1515:player-dave",
+   "shambhala-2025:d4:living-room:1700:player-dave"
   ],
-  "firstSeen": "2025-08-03",
+  "firstSeen": "2025-07-27",
   "lastSeen": "2025-08-03",
   "photo": null,
   "links": []
@@ -118713,6 +121030,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pleasensations",
+  "name": "Pleasensations",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:living-room:1900:pleasensations"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -118880,10 +121212,11 @@
    "edc-las-vegas-2024:d3:stereo-bloom:1900:pocket",
    "edc-las-vegas-2024:d3:meta-phoenix:2130:pocket",
    "edc-las-vegas-2025:d2:metaphoenix:0130:pocket",
-   "edc-las-vegas-2025:d3:stereo-bloom:2000:pocket-b2b-sam-binga"
+   "edc-las-vegas-2025:d3:stereo-bloom:2000:pocket-b2b-sam-binga",
+   "shambhala-2025:d4:living-room:0230:pocket"
   ],
   "firstSeen": "2024-05-19",
-  "lastSeen": "2025-05-18",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -119446,6 +121779,24 @@
   ],
   "firstSeen": "2019-11-10",
   "lastSeen": "2022-11-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "prayer-handz",
+  "name": "Prayer Handz",
+  "aliases": [
+   "PRAYER HANDZ"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:living-room:0100:prayer-handz",
+   "shambhala-2025:d4:the-pagoda:0445:prayer-handz"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -120112,6 +122463,21 @@
   "links": []
  },
  {
+  "key": "prsn",
+  "name": "PRSN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:secret-garden:0130:prsn"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "prunk",
   "name": "Prunk",
   "aliases": [
@@ -120765,6 +123131,22 @@
   ],
   "firstSeen": "2016-07-29",
   "lastSeen": "2016-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pxlmtrees",
+  "name": "PXLMTREES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:grove:1615:pxlmtrees",
+   "shambhala-2025:d3:grove:1700:pxlmtrees"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -121821,6 +124203,21 @@
   "links": []
  },
  {
+  "key": "radio-fryer",
+  "name": "Radio Fryer",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:living-room:0400:radio-fryer"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "radio-radio",
   "name": "Radio Radio",
   "aliases": [],
@@ -122698,6 +125095,21 @@
   ],
   "firstSeen": "2025-07-31",
   "lastSeen": "2025-07-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ratchaelbeats",
+  "name": "RatchaelBeats",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:amp:1800:ratchaelbeats"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -123873,6 +126285,21 @@
   "links": []
  },
  {
+  "key": "redword",
+  "name": "REDWORD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:the-pagoda:1730:redword"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "reel-mood",
   "name": "REEL MOOD",
   "aliases": [],
@@ -124503,6 +126930,21 @@
   "links": []
  },
  {
+  "key": "resonant-language",
+  "name": "Resonant Language",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:amp:2200:resonant-language"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "resonate",
   "name": "Resonate",
   "aliases": [
@@ -124751,11 +127193,12 @@
    "escape-halloween-2017:d1:slaughterhouse:1930:rezz",
    "nocturnal-wonderland-2022:d2:wolves-den:2245:rezz",
    "shambhala-2016:d3:pagoda:0230:rezz",
+   "shambhala-2025:d4:the-pagoda:2330:rezz",
    "tomorrowland-2016:d1:mau5trap:1400:rezz",
    "tomorrowland-2018:d1:rose-garden:2100:rezz"
   ],
   "firstSeen": "2016-07-22",
-  "lastSeen": "2025-05-17",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -124918,10 +127361,12 @@
    "shambhala-2013:d4:fractal-forest:0530:rich-e-rich",
    "shambhala-2014:d4:fractal-forest:0600:rich-e-rich",
    "shambhala-2015:d4:fractal-forest:0530:rich-e-rich",
-   "shambhala-2016:d4:fractal-forest:0600:rich-e-rich"
+   "shambhala-2016:d4:fractal-forest:0600:rich-e-rich",
+   "shambhala-2024:d4:fractal-forest:0800:rich-e-rich",
+   "shambhala-2025:d4:fractal-forest:0800:rich-e-rich"
   ],
   "firstSeen": "2011-08-07",
-  "lastSeen": "2016-08-07",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -125592,7 +128037,8 @@
    "edc-lv-2026:bp21",
    "lost-lands-2026:llf42",
    "nocturnal-wonderland-2026:nw-riot",
-   "edc-las-vegas-2024:d3:beatbox-boombox-art-car:0100:riot"
+   "edc-las-vegas-2024:d3:beatbox-boombox-art-car:0100:riot",
+   "shambhala-2025:d2:the-village:2300:riot"
   ],
   "firstSeen": "2024-05-19",
   "lastSeen": "2026-09-20",
@@ -126833,10 +129279,11 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2024:d3:meta-phoenix:0000:rohaan",
-   "edc-orlando-2022:d1:corona-electric-beach:1900:rohaan"
+   "edc-orlando-2022:d1:corona-electric-beach:1900:rohaan",
+   "shambhala-2025:d3:the-pagoda:1930:rohaan"
   ],
   "firstSeen": "2022-11-11",
-  "lastSeen": "2024-05-19",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -127334,6 +129781,22 @@
   "links": []
  },
  {
+  "key": "rosso",
+  "name": "Rosso",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:grove:1500:rosso",
+   "shambhala-2025:d4:grove:1900:rosso"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rossy",
   "name": "ROSSY",
   "aliases": [],
@@ -127406,6 +129869,21 @@
   ],
   "firstSeen": "2026-12-12",
   "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rowl",
+  "name": "Rowl",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:secret-garden:0130:rowl"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -127930,6 +130408,22 @@
   "links": []
  },
  {
+  "key": "rumpus",
+  "name": "Rumpus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:fractal-forest:0300:rumpus",
+   "shambhala-2025:d4:fractal-forest:0300:rumpus"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "run-the-jewels",
   "name": "Run the Jewels",
   "aliases": [
@@ -127986,6 +130480,21 @@
   ],
   "firstSeen": "2022-11-11",
   "lastSeen": "2022-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "runekey",
+  "name": "Runekey",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:secret-garden:0130:runekey"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -128739,10 +131248,12 @@
    "shambhala-2013:d1:living-room:1500:s2",
    "shambhala-2014:d4:living-room:1300:s2",
    "shambhala-2015:d4:living-room:1300:s2",
-   "shambhala-2016:d1:amphitheatre:2100:s2"
+   "shambhala-2016:d1:amphitheatre:2100:s2",
+   "shambhala-2024:d1:amp:1200:s2",
+   "shambhala-2025:d1:amp:1200:s2"
   ],
   "firstSeen": "2013-08-08",
-  "lastSeen": "2016-08-04",
+  "lastSeen": "2025-07-24",
   "photo": null,
   "links": []
  },
@@ -128811,10 +131322,11 @@
    "coachella-2017:d2:do-lab:1645:sabo",
    "shambhala-2014:d2:living-room:1630:sabo",
    "shambhala-2014:d4:living-room:2100:sabo",
-   "shambhala-2016:d4:living-room:0430:sabo"
+   "shambhala-2016:d4:living-room:0430:sabo",
+   "shambhala-2024:d4:living-room:0130:sabo"
   ],
   "firstSeen": "2014-08-08",
-  "lastSeen": "2017-04-15",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -129204,10 +131716,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2022:d1:circuit-grounds:1415:saka"
+   "edc-orlando-2022:d1:circuit-grounds:1415:saka",
+   "shambhala-2024:d4:amp:1930:saka"
   ],
   "firstSeen": "2022-11-11",
-  "lastSeen": "2022-11-11",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -129288,9 +131801,10 @@
    "crssd-fall-2026:crssd-salute",
    "hard-summer-2026:hs1-salute",
    "arc-2026:arc-salute-area909-d2",
-   "lollapalooza-2025:d3:the-grove:1350:salute"
+   "lollapalooza-2025:d3:the-grove:1350:salute",
+   "shambhala-2025:d3:the-pagoda:0045:salute"
   ],
-  "firstSeen": "2025-08-02",
+  "firstSeen": "2025-07-26",
   "lastSeen": "2026-09-26",
   "photo": null,
   "links": []
@@ -129578,6 +132092,21 @@
   "links": []
  },
  {
+  "key": "sam-matthews",
+  "name": "Sam Matthews",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:the-pagoda:1630:trip-a-with-sam-matthews"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sam-paganini",
   "name": "Sam Paganini",
   "aliases": [],
@@ -129746,9 +132275,10 @@
    "edc-lv-2026:cg14",
    "hard-summer-2026:hs2-sammy-virji",
    "acl-2025:d2:miller-lite:1915:sammy-virji",
-   "lollapalooza-2025:d4:perry-s:1745:sammy-virji"
+   "lollapalooza-2025:d4:perry-s:1745:sammy-virji",
+   "shambhala-2024:d2:amp:0000:sammy-virji"
   ],
-  "firstSeen": "2025-08-03",
+  "firstSeen": "2024-07-26",
   "lastSeen": "2026-08-02",
   "photo": null,
   "links": []
@@ -129940,6 +132470,7 @@
    "escape-halloween-2025:d2:sewer-district:2000:san-holo-wholesome-riddim-set",
    "lollapalooza-2017:d2:perry-s:1315:san-holo",
    "lollapalooza-2019:d4:perry-s:untimed:san-holo",
+   "shambhala-2024:d4:amp:0000:san-holo",
    "tomorrowland-2015:d3:barong-family:1400:san-holo",
    "tomorrowland-2016:d3:barong-family:1400:san-holo",
    "tomorrowland-2017:d1:monstercat:1800:san-holo",
@@ -130596,6 +133127,22 @@
   ],
   "firstSeen": "2013-07-27",
   "lastSeen": "2013-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "saturna",
+  "name": "Saturna",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:living-room:1700:saturna",
+   "shambhala-2025:d2:grove:0515:saturna"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -131810,6 +134357,21 @@
   "links": []
  },
  {
+  "key": "secret-recipe",
+  "name": "Secret Recipe",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:amp:1830:secret-recipe"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "secret-superhero",
   "name": "Secret Superhero",
   "aliases": [],
@@ -132693,6 +135255,21 @@
   "links": []
  },
  {
+  "key": "sgt-pokes",
+  "name": "Sgt. Pokes",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:amp:0030:skream-and-friends-ft-sgt-pokes-coki-distinct-motive-and-more"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "shaan",
   "name": "Shaan",
   "aliases": [],
@@ -132732,10 +135309,11 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2025:d2:basspod:0430:shades",
-   "shambhala-2016:d4:amphitheatre:2230:shades"
+   "shambhala-2016:d4:amphitheatre:2230:shades",
+   "shambhala-2025:d2:amp:0130:shades"
   ],
   "firstSeen": "2016-08-07",
-  "lastSeen": "2025-05-17",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -133302,6 +135880,22 @@
   "links": []
  },
  {
+  "key": "shawna-kmln",
+  "name": "Shawna (KMLN)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:living-room:1430:shawna-kmln",
+   "shambhala-2025:d1:living-room:2300:shawna-kmln"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2025-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "shawni",
   "name": "Shawni",
   "aliases": [],
@@ -133676,10 +136270,12 @@
   "projects": [],
   "billings": [
    "shambhala-2015:d3:grove:1830:shiny-things",
-   "shambhala-2016:d3:grove:2000:shiny-things"
+   "shambhala-2016:d3:grove:2000:shiny-things",
+   "shambhala-2024:d4:living-room:0530:shiny-things",
+   "shambhala-2025:d4:living-room:0345:shiny-things"
   ],
   "firstSeen": "2015-08-08",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -133712,7 +136308,8 @@
   "billings": [
    "edc-lv-2026:k20",
    "groove-cruise-2027:gc-ship-wrek",
-   "edc-orlando-2023:d2:kinetic-field:1527:ship-wrek"
+   "edc-orlando-2023:d2:kinetic-field:1527:ship-wrek",
+   "shambhala-2025:d4:fractal-forest:0200:ship-wrek"
   ],
   "firstSeen": "2023-11-11",
   "lastSeen": "2027-01-21",
@@ -133773,10 +136370,11 @@
   "projects": [],
   "billings": [
    "coachella-2014:d1:gobi:1900:shlohmo",
-   "coachella-2014:d4:gobi:1900:shlohmo"
+   "coachella-2014:d4:gobi:1900:shlohmo",
+   "shambhala-2024:d3:grove:0230:shlohmo"
   ],
   "firstSeen": "2014-04-11",
-  "lastSeen": "2014-04-18",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -134058,6 +136656,21 @@
   "links": []
  },
  {
+  "key": "shrimpnose",
+  "name": "Shrimpnose",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:amp:1300:shrimpnose"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2024-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "shuggie-otis",
   "name": "Shuggie Otis",
   "aliases": [],
@@ -134215,15 +136828,18 @@
  {
   "key": "sicaria",
   "name": "Sicaria",
-  "aliases": [],
+  "aliases": [
+   "SICARIA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2024:d1:cosmic-meadow:2020:sicaria"
+   "edc-las-vegas-2024:d1:cosmic-meadow:2020:sicaria",
+   "shambhala-2024:d2:grove:2245:sicaria"
   ],
   "firstSeen": "2024-05-17",
-  "lastSeen": "2024-05-17",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -134686,10 +137302,12 @@
   "billings": [
    "shambhala-2013:d3:living-room:0500:sijay-james",
    "shambhala-2014:d4:living-room:0500:sijay-james",
-   "shambhala-2016:d3:living-room:0700:sijay-james"
+   "shambhala-2016:d3:living-room:0700:sijay-james",
+   "shambhala-2024:d4:living-room:1300:sijay-james",
+   "shambhala-2025:d3:living-room:1400:sijay-james"
   ],
   "firstSeen": "2013-08-10",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -135175,6 +137793,21 @@
   "links": []
  },
  {
+  "key": "sintra",
+  "name": "Sintra",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:the-pagoda:1830:sintra"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "siobhan-bodrug",
   "name": "Siobhan Bodrug",
   "aliases": [],
@@ -135409,6 +138042,21 @@
   "links": []
  },
  {
+  "key": "sistersun",
+  "name": "Sistersun",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:living-room:1400:sistersun"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2024-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sisto",
   "name": "Sisto",
   "aliases": [],
@@ -135420,6 +138068,21 @@
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sivz",
+  "name": "Sivz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:the-pagoda:1830:sivz"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -135672,6 +138335,21 @@
   "links": []
  },
  {
+  "key": "skerd",
+  "name": "Skerd",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:grove:1830:skerd"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "skiitour",
   "name": "SkiiTour",
   "aliases": [
@@ -135685,10 +138363,14 @@
    "shambhala-2014:d1:amphitheatre:1800:skiitour",
    "shambhala-2015:d1:amphitheatre:1500:skiitour",
    "shambhala-2016:d1:amphitheatre:1530:skiitour",
-   "shambhala-2016:d4:fractal-forest:1930:skiitour"
+   "shambhala-2016:d4:fractal-forest:1930:skiitour",
+   "shambhala-2024:d1:amp:1730:skiitour",
+   "shambhala-2024:d4:fractal-forest:2000:skiitour",
+   "shambhala-2025:d1:amp:1600:skiitour",
+   "shambhala-2025:d4:fractal-forest:2000:skiitour"
   ],
   "firstSeen": "2013-08-08",
-  "lastSeen": "2016-08-07",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -135891,6 +138573,36 @@
   ],
   "firstSeen": "2012-08-04",
   "lastSeen": "2012-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "skream-and-friends",
+  "name": "Skream & Friends",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:amp:0030:skream-and-friends-ft-sgt-pokes-coki-distinct-motive-and-more"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "skreid",
+  "name": "Skreid",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:the-pagoda:0500:skreid-b2b-trip-a"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -136229,6 +138941,7 @@
    "edc-orlando-2024:d3:kinetic-field:2114:slander",
    "escape-halloween-2017:d2:slaughterhouse:2030:slander",
    "lollapalooza-2017:d4:perry-s:1630:slander",
+   "shambhala-2025:d3:the-village:0030:slander",
    "tomorrowland-2023:d2:youphoria:2200:slander"
   ],
   "firstSeen": "2017-08-06",
@@ -136793,10 +139506,12 @@
    "shambhala-2011:d3:fractal-forest:2200:slynk",
    "shambhala-2013:d4:fractal-forest:0400:slynk",
    "shambhala-2015:d2:fractal-forest:2030:slynk",
-   "shambhala-2016:d4:fractal-forest:0430:slynk"
+   "shambhala-2016:d4:fractal-forest:0430:slynk",
+   "shambhala-2024:d3:fractal-forest:2100:slynk",
+   "shambhala-2025:d3:fractal-forest:2200:slynk"
   ],
   "firstSeen": "2011-08-06",
-  "lastSeen": "2016-08-07",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -136889,10 +139604,12 @@
    "shambhala-2012:d2:fractal-forest:0230:smalltown-djs",
    "shambhala-2013:d2:fractal-forest:0230:smalltown-djs",
    "shambhala-2014:d2:fractal-forest:0230:smalltown-djs",
-   "shambhala-2015:d2:fractal-forest:0230:smalltown-djs"
+   "shambhala-2015:d2:fractal-forest:0230:smalltown-djs",
+   "shambhala-2024:d3:fractal-forest:2200:smalltown-djs",
+   "shambhala-2025:d2:fractal-forest:0200:smalltown-djs"
   ],
   "firstSeen": "2012-08-10",
-  "lastSeen": "2015-08-07",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -137240,6 +139957,21 @@
   "links": []
  },
  {
+  "key": "snow-raven",
+  "name": "Snow Raven",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d1:living-room:2130:snow-raven"
+  ],
+  "firstSeen": "2025-07-24",
+  "lastSeen": "2025-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "snow-strippers",
   "name": "Snow Strippers",
   "aliases": [],
@@ -137435,6 +140167,7 @@
    "edc-orlando-2025:d3:kineticfield:1957:sofi-tukker",
    "lollapalooza-2017:d4:bmi:1900:sofi-tukker",
    "outside-lands-2017:d3:twin-peaks:1530:sofi-tukker",
+   "shambhala-2025:d4:fractal-forest:2200:sofi-tukker-dj-set",
    "tomorrowland-2019:d3:youphoria:1800:sofi-tukker",
    "tomorrowland-2022:d3:crystal-garden:1930:sofi-tukker"
   ],
@@ -138205,6 +140938,21 @@
   "links": []
  },
  {
+  "key": "soohan",
+  "name": "Soohan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:living-room:1730:soohan"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2024-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "soothslayer",
   "name": "Soothslayer",
   "aliases": [],
@@ -138415,6 +141163,21 @@
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2026-12-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "soukii",
+  "name": "Soukii",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:amp:1830:soukii"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -139023,6 +141786,21 @@
   ],
   "firstSeen": "2019-07-26",
   "lastSeen": "2019-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "spanda",
+  "name": "Spanda",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d1:living-room:1430:spanda"
+  ],
+  "firstSeen": "2025-07-24",
+  "lastSeen": "2025-07-24",
   "photo": null,
   "links": []
  },
@@ -139995,7 +142773,8 @@
    "coachella-2016:d6:do-lab:2015:stanton-warriors",
    "outside-lands-2013:d1:the-dome-by-heineken:1730:stanton-warriors",
    "shambhala-2011:d4:fractal-forest:0130:stanton-warriors",
-   "shambhala-2013:d3:fractal-forest:0100:stanton-warriors"
+   "shambhala-2013:d3:fractal-forest:0100:stanton-warriors",
+   "shambhala-2024:d3:fractal-forest:0200:stanton-warriors"
   ],
   "firstSeen": "2011-08-07",
   "lastSeen": "2026-09-20",
@@ -140999,10 +143778,12 @@
    "shambhala-2013:d2:fractal-forest:2200:stickybuds",
    "shambhala-2014:d2:fractal-forest:2330:stickybuds",
    "shambhala-2015:d2:fractal-forest:0100:stickybuds",
-   "shambhala-2016:d2:fractal-forest:0030:stickybuds"
+   "shambhala-2016:d2:fractal-forest:0030:stickybuds",
+   "shambhala-2024:d2:fractal-forest:0100:stickybuds",
+   "shambhala-2025:d2:fractal-forest:2200:stickybuds"
   ],
   "firstSeen": "2011-08-07",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -141498,6 +144279,21 @@
   "links": []
  },
  {
+  "key": "stund",
+  "name": "STUND",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:the-pagoda:1730:stund-b2b-broken-future"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sturgill-simpson",
   "name": "Sturgill Simpson",
   "aliases": [
@@ -141565,6 +144361,22 @@
   ],
   "firstSeen": "2023-11-12",
   "lastSeen": "2023-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "stylust",
+  "name": "Stylust",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:the-village:2000:stylust",
+   "shambhala-2025:d2:the-village:2030:stylust"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -141986,7 +144798,8 @@
    "edc-orlando-2023:d1:circuit-grounds:2245:subtronics",
    "edc-orlando-2025:d3:kineticfield:2105:subtronics",
    "escape-halloween-2022:d1:feeding-grounds:0100:subtronics",
-   "nocturnal-wonderland-2019:d1:labyrinth:2100:subtronics"
+   "nocturnal-wonderland-2019:d1:labyrinth:2100:subtronics",
+   "shambhala-2024:d4:the-village:0130:subtronics"
   ],
   "firstSeen": "2019-09-14",
   "lastSeen": "2026-12-31",
@@ -142006,10 +144819,12 @@
    "shambhala-2013:d2:village:2200:subvert",
    "shambhala-2014:d2:village:2200:subvert",
    "shambhala-2015:d2:village:2200:subvert",
-   "shambhala-2016:d3:village:2300:subvert"
+   "shambhala-2016:d3:village:2300:subvert",
+   "shambhala-2024:d2:the-village:2200:subvert-w-armanni-reign",
+   "shambhala-2025:d2:the-village:2200:subvert-w-armanni-reign"
   ],
   "firstSeen": "2011-08-07",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -142363,6 +145178,22 @@
   "links": []
  },
  {
+  "key": "sundog",
+  "name": "Sundog",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:grove:1800:sundog",
+   "shambhala-2025:d3:secret-garden:2300:sundog"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sunflower-bean",
   "name": "Sunflower Bean",
   "aliases": [
@@ -142431,6 +145262,21 @@
   ],
   "firstSeen": "2011-09-23",
   "lastSeen": "2023-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sunny-acres",
+  "name": "Sunny Acres",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d1:living-room:1300:sunny-acres"
+  ],
+  "firstSeen": "2025-07-24",
+  "lastSeen": "2025-07-24",
   "photo": null,
   "links": []
  },
@@ -142563,9 +145409,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llh11"
+   "lost-lands-2026:llh11",
+   "shambhala-2025:d4:the-village:2100:super-future"
   ],
-  "firstSeen": "2026-09-17",
+  "firstSeen": "2025-07-27",
   "lastSeen": "2026-09-17",
   "photo": null,
   "links": []
@@ -142869,6 +145716,21 @@
   ],
   "firstSeen": "2022-07-24",
   "lastSeen": "2022-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "supertask",
+  "name": "Supertask",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:amp:2100:supertask"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -143889,10 +146751,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2015:d3:grove:0330:synkro"
+   "shambhala-2015:d3:grove:0330:synkro",
+   "shambhala-2024:d2:grove:0230:synkro"
   ],
   "firstSeen": "2015-08-08",
-  "lastSeen": "2015-08-08",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -144121,6 +146984,21 @@
   "links": []
  },
  {
+  "key": "t3mpr",
+  "name": "T3MPR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:the-pagoda:1530:t3mpr"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "t78",
   "name": "T78",
   "aliases": [],
@@ -144321,7 +147199,8 @@
    "countdown-nye-2026:cdny-taiki-nulight",
    "edc-thailand-2026:edcth-taiki-nulight",
    "nocturnal-wonderland-2019:d1:sunken-garden:2000:taiki-nulight",
-   "shambhala-2014:d2:pagoda:0230:taiki-nulight"
+   "shambhala-2014:d2:pagoda:0230:taiki-nulight",
+   "shambhala-2024:d2:amp:2230:taiki-nulight"
   ],
   "firstSeen": "2014-08-08",
   "lastSeen": "2027-01-01",
@@ -144828,7 +147707,9 @@
    "edc-orlando-2021:d1:rynobus:1345:tape-b",
    "edc-orlando-2025:d1:circuitgrounds:2030:tape-b",
    "hard-summer-2025:d1:green-stage:2000:tape-b-b2b-mersiv",
-   "lollapalooza-2025:d2:perry-s:1745:tape-b"
+   "lollapalooza-2025:d2:perry-s:1745:tape-b",
+   "shambhala-2024:d4:amp:2130:tape-b",
+   "shambhala-2025:d4:the-pagoda:0045:tape-b"
   ],
   "firstSeen": "2021-11-12",
   "lastSeen": "2025-11-07",
@@ -145375,16 +148256,19 @@
  },
  {
   "key": "team-ezy",
-  "name": "TEAM EZY",
-  "aliases": [],
+  "name": "Team EZY",
+  "aliases": [
+   "TEAM EZY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2017:d2:chopping-block:1915:team-ezy"
+   "escape-halloween-2017:d2:chopping-block:1915:team-ezy",
+   "shambhala-2024:d2:the-pagoda:2015:team-ezy"
   ],
   "firstSeen": "2017-10-28",
-  "lastSeen": "2017-10-28",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -145990,6 +148874,21 @@
   "links": []
  },
  {
+  "key": "ternion-sound",
+  "name": "Ternion Sound",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:amp:2100:ternion-sound"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "terra",
   "name": "Terra",
   "aliases": [],
@@ -146103,6 +149002,21 @@
   "links": []
  },
  {
+  "key": "tf-marz",
+  "name": "TF Marz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:grove:2000:tf-marz-b2b-parkbreezy"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tfti",
   "name": "TFTI",
   "aliases": [],
@@ -146145,10 +149059,12 @@
    "shambhala-2011:d4:village:0500:tha-funk-junkie",
    "shambhala-2012:d4:village:0430:tha-funk-junkie",
    "shambhala-2013:d4:village:0600:tha-funk-junkie",
-   "shambhala-2014:d2:village:1730:tha-funk-junkie"
+   "shambhala-2014:d2:village:1730:tha-funk-junkie",
+   "shambhala-2024:d4:the-village:0400:tha-funk-junkie",
+   "shambhala-2025:d4:the-village:0400:tha-funk-junkie"
   ],
   "firstSeen": "2011-08-07",
-  "lastSeen": "2025-05-17",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -147366,6 +150282,21 @@
   "links": []
  },
  {
+  "key": "the-caracal-project",
+  "name": "The Caracal Project",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:amp:2330:the-caracal-project"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2024-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-carny-bastards",
   "name": "The Carny Bastards",
   "aliases": [],
@@ -147491,6 +150422,21 @@
   ],
   "firstSeen": "2022-10-07",
   "lastSeen": "2022-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-chillage",
+  "name": "The Chillage",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:the-village:0330:the-chillage"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -148363,10 +151309,12 @@
    "shambhala-2013:d4:fractal-forest:2200:the-funk-hunters-a-v-set",
    "shambhala-2014:d2:fractal-forest:2030:the-funk-hunters",
    "shambhala-2015:d2:fractal-forest:2330:the-funk-hunters",
-   "shambhala-2016:d2:fractal-forest:0200:the-funk-hunters"
+   "shambhala-2016:d2:fractal-forest:0200:the-funk-hunters",
+   "shambhala-2024:d2:fractal-forest:0000:the-funk-hunters",
+   "shambhala-2025:d2:fractal-forest:0100:the-funk-hunters"
   ],
   "firstSeen": "2011-08-04",
-  "lastSeen": "2016-08-05",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -148400,10 +151348,12 @@
    "shambhala-2013:d2:living-room:1500:the-gaff",
    "shambhala-2014:d3:fractal-forest:1600:the-gaff",
    "shambhala-2015:d2:living-room:1300:the-gaff",
-   "shambhala-2016:d3:fractal-forest:1830:the-gaff-ft-mat-the-alien"
+   "shambhala-2016:d3:fractal-forest:1830:the-gaff-ft-mat-the-alien",
+   "shambhala-2024:d3:fractal-forest:2000:the-gaff",
+   "shambhala-2025:d3:fractal-forest:2000:the-gaff"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2016-08-06",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -148573,10 +151523,11 @@
    "governors-ball-2018:d1:american-eagle-stage:2000:the-glitch-mob",
    "lollapalooza-2011:d2:perry-s:1900:the-glitch-mob",
    "lollapalooza-2014:d1:perry-s:1915:the-glitch-mob",
-   "nocturnal-wonderland-2021:d2:wolves-den:2000:the-glitch-mob"
+   "nocturnal-wonderland-2021:d2:wolves-den:2000:the-glitch-mob",
+   "shambhala-2024:d2:living-room:0030:the-glitch-mob"
   ],
   "firstSeen": "2011-08-06",
-  "lastSeen": "2021-09-19",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -149589,10 +152540,12 @@
    "shambhala-2013:d3:pagoda:2100:the-librarian",
    "shambhala-2014:d1:amphitheatre:0030:the-librarian",
    "shambhala-2015:d2:grove:2100:the-librarian",
-   "shambhala-2016:d3:living-room:2300:the-librarian"
+   "shambhala-2016:d3:living-room:2300:the-librarian",
+   "shambhala-2024:d2:grove:0400:the-librarian",
+   "shambhala-2025:d2:grove:2030:the-librarian"
   ],
   "firstSeen": "2012-08-09",
-  "lastSeen": "2017-04-22",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -151746,6 +154699,22 @@
   "links": []
  },
  {
+  "key": "the-sponges",
+  "name": "The Sponges",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:fractal-forest:2100:the-sponges",
+   "shambhala-2025:d4:fractal-forest:2100:the-sponges"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-stapletones",
   "name": "The Stapletones",
   "aliases": [],
@@ -153102,6 +156071,22 @@
   "links": []
  },
  {
+  "key": "thomas-anthony",
+  "name": "Thomas Anthony",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:fractal-forest:0400:thomas-anthony",
+   "shambhala-2025:d4:fractal-forest:0400:thomas-anthony"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "thomas-csorba",
   "name": "Thomas Csorba",
   "aliases": [],
@@ -154116,10 +157101,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2014:d4:village:1700:tiny-dancer"
+   "shambhala-2014:d4:village:1700:tiny-dancer",
+   "shambhala-2025:d4:the-village:1900:tiny-dancer"
   ],
   "firstSeen": "2014-08-10",
-  "lastSeen": "2014-08-10",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -154208,10 +157194,12 @@
   "projects": [],
   "billings": [
    "shambhala-2015:d3:grove:0100:tipper-with-android-jones",
-   "shambhala-2015:d4:living-room:2030:tipper"
+   "shambhala-2015:d4:living-room:2030:tipper",
+   "shambhala-2024:d3:living-room:1800:tipper",
+   "shambhala-2024:d4:amp:0130:tipper"
   ],
   "firstSeen": "2015-08-08",
-  "lastSeen": "2015-08-09",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -154377,6 +157365,21 @@
   ],
   "firstSeen": "2017-06-02",
   "lastSeen": "2021-10-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tko",
+  "name": "TKO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:the-pagoda:1700:tko"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
  },
@@ -155045,6 +158048,21 @@
   "links": []
  },
  {
+  "key": "tomahawk-bang-and-notorious-cree",
+  "name": "Tomahawk Bang & Notorious Cree",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:living-room:0200:tomahawk-bang-and-notorious-cree"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "toman",
   "name": "Toman",
   "aliases": [],
@@ -155198,6 +158216,21 @@
   "billings": [],
   "firstSeen": null,
   "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tone-ranger",
+  "name": "Tone Ranger",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d1:living-room:2200:tone-ranger"
+  ],
+  "firstSeen": "2024-07-25",
+  "lastSeen": "2024-07-25",
   "photo": null,
   "links": []
  },
@@ -155567,15 +158600,20 @@
  {
   "key": "tor",
   "name": "Tor",
-  "aliases": [],
+  "aliases": [
+   "TOR"
+  ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "tor-x-murge"
+  ],
   "billings": [
-   "shambhala-2014:d3:grove:0530:tor"
+   "shambhala-2014:d3:grove:0530:tor",
+   "shambhala-2024:d3:grove:2245:tor"
   ],
   "firstSeen": "2014-08-09",
-  "lastSeen": "2014-08-09",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -155593,6 +158631,39 @@
   ],
   "firstSeen": "2014-10-04",
   "lastSeen": "2016-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tor-x-murge",
+  "name": "Tor X Murge",
+  "aliases": [],
+  "kind": "collab",
+  "parents": [
+   "murge",
+   "tor"
+  ],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:grove:1330:tor-x-murge"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "torcha",
+  "name": "Torcha",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:amp:2030:torcha"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -155688,10 +158759,11 @@
   "billings": [
    "lollapalooza-2012:d1:perry-s:1400:totally-enormous-extinct-dinosaurs",
    "nocturnal-wonderland-2017:d2:sunken-garden:2230:totally-enormous-extinct-dinosaurs-dj-set",
-   "outside-lands-2017:d3:the-house-by-heineken:1830:totally-enormous-extinct-dinosaurs-dj-set"
+   "outside-lands-2017:d3:the-house-by-heineken:1830:totally-enormous-extinct-dinosaurs-dj-set",
+   "shambhala-2024:d3:the-pagoda:2215:totally-enormous-extinct-dinosaurs"
   ],
   "firstSeen": "2012-08-03",
-  "lastSeen": "2017-09-16",
+  "lastSeen": "2024-07-27",
   "photo": null,
   "links": []
  },
@@ -156203,6 +159275,22 @@
   "links": []
  },
  {
+  "key": "trevor-galore",
+  "name": "Trevor Galore",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:the-village:1900:trevor-galore",
+   "shambhala-2025:d4:the-village:1700:dlb-b2b-trevor-galore"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "trevor-hall",
   "name": "Trevor Hall",
   "aliases": [],
@@ -156329,6 +159417,22 @@
   "links": []
  },
  {
+  "key": "trip-a",
+  "name": "Trip A",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:the-pagoda:0500:skreid-b2b-trip-a",
+   "shambhala-2025:d4:the-pagoda:1630:trip-a-with-sam-matthews"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tripical-note",
   "name": "Tripical Note",
   "aliases": [],
@@ -156340,6 +159444,22 @@
   ],
   "firstSeen": "2026-12-12",
   "lastSeen": "2026-12-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "triple-xl",
+  "name": "Triple XL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d3:the-village:2030:triple-xl",
+   "shambhala-2025:d3:the-village:2030:triple-xl"
+  ],
+  "firstSeen": "2024-07-27",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -156691,7 +159811,8 @@
    "edc-orlando-2024:d1:circuit-grounds:2020:troyboi",
    "escape-halloween-2025:d2:sewer-district:2330:troyboi",
    "shambhala-2016:d2:grove:0130:troyboi",
-   "shambhala-2016:d4:amphitheatre:0000:troyboi"
+   "shambhala-2016:d4:amphitheatre:0000:troyboi",
+   "shambhala-2025:d2:amp:0015:troyboi"
   ],
   "firstSeen": "2016-08-05",
   "lastSeen": "2027-01-01",
@@ -156756,7 +159877,8 @@
    "edc-las-vegas-2025:d3:basspod:2040:truth",
    "shambhala-2013:d3:living-room:2330:truth",
    "shambhala-2014:d3:living-room:0100:truth",
-   "shambhala-2016:d3:grove:0030:truth"
+   "shambhala-2016:d3:grove:0030:truth",
+   "shambhala-2024:d3:amp:2230:truth"
   ],
   "firstSeen": "2013-08-10",
   "lastSeen": "2026-09-19",
@@ -156900,16 +160022,19 @@
  },
  {
   "key": "tsuruda",
-  "name": "TSURUDA",
-  "aliases": [],
+  "name": "Tsuruda",
+  "aliases": [
+   "TSURUDA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2022:d2:circuit-grounds:1600:chee-b2b-tsuruda"
+   "edc-orlando-2022:d2:circuit-grounds:1600:chee-b2b-tsuruda",
+   "shambhala-2024:d1:amp:2130:tsuruda"
   ],
   "firstSeen": "2022-11-12",
-  "lastSeen": "2022-11-12",
+  "lastSeen": "2024-07-25",
   "photo": null,
   "links": []
  },
@@ -158463,6 +161588,22 @@
   "links": []
  },
  {
+  "key": "underdog",
+  "name": "Underdog",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:fractal-forest:1700:underdog",
+   "shambhala-2025:d2:fractal-forest:1800:underdog"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "underscores",
   "name": "Underscores",
   "aliases": [
@@ -159587,9 +162728,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2024:d2:circuit-grounds:1355:veil"
+   "edc-orlando-2024:d2:circuit-grounds:1355:veil",
+   "shambhala-2024:d3:amp:1900:veil"
   ],
-  "firstSeen": "2024-11-09",
+  "firstSeen": "2024-07-27",
   "lastSeen": "2024-11-09",
   "photo": null,
   "links": []
@@ -159653,6 +162795,21 @@
   ],
   "firstSeen": "2015-08-02",
   "lastSeen": "2018-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "versa",
+  "name": "Versa",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:secret-garden:0000:versa"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -159810,6 +162967,21 @@
   ],
   "firstSeen": "2011-08-13",
   "lastSeen": "2011-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vhoor",
+  "name": "VHOOR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:living-room:2000:vhoor"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
@@ -160504,6 +163676,7 @@
    "escape-halloween-2021:d2:the-grimm:1930:vintage-culture",
    "escape-halloween-2022:d2:the-grimm:1930:vintage-culture",
    "escape-halloween-2025:d1:the-cage:2300:vintage-culture",
+   "shambhala-2025:d2:the-pagoda:2330:vintage-culture",
    "tomorrowland-2019:d1:lotus:1900:vintage-culture",
    "tomorrowland-2022:d1:crystal-garden:1900:vintage-culture",
    "tomorrowland-2022:d5:mainstage:1840:vintage-culture",
@@ -160616,6 +163789,21 @@
   ],
   "firstSeen": "2026-09-04",
   "lastSeen": "2026-09-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "viravira",
+  "name": "ViraVira",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d3:secret-garden:0300:viravira"
+  ],
+  "firstSeen": "2025-07-26",
+  "lastSeen": "2025-07-26",
   "photo": null,
   "links": []
  },
@@ -161495,6 +164683,21 @@
   "links": []
  },
  {
+  "key": "wajatta-ft-reggie-watts-and-john-tejada",
+  "name": "Wajatta ft: Reggie Watts & John Tejada",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:living-room:0000:wajatta-ft-reggie-watts-and-john-tejada"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wakcutt",
   "name": "Wakcutt",
   "aliases": [],
@@ -161710,6 +164913,21 @@
   ],
   "firstSeen": "2026-03-28",
   "lastSeen": "2026-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "walschlager",
+  "name": "Walschlager",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d4:the-pagoda:1830:walschlager"
+  ],
+  "firstSeen": "2025-07-27",
+  "lastSeen": "2025-07-27",
   "photo": null,
   "links": []
  },
@@ -162422,6 +165640,7 @@
    "edc-orlando-2023:d2:kinetic-field:1727:malaa-b2b-wax-motif-sunset-set",
    "escape-halloween-2022:d1:the-grimm:2045:wax-motif",
    "lollapalooza-2017:d4:perry-s:1415:wax-motif",
+   "shambhala-2024:d4:fractal-forest:2300:wax-motif",
    "tomorrowland-2023:d1:the-library:1800:wax-motif"
   ],
   "firstSeen": "2017-08-06",
@@ -162799,6 +166018,22 @@
   "links": []
  },
  {
+  "key": "wes-please",
+  "name": "Wes Please",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:fractal-forest:0500:wes-please",
+   "shambhala-2025:d4:fractal-forest:0500:wes-please"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wesley-bray-and-the-disciples-of-joy",
   "name": "Wesley Bray and the Disciples of Joy",
   "aliases": [
@@ -163169,6 +166404,7 @@
    "lollapalooza-2019:d3:perry-s:untimed:whipped-cream",
    "nocturnal-wonderland-2022:d2:wolves-den:1745:whipped-cream",
    "shambhala-2015:d3:pagoda:0500:whipped-cream",
+   "shambhala-2025:d2:amp:2300:whipped-cream",
    "tomorrowland-2019:d4:kara-savi:2000:whipped-cream",
    "tomorrowland-2022:d6:youphoria:1730:whipped-cream",
    "tomorrowland-2023:d5:youphoria:2000:whipped-cream"
@@ -164245,6 +167481,36 @@
   "links": []
  },
  {
+  "key": "wilma",
+  "name": "Wilma",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2025:d2:fractal-forest:2000:mood-swing-and-chevy-bass-ft-wilma"
+  ],
+  "firstSeen": "2025-07-25",
+  "lastSeen": "2025-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wils",
+  "name": "Wils",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:secret-garden:0000:wils"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "win-and-woo",
   "name": "Win and Woo",
   "aliases": [],
@@ -164694,6 +167960,21 @@
   "links": []
  },
  {
+  "key": "wolfy-lights",
+  "name": "Wolfy Lights",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:the-village:2100:wolfy-lights-ft-kj-sawka"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wolves-are-back",
   "name": "Wolves Are Back",
   "aliases": [],
@@ -164905,6 +168186,7 @@
    "escape-halloween-2022:d1:feeding-grounds:2150:wooli",
    "escape-halloween-2024:d1:sewer-district:2300:wooli",
    "nocturnal-wonderland-2021:d2:sunken-garden:2100:wooli",
+   "shambhala-2025:d4:the-village:0200:wooli",
    "tomorrowland-2022:d3:youphoria:1830:wooli"
   ],
   "firstSeen": "2021-09-19",
@@ -165184,7 +168466,8 @@
    "edc-orlando-2025:d3:circuitgrounds:1525:wuki",
    "escape-halloween-2019:d2:sanitarium:1830:wuki",
    "nocturnal-wonderland-2017:d2:temple-noctem:0045:wuki",
-   "nocturnal-wonderland-2021:d2:labyrinth:2000:wuki"
+   "nocturnal-wonderland-2021:d2:labyrinth:2000:wuki",
+   "shambhala-2025:d3:fractal-forest:0000:wuki"
   ],
   "firstSeen": "2017-09-16",
   "lastSeen": "2026-03-28",
@@ -166096,7 +169379,8 @@
    "edc-las-vegas-2025:d3:basspod:2230:ydg",
    "edc-orlando-2024:d1:circuit-grounds:1410:ydg",
    "edc-orlando-2025:d3:stereobloom:1845:ydg",
-   "hard-summer-2025:d1:green-stage:1500:ydg"
+   "hard-summer-2025:d1:green-stage:1500:ydg",
+   "shambhala-2025:d4:the-pagoda:2045:ydg"
   ],
   "firstSeen": "2024-11-08",
   "lastSeen": "2026-12-30",
@@ -166343,6 +169627,21 @@
   "links": []
  },
  {
+  "key": "yetz",
+  "name": "Yetz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d4:grove:1800:yetz"
+  ],
+  "firstSeen": "2024-07-28",
+  "lastSeen": "2024-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "yg",
   "name": "YG",
   "aliases": [],
@@ -166365,10 +169664,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "shambhala-2016:d4:amphitheatre:0300:yheti"
+   "shambhala-2016:d4:amphitheatre:0300:yheti",
+   "shambhala-2024:d4:amp:0230:yheti"
   ],
   "firstSeen": "2016-08-07",
-  "lastSeen": "2016-08-07",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -167304,10 +170604,12 @@
    "lollapalooza-2014:d2:perry-s:1400:z-trip",
    "nocturnal-wonderland-2021:d2:labyrinth:1900:z-trip",
    "shambhala-2014:d4:fractal-forest:0100:z-trip",
-   "shambhala-2016:d3:fractal-forest:0000:z-trip"
+   "shambhala-2016:d3:fractal-forest:0000:z-trip",
+   "shambhala-2024:d3:fractal-forest:0000:z-trip",
+   "shambhala-2024:d4:living-room:2230:z-trip"
   ],
   "firstSeen": "2014-08-02",
-  "lastSeen": "2021-09-19",
+  "lastSeen": "2024-07-28",
   "photo": null,
   "links": []
  },
@@ -167713,9 +171015,10 @@
   "billings": [
    "lost-lands-2026:llh12",
    "decadence-arizona-2026:daz-a-hundred-drums-b2b-zen-selekta",
-   "escape-halloween-2025:d1:sewer-district:1645:zen-selekta"
+   "escape-halloween-2025:d1:sewer-district:1645:zen-selekta",
+   "shambhala-2024:d3:amp:1800:zen-selekta"
   ],
-  "firstSeen": "2025-10-31",
+  "firstSeen": "2024-07-27",
   "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
@@ -167743,9 +171046,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llf59"
+   "lost-lands-2026:llf59",
+   "shambhala-2025:d4:amp:0300:zero"
   ],
-  "firstSeen": "2026-09-18",
+  "firstSeen": "2025-07-27",
   "lastSeen": "2026-09-18",
   "photo": null,
   "links": []
@@ -167903,7 +171207,8 @@
    "decadence-colorado-2026:dec-zingara",
    "countdown-nye-2026:cdny-zingara",
    "edc-las-vegas-2024:d3:basspod:2030:zingara",
-   "escape-halloween-2022:d1:feeding-grounds:1650:zingara"
+   "escape-halloween-2022:d1:feeding-grounds:1650:zingara",
+   "shambhala-2024:d4:the-pagoda:2200:zingara"
   ],
   "firstSeen": "2022-10-28",
   "lastSeen": "2026-12-31",
@@ -167923,6 +171228,21 @@
   ],
   "firstSeen": "2011-08-06",
   "lastSeen": "2014-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "zipper",
+  "name": "Zipper",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "shambhala-2024:d2:the-village:1900:zipper"
+  ],
+  "firstSeen": "2024-07-26",
+  "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
  },
