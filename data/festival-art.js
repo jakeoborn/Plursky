@@ -180,11 +180,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "Official festival site; reuse terms not stated. No official photo on the site (checked 2026-09-30 and 2026-10-18).",
   },
   "electric-forest-2027": {
-    tile: "festival-art/tiles/electric-forest-2027.webp", card: null, width: 168, height: 168,
-    kind: "logo", sourcePage: "https://www.electricforestfestival.com/",
-    assetUrl: "https://media.web.aegpresents.com/content/seo_images/738/QYrsNFGnojQynQbPI7XImXi6Mun0bzyLmbThefG0.jpg",
-    credit: "Electric Forest logo from the official share image (the site's og:image, 1200x670)", retrieved: "2026-10-18",
-    license: "Official festival share image; reuse terms not stated. The site serves no festival photo (poster and illustration only, checked 2026-10-18): a photo is still owed.",
+    tile: "festival-art/tiles/electric-forest-2027.webp", card: "festival-art/electric-forest-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Electric_Forest_(43228932051).jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/8/86/Electric_Forest_%2843228932051%29.jpg",
+    credit: "Electric Forest 2018, Rothbury, Michigan: the heart arch in the woods. Photo by FifthLegend, Wikimedia Commons", retrieved: "2026-11-15",
+    license: "CC BY 2.0 (Flickr upload reviewed by FlickreviewR 2). Replaces the logo tile: the official site serves no festival photo (checked 2026-10-18).",
+    author: "FifthLegend", licenseId: "CC-BY-2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", changes: "Cropped",
   },
   "dwp-2026": {
     tile: "festival-art/tiles/dwp-2026.webp", card: "festival-art/dwp-2026.webp", width: 168, height: 168,

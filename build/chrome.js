@@ -2633,7 +2633,7 @@ function FestivalThumb({
   editorial = false
 }) {
   var rec = festivalArtFor(entry?.config?.id);
-  var art = editorial ? rec?.card || null : rec?.tile || null;
+  var art = editorial ? rec?.card || rec?.tile || null : rec?.tile || null;
   var name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
   var brand = String(entry?.config?.brand || "").trim();
   var mark = (/^[A-Za-z0-9]{2,6}$/.test(brand) ? brand : String(entry?.config?.name || name).split(/\s+/).filter(w => w && !/^\d+$/.test(w)).slice(0, 3).map(x => x[0]).join("")).toUpperCase();
