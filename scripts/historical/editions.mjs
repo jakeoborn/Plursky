@@ -63,6 +63,16 @@ export const EDITIONS = {
   "lollapalooza-2025": { festivalId: "lollapalooza", name: "Lollapalooza 2025", year: 2025,
     timezone: "America/Chicago", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2025-07-31", "Thursday"], ["2025-08-01", "Friday"], ["2025-08-02", "Saturday"], ["2025-08-03", "Sunday"]] },
+  // Lollapalooza 2012: the official lineup.lollapalooza.com day grids, the
+  // same DoStuff page as Outside Lands' (format "dostuff-grid",
+  // dostuff-schedule.mjs). The grid prints no am/pm; each day's meridiem is
+  // read off one act's own page on the same site. Music runs from 11 AM to
+  // 10:45 PM in Grant Park, so no set crosses midnight.
+  "lollapalooza-2012": { festivalId: "lollapalooza", name: "Lollapalooza 2012", year: 2012,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2012-08-03", "Friday"], ["2012-08-04", "Saturday"], ["2012-08-05", "Sunday"]],
+    notes: [{ asOf: "2026-11-17", days: [2], text: "Saturday's schedule changed during the festival. The official grid printed after the festival moves the evening sets later, to 10:45 PM, and no longer lists eight afternoon sets that its earlier version did. The times shown are that later grid's.",
+      source: "https://web.archive.org/web/20120807041117/http://lineup.lollapalooza.com:80/events/2012/08/04" }] },
   // Lollapalooza 2013-2017 and 2019: the official lollapalooza.com schedule
   // grid, the same C3 page as ACL's (format "acl-grid"), one archived page per
   // year, each start read off the page's own hour axis.

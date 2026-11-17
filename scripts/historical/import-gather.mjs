@@ -380,7 +380,8 @@ export async function importGather(id, dir) {
             ...(d.closed && { closedBlocks: d.closed }), ...(d.overlap.length && { repeatedNextDaySets: d.overlap.length }) });
         }
       } else if (s.format === "dostuff-grid") {
-        // One page per day (Outside Lands' lineup site, dostuff-schedule.mjs),
+        // One page per day (Outside Lands' and Lollapalooza 2012's lineup
+        // site, dostuff-schedule.mjs),
         // its times printed with no am/pm. The receipt's anchor, one act's own
         // page on the same site, prints that act's set with its meridiem and
         // fixes the day's axis; every set's clock time must then be a reading
@@ -389,12 +390,12 @@ export async function importGather(id, dir) {
         // must be excluded rows of that day, one for one.
         if (days.length !== 1) throw new Error(`page ${s.match} is cited for ${days.length} days; a day grid shows one`);
         const day = days[0], page = parseDoStuff(cap.text);
-        if (page.year !== ed.year || page.date !== ed.dates[day - 1][0]) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${page.title} ${page.date}, the sheet cites it for day ${day}`);
+        if (page.festival !== ed.festivalId || page.year !== ed.year || page.date !== ed.dates[day - 1][0]) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${page.title} ${page.date}, the sheet cites it for day ${day}`);
         if (page.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: the day tab prints "${page.label}", the receipt says "${s.printed[day]}"`);
         const acap = await fetchCapture(s.anchor.captureTimestamp, s.anchor.url);
         if (acap.captureTimestamp !== s.anchor.captureTimestamp) throw new Error(`${s.anchor.url}: Wayback served ${acap.captureTimestamp}, not ${s.anchor.captureTimestamp}`);
         const band = parseDoStuffBand(acap.text);
-        if (!band.title.endsWith(` at Outside Lands ${ed.year}`)) throw new Error(`${s.anchor.url}: "${band.title}" is not an Outside Lands ${ed.year} act page`);
+        if (band.festival !== ed.festivalId || (band.year !== null && band.year !== ed.year)) throw new Error(`${s.anchor.url}: "${band.title}" is not an act's page of ${ed.name}`);
         const t = timeDay(page, band, /\/band\/([^/?#]+)/.exec(s.anchor.url)?.[1]);
         const k = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
         const funny = t.sets.filter(x => s.comedyStage && x.stage === s.comedyStage);

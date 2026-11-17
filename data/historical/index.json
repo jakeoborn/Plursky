@@ -2649,6 +2649,37 @@
    }
   },
   {
+   "id": "lollapalooza-2012",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2012",
+   "year": 2012,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-08-03",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-08-04",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2012-08-05",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 133,
+    "sets": 142
+   }
+  },
+  {
    "id": "nocturnal-wonderland-2025",
    "festivalId": "nocturnal-wonderland",
    "festivalName": "Nocturnal Wonderland",

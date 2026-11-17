@@ -1,0 +1,2325 @@
+{
+ "id": "lollapalooza-2012",
+ "festivalId": "lollapalooza",
+ "name": "Lollapalooza 2012",
+ "year": 2012,
+ "timezone": "America/Chicago",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2012-08-03",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2012-08-04",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2012-08-05",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "lollapalooza-2012:bud-light",
+   "name": "Bud Light"
+  },
+  {
+   "id": "lollapalooza-2012:playstation",
+   "name": "PlayStation"
+  },
+  {
+   "id": "lollapalooza-2012:google-play",
+   "name": "Google Play"
+  },
+  {
+   "id": "lollapalooza-2012:bmi",
+   "name": "BMI"
+  },
+  {
+   "id": "lollapalooza-2012:kidz",
+   "name": "Kidz"
+  },
+  {
+   "id": "lollapalooza-2012:perry-s",
+   "name": "Perry's"
+  },
+  {
+   "id": "lollapalooza-2012:sony",
+   "name": "Sony"
+  },
+  {
+   "id": "lollapalooza-2012:red-bull-soundstage",
+   "name": "Red Bull Soundstage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "lollapalooza-2012:o-rappa",
+   "name": "O Rappa",
+   "key": "o-rappa",
+   "performers": [
+    "o-rappa"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-black-angels",
+   "name": "The Black Angels",
+   "key": "the-black-angels",
+   "performers": [
+    "the-black-angels"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:metric",
+   "name": "Metric",
+   "key": "metric",
+   "performers": [
+    "metric"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:passion-pit",
+   "name": "Passion Pit",
+   "key": "passion-pit",
+   "performers": [
+    "passion-pit"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:black-sabbath",
+   "name": "Black Sabbath",
+   "key": "black-sabbath",
+   "performers": [
+    "black-sabbath"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:first-aid-kit",
+   "name": "First Aid Kit",
+   "key": "first-aid-kit",
+   "performers": [
+    "first-aid-kit"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:michael-kiwanuka",
+   "name": "Michael Kiwanuka",
+   "key": "michael-kiwanuka",
+   "performers": [
+    "michael-kiwanuka"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:sharon-van-etten",
+   "name": "Sharon Van Etten",
+   "key": "sharon-van-etten",
+   "performers": [
+    "sharon-van-etten"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:die-antwoord",
+   "name": "Die Antwoord",
+   "key": "die-antwoord",
+   "performers": [
+    "die-antwoord"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:dj-zebo",
+   "name": "DJ Zebo",
+   "key": "dj-zebo",
+   "performers": [
+    "dj-zebo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:animal-kingdom",
+   "name": "Animal Kingdom",
+   "key": "animal-kingdom",
+   "performers": [
+    "animal-kingdom"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:anamanaguchi",
+   "name": "Anamanaguchi",
+   "key": "anamanaguchi",
+   "performers": [
+    "anamanaguchi"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-war-on-drugs",
+   "name": "The War on Drugs",
+   "key": "the-war-on-drugs",
+   "performers": [
+    "the-war-on-drugs"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:blind-pilot",
+   "name": "Blind Pilot",
+   "key": "blind-pilot",
+   "performers": [
+    "blind-pilot"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:sbtrkt",
+   "name": "SBTRKT",
+   "key": "sbtrkt",
+   "performers": [
+    "sbtrkt"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:band-of-skulls",
+   "name": "Band of Skulls",
+   "key": "band-of-skulls",
+   "performers": [
+    "band-of-skulls"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:dawes",
+   "name": "Dawes",
+   "key": "dawes",
+   "performers": [
+    "dawes"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:wale",
+   "name": "Wale",
+   "key": "wale",
+   "performers": [
+    "wale"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:ambassadors",
+   "name": "Ambassadors",
+   "key": "ambassadors",
+   "performers": [
+    "ambassadors"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:haley-reinhart",
+   "name": "Haley Reinhart",
+   "key": "haley-reinhart",
+   "performers": [
+    "haley-reinhart"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:kevin-devine",
+   "name": "Kevin Devine",
+   "key": "kevin-devine",
+   "performers": [
+    "kevin-devine"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:dry-the-river",
+   "name": "Dry the River",
+   "key": "dry-the-river",
+   "performers": [
+    "dry-the-river"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:helena",
+   "name": "Helena",
+   "key": "helena",
+   "performers": [
+    "helena"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:thenewno2",
+   "name": "thenewno2",
+   "key": "thenewno2",
+   "performers": [
+    "thenewno2"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:dev",
+   "name": "Dev",
+   "key": "dev",
+   "performers": [
+    "dev"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:laura-doherty",
+   "name": "Laura Doherty",
+   "key": "laura-doherty",
+   "performers": [
+    "laura-doherty"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:harrison-ivaz",
+   "name": "Harrison Ivaz",
+   "key": "harrison-ivaz",
+   "performers": [
+    "harrison-ivaz"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-school-of-rock",
+   "name": "The School of Rock",
+   "key": "the-school-of-rock",
+   "performers": [
+    "the-school-of-rock"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:purple-apple",
+   "name": "Purple Apple",
+   "key": "purple-apple",
+   "performers": [
+    "purple-apple"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:happiness-club",
+   "name": "Happiness Club",
+   "key": "happiness-club",
+   "performers": [
+    "happiness-club"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:andrew-christopoulos",
+   "name": "Andrew Christopoulos",
+   "key": "andrew-christopoulos",
+   "performers": [
+    "andrew-christopoulos"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:young-bloods",
+   "name": "Young Bloods",
+   "key": "young-bloods",
+   "performers": [
+    "young-bloods"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-white-panda",
+   "name": "The White Panda",
+   "key": "the-white-panda",
+   "performers": [
+    "the-white-panda"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:totally-enormous-extinct-dinosaurs",
+   "name": "Totally Enormous Extinct Dinosaurs",
+   "key": "totally-enormous-extinct-dinosaurs",
+   "performers": [
+    "totally-enormous-extinct-dinosaurs"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:madeon",
+   "name": "Madeon",
+   "key": "madeon",
+   "performers": [
+    "madeon"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:porter-robinson",
+   "name": "Porter Robinson",
+   "key": "porter-robinson",
+   "performers": [
+    "porter-robinson"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:nero",
+   "name": "NERO",
+   "key": "nero",
+   "performers": [
+    "nero"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:bassnectar",
+   "name": "Bassnectar",
+   "key": "bassnectar",
+   "performers": [
+    "bassnectar"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:wax",
+   "name": "Wax",
+   "key": "wax",
+   "performers": [
+    "wax"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:yellow-ostrich",
+   "name": "Yellow Ostrich",
+   "key": "yellow-ostrich",
+   "performers": [
+    "yellow-ostrich"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:tame-impala",
+   "name": "Tame Impala",
+   "key": "tame-impala",
+   "performers": [
+    "tame-impala"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-head-and-the-heart",
+   "name": "The Head & The Heart",
+   "key": "the-head-and-the-heart",
+   "performers": [
+    "the-head-and-the-heart"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:m83",
+   "name": "M83",
+   "key": "m83",
+   "performers": [
+    "m83"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-growlers",
+   "name": "The Growlers",
+   "key": "the-growlers",
+   "performers": [
+    "the-growlers"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:dr-dog",
+   "name": "Dr. Dog",
+   "key": "dr-dog",
+   "performers": [
+    "dr-dog"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-afghan-whigs",
+   "name": "The Afghan Whigs",
+   "key": "the-afghan-whigs",
+   "performers": [
+    "the-afghan-whigs"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-shins",
+   "name": "The Shins",
+   "key": "the-shins",
+   "performers": [
+    "the-shins"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-black-keys",
+   "name": "The Black Keys",
+   "key": "the-black-keys",
+   "performers": [
+    "the-black-keys"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:los-jaivas",
+   "name": "Los Jaivas",
+   "key": "los-jaivas",
+   "performers": [
+    "los-jaivas"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:delta-spirit",
+   "name": "Delta Spirit",
+   "key": "delta-spirit",
+   "performers": [
+    "delta-spirit"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:franz-ferdinand",
+   "name": "Franz Ferdinand",
+   "key": "franz-ferdinand",
+   "performers": [
+    "franz-ferdinand"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:avicii",
+   "name": "Avicii",
+   "key": "avicii",
+   "performers": [
+    "avicii"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:milo-greene",
+   "name": "Milo Greene",
+   "key": "milo-greene",
+   "performers": [
+    "milo-greene"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:jeff-the-brotherhood",
+   "name": "JEFF the Brotherhood",
+   "key": "jeff-the-brotherhood",
+   "performers": [
+    "jeff-the-brotherhood"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-tallest-man-on-earth",
+   "name": "The Tallest Man on Earth",
+   "key": "the-tallest-man-on-earth",
+   "performers": [
+    "the-tallest-man-on-earth"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:orchard-lounge",
+   "name": "Orchard Lounge",
+   "key": "orchard-lounge",
+   "performers": [
+    "orchard-lounge"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:kopecky-family-band",
+   "name": "Kopecky Family Band",
+   "key": "kopecky-family-band",
+   "performers": [
+    "kopecky-family-band"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:fidlar",
+   "name": "FIDLAR",
+   "key": "fidlar",
+   "performers": [
+    "fidlar"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:givers",
+   "name": "GIVERS",
+   "key": "givers",
+   "performers": [
+    "givers"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:fun",
+   "name": "FUN.",
+   "key": "fun",
+   "performers": [
+    "fun"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:washed-out",
+   "name": "Washed Out",
+   "key": "washed-out",
+   "performers": [
+    "washed-out"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:twin-shadow",
+   "name": "Twin Shadow",
+   "key": "twin-shadow",
+   "performers": [
+    "twin-shadow"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:frank-ocean",
+   "name": "Frank Ocean",
+   "key": "frank-ocean",
+   "performers": [
+    "frank-ocean"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:laura-warshauer",
+   "name": "Laura Warshauer",
+   "key": "laura-warshauer",
+   "performers": [
+    "laura-warshauer"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:chancellor-warhol",
+   "name": "Chancellor Warhol",
+   "key": "chancellor-warhol",
+   "performers": [
+    "chancellor-warhol"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:moon-taxi",
+   "name": "Moon Taxi",
+   "key": "moon-taxi",
+   "performers": [
+    "moon-taxi"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:empires",
+   "name": "Empires",
+   "key": "empires",
+   "performers": [
+    "empires"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:lp",
+   "name": "LP",
+   "key": "lp",
+   "performers": [
+    "lp"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:walk-off-the-earth",
+   "name": "Walk Off The Earth",
+   "key": "walk-off-the-earth",
+   "performers": [
+    "walk-off-the-earth"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:quinn-sullivan",
+   "name": "Quinn Sullivan",
+   "key": "quinn-sullivan",
+   "performers": [
+    "quinn-sullivan"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:dan-zanes",
+   "name": "Dan Zanes",
+   "key": "dan-zanes",
+   "performers": [
+    "dan-zanes"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:ralph-covert",
+   "name": "Ralph Covert",
+   "key": "ralph-covert",
+   "performers": [
+    "ralph-covert"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-verve-pipe",
+   "name": "The Verve Pipe",
+   "key": "the-verve-pipe",
+   "performers": [
+    "the-verve-pipe"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:chief-keef",
+   "name": "Chief Keef",
+   "key": "chief-keef",
+   "performers": [
+    "chief-keef"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:salva",
+   "name": "SALVA",
+   "key": "salva",
+   "performers": [
+    "salva"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:star-slinger",
+   "name": "Star Slinger",
+   "key": "star-slinger",
+   "performers": [
+    "star-slinger"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:skream-and-benga",
+   "name": "Skream & Benga",
+   "key": "skream-and-benga",
+   "performers": [
+    "skream-and-benga"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:calvin-harris",
+   "name": "Calvin Harris",
+   "key": "calvin-harris",
+   "performers": [
+    "calvin-harris"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:santigold",
+   "name": "Santigold",
+   "key": "santigold",
+   "performers": [
+    "santigold"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:jc-brooks-and-the-uptown-sound",
+   "name": "JC Brooks & The Uptown Sound",
+   "key": "jc-brooks-and-the-uptown-sound",
+   "performers": [
+    "jc-brooks-and-the-uptown-sound"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:bear-in-heaven",
+   "name": "Bear in Heaven",
+   "key": "bear-in-heaven",
+   "performers": [
+    "bear-in-heaven"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:tune-yards",
+   "name": "tUnE-yArDs",
+   "key": "tune-yards",
+   "performers": [
+    "tune-yards"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:bloc-party",
+   "name": "Bloc Party",
+   "key": "bloc-party",
+   "performers": [
+    "bloc-party"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:doomtree",
+   "name": "Doomtree",
+   "key": "doomtree",
+   "performers": [
+    "doomtree"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:aloe-blacc",
+   "name": "Aloe Blacc",
+   "key": "aloe-blacc",
+   "performers": [
+    "aloe-blacc"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-weeknd",
+   "name": "The Weeknd",
+   "key": "the-weeknd",
+   "performers": [
+    "the-weeknd"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:red-hot-chili-peppers",
+   "name": "Red Hot Chili Peppers",
+   "key": "red-hot-chili-peppers",
+   "performers": [
+    "red-hot-chili-peppers"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:oberhofer",
+   "name": "Oberhofer",
+   "key": "oberhofer",
+   "performers": [
+    "oberhofer"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:white-rabbits",
+   "name": "White Rabbits",
+   "key": "white-rabbits",
+   "performers": [
+    "white-rabbits"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:j-cole",
+   "name": "J. Cole",
+   "key": "j-cole",
+   "performers": [
+    "j-cole"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:florence-the-machine",
+   "name": "Florence + The Machine",
+   "key": "florence-the-machine",
+   "performers": [
+    "florence-the-machine"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:justice",
+   "name": "Justice",
+   "key": "justice",
+   "performers": [
+    "justice"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:mona",
+   "name": "Mona",
+   "key": "mona",
+   "performers": [
+    "mona"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-devil-makes-three",
+   "name": "The Devil Makes Three",
+   "key": "the-devil-makes-three",
+   "performers": [
+    "the-devil-makes-three"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:gary-clark-jr",
+   "name": "Gary Clark Jr.",
+   "key": "gary-clark-jr",
+   "performers": [
+    "gary-clark-jr"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:amadou-and-mariam",
+   "name": "Amadou & Mariam",
+   "key": "amadou-and-mariam",
+   "performers": [
+    "amadou-and-mariam"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:chairlift",
+   "name": "Chairlift",
+   "key": "chairlift",
+   "performers": [
+    "chairlift"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:point-to-infinity",
+   "name": "Point To Infinity",
+   "key": "point-to-infinity",
+   "performers": [
+    "point-to-infinity"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:hey-rosetta",
+   "name": "Hey Rosetta!",
+   "key": "hey-rosetta",
+   "performers": [
+    "hey-rosetta"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:macklemore-and-ryan-lewis",
+   "name": "Macklemore & Ryan Lewis",
+   "key": "macklemore-and-ryan-lewis",
+   "performers": [
+    "macklemore-and-ryan-lewis"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:dum-dum-girls",
+   "name": "Dum Dum Girls",
+   "key": "dum-dum-girls",
+   "performers": [
+    "dum-dum-girls"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-gaslight-anthem",
+   "name": "The Gaslight Anthem",
+   "key": "the-gaslight-anthem",
+   "performers": [
+    "the-gaslight-anthem"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:of-monsters-and-men",
+   "name": "Of Monsters And Men",
+   "key": "of-monsters-and-men",
+   "performers": [
+    "of-monsters-and-men"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-big-pink",
+   "name": "The Big Pink",
+   "key": "the-big-pink",
+   "performers": [
+    "the-big-pink"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:childish-gambino",
+   "name": "Childish Gambino",
+   "key": "childish-gambino",
+   "performers": [
+    "childish-gambino"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:red-oblivion",
+   "name": "Red Oblivion",
+   "key": "red-oblivion",
+   "performers": [
+    "red-oblivion"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:outasight",
+   "name": "Outasight",
+   "key": "outasight",
+   "performers": [
+    "outasight"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:overdoz",
+   "name": "Overdoz",
+   "key": "overdoz",
+   "performers": [
+    "overdoz"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:imaginary-cities",
+   "name": "Imaginary Cities",
+   "key": "imaginary-cities",
+   "performers": [
+    "imaginary-cities"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-sheepdogs",
+   "name": "The Sheepdogs",
+   "key": "the-sheepdogs",
+   "performers": [
+    "the-sheepdogs"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:yuna",
+   "name": "Yuna",
+   "key": "yuna",
+   "performers": [
+    "yuna"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-jezabels",
+   "name": "The Jezabels",
+   "key": "the-jezabels",
+   "performers": [
+    "the-jezabels"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:peter-distefano-and-tor",
+   "name": "Peter DiStefano & Tor",
+   "key": "peter-distefano-and-tor",
+   "performers": [
+    "peter-distefano-and-tor"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:perry-farrell-and-friends",
+   "name": "Perry Farrell & Friends",
+   "key": "perry-farrell-and-friends",
+   "performers": [
+    "perry-farrell-and-friends"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:kid-color",
+   "name": "Kid Color",
+   "key": "kid-color",
+   "performers": [
+    "kid-color"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:dj-nihal",
+   "name": "DJ Nihal",
+   "key": "dj-nihal",
+   "performers": [
+    "dj-nihal"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:nadastrom",
+   "name": "Nadastrom",
+   "key": "nadastrom",
+   "performers": [
+    "nadastrom"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:little-dragon",
+   "name": "Little Dragon",
+   "key": "little-dragon",
+   "performers": [
+    "little-dragon"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:doctor-p",
+   "name": "Doctor P",
+   "key": "doctor-p",
+   "performers": [
+    "doctor-p"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:big-gigantic",
+   "name": "Big Gigantic",
+   "key": "big-gigantic",
+   "performers": [
+    "big-gigantic"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:zeds-dead",
+   "name": "Zeds Dead",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:bowerbirds",
+   "name": "Bowerbirds",
+   "key": "bowerbirds",
+   "performers": [
+    "bowerbirds"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:polica",
+   "name": "Polica",
+   "key": "polica",
+   "performers": [
+    "polica"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:the-walkmen",
+   "name": "The Walkmen",
+   "key": "the-walkmen",
+   "performers": [
+    "the-walkmen"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:toro-y-moi",
+   "name": "Toro Y Moi",
+   "key": "toro-y-moi",
+   "performers": [
+    "toro-y-moi"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:miike-snow",
+   "name": "Miike Snow",
+   "key": "miike-snow",
+   "performers": [
+    "miike-snow"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:bombay-bicycle-club",
+   "name": "Bombay Bicycle Club",
+   "key": "bombay-bicycle-club",
+   "performers": [
+    "bombay-bicycle-club"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:trampled-by-turtles",
+   "name": "Trampled By Turtles",
+   "key": "trampled-by-turtles",
+   "performers": [
+    "trampled-by-turtles"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:sigur-ros",
+   "name": "Sigur Ros",
+   "key": "sigur-ros",
+   "performers": [
+    "sigur-ros"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:at-the-drive-in",
+   "name": "At The Drive-In",
+   "key": "at-the-drive-in",
+   "performers": [
+    "at-the-drive-in"
+   ]
+  },
+  {
+   "id": "lollapalooza-2012:jack-white",
+   "name": "Jack White",
+   "key": "jack-white",
+   "performers": [
+    "jack-white"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "lollapalooza-2012:d1:bud-light:1245:o-rappa",
+   "artistId": "lollapalooza-2012:o-rappa",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2012:d1:bud-light:1415:the-black-angels",
+   "artistId": "lollapalooza-2012:the-black-angels",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2012:d1:bud-light:1600:metric",
+   "artistId": "lollapalooza-2012:metric",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "lollapalooza-2012:d1:bud-light:1800:passion-pit",
+   "artistId": "lollapalooza-2012:passion-pit",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2012:d1:bud-light:2005:black-sabbath",
+   "artistId": "lollapalooza-2012:black-sabbath",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "20:05",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2012:d1:playstation:1200:first-aid-kit",
+   "artistId": "lollapalooza-2012:first-aid-kit",
+   "day": 1,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2012:d1:playstation:1330:michael-kiwanuka",
+   "artistId": "lollapalooza-2012:michael-kiwanuka",
+   "day": 1,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2012:d1:playstation:1500:sharon-van-etten",
+   "artistId": "lollapalooza-2012:sharon-van-etten",
+   "day": 1,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2012:d1:playstation:1700:die-antwoord",
+   "artistId": "lollapalooza-2012:die-antwoord",
+   "day": 1,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2012:d1:playstation:1915:dj-zebo",
+   "artistId": "lollapalooza-2012:dj-zebo",
+   "day": 1,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "19:15",
+   "end": "20:05"
+  },
+  {
+   "id": "lollapalooza-2012:d1:google-play:1200:animal-kingdom",
+   "artistId": "lollapalooza-2012:animal-kingdom",
+   "day": 1,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2012:d1:google-play:1300:anamanaguchi",
+   "artistId": "lollapalooza-2012:anamanaguchi",
+   "day": 1,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2012:d1:google-play:1415:the-war-on-drugs",
+   "artistId": "lollapalooza-2012:the-war-on-drugs",
+   "day": 1,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2012:d1:google-play:1530:blind-pilot",
+   "artistId": "lollapalooza-2012:blind-pilot",
+   "day": 1,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "15:30",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2012:d1:google-play:1645:sbtrkt",
+   "artistId": "lollapalooza-2012:sbtrkt",
+   "day": 1,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "16:45",
+   "end": "17:30"
+  },
+  {
+   "id": "lollapalooza-2012:d1:google-play:1800:band-of-skulls",
+   "artistId": "lollapalooza-2012:band-of-skulls",
+   "day": 1,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "lollapalooza-2012:d1:google-play:1915:dawes",
+   "artistId": "lollapalooza-2012:dawes",
+   "day": 1,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2012:d1:google-play:2045:wale",
+   "artistId": "lollapalooza-2012:wale",
+   "day": 1,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "lollapalooza-2012:d1:bmi:1200:ambassadors",
+   "artistId": "lollapalooza-2012:ambassadors",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "lollapalooza-2012:d1:bmi:1310:haley-reinhart",
+   "artistId": "lollapalooza-2012:haley-reinhart",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "13:10",
+   "end": "13:50"
+  },
+  {
+   "id": "lollapalooza-2012:d1:bmi:1410:kevin-devine",
+   "artistId": "lollapalooza-2012:kevin-devine",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "14:10",
+   "end": "14:50"
+  },
+  {
+   "id": "lollapalooza-2012:d1:bmi:1520:dry-the-river",
+   "artistId": "lollapalooza-2012:dry-the-river",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "15:20",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2012:d1:bmi:1630:helena",
+   "artistId": "lollapalooza-2012:helena",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "lollapalooza-2012:d1:bmi:1740:thenewno2",
+   "artistId": "lollapalooza-2012:thenewno2",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "17:40",
+   "end": "18:20"
+  },
+  {
+   "id": "lollapalooza-2012:d1:bmi:1850:dev",
+   "artistId": "lollapalooza-2012:dev",
+   "day": 1,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "18:50",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2012:d1:kidz:1130:laura-doherty",
+   "artistId": "lollapalooza-2012:laura-doherty",
+   "day": 1,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "11:30",
+   "end": "11:55"
+  },
+  {
+   "id": "lollapalooza-2012:d1:kidz:1230:harrison-ivaz",
+   "artistId": "lollapalooza-2012:harrison-ivaz",
+   "day": 1,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "lollapalooza-2012:d1:kidz:1330:the-school-of-rock",
+   "artistId": "lollapalooza-2012:the-school-of-rock",
+   "day": 1,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "lollapalooza-2012:d1:kidz:1430:purple-apple",
+   "artistId": "lollapalooza-2012:purple-apple",
+   "day": 1,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "lollapalooza-2012:d1:kidz:1515:happiness-club",
+   "artistId": "lollapalooza-2012:happiness-club",
+   "day": 1,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "15:15",
+   "end": "15:40"
+  },
+  {
+   "id": "lollapalooza-2012:d1:kidz:1600:andrew-christopoulos",
+   "artistId": "lollapalooza-2012:andrew-christopoulos",
+   "day": 1,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "16:00",
+   "end": "16:30"
+  },
+  {
+   "id": "lollapalooza-2012:d1:perry-s:1200:young-bloods",
+   "artistId": "lollapalooza-2012:young-bloods",
+   "day": 1,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2012:d1:perry-s:1300:the-white-panda",
+   "artistId": "lollapalooza-2012:the-white-panda",
+   "day": 1,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2012:d1:perry-s:1400:totally-enormous-extinct-dinosaurs",
+   "artistId": "lollapalooza-2012:totally-enormous-extinct-dinosaurs",
+   "day": 1,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2012:d1:perry-s:1515:zedd",
+   "artistId": "lollapalooza-2012:zedd",
+   "day": 1,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2012:d1:perry-s:1630:madeon",
+   "artistId": "lollapalooza-2012:madeon",
+   "day": 1,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "lollapalooza-2012:d1:perry-s:1745:porter-robinson",
+   "artistId": "lollapalooza-2012:porter-robinson",
+   "day": 1,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "lollapalooza-2012:d1:perry-s:1900:nero",
+   "artistId": "lollapalooza-2012:nero",
+   "day": 1,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2012:d1:perry-s:2045:bassnectar",
+   "artistId": "lollapalooza-2012:bassnectar",
+   "day": 1,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2012:d1:sony:1200:wax",
+   "artistId": "lollapalooza-2012:wax",
+   "day": 1,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2012:d1:sony:1330:yellow-ostrich",
+   "artistId": "lollapalooza-2012:yellow-ostrich",
+   "day": 1,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2012:d1:sony:1515:tame-impala",
+   "artistId": "lollapalooza-2012:tame-impala",
+   "day": 1,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2012:d1:sony:1715:the-head-and-the-heart",
+   "artistId": "lollapalooza-2012:the-head-and-the-heart",
+   "day": 1,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "lollapalooza-2012:d1:sony:1930:m83",
+   "artistId": "lollapalooza-2012:m83",
+   "day": 1,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2012:d1:red-bull-soundstage:1245:the-growlers",
+   "artistId": "lollapalooza-2012:the-growlers",
+   "day": 1,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2012:d1:red-bull-soundstage:1415:dr-dog",
+   "artistId": "lollapalooza-2012:dr-dog",
+   "day": 1,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "lollapalooza-2012:d1:red-bull-soundstage:1615:the-afghan-whigs",
+   "artistId": "lollapalooza-2012:the-afghan-whigs",
+   "day": 1,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "lollapalooza-2012:d1:red-bull-soundstage:1815:the-shins",
+   "artistId": "lollapalooza-2012:the-shins",
+   "day": 1,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2012:d1:red-bull-soundstage:2030:the-black-keys",
+   "artistId": "lollapalooza-2012:the-black-keys",
+   "day": 1,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2012:d2:bud-light:1245:los-jaivas",
+   "artistId": "lollapalooza-2012:los-jaivas",
+   "day": 2,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2012:d2:bud-light:1415:delta-spirit",
+   "artistId": "lollapalooza-2012:delta-spirit",
+   "day": 2,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "lollapalooza-2012:d2:bud-light:1930:franz-ferdinand",
+   "artistId": "lollapalooza-2012:franz-ferdinand",
+   "day": 2,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2012:d2:bud-light:2115:avicii",
+   "artistId": "lollapalooza-2012:avicii",
+   "day": 2,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "21:15",
+   "end": "22:45"
+  },
+  {
+   "id": "lollapalooza-2012:d2:playstation:1200:milo-greene",
+   "artistId": "lollapalooza-2012:milo-greene",
+   "day": 2,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2012:d2:playstation:1330:jeff-the-brotherhood",
+   "artistId": "lollapalooza-2012:jeff-the-brotherhood",
+   "day": 2,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2012:d2:playstation:1830:the-tallest-man-on-earth",
+   "artistId": "lollapalooza-2012:the-tallest-man-on-earth",
+   "day": 2,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2012:d2:playstation:2030:orchard-lounge",
+   "artistId": "lollapalooza-2012:orchard-lounge",
+   "day": 2,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "20:30",
+   "end": "21:15"
+  },
+  {
+   "id": "lollapalooza-2012:d2:google-play:1200:kopecky-family-band",
+   "artistId": "lollapalooza-2012:kopecky-family-band",
+   "day": 2,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2012:d2:google-play:1300:fidlar",
+   "artistId": "lollapalooza-2012:fidlar",
+   "day": 2,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2012:d2:google-play:1415:givers",
+   "artistId": "lollapalooza-2012:givers",
+   "day": 2,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2012:d2:google-play:1830:fun",
+   "artistId": "lollapalooza-2012:fun",
+   "day": 2,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2012:d2:google-play:1930:washed-out",
+   "artistId": "lollapalooza-2012:washed-out",
+   "day": 2,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "19:30",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2012:d2:google-play:2030:twin-shadow",
+   "artistId": "lollapalooza-2012:twin-shadow",
+   "day": 2,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "20:30",
+   "end": "21:15"
+  },
+  {
+   "id": "lollapalooza-2012:d2:google-play:2145:frank-ocean",
+   "artistId": "lollapalooza-2012:frank-ocean",
+   "day": 2,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "lollapalooza-2012:d2:bmi:1200:laura-warshauer",
+   "artistId": "lollapalooza-2012:laura-warshauer",
+   "day": 2,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "lollapalooza-2012:d2:bmi:1310:chancellor-warhol",
+   "artistId": "lollapalooza-2012:chancellor-warhol",
+   "day": 2,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "13:10",
+   "end": "13:50"
+  },
+  {
+   "id": "lollapalooza-2012:d2:bmi:1410:moon-taxi",
+   "artistId": "lollapalooza-2012:moon-taxi",
+   "day": 2,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "14:10",
+   "end": "14:50"
+  },
+  {
+   "id": "lollapalooza-2012:d2:bmi:1520:empires",
+   "artistId": "lollapalooza-2012:empires",
+   "day": 2,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "15:20",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2012:d2:bmi:1830:lp",
+   "artistId": "lollapalooza-2012:lp",
+   "day": 2,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2012:d2:bmi:1945:walk-off-the-earth",
+   "artistId": "lollapalooza-2012:walk-off-the-earth",
+   "day": 2,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2012:d2:kidz:1130:harrison-ivaz",
+   "artistId": "lollapalooza-2012:harrison-ivaz",
+   "day": 2,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "11:30",
+   "end": "11:55"
+  },
+  {
+   "id": "lollapalooza-2012:d2:kidz:1230:purple-apple",
+   "artistId": "lollapalooza-2012:purple-apple",
+   "day": 2,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "lollapalooza-2012:d2:kidz:1330:the-school-of-rock",
+   "artistId": "lollapalooza-2012:the-school-of-rock",
+   "day": 2,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "lollapalooza-2012:d2:kidz:1430:quinn-sullivan",
+   "artistId": "lollapalooza-2012:quinn-sullivan",
+   "day": 2,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "lollapalooza-2012:d2:kidz:1515:dan-zanes",
+   "artistId": "lollapalooza-2012:dan-zanes",
+   "day": 2,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "15:15",
+   "end": "15:45"
+  },
+  {
+   "id": "lollapalooza-2012:d2:kidz:1545:ralph-covert",
+   "artistId": "lollapalooza-2012:ralph-covert",
+   "day": 2,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "15:45",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2012:d2:kidz:1605:the-verve-pipe",
+   "artistId": "lollapalooza-2012:the-verve-pipe",
+   "day": 2,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "16:05",
+   "end": "16:30"
+  },
+  {
+   "id": "lollapalooza-2012:d2:perry-s:1215:chief-keef",
+   "artistId": "lollapalooza-2012:chief-keef",
+   "day": 2,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2012:d2:perry-s:1300:salva",
+   "artistId": "lollapalooza-2012:salva",
+   "day": 2,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2012:d2:perry-s:1400:star-slinger",
+   "artistId": "lollapalooza-2012:star-slinger",
+   "day": 2,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2012:d2:perry-s:1830:skream-and-benga",
+   "artistId": "lollapalooza-2012:skream-and-benga",
+   "day": 2,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2012:d2:perry-s:1945:calvin-harris",
+   "artistId": "lollapalooza-2012:calvin-harris",
+   "day": 2,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "19:45",
+   "end": "21:15"
+  },
+  {
+   "id": "lollapalooza-2012:d2:perry-s:2145:santigold",
+   "artistId": "lollapalooza-2012:santigold",
+   "day": 2,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "lollapalooza-2012:d2:sony:1200:jc-brooks-and-the-uptown-sound",
+   "artistId": "lollapalooza-2012:jc-brooks-and-the-uptown-sound",
+   "day": 2,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2012:d2:sony:1330:bear-in-heaven",
+   "artistId": "lollapalooza-2012:bear-in-heaven",
+   "day": 2,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2012:d2:sony:1830:tune-yards",
+   "artistId": "lollapalooza-2012:tune-yards",
+   "day": 2,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2012:d2:sony:2015:bloc-party",
+   "artistId": "lollapalooza-2012:bloc-party",
+   "day": 2,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "20:15",
+   "end": "21:00"
+  },
+  {
+   "id": "lollapalooza-2012:d2:red-bull-soundstage:1245:doomtree",
+   "artistId": "lollapalooza-2012:doomtree",
+   "day": 2,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2012:d2:red-bull-soundstage:1415:aloe-blacc",
+   "artistId": "lollapalooza-2012:aloe-blacc",
+   "day": 2,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2012:d2:red-bull-soundstage:1915:the-weeknd",
+   "artistId": "lollapalooza-2012:the-weeknd",
+   "day": 2,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2012:d2:red-bull-soundstage:2100:red-hot-chili-peppers",
+   "artistId": "lollapalooza-2012:red-hot-chili-peppers",
+   "day": 2,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "21:00",
+   "end": "22:45"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bud-light:1300:oberhofer",
+   "artistId": "lollapalooza-2012:oberhofer",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bud-light:1430:white-rabbits",
+   "artistId": "lollapalooza-2012:white-rabbits",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bud-light:1615:j-cole",
+   "artistId": "lollapalooza-2012:j-cole",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bud-light:1815:florence-the-machine",
+   "artistId": "lollapalooza-2012:florence-the-machine",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bud-light:2030:justice",
+   "artistId": "lollapalooza-2012:justice",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bud-light",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2012:d3:playstation:1215:mona",
+   "artistId": "lollapalooza-2012:mona",
+   "day": 3,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "lollapalooza-2012:d3:playstation:1345:the-devil-makes-three",
+   "artistId": "lollapalooza-2012:the-devil-makes-three",
+   "day": 3,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2012:d3:playstation:1515:gary-clark-jr",
+   "artistId": "lollapalooza-2012:gary-clark-jr",
+   "day": 3,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2012:d3:playstation:1715:amadou-and-mariam",
+   "artistId": "lollapalooza-2012:amadou-and-mariam",
+   "day": 3,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "lollapalooza-2012:d3:playstation:1930:chairlift",
+   "artistId": "lollapalooza-2012:chairlift",
+   "day": 3,
+   "stageId": "lollapalooza-2012:playstation",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2012:d3:google-play:1200:point-to-infinity",
+   "artistId": "lollapalooza-2012:point-to-infinity",
+   "day": 3,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2012:d3:google-play:1300:hey-rosetta",
+   "artistId": "lollapalooza-2012:hey-rosetta",
+   "day": 3,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2012:d3:google-play:1415:macklemore-and-ryan-lewis",
+   "artistId": "lollapalooza-2012:macklemore-and-ryan-lewis",
+   "day": 3,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2012:d3:google-play:1530:dum-dum-girls",
+   "artistId": "lollapalooza-2012:dum-dum-girls",
+   "day": 3,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "15:30",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2012:d3:google-play:1645:the-gaslight-anthem",
+   "artistId": "lollapalooza-2012:the-gaslight-anthem",
+   "day": 3,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "16:45",
+   "end": "17:30"
+  },
+  {
+   "id": "lollapalooza-2012:d3:google-play:1800:of-monsters-and-men",
+   "artistId": "lollapalooza-2012:of-monsters-and-men",
+   "day": 3,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "lollapalooza-2012:d3:google-play:1915:the-big-pink",
+   "artistId": "lollapalooza-2012:the-big-pink",
+   "day": 3,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2012:d3:google-play:2045:childish-gambino",
+   "artistId": "lollapalooza-2012:childish-gambino",
+   "day": 3,
+   "stageId": "lollapalooza-2012:google-play",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bmi:1200:red-oblivion",
+   "artistId": "lollapalooza-2012:red-oblivion",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bmi:1310:outasight",
+   "artistId": "lollapalooza-2012:outasight",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "13:10",
+   "end": "13:50"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bmi:1410:overdoz",
+   "artistId": "lollapalooza-2012:overdoz",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "14:10",
+   "end": "14:50"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bmi:1520:imaginary-cities",
+   "artistId": "lollapalooza-2012:imaginary-cities",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "15:20",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bmi:1630:the-sheepdogs",
+   "artistId": "lollapalooza-2012:the-sheepdogs",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bmi:1740:yuna",
+   "artistId": "lollapalooza-2012:yuna",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "17:40",
+   "end": "18:20"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bmi:1850:the-jezabels",
+   "artistId": "lollapalooza-2012:the-jezabels",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "18:50",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2012:d3:bmi:1945:empires",
+   "artistId": "lollapalooza-2012:empires",
+   "day": 3,
+   "stageId": "lollapalooza-2012:bmi",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2012:d3:kidz:1130:laura-doherty",
+   "artistId": "lollapalooza-2012:laura-doherty",
+   "day": 3,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "11:30",
+   "end": "11:55"
+  },
+  {
+   "id": "lollapalooza-2012:d3:kidz:1230:the-verve-pipe",
+   "artistId": "lollapalooza-2012:the-verve-pipe",
+   "day": 3,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "lollapalooza-2012:d3:kidz:1330:quinn-sullivan",
+   "artistId": "lollapalooza-2012:quinn-sullivan",
+   "day": 3,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "lollapalooza-2012:d3:kidz:1430:andrew-christopoulos",
+   "artistId": "lollapalooza-2012:andrew-christopoulos",
+   "day": 3,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "lollapalooza-2012:d3:kidz:1515:peter-distefano-and-tor",
+   "artistId": "lollapalooza-2012:peter-distefano-and-tor",
+   "day": 3,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "15:15",
+   "end": "15:40"
+  },
+  {
+   "id": "lollapalooza-2012:d3:kidz:1545:perry-farrell-and-friends",
+   "artistId": "lollapalooza-2012:perry-farrell-and-friends",
+   "day": 3,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "15:45",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2012:d3:kidz:1605:dan-zanes",
+   "artistId": "lollapalooza-2012:dan-zanes",
+   "day": 3,
+   "stageId": "lollapalooza-2012:kidz",
+   "start": "16:05",
+   "end": "16:30"
+  },
+  {
+   "id": "lollapalooza-2012:d3:perry-s:1200:kid-color",
+   "artistId": "lollapalooza-2012:kid-color",
+   "day": 3,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2012:d3:perry-s:1300:dj-nihal",
+   "artistId": "lollapalooza-2012:dj-nihal",
+   "day": 3,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2012:d3:perry-s:1400:nadastrom",
+   "artistId": "lollapalooza-2012:nadastrom",
+   "day": 3,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2012:d3:perry-s:1515:little-dragon",
+   "artistId": "lollapalooza-2012:little-dragon",
+   "day": 3,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2012:d3:perry-s:1630:doctor-p",
+   "artistId": "lollapalooza-2012:doctor-p",
+   "day": 3,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "lollapalooza-2012:d3:perry-s:1745:big-gigantic",
+   "artistId": "lollapalooza-2012:big-gigantic",
+   "day": 3,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "lollapalooza-2012:d3:perry-s:1900:zeds-dead",
+   "artistId": "lollapalooza-2012:zeds-dead",
+   "day": 3,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2012:d3:perry-s:2030:kaskade",
+   "artistId": "lollapalooza-2012:kaskade",
+   "day": 3,
+   "stageId": "lollapalooza-2012:perry-s",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2012:d3:sony:1200:bowerbirds",
+   "artistId": "lollapalooza-2012:bowerbirds",
+   "day": 3,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2012:d3:sony:1330:polica",
+   "artistId": "lollapalooza-2012:polica",
+   "day": 3,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2012:d3:sony:1500:the-walkmen",
+   "artistId": "lollapalooza-2012:the-walkmen",
+   "day": 3,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2012:d3:sony:1700:toro-y-moi",
+   "artistId": "lollapalooza-2012:toro-y-moi",
+   "day": 3,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2012:d3:sony:1915:miike-snow",
+   "artistId": "lollapalooza-2012:miike-snow",
+   "day": 3,
+   "stageId": "lollapalooza-2012:sony",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2012:d3:red-bull-soundstage:1245:bombay-bicycle-club",
+   "artistId": "lollapalooza-2012:bombay-bicycle-club",
+   "day": 3,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2012:d3:red-bull-soundstage:1415:trampled-by-turtles",
+   "artistId": "lollapalooza-2012:trampled-by-turtles",
+   "day": 3,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2012:d3:red-bull-soundstage:1600:sigur-ros",
+   "artistId": "lollapalooza-2012:sigur-ros",
+   "day": 3,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "lollapalooza-2012:d3:red-bull-soundstage:1800:at-the-drive-in",
+   "artistId": "lollapalooza-2012:at-the-drive-in",
+   "day": 3,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2012:d3:red-bull-soundstage:2015:jack-white",
+   "artistId": "lollapalooza-2012:jack-white",
+   "day": 3,
+   "stageId": "lollapalooza-2012:red-bull-soundstage",
+   "start": "20:15",
+   "end": "22:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.lollapalooza.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120806024925/http://lineup.lollapalooza.com/events/2012/08/03",
+    "captureTimestamp": "20120806024925",
+    "printed": "Friday, August 3",
+    "sha256": "475d435d67860632460ad4ea761c5f5c2f527a9e033a6371131e3e971ef73363",
+    "rows": 50,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20120807041543/http://lineup.lollapalooza.com/band/dev",
+     "captureTimestamp": "20120807041543",
+     "printed": "Friday Aug 3 6:50 PM on BMI",
+     "sha256": "598628bd8b1c08f2f665e7e6fa3aa627395fcf5f5c957b18083be4f3ddc44b92"
+    }
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120807041117/http://lineup.lollapalooza.com/events/2012/08/04",
+    "captureTimestamp": "20120807041117",
+    "printed": "Saturday, August 4",
+    "sha256": "311c1b513e2d2302a0caac3957244d17a798423e0c42f885f01dbc6e9300852f",
+    "rows": 42,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20120810084558/http://lineup.lollapalooza.com/band/avicii",
+     "captureTimestamp": "20120810084558",
+     "printed": "Saturday Aug 4 9:15 PM on Bud Light",
+     "sha256": "dd4c33f99be3b95bc7b81bb50464170633b1bad8d13cdbc6ee38ba66f85c23f7"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120806043505/http://lineup.lollapalooza.com/events/2012/08/05/",
+    "captureTimestamp": "20120806043505",
+    "printed": "Sunday, August 5",
+    "sha256": "e3b17f0d1c080a26ef18f4c853907e56c83af8a4bf67fdd292d0b1ebed3442cb",
+    "rows": 51,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20120807041800/http://lineup.lollapalooza.com/band/childish-gambino",
+     "captureTimestamp": "20120807041800",
+     "printed": "Sunday Aug 5 8:45 PM on Google Play",
+     "sha256": "3e1746b10a7f9c98b52ff3f4e2f06ff73b12283f0ea257b33608d30d6d17b611"
+    }
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-17",
+   "days": [
+    2
+   ],
+   "text": "Saturday's schedule changed during the festival. The official grid printed after the festival moves the evening sets later, to 10:45 PM, and no longer lists eight afternoon sets that its earlier version did. The times shown are that later grid's.",
+   "source": "https://web.archive.org/web/20120807041117/http://lineup.lollapalooza.com:80/events/2012/08/04"
+  }
+ ]
+}

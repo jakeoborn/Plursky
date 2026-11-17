@@ -2965,6 +2965,71 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "lollapalooza:playstation",
+     "names": [
+      {
+       "printed": "PlayStation",
+       "editions": [
+        "lollapalooza-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:google-play",
+     "names": [
+      {
+       "printed": "Google Play",
+       "editions": [
+        "lollapalooza-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:kidz",
+     "names": [
+      {
+       "printed": "Kidz",
+       "editions": [
+        "lollapalooza-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:sony",
+     "names": [
+      {
+       "printed": "Sony",
+       "editions": [
+        "lollapalooza-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:red-bull-soundstage",
+     "names": [
+      {
+       "printed": "Red Bull Soundstage",
+       "editions": [
+        "lollapalooza-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

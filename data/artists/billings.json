@@ -295499,6 +295499,3415 @@
   "mainStage": null
  },
  {
+  "id": "lollapalooza-2012:d1:bud-light:1245:o-rappa",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "O Rappa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "o-rappa",
+    "role": "performer"
+   }
+  ],
+  "act": "o-rappa",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:bud-light:1415:the-black-angels",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "The Black Angels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-black-angels",
+    "role": "performer"
+   }
+  ],
+  "act": "the-black-angels",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:bud-light:1600:metric",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Metric",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "metric",
+    "role": "performer"
+   }
+  ],
+  "act": "metric",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:bud-light:1800:passion-pit",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "18:00",
+  "end": "19:15",
+  "printed": "Passion Pit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "passion-pit",
+    "role": "performer"
+   }
+  ],
+  "act": "passion-pit",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:bud-light:2005:black-sabbath",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "20:05",
+  "end": "22:00",
+  "printed": "Black Sabbath",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-sabbath",
+    "role": "performer"
+   }
+  ],
+  "act": "black-sabbath",
+  "closing": true,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:playstation:1200:first-aid-kit",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "PlayStation",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "First Aid Kit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "first-aid-kit",
+    "role": "performer"
+   }
+  ],
+  "act": "first-aid-kit",
+  "closing": false,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:playstation:1330:michael-kiwanuka",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "PlayStation",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "Michael Kiwanuka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "michael-kiwanuka",
+    "role": "performer"
+   }
+  ],
+  "act": "michael-kiwanuka",
+  "closing": false,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:playstation:1500:sharon-van-etten",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "PlayStation",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Sharon Van Etten",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sharon-van-etten",
+    "role": "performer"
+   }
+  ],
+  "act": "sharon-van-etten",
+  "closing": false,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:playstation:1700:die-antwoord",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "PlayStation",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Die Antwoord",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "die-antwoord",
+    "role": "performer"
+   }
+  ],
+  "act": "die-antwoord",
+  "closing": false,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:playstation:1915:dj-zebo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "PlayStation",
+  "start": "19:15",
+  "end": "20:05",
+  "printed": "DJ Zebo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-zebo",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-zebo",
+  "closing": true,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:google-play:1200:animal-kingdom",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Google Play",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "Animal Kingdom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "animal-kingdom",
+    "role": "performer"
+   }
+  ],
+  "act": "animal-kingdom",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:google-play:1300:anamanaguchi",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Google Play",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "Anamanaguchi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anamanaguchi",
+    "role": "performer"
+   }
+  ],
+  "act": "anamanaguchi",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:google-play:1415:the-war-on-drugs",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Google Play",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "The War on Drugs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-war-on-drugs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-war-on-drugs",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:google-play:1530:blind-pilot",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Google Play",
+  "start": "15:30",
+  "end": "16:15",
+  "printed": "Blind Pilot",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blind-pilot",
+    "role": "performer"
+   }
+  ],
+  "act": "blind-pilot",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:google-play:1645:sbtrkt",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Google Play",
+  "start": "16:45",
+  "end": "17:30",
+  "printed": "SBTRKT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sbtrkt",
+    "role": "performer"
+   }
+  ],
+  "act": "sbtrkt",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:google-play:1800:band-of-skulls",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Google Play",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "Band of Skulls",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "band-of-skulls",
+    "role": "performer"
+   }
+  ],
+  "act": "band-of-skulls",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:google-play:1915:dawes",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Google Play",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "Dawes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dawes",
+    "role": "performer"
+   }
+  ],
+  "act": "dawes",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:google-play:2045:wale",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Google Play",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "Wale",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wale",
+    "role": "performer"
+   }
+  ],
+  "act": "wale",
+  "closing": true,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:bmi:1200:ambassadors",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "BMI",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Ambassadors",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ambassadors",
+    "role": "performer"
+   }
+  ],
+  "act": "ambassadors",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:bmi:1310:haley-reinhart",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "BMI",
+  "start": "13:10",
+  "end": "13:50",
+  "printed": "Haley Reinhart",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "haley-reinhart",
+    "role": "performer"
+   }
+  ],
+  "act": "haley-reinhart",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:bmi:1410:kevin-devine",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "BMI",
+  "start": "14:10",
+  "end": "14:50",
+  "printed": "Kevin Devine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kevin-devine",
+    "role": "performer"
+   }
+  ],
+  "act": "kevin-devine",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:bmi:1520:dry-the-river",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "BMI",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "Dry the River",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dry-the-river",
+    "role": "performer"
+   }
+  ],
+  "act": "dry-the-river",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:bmi:1630:helena",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "BMI",
+  "start": "16:30",
+  "end": "17:10",
+  "printed": "Helena",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "helena",
+    "role": "performer"
+   }
+  ],
+  "act": "helena",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:bmi:1740:thenewno2",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "BMI",
+  "start": "17:40",
+  "end": "18:20",
+  "printed": "thenewno2",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thenewno2",
+    "role": "performer"
+   }
+  ],
+  "act": "thenewno2",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:bmi:1850:dev",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "BMI",
+  "start": "18:50",
+  "end": "19:30",
+  "printed": "Dev",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dev",
+    "role": "performer"
+   }
+  ],
+  "act": "dev",
+  "closing": true,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:kidz:1130:laura-doherty",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Kidz",
+  "start": "11:30",
+  "end": "11:55",
+  "printed": "Laura Doherty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laura-doherty",
+    "role": "performer"
+   }
+  ],
+  "act": "laura-doherty",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:kidz:1230:harrison-ivaz",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Kidz",
+  "start": "12:30",
+  "end": "12:55",
+  "printed": "Harrison Ivaz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "harrison-ivaz",
+    "role": "performer"
+   }
+  ],
+  "act": "harrison-ivaz",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:kidz:1330:the-school-of-rock",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Kidz",
+  "start": "13:30",
+  "end": "13:55",
+  "printed": "The School of Rock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "the-school-of-rock",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:kidz:1430:purple-apple",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Kidz",
+  "start": "14:30",
+  "end": "14:55",
+  "printed": "Purple Apple",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "purple-apple",
+    "role": "performer"
+   }
+  ],
+  "act": "purple-apple",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:kidz:1515:happiness-club",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Kidz",
+  "start": "15:15",
+  "end": "15:40",
+  "printed": "Happiness Club",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "happiness-club",
+    "role": "performer"
+   }
+  ],
+  "act": "happiness-club",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:kidz:1600:andrew-christopoulos",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Kidz",
+  "start": "16:00",
+  "end": "16:30",
+  "printed": "Andrew Christopoulos",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrew-christopoulos",
+    "role": "performer"
+   }
+  ],
+  "act": "andrew-christopoulos",
+  "closing": true,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:perry-s:1200:young-bloods",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Perry's",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "Young Bloods",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "young-bloods",
+    "role": "performer"
+   }
+  ],
+  "act": "young-bloods",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:perry-s:1300:the-white-panda",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Perry's",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "The White Panda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-white-panda",
+    "role": "performer"
+   }
+  ],
+  "act": "the-white-panda",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:perry-s:1400:totally-enormous-extinct-dinosaurs",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Perry's",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Totally Enormous Extinct Dinosaurs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "totally-enormous-extinct-dinosaurs",
+    "role": "performer"
+   }
+  ],
+  "act": "totally-enormous-extinct-dinosaurs",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:perry-s:1515:zedd",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Perry's",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Zedd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:perry-s:1630:madeon",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Perry's",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Madeon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madeon",
+    "role": "performer"
+   }
+  ],
+  "act": "madeon",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:perry-s:1745:porter-robinson",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Perry's",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Porter Robinson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "porter-robinson",
+    "role": "performer"
+   }
+  ],
+  "act": "porter-robinson",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:perry-s:1900:nero",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Perry's",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "NERO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nero",
+    "role": "performer"
+   }
+  ],
+  "act": "nero",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:perry-s:2045:bassnectar",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Perry's",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Bassnectar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassnectar",
+    "role": "performer"
+   }
+  ],
+  "act": "bassnectar",
+  "closing": true,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:sony:1200:wax",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Sony",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "Wax",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wax",
+    "role": "performer"
+   }
+  ],
+  "act": "wax",
+  "closing": false,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:sony:1330:yellow-ostrich",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Sony",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "Yellow Ostrich",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yellow-ostrich",
+    "role": "performer"
+   }
+  ],
+  "act": "yellow-ostrich",
+  "closing": false,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:sony:1515:tame-impala",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Sony",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Tame Impala",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tame-impala",
+    "role": "performer"
+   }
+  ],
+  "act": "tame-impala",
+  "closing": false,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:sony:1715:the-head-and-the-heart",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Sony",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "The Head & The Heart",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-head-and-the-heart",
+    "role": "performer"
+   }
+  ],
+  "act": "the-head-and-the-heart",
+  "closing": false,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:sony:1930:m83",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Sony",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "M83",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "m83",
+    "role": "performer"
+   }
+  ],
+  "act": "m83",
+  "closing": true,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:red-bull-soundstage:1245:the-growlers",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Red Bull Soundstage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "The Growlers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-growlers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-growlers",
+  "closing": false,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:red-bull-soundstage:1415:dr-dog",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Red Bull Soundstage",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "Dr. Dog",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-dog",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-dog",
+  "closing": false,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:red-bull-soundstage:1615:the-afghan-whigs",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Red Bull Soundstage",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "The Afghan Whigs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-afghan-whigs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-afghan-whigs",
+  "closing": false,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:red-bull-soundstage:1815:the-shins",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Red Bull Soundstage",
+  "start": "18:15",
+  "end": "19:30",
+  "printed": "The Shins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-shins",
+    "role": "performer"
+   }
+  ],
+  "act": "the-shins",
+  "closing": false,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d1:red-bull-soundstage:2030:the-black-keys",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Red Bull Soundstage",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "The Black Keys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-black-keys",
+    "role": "performer"
+   }
+  ],
+  "act": "the-black-keys",
+  "closing": true,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:bud-light:1245:los-jaivas",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Los Jaivas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-jaivas",
+    "role": "performer"
+   }
+  ],
+  "act": "los-jaivas",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:bud-light:1415:delta-spirit",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "Delta Spirit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "delta-spirit",
+    "role": "performer"
+   }
+  ],
+  "act": "delta-spirit",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:bud-light:1930:franz-ferdinand",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Franz Ferdinand",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "franz-ferdinand",
+    "role": "performer"
+   }
+  ],
+  "act": "franz-ferdinand",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:bud-light:2115:avicii",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "21:15",
+  "end": "22:45",
+  "printed": "Avicii",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "avicii",
+    "role": "performer"
+   }
+  ],
+  "act": "avicii",
+  "closing": true,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:playstation:1200:milo-greene",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "PlayStation",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "Milo Greene",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "milo-greene",
+    "role": "performer"
+   }
+  ],
+  "act": "milo-greene",
+  "closing": false,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:playstation:1330:jeff-the-brotherhood",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "PlayStation",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "JEFF the Brotherhood",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jeff-the-brotherhood",
+    "role": "performer"
+   }
+  ],
+  "act": "jeff-the-brotherhood",
+  "closing": false,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:playstation:1830:the-tallest-man-on-earth",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "PlayStation",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "The Tallest Man on Earth",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-tallest-man-on-earth",
+    "role": "performer"
+   }
+  ],
+  "act": "the-tallest-man-on-earth",
+  "closing": false,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:playstation:2030:orchard-lounge",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "PlayStation",
+  "start": "20:30",
+  "end": "21:15",
+  "printed": "Orchard Lounge",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orchard-lounge",
+    "role": "performer"
+   }
+  ],
+  "act": "orchard-lounge",
+  "closing": true,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:google-play:1200:kopecky-family-band",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Google Play",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "Kopecky Family Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kopecky-family-band",
+    "role": "performer"
+   }
+  ],
+  "act": "kopecky-family-band",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:google-play:1300:fidlar",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Google Play",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "FIDLAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fidlar",
+    "role": "performer"
+   }
+  ],
+  "act": "fidlar",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:google-play:1415:givers",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Google Play",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "GIVERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "givers",
+    "role": "performer"
+   }
+  ],
+  "act": "givers",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:google-play:1830:fun",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Google Play",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "FUN.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fun",
+    "role": "performer"
+   }
+  ],
+  "act": "fun",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:google-play:1930:washed-out",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Google Play",
+  "start": "19:30",
+  "end": "20:15",
+  "printed": "Washed Out",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "washed-out",
+    "role": "performer"
+   }
+  ],
+  "act": "washed-out",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:google-play:2030:twin-shadow",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Google Play",
+  "start": "20:30",
+  "end": "21:15",
+  "printed": "Twin Shadow",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "twin-shadow",
+    "role": "performer"
+   }
+  ],
+  "act": "twin-shadow",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:google-play:2145:frank-ocean",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Google Play",
+  "start": "21:45",
+  "end": "22:45",
+  "printed": "Frank Ocean",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frank-ocean",
+    "role": "performer"
+   }
+  ],
+  "act": "frank-ocean",
+  "closing": true,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:bmi:1200:laura-warshauer",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "BMI",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Laura Warshauer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laura-warshauer",
+    "role": "performer"
+   }
+  ],
+  "act": "laura-warshauer",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:bmi:1310:chancellor-warhol",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "BMI",
+  "start": "13:10",
+  "end": "13:50",
+  "printed": "Chancellor Warhol",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chancellor-warhol",
+    "role": "performer"
+   }
+  ],
+  "act": "chancellor-warhol",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:bmi:1410:moon-taxi",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "BMI",
+  "start": "14:10",
+  "end": "14:50",
+  "printed": "Moon Taxi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moon-taxi",
+    "role": "performer"
+   }
+  ],
+  "act": "moon-taxi",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:bmi:1520:empires",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "BMI",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "Empires",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "empires",
+    "role": "performer"
+   }
+  ],
+  "act": "empires",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:bmi:1830:lp",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "BMI",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "LP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lp",
+    "role": "performer"
+   }
+  ],
+  "act": "lp",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:bmi:1945:walk-off-the-earth",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "BMI",
+  "start": "19:45",
+  "end": "20:30",
+  "printed": "Walk Off The Earth",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "walk-off-the-earth",
+    "role": "performer"
+   }
+  ],
+  "act": "walk-off-the-earth",
+  "closing": true,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:kidz:1130:harrison-ivaz",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Kidz",
+  "start": "11:30",
+  "end": "11:55",
+  "printed": "Harrison Ivaz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "harrison-ivaz",
+    "role": "performer"
+   }
+  ],
+  "act": "harrison-ivaz",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:kidz:1230:purple-apple",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Kidz",
+  "start": "12:30",
+  "end": "12:55",
+  "printed": "Purple Apple",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "purple-apple",
+    "role": "performer"
+   }
+  ],
+  "act": "purple-apple",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:kidz:1330:the-school-of-rock",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Kidz",
+  "start": "13:30",
+  "end": "13:55",
+  "printed": "The School of Rock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "the-school-of-rock",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:kidz:1430:quinn-sullivan",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Kidz",
+  "start": "14:30",
+  "end": "14:55",
+  "printed": "Quinn Sullivan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quinn-sullivan",
+    "role": "performer"
+   }
+  ],
+  "act": "quinn-sullivan",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:kidz:1515:dan-zanes",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Kidz",
+  "start": "15:15",
+  "end": "15:45",
+  "printed": "Dan Zanes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dan-zanes",
+    "role": "performer"
+   }
+  ],
+  "act": "dan-zanes",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:kidz:1545:ralph-covert",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Kidz",
+  "start": "15:45",
+  "end": "16:00",
+  "printed": "Ralph Covert",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ralph-covert",
+    "role": "performer"
+   }
+  ],
+  "act": "ralph-covert",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:kidz:1605:the-verve-pipe",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Kidz",
+  "start": "16:05",
+  "end": "16:30",
+  "printed": "The Verve Pipe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-verve-pipe",
+    "role": "performer"
+   }
+  ],
+  "act": "the-verve-pipe",
+  "closing": true,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:perry-s:1215:chief-keef",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Perry's",
+  "start": "12:15",
+  "end": "12:45",
+  "printed": "Chief Keef",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chief-keef",
+    "role": "performer"
+   }
+  ],
+  "act": "chief-keef",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:perry-s:1300:salva",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Perry's",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "SALVA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "salva",
+    "role": "performer"
+   }
+  ],
+  "act": "salva",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:perry-s:1400:star-slinger",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Perry's",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Star Slinger",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "star-slinger",
+    "role": "performer"
+   }
+  ],
+  "act": "star-slinger",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:perry-s:1830:skream-and-benga",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Perry's",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Skream & Benga",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skream-and-benga",
+    "role": "performer"
+   }
+  ],
+  "act": "skream-and-benga",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:perry-s:1945:calvin-harris",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Perry's",
+  "start": "19:45",
+  "end": "21:15",
+  "printed": "Calvin Harris",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "calvin-harris",
+    "role": "performer"
+   }
+  ],
+  "act": "calvin-harris",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:perry-s:2145:santigold",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Perry's",
+  "start": "21:45",
+  "end": "22:45",
+  "printed": "Santigold",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "santigold",
+    "role": "performer"
+   }
+  ],
+  "act": "santigold",
+  "closing": true,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:sony:1200:jc-brooks-and-the-uptown-sound",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Sony",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "JC Brooks & The Uptown Sound",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jc-brooks-and-the-uptown-sound",
+    "role": "performer"
+   }
+  ],
+  "act": "jc-brooks-and-the-uptown-sound",
+  "closing": false,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:sony:1330:bear-in-heaven",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Sony",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "Bear in Heaven",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bear-in-heaven",
+    "role": "performer"
+   }
+  ],
+  "act": "bear-in-heaven",
+  "closing": false,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:sony:1830:tune-yards",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Sony",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "tUnE-yArDs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tune-yards",
+    "role": "performer"
+   }
+  ],
+  "act": "tune-yards",
+  "closing": false,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:sony:2015:bloc-party",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Sony",
+  "start": "20:15",
+  "end": "21:00",
+  "printed": "Bloc Party",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bloc-party",
+    "role": "performer"
+   }
+  ],
+  "act": "bloc-party",
+  "closing": true,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:red-bull-soundstage:1245:doomtree",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Red Bull Soundstage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Doomtree",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doomtree",
+    "role": "performer"
+   }
+  ],
+  "act": "doomtree",
+  "closing": false,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:red-bull-soundstage:1415:aloe-blacc",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Red Bull Soundstage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "Aloe Blacc",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aloe-blacc",
+    "role": "performer"
+   }
+  ],
+  "act": "aloe-blacc",
+  "closing": false,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:red-bull-soundstage:1915:the-weeknd",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Red Bull Soundstage",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "The Weeknd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-weeknd",
+    "role": "performer"
+   }
+  ],
+  "act": "the-weeknd",
+  "closing": false,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d2:red-bull-soundstage:2100:red-hot-chili-peppers",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Red Bull Soundstage",
+  "start": "21:00",
+  "end": "22:45",
+  "printed": "Red Hot Chili Peppers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "red-hot-chili-peppers",
+    "role": "performer"
+   }
+  ],
+  "act": "red-hot-chili-peppers",
+  "closing": true,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bud-light:1300:oberhofer",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "Oberhofer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oberhofer",
+    "role": "performer"
+   }
+  ],
+  "act": "oberhofer",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bud-light:1430:white-rabbits",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "White Rabbits",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "white-rabbits",
+    "role": "performer"
+   }
+  ],
+  "act": "white-rabbits",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bud-light:1615:j-cole",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "J. Cole",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "j-cole",
+    "role": "performer"
+   }
+  ],
+  "act": "j-cole",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bud-light:1815:florence-the-machine",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "18:15",
+  "end": "19:30",
+  "printed": "Florence + The Machine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "florence-the-machine",
+    "role": "act"
+   }
+  ],
+  "act": "florence-the-machine",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "lollapalooza-2012:d3:bud-light:2030:justice",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Justice",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justice",
+    "role": "performer"
+   }
+  ],
+  "act": "justice",
+  "closing": true,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:playstation:1215:mona",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "PlayStation",
+  "start": "12:15",
+  "end": "13:00",
+  "printed": "Mona",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mona",
+    "role": "performer"
+   }
+  ],
+  "act": "mona",
+  "closing": false,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:playstation:1345:the-devil-makes-three",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "PlayStation",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "The Devil Makes Three",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-devil-makes-three",
+    "role": "performer"
+   }
+  ],
+  "act": "the-devil-makes-three",
+  "closing": false,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:playstation:1515:gary-clark-jr",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "PlayStation",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Gary Clark Jr.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gary-clark-jr",
+    "role": "performer"
+   }
+  ],
+  "act": "gary-clark-jr",
+  "closing": false,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:playstation:1715:amadou-and-mariam",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "PlayStation",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "Amadou & Mariam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amadou-and-mariam",
+    "role": "performer"
+   }
+  ],
+  "act": "amadou-and-mariam",
+  "closing": false,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:playstation:1930:chairlift",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "PlayStation",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Chairlift",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chairlift",
+    "role": "performer"
+   }
+  ],
+  "act": "chairlift",
+  "closing": true,
+  "stageLineage": "lollapalooza:playstation",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:google-play:1200:point-to-infinity",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Google Play",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "Point To Infinity",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "point-to-infinity",
+    "role": "performer"
+   }
+  ],
+  "act": "point-to-infinity",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:google-play:1300:hey-rosetta",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Google Play",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "Hey Rosetta!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hey-rosetta",
+    "role": "performer"
+   }
+  ],
+  "act": "hey-rosetta",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:google-play:1415:macklemore-and-ryan-lewis",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Google Play",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "Macklemore & Ryan Lewis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "macklemore-and-ryan-lewis",
+    "role": "performer"
+   }
+  ],
+  "act": "macklemore-and-ryan-lewis",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:google-play:1530:dum-dum-girls",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Google Play",
+  "start": "15:30",
+  "end": "16:15",
+  "printed": "Dum Dum Girls",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dum-dum-girls",
+    "role": "performer"
+   }
+  ],
+  "act": "dum-dum-girls",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:google-play:1645:the-gaslight-anthem",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Google Play",
+  "start": "16:45",
+  "end": "17:30",
+  "printed": "The Gaslight Anthem",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-gaslight-anthem",
+    "role": "performer"
+   }
+  ],
+  "act": "the-gaslight-anthem",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:google-play:1800:of-monsters-and-men",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Google Play",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "Of Monsters And Men",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "of-monsters-and-men",
+    "role": "performer"
+   }
+  ],
+  "act": "of-monsters-and-men",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:google-play:1915:the-big-pink",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Google Play",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "The Big Pink",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-big-pink",
+    "role": "performer"
+   }
+  ],
+  "act": "the-big-pink",
+  "closing": false,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:google-play:2045:childish-gambino",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Google Play",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "Childish Gambino",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "childish-gambino",
+    "role": "performer"
+   }
+  ],
+  "act": "childish-gambino",
+  "closing": true,
+  "stageLineage": "lollapalooza:google-play",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bmi:1200:red-oblivion",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "BMI",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Red Oblivion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "red-oblivion",
+    "role": "performer"
+   }
+  ],
+  "act": "red-oblivion",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bmi:1310:outasight",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "BMI",
+  "start": "13:10",
+  "end": "13:50",
+  "printed": "Outasight",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "outasight",
+    "role": "performer"
+   }
+  ],
+  "act": "outasight",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bmi:1410:overdoz",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "BMI",
+  "start": "14:10",
+  "end": "14:50",
+  "printed": "Overdoz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "overdoz",
+    "role": "performer"
+   }
+  ],
+  "act": "overdoz",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bmi:1520:imaginary-cities",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "BMI",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "Imaginary Cities",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "imaginary-cities",
+    "role": "performer"
+   }
+  ],
+  "act": "imaginary-cities",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bmi:1630:the-sheepdogs",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "BMI",
+  "start": "16:30",
+  "end": "17:10",
+  "printed": "The Sheepdogs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-sheepdogs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-sheepdogs",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bmi:1740:yuna",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "BMI",
+  "start": "17:40",
+  "end": "18:20",
+  "printed": "Yuna",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yuna",
+    "role": "performer"
+   }
+  ],
+  "act": "yuna",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bmi:1850:the-jezabels",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "BMI",
+  "start": "18:50",
+  "end": "19:30",
+  "printed": "The Jezabels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-jezabels",
+    "role": "performer"
+   }
+  ],
+  "act": "the-jezabels",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:bmi:1945:empires",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "BMI",
+  "start": "19:45",
+  "end": "20:30",
+  "printed": "Empires",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "empires",
+    "role": "performer"
+   }
+  ],
+  "act": "empires",
+  "closing": true,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:kidz:1130:laura-doherty",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Kidz",
+  "start": "11:30",
+  "end": "11:55",
+  "printed": "Laura Doherty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laura-doherty",
+    "role": "performer"
+   }
+  ],
+  "act": "laura-doherty",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:kidz:1230:the-verve-pipe",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Kidz",
+  "start": "12:30",
+  "end": "12:55",
+  "printed": "The Verve Pipe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-verve-pipe",
+    "role": "performer"
+   }
+  ],
+  "act": "the-verve-pipe",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:kidz:1330:quinn-sullivan",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Kidz",
+  "start": "13:30",
+  "end": "13:55",
+  "printed": "Quinn Sullivan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quinn-sullivan",
+    "role": "performer"
+   }
+  ],
+  "act": "quinn-sullivan",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:kidz:1430:andrew-christopoulos",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Kidz",
+  "start": "14:30",
+  "end": "14:55",
+  "printed": "Andrew Christopoulos",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrew-christopoulos",
+    "role": "performer"
+   }
+  ],
+  "act": "andrew-christopoulos",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:kidz:1515:peter-distefano-and-tor",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Kidz",
+  "start": "15:15",
+  "end": "15:40",
+  "printed": "Peter DiStefano & Tor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peter-distefano-and-tor",
+    "role": "performer"
+   }
+  ],
+  "act": "peter-distefano-and-tor",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:kidz:1545:perry-farrell-and-friends",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Kidz",
+  "start": "15:45",
+  "end": "16:00",
+  "printed": "Perry Farrell & Friends",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "perry-farrell-and-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "perry-farrell-and-friends",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:kidz:1605:dan-zanes",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Kidz",
+  "start": "16:05",
+  "end": "16:30",
+  "printed": "Dan Zanes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dan-zanes",
+    "role": "performer"
+   }
+  ],
+  "act": "dan-zanes",
+  "closing": true,
+  "stageLineage": "lollapalooza:kidz",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:perry-s:1200:kid-color",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Perry's",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "Kid Color",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kid-color",
+    "role": "performer"
+   }
+  ],
+  "act": "kid-color",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:perry-s:1300:dj-nihal",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Perry's",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "DJ Nihal",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-nihal",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-nihal",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:perry-s:1400:nadastrom",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Perry's",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Nadastrom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nadastrom",
+    "role": "performer"
+   }
+  ],
+  "act": "nadastrom",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:perry-s:1515:little-dragon",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Perry's",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Little Dragon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-dragon",
+    "role": "performer"
+   }
+  ],
+  "act": "little-dragon",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:perry-s:1630:doctor-p",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Perry's",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Doctor P",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doctor-p",
+    "role": "performer"
+   }
+  ],
+  "act": "doctor-p",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:perry-s:1745:big-gigantic",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Perry's",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Big Gigantic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-gigantic",
+    "role": "performer"
+   }
+  ],
+  "act": "big-gigantic",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:perry-s:1900:zeds-dead",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Perry's",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "Zeds Dead",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zeds-dead",
+    "role": "performer"
+   }
+  ],
+  "act": "zeds-dead",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:perry-s:2030:kaskade",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Perry's",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Kaskade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaskade",
+    "role": "performer"
+   }
+  ],
+  "act": "kaskade",
+  "closing": true,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:sony:1200:bowerbirds",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Sony",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "Bowerbirds",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bowerbirds",
+    "role": "performer"
+   }
+  ],
+  "act": "bowerbirds",
+  "closing": false,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:sony:1330:polica",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Sony",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "Polica",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "polica",
+    "role": "performer"
+   }
+  ],
+  "act": "polica",
+  "closing": false,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:sony:1500:the-walkmen",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Sony",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "The Walkmen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-walkmen",
+    "role": "performer"
+   }
+  ],
+  "act": "the-walkmen",
+  "closing": false,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:sony:1700:toro-y-moi",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Sony",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Toro Y Moi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "toro-y-moi",
+    "role": "performer"
+   }
+  ],
+  "act": "toro-y-moi",
+  "closing": false,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:sony:1915:miike-snow",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Sony",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "Miike Snow",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miike-snow",
+    "role": "performer"
+   }
+  ],
+  "act": "miike-snow",
+  "closing": true,
+  "stageLineage": "lollapalooza:sony",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:red-bull-soundstage:1245:bombay-bicycle-club",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Red Bull Soundstage",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Bombay Bicycle Club",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bombay-bicycle-club",
+    "role": "performer"
+   }
+  ],
+  "act": "bombay-bicycle-club",
+  "closing": false,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:red-bull-soundstage:1415:trampled-by-turtles",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Red Bull Soundstage",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "Trampled By Turtles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trampled-by-turtles",
+    "role": "performer"
+   }
+  ],
+  "act": "trampled-by-turtles",
+  "closing": false,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:red-bull-soundstage:1600:sigur-ros",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Red Bull Soundstage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Sigur Ros",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sigur-ros",
+    "role": "performer"
+   }
+  ],
+  "act": "sigur-ros",
+  "closing": false,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:red-bull-soundstage:1800:at-the-drive-in",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Red Bull Soundstage",
+  "start": "18:00",
+  "end": "19:15",
+  "printed": "At The Drive-In",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "at-the-drive-in",
+    "role": "performer"
+   }
+  ],
+  "act": "at-the-drive-in",
+  "closing": false,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2012:d3:red-bull-soundstage:2015:jack-white",
+  "source": "edition",
+  "festivalId": "lollapalooza-2012",
+  "festivalBrand": "lollapalooza",
+  "year": 2012,
+  "date": "2012-08-05",
+  "day": 3,
+  "stage": "Red Bull Soundstage",
+  "start": "20:15",
+  "end": "22:00",
+  "printed": "Jack White",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-white",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-white",
+  "closing": true,
+  "stageLineage": "lollapalooza:red-bull-soundstage",
+  "mainStage": null
+ },
+ {
   "id": "lollapalooza-2013:d1:bud-light:1245:io-echo",
   "source": "edition",
   "festivalId": "lollapalooza-2013",

@@ -1,6 +1,7 @@
-// dostuff-schedule.mjs — Outside Lands' official schedule grid
-// (lineup.sfoutsidelands.com, run on DoStuff Media's lineup platform), as
-// archived by the Wayback Machine, into rows. Format "dostuff-grid".
+// dostuff-schedule.mjs — the official schedule grid that Outside Lands
+// (lineup.sfoutsidelands.com) and Lollapalooza 2012 (lineup.lollapalooza.com)
+// ran on DoStuff Media's lineup platform, as archived by the Wayback Machine,
+// into rows. Format "dostuff-grid".
 //
 // Each page prints ONE day ("/events/2013/08/10"): a tab row naming every day
 // ("Saturday, August 10", the current one marked), a stage header per column
@@ -40,13 +41,25 @@ export const fmt = min => `${String(Math.floor(min / 60) % 24).padStart(2, "0")}
 // (a 1 px rule between blocks); a place within this is the printed time.
 export const TOLERANCE_PX = 1.5;
 
-// One day page → { title, year, label, date, tabs, stages, axis, scale, blocks, misprints }.
+// The festivals whose lineup site this is, by the name the page's title
+// prints. Outside Lands' titles print the year ("Outside Lands 2013");
+// Lollapalooza's 2012 title prints the name alone, and its year is then the
+// day tab's own.
+export const FESTIVALS = { "Outside Lands": "outside-lands", "Lollapalooza": "lollapalooza" };
+const titled = title => {
+  const m = /^(.+?)(?: (20\d\d))?$/.exec(title);
+  const festival = m && FESTIVALS[m[1]];
+  return festival ? { festival, titleYear: m[2] ? +m[2] : null } : null;
+};
+
+// One day page → { title, festival, year, label, date, tabs, stages, axis, scale, blocks, misprints }.
 // Blocks carry minutes past the axis's first row (`offset`, `length`), not
 // clock times: those need the day's anchor (timeDay).
 export function parseDoStuff(html) {
   const title = plain(/<title>([\s\S]*?)<\/title>/i.exec(html)?.[1] || "");
-  const year = +(/\b(20\d\d)\b/.exec(title)?.[1] || 0);
-  if (!/^Outside Lands 20\d\d$/.test(title)) throw new Error(`not an Outside Lands schedule page (title "${title}")`);
+  const named = titled(title);
+  if (!named) throw new Error(`not a schedule page of ${Object.keys(FESTIVALS).join(" or ")} (title "${title}")`);
+  const { festival, titleYear } = named;
   const tabsHtml = /<ul class="ds-schedule-days">([\s\S]*?)<\/ul>/.exec(html)?.[1];
   if (!tabsHtml) throw new Error("no day tabs");
   const tabs = [...tabsHtml.matchAll(/<li class="([^"]*)">\s*<a href="[^"]*?\/events\/(\d{4})\/(\d{2})\/(\d{2})\/?">([^<]+)<\/a>/g)]
@@ -59,7 +72,8 @@ export function parseDoStuff(html) {
   const d = new Date(date + "T12:00:00Z");
   if (!lm || lm[1] !== d.toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" })
     || MONTHS.indexOf(lm[2].toLowerCase()) !== d.getUTCMonth() || +lm[3] !== d.getUTCDate()) throw new Error(`day tab "${label}" is not ${date}`);
-  if (+date.slice(0, 4) !== year) throw new Error(`day ${date} is not in ${title}`);
+  const year = +date.slice(0, 4);
+  if (titleYear !== null && titleYear !== year) throw new Error(`day ${date} is not in ${title}`);
   const ymd = date.replaceAll("-", "");
   const grid = /<div class="ds-schedule[^"]*">([\s\S]*?)<\/table>/.exec(html)?.[1];
   if (!grid) throw new Error("no schedule grid");
@@ -103,10 +117,13 @@ export function parseDoStuff(html) {
   // Every block on the grid is read: a set or a misprint, never skipped.
   const printedBlocks = (grid.match(/class="ds-event-box[ "]/g) || []).length;
   if (printedBlocks !== blocks.length + misprints.length) throw new Error(`the grid prints ${printedBlocks} blocks, ${blocks.length + misprints.length} were read`);
-  return { title, year, label, date, tabs, stages: stages.map(s => s.name), axis: { first: rows[0].label, last: rows.at(-1).label, rows: rows.length }, scale, blocks, misprints };
+  return { title, festival, year, label, date, tabs, stages: stages.map(s => s.name), axis: { first: rows[0].label, last: rows.at(-1).label, rows: rows.length }, scale, blocks, misprints };
 }
 
-// An act's page → its printed sets: [{ date, printed, text, minutes, stage }].
+// An act's page → { title, festival, year, sets }, its printed sets
+// [{ date, printed, text, minutes, stage }]. The title names the act "at" the
+// festival ("Dev at Lollapalooza", "Muse at Outside Lands 2013"); `year` is
+// null when it prints none, and each set's date is then the page's word.
 // Two layouts. Through 2014 a "Playing" block prints each set as a linked
 // date and time, then its stage: "<a …/events/2013/08/09>Friday Aug 9 7:10 PM</a>
 // on Lands End". From 2015 the performance block prints each set as one linked
@@ -149,7 +166,9 @@ export function parseDoStuffBand(html) {
     }
   }
   if (!sets.length) throw new Error(`the act's page prints no set (${title})`);
-  return { title, sets };
+  const at = / at (.+)$/.exec(title), named = at && titled(at[1]);
+  if (!named) throw new Error(`not an act's page at ${Object.keys(FESTIVALS).join(" or ")} (title "${title}")`);
+  return { title, festival: named.festival, year: named.titleYear, sets };
 }
 
 // A parsed day + its anchor act's page (+ the anchor block's slug) → the day's

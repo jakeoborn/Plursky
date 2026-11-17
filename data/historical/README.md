@@ -193,6 +193,18 @@ excluded rows, one for one with the page. Only captures taken after each
 festival are used. 2010 and 2011 use an older planner (below); 2018 on has
 no archived grid of this kind.
 
+Lollapalooza 2012 ran on the same platform (lineup.lollapalooza.com, same
+format and tools, `festivalId` checked against the page). Its titles print
+the name alone ("Lollapalooza", "Dev at Lollapalooza"), so the year is the
+day tab's own; a printed year must match it. The axis starts at "11:00", and
+each day's anchor is one act's page captured after the festival (Dev on
+Friday, Avicii on Saturday, Childish Gambino on Sunday). Kidz is the
+Kidzapalooza stage, kept as music, as in 2013. Saturday's grid changed during
+the festival: the capture used (20120807041117) is the grid printed after it,
+with the evening moved later and eight afternoon sets no longer listed, and
+the edition carries a note saying so. 2011's grid prints no am/pm and its
+captured act pages print no set time, so it waits for a printed meridiem.
+
 Archived Outside Lands schedule planner (2010 and 2011, format `myscheduler-data`):
 
     node scripts/historical/gather-myscheduler.mjs <edition-id> <gather-dir> <official-url> <ts> <url> \

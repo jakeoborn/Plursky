@@ -316,6 +316,17 @@ if (base && edc) {
     dsMust("a newer Outside Lands anchor on another stage", dsPage, dsBand17.replace("Lands End<br>", "Sutro<br>"));
     dsMust("a newer Outside Lands anchor whose weekday is not its link's date", dsPage, dsBand15.replace("Saturday, August 10", "Friday, August 10"));
     dsMust("a newer Outside Lands anchor whose time is not its block's on the axis", dsPage, dsBand15.replace("1:00 PM", "1:10 PM"));
+    // Lollapalooza 2012 ran on the same platform: its pages print the name
+    // alone ("Lollapalooza", "Dev at Lollapalooza"), the year then the day
+    // tab's own. A printed year must still be the tab's.
+    const lpPage = dsPage.replace("<title>Outside Lands 2013", "<title>Lollapalooza"), lpBand = dsBand.replace("at Outside Lands 2013", "at Lollapalooza");
+    const lp = parseDoStuff(lpPage), lpB = parseDoStuffBand(lpBand), lpT = timeDay(lp, lpB, "headliner");
+    ok(dp.festival === "outside-lands" && dp.year === 2013 && lp.festival === "lollapalooza" && lp.year === 2013 && lpB.festival === "lollapalooza" && lpB.year === null
+      && parseDoStuffBand(dsBand).festival === "outside-lands" && parseDoStuffBand(dsBand).year === 2013 && JSON.stringify(lpT.sets) === JSON.stringify(dsT.sets),
+      `a Lollapalooza grid that prints no year must read as its tab's year, and time as Outside Lands' does: ${JSON.stringify([lp.festival, lp.year, lpB])}`);
+    dsMust("a Lollapalooza page printing a year that is not its tab's", dsPage.replace("<title>Outside Lands 2013", "<title>Lollapalooza 2012"), lpBand);
+    dsMust("a DoStuff act's page of another festival", lpPage, dsBand.replace("at Outside Lands 2013", "at Other Fest"));
+    dsMust("a DoStuff act's page naming no festival", lpPage, dsBand.replace("Headliner at Outside Lands 2013", "Headliner"));
     // Outside Lands' 2010-2011 planner: the page writes its stages and sets
     // as data (each set's date, 24-hour start and length), twice in 2011.
     const msEnt = (id, v, name, start, dur, extra = "") => `\t${id}: {\n\t\tid: ${id},\n\t\tvenueId: ${v},\n\t\tline1: '${name}',\n\t\tline2: '${extra}',\n\t\tstart: ${start === null ? "null" : `'${start}'`},\n\t\tduration: ${dur},\n\t\tminor: false\n\t}`;

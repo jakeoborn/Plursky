@@ -5145,9 +5145,10 @@
   "billings": [
    "coachella-2014:d1:mojave:1615:aloe-blacc",
    "coachella-2014:d4:mojave:1615:aloe-blacc",
-   "electric-forest-2014:d4:ranch-arena:1645:aloe-blacc"
+   "electric-forest-2014:d4:ranch-arena:1645:aloe-blacc",
+   "lollapalooza-2012:d2:red-bull-soundstage:1415:aloe-blacc"
   ],
-  "firstSeen": "2014-04-11",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
@@ -5717,9 +5718,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d3:playstation:1715:amadou-and-mariam",
    "outside-lands-2012:d3:twin-peaks-hellman-hollow:1535:amadou-and-mariam"
   ],
-  "firstSeen": "2012-08-12",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2012-08-12",
   "photo": null,
   "links": []
@@ -5848,6 +5850,21 @@
   ],
   "firstSeen": "2023-07-22",
   "lastSeen": "2023-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ambassadors",
+  "name": "Ambassadors",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:bmi:1200:ambassadors"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
   "photo": null,
   "links": []
  },
@@ -6635,6 +6652,21 @@
   "links": []
  },
  {
+  "key": "anamanaguchi",
+  "name": "Anamanaguchi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:google-play:1300:anamanaguchi"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "aname",
   "name": "Anamē",
   "aliases": [],
@@ -6986,6 +7018,22 @@
   ],
   "firstSeen": "2012-04-14",
   "lastSeen": "2016-10-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "andrew-christopoulos",
+  "name": "Andrew Christopoulos",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:kidz:1600:andrew-christopoulos",
+   "lollapalooza-2012:d3:kidz:1430:andrew-christopoulos"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -7648,9 +7696,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d1:google-play:1200:animal-kingdom",
    "outside-lands-2012:d2:panhandle-hellman-hollow:1325:animal-kingdom"
   ],
-  "firstSeen": "2012-08-11",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2012-08-11",
   "photo": null,
   "links": []
@@ -9421,10 +9470,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d3:main-stage:2110:at-the-drive-in",
-   "coachella-2012:d6:main-stage:2110:at-the-drive-in"
+   "coachella-2012:d6:main-stage:2110:at-the-drive-in",
+   "lollapalooza-2012:d3:red-bull-soundstage:1800:at-the-drive-in"
   ],
   "firstSeen": "2012-04-15",
-  "lastSeen": "2012-04-22",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -10455,10 +10505,11 @@
   "billings": [
    "coachella-2012:d3:sahara:2210:avicii",
    "coachella-2012:d6:sahara:2140:avicii",
+   "lollapalooza-2012:d2:bud-light:2115:avicii",
    "nocturnal-wonderland-2011:d1:alice-s-house:2200:avicii"
   ],
   "firstSeen": "2011-09-23",
-  "lastSeen": "2012-04-22",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -11873,10 +11924,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d3:main-stage:1405:band-of-skulls",
-   "coachella-2012:d6:main-stage:1405:band-of-skulls"
+   "coachella-2012:d6:main-stage:1405:band-of-skulls",
+   "lollapalooza-2012:d1:google-play:1800:band-of-skulls"
   ],
   "firstSeen": "2012-04-15",
-  "lastSeen": "2012-04-22",
+  "lastSeen": "2012-08-03",
   "photo": null,
   "links": []
  },
@@ -12613,6 +12665,7 @@
    "acl-2015:d5:homeaway:1930:bassnectar",
    "electric-forest-2012:d4:ranch-arena:2300:bassnectar",
    "electric-forest-2015:d3:ranch-arena:0030:bassnectar",
+   "lollapalooza-2012:d1:perry-s:2045:bassnectar",
    "lollapalooza-2015:d3:bud-light:2100:bassnectar",
    "outside-lands-2010:d1:sutro:1605:bassnectar",
    "shambhala-2011:d4:village:0030:bassnectar",
@@ -13233,6 +13286,21 @@
   ],
   "firstSeen": "2014-04-12",
   "lastSeen": "2016-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bear-in-heaven",
+  "name": "Bear in Heaven",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:sony:1330:bear-in-heaven"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -15072,6 +15140,7 @@
    "coachella-2017:d4:sahara:1635:big-gigantic",
    "electric-forest-2012:d4:sherwood-court:0030:big-gigantic",
    "electric-forest-2015:d4:sherwood-court:0030:big-gigantic-feat-the-motet",
+   "lollapalooza-2012:d3:perry-s:1745:big-gigantic",
    "lollapalooza-2016:d3:perry-s:1900:big-gigantic",
    "outside-lands-2012:d3:twin-peaks-hellman-hollow:1405:big-gigantic",
    "shambhala-2013:d3:pagoda:0000:big-gigantic",
@@ -16013,6 +16082,21 @@
   "links": []
  },
  {
+  "key": "black-sabbath",
+  "name": "Black Sabbath",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:bud-light:2005:black-sabbath"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "black-sun-empire",
   "name": "Black Sun Empire",
   "aliases": [],
@@ -16559,6 +16643,21 @@
   "links": []
  },
  {
+  "key": "blind-pilot",
+  "name": "Blind Pilot",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:google-play:1530:blind-pilot"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "blinders",
   "name": "Blinders",
   "aliases": [],
@@ -16683,10 +16782,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d2:sony:2015:bloc-party",
    "lollapalooza-2016:d4:lakeshore:1925:bloc-party",
    "outside-lands-2012:d3:twin-peaks-hellman-hollow:1845:bloc-party"
   ],
-  "firstSeen": "2012-08-12",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2016-07-31",
   "photo": null,
   "links": []
@@ -17585,9 +17685,10 @@
   "billings": [
    "coachella-2014:d2:mojave:1550:bombay-bicycle-club",
    "coachella-2014:d5:mojave:1550:bombay-bicycle-club",
+   "lollapalooza-2012:d3:red-bull-soundstage:1245:bombay-bicycle-club",
    "lollapalooza-2014:d1:samsung-galaxy:1430:bombay-bicycle-club"
   ],
-  "firstSeen": "2014-04-12",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2014-08-01",
   "photo": null,
   "links": []
@@ -18380,6 +18481,21 @@
   ],
   "firstSeen": "2017-07-22",
   "lastSeen": "2019-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bowerbirds",
+  "name": "Bowerbirds",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:sony:1200:bowerbirds"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -21260,6 +21376,7 @@
    "coachella-2014:d6:coachella:1925:calvin-harris",
    "coachella-2016:d3:coachella:2235:calvin-harris",
    "coachella-2016:d6:coachella:2235:calvin-harris",
+   "lollapalooza-2012:d2:perry-s:1945:calvin-harris",
    "lollapalooza-2014:d2:bud-light:2045:calvin-harris"
   ],
   "firstSeen": "2012-04-15",
@@ -23535,9 +23652,10 @@
   "billings": [
    "acl-2016:d1:cirrus-logic:1500:chairlift",
    "acl-2016:d4:cirrus-logic:1500:chairlift",
+   "lollapalooza-2012:d3:playstation:1930:chairlift",
    "lollapalooza-2016:d3:lakeshore:1330:chairlift"
   ],
-  "firstSeen": "2016-07-30",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2016-10-07",
   "photo": null,
   "links": []
@@ -23744,6 +23862,21 @@
   ],
   "firstSeen": "2013-08-02",
   "lastSeen": "2025-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chancellor-warhol",
+  "name": "Chancellor Warhol",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:bmi:1310:chancellor-warhol"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -25006,6 +25139,21 @@
   "links": []
  },
  {
+  "key": "chief-keef",
+  "name": "Chief Keef",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:perry-s:1215:chief-keef"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "child-support",
   "name": "Child Support",
   "aliases": [],
@@ -25037,6 +25185,7 @@
    "coachella-2012:d2:main-stage:1450:childish-gambino",
    "coachella-2012:d5:main-stage:1450:childish-gambino",
    "governors-ball-2017:d2:honda:2115:childish-gambino",
+   "lollapalooza-2012:d3:google-play:2045:childish-gambino",
    "lollapalooza-2014:d3:bud-light:1845:childish-gambino",
    "lollapalooza-2019:d2:t-mobile:untimed:childish-gambino"
   ],
@@ -31069,6 +31218,22 @@
   "links": []
  },
  {
+  "key": "dan-zanes",
+  "name": "Dan Zanes",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:kidz:1515:dan-zanes",
+   "lollapalooza-2012:d3:kidz:1605:dan-zanes"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dana-falconberry",
   "name": "Dana Falconberry",
   "aliases": [],
@@ -32719,6 +32884,7 @@
    "acl-2013:d3:samsung-galaxy:1400:dawes",
    "coachella-2012:d1:mojave:1820:dawes",
    "coachella-2012:d4:mojave:1820:dawes",
+   "lollapalooza-2012:d1:google-play:1915:dawes",
    "outside-lands-2010:d1:panhandle-solar:1325:dawes",
    "outside-lands-2013:d3:sutro:1710:dawes",
    "outside-lands-2017:d2:sutro:1550:dawes"
@@ -34246,9 +34412,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d2:bud-light:1415:delta-spirit",
    "lollapalooza-2015:d2:pepsi:1715:delta-spirit"
   ],
-  "firstSeen": "2015-08-01",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2015-08-01",
   "photo": null,
   "links": []
@@ -35049,6 +35216,21 @@
   "links": []
  },
  {
+  "key": "dev",
+  "name": "Dev",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:bmi:1850:dev"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "devault",
   "name": "Devault",
   "aliases": [],
@@ -35337,10 +35519,11 @@
   "billings": [
    "acl-2016:d1:honda:1800:die-antwoord",
    "acl-2016:d4:honda:1800:die-antwoord",
+   "lollapalooza-2012:d1:playstation:1700:die-antwoord",
    "lollapalooza-2016:d4:perry-s:2030:die-antwoord",
    "outside-lands-2012:d1:twin-peaks-hellman-hollow:1725:die-antwoord"
   ],
-  "firstSeen": "2012-08-10",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2016-10-07",
   "photo": null,
   "links": []
@@ -38760,6 +38943,21 @@
   "links": []
  },
  {
+  "key": "dj-nihal",
+  "name": "DJ Nihal",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:perry-s:1300:dj-nihal"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-nu-mark",
   "name": "DJ Nu-Mark",
   "aliases": [],
@@ -39704,9 +39902,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d1:playstation:1915:dj-zebo",
    "lollapalooza-2019:d4:vip-lolla-lounge:untimed:dj-zebo"
   ],
-  "firstSeen": "2019-08-04",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
@@ -40114,6 +40313,7 @@
    "edc-las-vegas-2022:d1:basspod:2230:doctor-p-b2b-funtcase-classics-set",
    "edc-las-vegas-2022:d1:forest-house-art-car:0430:doctor-p-dnb-set",
    "escape-halloween-2021:d1:psycho-circus:2300:doctor-p-b2b-funtcase",
+   "lollapalooza-2012:d3:perry-s:1630:doctor-p",
    "nocturnal-wonderland-2022:d2:labyrinth:2000:doctor-p",
    "shambhala-2011:d4:village:0330:doctor-p"
   ],
@@ -40669,6 +40869,21 @@
   "links": []
  },
  {
+  "key": "doomtree",
+  "name": "Doomtree",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:red-bull-soundstage:1245:doomtree"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "doorly",
   "name": "Doorly",
   "aliases": [],
@@ -41110,9 +41325,10 @@
   "billings": [
    "acl-2025:d1:lady-bird:1930:dr-dog",
    "acl-2025:d4:lady-bird:1930:dr-dog",
+   "lollapalooza-2012:d1:red-bull-soundstage:1415:dr-dog",
    "outside-lands-2012:d2:panhandle-hellman-hollow:1950:dr-dog"
   ],
-  "firstSeen": "2012-08-11",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2025-10-10",
   "photo": null,
   "links": []
@@ -41896,6 +42112,21 @@
   "links": []
  },
  {
+  "key": "dry-the-river",
+  "name": "Dry the River",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:bmi:1520:dry-the-river"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dskotek",
   "name": "DSKOTEK",
   "aliases": [],
@@ -42377,9 +42608,10 @@
   "billings": [
    "coachella-2014:d1:outdoor:1430:dum-dum-girls",
    "coachella-2014:d4:outdoor:1420:dum-dum-girls",
+   "lollapalooza-2012:d3:google-play:1530:dum-dum-girls",
    "outside-lands-2014:d2:lands-end:1220:dum-dum-girls"
   ],
-  "firstSeen": "2014-04-11",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2014-08-09",
   "photo": null,
   "links": []
@@ -45459,9 +45691,11 @@
   "projects": [],
   "billings": [
    "acl-2014:d2:honda:1230:empires",
-   "acl-2014:d5:honda:1230:empires"
+   "acl-2014:d5:honda:1230:empires",
+   "lollapalooza-2012:d2:bmi:1520:empires",
+   "lollapalooza-2012:d3:bmi:1945:empires"
   ],
-  "firstSeen": "2014-10-04",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2014-10-11",
   "photo": null,
   "links": []
@@ -48225,9 +48459,10 @@
    "acl-2013:d4:bud-light:1200:fidlar",
    "acl-2015:d5:miller-lite:1200:fidlar",
    "acl-2019:d1:american-express:1345:fidlar",
+   "lollapalooza-2012:d2:google-play:1300:fidlar",
    "lollapalooza-2016:d4:bud-light:1445:fidlar"
   ],
-  "firstSeen": "2013-10-04",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2019-10-04",
   "photo": null,
   "links": []
@@ -48646,6 +48881,7 @@
    "acl-2017:d6:homeaway:untimed:first-aid-kit",
    "coachella-2012:d3:mojave:1415:first-aid-kit",
    "coachella-2012:d6:mojave:1415:first-aid-kit",
+   "lollapalooza-2012:d1:playstation:1200:first-aid-kit",
    "lollapalooza-2015:d1:pepsi:1830:first-aid-kit",
    "outside-lands-2015:d1:lands-end:1510:first-aid-kit"
   ],
@@ -49438,9 +49674,10 @@
    "coachella-2015:d3:coachella:2050:florence-the-machine",
    "coachella-2015:d6:coachella:2100:florence-the-machine",
    "governors-ball-2019:d2:govballnyc-stage:2115:florence-the-machine",
+   "lollapalooza-2012:d3:bud-light:1815:florence-the-machine",
    "lollapalooza-2015:d3:samsung-galaxy:2100:florence-the-machine"
   ],
-  "firstSeen": "2015-04-12",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2019-06-01",
   "photo": null,
   "links": []
@@ -50470,10 +50707,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d1:gobi:2015:frank-ocean",
-   "coachella-2012:d4:gobi:2015:frank-ocean"
+   "coachella-2012:d4:gobi:2015:frank-ocean",
+   "lollapalooza-2012:d2:google-play:2145:frank-ocean"
   ],
   "firstSeen": "2012-04-13",
-  "lastSeen": "2012-04-20",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -50734,9 +50972,10 @@
   "billings": [
    "acl-2013:d3:samsung-galaxy:1600:franz-ferdinand",
    "governors-ball-2017:d3:big-apple:1745:franz-ferdinand",
+   "lollapalooza-2012:d2:bud-light:1930:franz-ferdinand",
    "outside-lands-2012:d3:lands-end-polo-field:1440:franz-ferdinand"
   ],
-  "firstSeen": "2012-08-12",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2017-06-04",
   "photo": null,
   "links": []
@@ -51562,16 +51801,19 @@
  {
   "key": "fun",
   "name": "fun.",
-  "aliases": [],
+  "aliases": [
+   "FUN."
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2013:d1:amd:1600:fun",
    "acl-2013:d4:lady-bird:1600:fun",
+   "lollapalooza-2012:d2:google-play:1830:fun",
    "outside-lands-2012:d3:lands-end-polo-field:1330:fun"
   ],
-  "firstSeen": "2012-08-12",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2013-10-11",
   "photo": null,
   "links": []
@@ -52816,6 +53058,7 @@
    "coachella-2016:d2:coachella:1535:gary-clark-jr",
    "coachella-2016:d5:coachella:1535:gary-clark-jr",
    "electric-forest-2012:d2:ranch-arena:1515:gary-clark-jr",
+   "lollapalooza-2012:d3:playstation:1515:gary-clark-jr",
    "lollapalooza-2015:d1:sprint:1845:gary-clark-jr",
    "lollapalooza-2019:d3:t-mobile:untimed:gary-clark-jr",
    "outside-lands-2013:d2:lands-end:1420:gary-clark-jr"
@@ -54458,6 +54701,7 @@
   "billings": [
    "coachella-2012:d1:mojave:1435:givers",
    "coachella-2012:d4:mojave:1435:givers",
+   "lollapalooza-2012:d2:google-play:1415:givers",
    "lollapalooza-2015:d2:palladia:1345:givers",
    "outside-lands-2015:d3:panhandle:1445:givers"
   ],
@@ -57843,6 +58087,21 @@
   "links": []
  },
  {
+  "key": "haley-reinhart",
+  "name": "Haley Reinhart",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:bmi:1310:haley-reinhart"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "half-alive",
   "name": "HALF.ALIVE",
   "aliases": [
@@ -58253,6 +58512,21 @@
   "links": []
  },
  {
+  "key": "happiness-club",
+  "name": "Happiness Club",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:kidz:1515:happiness-club"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "happy-landing",
   "name": "Happy Landing",
   "aliases": [],
@@ -58443,6 +58717,22 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "harrison-ivaz",
+  "name": "Harrison Ivaz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:kidz:1230:harrison-ivaz",
+   "lollapalooza-2012:d2:kidz:1130:harrison-ivaz"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -59085,6 +59375,21 @@
   "links": []
  },
  {
+  "key": "helena",
+  "name": "Helena",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:bmi:1630:helena"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "helena-hauff",
   "name": "Helena Hauff",
   "aliases": [],
@@ -59531,6 +59836,21 @@
   ],
   "firstSeen": "2025-08-01",
   "lastSeen": "2025-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hey-rosetta",
+  "name": "Hey Rosetta!",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:google-play:1300:hey-rosetta"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -62368,6 +62688,21 @@
   "links": []
  },
  {
+  "key": "imaginary-cities",
+  "name": "Imaginary Cities",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:bmi:1520:imaginary-cities"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "imagination-movers",
   "name": "Imagination Movers",
   "aliases": [
@@ -63733,10 +64068,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d3:bud-light:1615:j-cole",
    "lollapalooza-2016:d1:samsung:2030:j-cole",
    "outside-lands-2016:d1:twin-peaks:2040:j-cole"
   ],
-  "firstSeen": "2016-07-28",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2016-08-05",
   "photo": null,
   "links": []
@@ -64185,9 +64521,10 @@
    "coachella-2015:d2:coachella:2115:jack-white",
    "coachella-2015:d5:coachella:2115:jack-white",
    "governors-ball-2018:d1:gov-ball-nyc-stage:2115:jack-white",
+   "lollapalooza-2012:d3:red-bull-soundstage:2015:jack-white",
    "outside-lands-2012:d3:lands-end-polo-field:1725:jack-white"
   ],
-  "firstSeen": "2012-08-12",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2018-06-01",
   "photo": null,
   "links": []
@@ -66386,15 +66723,18 @@
  },
  {
   "key": "jc-brooks-and-the-uptown-sound",
-  "name": "JC Brooks and the Uptown Sound",
-  "aliases": [],
+  "name": "JC Brooks & The Uptown Sound",
+  "aliases": [
+   "JC Brooks and the Uptown Sound"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2013:d3:zilker-tent:1630:jc-brooks-and-the-uptown-sound"
+   "acl-2013:d3:zilker-tent:1630:jc-brooks-and-the-uptown-sound",
+   "lollapalooza-2012:d2:sony:1200:jc-brooks-and-the-uptown-sound"
   ],
-  "firstSeen": "2013-10-06",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2013-10-06",
   "photo": null,
   "links": []
@@ -66541,6 +66881,21 @@
   ],
   "firstSeen": "2012-04-14",
   "lastSeen": "2012-04-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jeff-the-brotherhood",
+  "name": "JEFF the Brotherhood",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:playstation:1330:jeff-the-brotherhood"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -71201,6 +71556,7 @@
    "coachella-2012:d6:main-stage:1945:justice",
    "coachella-2017:d3:outdoor:2145:justice",
    "coachella-2017:d6:outdoor:2145:justice",
+   "lollapalooza-2012:d3:bud-light:2030:justice",
    "lollapalooza-2017:d4:bud-light:2045:justice",
    "outside-lands-2012:d1:twin-peaks-hellman-hollow:2040:justice"
   ],
@@ -72688,6 +73044,7 @@
    "edc-orlando-2023:d1:kinetic-field:2232:kaskade",
    "edc-orlando-2024:d1:kinetic-field:2114:kaskade-b2b-alison-wonderland",
    "electric-forest-2015:d1:ranch-arena:0000:kaskade",
+   "lollapalooza-2012:d3:perry-s:2030:kaskade",
    "lollapalooza-2015:d1:perry-s:2030:kaskade",
    "lollapalooza-2017:d3:perry-s:2030:kaskade",
    "nocturnal-wonderland-2011:d2:alice-s-house:0000:kaskade",
@@ -73832,9 +74189,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d1:bmi:1410:kevin-devine",
    "lollapalooza-2017:d1:bud-light:1300:kevin-devine"
   ],
-  "firstSeen": "2017-08-03",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2017-08-03",
   "photo": null,
   "links": []
@@ -74359,6 +74717,21 @@
   ],
   "firstSeen": "2026-06-27",
   "lastSeen": "2026-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kid-color",
+  "name": "Kid Color",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:perry-s:1200:kid-color"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -76099,9 +76472,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d2:google-play:1200:kopecky-family-band",
    "outside-lands-2013:d3:panhandle:1320:kopecky-family-band"
   ],
-  "firstSeen": "2013-08-11",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2013-08-11",
   "photo": null,
   "links": []
@@ -78726,6 +79100,22 @@
   "links": []
  },
  {
+  "key": "laura-doherty",
+  "name": "Laura Doherty",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:kidz:1130:laura-doherty",
+   "lollapalooza-2012:d3:kidz:1130:laura-doherty"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "laura-marling",
   "name": "Laura Marling",
   "aliases": [],
@@ -78773,6 +79163,21 @@
   ],
   "firstSeen": "2023-07-29",
   "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "laura-warshauer",
+  "name": "Laura Warshauer",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:bmi:1200:laura-warshauer"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -81510,6 +81915,7 @@
    "coachella-2014:d6:mojave:1915:little-dragon",
    "coachella-2017:d1:gobi:2145:little-dragon",
    "coachella-2017:d4:gobi:2145:little-dragon",
+   "lollapalooza-2012:d3:perry-s:1515:little-dragon",
    "lollapalooza-2017:d2:lake-shore:1945:little-dragon",
    "outside-lands-2011:d3:sutro:1720:little-dragon",
    "outside-lands-2017:d1:lands-end:1815:little-dragon"
@@ -82665,6 +83071,21 @@
   "links": []
  },
  {
+  "key": "los-jaivas",
+  "name": "Los Jaivas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:bud-light:1245:los-jaivas"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "los-pibes-chorros",
   "name": "Los Pibes Chorros",
   "aliases": [],
@@ -83484,9 +83905,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2026:af40"
+   "acl-2026:af40",
+   "lollapalooza-2012:d2:bmi:1830:lp"
   ],
-  "firstSeen": "2026-10-02",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2026-10-02",
   "photo": null,
   "links": []
@@ -85094,6 +85516,7 @@
    "coachella-2012:d4:mojave:2215:m83",
    "coachella-2016:d1:coachella:1955:m83",
    "coachella-2016:d4:coachella:1955:m83",
+   "lollapalooza-2012:d1:sony:1930:m83",
    "lollapalooza-2016:d2:samsung:1800:m83"
   ],
   "firstSeen": "2012-04-13",
@@ -85355,6 +85778,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d3:google-play:1415:macklemore-and-ryan-lewis",
    "outside-lands-2011:d2:lands-end:1225:macklemore-and-ryan-lewis",
    "outside-lands-2014:d2:twin-peaks:2040:macklemore-and-ryan-lewis"
   ],
@@ -85700,6 +86124,7 @@
    "edc-las-vegas-2022:d1:cosmic-meadow:2250:madeon-dj-set",
    "electric-forest-2013:d1:ranch-arena:2215:madeon",
    "escape-halloween-2017:d1:slaughterhouse:2200:madeon",
+   "lollapalooza-2012:d1:perry-s:1630:madeon",
    "lollapalooza-2019:d3:american-eagle:untimed:madeon"
   ],
   "firstSeen": "2012-04-13",
@@ -92063,9 +92488,10 @@
   "projects": [],
   "billings": [
    "acl-2019:d2:vrbo:1900:metric",
-   "acl-2019:d5:vrbo:1900:metric"
+   "acl-2019:d5:vrbo:1900:metric",
+   "lollapalooza-2012:d1:bud-light:1600:metric"
   ],
-  "firstSeen": "2019-10-05",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2019-10-12",
   "photo": null,
   "links": []
@@ -92492,9 +92918,10 @@
   "projects": [],
   "billings": [
    "governors-ball-2017:d1:big-apple:1745:michael-kiwanuka",
+   "lollapalooza-2012:d1:playstation:1330:michael-kiwanuka",
    "outside-lands-2012:d2:panhandle-hellman-hollow:1630:michael-kiwanuka"
   ],
-  "firstSeen": "2012-08-11",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2017-06-02",
   "photo": null,
   "links": []
@@ -93069,6 +93496,7 @@
    "coachella-2012:d5:outdoor:2210:miike-snow",
    "coachella-2016:d3:mojave:2145:miike-snow",
    "coachella-2016:d6:mojave:2145:miike-snow",
+   "lollapalooza-2012:d3:sony:1915:miike-snow",
    "lollapalooza-2016:d2:lakeshore:1900:miike-snow",
    "outside-lands-2016:d1:lands-end:1645:miike-snow"
   ],
@@ -93660,9 +94088,10 @@
   "billings": [
    "acl-2015:d2:honda:1245:milo-greene",
    "acl-2015:d5:honda:1245:milo-greene",
+   "lollapalooza-2012:d2:playstation:1200:milo-greene",
    "outside-lands-2013:d2:sutro:1410:milo-greene"
   ],
-  "firstSeen": "2013-08-10",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2015-10-10",
   "photo": null,
   "links": []
@@ -95125,9 +95554,10 @@
   "projects": [],
   "billings": [
    "acl-2013:d2:samsung-galaxy:1215:mona",
-   "acl-2013:d5:samsung-galaxy:1215:mona"
+   "acl-2013:d5:samsung-galaxy:1215:mona",
+   "lollapalooza-2012:d3:playstation:1215:mona"
   ],
-  "firstSeen": "2013-10-05",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2013-10-12",
   "photo": null,
   "links": []
@@ -95609,10 +96039,11 @@
    "coachella-2016:d2:coachella:1430:moon-taxi",
    "coachella-2016:d5:coachella:1430:moon-taxi",
    "electric-forest-2014:d4:sherwood-court:1730:moon-taxi",
+   "lollapalooza-2012:d2:bmi:1410:moon-taxi",
    "lollapalooza-2015:d3:bud-light:1600:moon-taxi",
    "outside-lands-2016:d1:panhandle:1330:moon-taxi"
   ],
-  "firstSeen": "2014-06-29",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2016-08-05",
   "photo": null,
   "links": []
@@ -97933,6 +98364,21 @@
   "links": []
  },
  {
+  "key": "nadastrom",
+  "name": "Nadastrom",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:perry-s:1400:nadastrom"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nader-razdar",
   "name": "Nader Razdar",
   "aliases": [],
@@ -99225,6 +99671,7 @@
    "coachella-2015:d1:outdoor:2135:nero",
    "coachella-2015:d4:outdoor:2135:nero",
    "escape-halloween-2017:d1:ghouls-graveyard:2300:nero-dj-set",
+   "lollapalooza-2012:d1:perry-s:1900:nero",
    "lollapalooza-2015:d3:perry-s:2110:nero"
   ],
   "firstSeen": "2012-04-15",
@@ -102453,6 +102900,21 @@
   "links": []
  },
  {
+  "key": "o-rappa",
+  "name": "O Rappa",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:bud-light:1245:o-rappa"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "o-v-r",
   "name": "O/V/R",
   "aliases": [],
@@ -102555,10 +103017,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d3:mojave:1310:oberhofer",
-   "coachella-2012:d6:mojave:1310:oberhofer"
+   "coachella-2012:d6:mojave:1310:oberhofer",
+   "lollapalooza-2012:d3:bud-light:1300:oberhofer"
   ],
   "firstSeen": "2012-04-15",
-  "lastSeen": "2012-04-22",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -102866,7 +103329,9 @@
  {
   "key": "of-monsters-and-men",
   "name": "Of Monsters and Men",
-  "aliases": [],
+  "aliases": [
+   "Of Monsters And Men"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -102875,10 +103340,11 @@
    "acl-2015:d6:samsung:1830:of-monsters-and-men",
    "coachella-2016:d1:coachella:1840:of-monsters-and-men",
    "coachella-2016:d4:coachella:1840:of-monsters-and-men",
+   "lollapalooza-2012:d3:google-play:1800:of-monsters-and-men",
    "lollapalooza-2015:d3:samsung-galaxy:1915:of-monsters-and-men",
    "outside-lands-2012:d1:sutro-lindley-meadow:1740:of-monsters-and-men"
   ],
-  "firstSeen": "2012-08-10",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2016-04-22",
   "photo": null,
   "links": []
@@ -104151,9 +104617,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "electric-forest-2013:d1:forest-stage:2315:orchard-lounge"
+   "electric-forest-2013:d1:forest-stage:2315:orchard-lounge",
+   "lollapalooza-2012:d2:playstation:2030:orchard-lounge"
   ],
-  "firstSeen": "2013-06-27",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2013-06-27",
   "photo": null,
   "links": []
@@ -104734,6 +105201,21 @@
   "links": []
  },
  {
+  "key": "outasight",
+  "name": "Outasight",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:bmi:1310:outasight"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "outdrejas",
   "name": "OUTDrejas",
   "aliases": [],
@@ -104863,6 +105345,21 @@
   ],
   "firstSeen": "2019-07-28",
   "lastSeen": "2019-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "overdoz",
+  "name": "Overdoz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:bmi:1410:overdoz"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -106065,9 +106562,10 @@
    "acl-2025:d3:tito-s-handmade-vodka:1830:passion-pit",
    "acl-2025:d6:tito-s-handmade-vodka:1830:passion-pit",
    "electric-forest-2013:d2:sherwood-court:0100:passion-pit",
+   "lollapalooza-2012:d1:bud-light:1800:passion-pit",
    "outside-lands-2012:d2:twin-peaks-hellman-hollow:1850:passion-pit"
   ],
-  "firstSeen": "2012-08-11",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2026-06-18",
   "photo": null,
   "links": []
@@ -107285,6 +107783,21 @@
   "links": []
  },
  {
+  "key": "perry-farrell-and-friends",
+  "name": "Perry Farrell & Friends",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:kidz:1545:perry-farrell-and-friends"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "perry-farrell-s-kind-heaven-orchestra",
   "name": "Perry Farrell’s Kind Heaven Orchestra",
   "aliases": [],
@@ -107411,10 +107924,11 @@
    "acl-2013:d3:austin-kiddie-limits:1515:peter-distefano-and-tor",
    "acl-2014:d3:austin-kiddie-limits:1430:peter-distefano-and-tor",
    "acl-2014:d6:austin-kiddie-limits:1430:peter-distefano-and-tor",
+   "lollapalooza-2012:d3:kidz:1515:peter-distefano-and-tor",
    "lollapalooza-2013:d3:kidzapalooza:1515:peter-distefano-and-tor",
    "lollapalooza-2014:d3:kidzapalooza:1515:peter-distefano-and-tor"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2014-10-12",
   "photo": null,
   "links": []
@@ -109049,6 +109563,21 @@
   "links": []
  },
  {
+  "key": "point-to-infinity",
+  "name": "Point To Infinity",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:google-play:1200:point-to-infinity"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pointed-man-band",
   "name": "Pointed Man Band",
   "aliases": [],
@@ -109098,6 +109627,7 @@
   "key": "polica",
   "name": "Poliça",
   "aliases": [
+   "Polica",
    "POLIÇA"
   ],
   "kind": "performer",
@@ -109106,9 +109636,10 @@
   "billings": [
    "acl-2014:d2:austin-ventures:1530:polica",
    "acl-2014:d5:austin-ventures:1530:polica",
+   "lollapalooza-2012:d3:sony:1330:polica",
    "outside-lands-2016:d1:twin-peaks:1540:polica"
   ],
-  "firstSeen": "2014-10-04",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2016-08-05",
   "photo": null,
   "links": []
@@ -109360,6 +109891,7 @@
    "edc-las-vegas-2022:d1:kinetic-field:0139:porter-robinson-dj-set",
    "edc-orlando-2025:d1:kineticfield:1726:porter-robinson-sunset-dj-set",
    "escape-halloween-2025:d2:the-big-top:0045:porter-robinson-dj-set",
+   "lollapalooza-2012:d1:perry-s:1745:porter-robinson",
    "lollapalooza-2017:d1:perry-s:2030:porter-robinson",
    "nocturnal-wonderland-2013:d1:labyrinth:0100:porter-robinson",
    "outside-lands-2015:d1:twin-peaks:1850:porter-robinson",
@@ -110560,6 +111092,22 @@
   "links": []
  },
  {
+  "key": "purple-apple",
+  "name": "Purple Apple",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:kidz:1430:purple-apple",
+   "lollapalooza-2012:d2:kidz:1230:purple-apple"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "purple-disco-machine",
   "name": "Purple Disco Machine",
   "aliases": [
@@ -111114,6 +111662,22 @@
   ],
   "firstSeen": "2010-08-15",
   "lastSeen": "2010-08-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "quinn-sullivan",
+  "name": "Quinn Sullivan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:kidz:1430:quinn-sullivan",
+   "lollapalooza-2012:d3:kidz:1330:quinn-sullivan"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -112046,10 +112610,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d2:kidz:1545:ralph-covert",
    "lollapalooza-2016:d1:kidzapalooza:1700:ralph-covert",
    "lollapalooza-2016:d2:kidzapalooza:1700:ralph-covert"
   ],
-  "firstSeen": "2016-07-28",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2016-07-29",
   "photo": null,
   "links": []
@@ -113354,10 +113919,11 @@
    "acl-2017:d5:american-express:untimed:red-hot-chili-peppers",
    "acl-2022:d3:american-express:2000:red-hot-chili-peppers",
    "acl-2022:d6:american-express:2000:red-hot-chili-peppers",
+   "lollapalooza-2012:d2:red-bull-soundstage:2100:red-hot-chili-peppers",
    "lollapalooza-2016:d3:samsung:2030:red-hot-chili-peppers",
    "outside-lands-2013:d3:lands-end:1945:red-hot-chili-peppers"
   ],
-  "firstSeen": "2013-08-11",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2022-10-16",
   "photo": null,
   "links": []
@@ -113408,6 +113974,21 @@
   ],
   "firstSeen": "2015-08-07",
   "lastSeen": "2015-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "red-oblivion",
+  "name": "Red Oblivion",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:bmi:1200:red-oblivion"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -118513,6 +119094,21 @@
   "links": []
  },
  {
+  "key": "salva",
+  "name": "SALVA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:perry-s:1300:salva"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "salvatore-ganacci",
   "name": "Salvatore Ganacci",
   "aliases": [
@@ -119362,6 +119958,7 @@
    "coachella-2012:d3:main-stage:1525:santigold",
    "coachella-2012:d6:main-stage:1525:santigold",
    "electric-forest-2012:d3:ranch-arena:1730:santigold",
+   "lollapalooza-2012:d2:perry-s:2145:santigold",
    "outside-lands-2012:d3:twin-peaks-hellman-hollow:1710:santigold"
   ],
   "firstSeen": "2012-04-15",
@@ -119946,7 +120543,8 @@
    "coachella-2012:d2:gobi:2215:sbtrkt",
    "coachella-2012:d5:gobi:2215:sbtrkt",
    "coachella-2015:d2:mojave:2250:sbtrkt",
-   "coachella-2015:d5:mojave:2250:sbtrkt"
+   "coachella-2015:d5:mojave:2250:sbtrkt",
+   "lollapalooza-2012:d1:google-play:1645:sbtrkt"
   ],
   "firstSeen": "2012-04-14",
   "lastSeen": "2015-04-18",
@@ -122139,10 +122737,11 @@
   "projects": [],
   "billings": [
    "acl-2018:d2:barton-springs:1730:sharon-van-etten",
+   "lollapalooza-2012:d1:playstation:1500:sharon-van-etten",
    "lollapalooza-2019:d4:lake-shore:untimed:sharon-van-etten",
    "outside-lands-2012:d1:sutro-lindley-meadow:1315:sharon-van-etten"
   ],
-  "firstSeen": "2012-08-10",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
@@ -123524,9 +124123,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d3:red-bull-soundstage:1600:sigur-ros",
    "outside-lands-2012:d2:twin-peaks-hellman-hollow:2040:sigur-ros"
   ],
-  "firstSeen": "2012-08-11",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2012-08-11",
   "photo": null,
   "links": []
@@ -124779,6 +125379,21 @@
   ],
   "firstSeen": "2014-08-08",
   "lastSeen": "2026-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "skream-and-benga",
+  "name": "Skream & Benga",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:perry-s:1830:skream-and-benga"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -128675,6 +129290,21 @@
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2024-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "star-slinger",
+  "name": "Star Slinger",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d2:perry-s:1400:star-slinger"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -132632,12 +133262,13 @@
    "acl-2019:d4:honda:2015:tame-impala",
    "coachella-2015:d1:coachella:2115:tame-impala",
    "coachella-2015:d4:coachella:2115:tame-impala",
+   "lollapalooza-2012:d1:sony:1515:tame-impala",
    "lollapalooza-2015:d2:samsung-galaxy:1800:tame-impala",
    "lollapalooza-2019:d2:bud-light:untimed:tame-impala",
    "outside-lands-2012:d2:lands-end-polo-field:1350:tame-impala",
    "outside-lands-2015:d2:lands-end:1830:tame-impala"
   ],
-  "firstSeen": "2012-08-11",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2027-04-10",
   "photo": null,
   "links": []
@@ -134355,9 +134986,10 @@
   "projects": [],
   "billings": [
    "coachella-2014:d1:mojave:1840:the-afghan-whigs",
-   "coachella-2014:d4:mojave:1840:the-afghan-whigs"
+   "coachella-2014:d4:mojave:1840:the-afghan-whigs",
+   "lollapalooza-2012:d1:red-bull-soundstage:1615:the-afghan-whigs"
   ],
-  "firstSeen": "2014-04-11",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2014-04-18",
   "photo": null,
   "links": []
@@ -134830,10 +135462,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d2:mojave:1525:the-big-pink",
-   "coachella-2012:d5:mojave:1525:the-big-pink"
+   "coachella-2012:d5:mojave:1525:the-big-pink",
+   "lollapalooza-2012:d3:google-play:1915:the-big-pink"
   ],
   "firstSeen": "2012-04-14",
-  "lastSeen": "2012-04-21",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -134880,7 +135513,8 @@
    "acl-2017:d2:barton-springs:1700:the-black-angels",
    "acl-2017:d5:barton-springs:untimed:the-black-angels",
    "coachella-2012:d1:gobi:2250:the-black-angels",
-   "coachella-2012:d4:gobi:2250:the-black-angels"
+   "coachella-2012:d4:gobi:2250:the-black-angels",
+   "lollapalooza-2012:d1:bud-light:1415:the-black-angels"
   ],
   "firstSeen": "2012-04-13",
   "lastSeen": "2017-10-14",
@@ -134897,6 +135531,7 @@
   "billings": [
    "coachella-2012:d1:main-stage:2145:the-black-keys",
    "coachella-2012:d4:main-stage:2145:the-black-keys",
+   "lollapalooza-2012:d1:red-bull-soundstage:2030:the-black-keys",
    "outside-lands-2011:d2:lands-end:1815:the-black-keys",
    "outside-lands-2015:d2:lands-end:2025:the-black-keys"
   ],
@@ -135580,6 +136215,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d3:playstation:1345:the-devil-makes-three",
    "outside-lands-2010:d2:twin-peaks:1410:the-devil-makes-three",
    "outside-lands-2015:d3:sutro:1755:the-devil-makes-three"
   ],
@@ -136167,9 +136803,10 @@
   "billings": [
    "acl-2014:d3:samsung-galaxy:1600:the-gaslight-anthem",
    "acl-2014:d6:samsung-galaxy:1600:the-gaslight-anthem",
-   "governors-ball-2018:d2:honda-stage:2115:the-gaslight-anthem"
+   "governors-ball-2018:d2:honda-stage:2115:the-gaslight-anthem",
+   "lollapalooza-2012:d3:google-play:1645:the-gaslight-anthem"
   ],
-  "firstSeen": "2014-10-05",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2018-06-02",
   "photo": null,
   "links": []
@@ -136353,6 +136990,7 @@
    "acl-2017:d6:miller-lite:untimed:the-growlers",
    "coachella-2012:d3:outdoor:1620:the-growlers",
    "coachella-2012:d6:outdoor:1620:the-growlers",
+   "lollapalooza-2012:d1:red-bull-soundstage:1245:the-growlers",
    "outside-lands-2013:d2:sutro:1525:the-growlers"
   ],
   "firstSeen": "2012-04-15",
@@ -136394,6 +137032,7 @@
   "key": "the-head-and-the-heart",
   "name": "The Head and the Heart",
   "aliases": [
+   "The Head & The Heart",
    "The Head and The Heart"
   ],
   "kind": "performer",
@@ -136411,6 +137050,7 @@
    "coachella-2017:d2:coachella:1645:the-head-and-the-heart",
    "coachella-2017:d5:coachella:1645:the-head-and-the-heart",
    "governors-ball-2017:d2:gov-ball-nyc:1645:the-head-and-the-heart",
+   "lollapalooza-2012:d1:sony:1715:the-head-and-the-heart",
    "lollapalooza-2014:d2:lake-shore:1915:the-head-and-the-heart",
    "lollapalooza-2017:d3:bud-light:1900:the-head-and-the-heart",
    "outside-lands-2013:d2:sutro:1920:the-head-and-the-heart"
@@ -136763,6 +137403,21 @@
   ],
   "firstSeen": "2026-07-04",
   "lastSeen": "2026-07-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-jezabels",
+  "name": "The Jezabels",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:bmi:1850:the-jezabels"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -138828,6 +139483,22 @@
   "links": []
  },
  {
+  "key": "the-school-of-rock",
+  "name": "The School of Rock",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:kidz:1330:the-school-of-rock",
+   "lollapalooza-2012:d2:kidz:1330:the-school-of-rock"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-score",
   "name": "The Score",
   "aliases": [],
@@ -138913,10 +139584,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d1:outdoor:1300:the-sheepdogs",
-   "coachella-2012:d4:outdoor:1300:the-sheepdogs"
+   "coachella-2012:d4:outdoor:1300:the-sheepdogs",
+   "lollapalooza-2012:d3:bmi:1630:the-sheepdogs"
   ],
   "firstSeen": "2012-04-13",
-  "lastSeen": "2012-04-20",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -138948,6 +139620,7 @@
   "billings": [
    "coachella-2012:d2:main-stage:2010:the-shins",
    "coachella-2012:d5:main-stage:2010:the-shins",
+   "lollapalooza-2012:d1:red-bull-soundstage:1815:the-shins",
    "lollapalooza-2017:d4:grant-park:1830:the-shins",
    "outside-lands-2011:d1:twin-peaks:2040:the-shins"
   ],
@@ -139350,10 +140023,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d2:playstation:1830:the-tallest-man-on-earth",
    "lollapalooza-2015:d2:bud-light:1645:the-tallest-man-on-earth",
    "outside-lands-2013:d2:sutro:1800:the-tallest-man-on-earth"
   ],
-  "firstSeen": "2013-08-10",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2015-08-01",
   "photo": null,
   "links": []
@@ -139628,9 +140302,11 @@
    "acl-2013:d2:austin-kiddie-limits:1530:the-verve-pipe",
    "acl-2013:d3:austin-kiddie-limits:1605:the-verve-pipe",
    "acl-2013:d4:austin-kiddie-limits:1430:the-verve-pipe",
-   "acl-2013:d5:austin-kiddie-limits:1530:the-verve-pipe"
+   "acl-2013:d5:austin-kiddie-limits:1530:the-verve-pipe",
+   "lollapalooza-2012:d2:kidz:1605:the-verve-pipe",
+   "lollapalooza-2012:d3:kidz:1230:the-verve-pipe"
   ],
-  "firstSeen": "2013-10-05",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2013-10-12",
   "photo": null,
   "links": []
@@ -139680,9 +140356,10 @@
   "projects": [],
   "billings": [
    "acl-2023:d3:t-mobile:1515:the-walkmen",
+   "lollapalooza-2012:d3:sony:1500:the-walkmen",
    "outside-lands-2012:d1:sutro-lindley-meadow:1615:the-walkmen"
   ],
-  "firstSeen": "2012-08-10",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2023-10-08",
   "photo": null,
   "links": []
@@ -139733,9 +140410,10 @@
    "acl-2022:d5:t-mobile:1910:the-war-on-drugs",
    "coachella-2015:d1:coachella:1810:the-war-on-drugs",
    "coachella-2015:d4:coachella:1805:the-war-on-drugs",
+   "lollapalooza-2012:d1:google-play:1415:the-war-on-drugs",
    "lollapalooza-2015:d1:palladia:1730:the-war-on-drugs"
   ],
-  "firstSeen": "2015-04-10",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2026-10-04",
   "photo": null,
   "links": []
@@ -139785,6 +140463,7 @@
    "coachella-2012:d6:outdoor:1855:the-weeknd",
    "coachella-2015:d2:coachella:2325:the-weeknd",
    "coachella-2015:d5:coachella:2325:the-weeknd",
+   "lollapalooza-2012:d2:red-bull-soundstage:1915:the-weeknd",
    "lollapalooza-2015:d1:bud-light:2030:the-weeknd"
   ],
   "firstSeen": "2012-04-15",
@@ -139851,6 +140530,21 @@
   ],
   "firstSeen": "2010-08-14",
   "lastSeen": "2010-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-white-panda",
+  "name": "The White Panda",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:perry-s:1300:the-white-panda"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
   "photo": null,
   "links": []
  },
@@ -140099,6 +140793,21 @@
   ],
   "firstSeen": "2016-08-06",
   "lastSeen": "2016-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "thenewno2",
+  "name": "thenewno2",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:bmi:1740:thenewno2"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
   "photo": null,
   "links": []
  },
@@ -142657,6 +143366,7 @@
    "acl-2013:d3:bud-light:1700:toro-y-moi",
    "coachella-2015:d2:mojave:1620:toro-y-moi",
    "coachella-2015:d5:mojave:1620:toro-y-moi",
+   "lollapalooza-2012:d3:sony:1700:toro-y-moi",
    "lollapalooza-2015:d2:palladia:1545:toro-y-moi",
    "outside-lands-2011:d1:twin-peaks:1550:toro-y-moi",
    "outside-lands-2015:d2:twin-peaks:1715:toro-y-moi"
@@ -142725,16 +143435,19 @@
  },
  {
   "key": "totally-enormous-extinct-dinosaurs",
-  "name": "TOTALLY ENORMOUS EXTINCT DINOSAURS",
-  "aliases": [],
+  "name": "Totally Enormous Extinct Dinosaurs",
+  "aliases": [
+   "TOTALLY ENORMOUS EXTINCT DINOSAURS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d1:perry-s:1400:totally-enormous-extinct-dinosaurs",
    "nocturnal-wonderland-2017:d2:sunken-garden:2230:totally-enormous-extinct-dinosaurs-dj-set",
    "outside-lands-2017:d3:the-house-by-heineken:1830:totally-enormous-extinct-dinosaurs-dj-set"
   ],
-  "firstSeen": "2017-08-13",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2017-09-16",
   "photo": null,
   "links": []
@@ -142940,18 +143653,19 @@
  },
  {
   "key": "trampled-by-turtles",
-  "name": "Trampled by Turtles",
+  "name": "Trampled By Turtles",
   "aliases": [
-   "Trampled By Turtles"
+   "Trampled by Turtles"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2018:d5:bmi:1730:trampled-by-turtles",
+   "lollapalooza-2012:d3:red-bull-soundstage:1415:trampled-by-turtles",
    "outside-lands-2012:d3:sutro-lindley-meadow:1425:trampled-by-turtles"
   ],
-  "firstSeen": "2012-08-12",
+  "firstSeen": "2012-08-05",
   "lastSeen": "2018-10-13",
   "photo": null,
   "links": []
@@ -144043,6 +144757,7 @@
    "acl-2014:d5:retailmenot:1530:tune-yards",
    "coachella-2012:d2:outdoor:1650:tune-yards",
    "coachella-2012:d5:outdoor:1650:tune-yards",
+   "lollapalooza-2012:d2:sony:1830:tune-yards",
    "outside-lands-2011:d3:sutro:1315:tune-yards"
   ],
   "firstSeen": "2011-08-14",
@@ -144418,9 +145133,10 @@
   "projects": [],
   "billings": [
    "acl-2018:d3:american-express:1400:twin-shadow",
-   "acl-2018:d6:american-express:1400:twin-shadow"
+   "acl-2018:d6:american-express:1400:twin-shadow",
+   "lollapalooza-2012:d2:google-play:2030:twin-shadow"
   ],
-  "firstSeen": "2018-10-07",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2018-10-14",
   "photo": null,
   "links": []
@@ -148284,6 +149000,21 @@
   "links": []
  },
  {
+  "key": "wale",
+  "name": "Wale",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:google-play:2045:wale"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "walk-off-the-earth",
   "name": "Walk Off The Earth",
   "aliases": [],
@@ -148292,9 +149023,10 @@
   "projects": [],
   "billings": [
    "summerfest-2026:su182",
-   "summerfest-2026:su190"
+   "summerfest-2026:su190",
+   "lollapalooza-2012:d2:bmi:1945:walk-off-the-earth"
   ],
-  "firstSeen": "2026-06-25",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2026-06-25",
   "photo": null,
   "links": []
@@ -148767,9 +149499,10 @@
   "billings": [
    "coachella-2014:d2:gobi:1755:washed-out",
    "coachella-2014:d5:gobi:1755:washed-out",
+   "lollapalooza-2012:d2:google-play:1930:washed-out",
    "outside-lands-2012:d1:panhandle-hellman-hollow:1950:washed-out"
   ],
-  "firstSeen": "2012-08-10",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2014-04-19",
   "photo": null,
   "links": []
@@ -149025,6 +149758,21 @@
   ],
   "firstSeen": "2013-08-04",
   "lastSeen": "2016-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wax",
+  "name": "Wax",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:sony:1200:wax"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
   "photo": null,
   "links": []
  },
@@ -149849,6 +150597,21 @@
   ],
   "firstSeen": "2017-07-22",
   "lastSeen": "2022-07-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "white-rabbits",
+  "name": "White Rabbits",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:bud-light:1430:white-rabbits"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -152640,9 +153403,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-2012:d1:sony:1330:yellow-ostrich",
    "outside-lands-2012:d2:twin-peaks-hellman-hollow:1245:yellow-ostrich"
   ],
-  "firstSeen": "2012-08-11",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2012-08-11",
   "photo": null,
   "links": []
@@ -153125,6 +153889,21 @@
   "links": []
  },
  {
+  "key": "young-bloods",
+  "name": "Young Bloods",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d1:perry-s:1200:young-bloods"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "young-bombs",
   "name": "Young Bombs",
   "aliases": [],
@@ -153365,6 +154144,21 @@
   ],
   "firstSeen": "2019-08-02",
   "lastSeen": "2019-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "yuna",
+  "name": "Yuna",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2012:d3:bmi:1740:yuna"
+  ],
+  "firstSeen": "2012-08-05",
+  "lastSeen": "2012-08-05",
   "photo": null,
   "links": []
  },
@@ -153824,6 +154618,7 @@
    "electric-forest-2014:d2:ranch-arena:0030:zedd",
    "escape-halloween-2017:d2:ghouls-graveyard:2300:zedd",
    "escape-halloween-2021:d2:the-grimm:0045:zedd",
+   "lollapalooza-2012:d1:perry-s:1515:zedd",
    "lollapalooza-2014:d1:perry-s:2030:zedd",
    "outside-lands-2013:d1:twin-peaks:1725:zedd",
    "outside-lands-2016:d2:twin-peaks:2040:zedd"
@@ -153854,6 +154649,7 @@
    "edc-orlando-2024:d1:circuit-grounds:2245:zeds-dead",
    "electric-forest-2012:d2:tripolee:2345:zeds-dead",
    "electric-forest-2014:d1:ranch-arena:0000:zeds-dead",
+   "lollapalooza-2012:d3:perry-s:1900:zeds-dead",
    "lollapalooza-2017:d4:perry-s:2030:zeds-dead",
    "nocturnal-wonderland-2019:d1:labyrinth:2300:zeds-dead",
    "shambhala-2011:d4:pagoda:2300:zeds-dead",
