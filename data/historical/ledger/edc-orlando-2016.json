@@ -1,0 +1,111 @@
+{
+  "id": "edc-orlando-2016",
+  "method": "official_lineup_html",
+  "official": "https://orlando.electricdaisycarnival.com/experience/lineup/",
+  "chosen": "20161204183828",
+  "archivedUrl": "https://web.archive.org/web/20161204183828/https://orlando.electricdaisycarnival.com/experience/lineup/",
+  "sha256": "1907ed4431777e1e4980fd10fa3b54de1e9dbe2263e6c172f3dc1954bc8235f2",
+  "title": "LINEUP - EDC Orlando 2016",
+  "relayedVia": "firecrawl",
+  "datesPrinted": {
+    "archivedUrl": "https://web.archive.org/web/20161104192722/https://orlando.electricdaisycarnival.com/",
+    "captureTimestamp": "20161104192722",
+    "sha256": "6afd342c4b7d4e7265e2038e44123de156ba74d4123022e47681cbb6aa35caf2",
+    "title": "EDC Orlando | November 4–5, 2016 | Tinker Field"
+  },
+  "tabs": [
+    "Alphabetical 62"
+  ],
+  "stageOrder": [],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20160301111939",
+      "notFiled": "relay: capture 20160301111939 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160320002353",
+      "notFiled": "relay: capture 20160320002353 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160512135820",
+      "notFiled": "relay: capture 20160512135820 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160612215521",
+      "notFiled": "relay: capture 20160612215521 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160902052429",
+      "notFiled": "relay: capture 20160902052429 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160904233817",
+      "notFiled": "relay: capture 20160904233817 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160912062324",
+      "notFiled": "relay: capture 20160912062324 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160924130148",
+      "notFiled": "relay: capture 20160924130148 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20161005152707",
+      "notFiled": "relay: capture 20161005152707 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20161018092106",
+      "notFiled": "relay: capture 20161018092106 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20161029234124",
+      "notFiled": "relay: capture 20161029234124 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20161111102354",
+      "notFiled": "relay: capture 20161111102354 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20161204183828",
+      "archivedUrl": "https://web.archive.org/web/20161204183828/https://orlando.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "1907ed4431777e1e4980fd10fa3b54de1e9dbe2263e6c172f3dc1954bc8235f2",
+      "bytes": 393710,
+      "via": "firecrawl",
+      "title": "LINEUP - EDC Orlando 2016",
+      "valid": true,
+      "titled": true,
+      "dated": false,
+      "undated": true,
+      "days": [],
+      "billings": 62,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

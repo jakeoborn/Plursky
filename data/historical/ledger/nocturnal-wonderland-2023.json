@@ -1,0 +1,108 @@
+{
+  "id": "nocturnal-wonderland-2023",
+  "method": "official_lineup_html",
+  "official": "https://www.nocturnalwonderland.com/lineup/",
+  "chosen": "20231201232511",
+  "archivedUrl": "https://web.archive.org/web/20231201232511/https://www.nocturnalwonderland.com/lineup/",
+  "sha256": "deef5dd2820d578afd43091832c1f7e86af602e9584f32df289755b2275bf527",
+  "title": "Lineup – Nocturnal Wonderland 2023",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 82",
+    "By Day 82"
+  ],
+  "stageOrder": [],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20230203204902",
+      "archivedUrl": "https://web.archive.org/web/20230203204902/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "8a1465a33d04dda8cf32847bcfd6e1ff3527b33e7124dd76d7770400735e4a35",
+      "bytes": 114800,
+      "via": "firecrawl",
+      "title": "Lineup – Nocturnal Wonderland 2022",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [
+        "Saturday, September 17 ✗",
+        "Sunday, September 18 ✗"
+      ],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20230322033833",
+      "archivedUrl": "https://web.archive.org/web/20230322033833/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "7cc824760707404809a570d7d086d46976208c7cd54bd025b0a669f0f9b8770c",
+      "bytes": 114792,
+      "via": "firecrawl",
+      "title": "Lineup – Nocturnal Wonderland 2022",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [
+        "Saturday, September 17 ✗",
+        "Sunday, September 18 ✗"
+      ],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20230930180930",
+      "archivedUrl": "https://web.archive.org/web/20230930180930/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "f44b76fadad2ff596db7d30fde3bb242ee9a2b08f05f9287693fe79ad99416f0",
+      "bytes": 133357,
+      "via": "firecrawl",
+      "title": "Lineup – Nocturnal Wonderland 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, September 16",
+        "Sunday, September 17"
+      ],
+      "billings": 82,
+      "diffVsChosen": [
+        "added by the final: DJ Reza",
+        "removed by the final: Reza"
+      ]
+    },
+    {
+      "captureTimestamp": "20231004002956",
+      "archivedUrl": "https://web.archive.org/web/20231004002956/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "1d77e4a3ef1796b2665067c8262b99bba86fb4ab7145f4fcef2eee7c4ec5e22a",
+      "bytes": 133357,
+      "via": "firecrawl",
+      "title": "Lineup – Nocturnal Wonderland 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, September 16",
+        "Sunday, September 17"
+      ],
+      "billings": 82,
+      "diffVsChosen": [
+        "added by the final: DJ Reza",
+        "removed by the final: Reza"
+      ]
+    },
+    {
+      "captureTimestamp": "20231201232511",
+      "archivedUrl": "https://web.archive.org/web/20231201232511/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "deef5dd2820d578afd43091832c1f7e86af602e9584f32df289755b2275bf527",
+      "bytes": 132631,
+      "via": "firecrawl",
+      "title": "Lineup – Nocturnal Wonderland 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, September 16",
+        "Sunday, September 17"
+      ],
+      "billings": 82,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

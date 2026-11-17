@@ -1,0 +1,711 @@
+{
+  "id": "tomorrowland-2022",
+  "method": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2022-07-15",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "captureTimestamp": "20220731205247",
+          "printed": "Friday 15 July 2022",
+          "sha256": "2ded22f7f34d0cb6f4580b969ac8b8881c5b83dcc38a80a5ee1cd825ecfd83db",
+          "bytes": 2011458,
+          "rows": 116,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Rose Garden": "Rampage",
+            "Harbour House": "Radio Ultra Modern",
+            "Cage": "Coincidence",
+            "The Rave Cave": "Krankenhaus",
+            "Youphoria": "Pussylounge",
+            "LEAF by JBL": "PIV",
+            "Atmosphere": "KNTXT",
+            "CORE": "CORE presents Printworks",
+            "Crystal Garden": "Diplo's Higher Ground"
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2022-07-16",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "captureTimestamp": "20220731205247",
+          "printed": "Saturday 16 July 2022",
+          "sha256": "2ded22f7f34d0cb6f4580b969ac8b8881c5b83dcc38a80a5ee1cd825ecfd83db",
+          "bytes": 2011458,
+          "rows": 121,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Freedom": "Q-Dance",
+            "Rose Garden": "Bonzai",
+            "Harbour House": "Radio Ultra Modern",
+            "Cage": "Star Warz",
+            "The Rave Cave": "We Play House",
+            "Youphoria": "Psygathering",
+            "LEAF by JBL": "SHOMI",
+            "Kara Savi": "Glitterbox",
+            "Atmosphere": "Afterlife",
+            "Crystal Garden": "Netsky & Friends"
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2022-07-17",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "captureTimestamp": "20220731205247",
+          "printed": "Sunday 17 July 2022",
+          "sha256": "2ded22f7f34d0cb6f4580b969ac8b8881c5b83dcc38a80a5ee1cd825ecfd83db",
+          "bytes": 2011458,
+          "rows": 117,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Rose Garden": "2010 - 2012",
+            "Harbour House": "Radio Ultra Modern",
+            "Cage": "Footworxx",
+            "The Rave Cave": "Crystal",
+            "Youphoria": "Monstercat",
+            "LEAF by JBL": "Flow",
+            "Kara Savi": "Cafeina",
+            "Atmosphere": "Drumcode",
+            "CORE": "CORE presents Ellum",
+            "Crystal Garden": "Sexy By Nature",
+            "The Library": "Smash The House"
+          }
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2022-07-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "captureTimestamp": "20220731205247",
+          "printed": "Friday 22 July 2022",
+          "sha256": "2ded22f7f34d0cb6f4580b969ac8b8881c5b83dcc38a80a5ee1cd825ecfd83db",
+          "bytes": 2011458,
+          "rows": 118,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Rose Garden": "Barong Family",
+            "Harbour House": "Radio Ultra Modern",
+            "The Rave Cave": "Krankenhaus",
+            "Youphoria": "Da Tweekaz presents Tweekamania",
+            "LEAF by JBL": "SHOMI",
+            "Kara Savi": "Alteza",
+            "Atmosphere": "Exhale",
+            "CORE": "CORE presents Adriatique"
+          }
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2022-07-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "captureTimestamp": "20220731205247",
+          "printed": "Saturday 23 July 2022",
+          "sha256": "2ded22f7f34d0cb6f4580b969ac8b8881c5b83dcc38a80a5ee1cd825ecfd83db",
+          "bytes": 2011458,
+          "rows": 120,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Freedom": "Q-Dance",
+            "Rose Garden": "Bonzai",
+            "Harbour House": "Radio Ultra Modern",
+            "Cage": "Unorthodox",
+            "The Rave Cave": "Woody Weekend",
+            "Youphoria": "Psygathering",
+            "LEAF by JBL": "Ketaloco",
+            "Kara Savi": "Defected",
+            "Atmosphere": "KNTXT",
+            "Crystal Garden": "Netsky & Friends",
+            "The Library": "Lost Frequencies & Friends"
+          }
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2022-07-24",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "captureTimestamp": "20220731205247",
+          "printed": "Sunday 24 July 2022",
+          "sha256": "2ded22f7f34d0cb6f4580b969ac8b8881c5b83dcc38a80a5ee1cd825ecfd83db",
+          "bytes": 2011458,
+          "rows": 117,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Rose Garden": "2010 - 2012",
+            "Harbour House": "Radio Ultra Modern",
+            "Cage": "Footworxx",
+            "The Rave Cave": "Winterclubbing",
+            "Youphoria": "Monstercat",
+            "LEAF by JBL": "PIV",
+            "Kara Savi": "Cafeina",
+            "Atmosphere": "Drumcode",
+            "CORE": "CORE presents Watergate",
+            "Crystal Garden": "Sexy By Nature",
+            "The Library": "Smash The House"
+          }
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "date": "2022-07-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "captureTimestamp": "20220731205247",
+          "printed": "Friday 29 July 2022",
+          "sha256": "2ded22f7f34d0cb6f4580b969ac8b8881c5b83dcc38a80a5ee1cd825ecfd83db",
+          "bytes": 2011458,
+          "rows": 115,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Rose Garden": "Rampage",
+            "Harbour House": "Radio Ultra Modern",
+            "Cage": "Rimbu",
+            "The Rave Cave": "Crystal",
+            "Youphoria": "Sub Zero Project presents The Renaissance Of Rave",
+            "LEAF by JBL": "Ketaloco",
+            "Kara Savi": "FUTURE SOUND OF EGYPT",
+            "Atmosphere": "Exhale",
+            "CORE": "CORE presents DJ Tennis curates",
+            "The Library": "STMPD RCRDS"
+          }
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "date": "2022-07-30",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "captureTimestamp": "20220731205247",
+          "printed": "Saturday 30 July 2022",
+          "sha256": "2ded22f7f34d0cb6f4580b969ac8b8881c5b83dcc38a80a5ee1cd825ecfd83db",
+          "bytes": 2011458,
+          "rows": 122,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Freedom": "Q-Dance",
+            "Rose Garden": "Bonzai",
+            "Harbour House": "Radio Ultra Modern",
+            "Cage": "Star Warz invites Shogun",
+            "The Rave Cave": "HardHarderHardst",
+            "Youphoria": "Psygathering",
+            "LEAF by JBL": "SHOMI",
+            "Kara Savi": "Glitterbox",
+            "Atmosphere": "Afterlife",
+            "Crystal Garden": "Anjunabeats",
+            "The Library": "Lost Frequencies & Friends"
+          }
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "date": "2022-07-31",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+          "captureTimestamp": "20220731205247",
+          "printed": "Sunday 31 July 2022",
+          "sha256": "2ded22f7f34d0cb6f4580b969ac8b8881c5b83dcc38a80a5ee1cd825ecfd83db",
+          "bytes": 2011458,
+          "rows": 114,
+          "format": "tml-stages",
+          "stages": 14,
+          "hosts": {
+            "Rose Garden": "2010 - 2012",
+            "Harbour House": "Radio Ultra Modern",
+            "Cage": "Footworxx",
+            "The Rave Cave": "Coincidence",
+            "Youphoria": "Monstercat",
+            "LEAF by JBL": "Flow",
+            "Kara Savi": "Cafeina",
+            "Atmosphere": "Filth On Acid",
+            "CORE": "CORE presents Cellini",
+            "Crystal Garden": "Diplo's Higher Ground",
+            "The Library": "Smash The House"
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "13:30",
+      "end": "14:15",
+      "billing": "Dave Lambert & Tach Crémer",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "14:15",
+      "end": "15:00",
+      "billing": "Prinz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "15:00",
+      "end": "16:30",
+      "billing": "Delafino",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "15:45",
+      "end": "16:30",
+      "billing": "Yamo",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "16:30",
+      "end": "17:15",
+      "billing": "Alexander Merlin",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "17:15",
+      "end": "18:00",
+      "billing": "Odssey",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "18:00",
+      "end": "18:45",
+      "billing": "Double Pleasure",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "18:45",
+      "end": "19:30",
+      "billing": "Meaghan",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "19:30",
+      "end": "20:15",
+      "billing": "Robert Falcon",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "20:15",
+      "end": "21:00",
+      "billing": "D'Angello & Francis",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "21:00",
+      "end": "21:45",
+      "billing": "MATTN",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "21:45",
+      "end": "22:30",
+      "billing": "Regi vs Yves V",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "22:30",
+      "end": "23:15",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-14",
+      "stage": "The Gathering",
+      "start": "23:15",
+      "end": "00:00",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "13:30",
+      "end": "14:15",
+      "billing": "DIVS",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "14:15",
+      "end": "15:00",
+      "billing": "Nederhand",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "15:00",
+      "end": "15:45",
+      "billing": "Prinz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "15:45",
+      "end": "16:30",
+      "billing": "Capoon",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "16:30",
+      "end": "17:15",
+      "billing": "Neon",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "17:15",
+      "end": "18:00",
+      "billing": "Odssey",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "18:00",
+      "end": "18:45",
+      "billing": "Sem Thomasson",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "18:45",
+      "end": "19:30",
+      "billing": "Robert Falcon",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "19:30",
+      "end": "20:15",
+      "billing": "MANDY",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "20:15",
+      "end": "21:00",
+      "billing": "Makasi",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "21:00",
+      "end": "21:45",
+      "billing": "Amber Broos",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "21:45",
+      "end": "22:30",
+      "billing": "Wolfpack",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "22:30",
+      "end": "23:15",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-21",
+      "stage": "The Gathering",
+      "start": "23:15",
+      "end": "00:00",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "13:30",
+      "end": "14:15",
+      "billing": "Maori",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "14:15",
+      "end": "15:00",
+      "billing": "1984",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "15:00",
+      "end": "16:30",
+      "billing": "Nederhand",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "15:45",
+      "end": "16:30",
+      "billing": "Prinz",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "16:30",
+      "end": "17:15",
+      "billing": "Lennert Wolfs",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "17:15",
+      "end": "18:00",
+      "billing": "Mademoiselle Luna",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "18:00",
+      "end": "18:45",
+      "billing": "DJ Licious",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "18:45",
+      "end": "19:30",
+      "billing": "Makasi",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "19:30",
+      "end": "20:15",
+      "billing": "Cellini",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "20:15",
+      "end": "21:00",
+      "billing": "Amber Broos",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "21:00",
+      "end": "21:45",
+      "billing": "Regi",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "21:45",
+      "end": "22:30",
+      "billing": "Öwnboss",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "22:30",
+      "end": "23:15",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    },
+    {
+      "date": "2022-07-28",
+      "stage": "The Gathering",
+      "start": "23:15",
+      "end": "00:00",
+      "billing": "Surprise",
+      "reason": "printed for the Thursday before a festival weekend (The Gathering), not one of the festival's days",
+      "offDay": true
+    }
+  ],
+  "offDays": [
+    {
+      "date": "2022-07-14",
+      "printed": "Thursday 14 July 2022",
+      "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+      "captureTimestamp": "20220731205247",
+      "sets": 14
+    },
+    {
+      "date": "2022-07-21",
+      "printed": "Thursday 21 July 2022",
+      "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+      "captureTimestamp": "20220731205247",
+      "sets": 14
+    },
+    {
+      "date": "2022-07-28",
+      "printed": "Thursday 28 July 2022",
+      "archivedUrl": "https://web.archive.org/web/20220731205247/https://www.tomorrowland.com/en/festival/line-up/stages/friday-15-july-2022",
+      "captureTimestamp": "20220731205247",
+      "sets": 14
+    }
+  ],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "Youphoria",
+      "start": "17:15",
+      "end": "18:30",
+      "billing": "Coming Soon",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "Moosebar",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 9,
+      "stage": "Rose Garden",
+      "start": "20:30",
+      "end": "22:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

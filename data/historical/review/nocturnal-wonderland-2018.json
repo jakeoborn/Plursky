@@ -1,0 +1,71 @@
+{
+ "id": "nocturnal-wonderland-2018",
+ "days": [
+  {
+   "day": 1,
+   "date": "2018-09-14",
+   "sha256": "5895cb0b1a498b872be96b7e58dd4e4c5c04d87c88fe693ad21d1668e606316f",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 32,
+   "note": "Header read off the graphic: FRIDAY (SEPTEMBER 14 • 15, 2018)",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 28,
+   "byEye": [
+    "d1 WOLVES' DEN 23:10-00:10 JAI WOLF: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 WOLVES' DEN 22:05-23:05 4B: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 WOLVES' DEN 18:05-19:05 BIJOU: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 LABYRINTH 22:00-23:00 EPROM: by eye on the full graphic, billing and printed range as the sheet"
+   ],
+   "printedReadings": [
+    "JAI WOLF: printed gap: ends 12:10AM, ILLENIUM starts 12:30AM",
+    "FLUX PAVILION: stage sub-label printed under/beside the name: HOSTED BY BASSRUSH",
+    "LIQUID STRANGER: stage sub-label printed under/beside the name: HOSTED BY BASSRUSH",
+    "NETSKY (DJ SET): stage sub-label printed under/beside the name: HOSTED BY BASSRUSH",
+    "EPROM: stage sub-label printed under/beside the name: HOSTED BY BASSRUSH",
+    "TISOKI: stage sub-label printed under/beside the name: HOSTED BY BASSRUSH",
+    "DANNY BYRD: stage sub-label printed under/beside the name: HOSTED BY BASSRUSH",
+    "DIRT MONKEY: stage sub-label printed under/beside the name: HOSTED BY BASSRUSH",
+    "DACK JANIELS: stage sub-label printed under/beside the name: HOSTED BY BASSRUSH",
+    "FALLEN: stage sub-label printed under/beside the name: HOSTED BY BASSRUSH",
+    "J. SPLAT B2B DAEMIA: billing wraps over 2 printed lines, joined"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2018-09-15",
+   "sha256": "5895cb0b1a498b872be96b7e58dd4e4c5c04d87c88fe693ad21d1668e606316f",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 30,
+   "note": "Header read off the graphic: SATURDAY (SEPTEMBER 14 • 15, 2018)",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 22,
+   "byEye": [
+    "d2 WOLVES' DEN 00:45-02:00 DEORRO: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 WOLVES' DEN 23:30-00:45 SLUSHII: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 WOLVES' DEN 22:15-23:30 BOOMBOX CARTEL: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 WOLVES' DEN 20:00-21:00 AC SLATER: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 WOLVES' DEN 19:00-20:00 BLACKGUMMY: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 WOLVES' DEN 18:00-19:00 PRXZM: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 BOOMBOX ART CAR 00:30-02:00 OSCURE: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 BOOMBOX ART CAR 20:30-21:30 SIMFONIK: by eye on the full graphic, billing and printed range as the sheet"
+   ],
+   "printedReadings": [
+    "NGHTMRE & SLANDER PRESENT: GUD VIBRATIONS: billing wraps over 3 printed lines, joined; stage sub-label printed under/beside the name: HOSTED BY GUD VIBRATIONS",
+    "KILL THE NOISE: stage sub-label printed under/beside the name: HOSTED BY GUD VIBRATIONS",
+    "SAID THE SKY: stage sub-label printed under/beside the name: HOSTED BY GUD VIBRATIONS",
+    "SPACE JESUS: stage sub-label printed under/beside the name: HOSTED BY GUD VIBRATIONS",
+    "RIOT TEN: stage sub-label printed under/beside the name: HOSTED BY GUD VIBRATIONS",
+    "WAVEDASH: stage sub-label printed under/beside the name: HOSTED BY GUD VIBRATIONS",
+    "SWAGE: stage sub-label printed under/beside the name: HOSTED BY GUD VIBRATIONS",
+    "JOSH BUTLER B2B HUXLEY: billing wraps over 2 printed lines, joined",
+    "MIKEY LION B2B LEE REYNOLDS: billing wraps over 2 printed lines, joined",
+    "OSCURE: printed gap: DJ CONSTRUCT ends 12:00AM",
+    "CRS?: question mark as printed"
+   ]
+  }
+ ]
+}

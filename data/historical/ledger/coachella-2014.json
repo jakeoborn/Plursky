@@ -1,0 +1,192 @@
+{
+  "id": "coachella-2014",
+  "method": "official_sources",
+  "official": "https://www.coachella.com/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2014-04-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?weekend=1&sort=stage",
+          "archivedUrl": "https://web.archive.org/web/20140414021910/https://www.coachella.com/lineup/?weekend=1&sort=stage",
+          "captureTimestamp": "20140414021910",
+          "printed": "Friday, April 11, 2014",
+          "sha256": "e73557356e26805e7dc425dfbfaebe72f90fa70e37a5d28d4ea991bcb47f67b4",
+          "bytes": 502729,
+          "rows": 62,
+          "format": "coachella-cards",
+          "stages": 6,
+          "openEnded": 62
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2014-04-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?weekend=1&sort=stage",
+          "archivedUrl": "https://web.archive.org/web/20140414021910/https://www.coachella.com/lineup/?weekend=1&sort=stage",
+          "captureTimestamp": "20140414021910",
+          "printed": "Saturday, April 12, 2014",
+          "sha256": "e73557356e26805e7dc425dfbfaebe72f90fa70e37a5d28d4ea991bcb47f67b4",
+          "bytes": 502729,
+          "rows": 63,
+          "format": "coachella-cards",
+          "stages": 6,
+          "openEnded": 63,
+          "incomplete": [
+            "AFTA-1: Saturday, April 12, 2014 | TBD"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2014-04-13",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.coachella.com/lineup/?weekend=1&sort=stage",
+          "archivedUrl": "https://web.archive.org/web/20140414021910/https://www.coachella.com/lineup/?weekend=1&sort=stage",
+          "captureTimestamp": "20140414021910",
+          "printed": "Sunday, April 13, 2014",
+          "sha256": "e73557356e26805e7dc425dfbfaebe72f90fa70e37a5d28d4ea991bcb47f67b4",
+          "bytes": 502729,
+          "rows": 56,
+          "format": "coachella-cards",
+          "stages": 6,
+          "openEnded": 56
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2014-04-18",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20140421104719/http://www.coachella.com/lineup/",
+          "captureTimestamp": "20140421104719",
+          "printed": "Friday, April 18, 2014",
+          "sha256": "2f7b2de5da7e81deddc2413e29d6067ef80a65630d16b7a9489bc6b7510ae26e",
+          "bytes": 553838,
+          "rows": 74,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 74,
+          "incomplete": [
+            "Thugfucker: Friday, April 18, 2014 | 11:30PM | "
+          ]
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2014-04-19",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20140421104719/http://www.coachella.com/lineup/",
+          "captureTimestamp": "20140421104719",
+          "printed": "Saturday, April 19, 2014",
+          "sha256": "2f7b2de5da7e81deddc2413e29d6067ef80a65630d16b7a9489bc6b7510ae26e",
+          "bytes": 553838,
+          "rows": 71,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 71,
+          "incomplete": [
+            "AFTA-1: Saturday, April 19, 2014 | Gobi"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2014-04-20",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.coachella.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20140421104719/http://www.coachella.com/lineup/",
+          "captureTimestamp": "20140421104719",
+          "printed": "Sunday, April 20, 2014",
+          "sha256": "2f7b2de5da7e81deddc2413e29d6067ef80a65630d16b7a9489bc6b7510ae26e",
+          "bytes": 553838,
+          "rows": 65,
+          "format": "coachella-cards",
+          "stages": 7,
+          "openEnded": 65,
+          "incomplete": [
+            "Chance the Rapper: Sunday, April 20, 2014 | TBD",
+            "Cooper Saver: Sunday, April 20, 2014 | Yuma",
+            "Machin': Sunday, April 20, 2014 | Mojave"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 2,
+      "stage": "TBD",
+      "start": "",
+      "end": "",
+      "billing": "AFTA-1",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 4,
+      "stage": "",
+      "start": "23:30",
+      "end": "",
+      "billing": "Thugfucker",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 5,
+      "stage": "Gobi",
+      "start": "",
+      "end": "",
+      "billing": "AFTA-1",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 6,
+      "stage": "TBD",
+      "start": "",
+      "end": "",
+      "billing": "Chance the Rapper",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 6,
+      "stage": "Yuma",
+      "start": "",
+      "end": "",
+      "billing": "Cooper Saver",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 6,
+      "stage": "Mojave",
+      "start": "",
+      "end": "",
+      "billing": "Machin'",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    }
+  ],
+  "dropped": []
+}

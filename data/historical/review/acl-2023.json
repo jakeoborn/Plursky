@@ -1,0 +1,215 @@
+{
+ "id": "acl-2023",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-10-06",
+   "sha256": "9a2607634939e6da8394f1942979511c0f769db6f8c0521790bf226890fd7317",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/652042606505b9150cd2e61f_ACL_FestivalSchedule_FRI_Weekend-1.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20231028193734/https://assets-global.website-files.com/626ab670470f43cac3339500/652042606505b9150cd2e61f_ACL_FestivalSchedule_FRI_Weekend-1.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T19:55:13.311Z",
+   "rowsConfirmed": 35,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 20 23, WEEKEND ONE FRIDAY, OCTOBER 6. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis (11:30/11:45 sit above the 12 PM line). Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. ASL-interpreted sets carry a hand glyph, which is not billing.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 29,
+   "corrections": [
+    "PORTUGAL. THE MAN: artist \"BLOND:ISH\" → \"PORTUGAL. THE MAN\"; stage \"TITO'S HANDMADE VODKA\" → \"HONDA\"",
+    "MAGGIE ROGERS: artist \"FKJ\" → \"MAGGIE ROGERS\"; stage \"TITO'S HANDMADE VODKA\" → \"HONDA\"",
+    "THE LUMINEERS: artist \"PORTUGAL. THE MAN 4:10-5:10кg MAGGIE ROGERS 6:10 -7:106g THE LUMINEERS\" → \"THE LUMINEERS\"",
+    "THE REVIVALISTS: start ∅ → 19:10; end ∅ → 20:10",
+    "BLOND:ISH: artist \"LIL YACHTY\" → \"BLOND:ISH\"; stage \"AMERICAN EXPRESS\" → \"TITO'S HANDMADE VODKA\"",
+    "SONIA DE LOS SANTOS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "SCHOOL OF ROCK: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "Q BROTHERS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "LITTLE SIMZ: artist \"LITTLE SIMZ|\" → \"LITTLE SIMZ\"",
+    "KENDRICK LAMAR: artist \"MAJOR LAZER 6:10- 7:00kg KENDRICK LAMAR\" → \"KENDRICK LAMAR\""
+   ],
+   "ocrMissed": [
+    "TITO'S HANDMADE VODKA 18:10-19:10 FKJ",
+    "AMERICAN EXPRESS 16:10-17:10 LIL YACHTY",
+    "AMERICAN EXPRESS 18:10-19:00 MAJOR LAZER",
+    "BONUS TRACKS 14:40-15:10 TACOS OF TEXAS",
+    "BONUS TRACKS 16:45-17:15 INTO THE MULTIVERSE THE REVIVALISTS X SUPERMUSH",
+    "BONUS TRACKS 18:10-19:00 DAVE GROHL & BRENÉ BROWN ON THE MUSIC THAT MOVES US"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 2,
+   "date": "2023-10-07",
+   "sha256": "e7139204b0ad2adf1bb915950bc419934465cb6af84c9a5c045b7a7af771b394",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/6521a02cd5b966507b0cfb35_ACL_Festival_Schedule_SAT_Weekend-1-1080x1350.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20231028193728/https://assets-global.website-files.com/626ab670470f43cac3339500/6521a02cd5b966507b0cfb35_ACL_Festival_Schedule_SAT_Weekend-1-1080x1350.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T19:55:13.312Z",
+   "rowsConfirmed": 42,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 20 23, WEEKEND ONE SATURDAY, OCTOBER 7. Printed hour axis 11 AM to 10 PM; every start reads its meridiem off that axis (11:30/11:45 sit above the 12 PM line). Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. ASL-interpreted sets carry a hand glyph, which is not billing.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 35,
+   "corrections": [
+    "JESSIE WARE: artist \"DECLAN MCKENNA\" → \"JESSIE WARE\"; stage \"AMERICAN EXPRESS\" → \"HONDA\"",
+    "RINA SAWAYAMA: artist \"CHRISTONE \"KINGFISH\" INGRAM\" → \"RINA SAWAYAMA\"; stage \"TITO'S HANDMADE VODKA\" → \"HONDA\"",
+    "THIRTY SECONDS TO MARS: artist \"CHROMEO\" → \"THIRTY SECONDS TO MARS\"; stage \"TITO'S HANDMADE VODKA\" → \"HONDA\"",
+    "SHANIA TWAIN: artist \"JESSIE WARE RINA SAWAYAMA 4:00- 5:00(6g) THIRTY SECONDS TO MARS 6:00 - 7:00 đg SHANIA TWAIN\" → \"SHANIA TWAIN\"",
+    "TOVE LO: artist \"COI LERAY 5:15 - 6:00% g) TOVE LO\" → \"TOVE LO\"",
+    "CHRISTONE \"KINGFISH\" INGRAM: artist \"MT.JOY\" → \"CHRISTONE \"KINGFISH\" INGRAM\"; stage \"AMERICAN EXPRESS\" → \"TITO'S HANDMADE VODKA\"",
+    "THE BARTON HILLS CHOIR: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "SONIA DE LOS SANTOS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "TIM KUBART: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "SMITH & YARN: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "ALANIS MORISSETTE: end 13:69 → 19:00"
+   ],
+   "ocrMissed": [
+    "IHG HOTELS & RESORTS 17:15-18:00 COI LERAY",
+    "TITO'S HANDMADE VODKA 18:00-19:00 CHROMEO",
+    "AMERICAN EXPRESS 14:00-15:00 DECLAN MCKENNA",
+    "AMERICAN EXPRESS 16:00-17:00 MT. JOY",
+    "BONUS TRACKS 14:00-14:30 PAUSE/PLAY",
+    "BONUS TRACKS 16:00-16:45 INTOXICATING ART THERAPY WITH DRUNKDRAWN",
+    "BONUS TRACKS 18:00-18:30 BOB'S DANCE SHOP"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 3,
+   "date": "2023-10-08",
+   "sha256": "cd06839526c8cd1164919c5ce65ead6a45d831d1c54c921124efde600ca101fc",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/6522ff6b3cc18faf8ef1488c_ACL_FestivalSchedule_SUN_Weekend-1080x1350.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20231207174329/https://assets-global.website-files.com/626ab670470f43cac3339500/6522ff6b3cc18faf8ef1488c_ACL_FestivalSchedule_SUN_Weekend-1080x1350.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T19:55:13.313Z",
+   "rowsConfirmed": 41,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 20 23, WEEKEND ONE SUNDAY, OCTOBER 8. Printed hour axis 11 AM to 10 PM; every start reads its meridiem off that axis (11:30/11:45 sit above the 12 PM line). Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. ASL-interpreted sets carry a hand glyph, which is not billing.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 33,
+   "corrections": [
+    "YEAH YEAH YEAHS: artist \"SIDEPIECE\" → \"YEAH YEAH YEAHS\"; stage \"TITO'S HANDMADE VODKA\" → \"HONDA\"",
+    "ODESZA: artist \"TASH SULTANA YEAH YEAH YEAHS 6:15- 7:15 (6g) ODESZA\" → \"ODESZA\"",
+    "SUKI WATERHOUSE: artist \"SUNROSE\" → \"SUKI WATERHOUSE\"; stage \"BMI\" → \"MILLER LITE\"",
+    "IVAN CORNEJO: artist \"SUKI WATERHOUSE IVAN CORNEJO\" → \"IVAN CORNEJO\"",
+    "SUNROSE: artist \"MORGAN WADE\" → \"SUNROSE\"; stage \"IHG HOTELS & RESORTS\" → \"BMI\"",
+    "MORGAN WADE: artist \"BECKY HILL 1:30 -2:15/g THE WALKMEN\" → \"MORGAN WADE\"; stage \"T-MOBILE\" → \"IHG HOTELS & RESORTS\"",
+    "CHARLOTTE ADIGÉRY & BOLIS PUPUL: artist \"CHARLOTTE ADIGERY & BOLIS PUPUL\" → \"CHARLOTTE ADIGÉRY & BOLIS PUPUL\"",
+    "YVES TUMOR: artist \"YVES\" → \"YVES TUMOR\"",
+    "SIDEPIECE: artist \"NIALL HORAN 4:15 - 5:156g HOZIER\" → \"SIDEPIECE\"; stage \"AMERICAN EXPRESS\" → \"TITO'S HANDMADE VODKA\"",
+    "SCHOOL OF ROCK: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "SMITH & YARN: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "TIM KUBART: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "LABRINTH: artist \"GLORILLA LABRINTH\" → \"LABRINTH\""
+   ],
+   "ocrMissed": [
+    "HONDA 16:15-17:15 TASH SULTANA",
+    "T-MOBILE 13:30-14:15 BECKY HILL",
+    "T-MOBILE 15:15-16:15 THE WALKMEN",
+    "T-MOBILE 17:30-18:15 GLORILLA",
+    "AMERICAN EXPRESS 16:15-17:15 NIALL HORAN",
+    "AMERICAN EXPRESS 18:15-19:15 HOZIER",
+    "BONUS TRACKS 14:45-15:15 EXTRAGRAMS! ICONS: A CELEBRITY DRAG SHOW",
+    "BONUS TRACKS 16:45-17:15 BOB'S DANCE SHOP"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 4,
+   "date": "2023-10-13",
+   "sha256": "174d4dfaaa5332711baab50f9f8d7612711bf17d023aff4aa3bfb45ddcc52806",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/6520427b49f0042f5bce48a5_ACL_Festival_Schedule_FRI_Weekend-2-1080x1350.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20231028193724/https://assets-global.website-files.com/626ab670470f43cac3339500/6520427b49f0042f5bce48a5_ACL_Festival_Schedule_FRI_Weekend-2-1080x1350.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T19:55:13.313Z",
+   "rowsConfirmed": 35,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 20 23, WEEKEND TWO FRIDAY, OCTOBER 13. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis (11:30/11:45 sit above the 12 PM line). Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. ASL-interpreted sets carry a hand glyph, which is not billing.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 30,
+   "corrections": [
+    "MAGGIE ROGERS: artist \"FKJ\" → \"MAGGIE ROGERS\"; stage \"TITO'S HANDMADE VODKA\" → \"HONDA\"",
+    "THE LUMINEERS: artist \"MAGGIE ROGERS 6:10 -7:106g THE LUMINEERS\" → \"THE LUMINEERS\"",
+    "PORTUGAL. THE MAN: artist \"THE REVIVALISTS\" → \"PORTUGAL. THE MAN\"; stage \"IHG HOTELS & RESORTS\" → \"MILLER LITE\"",
+    "SCHOOL OF ROCK: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "RESONATE: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "Q BROTHERS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "ABOVE & BEYOND: artist \"GLORILLA 5:10 - 5:55 гg) ABOVE & BEYOND\" → \"ABOVE & BEYOND\""
+   ],
+   "ocrMissed": [
+    "IHG HOTELS & RESORTS 19:10-20:10 THE REVIVALISTS",
+    "TITO'S HANDMADE VODKA 18:10-19:10 FKJ",
+    "T-MOBILE 17:10-17:55 GLORILLA",
+    "BONUS TRACKS 14:40-15:10 BLACK AUSTIN MATTERS",
+    "BONUS TRACKS 16:45-17:15 LOUDER THAN A RIOT",
+    "BONUS TRACKS 18:00-18:40 COLD CUTS WITH COCO & RICKY"
+   ],
+   "ocrExtra": [
+    "MILLER LITE  PORTUGAL. THE MAN 7:10-8106g  ⚠ no time line"
+   ]
+  },
+  {
+   "day": 5,
+   "date": "2023-10-14",
+   "sha256": "e6559993038996801c54b0a1142c63de044cbbf695c2ff91508d3c27cf5b5247",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/651c8bd9dcf442d929eb4e61_ACL_FestivalSchedule_SAT_Weekend-2.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20231207174319/https://assets-global.website-files.com/626ab670470f43cac3339500/651c8bd9dcf442d929eb4e61_ACL_FestivalSchedule_SAT_Weekend-2.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T19:55:13.314Z",
+   "rowsConfirmed": 43,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 20 23, WEEKEND TWO SATURDAY, OCTOBER 14. Printed hour axis 11 AM to 10 PM; every start reads its meridiem off that axis (11:30/11:45 sit above the 12 PM line). Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. ASL-interpreted sets carry a hand glyph, which is not billing.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 36,
+   "corrections": [
+    "RINA SAWAYAMA: artist \"SUDAN ARCHIVES\" → \"RINA SAWAYAMA\"; stage \"TITO'S HANDMADE VODKA\" → \"HONDA\"",
+    "THIRTY SECONDS TO MARS: artist \"RINA SAWAYAMA 4:00 - 5:00 Бg) THIRTY SECONDS TO MARS\" → \"THIRTY SECONDS TO MARS\"",
+    "RATTLESNAKE MILK: artist \"DEVON GILFILLIAN\" → \"RATTLESNAKE MILK\"; stage \"T-MOBILE\" → \"BMI\"",
+    "SNÕÕPER: artist \"RATTLESNAKE SNÕÕPER\" → \"SNÕÕPER\"",
+    "SUDAN ARCHIVES: artist \"MT.JOY\" → \"SUDAN ARCHIVES\"; stage \"AMERICAN EXPRESS\" → \"TITO'S HANDMADE VODKA\"",
+    "THE BARTON HILLS CHOIR: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "RESONATE: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "FYÜTCH: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "RALPH'S WORLD: artist \"RALPH'SWORLD\" → \"RALPH'S WORLD\"; stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "TANYA TUCKER: artist \"GUS DAPPERTON| 3:00 - 4:00 Бg) TANYA TUCKER\" → \"TANYA TUCKER\"",
+    "FOO FIGHTERS: artist \"ALANIS MORISSETTE 6:00 - 7:0kg FOO FIGHTERS\" → \"FOO FIGHTERS\""
+   ],
+   "ocrMissed": [
+    "T-MOBILE 13:15-14:00 DEVON GILFILLIAN",
+    "T-MOBILE 15:00-16:00 GUS DAPPERTON",
+    "AMERICAN EXPRESS 16:00-17:00 MT. JOY",
+    "AMERICAN EXPRESS 18:00-19:00 ALANIS MORISSETTE",
+    "BONUS TRACKS 14:00-14:30 THE BREAKS",
+    "BONUS TRACKS 16:00-16:30 DOING FRESH THINGS OUTDOOR VOICES X THEBROSFRESH",
+    "BONUS TRACKS 18:10-18:40 SPECIAL GUEST"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 6,
+   "date": "2023-10-15",
+   "sha256": "d4624cfd13bf45085c528ab9fa92d23e53270b046e512f2648452bfa19bcf410",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/651c8be0950d6222fdb6bea0_ACL_FestivalSchedule_SUN_Weekend-2.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20231028193717/https://assets-global.website-files.com/626ab670470f43cac3339500/651c8be0950d6222fdb6bea0_ACL_FestivalSchedule_SUN_Weekend-2.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T19:55:13.314Z",
+   "rowsConfirmed": 42,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 20 23, WEEKEND TWO SUNDAY, OCTOBER 15. Printed hour axis 11 AM to 10 PM; every start reads its meridiem off that axis (11:30/11:45 sit above the 12 PM line). Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. ASL-interpreted sets carry a hand glyph, which is not billing.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 36,
+   "corrections": [
+    "YEAH YEAH YEAHS: artist \"SIDEPIECE\" → \"YEAH YEAH YEAHS\"; stage \"TITO'S HANDMADE VODKA\" → \"HONDA\"",
+    "ODESZA: artist \"YEAH YEAH YEAHS 6:15- 7:15 (гg) ODESZA\" → \"ODESZA\"",
+    "CIGARETTES AFTER SEX: start ∅ → 19:15; end ∅ → 20:15",
+    "SIDEPIECE: artist \"NIALL HORAN 4:15-5:156g HOZIER\" → \"SIDEPIECE\"; stage \"AMERICAN EXPRESS\" → \"TITO'S HANDMADE VODKA\"",
+    "RALPH'S WORLD: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "SCHOOL OF ROCK: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "FYÜTCH: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "LITTLE SIMZ: artist \"DEL WATER GAP 3:15 - 4:15 гg) LITTLE SIMZ\" → \"LITTLE SIMZ\""
+   ],
+   "ocrMissed": [
+    "T-MOBILE 15:15-16:15 DEL WATER GAP",
+    "AMERICAN EXPRESS 16:15-17:15 NIALL HORAN",
+    "AMERICAN EXPRESS 18:15-19:15 HOZIER",
+    "BONUS TRACKS 14:45-15:15 SPECIAL GUEST",
+    "BONUS TRACKS 16:45-17:15 SUNDAY SESSIONS ATX",
+    "BONUS TRACKS 18:15-18:45 EXTRAGRAMS! THE DRAG DISCO"
+   ],
+   "ocrExtra": []
+  }
+ ]
+}

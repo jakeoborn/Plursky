@@ -14,14 +14,15 @@
 //   node scripts/check-official-embeds.mjs --report   verify the embeds the
 //        COMMITTED f/<id>/index.html pages carry, without writing; print a
 //        Markdown list of failures and exit 1 if any. The weekly workflow
-//        prints only the count: the repo is public, so the detail is read by
-//        running this locally, never posted.
-// A request that cannot complete (network, 429, 5xx) is "could not confirm":
-// never counted as dead, and a previously verified embed keeps its result.
+//        prints only the count and the causes: the repo is public, so which
+//        embeds failed is read by running this locally, never posted.
+// A request that cannot complete (network, 429, 5xx, or a page that refuses
+// the checker with 401/403/451) is "could not confirm": never counted as dead,
+// and a previously verified embed keeps its result.
 import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadEmbedData, verifyEmbed, resultRecord, embedShownOn } from './lib/official-embeds.mjs';
+import { loadEmbedData, verifyEmbed, resultRecord, embedShownOn, causeTally } from './lib/official-embeds.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REPORT = process.argv.includes('--report');
@@ -111,7 +112,8 @@ if (probe) { if (probe.controlOk !== true) console.error('  ! YouTube probe cont
 
 if (REPORT) {
   if (failures.length) {
-    console.log(`## ${failures.length} official embed(s) failed the weekly check (${today})\n`);
+    // The weekly job prints only this line: the count and the causes, no embed.
+    console.log(`## ${failures.length} official embed(s) failed the weekly check (${today}): ${causeTally(failures.map(f => f.reason))}\n`);
     for (const u of unknowns) console.log(`- (could not confirm, not counted) **${u.fid}** · ${u.e.platform} · ${u.e.url} — ${u.reason}`);
     for (const f of failures) console.log(`- **${f.fid}** · ${f.e.platform} · ${f.e.url} — ${f.reason}`);
     console.log('\nRe-run `node scripts/check-official-embeds.mjs && node scripts/gen-festival-pages.mjs` to drop them from the pages, or replace them in data/official-embeds.json.');

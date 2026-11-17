@@ -19,7 +19,13 @@ const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 
 export const CAPS = { youtube: 1, social: 3, spotify: 1 };
 export const PLATFORMS = ['youtube', 'instagram', 'x', 'spotify'];
-export const KINDS = ['aftermovie', 'trailer', 'lineup', 'announcement', 'photo', 'carousel', 'video', 'playlist'];
+// `recap` is an official post made during or after the edition about how it
+// went. It may carry `day` (the festival day it covers) and `artist` (the act
+// it shows); the generator checks both against the official schedule.
+export const KINDS = ['aftermovie', 'trailer', 'lineup', 'announcement', 'photo', 'carousel', 'video', 'playlist', 'recap'];
+// Per recap group (each day, then the whole weekend): the same per-platform
+// budget the Watch & listen list has.
+export const RECAP_CAPS = { youtube: 1, social: 3 };
 const REQUIRED = ['platform', 'url', 'officialAccount', 'accountSourceUrl', 'observedAt', 'kind'];
 // Lineup/announcement lead the social budget; then the edition's photos.
 const KIND_RANK = { aftermovie: 0, trailer: 1, lineup: 0, announcement: 1, photo: 2, carousel: 2, video: 3, playlist: 0 };
@@ -78,7 +84,9 @@ export function validateEmbed(e) {
   if (!shape) return `url is not a ${e.platform} post/video/playlist URL`;
   // An X status URL carries its author: it must be the official handle.
   if (e.platform === 'x' && shape.handle !== accountKey('x', e.officialAccount) && shape.handle !== 'i') return 'X post URL names a different account';
-  if (e.platform === 'youtube' && !['aftermovie', 'trailer'].includes(e.kind)) return 'YouTube embeds are an aftermovie or trailer only';
+  if (e.platform === 'youtube' && !['aftermovie', 'trailer', 'recap'].includes(e.kind)) return 'YouTube embeds are an aftermovie, trailer or recap only';
+  if (e.day !== undefined && (e.kind !== 'recap' || !Number.isInteger(e.day) || e.day < 1 || e.day > 14)) return 'day is only for a recap, as a festival day number';
+  if (e.artist !== undefined && (e.kind !== 'recap' || e.day === undefined || typeof e.artist !== 'string' || !e.artist.trim())) return 'artist is only for a recap with a day';
   if (e.platform === 'spotify' && e.kind !== 'playlist') return 'Spotify embeds are an official playlist only';
   // 37i9dQZF1… ids are Spotify's own editorial playlists: not the festival's,
   // even when the festival's site links one.
@@ -115,9 +123,23 @@ export function xPublishedAt(url) {
 // ("could not confirm"), never a dead embed.
 export class TransientFetch extends Error {}
 const rethrowTransient = err => { if (err instanceof TransientFetch) throw err; return null; };
+
+// A page that REFUSES the checker instead of answering about the post: a bot
+// wall (403), an auth gate (401) or a legal block (451). The weekly workflow
+// runs on a GitHub runner, whose datacenter IP is what festival sites' bot
+// protection answers 403 to, so a refusal says nothing about the embed and
+// belongs with 429 and 5xx. Only pages are read this way; an oEmbed status is
+// the platform's verdict on the post itself and keeps its own meaning (a 401
+// from YouTube's oEmbed IS a private video).
+const REFUSED = new Set([401, 403, 451]);
+const pageRead = (url, r) => {
+  if (r && REFUSED.has(r.status)) throw new TransientFetch(`${url} refused the check with ${r.status}`);
+  return r;
+};
 async function youtubePublishedAt(url, fetcher) {
   try {
-    const r = await fetcher(`https://www.youtube.com/watch?v=${youtubeId(url)}`);
+    const watch = `https://www.youtube.com/watch?v=${youtubeId(url)}`;
+    const r = pageRead(watch, await fetcher(watch));
     const m = r && r.status === 200 && r.text.match(/itemprop="uploadDate" content="(\d{4}-\d{2}-\d{2})/);
     return m ? m[1] : null;
   } catch (err) { return rethrowTransient(err); }
@@ -142,7 +164,7 @@ export async function youtubeChannelId(url, fetcher) {
   const direct = String(url).match(/youtube\.com\/channel\/(UC[A-Za-z0-9_-]{22})/);
   if (direct) return direct[1];
   try {
-    const r = await fetcher(url);
+    const r = pageRead(url, await fetcher(url));
     if (!r || r.status !== 200) return null;
     const m = r.text.match(/<link rel="canonical" href="https:\/\/www\.youtube\.com\/channel\/(UC[A-Za-z0-9_-]{22})"/);
     return m ? m[1] : null;
@@ -201,7 +223,7 @@ export async function verifyEmbed(e, fetcher, opts = {}) {
   }
 }
 async function _verifyEmbed(e, fetcher, opts) {
-  const src = await fetcher(e.accountSourceUrl);
+  const src = pageRead(e.accountSourceUrl, await fetcher(e.accountSourceUrl));
   if (src.status !== 200) return { ok: false, reason: `accountSourceUrl returned ${src.status}` };
   if (!pageLinksAccount(src.text, e.platform, e.officialAccount)) return { ok: false, reason: 'accountSourceUrl does not link the official account' };
   const oe = await fetcher(OEMBED[e.platform](e.url));
@@ -216,24 +238,51 @@ async function _verifyEmbed(e, fetcher, opts) {
   }
   if (e.platform === 'instagram') {
     const { type, code } = instagramCode(e.url);
-    const p = await fetcher(`https://www.instagram.com/${type}/${code}/embed/`); pageHtml = p.status === 200 ? p.text : null;
+    const ig = `https://www.instagram.com/${type}/${code}/embed/`;
+    const p = pageRead(ig, await fetcher(ig)); pageHtml = p.status === 200 ? p.text : null;
   }
   if (e.platform === 'spotify' && accountKey('spotify', e.officialAccount).startsWith('user/')) {
-    const p = await fetcher(e.url); pageHtml = p.status === 200 ? p.text : null;
+    const p = pageRead(e.url, await fetcher(e.url)); pageHtml = p.status === 200 ? p.text : null;
   }
   if (!authorMatches(e.platform, e.officialAccount, body, pageHtml, e.url, ctx)) return { ok: false, reason: 'post is not by the official account' };
   const publishedAt = e.platform === 'instagram' ? instagramPublishedAt(e.url)
     : e.platform === 'x' ? xPublishedAt(e.url)
     : e.platform === 'youtube' ? await youtubePublishedAt(e.url, fetcher) : null;
-  if (e.platform === 'youtube' && !publishedAt) return { ok: false, reason: 'YouTube upload date unreadable' };
   if (e.platform === 'youtube') {
     const playable = opts.youtubePlayable ? await opts.youtubePlayable(youtubeId(e.url)) : null;
     if (playable === false) return { ok: false, reason: 'YouTube player refuses embedded playback ("This video is unavailable")' };
+    // A watch page without its upload date says nothing about the video: oEmbed
+    // has already found it live and by the official account. GitHub's runner is
+    // served such a page for videos a home connection reads dated (2026-10-28),
+    // so a missing date is "could not confirm", never dead.
+    if (!publishedAt) return { ok: false, unknown: true, reason: 'could not confirm: YouTube upload date unreadable' };
     if (playable !== true) return { ok: false, unknown: true, reason: 'YouTube embedded playback could not be confirmed' };
   }
   // The account's display name for the caption; a name, never post content.
   const accountName = e.platform === 'youtube' ? (body.author_name || null) : null;
   return { ok: true, reason: null, publishedAt, accountName };
+}
+
+// The weekly job's public log names no embed, but the CAUSE of each failure is
+// safe to print and tells the owner which check to look at. Fixed labels only:
+// nothing from the reason itself (a URL, a handle) reaches the log.
+const CAUSES = [
+  [/^accountSourceUrl returned (\d{3})$/, m => `festival site answered ${m[1]}`],
+  [/^accountSourceUrl does not link/, () => 'festival site no longer links the account'],
+  [/^oEmbed returned (\d{3}) /, m => `oEmbed answered ${m[1]}`],
+  [/^oEmbed returned (non-JSON|no embed)/, () => 'oEmbed returned no embed'],
+  [/^post is not by the official account$/, () => 'author did not match'],
+  [/^YouTube player refuses/, () => 'YouTube player refused playback'],
+];
+export function failureCause(reason) {
+  for (const [re, label] of CAUSES) { const m = String(reason || '').match(re); if (m) return label(m); }
+  return 'record invalid';
+}
+// "2 author did not match, 1 festival site answered 202", largest first.
+export function causeTally(reasons) {
+  const n = new Map();
+  for (const r of reasons) { const c = failureCause(r); n.set(c, (n.get(c) || 0) + 1); }
+  return [...n].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([c, k]) => `${k} ${c}`).join(', ');
 }
 
 // ── Selection + caps ──────────────────────────────────────────────────────
@@ -257,14 +306,24 @@ export function selectEmbeds(festivalId, { curated, verified }, notBefore = null
     // An earlier edition's post is not this page's; playlists carry no date.
     && (e.platform === 'spotify' || !notBefore || (res(e.url).publishedAt && res(e.url).publishedAt >= notBefore)))
     .map(e => res(e.url).accountName ? { ...e, accountName: res(e.url).accountName } : e);
+  // Recap posts have their own day-by-day budget, so they never crowd out the
+  // edition's lineup and announcement posts.
+  const recaps = list.filter(e => e.kind === 'recap');
+  const group = arr => ({ youtube: arr.filter(e => e.platform === 'youtube').slice(0, RECAP_CAPS.youtube), social: arr.filter(e => e.platform === 'instagram' || e.platform === 'x').slice(0, RECAP_CAPS.social) });
+  const dayNums = [...new Set(recaps.filter(e => e.day).map(e => e.day))].sort((a, b) => a - b);
+  const recap = { days: dayNums.map(day => ({ day, ...group(recaps.filter(e => e.day === day)) })), weekend: group(recaps.filter(e => !e.day)) };
+  list.splice(0, list.length, ...list.filter(e => e.kind !== 'recap'));
   const by = p => list.filter(e => e.platform === p);
   const rank = arr => arr.map((e, i) => ({ e, i })).sort((a, b) => (KIND_RANK[a.e.kind] ?? 9) - (KIND_RANK[b.e.kind] ?? 9) || a.i - b.i).map(x => x.e);
   return {
     youtube: rank(by('youtube')).slice(0, CAPS.youtube),
     social: rank(list.filter(e => e.platform === 'instagram' || e.platform === 'x')).slice(0, CAPS.social),
     spotify: rank(by('spotify')).slice(0, CAPS.spotify),
+    recap,
   };
 }
+// Every recap embed a selection shows, in page order.
+export const recapItems = s => s.recap ? [...s.recap.days.flatMap(g => [...g.youtube, ...g.social]), ...s.recap.weekend.youtube, ...s.recap.weekend.social] : [];
 // The record the checker writes for one embed. A could-not-confirm result
 // never flips an embed that was verified for this same record.
 export function resultRecord(fid, e, r, prior, today) {
@@ -282,7 +341,7 @@ export function embedShownOn(html, e) {
     : e.platform === 'spotify' ? spotifyPlaylist(e.url) : null;
   return !!key && String(html || '').includes(key);
 }
-export const embedCount = s => s.youtube.length + s.social.length + s.spotify.length;
+export const embedCount = s => s.youtube.length + s.social.length + s.spotify.length + recapItems(s).length;
 
 // ── Rendering ─────────────────────────────────────────────────────────────
 const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -295,7 +354,12 @@ function accountLabel(e) {
     const raw = String(e.officialAccount).replace(/[?#].*$/, '').replace(/\/+$/, '').split('/').pop();
     return '@' + (raw && raw.toLowerCase() === k ? raw : k);
   }
-  if (e.platform === 'youtube') return k.startsWith('@') ? k : (e.accountName || 'the official channel');
+  if (e.platform === 'youtube') {
+    if (!k.startsWith('@')) return e.accountName || 'the official channel';
+    // As the channel writes it (@Insomniac), not the lowercased match key.
+    const raw = String(e.officialAccount).match(/\/(@[A-Za-z0-9._-]+)/)?.[1];
+    return raw && raw.toLowerCase() === k ? raw : k;
+  }
   return e.accountName || 'the official account';
 }
 const caption = (e, festivalName) => {
@@ -313,11 +377,12 @@ const caption = (e, festivalName) => {
 // Before the tap the post is described only from what we already hold: our
 // curated kind and the date decoded from the post's own id (UTC). Nothing of
 // the post itself (text, image, counts) is copied onto the page.
-const KIND_LABEL = { lineup: 'Lineup', announcement: 'Announcement', photo: 'Photo', carousel: 'Photo set', video: 'Video', aftermovie: 'Aftermovie', trailer: 'Trailer' };
+const KIND_LABEL = { lineup: 'Lineup', announcement: 'Announcement', photo: 'Photo', carousel: 'Photo set', video: 'Video', aftermovie: 'Aftermovie', trailer: 'Trailer', recap: 'Recap' };
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 export function postSummary(e) {
   const iso = e.platform === 'instagram' ? instagramPublishedAt(e.url) : e.platform === 'x' ? xPublishedAt(e.url) : null;
-  const kind = KIND_LABEL[e.kind] || null;
+  // A recap that shows one act is described by that act's name.
+  const kind = e.artist || KIND_LABEL[e.kind] || null;
   if (!iso) return kind;
   const [y, m, d] = iso.split('-').map(Number);
   // Non-breaking spaces keep the date on one line at 320px.
@@ -400,17 +465,33 @@ const LOADER = `    <script>
 })();
     </script>`;
 
-export function embedsSection(festivalName, sel) {
+// With recap posts, the section leads with them, day by day and then the
+// whole weekend, and the rest follows under its usual name. `dayTitle(n)`
+// names a festival day ("Friday, November 6").
+export function embedsSection(festivalName, sel, dayTitle = d => `Day ${d}`) {
   if (!embedCount(sel)) return '';
-  const items = [...sel.youtube, ...sel.social, ...sel.spotify].map(e => renderOne(e, festivalName)).join('\n');
-  return `
+  const render = arr => arr.map(e => renderOne(e, festivalName)).join('\n');
+  const rest = [...sel.youtube, ...sel.social, ...sel.spotify];
+  if (!recapItems(sel).length) return `
   <section id="watch" class="watch" aria-labelledby="watch-h">
     <h2 id="watch-h">Watch &amp; listen</h2>
     <p class="note">From ${esc(festivalName)}'s official accounts.</p>
-${items}
+${render(rest)}
+${LOADER}
+  </section>`;
+  const groups = [
+    ...sel.recap.days.map(g => ({ title: `Day ${g.day} · ${dayTitle(g.day)}`, items: [...g.youtube, ...g.social] })),
+    { title: sel.recap.days.length ? 'The whole weekend' : null, items: [...sel.recap.weekend.youtube, ...sel.recap.weekend.social] },
+    { title: rest.length ? 'Watch &amp; listen' : null, items: rest, raw: true },
+  ].filter(g => g.items.length);
+  return `
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">${esc(festivalName)} recap</h2>
+    <p class="note">From ${esc(festivalName)}'s official accounts.</p>
+${groups.map(g => (g.title ? `    <h3>${g.raw ? g.title : esc(g.title)}</h3>\n` : '') + render(g.items)).join('\n')}
 ${LOADER}
   </section>`;
 }
 
 // The sitemap fingerprint includes exactly what the page shows.
-export const embedFingerprintInput = sel => [...sel.youtube, ...sel.social, ...sel.spotify].map(e => `${e.platform}:${e.url}`);
+export const embedFingerprintInput = sel => [...recapItems(sel).map(e => `${e.platform}:${e.url}:${e.day || ''}:${e.artist || ''}`), ...sel.youtube, ...sel.social, ...sel.spotify].map(e => typeof e === 'string' ? e : `${e.platform}:${e.url}`);

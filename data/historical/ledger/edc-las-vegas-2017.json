@@ -1,0 +1,161 @@
+{
+  "id": "edc-las-vegas-2017",
+  "method": "official_lineup_html",
+  "official": "https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+  "chosen": "20170701091308",
+  "archivedUrl": "https://web.archive.org/web/20170701091308/https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+  "sha256": "da88e6b2211312e225d4a243829681dd54bff43d5205a0401006bca9e3a7004c",
+  "title": "LINEUP - EDC Las Vegas",
+  "relayedVia": "firecrawl",
+  "datesPrinted": {
+    "archivedUrl": "https://web.archive.org/web/20170615125312/https://lasvegas.electricdaisycarnival.com/",
+    "captureTimestamp": "20170615125312",
+    "sha256": "888e98fffe0d96d05b110f66d743c4f075a43c6222185e4dbf6390bd1007c8c0",
+    "title": "EDC Las Vegas | June 16–18, 2017 | Las Vegas Motor Speedway"
+  },
+  "tabs": [
+    "Alphabetical 311"
+  ],
+  "stageOrder": [],
+  "crossTab": [
+    "Secret Guest: alphabetical ×7; days none",
+    "Green Velvet: alphabetical ×2; days none",
+    "Gareth Emery: alphabetical ×2; days none",
+    "Andrew Luce: alphabetical ×2; days none",
+    "Autograf: alphabetical ×2; days none",
+    "Alan Walker: alphabetical ×2; days none",
+    "Bonnie X Clyde: alphabetical ×2; days none",
+    "Des McMahon: alphabetical ×2; days none"
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20170430120714",
+      "notFiled": "relay: capture 20170430120714 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170507225642",
+      "notFiled": "relay: capture 20170507225642 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170513065140",
+      "notFiled": "relay: capture 20170513065140 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170516095911",
+      "notFiled": "relay: capture 20170516095911 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170519122328",
+      "notFiled": "relay: capture 20170519122328 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170527151833",
+      "notFiled": "relay: capture 20170527151833 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170606081855",
+      "notFiled": "relay: capture 20170606081855 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170609022532",
+      "notFiled": "relay: capture 20170609022532 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170614190555",
+      "notFiled": "relay: capture 20170614190555 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170617184305",
+      "notFiled": "relay: capture 20170617184305 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170619165048",
+      "archivedUrl": "https://web.archive.org/web/20170619165048/https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "ed87200a99fb31f3047610cf73635647a50f17602c146a6df8574e21079931eb",
+      "bytes": 458603,
+      "via": "firecrawl",
+      "title": "LINEUP - EDC Las Vegas",
+      "valid": true,
+      "titled": true,
+      "dated": false,
+      "undated": true,
+      "days": [],
+      "billings": 298,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20170621061911",
+      "archivedUrl": "https://web.archive.org/web/20170621061911/https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "0c8eb783486dcb09583bd5c3e6317c9809454b9febd60c0a92eb27df14c6e922",
+      "bytes": 457605,
+      "via": "firecrawl",
+      "title": "LINEUP - EDC Las Vegas",
+      "valid": true,
+      "titled": true,
+      "dated": false,
+      "undated": true,
+      "days": [],
+      "billings": 298,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20170625194903",
+      "archivedUrl": "https://web.archive.org/web/20170625194903/https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "5efe40c81f9b613a8c7dee429d497663df1291ede49331573f8c6f9deed097ab",
+      "bytes": 461176,
+      "via": "firecrawl",
+      "title": "LINEUP - EDC Las Vegas",
+      "valid": true,
+      "titled": true,
+      "dated": false,
+      "undated": true,
+      "days": [],
+      "billings": 298,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20170701091308",
+      "archivedUrl": "https://web.archive.org/web/20170701091308/https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "da88e6b2211312e225d4a243829681dd54bff43d5205a0401006bca9e3a7004c",
+      "bytes": 461695,
+      "via": "firecrawl",
+      "title": "LINEUP - EDC Las Vegas",
+      "valid": true,
+      "titled": true,
+      "dated": false,
+      "undated": true,
+      "days": [],
+      "billings": 298,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": [
+    {
+      "day": null,
+      "stage": null,
+      "billing": "Secret Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

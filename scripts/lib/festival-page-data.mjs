@@ -41,6 +41,22 @@ export function plateFor(cfg, root = ROOT) {
 // cannot appear under a 2027 label as anything but a look-back. The /f/ page
 // is an index into Past Festivals, never a copy of it, so only the summary
 // travels, plus the date the newest official source was archived.
+// When an edition's record was last checked against its official source, and
+// how to say it. A Wayback capture is "archived"; an official_sources edition
+// also counts a re-hosted graphic's publish date, which is not an archive
+// date, so it says "latest source". historical.jsx's look-back header states
+// the same rule; test-past-lookbacks.mjs states it a third time, on purpose,
+// and holds the page and the app to it.
+export function sourceDate(edition) {
+  const pv = edition?.provenance || {};
+  const ts = (pv.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || c.published?.replace(/-/g, ''))
+    .filter(t => /^\d{8}/.test(t || '')).sort().pop();
+  if (!ts) return null;
+  const latest = pv.extractionMethod === 'official_sources';
+  return { date: `${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`,
+    label: latest ? 'Latest official source' : 'Official source archived' };
+}
+
 export function pastEditionsFor(id, root = ROOT) {
   const idx = path.join(root, 'data', 'historical', 'index.json');
   if (!existsSync(idx)) return [];
@@ -51,17 +67,19 @@ export function pastEditionsFor(id, root = ROOT) {
     .map(e => {
       const lineupOnly = e.completeness === 'lineup_only';
       const file = path.join(root, 'data', 'historical', 'editions', `${e.id}.json`);
-      const caps = existsSync(file) ? (JSON.parse(readFileSync(file, 'utf8')).provenance?.captures || []) : [];
-      const ts = caps.map(c => c.captureTimestamp || c.pageCapture || c.imageCapture).filter(t => /^\d{8}/.test(t || '')).sort().pop();
+      const src = existsSync(file) ? sourceDate(JSON.parse(readFileSync(file, 'utf8'))) : null;
       return {
         id: e.id, name: e.name, year: e.year, lineupOnly,
+        // Stages the official schedule had that are not imported (selected_stages).
+        // Only such an edition adds the key, so every other page keeps its fp.
+        ...(e.missingStages && { missingStages: e.missingStages }),
         first: e.days?.[0]?.date ?? null, last: e.days?.[e.days.length - 1]?.date ?? null,
         stages: lineupOnly ? null : e.counts?.stages ?? null,
         artists: e.counts?.artists ?? null,
         // A lineup_only edition has no sets because none were archived, not
         // because the festival had none: it never says "0 sets".
         sets: lineupOnly ? null : e.counts?.sets ?? null,
-        archived: ts ? `${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}` : null,
+        archived: src?.date ?? null, sourceLabel: src?.label ?? null,
       };
     })
     .sort((a, b) => b.year - a.year);
@@ -90,6 +108,25 @@ export function hoursMatchEdition(h, dates) {
   return +year === ed.year && days.some(m => m[1].toLowerCase() === ed.mon && +m[2] === ed.day);
 }
 export const editionHours = cfg => (cfg && hoursMatchEdition(cfg.hours, cfg.dates) ? cfg.hours : null);
+
+// "Checked on <date>" (SPEC-206 C): the newest date a source for this edition
+// was actually read, taken only from the observedAt fields the data records
+// for the facts the page shows (official site, lineup, set times, map, hours).
+// Never TODAY, never the page's lastmod, and never the colour source in
+// cfg.print, so the stamp cannot claim a check that did not happen. A
+// festival with no recorded read gets no stamp.
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
+export function checkedOn(cfg) {
+  if (!cfg) return null;
+  // Only a source the page lists (it has a link) counts, so the stamp's date
+  // is always the read date printed on one of the page's Sources rows. It is
+  // the NEWEST read, so the page says "Sources last checked on", never that
+  // every source was checked that day.
+  const site = cfg.officialEvent && cfg.officialEvent.website ? cfg.officialEvent : null;
+  const reads = [site, cfg.lineupSource, cfg.scheduleSource, cfg.mapSource, editionHours(cfg)]
+    .filter(s => s && (s.url || s.website)).map(s => s.observedAt).filter(d => ISO_DAY.test(String(d || '')));
+  return reads.sort().pop() || null;
+}
 
 // Amenity TYPES and counts, never positions: a list of what the app carries
 // says nothing about where anything is, so it needs no verified geometry.

@@ -1,0 +1,193 @@
+{
+  "id": "acl-2018",
+  "method": "official_sources",
+  "official": "https://www.aclfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2018-10-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20181113003731/https://www.aclfestival.com/schedule-weekend-one/",
+          "captureTimestamp": "20181113003731",
+          "printed": "Friday Oct 5th",
+          "sha256": "fbcfb25d68d0b472519e8ea9f60d00985199b8aabee5df29f0743f5b283d9d00",
+          "bytes": 661468,
+          "rows": 39,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2018-10-06",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20181113003731/https://www.aclfestival.com/schedule-weekend-one/",
+          "captureTimestamp": "20181113003731",
+          "printed": "Saturday Oct 6th",
+          "sha256": "fbcfb25d68d0b472519e8ea9f60d00985199b8aabee5df29f0743f5b283d9d00",
+          "bytes": 661468,
+          "rows": 39,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2018-10-07",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20181113003731/https://www.aclfestival.com/schedule-weekend-one/",
+          "captureTimestamp": "20181113003731",
+          "printed": "Sunday Oct 7th",
+          "sha256": "fbcfb25d68d0b472519e8ea9f60d00985199b8aabee5df29f0743f5b283d9d00",
+          "bytes": 661468,
+          "rows": 39,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2018-10-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20181206131718/https://www.aclfestival.com/schedule-weekend-two/",
+          "captureTimestamp": "20181206131718",
+          "printed": "Friday Oct 12th",
+          "sha256": "9e99ea3d8862e420cc17beb48b767ba03f679e44149f245e51e31e832d3d8ea0",
+          "bytes": 653119,
+          "rows": 37,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2018-10-13",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20181206131718/https://www.aclfestival.com/schedule-weekend-two/",
+          "captureTimestamp": "20181206131718",
+          "printed": "Saturday Oct 13th",
+          "sha256": "9e99ea3d8862e420cc17beb48b767ba03f679e44149f245e51e31e832d3d8ea0",
+          "bytes": 653119,
+          "rows": 39,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2018-10-14",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20181206131718/https://www.aclfestival.com/schedule-weekend-two/",
+          "captureTimestamp": "20181206131718",
+          "printed": "Sunday Oct 14th",
+          "sha256": "9e99ea3d8862e420cc17beb48b767ba03f679e44149f245e51e31e832d3d8ea0",
+          "bytes": 653119,
+          "rows": 38,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Miller Lite",
+      "start": "12:45",
+      "end": "13:45",
+      "billing": "LEWIS CAPALDI",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 5,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 6,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    }
+  ]
+}

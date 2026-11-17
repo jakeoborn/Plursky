@@ -1,0 +1,412 @@
+{
+  "id": "acl-2023",
+  "method": "official_image_transcription",
+  "official": "https://www.aclfestival.com/schedule",
+  "window": [
+    "20230801",
+    "20231231"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20230817235044",
+      "archivedUrl": "https://web.archive.org/web/20230817235044/https://www.aclfestival.com/schedule",
+      "sha256": "47fbf539a1d607b5072c7f4ecf15ba2df52321086bca78c394a0041763a8b62a",
+      "images": [
+        "64de58ba05e541673f88012b_ACL_FestivalSchedule_SUN_Weekend-2.png",
+        "64de58c3647a9b3d9a1d12a3_ACL_FestivalSchedule_SAT_Weekend-2.png",
+        "64de58d0c7d816d1f659a9be_ACL_FestivalSchedule_FRI_Weekend-2.png",
+        "64de85b5d7a403dad99bcba8_ACL_FestivalSchedule_SUN_Weekend-1-V2.png",
+        "64de59001534bb0fc2bd23c5_ACL_FestivalSchedule_SAT_Weekend-1.png",
+        "64de5921428a7c1f7f24b611_ACL_FestivalSchedule_FRI_Weekend-1.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20230819180839",
+      "archivedUrl": "https://web.archive.org/web/20230819180839/https://www.aclfestival.com/schedule",
+      "sha256": "3b2e75aa20f861822b7cb9baa3fc3c0c55346aaa56f8bc03f31e2d301d76efd7",
+      "images": [
+        "64de58ba05e541673f88012b_ACL_FestivalSchedule_SUN_Weekend-2.png",
+        "64de58c3647a9b3d9a1d12a3_ACL_FestivalSchedule_SAT_Weekend-2.png",
+        "64de58d0c7d816d1f659a9be_ACL_FestivalSchedule_FRI_Weekend-2.png",
+        "64de85b5d7a403dad99bcba8_ACL_FestivalSchedule_SUN_Weekend-1-V2.png",
+        "64de59001534bb0fc2bd23c5_ACL_FestivalSchedule_SAT_Weekend-1.png",
+        "64de5921428a7c1f7f24b611_ACL_FestivalSchedule_FRI_Weekend-1.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20230920201625",
+      "archivedUrl": "https://web.archive.org/web/20230920201625/https://www.aclfestival.com/schedule",
+      "sha256": "e59db74238d92fe1eade4a58b98bb1d3ffbb37ccd98222ffdbef9f065ee744d5",
+      "images": [
+        "64de58ba05e541673f88012b_ACL_FestivalSchedule_SUN_Weekend-2.png",
+        "64de58c3647a9b3d9a1d12a3_ACL_FestivalSchedule_SAT_Weekend-2.png",
+        "64de58d0c7d816d1f659a9be_ACL_FestivalSchedule_FRI_Weekend-2.png",
+        "64de85b5d7a403dad99bcba8_ACL_FestivalSchedule_SUN_Weekend-1-V2.png",
+        "64de59001534bb0fc2bd23c5_ACL_FestivalSchedule_SAT_Weekend-1.png",
+        "64de5921428a7c1f7f24b611_ACL_FestivalSchedule_FRI_Weekend-1.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20231009164039",
+      "archivedUrl": "https://web.archive.org/web/20231009164039/https://www.aclfestival.com/schedule",
+      "sha256": "081b1c45d989eb3ddbb5daba62dc185b3c5eca32302b8d44e5161e5c559ffb40",
+      "images": [
+        "651c8be0950d6222fdb6bea0_ACL_FestivalSchedule_SUN_Weekend-2.png",
+        "651c8bd9dcf442d929eb4e61_ACL_FestivalSchedule_SAT_Weekend-2.png",
+        "6520427b49f0042f5bce48a5_ACL_Festival_Schedule_FRI_Weekend-2-1080x1350.png",
+        "6522ff6b3cc18faf8ef1488c_ACL_FestivalSchedule_SUN_Weekend-1080x1350.png",
+        "6521a02cd5b966507b0cfb35_ACL_Festival_Schedule_SAT_Weekend-1-1080x1350.png",
+        "652042606505b9150cd2e61f_ACL_FestivalSchedule_FRI_Weekend-1.png"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2023-10-06",
+      "pageCapture": "20231009164039",
+      "pageArchivedUrl": "https://web.archive.org/web/20231009164039/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/652042606505b9150cd2e61f_ACL_FestivalSchedule_FRI_Weekend-1.png",
+      "imageCapture": "20231028193734",
+      "imageArchivedUrl": "https://web.archive.org/web/20231028193734/https://assets-global.website-files.com/626ab670470f43cac3339500/652042606505b9150cd2e61f_ACL_FestivalSchedule_FRI_Weekend-1.png",
+      "sha256": "9a2607634939e6da8394f1942979511c0f769db6f8c0521790bf226890fd7317",
+      "bytes": 158346,
+      "contentType": "image/png",
+      "cacheFile": "e8132c0382c6cc0bae965d87.bin",
+      "revisions": [
+        {
+          "file": "64de5921428a7c1f7f24b611_ACL_FestivalSchedule_FRI_Weekend-1.png",
+          "firstSeen": "20230817235044"
+        },
+        {
+          "file": "652042606505b9150cd2e61f_ACL_FestivalSchedule_FRI_Weekend-1.png",
+          "firstSeen": "20231009164039"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2023-10-07",
+      "pageCapture": "20231009164039",
+      "pageArchivedUrl": "https://web.archive.org/web/20231009164039/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/6521a02cd5b966507b0cfb35_ACL_Festival_Schedule_SAT_Weekend-1-1080x1350.png",
+      "imageCapture": "20231028193728",
+      "imageArchivedUrl": "https://web.archive.org/web/20231028193728/https://assets-global.website-files.com/626ab670470f43cac3339500/6521a02cd5b966507b0cfb35_ACL_Festival_Schedule_SAT_Weekend-1-1080x1350.png",
+      "sha256": "e7139204b0ad2adf1bb915950bc419934465cb6af84c9a5c045b7a7af771b394",
+      "bytes": 175691,
+      "contentType": "image/png",
+      "cacheFile": "aee85379a9619c9c82fb810f.bin",
+      "revisions": [
+        {
+          "file": "64de59001534bb0fc2bd23c5_ACL_FestivalSchedule_SAT_Weekend-1.png",
+          "firstSeen": "20230817235044"
+        },
+        {
+          "file": "6521a02cd5b966507b0cfb35_ACL_Festival_Schedule_SAT_Weekend-1-1080x1350.png",
+          "firstSeen": "20231009164039"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2023-10-08",
+      "pageCapture": "20231009164039",
+      "pageArchivedUrl": "https://web.archive.org/web/20231009164039/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/6522ff6b3cc18faf8ef1488c_ACL_FestivalSchedule_SUN_Weekend-1080x1350.png",
+      "imageCapture": "20231207174329",
+      "imageArchivedUrl": "https://web.archive.org/web/20231207174329/https://assets-global.website-files.com/626ab670470f43cac3339500/6522ff6b3cc18faf8ef1488c_ACL_FestivalSchedule_SUN_Weekend-1080x1350.png",
+      "sha256": "cd06839526c8cd1164919c5ce65ead6a45d831d1c54c921124efde600ca101fc",
+      "bytes": 174796,
+      "contentType": "image/png",
+      "cacheFile": "d2019da698a3b5da81b13796.bin",
+      "revisions": [
+        {
+          "file": "64de85b5d7a403dad99bcba8_ACL_FestivalSchedule_SUN_Weekend-1-V2.png",
+          "firstSeen": "20230817235044"
+        },
+        {
+          "file": "6522ff6b3cc18faf8ef1488c_ACL_FestivalSchedule_SUN_Weekend-1080x1350.png",
+          "firstSeen": "20231009164039"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2023-10-13",
+      "pageCapture": "20231009164039",
+      "pageArchivedUrl": "https://web.archive.org/web/20231009164039/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/6520427b49f0042f5bce48a5_ACL_Festival_Schedule_FRI_Weekend-2-1080x1350.png",
+      "imageCapture": "20231028193724",
+      "imageArchivedUrl": "https://web.archive.org/web/20231028193724/https://assets-global.website-files.com/626ab670470f43cac3339500/6520427b49f0042f5bce48a5_ACL_Festival_Schedule_FRI_Weekend-2-1080x1350.png",
+      "sha256": "174d4dfaaa5332711baab50f9f8d7612711bf17d023aff4aa3bfb45ddcc52806",
+      "bytes": 151416,
+      "contentType": "image/png",
+      "cacheFile": "92a4015022e60c8213299b4c.bin",
+      "revisions": [
+        {
+          "file": "64de58d0c7d816d1f659a9be_ACL_FestivalSchedule_FRI_Weekend-2.png",
+          "firstSeen": "20230817235044"
+        },
+        {
+          "file": "6520427b49f0042f5bce48a5_ACL_Festival_Schedule_FRI_Weekend-2-1080x1350.png",
+          "firstSeen": "20231009164039"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2023-10-14",
+      "pageCapture": "20231009164039",
+      "pageArchivedUrl": "https://web.archive.org/web/20231009164039/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/651c8bd9dcf442d929eb4e61_ACL_FestivalSchedule_SAT_Weekend-2.png",
+      "imageCapture": "20231207174319",
+      "imageArchivedUrl": "https://web.archive.org/web/20231207174319/https://assets-global.website-files.com/626ab670470f43cac3339500/651c8bd9dcf442d929eb4e61_ACL_FestivalSchedule_SAT_Weekend-2.png",
+      "sha256": "e6559993038996801c54b0a1142c63de044cbbf695c2ff91508d3c27cf5b5247",
+      "bytes": 169120,
+      "contentType": "image/png",
+      "cacheFile": "2910b4165324977c05ed1809.bin",
+      "revisions": [
+        {
+          "file": "64de58c3647a9b3d9a1d12a3_ACL_FestivalSchedule_SAT_Weekend-2.png",
+          "firstSeen": "20230817235044"
+        },
+        {
+          "file": "651c8bd9dcf442d929eb4e61_ACL_FestivalSchedule_SAT_Weekend-2.png",
+          "firstSeen": "20231009164039"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2023-10-15",
+      "pageCapture": "20231009164039",
+      "pageArchivedUrl": "https://web.archive.org/web/20231009164039/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f43cac3339500/651c8be0950d6222fdb6bea0_ACL_FestivalSchedule_SUN_Weekend-2.png",
+      "imageCapture": "20231028193717",
+      "imageArchivedUrl": "https://web.archive.org/web/20231028193717/https://assets-global.website-files.com/626ab670470f43cac3339500/651c8be0950d6222fdb6bea0_ACL_FestivalSchedule_SUN_Weekend-2.png",
+      "sha256": "d4624cfd13bf45085c528ab9fa92d23e53270b046e512f2648452bfa19bcf410",
+      "bytes": 166837,
+      "contentType": "image/png",
+      "cacheFile": "9e24672ff8f0fbccf42b4a2a.bin",
+      "revisions": [
+        {
+          "file": "64de58ba05e541673f88012b_ACL_FestivalSchedule_SUN_Weekend-2.png",
+          "firstSeen": "20230817235044"
+        },
+        {
+          "file": "651c8be0950d6222fdb6bea0_ACL_FestivalSchedule_SUN_Weekend-2.png",
+          "firstSeen": "20231009164039"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "14:40",
+      "end": "15:10",
+      "billing": "TACOS OF TEXAS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "16:45",
+      "end": "17:15",
+      "billing": "INTO THE MULTIVERSE THE REVIVALISTS X SUPERMUSH",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "18:10",
+      "end": "19:00",
+      "billing": "DAVE GROHL & BRENÉ BROWN ON THE MUSIC THAT MOVES US",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "14:00",
+      "end": "14:30",
+      "billing": "PAUSE/PLAY",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "16:00",
+      "end": "16:45",
+      "billing": "INTOXICATING ART THERAPY WITH DRUNKDRAWN",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "14:45",
+      "end": "15:15",
+      "billing": "EXTRAGRAMS! ICONS: A CELEBRITY DRAG SHOW",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "16:45",
+      "end": "17:15",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "14:40",
+      "end": "15:10",
+      "billing": "BLACK AUSTIN MATTERS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "16:45",
+      "end": "17:15",
+      "billing": "LOUDER THAN A RIOT",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "18:00",
+      "end": "18:40",
+      "billing": "COLD CUTS WITH COCO & RICKY",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 5,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 5,
+      "stage": "BONUS TRACKS",
+      "start": "14:00",
+      "end": "14:30",
+      "billing": "THE BREAKS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 5,
+      "stage": "BONUS TRACKS",
+      "start": "16:00",
+      "end": "16:30",
+      "billing": "DOING FRESH THINGS OUTDOOR VOICES X THEBROSFRESH",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 5,
+      "stage": "BONUS TRACKS",
+      "start": "18:10",
+      "end": "18:40",
+      "billing": "SPECIAL GUEST",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 6,
+      "stage": "BONUS TRACKS",
+      "start": "14:45",
+      "end": "15:15",
+      "billing": "SPECIAL GUEST",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "BONUS TRACKS",
+      "start": "16:45",
+      "end": "17:15",
+      "billing": "SUNDAY SESSIONS ATX",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "BONUS TRACKS",
+      "start": "18:15",
+      "end": "18:45",
+      "billing": "EXTRAGRAMS! THE DRAG DISCO",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    }
+  ]
+}

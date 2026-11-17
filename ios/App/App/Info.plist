@@ -53,7 +53,9 @@
 	     time + GPS, which is what powers auto-tagging by artist and stage.
 	     Read access only — we never write to the user's library. -->
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Plursky uses your photo library so you can attach photos and videos to the sets you caught at the festival.</string>
+	<string>Plursky uses your photo library to find the photos and videos you took during festival nights and attach them to the sets you caught.</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Plursky uses Apple Music to build playlists from the sets you save and the songs you caught at the festival.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Plursky uses the microphone with ShazamKit to identify the song currently playing at the stage.</string>
 	<key>ITSAppUsesNonExemptEncryption</key>

@@ -310,6 +310,8 @@
     locationShort: "Hollywood Park",
     dates:     "Aug 1–2, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#0CFD0E", source: { url: "https://www.hardsummer.com/wp-content/assets/css/hardsummer.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "a{color}, .button{background-color}, active nav link, blockquote, .card__category (16 uses)", confidence: "high" }, note: "The per-festival stylesheet of Insomniac's shared 'festival' theme sets every link, primary button and category label to this green; no theme-color meta." },
     officialStages: ["HARD", "HARDER", "Green", "Purple", "Pink", "Ice Cream Truck", "Beatbox Art Car"],
     officialEvent: {
       website: "https://www.hardsummer.com/",
@@ -396,6 +398,11 @@
     // x/y below silently shifts. Re-crop the source and you MUST re-register
     // all seven stages. Same rule that bit acl-park.webp.
     mapImage: "hard-summer-2026.webp",
+    // The same art fitted to the ground by its own street ties (not stage
+    // anchors): scripts/build-geo-plate.py over map-sources/hard-summer-2026-geo-ties.json.
+    // The real map lays this plate down at its bounds; stages stay pending.
+    mapGeoref: { image: "geo-maps/hard-summer-2026.webp", bounds: [-118.3450929, 33.9478585, -118.3342093, 33.957218], model: "affine",
+                 ties: "map-sources/hard-summer-2026-geo-ties.json", rmsM: 3.8, looRmsM: 21.8 },
 
     // The festival's OWN map page, linked (never embedded) by the /f/ page:
     // official publication is provenance, not reuse rights. mapYear is the

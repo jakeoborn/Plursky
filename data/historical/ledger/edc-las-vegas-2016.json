@@ -1,0 +1,152 @@
+{
+  "id": "edc-las-vegas-2016",
+  "method": "official_lineup_html",
+  "official": "https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+  "chosen": "20161031113516",
+  "archivedUrl": "https://web.archive.org/web/20161031113516/https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+  "sha256": "35e0cf1979566c072e816a04899c66b1d5691d0a76fabb7753a6d193de4f90a6",
+  "title": "LINEUP - EDC Las Vegas 2016",
+  "relayedVia": "firecrawl",
+  "datesPrinted": {
+    "archivedUrl": "https://web.archive.org/web/20160616022834/https://lasvegas.electricdaisycarnival.com/",
+    "captureTimestamp": "20160616022834",
+    "sha256": "b42470f0da2ba6e5956a02b97129a05fdce7ea1efce2f633203189f5e1f8d4b0",
+    "title": "EDC Las Vegas | June 17–19, 2016 | Las Vegas Motor Speedway"
+  },
+  "tabs": [
+    "Alphabetical 309"
+  ],
+  "stageOrder": [],
+  "crossTab": [
+    "Martin Solveig: alphabetical ×2; days none",
+    "Ookay: alphabetical ×2; days none",
+    "Nightstalker: alphabetical ×2; days none",
+    "Fallen: alphabetical ×3; days none",
+    "Fritz Carlton: alphabetical ×4; days none",
+    "Sacha Robotti: alphabetical ×2; days none",
+    "LondonBridge: alphabetical ×2; days none",
+    "Alex Ayers: alphabetical ×4; days none",
+    "Go Freek: alphabetical ×2; days none",
+    "Umek: alphabetical ×2; days none",
+    "Chris Liebing: alphabetical ×2; days none",
+    "Lane 8: alphabetical ×2; days none",
+    "Doc Martin: alphabetical ×2; days none",
+    "Matt Black: alphabetical ×2; days none",
+    "Billy Kenny: alphabetical ×2; days none",
+    "Landis LaPace: alphabetical ×2; days none",
+    "Ravell: alphabetical ×2; days none",
+    "Alex Ayers B2B Fritz Carlton: alphabetical ×2; days none",
+    "Brillz: alphabetical ×2; days none",
+    "Pilo: alphabetical ×3; days none",
+    "Etnik: alphabetical ×2; days none"
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20160525212645",
+      "notFiled": "relay: capture 20160525212645 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160526212645",
+      "notFiled": "relay: capture 20160526212645 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160529063911",
+      "notFiled": "relay: capture 20160529063911 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160604201444",
+      "notFiled": "relay: capture 20160604201444 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160612220533",
+      "notFiled": "relay: capture 20160612220533 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160619122954",
+      "notFiled": "relay: capture 20160619122954 of https://lasvegas.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160619185137",
+      "archivedUrl": "https://web.archive.org/web/20160619185137/https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "21693a2a82857c50c47cb1e1e6279ca9b3a5f7a833ba895da7faeb7d1df68ed8",
+      "bytes": 582752,
+      "via": "firecrawl",
+      "title": "LINEUP - EDC Las Vegas 2016",
+      "valid": true,
+      "titled": true,
+      "dated": false,
+      "undated": true,
+      "days": [],
+      "billings": 283,
+      "diffVsChosen": [
+        "removed by the final: Pan-Pot"
+      ]
+    },
+    {
+      "captureTimestamp": "20160624130846",
+      "archivedUrl": "https://web.archive.org/web/20160624130846/https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "02b89136d007606eb20b304d1a05f41c166022f2d66f81bb02e5d2d8f9ce1f24",
+      "bytes": 582786,
+      "via": "firecrawl",
+      "title": "LINEUP - EDC Las Vegas 2016",
+      "valid": true,
+      "titled": true,
+      "dated": false,
+      "undated": true,
+      "days": [],
+      "billings": 282,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20160704104256",
+      "archivedUrl": "https://web.archive.org/web/20160704104256/https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "276e5bb253309fcb9a6a7aaadb554e517514aadbf73439cf6a88dd4854e592ed",
+      "bytes": 581845,
+      "via": "firecrawl",
+      "title": "LINEUP - EDC Las Vegas 2016",
+      "valid": true,
+      "titled": true,
+      "dated": false,
+      "undated": true,
+      "days": [],
+      "billings": 282,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20161031113516",
+      "archivedUrl": "https://web.archive.org/web/20161031113516/https://lasvegas.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "35e0cf1979566c072e816a04899c66b1d5691d0a76fabb7753a6d193de4f90a6",
+      "bytes": 582598,
+      "via": "firecrawl",
+      "title": "LINEUP - EDC Las Vegas 2016",
+      "valid": true,
+      "titled": true,
+      "dated": false,
+      "undated": true,
+      "days": [],
+      "billings": 282,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": [
+    {
+      "day": null,
+      "stage": null,
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

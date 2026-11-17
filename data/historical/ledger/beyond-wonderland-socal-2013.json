@@ -1,0 +1,59 @@
+{
+  "id": "beyond-wonderland-socal-2013",
+  "method": "structured_html",
+  "official": "http://beyondwonderland.com/BW_2012/socal/lineup.php",
+  "window": [
+    "20130101",
+    "20131231"
+  ],
+  "template": "insomniac lineup.php",
+  "days": [
+    {
+      "day": 1,
+      "url": "http://beyondwonderland.com/BW_2012/socal/lineup.php",
+      "date": "2013-03-16",
+      "chosen": "20130525082855",
+      "archivedUrl": "https://web.archive.org/web/20130525082855/http://beyondwonderland.com/BW_2012/socal/lineup.php",
+      "sha256": "07131569ddc3739c654007898cf75c77eb6161f6a22dc7514c3e15cc4851987a",
+      "rows": 42,
+      "stages": {
+        "Queen's Domain": 9,
+        "Madhatter's Castle": 9,
+        "Chess Village": 10,
+        "Cheshire Woods": 6,
+        "Discovery Project": 8
+      }
+    }
+  ],
+  "chosen": "20130525082855",
+  "relayedVia": "firecrawl",
+  "skipped": [],
+  "considered": [
+    {
+      "captureTimestamp": "20130203190253",
+      "archivedUrl": "https://web.archive.org/web/20130203190253/http://beyondwonderland.com/BW_2012/socal/lineup.php",
+      "sha256": "cb1a6ad314efcfea1b6e2f21ca23d51dee4f72dce76e54de94e6c7e856887d85",
+      "bytes": 44776,
+      "via": "firecrawl",
+      "valid": false,
+      "rows": 0,
+      "problems": [
+        "no stage block prints 2013-03-16"
+      ],
+      "skipped": []
+    },
+    {
+      "captureTimestamp": "20130525082855",
+      "archivedUrl": "https://web.archive.org/web/20130525082855/http://beyondwonderland.com/BW_2012/socal/lineup.php",
+      "sha256": "07131569ddc3739c654007898cf75c77eb6161f6a22dc7514c3e15cc4851987a",
+      "bytes": 75612,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 42,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,138 @@
+{
+  "id": "edc-orlando-2015",
+  "method": "official_lineup_html",
+  "official": "https://orlando.electricdaisycarnival.com/experience/lineup/",
+  "chosen": "20151219232734",
+  "archivedUrl": "https://web.archive.org/web/20151219232734/https://orlando.electricdaisycarnival.com/experience/lineup/",
+  "sha256": "b3c60b5225b30010e224771232e775989d7f5303531349fce6e62c1b2b1c80f6",
+  "title": "LINEUP | EDC Orlando 2015",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 60",
+    "By Day 60"
+  ],
+  "stageOrder": [],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20150826183849",
+      "notFiled": "relay: capture 20150826183849 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150828012533",
+      "notFiled": "relay: capture 20150828012533 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150912063045",
+      "notFiled": "relay: capture 20150912063045 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150914161231",
+      "notFiled": "relay: capture 20150914161231 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150928102411",
+      "notFiled": "relay: capture 20150928102411 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20151009074905",
+      "notFiled": "relay: capture 20151009074905 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20151019080040",
+      "notFiled": "relay: capture 20151019080040 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20151027025914",
+      "notFiled": "relay: capture 20151027025914 of https://orlando.electricdaisycarnival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20151104085332",
+      "archivedUrl": "https://web.archive.org/web/20151104085332/https://orlando.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "c13d615d02b95d0713d701bcc1c145b7aaa8e38f692a53ec70dfa8639c89919a",
+      "bytes": 183477,
+      "via": "firecrawl",
+      "title": "LINEUP | EDC Orlando 2015",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, November 6",
+        "Saturday, November 7"
+      ],
+      "billings": 60,
+      "diffVsChosen": [
+        "added by the final: Gorgon City",
+        "removed by the final: Gorgon City (Live)"
+      ]
+    },
+    {
+      "captureTimestamp": "20151117040026",
+      "archivedUrl": "https://web.archive.org/web/20151117040026/https://orlando.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "f100a2643df74242f39f0132849638e10d49735b5c0e838472e07ecfd8ee1d15",
+      "bytes": 184135,
+      "via": "firecrawl",
+      "title": "LINEUP | EDC Orlando 2015",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, November 6",
+        "Saturday, November 7"
+      ],
+      "billings": 60,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20151126041950",
+      "archivedUrl": "https://web.archive.org/web/20151126041950/https://orlando.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "e9f70263ed84ef4ec32d7cad7628630c710036f957cc769426640b46e80c2169",
+      "bytes": 184163,
+      "via": "firecrawl",
+      "title": "LINEUP | EDC Orlando 2015",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, November 6",
+        "Saturday, November 7"
+      ],
+      "billings": 60,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20151219232734",
+      "archivedUrl": "https://web.archive.org/web/20151219232734/https://orlando.electricdaisycarnival.com/experience/lineup/",
+      "sha256": "b3c60b5225b30010e224771232e775989d7f5303531349fce6e62c1b2b1c80f6",
+      "bytes": 184030,
+      "via": "firecrawl",
+      "title": "LINEUP | EDC Orlando 2015",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, November 6",
+        "Saturday, November 7"
+      ],
+      "billings": 60,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

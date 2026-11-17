@@ -1,0 +1,184 @@
+{
+ "id": "acl-2022",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-10-07",
+   "sha256": "1af8a59344573f64901e3c9a2f92b04cd9ea07961cf9e4f6109fec50840a5a47",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20221021041421/https://assets-global.website-files.com/626ab670470f4322713394d1/63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T17:08:54.823Z",
+   "rowsConfirmed": 36,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2022, WEEKEND ONE FRIDAY, OCTOBER 7. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis. Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stage printed TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 30,
+   "corrections": [
+    "JAMES BLAKE: artist \"BIG GIGANTIC\" → \"JAMES BLAKE\"; stage \"TITO'S HANDMADE VODKA\" → \"HONDA\"",
+    "SZA: artist \"JAZMINE SULLIVAN 4:15 - 5:00/g) JAMES BLAKE 6:00 - 7:00kгg) SZA\" → \"SZA\"",
+    "CARLY RAE JEPSEN: artist \"BILLY STRINGS\" → \"CARLY RAE JEPSEN\"; stage \"T-MOBILE\" → \"BARTON SPRINGS\"",
+    "BIG GIGANTIC: artist \"NATHANIEL RATELIFF & THE NIGHT SWEATS\" → \"BIG GIGANTIC\"; stage \"AMERICAN EXPRESS\" → \"TITO'S HANDMADE VODKA\"",
+    "SILENT DISCO: artist \"SILENT DISCO POWERED BY QUIET EVENTS\" → \"SILENT DISCO\"",
+    "ELENA MOON PARK: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "SCHOOL OF ROCK: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "QBROTHERS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "ZACH BRYAN: artist \"NOAH CYRUS ZACH BRYAN\" → \"ZACH BRYAN\""
+   ],
+   "ocrMissed": [
+    "HONDA 16:15-17:00 JAZMINE SULLIVAN",
+    "T-MOBILE 19:00-20:00 BILLY STRINGS",
+    "AMERICAN EXPRESS 14:30-15:15 NOAH CYRUS",
+    "AMERICAN EXPRESS 18:00-19:00 NATHANIEL RATELIFF & THE NIGHT SWEATS",
+    "BONUS TRACKS 14:45-15:15 KUT: TACOS OF TEXAS",
+    "BONUS TRACKS 16:00-16:30 INTO THE MULTIVERSE: HEALING THROUGH MUSIC W/ NOAH CYRUS",
+    "BONUS TRACKS 18:00-18:30 BOB'S DANCE SHOP"
+   ],
+   "ocrExtra": [
+    "BARTON SPRINGS  CARLY RAE JEPSEN 7:00- 8:006g)  ⚠ no time line"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2022-10-08",
+   "sha256": "f25e5081d9498b5fa295af13e877031e84fa332374c95b74ec8cd5ab2abbd051",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20221021020431/https://assets-global.website-files.com/626ab670470f4322713394d1/6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T17:08:54.824Z",
+   "rowsConfirmed": 41,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2022, WEEKEND ONE SATURDAY, OCTOBER 8. Printed hour axis 11 AM to 10 PM; every start reads its meridiem off that axis. Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stage printed TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 39,
+   "corrections": [
+    "ADRIAN QUESADA'S BOLEROS PSICODÉLICOS: artist \"ADRIAN QUESADA'S BOLEROS PSICODELICOS\" → \"ADRIAN QUESADA'S BOLEROS PSICODÉLICOS\"",
+    "SILENT DISCO: artist \"SILENT DISCO POWERED BY QUIET EVENTS\" → \"SILENT DISCO\"",
+    "THE BARTON HILLS CHOIR: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "ELENA MOON PARK: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "123 ANDRÉS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "SAULPAUL: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "P!NK: artist \"6og PINK\" → \"P!NK\""
+   ],
+   "ocrMissed": [
+    "BONUS TRACKS 16:15-16:45 BOB'S DANCE SHOP",
+    "BONUS TRACKS 18:30-19:30 SUNSET SHAKEDOWN: A DANCE PARTY WITH DJ MEL"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 3,
+   "date": "2022-10-09",
+   "sha256": "5a4771e1fd2b8cf31e019a9d7bdf2a8ab461fb9d0ab6b52ed7428fad21559beb",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20221021143110/https://assets-global.website-files.com/626ab670470f4322713394d1/63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T17:08:54.825Z",
+   "rowsConfirmed": 42,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2022, WEEKEND ONE SUNDAY, OCTOBER 9. Printed hour axis 11 AM to 10 PM; every start reads its meridiem off that axis. Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stage printed TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 39,
+   "corrections": [
+    "SILENT DISCO: artist \"SILENT DISCO POWERED BY QUIET EVENTS\" → \"SILENT DISCO\"",
+    "SCHOOL OF ROCK: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "SAULPAUL: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "123 ANDRÉS: artist \"SPECIAL GUEST 3:30-3:45 123 ANDRÉS\" → \"123 ANDRÉS\"; stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "MARCUS MUMFORD: start ∅ → 19:00; end ∅ → 20:00"
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 15:30-15:45 SPECIAL GUEST",
+    "BONUS TRACKS 16:00-16:30 A DRAG SALOON: DRAG GONE COUNTRY",
+    "BONUS TRACKS 18:00-18:30 FIERCE AND FABULOUS: A DRAG QUEEN DANCE PARTY"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 4,
+   "date": "2022-10-14",
+   "sha256": "1a8ada90dbc672757bac16f2358df10cc37aecd416e0a4b6832e8b6243d9280d",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20221021144453/https://assets-global.website-files.com/626ab670470f4322713394d1/6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T17:08:54.825Z",
+   "rowsConfirmed": 36,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2022, WEEKEND TWO FRIDAY, OCTOBER 14. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis. Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stage printed TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 30,
+   "corrections": [
+    "PHOENIX: artist \"JAZMINE SULLIVAN 4:15 - 5:00/6g PHOENIX\" → \"PHOENIX\"",
+    "SILENT DISCO: artist \"SILENT DISCO POWERED BY QUIET EVENTS\" → \"SILENT DISCO\"",
+    "SCHOOL OF ROCK: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "QBROTHERS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "LUCY KALANTARI & THE JAZZ CATS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "NATHANIEL RATELIFF & THE NIGHT SWEATS: artist \"NOAH CYRUS CONAN GRAY 4:00 -5:006g NATHANIEL RATELIFF & THE NIGHT SWEATS\" → \"NATHANIEL RATELIFF & THE NIGHT SWEATS\""
+   ],
+   "ocrMissed": [
+    "HONDA 16:15-17:00 JAZMINE SULLIVAN",
+    "AMERICAN EXPRESS 14:30-15:15 NOAH CYRUS",
+    "AMERICAN EXPRESS 16:00-17:00 CONAN GRAY",
+    "BONUS TRACKS 14:45-15:15 KUT: TACOS OF TEXAS",
+    "BONUS TRACKS 16:00-16:30 INTO THE MULTIVERSE: HEALING THROUGH MUSIC W/ NOAH CYRUS",
+    "BONUS TRACKS 18:00-18:30 BOB'S DANCE SHOP"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 5,
+   "date": "2022-10-15",
+   "sha256": "d262880eacd83ae8d08de4405631562cd3673cdc14b0b2278d397063962156b3",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20221021031943/https://assets-global.website-files.com/626ab670470f4322713394d1/634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T17:08:54.826Z",
+   "rowsConfirmed": 42,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2022, WEEKEND TWO SATURDAY, OCTOBER 15. Printed hour axis 12 PM to 10 PM (no 11 AM label; the 11:30 block sits above the printed 12 PM line, so it is morning); every start reads its meridiem off that axis. Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stage printed TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. Revised grid: replaced an earlier \"10.12\" Saturday file that Wayback never captured.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 38,
+   "corrections": [
+    "BOY GEORGE & CULTURE CLUB: artist \"DISKO COWBOY\" → \"BOY GEORGE & CULTURE CLUB\"; stage \"TITO'S HANDMADE VODKA\" → \"HONDA\"",
+    "DEATH CAB FOR CUTIE: artist \"BIG GIGANTIC\" → \"DEATH CAB FOR CUTIE\"; stage \"TITO'S HANDMADE VODKA\" → \"HONDA\"",
+    "FLUME: artist \"BOY GEORGE & CULTURE CLUB DEATH CAB FOR CUTIE FLUME\" → \"FLUME\"",
+    "SILENT DISCO: artist \"SILENT DISCO POWERED BY QUIET EVENTS\" → \"SILENT DISCO\"",
+    "THE BARTON HILLS CHOIR: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "LUCY KALANTARI & THE JAZZ CATS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "JOANIE LEEDS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "ALPHABET ROCKERS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "THE WAR ON DRUGS: artist \"THEWAR ON DRUGS\" → \"THE WAR ON DRUGS\"",
+    "HABIBI: artist \"НАBIBI\" → \"HABIBI\"",
+    "P!NK: artist \"PINK\" → \"P!NK\""
+   ],
+   "ocrMissed": [
+    "TITO'S HANDMADE VODKA 16:15-17:15 DISKO COWBOY",
+    "TITO'S HANDMADE VODKA 18:15-19:15 BIG GIGANTIC",
+    "BONUS TRACKS 14:15-14:45 KUTX: PAUSE/PLAY",
+    "BONUS TRACKS 16:15-16:45 BOB'S DANCE SHOP"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 6,
+   "date": "2022-10-16",
+   "sha256": "15e865504817f65175e95e42c30695fc48dcd20dbc171b8df907ea56aa9b3af2",
+   "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png",
+   "imageArchivedUrl": "https://web.archive.org/web/20221026174018/https://assets-global.website-files.com/626ab670470f4322713394d1/634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-06T17:08:54.826Z",
+   "rowsConfirmed": 42,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2022, WEEKEND TWO SUNDAY, OCTOBER 16. Printed hour axis 12 PM to 10 PM (no 11 AM label; the 11:45 blocks sit above the printed 12 PM line, so they are morning); every start reads its meridiem off that axis. Footer BONUS TRACKS strip hand-transcribed (dropped by rule). Stage printed TITO'S HANDMADE VODKA and AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. Revised grid: the 1500 px re-issue named \"10.13\", which replaced an earlier Sunday file that Wayback never captured.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 39,
+   "corrections": [
+    "TOM ODELL: artist \"TOM ODEL\" → \"TOM ODELL\"",
+    "SILENT DISCO: artist \"SILENT DISCO POWERED BY QUIET EVENTS\" → \"SILENT DISCO\"",
+    "ALPHABET ROCKERS: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "SCHOOL OF ROCK: stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "JOANIE LEEDS: artist \"SPECIAL GUEST 3:30-3:45 JOANIE LEEDS\" → \"JOANIE LEEDS\"; stage \"AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR\" → \"AUSTIN KIDDIE LIMITS\"",
+    "DEHD: artist \"DSHI\" → \"DEHD\""
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 15:30-15:45 SPECIAL GUEST",
+    "BONUS TRACKS 14:45-15:15 A DRAG COMEDY SHOW: W/ THE BECKIES",
+    "BONUS TRACKS 16:00-16:30 DRAG DIVAS: A TRIBUTE TO THE STARS"
+   ],
+   "ocrExtra": []
+  }
+ ]
+}

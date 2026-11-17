@@ -330,6 +330,7 @@
 
   const CONFIG = {
     id: "lollapalooza-2026",
+    officialEvent: { website: "https://www.lollapalooza.com/", observedAt: "2026-11-11" },
     // From the SOURCE note above: lollapalooza.com/schedule graphics, accessed 2026-08-28. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://lollapalooza.com/schedule", observedAt: "2026-08-28", official: true },
     name: "Lollapalooza 2026",
@@ -340,6 +341,8 @@
     locationShort: "Grant Park",
     dates: "Jul 30 – Aug 2, 2026",
     year: 2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#32C3E2", accent2: "#00AE99", source: { url: "https://cdn.prod.website-files.com/67c1632e86f99390b0516ac5/css/lollapalooza-2026.shared.7d70f0b61.min.css", observedAt: "2026-10-09", seenAs: "--swatches--blue: #32c3e2, consumed by --button-color--primary: var(--swatches--blue) (hover #22a0bb), which .button uses for background-color and border; the homepage renders 5 'button w-button' elements", confidence: "medium" }, note: "No theme-color meta; the site's own Webflow stylesheet sets the primary button colour to the blue swatch, while links default to teal #00ae99 (also the most frequent inline colour on the homepage, 6 promo billboards)." },
     // gates day 1 (12:00 CDT) -> close of the final day (22:00 CDT)
     startMs: Date.UTC(2026, 6, 30, 17, 0, 0),
     endMs:   Date.UTC(2026, 7, 3, 3, 0, 0),
@@ -393,10 +396,14 @@
     ],
     weatherEndpoint: "https://api.weather.gov/points/41.88,-87.62",
     mainStageId: "tmobile",
-    // Generated abstract overlay, NOT the official patron map — that art is
-    // rights-restricted and is never copied into this repo (lostlands-2026.jpg
-    // precedent). Authored in the same 0-100 frame as the stages above.
+    // Generated abstract overlay, authored in the same 0-100 frame as the
+    // stages above; the poster view and the stage pins use it.
+    // The real map lays the festival's OWN map (Jake, 2026-11-11: "let's just
+    // use the map we do it for other festivals"), fitted to the streets by
+    // map-sources/lollapalooza-2026-geo-ties.json from https://help.lollapalooza.com/article/959-festival-map
     mapImage: "lolla-2026.svg",
+    mapGeoref: { image: "geo-maps/lollapalooza-2026.webp", bounds: [-87.6245612, 41.868904, -87.6168666, 41.8809954], model: "affine",
+                 ties: "map-sources/lollapalooza-2026-geo-ties.json", rmsM: 4.4, looRmsM: 7.2 },
     mapStyle: "image-overlay",
     mapTheme: "park",
     // The overlay prints no stage names, so pills carry them.

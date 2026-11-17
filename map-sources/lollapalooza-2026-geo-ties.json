@@ -1,0 +1,166 @@
+{
+  "festivalId": "lollapalooza-2026",
+  "plate": "map-sources/art/lollapalooza-2026-official.webp",
+  "source": "https://help.lollapalooza.com/article/959-festival-map",
+  "artPolygon": [
+    [
+      860,
+      0
+    ],
+    [
+      1548,
+      0
+    ],
+    [
+      1548,
+      2760
+    ],
+    [
+      1420,
+      2760
+    ],
+    [
+      1420,
+      2980
+    ],
+    [
+      188,
+      2980
+    ],
+    [
+      188,
+      620
+    ],
+    [
+      860,
+      620
+    ]
+  ],
+  "model": "affine",
+  "measuredAt": "2026-11-11",
+  "method": "Lollapalooza 2026 festival map (official PNG on help.lollapalooza.com, read as four 4x strips and stitched; the legend below the map is not included). The logo block and the black margins are masked out. Ties are the centre crossings of Monroe, Jackson, Ida B. Wells, Balbo and 11th St with Michigan Ave, Columbus Dr and DuSable Lake Shore Dr, matched to OpenStreetMap intersection nodes. Stages are never ties.",
+  "ties": [
+    {
+      "name": "E Monroe Dr x S Columbus Dr",
+      "px": 888.5,
+      "py": 23.5,
+      "lat": 41.8808775,
+      "lng": -87.620794,
+      "ref": "OSM node 33718418"
+    },
+    {
+      "name": "E Monroe Dr x DuSable Lake Shore Dr",
+      "px": 1502,
+      "py": 23.5,
+      "lat": 41.8809219,
+      "lng": -87.6173749,
+      "ref": "OSM nodes 12472733128, 11768568641 (mean)"
+    },
+    {
+      "name": "E Jackson Dr x S Michigan Ave",
+      "px": 229.5,
+      "py": 650,
+      "lat": 41.8782932,
+      "lng": -87.6243104,
+      "ref": "OSM nodes 27440218, 27440219 (mean)"
+    },
+    {
+      "name": "E Jackson Dr x S Columbus Dr",
+      "px": 888.5,
+      "py": 650,
+      "lat": 41.8783406,
+      "lng": -87.6207104,
+      "ref": "OSM node 33718417"
+    },
+    {
+      "name": "E Jackson Dr x DuSable Lake Shore Dr",
+      "px": 1502,
+      "py": 650,
+      "lat": 41.8783874,
+      "lng": -87.6173123,
+      "ref": "OSM nodes 12472733131, 12472733133 (mean)"
+    },
+    {
+      "name": "E Ida B. Wells Dr x S Michigan Ave",
+      "px": 229.5,
+      "py": 1281,
+      "lat": 41.8757266,
+      "lng": -87.6242508,
+      "ref": "OSM nodes 272208410, 27440248, 27440247 (mean)"
+    },
+    {
+      "name": "E Ida B. Wells Dr x S Columbus Dr",
+      "px": 888.5,
+      "py": 1281,
+      "lat": 41.8758155,
+      "lng": -87.6206222,
+      "ref": "OSM node 740237201"
+    },
+    {
+      "name": "E Balbo Dr x S Michigan Ave",
+      "px": 229.5,
+      "py": 1911,
+      "lat": 41.8731609,
+      "lng": -87.6242171,
+      "ref": "OSM nodes 272208405, 258287219 (mean)"
+    },
+    {
+      "name": "E Balbo Dr x S Columbus Dr",
+      "px": 888.5,
+      "py": 1911,
+      "lat": 41.8732174,
+      "lng": -87.6205963,
+      "ref": "OSM node 33718415"
+    },
+    {
+      "name": "E Balbo Dr x DuSable Lake Shore Dr",
+      "px": 1502,
+      "py": 1911,
+      "lat": 41.8732483,
+      "lng": -87.6171921,
+      "ref": "OSM nodes 12472733134, 12472733136 (mean)"
+    },
+    {
+      "name": "E 11th St x S Michigan Ave",
+      "px": 229.5,
+      "py": 2899.5,
+      "lat": 41.8693177,
+      "lng": -87.6241257,
+      "ref": "OSM nodes 272208970, 261182330 (mean)"
+    }
+  ],
+  "output": {
+    "image": "geo-maps/lollapalooza-2026.webp",
+    "size": [
+      975,
+      2048
+    ],
+    "metresPerPixel": 0.656,
+    "bounds": {
+      "w": -87.6245612,
+      "s": 41.868904,
+      "e": -87.6168666,
+      "n": 41.8809954
+    },
+    "rmsM": 4.4,
+    "worstM": 9.7,
+    "looRmsM": 7.2,
+    "residualsM": {
+      "E Monroe Dr x S Columbus Dr": 3.3,
+      "E Monroe Dr x DuSable Lake Shore Dr": 2.7,
+      "E Jackson Dr x S Michigan Ave": 1.7,
+      "E Jackson Dr x S Columbus Dr": 1.0,
+      "E Jackson Dr x DuSable Lake Shore Dr": 1.8,
+      "E Ida B. Wells Dr x S Michigan Ave": 3.5,
+      "E Ida B. Wells Dr x S Columbus Dr": 2.9,
+      "E Balbo Dr x S Michigan Ave": 6.1,
+      "E Balbo Dr x S Columbus Dr": 4.3,
+      "E Balbo Dr x DuSable Lake Shore Dr": 4.6,
+      "E 11th St x S Michigan Ave": 9.7
+    },
+    "checksM": {},
+    "inputsSha256": "8552830b0d1e867a1752960f18b751f23576f8d24d8ea7d7d52d8b22a140889c",
+    "plateSha256": "72661664920c14a53296aae62ce906dfc37062ed49a30ddde1ea9c54591b82d7",
+    "sha256": "ae4298c45763284de636f94da6ff173043e232fdb4e68f46218e6cc7efaaef7e"
+  }
+}

@@ -197,6 +197,7 @@
 
   const CONFIG = {
     id:        "decadence-colorado-2026",
+    officialEvent: { website: "https://decadencenye.com/", observedAt: "2026-11-11" },
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
     lineupSource: { url: "https://decadencenye.com/lineup/", observedAt: "2026-09-10", official: true },
@@ -208,6 +209,8 @@
     locationShort: "Colorado Convention Center",
     dates:     "Dec 30\u201331, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#F99D5E", accent2: "#F4675E", source: { url: "https://decadencenye.com/wp-content/themes/decadence-nye-2026/css/main.min.css?v=1.21", observedAt: "2026-10-09", seenAs: ".announcement-text a{color}, .nav-item span{color}, .nav-item:hover{background-color}, .ticket-tier-title{background-color}, hamburger (12 uses)", confidence: "medium" }, note: "The 2026 theme's own stylesheet uses this orange for links, nav text and ticket-tier headers; the sibling coral #f4675e is the fixed nav bar fill and the theme-color meta is plain #ffffff, so this is the chromatic accent rather than a declared brand token. Official site taken from the data file's lineupSource domain." },
     // Denver is MST (UTC-7) on these dates. Hours ARE published, so these
     // are the real ones: doors 5 PM Dec 30, last night ends 2 AM Jan 1.
     startMs: Date.UTC(2026, 11, 31, 0, 0, 0),   // Dec 30 17:00 MST, doors
@@ -222,9 +225,9 @@
     // cross-checked (see header). This is the first of the recent gated
     // scaffolds that did not need the III Points workaround.
     dayDates: {
-      1: { y: 2026, m: 11, d: 30, name: "Dec 30", short: "WED",
+      1: { y: 2026, m: 11, d: 30, name: "Wednesday", short: "WED",
            midnightUtc: Date.UTC(2026, 11, 30, 7, 0, 0) },
-      2: { y: 2026, m: 11, d: 31, name: "Dec 31", short: "NYE",
+      2: { y: 2026, m: 11, d: 31, name: "Thursday", short: "NYE",
            midnightUtc: Date.UTC(2026, 11, 31, 7, 0, 0) },
     },
     // api.sunrise-sunset.org at 39.742394,-104.996650, converted to MST.
@@ -246,6 +249,9 @@
       // reader to wonder about. 100,416 m². This is the BUILDING; the event
       // uses 400,000+ sq ft of it. See the header before reading it as the
       // festival perimeter.
+      // The footprint is the festival grounds (an indoor show, so the building is the festival), so the real map
+      // masks everything outside it.
+      footprintIsGrounds: true,
       footprint: [
         [39.7443483, -104.996556], [39.744366, -104.9965002], [39.7443708, -104.9964503],
         [39.7443689, -104.9964085], [39.7444321, -104.9963955], [39.7444184, -104.9963271],

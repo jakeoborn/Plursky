@@ -1,0 +1,1203 @@
+{
+ "id": "escape-halloween-2017",
+ "festivalId": "escape-halloween",
+ "name": "Escape Halloween 2017",
+ "year": 2017,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-10-27",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2017-10-28",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "escape-halloween-2017:slaughterhouse",
+   "name": "SLAUGHTERHOUSE"
+  },
+  {
+   "id": "escape-halloween-2017:ghouls-graveyard",
+   "name": "GHOULS' GRAVEYARD"
+  },
+  {
+   "id": "escape-halloween-2017:chopping-block",
+   "name": "CHOPPING BLOCK"
+  },
+  {
+   "id": "escape-halloween-2017:cannibals-tea-party",
+   "name": "CANNIBALS' TEA PARTY"
+  }
+ ],
+ "artists": [
+  {
+   "id": "escape-halloween-2017:two-owls",
+   "name": "TWO OWLS",
+   "key": "two-owls",
+   "performers": [
+    "two-owls"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:grandtheft",
+   "name": "GRANDTHEFT",
+   "key": "grandtheft",
+   "performers": [
+    "grandtheft"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:shiba-san",
+   "name": "SHIBA SAN",
+   "key": "shiba-san",
+   "performers": [
+    "shiba-san"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:rezz",
+   "name": "REZZ",
+   "key": "rezz",
+   "performers": [
+    "rezz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:illenium",
+   "name": "ILLENIUM",
+   "key": "illenium",
+   "performers": [
+    "illenium"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:madeon",
+   "name": "MADEON",
+   "key": "madeon",
+   "performers": [
+    "madeon"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:marshmello",
+   "name": "MARSHMELLO",
+   "key": "marshmello",
+   "performers": [
+    "marshmello"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:dj-snake",
+   "name": "DJ SNAKE",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:nightstalker-mc-dino",
+   "name": "NIGHTSTALKER MC DINO",
+   "key": "nightstalker-mc-dino",
+   "performers": [
+    "nightstalker-mc-dino"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:state-of-mind",
+   "name": "STATE OF MIND",
+   "key": "state-of-mind",
+   "performers": [
+    "state-of-mind"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:culture-shock",
+   "name": "CULTURE SHOCK",
+   "key": "culture-shock",
+   "performers": [
+    "culture-shock"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:ray-volpe-b2b-tisoki",
+   "name": "RAY VOLPE B2B TISOKI",
+   "key": "ray-volpe-b2b-tisoki",
+   "performers": [
+    "ray-volpe",
+    "tisoki"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:original-sin-b2b-taxman",
+   "name": "ORIGINAL SIN B2B TAXMAN",
+   "key": "original-sin-b2b-taxman",
+   "performers": [
+    "original-sin",
+    "taxman"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:barely-alive-b2b-virtual-riot",
+   "name": "BARELY ALIVE B2B VIRTUAL RIOT",
+   "key": "barely-alive-b2b-virtual-riot",
+   "performers": [
+    "barely-alive",
+    "virtual-riot"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:ghastly",
+   "name": "GHASTLY",
+   "key": "ghastly",
+   "performers": [
+    "ghastly"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:nero-dj-set",
+   "name": "NERO (DJ SET)",
+   "key": "nero-dj-set",
+   "performers": [
+    "nero-dj-set"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:datsik",
+   "name": "DATSIK",
+   "key": "datsik",
+   "performers": [
+    "datsik"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:flosstradamus",
+   "name": "FLOSSTRADAMUS",
+   "key": "flosstradamus",
+   "performers": [
+    "flosstradamus"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:noa",
+   "name": "NOA",
+   "key": "noa",
+   "performers": [
+    "noa"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:pulsatorz",
+   "name": "PULSATORZ",
+   "key": "pulsatorz",
+   "performers": [
+    "pulsatorz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:crisis-era",
+   "name": "CRISIS ERA",
+   "key": "crisis-era",
+   "performers": [
+    "crisis-era"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:kutski",
+   "name": "KUTSKI",
+   "key": "kutski",
+   "performers": [
+    "kutski"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:audiofreq",
+   "name": "AUDIOFREQ",
+   "key": "audiofreq",
+   "performers": [
+    "audiofreq"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:darren-styles",
+   "name": "DARREN STYLES",
+   "key": "darren-styles",
+   "performers": [
+    "darren-styles"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:coone",
+   "name": "COONE",
+   "key": "coone",
+   "performers": [
+    "coone"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:da-tweekaz",
+   "name": "DA TWEEKAZ",
+   "key": "da-tweekaz",
+   "performers": [
+    "da-tweekaz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:dj-isaac",
+   "name": "DJ ISAAC",
+   "key": "dj-isaac",
+   "performers": [
+    "dj-isaac"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:angerfist-b2b-miss-k8",
+   "name": "ANGERFIST B2B MISS K8",
+   "key": "angerfist-b2b-miss-k8",
+   "performers": [
+    "angerfist",
+    "miss-k8"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:no-requests",
+   "name": "NO REQUESTS",
+   "key": "no-requests",
+   "performers": [
+    "no-requests"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:detlef",
+   "name": "DETLEF",
+   "key": "detlef",
+   "performers": [
+    "detlef"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:nathan-barato-b2b-carlo-lio",
+   "name": "NATHAN BARATO B2B CARLO LIO",
+   "key": "nathan-barato-b2b-carlo-lio",
+   "performers": [
+    "nathan-barato",
+    "carlo-lio"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:skream",
+   "name": "SKREAM",
+   "key": "skream",
+   "performers": [
+    "skream"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:joseph-capriati",
+   "name": "JOSEPH CAPRIATI",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:green-velvet",
+   "name": "GREEN VELVET",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:jamie-jones",
+   "name": "JAMIE JONES",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:jamie-jones-b2b-joseph-capriati",
+   "name": "JAMIE JONES B2B JOSEPH CAPRIATI",
+   "key": "jamie-jones-b2b-joseph-capriati",
+   "performers": [
+    "jamie-jones",
+    "joseph-capriati"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:baggi",
+   "name": "BAGGI",
+   "key": "baggi",
+   "performers": [
+    "baggi"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:luca-lush",
+   "name": "LUCA LUSH",
+   "key": "luca-lush",
+   "performers": [
+    "luca-lush"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:kungs",
+   "name": "KUNGS",
+   "key": "kungs",
+   "performers": [
+    "kungs"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:alan-walker",
+   "name": "ALAN WALKER",
+   "key": "alan-walker",
+   "performers": [
+    "alan-walker"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:slander",
+   "name": "SLANDER",
+   "key": "slander",
+   "performers": [
+    "slander"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:afrojack",
+   "name": "AFROJACK",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:duke-dumont",
+   "name": "DUKE DUMONT",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:tiesto",
+   "name": "TIËSTO",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:yookie",
+   "name": "YOOKIE",
+   "key": "yookie",
+   "performers": [
+    "yookie"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:blackgummy",
+   "name": "BLACKGUMMY",
+   "key": "blackgummy",
+   "performers": [
+    "blackgummy"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:firebeatz",
+   "name": "FIREBEATZ",
+   "key": "firebeatz",
+   "performers": [
+    "firebeatz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:r3hab",
+   "name": "R3HAB",
+   "key": "r3hab",
+   "performers": [
+    "r3hab"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:don-diablo",
+   "name": "DON DIABLO",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:eric-prydz",
+   "name": "ERIC PRYDZ",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:zedd",
+   "name": "ZEDD",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:nghtmre",
+   "name": "NGHTMRE",
+   "key": "nghtmre",
+   "performers": [
+    "nghtmre"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:rell-the-soundbender",
+   "name": "RELL THE SOUNDBENDER",
+   "key": "rell-the-soundbender",
+   "performers": [
+    "rell-the-soundbender"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:rawtek",
+   "name": "RAWTEK",
+   "key": "rawtek",
+   "performers": [
+    "rawtek"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:judge",
+   "name": "JUDGE",
+   "key": "judge",
+   "performers": [
+    "judge"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:droeloe",
+   "name": "DROELOE",
+   "key": "droeloe",
+   "performers": [
+    "droeloe"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:team-ezy",
+   "name": "TEAM EZY",
+   "key": "team-ezy",
+   "performers": [
+    "team-ezy"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:loudpvck",
+   "name": "LOUDPVCK",
+   "key": "loudpvck",
+   "performers": [
+    "loudpvck"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:mike-will-made-it",
+   "name": "MIKE WILL MADE-IT",
+   "key": "mike-will-made-it",
+   "performers": [
+    "mike-will-made-it"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:baauer",
+   "name": "BAAUER",
+   "key": "baauer",
+   "performers": [
+    "baauer"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:slushii",
+   "name": "SLUSHII",
+   "key": "slushii",
+   "performers": [
+    "slushii"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:boys-noize-live",
+   "name": "BOYS NOIZE (LIVE)",
+   "key": "boys-noize-live",
+   "performers": [
+    "boys-noize-live"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:shmitty",
+   "name": "SHMITTY",
+   "key": "shmitty",
+   "performers": [
+    "shmitty"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:lauren-lane",
+   "name": "LAUREN LANE",
+   "key": "lauren-lane",
+   "performers": [
+    "lauren-lane"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:paco-osuna",
+   "name": "PACO OSUNA",
+   "key": "paco-osuna",
+   "performers": [
+    "paco-osuna"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:dj-tennis",
+   "name": "DJ TENNIS",
+   "key": "dj-tennis",
+   "performers": [
+    "dj-tennis"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:pan-pot",
+   "name": "PAN-POT",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:chris-liebing",
+   "name": "CHRIS LIEBING",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ]
+  },
+  {
+   "id": "escape-halloween-2017:nicole-moudaber",
+   "name": "NICOLE MOUDABER",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "escape-halloween-2017:d1:slaughterhouse:1600:two-owls",
+   "artistId": "escape-halloween-2017:two-owls",
+   "day": 1,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:slaughterhouse:1700:grandtheft",
+   "artistId": "escape-halloween-2017:grandtheft",
+   "day": 1,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "escape-halloween-2017:d1:slaughterhouse:1815:shiba-san",
+   "artistId": "escape-halloween-2017:shiba-san",
+   "day": 1,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "escape-halloween-2017:d1:slaughterhouse:1930:rezz",
+   "artistId": "escape-halloween-2017:rezz",
+   "day": 1,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "19:30",
+   "end": "20:45"
+  },
+  {
+   "id": "escape-halloween-2017:d1:slaughterhouse:2045:illenium",
+   "artistId": "escape-halloween-2017:illenium",
+   "day": 1,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:slaughterhouse:2200:madeon",
+   "artistId": "escape-halloween-2017:madeon",
+   "day": 1,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "escape-halloween-2017:d1:slaughterhouse:2315:marshmello",
+   "artistId": "escape-halloween-2017:marshmello",
+   "day": 1,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "23:15",
+   "end": "00:45"
+  },
+  {
+   "id": "escape-halloween-2017:d1:slaughterhouse:0045:dj-snake",
+   "artistId": "escape-halloween-2017:dj-snake",
+   "day": 1,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:ghouls-graveyard:1600:nightstalker-mc-dino",
+   "artistId": "escape-halloween-2017:nightstalker-mc-dino",
+   "day": 1,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:ghouls-graveyard:1700:state-of-mind",
+   "artistId": "escape-halloween-2017:state-of-mind",
+   "day": 1,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:ghouls-graveyard:1800:culture-shock",
+   "artistId": "escape-halloween-2017:culture-shock",
+   "day": 1,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:ghouls-graveyard:1900:ray-volpe-b2b-tisoki",
+   "artistId": "escape-halloween-2017:ray-volpe-b2b-tisoki",
+   "day": 1,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:ghouls-graveyard:2000:original-sin-b2b-taxman",
+   "artistId": "escape-halloween-2017:original-sin-b2b-taxman",
+   "day": 1,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:ghouls-graveyard:2100:barely-alive-b2b-virtual-riot",
+   "artistId": "escape-halloween-2017:barely-alive-b2b-virtual-riot",
+   "day": 1,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:ghouls-graveyard:2200:ghastly",
+   "artistId": "escape-halloween-2017:ghastly",
+   "day": 1,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:ghouls-graveyard:2300:nero-dj-set",
+   "artistId": "escape-halloween-2017:nero-dj-set",
+   "day": 1,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:ghouls-graveyard:0000:datsik",
+   "artistId": "escape-halloween-2017:datsik",
+   "day": 1,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:ghouls-graveyard:0100:flosstradamus",
+   "artistId": "escape-halloween-2017:flosstradamus",
+   "day": 1,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:chopping-block:1600:noa",
+   "artistId": "escape-halloween-2017:noa",
+   "day": 1,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:chopping-block:1700:pulsatorz",
+   "artistId": "escape-halloween-2017:pulsatorz",
+   "day": 1,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:chopping-block:1800:crisis-era",
+   "artistId": "escape-halloween-2017:crisis-era",
+   "day": 1,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:chopping-block:1900:kutski",
+   "artistId": "escape-halloween-2017:kutski",
+   "day": 1,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:chopping-block:2000:audiofreq",
+   "artistId": "escape-halloween-2017:audiofreq",
+   "day": 1,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:chopping-block:2100:darren-styles",
+   "artistId": "escape-halloween-2017:darren-styles",
+   "day": 1,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:chopping-block:2200:coone",
+   "artistId": "escape-halloween-2017:coone",
+   "day": 1,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:chopping-block:2300:da-tweekaz",
+   "artistId": "escape-halloween-2017:da-tweekaz",
+   "day": 1,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:chopping-block:0000:dj-isaac",
+   "artistId": "escape-halloween-2017:dj-isaac",
+   "day": 1,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:chopping-block:0100:angerfist-b2b-miss-k8",
+   "artistId": "escape-halloween-2017:angerfist-b2b-miss-k8",
+   "day": 1,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:cannibals-tea-party:1600:no-requests",
+   "artistId": "escape-halloween-2017:no-requests",
+   "day": 1,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:cannibals-tea-party:1800:detlef",
+   "artistId": "escape-halloween-2017:detlef",
+   "day": 1,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "escape-halloween-2017:d1:cannibals-tea-party:1915:nathan-barato-b2b-carlo-lio",
+   "artistId": "escape-halloween-2017:nathan-barato-b2b-carlo-lio",
+   "day": 1,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "escape-halloween-2017:d1:cannibals-tea-party:2030:skream",
+   "artistId": "escape-halloween-2017:skream",
+   "day": 1,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "escape-halloween-2017:d1:cannibals-tea-party:2145:joseph-capriati",
+   "artistId": "escape-halloween-2017:joseph-capriati",
+   "day": 1,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "21:45",
+   "end": "22:30"
+  },
+  {
+   "id": "escape-halloween-2017:d1:cannibals-tea-party:2230:green-velvet",
+   "artistId": "escape-halloween-2017:green-velvet",
+   "day": 1,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "22:30",
+   "end": "23:45"
+  },
+  {
+   "id": "escape-halloween-2017:d1:cannibals-tea-party:2345:jamie-jones",
+   "artistId": "escape-halloween-2017:jamie-jones",
+   "day": 1,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "23:45",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2017:d1:cannibals-tea-party:0100:jamie-jones-b2b-joseph-capriati",
+   "artistId": "escape-halloween-2017:jamie-jones-b2b-joseph-capriati",
+   "day": 1,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:slaughterhouse:1600:baggi",
+   "artistId": "escape-halloween-2017:baggi",
+   "day": 2,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:slaughterhouse:1700:luca-lush",
+   "artistId": "escape-halloween-2017:luca-lush",
+   "day": 2,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:slaughterhouse:1800:kungs",
+   "artistId": "escape-halloween-2017:kungs",
+   "day": 2,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "escape-halloween-2017:d2:slaughterhouse:1915:alan-walker",
+   "artistId": "escape-halloween-2017:alan-walker",
+   "day": 2,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "escape-halloween-2017:d2:slaughterhouse:2030:slander",
+   "artistId": "escape-halloween-2017:slander",
+   "day": 2,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "escape-halloween-2017:d2:slaughterhouse:2145:afrojack",
+   "artistId": "escape-halloween-2017:afrojack",
+   "day": 2,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:slaughterhouse:2300:duke-dumont",
+   "artistId": "escape-halloween-2017:duke-dumont",
+   "day": 2,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2017:d2:slaughterhouse:0030:tiesto",
+   "artistId": "escape-halloween-2017:tiesto",
+   "day": 2,
+   "stageId": "escape-halloween-2017:slaughterhouse",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:ghouls-graveyard:1600:yookie",
+   "artistId": "escape-halloween-2017:yookie",
+   "day": 2,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:ghouls-graveyard:1700:blackgummy",
+   "artistId": "escape-halloween-2017:blackgummy",
+   "day": 2,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:ghouls-graveyard:1800:firebeatz",
+   "artistId": "escape-halloween-2017:firebeatz",
+   "day": 2,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "escape-halloween-2017:d2:ghouls-graveyard:1915:r3hab",
+   "artistId": "escape-halloween-2017:r3hab",
+   "day": 2,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "escape-halloween-2017:d2:ghouls-graveyard:2030:don-diablo",
+   "artistId": "escape-halloween-2017:don-diablo",
+   "day": 2,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "escape-halloween-2017:d2:ghouls-graveyard:2145:eric-prydz",
+   "artistId": "escape-halloween-2017:eric-prydz",
+   "day": 2,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:ghouls-graveyard:2300:zedd",
+   "artistId": "escape-halloween-2017:zedd",
+   "day": 2,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2017:d2:ghouls-graveyard:0030:nghtmre",
+   "artistId": "escape-halloween-2017:nghtmre",
+   "day": 2,
+   "stageId": "escape-halloween-2017:ghouls-graveyard",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:chopping-block:1600:rell-the-soundbender",
+   "artistId": "escape-halloween-2017:rell-the-soundbender",
+   "day": 2,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "16:00",
+   "end": "16:30"
+  },
+  {
+   "id": "escape-halloween-2017:d2:chopping-block:1630:rawtek",
+   "artistId": "escape-halloween-2017:rawtek",
+   "day": 2,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "16:30",
+   "end": "17:15"
+  },
+  {
+   "id": "escape-halloween-2017:d2:chopping-block:1715:judge",
+   "artistId": "escape-halloween-2017:judge",
+   "day": 2,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "escape-halloween-2017:d2:chopping-block:1815:droeloe",
+   "artistId": "escape-halloween-2017:droeloe",
+   "day": 2,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "escape-halloween-2017:d2:chopping-block:1915:team-ezy",
+   "artistId": "escape-halloween-2017:team-ezy",
+   "day": 2,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "escape-halloween-2017:d2:chopping-block:2015:loudpvck",
+   "artistId": "escape-halloween-2017:loudpvck",
+   "day": 2,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "20:15",
+   "end": "21:15"
+  },
+  {
+   "id": "escape-halloween-2017:d2:chopping-block:2115:mike-will-made-it",
+   "artistId": "escape-halloween-2017:mike-will-made-it",
+   "day": 2,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "escape-halloween-2017:d2:chopping-block:2215:baauer",
+   "artistId": "escape-halloween-2017:baauer",
+   "day": 2,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "22:15",
+   "end": "23:15"
+  },
+  {
+   "id": "escape-halloween-2017:d2:chopping-block:2315:slushii",
+   "artistId": "escape-halloween-2017:slushii",
+   "day": 2,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "23:15",
+   "end": "00:15"
+  },
+  {
+   "id": "escape-halloween-2017:d2:chopping-block:0045:boys-noize-live",
+   "artistId": "escape-halloween-2017:boys-noize-live",
+   "day": 2,
+   "stageId": "escape-halloween-2017:chopping-block",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:cannibals-tea-party:1600:shmitty",
+   "artistId": "escape-halloween-2017:shmitty",
+   "day": 2,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:cannibals-tea-party:1700:lauren-lane",
+   "artistId": "escape-halloween-2017:lauren-lane",
+   "day": 2,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "escape-halloween-2017:d2:cannibals-tea-party:1830:paco-osuna",
+   "artistId": "escape-halloween-2017:paco-osuna",
+   "day": 2,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:cannibals-tea-party:2000:dj-tennis",
+   "artistId": "escape-halloween-2017:dj-tennis",
+   "day": 2,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "escape-halloween-2017:d2:cannibals-tea-party:2130:pan-pot",
+   "artistId": "escape-halloween-2017:pan-pot",
+   "day": 2,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2017:d2:cannibals-tea-party:2300:chris-liebing",
+   "artistId": "escape-halloween-2017:chris-liebing",
+   "day": 2,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2017:d2:cannibals-tea-party:0030:nicole-moudaber",
+   "artistId": "escape-halloween-2017:nicole-moudaber",
+   "day": 2,
+   "stageId": "escape-halloween-2017:cannibals-tea-party",
+   "start": "00:30",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://escapehalloween.com/lineup/set-times/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/10/Escape-2017-Set-Times.png",
+    "foundAt": "https://edmidentity.com/2017/10/23/escape-psycho-circus-2017-essentials/",
+    "published": "2017-10-23",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "FRIDAY · OCTOBER 27 & 28, 2017",
+    "sha256": "d433f96d41c266c564af4001ec3b3b22bc5a9dc4b27094a7b158b7669c0b4357",
+    "rows": 36,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20220810223016/https://edmidentity.com/2017/10/23/escape-psycho-circus-2017-essentials/",
+     "captureTimestamp": "20220810223016",
+     "sha256": "e4bd8a89eab512c2e36207cfcc382ed90810f7176e7eae00e8e59837ef4d3eca",
+     "cites": "wp-content/uploads/2017/10/Escape-2017-Set-Times",
+     "setTimesGraphics": [
+      "wp-content/uploads/2017/10/Escape-2017-Set-Times"
+     ]
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2017.json"
+   },
+   {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/10/Escape-2017-Set-Times.png",
+    "foundAt": "https://edmidentity.com/2017/10/23/escape-psycho-circus-2017-essentials/",
+    "published": "2017-10-23",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "SATURDAY · OCTOBER 27 & 28, 2017",
+    "sha256": "d433f96d41c266c564af4001ec3b3b22bc5a9dc4b27094a7b158b7669c0b4357",
+    "rows": 33,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20220810223016/https://edmidentity.com/2017/10/23/escape-psycho-circus-2017-essentials/",
+     "captureTimestamp": "20220810223016",
+     "sha256": "e4bd8a89eab512c2e36207cfcc382ed90810f7176e7eae00e8e59837ef4d3eca",
+     "cites": "wp-content/uploads/2017/10/Escape-2017-Set-Times",
+     "setTimesGraphics": [
+      "wp-content/uploads/2017/10/Escape-2017-Set-Times"
+     ]
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2017.json"
+   }
+  ]
+ }
+}

@@ -2,9 +2,11 @@ function Screen({
   children,
   bg = "var(--paper)",
   pad = true,
-  ink = "var(--ink)"
+  ink = "var(--ink)",
+  scope
 }) {
   return React.createElement("div", {
+    "data-screen": scope,
     style: {
       position: "absolute",
       inset: 0,
@@ -23,6 +25,7 @@ var ScrollBody = React.forwardRef(function ScrollBody({
 }, fwdRef) {
   return React.createElement("div", {
     ref: fwdRef,
+    "data-scroll-body": "",
     ...rest,
     style: {
       flex: 1,
@@ -110,26 +113,61 @@ function TabBar({
     label: "Me",
     icon: MeIcon
   }];
+  var idx = Math.max(0, tabs.findIndex(t => t.id === active));
+  var lit = tabs.some(t => t.id === active);
   return React.createElement("div", {
+    className: "ps-tabbar",
     style: {
+      position: "relative",
       background: "var(--chrome)",
       backdropFilter: "blur(20px) saturate(160%)",
       WebkitBackdropFilter: "blur(20px) saturate(160%)",
       borderTop: "1px solid var(--line)",
-      padding: "0 10px 10px",
+      padding: "0 10px max(10px, env(safe-area-inset-bottom, 0px))",
       display: "flex",
       justifyContent: "space-around"
     }
-  }, tabs.map(t => {
+  }, lit && React.createElement("span", {
+    "aria-hidden": "true",
+    className: "ps-tab-ind",
+    style: {
+      position: "absolute",
+      top: 0,
+      left: 10,
+      height: 53,
+      width: `calc((100% - 20px) / ${tabs.length})`,
+      transform: `translateX(${idx * 100}%)`,
+      transition: "transform var(--t-move) var(--ease-spring)",
+      pointerEvents: "none",
+      display: "flex",
+      justifyContent: "center"
+    }
+  }, React.createElement("span", {
+    style: {
+      marginTop: 6,
+      width: 58,
+      height: 30,
+      borderRadius: 999,
+      background: "var(--acc-14)",
+      boxShadow: "inset 0 0 0 1px var(--acc-30)"
+    }
+  })), tabs.map(t => {
     var Icon = t.icon;
     var on = active === t.id;
     return React.createElement("button", {
       key: t.id,
       onClick: () => {
         haptic.light();
+        if (on) document.querySelectorAll(".ps-view [data-scroll-body]").forEach(sc => {
+          if (sc.scrollTop > 0) sc.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        });
         onChange(t.id);
       },
       "aria-current": on ? "page" : undefined,
+      className: "ps-tab",
       style: {
         position: "relative",
         background: "transparent",
@@ -147,21 +185,16 @@ function TabBar({
         minHeight: 53,
         transition: "color var(--t-tap) var(--ease-decay)"
       }
-    }, on && React.createElement("span", {
-      "aria-hidden": "true",
+    }, React.createElement("span", {
+      className: "ps-tab-icon",
       style: {
-        position: "absolute",
-        top: -1,
-        left: "28%",
-        right: "28%",
-        height: 2,
-        borderRadius: 2,
-        background: "var(--acc)",
-        boxShadow: "0 0 12px var(--acc-55)"
+        display: "flex",
+        transition: "transform var(--t-move) var(--ease-spring)",
+        transform: on ? "translateY(-1px)" : "none"
       }
-    }), React.createElement(Icon, {
+    }, React.createElement(Icon, {
       on: on
-    }), React.createElement("span", {
+    })), React.createElement("span", {
       "data-fit-words": true,
       "data-fit-group": "tab",
       "data-fit-min": "9",
@@ -171,7 +204,7 @@ function TabBar({
         fontSize: 11,
         lineHeight: 1.17,
         letterSpacing: ".01em",
-        fontWeight: 500,
+        fontWeight: on ? 600 : 500,
         textAlign: "center"
       }
     }, t.label));
@@ -306,38 +339,32 @@ function useStaggerFade(depKey, skip = false) {
   var ref = React.useRef(null);
   React.useEffect(() => {
     var el = ref.current;
-    if (!el || skip || !window.IntersectionObserver) return;
-    var targets = el.querySelectorAll("[data-animate]");
-    if (!targets.length) return;
-    targets.forEach(t => {
+    if (!el || skip) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) return;
+    var box = el.getBoundingClientRect();
+    var visible = [...el.querySelectorAll("[data-animate]")].filter(t => {
+      var r = t.getBoundingClientRect();
+      return r.bottom > box.top && r.top < box.bottom;
+    }).slice(0, 8);
+    if (!visible.length) return;
+    visible.forEach(t => {
+      t.style.transition = "none";
       t.style.opacity = "0";
       t.style.transform = "translateY(8px)";
     });
-    var idx = 0;
-    var obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        var t = e.target;
-        if (idx < 8) {
-          var delay = idx * 40;
-          setTimeout(() => {
-            t.style.transition = "opacity 0.3s ease, transform 0.3s var(--ease-spring)";
-            t.style.opacity = "1";
-            t.style.transform = "translateY(0)";
-          }, delay);
-        } else {
-          t.style.transition = "none";
-          t.style.opacity = "1";
-          t.style.transform = "translateY(0)";
-        }
-        idx++;
-        obs.unobserve(t);
+    var timers = visible.map((t, i) => setTimeout(() => {
+      t.style.transition = "opacity 0.3s ease, transform 0.3s var(--ease-spring)";
+      t.style.opacity = "1";
+      t.style.transform = "translateY(0)";
+    }, i * 40));
+    return () => {
+      timers.forEach(clearTimeout);
+      visible.forEach(t => {
+        t.style.transition = "";
+        t.style.opacity = "";
+        t.style.transform = "";
       });
-    }, {
-      threshold: 0.05
-    });
-    targets.forEach(t => obs.observe(t));
-    return () => obs.disconnect();
+    };
   }, [depKey]);
   return ref;
 }
@@ -376,7 +403,7 @@ function _artistImageShowable(rec, now = Date.now()) {
   return false;
 }
 function getPermanentArtistImage(name) {
-  var rec = window.PLURSKY_ARTIST_PHOTOS?.[String(name || "").trim().toLowerCase()];
+  var rec = window.PLURSKY_ARTIST_PHOTOS?.[window.PlurskyArtistKey.artistKey(name || "")];
   if (!rec || !["commons", "press-kit"].includes(rec.source) || !/^\.\/artist-photos\/[a-z0-9][a-z0-9_-]*\.(webp|png|jpg)$/.test(rec.url || "") || !rec.author || !rec.license || !rec.sourceUrl || !rec.licenseUrl) return null;
   return rec;
 }
@@ -401,6 +428,7 @@ function _pruneArtistImageStore(store, now = Date.now()) {
   }
   return changed;
 }
+var ARTIST_IMAGES_WRITTEN = "plursky:artist-images-written";
 function putArtistImages(entries, {
   ifAbsent = false
 } = {}) {
@@ -408,6 +436,7 @@ function putArtistImages(entries, {
     var store = _readArtistImageStore();
     var changed = _pruneArtistImageStore(store);
     var now = Date.now();
+    var written = [];
     for (var e of entries || []) {
       if (!e || !e.name || typeof e.url !== "string" || !e.url) continue;
       if (!_ARTIST_IMAGE_SOURCES.includes(e.source)) continue;
@@ -419,9 +448,15 @@ function putArtistImages(entries, {
         fetchedAt: now
       };
       if (e.source === "spotify" && e.spotifyId) store[ln].spotifyId = e.spotifyId;
+      written.push(ln);
       changed = true;
     }
     if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(store));
+    if (written.length) try {
+      window.dispatchEvent(new CustomEvent(ARTIST_IMAGES_WRITTEN, {
+        detail: written
+      }));
+    } catch {}
   } catch {}
   _scheduleArtistImageExpiry();
 }
@@ -462,15 +497,6 @@ function _scheduleArtistImageExpiry(now = Date.now()) {
   } catch {}
   if (next === Infinity) return;
   _artistImageTimer = setTimeout(() => _expireArtistImagesNow(), Math.max(0, next - now) + 50);
-}
-function useArtistImageExpiry() {
-  var [n, setN] = React.useState(0);
-  React.useEffect(() => {
-    var on = () => setN(x => x + 1);
-    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
-    return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
-  }, []);
-  return n;
 }
 try {
   _expireArtistImagesNow();
@@ -528,8 +554,82 @@ function SpotifyFullLogo({
     d: "m803.56,98.29c.82-.6,1.23-1.4,1.23-2.39s-.4-1.83-1.2-2.43c-.8-.6-1.96-.9-3.48-.9h-5.36v11.2h2.59v-4.45h1.41l3.41,4.45h3.18l-3.73-4.72c.79-.15,1.46-.4,1.96-.77Zm-3.86-.99h-2.36v-2.74h2.45c.73,0,1.29.11,1.68.34.39.23.59.58.59,1.06,0,.45-.21.79-.61,1.01-.41.23-.99.34-1.75.34Z"
   }));
 }
+function SpotifyPhotoCredit({
+  names
+}) {
+  var list = (names || []).filter(Boolean);
+  var has = () => list.some(n => getArtistImage(n)?.source === "spotify");
+  var [show, setShow] = React.useState(has);
+  var sig = list.join("|");
+  React.useEffect(() => {
+    setShow(has());
+    var on = () => setShow(has());
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, on);
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
+    return () => {
+      window.removeEventListener(ARTIST_IMAGES_WRITTEN, on);
+      window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
+    };
+  }, [sig]);
+  if (!show) return null;
+  return React.createElement("a", {
+    href: "https://open.spotify.com",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    "data-spotify-attribution": "list",
+    "aria-label": "Artist photos from Spotify",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      padding: "14px 0 6px",
+      color: "var(--ink-2)",
+      fontSize: 12,
+      textDecoration: "none"
+    }
+  }, React.createElement("span", null, "Artist photos from"), React.createElement(SpotifyFullLogo, {
+    height: 21
+  }));
+}
 var _photoQueue = [];
 var _photoActive = false;
+var SPOTIFY_PHOTO_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/spotify-artist-image";
+var _photoProxyOff = false;
+var _photoProxyPausedUntil = 0;
+function _photoProxyUsable() {
+  if (typeof navigator !== "undefined" && navigator.webdriver && !window.__plurskyPhotoProxyInTests) return false;
+  return !_photoProxyOff && Date.now() >= _photoProxyPausedUntil && (typeof navigator === "undefined" || navigator.onLine !== false);
+}
+function _spotifyNameKey(s) {
+  return String(s || "").normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "");
+}
+function _spotifyExactArtist(items, name) {
+  var k = _spotifyNameKey(name);
+  return k ? (items || []).find(x => x && _spotifyNameKey(x.name) === k) || null : null;
+}
+function _fetchProxyPhoto(name) {
+  if (!_photoProxyUsable()) return Promise.resolve(null);
+  return fetch(SPOTIFY_PHOTO_PROXY_URL + "?name=" + encodeURIComponent(name)).then(r => {
+    if (r.status === 429) {
+      _photoProxyPausedUntil = Date.now() + 1000 * Math.min(600, parseInt(r.headers.get("Retry-After")) || 60);
+      return null;
+    }
+    if (r.status === 404 || r.status === 503) {
+      _photoProxyOff = true;
+      return null;
+    }
+    return r.ok ? r.json() : null;
+  }).then(d => {
+    if (!d || !d.url) return null;
+    putArtistImage(name, d.url, "spotify", {
+      spotifyId: d.spotifyId
+    });
+    return {
+      url: d.url,
+      spotifyId: d.spotifyId || null
+    };
+  }).catch(() => null);
+}
 function _drainPhotoQueue() {
   if (_photoActive || !_photoQueue.length) return;
   _photoActive = true;
@@ -537,31 +637,32 @@ function _drainPhotoQueue() {
     name,
     resolve
   } = _photoQueue.shift();
-  var token = localStorage.getItem("spotify_token");
-  var expires = localStorage.getItem("spotify_expires");
-  if (!token || !expires || Date.now() >= parseInt(expires)) {
+  var next = () => {
     _photoActive = false;
-    resolve(null);
-    _drainPhotoQueue();
+    setTimeout(_drainPhotoQueue, 150);
+  };
+  if (!_spotifyTokenValid()) {
+    if (!_photoProxyUsable()) {
+      _photoActive = false;
+      resolve(null);
+      _drainPhotoQueue();
+      return;
+    }
+    _fetchProxyPhoto(name).then(hit => resolve(hit ? hit.url : null)).finally(next);
     return;
   }
-  fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(name)}&type=artist&limit=3`, {
+  fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(name)}&type=artist&limit=10`, {
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + localStorage.getItem("spotify_token")
     }
   }).then(r => r.ok ? r.json() : null).then(d => {
-    var ln = name.toLowerCase();
-    var items = d?.artists?.items || [];
-    var match = items.find(x => x.name.toLowerCase() === ln) || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
+    var match = _spotifyExactArtist(d?.artists?.items, name);
     var img = match?.images?.[0]?.url || null;
     if (img) putArtistImage(name, img, "spotify", {
       spotifyId: match.id
     });
     resolve(img);
-  }).catch(() => resolve(null)).finally(() => {
-    _photoActive = false;
-    setTimeout(_drainPhotoQueue, 150);
-  });
+  }).catch(() => resolve(null)).finally(next);
 }
 function _queuePhoto(name) {
   return new Promise(resolve => {
@@ -572,29 +673,264 @@ function _queuePhoto(name) {
     _drainPhotoQueue();
   });
 }
-function useArtistPhoto(name) {
-  var [photo, setPhoto] = React.useState(() => {
-    return getArtistImage(name)?.url || null;
+var ARTIST_PHOTO_EVENTS = ["MOUNT", "PARAM_CHANGE", "CACHE_HIT", "CACHE_MISS", "FETCH_RESOLVE", "FETCH_MISS", "FETCH_REJECT", "CACHE_WRITTEN", "CACHE_EXPIRED", "RETRY", "ONLINE", "UNMOUNT"];
+var _apEmpty = ctx => ({
+  ...ctx,
+  url: null,
+  source: null,
+  rec: null
+});
+var _apReady = (ctx, rec) => ["ready", {
+  ...ctx,
+  url: rec.url,
+  source: rec.source,
+  rec
+}];
+var _apAsk = (ctx, p) => {
+  var next = _apEmpty({
+    ...ctx,
+    key: p.key ?? ctx.key,
+    name: p.name ?? ctx.name,
+    ask: "mount"
   });
-  var expiry = useArtistImageExpiry();
-  React.useEffect(() => {
-    if (expiry) setPhoto(getArtistImage(name)?.url || null);
-  }, [expiry]);
-  React.useEffect(() => {
-    if (photo) return;
-    var live = true;
-    var token = localStorage.getItem("spotify_token");
-    var expires = localStorage.getItem("spotify_expires");
-    if (token && expires && Date.now() < parseInt(expires)) {
-      _queuePhoto(name).then(img => {
-        if (live && img) setPhoto(img);
-      });
+  return next.name ? ["loading", next, "read"] : ["none", next];
+};
+var _apReread = ask => ctx => ["loading", {
+  ..._apEmpty(ctx),
+  ask
+}, "read"];
+var _apWritten = (ctx, p) => p.rec ? _apReady(ctx, p.rec) : null;
+var _apAnswer = kind => (ctx, p) => {
+  if (p.req !== ctx.req) return null;
+  if (kind === "resolve") return p.url ? ["ready", {
+    ...ctx,
+    url: p.url,
+    source: p.source || "spotify",
+    rec: null
+  }] : ["unavailable", _apEmpty(ctx)];
+  if (kind === "offline" && p.noLookup) return ["none", _apEmpty(ctx)];
+  return [kind, _apEmpty(ctx)];
+};
+var _apStop = () => MACHINE_STOP;
+var ARTIST_PHOTO_MACHINE = createMachine({
+  id: "artist-photo",
+  initial: "none",
+  events: ARTIST_PHOTO_EVENTS,
+  states: {
+    none: {
+      MOUNT: _apAsk,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: (ctx, p) => ctx.name ? _apReread("retry")(ctx, p) : null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    loading: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: (ctx, p) => _apReady(ctx, p.rec),
+      CACHE_MISS: (ctx, p) => p.error ? ["error", ctx] : p.canFetch ? ["loading", {
+        ...ctx,
+        req: ctx.req + 1
+      }, "fetch"] : ["none", ctx],
+      FETCH_RESOLVE: _apAnswer("resolve"),
+      FETCH_MISS: _apAnswer("unavailable"),
+      FETCH_REJECT: _apAnswer("offline"),
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    ready: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: (ctx, p) => p.rec ? _apReady(ctx, p.rec) : p.canFetch ? ["loading", {
+        ..._apEmpty(ctx),
+        req: ctx.req + 1
+      }, "fetch"] : ["none", _apEmpty(ctx)],
+      RETRY: null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    unavailable: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    offline: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: _apReread("online"),
+      UNMOUNT: _apStop
+    },
+    error: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: null,
+      UNMOUNT: _apStop
     }
-    return () => {
-      live = false;
+  }
+});
+function _readArtistPhoto(name) {
+  try {
+    return {
+      rec: getArtistImage(name)
     };
-  }, [name.toLowerCase(), photo]);
-  return photo;
+  } catch (error) {
+    return {
+      rec: null,
+      error
+    };
+  }
+}
+function _settleArtistPhoto(snap, canFetch) {
+  if (snap.effect !== "read") return snap;
+  var {
+    rec,
+    error
+  } = _readArtistPhoto(snap.ctx.name);
+  return ARTIST_PHOTO_MACHINE.step(snap, rec ? "CACHE_HIT" : "CACHE_MISS", rec ? {
+    rec
+  } : {
+    error,
+    canFetch: !error && canFetch(snap.ctx.ask || "mount")
+  });
+}
+function _spotifyTokenValid() {
+  var token = localStorage.getItem("spotify_token");
+  var expires = localStorage.getItem("spotify_expires");
+  return !!(token && expires && Date.now() < parseInt(expires));
+}
+function useArtistPhotoMachine(name, {
+  key = name,
+  lookup = null,
+  canFetch = () => false
+} = {}) {
+  var canFetchRef = React.useRef(canFetch);
+  canFetchRef.current = canFetch;
+  var can = reason => !!canFetchRef.current(reason);
+  var [snap, send] = useMachine(ARTIST_PHOTO_MACHINE, key, prev => _settleArtistPhoto(ARTIST_PHOTO_MACHINE.step(prev || ARTIST_PHOTO_MACHINE.start({
+    key,
+    name,
+    url: null,
+    source: null,
+    rec: null,
+    req: 0
+  }), prev ? "PARAM_CHANGE" : "MOUNT", {
+    key,
+    name
+  }), can), (effect, s, send) => {
+    if (effect === "read") {
+      var {
+        rec,
+        error
+      } = _readArtistPhoto(s.ctx.name);
+      send(rec ? "CACHE_HIT" : "CACHE_MISS", rec ? {
+        rec
+      } : {
+        error,
+        canFetch: !error && can(s.ctx.ask || "mount")
+      });
+    } else if (effect === "fetch" && lookup) {
+      var _req = s.ctx.req;
+      lookup(s.ctx.name).then(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", {
+        req: _req,
+        url,
+        source: "spotify"
+      }), () => send("FETCH_REJECT", {
+        req: _req
+      }));
+    }
+  });
+  var ln = String(name || "").toLowerCase();
+  React.useEffect(() => {
+    var onExpired = () => send("CACHE_EXPIRED", {
+      rec: _readArtistPhoto(name).rec,
+      canFetch: can("expired")
+    });
+    var onWritten = e => {
+      if (ln && Array.isArray(e.detail) && e.detail.includes(ln)) send("CACHE_WRITTEN", {
+        rec: _readArtistPhoto(name).rec
+      });
+    };
+    var onOnline = () => send("ONLINE");
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+    window.addEventListener("online", onOnline);
+    return () => {
+      window.removeEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+      window.removeEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+      window.removeEventListener("online", onOnline);
+    };
+  }, [key, send]);
+  var req = snap.ctx.req;
+  var report = React.useCallback(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", {
+    req,
+    url,
+    source: "spotify"
+  }), [req, send]);
+  var fail = React.useCallback(() => send("FETCH_REJECT", {
+    req
+  }), [req, send]);
+  var noLookup = React.useCallback(() => send("FETCH_REJECT", {
+    req,
+    noLookup: true
+  }), [req, send]);
+  var retry = React.useCallback(() => send("RETRY"), [send]);
+  return {
+    url: snap.ctx.url,
+    status: snap.state,
+    retry,
+    rec: snap.ctx.rec,
+    source: snap.ctx.source,
+    report,
+    fail,
+    noLookup
+  };
+}
+function useArtistPhoto(name) {
+  return useArtistPhotoMachine(name, {
+    lookup: _queuePhoto,
+    canFetch: () => _spotifyTokenValid() || _photoProxyUsable()
+  }).url;
 }
 function ArtistSwatch({
   artist,
@@ -757,12 +1093,7 @@ function FieldMediaRow({
     }
   }, children);
 }
-function FieldSheet({
-  title,
-  onClose,
-  children
-}) {
-  useDeclareModal(true);
+function useEscapeToClose(onClose) {
   React.useEffect(() => {
     var onKey = e => {
       if (e.key === "Escape") onClose();
@@ -770,6 +1101,16 @@ function FieldSheet({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+}
+function FieldSheet({
+  title,
+  eyebrow,
+  footer,
+  onClose,
+  children
+}) {
+  useDeclareModal(true);
+  useEscapeToClose(onClose);
   return React.createElement("div", {
     onClick: onClose,
     style: {
@@ -816,13 +1157,22 @@ function FieldSheet({
       justifyContent: "space-between",
       padding: "4px 8px 4px 20px"
     }
-  }, React.createElement("h2", {
+  }, React.createElement("div", {
+    style: {
+      minWidth: 0
+    }
+  }, eyebrow && React.createElement("div", {
+    className: "duo-label duo-ink3",
+    style: {
+      marginBottom: 3
+    }
+  }, eyebrow), React.createElement("h2", {
     style: {
       margin: 0,
       font: "700 22px/1.25 var(--f-ui)",
       letterSpacing: "-0.02em"
     }
-  }, title), React.createElement("button", {
+  }, title)), React.createElement("button", {
     onClick: onClose,
     "aria-label": "Close",
     style: fieldIconBtn
@@ -838,11 +1188,19 @@ function FieldSheet({
     d: "M6 6 L18 18 M18 6 L6 18"
   })))), React.createElement("div", {
     style: {
+      flex: 1,
+      minHeight: 0,
       overflowY: "auto",
       WebkitOverflowScrolling: "touch",
       padding: "4px 20px 24px"
     }
-  }, children)));
+  }, children), footer && React.createElement("div", {
+    style: {
+      flex: "none",
+      padding: "10px 20px 16px",
+      borderTop: "1px solid var(--line)"
+    }
+  }, footer)));
 }
 function _duoMembers(name) {
   return String(name || "").split(/\s+b\d+b\s+|\s+with\s+/i).map(s => s.trim()).filter(Boolean);
@@ -850,25 +1208,46 @@ function _duoMembers(name) {
 function _duoInitials(name) {
   return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2).map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
+function _duoFaceAccent() {
+  try {
+    var id = typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id;
+    var e = id && (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : []).find(f => f && f.config && f.config.id === id);
+    return e && /^#[0-9a-f]{6}$/i.test(e.accent || "") ? e.accent : null;
+  } catch {
+    return null;
+  }
+}
 function DuoFace({
   name,
   size,
   ring = "",
-  style
+  style,
+  className = ""
 }) {
-  var photo = useArtistPhoto(name);
+  var resolved = useArtistPhoto(name);
+  var rec = getArtistImage(name);
+  var [failed, setFailed] = React.useState(null);
+  var photo = resolved && resolved !== failed ? resolved : null;
   return React.createElement("span", {
-    className: `duo-av ${ring}`,
+    className: `duo-av ${ring} ${className}`.trim(),
     "aria-hidden": "true",
+    "data-face": name,
+    "data-photo-source": photo ? rec?.source || "" : "initials",
     style: {
-      width: size,
-      height: size,
-      fontSize: Math.round(size * 0.32),
+      ...(!photo && _duoFaceAccent() ? {
+        "--face-acc": _duoFaceAccent()
+      } : {}),
+      ...(size ? {
+        width: size,
+        height: size,
+        fontSize: Math.round(size * 0.32)
+      } : {}),
       ...style
     }
   }, photo ? React.createElement("img", {
     src: photo,
-    alt: ""
+    alt: "",
+    onError: () => setFailed(photo)
   }) : _duoInitials(name));
 }
 function DuoAvatar({
@@ -882,30 +1261,21 @@ function DuoAvatar({
     size: size,
     ring: ring
   });
-  var d = Math.round(size * 0.66);
   return React.createElement("span", {
     className: "duo-avp",
     "aria-hidden": "true",
+    "data-pair": name,
     style: {
-      width: size,
-      height: size
+      "--av": size + "px"
     }
   }, React.createElement(DuoFace, {
     name: ms[0],
-    size: d,
     ring: ring,
-    style: {
-      left: 0,
-      top: 0
-    }
+    className: "duo-avp-a"
   }), React.createElement(DuoFace, {
     name: ms[1],
-    size: d,
     ring: ring,
-    style: {
-      right: 0,
-      bottom: 0
-    }
+    className: "duo-avp-b"
   }));
 }
 function DuoLive({
@@ -1175,41 +1545,112 @@ function _mapDisplayPerm(display) {
   if (display === "denied") return "denied";
   return "default";
 }
-var ATTENDED_KEY = "plursky_attended_v1";
-function getAllAttended() {
+var ATTENDED_KEY = "plursky_attended_v2";
+var ATTENDED_LEGACY_KEY = "plursky_attended_v1";
+var ATTENDED_UNATTRIBUTED = "_unattributed";
+function _attendedDataSets() {
   try {
-    var raw = localStorage.getItem(ATTENDED_KEY);
-    var obj = raw ? JSON.parse(raw) : {};
-    Object.keys(obj).forEach(k => {
-      obj[k] = Array.isArray(obj[k]) ? obj[k].filter(x => typeof x === "string") : [];
-    });
-    return obj;
+    return (typeof _DATA_SETS !== "undefined" ? _DATA_SETS : window._DATA_SETS) || {};
   } catch {
     return {};
   }
 }
-function _writeAttended(map) {
+var _attendedOwnerIndex = null;
+function _attendedOwnerOf(artistId) {
+  var sets = _attendedDataSets();
+  if (!_attendedOwnerIndex || _attendedOwnerIndex._n !== Object.keys(sets).length) {
+    var idx = {
+      _n: Object.keys(sets).length,
+      map: {}
+    };
+    for (var [fid, ds] of Object.entries(sets)) {
+      for (var a of ds?.artists || []) {
+        idx.map[a.id] = a.id in idx.map && idx.map[a.id] !== fid ? null : fid;
+      }
+    }
+    _attendedOwnerIndex = idx;
+  }
+  return _attendedOwnerIndex.map[artistId] || null;
+}
+function _normAttendedNights(obj) {
+  var out = {};
+  if (!obj || typeof obj !== "object") return out;
+  Object.keys(obj).forEach(k => {
+    out[k] = Array.isArray(obj[k]) ? obj[k].filter(x => typeof x === "string") : [];
+  });
+  return out;
+}
+function _migrateLegacyAttended() {
+  var legacy = {};
   try {
-    localStorage.setItem(ATTENDED_KEY, JSON.stringify(map));
+    legacy = JSON.parse(localStorage.getItem(ATTENDED_LEGACY_KEY) || "{}") || {};
+  } catch {}
+  var store = {};
+  for (var [night, ids] of Object.entries(_normAttendedNights(legacy))) {
+    for (var id of ids) {
+      var fid = _attendedOwnerOf(id) || ATTENDED_UNATTRIBUTED;
+      var nights = store[fid] = store[fid] || {};
+      var list = nights[night] = nights[night] || [];
+      if (!list.includes(id)) list.push(id);
+    }
+  }
+  if (Object.keys(_attendedDataSets()).length) {
+    try {
+      localStorage.setItem(ATTENDED_KEY, JSON.stringify(store));
+    } catch {}
+  }
+  return store;
+}
+function _readAttendedStore() {
+  try {
+    var raw = localStorage.getItem(ATTENDED_KEY);
+    if (raw) {
+      var s = JSON.parse(raw);
+      if (s && typeof s === "object") return s;
+    }
+  } catch {}
+  return _migrateLegacyAttended();
+}
+function getAttendedStore() {
+  var s = _readAttendedStore(),
+    out = {};
+  Object.keys(s).forEach(fid => {
+    out[fid] = _normAttendedNights(s[fid]);
+  });
+  return out;
+}
+function getAllAttended(festivalId) {
+  var fid = festivalId || window.FESTIVAL_CONFIG?.id;
+  if (!fid) return {};
+  return _normAttendedNights(_readAttendedStore()[fid]);
+}
+function _writeAttended(map, festivalId) {
+  var fid = festivalId || window.FESTIVAL_CONFIG?.id;
+  if (!fid) return;
+  var store = _readAttendedStore();
+  store[fid] = map;
+  try {
+    localStorage.setItem(ATTENDED_KEY, JSON.stringify(store));
   } catch {}
   try {
     window.dispatchEvent(new CustomEvent("plursky-attended-change"));
   } catch {}
 }
-function getAttendedForNight(night) {
-  return new Set(getAllAttended()[night] || []);
+function getAttendedForNight(night, festivalId) {
+  return new Set(getAllAttended(festivalId)[night] || []);
 }
-function getAttendedCount() {
-  var all = getAllAttended();
+function getAttendedCount(festivalId) {
+  var all = getAllAttended(festivalId);
   return Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
 }
 function markAttended(night, artistId, source = "manual") {
   if (!night || !artistId) return false;
-  var all = getAllAttended();
+  var fid = _attendedOwnerOf(artistId) || window.FESTIVAL_CONFIG?.id;
+  var all = getAllAttended(fid);
   var list = all[night] || [];
   if (list.includes(artistId)) return false;
   all[night] = [...list, artistId];
-  _writeAttended(all);
+  _writeAttended(all, fid);
   if (source === "gps") {
     try {
       var log = JSON.parse(localStorage.getItem("plursky_attended_source_v1") || "{}");
@@ -1224,11 +1665,12 @@ function markAttended(night, artistId, source = "manual") {
 }
 function unmarkAttended(night, artistId) {
   if (!night || !artistId) return false;
-  var all = getAllAttended();
+  var fid = _attendedOwnerOf(artistId) || window.FESTIVAL_CONFIG?.id;
+  var all = getAllAttended(fid);
   var list = (all[night] || []).filter(x => x !== artistId);
   if (list.length === (all[night] || []).length) return false;
   all[night] = list;
-  _writeAttended(all);
+  _writeAttended(all, fid);
   return true;
 }
 function isAttended(night, artistId) {
@@ -1242,46 +1684,169 @@ function getAttendanceSource(artistId) {
     return "manual";
   }
 }
-function _gpsDistMeters(latA, lngA, latB, lngB) {
-  var toRad = d => d * Math.PI / 180;
-  var cosLat = Math.cos(toRad((latA + latB) / 2));
-  var dLat = toRad(latB - latA) * 6371000;
-  var dLng = toRad(lngB - lngA) * 6371000 * cosLat;
-  return Math.hypot(dLat, dLng);
-}
 function detectCurrentArtist(lat, lng, opts = {}) {
   if (typeof lat !== "number" || typeof lng !== "number") return null;
   var cfg = window.FESTIVAL_CONFIG;
   if (!cfg) return null;
-  var anchors = typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg.gpsAnchors || [];
+  var anchors = attendEvidenceAnchors(cfg);
   if (anchors.length === 0) return null;
-  var radius = opts.radiusM || 140;
   var now = window.NOW;
   if (!now || !now.day || !now.time) return null;
-  var best = null;
-  for (var a of anchors) {
-    var d = _gpsDistMeters(lat, lng, a.lat, a.lng);
-    if (d > radius) continue;
-    if (!best || d < best.d) best = {
-      ...a,
-      d
-    };
-  }
-  if (!best) return null;
-  var playing = activeLineup().find(a => a.stage === best.stageId && isSetLive(a));
+  var gate = stageFixGate(anchors, {
+    lat,
+    lng,
+    accuracy: opts.accuracy,
+    timestamp: opts.timestamp
+  }, typeof opts.atMs === "number" ? opts.atMs : Date.now(), opts.saver ? STAGE_FIX_ATTEND_SAVER : STAGE_FIX_ATTEND);
+  if (gate.status !== "trusted") return null;
+  var playing = activeLineup().find(a => a.stage === gate.stageId && isSetLive(a));
   if (!playing) return null;
   return {
     artistId: playing.id,
-    stageId: best.stageId,
+    stageId: gate.stageId,
     night: now.day,
-    distM: Math.round(best.d)
+    distM: Math.round(gate.distM)
   };
 }
-function recordAttendanceFromGps(lat, lng) {
-  var hit = detectCurrentArtist(lat, lng);
+function recordAttendanceFromGps(lat, lng, opts) {
+  var hit = detectCurrentArtist(lat, lng, opts);
   if (!hit) return null;
   var added = markAttended(hit.night, hit.artistId, "gps");
   return added ? hit : null;
+}
+var SET_TRACK_PREF_KEY = "plursky_set_tracking_v1";
+var SET_TRACK_STORE_KEY = "plursky_set_intervals_v1";
+var SET_TRACK_EVENT = "plursky-set-tracking-change";
+function getSetTracking() {
+  try {
+    var v = localStorage.getItem(SET_TRACK_PREF_KEY);
+    return v === "on" || v === "off" ? v : null;
+  } catch {
+    return null;
+  }
+}
+function setSetTracking(on) {
+  try {
+    localStorage.setItem(SET_TRACK_PREF_KEY, on ? "on" : "off");
+  } catch {}
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+}
+function _readSetTrackStore() {
+  try {
+    var s = JSON.parse(localStorage.getItem(SET_TRACK_STORE_KEY) || "{}");
+    return s && typeof s === "object" ? s : {};
+  } catch {
+    return {};
+  }
+}
+function setTrackRecord(festivalId, fix) {
+  if (!festivalId) return false;
+  var all = _readSetTrackStore();
+  all[festivalId] = setTrackAppend(all[festivalId], {
+    ms: fix && fix.ms,
+    stageId: fix && fix.stageId
+  });
+  try {
+    localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all));
+  } catch {
+    return false;
+  }
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+  return true;
+}
+function getSetTrackIntervals(festivalId) {
+  var e = _readSetTrackStore()[festivalId];
+  return e && e.runs || {};
+}
+function clearSetTrack(festivalId) {
+  var all = _readSetTrackStore();
+  if (!(festivalId in all)) return false;
+  delete all[festivalId];
+  try {
+    localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all));
+  } catch {}
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+  return true;
+}
+function setTrackVerdict(a, cfg = window.FESTIVAL_CONFIG) {
+  if (!a || !cfg || !cfg.id) return null;
+  var iv = getSetTrackIntervals(cfg.id);
+  if (!iv[a.stage] || !iv[a.stage].length) return null;
+  var v = attendanceVerdict(a, iv, cfg);
+  return v.verdict === "none" ? null : {
+    ...v,
+    label: attendanceVerdictLabel(v)
+  };
+}
+function setTrackSummary(artists, cfg = window.FESTIVAL_CONFIG) {
+  var out = {
+    full: 0,
+    partial: 0
+  };
+  for (var a of artists || []) {
+    var v = setTrackVerdict(a, cfg);
+    if (v && v.verdict === "full") out.full++;else if (v && v.verdict === "partial") out.partial++;
+  }
+  return out;
+}
+function SetTrackingWatcher() {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  var {
+    active: bsActive
+  } = useBatterySaver();
+  React.useEffect(() => {
+    var on = () => bump();
+    window.addEventListener(SET_TRACK_EVENT, on);
+    document.addEventListener("visibilitychange", on);
+    var t = setInterval(on, 60000);
+    return () => {
+      window.removeEventListener(SET_TRACK_EVENT, on);
+      document.removeEventListener("visibilitychange", on);
+      clearInterval(t);
+    };
+  }, []);
+  var cfg = window.FESTIVAL_CONFIG;
+  var fid = cfg && cfg.id;
+  var run = getSetTracking() === "on" && document.visibilityState !== "hidden" && setTrackEligibility(cfg, Date.now()) === "live";
+  React.useEffect(() => {
+    if (!run || !navigator.geolocation) return;
+    var anchors = attendEvidenceAnchors(cfg);
+    var rules = bsActive ? STAGE_FIX_ATTEND_SAVER : STAGE_FIX_ATTEND;
+    var opts = bsActive ? {
+      enableHighAccuracy: false,
+      maximumAge: 30000,
+      timeout: 30000
+    } : {
+      enableHighAccuracy: true,
+      maximumAge: 4000,
+      timeout: 15000
+    };
+    var alive = true;
+    var id = navigator.geolocation.watchPosition(p => {
+      if (!alive || !p || !p.coords) return;
+      var q = attendQualifyFixes([{
+        lat: p.coords.latitude,
+        lng: p.coords.longitude,
+        accuracy: p.coords.accuracy,
+        timestamp: p.timestamp,
+        atMs: Date.now()
+      }], anchors, rules);
+      if (q.length) setTrackRecord(fid, q[0]);
+    }, () => {}, opts);
+    return () => {
+      alive = false;
+      try {
+        navigator.geolocation.clearWatch(id);
+      } catch {}
+    };
+  }, [run, fid, bsActive]);
+  return null;
 }
 function _artistStartMs(artist) {
   return _wallMs(artistDayDate(artist), artist && artist.start, FESTIVAL_CONFIG && FESTIVAL_CONFIG.tz);
@@ -1303,15 +1868,31 @@ function setReminderLeadMin(mins) {
     localStorage.setItem(_REMINDER_LEAD_KEY, String(mins));
   } catch {}
 }
+function _reminderText(p) {
+  var lead = p.leadMin || 15;
+  return p.late ? {
+    title: `${p.name}: you arrive in ${lead} min`,
+    body: `${p.stageName} · you arrive ${fmt12(p.start)}`
+  } : {
+    title: `${p.name} starts in ${lead} min`,
+    body: `${p.stageName} · ${fmt12(p.start)}`
+  };
+}
 function scheduleReminders(state, showLocal) {
   var ln = _capLocalNotifications();
   var now = Date.now();
   var leadMin = getReminderLeadMin();
   var pending = [];
   var lineup = activeLineup(state.saved);
-  state.saved.forEach(id => {
-    var a = lineup.find(x => x.id === id);
-    if (!a) return;
+  var ids = typeof reminderSetIds === "function" ? reminderSetIds(state.saved) : state.saved;
+  ids.forEach(id => {
+    var found = lineup.find(x => x.id === id);
+    if (!found) return;
+    var win = typeof attendWindow === "function" && state.saved.includes(id) ? attendWindow(found, undefined, state.saved) : null;
+    var a = win && win.partial ? {
+      ...found,
+      start: win.start
+    } : found;
     var startMs = _artistStartMs(a);
     if (!startMs) return;
     var fireMs = startMs - leadMin * 60000;
@@ -1324,6 +1905,7 @@ function scheduleReminders(state, showLocal) {
       name: a.name,
       stageName: stage?.name || "",
       start: a.start,
+      late: a.start !== found.start,
       fireMs,
       leadMin
     });
@@ -1345,8 +1927,8 @@ function scheduleReminders(state, showLocal) {
       ln.schedule({
         notifications: pending.map(p => ({
           id: p.notifId,
-          title: `${p.name} starts in ${p.leadMin} min`,
-          body: `${p.stageName} · ${fmt12(p.start)}`,
+          title: _reminderText(p).title,
+          body: _reminderText(p).body,
           schedule: {
             at: new Date(p.fireMs),
             allowWhileIdle: true
@@ -1364,14 +1946,12 @@ function scheduleReminders(state, showLocal) {
     } catch {}
     return _SCHEDULED.size;
   }
-  _SCHEDULED.forEach(h => {
-    if (typeof h !== "number") clearTimeout(h);
-  });
+  _SCHEDULED.forEach(h => clearTimeout(h));
   _SCHEDULED.clear();
   pending.forEach(p => {
     var handle = setTimeout(() => {
-      showLocal(`${p.name} starts in ${p.leadMin} min`, {
-        body: `${p.stageName} · ${fmt12(p.start)}`,
+      showLocal(_reminderText(p).title, {
+        body: _reminderText(p).body,
         tag: `set-${p.id}`,
         data: {
           url: "/"
@@ -1395,10 +1975,9 @@ function loadAndReschedule(showLocal) {
     var live = saved.filter(r => r.fireMs > now && r.fireMs - now <= 24 * 3600000);
     live.forEach(r => {
       if (_SCHEDULED.has(r.id)) return;
-      var lead = r.leadMin || 15;
       var handle = setTimeout(() => {
-        showLocal(`${r.name} starts in ${lead} min`, {
-          body: `${r.stageName} · ${fmt12(r.start)}`,
+        showLocal(_reminderText(r).title, {
+          body: _reminderText(r).body,
           tag: `set-${r.id}`,
           data: {
             url: "/"
@@ -1727,38 +2306,33 @@ function FestivalChip({
     onClose: () => setOpen(false)
   }));
 }
-var _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
-function _festivalArt(cfg) {
-  var img = cfg && cfg.mapImage;
-  return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
+function festivalArtFor(id) {
+  var rec = id && window.PLURSKY_FESTIVAL_ART?.[id];
+  return rec && /^festival-art\/tiles\/[a-z0-9-]+\.webp$/.test(rec.tile || "") && rec.sourcePage ? rec : null;
 }
-var _FESTIVAL_EDITORIAL_ART = Object.freeze({
-  "acl-2026": "festival-art/acl-2026.webp",
-  "crssd-fall-2026": "festival-art/crssd-fall-2026.webp",
-  "portola-2026": "festival-art/portola-2026.webp",
-  "iii-points-2026": "festival-art/iii-points-2026.webp",
-  "edc-lv-2026": "festival-art/edc-lv-2026.webp",
-  "countdown-nye-2026": "festival-art/countdown-nye-2026.webp"
-});
 function FestivalThumb({
   entry,
   size = 56,
   editorial = false
 }) {
-  var editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
-  var art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
+  var rec = festivalArtFor(entry?.config?.id);
+  var art = editorial ? rec?.card || null : rec?.tile || null;
   var name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
   var brand = String(entry?.config?.brand || "").trim();
   var mark = (/^[A-Za-z0-9]{2,6}$/.test(brand) ? brand : String(entry?.config?.name || name).split(/\s+/).filter(w => w && !/^\d+$/.test(w)).slice(0, 3).map(x => x[0]).join("")).toUpperCase();
+  var accent = /^#[0-9a-f]{6}$/i.test(entry?.accent || "") ? entry.accent : null;
   return React.createElement("div", {
     "aria-hidden": "true",
+    "data-festival-thumb": entry?.config?.id || "",
+    "data-art": art ? "ledger" : accent ? "tinted" : "plain",
     style: {
       width: size,
       height: size,
-      borderRadius: "var(--rad-sm)",
+      borderRadius: editorial ? "var(--rad-sm)" : 12,
       overflow: "hidden",
       flexShrink: 0,
-      background: "var(--s3)",
+      background: art ? "#1C1B19" : accent ? `color-mix(in srgb, ${accent} 26%, var(--s3))` : "var(--s3)",
+      boxShadow: !art && accent ? `inset 0 0 0 1px color-mix(in srgb, ${accent} 45%, transparent)` : undefined,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -1766,7 +2340,7 @@ function FestivalThumb({
       fontSize: Math.max(13, Math.round(size * (editorial ? 0.16 : 0.22))),
       fontWeight: 400,
       letterSpacing: "0.12em",
-      color: "var(--ink-2)",
+      color: "var(--ink)",
       lineHeight: 1
     }
   }, art ? React.createElement("img", {
@@ -1778,6 +2352,97 @@ function FestivalThumb({
       objectFit: "cover"
     }
   }) : mark);
+}
+function photoLicenseLabel(id) {
+  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/-DE$/, " DE").replace(/^(Public|Press)-/, "$1 ");
+}
+var _photoCreditLink = {
+  color: "inherit",
+  textDecoration: "underline",
+  textUnderlineOffset: 2
+};
+function PhotoCredit({
+  credit,
+  style,
+  ...rest
+}) {
+  if (!credit || !credit.author || !credit.sourceUrl || !credit.license || !credit.licenseUrl) return null;
+  var lic = photoLicenseLabel(credit.license),
+    changes = credit.changes || "";
+  return React.createElement("div", {
+    "aria-label": "Photo credit: " + credit.author + ", " + lic + (changes ? ", " + changes.toLowerCase() : ""),
+    ...rest,
+    style: {
+      fontSize: "var(--fs-label)",
+      lineHeight: "16px",
+      color: "var(--text-3)",
+      ...style
+    }
+  }, React.createElement("a", {
+    href: credit.sourceUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: _photoCreditLink
+  }, credit.author), " · ", React.createElement("a", {
+    href: credit.licenseUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: _photoCreditLink
+  }, lic), changes ? " · " + changes : "");
+}
+function festivalPhotoCredits() {
+  var art = window.PLURSKY_FESTIVAL_ART || {};
+  var sets = window._DATA_SETS || {};
+  var reg = window.FESTIVALS_REGISTRY || [];
+  return Object.keys(art).filter(id => art[id].author && art[id].licenseId && art[id].licenseUrl).map(id => {
+    var r = art[id],
+      cfg = sets[id]?.config || reg.find(f => f.config?.id === id)?.config;
+    return {
+      id,
+      name: cfg?.name || id,
+      credit: {
+        author: r.author,
+        sourceUrl: r.sourcePage,
+        license: r.licenseId,
+        licenseUrl: r.licenseUrl,
+        changes: r.changes
+      }
+    };
+  }).sort((a, b) => a.name.localeCompare(b.name));
+}
+function PhotoCreditsSheet({
+  onClose
+}) {
+  var rows = festivalPhotoCredits();
+  return React.createElement(FieldSheet, {
+    title: "Photo credits",
+    eyebrow: "FESTIVAL PHOTOS",
+    onClose: onClose
+  }, React.createElement("p", {
+    style: {
+      margin: "-4px 0 14px",
+      color: "var(--ink-2)",
+      font: "400 15px/1.4 var(--f-ui)"
+    }
+  }, "These festival photos are shared under open licences. Each links to its source and its licence. Each cropped CC BY-SA photo is distributed under the same linked licence."), React.createElement("div", {
+    "data-photo-credits": "1"
+  }, rows.map(r => React.createElement("div", {
+    key: r.id,
+    "data-photo-credit-row": r.id,
+    style: {
+      padding: "10px 0",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600,
+      marginBottom: 2
+    }
+  }, r.name), React.createElement(PhotoCredit, {
+    credit: r.credit
+  })))));
 }
 function _festivalPlanStatus(id) {
   var ids = [];
@@ -1792,7 +2457,7 @@ function _festivalPlanStatus(id) {
   var arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
   var sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
   var conflicts = 0;
-  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof overlaps === "function" && overlaps(arts[_i2], arts[j])) conflicts++;
+  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof setsClash === "function" && setsClash(arts[_i2], arts[j], id, ids)) conflicts++;
   return {
     saved: arts.length,
     conflicts
@@ -1804,6 +2469,7 @@ function FestivalSwitcher({
   var activeId = FESTIVAL_CONFIG.id;
   var [plusOpen, setPlusOpen] = React.useState(false);
   var [pastOpen, setPastOpen] = React.useState(false);
+  var [creditsOpen, setCreditsOpen] = React.useState(false);
   var pastIndex = usePastEditionIndex();
   var [viewMode, setViewMode] = React.useState(() => {
     try {
@@ -2156,7 +2822,22 @@ function FestivalSwitcher({
       lineHeight: "18px",
       color: "var(--text-2)"
     }
-  }, "Switching reloads the app with that festival's lineup and map."), React.createElement(FieldButton, {
+  }, "Switching reloads the app with that festival's lineup and map.", festivalPhotoCredits().length > 0 && React.createElement(React.Fragment, null, " ", React.createElement("button", {
+    "data-photo-credits-open": "1",
+    onClick: () => setCreditsOpen(true),
+    style: {
+      background: "none",
+      border: 0,
+      padding: 0,
+      font: "inherit",
+      color: "inherit",
+      textDecoration: "underline",
+      textUnderlineOffset: 2,
+      cursor: "pointer"
+    }
+  }, "Photo credits"))), creditsOpen && React.createElement(PhotoCreditsSheet, {
+    onClose: () => setCreditsOpen(false)
+  }), React.createElement(FieldButton, {
     onClick: () => {
       onClose();
       (window._pushNav || (() => {}))({
@@ -2176,9 +2857,33 @@ var _BS = window._BS = window._BS || {
     }
   })(),
   battery: null,
+  net: {
+    effectiveType: null,
+    saveData: false,
+    failTs: []
+  },
   active: false,
   listeners: new Set()
 };
+var _BS_FAIL_WINDOW_MS = 5 * 60 * 1000;
+function _bsLowSignal(now = Date.now()) {
+  if (typeof navigator !== "undefined" && navigator.onLine === false) return false;
+  var n = _BS.net;
+  if (n.saveData || n.effectiveType === "slow-2g" || n.effectiveType === "2g") return true;
+  return n.failTs.filter(t => now - t < _BS_FAIL_WINDOW_MS).length >= 2;
+}
+function plurskyNetSaver() {
+  return !!_BS.active || _bsLowSignal();
+}
+function plurskyNoteNetQueued(queued) {
+  var now = Date.now();
+  _BS.net.failTs = queued ? [..._BS.net.failTs.filter(t => now - t < _BS_FAIL_WINDOW_MS), now] : [];
+  _BS.listeners.forEach(fn => {
+    try {
+      fn(_BS.active);
+    } catch {}
+  });
+}
 function _bsHasFestivalContext() {
   try {
     var now = Date.now();
@@ -2272,6 +2977,26 @@ if (!window._bsInited) {
       _bsApply();
     }
   })();
+  try {
+    var c = navigator.connection;
+    var syncNet = () => {
+      _BS.net.effectiveType = c && c.effectiveType || null;
+      _BS.net.saveData = !!(c && c.saveData);
+      _BS.listeners.forEach(fn => {
+        try {
+          fn(_BS.active);
+        } catch {}
+      });
+    };
+    if (c) {
+      syncNet();
+      c.addEventListener?.("change", syncNet);
+    }
+    window.addEventListener("online", () => {
+      _BS.net.failTs = [];
+      syncNet();
+    });
+  } catch {}
   setInterval(_bsApply, 5 * 60 * 1000);
   var tag = document.createElement("style");
   tag.id = "bs-css";
@@ -2299,6 +3024,7 @@ function useBatterySaver() {
     active: _BS.active,
     mode: _BS.mode,
     battery: _BS.battery,
+    lowSignal: _bsLowSignal(),
     setMode: setBatterySaverMode
   };
 }
@@ -2369,6 +3095,7 @@ function BatterySaverCard() {
     active,
     mode,
     battery,
+    lowSignal,
     setMode
   } = useBatterySaver();
   var segs = [{
@@ -2421,7 +3148,15 @@ function BatterySaverCard() {
       lineHeight: 1.43,
       marginBottom: 12
     }
-  }, "Dims the screen, freezes animations, and slows GPS polling. Auto kicks in at 2 AM or when battery drops under 25%."), React.createElement("div", {
+  }, "Dims the screen, freezes animations, and slows GPS polling. Auto kicks in under 25% battery during the festival."), React.createElement("div", {
+    "data-bs-signal-note": true,
+    style: {
+      fontSize: 14,
+      color: "var(--ink-2)",
+      lineHeight: 1.43,
+      marginBottom: 12
+    }
+  }, lowSignal ? "Weak signal now: " : "On a weak signal, ", "crew location updates slow to once a minute and auto-backup waits."), React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
@@ -2493,6 +3228,125 @@ function BatterySaverCard() {
       fontWeight: 600
     }
   }, battPct, "% ", battery.charging ? "· CHARGING" : "")));
+}
+function SetTrackingCard() {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  var [asking, setAsking] = React.useState(false);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  var cfg = window.FESTIVAL_CONFIG;
+  var name = cfg && (cfg.shortName || cfg.name) || "this festival";
+  var on = getSetTracking() === "on";
+  var elig = setTrackEligibility(cfg, Date.now());
+  var hasData = !!(cfg && Object.keys(getSetTrackIntervals(cfg.id)).length);
+  var btn = primary => ({
+    background: primary ? "var(--acc)" : "var(--s3)",
+    color: primary ? "var(--on-acc)" : "var(--ink)",
+    border: "none",
+    borderRadius: 999,
+    padding: "0 16px",
+    minHeight: 44,
+    fontFamily: "var(--f-ui)",
+    fontSize: 14,
+    fontWeight: 650,
+    cursor: "pointer"
+  });
+  var body = {
+    fontSize: 14,
+    color: "var(--ink-2)",
+    lineHeight: 1.43,
+    marginBottom: 12
+  };
+  var status = elig === "no-stages" ? `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one." : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses." : elig === "ended" ? `On. ${name} is over, so nothing is counting.` : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
+  return React.createElement("div", {
+    "data-set-tracking-card": true,
+    "data-set-tracking-state": on ? "on" : "off",
+    "data-set-tracking-elig": elig,
+    style: {
+      padding: 16,
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      marginBottom: 12
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 6
+    }
+  }, React.createElement("div", {
+    className: "duo-label",
+    style: {
+      color: "var(--ink-3)"
+    }
+  }, "SET TRACKING"), React.createElement("span", {
+    className: "duo-label",
+    style: {
+      color: on ? "var(--acc-ink)" : "var(--ink-2)"
+    }
+  }, on ? "ON" : "OFF")), React.createElement("div", {
+    className: "duo-headline",
+    style: {
+      marginBottom: 4
+    }
+  }, "Time the sets you catch"), React.createElement("div", {
+    "data-set-tracking-status": true,
+    style: body
+  }, status), asking && !on ? React.createElement("div", {
+    "data-set-tracking-consent": true
+  }, React.createElement("div", {
+    style: body
+  }, React.createElement("b", {
+    style: {
+      color: "var(--ink)"
+    }
+  }, "Recorded:"), " which stage you were at and when, during sets.", React.createElement("br", null), React.createElement("b", {
+    style: {
+      color: "var(--ink)"
+    }
+  }, "Not recorded:"), " your exact location. Nothing leaves this phone.", React.createElement("br", null), "It counts only while Plursky is open, and you can turn it off here any time."), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, React.createElement("button", {
+    "data-set-tracking-accept": true,
+    onClick: () => {
+      setSetTracking(true);
+      setAsking(false);
+    },
+    style: btn(true)
+  }, "Turn on"), React.createElement("button", {
+    onClick: () => {
+      setSetTracking(false);
+      setAsking(false);
+    },
+    style: btn(false)
+  }, "Not now"))) : React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, on ? React.createElement("button", {
+    "data-set-tracking-off": true,
+    onClick: () => setSetTracking(false),
+    style: btn(false)
+  }, "Turn off") : elig !== "no-stages" && React.createElement("button", {
+    "data-set-tracking-setup": true,
+    onClick: () => setAsking(true),
+    style: btn(false)
+  }, "Set up"), hasData && React.createElement("button", {
+    "data-set-tracking-clear": true,
+    onClick: () => clearSetTrack(cfg.id),
+    style: btn(false)
+  }, "Clear ", name, " times")));
 }
 function _syncNativeAppearance(mode, choice) {
   var style = choice === "dark" || choice === "light" ? mode : "system";
@@ -2576,10 +3430,13 @@ function _fitSize(el, px) {
   el.dataset.fitSet = String(px);
 }
 function fitWords(el) {
-  var tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
-  el.style.setProperty("transition", "none", "important");
+  var nodes = [el, ...el.querySelectorAll("*")];
+  var trs = nodes.map(n => [n.style.getPropertyValue("transition"), n.style.getPropertyPriority("transition")]);
+  for (var n of nodes) n.style.setProperty("transition", "none", "important");
   var done = () => {
-    if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]);else el.style.removeProperty("transition");
+    nodes.forEach((n, i) => {
+      if (trs[i][0]) n.style.setProperty("transition", trs[i][0], trs[i][1]);else n.style.removeProperty("transition");
+    });
   };
   var cs = getComputedStyle(el);
   var cur = parseFloat(cs.fontSize);
@@ -2593,10 +3450,10 @@ function fitWords(el) {
   var words = [];
   var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
   while (tw.nextNode()) {
-    var n = tw.currentNode;
+    var _n = tw.currentNode;
     var re = /[^\s\-‐-—\/·]+/g;
     var m = void 0;
-    while (m = re.exec(n.data)) words.push([n, m.index, m.index + m[0].length]);
+    while (m = re.exec(_n.data)) words.push([_n, m.index, m.index + m[0].length]);
   }
   var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
   var broken = () => {
@@ -2645,7 +3502,7 @@ function fitWordGroups(r) {
   for (var n of r.querySelectorAll("[data-fit-group]")) (groups[n.dataset.fitGroup] ||= []).push(n);
   for (var g of Object.values(groups)) {
     var size = Math.min(...g.map(n => parseFloat(getComputedStyle(n).fontSize)));
-    for (var _n of g) if (Math.abs(parseFloat(getComputedStyle(_n).fontSize) - size) > 0.1) _fitSize(_n, size);
+    for (var _n2 of g) if (Math.abs(parseFloat(getComputedStyle(_n2).fontSize) - size) > 0.1) _fitSize(_n2, size);
   }
 }
 if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationObserver !== "undefined") {
@@ -2672,9 +3529,9 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
       if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) _fitSize(n, parseFloat(n.dataset.fitBase));
       if (n.style.overflowWrap) n.style.overflowWrap = "";
     }
-    for (var _n2 of all) {
-      fitWords(_n2);
-      ro && ro.observe(_n2);
+    for (var _n3 of all) {
+      fitWords(_n3);
+      ro && ro.observe(_n3);
     }
     fitWordGroups(document);
   };
@@ -2695,7 +3552,7 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
         var fit = host && host.closest && host.closest(_FIT_WORDS);
         if (fit) touched.add(fit);
       }
-      for (var _n3 of touched) if (_n3.isConnected) fitIn(_n3);
+      for (var _n4 of touched) if (_n4.isConnected) fitIn(_n4);
       if (touched.size) {
         fitWordGroups(document);
         settleSoon();
@@ -2816,7 +3673,8 @@ function StatusStrip() {
   _useTickMs(30000);
   var online = useOnlineStatus();
   var {
-    active: bsActive
+    active: bsActive,
+    lowSignal
   } = useBatterySaver();
   var now = new Date();
   var day = _STATUS_DAYS[now.getDay()];
@@ -2870,7 +3728,34 @@ function StatusStrip() {
       d: "M10 1 L14 1"
     }), React.createElement("path", {
       d: "M11 9 L13 9 L11 13 L14 13 L10 18"
-    })), "SAVER"), !online && React.createElement("span", {
+    })), "SAVER"), online && lowSignal && React.createElement("span", {
+      "data-status-weak-signal": true,
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4,
+        color: "var(--flare)"
+      }
+    }, React.createElement("svg", {
+      width: "11",
+      height: "11",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, React.createElement("path", {
+      d: "M6 13 Q12 8 18 13",
+      opacity: "0.55"
+    }), React.createElement("path", {
+      d: "M9 16 Q12 13.5 15 16"
+    }), React.createElement("circle", {
+      cx: "12",
+      cy: "19",
+      r: "0.9",
+      fill: "currentColor"
+    })), "WEAK SIGNAL"), !online && React.createElement("span", {
       style: {
         display: "inline-flex",
         alignItems: "center",
@@ -2940,19 +3825,25 @@ Object.assign(window, {
   ArtistSwatch,
   Wordmark,
   useArtistPhoto,
-  useArtistImageExpiry,
+  useArtistPhotoMachine,
+  ARTIST_PHOTO_MACHINE,
   getArtistImage,
   getShareableArtistImage,
   putArtistImage,
   putArtistImages,
   SpotifyFullLogo,
+  SpotifyPhotoCredit,
   SPOTIFY_IMAGE_TTL_MS,
+  _fetchProxyPhoto,
+  _photoProxyUsable,
+  _spotifyExactArtist,
   useInstallPrompt,
   InstallBanner,
   useNotifications,
   NotificationsCard,
   scheduleReminders,
   getAllAttended,
+  getAttendedStore,
   getAttendedForNight,
   getAttendedCount,
   markAttended,

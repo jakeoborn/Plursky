@@ -1,0 +1,231 @@
+{
+  "id": "hard-summer-2024",
+  "method": "official_lineup_html",
+  "official": "https://www.hardsummer.com/lineup/",
+  "chosen": "20241212022141",
+  "archivedUrl": "https://web.archive.org/web/20241212022141/https://www.hardsummer.com/lineup/",
+  "sha256": "df15e601777165348030312182a8fcdaec18526dd817392e20ece09a22cb48e9",
+  "title": "Lineup – HARD Summer 2024",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 96",
+    "By Day 98",
+    "By Stage 100"
+  ],
+  "stageOrder": [
+    "HARD Stage",
+    "HARDER Stage",
+    "Green Stage",
+    "Purple Stage",
+    "Pink Stage",
+    "Beatbox Boombox Art Car",
+    "Jose Cuervo Locals Only Stage"
+  ],
+  "crossTab": [
+    "Bianca Oblivion: alphabetical ×1; days 1; stages Purple Stage + Jose Cuervo Locals Only Stage",
+    "Etari: alphabetical ×1; days 1; stages HARD Stage + Beatbox Boombox Art Car",
+    "Lake Hills: 2 days and 2 stages, stage not joined to a day",
+    "Panteros666: 2 days and 2 stages, stage not joined to a day"
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20240228134237",
+      "archivedUrl": "https://web.archive.org/web/20240228134237/https://www.hardsummer.com/lineup/",
+      "sha256": "80e6f722c2b5cb44d7beb3285255904e0b9a4f227b2cac99fe9afbbad37e2575",
+      "bytes": 145603,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2024",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [
+        "Saturday, August 05 ✗",
+        "Sunday, August 06 ✗"
+      ],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240523193731",
+      "archivedUrl": "https://web.archive.org/web/20240523193731/https://www.hardsummer.com/lineup/",
+      "sha256": "6d2d14048c6cc40627f91d6476e2ee59780e15b584647e9bf235fc7ee523525e",
+      "bytes": 114349,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 74,
+      "diffVsChosen": [
+        "added by the final: baby.com",
+        "added by the final: Baexploitation",
+        "added by the final: Bianca Maieli",
+        "added by the final: BOLO",
+        "added by the final: Capes",
+        "added by the final: CC Love",
+        "added by the final: Cherry Lee",
+        "added by the final: Dillon Francis (Moombahton Set)",
+        "added by the final: Dina",
+        "added by the final: DJ Dials",
+        "added by the final: Etari",
+        "added by the final: fun2bjane B2B mad gavs",
+        "added by the final: fun2bjane",
+        "added by the final: Giselle Peppers",
+        "added by the final: Joaqu.n",
+        "added by the final: Kiah G",
+        "added by the final: LAALLS B2B cerulean",
+        "added by the final: Lechuga",
+        "added by the final: Mapamota",
+        "added by the final: Mesmé",
+        "added by the final: Noir JBW",
+        "added by the final: Sisters of Sound (Maddy Maia B2B Tottie)",
+        "added by the final: Soul Purpose",
+        "added by the final: Trax Unit",
+        "added by the final: Voisan",
+        "removed by the final: Dillon Francis",
+        "removed by the final: Oppidan",
+        "removed by the final: Overmono"
+      ]
+    },
+    {
+      "captureTimestamp": "20240718060259",
+      "archivedUrl": "https://web.archive.org/web/20240718060259/https://www.hardsummer.com/lineup/",
+      "sha256": "cb850d2eaaa5b70db9a322f5b6c142531ecbc92ac77e215fc6fcf259c2678a73",
+      "bytes": 139714,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 75,
+      "diffVsChosen": [
+        "added by the final: baby.com",
+        "added by the final: Baexploitation",
+        "added by the final: Bianca Maieli",
+        "added by the final: BOLO",
+        "added by the final: Capes",
+        "added by the final: CC Love",
+        "added by the final: Cherry Lee",
+        "added by the final: Dillon Francis (Moombahton Set)",
+        "added by the final: Dina",
+        "added by the final: DJ Dials",
+        "added by the final: Etari",
+        "added by the final: fun2bjane B2B mad gavs",
+        "added by the final: Giselle Peppers",
+        "added by the final: Joaqu.n",
+        "added by the final: Kiah G",
+        "added by the final: LAALLS B2B cerulean",
+        "added by the final: Lechuga",
+        "added by the final: Mapamota",
+        "added by the final: Mesmé",
+        "added by the final: Noir JBW",
+        "added by the final: Sisters of Sound (Maddy Maia B2B Tottie)",
+        "added by the final: Soul Purpose",
+        "added by the final: Trax Unit",
+        "added by the final: Voisan",
+        "removed by the final: Dillon Francis",
+        "removed by the final: Oppidan",
+        "removed by the final: Overmono"
+      ]
+    },
+    {
+      "captureTimestamp": "20240807035356",
+      "archivedUrl": "https://web.archive.org/web/20240807035356/https://www.hardsummer.com/lineup/",
+      "sha256": "519b204dd6495145987e3c2eb1681af8ebf53ab4454f044c38d68b032452d097",
+      "bytes": 163262,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 96,
+      "diffVsChosen": [
+        "added by the final: Cherry Lee",
+        "removed by the final: Cherry"
+      ]
+    },
+    {
+      "captureTimestamp": "20240916072205",
+      "archivedUrl": "https://web.archive.org/web/20240916072205/https://www.hardsummer.com/lineup/",
+      "sha256": "e70005abb7679f50fa589b95bfba0f90c3ed04d88191fffaf9915d1afb9d4030",
+      "bytes": 163928,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 96,
+      "diffVsChosen": [
+        "added by the final: Cherry Lee",
+        "removed by the final: Cherry"
+      ]
+    },
+    {
+      "captureTimestamp": "20241005011732",
+      "archivedUrl": "https://web.archive.org/web/20241005011732/https://www.hardsummer.com/lineup/",
+      "sha256": "0e637f7f6a04843e456dda87dac6b23ccb38e4bcf7d9bf9437b4414432e16dab",
+      "bytes": 163936,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 96,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20241113162058",
+      "archivedUrl": "https://web.archive.org/web/20241113162058/https://www.hardsummer.com/lineup/",
+      "sha256": "fc141606cd44f45f5248f2c9de8282bff5de549606daecf8857d35f94ed69bd8",
+      "bytes": 163936,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 96,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20241212022141",
+      "archivedUrl": "https://web.archive.org/web/20241212022141/https://www.hardsummer.com/lineup/",
+      "sha256": "df15e601777165348030312182a8fcdaec18526dd817392e20ece09a22cb48e9",
+      "bytes": 163936,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 96,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

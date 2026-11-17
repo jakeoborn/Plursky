@@ -117,10 +117,153 @@ function OnbCardPreview({ artists, count = 1 }) {
   );
 }
 
+// ── First-run scan (2026-11-11) ─────────────────────────────────────
+// Jake: "The landing page for a new user should direct them directly to scan
+// as 1st thing they do", photos and videos both. The first screen a new user
+// sees offers to look through their library for every festival they have
+// been to since 2010 (the same finder as Memories' "Scan past festivals").
+// iOS asks for photo access only once, so one line of why comes first, and
+// there is always a way past it. What happens next:
+//   found                          → a count by festival year; "Add them to
+//                                    Memories" imports on Memories' own card
+//   none, denied, failed, skipped  → straight to "Where are you raving next?"
+// The web has no library to read, so there the screen points to the iPhone
+// app and goes on to the story.
+const PLURSKY_APP_STORE_URL = "https://apps.apple.com/us/app/plursky-live/id6768888507";
+function onbScanAvailable() {
+  return !!(window.Capacitor?.isNativePlatform?.() && window.Capacitor?.Plugins?.PhotoScan?.scan);
+}
+function _onbCount(n, one, many) { return `${n.toLocaleString()} ${n === 1 ? one : many}`; }
+function _onbFoundLine(sum) {
+  return [sum.photos ? _onbCount(sum.photos, "photo", "photos") : null,
+          sum.videos ? _onbCount(sum.videos, "video", "videos") : null].filter(Boolean).join(" and ");
+}
+
+function OnbScanArt() {
+  // The Memories "Scan past festivals" mark, at hero size.
+  return (
+    <div aria-hidden="true" style={{ display: "grid", placeItems: "center" }}>
+      <div className="duo-well" style={{ width: 120, height: 120, borderRadius: 32, display: "grid", placeItems: "center", color: "var(--acc-ink)" }}>
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12 a8 8 0 1 0 2.4-5.7"/><path d="M4 4 v4.5 h4.5"/><path d="M12 8 v4.2 l2.8 1.8"/></svg>
+      </div>
+    </div>
+  );
+}
+
+// native: true runs the scan here; false (web) points to the app.
+//   onFound(result)  something to import; Memories takes it from there
+//   onNext()         nothing to show: go on (festival list; the story on web)
+function OnbScanStep({ native, onFound, onNext }) {
+  const [st, setSt] = React.useState(null); // null | { phase: "scanning", checked?, years? } | { phase: "found", result, sum }
+  const stopped = React.useRef(false);
+  React.useEffect(() => () => { stopped.current = true; }, []);
+  const run = async () => {
+    const PS = window.Capacitor?.Plugins?.PhotoScan;
+    if (!PS?.scan || st) return;
+    setSt({ phase: "scanning" });
+    try {
+      const access = await PS.requestAccess();
+      if (stopped.current) return;
+      const limited = access?.status === "limited";
+      if (access?.status !== "authorized" && !limited) {
+        window.plurskyToast?.("Photo access is off. You can scan any time from Memories.");
+        onNext();
+        return;
+      }
+      const res = await _pastScanFind(PS, (checked, years) => {
+        if (stopped.current) throw new Error("skipped");
+        setSt({ phase: "scanning", checked, years });
+      });
+      if (stopped.current) return;
+      const sum = _pastScanSummary(res.found);
+      if (!sum.total) { onNext(); return; }
+      setSt({ phase: "found", result: { ...res, limited }, sum });
+    } catch (err) {
+      if (stopped.current) return;
+      console.warn("[onboarding] past scan failed", err);
+      onNext();
+    }
+  };
+  const skip = () => { stopped.current = true; onNext(); };
+  const found = st?.phase === "found" ? st : null;
+  const scanning = st?.phase === "scanning";
+  const shown = found ? found.sum.years.slice(0, 5) : [];
+  const more = found ? found.sum.years.length - shown.length : 0;
+  return (
+    <div data-onb-scan={found ? "found" : scanning ? "scanning" : "ask"} style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column" }}>
+      <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "8px 20px 0", display: "flex", flexDirection: "column", justifyContent: "center", animation: "fadeIn .2s" }}>
+        {found ? (
+          <div className="duo-card" style={{ padding: "6px 16px" }}>
+            {shown.map((y, i) => (
+              <div key={y.id} data-onb-scan-year={y.id} style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 52, borderTop: i ? "1px solid var(--line)" : "none" }}>
+                <span className="duo-headline" style={{ flex: 1, minWidth: 0 }}>{y.name}</span>
+                <span className="duo-data-s duo-ink2">{y.count.toLocaleString()}</span>
+              </div>
+            ))}
+            {more > 0 && (
+              <div style={{ minHeight: 44, display: "flex", alignItems: "center", borderTop: "1px solid var(--line)", font: "400 15px/1.33 var(--f-ui)", color: "var(--ink-2)" }}>
+                {`and ${_onbCount(more, "more festival", "more festivals")}`}
+              </div>
+            )}
+          </div>
+        ) : <OnbScanArt />}
+      </div>
+      <div style={{ padding: "24px 20px 16px" }}>
+        {found ? (
+          <>
+            <h1 style={{ margin: 0, font: "800 34px/1.15 var(--f-ui)", letterSpacing: "-0.03em" }}>
+              {found.sum.years.length > 1 ? `You were there ${found.sum.years.length} times.` : "You were there."}
+            </h1>
+            <p className="duo-body duo-ink2" style={{ margin: "10px 0 24px" }}>
+              {`Found ${_onbFoundLine(found.sum)}. Plursky files each one under its festival and set.`}
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <FieldButton data-onb-scan-add onClick={() => onFound(found.result)}>Add them to Memories</FieldButton>
+              <FieldButton data-onb-scan-skip kind="secondary" onClick={skip}>Not now</FieldButton>
+            </div>
+          </>
+        ) : (
+          <>
+            <h1 style={{ margin: 0, font: "800 34px/1.15 var(--f-ui)", letterSpacing: "-0.03em" }}>Find your festival memories.</h1>
+            <p className="duo-body duo-ink2" style={{ margin: "10px 0 12px" }}>
+              {native
+                ? "Plursky looks through your photos and videos for every festival you’ve been to since 2010, and sorts them by set."
+                : "The Plursky iPhone app looks through your photos and videos for every festival you’ve been to since 2010, and sorts them by set."}
+            </p>
+            {/* The one line of why, before iOS's one-time access prompt. */}
+            <p role={scanning ? "status" : undefined} style={{ margin: "0 0 24px", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+              {scanning
+                ? (st.years ? `Checked ${st.checked} of ${st.years} festival years…` : "Looking through your library…")
+                : native
+                  ? "Your iPhone will ask once for photo access. Only shots taken at a festival while it was on are added."
+                  : "Scanning needs the app. The web keeps your plan and lineup."}
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {native ? (
+                <FieldButton data-onb-scan-start onClick={run} disabled={scanning}>{scanning ? "Scanning…" : "Scan my photos and videos"}</FieldButton>
+              ) : (
+                <a data-onb-scan-app href={PLURSKY_APP_STORE_URL} target="_blank" rel="noopener" style={{
+                  width: "100%", minHeight: 52, padding: "0 20px", boxSizing: "border-box",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  background: "var(--acc)", color: "var(--on-acc)", borderRadius: "var(--rad-sm)", textDecoration: "none",
+                  boxShadow: "0 10px 28px -12px var(--acc-55)", font: "650 17px/1.3 var(--f-ui)", letterSpacing: "-0.01em",
+                }}>Get the iPhone app</a>
+              )}
+              <FieldButton data-onb-scan-skip kind="secondary" onClick={skip}>{native ? "Skip for now" : "Continue on the web"}</FieldButton>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function OnboardingModal({ onDone, setState, state }) {
-  // 0-2 are the story, 3 is the festival list. Clamped: a double tap must
-  // never run past the last page (the old wizard blanked that way).
-  const [page, setPage] = React.useState(0);
+  // "scan" is the first screen (OnbScanStep), 0-2 are the story, 3 is the
+  // festival list. Clamped: a double tap must never run past the last page
+  // (the old wizard blanked that way).
+  const native = React.useMemo(() => onbScanAvailable(), []);
+  const [page, setPage] = React.useState("scan");
   const [q, setQ] = React.useState("");
   const heads = React.useMemo(() => _onbHeadliners(3), []);
   // Picking a festival here IS entering it. Both halves of that were broken:
@@ -129,15 +272,21 @@ function OnboardingModal({ onDone, setState, state }) {
   // festival called onDone() over a state whose tab was already "landing"
   // (a first launch has no deep link), so dismissing the modal revealed the
   // chooser too. Either way the user picked a festival and got asked again.
-  const finish = (festId) => {
+  const finish = (festId, tab = "home") => {
     try { localStorage.setItem("onboarded", ONBOARD_VERSION); } catch {}
     if (festId && festId !== FESTIVAL_CONFIG.id) {
       try { sessionStorage.setItem("plursky_landing_entered", festId); } catch {}
       setActiveFestivalAndReload(festId);
       return;
     }
-    setState(s => ({ ...s, tab: "home", artist: null }));
+    setState(s => ({ ...s, tab, artist: null }));
     onDone();
+  };
+  // The scan found past festivals: Memories imports them (it takes the
+  // result from the handoff on mount), staying on the festival already open.
+  const addFound = (result) => {
+    _pastScanHandoffSet(result);
+    finish(null, "memories");
   };
   const PAGES = [
     { title: "Plan the night.", body: "Save the sets you want and see what’s on now, next and at every stage.", preview: <OnbSchedulePreview /> },
@@ -145,8 +294,9 @@ function OnboardingModal({ onDone, setState, state }) {
     { title: "Keep the weekend.", body: "Every set you catch becomes a card for your recap.", preview: <OnbCardPreview artists={heads} count={3} />,
       plus: "keeps the full weekend in 1080p — no watermark, cloud backup, offline maps." },
   ];
-  const story = page < 3;
-  const cur = PAGES[Math.min(page, 2)];
+  const scanFirst = page === "scan";
+  const story = typeof page === "number" && page < 3;
+  const cur = PAGES[story ? page : 2];
   const term = q.trim().toLowerCase();
   const now = Date.now();
   const list = FESTIVALS_REGISTRY
@@ -161,10 +311,12 @@ function OnboardingModal({ onDone, setState, state }) {
       animation: "fadeIn .25s",
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 52, padding: "0 8px 0 20px" }}>
-        <span className={story ? "duo-data-s duo-ink2" : "duo-label duo-ink3"}>{story ? `${page + 1} / 3` : "Almost there"}</span>
+        <span className={story ? "duo-data-s duo-ink2" : "duo-label duo-ink3"}>{scanFirst ? "Welcome" : story ? `${page + 1} / 3` : "Almost there"}</span>
         {story && <button onClick={() => setPage(3)} style={{ ...fieldIconBtn, width: "auto", padding: "0 12px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>Skip</button>}
       </div>
-      {story ? (
+      {scanFirst ? (
+        <OnbScanStep native={native} onFound={addFound} onNext={() => setPage(native ? 3 : 0)} />
+      ) : story ? (
         <>
           <div key={page} style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "8px 20px 0", display: "flex", flexDirection: "column", justifyContent: "center", animation: "fadeIn .2s" }}>
             {cur.preview}
@@ -185,7 +337,7 @@ function OnboardingModal({ onDone, setState, state }) {
       ) : (
         <>
           <div style={{ padding: "0 20px 8px" }}>
-            <h1 className="duo-title" style={{ margin: "0 0 12px" }}>Where are you raving?</h1>
+            <h1 className="duo-title" style={{ margin: "0 0 12px" }}>Where are you raving next?</h1>
             <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search festivals" aria-label="Search festivals" className="duo-input" style={{ padding: "0 16px" }} />
           </div>
           <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "0 20px" }}>
@@ -231,10 +383,41 @@ function OnboardingModal({ onDone, setState, state }) {
   );
 }
 
+// Quick name: "What should Plursky call you?", asked once, on the first
+// screen that uses who you are (opening Me, a first crew join), never in
+// onboarding. It writes the same local name every other door reads
+// (plurskySetLocalName); no account, no server. Closing it in any way is a
+// skip, and a skip is remembered (plurskySkipQuickName), so it never nags.
+function QuickNameSheet({ onDone }) {
+  const [name, setName] = React.useState("");
+  const ok = !!name.trim();
+  const save = () => { if (!ok) return; onDone(plurskySetLocalName(name.trim().slice(0, 20))); };
+  const skip = () => { plurskySkipQuickName(); onDone(null); };
+  return (
+    <FieldSheet title="What should Plursky call you?" onClose={skip}>
+      <div data-quick-name>
+        <p style={{ margin: "2px 0 14px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>
+          Your crew sees this name next to your picks. No account needed.
+        </p>
+        <input data-quick-name-input value={name} onChange={e => setName(e.target.value)}
+          onKeyDown={e => { if (e.key === "Enter") save(); }}
+          aria-label="Your name" placeholder="First name" autoComplete="given-name" autoFocus maxLength={20} style={{
+            width: "100%", height: 48, borderRadius: 14, border: "none", background: "var(--paper-2)",
+            color: "var(--ink)", padding: "0 16px", fontSize: 17, outline: "none", fontFamily: "inherit",
+          }} />
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 16 }}>
+          <FieldButton data-quick-name-save onClick={save} disabled={!ok}>Save</FieldButton>
+          <FieldButton data-quick-name-skip kind="secondary" onClick={skip}>Not now</FieldButton>
+        </div>
+      </div>
+    </FieldSheet>
+  );
+}
+
 // Personalize: name, Spotify and reminders, each asked with one sentence of
 // why, only when the user opens it. Closing saves the name.
 function PersonalizeSheet({ state, onClose }) {
-  const [name, setName] = React.useState(() => { try { return localStorage.getItem("user_name") || ""; } catch { return ""; } });
+  const [name, setName] = React.useState(plurskyLocalName);
   const { supported: notifSupported, perm: notifPerm, enable: enableNotifs } = useNotifications();
   const save = () => {
     try {
@@ -416,7 +599,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: "var(--ink)" }}>{a.name}</div>
                         <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", marginTop: 2 }}>
-                          {st?.short} · DAY {a.day} · {fmt12(a.start)}
+                          {st?.short} · DAY {a.day} · {setTimeLabel(a)}
                         </div>
                       </div>
                       <span style={{ fontSize: 10, color: "var(--ember-ink)" }}>★</span>
@@ -465,7 +648,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                       <span style={{ width: 6, height: 6, borderRadius: 6, background: "var(--text-3)", flexShrink: 0 }}/>
                       <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--text-2)", fontWeight: 600, textTransform: "uppercase" }}>{stage.short}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
-                      <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{DAY_LABEL[a.day]} {fmt12(a.start)}–{fmt12(a.end)}</span>
+                      <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{DAY_LABEL[a.day]} {setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : <>{fmt12(a.start)}–{fmt12(a.end)}</>}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
                       <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", textTransform: "uppercase" }}>{a.genre}</span>
                     </div>
@@ -485,6 +668,17 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
 
 // ── Lightweight global toast (anyone can call window.plurskyToast) ──
 // Used by save/unsave heart-tap and other quick confirmations.
+// The toast sits above EVERY layer: a share failure is reported while the
+// MomentLightbox (zIndex 200) is open, and at 95 the message was drawn behind
+// it, so the person saw "Preparing…" end with nothing. The highest modal
+// layer is the 10000 scrim; scripts/test-toast-over-modals.mjs fails if any
+// fixed layer in the .jsx sources reaches this value.
+const TOAST_LAYER_Z = 10100;
+// An error toast stays long enough to read. The 1600 ms default suits a
+// quick "Saved"; a two-line failure ("The share card took too long to make.
+// Try again.") at 320 px was gone before it could be read. Callers mark a
+// failure with { error: true }; an explicit duration still wins.
+const TOAST_ERROR_MS = 6000;
 function ToastHost() {
   const [msg, setMsg] = React.useState(null);
   // Deferred toasts (nudges, not results) wait here while another toast is on
@@ -493,7 +687,7 @@ function ToastHost() {
   // result ("Imported 1 · 1 failed"), wiping it before anyone could read it.
   const queue = React.useRef([]), showing = React.useRef(false);
   React.useEffect(() => {
-    // window.plurskyToast(text, opts?) — opts: { actionLabel, onAction, duration, defer }.
+    // window.plurskyToast(text, opts?) — opts: { actionLabel, onAction, duration, defer, error }.
     // Text-only calls keep the old 1600ms quick-confirm behaviour; passing an
     // action turns it into an actionable toast (e.g. a 3s UNDO). `defer`
     // queues the toast behind whatever is showing.
@@ -513,19 +707,19 @@ function ToastHost() {
       else showing.current = false;
       return;
     }
-    const t = setTimeout(() => setMsg(null), msg.duration || 1600);
+    const t = setTimeout(() => setMsg(null), msg.duration || (msg.error ? TOAST_ERROR_MS : 1600));
     return () => clearTimeout(t);
   }, [msg?.id]);
   if (!msg) return null;
   const hasAction = msg.actionLabel && typeof msg.onAction === "function";
   return (
     <div style={{
-      position: "absolute", left: 0, right: 0, bottom: 80, zIndex: 95,
+      position: "absolute", left: 0, right: 0, bottom: 80, zIndex: TOAST_LAYER_Z,
       display: "flex", justifyContent: "center", pointerEvents: "none", padding: "0 16px",
     }}>
-      // Board toast: an elevated card in SF that WRAPS. The old one-line
-      // pill ellipsised every long message ("No photos received — pick a
-      // few at a time; if they're in iCloud…" lost its instruction).
+      {/* Board toast: an elevated card in SF that WRAPS. The old one-line
+          pill ellipsised every long message ("No photos received — pick a
+          few at a time; if they're in iCloud…" lost its instruction). */}
       <div key={msg.id} role="status" aria-live="polite" style={{
         background: "var(--s1)", color: "var(--ink)",
         padding: hasAction ? "6px 6px 6px 16px" : "11px 16px", borderRadius: "var(--rad-md)",
@@ -558,6 +752,22 @@ function App() {
   });
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [personalizeOpen, setPersonalizeOpen] = React.useState(false);
+  // The quick-name ask. Callers await window.plurskyAskQuickName(), which
+  // resolves with the saved name or null on a skip. A layout effect, so it is
+  // in place before any screen's mount effect (Me asks on mount).
+  const [quickNameOpen, setQuickNameOpen] = React.useState(false);
+  const quickNameWaiters = React.useRef([]);
+  React.useLayoutEffect(() => {
+    window.plurskyAskQuickName = () => {
+      if (!plurskyQuickNameDue()) return Promise.resolve(plurskyLocalName() || null);
+      return new Promise(resolve => { quickNameWaiters.current.push(resolve); setQuickNameOpen(true); });
+    };
+    return () => { delete window.plurskyAskQuickName; };
+  }, []);
+  const quickNameDone = (name) => {
+    setQuickNameOpen(false);
+    quickNameWaiters.current.splice(0).forEach(resolve => resolve(name));
+  };
   // True while any full-screen overlay is mounted. The search FAB below hides
   // rather than trying to out-stack it — see useDeclareModal in chrome.jsx.
   const modalOpen = useModalOpen();
@@ -662,7 +872,7 @@ function App() {
     const dlFrom   = params.get("from"); // optional friend name
     const dlCrew   = params.get("crew"); // crew code from a shared invite link
     const validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
-    const validTab    = ["home","map","lineup","spotify","me","memories","past"].includes(dlTab) ? dlTab : null;
+    const validTab    = ["home","map","lineup","spotify","me","memories","past","artists"].includes(dlTab) ? dlTab : null;
     // ?tab=past&edition=<id>: a festival page's "Look back" link. Only the
     // shape is checked here; HistoricalEditionView opens an id only if the
     // library index lists it, so a bad id reads "not in the library".
@@ -762,10 +972,18 @@ function App() {
         const raw = u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "");
         const params = new URLSearchParams(raw);
         const tab = params.get("tab");
-        if (["home","map","lineup","spotify","me","memories","past"].includes(tab)) {
+        if (["home","map","lineup","spotify","me","memories","past","artists"].includes(tab)) {
           const edition = params.get("edition");
           const pastEdition = tab === "past" && /^[a-z0-9-]+-\d{4}$/.test(edition || "") ? edition : null;
           setState(prev => ({ ...prev, tab, ...(tab === "past" ? { pastEdition } : {}) }));
+          setShowOnboarding(false);
+        }
+        // ?artist=ID opens that artist, checked against the active lineup like
+        // the boot parser does. Before this, a link opened while the app was
+        // running (appUrlOpen) dropped the artist and showed only the tab.
+        const artist = params.get("artist");
+        if (artist && ARTISTS.find(a => a.id === artist)) {
+          setState(prev => ({ ...prev, artist }));
           setShowOnboarding(false);
         }
       } catch {}
@@ -814,10 +1032,15 @@ function App() {
     window._popNav = _popNav;
   }, [_pushNav, _popNav]);
 
-  // Auto-schedule push reminders whenever saves change (if permission already granted)
+  // Auto-schedule push reminders whenever saves change (if permission already
+  // granted), and when a split moves an arrival time (L3).
+  const attendV = useAttendVersion();
   React.useEffect(() => {
+    // L5: a set saved again leaves the alerts-only list (its pruning fires
+    // attend-change, which re-runs this effect).
+    pruneAlertsKept(state.saved);
     if (notifPerm === "granted") scheduleReminders(state, showLocal);
-  }, [state.saved.join(","), notifPerm]);
+  }, [state.saved.join(","), notifPerm, attendV]);
 
   // Cloud-backup auto-push: when the user is signed in to Supabase, push their
   // saved lineup + notes 1s after the most recent change. Silent — the cloud
@@ -865,6 +1088,7 @@ function App() {
   else if (state.tab === "recap")    body = <RecapScreen    state={state} setState={setState} />;
   else if (state.tab === "me")       body = <MeScreen       state={state} setState={setState} />;
   else if (state.tab === "past")     body = <PastFestivalsScreen state={state} setState={setState} />;
+  else if (state.tab === "artists")  body = <ArtistsDirectoryScreen state={state} setState={setState} />;
 
   // status bar tint — dark pane on map, light elsewhere
   const statusBarStyle = state.tab === "map" && !state.artist ? "light" : "dark";
@@ -873,12 +1097,21 @@ function App() {
     <IOSDevice dark={statusBarStyle === "light"}>
       {/* Field Mode Home runs its hero under the safe area and carries its
           own live/offline status, so it skips the top inset and the strip. */}
-      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)" }}>
+      {/* On Today the frame carries the print scope, so the tab bar takes the sheet
+          (cream / ink, an ink rule and indicator) instead of the board's chrome. */}
+      <div className={state.tab === "home" && !state.artist ? "np" : undefined} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)" }}>
         {/* StatusStrip reads the ACTIVE festival's live/offline state, so it
             is festival-scoped chrome and stays off General Home. */}
         {!(state.tab === "home" && !state.artist) && state.tab !== "landing" && <StatusStrip />}
         <div style={{ flex: 1, position: "relative" }}>
-          {body}
+          {/* Each tab arrives with a short fade (index.html .ps-view), so a
+              switch reads as one surface replacing another, not a flash. An
+              artist page slides in from the right, the way a pushed page
+              does on iOS. The key is the tab, so moving between artists
+              does not replay it. */}
+          <div key={state.artist ? "artist" : state.tab} className={state.artist ? "ps-view ps-view-push" : "ps-view"} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column" }}>
+            {body}
+          </div>
           {/* Search FAB — floats above TabBar, accessible from any screen.
               Labeled pill so first-time users actually notice it. */}
           {/* No floating Search pill on any tab. It covered a control wherever
@@ -895,7 +1128,8 @@ function App() {
           const postFest = (() => { try { return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity); } catch { return false; } })();
           // Post-festival the Memories tab is in the bar, so "memories" maps
           // to itself; pre-festival it folds into Me (where its card lives).
-          const meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
+          // The Artists directory is entered from Me, so Me stays lit on it.
+          const meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
           return (
             <TabBar
               active={meFold.includes(state.tab) ? "me" : state.tab}
@@ -919,11 +1153,14 @@ function App() {
         />
       )}
       {personalizeOpen && <PersonalizeSheet state={state} onClose={() => setPersonalizeOpen(false)} />}
+      {quickNameOpen && !showOnboarding && <QuickNameSheet onDone={quickNameDone} />}
       {/* Festival-scoped like the status strip and tab bar: it reads the ACTIVE
           festival and starts its geolocation flow, so General Home, which is
           before any festival is chosen, never mounts it. */}
       {state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar)}
       <BatterySaverToast />
+      {/* Opt-in set tracking (off until accepted in Me); renders nothing. */}
+      {state.tab !== "landing" && <SetTrackingWatcher />}
     </IOSDevice>
   );
 }
@@ -1006,7 +1243,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v414",
+        version: "v624",
       }));
     } catch {}
   }
@@ -1037,7 +1274,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v414
+          Plursky · v624
         </div>
       </div>
     );

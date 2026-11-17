@@ -1,0 +1,131 @@
+{
+  "festivalId": "outside-lands-2026",
+  "plate": "map-sources/art/outside-lands-2026-official.webp",
+  "source": "https://sfoutsidelands.com/assets/maps/ol26-patron-map_73026.pdf",
+  "artPolygon": [
+    [
+      218,
+      92
+    ],
+    [
+      576,
+      92
+    ],
+    [
+      576,
+      0
+    ],
+    [
+      1128,
+      0
+    ],
+    [
+      1128,
+      80
+    ],
+    [
+      1278,
+      80
+    ],
+    [
+      1278,
+      264
+    ],
+    [
+      1054,
+      264
+    ],
+    [
+      1054,
+      392
+    ],
+    [
+      828,
+      392
+    ],
+    [
+      828,
+      592
+    ],
+    [
+      218,
+      592
+    ]
+  ],
+  "model": "affine",
+  "measuredAt": "2026-11-11",
+  "method": "Outside Lands 2026 patron map (official PDF, rendered at 96% and cropped to the map panel). The legend, title, sponsor list and side notes are masked out. Ties are Fulton St crossings at 25th, 26th and 30th Aves, the 30th Ave path at JFK Dr and the two ends of the Polo Field stadium, read off a zoomed pixel grid and matched to OpenStreetMap nodes. Stages are never ties.",
+  "ties": [
+    {
+      "name": "30th Ave x Fulton St",
+      "px": 602,
+      "py": 104,
+      "lat": 37.7723294,
+      "lng": -122.489565
+    },
+    {
+      "name": "26th Ave x Fulton St",
+      "px": 823,
+      "py": 58,
+      "lat": 37.7725246,
+      "lng": -122.4852792
+    },
+    {
+      "name": "25th Ave x Fulton St",
+      "px": 864,
+      "py": 48,
+      "lat": 37.7725724,
+      "lng": -122.4842075
+    },
+    {
+      "name": "30th Ave path x JFK Dr",
+      "px": 614,
+      "py": 200,
+      "lat": 37.7708865,
+      "lng": -122.489821
+    },
+    {
+      "name": "Polo Field stadium west end",
+      "px": 348,
+      "py": 452,
+      "lat": 37.7673381,
+      "lng": -122.4955106
+    },
+    {
+      "name": "Polo Field stadium east end",
+      "px": 611,
+      "py": 327,
+      "lat": 37.7689924,
+      "lng": -122.4900002
+    }
+  ],
+  "output": {
+    "image": "geo-maps/outside-lands-2026.webp",
+    "size": [
+      1150,
+      618
+    ],
+    "metresPerPixel": 1.703,
+    "bounds": {
+      "w": -122.4984607,
+      "s": 37.7644441,
+      "e": -122.4762446,
+      "n": 37.7739127
+    },
+    "rmsM": 13.4,
+    "worstM": 17.5,
+    "looRmsM": 30.5,
+    "residualsM": {
+      "30th Ave x Fulton St": 9.0,
+      "26th Ave x Fulton St": 11.2,
+      "25th Ave x Fulton St": 14.4,
+      "30th Ave path x JFK Dr": 17.5,
+      "Polo Field stadium west end": 13.5,
+      "Polo Field stadium east end": 13.4
+    },
+    "checksM": {},
+    "inputsSha256": "e9500c733f43ac7e0730f804e37b6a7ba3f2b1925818c35d24094d5ca2e40326",
+    "plateSha256": "eac423a8d8ea647fea34563add4c6c551e3111b00c6df38a2c4306a6467eb5f0",
+    "sha256": "9ee93fd507630168f8fe92d83f67a9f63836bd5c0cab7e3455196affe48f853e"
+  }
+}

@@ -1,0 +1,63 @@
+day	stage	start	end	artist	settimeId	timeSource	captureTimestamp
+1	Alice's House	00:00	02:00	Fedde Le Grand	d1:alices-house:fedde-le-grand	printed	20110928142156
+1	Alice's House	22:00	00:00	Avicii	d1:alices-house:avicii	printed	20110928142156
+1	Alice's House	20:00	22:00	Dirty South	d1:alices-house:dirty-south	printed	20110928142156
+1	Alice's House	19:00	20:00	Sunnery James & Ryan Marciano	d1:alices-house:sunnery-james---ryan-marciano	printed	20110928142156
+1	Alice's House	18:00	19:00	D.Ramirez	d1:alices-house:d-ramirez	printed	20110928142156
+1	Alice's House	17:00	18:00	Manufactured Superstars	d1:alices-house:manufactured-superstars	printed	20110928142156
+1	Alice's House	16:00	17:00	Nicky Romero	d1:alices-house:nicky-romero	printed	20110928142156
+1	Alice's House	15:00	16:00	Trent Cantrelle	d1:alices-house:trent-cantrelle	printed	20110928142156
+1	Labyrinth	01:00	02:00	Aly & Fila	d1:labyrinth:aly-&amp;-fila	printed	20110928142156
+1	Labyrinth	23:00	01:00	Gareth Emery	d1:labyrinth:gareth-emery	printed	20110928142156
+1	Labyrinth	21:30	23:00	Arty	d1:labyrinth:arty	printed	20110928142156
+1	Labyrinth	20:00	21:30	W&W	d1:labyrinth:w-w	printed	20110928142156
+1	Labyrinth	18:30	20:00	Marco V	d1:labyrinth:marco-v	printed	20110928142156
+1	Labyrinth	17:00	18:30	Bunny Of RITM	d1:labyrinth:bunny-of-ritm	printed	20110928142156
+1	Labyrinth	15:00	17:00	Fei Fei	d1:labyrinth:fei-fei	printed	20110928142156
+1	Sunken Garden	01:00	02:00	12th Planet	d1:sunken-garden:12th-planet	printed	20110928142156
+1	Sunken Garden	00:00	01:00	Calyx & Teebee	d1:sunken-garden:calyx---teebee	printed	20110928142156
+1	Sunken Garden	23:00	00:00	Marky	d1:sunken-garden:marky	printed	20110928142156
+1	Sunken Garden	22:00	23:00	Jaguar Skills	d1:sunken-garden:jaguar-skills	printed	20110928142156
+1	Sunken Garden	21:00	22:00	S.P.Y	d1:sunken-garden:s-p-y	printed	20110928142156
+1	Sunken Garden	20:00	21:00	Icicle	d1:sunken-garden:icicle	printed	20110928142156
+1	Sunken Garden	18:30	20:00	MartyParty	d1:sunken-garden:martyparty	printed	20110928142156
+1	Sunken Garden	16:30	18:30	Deco	d1:sunken-garden:deco	printed	20110928142156
+1	Sunken Garden	15:00	16:30	Trouble	d1:sunken-garden:trouble	printed	20110928142156
+2	Alice's House	00:00	02:00	Kaskade	d2:alices-house:kaskade	printed	20110928142156
+2	Alice's House	22:00	00:00	Sebastian Ingrosso	d2:alices-house:sebastian-ingrosso	printed	20110928142156
+2	Alice's House	20:30	22:00	Gabriel & Dresden	d2:alices-house:gabriel---dresden	printed	20110928142156
+2	Alice's House	19:30	20:30	Alesso	d2:alices-house:alesso	printed	20110928142156
+2	Alice's House	18:30	19:30	Morgan Page	d2:alices-house:morgan-page	printed	20110928142156
+2	Alice's House	17:30	18:30	Michael Woods	d2:alices-house:michael-woods	printed	20110928142156
+2	Alice's House	16:15	17:30	Wippenberg	d2:alices-house:wippenberg	printed	20110928142156
+2	Alice's House	15:00	16:15	Glenn Morrison	d2:alices-house:glenn-morrison	printed	20110928142156
+2	Labyrinth	01:00	02:00	Showtek	d2:labyrinth:showtek	printed	20110928142156
+2	Labyrinth	23:00	01:00	Cosmic Gate feat. Emma Hewitt	d2:labyrinth:cosmic-gate-feat--emma-hewitt	printed	20110928142156
+2	Labyrinth	21:30	23:00	Simon Patterson	d2:labyrinth:simon-patterson	printed	20110928142156
+2	Labyrinth	20:00	21:30	Sean Tyas	d2:labyrinth:sean-tyas	printed	20110928142156
+2	Labyrinth	18:30	20:00	Kyau & Albert	d2:labyrinth:kyau---albert	printed	20110928142156
+2	Labyrinth	17:00	18:30	Lisa Lashes	d2:labyrinth:lisa-lashes	printed	20110928142156
+2	Labyrinth	15:00	17:00	Joaquin Bamaca	d2:labyrinth:joaquin-bamaca	printed	20110928142156
+2	Sunken Garden	00:30	02:00	Dirtyphonics live	d2:sunken-garden:dirtyphonics-live	printed	20110928142156
+2	Sunken Garden	23:30	00:30	Breakage	d2:sunken-garden:breakage	printed	20110928142156
+2	Sunken Garden	22:30	23:30	Loadstar	d2:sunken-garden:loadstar	printed	20110928142156
+2	Sunken Garden	21:30	22:30	TC	d2:sunken-garden:tc	printed	20110928142156
+2	Sunken Garden	20:30	21:30	Original Sin w/ MC Armanni Reign	d2:sunken-garden:original-sin-w/-mc-armanni-reign	printed	20110928142156
+2	Sunken Garden	19:30	20:30	Sigma	d2:sunken-garden:sigma	printed	20110928142156
+2	Sunken Garden	17:00	19:30	Circuit b2b Whizard w/ MC XYZ	d2:sunken-garden:circuit-b2b-whizard-w/-mc-xyz	printed	20110928142156
+2	Sunken Garden	15:00	17:00	Clutch	d2:sunken-garden:clutch	printed	20110928142156
+2	Queen's Grounds	01:00	02:00	PeaceTreaty	d2:queens-grounds:peacetreaty	printed	20110928142156
+2	Queen's Grounds	00:00	01:00	Bass Kleph	d2:queens-grounds:bass-kleph	printed	20110928142156
+2	Queen's Grounds	22:30	00:00	Savoy	d2:queens-grounds:savoy	printed	20110928142156
+2	Queen's Grounds	20:00	22:30	Eddie Thoneick	d2:queens-grounds:eddie-thoneick	printed	20110928142156
+2	Queen's Grounds	18:30	20:00	Angger Dimas	d2:queens-grounds:angger-dimas	printed	20110928142156
+2	Queen's Grounds	17:00	18:30	Bassjackers	d2:queens-grounds:bassjackers	printed	20110928142156
+2	Queen's Grounds	15:00	17:00	Fareoh	d2:queens-grounds:fareoh	printed	20110928142156
+2	Upside Down Room	00:30	02:00	Mark Knight	d2:upside-down-room:mark-knight	printed	20110928142156
+2	Upside Down Room	23:00	00:30	Lee Burridge	d2:upside-down-room:lee-burridge	printed	20110928142156
+2	Upside Down Room	21:30	23:00	Victor Calderone	d2:upside-down-room:victor-calderone	printed	20110928142156
+2	Upside Down Room	20:30	21:30	Green Velvet	d2:upside-down-room:green-velvet	printed	20110928142156
+2	Upside Down Room	19:30	20:30	Pleasurekraft	d2:upside-down-room:pleasurekraft	printed	20110928142156
+2	Upside Down Room	18:00	19:30	Layo & Bushwacka	d2:upside-down-room:layo---bushwacka	printed	20110928142156
+2	Upside Down Room	17:00	18:00	Tiefshwarz	d2:upside-down-room:tiefshwarz	printed	20110928142156
+2	Upside Down Room	15:00	17:00	Droog	d2:upside-down-room:droog	printed	20110928142156

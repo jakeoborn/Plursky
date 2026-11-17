@@ -20,13 +20,38 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
-import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
+import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, checkedOn, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
+import { loadDayAfter, assertDayAfter, selectDayAfter, dayAfterSection, DAY_AFTER_CSS } from './lib/day-after.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://plursky.com';
 const OUT_DIR = path.join(root, 'f');
+
+// Inputs are read before f/ is cleared. A ledger that does not parse (a
+// merge once left conflict markers in sitemap-lastmod.json) used to crash
+// the build AFTER the rmSync, and that commit dropped all 75 pages. Now it
+// stops here with f/ intact (scripts/test-gen-pages-safe-clear.mjs).
+// This check sits ABOVE the render path on purpose: that slice of this file
+// is hashed into every festival page's fingerprint (lib/sitemap-fingerprint.mjs),
+// so code added inside it moves every <lastmod>. Do not quote the slice's
+// anchor strings in comments up here either: the slicer finds them by indexOf.
+{
+  const ledger = path.join(root, 'sitemap-lastmod.json');
+  if (existsSync(ledger)) {
+    try { JSON.parse(readFileSync(ledger, 'utf8')); }
+    catch (e) {
+      console.error(`[gen] ✗ sitemap-lastmod.json does not parse (${e.message}); f/ left untouched. Resolve the file (a merge conflict?) and rerun.`);
+      process.exit(1);
+    }
+  }
+}
+
 const EMBEDS = loadEmbedData(root);
+const NOW_MS = Date.now();
+// Day-after cards (row 9): every record is checked, whatever its status, so a
+// bad draft stops the build instead of waiting to be published.
+const DAY_AFTER = loadDayAfter(root);
 
 // ── Load the registry out of data.jsx ────────────────────────────────
 // scripts/lib/load-registry.mjs runs data/festivals/*.js before data.jsx, the
@@ -164,7 +189,12 @@ function statusOf(cfg, today) {
 function scheduleGrid(entry, dates, blocks) {
   const cfg = entry.config;
   const stages = DS[cfg.id]?.stages || [];
-  const acts = scheduleActs(DS[cfg.id]?.artists).filter(a => a.start && a.start !== '');
+  const all = scheduleActs(DS[cfg.id]?.artists);
+  const acts = all.filter(a => a.start && a.start !== '');
+  // A billing whose set times the sources dispute (timeStatus "unconfirmed",
+  // from the module's timeEvidence) is not silently dropped from its day: it
+  // is named on its own line, with no time.
+  const unconfirmed = all.filter(a => a.timeStatus === 'unconfirmed');
   if (!acts.length) return '';
   const stageIx = (sid) => { const i = stages.findIndex(t => t.id === sid); return i === -1 ? stages.length : i; };
   const stageName = (sid) => stages.find(t => t.id === sid)?.name
@@ -186,7 +216,13 @@ function scheduleGrid(entry, dates, blocks) {
         return `    <${hStage}>${esc(stageName(st))}</${hStage}>\n    <ul class="sets">\n` +
           sets.map(a => `      <li id="${setId(b, a)}"><time${ymd ? ` datetime="${ymd}T${esc(a.start)}"` : ''}>${esc(a.start)}${a.end ? ' – ' + esc(a.end) : ''}</time> <span>${esc(a.name)}</span></li>`).join('\n') +
           `\n    </ul>`;
-      }).join('\n');
+      }).join('\n') + (() => {
+        const un = unconfirmed.filter(a => a.day === d && inBlock(blocks, b)(a))
+          .sort((x, y) => stageIx(x.stage) - stageIx(y.stage) || String(x.id).localeCompare(String(y.id)));
+        return un.length
+          ? `\n    <p class="sets-unconfirmed">Times unconfirmed: ${un.map(a => `${esc(a.name)} (${esc(stageName(a.stage))})`).join('; ')}</p>`
+          : '';
+      })();
     }).join('\n');
   }).filter(Boolean).join('\n');
   const src = cfg.scheduleSource;
@@ -220,9 +256,9 @@ function stageProgrammingSection(entry) {
   return `
   <section aria-labelledby="stage-programming-h" class="stage-programming">
     <h2 id="stage-programming-h">Friday &amp; Saturday stage schedules</h2>
-    <p class="note">Set times from the III Points-branded grids supplied on October 5. Both days, 13 stages and 231 intervals. The source is the supplied screenshot, not a clock-time page on the official website.</p>
+    <p class="note">Set times from III Points' official "Updated set times for the weekend" grids, published October 16 on the festival's Instagram. Both days, 13 stages and 231 intervals. The Saturday RC95 close reflects that update: Charlotte de Witte 1:30 – 2:45 AM, then 999999999 2:45 – 4:00 AM.</p>
     <p class="note">Times are local to Miami (EDT). Midnight belongs to the preceding festival night: Friday 12:00 AM is early Saturday; Saturday 12:00 AM is early Sunday. The venue map is still pending.</p>
-    <p class="note"><a href="${esc(data.source.url)}">III Points official site</a> · source: attendee-supplied III Points-branded set-time grid · checked ${esc(data.source.observedAt)}</p>
+    <p class="note"><a href="${esc(data.source.url)}">III Points on Instagram</a> · source: official III Points "Updated set times for the weekend" grid · checked ${esc(data.source.observedAt)}</p>
 ${[1,2].map(day => `    <h3>${day === 1 ? 'Friday, October 16' : 'Saturday, October 17'}</h3>
 ` + data.stages.map(stage => {
     const block = stage.days.find(d => d.day === day);
@@ -308,7 +344,7 @@ function lineupSection(entry, blocks, dates, names, hasTimes) {
     multi ? `Weekend ${b.n}` : '',
     daySplit && dd[a.day] ? esc(dayLabel(dd, a.day, dates, b.shift, true).label) : '',
     real.has(a.stage) ? esc(real.get(a.stage).name) : '',
-    a.start ? `<a href="#${setId(b, a)}">${esc(a.start)}</a>` : '',
+    a.start ? `<a href="#${setId(b, a)}">${esc(a.start)}</a>` : a.timeEvidence && a.timeEvidence.status === 'unresolved' ? 'set times unconfirmed' : '',
   ].filter(Boolean).join(' · ')).filter(Boolean);
   const rows = names.map(n => {
     const s = artists.filter(a => a.name === n).flatMap(slots);
@@ -317,12 +353,12 @@ function lineupSection(entry, blocks, dates, names, hasTimes) {
   return `
   <section aria-labelledby="lineup-h">
     <h2 id="lineup-h">${esc(cfg.name)} lineup</h2>
-    <p>${names.length} artists announced.</p>
+    <p>${actsN(names.length)} announced.</p>
 ${hasTimes ? '' : `    <p class="note">Plursky does not have stage assignments or set times for every act at ${esc(cfg.name)} yet; each row shows what it has.</p>\n`}    <ul class="lineup">
 ${rows.slice(0, LINEUP_SHOWN).join('\n')}
     </ul>
 ${rows.length > LINEUP_SHOWN ? `    <details class="more">
-      <summary>Show all ${rows.length} artists</summary>
+      <summary>Show all ${actsN(rows.length)}</summary>
       <ul class="lineup">
 ${rows.slice(LINEUP_SHOWN).map(r => '  ' + r).join('\n')}
       </ul>
@@ -410,16 +446,20 @@ function ymdLabel(a, b) {
   if (ya === yb && ma === mb) return `${MON[ma - 1]} ${da}–${db}, ${ya}`;
   return ya === yb ? `${MON[ma - 1]} ${da} – ${MON[mb - 1]} ${db}, ${ya}` : `${MON[ma - 1]} ${da}, ${ya} – ${MON[mb - 1]} ${db}, ${yb}`;
 }
+// A billing line is one ACT: a B2B or a duo is one line and more than one
+// artist, so a count of lines is never printed as "artists" (f56).
+const actsN = n => `${n} act${n === 1 ? '' : 's'}`;
 const editionHref = e => `/?tab=past&amp;edition=${esc(e.id)}`;
+const missingList = ms => { const p = ms.map(m => `${esc(m.stage)} (${esc(m.when)})`); return p.length < 2 ? p.join('') : `${p.slice(0, -1).join(', ')} and ${p[p.length - 1]}`; };
 function editionSummary(e) {
   return e.lineupOnly
-    ? `${e.artists} artists from the official lineup. Set times not verified for this edition.`
-    : `${e.sets} sets on ${e.stages} stages, with the day, stage and time the festival's official schedule printed.`;
+    ? `${actsN(e.artists)} from the official lineup. Set times not verified for this edition.`
+    : `${e.sets} sets on ${e.stages} stages, with the day, stage and time the festival's official schedule printed.${e.missingStages ? ` Selected stages: the official schedule also listed ${missingList(e.missingStages)}, not included yet.` : ''}`;
 }
 
 // A festival not open in Plursky yet (a gated entry, usually next year's)
 // leads with its newest past edition instead of an empty page: clearly a
-// past edition, with its own dates and the date its source was archived, and
+// past edition, with its own dates and the date of its source (sourceDate), and
 // kept apart from everything this page says about the upcoming edition.
 function lookBackSection(entry, editions) {
   if (entry.available || !editions.length) return '';
@@ -428,7 +468,7 @@ function lookBackSection(entry, editions) {
   <section class="lookback" aria-labelledby="lookback-h" style="border:1px solid var(--line);border-radius:12px;padding:4px 16px 8px;margin:8px 0 0">
     <h2 id="lookback-h" style="margin-top:12px">Look back: ${e.year}</h2>
     <p class="meta"><span class="chip chip-past">Past edition</span>${esc(e.name)} · ${ymdLabel(e.first, e.last)}</p>
-    <p>${editionSummary(e)}${e.archived ? ` <span class="note">Official source archived ${ymdLabel(e.archived)}.</span>` : ''}</p>
+    <p>${editionSummary(e)}${e.archived ? ` <span class="note">${e.sourceLabel} ${ymdLabel(e.archived)}.</span>` : ''}</p>
     <p><a href="${editionHref(e)}">Open ${esc(e.name)} in Plursky</a></p>
     <p class="note">This is the ${e.year} edition. Nothing here is ${esc(entry.config.name)}'s lineup or schedule.</p>
   </section>`;
@@ -442,7 +482,7 @@ function pastSection(entry, editions) {
   <section aria-labelledby="past-h">
     <h2 id="past-h">${entry.available ? 'Past editions' : 'Earlier editions'} of ${esc(cfg.brand || cfg.name)}</h2>
     <ul>
-${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a> — ${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}</li>`).join('\n')}
+${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span class="sep"> — </span>${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${actsN(e.artists)}` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}${e.missingStages ? ', selected stages' : ''}</li>`).join('\n')}
     </ul>
     <p class="note">Each link opens that edition in Past Festivals in Plursky.</p>
   </section>`;
@@ -460,7 +500,7 @@ ${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a> — ${
 // fingerprint, so an answer cannot go stale behind a frozen <lastmod>.
 // Nothing here is written by hand per festival: a sentence nobody can source
 // is a sentence this page does not get to say.
-function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
+function faqItems(entry, { names, hasTimes, allTimed, stages, blocks, plate }) {
   const cfg = entry.config;
   const where = cfg.location || '';
   const items = [];
@@ -482,17 +522,19 @@ function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
   // so "yes, times are published" and an actual grid can never disagree. A
   // festival with no times gets the honest answer, not a softer one.
   if (stageProgrammingFor(cfg.id)?.scope === 'official-set-times') {
-    items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, transcribed from the III Points-branded screenshot supplied October 5, gathered from community sources.'});
+    items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, from III Points\' official updated set-time grids published October 16.'});
   } else if (hasTimes) {
     const src = cfg.scheduleSource;
+    // "full" only when every billed act has a time; otherwise say what is here (f56).
+    const schedLead = allTimed ? `The full ${cfg.name} schedule is` : `The ${cfg.name} set times Plursky has are`;
     items.push({
       q: `Have the ${cfg.name} set times been announced?`,
       a: src && src.official === true
-        ? `Yes. The full ${cfg.name} schedule is on this page, day by day and stage by stage${src.observedAt ? `, from the official times confirmed ${src.observedAt}` : ''}.`
+        ? `Yes. ${schedLead} on this page, day by day and stage by stage${src.observedAt ? `, from the official times confirmed ${src.observedAt}` : ''}.`
         // Stops at where OUR times came from. "until the official grid is
         // published" asserted the publisher had not published one — the same
         // defect class as reporting our data absence as their silence.
-        : `Yes. The full ${cfg.name} schedule is on this page, day by day and stage by stage, gathered from community sources.`,
+        : `Yes. ${schedLead} on this page, day by day and stage by stage, gathered from community sources.`,
     });
   } else if (names.length) {
     // NEUTRAL BY REQUIREMENT. `hasTimes === false` proves only that Plursky has
@@ -509,7 +551,7 @@ function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
   if (names.length) {
     items.push({
       q: `Who is playing ${cfg.name}?`,
-      a: `${names.length} artists are announced for ${cfg.name}, and every one of them is listed on this page.`,
+      a: `${actsN(names.length)} ${names.length === 1 ? 'is' : 'are'} announced for ${cfg.name}, and every one of them is listed on this page.`,
     });
   }
 
@@ -557,6 +599,7 @@ ${items.map(it => `      <dt>${esc(it.q)}</dt>\n      <dd>${esc(it.a)}</dd>`).jo
 }
 
 const TODAY = new Date().toISOString().slice(0, 10);
+assertDayAfter(DAY_AFTER, fid => ({ cfg: REG.find(f => f.config.id === fid)?.config, acts: scheduleActs(DS[fid]?.artists), embeds: EMBEDS }));
 
 // Other festivals, nearest in time first, eight at most. A festival with no
 // dates sorts last rather than guessing where it belongs.
@@ -570,6 +613,22 @@ function otherFestivals(entry) {
 }
 
 // ── Page template ────────────────────────────────────────────────────
+// The in-page jump bar: one link per section this page actually rendered, in
+// reading order. Built from the rendered HTML so a link can never point at a
+// section the page left out.
+const JUMPS = [
+  ['schedule-h', 'Set times', 'See the set times'],
+  ['lineup-h', 'Lineup', 'See the lineup'],
+  ['stages-h', 'Stages', 'See the stages'],
+  ['map-h', 'Map', 'See the map'],
+  ['watch-h', 'Watch', 'Watch and listen'],
+  ['plan-h', 'Plan', 'Plan your trip'],
+  ['past-h', 'Past years', 'See past years'],
+];
+function sectionJumps(html) {
+  return JUMPS.filter(([id]) => html.includes(`id="${id}"`)).map(([id, label, hero]) => ({ id, label, hero }));
+}
+
 function stub(entry, statusOverride, lastmod) {
   const cfg = entry.config;
   const id = cfg.id;
@@ -607,14 +666,39 @@ function stub(entry, statusOverride, lastmod) {
   const mapBacked = allStages.length > 0
     && allStages.every(s => s && s.x != null && s.y != null)
     && !!(cfg.mapImage || cfg.mapMode);
-  const answers = faqItems(entry, { names, hasTimes, stages, blocks, plate });
-  const watchHtml = embedsSection(cfg.name, selectEmbeds(id, EMBEDS, embedWindowStart(cfg, dates)));
+  const allTimed = names.length > 0 && names.every(n => scheduleActs(artists).some(a => a.name === n && a.start && a.start !== ''));
+  const answers = faqItems(entry, { names, hasTimes, allTimed, stages, blocks, plate });
+  const sel = selectEmbeds(id, EMBEDS, embedWindowStart(cfg, dates));
+  // A recap's day and act are claims about the edition: each must match the
+  // official schedule this page renders, or the build stops.
+  for (const g of sel.recap.days) {
+    if (!(cfg.dayDates || {})[g.day]) throw new Error(`${id}: recap embed names day ${g.day}, which the festival does not have`);
+    for (const e of [...g.youtube, ...g.social]) {
+      if (e.artist && !scheduleActs(ds?.artists).some(x => x.name === e.artist && Number(x.day) === g.day))
+        throw new Error(`${id}: recap embed names ${e.artist} on day ${g.day}, which the official schedule does not`);
+    }
+  }
+  const watchHtml = embedsSection(cfg.name, sel, d => dayLabel(cfg.dayDates, d, dates).label);
+  const dayAfterHtml = dayAfterSection(cfg.name, selectDayAfter(id, DAY_AFTER, cfg, NOW_MS), {
+    cfg, acts: scheduleActs(ds?.artists), embeds: EMBEDS,
+    dayTitle: d => dayLabel(cfg.dayDates, d, dates).label,
+    stageName: sid => (ds?.stages || []).find(t => t.id === sid)?.name || sid,
+  });
 
   const desc = hasTimes
-    ? `${cfg.name} set times and lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Full schedule by day and stage. Plan your weekend with Plursky.`
+    ? `${cfg.name} set times and lineup — ${actsN(names.length)} at ${venue}, ${cfg.dates}. Set times by day and stage. Plan your weekend with Plursky.`
     : names.length
-      ? `${cfg.name} lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Build your schedule and share your weekend with Plursky.`
+      ? `${cfg.name} lineup — ${actsN(names.length)} at ${venue}, ${cfg.dates}. Build your schedule and share your weekend with Plursky.`
       : `${cfg.name} at ${venue}, ${cfg.dates}. Build your schedule and share your weekend with Plursky.`;
+
+  // Real URLs from our data only (GSC Events, 2026-11-11). https or nothing.
+  const httpsOr = u => (typeof u === 'string' && /^https:\/\/[^\s"<>]+$/.test(u) ? u : null);
+  const officialSite = httpsOr(cfg.officialEvent && cfg.officialEvent.website);
+  // offers only where the festival's own ticket link is already in the data,
+  // and only before the edition ends: a past edition sells nothing. No price
+  // or availability is claimed, because none is recorded. The same link is
+  // printed in the sources list below, so the markup matches the page.
+  const ticketsUrl = isPast ? null : httpsOr(cfg.officialEvent && cfg.officialEvent.tickets);
 
   const ld = {
     '@context': 'https://schema.org',
@@ -626,14 +710,19 @@ function stub(entry, statusOverride, lastmod) {
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     description: desc,
     location: { '@type': 'Place', name: venue, ...(Object.keys(addr).length ? { address: { '@type': 'PostalAddress', ...addr } } : {}) },
-    // Only an image that is ours: the plate. Card art is official photography
-    // and patron maps are official art; neither is licensed to us.
-    ...(plate ? { image: `${ORIGIN}/${plate.file}` } : {}),
+    // Only an image that is ours: the plate, else the site's own share card
+    // (the page's og:image). Card art is official photography and patron maps
+    // are official art; neither is licensed to us.
+    image: plate ? `${ORIGIN}/${plate.file}` : `${ORIGIN}/og-card.png`,
     // performer is emitted ONLY when the names are also visible on the page
     // below — structured data that isn't in the rendered content is a
     // Google structured-data violation.
     ...(names.length ? { performer: names.map(n => ({ '@type': 'MusicGroup', name: n })) } : {}),
-    ...(cfg.brand ? { organizer: { '@type': 'Organization', name: cfg.brand } } : {}),
+    // organizer is the festival's own brand, so its url is the festival's
+    // official site, never plursky.com (that would name us as the
+    // organizer's website). No official site in the data: no url.
+    ...(cfg.brand ? { organizer: { '@type': 'Organization', name: cfg.brand, ...(officialSite ? { url: officialSite } : {}) } } : {}),
+    ...(ticketsUrl ? { offers: { '@type': 'Offer', url: ticketsUrl } } : {}),
   };
 
   // Built from `answers`, the same array answersSection() renders below.
@@ -665,8 +754,12 @@ function stub(entry, statusOverride, lastmod) {
 
   const src = cfg.scheduleSource;
   const site = cfg.officialEvent && cfg.officialEvent.website;
+  const checked = checkedOn(cfg);
   const sources = [
-    site && `      <li>Official site: <a href="${esc(site)}" rel="noopener">${esc(site)}</a></li>`,
+    // The site's read date is shown like every other row's, so the stamp's
+    // date (the newest read) is always one a reader can find in this list.
+    site && `      <li>Official site: <a href="${esc(site)}" rel="noopener">${esc(site)}</a>${/^\d{4}-\d{2}-\d{2}$/.test(String(cfg.officialEvent.observedAt || '')) ? ` (read ${esc(cfg.officialEvent.observedAt)})` : ''}</li>`,
+    ticketsUrl && `      <li>Tickets: <a href="${esc(ticketsUrl)}" rel="noopener">${esc(ticketsUrl)}</a> (official)</li>`,
     // The lineup's own source. Lineup-only festivals had NO source line at all
     // (III Points listed 218 acts citing nothing); a festival whose set times
     // came from the same page is already cited by the Set times row.
@@ -675,6 +768,18 @@ function stub(entry, statusOverride, lastmod) {
     cfg.mapSource && cfg.mapSource.url && `      <li>Map: <a href="${esc(cfg.mapSource.url)}" rel="noopener">${esc(cfg.mapSource.url)}</a> (official, checked ${esc(cfg.mapSource.observedAt)})</li>`,
     editionHours(cfg)?.url && `      <li>Hours: <a href="${esc(cfg.hours.url)}" rel="noopener">${esc(cfg.hours.url)}</a> (official, checked ${esc(cfg.hours.observedAt)})</li>`,
   ].filter(Boolean);
+
+  // The festival's own accent tints the header rule and the hero glow. Only a
+  // plain hex colour from the registry reaches the stylesheet.
+  const festAccent = /^#[0-9a-f]{6}$/i.test(entry.accent || '') ? entry.accent : '#88D7C8';
+  const bodyHtml = `${lookBackSection(entry, editions)}
+${answersSection(entry, answers)}${dayAfterHtml}${watchHtml}
+${mapHtml}
+${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
+${lineupSection(entry, blocks, dates, names, hasTimes)}
+${stagesSection(entry, blocks, dates)}
+${planSection(entry, amenities)}
+${pastSection(entry, editions)}`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -696,72 +801,125 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
 <meta name="twitter:description" content="${esc(desc)}">
 <meta name="twitter:image" content="${ORIGIN}/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#151C1D">
+<meta name="color-scheme" content="dark">
+<link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  /* The app's board tokens (index.html), both modes: Dark by default, Light when
-     the reader's system asks for it. --ember is kept as the name of the link /
-     accent-text role so the rules below did not have to move. */
-  :root { color-scheme:dark light;
-          --ink:#F3F0FA; --bg:#07060B; --muted:#ABA4BB; --line:#221E2B; --ember:#B7A3FF; --panel:#19161F;
-          --acc:#9474FF; --on-acc:#0B0816; --target:rgba(148,116,255,.16); }
-  @media (prefers-color-scheme: light) {
-    :root { --ink:#14121C; --bg:#F4F3F8; --muted:#565266; --line:#E6E3EE; --ember:#4A2BFF; --panel:#FFFFFF;
-            --acc:#4A2BFF; --on-acc:#FFFFFF; --target:rgba(74,43,255,.10); }
-  }
-  @font-face { font-family:"Martian Mono"; font-style:normal; font-weight:300 600; font-display:swap;
-               src:url(/fonts/martian-mono-latin.woff2) format("woff2"); unicode-range:U+0000-00FF; }
+  /* The app's Today print, as on /welcome/: Sora, charcoal paper, signal teal,
+     flare labels, the festival's own accent on the rule and the hero glow.
+     The older role names (--ember, --panel, --muted, --acc …) are kept as
+     aliases so the shared blocks (day-after, stage programming) need no edit. */
+  @font-face { font-family:Sora; font-style:normal; font-weight:400 600; font-display:swap;
+               src:url(/fonts/sora-latin.woff2) format("woff2"); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family:Sora; font-style:normal; font-weight:400 600; font-display:swap;
+               src:url(/fonts/sora-latin-ext.woff2) format("woff2"); unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  :root { color-scheme:dark;
+          --paper:#151C1D; --paper-2:#1E2829; --paper-3:#273334; --ink:#F2F3EB; --text-2:#B9C4BE; --text-3:#A6B4AF;
+          --line:rgba(242,243,235,.15); --line-2:rgba(242,243,235,.25); --signal:#88D7C8; --on-signal:#152624;
+          --flare:#FFC545; --live:#3DF5A0; --fest:${festAccent};
+          --bg:var(--paper); --panel:var(--paper-2); --muted:var(--text-2); --ember:var(--signal);
+          --acc:var(--signal); --on-acc:var(--on-signal); --target:rgba(136,215,200,.14);
+          --f-ui:Sora,-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',system-ui,sans-serif; }
   * { box-sizing:border-box; }
-  body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
-         font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,'Segoe UI',sans-serif; line-height:1.6; }
-  main { max-width:760px; margin:0 auto; }
-  nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
-  nav.crumbs a { color:var(--muted); }
-  h1 { font-size:clamp(26px,5vw,40px); line-height:1.15; margin:0 0 8px; text-wrap:balance; }
-  h2 { font-size:18px; margin:32px 0 8px; }
-  .meta { color:var(--muted); margin:0 0 20px; }
-  .chip { display:inline-block; margin-right:8px; padding:1px 10px; border-radius:999px; border:1px solid var(--line);
-          color:var(--ink); font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
-  .chip-live, .chip-soon { border-color:var(--ember); color:var(--ember); }
-  .note { color:var(--muted); font-size:14px; }
+  html { background:var(--paper); -webkit-text-size-adjust:100%; scroll-padding-top:128px; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:400 16px/1.6 var(--f-ui); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  :focus-visible { outline:2px solid var(--signal); outline-offset:3px; }
+  a { color:var(--signal); text-underline-offset:3px; }
+  .wrap { max-width:880px; margin:0 auto; padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); }
+  /* header, as on /welcome/ */
+  .top { position:sticky; top:0; z-index:20; background:var(--paper); padding-top:env(safe-area-inset-top,0px); }
+  .top .wrap { display:flex; align-items:center; gap:16px; min-height:60px; }
+  .wordmark { color:var(--ink); font-weight:600; font-size:14px; letter-spacing:.14em; text-decoration:none; }
+  .wordmark sup { font-size:8px; letter-spacing:0; margin-left:2px; }
+  .top nav { margin-left:auto; display:flex; align-items:center; gap:22px; }
+  .top nav a.lnk { color:var(--text-2); text-decoration:none; font-size:12px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; }
+  .top nav a.lnk:hover { color:var(--ink); }
+  .rule { height:3px; background:var(--fest); }
+  .btn { display:inline-flex; align-items:center; justify-content:center; min-height:40px; padding:0 16px; border-radius:4px; border:1px solid var(--line-2);
+         color:var(--ink); text-decoration:none; font-weight:600; font-size:13px; white-space:nowrap; }
+  .btn.primary { background:var(--signal); border-color:var(--signal); color:var(--on-signal); }
+  .btn.primary:hover { background:#A3E2D6; border-color:#A3E2D6; }
+  /* hero */
+  .hero { position:relative; padding:28px 0 26px; background:radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--fest) 26%, transparent), transparent 60%); border-bottom:1px solid var(--line); }
+  nav.crumbs { font-size:12px; color:var(--text-3); margin:0 0 18px; letter-spacing:.04em; }
+  nav.crumbs a { color:var(--text-3); }
+  h1 { font-size:clamp(32px,6.4vw,56px); font-weight:600; line-height:1.04; letter-spacing:-.02em; margin:0 0 14px; text-wrap:balance; }
+  .meta { color:var(--text-2); margin:0 0 14px; font-size:15px; display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; }
+  .chip { display:inline-flex; align-items:center; padding:3px 10px; border-radius:999px; border:1px solid var(--line-2);
+          color:var(--ink); font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; line-height:1.5; }
+  .chip-live { background:var(--live); border-color:var(--live); color:#0E2A1D; }
+  .chip-soon { border-color:var(--flare); color:var(--flare); }
+  .chip-upcoming { border-color:var(--signal); color:var(--signal); }
+  .hero .tag { font-size:clamp(17px,2.4vw,21px); color:var(--ink); margin:0; max-width:36ch; }
+  .hero .go { display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 0; }
+  .hero .go .btn { min-height:48px; padding:0 20px; font-size:15px; flex:0 1 auto; }
+  main > .wrap > :first-child > h2, main > .wrap > :first-child h2:first-of-type { border-top:0; padding-top:4px; }
+  /* section jumps */
+  nav.jumps { position:sticky; top:calc(63px + env(safe-area-inset-top,0px)); z-index:15; background:var(--paper); border-bottom:1px solid var(--line); }
+  nav.jumps .wrap { display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; padding-top:10px; padding-bottom:10px; }
+  nav.jumps .wrap::-webkit-scrollbar { display:none; }
+  nav.jumps a { flex:none; color:var(--text-2); text-decoration:none; font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase;
+                padding:7px 12px; border:1px solid var(--line); border-radius:999px; }
+  nav.jumps a:hover { color:var(--ink); border-color:var(--line-2); }
+  main { padding-bottom:64px; }
+  main > section, main > nav.other { scroll-margin-top:128px; }
+  h2 { font-size:clamp(21px,3vw,26px); font-weight:600; letter-spacing:-.01em; line-height:1.2; margin:48px 0 10px; padding-top:22px; border-top:1px solid var(--line); scroll-margin-top:128px; }
+  h2::before { content:""; display:block; width:28px; height:3px; background:var(--flare); margin:0 0 14px; }
+  h3 { font-size:19px; font-weight:600; letter-spacing:-.01em; margin:36px 0 6px; }
+  h4 { font-size:12px; font-weight:600; margin:22px 0 4px; color:var(--flare); text-transform:uppercase; letter-spacing:.12em; }
+  h5 { font-size:11px; font-weight:500; margin:14px 0 4px; color:var(--text-3); text-transform:uppercase; letter-spacing:.12em; }
+  .note { color:var(--text-2); font-size:14px; }
+  .checked { color:var(--text-2); font-size:13px; margin:6px 0 16px; }
   figure { margin:16px 0; }
-  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
+  figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:8px; background:var(--panel); }
   .platebox { position:relative; max-width:520px; }
   .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
-         display:flex; align-items:center; justify-content:center; background:var(--bg);
-         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
+         display:flex; align-items:center; justify-content:center; background:var(--paper);
+         border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:600; pointer-events:none; }
   ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
-  figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
-  .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
-         background:var(--acc); color:var(--on-acc); text-decoration:none; font-weight:700; }
+  figcaption { color:var(--text-2); font-size:13px; margin-top:6px; }
+  .cta { display:inline-flex; align-items:center; min-height:52px; margin:20px 0 8px; padding:0 22px; border-radius:4px;
+         background:var(--acc); color:var(--on-acc); text-decoration:none; font-weight:600; }
+  .cta:hover { background:#A3E2D6; }
   ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
-  ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
+  ul.lineup li { padding:9px 0; border-bottom:1px solid var(--line); font-size:15px; display:flex; flex-wrap:wrap; gap:2px 12px; }
   ul.lineup .act { font-weight:600; }
-  ul.lineup .slots { color:var(--muted); overflow-wrap:anywhere; }
-  h3 { font-size:16px; margin:24px 0 4px; }
-  h4 { font-size:13px; margin:16px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
-  h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
-  ul.sets { list-style:none; padding:0; margin:4px 0 0; }
-  ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
+  ul.lineup .slots { color:var(--text-2); font-size:13px; overflow-wrap:anywhere; }
+  ul.sets { list-style:none; padding:0; margin:4px 0 0; border-top:1px solid var(--line); }
+  ul.sets li { padding:9px 4px; border-bottom:1px solid var(--line); font-size:15px; display:flex; gap:14px; scroll-margin-top:136px; }
+  ul.sets li:hover { background:rgba(242,243,235,.03); }
   ul.sets li:target { background:var(--target); }
-  ul.sets li time { color:var(--muted); font-family:"Martian Mono",ui-monospace,'SF Mono',Menlo,monospace; font-size:13px; letter-spacing:-0.01em; font-variant-numeric:tabular-nums; min-width:116px; flex:none; }
+  ul.sets li time { color:var(--text-3); font-size:13px; font-weight:500; letter-spacing:.02em; font-variant-numeric:tabular-nums; min-width:112px; flex:none; padding-top:1px; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
-  ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
-  ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
-  dl.answers { margin:12px 0 0; }
-  dl.answers dt { font-weight:700; font-size:15px; margin:16px 0 4px; }
-  dl.answers dd { margin:0; color:var(--muted); font-size:14px; }
-  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin:20px 0 8px; }
+  ul.stagelist li { padding:10px 0; border-bottom:1px solid var(--line); font-size:15px; }
+  ul.stagelist .counts { color:var(--text-2); font-size:13px; font-variant-numeric:tabular-nums; }
+  dl.answers { margin:12px 0 0; display:grid; gap:10px; }
+  dl.answers dt { font-weight:600; font-size:16px; margin:18px 0 4px; }
+  dl.answers dd { margin:0; color:var(--text-2); font-size:15px; }
+  p.ctas { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; margin:20px 0 8px; }
   p.ctas .cta { margin:0; }
   a.cta-secondary { font-weight:600; white-space:nowrap; }
-  nav.other { margin-top:40px; }
-  nav.other a { color:var(--ink); }
-${stageProgrammingFor(entry.config.id) ? STAGE_PROGRAMMING_CSS : ''}  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
-  footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
-  a { color:var(--ember); }
+  section[aria-labelledby="app-h"] { background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:4px 22px 18px; margin-top:48px; }
+  section[aria-labelledby="app-h"] h2 { border-top:0; margin-top:18px; padding-top:0; }
+  section[aria-labelledby="past-h"] > ul { list-style:none; padding:0; margin:14px 0 0; display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:10px; }
+  section[aria-labelledby="past-h"] > ul li { background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:12px 14px; font-size:13px; color:var(--text-2); }
+  section[aria-labelledby="past-h"] > ul li a { display:block; color:var(--ink); font-weight:600; font-size:15px; text-decoration:none; margin-bottom:2px; }
+  section[aria-labelledby="past-h"] > ul li a:hover { color:var(--signal); }
+  section[aria-labelledby="past-h"] > ul li .sep { display:none; }
+  section.lookback { background:var(--paper-2); }
+  section.lookback h2 { border-top:0; padding-top:0; }
+  nav.other { margin-top:48px; }
+  nav.other ul { padding-left:0; list-style:none; columns:2 240px; column-gap:24px; }
+  nav.other li { padding:6px 0; break-inside:avoid; color:var(--text-2); font-size:14px; }
+  nav.other a { color:var(--ink); font-weight:600; }
+${stageProgrammingFor(entry.config.id) ? STAGE_PROGRAMMING_CSS : ''}  section.sources ul { padding-left:18px; font-size:13px; color:var(--text-2); overflow-wrap:anywhere; }
+  footer { margin-top:48px; padding-top:18px; border-top:1px solid var(--line); color:var(--text-2); font-size:14px; }
+  footer a { color:var(--text-2); }
   details.more { margin:4px 0 0; }
-  details.more > summary { cursor:pointer; color:var(--ember); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
-  details.more[open] > summary { color:var(--muted); }
+  details.more > summary { cursor:pointer; color:var(--signal); font-weight:600; font-size:14px; padding:10px 0; min-height:44px; display:flex; align-items:center; }
+  details.more[open] > summary { color:var(--text-2); }
   section.watch .embed { margin:16px 0 20px; }
-  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:12px; overflow:hidden; }
+  section.watch .yt { position:relative; aspect-ratio:16/9; width:100%; min-height:200px; background:var(--panel); border-radius:8px; overflow:hidden; }
   section.watch .yt iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
   /* Instagram's embed.js stamps an inline 326px min-width on its iframe. On a
      320px phone that ran 26px past the screen and cut off "View profile", so
@@ -772,19 +930,20 @@ ${stageProgrammingFor(entry.config.id) ? STAGE_PROGRAMMING_CSS : ''}  section.so
   /* And nothing a third-party script inserts may widen the page, even for a
      frame mid-hydration (seen once at 320px: 346px for a moment). */
   section.watch { overflow-x:clip; }
-  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:12px; padding:16px; max-width:540px; }
+  section.watch .embed-ig blockquote, section.watch .embed-x blockquote { margin:0; min-height:420px; background:var(--panel); border-radius:8px; padding:16px; max-width:540px; }
   section.watch .embed-x blockquote { min-height:260px; }
   /* Tap-to-load: until tapped, a social post is a compact card with its type,
      date, one button and the notice; nothing from Instagram or X is requested.
      The blockquote stays empty and hidden until the tap fills it. */
   section.watch blockquote.tap-embed { display:none; }
-  section.watch .embed-tap { background:var(--panel); border-radius:12px; padding:16px; max-width:540px; box-sizing:border-box; }
+  section.watch .embed-tap { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:16px; max-width:540px; box-sizing:border-box; }
   section.watch .embed-what { color:var(--ink); font-size:15px; font-weight:600; margin:0 0 10px; }
-  section.watch .embed-load { min-height:44px; padding:10px 16px; border-radius:10px; border:1px solid var(--ember); background:transparent; color:var(--ember); font:inherit; font-weight:600; font-size:15px; cursor:pointer; }
-  section.watch .embed-tap-note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+  section.watch .embed-load { min-height:44px; padding:10px 16px; border-radius:4px; border:1px solid var(--signal); background:transparent; color:var(--signal); font:inherit; font-weight:600; font-size:15px; cursor:pointer; }
+  section.watch .embed-tap-note { color:var(--text-2); font-size:13px; margin:8px 0 0; }
   section.watch figure.tapped .embed-tap { display:none; }
-  section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
-  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
+  section.watch .embed-sp iframe { display:block; border:0; border-radius:8px; min-height:352px; }
+  section.watch .embed-cap { color:var(--text-2); font-size:13px; margin:6px 0 0; }${dayAfterHtml ? DAY_AFTER_CSS : ''}
+  @media (max-width:640px) { .top nav a.lnk { display:none; } .hero { padding-top:20px; } .hero .go .btn { flex:1 1 140px; padding:0 14px; } }
 </style>
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
@@ -797,18 +956,25 @@ ${JSON.stringify(crumbLd, null, 2)}
 </script>
 </head>
 <body>
+<header class="top">
+  <div class="wrap">
+    <a class="wordmark" href="/welcome/">PLURSKY<sup>®</sup></a>
+    <nav aria-label="Plursky"><a class="lnk" href="/welcome/#festivals">All festivals</a><a class="btn primary" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the app</a></nav>
+  </div>
+  <div class="rule" aria-hidden="true"></div>
+</header>
 <main>
+<div class="hero">
+ <div class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">${esc(cfg.name)}</span></nav>
   <h1>${esc(cfg.name)}</h1>
   <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
-  <p>${esc(cfg.tagline || '')}</p>${lookBackSection(entry, editions)}
-${answersSection(entry, answers)}${watchHtml}
-${mapHtml}
-${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
-${lineupSection(entry, blocks, dates, names, hasTimes)}
-${stagesSection(entry, blocks, dates)}
-${planSection(entry, amenities)}
-${pastSection(entry, editions)}
+  <p class="tag">${esc(cfg.tagline || '')}</p>
+${checked ? `  <p class="checked">Sources last checked on <time datetime="${checked}">${checked}</time>.</p>\n` : ''}  <p class="go"><a class="btn primary" href="/?f=${esc(id)}${isPast && entry.available ? '&amp;tab=memories' : ''}">${entry.available ? (isPast ? 'Relive it in Plursky' : 'Plan it in Plursky') : 'Open Plursky'}</a>${(() => { const j = sectionJumps(bodyHtml).find(x => x.id !== 'lineup-h' || names.length); return j ? `<a class="btn" href="#${j.id}">${j.hero}</a>` : ''; })()}</p>
+ </div>
+</div>
+${(() => { const js = sectionJumps(bodyHtml); return js.length > 1 ? `<nav class="jumps" aria-label="On this page"><div class="wrap">${js.map(j => `<a href="#${j.id}">${j.label}</a>`).join('')}</div></nav>\n` : ''; })()}<div class="wrap">
+${bodyHtml}
 
   <section aria-labelledby="app-h">
     <h2 id="app-h">Get the app</h2>
@@ -816,10 +982,10 @@ ${pastSection(entry, editions)}
       <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
       <a class="cta-secondary" href="/?f=${esc(id)}">${entry.available ? (isPast ? 'Relive it in the browser' : 'Open in your browser') : 'Open Plursky in the browser'}</a>
     </p>
-    <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
+    <p class="note">Plursky is a free festival companion — build a personal schedule from the lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
 ${entry.available
   ? (entry.scheduleTBA
-      ? (cfg.id === 'iii-points-2026' ? `    <p class="note">The full stage timetable is on this website. The app uses the same stage timetable.</p>\n` : `    <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>\n`)
+      ? (cfg.id === 'iii-points-2026' ? `    <p class="note">The full stage timetable is on this website. The app uses the same stage timetable.</p>\n` : `    <p class="note">${esc(cfg.name)} is open in the app with the lineup announced so far. Set times appear as soon as the festival publishes them.</p>\n`)
       : '')
   : `    <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>\n`}${isPast && entry.available ? `    <p><a href="/?f=${esc(id)}&amp;tab=memories">Your ${esc(cfg.name)} Memories in Plursky</a>${next ? ` · Next edition: <a href="/f/${esc(next.config.id)}/">${esc(next.config.name)}</a>` : ''}</p>\n` : ''}  </section>
 
@@ -837,8 +1003,9 @@ ${(() => {
 ${sources.length ? `    <ul>\n${sources.join('\n')}\n    </ul>\n` : ''}${lastmod ? `    <p class="note">Last updated <time class="updated" datetime="${lastmod}">${lastmod}</time>.</p>\n` : ''}  </section>
 
   <footer>
-    <a href="/">Plursky</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>
+    <a href="/">Plursky</a> · <a href="/welcome/">All festivals</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>
   </footer>
+</div>
 </main>
 </body>
 </html>
@@ -954,7 +1121,7 @@ const fileFp = (rel) => fp(existsSync(path.join(root, rel)) ? readFileSync(path.
 // live in scripts/lib/sitemap-fingerprint.mjs — shared with
 // scripts/test-sitemap-fingerprint.mjs so the generator and its regression
 // mutants hash through one function rather than two copies of a rule.
-const festivalFp = (entry) => festivalFingerprint(entry, { DS, scheduleActs, eventDates, TODAY });
+const festivalFp = (entry) => festivalFingerprint(entry, { DS, scheduleActs, eventDates, TODAY, NOW_MS });
 
 // First run has no ledger. Seeding from the sitemap already committed keeps
 // every published date that is still true, rather than announcing that all 28
@@ -1074,6 +1241,10 @@ if (!CHECK) console.log(`[gen] index.html festival lists refreshed (${REG.length
 // today — right by the rules, and a real trap when testing by hand.
 const urls = [
   { loc: `${ORIGIN}/`, pri: '1.0', lastmod: lastmodFor(`${ORIGIN}/`, fp(idx)) },
+  // The landing and web onboarding (scripts/gen-welcome-page.mjs). Its content
+  // only moves when the template or the registry does, so the fingerprint is
+  // the generated file itself.
+  { loc: `${ORIGIN}/welcome/`, pri: '0.9', lastmod: lastmodFor(`${ORIGIN}/welcome/`, fileFp('welcome/index.html')) },
   // A page with no lineup is noindex, so it stays out of the sitemap until it
   // has one; its ledger row is kept so its date survives the wait.
   ...REG.filter(f => (DS[f.config.id]?.artists || []).some(a => a.name))

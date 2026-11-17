@@ -1,0 +1,2838 @@
+{
+ "id": "edc-orlando-2023",
+ "festivalId": "edc-orlando",
+ "name": "EDC Orlando 2023",
+ "year": 2023,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-11-10",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2023-11-11",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2023-11-12",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "edc-orlando-2023:kinetic-field",
+   "name": "Kinetic Field"
+  },
+  {
+   "id": "edc-orlando-2023:circuit-grounds",
+   "name": "Circuit Grounds"
+  },
+  {
+   "id": "edc-orlando-2023:neon-garden",
+   "name": "Neon Garden"
+  },
+  {
+   "id": "edc-orlando-2023:stereo-bloom",
+   "name": "Stereo Bloom"
+  },
+  {
+   "id": "edc-orlando-2023:rynobus-art-car",
+   "name": "Rynobus Art Car"
+  },
+  {
+   "id": "edc-orlando-2023:anniversary-art-car",
+   "name": "Anniversary Art Car"
+  }
+ ],
+ "artists": [
+  {
+   "id": "edc-orlando-2023:avello",
+   "name": "AVELLO",
+   "key": "avello",
+   "performers": [
+    "avello"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:dj-icey",
+   "name": "DJ Icey",
+   "key": "dj-icey",
+   "performers": [
+    "dj-icey"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:miss-monique",
+   "name": "Miss Monique",
+   "key": "miss-monique",
+   "performers": [
+    "miss-monique"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:noizu",
+   "name": "Noizu",
+   "key": "noizu",
+   "performers": [
+    "noizu"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:deadmau5-sunset-set",
+   "name": "deadmau5 (Sunset Set)",
+   "key": "deadmau5-sunset-set",
+   "performers": [
+    "deadmau5-sunset-set"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:alok",
+   "name": "Alok",
+   "key": "alok",
+   "performers": [
+    "alok"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:dillon-francis-b2b-valentino-khan",
+   "name": "Dillon Francis B2B Valentino Khan",
+   "key": "dillon-francis-b2b-valentino-khan",
+   "performers": [
+    "dillon-francis",
+    "valentino-khan"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:gryffin",
+   "name": "Gryffin",
+   "key": "gryffin",
+   "performers": [
+    "gryffin"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:celo",
+   "name": "CELO",
+   "key": "celo",
+   "performers": [
+    "celo"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:black-carl",
+   "name": "Black Carl!",
+   "key": "black-carl",
+   "performers": [
+    "black-carl"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:hairitage",
+   "name": "Hairitage",
+   "key": "hairitage",
+   "performers": [
+    "hairitage"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:level-up",
+   "name": "Level Up",
+   "key": "level-up",
+   "performers": [
+    "level-up"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:barely-alive",
+   "name": "BARELY ALIVE",
+   "key": "barely-alive",
+   "performers": [
+    "barely-alive"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:dirt-monkey-b2b-subdocta",
+   "name": "Dirt Monkey B2B SubDocta",
+   "key": "dirt-monkey-b2b-subdocta",
+   "performers": [
+    "dirt-monkey",
+    "subdocta"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:virtual-riot",
+   "name": "Virtual Riot",
+   "key": "virtual-riot",
+   "performers": [
+    "virtual-riot"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:atliens",
+   "name": "ATLiens",
+   "key": "atliens",
+   "performers": [
+    "atliens"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:kayzo",
+   "name": "Kayzo",
+   "key": "kayzo",
+   "performers": [
+    "kayzo"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:subtronics",
+   "name": "Subtronics",
+   "key": "subtronics",
+   "performers": [
+    "subtronics"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:thunderpony",
+   "name": "Thunderpony",
+   "key": "thunderpony",
+   "performers": [
+    "thunderpony"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:chelina-manuhutu",
+   "name": "Chelina Manuhutu",
+   "key": "chelina-manuhutu",
+   "performers": [
+    "chelina-manuhutu"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:carlita",
+   "name": "Carlita",
+   "key": "carlita",
+   "performers": [
+    "carlita"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:pawsa",
+   "name": "PAWSA",
+   "key": "pawsa",
+   "performers": [
+    "pawsa"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:paco-osuna",
+   "name": "Paco Osuna",
+   "key": "paco-osuna",
+   "performers": [
+    "paco-osuna"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:rachep",
+   "name": "RachEP",
+   "key": "rachep",
+   "performers": [
+    "rachep"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:majestic",
+   "name": "Majestic",
+   "key": "majestic",
+   "performers": [
+    "majestic"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:malone",
+   "name": "Malóne",
+   "key": "malone",
+   "performers": [
+    "malone"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:san-pacho",
+   "name": "San Pacho",
+   "key": "san-pacho",
+   "performers": [
+    "san-pacho"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:anabel-englund-sunset-set",
+   "name": "Anabel Englund (Sunset Set)",
+   "key": "anabel-englund-sunset-set",
+   "performers": [
+    "anabel-englund-sunset-set"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:cid",
+   "name": "CID",
+   "key": "cid",
+   "performers": [
+    "cid"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:westend-b2b-joshwa",
+   "name": "Westend B2B Joshwa",
+   "key": "westend-b2b-joshwa",
+   "performers": [
+    "westend",
+    "joshwa"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:hugel",
+   "name": "Hugel",
+   "key": "hugel",
+   "performers": [
+    "hugel"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:dombresky",
+   "name": "Dombresky",
+   "key": "dombresky",
+   "performers": [
+    "dombresky"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:j-v-o",
+   "name": "J.V.O",
+   "key": "j-v-o",
+   "performers": [
+    "j-v-o"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:letha-blake",
+   "name": "Letha Blake",
+   "key": "letha-blake",
+   "performers": [
+    "letha-blake"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:seeing-double",
+   "name": "Seeing Double",
+   "key": "seeing-double",
+   "performers": [
+    "seeing-double"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:gram",
+   "name": "GRAM",
+   "key": "gram",
+   "performers": [
+    "gram"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:alan-shi-b2b-jay-crusoe",
+   "name": "Alan Shi B2B Jay Crusoe",
+   "key": "alan-shi-b2b-jay-crusoe",
+   "performers": [
+    "alan-shi",
+    "jay-crusoe"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:haylee-wood",
+   "name": "Haylee Wood",
+   "key": "haylee-wood",
+   "performers": [
+    "haylee-wood"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:2ar",
+   "name": "2AR",
+   "key": "2ar",
+   "performers": [
+    "2ar"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:brant-wolff",
+   "name": "Brant Wolff",
+   "key": "brant-wolff",
+   "performers": [
+    "brant-wolff"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:cut-and-sew",
+   "name": "Cut & Sew",
+   "key": "cut-and-sew",
+   "performers": [
+    "cut-and-sew"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:bryan-softwell",
+   "name": "Bryan Softwell",
+   "key": "bryan-softwell",
+   "performers": [
+    "bryan-softwell"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:sam-wolfe",
+   "name": "Sam Wolfe",
+   "key": "sam-wolfe",
+   "performers": [
+    "sam-wolfe"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:parker-page",
+   "name": "Parker Page",
+   "key": "parker-page",
+   "performers": [
+    "parker-page"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:atnarko",
+   "name": "Atnarko",
+   "key": "atnarko",
+   "performers": [
+    "atnarko"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:noel-sanger",
+   "name": "Noel Sanger",
+   "key": "noel-sanger",
+   "performers": [
+    "noel-sanger"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:norse",
+   "name": "NORSE",
+   "key": "norse",
+   "performers": [
+    "norse"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:dombresky-presents-process-radio-ep-50",
+   "name": "Dombresky presents Process Radio Ep. 50",
+   "key": "dombresky-presents-process-radio-ep-50",
+   "performers": [
+    "dombresky-presents-process-radio-ep-50"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:charly-jordan",
+   "name": "Charly Jordan",
+   "key": "charly-jordan",
+   "performers": [
+    "charly-jordan"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:micro",
+   "name": "Micro",
+   "key": "micro",
+   "performers": [
+    "micro"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:bunny-of-rabbit-in-the-moon-dj-set",
+   "name": "Bunny of Rabbit in the Moon (DJ Set)",
+   "key": "bunny-of-rabbit-in-the-moon-dj-set",
+   "performers": [
+    "bunny-of-rabbit-in-the-moon-dj-set"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:robbie-rivera",
+   "name": "Robbie Rivera",
+   "key": "robbie-rivera",
+   "performers": [
+    "robbie-rivera"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:carlos-mendoza",
+   "name": "CARLOS MENDOZA",
+   "key": "carlos-mendoza",
+   "performers": [
+    "carlos-mendoza"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:carola",
+   "name": "CAROLA",
+   "key": "carola",
+   "performers": [
+    "carola"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:ship-wrek",
+   "name": "SHIP WREK",
+   "key": "ship-wrek",
+   "performers": [
+    "ship-wrek"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:deorro",
+   "name": "DEORRO",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:malaa-b2b-wax-motif-sunset-set",
+   "name": "MALAA B2B WAX MOTIF (SUNSET SET)",
+   "key": "malaa-b2b-wax-motif-sunset-set",
+   "performers": [
+    "malaa",
+    "wax-motif-sunset-set"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:james-hype",
+   "name": "JAMES HYPE",
+   "key": "james-hype",
+   "performers": [
+    "james-hype"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:loud-luxury",
+   "name": "LOUD LUXURY",
+   "key": "loud-luxury",
+   "performers": [
+    "loud-luxury"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:armin-van-buuren",
+   "name": "ARMIN VAN BUUREN",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:zedd",
+   "name": "ZEDD",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:fury-with-mc-dino",
+   "name": "FURY WITH MC DINO",
+   "key": "fury-with-mc-dino",
+   "performers": [
+    "fury-with-mc-dino"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:sara-benyo",
+   "name": "SARA BENYO",
+   "key": "sara-benyo",
+   "performers": [
+    "sara-benyo"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:benda",
+   "name": "BENDA",
+   "key": "benda",
+   "performers": [
+    "benda"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:nitepunk",
+   "name": "NITEPUNK",
+   "key": "nitepunk",
+   "performers": [
+    "nitepunk"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:jantsen",
+   "name": "JANTSEN",
+   "key": "jantsen",
+   "performers": [
+    "jantsen"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:crankdat",
+   "name": "CRANKDAT",
+   "key": "crankdat",
+   "performers": [
+    "crankdat"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:wilkinson",
+   "name": "WILKINSON",
+   "key": "wilkinson",
+   "performers": [
+    "wilkinson"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:riot-ten",
+   "name": "RIOT TEN",
+   "key": "riot-ten",
+   "performers": [
+    "riot-ten"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:deathpact",
+   "name": "DEATHPACT",
+   "key": "deathpact",
+   "performers": [
+    "deathpact"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:liquid-stranger",
+   "name": "LIQUID STRANGER",
+   "key": "liquid-stranger",
+   "performers": [
+    "liquid-stranger"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:excision",
+   "name": "EXCISION",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:miguelle-and-tons",
+   "name": "MIGUELLE & TONS",
+   "key": "miguelle-and-tons",
+   "performers": [
+    "miguelle-and-tons"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:tini-gessler",
+   "name": "TINI GESSLER",
+   "key": "tini-gessler",
+   "performers": [
+    "tini-gessler"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:ben-sterling",
+   "name": "BEN STERLING",
+   "key": "ben-sterling",
+   "performers": [
+    "ben-sterling"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:franky-wah-b2b-korolova",
+   "name": "FRANKY WAH B2B KOROLOVA",
+   "key": "franky-wah-b2b-korolova",
+   "performers": [
+    "franky-wah",
+    "korolova"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:chris-stussy",
+   "name": "CHRIS STUSSY",
+   "key": "chris-stussy",
+   "performers": [
+    "chris-stussy"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:blond-ish-b2b-dennis-cruz",
+   "name": "BLOND:ISH B2B DENNIS CRUZ",
+   "key": "blond-ish-b2b-dennis-cruz",
+   "performers": [
+    "blond-ish",
+    "dennis-cruz"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:loco-dice",
+   "name": "LOCO DICE",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:dom-dolla",
+   "name": "DOM DOLLA",
+   "key": "dom-dolla",
+   "performers": [
+    "dom-dolla"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:edgar-v",
+   "name": "EDGAR V",
+   "key": "edgar-v",
+   "performers": [
+    "edgar-v"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:baby-weight",
+   "name": "BABY WEIGHT",
+   "key": "baby-weight",
+   "performers": [
+    "baby-weight"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:franky-rizardo",
+   "name": "FRANKY RIZARDO",
+   "key": "franky-rizardo",
+   "performers": [
+    "franky-rizardo"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:matt-sassari",
+   "name": "MATT SASSARI",
+   "key": "matt-sassari",
+   "performers": [
+    "matt-sassari"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:todd-terry-sunset-set",
+   "name": "TODD TERRY (SUNSET SET)",
+   "key": "todd-terry-sunset-set",
+   "performers": [
+    "todd-terry-sunset-set"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:honeyluv",
+   "name": "HONEYLUV",
+   "key": "honeyluv",
+   "performers": [
+    "honeyluv"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:lf-system",
+   "name": "LF SYSTEM",
+   "key": "lf-system",
+   "performers": [
+    "lf-system"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:mau-p",
+   "name": "MAU P",
+   "key": "mau-p",
+   "performers": [
+    "mau-p"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:yotto",
+   "name": "YOTTO",
+   "key": "yotto",
+   "performers": [
+    "yotto"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:vibe-link",
+   "name": "VIBE LINK",
+   "key": "vibe-link",
+   "performers": [
+    "vibe-link"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:wyllo",
+   "name": "WYLLO",
+   "key": "wyllo",
+   "performers": [
+    "wyllo"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:droptopgundam",
+   "name": "DROPTOPGUNDAM",
+   "key": "droptopgundam",
+   "performers": [
+    "droptopgundam"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:verse",
+   "name": "VERSE",
+   "key": "verse",
+   "performers": [
+    "verse"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:sloth",
+   "name": "SLOTH",
+   "key": "sloth",
+   "performers": [
+    "sloth"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:dream-takers",
+   "name": "DREAM TAKERS",
+   "key": "dream-takers",
+   "performers": [
+    "dream-takers"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:machaki",
+   "name": "MACHAKI",
+   "key": "machaki",
+   "performers": [
+    "machaki"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:gorilla-t",
+   "name": "GORILLA T",
+   "key": "gorilla-t",
+   "performers": [
+    "gorilla-t"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:evalution",
+   "name": "EVALUTION",
+   "key": "evalution",
+   "performers": [
+    "evalution"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:crankdat-presents-shakedat",
+   "name": "CRANKDAT PRESENTS: SHAKEDAT",
+   "key": "crankdat-presents-shakedat",
+   "performers": [
+    "crankdat-presents-shakedat"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:ruvlo",
+   "name": "RUVLO",
+   "key": "ruvlo",
+   "performers": [
+    "ruvlo"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:sst",
+   "name": "SST",
+   "key": "sst",
+   "performers": [
+    "sst"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:kadilak-w-mc-freak",
+   "name": "KADILAK W/MC FREAK",
+   "key": "kadilak-w-mc-freak",
+   "performers": [
+    "kadilak-w-mc-freak"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:knoxz-w-mc-motive",
+   "name": "KNOXZ W/MC MOTIVE",
+   "key": "knoxz-w-mc-motive",
+   "performers": [
+    "knoxz-w-mc-motive"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:electron-c",
+   "name": "ELECTRON-C",
+   "key": "electron-c",
+   "performers": [
+    "electron-c"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:circle-k-w-mc-collaborator",
+   "name": "CIRCLE K W/MC COLLABORATOR",
+   "key": "circle-k-w-mc-collaborator",
+   "performers": [
+    "circle-k-w-mc-collaborator"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:dave-owen-w-mc-blak",
+   "name": "DAVE OWEN W/MC BLAK",
+   "key": "dave-owen-w-mc-blak",
+   "performers": [
+    "dave-owen-w-mc-blak"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:stereotype",
+   "name": "STEREOTYPE",
+   "key": "stereotype",
+   "performers": [
+    "stereotype"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:odi",
+   "name": "ODI",
+   "key": "odi",
+   "performers": [
+    "odi"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:ak1200",
+   "name": "AK1200",
+   "key": "ak1200",
+   "performers": [
+    "ak1200"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:baggi",
+   "name": "Baggi",
+   "key": "baggi",
+   "performers": [
+    "baggi"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:gem-and-tauri",
+   "name": "Gem & Tauri",
+   "key": "gem-and-tauri",
+   "performers": [
+    "gem-and-tauri"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:bonnie-x-clyde",
+   "name": "BONNIE X CLYDE",
+   "key": "bonnie-x-clyde",
+   "performers": [
+    "bonnie-x-clyde"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:kream",
+   "name": "Kream",
+   "key": "kream",
+   "performers": [
+    "kream"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:fisher-sunset-set",
+   "name": "Fisher (Sunset Set)",
+   "key": "fisher-sunset-set",
+   "performers": [
+    "fisher-sunset-set"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:meduza",
+   "name": "Meduza",
+   "key": "meduza",
+   "performers": [
+    "meduza"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:alan-walker",
+   "name": "Alan Walker",
+   "key": "alan-walker",
+   "performers": [
+    "alan-walker"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:afroki-afrojack-b2b-steve-aoki",
+   "name": "Afroki (Afrojack B2B Steve Aoki)",
+   "key": "afroki-afrojack-b2b-steve-aoki",
+   "performers": [
+    "afroki-afrojack",
+    "steve-aoki"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:hypernaut",
+   "name": "hypernaut",
+   "key": "hypernaut",
+   "performers": [
+    "hypernaut"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:modapit",
+   "name": "Modapit",
+   "key": "modapit",
+   "performers": [
+    "modapit"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:nia-archives",
+   "name": "Nia Archives",
+   "key": "nia-archives",
+   "performers": [
+    "nia-archives"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:alesso-sunset-set",
+   "name": "Alesso (Sunset Set)",
+   "key": "alesso-sunset-set",
+   "performers": [
+    "alesso-sunset-set"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:joyryde",
+   "name": "JOYRYDE",
+   "key": "joyryde",
+   "performers": [
+    "joyryde"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:disco-lines",
+   "name": "Disco Lines",
+   "key": "disco-lines",
+   "performers": [
+    "disco-lines"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:san-holo",
+   "name": "San Holo",
+   "key": "san-holo",
+   "performers": [
+    "san-holo"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:seven-lions",
+   "name": "Seven Lions",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:slugg",
+   "name": "Slugg",
+   "key": "slugg",
+   "performers": [
+    "slugg"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:azzecca",
+   "name": "Azzecca",
+   "key": "azzecca",
+   "performers": [
+    "azzecca"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:eats-everything",
+   "name": "Eats Everything",
+   "key": "eats-everything",
+   "performers": [
+    "eats-everything"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:anfisa-letyago",
+   "name": "Anfisa Letyago",
+   "key": "anfisa-letyago",
+   "performers": [
+    "anfisa-letyago"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:eli-brown",
+   "name": "Eli Brown",
+   "key": "eli-brown",
+   "performers": [
+    "eli-brown"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:gorgon-city",
+   "name": "Gorgon City",
+   "key": "gorgon-city",
+   "performers": [
+    "gorgon-city"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:fisher",
+   "name": "Fisher",
+   "key": "fisher",
+   "performers": [
+    "fisher"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:luccio",
+   "name": "Luccio",
+   "key": "luccio",
+   "performers": [
+    "luccio"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:adam-scott",
+   "name": "Adam Scott",
+   "key": "adam-scott",
+   "performers": [
+    "adam-scott"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:jorza",
+   "name": "Jorza",
+   "key": "jorza",
+   "performers": [
+    "jorza"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:pretty-pink",
+   "name": "Pretty Pink",
+   "key": "pretty-pink",
+   "performers": [
+    "pretty-pink"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:billy-gillies",
+   "name": "Billy Gillies",
+   "key": "billy-gillies",
+   "performers": [
+    "billy-gillies"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:maddix",
+   "name": "Maddix",
+   "key": "maddix",
+   "performers": [
+    "maddix"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:marlo",
+   "name": "MaRLo",
+   "key": "marlo",
+   "performers": [
+    "marlo"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:paul-van-dyk",
+   "name": "Paul van Dyk",
+   "key": "paul-van-dyk",
+   "performers": [
+    "paul-van-dyk"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:ben-nicky-presents-emotional-havoc",
+   "name": "Ben Nicky presents Emotional Havoc",
+   "key": "ben-nicky-presents-emotional-havoc",
+   "performers": [
+    "ben-nicky-presents-emotional-havoc"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:blastoyz",
+   "name": "Blastoyz",
+   "key": "blastoyz",
+   "performers": [
+    "blastoyz"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:dmoney",
+   "name": "Dmoney",
+   "key": "dmoney",
+   "performers": [
+    "dmoney"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:dave-london",
+   "name": "Dave London",
+   "key": "dave-london",
+   "performers": [
+    "dave-london"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:ekb",
+   "name": "ekb*",
+   "key": "ekb",
+   "performers": [
+    "ekb"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:merlyn",
+   "name": "Merlyn",
+   "key": "merlyn",
+   "performers": [
+    "merlyn"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:stylus",
+   "name": "Stylus",
+   "key": "stylus",
+   "performers": [
+    "stylus"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:lee-coombs",
+   "name": "Lee Coombs",
+   "key": "lee-coombs",
+   "performers": [
+    "lee-coombs"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:matrix-b2b-supagroover",
+   "name": "Matrix B2B Supagroover",
+   "key": "matrix-b2b-supagroover",
+   "performers": [
+    "matrix",
+    "supagroover"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:prophecy-live",
+   "name": "Prophecy (Live)",
+   "key": "prophecy-live",
+   "performers": [
+    "prophecy-live"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:factore",
+   "name": "FACTORe",
+   "key": "factore",
+   "performers": [
+    "factore"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:keith-mackenzie-b2b-mizzo-feat-sporty-o",
+   "name": "Keith MacKenzie B2B Mizzo feat. Sporty-O",
+   "key": "keith-mackenzie-b2b-mizzo-feat-sporty-o",
+   "performers": [
+    "keith-mackenzie",
+    "mizzo-feat-sporty-o"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:audiotrap",
+   "name": "Audiotrap",
+   "key": "audiotrap",
+   "performers": [
+    "audiotrap"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:huda-hudia",
+   "name": "Huda Hudia",
+   "key": "huda-hudia",
+   "performers": [
+    "huda-hudia"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:monk",
+   "name": "Monk",
+   "key": "monk",
+   "performers": [
+    "monk"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:si-dog-b2b-sweet-charlie",
+   "name": "Si-Dog B2B Sweet Charlie",
+   "key": "si-dog-b2b-sweet-charlie",
+   "performers": [
+    "si-dog",
+    "sweet-charlie"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:taylor-kade",
+   "name": "Taylor Kade",
+   "key": "taylor-kade",
+   "performers": [
+    "taylor-kade"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:taylor-jaymin",
+   "name": "Taylor Jaymin",
+   "key": "taylor-jaymin",
+   "performers": [
+    "taylor-jaymin"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:eran-hersh",
+   "name": "Eran Hersh",
+   "key": "eran-hersh",
+   "performers": [
+    "eran-hersh"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:tim-clark",
+   "name": "Tim Clark",
+   "key": "tim-clark",
+   "performers": [
+    "tim-clark"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:disco-wrek-disco-lines-b2b-ship-wrek",
+   "name": "Disco Wrek (Disco Lines B2B Ship Wrek)",
+   "key": "disco-wrek-disco-lines-b2b-ship-wrek",
+   "performers": [
+    "disco-wrek-disco-lines",
+    "ship-wrek"
+   ]
+  },
+  {
+   "id": "edc-orlando-2023:x-and-ivy",
+   "name": "X & Ivy",
+   "key": "x-and-ivy",
+   "performers": [
+    "x-and-ivy"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "edc-orlando-2023:d1:kinetic-field:1300:avello",
+   "artistId": "edc-orlando-2023:avello",
+   "day": 1,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "13:00",
+   "end": "14:12"
+  },
+  {
+   "id": "edc-orlando-2023:d1:kinetic-field:1412:dj-icey",
+   "artistId": "edc-orlando-2023:dj-icey",
+   "day": 1,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "14:12",
+   "end": "15:27"
+  },
+  {
+   "id": "edc-orlando-2023:d1:kinetic-field:1527:miss-monique",
+   "artistId": "edc-orlando-2023:miss-monique",
+   "day": 1,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "15:27",
+   "end": "16:27"
+  },
+  {
+   "id": "edc-orlando-2023:d1:kinetic-field:1627:noizu",
+   "artistId": "edc-orlando-2023:noizu",
+   "day": 1,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "16:27",
+   "end": "17:27"
+  },
+  {
+   "id": "edc-orlando-2023:d1:kinetic-field:1727:deadmau5-sunset-set",
+   "artistId": "edc-orlando-2023:deadmau5-sunset-set",
+   "day": 1,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "17:27",
+   "end": "18:42"
+  },
+  {
+   "id": "edc-orlando-2023:d1:kinetic-field:1848:alok",
+   "artistId": "edc-orlando-2023:alok",
+   "day": 1,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "18:48",
+   "end": "19:53"
+  },
+  {
+   "id": "edc-orlando-2023:d1:kinetic-field:1956:dillon-francis-b2b-valentino-khan",
+   "artistId": "edc-orlando-2023:dillon-francis-b2b-valentino-khan",
+   "day": 1,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "19:56",
+   "end": "21:11"
+  },
+  {
+   "id": "edc-orlando-2023:d1:kinetic-field:2114:gryffin",
+   "artistId": "edc-orlando-2023:gryffin",
+   "day": 1,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "21:14",
+   "end": "22:29"
+  },
+  {
+   "id": "edc-orlando-2023:d1:kinetic-field:2232:kaskade",
+   "artistId": "edc-orlando-2023:kaskade",
+   "day": 1,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "22:32",
+   "end": "23:57"
+  },
+  {
+   "id": "edc-orlando-2023:d1:circuit-grounds:1300:celo",
+   "artistId": "edc-orlando-2023:celo",
+   "day": 1,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "13:00",
+   "end": "14:15"
+  },
+  {
+   "id": "edc-orlando-2023:d1:circuit-grounds:1415:black-carl",
+   "artistId": "edc-orlando-2023:black-carl",
+   "day": 1,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "edc-orlando-2023:d1:circuit-grounds:1515:hairitage",
+   "artistId": "edc-orlando-2023:hairitage",
+   "day": 1,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "edc-orlando-2023:d1:circuit-grounds:1615:level-up",
+   "artistId": "edc-orlando-2023:level-up",
+   "day": 1,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "edc-orlando-2023:d1:circuit-grounds:1715:barely-alive",
+   "artistId": "edc-orlando-2023:barely-alive",
+   "day": 1,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "edc-orlando-2023:d1:circuit-grounds:1815:dirt-monkey-b2b-subdocta",
+   "artistId": "edc-orlando-2023:dirt-monkey-b2b-subdocta",
+   "day": 1,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "edc-orlando-2023:d1:circuit-grounds:1915:virtual-riot",
+   "artistId": "edc-orlando-2023:virtual-riot",
+   "day": 1,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-orlando-2023:d1:circuit-grounds:2015:atliens",
+   "artistId": "edc-orlando-2023:atliens",
+   "day": 1,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-orlando-2023:d1:circuit-grounds:2130:kayzo",
+   "artistId": "edc-orlando-2023:kayzo",
+   "day": 1,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "edc-orlando-2023:d1:circuit-grounds:2245:subtronics",
+   "artistId": "edc-orlando-2023:subtronics",
+   "day": 1,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:neon-garden:1300:thunderpony",
+   "artistId": "edc-orlando-2023:thunderpony",
+   "day": 1,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "edc-orlando-2023:d1:neon-garden:1430:chelina-manuhutu",
+   "artistId": "edc-orlando-2023:chelina-manuhutu",
+   "day": 1,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "14:30",
+   "end": "15:45"
+  },
+  {
+   "id": "edc-orlando-2023:d1:neon-garden:1545:carlita",
+   "artistId": "edc-orlando-2023:carlita",
+   "day": 1,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "15:45",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:neon-garden:1700:pawsa",
+   "artistId": "edc-orlando-2023:pawsa",
+   "day": 1,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "edc-orlando-2023:d1:neon-garden:1830:paco-osuna",
+   "artistId": "edc-orlando-2023:paco-osuna",
+   "day": 1,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:neon-garden:2000:marco-carola",
+   "artistId": "edc-orlando-2023:marco-carola",
+   "day": 1,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:neon-garden:2200:jamie-jones",
+   "artistId": "edc-orlando-2023:jamie-jones",
+   "day": 1,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:stereo-bloom:1300:rachep",
+   "artistId": "edc-orlando-2023:rachep",
+   "day": 1,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "edc-orlando-2023:d1:stereo-bloom:1430:majestic",
+   "artistId": "edc-orlando-2023:majestic",
+   "day": 1,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "edc-orlando-2023:d1:stereo-bloom:1530:malone",
+   "artistId": "edc-orlando-2023:malone",
+   "day": 1,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "edc-orlando-2023:d1:stereo-bloom:1630:san-pacho",
+   "artistId": "edc-orlando-2023:san-pacho",
+   "day": 1,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "edc-orlando-2023:d1:stereo-bloom:1730:anabel-englund-sunset-set",
+   "artistId": "edc-orlando-2023:anabel-englund-sunset-set",
+   "day": 1,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "17:30",
+   "end": "18:45"
+  },
+  {
+   "id": "edc-orlando-2023:d1:stereo-bloom:1845:cid",
+   "artistId": "edc-orlando-2023:cid",
+   "day": 1,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:stereo-bloom:2000:westend-b2b-joshwa",
+   "artistId": "edc-orlando-2023:westend-b2b-joshwa",
+   "day": 1,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "edc-orlando-2023:d1:stereo-bloom:2115:hugel",
+   "artistId": "edc-orlando-2023:hugel",
+   "day": 1,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-orlando-2023:d1:stereo-bloom:2230:dombresky",
+   "artistId": "edc-orlando-2023:dombresky",
+   "day": 1,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:rynobus-art-car:1300:j-v-o",
+   "artistId": "edc-orlando-2023:j-v-o",
+   "day": 1,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:rynobus-art-car:1400:letha-blake",
+   "artistId": "edc-orlando-2023:letha-blake",
+   "day": 1,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:rynobus-art-car:1500:seeing-double",
+   "artistId": "edc-orlando-2023:seeing-double",
+   "day": 1,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:rynobus-art-car:1600:gram",
+   "artistId": "edc-orlando-2023:gram",
+   "day": 1,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:rynobus-art-car:1700:alan-shi-b2b-jay-crusoe",
+   "artistId": "edc-orlando-2023:alan-shi-b2b-jay-crusoe",
+   "day": 1,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:rynobus-art-car:1800:haylee-wood",
+   "artistId": "edc-orlando-2023:haylee-wood",
+   "day": 1,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:rynobus-art-car:1900:2ar",
+   "artistId": "edc-orlando-2023:2ar",
+   "day": 1,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:rynobus-art-car:2000:brant-wolff",
+   "artistId": "edc-orlando-2023:brant-wolff",
+   "day": 1,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:rynobus-art-car:2100:cut-and-sew",
+   "artistId": "edc-orlando-2023:cut-and-sew",
+   "day": 1,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:rynobus-art-car:2200:bryan-softwell",
+   "artistId": "edc-orlando-2023:bryan-softwell",
+   "day": 1,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:rynobus-art-car:2300:sam-wolfe",
+   "artistId": "edc-orlando-2023:sam-wolfe",
+   "day": 1,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:anniversary-art-car:1300:parker-page",
+   "artistId": "edc-orlando-2023:parker-page",
+   "day": 1,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:anniversary-art-car:1400:atnarko",
+   "artistId": "edc-orlando-2023:atnarko",
+   "day": 1,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:anniversary-art-car:1500:noel-sanger",
+   "artistId": "edc-orlando-2023:noel-sanger",
+   "day": 1,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "15:00",
+   "end": "16:15"
+  },
+  {
+   "id": "edc-orlando-2023:d1:anniversary-art-car:1615:norse",
+   "artistId": "edc-orlando-2023:norse",
+   "day": 1,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "16:15",
+   "end": "17:30"
+  },
+  {
+   "id": "edc-orlando-2023:d1:anniversary-art-car:1730:dombresky-presents-process-radio-ep-50",
+   "artistId": "edc-orlando-2023:dombresky-presents-process-radio-ep-50",
+   "day": 1,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "edc-orlando-2023:d1:anniversary-art-car:1830:charly-jordan",
+   "artistId": "edc-orlando-2023:charly-jordan",
+   "day": 1,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-orlando-2023:d1:anniversary-art-car:1930:micro",
+   "artistId": "edc-orlando-2023:micro",
+   "day": 1,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "19:30",
+   "end": "20:45"
+  },
+  {
+   "id": "edc-orlando-2023:d1:anniversary-art-car:2045:bunny-of-rabbit-in-the-moon-dj-set",
+   "artistId": "edc-orlando-2023:bunny-of-rabbit-in-the-moon-dj-set",
+   "day": 1,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-orlando-2023:d1:anniversary-art-car:2200:robbie-rivera",
+   "artistId": "edc-orlando-2023:robbie-rivera",
+   "day": 1,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:kinetic-field:1300:carlos-mendoza",
+   "artistId": "edc-orlando-2023:carlos-mendoza",
+   "day": 2,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "13:00",
+   "end": "14:12"
+  },
+  {
+   "id": "edc-orlando-2023:d2:kinetic-field:1412:carola",
+   "artistId": "edc-orlando-2023:carola",
+   "day": 2,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "14:12",
+   "end": "15:27"
+  },
+  {
+   "id": "edc-orlando-2023:d2:kinetic-field:1527:ship-wrek",
+   "artistId": "edc-orlando-2023:ship-wrek",
+   "day": 2,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "15:27",
+   "end": "17:27"
+  },
+  {
+   "id": "edc-orlando-2023:d2:kinetic-field:1627:deorro",
+   "artistId": "edc-orlando-2023:deorro",
+   "day": 2,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "16:27",
+   "end": "17:27"
+  },
+  {
+   "id": "edc-orlando-2023:d2:kinetic-field:1727:malaa-b2b-wax-motif-sunset-set",
+   "artistId": "edc-orlando-2023:malaa-b2b-wax-motif-sunset-set",
+   "day": 2,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "17:27",
+   "end": "18:42"
+  },
+  {
+   "id": "edc-orlando-2023:d2:kinetic-field:1848:james-hype",
+   "artistId": "edc-orlando-2023:james-hype",
+   "day": 2,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "18:48",
+   "end": "19:53"
+  },
+  {
+   "id": "edc-orlando-2023:d2:kinetic-field:1956:loud-luxury",
+   "artistId": "edc-orlando-2023:loud-luxury",
+   "day": 2,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "19:56",
+   "end": "21:11"
+  },
+  {
+   "id": "edc-orlando-2023:d2:kinetic-field:2114:armin-van-buuren",
+   "artistId": "edc-orlando-2023:armin-van-buuren",
+   "day": 2,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "21:14",
+   "end": "22:29"
+  },
+  {
+   "id": "edc-orlando-2023:d2:kinetic-field:2232:zedd",
+   "artistId": "edc-orlando-2023:zedd",
+   "day": 2,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "22:32",
+   "end": "23:57"
+  },
+  {
+   "id": "edc-orlando-2023:d2:circuit-grounds:1300:fury-with-mc-dino",
+   "artistId": "edc-orlando-2023:fury-with-mc-dino",
+   "day": 2,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:circuit-grounds:1400:sara-benyo",
+   "artistId": "edc-orlando-2023:sara-benyo",
+   "day": 2,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:circuit-grounds:1500:benda",
+   "artistId": "edc-orlando-2023:benda",
+   "day": 2,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:circuit-grounds:1600:nitepunk",
+   "artistId": "edc-orlando-2023:nitepunk",
+   "day": 2,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:circuit-grounds:1700:jantsen",
+   "artistId": "edc-orlando-2023:jantsen",
+   "day": 2,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:circuit-grounds:1800:crankdat",
+   "artistId": "edc-orlando-2023:crankdat",
+   "day": 2,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:circuit-grounds:1900:wilkinson",
+   "artistId": "edc-orlando-2023:wilkinson",
+   "day": 2,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:circuit-grounds:2000:riot-ten",
+   "artistId": "edc-orlando-2023:riot-ten",
+   "day": 2,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:circuit-grounds:2100:deathpact",
+   "artistId": "edc-orlando-2023:deathpact",
+   "day": 2,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:circuit-grounds:2200:liquid-stranger",
+   "artistId": "edc-orlando-2023:liquid-stranger",
+   "day": 2,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:circuit-grounds:2300:excision",
+   "artistId": "edc-orlando-2023:excision",
+   "day": 2,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:neon-garden:1300:miguelle-and-tons",
+   "artistId": "edc-orlando-2023:miguelle-and-tons",
+   "day": 2,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:neon-garden:1400:tini-gessler",
+   "artistId": "edc-orlando-2023:tini-gessler",
+   "day": 2,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:neon-garden:1500:ben-sterling",
+   "artistId": "edc-orlando-2023:ben-sterling",
+   "day": 2,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:neon-garden:1600:franky-wah-b2b-korolova",
+   "artistId": "edc-orlando-2023:franky-wah-b2b-korolova",
+   "day": 2,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "16:00",
+   "end": "17:15"
+  },
+  {
+   "id": "edc-orlando-2023:d2:neon-garden:1715:chris-stussy",
+   "artistId": "edc-orlando-2023:chris-stussy",
+   "day": 2,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "17:15",
+   "end": "18:30"
+  },
+  {
+   "id": "edc-orlando-2023:d2:neon-garden:1830:blond-ish-b2b-dennis-cruz",
+   "artistId": "edc-orlando-2023:blond-ish-b2b-dennis-cruz",
+   "day": 2,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "18:30",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-orlando-2023:d2:neon-garden:2015:loco-dice",
+   "artistId": "edc-orlando-2023:loco-dice",
+   "day": 2,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "20:15",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:neon-garden:2200:dom-dolla",
+   "artistId": "edc-orlando-2023:dom-dolla",
+   "day": 2,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:stereo-bloom:1300:edgar-v",
+   "artistId": "edc-orlando-2023:edgar-v",
+   "day": 2,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "edc-orlando-2023:d2:stereo-bloom:1430:baby-weight",
+   "artistId": "edc-orlando-2023:baby-weight",
+   "day": 2,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "edc-orlando-2023:d2:stereo-bloom:1530:franky-rizardo",
+   "artistId": "edc-orlando-2023:franky-rizardo",
+   "day": 2,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "edc-orlando-2023:d2:stereo-bloom:1630:matt-sassari",
+   "artistId": "edc-orlando-2023:matt-sassari",
+   "day": 2,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "edc-orlando-2023:d2:stereo-bloom:1730:todd-terry-sunset-set",
+   "artistId": "edc-orlando-2023:todd-terry-sunset-set",
+   "day": 2,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "edc-orlando-2023:d2:stereo-bloom:1830:honeyluv",
+   "artistId": "edc-orlando-2023:honeyluv",
+   "day": 2,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "18:30",
+   "end": "19:45"
+  },
+  {
+   "id": "edc-orlando-2023:d2:stereo-bloom:1945:lf-system",
+   "artistId": "edc-orlando-2023:lf-system",
+   "day": 2,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "19:45",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:stereo-bloom:2100:mau-p",
+   "artistId": "edc-orlando-2023:mau-p",
+   "day": 2,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "edc-orlando-2023:d2:stereo-bloom:2215:yotto",
+   "artistId": "edc-orlando-2023:yotto",
+   "day": 2,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "22:15",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:rynobus-art-car:1300:vibe-link",
+   "artistId": "edc-orlando-2023:vibe-link",
+   "day": 2,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:rynobus-art-car:1400:wyllo",
+   "artistId": "edc-orlando-2023:wyllo",
+   "day": 2,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:rynobus-art-car:1500:droptopgundam",
+   "artistId": "edc-orlando-2023:droptopgundam",
+   "day": 2,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:rynobus-art-car:1600:verse",
+   "artistId": "edc-orlando-2023:verse",
+   "day": 2,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:rynobus-art-car:1700:sloth",
+   "artistId": "edc-orlando-2023:sloth",
+   "day": 2,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:rynobus-art-car:1800:dream-takers",
+   "artistId": "edc-orlando-2023:dream-takers",
+   "day": 2,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:rynobus-art-car:1900:machaki",
+   "artistId": "edc-orlando-2023:machaki",
+   "day": 2,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:rynobus-art-car:2000:gorilla-t",
+   "artistId": "edc-orlando-2023:gorilla-t",
+   "day": 2,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:rynobus-art-car:2100:evalution",
+   "artistId": "edc-orlando-2023:evalution",
+   "day": 2,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:rynobus-art-car:2200:crankdat-presents-shakedat",
+   "artistId": "edc-orlando-2023:crankdat-presents-shakedat",
+   "day": 2,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:rynobus-art-car:2300:ruvlo",
+   "artistId": "edc-orlando-2023:ruvlo",
+   "day": 2,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:anniversary-art-car:1300:sst",
+   "artistId": "edc-orlando-2023:sst",
+   "day": 2,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "13:00",
+   "end": "14:15"
+  },
+  {
+   "id": "edc-orlando-2023:d2:anniversary-art-car:1415:kadilak-w-mc-freak",
+   "artistId": "edc-orlando-2023:kadilak-w-mc-freak",
+   "day": 2,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "14:15",
+   "end": "15:30"
+  },
+  {
+   "id": "edc-orlando-2023:d2:anniversary-art-car:1530:knoxz-w-mc-motive",
+   "artistId": "edc-orlando-2023:knoxz-w-mc-motive",
+   "day": 2,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "15:30",
+   "end": "16:45"
+  },
+  {
+   "id": "edc-orlando-2023:d2:anniversary-art-car:1645:electron-c",
+   "artistId": "edc-orlando-2023:electron-c",
+   "day": 2,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "16:45",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-orlando-2023:d2:anniversary-art-car:1800:circle-k-w-mc-collaborator",
+   "artistId": "edc-orlando-2023:circle-k-w-mc-collaborator",
+   "day": 2,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "edc-orlando-2023:d2:anniversary-art-car:1915:dave-owen-w-mc-blak",
+   "artistId": "edc-orlando-2023:dave-owen-w-mc-blak",
+   "day": 2,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-orlando-2023:d2:anniversary-art-car:2030:stereotype",
+   "artistId": "edc-orlando-2023:stereotype",
+   "day": 2,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "edc-orlando-2023:d2:anniversary-art-car:2145:odi",
+   "artistId": "edc-orlando-2023:odi",
+   "day": 2,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "edc-orlando-2023:d2:anniversary-art-car:2245:ak1200",
+   "artistId": "edc-orlando-2023:ak1200",
+   "day": 2,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:kinetic-field:1300:baggi",
+   "artistId": "edc-orlando-2023:baggi",
+   "day": 3,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "13:00",
+   "end": "14:32"
+  },
+  {
+   "id": "edc-orlando-2023:d3:kinetic-field:1432:gem-and-tauri",
+   "artistId": "edc-orlando-2023:gem-and-tauri",
+   "day": 3,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "14:32",
+   "end": "15:32"
+  },
+  {
+   "id": "edc-orlando-2023:d3:kinetic-field:1532:bonnie-x-clyde",
+   "artistId": "edc-orlando-2023:bonnie-x-clyde",
+   "day": 3,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "15:32",
+   "end": "16:32"
+  },
+  {
+   "id": "edc-orlando-2023:d3:kinetic-field:1632:kream",
+   "artistId": "edc-orlando-2023:kream",
+   "day": 3,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "16:32",
+   "end": "17:32"
+  },
+  {
+   "id": "edc-orlando-2023:d3:kinetic-field:1732:fisher-sunset-set",
+   "artistId": "edc-orlando-2023:fisher-sunset-set",
+   "day": 3,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "17:32",
+   "end": "18:47"
+  },
+  {
+   "id": "edc-orlando-2023:d3:kinetic-field:1853:meduza",
+   "artistId": "edc-orlando-2023:meduza",
+   "day": 3,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "18:53",
+   "end": "20:03"
+  },
+  {
+   "id": "edc-orlando-2023:d3:kinetic-field:2006:alan-walker",
+   "artistId": "edc-orlando-2023:alan-walker",
+   "day": 3,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "20:06",
+   "end": "21:11"
+  },
+  {
+   "id": "edc-orlando-2023:d3:kinetic-field:2114:afroki-afrojack-b2b-steve-aoki",
+   "artistId": "edc-orlando-2023:afroki-afrojack-b2b-steve-aoki",
+   "day": 3,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "21:14",
+   "end": "22:29"
+  },
+  {
+   "id": "edc-orlando-2023:d3:kinetic-field:2232:the-chainsmokers",
+   "artistId": "edc-orlando-2023:the-chainsmokers",
+   "day": 3,
+   "stageId": "edc-orlando-2023:kinetic-field",
+   "start": "22:32",
+   "end": "23:57"
+  },
+  {
+   "id": "edc-orlando-2023:d3:circuit-grounds:1300:hypernaut",
+   "artistId": "edc-orlando-2023:hypernaut",
+   "day": 3,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:circuit-grounds:1430:modapit",
+   "artistId": "edc-orlando-2023:modapit",
+   "day": 3,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:circuit-grounds:1530:nia-archives",
+   "artistId": "edc-orlando-2023:nia-archives",
+   "day": 3,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:circuit-grounds:1630:armnhmr",
+   "artistId": "edc-orlando-2023:armnhmr",
+   "day": 3,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:circuit-grounds:1730:alesso-sunset-set",
+   "artistId": "edc-orlando-2023:alesso-sunset-set",
+   "day": 3,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "17:30",
+   "end": "18:45"
+  },
+  {
+   "id": "edc-orlando-2023:d3:circuit-grounds:1845:joyryde",
+   "artistId": "edc-orlando-2023:joyryde",
+   "day": 3,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "edc-orlando-2023:d3:circuit-grounds:1945:disco-lines",
+   "artistId": "edc-orlando-2023:disco-lines",
+   "day": 3,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "edc-orlando-2023:d3:circuit-grounds:2045:san-holo",
+   "artistId": "edc-orlando-2023:san-holo",
+   "day": 3,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "20:45",
+   "end": "21:50"
+  },
+  {
+   "id": "edc-orlando-2023:d3:circuit-grounds:2150:seven-lions",
+   "artistId": "edc-orlando-2023:seven-lions",
+   "day": 3,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "21:50",
+   "end": "22:55"
+  },
+  {
+   "id": "edc-orlando-2023:d3:circuit-grounds:2255:alison-wonderland",
+   "artistId": "edc-orlando-2023:alison-wonderland",
+   "day": 3,
+   "stageId": "edc-orlando-2023:circuit-grounds",
+   "start": "22:55",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:neon-garden:1300:slugg",
+   "artistId": "edc-orlando-2023:slugg",
+   "day": 3,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:neon-garden:1430:azzecca",
+   "artistId": "edc-orlando-2023:azzecca",
+   "day": 3,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:neon-garden:1600:eats-everything",
+   "artistId": "edc-orlando-2023:eats-everything",
+   "day": 3,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:neon-garden:1730:anfisa-letyago",
+   "artistId": "edc-orlando-2023:anfisa-letyago",
+   "day": 3,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:neon-garden:1900:eli-brown",
+   "artistId": "edc-orlando-2023:eli-brown",
+   "day": 3,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:neon-garden:2030:gorgon-city",
+   "artistId": "edc-orlando-2023:gorgon-city",
+   "day": 3,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:neon-garden:2200:fisher",
+   "artistId": "edc-orlando-2023:fisher",
+   "day": 3,
+   "stageId": "edc-orlando-2023:neon-garden",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:stereo-bloom:1300:luccio",
+   "artistId": "edc-orlando-2023:luccio",
+   "day": 3,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:stereo-bloom:1400:adam-scott",
+   "artistId": "edc-orlando-2023:adam-scott",
+   "day": 3,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:stereo-bloom:1500:jorza",
+   "artistId": "edc-orlando-2023:jorza",
+   "day": 3,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:stereo-bloom:1600:pretty-pink",
+   "artistId": "edc-orlando-2023:pretty-pink",
+   "day": 3,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:stereo-bloom:1700:billy-gillies",
+   "artistId": "edc-orlando-2023:billy-gillies",
+   "day": 3,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:stereo-bloom:1800:maddix",
+   "artistId": "edc-orlando-2023:maddix",
+   "day": 3,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "edc-orlando-2023:d3:stereo-bloom:1915:marlo",
+   "artistId": "edc-orlando-2023:marlo",
+   "day": 3,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:stereo-bloom:2030:paul-van-dyk",
+   "artistId": "edc-orlando-2023:paul-van-dyk",
+   "day": 3,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "edc-orlando-2023:d3:stereo-bloom:2145:ben-nicky-presents-emotional-havoc",
+   "artistId": "edc-orlando-2023:ben-nicky-presents-emotional-havoc",
+   "day": 3,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:stereo-bloom:2300:blastoyz",
+   "artistId": "edc-orlando-2023:blastoyz",
+   "day": 3,
+   "stageId": "edc-orlando-2023:stereo-bloom",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:1300:dmoney",
+   "artistId": "edc-orlando-2023:dmoney",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:1345:dave-london",
+   "artistId": "edc-orlando-2023:dave-london",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:1430:ekb",
+   "artistId": "edc-orlando-2023:ekb",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:1515:merlyn",
+   "artistId": "edc-orlando-2023:merlyn",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:1600:stylus",
+   "artistId": "edc-orlando-2023:stylus",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:1645:lee-coombs",
+   "artistId": "edc-orlando-2023:lee-coombs",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "16:45",
+   "end": "17:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:1730:matrix-b2b-supagroover",
+   "artistId": "edc-orlando-2023:matrix-b2b-supagroover",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "17:30",
+   "end": "18:15"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:1815:prophecy-live",
+   "artistId": "edc-orlando-2023:prophecy-live",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "18:15",
+   "end": "18:45"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:1845:factore",
+   "artistId": "edc-orlando-2023:factore",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "18:45",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:1930:keith-mackenzie-b2b-mizzo-feat-sporty-o",
+   "artistId": "edc-orlando-2023:keith-mackenzie-b2b-mizzo-feat-sporty-o",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:2030:audiotrap",
+   "artistId": "edc-orlando-2023:audiotrap",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "20:30",
+   "end": "21:15"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:2115:huda-hudia",
+   "artistId": "edc-orlando-2023:huda-hudia",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:2215:monk",
+   "artistId": "edc-orlando-2023:monk",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "22:15",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-orlando-2023:d3:rynobus-art-car:2315:si-dog-b2b-sweet-charlie",
+   "artistId": "edc-orlando-2023:si-dog-b2b-sweet-charlie",
+   "day": 3,
+   "stageId": "edc-orlando-2023:rynobus-art-car",
+   "start": "23:15",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:anniversary-art-car:1300:taylor-kade",
+   "artistId": "edc-orlando-2023:taylor-kade",
+   "day": 3,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:anniversary-art-car:1430:taylor-jaymin",
+   "artistId": "edc-orlando-2023:taylor-jaymin",
+   "day": 3,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "14:30",
+   "end": "15:45"
+  },
+  {
+   "id": "edc-orlando-2023:d3:anniversary-art-car:1545:baggi",
+   "artistId": "edc-orlando-2023:baggi",
+   "day": 3,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "15:45",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:anniversary-art-car:1700:eran-hersh",
+   "artistId": "edc-orlando-2023:eran-hersh",
+   "day": 3,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "edc-orlando-2023:d3:anniversary-art-car:1930:tim-clark",
+   "artistId": "edc-orlando-2023:tim-clark",
+   "day": 3,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "19:30",
+   "end": "20:45"
+  },
+  {
+   "id": "edc-orlando-2023:d3:anniversary-art-car:2045:kream",
+   "artistId": "edc-orlando-2023:kream",
+   "day": 3,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:anniversary-art-car:2200:disco-wrek-disco-lines-b2b-ship-wrek",
+   "artistId": "edc-orlando-2023:disco-wrek-disco-lines-b2b-ship-wrek",
+   "day": 3,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-orlando-2023:d3:anniversary-art-car:2300:x-and-ivy",
+   "artistId": "edc-orlando-2023:x-and-ivy",
+   "day": 3,
+   "stageId": "edc-orlando-2023:anniversary-art-car",
+   "start": "23:00",
+   "end": "00:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20231130025626/https://orlando.electricdaisycarnival.com/lineup/set-times/",
+    "captureTimestamp": "20231130025626",
+    "printed": "Friday, November 10",
+    "sha256": "8d7091e5cae938792827ec37389736cd88865ff881991b7b3e38063b405d8b26",
+    "rows": 55
+   },
+   {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://pbs.twimg.com/media/F-A7uSJXQAAvJ4r?format=jpg&name=orig",
+    "foundAt": "https://edmidentity.com/2023/11/03/edc-orlando-2023-essentials/",
+    "published": "2023-11-03",
+    "rehostedBy": "X media, via EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "SATURDAY NOV 11",
+    "sha256": "d054cc94f373bc4b67bb4423c293bd26ad97a65a41135bc3e611a1acc9601678",
+    "rows": 62,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20231103172234/https://edmidentity.com/2023/11/03/edc-orlando-2023-essentials/",
+     "captureTimestamp": "20231103172234",
+     "sha256": "c0d838c8409589d3bc510d1b1a356c1043a1a3abcee11c54b93eb6cbcadf080b",
+     "cites": "F-A7uSJXQAAvJ4r",
+     "setTimesGraphics": [
+      "wp-content/uploads/2023/11/F-A7tvQXoAA_4Ym",
+      "wp-content/uploads/2023/11/F-A7uSJXQAAvJ4r",
+      "wp-content/uploads/2023/11/F-A7u1yWIAAZ6Sn"
+     ]
+    },
+    "reviewManifest": "data/historical/review/edc-orlando-2023.json",
+    "stagesAs": {
+     "kineticFIELD": "Kinetic Field",
+     "circuitGROUNDS": "Circuit Grounds",
+     "neonGARDEN": "Neon Garden",
+     "stereoBLOOM": "Stereo Bloom",
+     "rynobusARTCAR": "Rynobus Art Car",
+     "anniversaryARTCAR": "Anniversary Art Car"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20231117232412/https://orlando.electricdaisycarnival.com/lineup/set-times/day-3/",
+    "captureTimestamp": "20231117232412",
+    "printed": "Sunday, November 12",
+    "sha256": "292d1ac20140192e34a7141c8694e36ec983950d03b9162a02951f801f9e25ea",
+    "rows": 59
+   }
+  ],
+  "notUsedGraphics": [
+   {
+    "cites": "wp-content/uploads/2023/11/F-A7tvQXoAA_4Ym",
+    "reason": "the pre-event FRIDAY NOV 10 graphic; day 1 comes from the festival's own archived set-times page (Wayback 20231130025626), which supersedes it"
+   },
+   {
+    "cites": "wp-content/uploads/2023/11/F-A7u1yWIAAZ6Sn",
+    "reason": "the pre-event SUNDAY NOV 12 graphic; day 3 comes from the festival's own archived set-times page (Wayback 20231117232412), which supersedes it"
+   }
+  ]
+ }
+}

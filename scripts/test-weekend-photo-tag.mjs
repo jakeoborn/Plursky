@@ -108,14 +108,18 @@ function weekendChecks(C) {
   }
   t(w1Bad === 0, `weekend 1: ${w1Bad} of ${w1Photos} photos were tagged to or offered a weekend-2-only act`);
   t(w1Own === w1Photos, `weekend 1: ${w1Photos - w1Own} of ${w1Photos} photos were neither tagged to nor offered their own act`);
-  // A W2-only act tagged outright (it is the time-nearest act on W2).
-  const soloW2 = A.find(a => a.weekend === "W2" && match(C, ds, a, "W2").artistId === a.id);
+  // A W2-only act tagged outright. SPEC-179: with several acts playing and no
+  // GPS nobody is tagged, so the outright tag comes from a precise fix at the
+  // act's own pinned stage.
+  const pin = a => (ds.config.gpsAnchors || []).find(g => g.stageId === a.stage);
+  const atPin = a => pin(a) ? { gps: { lat: pin(a).lat, lng: pin(a).lng, acc: 10 } } : {};
+  const soloW2 = A.find(a => a.weekend === "W2" && match(C, ds, a, "W2", atPin(a)).artistId === a.id);
   t(!!soloW2, "no weekend-2-only act is ever tagged outright on weekend 2");
   // 3. a "both" act matches on both weekends
-  const both = A.find(a => a.weekend === "both" && match(C, ds, a, "W1").artistId === a.id);
+  const both = A.find(a => a.weekend === "both" && match(C, ds, a, "W1", atPin(a)).artistId === a.id);
   t(!!both, "no 'both' act is tagged outright on weekend 1 (fixture)");
   if (both) {
-    const r2 = match(C, ds, both, "W2");
+    const r2 = match(C, ds, both, "W2", atPin(both));
     t(r2.artistId === both.id && r2.night === both.day, `'both' act ${both.id} on weekend 2 was ${r2.reason}/${r2.artistId}/night ${r2.night}`);
   }
   // 4. saved/attended: a saved W2-only act must not claim a weekend-1 photo in its slot
@@ -144,13 +148,16 @@ checks += res.n;
 // 5a. EDC LV, a fixed sample recorded from main's compiled build (62aca38)
 //     before this change: no GPS, a late photo, a saved set, and GPS at two
 //     stage anchors.
+//     SPEC-179 (2026-11-06) changed four rows on purpose: with several acts
+//     playing and no GPS nobody is tagged (was: the latest start won), and a
+//     precise fix at a stage tags through the one fix gate (stage_gps_time).
 const EDC_SAMPLE = [
-  { act: "k1",   plus: 10, want: { reason: "matched", artistId: "k1", night: 1, ambiguous: true } },
-  { act: "k26",  plus: 10, want: { reason: "matched", artistId: "k26", night: 3, ambiguous: true } },
-  { act: "n9",   plus: 70, want: { reason: "matched", artistId: "q13", night: 2, ambiguous: true } },
+  { act: "k1",   plus: 10, want: { reason: "several_playing", artistId: null, night: 1, ambiguous: true } },
+  { act: "k26",  plus: 10, want: { reason: "several_playing", artistId: null, night: 3, ambiguous: true } },
+  { act: "n9",   plus: 70, want: { reason: "several_playing", artistId: null, night: 2, ambiguous: true } },
   { act: "c19",  plus: 10, saved: true, want: { reason: "saved_set_time", artistId: "c19", night: 2, ambiguous: false } },
   { act: "k6",   plus: 10, gps: "kinetic", want: { reason: "off_stage", artistId: null, night: 1, ambiguous: false } },
-  { act: "cg14", plus: 10, gps: "quantum", want: { reason: "matched", artistId: "q14", night: 2, ambiguous: true } },
+  { act: "cg14", plus: 10, gps: "quantum", want: { reason: "stage_gps_time", artistId: "q14", night: 2, ambiguous: true } },
 ];
 {
   const ds = { id: "edc-lv-2026", ...live._DATA_SETS["edc-lv-2026"] };

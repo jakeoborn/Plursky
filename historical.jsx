@@ -9,7 +9,9 @@
 // ones a user has opened.
 //
 // Billing and stage names render exactly as printed (founder ruling), and a
-// closing set printed with only a start shows no invented end.
+// closing set printed with only a start shows no invented end. A day the
+// archive cannot time (ACL 2017's Weekend 2) shows its lineup with "Time not
+// confirmed", never a guessed time, under the edition's dated note.
 
 const _HIST_BASE = "data/historical/";
 const _histCache = {};
@@ -108,11 +110,18 @@ function _HistStatus({ res, retry, what }) {
 // editions are the library editions of the same festival (the id without the
 // year) from EARLIER years only, newest first: a 2026 look-back can never
 // sit under, or be labelled as, the 2027 entry it hangs off.
+// An edition that never ran (status "canceled", e.g. Nocturnal Wonderland 2024)
+// is never offered: the build already leaves it out of index.json, and this
+// guard keeps a stale or hand-served index from listing it either.
+function _histListedEditions(index) {
+  return ((index && index.editions) || []).filter(e => e.status !== "canceled");
+}
+
 function pastEditionsOf(index, configId) {
   const m = /^(.*)-(\d{4})$/.exec(configId || "");
   if (!m || !index) return [];
   const [, base, year] = m;
-  return (index.editions || []).filter(e => e.festivalId === base && e.year < +year).sort((a, b) => b.year - a.year);
+  return _histListedEditions(index).filter(e => e.festivalId === base && e.year < +year).sort((a, b) => b.year - a.year);
 }
 
 function usePastEditions(configId) {
@@ -134,10 +143,16 @@ function openPastEdition(id) {
 // The one-line summary a past edition row carries: dates, then what the
 // official record holds. A lineup-only edition says its times are not
 // verified instead of showing an empty schedule.
+// "Heineken House (both weekends) and Do Lab (Weekend 1)".
+function _histMissingList(missing) {
+  const parts = missing.map(m => `${m.stage} (${m.when})`);
+  return parts.length < 2 ? parts.join("") : `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
+}
+
 function pastEditionLine(e) {
   const what = e.completeness === "lineup_only"
     ? `${e.counts.artists} artists · set times not verified`
-    : `${e.counts.sets} sets · ${e.counts.stages} stages`;
+    : `${e.counts.sets} sets · ${e.counts.stages} stages${e.completeness === "selected_stages" ? " · selected stages" : ""}`;
   return `${_histDateRange(e.days)} · ${what}`;
 }
 
@@ -174,8 +189,23 @@ function PastFestivalsScreen({ state, setState }) {
 
 function _HistLibrary({ state, setState }) {
   const [res, retry] = useHistorical("index.json");
-  const editions = res.status === "ready" ? res.data.editions || [] : [];
+  const editions = res.status === "ready" ? _histListedEditions(res.data) : [];
   const years = [...new Set(editions.map(e => e.year))].sort((a, b) => b - a);
+  // Years the photo scan filed photos under whose lineup is not in the
+  // library yet (EDC Las Vegas 2019, Das Energi): listed so those photos have
+  // a home. The calendar is only fetched when there is such a year.
+  const photoYears = React.useMemo(() => [..._histMomentEditionIds()], []);
+  const listed = new Set(editions.map(e => e.id));
+  const needCal = res.status === "ready" && photoYears.some(id => !listed.has(id));
+  const [cal, setCal] = React.useState(null);
+  React.useEffect(() => {
+    if (!needCal) return;
+    let live = true;
+    _histFetch("scan-calendar.json").then(d => { if (live) setCal(d); }).catch(() => {});
+    return () => { live = false; };
+  }, [needCal]);
+  const photoOnly = ((cal && cal.editions) || []).filter(e => photoYears.includes(e.id) && !listed.has(e.id))
+    .sort((a, b) => b.year - a.year || a.festivalName.localeCompare(b.festivalName));
   return (
     <Screen>
       <_HistHeader title="Past festivals" sub="Official schedules · archived" onBack={() => _histBack(state, setState)} />
@@ -184,6 +214,24 @@ function _HistLibrary({ state, setState }) {
           Every lineup and set time as each festival printed it. Read-only; nothing here changes your plan.
         </p>
         {res.status !== "ready" && <_HistStatus res={res} retry={retry} what="past festivals" />}
+        {photoOnly.length > 0 && (
+          <section data-photo-only-years style={{ marginTop: 16 }}>
+            <h2 className="duo-sect" style={{ margin: "0 0 4px" }}>Your photos from other years</h2>
+            {photoOnly.map(e => (
+              <button key={e.id} onClick={() => setState(s => ({ ...s, pastEdition: e.id }))} style={{
+                width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 64, padding: "10px 0",
+                background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
+                color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer",
+              }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div className="duo-headline">{e.name}</div>
+                  <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{_histDateRange(e.days)} · lineup not added yet</div>
+                </div>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 L15 12 L9 18"/></svg>
+              </button>
+            ))}
+          </section>
+        )}
         {years.map(y => (
           <section key={y} style={{ marginTop: 16 }}>
             <h2 className="duo-sect" style={{ margin: "0 0 4px" }}>{y}</h2>
@@ -199,7 +247,7 @@ function _HistLibrary({ state, setState }) {
                   <div className="duo-data-s duo-ink2" style={{ marginTop: 3 }}>
                     {e.completeness === "lineup_only"
                       ? `${e.counts.artists} artists · lineup only`
-                      : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets`}
+                      : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets${e.completeness === "selected_stages" ? " · selected stages" : ""}`}
                   </div>
                 </div>
                 <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 L15 12 L9 18"/></svg>
@@ -214,7 +262,9 @@ function _HistLibrary({ state, setState }) {
 
 const _HIST_METHOD = {
   structured_html: "Read from the festival's official set-times pages",
+  official_lineup_html: "Read from the festival's official lineup page (its set times were never archived)",
   official_image_transcription: "Transcribed from the festival's official schedule graphics, checked block by block",
+  official_sources: "From the festival's official set-times pages and schedule graphics, checked row by row",
 };
 
 function _HistProvenance({ edition, onClose }) {
@@ -226,21 +276,31 @@ function _HistProvenance({ edition, onClose }) {
     <FieldSheet title="About this schedule" onClose={onClose}>
       <div style={{ display: "grid", gap: 14, fontSize: 15, lineHeight: "21px" }}>
         <p style={{ margin: 0, color: "var(--text-2)" }}>
-          {_HIST_METHOD[p.extractionMethod] || "From the festival's official schedule"}, as archived by the Wayback Machine.
-          Artist and stage names appear exactly as printed. Non-music activities are left out.
+          {_HIST_METHOD[p.extractionMethod] || "From the festival's official schedule"}{p.extractionMethod === "official_sources"
+            ? ". Pages are as archived by the Wayback Machine. Where the festival's own copy was not archived, its official graphic is a re-hosted copy, named below. "
+            : ", as archived by the Wayback Machine. "}
+          Artist and stage names appear exactly as printed{(p.captures || []).some(c => c.stagesAs) ? ", except where a source notes otherwise" : ""}. Non-music activities are left out.
         </p>
         {p.official && <div><div style={{ fontSize: 13, color: "var(--text-2)" }}>Official source</div><div style={{ overflowWrap: "anywhere" }}>{p.official.replace(/^https?:\/\//, "")}</div></div>}
         {(p.captures || []).length > 0 && (
           <div>
-            <div style={{ fontSize: 13, color: "var(--text-2)", marginBottom: 4 }}>Archived captures</div>
-            {(p.captures || []).map((c, i) => (
+            <div style={{ fontSize: 13, color: "var(--text-2)", marginBottom: 4 }}>{p.extractionMethod === "official_sources" ? "Sources" : "Archived captures"}</div>
+            {(p.captures || []).map((c, i, all) => {
+              // A day with several graphics from one post numbers them, so
+              // three "Official graphic" rows can be told apart.
+              const same = all.filter(x => x.kind === "graphic" && x.day === c.day);
+              const nth = same.length > 1 ? ` ${same.indexOf(c) + 1} of ${same.length}` : "";
+              return (
               <div key={i} style={{ padding: "8px 0", borderBottom: "1px solid var(--line)" }}>
-                <div style={{ fontWeight: 600 }}>{dayLabel(c.day)}</div>
-                {c.archivedUrl && <a href={c.archivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Set-times page · {stamp(c.captureTimestamp)}</a>}
+                <div style={{ fontWeight: 600 }}>{c.day ? dayLabel(c.day) : "All days"}</div>
+                {c.archivedUrl && <a href={c.archivedUrl} target="_blank" rel="noopener noreferrer" style={link}>{c.page === "lineup" ? "Lineup page" : "Set-times page"} · {stamp(c.captureTimestamp)}</a>}
                 {c.imageArchivedUrl && <div><a href={c.imageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule graphic · {stamp(c.imageCapture)}</a></div>}
                 {c.pageArchivedUrl && <div><a href={c.pageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule page · {stamp(c.pageCapture)}</a></div>}
+                {c.kind === "graphic" && <div><a href={c.foundAt} target="_blank" rel="noopener noreferrer" style={link}>Official graphic{nth} · {c.rehostedBy} · {c.published ? stamp(c.published.replace(/-/g, "")) : "no printed date"}</a></div>}
+                {c.stagesAs && <div style={{ fontSize: 13, color: "var(--text-2)", marginTop: 2 }}>This graphic styles its stage names {Object.keys(c.stagesAs).join(", ")}; they are shown as the festival's other days print them.</div>}
               </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
@@ -254,15 +314,94 @@ function _HistChip({ on, onClick, children, label }) {
   );
 }
 
+// ── Your photos from this edition (2026-11-07) ──────────────────────
+// Moments the library scan ("Scan past festivals" in Memories) filed under
+// this edition's id. Read from the same local store Memories uses; a moment
+// stamped with an edition id is never on a live festival's screens, so this
+// is where it shows. The act line comes from THIS edition's printed lineup,
+// and a photo the matcher could not place says so instead of guessing.
+// _histEditionMoments (photo-tag.jsx) reads the moment store; this archive
+// module stays read-only and never touches storage itself.
+
+function _HistPhotoTile({ moment, actName, guess }) {
+  const thumb = useMomentThumb(moment);
+  return (
+    <li data-edition-photo style={{ flex: "0 0 auto", width: 112 }}>
+      <div style={{ width: 112, height: 112, borderRadius: 12, overflow: "hidden", background: "var(--paper-2)" }}>
+        <_ThumbMedia moment={moment} thumb={thumb} />
+      </div>
+      <div data-edition-photo-act={actName ? (guess ? "guess" : "sure") : "none"} style={{ marginTop: 4, fontSize: 12, lineHeight: "16px", color: actName && !guess ? "var(--ink)" : "var(--text-2)", fontWeight: actName && !guess ? 600 : 400, overflowWrap: "anywhere" }}>
+        {actName ? (guess ? `Maybe ${actName}` : actName) : "No act matched"}
+      </div>
+    </li>
+  );
+}
+
+function _HistYourPhotos({ editionId, artistName }) {
+  const moments = React.useMemo(() => _histEditionMoments(editionId), [editionId]);
+  if (!moments.length) return null;
+  return (
+    <section data-edition-your-photos aria-label="Your photos" style={{ display: "grid", gap: 6 }}>
+      <h2 style={{ margin: 0, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--ink)" }}>
+        Your photos · {moments.length}
+      </h2>
+      <ul style={{ listStyle: "none", margin: 0, padding: "0 0 4px", display: "flex", gap: 8, overflowX: "auto" }}>
+        {moments.map(m => {
+          // A past edition has no stage positions and no saved acts, so when
+          // sets overlap the matcher can only offer its nearest-start guess
+          // (tagAmbiguous). That guess is labelled as one, never as fact.
+          const name = m.artistId ? artistName(m.artistId) : null;
+          const guess = !!name && (m.tagAmbiguous || m.tagSuggested);
+          return <_HistPhotoTile key={m.id} moment={m} actName={name} guess={guess} />;
+        })}
+      </ul>
+    </section>
+  );
+}
+
 function HistoricalEditionView({ state, setState }) {
   // The id comes from app state, but only an id the index lists is fetched,
   // so a deep link can never ask for an arbitrary path.
   const [idx, retryIdx] = useHistorical("index.json");
-  const meta = idx.status === "ready" ? (idx.data.editions || []).find(e => e.id === state.pastEdition) : null;
+  const meta = idx.status === "ready" ? _histListedEditions(idx.data).find(e => e.id === state.pastEdition) : null;
   const back = () => _histBack(state, setState);
   if (idx.status !== "ready") return <Screen><_HistHeader title="Past festivals" onBack={back} /><_HistStatus res={idx} retry={retryIdx} what="past festivals" /></Screen>;
-  if (!meta) return <Screen><_HistHeader title="Past festivals" onBack={back} /><p style={{ margin: "24px 20px", color: "var(--text-2)" }}>That edition isn't in the library.</p></Screen>;
+  if (!meta) return <_HistCalendarYear id={state.pastEdition} back={back} />;
   return <_HistEdition meta={meta} back={back} />;
+}
+
+// A festival year the photo scan knows (data/historical/scan-calendar.json:
+// its dates and venue) but whose lineup is not in the library yet. It shows
+// the photos filed under it; once the lineup is added under the same id
+// ("das-energi-2019"), the full edition page replaces this one and the same
+// photos show there.
+function _HistCalendarYear({ id, back }) {
+  const [cal, retry] = useHistorical("scan-calendar.json");
+  const entry = cal.status === "ready" ? ((cal.data && cal.data.editions) || []).find(e => e.id === id) : null;
+  if (cal.status !== "ready") return <Screen><_HistHeader title="Past festivals" onBack={back} /><_HistStatus res={cal} retry={retry} what="past festivals" /></Screen>;
+  if (!entry) return <Screen><_HistHeader title="Past festivals" onBack={back} /><p style={{ margin: "24px 20px", color: "var(--text-2)" }}>That edition isn't in the library.</p></Screen>;
+  const hasPhotos = _histMomentEditionIds().has(entry.id);
+  return (
+    <Screen>
+      <_HistHeader title={entry.festivalName} sub={String(entry.year)} onBack={back} />
+      <ScrollBody style={{ padding: "8px 20px 94px" }}>
+        <div data-calendar-year={entry.id} style={{ display: "grid", gap: 8 }}>
+          <p data-edition-status style={{ margin: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+            <span style={{ fontWeight: 600, color: "var(--ink)" }}>Past edition</span> · {_histDateRange(entry.days)}{entry.venue ? ` · ${entry.venue}` : ""}
+          </p>
+          <_HistYourPhotos editionId={entry.id} artistName={() => null} />
+          {!hasPhotos && (
+            <p style={{ margin: 0, fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>
+              No photos from this year yet. Scan past festivals in Memories to look for them.
+            </p>
+          )}
+          <p data-calendar-year-note style={{ margin: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)", maxWidth: "60ch" }}>
+            This year's lineup isn't in Plursky yet. Your photos stay filed under {entry.name} and will sit beside its lineup once it's added.
+          </p>
+        </div>
+      </ScrollBody>
+    </Screen>
+  );
 }
 
 function _HistEdition({ meta, back }) {
@@ -273,17 +412,19 @@ function _HistEdition({ meta, back }) {
   const scroller = React.useRef(null);
   const e = res.status === "ready" ? res.data : null;
   const lineupOnly = meta.completeness === "lineup_only";
+  const lineupDays = lineupOnly && !!e && e.artists.some(a => (a.appearances || []).some(x => x.day));
   const checked = React.useMemo(() => {
-    const ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture).filter(t => /^\d{8}/.test(t || "")).sort().pop();
+    const ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || c.published?.replace(/-/g, "")).filter(t => /^\d{8}/.test(t || "")).sort().pop();
     return ts ? _histDate(`${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`, { month: "short", day: "numeric", year: "numeric" }) : "";
   }, [e]);
-  const frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"} · archived`;
+  const frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"}${meta.completeness === "selected_stages" ? ", selected stages" : ""} · archived`;
 
   const view = React.useMemo(() => {
     if (!e) return null;
     const artist = Object.fromEntries(e.artists.map(a => [a.id, a]));
     const stage = Object.fromEntries(e.stages.map(s => [s.id, s]));
-    const byTime = (a, b) => _histMinutes(a.start, e.rolloverHour) - _histMinutes(b.start, e.rolloverHour);
+    // Untimed sets keep the order the page printed them in.
+    const byTime = (a, b) => a.start == null || b.start == null ? 0 : _histMinutes(a.start, e.rolloverHour) - _histMinutes(b.start, e.rolloverHour);
     return { artist, stage, byTime };
   }, [e]);
 
@@ -294,33 +435,80 @@ function _HistEdition({ meta, back }) {
   );
 
   const query = _histFold(q.trim());
-  const time = s => s.end ? `${fmt12(s.start)} – ${fmt12(s.end)}` : fmt12(s.start);
+  const time = s => s.start == null ? "Time not confirmed" : s.end ? `${fmt12(s.start)} – ${fmt12(s.end)}` : fmt12(s.start);
+  // The edition's dated notes that bear on what is on screen: edition-wide
+  // ones always, a day's own only on that day (all of them while searching).
+  const notes = (e?.notes || []).filter(n => !n.days || query || n.days.includes(day));
+  // selected_stages: name what the official schedule had that is not here,
+  // on every day, so a missing stage never reads as "nothing played there".
+  const missing = e?.coverage?.missing || [];
+  if (missing.length) notes.unshift({ asOf: e.coverage.asOf, text: `Not every stage is here yet. The official schedule also listed ${_histMissingList(missing)}, whose set times are not in this edition.` });
+  const noteBlock = notes.length > 0 && (
+    <div data-edition-notes style={{ margin: "8px 0 4px", display: "grid", gap: 6 }}>
+      {notes.map((n, i) => (
+        <p key={i} style={{ margin: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+          {n.text} <span style={{ color: "var(--text-3)" }}>(noted {_histDate(n.asOf, { month: "short", day: "numeric", year: "numeric" })})</span>
+        </p>
+      ))}
+    </div>
+  );
   const setRow = (s, sub) => (
     <li key={s.id} style={{ display: "flex", gap: 12, padding: "10px 0", borderBottom: "1px solid var(--line)", alignItems: "baseline" }}>
       <div style={{ width: 140, flexShrink: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
         {time(s)}{s.openEnd && <div style={{ fontSize: 11, color: "var(--text-3)" }}>no end time printed</div>}
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 16, lineHeight: "21px", fontWeight: 600, overflowWrap: "anywhere" }}>{view.artist[s.artistId]?.name}</div>
+        <div style={{ fontSize: 16, lineHeight: "21px", fontWeight: 600, overflowWrap: "anywhere" }}>{s.billing || view.artist[s.artistId]?.name}</div>
         {sub && <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{sub}</div>}
       </div>
     </li>
   );
 
   let body = null;
+  // A lineup-only edition: the official lineup page, no times. Where the
+  // page printed a day (and a stage), the artist sits under it; the "All"
+  // tab is the whole lineup, including anything printed without a day.
+  const place = a => (a.appearances || []).map(x => [x.day && _histDayParts(meta.days.find(d => d.day === x.day) || {}).name, view.stage[x.stageId]?.name].filter(Boolean).join(" · ")).filter(Boolean).join("; ");
+  const nameRow = (a, sub) => (
+    <li key={a.id} style={{ padding: "10px 0", borderBottom: "1px solid var(--line)" }}>
+      <div style={{ fontSize: 16, lineHeight: "21px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</div>
+      {sub && <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{sub}</div>}
+    </li>
+  );
+  const byName = (a, b) => a.name.localeCompare(b.name);
   if (e && lineupOnly) {
-    const list = e.artists.filter(a => !query || _histFold(a.name).includes(query)).sort((a, b) => a.name.localeCompare(b.name));
+    const printedDays = e.artists.some(a => (a.appearances || []).some(x => x.day));
+    const note = `Set times not verified for this edition: no official set times survive${printedDays ? `. Days${e.stages.length ? " and stages" : ""} are as the official lineup printed them.` : ", so only the lineup is shown."}`;
+    let list;
+    if (query || day === "all" || !printedDays) {
+      const hits = e.artists.filter(a => !query || _histFold(a.name).includes(query)).sort(byName);
+      list = (
+        <>
+          <ul aria-label="Lineup" style={{ listStyle: "none", margin: 0, padding: 0 }}>{hits.map(a => nameRow(a, place(a)))}</ul>
+          {!hits.length && <p style={{ color: "var(--text-2)" }}>No artist matches “{q.trim()}”.</p>}
+        </>
+      );
+    } else {
+      const onDay = e.artists.filter(a => (a.appearances || []).some(x => x.day === day));
+      const groups = e.stages.length
+        ? [...e.stages.map(st => ({ id: st.id, name: st.name, acts: onDay.filter(a => a.appearances.some(x => x.day === day && x.stageId === st.id)) })),
+           { id: "none", name: "Stage not printed", acts: onDay.filter(a => a.appearances.some(x => x.day === day && !x.stageId)) }]
+        : [{ id: "all", name: null, acts: onDay }];
+      list = groups.filter(g => g.acts.length).map(g => (
+        <section key={g.id} data-stage={g.id} style={{ marginTop: g.name ? 20 : 0 }}>
+          {g.name && <h2 style={{ margin: "0 0 2px", fontSize: 20, lineHeight: "25px", fontWeight: 700, overflowWrap: "anywhere" }}>{g.name}</h2>}
+          <ul aria-label={g.name || "Lineup"} style={{ listStyle: "none", margin: 0, padding: 0 }}>{g.acts.sort(byName).map(a => nameRow(a))}</ul>
+        </section>
+      ));
+    }
     body = (
       <>
-        <p style={{ margin: "4px 0 12px", fontSize: 14, color: "var(--text-2)" }}>Set times not verified for this edition: no official set times survive, so only the lineup is shown.</p>
-        <ul aria-label="Lineup" style={{ listStyle: "none", margin: 0, padding: 0 }}>
-          {list.map(a => <li key={a.id} style={{ padding: "10px 0", borderBottom: "1px solid var(--line)", fontSize: 16, fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</li>)}
-        </ul>
-        {!list.length && <p style={{ color: "var(--text-2)" }}>No artist matches “{q.trim()}”.</p>}
+        <p style={{ margin: "4px 0 12px", fontSize: 14, color: "var(--text-2)" }}>{note}</p>
+        {list}
       </>
     );
   } else if (e && query) {
-    const hits = e.sets.filter(s => _histFold(view.artist[s.artistId]?.name).includes(query));
+    const hits = e.sets.filter(s => _histFold(s.billing || view.artist[s.artistId]?.name).includes(query));
     body = (
       <>
         {meta.days.map(d => {
@@ -379,12 +567,14 @@ function _HistEdition({ meta, back }) {
       <_HistHeader title={meta.festivalName} sub={frozen} onBack={back} right={infoBtn} />
       <div style={{ padding: "8px 20px 8px", display: "grid", gap: 8, borderBottom: "1px solid var(--line)" }}>
         {/* What this is, and how old the record is: a past edition, its own
-            dates, and the date its official source was archived. */}
+            dates, and the date its official source was archived (or, for a
+            re-hosted graphic, published). */}
         <p data-edition-status style={{ margin: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
           <span style={{ fontWeight: 600, color: "var(--ink)" }}>Past edition</span> · {_histDateRange(meta.days)}
-          {checked && <> · source archived {checked}</>}
+          {checked && <> · {e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived"} {checked}</>}
         </p>
-        {!lineupOnly && !query && groups.map(g => (
+        <_HistYourPhotos editionId={meta.id} artistName={id => view?.artist[id]?.name || null} />
+        {(!lineupOnly || lineupDays) && !query && groups.map(g => (
           <div key={g.name || "days"} role="group" aria-label={g.name || "Days"} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 6 }}>
             {g.name && <span style={{ width: 84, font: "600 13px/1.3 var(--f-ui)", color: "var(--ink-2)" }}>{g.name}</span>}
             {g.days.map(d => (
@@ -393,6 +583,7 @@ function _HistEdition({ meta, back }) {
                 {d.short.slice(0, 3)} {+d.date.slice(8)}
               </_HistChip>
             ))}
+            {lineupOnly && <_HistChip on={day === "all"} label="The whole lineup" onClick={() => { setDay("all"); scroller.current?.scrollTo({ top: 0 }); }}>All</_HistChip>}
           </div>
         ))}
         <input type="search" value={q} onChange={ev => setQ(ev.target.value)} placeholder={lineupOnly ? "Search the lineup" : "Search every day"}
@@ -402,7 +593,7 @@ function _HistEdition({ meta, back }) {
           }} />
       </div>
       <ScrollBody ref={scroller} style={{ position: "relative", padding: "8px 20px 94px" }}>
-        {res.status !== "ready" ? <_HistStatus res={res} retry={retry} what={meta.name} /> : body}
+        {res.status !== "ready" ? <_HistStatus res={res} retry={retry} what={meta.name} /> : <>{noteBlock}{body}</>}
       </ScrollBody>
       {about && e && <_HistProvenance edition={e} onClose={() => setAbout(false)} />}
     </Screen>

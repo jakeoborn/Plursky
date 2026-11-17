@@ -1,0 +1,184 @@
+{
+  "id": "acl-2015",
+  "method": "official_sources",
+  "official": "https://www.aclfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2015-10-02",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2015-schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20151014040506/http://www.aclfestival.com:80/2015-schedule-weekend-one/",
+          "captureTimestamp": "20151014040506",
+          "printed": "Friday Oct 2nd",
+          "sha256": "b2c8e75d900ab9f151ee1085cebb0bb445300f8cd0731015f8ec671125cc577e",
+          "bytes": 400355,
+          "rows": 42,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2015-10-03",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2015-schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20151014040506/http://www.aclfestival.com:80/2015-schedule-weekend-one/",
+          "captureTimestamp": "20151014040506",
+          "printed": "Saturday Oct 3rd",
+          "sha256": "b2c8e75d900ab9f151ee1085cebb0bb445300f8cd0731015f8ec671125cc577e",
+          "bytes": 400355,
+          "rows": 42,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2015-10-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2015-schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20151014040506/http://www.aclfestival.com:80/2015-schedule-weekend-one/",
+          "captureTimestamp": "20151014040506",
+          "printed": "Sunday Oct 4th",
+          "sha256": "b2c8e75d900ab9f151ee1085cebb0bb445300f8cd0731015f8ec671125cc577e",
+          "bytes": 400355,
+          "rows": 42,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2015-10-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2015-schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20151026064649/http://www.aclfestival.com:80/2015-schedule-weekend-two/",
+          "captureTimestamp": "20151026064649",
+          "printed": "Friday Oct 9th",
+          "sha256": "5bd6221a8523432eeff5972f4a2f7ddcc19af27d5c5d33df5c9da3ef523592fb",
+          "bytes": 401136,
+          "rows": 42,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2015-10-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2015-schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20151026064649/http://www.aclfestival.com:80/2015-schedule-weekend-two/",
+          "captureTimestamp": "20151026064649",
+          "printed": "Saturday Oct 10th",
+          "sha256": "5bd6221a8523432eeff5972f4a2f7ddcc19af27d5c5d33df5c9da3ef523592fb",
+          "bytes": 401136,
+          "rows": 42,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2015-10-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2015-schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20151026064649/http://www.aclfestival.com:80/2015-schedule-weekend-two/",
+          "captureTimestamp": "20151026064649",
+          "printed": "Sunday Oct 11th",
+          "sha256": "5bd6221a8523432eeff5972f4a2f7ddcc19af27d5c5d33df5c9da3ef523592fb",
+          "bytes": 401136,
+          "rows": 42,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Austin Kiddie Limits",
+      "start": "15:15",
+      "end": "15:30",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 2,
+      "stage": "Austin Kiddie Limits",
+      "start": "15:45",
+      "end": "16:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "Austin Kiddie Limits",
+      "start": "15:45",
+      "end": "16:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 4,
+      "stage": "Austin Kiddie Limits",
+      "start": "15:15",
+      "end": "15:30",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 5,
+      "stage": "Austin Kiddie Limits",
+      "start": "15:45",
+      "end": "16:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 6,
+      "stage": "Austin Kiddie Limits",
+      "start": "15:45",
+      "end": "16:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "id": "outside-lands-2012",
+  "method": "official_sources",
+  "official": "https://www.sfoutsidelands.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2012-08-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2012/08/10",
+          "archivedUrl": "https://web.archive.org/web/20120910182325/http://lineup.sfoutsidelands.com/events/2012/08/10",
+          "captureTimestamp": "20120910182325",
+          "printed": "Friday, August 10",
+          "sha256": "e60fa740730aaa41c7cfecd01dfe1d094b9b47d81cce85902ec079f60486c9d1",
+          "bytes": 55173,
+          "rows": 29,
+          "format": "dostuff-grid",
+          "stages": 6,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/neil-young",
+            "archivedUrl": "https://web.archive.org/web/20120923142134/http://lineup.sfoutsidelands.com/band/neil-young",
+            "captureTimestamp": "20120923142134",
+            "sha256": "236224dd695bb66f4e748ef39d5893337b74bec02994334573f010ede77540d0",
+            "bytes": 50714,
+            "printed": "Friday Aug 10 8:00 PM on Lands End (Polo Field)"
+          },
+          "comedyShows": 3,
+          "comedyStage": "The Barbary",
+          "misprints": [
+            "Hot Tub with Kristen Schaal & Kurt Braunohler and guests Jon Glaser, David Koechner and Marcus Monroe: 2:15 - 3:45 (block is -630 min long, the range 90)",
+            "David Cross with Michelle Buteau and Chris Garcia: 7:00 - 8:00 (block is -660 min long, the range 60)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2012-08-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2012/08/11",
+          "archivedUrl": "https://web.archive.org/web/20120905111341/http://lineup.sfoutsidelands.com/events/2012/08/11",
+          "captureTimestamp": "20120905111341",
+          "printed": "Saturday, August 11",
+          "sha256": "0cee5b13ed8106ef955fda9d91c0c2b28afcff457c68040b71f923c81cffd129",
+          "bytes": 55663,
+          "rows": 29,
+          "format": "dostuff-grid",
+          "stages": 6,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/metallica",
+            "archivedUrl": "https://web.archive.org/web/20120912002547/http://lineup.sfoutsidelands.com/band/metallica",
+            "captureTimestamp": "20120912002547",
+            "sha256": "eabfe7d910c805a84bd007bdbb28306dd4f2191a371a15c1aaafc294afc28437",
+            "bytes": 54025,
+            "printed": "Saturday Aug 11 7:40 PM on Lands End (Polo Field)"
+          },
+          "comedyShows": 6,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2012-08-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2012/08/12/",
+          "archivedUrl": "https://web.archive.org/web/20121009083307/http://lineup.sfoutsidelands.com/events/2012/08/12/",
+          "captureTimestamp": "20121009083307",
+          "printed": "Sunday, August 12",
+          "sha256": "d8ec393164be940641380b23dafdfebf63cf9327d30c42cb29e23562f1bb3b54",
+          "bytes": 55716,
+          "rows": 29,
+          "format": "dostuff-grid",
+          "stages": 6,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/stevie-wonder",
+            "archivedUrl": "https://web.archive.org/web/20120911113846/http://lineup.sfoutsidelands.com/band/stevie-wonder",
+            "captureTimestamp": "20120911113846",
+            "sha256": "a5b13b4b50fd860ab859ab686a551746431bbbcac81abfbfc2f3f5c0a9f037a2",
+            "bytes": 62955,
+            "printed": "Sunday Aug 12 7:20 PM on Lands End (Polo Field)"
+          },
+          "comedyShows": 5,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "Marcus Monroe with Chris Garcia",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "David Cross with Michelle Buteau and Chris Garcia",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "17:15",
+      "end": "18:45",
+      "billing": "Hot Tub with Kristen Schaal & Kurt Braunohler and guests Reggie Watts, David Koechner and Marcus Monroe",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "",
+      "end": "",
+      "billing": "Hot Tub with Kristen Schaal & Kurt Braunohler and guests Jon Glaser, David Koechner and Marcus Monroe",
+      "reason": "the block's place on the grid disagrees with its printed range, so its time cannot be read",
+      "misprint": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "",
+      "end": "",
+      "billing": "David Cross with Michelle Buteau and Chris Garcia",
+      "reason": "the block's place on the grid disagrees with its printed range, so its time cannot be read",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "12:00",
+      "end": "12:40",
+      "billing": "Mustache Harbor",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "13:00",
+      "end": "14:10",
+      "billing": "Nerdist Stand-Up Cluster with Pete Holmes, David Koechner, Michelle Buteau, Jesse Elias, Caitlin Gill and host Jonah Ray",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "14:30",
+      "end": "15:10",
+      "billing": "Justin Willman's Magic Meltdown",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "15:30",
+      "end": "16:40",
+      "billing": "Nerdist Stand-Up Cluster with Reggie Watts, Ron Funches, Michelle Buteau, Cory Loykasek, Mike Drucker and host Jackie Kashian",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "17:00",
+      "end": "18:15",
+      "billing": "Nerdist Variety Show with Chris Hardwick, Neil Patrick Harris, Henson Alternative's Miskreant Puppets, David Koechner, Justin Wi",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "18:45",
+      "end": "20:00",
+      "billing": "Nerdist Variety Show with Chris Hardwick, Neil Patrick Harris, Henson Alternative's Miskreant Puppets, David Koechner, Justin Wi",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "12:00",
+      "end": "13:00",
+      "billing": "You Made It Weird with Pete Holmes and guests from Adult Swim: Eric Andre, Brett Gelman and Jon Glaser",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "13:45",
+      "end": "15:15",
+      "billing": "Eric Andre Plus Some Other People",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "15:40",
+      "end": "16:40",
+      "billing": "Gelmania with Brett Gelman and guests Todd Barry, Kurt Braunohler, Jon Glaser and David Koechner",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "17:00",
+      "end": "18:00",
+      "billing": "Adult Swim Stands Up with Jon Glaser, Brett Gelman, Todd Barry, Kurt Braunohler and Andy Blitz",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "18:30",
+      "end": "20:00",
+      "billing": "Delocated Witness Protection Program Variety Show with Jon Glaser and guests David Cross, Todd Barry, Brett Gelman, Kurt Braunoh",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    }
+  ],
+  "dropped": []
+}

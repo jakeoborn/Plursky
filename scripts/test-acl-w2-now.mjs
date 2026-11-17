@@ -18,6 +18,7 @@ import { spawn } from "node:child_process";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 const ROOT = process.cwd();
 const SRC = readFileSync(join(ROOT, "data.jsx"), "utf8");
 const rows = [...SRC.matchAll(/_aclMk\("([^"]+)","([^"]+)","[^"]*","([^"]+)",(\d),"(\d\d:\d\d)","(\d\d:\d\d)"(?:,"(W[12])")?\)/g)]
@@ -60,6 +61,7 @@ let bad = 0;
 try {
   for (const [tl, iso] of Object.entries(TIMES)) for (const [sl, saved] of Object.entries(SAVES)) {
     const ctx = await browser.newContext();
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await ctx.clock.install({ time: new Date(iso) });
     await ctx.addInitScript(({ saved }) => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", "acl-2026");

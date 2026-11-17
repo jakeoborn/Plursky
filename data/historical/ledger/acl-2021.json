@@ -1,0 +1,496 @@
+{
+  "id": "acl-2021",
+  "method": "official_image_transcription",
+  "official": "https://www.aclfestival.com/schedule",
+  "window": [
+    "20210901",
+    "20211231"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20210917051020",
+      "archivedUrl": "https://web.archive.org/web/20210917051020/https://www.aclfestival.com/schedule",
+      "sha256": "e14af7ff9a6f3d5e51d39059d521a98092846b47b242f3c7cd536f984717695f",
+      "images": [
+        "613bd22cb7c25fb34612ddd6_ACL21-Grid-v8_FRI.png",
+        "613a8e8a2f8770b73b128b9a_ACL21-Grid-v7_SAT.png",
+        "6140d2472a1219faeea3b5b5_ACL21-Grid-v9_SUN.png",
+        "613a8eb0142848b7c39cf586_ACL21-Grid-v7_FRI_2.png",
+        "613a8ebd2a1ff7f82eb037e2_ACL21-Grid-v7_SAT_2.png",
+        "6140d25e9c8c5e217961b5bb_ACL21-Grid-v9_SUN_2.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210927160610",
+      "archivedUrl": "https://web.archive.org/web/20210927160610/https://www.aclfestival.com/schedule",
+      "sha256": "87026fd0c6f75b27043feb5f437856a4279c67fe363b009b3219525740995d11",
+      "images": [
+        "614ba23fcefe4b1a2f01474a_ACL21-Grid-v8_FRI.png",
+        "614ba25f59e0d63f83d38f98_ACL21-Grid-v8_SAT.png",
+        "6140d2472a1219faeea3b5b5_ACL21-Grid-v9_SUN.png",
+        "613a8eb0142848b7c39cf586_ACL21-Grid-v7_FRI_2.png",
+        "613a8ebd2a1ff7f82eb037e2_ACL21-Grid-v7_SAT_2.png",
+        "6140d25e9c8c5e217961b5bb_ACL21-Grid-v9_SUN_2.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210930215039",
+      "archivedUrl": "https://web.archive.org/web/20210930215039/https://www.aclfestival.com/schedule",
+      "sha256": "54fe6fe89d452bc131b7932298b5caaf1430ce0b9e3ec36d79af04d0bf03a70d",
+      "images": [
+        "6155ec1aa12080c8ecc82424_ACL21-Grid-v10_FRI.png",
+        "6155ec2c88365ea1d8ee2f25_ACL21-Grid-v10_SAT.png",
+        "6155ec37384dcb5f4b630082_ACL21-Grid-v10_SUN.png",
+        "6155ec4c88365e5d10ee306c_ACL21-Grid-v10_FRI_2.png",
+        "6155ec5bbeb5f64e6302bb30_ACL21-Grid-v10_SAT_2.png",
+        "6155ec6aa741ff94d157c694_ACL21-Grid-v10_SUN_2.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20211001210651",
+      "archivedUrl": "https://web.archive.org/web/20211001210651/https://www.aclfestival.com/schedule",
+      "sha256": "0f4cfc9b42e2083fea5516a6870a51c18c84c89be12f5e9e9c2c8fc5ffa1308e",
+      "images": [
+        "615764972b0e44793fed1430_ACL21-Grid-v14_FRI.png",
+        "6155ec2c88365ea1d8ee2f25_ACL21-Grid-v10_SAT.png",
+        "6157623abc0fb80118ba05ec_ACL21-Grid-v14_SUN.png",
+        "6155ec4c88365e5d10ee306c_ACL21-Grid-v10_FRI_2.png",
+        "6155ec5bbeb5f64e6302bb30_ACL21-Grid-v10_SAT_2.png",
+        "6155ec6aa741ff94d157c694_ACL21-Grid-v10_SUN_2.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20211011144949",
+      "archivedUrl": "https://web.archive.org/web/20211011144949/https://www.aclfestival.com/schedule",
+      "sha256": "a4cae9b7f36b640ff98b7c99c25309d4f6d60c67bf4bcde3c2eaf6e05c1c109c",
+      "images": [
+        "615764972b0e44793fed1430_ACL21-Grid-v14_FRI.png",
+        "6155ec2c88365ea1d8ee2f25_ACL21-Grid-v10_SAT.png",
+        "6159e220dfb1674848db4335_ACL21-Grid-v16_SUN.png",
+        "6160ba001fdfd51e0d037f31_ACL21-Grid-v19_FRI_2%20(1).png",
+        "6160ba258e80ec2a37c287ff_ACL21-Grid-v19_SAT_2.png",
+        "615e0dbfdd6b30b267dec37d_ACL21-Grid-v19_SUN_2.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20211011144949",
+      "archivedUrl": "https://web.archive.org/web/20211011144949/https://www.aclfestival.com/schedule",
+      "sha256": "a4cae9b7f36b640ff98b7c99c25309d4f6d60c67bf4bcde3c2eaf6e05c1c109c",
+      "images": [
+        "615764972b0e44793fed1430_ACL21-Grid-v14_FRI.png",
+        "6155ec2c88365ea1d8ee2f25_ACL21-Grid-v10_SAT.png",
+        "6159e220dfb1674848db4335_ACL21-Grid-v16_SUN.png",
+        "6160ba001fdfd51e0d037f31_ACL21-Grid-v19_FRI_2%20(1).png",
+        "6160ba258e80ec2a37c287ff_ACL21-Grid-v19_SAT_2.png",
+        "615e0dbfdd6b30b267dec37d_ACL21-Grid-v19_SUN_2.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20211016033416",
+      "archivedUrl": "https://web.archive.org/web/20211016033416/https://www.aclfestival.com/schedule",
+      "sha256": "fc3f93378976e419d962ae11a361e7a1c0d133afc06d11349a62d3a9de646ac9",
+      "images": [
+        "615764972b0e44793fed1430_ACL21-Grid-v14_FRI.png",
+        "6155ec2c88365ea1d8ee2f25_ACL21-Grid-v10_SAT.png",
+        "6159e220dfb1674848db4335_ACL21-Grid-v16_SUN.png",
+        "6160ba001fdfd51e0d037f31_ACL21-Grid-v19_FRI_2%20(1).png",
+        "6160ba258e80ec2a37c287ff_ACL21-Grid-v19_SAT_2.png",
+        "615e0dbfdd6b30b267dec37d_ACL21-Grid-v19_SUN_2.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20211107123836",
+      "archivedUrl": "https://web.archive.org/web/20211107123836/https://www.aclfestival.com/schedule",
+      "sha256": "64af4ae464e6ad174352eaf8dc0394005750461179ead390e9436bdd6890e7f4",
+      "images": [
+        "615764972b0e44793fed1430_ACL21-Grid-v14_FRI.png",
+        "6155ec2c88365ea1d8ee2f25_ACL21-Grid-v10_SAT.png",
+        "6159e220dfb1674848db4335_ACL21-Grid-v16_SUN.png",
+        "6160ba001fdfd51e0d037f31_ACL21-Grid-v19_FRI_2%20(1).png",
+        "6160ba258e80ec2a37c287ff_ACL21-Grid-v19_SAT_2.png",
+        "615e0dbfdd6b30b267dec37d_ACL21-Grid-v19_SUN_2.png"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2021-10-01",
+      "pageCapture": "20211107123836",
+      "pageArchivedUrl": "https://web.archive.org/web/20211107123836/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/615764972b0e44793fed1430_ACL21-Grid-v14_FRI.png",
+      "imageCapture": "20211121042224",
+      "imageArchivedUrl": "https://web.archive.org/web/20211121042224/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/615764972b0e44793fed1430_ACL21-Grid-v14_FRI.png",
+      "sha256": "a0963712c65e4c45d19f87979b83a31338c877f384dd3aee6aa567f43e6bb5ac",
+      "bytes": 1295222,
+      "contentType": "image/png",
+      "cacheFile": "ef365a1e993af668c85326c3.bin",
+      "revisions": [
+        {
+          "file": "613bd22cb7c25fb34612ddd6_ACL21-Grid-v8_FRI.png",
+          "firstSeen": "20210917051020"
+        },
+        {
+          "file": "614ba23fcefe4b1a2f01474a_ACL21-Grid-v8_FRI.png",
+          "firstSeen": "20210927160610"
+        },
+        {
+          "file": "6155ec1aa12080c8ecc82424_ACL21-Grid-v10_FRI.png",
+          "firstSeen": "20210930215039"
+        },
+        {
+          "file": "615764972b0e44793fed1430_ACL21-Grid-v14_FRI.png",
+          "firstSeen": "20211001210651"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2021-10-02",
+      "pageCapture": "20211107123836",
+      "pageArchivedUrl": "https://web.archive.org/web/20211107123836/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6155ec2c88365ea1d8ee2f25_ACL21-Grid-v10_SAT.png",
+      "imageCapture": "20211014212939",
+      "imageArchivedUrl": "https://web.archive.org/web/20211014212939/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6155ec2c88365ea1d8ee2f25_ACL21-Grid-v10_SAT.png",
+      "sha256": "d47d56cf2e470032c8a5b9b2735dd7413006e4ed50f9ccac6079401867547cdc",
+      "bytes": 1320995,
+      "contentType": "image/png",
+      "cacheFile": "3db051587e42375d4e486f82.bin",
+      "revisions": [
+        {
+          "file": "613a8e8a2f8770b73b128b9a_ACL21-Grid-v7_SAT.png",
+          "firstSeen": "20210917051020"
+        },
+        {
+          "file": "614ba25f59e0d63f83d38f98_ACL21-Grid-v8_SAT.png",
+          "firstSeen": "20210927160610"
+        },
+        {
+          "file": "6155ec2c88365ea1d8ee2f25_ACL21-Grid-v10_SAT.png",
+          "firstSeen": "20210930215039"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2021-10-03",
+      "pageCapture": "20211107123836",
+      "pageArchivedUrl": "https://web.archive.org/web/20211107123836/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6159e220dfb1674848db4335_ACL21-Grid-v16_SUN.png",
+      "imageCapture": "20211118191839",
+      "imageArchivedUrl": "https://web.archive.org/web/20211118191839/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6159e220dfb1674848db4335_ACL21-Grid-v16_SUN.png",
+      "sha256": "8e90a982a932da118be7ec0655748724a0fa99bd65cdf6e52ea9d348bd595fa0",
+      "bytes": 1333203,
+      "contentType": "image/png",
+      "cacheFile": "f6ff6f502d006c225b75d568.bin",
+      "revisions": [
+        {
+          "file": "6140d2472a1219faeea3b5b5_ACL21-Grid-v9_SUN.png",
+          "firstSeen": "20210917051020"
+        },
+        {
+          "file": "6155ec37384dcb5f4b630082_ACL21-Grid-v10_SUN.png",
+          "firstSeen": "20210930215039"
+        },
+        {
+          "file": "6157623abc0fb80118ba05ec_ACL21-Grid-v14_SUN.png",
+          "firstSeen": "20211001210651"
+        },
+        {
+          "file": "6159e220dfb1674848db4335_ACL21-Grid-v16_SUN.png",
+          "firstSeen": "20211011144949"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2021-10-08",
+      "pageCapture": "20211107123836",
+      "pageArchivedUrl": "https://web.archive.org/web/20211107123836/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6160ba001fdfd51e0d037f31_ACL21-Grid-v19_FRI_2%20(1).png",
+      "imageCapture": "20211122152402",
+      "imageArchivedUrl": "https://web.archive.org/web/20211122152402/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6160ba001fdfd51e0d037f31_ACL21-Grid-v19_FRI_2%20(1).png",
+      "sha256": "e3051c65d07b3fa89bcaa59a44c1094415f051730a66212808211d22c400501b",
+      "bytes": 2003527,
+      "contentType": "image/png",
+      "cacheFile": "8b6e09e6234fd1b082b4be53.bin",
+      "revisions": [
+        {
+          "file": "613a8eb0142848b7c39cf586_ACL21-Grid-v7_FRI_2.png",
+          "firstSeen": "20210917051020"
+        },
+        {
+          "file": "6155ec4c88365e5d10ee306c_ACL21-Grid-v10_FRI_2.png",
+          "firstSeen": "20210930215039"
+        },
+        {
+          "file": "6160ba001fdfd51e0d037f31_ACL21-Grid-v19_FRI_2%20(1).png",
+          "firstSeen": "20211011144949"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2021-10-09",
+      "pageCapture": "20211107123836",
+      "pageArchivedUrl": "https://web.archive.org/web/20211107123836/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6160ba258e80ec2a37c287ff_ACL21-Grid-v19_SAT_2.png",
+      "imageCapture": "20211122153417",
+      "imageArchivedUrl": "https://web.archive.org/web/20211122153417/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6160ba258e80ec2a37c287ff_ACL21-Grid-v19_SAT_2.png",
+      "sha256": "ed9a8b498ed5b542be628538195c2999b16e0d802d4efc8d2fbe305f4c441091",
+      "bytes": 1941917,
+      "contentType": "image/png",
+      "cacheFile": "d5f1acd5f6b96bee7610b7b4.bin",
+      "revisions": [
+        {
+          "file": "613a8ebd2a1ff7f82eb037e2_ACL21-Grid-v7_SAT_2.png",
+          "firstSeen": "20210917051020"
+        },
+        {
+          "file": "6155ec5bbeb5f64e6302bb30_ACL21-Grid-v10_SAT_2.png",
+          "firstSeen": "20210930215039"
+        },
+        {
+          "file": "6160ba258e80ec2a37c287ff_ACL21-Grid-v19_SAT_2.png",
+          "firstSeen": "20211011144949"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2021-10-10",
+      "pageCapture": "20211107123836",
+      "pageArchivedUrl": "https://web.archive.org/web/20211107123836/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/615e0dbfdd6b30b267dec37d_ACL21-Grid-v19_SUN_2.png",
+      "imageCapture": "20211123025206",
+      "imageArchivedUrl": "https://web.archive.org/web/20211123025206/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/615e0dbfdd6b30b267dec37d_ACL21-Grid-v19_SUN_2.png",
+      "sha256": "a36470ee4852c8549ab9bbc36ffe6ec55600107586a026c6ca459f31602b202b",
+      "bytes": 1964096,
+      "contentType": "image/png",
+      "cacheFile": "13d2c8a832d72ccccf15dac0.bin",
+      "revisions": [
+        {
+          "file": "6140d25e9c8c5e217961b5bb_ACL21-Grid-v9_SUN_2.png",
+          "firstSeen": "20210917051020"
+        },
+        {
+          "file": "6155ec6aa741ff94d157c694_ACL21-Grid-v10_SUN_2.png",
+          "firstSeen": "20210930215039"
+        },
+        {
+          "file": "615e0dbfdd6b30b267dec37d_ACL21-Grid-v19_SUN_2.png",
+          "firstSeen": "20211011144949"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO POWERED BY QUIET EVENTS",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "18:00",
+      "end": "19:00",
+      "billing": "BEST OF AUSTIN DRAG",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO POWERED BY QUIET EVENTS",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "13:00",
+      "end": "13:30",
+      "billing": "WORKOUT! WITH ERICA NIX",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "14:30",
+      "end": "15:00",
+      "billing": "KUTX'S PAUSE/PLAY",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO POWERED BY QUIET EVENTS",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "13:00",
+      "end": "13:30",
+      "billing": "KUTX STUDIOS: TACOS OF TEXAS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "15:00",
+      "end": "15:30",
+      "billing": "WENDY DAVIS & KATHY VALENTINE",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO POWERED BY QUIET EVENTS",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "12:30",
+      "end": "13:00",
+      "billing": "KUTX'S THE BREAKS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "14:30",
+      "end": "15:00",
+      "billing": "RICKY WILLIAMS & BRIAN BOSWORTH",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "BEST OF AUSTIN DRAG",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 5,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO POWERED BY QUIET EVENTS",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 5,
+      "stage": "BONUS TRACKS",
+      "start": "13:00",
+      "end": "13:30",
+      "billing": "KUTX'S PAUSE/PLAY",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 5,
+      "stage": "BONUS TRACKS",
+      "start": "14:30",
+      "end": "15:00",
+      "billing": "MELODY DANCEFIT",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 5,
+      "stage": "BONUS TRACKS",
+      "start": "18:20",
+      "end": "19:20",
+      "billing": "UNLOCKING US: BRENÉ BROWN & BRETT GOLDSTEIN",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO POWERED BY QUIET EVENTS",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 6,
+      "stage": "BONUS TRACKS",
+      "start": "13:00",
+      "end": "13:30",
+      "billing": "KUTX STUDIOS: TACOS OF TEXAS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "BONUS TRACKS",
+      "start": "15:00",
+      "end": "15:30",
+      "billing": "WENDY DAVIS & FOLK UKE",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    }
+  ]
+}

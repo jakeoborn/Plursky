@@ -1,0 +1,314 @@
+{
+  "id": "edc-orlando-2022",
+  "method": "official_sources",
+  "official": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2022-11-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
+          "archivedUrl": "https://web.archive.org/web/20221103232435/https://orlando.electricdaisycarnival.com/lineup/set-times/",
+          "captureTimestamp": "20221103232435",
+          "printed": "Friday, November 11",
+          "sha256": "48e1948fdfdac4777ce8de1ec3ace470acf24c75c9be03c0b6a781a8969e3283",
+          "bytes": 276480,
+          "rows": 45
+        },
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n.jpg",
+          "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+          "published": "2022-11-03",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "FRIDAY NOV 11",
+          "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
+          "bytes": 541404,
+          "rows": 5,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+            "captureTimestamp": "20221208172253",
+            "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+            "cites": "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n",
+            "setTimesGraphics": [
+              "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n",
+              "wp-content/uploads/2022/11/Fg_joRpXwAEecwB"
+            ]
+          }
+        },
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/Fg_joRpXwAEecwB.jpg",
+          "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+          "published": "2022-11-03",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-28",
+          "printed": "NOV 11 FRIDAY",
+          "sha256": "0835798c2e902586b06528a79aa069bb22b069ef528b6c57cc7b736d06429fd8",
+          "bytes": 639542,
+          "rows": 11,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+            "captureTimestamp": "20221208172253",
+            "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+            "cites": "wp-content/uploads/2022/11/Fg_joRpXwAEecwB",
+            "setTimesGraphics": [
+              "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n",
+              "wp-content/uploads/2022/11/Fg_joRpXwAEecwB"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2022-11-12",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n.jpg",
+          "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+          "published": "2022-11-03",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SATURDAY NOV 12",
+          "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
+          "bytes": 541404,
+          "rows": 55,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+            "captureTimestamp": "20221208172253",
+            "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+            "cites": "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n",
+            "setTimesGraphics": [
+              "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n",
+              "wp-content/uploads/2022/11/Fg_joRpXwAEecwB"
+            ]
+          }
+        },
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/Fg_joRpXwAEecwB.jpg",
+          "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+          "published": "2022-11-03",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-28",
+          "printed": "SATURDAY NOV 12",
+          "sha256": "0835798c2e902586b06528a79aa069bb22b069ef528b6c57cc7b736d06429fd8",
+          "bytes": 639542,
+          "rows": 11,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+            "captureTimestamp": "20221208172253",
+            "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+            "cites": "wp-content/uploads/2022/11/Fg_joRpXwAEecwB",
+            "setTimesGraphics": [
+              "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n",
+              "wp-content/uploads/2022/11/Fg_joRpXwAEecwB"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2022-11-13",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n.jpg",
+          "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+          "published": "2022-11-03",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SUNDAY NOV 13",
+          "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
+          "bytes": 541404,
+          "rows": 51,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+            "captureTimestamp": "20221208172253",
+            "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+            "cites": "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n",
+            "setTimesGraphics": [
+              "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n",
+              "wp-content/uploads/2022/11/Fg_joRpXwAEecwB"
+            ]
+          }
+        },
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/Fg_joRpXwAEecwB.jpg",
+          "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+          "published": "2022-11-03",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-28",
+          "printed": "NOV 13 SUNDAY",
+          "sha256": "0835798c2e902586b06528a79aa069bb22b069ef528b6c57cc7b736d06429fd8",
+          "bytes": 639542,
+          "rows": 10,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+            "captureTimestamp": "20221208172253",
+            "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+            "cites": "wp-content/uploads/2022/11/Fg_joRpXwAEecwB",
+            "setTimesGraphics": [
+              "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n",
+              "wp-content/uploads/2022/11/Fg_joRpXwAEecwB"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Kinetic Field",
+      "start": "18:41",
+      "end": "18:47",
+      "billing": "OPENING CEREMONY",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "Kinetic Field",
+      "start": "19:47",
+      "end": "19:50",
+      "billing": "GROW",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "Kinetic Field",
+      "start": "21:04",
+      "end": "21:07",
+      "billing": "BLOSSOM",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "Kinetic Field",
+      "start": "22:22",
+      "end": "22:27",
+      "billing": "POLLINATE",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "Kinetic Field",
+      "start": "23:57",
+      "end": "00:00",
+      "billing": "KINETIC BLOOM",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "18:39",
+      "end": "18:45",
+      "billing": "OPENING CEREMONY",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "19:55",
+      "end": "19:58",
+      "billing": "GROW",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "21:12",
+      "end": "21:15",
+      "billing": "BLOSSOM",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "22:25",
+      "end": "22:28",
+      "billing": "POLLINATE",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "23:57",
+      "end": "00:00",
+      "billing": "KINETIC BLOOM",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Stereo Bloom",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "DISCOVERY PROJECT",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "Kinetic Field",
+      "start": "19:05",
+      "end": "19:11",
+      "billing": "OPENING CEREMONY",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Kinetic Field",
+      "start": "20:11",
+      "end": "20:14",
+      "billing": "GROW",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Kinetic Field",
+      "start": "21:17",
+      "end": "21:20",
+      "billing": "BLOSSOM",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Kinetic Field",
+      "start": "22:35",
+      "end": "22:38",
+      "billing": "POLLINATE",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Kinetic Field",
+      "start": "23:57",
+      "end": "00:00",
+      "billing": "CLOSING",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    }
+  ]
+}

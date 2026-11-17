@@ -1,0 +1,96 @@
+day	stage	start	end	artist	settimeId	timeSource	captureTimestamp
+1	Labyrinth	00:30	02:00	Axwell	d1:labyrinth:axwell	printed	20120925025007
+1	Labyrinth	23:00	00:30	Alesso	d1:labyrinth:alesso	printed	20120925025007
+1	Labyrinth	21:30	23:00	Fedde le Grand	d1:labyrinth:fedde-le-grand	printed	20120925025007
+1	Labyrinth	20:15	21:30	Morgan Page	d1:labyrinth:morgan-page	printed	20120925025007
+1	Labyrinth	19:15	20:15	Cedric Gervais	d1:labyrinth:cedric-gervais	printed	20120925025007
+1	Labyrinth	18:15	19:15	EDX	d1:labyrinth:edx	printed	20120925025007
+1	Labyrinth	17:15	18:15	Manufactured Superstars	d1:labyrinth:manufactured-superstars	printed	20120925025007
+1	Labyrinth	17:00	17:15	Joaquin Bamaca	d1:labyrinth:joaquin-bamaca	printed	20120925025007
+1	Alice's House	00:00	02:00	Above & Beyond	d1:alices-house:above-&amp;-beyond	printed	20120925025007
+1	Alice's House	22:30	00:00	Mat Zo	d1:alices-house:mat-zo	printed	20120925025007
+1	Alice's House	21:00	22:30	Cosmic Gate	d1:alices-house:cosmic-gate	printed	20120925025007
+1	Alice's House	20:00	21:00	Super8 & Tab	d1:alices-house:super8-&amp;-tab	printed	20120925025007
+1	Alice's House	19:00	20:00	Norin & Rad	d1:alices-house:norin-&amp;-rad	printed	20120925025007
+1	Alice's House	18:00	19:00	Boom Jinx	d1:alices-house:boom-jinx	printed	20120925025007
+1	Alice's House	17:00	18:00	Soundprank	d1:alices-house:soundprank	printed	20120925025007
+1	Sunken Garden	00:30	02:00	Dirtyphonics	d1:sunken-garden:dirtyphonics	printed	20120925025007
+1	Sunken Garden	23:00	00:30	Andy C	d1:sunken-garden:andy-c	printed	20120925025007
+1	Sunken Garden	22:00	23:00	Downlink	d1:sunken-garden:downlink	printed	20120925025007
+1	Sunken Garden	21:00	22:00	The Prototypes	d1:sunken-garden:the-prototypes	printed	20120925025007
+1	Sunken Garden	20:00	21:00	Skeptiks	d1:sunken-garden:skeptiks	printed	20120925025007
+1	Sunken Garden	19:00	20:00	Flinch	d1:sunken-garden:flinch	printed	20120925025007
+1	Sunken Garden	17:00	19:00	Fury	d1:sunken-garden:fury	printed	20120925025007
+1	Wide Awake Art Car	23:00	00:00	Troy Kurtz	d1:wide-awake-art-car:troy-kurtz	printed	20120925025007
+1	Wide Awake Art Car	22:00	23:00	Astronomar	d1:wide-awake-art-car:astronomar	printed	20120925025007
+1	Wide Awake Art Car	21:00	22:00	Prince Club	d1:wide-awake-art-car:prince-club	printed	20120925025007
+1	Wide Awake Art Car	20:00	21:00	Justin Jay	d1:wide-awake-art-car:justin-jay	printed	20120925025007
+1	Wide Awake Art Car	19:00	20:00	Urulu	d1:wide-awake-art-car:urulu	printed	20120925025007
+1	Wide Awake Art Car	18:15	19:00	Bones	d1:wide-awake-art-car:bones	printed	20120925025007
+1	Wide Awake Art Car	17:30	18:15	Steve Huerta	d1:wide-awake-art-car:steve-huerta	printed	20120925025007
+1	Wide Awake Art Car	17:00	17:30	Shae B	d1:wide-awake-art-car:shae-b	printed	20120925025007
+1	Discovery Project	01:00	02:00	Seven8Seven	d1:discovery-project:seven8seven	printed	20120925025007
+1	Discovery Project	00:00	01:00	Kundo	d1:discovery-project:kundo	printed	20120925025007
+1	Discovery Project	23:00	00:00	IndO	d1:discovery-project:indo	printed	20120925025007
+1	Discovery Project	22:00	23:00	Mr. Brooks	d1:discovery-project:mr--brooks	printed	20120925025007
+1	Discovery Project	21:00	22:00	Lone MTN & Buddha	d1:discovery-project:lone-mtn-&amp;-buddha	printed	20120925025007
+1	Discovery Project	20:00	21:00	DSKOTEK	d1:discovery-project:dskotek	printed	20120925025007
+1	Discovery Project	19:00	20:00	The Beat Kidz	d1:discovery-project:the-beat-kidz	printed	20120925025007
+1	Discovery Project	18:00	19:00	NOVASPACE	d1:discovery-project:novaspace	printed	20120925025007
+1	Discovery Project	17:00	18:00	MSTREX	d1:discovery-project:mstrex	printed	20120925025007
+2	Labyrinth	00:30	02:00	Sebastian Ingrosso	d2:labyrinth:sebastian-ingrosso	printed	20120925025007
+2	Labyrinth	23:30	00:30	Pretty Lights	d2:labyrinth:pretty-lights	printed	20120925025007
+2	Labyrinth	22:30	23:30	Benny Benassi	d2:labyrinth:benny-benassi	printed	20120925025007
+2	Labyrinth	21:30	22:30	Arty	d2:labyrinth:arty	printed	20120925025007
+2	Labyrinth	20:30	21:30	R3hab	d2:labyrinth:r3hab	printed	20120925025007
+2	Labyrinth	19:30	20:30	John Dahlbäck	d2:labyrinth:john-dahlbäck	printed	20120925025007
+2	Labyrinth	18:30	19:30	Chris Lake	d2:labyrinth:chris-lake	printed	20120925025007
+2	Labyrinth	17:30	18:30	Deniz Koyu	d2:labyrinth:deniz-koyu	printed	20120925025007
+2	Labyrinth	16:30	17:30	Funkagenda	d2:labyrinth:funkagenda	printed	20120925025007
+2	Labyrinth	15:00	16:30	David Steven	d2:labyrinth:david-steven	printed	20120925025007
+2	Alice's House	00:30	02:00	Dash Berlin	d2:alices-house:dash-berlin	printed	20120925025007
+2	Alice's House	23:00	00:30	ATB	d2:alices-house:atb	printed	20120925025007
+2	Alice's House	21:30	23:00	Showtek	d2:alices-house:showtek	printed	20120925025007
+2	Alice's House	20:00	21:30	W&W	d2:alices-house:w&amp;w	printed	20120925025007
+2	Alice's House	19:00	20:00	Simon Patterson	d2:alices-house:simon-patterson	printed	20120925025007
+2	Alice's House	18:00	19:00	Myon & Shane54 with Aruna	d2:alices-house:myon-&amp;-shane54-with-aruna	printed	20120925025007
+2	Alice's House	17:00	18:00	Sean Tyas	d2:alices-house:sean-tyas	printed	20120925025007
+2	Alice's House	16:00	17:00	tyDi	d2:alices-house:tydi	printed	20120925025007
+2	Alice's House	15:00	16:00	Darin Epsilon	d2:alices-house:darin-epsilon	printed	20120925025007
+2	Sunken Garden	00:45	02:00	Subfocus dj set	d2:sunken-garden:subfocus-dj-set	printed	20120925025007
+2	Sunken Garden	23:30	00:45	12th Planet	d2:sunken-garden:12th-planet	printed	20120925025007
+2	Sunken Garden	22:00	23:30	Planet of the Drums	d2:sunken-garden:planet-of-the-drums	printed	20120925025007
+2	Sunken Garden	20:45	22:00	Crizzly	d2:sunken-garden:crizzly	printed	20120925025007
+2	Sunken Garden	19:40	20:45	Dub FX	d2:sunken-garden:dub-fx	printed	20120925025007
+2	Sunken Garden	18:00	19:40	Mediks	d2:sunken-garden:mediks	printed	20120925025007
+2	Sunken Garden	16:00	18:00	Deco	d2:sunken-garden:deco	printed	20120925025007
+2	Sunken Garden	15:00	16:00	Snareophobe & Starfighterz	d2:sunken-garden:snareophobe-&amp;-starfighterz	printed	20120925025007
+2	Queen's Grounds	01:00	02:00	Röyksopp	d2:queens-grounds:röyksopp	printed	20120925025007
+2	Queen's Grounds	00:00	00:30	Little Boots	d2:queens-grounds:little-boots	printed	20120925025007
+2	Queen's Grounds	22:35	23:35	Bassjackers	d2:queens-grounds:bassjackers	printed	20120925025007
+2	Queen's Grounds	21:15	22:15	Orbital	d2:queens-grounds:orbital	printed	20120925025007
+2	Queen's Grounds	19:50	20:45	Neon Indian	d2:queens-grounds:neon-indian	printed	20120925025007
+2	Queen's Grounds	18:30	19:30	Joachim Garraud	d2:queens-grounds:joachim-garraud	printed	20120925025007
+2	Queen's Grounds	17:30	18:30	Dimitri Vegas and Like Mike	d2:queens-grounds:dimitri-vegas-and-like-mike	printed	20120925025007
+2	Queen's Grounds	16:30	17:30	Danny Avila	d2:queens-grounds:danny-avila	printed	20120925025007
+2	Queen's Grounds	15:00	16:30	James Egbert	d2:queens-grounds:james-egbert	printed	20120925025007
+2	Upside Down Room	00:30	02:00	Danny Tenaglia	d2:upside-down-room:danny-tenaglia	printed	20120925025007
+2	Upside Down Room	23:00	00:30	John Digweed	d2:upside-down-room:john-digweed	printed	20120925025007
+2	Upside Down Room	22:00	23:00	Gui Boratto	d2:upside-down-room:gui-boratto	printed	20120925025007
+2	Upside Down Room	20:30	22:00	Mark Knight	d2:upside-down-room:mark-knight	printed	20120925025007
+2	Upside Down Room	19:00	20:30	Jamie Jones	d2:upside-down-room:jamie-jones	printed	20120925025007
+2	Upside Down Room	18:00	19:00	Damian Lazarus	d2:upside-down-room:damian-lazarus	printed	20120925025007
+2	Upside Down Room	17:00	18:00	Nicole Moudaber	d2:upside-down-room:nicole-moudaber	printed	20120925025007
+2	Upside Down Room	16:00	17:00	16 Bit Lolitas	d2:upside-down-room:16-bit-lolitas	printed	20120925025007
+2	Upside Down Room	15:00	16:00	Droog	d2:upside-down-room:droog	printed	20120925025007
+2	Discovery Project	22:45	23:30	Slogun & iOh	d2:discovery-project:slogun-&amp;-ioh	printed	20120925025007
+2	Discovery Project	22:00	22:45	Mitchell Claxton	d2:discovery-project:mitchell-claxton	printed	20120925025007
+2	Discovery Project	21:00	22:00	Danny Avila	d2:discovery-project:danny-avila	printed	20120925025007
+2	Discovery Project	20:15	21:00	Vibeshock	d2:discovery-project:vibeshock	printed	20120925025007
+2	Discovery Project	19:30	20:15	RYKR	d2:discovery-project:rykr	printed	20120925025007
+2	Discovery Project	18:45	19:30	Monstergetdown	d2:discovery-project:monstergetdown	printed	20120925025007
+2	Discovery Project	18:00	18:45	Steve Prior	d2:discovery-project:steve-prior	printed	20120925025007
+2	Discovery Project	17:15	18:00	YOBILL	d2:discovery-project:yobill	printed	20120925025007
+2	Discovery Project	16:30	17:15	DJ Tory Tee	d2:discovery-project:dj-tory-tee	printed	20120925025007
+2	Discovery Project	15:45	16:30	Alpine	d2:discovery-project:alpine	printed	20120925025007
+2	Discovery Project	15:00	15:45	Clinton VanSciver	d2:discovery-project:clinton-vansciver	printed	20120925025007

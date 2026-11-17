@@ -1,0 +1,257 @@
+{
+  "id": "beyond-wonderland-socal-2024",
+  "method": "official_lineup_html",
+  "official": "https://socal.beyondwonderland.com/lineup/",
+  "chosen": "20240325035054",
+  "archivedUrl": "https://web.archive.org/web/20240325035054/https://socal.beyondwonderland.com/lineup/",
+  "sha256": "9843c8fc13696c10ddbebe5fe59b3bb5de8484055ceb9c871943eb616c29dc60",
+  "title": "Lineup – Beyond Wonderland SoCal 2024",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 119",
+    "By Day 121",
+    "By Stage 119"
+  ],
+  "stageOrder": [],
+  "crossTab": [
+    "By Stage tab printed all 119 billings under one heading (\"Queen's Domain\"): stage tab not used"
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20240226201217",
+      "archivedUrl": "https://web.archive.org/web/20240226201217/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "43e40e7d816a351ccd103943d419a16b75b83c74d0a28781d1f0f857f617bd97",
+      "bytes": 129777,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 22",
+        "Saturday, March 23"
+      ],
+      "billings": 109,
+      "diffVsChosen": [
+        "added by the final: Atmozfears & Sound Rush: 2/1",
+        "added by the final: Baby J B2B Techno Tupac",
+        "added by the final: Bolo",
+        "added by the final: Carola",
+        "added by the final: D!CED",
+        "added by the final: Dark Heart",
+        "added by the final: Exodus Era",
+        "added by the final: FOMO",
+        "added by the final: Jauz",
+        "added by the final: Jem.G",
+        "added by the final: Jörgen",
+        "added by the final: Opening Ceremony",
+        "added by the final: SPORTMODE",
+        "added by the final: Super Dark",
+        "added by the final: TONG",
+        "removed by the final: Atmozfears & Sound Rush: 2A1",
+        "removed by the final: Diesel",
+        "removed by the final: Discovery Project",
+        "removed by the final: Walker & Royce B2B VNSSA",
+        "removed by the final: Zeds Dead"
+      ]
+    },
+    {
+      "captureTimestamp": "20240319230503",
+      "archivedUrl": "https://web.archive.org/web/20240319230503/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "57e45830a657ee0204b04d4d3785ba1f32a854c7baf78591d966490663d1f38e",
+      "bytes": 176956,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 22",
+        "Saturday, March 23"
+      ],
+      "billings": 119,
+      "diffVsChosen": [
+        "added by the final: Exodus Era",
+        "added by the final: Jem.G",
+        "removed by the final: Walker & Royce B2B VNSSA",
+        "removed by the final: Zeds Dead"
+      ]
+    },
+    {
+      "captureTimestamp": "20240325035054",
+      "archivedUrl": "https://web.archive.org/web/20240325035054/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "9843c8fc13696c10ddbebe5fe59b3bb5de8484055ceb9c871943eb616c29dc60",
+      "bytes": 176368,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2024",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 22",
+        "Saturday, March 23"
+      ],
+      "billings": 119,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20240327121534",
+      "archivedUrl": "https://web.archive.org/web/20240327121534/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "7e495d27510279b396963b5327e2eaf1792504c673a3f015ef15d524a03a008a",
+      "bytes": 56171,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2024",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240401065118",
+      "archivedUrl": "https://web.archive.org/web/20240401065118/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "6ea87d0b974f16086722e9a73b2d76f656662c2d3e276585515c4d39a6c9bee5",
+      "bytes": 56171,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2024",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240406001307",
+      "archivedUrl": "https://web.archive.org/web/20240406001307/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "56084d2f6814441275e4e5cb501e0b52d5e31e12ee003a6226b6795d485775d0",
+      "bytes": 56171,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2024",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240406135147",
+      "archivedUrl": "https://web.archive.org/web/20240406135147/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "be12ae0d602d65ee53b01c492ad3961bacc058044c512618a8fb794861ae8c06",
+      "bytes": 56171,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2024",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240420081331",
+      "archivedUrl": "https://web.archive.org/web/20240420081331/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "ace549ae7ceab264fc139c6b4c19dc044c934eab28dc50303b5b1e0dd8ef71f4",
+      "bytes": 56171,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2024",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240523083119",
+      "archivedUrl": "https://web.archive.org/web/20240523083119/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "862736d20ce0a623a7c2e6ea2793c95a2653b14305521f4c6e0c4d7d0b9e0af9",
+      "bytes": 55902,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2024",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240814094515",
+      "archivedUrl": "https://web.archive.org/web/20240814094515/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "581a1db0130796cdc0bc987279bf8dd8360a546fd507cf43806971623e59596b",
+      "bytes": 55932,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240829012401",
+      "archivedUrl": "https://web.archive.org/web/20240829012401/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "c9ff8ac4b2cd1c08e1193d7b2056977a9cb91bfe628e63d515641f7bdae06c3d",
+      "bytes": 56002,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240914214223",
+      "archivedUrl": "https://web.archive.org/web/20240914214223/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "326e5ea2071bc2f90fd99f199f156e6b43ea700b5b7c9e78226c59d77c6e961c",
+      "bytes": 56291,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20241103152241",
+      "archivedUrl": "https://web.archive.org/web/20241103152241/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "cf3f8da73aaf82ea381bd8ab9a2e7248a68f79300f8c300c9c6be4919b066c17",
+      "bytes": 56137,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20241228050735",
+      "archivedUrl": "https://web.archive.org/web/20241228050735/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "1591aea182c57ff23a9b9d181e5dde96aa7fa8b6c44dc8b5594b1148dff39771",
+      "bytes": 55649,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2025",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": null,
+      "billing": "Opening Ceremony",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": null,
+      "billing": "Opening Ceremony",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    }
+  ]
+}

@@ -5,9 +5,9 @@
 //
 // Reads data/historical/sheets/<id>.tsv (the reviewed source sheet) and
 // data/historical/ledger/<id>.json (where every row came from), and writes
-// data/historical/editions/<id>.json. An edition with no sheet is emitted as
-// lineup_only only if a lineup sheet exists; otherwise it is skipped and
-// reported, never guessed. --check rebuilds in memory and fails if a checked-in
+// data/historical/editions/<id>.json. An edition with no set sheet is emitted
+// as lineup_only only if a lineup sheet (sheets/<id>.lineup.tsv) exists;
+// otherwise it is skipped and reported, never guessed. --check rebuilds in memory and fails if a checked-in
 // edition file differs (so a hand edit to generated data cannot pass).
 //
 // These files live apart from data/festivals/ and _DATA_SETS on purpose: a
@@ -16,7 +16,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { EDITIONS, dropReason } from "./editions.mjs";
+import { EDITIONS, dropReason, lineupDropReason } from "./editions.mjs";
 import { slug } from "./lib.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -30,9 +30,10 @@ export function readSheet(file) {
 
 // The key an artist keeps across editions: billing, case- and accent-folded.
 // A B2B billing is one set but several performers; each gets its own key so a
-// later solo slot joins their history.
+// later solo slot joins their history. An unnamed partner (Orlando 2021's
+// "DRINKURWATER B2B Special Guest") stays in the billing but is no performer.
 export const artistKey = name => slug(name);
-export const performerKeys = name => name.split(/\s+(?:B2B|B3B)\s+/i).map(slug).filter(Boolean);
+export const performerKeys = name => name.split(/\s+(?:B2B|B3B)\s+/i).filter(p => !dropReason(p, "")).map(slug).filter(Boolean);
 
 // Printed rows the library does not keep (editions.mjs DROP_RULES/ACTIVITIES),
 // with the reason, in sheet order. build writes them to ledger/<id>.json.
@@ -49,42 +50,117 @@ export function buildEdition(id, rows, ledger) {
     if (!s) stages.push(s = { id: `${id}:${slug(name)}`, name });
     return s.id;
   };
+  // One act, one artist, however a source cased it: Escape 2019's page prints
+  // "NuKid" on Friday and its graphic "NUKID" on Saturday. The artist keeps
+  // its first printing; a set printed differently keeps its own `billing`.
   const artistId = name => {
-    let a = artists.find(x => x.name === name);
+    let a = artists.find(x => x.key === artistKey(name));
     if (!a) artists.push(a = { id: `${id}:${slug(name)}`, name, key: artistKey(name), performers: performerKeys(name) });
-    return a.id;
+    return a;
   };
   for (const r of rows) {
     if (dropReason(r.artist, r.stage)) continue;
     const day = +r.day, stage = stageId(r.stage);
-    const base = { day, stageId: stage, start: r.start, end: r.end || null };
+    // An untimed day's sets (ACL 2017 W2) carry no start or end at all.
+    const untimed = (ed.untimedDays || []).includes(day);
+    if (untimed && (r.start || r.end)) throw new Error(`${id}: day ${day} is untimed but ${r.artist} carries ${r.start}-${r.end}`);
+    const base = untimed ? { day, stageId: stage, start: null, end: null } : { day, stageId: stage, start: r.start, end: r.end || null };
     if (r.openEnd === "1") base.openEnd = true;
-    sets.push({ id: `${id}:d${day}:${slug(r.stage)}:${r.start.replace(":", "")}:${slug(r.artist)}`, artistId: artistId(r.artist), ...base });
+    const a = artistId(r.artist);
+    sets.push({ id: `${id}:d${day}:${slug(r.stage)}:${untimed ? "untimed" : r.start.replace(":", "")}:${slug(r.artist)}`, artistId: a.id, ...base, ...(a.name !== r.artist && { billing: r.artist }) });
   }
-  const days = ed.dates.map(([date, weekday], i) => ({ day: i + 1, date, label: ed.dayLabels?.[i] || weekday }));
+  const days = ed.dates.map(([date, weekday], i) => ({ day: i + 1, date, label: ed.dayLabels?.[i] || weekday,
+    ...((ed.untimedDays || []).includes(i + 1) && { untimed: true }) }));
   const provenance = {
     extractionMethod: ed.method,
     official: ledger.official,
-    captures: ledger.days.filter(d => !d.blocked).map(d => ed.method === "structured_html"
+    captures: ed.method === "official_sources"
+      ? ledger.days.flatMap(d => d.sources.map(s => s.kind === "page"
+        ? { day: d.day, kind: "page", archivedUrl: s.archivedUrl, captureTimestamp: s.captureTimestamp, printed: s.printed, sha256: s.sha256, rows: s.rows,
+            ...(s.firstSlot && { firstSlot: s.firstSlot }),
+            ...(s.anchor && { meridiemFrom: { archivedUrl: s.anchor.archivedUrl, captureTimestamp: s.anchor.captureTimestamp, printed: s.anchor.printed, sha256: s.anchor.sha256 } }) }
+        : { day: d.day, kind: "graphic", imageUrl: s.imageUrl, foundAt: s.foundAt, published: s.published, rehostedBy: s.rehostedBy,
+            fetchedAt: s.fetchedAt, printed: s.printed, sha256: s.sha256, rows: s.rows, receipt: s.receipt, reviewManifest: `data/historical/review/${id}.json`,
+            ...(s.stagesAs && { stagesAs: s.stagesAs }) }))
+      : ledger.days.filter(d => !d.blocked).map(d => ed.method === "structured_html"
       ? { day: d.day, archivedUrl: d.archivedUrl, captureTimestamp: d.chosen, sha256: d.sha256 }
       : { day: d.day, pageArchivedUrl: d.pageArchivedUrl, pageCapture: d.pageCapture, imageArchivedUrl: d.imageArchivedUrl,
           imageCapture: d.imageCapture, sha256: d.sha256, reviewManifest: `data/historical/review/${id}.json` }),
+    ...(ledger.notUsedGraphics && { notUsedGraphics: ledger.notUsedGraphics }),
+    ...(ledger.cancelledDays && { cancelledDays: ledger.cancelledDays }),
   };
   return {
     id, festivalId: ed.festivalId, name: ed.name, year: ed.year, timezone: ed.timezone, rolloverHour: ed.rolloverHour,
-    completeness: sets.length ? "complete_schedule" : "lineup_only",
+    // An edition whose official schedule had stages we have not imported says
+    // so (coverage.missing, from the registry) instead of claiming every stage.
+    completeness: !sets.length ? "lineup_only" : ed.coverage ? "selected_stages" : "complete_schedule",
+    ...(sets.length && ed.coverage && { coverage: ed.coverage }),
+    // A canceled edition keeps every row it printed and says why it never ran.
+    ...(ed.status && { status: ed.status, canceled: ed.canceled }),
     days, stages, artists, sets, provenance,
+    // Dated notes the schedule needs to be read right (a cancelled day, a
+    // weekend whose times the archive cannot confirm), each with its source.
+    ...(ed.notes && { notes: ed.notes }),
   };
 }
+
+// A lineup sheet (extract-insomniac-lineup.mjs: one row per billing and
+// appearance) → a lineup_only edition. Each artist carries the day and stage
+// its official lineup page printed, where it printed them; there are no sets
+// and no times, because none were archived.
+export function buildLineupEdition(id, rows, ledger) {
+  const ed = EDITIONS[id];
+  const stages = [], artists = [];
+  for (const r of rows) {
+    if (lineupDropReason(r.artist, r.stage)) continue;
+    let a = artists.find(x => x.name === r.artist);
+    if (!a) artists.push(a = { id: `${id}:${slug(r.artist)}`, name: r.artist, key: artistKey(r.artist), performers: performerKeys(r.artist), appearances: [] });
+    let stageId;
+    if (r.stage) {
+      let s = stages.find(x => x.name === r.stage);
+      if (!s) stages.push(s = { id: `${id}:${slug(r.stage)}`, name: r.stage });
+      stageId = s.id;
+    }
+    const day = +r.day || undefined;
+    if (day || stageId) a.appearances.push({ ...(day ? { day } : {}), ...(stageId ? { stageId } : {}) });
+  }
+  // Stages in the order the page's By Stage tab printed them, not the order
+  // their first billing happens to appear in the alphabetical sheet.
+  const order = ledger.stageOrder || [];
+  stages.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
+  return {
+    id, festivalId: ed.festivalId, name: ed.name, year: ed.year, timezone: ed.timezone, rolloverHour: ed.rolloverHour,
+    completeness: "lineup_only",
+    // The page printed no days, so no artist carries one (validate.mjs).
+    ...(ed.undated && { undated: true }),
+    days: ed.dates.map(([date, weekday], i) => ({ day: i + 1, date, label: ed.dayLabels?.[i] || weekday })),
+    stages, artists, sets: [],
+    provenance: { extractionMethod: ed.method, official: ledger.official,
+      captures: [{ page: "lineup", archivedUrl: ledger.archivedUrl, captureTimestamp: ledger.chosen, sha256: ledger.sha256 }] },
+    ...(ed.notes && { notes: ed.notes }),
+  };
+}
+
+// Printed lineup rows the library does not keep, with the reason.
+export const droppedLineupRows = rows => rows.flatMap(r => {
+  const why = lineupDropReason(r.artist, r.stage);
+  return why ? [{ day: +r.day || null, stage: r.stage || null, billing: r.artist, ...why }] : [];
+});
 
 // The library's table of contents: what the Past Festivals list needs to draw
 // every edition row without fetching every edition file. Generated, and
 // --check fails on drift like the editions themselves.
+// An edition that never ran (status "canceled") is not listed: its file and
+// rows are kept as evidence, but nothing the app or the artist registry reads
+// treats it as a festival that happened.
+export const listedEdition = e => e.status !== "canceled";
+
 export function editionIndex(editions) {
   return {
-    editions: editions.map(e => ({
+    editions: editions.filter(listedEdition).map(e => ({
       id: e.id, festivalId: e.festivalId, festivalName: e.name.replace(/\s+\d{4}$/, ""), name: e.name, year: e.year,
       timezone: e.timezone, completeness: e.completeness,
+      ...(e.coverage && { missingStages: e.coverage.missing.map(m => ({ stage: m.stage, when: m.when })) }),
       days: e.days.map(d => ({ day: d.day, date: d.date, label: d.label })),
       counts: { stages: e.stages.length, artists: e.artists.length, sets: e.sets.length },
     })).sort((a, b) => a.festivalName.localeCompare(b.festivalName) || b.year - a.year),
@@ -98,13 +174,14 @@ if (isMain) {
   const built = [];
   mkdirSync(H("editions"), { recursive: true });
   for (const id of Object.keys(EDITIONS)) {
-    const sheet = H(`sheets/${id}.tsv`), led = H(`ledger/${id}.json`);
-    if (!existsSync(sheet) || !existsSync(led)) { console.log(`  · ${id}: no reviewed sheet yet — not emitted`); continue; }
-    const rows = readSheet(sheet), ledger = JSON.parse(readFileSync(led, "utf8"));
-    const edition = buildEdition(id, rows, ledger);
+    const sheet = H(`sheets/${id}.tsv`), lineupSheet = H(`sheets/${id}.lineup.tsv`), led = H(`ledger/${id}.json`);
+    const lineup = !existsSync(sheet) && existsSync(lineupSheet);
+    if ((!existsSync(sheet) && !lineup) || !existsSync(led)) { console.log(`  · ${id}: no reviewed sheet yet — not emitted`); continue; }
+    const rows = readSheet(lineup ? lineupSheet : sheet), ledger = JSON.parse(readFileSync(led, "utf8"));
+    const edition = lineup ? buildLineupEdition(id, rows, ledger) : buildEdition(id, rows, ledger);
     built.push(edition);
     const out = JSON.stringify(edition, null, 1) + "\n";
-    const ledOut = JSON.stringify({ ...ledger, dropped: droppedRows(rows) }, null, 2) + "\n";
+    const ledOut = JSON.stringify({ ...ledger, dropped: lineup ? droppedLineupRows(rows) : droppedRows(rows) }, null, 2) + "\n";
     const file = H(`editions/${id}.json`);
     if (check) {
       const same = existsSync(file) && readFileSync(file, "utf8") === out;

@@ -1,0 +1,121 @@
+{
+  "id": "beyond-wonderland-socal-2012",
+  "method": "structured_html",
+  "official": "http://beyondwonderland.com/BW_2012/lineup.php",
+  "window": [
+    "20120101",
+    "20121231"
+  ],
+  "template": "insomniac lineup.php",
+  "days": [
+    {
+      "day": 1,
+      "url": "http://beyondwonderland.com/BW_2012/lineup.php",
+      "date": "2012-03-17",
+      "chosen": "20120507044105",
+      "archivedUrl": "https://web.archive.org/web/20120507044105/http://beyondwonderland.com/BW_2012/lineup.php",
+      "sha256": "d2dbc95d3c9fdab254dda5194e8ae0b4c517fe085502e893da51e273a5d7ba06",
+      "rows": 46,
+      "stages": {
+        "Queen's Domain": 7,
+        "Madhatter's Castle": 9,
+        "Chess Village": 8,
+        "Caterpillars Garden": 9,
+        "Cheshire Woods": 7,
+        "Wide Awake Art Car": 6
+      }
+    }
+  ],
+  "chosen": "20120507044105",
+  "relayedVia": "firecrawl",
+  "skipped": [],
+  "considered": [
+    {
+      "captureTimestamp": "20120507044105",
+      "archivedUrl": "https://web.archive.org/web/20120507044105/http://beyondwonderland.com/BW_2012/lineup.php",
+      "sha256": "d2dbc95d3c9fdab254dda5194e8ae0b4c517fe085502e893da51e273a5d7ba06",
+      "bytes": 45202,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 46,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20120815054609",
+      "archivedUrl": "https://web.archive.org/web/20120815054609/http://beyondwonderland.com/BW_2012/lineup.php",
+      "sha256": "5b51fe38b0b1a6994a82b123acb4f1f550d00587ffd05deb0652043c0a527c35",
+      "bytes": 45196,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 46,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": [
+        "only in chosen: Armin van Buuren Queen's Domain 00:00-02:00",
+        "only in chosen: Alex Gaudino Madhatter's Castle 19:30-20:30",
+        "only in other: Armin van Buuren Queen's Domain 00:00-02:00",
+        "only in other: Alex Gaudino Madhatter's Castle 19:30-20:30"
+      ]
+    },
+    {
+      "captureTimestamp": "20120829075132",
+      "archivedUrl": "https://web.archive.org/web/20120829075132/http://beyondwonderland.com/BW_2012/lineup.php",
+      "sha256": "fc4fdc8caef3e9f225467d77bbb0c287aa2b2ba832b471cf474089743b31b105",
+      "bytes": 45202,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 46,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": [
+        "only in chosen: Armin van Buuren Queen's Domain 00:00-02:00",
+        "only in chosen: Alex Gaudino Madhatter's Castle 19:30-20:30",
+        "only in chosen: Davey Dave Caterpillars Garden 16:00-16:30",
+        "only in other: Armin van Buuren Queen's Domain 00:00-02:00",
+        "only in other: Alex Gaudino Madhatter's Castle 19:30-20:30",
+        "only in other: David Steven Caterpillars Garden 16:00-16:30"
+      ]
+    },
+    {
+      "captureTimestamp": "20121013135202",
+      "archivedUrl": "https://web.archive.org/web/20121013135202/http://beyondwonderland.com/BW_2012/lineup.php",
+      "sha256": "24aa7a3be74dbd8ae3baa178de2921af45bd53f5163ea4e38516e3eea1488256",
+      "bytes": 45202,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 46,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": [
+        "only in chosen: Armin van Buuren Queen's Domain 00:00-02:00",
+        "only in chosen: Alex Gaudino Madhatter's Castle 19:30-20:30",
+        "only in chosen: Davey Dave Caterpillars Garden 16:00-16:30",
+        "only in other: Armin van Buuren Queen's Domain 00:00-02:00",
+        "only in other: Alex Gaudino Madhatter's Castle 19:30-20:30",
+        "only in other: David Steven Caterpillars Garden 16:00-16:30"
+      ]
+    },
+    {
+      "captureTimestamp": "20121029110157",
+      "archivedUrl": "https://web.archive.org/web/20121029110157/http://beyondwonderland.com/BW_2012/lineup.php",
+      "sha256": "0f20df68ab88a4f5460e2dfe0311b1a0d5ef5f8930b938617cc3a5458da548b6",
+      "bytes": 45202,
+      "via": "firecrawl",
+      "valid": true,
+      "rows": 46,
+      "problems": [],
+      "skipped": [],
+      "diffVsChosen": [
+        "only in chosen: Armin van Buuren Queen's Domain 00:00-02:00",
+        "only in chosen: Alex Gaudino Madhatter's Castle 19:30-20:30",
+        "only in chosen: Davey Dave Caterpillars Garden 16:00-16:30",
+        "only in other: Armin van Buuren Queen's Domain 00:00-02:00",
+        "only in other: Alex Gaudino Madhatter's Castle 19:30-20:30",
+        "only in other: DAVID STEVEN Caterpillars Garden 16:00-16:30"
+      ]
+    }
+  ],
+  "dropped": []
+}

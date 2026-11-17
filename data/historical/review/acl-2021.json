@@ -1,0 +1,130 @@
+{
+ "id": "acl-2021",
+ "days": [
+  {
+   "day": 1,
+   "date": "2021-10-01",
+   "sha256": "a0963712c65e4c45d19f87979b83a31338c877f384dd3aee6aa567f43e6bb5ac",
+   "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/615764972b0e44793fed1430_ACL21-Grid-v14_FRI.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20211121042224/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/615764972b0e44793fed1430_ACL21-Grid-v14_FRI.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:54:09.143Z",
+   "rowsConfirmed": 23,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL, WEEKEND ONE FRIDAY OCT 1, 2021. Printed hour axis 3 PM to 10 PM; every start reads its meridiem off that axis. BONUS TRACKS is a grid column (dropped by rule); SILENT DISCO prints POWERED BY QUIET EVENTS (dropped by rule). No Kiddie Limits stage is printed. Stages printed HONDA, MILLER LITE, BMI, VRBO, TITO'S HANDMADE VODKA, BONUS TRACKS, T-MOBILE, LADY BIRD. The final v14 grid starts at 3 PM; the earlier v10 grid's pre-3 PM slots are not on it and are not transcribed (revisions in the ledger).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 24,
+   "corrections": [],
+   "ocrMissed": [],
+   "ocrExtra": [
+    "BONUS TRACKS  SCHEDULE SUBJECT TO CHANGE WITHOUT NOTICE. CHECK WEBSITE FOR THE LATEST.  ⚠ no time line"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2021-10-02",
+   "sha256": "d47d56cf2e470032c8a5b9b2735dd7413006e4ed50f9ccac6079401867547cdc",
+   "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6155ec2c88365ea1d8ee2f25_ACL21-Grid-v10_SAT.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20211014212939/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6155ec2c88365ea1d8ee2f25_ACL21-Grid-v10_SAT.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:54:09.144Z",
+   "rowsConfirmed": 39,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL, WEEKEND ONE SATURDAY OCT 2, 2021. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis. BONUS TRACKS is a grid column (dropped by rule); SILENT DISCO prints POWERED BY QUIET EVENTS (dropped by rule). No Kiddie Limits stage is printed. Stages printed HONDA, MILLER LITE, BMI, VRBO, TITO'S HANDMADE VODKA, BONUS TRACKS, T-MOBILE, LADY BIRD.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 40,
+   "corrections": [
+    "SILENT DISCO POWERED BY QUIET EVENTS: artist \"SILENT DISCO QUIET EVENTS\" → \"SILENT DISCO POWERED BY QUIET EVENTS\""
+   ],
+   "ocrMissed": [],
+   "ocrExtra": [
+    "BONUS TRACKS  SCHEDULE SUBJECT TO CHANGE WITHOUT NOTICE. CHECK WEBSITE FOR THE LATEST.  ⚠ no time line"
+   ]
+  },
+  {
+   "day": 3,
+   "date": "2021-10-03",
+   "sha256": "8e90a982a932da118be7ec0655748724a0fa99bd65cdf6e52ea9d348bd595fa0",
+   "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6159e220dfb1674848db4335_ACL21-Grid-v16_SUN.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20211118191839/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6159e220dfb1674848db4335_ACL21-Grid-v16_SUN.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:54:09.145Z",
+   "rowsConfirmed": 39,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL, WEEKEND ONE SUNDAY OCT 3, 2021. Printed hour axis 11:30 AM to 10 PM; every start reads its meridiem off that axis. BONUS TRACKS is a grid column (dropped by rule); SILENT DISCO prints POWERED BY QUIET EVENTS (dropped by rule). No Kiddie Limits stage is printed. Stages printed HONDA, MILLER LITE, BMI, VRBO, TITO'S HANDMADE VODKA, BONUS TRACKS, T-MOBILE, LADY BIRD. SHIELDS OF FAITH 11:45 - 12:30 prints above the 12 PM line: AM.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 40,
+   "corrections": [
+    "KAROL G: artist \"KAROLG\" → \"KAROL G\"",
+    "KUTX STUDIOS: TACOS OF TEXAS: artist \"KUTX STUDIUS: TACOS OF TEXAS\" → \"KUTX STUDIOS: TACOS OF TEXAS\""
+   ],
+   "ocrMissed": [],
+   "ocrExtra": [
+    "BONUS TRACKS  SCHEDULE SUBJECT TO CHANGE WITHOUT NOTICE. CHECK WEBSITE FOR THE LATEST.  ⚠ no time line"
+   ]
+  },
+  {
+   "day": 4,
+   "date": "2021-10-08",
+   "sha256": "e3051c65d07b3fa89bcaa59a44c1094415f051730a66212808211d22c400501b",
+   "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6160ba001fdfd51e0d037f31_ACL21-Grid-v19_FRI_2%20(1).png",
+   "imageArchivedUrl": "https://web.archive.org/web/20211122152402/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6160ba001fdfd51e0d037f31_ACL21-Grid-v19_FRI_2%20(1).png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:54:09.146Z",
+   "rowsConfirmed": 33,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL, WEEKEND TWO FRIDAY OCT 8, 2021. Printed hour axis 12:30 PM to 10 PM; every start reads its meridiem off that axis. BONUS TRACKS is a grid column (dropped by rule); SILENT DISCO prints POWERED BY QUIET EVENTS (dropped by rule). No Kiddie Limits stage is printed. Stages printed HONDA, MILLER LITE, BMI, VRBO, TITO'S HANDMADE VODKA, BONUS TRACKS, T-MOBILE, LADY BIRD.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 35,
+   "corrections": [
+    "DAYDREAM MASI: artist \"JAYDREAM MASI\" → \"DAYDREAM MASI\"",
+    "Q: artist \"\" → \"Q\"",
+    "JON PARDI: artist \"JUN PARDI\" → \"JON PARDI\""
+   ],
+   "ocrMissed": [],
+   "ocrExtra": [
+    "HONDA  16g  ⚠ no time line",
+    "BONUS TRACKS  SCHEDULE SUBJECT TO CHANGE WITHOUT NOTICE. CHECK WEBSITE FOR THE LATEST.  ⚠ no time line"
+   ]
+  },
+  {
+   "day": 5,
+   "date": "2021-10-09",
+   "sha256": "ed9a8b498ed5b542be628538195c2999b16e0d802d4efc8d2fbe305f4c441091",
+   "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6160ba258e80ec2a37c287ff_ACL21-Grid-v19_SAT_2.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20211122153417/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/6160ba258e80ec2a37c287ff_ACL21-Grid-v19_SAT_2.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:54:09.146Z",
+   "rowsConfirmed": 39,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL, WEEKEND TWO SATURDAY OCT 9, 2021. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis. BONUS TRACKS is a grid column (dropped by rule); SILENT DISCO prints POWERED BY QUIET EVENTS (dropped by rule). No Kiddie Limits stage is printed. Stages printed HONDA, MILLER LITE, BMI, VRBO, TITO'S HANDMADE VODKA, BONUS TRACKS, T-MOBILE, LADY BIRD.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 40,
+   "corrections": [
+    "GIGI: artist \"GIG\" → \"GIGI\"",
+    "SILENT DISCO POWERED BY QUIET EVENTS: artist \"SILENT DISCO OWERED B' UIET EVENT!\" → \"SILENT DISCO POWERED BY QUIET EVENTS\"",
+    "UNLOCKING US: BRENÉ BROWN & BRETT GOLDSTEIN: artist \"UNLOCKING US: BRENE BROWN & BRETT GOLDSTEIN\" → \"UNLOCKING US: BRENÉ BROWN & BRETT GOLDSTEIN\"",
+    "DOJA CAT: artist \"16g DOJA CAT\" → \"DOJA CAT\""
+   ],
+   "ocrMissed": [],
+   "ocrExtra": [
+    "BONUS TRACKS  SCHEDULE SUBJECT TO CHANGE WITHOUT NOTICE. CHECK WEBSITE FOR THE LATEST.  ⚠ no time line"
+   ]
+  },
+  {
+   "day": 6,
+   "date": "2021-10-10",
+   "sha256": "a36470ee4852c8549ab9bbc36ffe6ec55600107586a026c6ca459f31602b202b",
+   "originalUrl": "https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/615e0dbfdd6b30b267dec37d_ACL21-Grid-v19_SUN_2.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20211123025206/https://assets-global.website-files.com/5e95186935fca0cc17c65a7b/615e0dbfdd6b30b267dec37d_ACL21-Grid-v19_SUN_2.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:54:09.146Z",
+   "rowsConfirmed": 38,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL, WEEKEND TWO SUNDAY OCT 10, 2021. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis. BONUS TRACKS is a grid column (dropped by rule); SILENT DISCO prints POWERED BY QUIET EVENTS (dropped by rule). No Kiddie Limits stage is printed. Stages printed HONDA, MILLER LITE, BMI, VRBO, TITO'S HANDMADE VODKA, BONUS TRACKS, T-MOBILE, LADY BIRD.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 39,
+   "corrections": [
+    "KAROL G: artist \"KAROLG\" → \"KAROL G\""
+   ],
+   "ocrMissed": [],
+   "ocrExtra": [
+    "BONUS TRACKS  SCHEDULE SUBJECT TO CHANGE WITHOUT NOTICE. CHECK WEBSITE FOR THE LATEST.  ⚠ no time line"
+   ]
+  }
+ ]
+}

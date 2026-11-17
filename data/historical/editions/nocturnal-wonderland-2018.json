@@ -1,0 +1,1088 @@
+{
+ "id": "nocturnal-wonderland-2018",
+ "festivalId": "nocturnal-wonderland",
+ "name": "Nocturnal Wonderland 2018",
+ "year": 2018,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2018-09-14",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2018-09-15",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "nocturnal-wonderland-2018:wolves-den",
+   "name": "WOLVES' DEN"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:labyrinth",
+   "name": "LABYRINTH"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:sunken-garden",
+   "name": "SUNKEN GARDEN"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:boombox-art-car",
+   "name": "BOOMBOX ART CAR"
+  }
+ ],
+ "artists": [
+  {
+   "id": "nocturnal-wonderland-2018:kayoh",
+   "name": "KAYOH",
+   "key": "kayoh",
+   "performers": [
+    "kayoh"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:bijou",
+   "name": "BIJOU",
+   "key": "bijou",
+   "performers": [
+    "bijou"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:slumberjack",
+   "name": "SLUMBERJACK",
+   "key": "slumberjack",
+   "performers": [
+    "slumberjack"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:habstrakt",
+   "name": "HABSTRAKT",
+   "key": "habstrakt",
+   "performers": [
+    "habstrakt"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:4b",
+   "name": "4B",
+   "key": "4b",
+   "performers": [
+    "4b"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:jai-wolf",
+   "name": "JAI WOLF",
+   "key": "jai-wolf",
+   "performers": [
+    "jai-wolf"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:illenium",
+   "name": "ILLENIUM",
+   "key": "illenium",
+   "performers": [
+    "illenium"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:fallen",
+   "name": "FALLEN",
+   "key": "fallen",
+   "performers": [
+    "fallen"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:dack-janiels",
+   "name": "DACK JANIELS",
+   "key": "dack-janiels",
+   "performers": [
+    "dack-janiels"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:dirt-monkey",
+   "name": "DIRT MONKEY",
+   "key": "dirt-monkey",
+   "performers": [
+    "dirt-monkey"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:danny-byrd",
+   "name": "DANNY BYRD",
+   "key": "danny-byrd",
+   "performers": [
+    "danny-byrd"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:tisoki",
+   "name": "TISOKI",
+   "key": "tisoki",
+   "performers": [
+    "tisoki"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:eprom",
+   "name": "EPROM",
+   "key": "eprom",
+   "performers": [
+    "eprom"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:netsky-dj-set",
+   "name": "NETSKY (DJ SET)",
+   "key": "netsky-dj-set",
+   "performers": [
+    "netsky-dj-set"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:liquid-stranger",
+   "name": "LIQUID STRANGER",
+   "key": "liquid-stranger",
+   "performers": [
+    "liquid-stranger"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:flux-pavilion",
+   "name": "FLUX PAVILION",
+   "key": "flux-pavilion",
+   "performers": [
+    "flux-pavilion"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:sebastian-ghouls",
+   "name": "SEBASTIAN GHOULS",
+   "key": "sebastian-ghouls",
+   "performers": [
+    "sebastian-ghouls"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:dela-moontribe",
+   "name": "DELA MOONTRIBE",
+   "key": "dela-moontribe",
+   "performers": [
+    "dela-moontribe"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:brennen-grey",
+   "name": "BRENNEN GREY",
+   "key": "brennen-grey",
+   "performers": [
+    "brennen-grey"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:oona-dahl",
+   "name": "ÖONA DAHL",
+   "key": "oona-dahl",
+   "performers": [
+    "oona-dahl"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:jonas-rathsman",
+   "name": "JONAS RATHSMAN",
+   "key": "jonas-rathsman",
+   "performers": [
+    "jonas-rathsman"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:cristoph",
+   "name": "CRISTOPH",
+   "key": "cristoph",
+   "performers": [
+    "cristoph"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:eli-and-fur",
+   "name": "ELI & FUR",
+   "key": "eli-and-fur",
+   "performers": [
+    "eli-and-fur"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:nora-en-pure",
+   "name": "NORA EN PURE",
+   "key": "nora-en-pure",
+   "performers": [
+    "nora-en-pure"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:alex-brutus",
+   "name": "ALEX BRUTUS",
+   "key": "alex-brutus",
+   "performers": [
+    "alex-brutus"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:j-splat-b2b-daemia",
+   "name": "J. SPLAT B2B DAEMIA",
+   "key": "j-splat-b2b-daemia",
+   "performers": [
+    "j-splat",
+    "daemia"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:scooby",
+   "name": "SCOOBY",
+   "key": "scooby",
+   "performers": [
+    "scooby"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:trademark",
+   "name": "TRADEMARK",
+   "key": "trademark",
+   "performers": [
+    "trademark"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:oscar-da-grouch",
+   "name": "OSCAR DA GROUCH",
+   "key": "oscar-da-grouch",
+   "performers": [
+    "oscar-da-grouch"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:fester",
+   "name": "FESTER",
+   "key": "fester",
+   "performers": [
+    "fester"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:maximus-c",
+   "name": "MAXIMUS C",
+   "key": "maximus-c",
+   "performers": [
+    "maximus-c"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:convex",
+   "name": "CONVEX",
+   "key": "convex",
+   "performers": [
+    "convex"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:prxzm",
+   "name": "PRXZM",
+   "key": "prxzm",
+   "performers": [
+    "prxzm"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:blackgummy",
+   "name": "BLACKGUMMY",
+   "key": "blackgummy",
+   "performers": [
+    "blackgummy"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:ac-slater",
+   "name": "AC SLATER",
+   "key": "ac-slater",
+   "performers": [
+    "ac-slater"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:audien",
+   "name": "AUDIEN",
+   "key": "audien",
+   "performers": [
+    "audien"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:boombox-cartel",
+   "name": "BOOMBOX CARTEL",
+   "key": "boombox-cartel",
+   "performers": [
+    "boombox-cartel"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:slushii",
+   "name": "SLUSHII",
+   "key": "slushii",
+   "performers": [
+    "slushii"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:deorro",
+   "name": "DEORRO",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:swage",
+   "name": "SWAGE",
+   "key": "swage",
+   "performers": [
+    "swage"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:wavedash",
+   "name": "WAVEDASH",
+   "key": "wavedash",
+   "performers": [
+    "wavedash"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:riot-ten",
+   "name": "RIOT TEN",
+   "key": "riot-ten",
+   "performers": [
+    "riot-ten"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:space-jesus",
+   "name": "SPACE JESUS",
+   "key": "space-jesus",
+   "performers": [
+    "space-jesus"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:said-the-sky",
+   "name": "SAID THE SKY",
+   "key": "said-the-sky",
+   "performers": [
+    "said-the-sky"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:kill-the-noise",
+   "name": "KILL THE NOISE",
+   "key": "kill-the-noise",
+   "performers": [
+    "kill-the-noise"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:nghtmre-and-slander-present-gud-vibrations",
+   "name": "NGHTMRE & SLANDER PRESENT: GUD VIBRATIONS",
+   "key": "nghtmre-and-slander-present-gud-vibrations",
+   "performers": [
+    "nghtmre-and-slander-present-gud-vibrations"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:morelia",
+   "name": "MORELIA",
+   "key": "morelia",
+   "performers": [
+    "morelia"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:dateless",
+   "name": "DATELESS",
+   "key": "dateless",
+   "performers": [
+    "dateless"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:waze-and-odyssey",
+   "name": "WAZE & ODYSSEY",
+   "key": "waze-and-odyssey",
+   "performers": [
+    "waze-and-odyssey"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:mikey-lion-b2b-lee-reynolds",
+   "name": "MIKEY LION B2B LEE REYNOLDS",
+   "key": "mikey-lion-b2b-lee-reynolds",
+   "performers": [
+    "mikey-lion",
+    "lee-reynolds"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:josh-butler-b2b-huxley",
+   "name": "JOSH BUTLER B2B HUXLEY",
+   "key": "josh-butler-b2b-huxley",
+   "performers": [
+    "josh-butler",
+    "huxley"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:skream",
+   "name": "SKREAM",
+   "key": "skream",
+   "performers": [
+    "skream"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:lee-foss",
+   "name": "LEE FOSS",
+   "key": "lee-foss",
+   "performers": [
+    "lee-foss"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:mk",
+   "name": "MK",
+   "key": "mk",
+   "performers": [
+    "mk"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:subcoder",
+   "name": "SUBCODER",
+   "key": "subcoder",
+   "performers": [
+    "subcoder"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:thee-o",
+   "name": "THEE-O",
+   "key": "thee-o",
+   "performers": [
+    "thee-o"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:simfonik",
+   "name": "SIMFONIK",
+   "key": "simfonik",
+   "performers": [
+    "simfonik"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:crs",
+   "name": "CRS?",
+   "key": "crs",
+   "performers": [
+    "crs"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:apx1",
+   "name": "APX1",
+   "key": "apx1",
+   "performers": [
+    "apx1"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:dj-construct",
+   "name": "DJ CONSTRUCT",
+   "key": "dj-construct",
+   "performers": [
+    "dj-construct"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2018:oscure",
+   "name": "OSCURE",
+   "key": "oscure",
+   "performers": [
+    "oscure"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "nocturnal-wonderland-2018:d1:wolves-den:1700:kayoh",
+   "artistId": "nocturnal-wonderland-2018:kayoh",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "17:00",
+   "end": "18:05"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:wolves-den:1805:bijou",
+   "artistId": "nocturnal-wonderland-2018:bijou",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "18:05",
+   "end": "19:05"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:wolves-den:1905:slumberjack",
+   "artistId": "nocturnal-wonderland-2018:slumberjack",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "19:05",
+   "end": "20:05"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:wolves-den:2005:armnhmr",
+   "artistId": "nocturnal-wonderland-2018:armnhmr",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "20:05",
+   "end": "21:05"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:wolves-den:2105:habstrakt",
+   "artistId": "nocturnal-wonderland-2018:habstrakt",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "21:05",
+   "end": "22:05"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:wolves-den:2205:4b",
+   "artistId": "nocturnal-wonderland-2018:4b",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "22:05",
+   "end": "23:05"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:wolves-den:2310:jai-wolf",
+   "artistId": "nocturnal-wonderland-2018:jai-wolf",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "23:10",
+   "end": "00:10"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:wolves-den:0030:illenium",
+   "artistId": "nocturnal-wonderland-2018:illenium",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:labyrinth:1700:fallen",
+   "artistId": "nocturnal-wonderland-2018:fallen",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:labyrinth:1800:dack-janiels",
+   "artistId": "nocturnal-wonderland-2018:dack-janiels",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:labyrinth:1900:dirt-monkey",
+   "artistId": "nocturnal-wonderland-2018:dirt-monkey",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:labyrinth:2000:danny-byrd",
+   "artistId": "nocturnal-wonderland-2018:danny-byrd",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:labyrinth:2100:tisoki",
+   "artistId": "nocturnal-wonderland-2018:tisoki",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:labyrinth:2200:eprom",
+   "artistId": "nocturnal-wonderland-2018:eprom",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:labyrinth:2300:netsky-dj-set",
+   "artistId": "nocturnal-wonderland-2018:netsky-dj-set",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:labyrinth:0000:liquid-stranger",
+   "artistId": "nocturnal-wonderland-2018:liquid-stranger",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:labyrinth:0100:flux-pavilion",
+   "artistId": "nocturnal-wonderland-2018:flux-pavilion",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:sunken-garden:1700:sebastian-ghouls",
+   "artistId": "nocturnal-wonderland-2018:sebastian-ghouls",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:sunken-garden:1800:dela-moontribe",
+   "artistId": "nocturnal-wonderland-2018:dela-moontribe",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:sunken-garden:1900:brennen-grey",
+   "artistId": "nocturnal-wonderland-2018:brennen-grey",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:sunken-garden:2000:oona-dahl",
+   "artistId": "nocturnal-wonderland-2018:oona-dahl",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:sunken-garden:2100:jonas-rathsman",
+   "artistId": "nocturnal-wonderland-2018:jonas-rathsman",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:sunken-garden:2215:cristoph",
+   "artistId": "nocturnal-wonderland-2018:cristoph",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:sunken-garden:2330:eli-and-fur",
+   "artistId": "nocturnal-wonderland-2018:eli-and-fur",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:sunken-garden:0045:nora-en-pure",
+   "artistId": "nocturnal-wonderland-2018:nora-en-pure",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:boombox-art-car:1800:alex-brutus",
+   "artistId": "nocturnal-wonderland-2018:alex-brutus",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:boombox-art-car:1930:j-splat-b2b-daemia",
+   "artistId": "nocturnal-wonderland-2018:j-splat-b2b-daemia",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:boombox-art-car:2030:scooby",
+   "artistId": "nocturnal-wonderland-2018:scooby",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:boombox-art-car:2130:trademark",
+   "artistId": "nocturnal-wonderland-2018:trademark",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:boombox-art-car:2230:oscar-da-grouch",
+   "artistId": "nocturnal-wonderland-2018:oscar-da-grouch",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:boombox-art-car:0000:fester",
+   "artistId": "nocturnal-wonderland-2018:fester",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d1:boombox-art-car:0100:maximus-c",
+   "artistId": "nocturnal-wonderland-2018:maximus-c",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:wolves-den:1700:convex",
+   "artistId": "nocturnal-wonderland-2018:convex",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:wolves-den:1800:prxzm",
+   "artistId": "nocturnal-wonderland-2018:prxzm",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:wolves-den:1900:blackgummy",
+   "artistId": "nocturnal-wonderland-2018:blackgummy",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:wolves-den:2000:ac-slater",
+   "artistId": "nocturnal-wonderland-2018:ac-slater",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:wolves-den:2100:audien",
+   "artistId": "nocturnal-wonderland-2018:audien",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:wolves-den:2215:boombox-cartel",
+   "artistId": "nocturnal-wonderland-2018:boombox-cartel",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:wolves-den:2330:slushii",
+   "artistId": "nocturnal-wonderland-2018:slushii",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:wolves-den:0045:deorro",
+   "artistId": "nocturnal-wonderland-2018:deorro",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:wolves-den",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:labyrinth:1700:swage",
+   "artistId": "nocturnal-wonderland-2018:swage",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "17:00",
+   "end": "18:10"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:labyrinth:1810:wavedash",
+   "artistId": "nocturnal-wonderland-2018:wavedash",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "18:10",
+   "end": "19:10"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:labyrinth:1910:riot-ten",
+   "artistId": "nocturnal-wonderland-2018:riot-ten",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "19:10",
+   "end": "20:10"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:labyrinth:2010:space-jesus",
+   "artistId": "nocturnal-wonderland-2018:space-jesus",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "20:10",
+   "end": "21:10"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:labyrinth:2110:said-the-sky",
+   "artistId": "nocturnal-wonderland-2018:said-the-sky",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "21:10",
+   "end": "22:10"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:labyrinth:2210:kill-the-noise",
+   "artistId": "nocturnal-wonderland-2018:kill-the-noise",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "22:10",
+   "end": "23:10"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:labyrinth:2330:nghtmre-and-slander-present-gud-vibrations",
+   "artistId": "nocturnal-wonderland-2018:nghtmre-and-slander-present-gud-vibrations",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:labyrinth",
+   "start": "23:30",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:sunken-garden:1700:morelia",
+   "artistId": "nocturnal-wonderland-2018:morelia",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:sunken-garden:1800:dateless",
+   "artistId": "nocturnal-wonderland-2018:dateless",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:sunken-garden:1915:waze-and-odyssey",
+   "artistId": "nocturnal-wonderland-2018:waze-and-odyssey",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:sunken-garden:2030:mikey-lion-b2b-lee-reynolds",
+   "artistId": "nocturnal-wonderland-2018:mikey-lion-b2b-lee-reynolds",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:sunken-garden:2145:josh-butler-b2b-huxley",
+   "artistId": "nocturnal-wonderland-2018:josh-butler-b2b-huxley",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:sunken-garden:2300:skream",
+   "artistId": "nocturnal-wonderland-2018:skream",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:sunken-garden:0000:lee-foss",
+   "artistId": "nocturnal-wonderland-2018:lee-foss",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:sunken-garden:0100:mk",
+   "artistId": "nocturnal-wonderland-2018:mk",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:sunken-garden",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:boombox-art-car:1800:subcoder",
+   "artistId": "nocturnal-wonderland-2018:subcoder",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:boombox-art-car:1930:thee-o",
+   "artistId": "nocturnal-wonderland-2018:thee-o",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:boombox-art-car:2030:simfonik",
+   "artistId": "nocturnal-wonderland-2018:simfonik",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:boombox-art-car:2130:crs",
+   "artistId": "nocturnal-wonderland-2018:crs",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:boombox-art-car:2230:apx1",
+   "artistId": "nocturnal-wonderland-2018:apx1",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:boombox-art-car:2330:dj-construct",
+   "artistId": "nocturnal-wonderland-2018:dj-construct",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "23:30",
+   "end": "00:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2018:d2:boombox-art-car:0030:oscure",
+   "artistId": "nocturnal-wonderland-2018:oscure",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2018:boombox-art-car",
+   "start": "00:30",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.nocturnalwonderland.com/lineup/set-times/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times.jpg",
+    "foundAt": "https://edmidentity.com/2018/09/10/nocturnal-wonderland-2018-essentials/",
+    "published": "2018-09-10",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "FRIDAY (SEPTEMBER 14 • 15, 2018)",
+    "sha256": "5895cb0b1a498b872be96b7e58dd4e4c5c04d87c88fe693ad21d1668e606316f",
+    "rows": 32,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20190723175625/https://edmidentity.com/2018/09/10/nocturnal-wonderland-2018-essentials/",
+     "captureTimestamp": "20190723175625",
+     "sha256": "68477a769e5df023f3e559106e67a11736f5c92e514db78ca14b1f6e2a1ba2a2",
+     "cites": "wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times",
+     "setTimesGraphics": [
+      "wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times"
+     ]
+    },
+    "reviewManifest": "data/historical/review/nocturnal-wonderland-2018.json"
+   },
+   {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times.jpg",
+    "foundAt": "https://edmidentity.com/2018/09/10/nocturnal-wonderland-2018-essentials/",
+    "published": "2018-09-10",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "SATURDAY (SEPTEMBER 14 • 15, 2018)",
+    "sha256": "5895cb0b1a498b872be96b7e58dd4e4c5c04d87c88fe693ad21d1668e606316f",
+    "rows": 30,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20190723175625/https://edmidentity.com/2018/09/10/nocturnal-wonderland-2018-essentials/",
+     "captureTimestamp": "20190723175625",
+     "sha256": "68477a769e5df023f3e559106e67a11736f5c92e514db78ca14b1f6e2a1ba2a2",
+     "cites": "wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times",
+     "setTimesGraphics": [
+      "wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times"
+     ]
+    },
+    "reviewManifest": "data/historical/review/nocturnal-wonderland-2018.json"
+   }
+  ]
+ }
+}

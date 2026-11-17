@@ -1,0 +1,1153 @@
+{
+ "id": "governors-ball-2017",
+ "festivalId": "governors-ball",
+ "name": "Governors Ball 2017",
+ "year": 2017,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-06-02",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2017-06-03",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2017-06-04",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "governors-ball-2017:gov-ball-nyc",
+   "name": "Gov Ball NYC"
+  },
+  {
+   "id": "governors-ball-2017:honda",
+   "name": "Honda"
+  },
+  {
+   "id": "governors-ball-2017:big-apple",
+   "name": "Big Apple"
+  },
+  {
+   "id": "governors-ball-2017:bacardi",
+   "name": "Bacardi"
+  }
+ ],
+ "artists": [
+  {
+   "id": "governors-ball-2017:tkay-maidza",
+   "name": "Tkay Maidza",
+   "key": "tkay-maidza",
+   "performers": [
+    "tkay-maidza"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:muna",
+   "name": "MUNA",
+   "key": "muna",
+   "performers": [
+    "muna"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:kehlani",
+   "name": "Kehlani",
+   "key": "kehlani",
+   "performers": [
+    "kehlani"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:bleachers",
+   "name": "Bleachers",
+   "key": "bleachers",
+   "performers": [
+    "bleachers"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:special-guest-nancy-whang-dj-set",
+   "name": "Special Guest Nancy Whang DJ Set",
+   "key": "special-guest-nancy-whang-dj-set",
+   "performers": [
+    "special-guest-nancy-whang-dj-set"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:lorde",
+   "name": "Lorde",
+   "key": "lorde",
+   "performers": [
+    "lorde"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:chance-the-rapper",
+   "name": "Chance The Rapper",
+   "key": "chance-the-rapper",
+   "performers": [
+    "chance-the-rapper"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:jenaux",
+   "name": "Jenaux",
+   "key": "jenaux",
+   "performers": [
+    "jenaux"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:blossoms",
+   "name": "Blossoms",
+   "key": "blossoms",
+   "performers": [
+    "blossoms"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:the-strumbellas",
+   "name": "The Strumbellas",
+   "key": "the-strumbellas",
+   "performers": [
+    "the-strumbellas"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:tove-lo",
+   "name": "Tove Lo",
+   "key": "tove-lo",
+   "performers": [
+    "tove-lo"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:schoolboy-q",
+   "name": "ScHoolboy Q",
+   "key": "schoolboy-q",
+   "performers": [
+    "schoolboy-q"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:flume",
+   "name": "Flume",
+   "key": "flume",
+   "performers": [
+    "flume"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:roosevelt",
+   "name": "Roosevelt",
+   "key": "roosevelt",
+   "performers": [
+    "roosevelt"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:judah-and-the-lion",
+   "name": "Judah & the Lion",
+   "key": "judah-and-the-lion",
+   "performers": [
+    "judah-and-the-lion"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:charli-xcx",
+   "name": "Charli XCX",
+   "key": "charli-xcx",
+   "performers": [
+    "charli-xcx"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:michael-kiwanuka",
+   "name": "Michael Kiwanuka",
+   "key": "michael-kiwanuka",
+   "performers": [
+    "michael-kiwanuka"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:beach-house",
+   "name": "Beach House",
+   "key": "beach-house",
+   "performers": [
+    "beach-house"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:michael-blume",
+   "name": "Michael Blume",
+   "key": "michael-blume",
+   "performers": [
+    "michael-blume"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:francis-and-the-lights",
+   "name": "Francis and the Lights",
+   "key": "francis-and-the-lights",
+   "performers": [
+    "francis-and-the-lights"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:charles-bradley-and-his-extraordinaires",
+   "name": "Charles Bradley & His Extraordinaires",
+   "key": "charles-bradley-and-his-extraordinaires",
+   "performers": [
+    "charles-bradley-and-his-extraordinaires"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:danny-brown",
+   "name": "Danny Brown",
+   "key": "danny-brown",
+   "performers": [
+    "danny-brown"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:majid-jordan",
+   "name": "Majid Jordan",
+   "key": "majid-jordan",
+   "performers": [
+    "majid-jordan"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:vant",
+   "name": "VANT",
+   "key": "vant",
+   "performers": [
+    "vant"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:dua-lipa",
+   "name": "Dua Lipa",
+   "key": "dua-lipa",
+   "performers": [
+    "dua-lipa"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:saint-motel",
+   "name": "Saint Motel",
+   "key": "saint-motel",
+   "performers": [
+    "saint-motel"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:the-head-and-the-heart",
+   "name": "The Head and The Heart",
+   "key": "the-head-and-the-heart",
+   "performers": [
+    "the-head-and-the-heart"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:wu-tang-clan",
+   "name": "Wu-Tang Clan",
+   "key": "wu-tang-clan",
+   "performers": [
+    "wu-tang-clan"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:phoenix",
+   "name": "Phoenix",
+   "key": "phoenix",
+   "performers": [
+    "phoenix"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:jessie-reyez",
+   "name": "Jessie Reyez",
+   "key": "jessie-reyez",
+   "performers": [
+    "jessie-reyez"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:a-r-i-z-o-n-a",
+   "name": "A R I Z O N A",
+   "key": "a-r-i-z-o-n-a",
+   "performers": [
+    "a-r-i-z-o-n-a"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:stormzy",
+   "name": "Stormzy",
+   "key": "stormzy",
+   "performers": [
+    "stormzy"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:a-ap-ferg",
+   "name": "A$AP Ferg",
+   "key": "a-ap-ferg",
+   "performers": [
+    "a-ap-ferg"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:marshmello",
+   "name": "Marshmello",
+   "key": "marshmello",
+   "performers": [
+    "marshmello"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:childish-gambino",
+   "name": "Childish Gambino",
+   "key": "childish-gambino",
+   "performers": [
+    "childish-gambino"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:welles",
+   "name": "Welles",
+   "key": "welles",
+   "performers": [
+    "welles"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:car-seat-headrest",
+   "name": "Car Seat Headrest",
+   "key": "car-seat-headrest",
+   "performers": [
+    "car-seat-headrest"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:yg",
+   "name": "YG",
+   "key": "yg",
+   "performers": [
+    "yg"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:local-natives",
+   "name": "Local Natives",
+   "key": "local-natives",
+   "performers": [
+    "local-natives"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:mark-ronson-vs-kevin-parker",
+   "name": "Mark Ronson vs Kevin Parker",
+   "key": "mark-ronson-vs-kevin-parker",
+   "performers": [
+    "mark-ronson-vs-kevin-parker"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:lo-moon",
+   "name": "Lo Moon",
+   "key": "lo-moon",
+   "performers": [
+    "lo-moon"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:the-range",
+   "name": "The Range",
+   "key": "the-range",
+   "performers": [
+    "the-range"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:rae-sremmurd",
+   "name": "Rae Sremmurd",
+   "key": "rae-sremmurd",
+   "performers": [
+    "rae-sremmurd"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:rufus-du-sol",
+   "name": "RÜFÜS DU SOL",
+   "key": "rufus-du-sol",
+   "performers": [
+    "rufus-du-sol"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:banks",
+   "name": "BANKS",
+   "key": "banks",
+   "performers": [
+    "banks"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:ron-gallo",
+   "name": "Ron Gallo",
+   "key": "ron-gallo",
+   "performers": [
+    "ron-gallo"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:the-orwells",
+   "name": "The Orwells",
+   "key": "the-orwells",
+   "performers": [
+    "the-orwells"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:parquet-courts",
+   "name": "Parquet Courts",
+   "key": "parquet-courts",
+   "performers": [
+    "parquet-courts"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:royal-blood",
+   "name": "Royal Blood",
+   "key": "royal-blood",
+   "performers": [
+    "royal-blood"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:cage-the-elephant",
+   "name": "Cage The Elephant",
+   "key": "cage-the-elephant",
+   "performers": [
+    "cage-the-elephant"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:tool",
+   "name": "Tool",
+   "key": "tool",
+   "performers": [
+    "tool"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:barns-courtney",
+   "name": "Barns Courtney",
+   "key": "barns-courtney",
+   "performers": [
+    "barns-courtney"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:saint-jhn",
+   "name": "SAINt JHN",
+   "key": "saint-jhn",
+   "performers": [
+    "saint-jhn"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:gryffin",
+   "name": "GRYFFIN",
+   "key": "gryffin",
+   "performers": [
+    "gryffin"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:mac-demarco",
+   "name": "Mac DeMarco",
+   "key": "mac-demarco",
+   "performers": [
+    "mac-demarco"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:phantogram",
+   "name": "Phantogram",
+   "key": "phantogram",
+   "performers": [
+    "phantogram"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:wiz-khalifa",
+   "name": "Wiz Khalifa",
+   "key": "wiz-khalifa",
+   "performers": [
+    "wiz-khalifa"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:mondo-cozmo",
+   "name": "Mondo Cozmo",
+   "key": "mondo-cozmo",
+   "performers": [
+    "mondo-cozmo"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:zane-lowe",
+   "name": "Zane Lowe",
+   "key": "zane-lowe",
+   "performers": [
+    "zane-lowe"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:warpaint",
+   "name": "Warpaint",
+   "key": "warpaint",
+   "performers": [
+    "warpaint"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:franz-ferdinand",
+   "name": "Franz Ferdinand",
+   "key": "franz-ferdinand",
+   "performers": [
+    "franz-ferdinand"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:logic",
+   "name": "Logic",
+   "key": "logic",
+   "performers": [
+    "logic"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:jack-martini",
+   "name": "Jack Martini",
+   "key": "jack-martini",
+   "performers": [
+    "jack-martini"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:eden",
+   "name": "EDEN",
+   "key": "eden",
+   "performers": [
+    "eden"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:skepta",
+   "name": "Skepta",
+   "key": "skepta",
+   "performers": [
+    "skepta"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:the-avalanches",
+   "name": "The Avalanches",
+   "key": "the-avalanches",
+   "performers": [
+    "the-avalanches"
+   ]
+  },
+  {
+   "id": "governors-ball-2017:air",
+   "name": "AIR",
+   "key": "air",
+   "performers": [
+    "air"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "governors-ball-2017:d1:gov-ball-nyc:1215:tkay-maidza",
+   "artistId": "governors-ball-2017:tkay-maidza",
+   "day": 1,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:gov-ball-nyc:1330:muna",
+   "artistId": "governors-ball-2017:muna",
+   "day": 1,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2017:d1:gov-ball-nyc:1500:kehlani",
+   "artistId": "governors-ball-2017:kehlani",
+   "day": 1,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:gov-ball-nyc:1645:bleachers",
+   "artistId": "governors-ball-2017:bleachers",
+   "day": 1,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:gov-ball-nyc:1840:special-guest-nancy-whang-dj-set",
+   "artistId": "governors-ball-2017:special-guest-nancy-whang-dj-set",
+   "day": 1,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "18:40",
+   "end": "19:10"
+  },
+  {
+   "id": "governors-ball-2017:d1:gov-ball-nyc:1930:lorde",
+   "artistId": "governors-ball-2017:lorde",
+   "day": 1,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "19:30",
+   "end": "20:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:gov-ball-nyc:2145:chance-the-rapper",
+   "artistId": "governors-ball-2017:chance-the-rapper",
+   "day": 1,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2017:d1:honda:1215:jenaux",
+   "artistId": "governors-ball-2017:jenaux",
+   "day": 1,
+   "stageId": "governors-ball-2017:honda",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:honda:1330:blossoms",
+   "artistId": "governors-ball-2017:blossoms",
+   "day": 1,
+   "stageId": "governors-ball-2017:honda",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2017:d1:honda:1500:the-strumbellas",
+   "artistId": "governors-ball-2017:the-strumbellas",
+   "day": 1,
+   "stageId": "governors-ball-2017:honda",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:honda:1645:tove-lo",
+   "artistId": "governors-ball-2017:tove-lo",
+   "day": 1,
+   "stageId": "governors-ball-2017:honda",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:honda:1845:schoolboy-q",
+   "artistId": "governors-ball-2017:schoolboy-q",
+   "day": 1,
+   "stageId": "governors-ball-2017:honda",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:honda:2045:flume",
+   "artistId": "governors-ball-2017:flume",
+   "day": 1,
+   "stageId": "governors-ball-2017:honda",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "governors-ball-2017:d1:big-apple:1245:roosevelt",
+   "artistId": "governors-ball-2017:roosevelt",
+   "day": 1,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2017:d1:big-apple:1415:judah-and-the-lion",
+   "artistId": "governors-ball-2017:judah-and-the-lion",
+   "day": 1,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2017:d1:big-apple:1545:charli-xcx",
+   "artistId": "governors-ball-2017:charli-xcx",
+   "day": 1,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:big-apple:1745:michael-kiwanuka",
+   "artistId": "governors-ball-2017:michael-kiwanuka",
+   "day": 1,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:big-apple:1945:beach-house",
+   "artistId": "governors-ball-2017:beach-house",
+   "day": 1,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:bacardi:1245:michael-blume",
+   "artistId": "governors-ball-2017:michael-blume",
+   "day": 1,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2017:d1:bacardi:1415:francis-and-the-lights",
+   "artistId": "governors-ball-2017:francis-and-the-lights",
+   "day": 1,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2017:d1:bacardi:1545:charles-bradley-and-his-extraordinaires",
+   "artistId": "governors-ball-2017:charles-bradley-and-his-extraordinaires",
+   "day": 1,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:bacardi:1745:danny-brown",
+   "artistId": "governors-ball-2017:danny-brown",
+   "day": 1,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2017:d1:bacardi:2045:majid-jordan",
+   "artistId": "governors-ball-2017:majid-jordan",
+   "day": 1,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "governors-ball-2017:d2:gov-ball-nyc:1215:vant",
+   "artistId": "governors-ball-2017:vant",
+   "day": 2,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2017:d2:gov-ball-nyc:1330:dua-lipa",
+   "artistId": "governors-ball-2017:dua-lipa",
+   "day": 2,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2017:d2:gov-ball-nyc:1500:saint-motel",
+   "artistId": "governors-ball-2017:saint-motel",
+   "day": 2,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2017:d2:gov-ball-nyc:1645:the-head-and-the-heart",
+   "artistId": "governors-ball-2017:the-head-and-the-heart",
+   "day": 2,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2017:d2:gov-ball-nyc:1845:wu-tang-clan",
+   "artistId": "governors-ball-2017:wu-tang-clan",
+   "day": 2,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2017:d2:gov-ball-nyc:2115:phoenix",
+   "artistId": "governors-ball-2017:phoenix",
+   "day": 2,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2017:d2:honda:1215:jessie-reyez",
+   "artistId": "governors-ball-2017:jessie-reyez",
+   "day": 2,
+   "stageId": "governors-ball-2017:honda",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2017:d2:honda:1330:a-r-i-z-o-n-a",
+   "artistId": "governors-ball-2017:a-r-i-z-o-n-a",
+   "day": 2,
+   "stageId": "governors-ball-2017:honda",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2017:d2:honda:1500:stormzy",
+   "artistId": "governors-ball-2017:stormzy",
+   "day": 2,
+   "stageId": "governors-ball-2017:honda",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2017:d2:honda:1645:a-ap-ferg",
+   "artistId": "governors-ball-2017:a-ap-ferg",
+   "day": 2,
+   "stageId": "governors-ball-2017:honda",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2017:d2:honda:1845:marshmello",
+   "artistId": "governors-ball-2017:marshmello",
+   "day": 2,
+   "stageId": "governors-ball-2017:honda",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2017:d2:honda:2115:childish-gambino",
+   "artistId": "governors-ball-2017:childish-gambino",
+   "day": 2,
+   "stageId": "governors-ball-2017:honda",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2017:d2:big-apple:1245:welles",
+   "artistId": "governors-ball-2017:welles",
+   "day": 2,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2017:d2:big-apple:1415:car-seat-headrest",
+   "artistId": "governors-ball-2017:car-seat-headrest",
+   "day": 2,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2017:d2:big-apple:1545:yg",
+   "artistId": "governors-ball-2017:yg",
+   "day": 2,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2017:d2:big-apple:1745:local-natives",
+   "artistId": "governors-ball-2017:local-natives",
+   "day": 2,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2017:d2:big-apple:2000:mark-ronson-vs-kevin-parker",
+   "artistId": "governors-ball-2017:mark-ronson-vs-kevin-parker",
+   "day": 2,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2017:d2:bacardi:1245:lo-moon",
+   "artistId": "governors-ball-2017:lo-moon",
+   "day": 2,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2017:d2:bacardi:1415:the-range",
+   "artistId": "governors-ball-2017:the-range",
+   "day": 2,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2017:d2:bacardi:1545:rae-sremmurd",
+   "artistId": "governors-ball-2017:rae-sremmurd",
+   "day": 2,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2017:d2:bacardi:1745:rufus-du-sol",
+   "artistId": "governors-ball-2017:rufus-du-sol",
+   "day": 2,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2017:d2:bacardi:2000:banks",
+   "artistId": "governors-ball-2017:banks",
+   "day": 2,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2017:d3:gov-ball-nyc:1215:ron-gallo",
+   "artistId": "governors-ball-2017:ron-gallo",
+   "day": 3,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2017:d3:gov-ball-nyc:1330:the-orwells",
+   "artistId": "governors-ball-2017:the-orwells",
+   "day": 3,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2017:d3:gov-ball-nyc:1500:parquet-courts",
+   "artistId": "governors-ball-2017:parquet-courts",
+   "day": 3,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2017:d3:gov-ball-nyc:1645:royal-blood",
+   "artistId": "governors-ball-2017:royal-blood",
+   "day": 3,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2017:d3:gov-ball-nyc:1845:cage-the-elephant",
+   "artistId": "governors-ball-2017:cage-the-elephant",
+   "day": 3,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2017:d3:gov-ball-nyc:2115:tool",
+   "artistId": "governors-ball-2017:tool",
+   "day": 3,
+   "stageId": "governors-ball-2017:gov-ball-nyc",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2017:d3:honda:1215:barns-courtney",
+   "artistId": "governors-ball-2017:barns-courtney",
+   "day": 3,
+   "stageId": "governors-ball-2017:honda",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2017:d3:honda:1330:saint-jhn",
+   "artistId": "governors-ball-2017:saint-jhn",
+   "day": 3,
+   "stageId": "governors-ball-2017:honda",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2017:d3:honda:1500:gryffin",
+   "artistId": "governors-ball-2017:gryffin",
+   "day": 3,
+   "stageId": "governors-ball-2017:honda",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2017:d3:honda:1645:mac-demarco",
+   "artistId": "governors-ball-2017:mac-demarco",
+   "day": 3,
+   "stageId": "governors-ball-2017:honda",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2017:d3:honda:1845:phantogram",
+   "artistId": "governors-ball-2017:phantogram",
+   "day": 3,
+   "stageId": "governors-ball-2017:honda",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2017:d3:honda:2115:wiz-khalifa",
+   "artistId": "governors-ball-2017:wiz-khalifa",
+   "day": 3,
+   "stageId": "governors-ball-2017:honda",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2017:d3:big-apple:1245:mondo-cozmo",
+   "artistId": "governors-ball-2017:mondo-cozmo",
+   "day": 3,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2017:d3:big-apple:1415:zane-lowe",
+   "artistId": "governors-ball-2017:zane-lowe",
+   "day": 3,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2017:d3:big-apple:1545:warpaint",
+   "artistId": "governors-ball-2017:warpaint",
+   "day": 3,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2017:d3:big-apple:1745:franz-ferdinand",
+   "artistId": "governors-ball-2017:franz-ferdinand",
+   "day": 3,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2017:d3:big-apple:2000:logic",
+   "artistId": "governors-ball-2017:logic",
+   "day": 3,
+   "stageId": "governors-ball-2017:big-apple",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2017:d3:bacardi:1245:jack-martini",
+   "artistId": "governors-ball-2017:jack-martini",
+   "day": 3,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2017:d3:bacardi:1415:eden",
+   "artistId": "governors-ball-2017:eden",
+   "day": 3,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2017:d3:bacardi:1545:skepta",
+   "artistId": "governors-ball-2017:skepta",
+   "day": 3,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2017:d3:bacardi:1745:the-avalanches",
+   "artistId": "governors-ball-2017:the-avalanches",
+   "day": 3,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2017:d3:bacardi:2000:air",
+   "artistId": "governors-ball-2017:air",
+   "day": 3,
+   "stageId": "governors-ball-2017:bacardi",
+   "start": "20:00",
+   "end": "21:15"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.governorsballmusicfestival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20170606161221/https://www.governorsballmusicfestival.com/schedule/",
+    "captureTimestamp": "20170606161221",
+    "printed": "Friday Jun 2nd",
+    "sha256": "fa08a7d1f34b5775ca5d8456954378ddbc0b7e0b5b3ba8fb6f7660d0c4982721",
+    "rows": 23
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20170606161221/https://www.governorsballmusicfestival.com/schedule/",
+    "captureTimestamp": "20170606161221",
+    "printed": "Saturday Jun 3rd",
+    "sha256": "fa08a7d1f34b5775ca5d8456954378ddbc0b7e0b5b3ba8fb6f7660d0c4982721",
+    "rows": 22
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20170606161221/https://www.governorsballmusicfestival.com/schedule/",
+    "captureTimestamp": "20170606161221",
+    "printed": "Sunday Jun 4th",
+    "sha256": "fa08a7d1f34b5775ca5d8456954378ddbc0b7e0b5b3ba8fb6f7660d0c4982721",
+    "rows": 22
+   }
+  ]
+ }
+}

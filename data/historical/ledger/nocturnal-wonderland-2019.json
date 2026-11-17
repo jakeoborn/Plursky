@@ -1,0 +1,41 @@
+{
+  "id": "nocturnal-wonderland-2019",
+  "method": "official_sources",
+  "official": "https://www.nocturnalwonderland.com/lineup/set-times/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-09-14",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.nocturnalwonderland.com/lineup/set-times/",
+          "archivedUrl": "https://web.archive.org/web/20191209020634/https://www.nocturnalwonderland.com/lineup/set-times/",
+          "captureTimestamp": "20191209020634",
+          "printed": "Saturday, September 14",
+          "sha256": "336108c64936f05de7575b383826bbe1b2ca717553c13340bbf834e584406bfc",
+          "bytes": 229925,
+          "rows": 36
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2019-09-15",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.nocturnalwonderland.com/lineup/set-times/day-2/",
+          "archivedUrl": "https://web.archive.org/web/20191116022647/https://www.nocturnalwonderland.com/lineup/set-times/day-2/",
+          "captureTimestamp": "20191116022647",
+          "printed": "Sunday, September 15",
+          "sha256": "6f6e300829f2e3285e6eb4586da62c9b95d2894681c28545393e94e320f4f5e7",
+          "bytes": 263593,
+          "rows": 34
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

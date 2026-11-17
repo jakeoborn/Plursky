@@ -1,0 +1,978 @@
+{
+ "id": "escape-halloween-2015",
+ "festivalId": "escape-halloween",
+ "name": "Escape Halloween 2015",
+ "year": 2015,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-10-30",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2015-10-31",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "escape-halloween-2015:bassrush-experience",
+   "name": "Bassrush Experience",
+   "key": "bassrush-experience",
+   "performers": [
+    "bassrush-experience"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:above-and-beyond",
+   "name": "Above & Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:adam-auburn",
+   "name": "Adam Auburn",
+   "key": "adam-auburn",
+   "performers": [
+    "adam-auburn"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:andrew-bayer",
+   "name": "Andrew Bayer",
+   "key": "andrew-bayer",
+   "performers": [
+    "andrew-bayer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:benny-benassi",
+   "name": "Benny Benassi",
+   "key": "benny-benassi",
+   "performers": [
+    "benny-benassi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:blasterjaxx",
+   "name": "Blasterjaxx",
+   "key": "blasterjaxx",
+   "performers": [
+    "blasterjaxx"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:breathe-carolina",
+   "name": "Breathe Carolina",
+   "key": "breathe-carolina",
+   "performers": [
+    "breathe-carolina"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:catz-n-dogz",
+   "name": "Catz 'N Dogz",
+   "key": "catz-n-dogz",
+   "performers": [
+    "catz-n-dogz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:convex",
+   "name": "Convex",
+   "key": "convex",
+   "performers": [
+    "convex"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:crizzly",
+   "name": "Crizzly",
+   "key": "crizzly",
+   "performers": [
+    "crizzly"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:dannic",
+   "name": "Dannic",
+   "key": "dannic",
+   "performers": [
+    "dannic"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:dash-berlin",
+   "name": "Dash Berlin",
+   "key": "dash-berlin",
+   "performers": [
+    "dash-berlin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:datsik",
+   "name": "Datsik",
+   "key": "datsik",
+   "performers": [
+    "datsik"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:dbstf",
+   "name": "DBSTF",
+   "key": "dbstf",
+   "performers": [
+    "dbstf"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:dimitri-vegas-and-like-mike",
+   "name": "Dimitri Vegas & Like Mike",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:dirtyphonics",
+   "name": "Dirtyphonics",
+   "key": "dirtyphonics",
+   "performers": [
+    "dirtyphonics"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:eric-prydz",
+   "name": "Eric Prydz",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:etc-etc",
+   "name": "ETC!ETC!",
+   "key": "etc-etc",
+   "performers": [
+    "etc-etc"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:excision",
+   "name": "Excision",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:firebeatz",
+   "name": "Firebeatz",
+   "key": "firebeatz",
+   "performers": [
+    "firebeatz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:flux-pavilion",
+   "name": "Flux Pavilion",
+   "key": "flux-pavilion",
+   "performers": [
+    "flux-pavilion"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:funtcase",
+   "name": "FuntCase",
+   "key": "funtcase",
+   "performers": [
+    "funtcase"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:gabriel-habit",
+   "name": "Gabriel Habit",
+   "key": "gabriel-habit",
+   "performers": [
+    "gabriel-habit"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:ilan-bluestone",
+   "name": "Ilan Bluestone",
+   "key": "ilan-bluestone",
+   "performers": [
+    "ilan-bluestone"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:joris-voorn",
+   "name": "Joris Voorn",
+   "key": "joris-voorn",
+   "performers": [
+    "joris-voorn"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:justin-james",
+   "name": "Justin James",
+   "key": "justin-james",
+   "performers": [
+    "justin-james"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:le-youth",
+   "name": "Le Youth",
+   "key": "le-youth",
+   "performers": [
+    "le-youth"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:party-thieves",
+   "name": "Party Thieves",
+   "key": "party-thieves",
+   "performers": [
+    "party-thieves"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:paul-van-dyk",
+   "name": "Paul van Dyk",
+   "key": "paul-van-dyk",
+   "performers": [
+    "paul-van-dyk"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:subb-an",
+   "name": "Subb-an",
+   "key": "subb-an",
+   "performers": [
+    "subb-an"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:amine-edge-and-dance",
+   "name": "Amine Edge & DANCE",
+   "key": "amine-edge-and-dance",
+   "performers": [
+    "amine-edge-and-dance"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:aryay",
+   "name": "Aryay",
+   "key": "aryay",
+   "performers": [
+    "aryay"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:black-tiger-sex-machine",
+   "name": "Black Tiger Sex Machine",
+   "key": "black-tiger-sex-machine",
+   "performers": [
+    "black-tiger-sex-machine"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:breach",
+   "name": "Breach",
+   "key": "breach",
+   "performers": [
+    "breach"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:brennen-grey",
+   "name": "Brennen Grey",
+   "key": "brennen-grey",
+   "performers": [
+    "brennen-grey"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:choppa-dunks",
+   "name": "Choppa Dunks",
+   "key": "choppa-dunks",
+   "performers": [
+    "choppa-dunks"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:craig-williams",
+   "name": "Craig Williams",
+   "key": "craig-williams",
+   "performers": [
+    "craig-williams"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:d-o-d",
+   "name": "D.O.D",
+   "key": "d-o-d",
+   "performers": [
+    "d-o-d"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:davi",
+   "name": "Davi",
+   "key": "davi",
+   "performers": [
+    "davi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:dr-fresch",
+   "name": "Dr. Fresch",
+   "key": "dr-fresch",
+   "performers": [
+    "dr-fresch"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:ephwurd",
+   "name": "Ephwurd",
+   "key": "ephwurd",
+   "performers": [
+    "ephwurd"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:get-real-green-velvet-and-claude-vonstroke",
+   "name": "Get Real: Green Velvet & Claude VonStroke",
+   "key": "get-real-green-velvet-and-claude-vonstroke",
+   "performers": [
+    "get-real-green-velvet-and-claude-vonstroke"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:gina-turner",
+   "name": "Gina Turner",
+   "key": "gina-turner",
+   "performers": [
+    "gina-turner"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:hot-since-82",
+   "name": "Hot Since 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:jackal",
+   "name": "Jackal",
+   "key": "jackal",
+   "performers": [
+    "jackal"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:justin-martin",
+   "name": "Justin Martin",
+   "key": "justin-martin",
+   "performers": [
+    "justin-martin"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:kidnap-kid",
+   "name": "Kidnap Kid",
+   "key": "kidnap-kid",
+   "performers": [
+    "kidnap-kid"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:laidback-luke",
+   "name": "Laidback Luke",
+   "key": "laidback-luke",
+   "performers": [
+    "laidback-luke"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:lee-k",
+   "name": "Lee K",
+   "key": "lee-k",
+   "performers": [
+    "lee-k"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:makj",
+   "name": "MAKJ",
+   "key": "makj",
+   "performers": [
+    "makj"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:marc-houle-live",
+   "name": "Marc Houle (Live)",
+   "key": "marc-houle-live",
+   "performers": [
+    "marc-houle-live"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:markus-schulz",
+   "name": "Markus Schulz",
+   "key": "markus-schulz",
+   "performers": [
+    "markus-schulz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:mat-zo",
+   "name": "Mat Zo",
+   "key": "mat-zo",
+   "performers": [
+    "mat-zo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:moby",
+   "name": "Moby",
+   "key": "moby",
+   "performers": [
+    "moby"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:party-favor",
+   "name": "Party Favor",
+   "key": "party-favor",
+   "performers": [
+    "party-favor"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:porter-robinson-dj-set",
+   "name": "Porter Robinson (DJ Set)",
+   "key": "porter-robinson-dj-set",
+   "performers": [
+    "porter-robinson-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:recondite-live",
+   "name": "Recondite (Live)",
+   "key": "recondite-live",
+   "performers": [
+    "recondite-live"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:seven-lions",
+   "name": "Seven Lions",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:shaun-frank",
+   "name": "Shaun Frank",
+   "key": "shaun-frank",
+   "performers": [
+    "shaun-frank"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:showtek",
+   "name": "Showtek",
+   "key": "showtek",
+   "performers": [
+    "showtek"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:solomun",
+   "name": "Solomun",
+   "key": "solomun",
+   "performers": [
+    "solomun"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:sultan-shepard",
+   "name": "Sultan + Shepard",
+   "key": "sultan-shepard",
+   "performers": [
+    "sultan-shepard"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:sunnery-james-and-ryan-marciano",
+   "name": "Sunnery James & Ryan Marciano",
+   "key": "sunnery-james-and-ryan-marciano",
+   "performers": [
+    "sunnery-james-and-ryan-marciano"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:super-you-and-me-stage",
+   "name": "Super You&Me Stage",
+   "key": "super-you-and-me-stage",
+   "performers": [
+    "super-you-and-me-stage"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:the-magician",
+   "name": "The Magician",
+   "key": "the-magician",
+   "performers": [
+    "the-magician"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:ed-rush-and-optical-b2b-the-upbeats-b2b-prolix",
+   "name": "Ed Rush & Optical B2B The Upbeats B2B Prolix",
+   "key": "ed-rush-and-optical-b2b-the-upbeats-b2b-prolix",
+   "performers": [
+    "ed-rush-and-optical",
+    "the-upbeats",
+    "prolix"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2015:fallen-mc-dino",
+   "name": "Fallen + MC Dino",
+   "key": "fallen-mc-dino",
+   "performers": [
+    "fallen-mc-dino"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://escapehalloween.com/experience/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20151128171933/https://escapehalloween.com/experience/lineup/",
+    "captureTimestamp": "20151128171933",
+    "sha256": "cae53877c82546f1e5ede10714226d98ae48908bcc4a5ed7f8260ad5a329264a"
+   }
+  ]
+ }
+}

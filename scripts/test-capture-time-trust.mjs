@@ -22,11 +22,15 @@
 //      stamping a moment with a gated id strands it, because
 //      getActiveFestivalId() also requires `available`. It is WRONG for a trust
 //      question, because availability is a UI concern and says nothing about
-//      whether a timestamp is real. edc-orlando-2026 is gated today and is the
+//      whether a timestamp is real. edc-orlando-2026 was gated then and was the
 //      only gated festival carrying a data module, so a genuine EDC Orlando
 //      capture time was rejected as junk at spotify.jsx:1446 and the clip
 //      imported as no-date — a real capture time destroyed by a filter that
-//      exists to protect attribution.
+//      exists to protect attribution. EDC Orlando opened 2026-11-04 (#262),
+//      so the gated fixture is now SYNTHETIC (scripts/lib/
+//      synthetic-gated-festival.mjs): a real data set cloned under a test-only
+//      id, gated in the vm's registry, so it can't open out from under this
+//      gate again.
 //
 // THE RULE THIS GATE ENFORCES: the trust question returns a BOOLEAN, computed
 // over every festival we have data for, gated included. That does not guard the
@@ -38,6 +42,7 @@ import vm from "node:vm";
 import { readFileSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { addSyntheticGatedFestival } from "./lib/synthetic-gated-festival.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const FEST_DIR = join(ROOT, "data", "festivals");
@@ -74,6 +79,8 @@ function boot() {
   for (const n of ["data", "photo-tag", "spotify"]) {
     vm.runInContext(readFileSync(join(ROOT, "build", `${n}.js`), "utf8"), ctx, { filename: `build/${n}.js` });
   }
+  // The gated fixture: a clone of a real data set, gated in this vm only.
+  ctx.__SYNTH_GATED = addSyntheticGatedFestival(ctx, "edc-lv-2026");
   return ctx;
 }
 
@@ -118,7 +125,10 @@ const claimantsOf = (utcMs) => ids.filter(id => {
 });
 
 // ── FIXTURE 1: claimed ONLY by a GATED festival ───────────────────────────
-const GATED = "edc-orlando-2026";
+// Synthetic (see the header): a real data set under a test-only id, gated in
+// the vm's registry. The two checks below still prove it really is gated and
+// really is the only claimant of its instant.
+const GATED = ctx.__SYNTH_GATED;
 if (!sets[GATED]?.config?.dayDates) dead(`${GATED} has no data module — the gated fixture cannot be built`);
 if (availableOf(GATED)) dead(`${GATED} is registry-AVAILABLE on this tree; it can no longer prove the gated case`);
 // _allDataSets() always includes the ACTIVE festival regardless of gating, so

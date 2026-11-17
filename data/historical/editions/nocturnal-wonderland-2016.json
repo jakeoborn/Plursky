@@ -1,0 +1,1868 @@
+{
+ "id": "nocturnal-wonderland-2016",
+ "festivalId": "nocturnal-wonderland",
+ "name": "Nocturnal Wonderland 2016",
+ "year": 2016,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-09-02",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2016-09-03",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2016-09-04",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "nocturnal-wonderland-2016:above-and-beyond",
+   "name": "Above & Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:laidback-luke",
+   "name": "Laidback Luke",
+   "key": "laidback-luke",
+   "performers": [
+    "laidback-luke"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:3lau-b2b-audien",
+   "name": "3LAU B2B Audien",
+   "key": "3lau-b2b-audien",
+   "performers": [
+    "3lau",
+    "audien"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:valentino-khan",
+   "name": "Valentino Khan",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:chris-lorenzo",
+   "name": "Chris Lorenzo",
+   "key": "chris-lorenzo",
+   "performers": [
+    "chris-lorenzo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:wuki",
+   "name": "Wuki",
+   "key": "wuki",
+   "performers": [
+    "wuki"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:convex",
+   "name": "Convex",
+   "key": "convex",
+   "performers": [
+    "convex"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:big-gigantic",
+   "name": "Big Gigantic",
+   "key": "big-gigantic",
+   "performers": [
+    "big-gigantic"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:mat-zo",
+   "name": "Mat Zo",
+   "key": "mat-zo",
+   "performers": [
+    "mat-zo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:gramatik",
+   "name": "Gramatik",
+   "key": "gramatik",
+   "performers": [
+    "gramatik"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:pantyraid",
+   "name": "Pantyraid",
+   "key": "pantyraid",
+   "performers": [
+    "pantyraid"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:giraffage",
+   "name": "Giraffage",
+   "key": "giraffage",
+   "performers": [
+    "giraffage"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:coyote-kisses",
+   "name": "Coyote Kisses",
+   "key": "coyote-kisses",
+   "performers": [
+    "coyote-kisses"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:starro",
+   "name": "starRo",
+   "key": "starro",
+   "performers": [
+    "starro"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:nukid",
+   "name": "NuKid",
+   "key": "nukid",
+   "performers": [
+    "nukid"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:matador-live",
+   "name": "Matador (Live)",
+   "key": "matador-live",
+   "performers": [
+    "matador-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:pig-and-dan",
+   "name": "Pig & Dan",
+   "key": "pig-and-dan",
+   "performers": [
+    "pig-and-dan"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:anna",
+   "name": "Anna",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:matt-lange",
+   "name": "Matt Lange",
+   "key": "matt-lange",
+   "performers": [
+    "matt-lange"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:grandtheft",
+   "name": "Grandtheft",
+   "key": "grandtheft",
+   "performers": [
+    "grandtheft"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:jstjr",
+   "name": "JSTJR",
+   "key": "jstjr",
+   "performers": [
+    "jstjr"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:gitchii",
+   "name": "Gitchii",
+   "key": "gitchii",
+   "performers": [
+    "gitchii"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:saint",
+   "name": "Saint",
+   "key": "saint",
+   "performers": [
+    "saint"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:bones",
+   "name": "Bones",
+   "key": "bones",
+   "performers": [
+    "bones"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:bonnie-x-clyde",
+   "name": "Bonnie X Clyde",
+   "key": "bonnie-x-clyde",
+   "performers": [
+    "bonnie-x-clyde"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:clips-x-ahoy-b2b-hype-turner",
+   "name": "Clips X Ahoy B2B Hype Turner",
+   "key": "clips-x-ahoy-b2b-hype-turner",
+   "performers": [
+    "clips-x-ahoy",
+    "hype-turner"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:des-mcmahon",
+   "name": "Des McMahon",
+   "key": "des-mcmahon",
+   "performers": [
+    "des-mcmahon"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:brandon-elliot",
+   "name": "Brandon Elliot",
+   "key": "brandon-elliot",
+   "performers": [
+    "brandon-elliot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:ruff-hauser",
+   "name": "Ruff Hauser",
+   "key": "ruff-hauser",
+   "performers": [
+    "ruff-hauser"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:roy-wilkins",
+   "name": "Roy Wilkins",
+   "key": "roy-wilkins",
+   "performers": [
+    "roy-wilkins"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:moni",
+   "name": "Moni",
+   "key": "moni",
+   "performers": [
+    "moni"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:trouble",
+   "name": "Trouble",
+   "key": "trouble",
+   "performers": [
+    "trouble"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:neon-black",
+   "name": "Neon Black",
+   "key": "neon-black",
+   "performers": [
+    "neon-black"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:johnny-darko",
+   "name": "Johnny Darko",
+   "key": "johnny-darko",
+   "performers": [
+    "johnny-darko"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:chris-jay",
+   "name": "Chris Jay",
+   "key": "chris-jay",
+   "performers": [
+    "chris-jay"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:pw-jones",
+   "name": "PW Jones",
+   "key": "pw-jones",
+   "performers": [
+    "pw-jones"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:odesza",
+   "name": "Odesza",
+   "key": "odesza",
+   "performers": [
+    "odesza"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:knife-party",
+   "name": "Knife Party",
+   "key": "knife-party",
+   "performers": [
+    "knife-party"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:showtek",
+   "name": "Showtek",
+   "key": "showtek",
+   "performers": [
+    "showtek"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:tjr",
+   "name": "TJR",
+   "key": "tjr",
+   "performers": [
+    "tjr"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:bro-safari",
+   "name": "Bro Safari",
+   "key": "bro-safari",
+   "performers": [
+    "bro-safari"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:felix-jaehn",
+   "name": "Felix Jaehn",
+   "key": "felix-jaehn",
+   "performers": [
+    "felix-jaehn"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:illenium",
+   "name": "Illenium",
+   "key": "illenium",
+   "performers": [
+    "illenium"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:riot",
+   "name": "Riot",
+   "key": "riot",
+   "performers": [
+    "riot"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:caspa-b2b-rusko",
+   "name": "Caspa B2B Rusko",
+   "key": "caspa-b2b-rusko",
+   "performers": [
+    "caspa",
+    "rusko"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:troyboi",
+   "name": "TroyBoi",
+   "key": "troyboi",
+   "performers": [
+    "troyboi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:sub-focus",
+   "name": "Sub Focus",
+   "key": "sub-focus",
+   "performers": [
+    "sub-focus"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:minnesota-b2b-g-jones",
+   "name": "Minnesota B2B G Jones",
+   "key": "minnesota-b2b-g-jones",
+   "performers": [
+    "minnesota",
+    "g-jones"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:liquid-stranger",
+   "name": "Liquid Stranger",
+   "key": "liquid-stranger",
+   "performers": [
+    "liquid-stranger"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:spor",
+   "name": "Spor",
+   "key": "spor",
+   "performers": [
+    "spor"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:gentlemen-s-club",
+   "name": "Gentlemen's Club",
+   "key": "gentlemen-s-club",
+   "performers": [
+    "gentlemen-s-club"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:apashe",
+   "name": "Apashe",
+   "key": "apashe",
+   "performers": [
+    "apashe"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:prolix",
+   "name": "Prolix",
+   "key": "prolix",
+   "performers": [
+    "prolix"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:dimond-saints",
+   "name": "Dimond Saints",
+   "key": "dimond-saints",
+   "performers": [
+    "dimond-saints"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:bassrush-experience",
+   "name": "Bassrush Experience",
+   "key": "bassrush-experience",
+   "performers": [
+    "bassrush-experience"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:ame-live",
+   "name": "Âme (Live)",
+   "key": "ame-live",
+   "performers": [
+    "ame-live"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:lane-8",
+   "name": "Lane 8",
+   "key": "lane-8",
+   "performers": [
+    "lane-8"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:simian-mobile-disco-dj-set",
+   "name": "Simian Mobile Disco (DJ Set)",
+   "key": "simian-mobile-disco-dj-set",
+   "performers": [
+    "simian-mobile-disco-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:henrik-schwarz-live",
+   "name": "Henrik Schwarz (Live)",
+   "key": "henrik-schwarz-live",
+   "performers": [
+    "henrik-schwarz-live"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:yotto",
+   "name": "Yotto",
+   "key": "yotto",
+   "performers": [
+    "yotto"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:cubicolor",
+   "name": "Cubicolor",
+   "key": "cubicolor",
+   "performers": [
+    "cubicolor"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:george-fitzgerald",
+   "name": "George FitzGerald",
+   "key": "george-fitzgerald",
+   "performers": [
+    "george-fitzgerald"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:gab-rhome",
+   "name": "Gab Rhome",
+   "key": "gab-rhome",
+   "performers": [
+    "gab-rhome"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:anjunadeep",
+   "name": "Anjunadeep",
+   "key": "anjunadeep",
+   "performers": [
+    "anjunadeep"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:taiki-nulight",
+   "name": "Taiki Nulight",
+   "key": "taiki-nulight",
+   "performers": [
+    "taiki-nulight"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:sluggers",
+   "name": "Sluggers",
+   "key": "sluggers",
+   "performers": [
+    "sluggers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:astronomar",
+   "name": "Astronomar",
+   "key": "astronomar",
+   "performers": [
+    "astronomar"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:bot",
+   "name": "Bot",
+   "key": "bot",
+   "performers": [
+    "bot"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:stranger",
+   "name": "Stranger",
+   "key": "stranger",
+   "performers": [
+    "stranger"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:sinden",
+   "name": "Sinden",
+   "key": "sinden",
+   "performers": [
+    "sinden"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:cln",
+   "name": "cln",
+   "key": "cln",
+   "performers": [
+    "cln"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:assembly",
+   "name": "Assembly",
+   "key": "assembly",
+   "performers": [
+    "assembly"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:evil-activities",
+   "name": "Evil Activities",
+   "key": "evil-activities",
+   "performers": [
+    "evil-activities"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:darren-styles",
+   "name": "Darren Styles",
+   "key": "darren-styles",
+   "performers": [
+    "darren-styles"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:technoboy",
+   "name": "Technoboy",
+   "key": "technoboy",
+   "performers": [
+    "technoboy"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:lny-tnz",
+   "name": "LNY TNZ",
+   "key": "lny-tnz",
+   "performers": [
+    "lny-tnz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:max-enforcer",
+   "name": "Max Enforcer",
+   "key": "max-enforcer",
+   "performers": [
+    "max-enforcer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:crisis-era",
+   "name": "Crisis Era",
+   "key": "crisis-era",
+   "performers": [
+    "crisis-era"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:darksiderz",
+   "name": "Darksiderz",
+   "key": "darksiderz",
+   "performers": [
+    "darksiderz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:mekanikal",
+   "name": "Mekanikal",
+   "key": "mekanikal",
+   "performers": [
+    "mekanikal"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:basscon",
+   "name": "Basscon",
+   "key": "basscon",
+   "performers": [
+    "basscon"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:oscure",
+   "name": "Oscure",
+   "key": "oscure",
+   "performers": [
+    "oscure"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:fester",
+   "name": "Fester",
+   "key": "fester",
+   "performers": [
+    "fester"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:dj-trance",
+   "name": "DJ Trance",
+   "key": "dj-trance",
+   "performers": [
+    "dj-trance"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:zack-hill",
+   "name": "Zack Hill",
+   "key": "zack-hill",
+   "performers": [
+    "zack-hill"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:oscar-da-grouch",
+   "name": "Oscar Da Grouch",
+   "key": "oscar-da-grouch",
+   "performers": [
+    "oscar-da-grouch"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:jesse-brooks",
+   "name": "Jesse Brooks",
+   "key": "jesse-brooks",
+   "performers": [
+    "jesse-brooks"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:mr-bubble",
+   "name": "Mr. Bubble",
+   "key": "mr-bubble",
+   "performers": [
+    "mr-bubble"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:j-splat",
+   "name": "J. Splat",
+   "key": "j-splat",
+   "performers": [
+    "j-splat"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:liquid-fish",
+   "name": "Liquid Fish",
+   "key": "liquid-fish",
+   "performers": [
+    "liquid-fish"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:dxxxy",
+   "name": "DXXXY",
+   "key": "dxxxy",
+   "performers": [
+    "dxxxy"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:deorro",
+   "name": "Deorro",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:bassnectar",
+   "name": "Bassnectar",
+   "key": "bassnectar",
+   "performers": [
+    "bassnectar"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:flux-pavilion",
+   "name": "Flux Pavilion",
+   "key": "flux-pavilion",
+   "performers": [
+    "flux-pavilion"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:bingo-players",
+   "name": "Bingo Players",
+   "key": "bingo-players",
+   "performers": [
+    "bingo-players"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:ephwurd",
+   "name": "Ephwurd",
+   "key": "ephwurd",
+   "performers": [
+    "ephwurd"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:dabin",
+   "name": "Dabin",
+   "key": "dabin",
+   "performers": [
+    "dabin"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:anevo",
+   "name": "Anevo",
+   "key": "anevo",
+   "performers": [
+    "anevo"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:baggi",
+   "name": "Baggi",
+   "key": "baggi",
+   "performers": [
+    "baggi"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:modus",
+   "name": "Modus",
+   "key": "modus",
+   "performers": [
+    "modus"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:chromeo-live",
+   "name": "Chromeo (Live)",
+   "key": "chromeo-live",
+   "performers": [
+    "chromeo-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:keys-n-krates",
+   "name": "Keys N Krates",
+   "key": "keys-n-krates",
+   "performers": [
+    "keys-n-krates"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:hermitude-live",
+   "name": "Hermitude (Live)",
+   "key": "hermitude-live",
+   "performers": [
+    "hermitude-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:black-tiger-sex-machine",
+   "name": "Black Tiger Sex Machine",
+   "key": "black-tiger-sex-machine",
+   "performers": [
+    "black-tiger-sex-machine"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:gryffin",
+   "name": "Gryffin",
+   "key": "gryffin",
+   "performers": [
+    "gryffin"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:autograf",
+   "name": "Autograf",
+   "key": "autograf",
+   "performers": [
+    "autograf"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:angelz",
+   "name": "Angelz",
+   "key": "angelz",
+   "performers": [
+    "angelz"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:kyle-walker",
+   "name": "Kyle Walker",
+   "key": "kyle-walker",
+   "performers": [
+    "kyle-walker"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:hot-since-82",
+   "name": "Hot Since 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:eats-everything-b2b-skream",
+   "name": "Eats Everything B2B Skream",
+   "key": "eats-everything-b2b-skream",
+   "performers": [
+    "eats-everything",
+    "skream"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:guy-gerber",
+   "name": "Guy Gerber",
+   "key": "guy-gerber",
+   "performers": [
+    "guy-gerber"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:mind-against",
+   "name": "Mind Against",
+   "key": "mind-against",
+   "performers": [
+    "mind-against"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:yousef",
+   "name": "Yousef",
+   "key": "yousef",
+   "performers": [
+    "yousef"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:sante-b2b-sidney-charles",
+   "name": "Santé B2B Sidney Charles",
+   "key": "sante-b2b-sidney-charles",
+   "performers": [
+    "sante",
+    "sidney-charles"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:cristoph",
+   "name": "Cristoph",
+   "key": "cristoph",
+   "performers": [
+    "cristoph"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:attlas",
+   "name": "ATTLAS",
+   "key": "attlas",
+   "performers": [
+    "attlas"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:sacha-robotti",
+   "name": "Sacha Robotti",
+   "key": "sacha-robotti",
+   "performers": [
+    "sacha-robotti"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:humans",
+   "name": "Humans",
+   "key": "humans",
+   "performers": [
+    "humans"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:doorly",
+   "name": "Doorly",
+   "key": "doorly",
+   "performers": [
+    "doorly"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:wingtip",
+   "name": "Wingtip",
+   "key": "wingtip",
+   "performers": [
+    "wingtip"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:masha",
+   "name": "Masha",
+   "key": "masha",
+   "performers": [
+    "masha"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:chevvy-chase",
+   "name": "Chevvy Chase",
+   "key": "chevvy-chase",
+   "performers": [
+    "chevvy-chase"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:gammer",
+   "name": "Gammer",
+   "key": "gammer",
+   "performers": [
+    "gammer"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:atmozfears",
+   "name": "Atmozfears",
+   "key": "atmozfears",
+   "performers": [
+    "atmozfears"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:coone",
+   "name": "Coone",
+   "key": "coone",
+   "performers": [
+    "coone"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:audiofreq",
+   "name": "Audiofreq",
+   "key": "audiofreq",
+   "performers": [
+    "audiofreq"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:lady-faith",
+   "name": "Lady Faith",
+   "key": "lady-faith",
+   "performers": [
+    "lady-faith"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:saymyname",
+   "name": "SAYMYNAME",
+   "key": "saymyname",
+   "performers": [
+    "saymyname"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:pulsatorz",
+   "name": "Pulsatorz",
+   "key": "pulsatorz",
+   "performers": [
+    "pulsatorz"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:leiel",
+   "name": "Leiel",
+   "key": "leiel",
+   "performers": [
+    "leiel"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:fawks",
+   "name": "Fawks",
+   "key": "fawks",
+   "performers": [
+    "fawks"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:cassio",
+   "name": "Cassio",
+   "key": "cassio",
+   "performers": [
+    "cassio"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:swage",
+   "name": "Swage",
+   "key": "swage",
+   "performers": [
+    "swage"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:fake-shoes",
+   "name": "Fake Shoes",
+   "key": "fake-shoes",
+   "performers": [
+    "fake-shoes"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:cammakid",
+   "name": "Cammakid",
+   "key": "cammakid",
+   "performers": [
+    "cammakid"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2016:barrels",
+   "name": "Barrels",
+   "key": "barrels",
+   "performers": [
+    "barrels"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://nocturnalwonderland.com/experience/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20161111043001/https://nocturnalwonderland.com/experience/lineup/",
+    "captureTimestamp": "20161111043001",
+    "sha256": "5c4ae9d1143d1c3e9c675e8853c7f73d3491b34b23bb35882bd0a941e74b5f33"
+   }
+  ]
+ }
+}

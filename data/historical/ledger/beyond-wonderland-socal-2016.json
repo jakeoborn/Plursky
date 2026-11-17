@@ -1,0 +1,191 @@
+{
+  "id": "beyond-wonderland-socal-2016",
+  "method": "official_lineup_html",
+  "official": "https://socal.beyondwonderland.com/experience/lineup/",
+  "chosen": "20161221074029",
+  "archivedUrl": "https://web.archive.org/web/20161221074029/https://socal.beyondwonderland.com/experience/lineup/",
+  "sha256": "a11870587452c7f8d7294c7b834f8c58e229ed6ddd0106024b8b0932a9c78644",
+  "title": "LINEUP - Beyond SoCal",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 77",
+    "By Day 77"
+  ],
+  "stageOrder": [],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20160121200611",
+      "archivedUrl": "https://web.archive.org/web/20160121200611/https://socal.beyondwonderland.com/experience/lineup/",
+      "sha256": "fa4e849e75ddb230f86f41d1717cf3d66b078aac09c55c2c3c3927eca68dc3e1",
+      "bytes": 174930,
+      "via": "firecrawl",
+      "title": "LINEUP | Beyond SoCal",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160314203046",
+      "archivedUrl": "https://web.archive.org/web/20160314203046/https://socal.beyondwonderland.com/experience/lineup/",
+      "sha256": "053059c91a9a4f0b78488c45a985d42c577fa1f81c746d4c9da4af3adc4d9748",
+      "bytes": 182038,
+      "via": "firecrawl",
+      "title": "LINEUP | Beyond SoCal",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 18",
+        "Saturday, March 19"
+      ],
+      "billings": 56,
+      "diffVsChosen": [
+        "added by the final: Andrew Rayel",
+        "added by the final: Shagge",
+        "added by the final: Graham Funke",
+        "added by the final: DJ Coolwhip",
+        "added by the final: Brandon Elliot",
+        "added by the final: Trouble",
+        "added by the final: Ruff Hauser",
+        "added by the final: Moni",
+        "added by the final: Roy Wilkins",
+        "added by the final: Neon Black",
+        "added by the final: Johnny Darko",
+        "added by the final: The Real Deal Montiel",
+        "added by the final: PW Jones",
+        "added by the final: Biggs",
+        "added by the final: NGHTMRE",
+        "added by the final: Kasra B2B Enei B2B Mefjus",
+        "added by the final: LUMBERJVCK",
+        "added by the final: Jack Eye Jones",
+        "added by the final: Zander",
+        "added by the final: CSTNZA",
+        "added by the final: Barrels",
+        "added by the final: Cammakid",
+        "removed by the final: Jackmaster",
+        "removed by the final: Paul van Dyk",
+        "removed by the final: Doctor P",
+        "removed by the final: Enei",
+        "removed by the final: Kasra",
+        "removed by the final: Landis LaPace",
+        "removed by the final: Lumberjvck",
+        "removed by the final: Mefjus",
+        "removed by the final: Oneman"
+      ]
+    },
+    {
+      "captureTimestamp": "20160320041640",
+      "archivedUrl": "https://web.archive.org/web/20160320041640/https://socal.beyondwonderland.com/experience/lineup/",
+      "sha256": "65d7b06f4a3b1b00ad453c6147403893be450e01d73bb9dae06856a055503e1a",
+      "bytes": 217343,
+      "via": "firecrawl",
+      "title": "LINEUP - Beyond SoCal",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 18",
+        "Saturday, March 19"
+      ],
+      "billings": 69,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20160322104806",
+      "archivedUrl": "https://web.archive.org/web/20160322104806/https://socal.beyondwonderland.com/experience/lineup/",
+      "sha256": "1a039758bec5c81ec3e5c9d13cafc74406fe4cc09e2a50ab1451b47e296cedd2",
+      "bytes": 217671,
+      "via": "firecrawl",
+      "title": "LINEUP - Beyond SoCal",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 18",
+        "Saturday, March 19"
+      ],
+      "billings": 69,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20160330133441",
+      "archivedUrl": "https://web.archive.org/web/20160330133441/https://socal.beyondwonderland.com/experience/lineup/",
+      "sha256": "72f4cb8897b7e290cf530d59eb043ce5a18c814b4ac0260159da72baa25927f2",
+      "bytes": 217182,
+      "via": "firecrawl",
+      "title": "LINEUP - Beyond SoCal",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 18",
+        "Saturday, March 19"
+      ],
+      "billings": 69,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20160423060924",
+      "archivedUrl": "https://web.archive.org/web/20160423060924/https://socal.beyondwonderland.com/experience/lineup/",
+      "sha256": "1d3bd6c05468add049897f41a71590fe1663e3f4628d3429dec5d12937b3eda4",
+      "bytes": 216895,
+      "via": "firecrawl",
+      "title": "LINEUP - Beyond SoCal",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 18",
+        "Saturday, March 19"
+      ],
+      "billings": 69,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20161107225133",
+      "archivedUrl": "https://web.archive.org/web/20161107225133/https://socal.beyondwonderland.com/experience/lineup/",
+      "sha256": "5d4deae2c3a48d409848969f925344b0e4d0833e7b1208d316ba05ca458fb5be",
+      "bytes": 218337,
+      "via": "firecrawl",
+      "title": "LINEUP - Beyond SoCal",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 18",
+        "Saturday, March 19"
+      ],
+      "billings": 69,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20161221074029",
+      "archivedUrl": "https://web.archive.org/web/20161221074029/https://socal.beyondwonderland.com/experience/lineup/",
+      "sha256": "a11870587452c7f8d7294c7b834f8c58e229ed6ddd0106024b8b0932a9c78644",
+      "bytes": 219300,
+      "via": "firecrawl",
+      "title": "LINEUP - Beyond SoCal",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 18",
+        "Saturday, March 19"
+      ],
+      "billings": 69,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": null,
+      "billing": "Discovery Project",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

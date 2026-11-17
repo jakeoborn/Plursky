@@ -172,11 +172,14 @@ function _HistStatus({
     onClick: retry
   }, "Try again"));
 }
+function _histListedEditions(index) {
+  return (index && index.editions || []).filter(e => e.status !== "canceled");
+}
 function pastEditionsOf(index, configId) {
   var m = /^(.*)-(\d{4})$/.exec(configId || "");
   if (!m || !index) return [];
   var [, base, year] = m;
-  return (index.editions || []).filter(e => e.festivalId === base && e.year < +year).sort((a, b) => b.year - a.year);
+  return _histListedEditions(index).filter(e => e.festivalId === base && e.year < +year).sort((a, b) => b.year - a.year);
 }
 function usePastEditions(configId) {
   var [res, retry] = useHistorical("index.json");
@@ -198,8 +201,12 @@ function openPastEdition(id) {
     artist: null
   });
 }
+function _histMissingList(missing) {
+  var parts = missing.map(m => `${m.stage} (${m.when})`);
+  return parts.length < 2 ? parts.join("") : `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
+}
 function pastEditionLine(e) {
-  var what = e.completeness === "lineup_only" ? `${e.counts.artists} artists · set times not verified` : `${e.counts.sets} sets · ${e.counts.stages} stages`;
+  var what = e.completeness === "lineup_only" ? `${e.counts.artists} artists · set times not verified` : `${e.counts.sets} sets · ${e.counts.stages} stages${e.completeness === "selected_stages" ? " · selected stages" : ""}`;
   return `${_histDateRange(e.days)} · ${what}`;
 }
 function PastEditionsSection({
@@ -289,8 +296,23 @@ function _HistLibrary({
   setState
 }) {
   var [res, retry] = useHistorical("index.json");
-  var editions = res.status === "ready" ? res.data.editions || [] : [];
+  var editions = res.status === "ready" ? _histListedEditions(res.data) : [];
   var years = [...new Set(editions.map(e => e.year))].sort((a, b) => b - a);
+  var photoYears = React.useMemo(() => [..._histMomentEditionIds()], []);
+  var listed = new Set(editions.map(e => e.id));
+  var needCal = res.status === "ready" && photoYears.some(id => !listed.has(id));
+  var [cal, setCal] = React.useState(null);
+  React.useEffect(() => {
+    if (!needCal) return;
+    var live = true;
+    _histFetch("scan-calendar.json").then(d => {
+      if (live) setCal(d);
+    }).catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, [needCal]);
+  var photoOnly = (cal && cal.editions || []).filter(e => photoYears.includes(e.id) && !listed.has(e.id)).sort((a, b) => b.year - a.year || a.festivalName.localeCompare(b.festivalName));
   return React.createElement(Screen, null, React.createElement(_HistHeader, {
     title: "Past festivals",
     sub: "Official schedules · archived",
@@ -311,7 +333,62 @@ function _HistLibrary({
     res: res,
     retry: retry,
     what: "past festivals"
-  }), years.map(y => React.createElement("section", {
+  }), photoOnly.length > 0 && React.createElement("section", {
+    "data-photo-only-years": true,
+    style: {
+      marginTop: 16
+    }
+  }, React.createElement("h2", {
+    className: "duo-sect",
+    style: {
+      margin: "0 0 4px"
+    }
+  }, "Your photos from other years"), photoOnly.map(e => React.createElement("button", {
+    key: e.id,
+    onClick: () => setState(s => ({
+      ...s,
+      pastEdition: e.id
+    })),
+    style: {
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      minHeight: 64,
+      padding: "10px 0",
+      background: "transparent",
+      border: "none",
+      borderBottom: "1px solid var(--line)",
+      color: "var(--ink)",
+      textAlign: "left",
+      fontFamily: "inherit",
+      cursor: "pointer"
+    }
+  }, React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    className: "duo-headline"
+  }, e.name), React.createElement("div", {
+    style: {
+      font: "400 13px/1.385 var(--f-ui)",
+      color: "var(--ink-2)"
+    }
+  }, _histDateRange(e.days), " · lineup not added yet")), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--text-3)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M9 6 L15 12 L9 18"
+  }))))), years.map(y => React.createElement("section", {
     key: y,
     style: {
       marginTop: 16
@@ -359,7 +436,7 @@ function _HistLibrary({
     style: {
       marginTop: 3
     }
-  }, e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets`)), React.createElement("svg", {
+  }, e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets${e.completeness === "selected_stages" ? " · selected stages" : ""}`)), React.createElement("svg", {
     "aria-hidden": "true",
     width: "16",
     height: "16",
@@ -375,7 +452,9 @@ function _HistLibrary({
 }
 var _HIST_METHOD = {
   structured_html: "Read from the festival's official set-times pages",
-  official_image_transcription: "Transcribed from the festival's official schedule graphics, checked block by block"
+  official_lineup_html: "Read from the festival's official lineup page (its set times were never archived)",
+  official_image_transcription: "Transcribed from the festival's official schedule graphics, checked block by block",
+  official_sources: "From the festival's official set-times pages and schedule graphics, checked row by row"
 };
 function _HistProvenance({
   edition,
@@ -407,7 +486,7 @@ function _HistProvenance({
       margin: 0,
       color: "var(--text-2)"
     }
-  }, _HIST_METHOD[p.extractionMethod] || "From the festival's official schedule", ", as archived by the Wayback Machine. Artist and stage names appear exactly as printed. Non-music activities are left out."), p.official && React.createElement("div", null, React.createElement("div", {
+  }, _HIST_METHOD[p.extractionMethod] || "From the festival's official schedule", p.extractionMethod === "official_sources" ? ". Pages are as archived by the Wayback Machine. Where the festival's own copy was not archived, its official graphic is a re-hosted copy, named below. " : ", as archived by the Wayback Machine. ", "Artist and stage names appear exactly as printed", (p.captures || []).some(c => c.stagesAs) ? ", except where a source notes otherwise" : "", ". Non-music activities are left out."), p.official && React.createElement("div", null, React.createElement("div", {
     style: {
       fontSize: 13,
       color: "var(--text-2)"
@@ -422,32 +501,47 @@ function _HistProvenance({
       color: "var(--text-2)",
       marginBottom: 4
     }
-  }, "Archived captures"), (p.captures || []).map((c, i) => React.createElement("div", {
-    key: i,
-    style: {
-      padding: "8px 0",
-      borderBottom: "1px solid var(--line)"
-    }
-  }, React.createElement("div", {
-    style: {
-      fontWeight: 600
-    }
-  }, dayLabel(c.day)), c.archivedUrl && React.createElement("a", {
-    href: c.archivedUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: link
-  }, "Set-times page · ", stamp(c.captureTimestamp)), c.imageArchivedUrl && React.createElement("div", null, React.createElement("a", {
-    href: c.imageArchivedUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: link
-  }, "Schedule graphic · ", stamp(c.imageCapture))), c.pageArchivedUrl && React.createElement("div", null, React.createElement("a", {
-    href: c.pageArchivedUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: link
-  }, "Schedule page · ", stamp(c.pageCapture))))))));
+  }, p.extractionMethod === "official_sources" ? "Sources" : "Archived captures"), (p.captures || []).map((c, i, all) => {
+    var same = all.filter(x => x.kind === "graphic" && x.day === c.day);
+    var nth = same.length > 1 ? ` ${same.indexOf(c) + 1} of ${same.length}` : "";
+    return React.createElement("div", {
+      key: i,
+      style: {
+        padding: "8px 0",
+        borderBottom: "1px solid var(--line)"
+      }
+    }, React.createElement("div", {
+      style: {
+        fontWeight: 600
+      }
+    }, c.day ? dayLabel(c.day) : "All days"), c.archivedUrl && React.createElement("a", {
+      href: c.archivedUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: link
+    }, c.page === "lineup" ? "Lineup page" : "Set-times page", " · ", stamp(c.captureTimestamp)), c.imageArchivedUrl && React.createElement("div", null, React.createElement("a", {
+      href: c.imageArchivedUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: link
+    }, "Schedule graphic · ", stamp(c.imageCapture))), c.pageArchivedUrl && React.createElement("div", null, React.createElement("a", {
+      href: c.pageArchivedUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: link
+    }, "Schedule page · ", stamp(c.pageCapture))), c.kind === "graphic" && React.createElement("div", null, React.createElement("a", {
+      href: c.foundAt,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: link
+    }, "Official graphic", nth, " · ", c.rehostedBy, " · ", c.published ? stamp(c.published.replace(/-/g, "")) : "no printed date")), c.stagesAs && React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "var(--text-2)",
+        marginTop: 2
+      }
+    }, "This graphic styles its stage names ", Object.keys(c.stagesAs).join(", "), "; they are shown as the festival's other days print them."));
+  }))));
 }
 function _HistChip({
   on,
@@ -462,12 +556,88 @@ function _HistChip({
     className: "duo-chip"
   }, React.createElement("span", null, children));
 }
+function _HistPhotoTile({
+  moment,
+  actName,
+  guess
+}) {
+  var thumb = useMomentThumb(moment);
+  return React.createElement("li", {
+    "data-edition-photo": true,
+    style: {
+      flex: "0 0 auto",
+      width: 112
+    }
+  }, React.createElement("div", {
+    style: {
+      width: 112,
+      height: 112,
+      borderRadius: 12,
+      overflow: "hidden",
+      background: "var(--paper-2)"
+    }
+  }, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb
+  })), React.createElement("div", {
+    "data-edition-photo-act": actName ? guess ? "guess" : "sure" : "none",
+    style: {
+      marginTop: 4,
+      fontSize: 12,
+      lineHeight: "16px",
+      color: actName && !guess ? "var(--ink)" : "var(--text-2)",
+      fontWeight: actName && !guess ? 600 : 400,
+      overflowWrap: "anywhere"
+    }
+  }, actName ? guess ? `Maybe ${actName}` : actName : "No act matched"));
+}
+function _HistYourPhotos({
+  editionId,
+  artistName
+}) {
+  var moments = React.useMemo(() => _histEditionMoments(editionId), [editionId]);
+  if (!moments.length) return null;
+  return React.createElement("section", {
+    "data-edition-your-photos": true,
+    "aria-label": "Your photos",
+    style: {
+      display: "grid",
+      gap: 6
+    }
+  }, React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontSize: 13,
+      lineHeight: "18px",
+      fontWeight: 600,
+      color: "var(--ink)"
+    }
+  }, "Your photos · ", moments.length), React.createElement("ul", {
+    style: {
+      listStyle: "none",
+      margin: 0,
+      padding: "0 0 4px",
+      display: "flex",
+      gap: 8,
+      overflowX: "auto"
+    }
+  }, moments.map(m => {
+    var name = m.artistId ? artistName(m.artistId) : null;
+    var guess = !!name && (m.tagAmbiguous || m.tagSuggested);
+    return React.createElement(_HistPhotoTile, {
+      key: m.id,
+      moment: m,
+      actName: name,
+      guess: guess
+    });
+  })));
+}
 function HistoricalEditionView({
   state,
   setState
 }) {
   var [idx, retryIdx] = useHistorical("index.json");
-  var meta = idx.status === "ready" ? (idx.data.editions || []).find(e => e.id === state.pastEdition) : null;
+  var meta = idx.status === "ready" ? _histListedEditions(idx.data).find(e => e.id === state.pastEdition) : null;
   var back = () => _histBack(state, setState);
   if (idx.status !== "ready") return React.createElement(Screen, null, React.createElement(_HistHeader, {
     title: "Past festivals",
@@ -477,7 +647,30 @@ function HistoricalEditionView({
     retry: retryIdx,
     what: "past festivals"
   }));
-  if (!meta) return React.createElement(Screen, null, React.createElement(_HistHeader, {
+  if (!meta) return React.createElement(_HistCalendarYear, {
+    id: state.pastEdition,
+    back: back
+  });
+  return React.createElement(_HistEdition, {
+    meta: meta,
+    back: back
+  });
+}
+function _HistCalendarYear({
+  id,
+  back
+}) {
+  var [cal, retry] = useHistorical("scan-calendar.json");
+  var entry = cal.status === "ready" ? (cal.data && cal.data.editions || []).find(e => e.id === id) : null;
+  if (cal.status !== "ready") return React.createElement(Screen, null, React.createElement(_HistHeader, {
+    title: "Past festivals",
+    onBack: back
+  }), React.createElement(_HistStatus, {
+    res: cal,
+    retry: retry,
+    what: "past festivals"
+  }));
+  if (!entry) return React.createElement(Screen, null, React.createElement(_HistHeader, {
     title: "Past festivals",
     onBack: back
   }), React.createElement("p", {
@@ -486,10 +679,54 @@ function HistoricalEditionView({
       color: "var(--text-2)"
     }
   }, "That edition isn't in the library."));
-  return React.createElement(_HistEdition, {
-    meta: meta,
-    back: back
-  });
+  var hasPhotos = _histMomentEditionIds().has(entry.id);
+  return React.createElement(Screen, null, React.createElement(_HistHeader, {
+    title: entry.festivalName,
+    sub: String(entry.year),
+    onBack: back
+  }), React.createElement(ScrollBody, {
+    style: {
+      padding: "8px 20px 94px"
+    }
+  }, React.createElement("div", {
+    "data-calendar-year": entry.id,
+    style: {
+      display: "grid",
+      gap: 8
+    }
+  }, React.createElement("p", {
+    "data-edition-status": true,
+    style: {
+      margin: 0,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, React.createElement("span", {
+    style: {
+      fontWeight: 600,
+      color: "var(--ink)"
+    }
+  }, "Past edition"), " · ", _histDateRange(entry.days), entry.venue ? ` · ${entry.venue}` : ""), React.createElement(_HistYourPhotos, {
+    editionId: entry.id,
+    artistName: () => null
+  }), !hasPhotos && React.createElement("p", {
+    style: {
+      margin: 0,
+      fontSize: 15,
+      lineHeight: "21px",
+      color: "var(--text-2)"
+    }
+  }, "No photos from this year yet. Scan past festivals in Memories to look for them."), React.createElement("p", {
+    "data-calendar-year-note": true,
+    style: {
+      margin: 0,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)",
+      maxWidth: "60ch"
+    }
+  }, "This year's lineup isn't in Plursky yet. Your photos stay filed under ", entry.name, " and will sit beside its lineup once it's added."))));
 }
 function _HistEdition({
   meta,
@@ -502,20 +739,21 @@ function _HistEdition({
   var scroller = React.useRef(null);
   var e = res.status === "ready" ? res.data : null;
   var lineupOnly = meta.completeness === "lineup_only";
+  var lineupDays = lineupOnly && !!e && e.artists.some(a => (a.appearances || []).some(x => x.day));
   var checked = React.useMemo(() => {
-    var ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture).filter(t => /^\d{8}/.test(t || "")).sort().pop();
+    var ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || c.published?.replace(/-/g, "")).filter(t => /^\d{8}/.test(t || "")).sort().pop();
     return ts ? _histDate(`${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`, {
       month: "short",
       day: "numeric",
       year: "numeric"
     }) : "";
   }, [e]);
-  var frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"} · archived`;
+  var frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"}${meta.completeness === "selected_stages" ? ", selected stages" : ""} · archived`;
   var view = React.useMemo(() => {
     if (!e) return null;
     var artist = Object.fromEntries(e.artists.map(a => [a.id, a]));
     var stage = Object.fromEntries(e.stages.map(s => [s.id, s]));
-    var byTime = (a, b) => _histMinutes(a.start, e.rolloverHour) - _histMinutes(b.start, e.rolloverHour);
+    var byTime = (a, b) => a.start == null || b.start == null ? 0 : _histMinutes(a.start, e.rolloverHour) - _histMinutes(b.start, e.rolloverHour);
     return {
       artist,
       stage,
@@ -542,7 +780,37 @@ function _HistEdition({
     d: "M12 11 V16.5 M12 7.6 V7.5"
   })));
   var query = _histFold(q.trim());
-  var time = s => s.end ? `${fmt12(s.start)} – ${fmt12(s.end)}` : fmt12(s.start);
+  var time = s => s.start == null ? "Time not confirmed" : s.end ? `${fmt12(s.start)} – ${fmt12(s.end)}` : fmt12(s.start);
+  var notes = (e?.notes || []).filter(n => !n.days || query || n.days.includes(day));
+  var missing = e?.coverage?.missing || [];
+  if (missing.length) notes.unshift({
+    asOf: e.coverage.asOf,
+    text: `Not every stage is here yet. The official schedule also listed ${_histMissingList(missing)}, whose set times are not in this edition.`
+  });
+  var noteBlock = notes.length > 0 && React.createElement("div", {
+    "data-edition-notes": true,
+    style: {
+      margin: "8px 0 4px",
+      display: "grid",
+      gap: 6
+    }
+  }, notes.map((n, i) => React.createElement("p", {
+    key: i,
+    style: {
+      margin: 0,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, n.text, " ", React.createElement("span", {
+    style: {
+      color: "var(--text-3)"
+    }
+  }, "(noted ", _histDate(n.asOf, {
+    month: "short",
+    day: "numeric",
+    year: "numeric"
+  }), ")"))));
   var setRow = (s, sub) => React.createElement("li", {
     key: s.id,
     style: {
@@ -579,7 +847,7 @@ function _HistEdition({
       fontWeight: 600,
       overflowWrap: "anywhere"
     }
-  }, view.artist[s.artistId]?.name), sub && React.createElement("div", {
+  }, s.billing || view.artist[s.artistId]?.name), sub && React.createElement("div", {
     style: {
       fontSize: 13,
       lineHeight: "18px",
@@ -587,39 +855,95 @@ function _HistEdition({
     }
   }, sub)));
   var body = null;
+  var place = a => (a.appearances || []).map(x => [x.day && _histDayParts(meta.days.find(d => d.day === x.day) || {}).name, view.stage[x.stageId]?.name].filter(Boolean).join(" · ")).filter(Boolean).join("; ");
+  var nameRow = (a, sub) => React.createElement("li", {
+    key: a.id,
+    style: {
+      padding: "10px 0",
+      borderBottom: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 16,
+      lineHeight: "21px",
+      fontWeight: 600,
+      overflowWrap: "anywhere"
+    }
+  }, a.name), sub && React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, sub));
+  var byName = (a, b) => a.name.localeCompare(b.name);
   if (e && lineupOnly) {
-    var list = e.artists.filter(a => !query || _histFold(a.name).includes(query)).sort((a, b) => a.name.localeCompare(b.name));
+    var printedDays = e.artists.some(a => (a.appearances || []).some(x => x.day));
+    var note = `Set times not verified for this edition: no official set times survive${printedDays ? `. Days${e.stages.length ? " and stages" : ""} are as the official lineup printed them.` : ", so only the lineup is shown."}`;
+    var list;
+    if (query || day === "all" || !printedDays) {
+      var hits = e.artists.filter(a => !query || _histFold(a.name).includes(query)).sort(byName);
+      list = React.createElement(React.Fragment, null, React.createElement("ul", {
+        "aria-label": "Lineup",
+        style: {
+          listStyle: "none",
+          margin: 0,
+          padding: 0
+        }
+      }, hits.map(a => nameRow(a, place(a)))), !hits.length && React.createElement("p", {
+        style: {
+          color: "var(--text-2)"
+        }
+      }, "No artist matches “", q.trim(), "”."));
+    } else {
+      var onDay = e.artists.filter(a => (a.appearances || []).some(x => x.day === day));
+      var _groups = e.stages.length ? [...e.stages.map(st => ({
+        id: st.id,
+        name: st.name,
+        acts: onDay.filter(a => a.appearances.some(x => x.day === day && x.stageId === st.id))
+      })), {
+        id: "none",
+        name: "Stage not printed",
+        acts: onDay.filter(a => a.appearances.some(x => x.day === day && !x.stageId))
+      }] : [{
+        id: "all",
+        name: null,
+        acts: onDay
+      }];
+      list = _groups.filter(g => g.acts.length).map(g => React.createElement("section", {
+        key: g.id,
+        "data-stage": g.id,
+        style: {
+          marginTop: g.name ? 20 : 0
+        }
+      }, g.name && React.createElement("h2", {
+        style: {
+          margin: "0 0 2px",
+          fontSize: 20,
+          lineHeight: "25px",
+          fontWeight: 700,
+          overflowWrap: "anywhere"
+        }
+      }, g.name), React.createElement("ul", {
+        "aria-label": g.name || "Lineup",
+        style: {
+          listStyle: "none",
+          margin: 0,
+          padding: 0
+        }
+      }, g.acts.sort(byName).map(a => nameRow(a)))));
+    }
     body = React.createElement(React.Fragment, null, React.createElement("p", {
       style: {
         margin: "4px 0 12px",
         fontSize: 14,
         color: "var(--text-2)"
       }
-    }, "Set times not verified for this edition: no official set times survive, so only the lineup is shown."), React.createElement("ul", {
-      "aria-label": "Lineup",
-      style: {
-        listStyle: "none",
-        margin: 0,
-        padding: 0
-      }
-    }, list.map(a => React.createElement("li", {
-      key: a.id,
-      style: {
-        padding: "10px 0",
-        borderBottom: "1px solid var(--line)",
-        fontSize: 16,
-        fontWeight: 600,
-        overflowWrap: "anywhere"
-      }
-    }, a.name))), !list.length && React.createElement("p", {
-      style: {
-        color: "var(--text-2)"
-      }
-    }, "No artist matches “", q.trim(), "”."));
+    }, note), list);
   } else if (e && query) {
-    var hits = e.sets.filter(s => _histFold(view.artist[s.artistId]?.name).includes(query));
+    var _hits = e.sets.filter(s => _histFold(s.billing || view.artist[s.artistId]?.name).includes(query));
     body = React.createElement(React.Fragment, null, meta.days.map(d => {
-      var rows = hits.filter(s => s.day === d.day).sort(view.byTime);
+      var rows = _hits.filter(s => s.day === d.day).sort(view.byTime);
       if (!rows.length) return null;
       return React.createElement("section", {
         key: d.day,
@@ -643,7 +967,7 @@ function _HistEdition({
           padding: 0
         }
       }, rows.map(s => setRow(s, view.stage[s.stageId]?.name))));
-    }), !hits.length && React.createElement("p", {
+    }), !_hits.length && React.createElement("p", {
       style: {
         color: "var(--text-2)"
       }
@@ -744,7 +1068,10 @@ function _HistEdition({
       fontWeight: 600,
       color: "var(--ink)"
     }
-  }, "Past edition"), " · ", _histDateRange(meta.days), checked && React.createElement(React.Fragment, null, " · source archived ", checked)), !lineupOnly && !query && groups.map(g => React.createElement("div", {
+  }, "Past edition"), " · ", _histDateRange(meta.days), checked && React.createElement(React.Fragment, null, " · ", e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived", " ", checked)), React.createElement(_HistYourPhotos, {
+    editionId: meta.id,
+    artistName: id => view?.artist[id]?.name || null
+  }), (!lineupOnly || lineupDays) && !query && groups.map(g => React.createElement("div", {
     key: g.name || "days",
     role: "group",
     "aria-label": g.name || "Days",
@@ -773,7 +1100,16 @@ function _HistEdition({
         top: 0
       });
     }
-  }, d.short.slice(0, 3), " ", +d.date.slice(8))))), React.createElement("input", {
+  }, d.short.slice(0, 3), " ", +d.date.slice(8))), lineupOnly && React.createElement(_HistChip, {
+    on: day === "all",
+    label: "The whole lineup",
+    onClick: () => {
+      setDay("all");
+      scroller.current?.scrollTo({
+        top: 0
+      });
+    }
+  }, "All"))), React.createElement("input", {
     type: "search",
     value: q,
     onChange: ev => setQ(ev.target.value),
@@ -801,7 +1137,7 @@ function _HistEdition({
     res: res,
     retry: retry,
     what: meta.name
-  }) : body), about && e && React.createElement(_HistProvenance, {
+  }) : React.createElement(React.Fragment, null, noteBlock, body)), about && e && React.createElement(_HistProvenance, {
     edition: e,
     onClose: () => setAbout(false)
   }));

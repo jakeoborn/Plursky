@@ -338,6 +338,7 @@ function IOSDevice({
   dark = false
 }) {
   return React.createElement("div", {
+    className: "ps-stage",
     style: {
       position: 'fixed',
       inset: 0,
@@ -346,7 +347,15 @@ function IOSDevice({
       fontFamily: '-apple-system, system-ui, sans-serif',
       WebkitFontSmoothing: 'antialiased'
     }
-  }, children);
+  }, React.createElement("div", {
+    className: "ps-shell",
+    style: {
+      position: 'absolute',
+      inset: 0,
+      overflow: 'hidden',
+      background: 'var(--paper)'
+    }
+  }, children));
 }
 function IOSKeyboard({
   dark = false

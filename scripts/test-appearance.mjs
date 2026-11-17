@@ -23,6 +23,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 import { tokenPairFailures, stageFillFailures } from './lib/token-pairs.mjs';
 
 const reservePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? reject(e) : resolve(a.port)); }); });
@@ -48,6 +49,8 @@ const RECAP_DATA = {
   plursky_moments_v1: JSON.stringify({ 1: [{ kind: 'photo', festivalId: FID, createdAt: 1, id: 'appearance-m1', night: 1, photoId: 'appearance-hero', _fingerprint: 'appearance-m1', artistId: 'n4', takenAt: '2026-05-16T05:30:00.000Z' }] }),
 };
 const RECAP_PLAIN = { plursky_attended_v1: RECAP_DATA.plursky_attended_v1 };
+const ARTIST_LFM = { lfm_charlotte_de_witte_v2: JSON.stringify({ fetchedAt: Date.parse(AT), data: {
+  listeners: 412345, playcount: 9876543, tags: ['techno', 'belgian', 'electronic'], bio: '', similar: [], topTrackNames: [], url: null } }) };
 const SCREENS = [
   ['home',     'tab=home',            {},                                   '#root > *', null, { h1: 'EDC Las Vegas', tab: 'Today' }],
   ['lineup',   'tab=lineup',          { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', null, { h1: 'Lineup', tab: 'Lineup' }],
@@ -62,7 +65,10 @@ const SCREENS = [
   ['lineup-wide', 'tab=lineup',       { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', 'Verdana', { h1: 'Lineup', tab: 'Lineup' }],
   ['grid',     'tab=lineup',          { plursky_lineup_view: 'grid' },      '[data-grid-scroll]', null, { h1: 'Lineup', tab: 'Lineup' }],
   ['map',      'tab=map',             {},                                   '#root > *', null, { tab: 'Map' }],
-  ['artist',   'tab=lineup&artist=k9', {},                                  '#root > *', null, { artist: 'k9' }],
+  // Last.fm from the app's own cache (fixture values), so the accent stat
+  // numbers and accent-outline genre chips (L4) are on screen in every run,
+  // not only when the live API answers.
+  ['artist',   'tab=lineup&artist=k9', ARTIST_LFM,                          '#root > *', null, { artist: 'k9' }],
   ['me',       'tab=me',              {},                                   '[data-appearance-row]', null, { h1: 'Me', tab: 'Me' }],
   ['memories', 'tab=memories',        {},                                   '#root > *', null, { h1: 'Memories' }],
   ['recap',    'tab=home',            {},                                   '#root > *', null, { h1: 'Recap' }, { tab: 'recap' }],
@@ -109,12 +115,14 @@ try {
   const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false, width = 393, fid = FID, font = null, go = null, photo = null, tape = null, net = null } = {}) => {
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
     if (tape) await wireNet(ctx, tape, net);
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(({ FID, pick, extra }) => {
       if (sessionStorage.getItem('__seeded')) return;   // seed once: a reload must see what the app stored
       sessionStorage.setItem('__seeded', '1');
-      localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+      localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
       localStorage.setItem('cloud_nudge_seen', '1');
+      localStorage.setItem('plursky_display_name', '');   // quick-name ask already skipped: Me opens unobstructed
       // A real plan: John Summit live, Subtronics and Mathame clashing next, a b2b.
       localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(['k15', 'k16', 'q17', 'bp8']));
       localStorage.setItem('ping_code', 'ECHO'); localStorage.setItem('plursky_pid', 'appearance-test');   // per-install randoms, pinned
@@ -165,11 +173,14 @@ try {
   const modeOf = (page) => page.evaluate(() => document.documentElement.getAttribute('data-mode'));
   // What the mounted screen actually shows, checked against what it claims.
   const isScreen = (page, is) => page.evaluate((is) => {
-    const h1 = [...document.querySelectorAll('h1')].filter(h => h.getClientRects().length).map(h => h.innerText.trim());
+    // A heading set as stacked poster words (Today's print) reads back with
+    // line breaks and in caps; it is still the festival's name.
+    const norm = (t) => t.replace(/\s+/g, ' ').trim().toLowerCase();
+    const h1 = [...document.querySelectorAll('h1')].filter(h => h.getClientRects().length).map(h => norm(h.innerText));
     const tab = (document.querySelector('[aria-current=page]')?.innerText || '').trim();
     const artist = is.artist ? (window.ARTISTS || []).find(a => a.id === is.artist)?.name : null;
     const photo = [...document.querySelectorAll('body *')].some(e => /url\("?blob:/.test(getComputedStyle(e).backgroundImage));
-    const ok = (!is.h1 || h1.includes(is.h1)) && (!is.tab || tab === is.tab) && (!is.artist || (!!artist && document.body.innerText.includes(artist)))
+    const ok = (!is.h1 || h1.includes(norm(is.h1))) && (!is.tab || tab === is.tab) && (!is.artist || (!!artist && document.body.innerText.includes(artist)))
       && (!is.text || document.body.innerText.includes(is.text)) && (!is.photo || photo);
     return { ok, saw: `h1 ${JSON.stringify(h1)}, tab "${tab}"${is.text ? `, ${is.text} ${document.body.innerText.includes(is.text) ? 'shown' : 'missing'}` : ''}${is.photo ? `, photo ${photo ? 'painted' : 'missing'}` : ''}` };
   }, is);
@@ -227,9 +238,19 @@ try {
         mediaBoxes.push({ t, color: cs.color, op, large: px >= 24 || (px >= 18.66 && wt >= 700), x: Math.max(0, r.left), y: Math.max(0, r.top), w: Math.min(W, r.right) - Math.max(0, r.left), h: Math.min(H, r.bottom) - Math.max(0, r.top) });
         continue;
       }
+      // What is painted under the text, in real paint order (elementsFromPoint):
+      // its ancestors AND anything else beneath it, from the first opaque fill
+      // up. Today's Step 3 ticket paints its tilted plate as a sibling under
+      // the row (the hit area stays unrotated), and the ancestor walk alone read
+      // ink on ink there. The ancestor walk above still owns opacity and media.
+      const under = [];
+      { const own = parse(cs.backgroundColor); if (own && own.a > 0) under.push(own); }
+      { const stack = document.elementsFromPoint(x, y), i0 = stack.findIndex(u => u === el || el.contains(u));
+        for (const u of stack.slice(Math.max(0, i0) + 1)) { if (el.contains(u)) continue; const ub = parse(getComputedStyle(u).backgroundColor); if (ub && ub.a > 0) { under.push(ub); if (ub.a >= 0.999) break; } } }
       let bg = { r: 255, g: 255, b: 255, a: 1 };
       const root = parse(getComputedStyle(document.documentElement).backgroundColor); if (root && root.a > 0) bg = over(root, bg);
-      for (let i = layers.length - 1; i >= 0; i--) bg = over(layers[i], bg);
+      const fills = under.length ? under : layers;
+      for (let i = fills.length - 1; i >= 0; i--) bg = over(fills[i], bg);
       let fg = parse(cs.color); if (!fg) continue;
       fg = { ...fg, a: fg.a * op };
       if (fg.a < 0.02) continue;
@@ -540,9 +561,11 @@ try {
   // (seen on the #275 Simulator: iOS Light, System picked, app stayed Dark).
   {
     const ctx = await browser.newContext({ viewport: { width: 393, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: 'dark' });
+    await wireVendor(ctx);
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(({ FID }) => {
-      localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('cloud_nudge_seen', '1');
+      localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0'); localStorage.setItem('cloud_nudge_seen', '1');
+      localStorage.setItem('plursky_display_name', '');   // quick-name ask already skipped: Me opens unobstructed
       window.__nativeStyles = [];
       window.Capacitor = { isNativePlatform: () => false, Plugins: { Appearance: { setStyle: (o) => { window.__nativeStyles.push(o && o.style); return Promise.resolve(); } } } };
     }, { FID });
@@ -592,6 +615,60 @@ try {
       check(k.shareLeft !== null && k.right <= k.shareLeft, `${tag}: "${k.text}" runs under the Share button (text ends ${Math.round(k.right)}px, Share starts ${Math.round(k.shareLeft)}px)`);
       await ctx.close();
     }
+  }
+  // The artist hero name fits its box at the smallest phone: every word on
+  // one line and inside the hero, at 320 and at 280 (margin for the runner's
+  // wider fonts), in a wide face too. "The Chainsmokers" (EDC k6) was clipped
+  // to "Chainsmoker" at 320 with a fixed 52px. The name must be the fixture's,
+  // or the check proves nothing.
+  // Light runs once: its shade is a violet, not black, so the eyebrow
+  // backing's contrast differs by mode.
+  for (const [width, font, scheme] of [[320, null, 'dark'], [280, null, 'dark'], [320, 'Verdana', 'dark'], [320, null, 'light']]) {
+    const { ctx, page } = await open({ query: 'tab=lineup&artist=k6', width, font, scheme, ready: '[data-artist-hero-name]' });
+    await page.waitForTimeout(400);   // the settled fit pass runs 200ms after mount
+    const h = await page.evaluate(() => {
+      const el = document.querySelector('[data-artist-hero-name]'); if (!el) return null;
+      const box = el.getBoundingClientRect(), bad = [];
+      const n = el.firstChild, re = /\S+/g; let m;
+      while (n && (m = re.exec(n.data))) {
+        const rg = document.createRange(); rg.setStart(n, m.index); rg.setEnd(n, m.index + m[0].length);
+        const rs = rg.getClientRects(), r = rg.getBoundingClientRect();
+        if ((rs.length > 1 && rs[rs.length - 1].top > rs[0].top + 1) || r.right > box.right + 0.5 || r.left < box.left - 0.5) bad.push(m[0]);
+      }
+      return { text: el.textContent, size: parseFloat(getComputedStyle(el).fontSize), bad };
+    });
+    const tag = `artist hero name (${width}px${font ? ', ' + font : ''}${scheme === 'light' ? ', Light' : ''})`;
+    check(h && h.text === 'The Chainsmokers', `${tag}: expected "The Chainsmokers", got ${h ? `"${h.text}"` : 'no [data-artist-hero-name]'}`);
+    if (h) check(!h.bad.length, `${tag}: ${h.bad.map(w => `"${w}"`).join(', ')} broken or outside the box at ${h.size}px`);
+    const nf = await names(page);
+    check(!nf.length, `[artist @${width}${font ? ' ' + font : ''}${scheme === 'light' ? ' light' : ''}] ${nf.join(' · ')}`);
+    // The eyebrow on the full-bleed hero carries its own backing (Jake's
+    // ruling on #285: behind the label, not in the gradient). Composite the
+    // backing over a white sky, the worst photo, and every eyebrow label must
+    // still clear 4.5:1 against it.
+    const eb = await page.evaluate(() => {
+      const el = document.querySelector('.media-scope [data-artist-hero-eyebrow]'); if (!el) return null;
+      const rgb = c => (c.match(/[\d.]+/g) || []).map(Number);
+      const lum = ([r, g, b]) => [r, g, b].map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; })
+        .reduce((t, v, i) => t + v * [0.2126, 0.7152, 0.0722][i], 0);
+      const [r, g, b, a = 1] = rgb(getComputedStyle(el).backgroundColor);
+      const ground = [r, g, b].map(v => v * a + 255 * (1 - a));
+      const row = el.parentElement.getBoundingClientRect(), box = el.getBoundingClientRect();
+      const labels = [...el.children].filter(c => c.textContent.trim()).map(c => {
+        const cs = getComputedStyle(c), [cr, cg, cb] = rgb(cs.color), o = +cs.opacity;
+        const fg = [cr, cg, cb].map((v, i) => v * o + ground[i] * (1 - o));
+        const L = [lum(fg), lum(ground)].sort((x, y) => y - x);
+        return { text: c.textContent.trim(), ratio: (L[0] + 0.05) / (L[1] + 0.05) };
+      });
+      return { alpha: a, hugs: box.width < row.width - 1, labels };
+    });
+    check(!!eb, `${tag}: no [data-artist-hero-eyebrow] on the full-bleed hero`);
+    if (eb) {
+      check(eb.labels.length >= 1, `${tag}: the eyebrow printed no label, so its contrast check proves nothing`);
+      check(eb.hugs, `${tag}: the eyebrow backing spans the whole row instead of sitting behind the label`);
+      for (const l of eb.labels) check(l.ratio >= 4.5, `${tag}: eyebrow "${l.text}" is ${l.ratio.toFixed(2)}:1 over a white sky (backing alpha ${eb.alpha}), under 4.5`);
+    }
+    await ctx.close();
   }
   // General Home's search placeholder at 200% text: whole inside the field at
   // the smallest phone (and at 280, margin for the runner's wider fonts, in a
@@ -703,6 +780,8 @@ try {
   // at the real size, in whatever face loaded, so it fits at 12px everywhere.
   for (const pick of ['dark', 'light']) {
     const { ctx, page } = await open({ pick, query: 'tab=home', ready: '[data-duo-stages]' });
+    // The board opens folded to the stages that matter; this reads a name on any stage.
+    if (await page.$('[data-duo-stages-toggle][aria-expanded="false"]')) { await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(300); }
     const made = await page.evaluate(() => {
       const el = [...document.querySelectorAll('[data-duo-stages] [data-fit-words], [data-duo-stages] .duo-name')].find(n => n.textContent.trim() === 'Interplanetary Criminal');
       if (!el) return null;

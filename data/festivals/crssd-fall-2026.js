@@ -352,6 +352,7 @@
 
   const CONFIG = {
     id:        "crssd-fall-2026",
+    officialEvent: { website: "https://www.crssdfest.com/", observedAt: "2026-11-11" },
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
     lineupSource: { url: "https://www.crssdfest.com/", observedAt: "2026-09-27", official: true },
@@ -365,6 +366,8 @@
     locationShort: "Waterfront Park",
     dates:     "Sep 26–27, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#EC7A2C", source: { url: "https://www.crssdfest.com/", observedAt: "2026-10-09", seenAs: "inline <style>: .vc-ty__cta--filled:hover{background;border-color} and .vc-ty__cta:focus-visible{outline} on the homepage CTA", confidence: "medium" }, note: "The site is in post-event 'Thank You' mode (body.event-mode--post) on a neutral cream #f5f0e7 / charcoal #2e2c2a palette, so this CTA hover orange is the only chromatic accent on the page (universal.css hovers use the same family, #ef9a36); no theme-color meta and no brand custom property." },
     // "Doors open at 12PM both days" (official FAQ). California is PDT
     // (UTC-7) in September — DST does not end until Nov 1. The close is the
     // official grid's last set: 11:00 PM Saturday, 10:00 PM Sunday.
@@ -402,6 +405,9 @@
       // about. 64,524 m². OSM tags this `source=knowledge`, so it is the
       // best published outline rather than a survey; see the header before
       // treating it as measured, and replace it from an official map.
+      // The footprint is the festival grounds (the park the festival fills), so the real map
+      // masks everything outside it.
+      footprintIsGrounds: true,
       footprint: [
         [32.72003, -117.17285], [32.72003, -117.17234], [32.72001, -117.17124],
         [32.72005, -117.17124], [32.72088, -117.17124], [32.72107, -117.17123],
@@ -427,6 +433,14 @@
     // published, but it is poster art whose reuse rights and registration
     // are unsettled, so it is cited and never copied or pinned from.
     mapMode: "real",
+    // The real map now also lays the festival's OWN Fall 2026 map, bent onto
+    // Waterfront Park by a thin-plate fit over its pools, the County
+    // Administration Center and the streets (never a stage), Jake 2026-11-12:
+    // "let's try to get each map overlayed on top of the real ground".
+    // map-sources/crssd-fall-2026-geo-ties.json from https://www.crssdfest.com/wp-content/uploads/Map-IG-Post-4x5-1.jpg
+    // It places the art only: no stage pins, no distances, mapMode stays "real".
+    mapGeoref: { image: "geo-maps/crssd-fall-2026.webp", bounds: [-117.1733317, 32.7191649, -117.1705385, 32.724466], model: "tps",
+                 ties: "map-sources/crssd-fall-2026-geo-ties.json", rmsM: 9.7, looRmsM: 9.7 },
 
     // The festival's OWN map page, linked (never embedded) by the /f/ page:
     // official publication is provenance, not reuse rights. mapYear is the

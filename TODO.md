@@ -107,9 +107,8 @@ Re-run any claim here with `node scripts/anchor-residuals.mjs`.
       three anchors ARE the affine basis and nothing can ever check them. The
       fix is a non-stage landmark (the Unisphere, 40.746396/-73.845074), which
       needs a small schema change since `gpsAnchors` are `stageId`-keyed.
-- [ ] **Re-verify Govball `snapchat`** against the 2026 patron map or recap
-      media — north/south conflict, currently 737 m wide, landed on the 2025
-      official map's south position as `poster`.
+- [x] **Re-verify Govball `snapchat`** — settled via the official 2026
+      patron map in #320 (north/south conflict closed; blind waiver re-dated).
 
 ## 🎪 MULTI-FESTIVAL EXPANSION WAVE — full spec: `docs/SPEC-add-festivals.md` (2026-06-06)
 Why: the Radiate partnership pitch (drafted, **HOLDING — NOT sent**; copy in Jake's Mail drafts → radtherhino@radiatetheworld.com) needs festival coverage matching Radiate's biggest communities first. One festival per fresh session:
@@ -719,6 +718,19 @@ Ordered by impact-per-engineering-hour.
 ---
 
 ## 🟡 POLISH + RISK REDUCTION
+
+- [ ] **Video GPS strip, follow-up B (decided 2026-11-10: A ships in #410, B logged here, not in #410).**
+      #410 states as residual what its strip does not vet: audio samples (AAC
+      data-stream/fill elements), `mebx` timed values for allowlisted keys,
+      `tmcd` counters, the fixed-size display SEI kept in `hvcC`, and the values
+      inside allowlisted sample-entry children (`esds`, `dapa`, `btrt`, …).
+      None carries the phone's own capture fix on the 66 real clips; a crafted
+      file could. Hardening: walk AAC frames and fill data-stream/fill
+      elements; refuse raw-PCM/`mebx` tracks whose sample sizes don't match
+      their format; overwrite the `hvcC` display SEI with fixed defaults
+      (every iPhone clip loses its ambient-viewing values); re-check the
+      66 real clips (0 refused) and decode. About a day. Until then, copy
+      claims only that the phone's own location metadata is removed.
 
 - [x] **Wire `@capacitor/haptics` into primary CTAs** — Dim Hour shipped
       this 2026-05-21 (commit on main; see Dim Hour memory

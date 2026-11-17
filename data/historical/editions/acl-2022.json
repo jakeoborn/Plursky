@@ -1,0 +1,3117 @@
+{
+ "id": "acl-2022",
+ "festivalId": "acl",
+ "name": "Austin City Limits 2022",
+ "year": 2022,
+ "timezone": "America/Chicago",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-10-07",
+   "label": "Weekend 1 · Friday"
+  },
+  {
+   "day": 2,
+   "date": "2022-10-08",
+   "label": "Weekend 1 · Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2022-10-09",
+   "label": "Weekend 1 · Sunday"
+  },
+  {
+   "day": 4,
+   "date": "2022-10-14",
+   "label": "Weekend 2 · Friday"
+  },
+  {
+   "day": 5,
+   "date": "2022-10-15",
+   "label": "Weekend 2 · Saturday"
+  },
+  {
+   "day": 6,
+   "date": "2022-10-16",
+   "label": "Weekend 2 · Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "acl-2022:honda",
+   "name": "HONDA"
+  },
+  {
+   "id": "acl-2022:miller-lite",
+   "name": "MILLER LITE"
+  },
+  {
+   "id": "acl-2022:bmi",
+   "name": "BMI"
+  },
+  {
+   "id": "acl-2022:barton-springs",
+   "name": "BARTON SPRINGS"
+  },
+  {
+   "id": "acl-2022:tito-s-handmade-vodka",
+   "name": "TITO'S HANDMADE VODKA"
+  },
+  {
+   "id": "acl-2022:austin-kiddie-limits",
+   "name": "AUSTIN KIDDIE LIMITS"
+  },
+  {
+   "id": "acl-2022:t-mobile",
+   "name": "T-MOBILE"
+  },
+  {
+   "id": "acl-2022:american-express",
+   "name": "AMERICAN EXPRESS"
+  }
+ ],
+ "artists": [
+  {
+   "id": "acl-2022:asleep-at-the-wheel",
+   "name": "ASLEEP AT THE WHEEL",
+   "key": "asleep-at-the-wheel",
+   "performers": [
+    "asleep-at-the-wheel"
+   ]
+  },
+  {
+   "id": "acl-2022:kevin-morby",
+   "name": "KEVIN MORBY",
+   "key": "kevin-morby",
+   "performers": [
+    "kevin-morby"
+   ]
+  },
+  {
+   "id": "acl-2022:jazmine-sullivan",
+   "name": "JAZMINE SULLIVAN",
+   "key": "jazmine-sullivan",
+   "performers": [
+    "jazmine-sullivan"
+   ]
+  },
+  {
+   "id": "acl-2022:james-blake",
+   "name": "JAMES BLAKE",
+   "key": "james-blake",
+   "performers": [
+    "james-blake"
+   ]
+  },
+  {
+   "id": "acl-2022:sza",
+   "name": "SZA",
+   "key": "sza",
+   "performers": [
+    "sza"
+   ]
+  },
+  {
+   "id": "acl-2022:nation-of-language",
+   "name": "NATION OF LANGUAGE",
+   "key": "nation-of-language",
+   "performers": [
+    "nation-of-language"
+   ]
+  },
+  {
+   "id": "acl-2022:gayle",
+   "name": "GAYLE",
+   "key": "gayle",
+   "performers": [
+    "gayle"
+   ]
+  },
+  {
+   "id": "acl-2022:arlo-parks",
+   "name": "ARLO PARKS",
+   "key": "arlo-parks",
+   "performers": [
+    "arlo-parks"
+   ]
+  },
+  {
+   "id": "acl-2022:omar-apollo",
+   "name": "OMAR APOLLO",
+   "key": "omar-apollo",
+   "performers": [
+    "omar-apollo"
+   ]
+  },
+  {
+   "id": "acl-2022:elijah-wolf",
+   "name": "ELIJAH WOLF",
+   "key": "elijah-wolf",
+   "performers": [
+    "elijah-wolf"
+   ]
+  },
+  {
+   "id": "acl-2022:lilyisthatyou",
+   "name": "LILYISTHATYOU",
+   "key": "lilyisthatyou",
+   "performers": [
+    "lilyisthatyou"
+   ]
+  },
+  {
+   "id": "acl-2022:sarah-and-the-sundays",
+   "name": "SARAH & THE SUNDAYS",
+   "key": "sarah-and-the-sundays",
+   "performers": [
+    "sarah-and-the-sundays"
+   ]
+  },
+  {
+   "id": "acl-2022:cassandra-jenkins",
+   "name": "CASSANDRA JENKINS",
+   "key": "cassandra-jenkins",
+   "performers": [
+    "cassandra-jenkins"
+   ]
+  },
+  {
+   "id": "acl-2022:gabriels",
+   "name": "GABRIELS",
+   "key": "gabriels",
+   "performers": [
+    "gabriels"
+   ]
+  },
+  {
+   "id": "acl-2022:l-imperatrice",
+   "name": "L'IMPÉRATRICE",
+   "key": "l-imperatrice",
+   "performers": [
+    "l-imperatrice"
+   ]
+  },
+  {
+   "id": "acl-2022:carly-rae-jepsen",
+   "name": "CARLY RAE JEPSEN",
+   "key": "carly-rae-jepsen",
+   "performers": [
+    "carly-rae-jepsen"
+   ]
+  },
+  {
+   "id": "acl-2022:thebrosfresh",
+   "name": "THEBROSFRESH",
+   "key": "thebrosfresh",
+   "performers": [
+    "thebrosfresh"
+   ]
+  },
+  {
+   "id": "acl-2022:cory-henry",
+   "name": "CORY HENRY",
+   "key": "cory-henry",
+   "performers": [
+    "cory-henry"
+   ]
+  },
+  {
+   "id": "acl-2022:genesis-owusu",
+   "name": "GENESIS OWUSU",
+   "key": "genesis-owusu",
+   "performers": [
+    "genesis-owusu"
+   ]
+  },
+  {
+   "id": "acl-2022:big-gigantic",
+   "name": "BIG GIGANTIC",
+   "key": "big-gigantic",
+   "performers": [
+    "big-gigantic"
+   ]
+  },
+  {
+   "id": "acl-2022:elena-moon-park",
+   "name": "ELENA MOON PARK",
+   "key": "elena-moon-park",
+   "performers": [
+    "elena-moon-park"
+   ]
+  },
+  {
+   "id": "acl-2022:school-of-rock",
+   "name": "SCHOOL OF ROCK",
+   "key": "school-of-rock",
+   "performers": [
+    "school-of-rock"
+   ]
+  },
+  {
+   "id": "acl-2022:qbrothers",
+   "name": "QBROTHERS",
+   "key": "qbrothers",
+   "performers": [
+    "qbrothers"
+   ]
+  },
+  {
+   "id": "acl-2022:zai1k",
+   "name": "ZAI1K",
+   "key": "zai1k",
+   "performers": [
+    "zai1k"
+   ]
+  },
+  {
+   "id": "acl-2022:charlotte-cardin",
+   "name": "CHARLOTTE CARDIN",
+   "key": "charlotte-cardin",
+   "performers": [
+    "charlotte-cardin"
+   ]
+  },
+  {
+   "id": "acl-2022:benee",
+   "name": "BENEE",
+   "key": "benee",
+   "performers": [
+    "benee"
+   ]
+  },
+  {
+   "id": "acl-2022:billy-strings",
+   "name": "BILLY STRINGS",
+   "key": "billy-strings",
+   "performers": [
+    "billy-strings"
+   ]
+  },
+  {
+   "id": "acl-2022:tamino",
+   "name": "TAMINO",
+   "key": "tamino",
+   "performers": [
+    "tamino"
+   ]
+  },
+  {
+   "id": "acl-2022:noah-cyrus",
+   "name": "NOAH CYRUS",
+   "key": "noah-cyrus",
+   "performers": [
+    "noah-cyrus"
+   ]
+  },
+  {
+   "id": "acl-2022:zach-bryan",
+   "name": "ZACH BRYAN",
+   "key": "zach-bryan",
+   "performers": [
+    "zach-bryan"
+   ]
+  },
+  {
+   "id": "acl-2022:nathaniel-rateliff-and-the-night-sweats",
+   "name": "NATHANIEL RATELIFF & THE NIGHT SWEATS",
+   "key": "nathaniel-rateliff-and-the-night-sweats",
+   "performers": [
+    "nathaniel-rateliff-and-the-night-sweats"
+   ]
+  },
+  {
+   "id": "acl-2022:the-chicks",
+   "name": "THE CHICKS",
+   "key": "the-chicks",
+   "performers": [
+    "the-chicks"
+   ]
+  },
+  {
+   "id": "acl-2022:the-future-x",
+   "name": "THE FUTURE X",
+   "key": "the-future-x",
+   "performers": [
+    "the-future-x"
+   ]
+  },
+  {
+   "id": "acl-2022:adrian-quesada-s-boleros-psicodelicos",
+   "name": "ADRIAN QUESADA'S BOLEROS PSICODÉLICOS",
+   "key": "adrian-quesada-s-boleros-psicodelicos",
+   "performers": [
+    "adrian-quesada-s-boleros-psicodelicos"
+   ]
+  },
+  {
+   "id": "acl-2022:conan-gray",
+   "name": "CONAN GRAY",
+   "key": "conan-gray",
+   "performers": [
+    "conan-gray"
+   ]
+  },
+  {
+   "id": "acl-2022:big-boi",
+   "name": "BIG BOI",
+   "key": "big-boi",
+   "performers": [
+    "big-boi"
+   ]
+  },
+  {
+   "id": "acl-2022:flume",
+   "name": "FLUME",
+   "key": "flume",
+   "performers": [
+    "flume"
+   ]
+  },
+  {
+   "id": "acl-2022:spill-tab",
+   "name": "SPILL TAB",
+   "key": "spill-tab",
+   "performers": [
+    "spill-tab"
+   ]
+  },
+  {
+   "id": "acl-2022:slayyyter",
+   "name": "SLAYYYTER",
+   "key": "slayyyter",
+   "performers": [
+    "slayyyter"
+   ]
+  },
+  {
+   "id": "acl-2022:samia",
+   "name": "SAMIA",
+   "key": "samia",
+   "performers": [
+    "samia"
+   ]
+  },
+  {
+   "id": "acl-2022:sofi-tukker",
+   "name": "SOFI TUKKER",
+   "key": "sofi-tukker",
+   "performers": [
+    "sofi-tukker"
+   ]
+  },
+  {
+   "id": "acl-2022:diplo",
+   "name": "DIPLO",
+   "key": "diplo",
+   "performers": [
+    "diplo"
+   ]
+  },
+  {
+   "id": "acl-2022:katzu-oso",
+   "name": "KATZU OSO",
+   "key": "katzu-oso",
+   "performers": [
+    "katzu-oso"
+   ]
+  },
+  {
+   "id": "acl-2022:jessia",
+   "name": "JESSIA",
+   "key": "jessia",
+   "performers": [
+    "jessia"
+   ]
+  },
+  {
+   "id": "acl-2022:charlotte-sands",
+   "name": "CHARLOTTE SANDS",
+   "key": "charlotte-sands",
+   "performers": [
+    "charlotte-sands"
+   ]
+  },
+  {
+   "id": "acl-2022:aly-and-aj",
+   "name": "ALY & AJ",
+   "key": "aly-and-aj",
+   "performers": [
+    "aly-and-aj"
+   ]
+  },
+  {
+   "id": "acl-2022:mama-duke",
+   "name": "MAMA DUKE",
+   "key": "mama-duke",
+   "performers": [
+    "mama-duke"
+   ]
+  },
+  {
+   "id": "acl-2022:lido-pimienta",
+   "name": "LIDO PIMIENTA",
+   "key": "lido-pimienta",
+   "performers": [
+    "lido-pimienta"
+   ]
+  },
+  {
+   "id": "acl-2022:tyla-yaweh",
+   "name": "TYLA YAWEH",
+   "key": "tyla-yaweh",
+   "performers": [
+    "tyla-yaweh"
+   ]
+  },
+  {
+   "id": "acl-2022:dj-mel",
+   "name": "DJ MEL",
+   "key": "dj-mel",
+   "performers": [
+    "dj-mel"
+   ]
+  },
+  {
+   "id": "acl-2022:tobe-nwigwe",
+   "name": "TOBE NWIGWE",
+   "key": "tobe-nwigwe",
+   "performers": [
+    "tobe-nwigwe"
+   ]
+  },
+  {
+   "id": "acl-2022:the-past-lives",
+   "name": "THE PAST LIVES",
+   "key": "the-past-lives",
+   "performers": [
+    "the-past-lives"
+   ]
+  },
+  {
+   "id": "acl-2022:cimafunk",
+   "name": "CIMAFUNK",
+   "key": "cimafunk",
+   "performers": [
+    "cimafunk"
+   ]
+  },
+  {
+   "id": "acl-2022:omah-lay",
+   "name": "OMAH LAY",
+   "key": "omah-lay",
+   "performers": [
+    "omah-lay"
+   ]
+  },
+  {
+   "id": "acl-2022:maude-latour",
+   "name": "MAUDE LATOUR",
+   "key": "maude-latour",
+   "performers": [
+    "maude-latour"
+   ]
+  },
+  {
+   "id": "acl-2022:purple-disco-machine",
+   "name": "PURPLE DISCO MACHINE",
+   "key": "purple-disco-machine",
+   "performers": [
+    "purple-disco-machine"
+   ]
+  },
+  {
+   "id": "acl-2022:the-barton-hills-choir",
+   "name": "THE BARTON HILLS CHOIR",
+   "key": "the-barton-hills-choir",
+   "performers": [
+    "the-barton-hills-choir"
+   ]
+  },
+  {
+   "id": "acl-2022:123-andres",
+   "name": "123 ANDRÉS",
+   "key": "123-andres",
+   "performers": [
+    "123-andres"
+   ]
+  },
+  {
+   "id": "acl-2022:saulpaul",
+   "name": "SAULPAUL",
+   "key": "saulpaul",
+   "performers": [
+    "saulpaul"
+   ]
+  },
+  {
+   "id": "acl-2022:walt-disco",
+   "name": "WALT DISCO",
+   "key": "walt-disco",
+   "performers": [
+    "walt-disco"
+   ]
+  },
+  {
+   "id": "acl-2022:the-aquadolls",
+   "name": "THE AQUADOLLS",
+   "key": "the-aquadolls",
+   "performers": [
+    "the-aquadolls"
+   ]
+  },
+  {
+   "id": "acl-2022:role-model",
+   "name": "ROLE MODEL",
+   "key": "role-model",
+   "performers": [
+    "role-model"
+   ]
+  },
+  {
+   "id": "acl-2022:manchester-orchestra",
+   "name": "MANCHESTER ORCHESTRA",
+   "key": "manchester-orchestra",
+   "performers": [
+    "manchester-orchestra"
+   ]
+  },
+  {
+   "id": "acl-2022:the-war-on-drugs",
+   "name": "THE WAR ON DRUGS",
+   "key": "the-war-on-drugs",
+   "performers": [
+    "the-war-on-drugs"
+   ]
+  },
+  {
+   "id": "acl-2022:the-ventures",
+   "name": "THE VENTURES",
+   "key": "the-ventures",
+   "performers": [
+    "the-ventures"
+   ]
+  },
+  {
+   "id": "acl-2022:the-midnight",
+   "name": "THE MIDNIGHT",
+   "key": "the-midnight",
+   "performers": [
+    "the-midnight"
+   ]
+  },
+  {
+   "id": "acl-2022:wallows",
+   "name": "WALLOWS",
+   "key": "wallows",
+   "performers": [
+    "wallows"
+   ]
+  },
+  {
+   "id": "acl-2022:lil-nas-x",
+   "name": "LIL NAS X",
+   "key": "lil-nas-x",
+   "performers": [
+    "lil-nas-x"
+   ]
+  },
+  {
+   "id": "acl-2022:p-nk",
+   "name": "P!NK",
+   "key": "p-nk",
+   "performers": [
+    "p-nk"
+   ]
+  },
+  {
+   "id": "acl-2022:taipei-houston",
+   "name": "TAIPEI HOUSTON",
+   "key": "taipei-houston",
+   "performers": [
+    "taipei-houston"
+   ]
+  },
+  {
+   "id": "acl-2022:larry-june",
+   "name": "LARRY JUNE",
+   "key": "larry-june",
+   "performers": [
+    "larry-june"
+   ]
+  },
+  {
+   "id": "acl-2022:spoon",
+   "name": "SPOON",
+   "key": "spoon",
+   "performers": [
+    "spoon"
+   ]
+  },
+  {
+   "id": "acl-2022:6lack",
+   "name": "6LACK",
+   "key": "6lack",
+   "performers": [
+    "6lack"
+   ]
+  },
+  {
+   "id": "acl-2022:kacey-musgraves",
+   "name": "KACEY MUSGRAVES",
+   "key": "kacey-musgraves",
+   "performers": [
+    "kacey-musgraves"
+   ]
+  },
+  {
+   "id": "acl-2022:happie-hoffman",
+   "name": "HAPPIE HOFFMAN",
+   "key": "happie-hoffman",
+   "performers": [
+    "happie-hoffman"
+   ]
+  },
+  {
+   "id": "acl-2022:jake-wesley-rogers",
+   "name": "JAKE WESLEY ROGERS",
+   "key": "jake-wesley-rogers",
+   "performers": [
+    "jake-wesley-rogers"
+   ]
+  },
+  {
+   "id": "acl-2022:bia",
+   "name": "BIA",
+   "key": "bia",
+   "performers": [
+    "bia"
+   ]
+  },
+  {
+   "id": "acl-2022:big-wild",
+   "name": "BIG WILD",
+   "key": "big-wild",
+   "performers": [
+    "big-wild"
+   ]
+  },
+  {
+   "id": "acl-2022:zhu",
+   "name": "ZHU",
+   "key": "zhu",
+   "performers": [
+    "zhu"
+   ]
+  },
+  {
+   "id": "acl-2022:chicocurlyhead",
+   "name": "CHICOCURLYHEAD",
+   "key": "chicocurlyhead",
+   "performers": [
+    "chicocurlyhead"
+   ]
+  },
+  {
+   "id": "acl-2022:darkbird",
+   "name": "DARKBIRD",
+   "key": "darkbird",
+   "performers": [
+    "darkbird"
+   ]
+  },
+  {
+   "id": "acl-2022:isaac-dunbar",
+   "name": "ISAAC DUNBAR",
+   "key": "isaac-dunbar",
+   "performers": [
+    "isaac-dunbar"
+   ]
+  },
+  {
+   "id": "acl-2022:eric-tessmer",
+   "name": "ERIC TESSMER",
+   "key": "eric-tessmer",
+   "performers": [
+    "eric-tessmer"
+   ]
+  },
+  {
+   "id": "acl-2022:luna-luna",
+   "name": "LUNA LUNA",
+   "key": "luna-luna",
+   "performers": [
+    "luna-luna"
+   ]
+  },
+  {
+   "id": "acl-2022:caleb-de-casper",
+   "name": "CALEB DE CASPER",
+   "key": "caleb-de-casper",
+   "performers": [
+    "caleb-de-casper"
+   ]
+  },
+  {
+   "id": "acl-2022:muna",
+   "name": "MUNA",
+   "key": "muna",
+   "performers": [
+    "muna"
+   ]
+  },
+  {
+   "id": "acl-2022:the-marias",
+   "name": "THE MARIAS",
+   "key": "the-marias",
+   "performers": [
+    "the-marias"
+   ]
+  },
+  {
+   "id": "acl-2022:goose",
+   "name": "GOOSE",
+   "key": "goose",
+   "performers": [
+    "goose"
+   ]
+  },
+  {
+   "id": "acl-2022:wesley-bray-and-the-disciples-of-joy",
+   "name": "WESLEY BRAY AND THE DISCIPLES OF JOY",
+   "key": "wesley-bray-and-the-disciples-of-joy",
+   "performers": [
+    "wesley-bray-and-the-disciples-of-joy"
+   ]
+  },
+  {
+   "id": "acl-2022:primo-the-alien",
+   "name": "PRIMO THE ALIEN",
+   "key": "primo-the-alien",
+   "performers": [
+    "primo-the-alien"
+   ]
+  },
+  {
+   "id": "acl-2022:buffalo-nichols",
+   "name": "BUFFALO NICHOLS",
+   "key": "buffalo-nichols",
+   "performers": [
+    "buffalo-nichols"
+   ]
+  },
+  {
+   "id": "acl-2022:claire-rosinkranz",
+   "name": "CLAIRE ROSINKRANZ",
+   "key": "claire-rosinkranz",
+   "performers": [
+    "claire-rosinkranz"
+   ]
+  },
+  {
+   "id": "acl-2022:magdalena-bay",
+   "name": "MAGDALENA BAY",
+   "key": "magdalena-bay",
+   "performers": [
+    "magdalena-bay"
+   ]
+  },
+  {
+   "id": "acl-2022:robert-glasper",
+   "name": "ROBERT GLASPER",
+   "key": "robert-glasper",
+   "performers": [
+    "robert-glasper"
+   ]
+  },
+  {
+   "id": "acl-2022:danielle-ponder",
+   "name": "DANIELLE PONDER",
+   "key": "danielle-ponder",
+   "performers": [
+    "danielle-ponder"
+   ]
+  },
+  {
+   "id": "acl-2022:dehd",
+   "name": "DEHD",
+   "key": "dehd",
+   "performers": [
+    "dehd"
+   ]
+  },
+  {
+   "id": "acl-2022:pinkpantheress",
+   "name": "PINKPANTHERESS",
+   "key": "pinkpantheress",
+   "performers": [
+    "pinkpantheress"
+   ]
+  },
+  {
+   "id": "acl-2022:japanese-breakfast",
+   "name": "JAPANESE BREAKFAST",
+   "key": "japanese-breakfast",
+   "performers": [
+    "japanese-breakfast"
+   ]
+  },
+  {
+   "id": "acl-2022:marcus-mumford",
+   "name": "MARCUS MUMFORD",
+   "key": "marcus-mumford",
+   "performers": [
+    "marcus-mumford"
+   ]
+  },
+  {
+   "id": "acl-2022:glove",
+   "name": "GLOVE",
+   "key": "glove",
+   "performers": [
+    "glove"
+   ]
+  },
+  {
+   "id": "acl-2022:goth-babe",
+   "name": "GOTH BABE",
+   "key": "goth-babe",
+   "performers": [
+    "goth-babe"
+   ]
+  },
+  {
+   "id": "acl-2022:oliver-tree",
+   "name": "OLIVER TREE",
+   "key": "oliver-tree",
+   "performers": [
+    "oliver-tree"
+   ]
+  },
+  {
+   "id": "acl-2022:paramore",
+   "name": "PARAMORE",
+   "key": "paramore",
+   "performers": [
+    "paramore"
+   ]
+  },
+  {
+   "id": "acl-2022:red-hot-chili-peppers",
+   "name": "RED HOT CHILI PEPPERS",
+   "key": "red-hot-chili-peppers",
+   "performers": [
+    "red-hot-chili-peppers"
+   ]
+  },
+  {
+   "id": "acl-2022:wet-leg",
+   "name": "WET LEG",
+   "key": "wet-leg",
+   "performers": [
+    "wet-leg"
+   ]
+  },
+  {
+   "id": "acl-2022:phoenix",
+   "name": "PHOENIX",
+   "key": "phoenix",
+   "performers": [
+    "phoenix"
+   ]
+  },
+  {
+   "id": "acl-2022:blondshell",
+   "name": "BLONDSHELL",
+   "key": "blondshell",
+   "performers": [
+    "blondshell"
+   ]
+  },
+  {
+   "id": "acl-2022:vacations",
+   "name": "VACATIONS",
+   "key": "vacations",
+   "performers": [
+    "vacations"
+   ]
+  },
+  {
+   "id": "acl-2022:early-james",
+   "name": "EARLY JAMES",
+   "key": "early-james",
+   "performers": [
+    "early-james"
+   ]
+  },
+  {
+   "id": "acl-2022:dro-kenji",
+   "name": "DRO KENJI",
+   "key": "dro-kenji",
+   "performers": [
+    "dro-kenji"
+   ]
+  },
+  {
+   "id": "acl-2022:lily-rose",
+   "name": "LILY ROSE",
+   "key": "lily-rose",
+   "performers": [
+    "lily-rose"
+   ]
+  },
+  {
+   "id": "acl-2022:dcarr",
+   "name": "DCARR",
+   "key": "dcarr",
+   "performers": [
+    "dcarr"
+   ]
+  },
+  {
+   "id": "acl-2022:glaive",
+   "name": "GLAIVE",
+   "key": "glaive",
+   "performers": [
+    "glaive"
+   ]
+  },
+  {
+   "id": "acl-2022:lucky-daye",
+   "name": "LUCKY DAYE",
+   "key": "lucky-daye",
+   "performers": [
+    "lucky-daye"
+   ]
+  },
+  {
+   "id": "acl-2022:the-huston-tillotson-university-jazz-collective",
+   "name": "THE HUSTON-TILLOTSON UNIVERSITY JAZZ COLLECTIVE",
+   "key": "the-huston-tillotson-university-jazz-collective",
+   "performers": [
+    "the-huston-tillotson-university-jazz-collective"
+   ]
+  },
+  {
+   "id": "acl-2022:sarah-kinsley",
+   "name": "SARAH KINSLEY",
+   "key": "sarah-kinsley",
+   "performers": [
+    "sarah-kinsley"
+   ]
+  },
+  {
+   "id": "acl-2022:lucy-kalantari-and-the-jazz-cats",
+   "name": "LUCY KALANTARI & THE JAZZ CATS",
+   "key": "lucy-kalantari-and-the-jazz-cats",
+   "performers": [
+    "lucy-kalantari-and-the-jazz-cats"
+   ]
+  },
+  {
+   "id": "acl-2022:bktherula",
+   "name": "BKTHERULA",
+   "key": "bktherula",
+   "performers": [
+    "bktherula"
+   ]
+  },
+  {
+   "id": "acl-2022:teezo-touchdown",
+   "name": "TEEZO TOUCHDOWN",
+   "key": "teezo-touchdown",
+   "performers": [
+    "teezo-touchdown"
+   ]
+  },
+  {
+   "id": "acl-2022:twen",
+   "name": "TWEN",
+   "key": "twen",
+   "performers": [
+    "twen"
+   ]
+  },
+  {
+   "id": "acl-2022:como-las-movies",
+   "name": "COMO LAS MOVIES",
+   "key": "como-las-movies",
+   "performers": [
+    "como-las-movies"
+   ]
+  },
+  {
+   "id": "acl-2022:tai-verdes",
+   "name": "TAI VERDES",
+   "key": "tai-verdes",
+   "performers": [
+    "tai-verdes"
+   ]
+  },
+  {
+   "id": "acl-2022:boy-george-and-culture-club",
+   "name": "BOY GEORGE & CULTURE CLUB",
+   "key": "boy-george-and-culture-club",
+   "performers": [
+    "boy-george-and-culture-club"
+   ]
+  },
+  {
+   "id": "acl-2022:death-cab-for-cutie",
+   "name": "DEATH CAB FOR CUTIE",
+   "key": "death-cab-for-cutie",
+   "performers": [
+    "death-cab-for-cutie"
+   ]
+  },
+  {
+   "id": "acl-2022:neil-frances",
+   "name": "NEIL FRANCES",
+   "key": "neil-frances",
+   "performers": [
+    "neil-frances"
+   ]
+  },
+  {
+   "id": "acl-2022:izzy-heltai",
+   "name": "IZZY HELTAI",
+   "key": "izzy-heltai",
+   "performers": [
+    "izzy-heltai"
+   ]
+  },
+  {
+   "id": "acl-2022:ben-reilly",
+   "name": "BEN REILLY",
+   "key": "ben-reilly",
+   "performers": [
+    "ben-reilly"
+   ]
+  },
+  {
+   "id": "acl-2022:sloppy-jane",
+   "name": "SLOPPY JANE",
+   "key": "sloppy-jane",
+   "performers": [
+    "sloppy-jane"
+   ]
+  },
+  {
+   "id": "acl-2022:the-brummies",
+   "name": "THE BRUMMIES",
+   "key": "the-brummies",
+   "performers": [
+    "the-brummies"
+   ]
+  },
+  {
+   "id": "acl-2022:lesly-reynaga",
+   "name": "LESLY REYNAGA",
+   "key": "lesly-reynaga",
+   "performers": [
+    "lesly-reynaga"
+   ]
+  },
+  {
+   "id": "acl-2022:sabrina-claudio",
+   "name": "SABRINA CLAUDIO",
+   "key": "sabrina-claudio",
+   "performers": [
+    "sabrina-claudio"
+   ]
+  },
+  {
+   "id": "acl-2022:j-soulja",
+   "name": "J SOULJA",
+   "key": "j-soulja",
+   "performers": [
+    "j-soulja"
+   ]
+  },
+  {
+   "id": "acl-2022:good-looks",
+   "name": "GOOD LOOKS",
+   "key": "good-looks",
+   "performers": [
+    "good-looks"
+   ]
+  },
+  {
+   "id": "acl-2022:southern-avenue",
+   "name": "SOUTHERN AVENUE",
+   "key": "southern-avenue",
+   "performers": [
+    "southern-avenue"
+   ]
+  },
+  {
+   "id": "acl-2022:josh-fudge",
+   "name": "JOSH FUDGE",
+   "key": "josh-fudge",
+   "performers": [
+    "josh-fudge"
+   ]
+  },
+  {
+   "id": "acl-2022:disko-cowboy",
+   "name": "DISKO COWBOY",
+   "key": "disko-cowboy",
+   "performers": [
+    "disko-cowboy"
+   ]
+  },
+  {
+   "id": "acl-2022:joanie-leeds",
+   "name": "JOANIE LEEDS",
+   "key": "joanie-leeds",
+   "performers": [
+    "joanie-leeds"
+   ]
+  },
+  {
+   "id": "acl-2022:alphabet-rockers",
+   "name": "ALPHABET ROCKERS",
+   "key": "alphabet-rockers",
+   "performers": [
+    "alphabet-rockers"
+   ]
+  },
+  {
+   "id": "acl-2022:jake-lloyd",
+   "name": "JAKE LLOYD",
+   "key": "jake-lloyd",
+   "performers": [
+    "jake-lloyd"
+   ]
+  },
+  {
+   "id": "acl-2022:ripe",
+   "name": "RIPE",
+   "key": "ripe",
+   "performers": [
+    "ripe"
+   ]
+  },
+  {
+   "id": "acl-2022:princess-nokia",
+   "name": "PRINCESS NOKIA",
+   "key": "princess-nokia",
+   "performers": [
+    "princess-nokia"
+   ]
+  },
+  {
+   "id": "acl-2022:the-front-bottoms",
+   "name": "THE FRONT BOTTOMS",
+   "key": "the-front-bottoms",
+   "performers": [
+    "the-front-bottoms"
+   ]
+  },
+  {
+   "id": "acl-2022:habibi",
+   "name": "HABIBI",
+   "key": "habibi",
+   "performers": [
+    "habibi"
+   ]
+  },
+  {
+   "id": "acl-2022:flora-and-fawna",
+   "name": "FLORA & FAWNA",
+   "key": "flora-and-fawna",
+   "performers": [
+    "flora-and-fawna"
+   ]
+  },
+  {
+   "id": "acl-2022:siena-liggins",
+   "name": "SIENA LIGGINS",
+   "key": "siena-liggins",
+   "performers": [
+    "siena-liggins"
+   ]
+  },
+  {
+   "id": "acl-2022:joshua-ray-walker",
+   "name": "JOSHUA RAY WALKER",
+   "key": "joshua-ray-walker",
+   "performers": [
+    "joshua-ray-walker"
+   ]
+  },
+  {
+   "id": "acl-2022:urban-heat",
+   "name": "URBAN HEAT",
+   "key": "urban-heat",
+   "performers": [
+    "urban-heat"
+   ]
+  },
+  {
+   "id": "acl-2022:jackson-dean",
+   "name": "JACKSON DEAN",
+   "key": "jackson-dean",
+   "performers": [
+    "jackson-dean"
+   ]
+  },
+  {
+   "id": "acl-2022:pleasure-venom",
+   "name": "PLEASURE VENOM",
+   "key": "pleasure-venom",
+   "performers": [
+    "pleasure-venom"
+   ]
+  },
+  {
+   "id": "acl-2022:tom-odell",
+   "name": "TOM ODELL",
+   "key": "tom-odell",
+   "performers": [
+    "tom-odell"
+   ]
+  },
+  {
+   "id": "acl-2022:faye-webster",
+   "name": "FAYE WEBSTER",
+   "key": "faye-webster",
+   "performers": [
+    "faye-webster"
+   ]
+  },
+  {
+   "id": "acl-2022:the-spiritualettes",
+   "name": "THE SPIRITUALETTES",
+   "key": "the-spiritualettes",
+   "performers": [
+    "the-spiritualettes"
+   ]
+  },
+  {
+   "id": "acl-2022:me-nd-adam",
+   "name": "ME ND ADAM",
+   "key": "me-nd-adam",
+   "performers": [
+    "me-nd-adam"
+   ]
+  },
+  {
+   "id": "acl-2022:wilderado",
+   "name": "WILDERADO",
+   "key": "wilderado",
+   "performers": [
+    "wilderado"
+   ]
+  },
+  {
+   "id": "acl-2022:yungblud",
+   "name": "YUNGBLUD",
+   "key": "yungblud",
+   "performers": [
+    "yungblud"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "acl-2022:d1:honda:1300:asleep-at-the-wheel",
+   "artistId": "acl-2022:asleep-at-the-wheel",
+   "day": 1,
+   "stageId": "acl-2022:honda",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "acl-2022:d1:honda:1430:kevin-morby",
+   "artistId": "acl-2022:kevin-morby",
+   "day": 1,
+   "stageId": "acl-2022:honda",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2022:d1:honda:1615:jazmine-sullivan",
+   "artistId": "acl-2022:jazmine-sullivan",
+   "day": 1,
+   "stageId": "acl-2022:honda",
+   "start": "16:15",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d1:honda:1800:james-blake",
+   "artistId": "acl-2022:james-blake",
+   "day": 1,
+   "stageId": "acl-2022:honda",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d1:honda:2000:sza",
+   "artistId": "acl-2022:sza",
+   "day": 1,
+   "stageId": "acl-2022:honda",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "acl-2022:d1:miller-lite:1345:nation-of-language",
+   "artistId": "acl-2022:nation-of-language",
+   "day": 1,
+   "stageId": "acl-2022:miller-lite",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2022:d1:miller-lite:1515:gayle",
+   "artistId": "acl-2022:gayle",
+   "day": 1,
+   "stageId": "acl-2022:miller-lite",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2022:d1:miller-lite:1700:arlo-parks",
+   "artistId": "acl-2022:arlo-parks",
+   "day": 1,
+   "stageId": "acl-2022:miller-lite",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d1:miller-lite:1900:omar-apollo",
+   "artistId": "acl-2022:omar-apollo",
+   "day": 1,
+   "stageId": "acl-2022:miller-lite",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2022:d1:bmi:1345:elijah-wolf",
+   "artistId": "acl-2022:elijah-wolf",
+   "day": 1,
+   "stageId": "acl-2022:bmi",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2022:d1:bmi:1515:lilyisthatyou",
+   "artistId": "acl-2022:lilyisthatyou",
+   "day": 1,
+   "stageId": "acl-2022:bmi",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d1:bmi:1700:sarah-and-the-sundays",
+   "artistId": "acl-2022:sarah-and-the-sundays",
+   "day": 1,
+   "stageId": "acl-2022:bmi",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d1:barton-springs:1345:cassandra-jenkins",
+   "artistId": "acl-2022:cassandra-jenkins",
+   "day": 1,
+   "stageId": "acl-2022:barton-springs",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2022:d1:barton-springs:1515:gabriels",
+   "artistId": "acl-2022:gabriels",
+   "day": 1,
+   "stageId": "acl-2022:barton-springs",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d1:barton-springs:1700:l-imperatrice",
+   "artistId": "acl-2022:l-imperatrice",
+   "day": 1,
+   "stageId": "acl-2022:barton-springs",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d1:barton-springs:1900:carly-rae-jepsen",
+   "artistId": "acl-2022:carly-rae-jepsen",
+   "day": 1,
+   "stageId": "acl-2022:barton-springs",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2022:d1:tito-s-handmade-vodka:1330:thebrosfresh",
+   "artistId": "acl-2022:thebrosfresh",
+   "day": 1,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2022:d1:tito-s-handmade-vodka:1430:cory-henry",
+   "artistId": "acl-2022:cory-henry",
+   "day": 1,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2022:d1:tito-s-handmade-vodka:1600:genesis-owusu",
+   "artistId": "acl-2022:genesis-owusu",
+   "day": 1,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d1:tito-s-handmade-vodka:1800:big-gigantic",
+   "artistId": "acl-2022:big-gigantic",
+   "day": 1,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d1:austin-kiddie-limits:1230:elena-moon-park",
+   "artistId": "acl-2022:elena-moon-park",
+   "day": 1,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "12:30",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2022:d1:austin-kiddie-limits:1430:school-of-rock",
+   "artistId": "acl-2022:school-of-rock",
+   "day": 1,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "14:30",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2022:d1:austin-kiddie-limits:1630:qbrothers",
+   "artistId": "acl-2022:qbrothers",
+   "day": 1,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "16:30",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d1:t-mobile:1400:zai1k",
+   "artistId": "acl-2022:zai1k",
+   "day": 1,
+   "stageId": "acl-2022:t-mobile",
+   "start": "14:00",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2022:d1:t-mobile:1515:charlotte-cardin",
+   "artistId": "acl-2022:charlotte-cardin",
+   "day": 1,
+   "stageId": "acl-2022:t-mobile",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d1:t-mobile:1700:benee",
+   "artistId": "acl-2022:benee",
+   "day": 1,
+   "stageId": "acl-2022:t-mobile",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d1:t-mobile:1900:billy-strings",
+   "artistId": "acl-2022:billy-strings",
+   "day": 1,
+   "stageId": "acl-2022:t-mobile",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2022:d1:american-express:1300:tamino",
+   "artistId": "acl-2022:tamino",
+   "day": 1,
+   "stageId": "acl-2022:american-express",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "acl-2022:d1:american-express:1430:noah-cyrus",
+   "artistId": "acl-2022:noah-cyrus",
+   "day": 1,
+   "stageId": "acl-2022:american-express",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2022:d1:american-express:1600:zach-bryan",
+   "artistId": "acl-2022:zach-bryan",
+   "day": 1,
+   "stageId": "acl-2022:american-express",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d1:american-express:1800:nathaniel-rateliff-and-the-night-sweats",
+   "artistId": "acl-2022:nathaniel-rateliff-and-the-night-sweats",
+   "day": 1,
+   "stageId": "acl-2022:american-express",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d1:american-express:2000:the-chicks",
+   "artistId": "acl-2022:the-chicks",
+   "day": 1,
+   "stageId": "acl-2022:american-express",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "acl-2022:d2:honda:1245:the-future-x",
+   "artistId": "acl-2022:the-future-x",
+   "day": 2,
+   "stageId": "acl-2022:honda",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2022:d2:honda:1415:adrian-quesada-s-boleros-psicodelicos",
+   "artistId": "acl-2022:adrian-quesada-s-boleros-psicodelicos",
+   "day": 2,
+   "stageId": "acl-2022:honda",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2022:d2:honda:1615:conan-gray",
+   "artistId": "acl-2022:conan-gray",
+   "day": 2,
+   "stageId": "acl-2022:honda",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2022:d2:honda:1815:big-boi",
+   "artistId": "acl-2022:big-boi",
+   "day": 2,
+   "stageId": "acl-2022:honda",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2022:d2:honda:2015:flume",
+   "artistId": "acl-2022:flume",
+   "day": 2,
+   "stageId": "acl-2022:honda",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "acl-2022:d2:miller-lite:1200:spill-tab",
+   "artistId": "acl-2022:spill-tab",
+   "day": 2,
+   "stageId": "acl-2022:miller-lite",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "acl-2022:d2:miller-lite:1330:slayyyter",
+   "artistId": "acl-2022:slayyyter",
+   "day": 2,
+   "stageId": "acl-2022:miller-lite",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2022:d2:miller-lite:1530:samia",
+   "artistId": "acl-2022:samia",
+   "day": 2,
+   "stageId": "acl-2022:miller-lite",
+   "start": "15:30",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2022:d2:miller-lite:1715:sofi-tukker",
+   "artistId": "acl-2022:sofi-tukker",
+   "day": 2,
+   "stageId": "acl-2022:miller-lite",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2022:d2:miller-lite:1915:diplo",
+   "artistId": "acl-2022:diplo",
+   "day": 2,
+   "stageId": "acl-2022:miller-lite",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2022:d2:bmi:1200:katzu-oso",
+   "artistId": "acl-2022:katzu-oso",
+   "day": 2,
+   "stageId": "acl-2022:bmi",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "acl-2022:d2:bmi:1330:jessia",
+   "artistId": "acl-2022:jessia",
+   "day": 2,
+   "stageId": "acl-2022:bmi",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2022:d2:bmi:1515:charlotte-sands",
+   "artistId": "acl-2022:charlotte-sands",
+   "day": 2,
+   "stageId": "acl-2022:bmi",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2022:d2:bmi:1715:aly-and-aj",
+   "artistId": "acl-2022:aly-and-aj",
+   "day": 2,
+   "stageId": "acl-2022:bmi",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2022:d2:barton-springs:1200:mama-duke",
+   "artistId": "acl-2022:mama-duke",
+   "day": 2,
+   "stageId": "acl-2022:barton-springs",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "acl-2022:d2:barton-springs:1330:lido-pimienta",
+   "artistId": "acl-2022:lido-pimienta",
+   "day": 2,
+   "stageId": "acl-2022:barton-springs",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2022:d2:barton-springs:1515:tyla-yaweh",
+   "artistId": "acl-2022:tyla-yaweh",
+   "day": 2,
+   "stageId": "acl-2022:barton-springs",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2022:d2:barton-springs:1715:dj-mel",
+   "artistId": "acl-2022:dj-mel",
+   "day": 2,
+   "stageId": "acl-2022:barton-springs",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2022:d2:barton-springs:1915:tobe-nwigwe",
+   "artistId": "acl-2022:tobe-nwigwe",
+   "day": 2,
+   "stageId": "acl-2022:barton-springs",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2022:d2:tito-s-handmade-vodka:1300:the-past-lives",
+   "artistId": "acl-2022:the-past-lives",
+   "day": 2,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "acl-2022:d2:tito-s-handmade-vodka:1400:cimafunk",
+   "artistId": "acl-2022:cimafunk",
+   "day": 2,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "14:00",
+   "end": "14:45"
+  },
+  {
+   "id": "acl-2022:d2:tito-s-handmade-vodka:1500:omah-lay",
+   "artistId": "acl-2022:omah-lay",
+   "day": 2,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "acl-2022:d2:tito-s-handmade-vodka:1615:maude-latour",
+   "artistId": "acl-2022:maude-latour",
+   "day": 2,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2022:d2:tito-s-handmade-vodka:1815:purple-disco-machine",
+   "artistId": "acl-2022:purple-disco-machine",
+   "day": 2,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2022:d2:austin-kiddie-limits:1130:the-barton-hills-choir",
+   "artistId": "acl-2022:the-barton-hills-choir",
+   "day": 2,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "11:30",
+   "end": "12:00"
+  },
+  {
+   "id": "acl-2022:d2:austin-kiddie-limits:1300:elena-moon-park",
+   "artistId": "acl-2022:elena-moon-park",
+   "day": 2,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "13:00",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2022:d2:austin-kiddie-limits:1445:123-andres",
+   "artistId": "acl-2022:123-andres",
+   "day": 2,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "14:45",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2022:d2:austin-kiddie-limits:1645:saulpaul",
+   "artistId": "acl-2022:saulpaul",
+   "day": 2,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "16:45",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2022:d2:t-mobile:1200:walt-disco",
+   "artistId": "acl-2022:walt-disco",
+   "day": 2,
+   "stageId": "acl-2022:t-mobile",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "acl-2022:d2:t-mobile:1320:the-aquadolls",
+   "artistId": "acl-2022:the-aquadolls",
+   "day": 2,
+   "stageId": "acl-2022:t-mobile",
+   "start": "13:20",
+   "end": "14:05"
+  },
+  {
+   "id": "acl-2022:d2:t-mobile:1505:role-model",
+   "artistId": "acl-2022:role-model",
+   "day": 2,
+   "stageId": "acl-2022:t-mobile",
+   "start": "15:05",
+   "end": "16:05"
+  },
+  {
+   "id": "acl-2022:d2:t-mobile:1705:manchester-orchestra",
+   "artistId": "acl-2022:manchester-orchestra",
+   "day": 2,
+   "stageId": "acl-2022:t-mobile",
+   "start": "17:05",
+   "end": "18:05"
+  },
+  {
+   "id": "acl-2022:d2:t-mobile:1915:the-war-on-drugs",
+   "artistId": "acl-2022:the-war-on-drugs",
+   "day": 2,
+   "stageId": "acl-2022:t-mobile",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "acl-2022:d2:american-express:1245:the-ventures",
+   "artistId": "acl-2022:the-ventures",
+   "day": 2,
+   "stageId": "acl-2022:american-express",
+   "start": "12:45",
+   "end": "13:20"
+  },
+  {
+   "id": "acl-2022:d2:american-express:1405:the-midnight",
+   "artistId": "acl-2022:the-midnight",
+   "day": 2,
+   "stageId": "acl-2022:american-express",
+   "start": "14:05",
+   "end": "15:05"
+  },
+  {
+   "id": "acl-2022:d2:american-express:1605:wallows",
+   "artistId": "acl-2022:wallows",
+   "day": 2,
+   "stageId": "acl-2022:american-express",
+   "start": "16:05",
+   "end": "17:05"
+  },
+  {
+   "id": "acl-2022:d2:american-express:1805:lil-nas-x",
+   "artistId": "acl-2022:lil-nas-x",
+   "day": 2,
+   "stageId": "acl-2022:american-express",
+   "start": "18:05",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2022:d2:american-express:2030:p-nk",
+   "artistId": "acl-2022:p-nk",
+   "day": 2,
+   "stageId": "acl-2022:american-express",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "acl-2022:d3:honda:1230:taipei-houston",
+   "artistId": "acl-2022:taipei-houston",
+   "day": 3,
+   "stageId": "acl-2022:honda",
+   "start": "12:30",
+   "end": "13:15"
+  },
+  {
+   "id": "acl-2022:d3:honda:1400:larry-june",
+   "artistId": "acl-2022:larry-june",
+   "day": 3,
+   "stageId": "acl-2022:honda",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2022:d3:honda:1600:spoon",
+   "artistId": "acl-2022:spoon",
+   "day": 3,
+   "stageId": "acl-2022:honda",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d3:honda:1800:6lack",
+   "artistId": "acl-2022:6lack",
+   "day": 3,
+   "stageId": "acl-2022:honda",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d3:honda:2015:kacey-musgraves",
+   "artistId": "acl-2022:kacey-musgraves",
+   "day": 3,
+   "stageId": "acl-2022:honda",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "acl-2022:d3:miller-lite:1145:happie-hoffman",
+   "artistId": "acl-2022:happie-hoffman",
+   "day": 3,
+   "stageId": "acl-2022:miller-lite",
+   "start": "11:45",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2022:d3:miller-lite:1315:jake-wesley-rogers",
+   "artistId": "acl-2022:jake-wesley-rogers",
+   "day": 3,
+   "stageId": "acl-2022:miller-lite",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2022:d3:miller-lite:1515:bia",
+   "artistId": "acl-2022:bia",
+   "day": 3,
+   "stageId": "acl-2022:miller-lite",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d3:miller-lite:1700:big-wild",
+   "artistId": "acl-2022:big-wild",
+   "day": 3,
+   "stageId": "acl-2022:miller-lite",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d3:miller-lite:1900:zhu",
+   "artistId": "acl-2022:zhu",
+   "day": 3,
+   "stageId": "acl-2022:miller-lite",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2022:d3:bmi:1145:chicocurlyhead",
+   "artistId": "acl-2022:chicocurlyhead",
+   "day": 3,
+   "stageId": "acl-2022:bmi",
+   "start": "11:45",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2022:d3:bmi:1315:darkbird",
+   "artistId": "acl-2022:darkbird",
+   "day": 3,
+   "stageId": "acl-2022:bmi",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2022:d3:bmi:1500:isaac-dunbar",
+   "artistId": "acl-2022:isaac-dunbar",
+   "day": 3,
+   "stageId": "acl-2022:bmi",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d3:bmi:1700:eric-tessmer",
+   "artistId": "acl-2022:eric-tessmer",
+   "day": 3,
+   "stageId": "acl-2022:bmi",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d3:barton-springs:1145:luna-luna",
+   "artistId": "acl-2022:luna-luna",
+   "day": 3,
+   "stageId": "acl-2022:barton-springs",
+   "start": "11:45",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2022:d3:barton-springs:1315:caleb-de-casper",
+   "artistId": "acl-2022:caleb-de-casper",
+   "day": 3,
+   "stageId": "acl-2022:barton-springs",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2022:d3:barton-springs:1500:muna",
+   "artistId": "acl-2022:muna",
+   "day": 3,
+   "stageId": "acl-2022:barton-springs",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d3:barton-springs:1700:the-marias",
+   "artistId": "acl-2022:the-marias",
+   "day": 3,
+   "stageId": "acl-2022:barton-springs",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d3:barton-springs:1900:goose",
+   "artistId": "acl-2022:goose",
+   "day": 3,
+   "stageId": "acl-2022:barton-springs",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2022:d3:tito-s-handmade-vodka:1145:wesley-bray-and-the-disciples-of-joy",
+   "artistId": "acl-2022:wesley-bray-and-the-disciples-of-joy",
+   "day": 3,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "11:45",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2022:d3:tito-s-handmade-vodka:1245:primo-the-alien",
+   "artistId": "acl-2022:primo-the-alien",
+   "day": 3,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2022:d3:tito-s-handmade-vodka:1345:buffalo-nichols",
+   "artistId": "acl-2022:buffalo-nichols",
+   "day": 3,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2022:d3:tito-s-handmade-vodka:1445:claire-rosinkranz",
+   "artistId": "acl-2022:claire-rosinkranz",
+   "day": 3,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "14:45",
+   "end": "15:30"
+  },
+  {
+   "id": "acl-2022:d3:tito-s-handmade-vodka:1600:magdalena-bay",
+   "artistId": "acl-2022:magdalena-bay",
+   "day": 3,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d3:tito-s-handmade-vodka:1800:robert-glasper",
+   "artistId": "acl-2022:robert-glasper",
+   "day": 3,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d3:austin-kiddie-limits:1230:school-of-rock",
+   "artistId": "acl-2022:school-of-rock",
+   "day": 3,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "12:30",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2022:d3:austin-kiddie-limits:1430:saulpaul",
+   "artistId": "acl-2022:saulpaul",
+   "day": 3,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "14:30",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2022:d3:austin-kiddie-limits:1630:123-andres",
+   "artistId": "acl-2022:123-andres",
+   "day": 3,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "16:30",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d3:t-mobile:1145:danielle-ponder",
+   "artistId": "acl-2022:danielle-ponder",
+   "day": 3,
+   "stageId": "acl-2022:t-mobile",
+   "start": "11:45",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2022:d3:t-mobile:1315:dehd",
+   "artistId": "acl-2022:dehd",
+   "day": 3,
+   "stageId": "acl-2022:t-mobile",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2022:d3:t-mobile:1500:pinkpantheress",
+   "artistId": "acl-2022:pinkpantheress",
+   "day": 3,
+   "stageId": "acl-2022:t-mobile",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d3:t-mobile:1700:japanese-breakfast",
+   "artistId": "acl-2022:japanese-breakfast",
+   "day": 3,
+   "stageId": "acl-2022:t-mobile",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d3:t-mobile:1900:marcus-mumford",
+   "artistId": "acl-2022:marcus-mumford",
+   "day": 3,
+   "stageId": "acl-2022:t-mobile",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2022:d3:american-express:1230:glove",
+   "artistId": "acl-2022:glove",
+   "day": 3,
+   "stageId": "acl-2022:american-express",
+   "start": "12:30",
+   "end": "13:15"
+  },
+  {
+   "id": "acl-2022:d3:american-express:1400:goth-babe",
+   "artistId": "acl-2022:goth-babe",
+   "day": 3,
+   "stageId": "acl-2022:american-express",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2022:d3:american-express:1600:oliver-tree",
+   "artistId": "acl-2022:oliver-tree",
+   "day": 3,
+   "stageId": "acl-2022:american-express",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d3:american-express:1800:paramore",
+   "artistId": "acl-2022:paramore",
+   "day": 3,
+   "stageId": "acl-2022:american-express",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d3:american-express:2000:red-hot-chili-peppers",
+   "artistId": "acl-2022:red-hot-chili-peppers",
+   "day": 3,
+   "stageId": "acl-2022:american-express",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "acl-2022:d4:honda:1315:happie-hoffman",
+   "artistId": "acl-2022:happie-hoffman",
+   "day": 4,
+   "stageId": "acl-2022:honda",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2022:d4:honda:1430:wet-leg",
+   "artistId": "acl-2022:wet-leg",
+   "day": 4,
+   "stageId": "acl-2022:honda",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2022:d4:honda:1615:jazmine-sullivan",
+   "artistId": "acl-2022:jazmine-sullivan",
+   "day": 4,
+   "stageId": "acl-2022:honda",
+   "start": "16:15",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d4:honda:1800:phoenix",
+   "artistId": "acl-2022:phoenix",
+   "day": 4,
+   "stageId": "acl-2022:honda",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d4:honda:2000:sza",
+   "artistId": "acl-2022:sza",
+   "day": 4,
+   "stageId": "acl-2022:honda",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "acl-2022:d4:miller-lite:1400:blondshell",
+   "artistId": "acl-2022:blondshell",
+   "day": 4,
+   "stageId": "acl-2022:miller-lite",
+   "start": "14:00",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2022:d4:miller-lite:1515:vacations",
+   "artistId": "acl-2022:vacations",
+   "day": 4,
+   "stageId": "acl-2022:miller-lite",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2022:d4:miller-lite:1700:arlo-parks",
+   "artistId": "acl-2022:arlo-parks",
+   "day": 4,
+   "stageId": "acl-2022:miller-lite",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d4:miller-lite:1900:omar-apollo",
+   "artistId": "acl-2022:omar-apollo",
+   "day": 4,
+   "stageId": "acl-2022:miller-lite",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2022:d4:bmi:1345:early-james",
+   "artistId": "acl-2022:early-james",
+   "day": 4,
+   "stageId": "acl-2022:bmi",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2022:d4:bmi:1515:dro-kenji",
+   "artistId": "acl-2022:dro-kenji",
+   "day": 4,
+   "stageId": "acl-2022:bmi",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d4:bmi:1700:lily-rose",
+   "artistId": "acl-2022:lily-rose",
+   "day": 4,
+   "stageId": "acl-2022:bmi",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d4:barton-springs:1400:dcarr",
+   "artistId": "acl-2022:dcarr",
+   "day": 4,
+   "stageId": "acl-2022:barton-springs",
+   "start": "14:00",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2022:d4:barton-springs:1515:glaive",
+   "artistId": "acl-2022:glaive",
+   "day": 4,
+   "stageId": "acl-2022:barton-springs",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d4:barton-springs:1700:l-imperatrice",
+   "artistId": "acl-2022:l-imperatrice",
+   "day": 4,
+   "stageId": "acl-2022:barton-springs",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d4:barton-springs:1900:lucky-daye",
+   "artistId": "acl-2022:lucky-daye",
+   "day": 4,
+   "stageId": "acl-2022:barton-springs",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2022:d4:tito-s-handmade-vodka:1330:the-huston-tillotson-university-jazz-collective",
+   "artistId": "acl-2022:the-huston-tillotson-university-jazz-collective",
+   "day": 4,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2022:d4:tito-s-handmade-vodka:1430:sarah-kinsley",
+   "artistId": "acl-2022:sarah-kinsley",
+   "day": 4,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2022:d4:tito-s-handmade-vodka:1600:genesis-owusu",
+   "artistId": "acl-2022:genesis-owusu",
+   "day": 4,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d4:tito-s-handmade-vodka:1800:purple-disco-machine",
+   "artistId": "acl-2022:purple-disco-machine",
+   "day": 4,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d4:austin-kiddie-limits:1230:school-of-rock",
+   "artistId": "acl-2022:school-of-rock",
+   "day": 4,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "12:30",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2022:d4:austin-kiddie-limits:1430:qbrothers",
+   "artistId": "acl-2022:qbrothers",
+   "day": 4,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "14:30",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2022:d4:austin-kiddie-limits:1630:lucy-kalantari-and-the-jazz-cats",
+   "artistId": "acl-2022:lucy-kalantari-and-the-jazz-cats",
+   "day": 4,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "16:30",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d4:t-mobile:1400:bktherula",
+   "artistId": "acl-2022:bktherula",
+   "day": 4,
+   "stageId": "acl-2022:t-mobile",
+   "start": "14:00",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2022:d4:t-mobile:1530:teezo-touchdown",
+   "artistId": "acl-2022:teezo-touchdown",
+   "day": 4,
+   "stageId": "acl-2022:t-mobile",
+   "start": "15:30",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d4:t-mobile:1700:benee",
+   "artistId": "acl-2022:benee",
+   "day": 4,
+   "stageId": "acl-2022:t-mobile",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d4:t-mobile:1900:billy-strings",
+   "artistId": "acl-2022:billy-strings",
+   "day": 4,
+   "stageId": "acl-2022:t-mobile",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2022:d4:american-express:1315:twen",
+   "artistId": "acl-2022:twen",
+   "day": 4,
+   "stageId": "acl-2022:american-express",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2022:d4:american-express:1430:noah-cyrus",
+   "artistId": "acl-2022:noah-cyrus",
+   "day": 4,
+   "stageId": "acl-2022:american-express",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2022:d4:american-express:1600:conan-gray",
+   "artistId": "acl-2022:conan-gray",
+   "day": 4,
+   "stageId": "acl-2022:american-express",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d4:american-express:1800:nathaniel-rateliff-and-the-night-sweats",
+   "artistId": "acl-2022:nathaniel-rateliff-and-the-night-sweats",
+   "day": 4,
+   "stageId": "acl-2022:american-express",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d4:american-express:2000:the-chicks",
+   "artistId": "acl-2022:the-chicks",
+   "day": 4,
+   "stageId": "acl-2022:american-express",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "acl-2022:d5:honda:1245:como-las-movies",
+   "artistId": "acl-2022:como-las-movies",
+   "day": 5,
+   "stageId": "acl-2022:honda",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2022:d5:honda:1415:tai-verdes",
+   "artistId": "acl-2022:tai-verdes",
+   "day": 5,
+   "stageId": "acl-2022:honda",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2022:d5:honda:1615:boy-george-and-culture-club",
+   "artistId": "acl-2022:boy-george-and-culture-club",
+   "day": 5,
+   "stageId": "acl-2022:honda",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2022:d5:honda:1815:death-cab-for-cutie",
+   "artistId": "acl-2022:death-cab-for-cutie",
+   "day": 5,
+   "stageId": "acl-2022:honda",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2022:d5:honda:2015:flume",
+   "artistId": "acl-2022:flume",
+   "day": 5,
+   "stageId": "acl-2022:honda",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "acl-2022:d5:miller-lite:1200:spill-tab",
+   "artistId": "acl-2022:spill-tab",
+   "day": 5,
+   "stageId": "acl-2022:miller-lite",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "acl-2022:d5:miller-lite:1330:neil-frances",
+   "artistId": "acl-2022:neil-frances",
+   "day": 5,
+   "stageId": "acl-2022:miller-lite",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2022:d5:miller-lite:1530:samia",
+   "artistId": "acl-2022:samia",
+   "day": 5,
+   "stageId": "acl-2022:miller-lite",
+   "start": "15:30",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2022:d5:miller-lite:1715:sofi-tukker",
+   "artistId": "acl-2022:sofi-tukker",
+   "day": 5,
+   "stageId": "acl-2022:miller-lite",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2022:d5:miller-lite:1915:diplo",
+   "artistId": "acl-2022:diplo",
+   "day": 5,
+   "stageId": "acl-2022:miller-lite",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2022:d5:bmi:1200:izzy-heltai",
+   "artistId": "acl-2022:izzy-heltai",
+   "day": 5,
+   "stageId": "acl-2022:bmi",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "acl-2022:d5:bmi:1330:ben-reilly",
+   "artistId": "acl-2022:ben-reilly",
+   "day": 5,
+   "stageId": "acl-2022:bmi",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2022:d5:bmi:1515:sloppy-jane",
+   "artistId": "acl-2022:sloppy-jane",
+   "day": 5,
+   "stageId": "acl-2022:bmi",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2022:d5:bmi:1715:the-brummies",
+   "artistId": "acl-2022:the-brummies",
+   "day": 5,
+   "stageId": "acl-2022:bmi",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2022:d5:barton-springs:1200:lesly-reynaga",
+   "artistId": "acl-2022:lesly-reynaga",
+   "day": 5,
+   "stageId": "acl-2022:barton-springs",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "acl-2022:d5:barton-springs:1330:lido-pimienta",
+   "artistId": "acl-2022:lido-pimienta",
+   "day": 5,
+   "stageId": "acl-2022:barton-springs",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2022:d5:barton-springs:1515:tyla-yaweh",
+   "artistId": "acl-2022:tyla-yaweh",
+   "day": 5,
+   "stageId": "acl-2022:barton-springs",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2022:d5:barton-springs:1715:sabrina-claudio",
+   "artistId": "acl-2022:sabrina-claudio",
+   "day": 5,
+   "stageId": "acl-2022:barton-springs",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2022:d5:barton-springs:1915:tobe-nwigwe",
+   "artistId": "acl-2022:tobe-nwigwe",
+   "day": 5,
+   "stageId": "acl-2022:barton-springs",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2022:d5:tito-s-handmade-vodka:1200:j-soulja",
+   "artistId": "acl-2022:j-soulja",
+   "day": 5,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "acl-2022:d5:tito-s-handmade-vodka:1300:good-looks",
+   "artistId": "acl-2022:good-looks",
+   "day": 5,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "acl-2022:d5:tito-s-handmade-vodka:1400:southern-avenue",
+   "artistId": "acl-2022:southern-avenue",
+   "day": 5,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "14:00",
+   "end": "14:45"
+  },
+  {
+   "id": "acl-2022:d5:tito-s-handmade-vodka:1500:josh-fudge",
+   "artistId": "acl-2022:josh-fudge",
+   "day": 5,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "acl-2022:d5:tito-s-handmade-vodka:1615:disko-cowboy",
+   "artistId": "acl-2022:disko-cowboy",
+   "day": 5,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2022:d5:tito-s-handmade-vodka:1815:big-gigantic",
+   "artistId": "acl-2022:big-gigantic",
+   "day": 5,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2022:d5:austin-kiddie-limits:1130:the-barton-hills-choir",
+   "artistId": "acl-2022:the-barton-hills-choir",
+   "day": 5,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "11:30",
+   "end": "12:00"
+  },
+  {
+   "id": "acl-2022:d5:austin-kiddie-limits:1300:lucy-kalantari-and-the-jazz-cats",
+   "artistId": "acl-2022:lucy-kalantari-and-the-jazz-cats",
+   "day": 5,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "13:00",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2022:d5:austin-kiddie-limits:1445:joanie-leeds",
+   "artistId": "acl-2022:joanie-leeds",
+   "day": 5,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "14:45",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2022:d5:austin-kiddie-limits:1645:alphabet-rockers",
+   "artistId": "acl-2022:alphabet-rockers",
+   "day": 5,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "16:45",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2022:d5:t-mobile:1200:jake-lloyd",
+   "artistId": "acl-2022:jake-lloyd",
+   "day": 5,
+   "stageId": "acl-2022:t-mobile",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "acl-2022:d5:t-mobile:1330:ripe",
+   "artistId": "acl-2022:ripe",
+   "day": 5,
+   "stageId": "acl-2022:t-mobile",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2022:d5:t-mobile:1515:princess-nokia",
+   "artistId": "acl-2022:princess-nokia",
+   "day": 5,
+   "stageId": "acl-2022:t-mobile",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d5:t-mobile:1700:the-front-bottoms",
+   "artistId": "acl-2022:the-front-bottoms",
+   "day": 5,
+   "stageId": "acl-2022:t-mobile",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d5:t-mobile:1910:the-war-on-drugs",
+   "artistId": "acl-2022:the-war-on-drugs",
+   "day": 5,
+   "stageId": "acl-2022:t-mobile",
+   "start": "19:10",
+   "end": "20:25"
+  },
+  {
+   "id": "acl-2022:d5:american-express:1245:habibi",
+   "artistId": "acl-2022:habibi",
+   "day": 5,
+   "stageId": "acl-2022:american-express",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2022:d5:american-express:1415:the-midnight",
+   "artistId": "acl-2022:the-midnight",
+   "day": 5,
+   "stageId": "acl-2022:american-express",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2022:d5:american-express:1600:wallows",
+   "artistId": "acl-2022:wallows",
+   "day": 5,
+   "stageId": "acl-2022:american-express",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d5:american-express:1805:lil-nas-x",
+   "artistId": "acl-2022:lil-nas-x",
+   "day": 5,
+   "stageId": "acl-2022:american-express",
+   "start": "18:05",
+   "end": "19:10"
+  },
+  {
+   "id": "acl-2022:d5:american-express:2025:p-nk",
+   "artistId": "acl-2022:p-nk",
+   "day": 5,
+   "stageId": "acl-2022:american-express",
+   "start": "20:25",
+   "end": "22:00"
+  },
+  {
+   "id": "acl-2022:d6:honda:1230:taipei-houston",
+   "artistId": "acl-2022:taipei-houston",
+   "day": 6,
+   "stageId": "acl-2022:honda",
+   "start": "12:30",
+   "end": "13:15"
+  },
+  {
+   "id": "acl-2022:d6:honda:1400:larry-june",
+   "artistId": "acl-2022:larry-june",
+   "day": 6,
+   "stageId": "acl-2022:honda",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2022:d6:honda:1600:spoon",
+   "artistId": "acl-2022:spoon",
+   "day": 6,
+   "stageId": "acl-2022:honda",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d6:honda:1800:james-blake",
+   "artistId": "acl-2022:james-blake",
+   "day": 6,
+   "stageId": "acl-2022:honda",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d6:honda:2015:kacey-musgraves",
+   "artistId": "acl-2022:kacey-musgraves",
+   "day": 6,
+   "stageId": "acl-2022:honda",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "acl-2022:d6:miller-lite:1145:flora-and-fawna",
+   "artistId": "acl-2022:flora-and-fawna",
+   "day": 6,
+   "stageId": "acl-2022:miller-lite",
+   "start": "11:45",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2022:d6:miller-lite:1315:jake-wesley-rogers",
+   "artistId": "acl-2022:jake-wesley-rogers",
+   "day": 6,
+   "stageId": "acl-2022:miller-lite",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2022:d6:miller-lite:1515:bia",
+   "artistId": "acl-2022:bia",
+   "day": 6,
+   "stageId": "acl-2022:miller-lite",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d6:miller-lite:1700:big-wild",
+   "artistId": "acl-2022:big-wild",
+   "day": 6,
+   "stageId": "acl-2022:miller-lite",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d6:miller-lite:1900:zhu",
+   "artistId": "acl-2022:zhu",
+   "day": 6,
+   "stageId": "acl-2022:miller-lite",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2022:d6:bmi:1145:siena-liggins",
+   "artistId": "acl-2022:siena-liggins",
+   "day": 6,
+   "stageId": "acl-2022:bmi",
+   "start": "11:45",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2022:d6:bmi:1315:joshua-ray-walker",
+   "artistId": "acl-2022:joshua-ray-walker",
+   "day": 6,
+   "stageId": "acl-2022:bmi",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2022:d6:bmi:1500:urban-heat",
+   "artistId": "acl-2022:urban-heat",
+   "day": 6,
+   "stageId": "acl-2022:bmi",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d6:bmi:1700:jackson-dean",
+   "artistId": "acl-2022:jackson-dean",
+   "day": 6,
+   "stageId": "acl-2022:bmi",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d6:barton-springs:1145:pleasure-venom",
+   "artistId": "acl-2022:pleasure-venom",
+   "day": 6,
+   "stageId": "acl-2022:barton-springs",
+   "start": "11:45",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2022:d6:barton-springs:1315:tom-odell",
+   "artistId": "acl-2022:tom-odell",
+   "day": 6,
+   "stageId": "acl-2022:barton-springs",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2022:d6:barton-springs:1500:faye-webster",
+   "artistId": "acl-2022:faye-webster",
+   "day": 6,
+   "stageId": "acl-2022:barton-springs",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d6:barton-springs:1700:the-marias",
+   "artistId": "acl-2022:the-marias",
+   "day": 6,
+   "stageId": "acl-2022:barton-springs",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d6:barton-springs:1900:goose",
+   "artistId": "acl-2022:goose",
+   "day": 6,
+   "stageId": "acl-2022:barton-springs",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2022:d6:tito-s-handmade-vodka:1145:the-spiritualettes",
+   "artistId": "acl-2022:the-spiritualettes",
+   "day": 6,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "11:45",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2022:d6:tito-s-handmade-vodka:1245:me-nd-adam",
+   "artistId": "acl-2022:me-nd-adam",
+   "day": 6,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2022:d6:tito-s-handmade-vodka:1345:buffalo-nichols",
+   "artistId": "acl-2022:buffalo-nichols",
+   "day": 6,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2022:d6:tito-s-handmade-vodka:1445:wilderado",
+   "artistId": "acl-2022:wilderado",
+   "day": 6,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "14:45",
+   "end": "15:30"
+  },
+  {
+   "id": "acl-2022:d6:tito-s-handmade-vodka:1600:magdalena-bay",
+   "artistId": "acl-2022:magdalena-bay",
+   "day": 6,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d6:tito-s-handmade-vodka:1800:robert-glasper",
+   "artistId": "acl-2022:robert-glasper",
+   "day": 6,
+   "stageId": "acl-2022:tito-s-handmade-vodka",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d6:austin-kiddie-limits:1230:alphabet-rockers",
+   "artistId": "acl-2022:alphabet-rockers",
+   "day": 6,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "12:30",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2022:d6:austin-kiddie-limits:1430:school-of-rock",
+   "artistId": "acl-2022:school-of-rock",
+   "day": 6,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "14:30",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2022:d6:austin-kiddie-limits:1630:joanie-leeds",
+   "artistId": "acl-2022:joanie-leeds",
+   "day": 6,
+   "stageId": "acl-2022:austin-kiddie-limits",
+   "start": "16:30",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d6:t-mobile:1145:danielle-ponder",
+   "artistId": "acl-2022:danielle-ponder",
+   "day": 6,
+   "stageId": "acl-2022:t-mobile",
+   "start": "11:45",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2022:d6:t-mobile:1315:dehd",
+   "artistId": "acl-2022:dehd",
+   "day": 6,
+   "stageId": "acl-2022:t-mobile",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2022:d6:t-mobile:1515:pinkpantheress",
+   "artistId": "acl-2022:pinkpantheress",
+   "day": 6,
+   "stageId": "acl-2022:t-mobile",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2022:d6:t-mobile:1700:japanese-breakfast",
+   "artistId": "acl-2022:japanese-breakfast",
+   "day": 6,
+   "stageId": "acl-2022:t-mobile",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2022:d6:t-mobile:1900:marcus-mumford",
+   "artistId": "acl-2022:marcus-mumford",
+   "day": 6,
+   "stageId": "acl-2022:t-mobile",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2022:d6:american-express:1230:glove",
+   "artistId": "acl-2022:glove",
+   "day": 6,
+   "stageId": "acl-2022:american-express",
+   "start": "12:30",
+   "end": "13:15"
+  },
+  {
+   "id": "acl-2022:d6:american-express:1400:yungblud",
+   "artistId": "acl-2022:yungblud",
+   "day": 6,
+   "stageId": "acl-2022:american-express",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2022:d6:american-express:1600:oliver-tree",
+   "artistId": "acl-2022:oliver-tree",
+   "day": 6,
+   "stageId": "acl-2022:american-express",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2022:d6:american-express:1800:paramore",
+   "artistId": "acl-2022:paramore",
+   "day": 6,
+   "stageId": "acl-2022:american-express",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2022:d6:american-express:2000:red-hot-chili-peppers",
+   "artistId": "acl-2022:red-hot-chili-peppers",
+   "day": 6,
+   "stageId": "acl-2022:american-express",
+   "start": "20:00",
+   "end": "22:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_image_transcription",
+  "official": "https://www.aclfestival.com/schedule",
+  "captures": [
+   {
+    "day": 1,
+    "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+    "pageCapture": "20221206183720",
+    "imageArchivedUrl": "https://web.archive.org/web/20221021041421/https://assets-global.website-files.com/626ab670470f4322713394d1/63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+    "imageCapture": "20221021041421",
+    "sha256": "1af8a59344573f64901e3c9a2f92b04cd9ea07961cf9e4f6109fec50840a5a47",
+    "reviewManifest": "data/historical/review/acl-2022.json"
+   },
+   {
+    "day": 2,
+    "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+    "pageCapture": "20221206183720",
+    "imageArchivedUrl": "https://web.archive.org/web/20221021020431/https://assets-global.website-files.com/626ab670470f4322713394d1/6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+    "imageCapture": "20221021020431",
+    "sha256": "f25e5081d9498b5fa295af13e877031e84fa332374c95b74ec8cd5ab2abbd051",
+    "reviewManifest": "data/historical/review/acl-2022.json"
+   },
+   {
+    "day": 3,
+    "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+    "pageCapture": "20221206183720",
+    "imageArchivedUrl": "https://web.archive.org/web/20221021143110/https://assets-global.website-files.com/626ab670470f4322713394d1/63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+    "imageCapture": "20221021143110",
+    "sha256": "5a4771e1fd2b8cf31e019a9d7bdf2a8ab461fb9d0ab6b52ed7428fad21559beb",
+    "reviewManifest": "data/historical/review/acl-2022.json"
+   },
+   {
+    "day": 4,
+    "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+    "pageCapture": "20221206183720",
+    "imageArchivedUrl": "https://web.archive.org/web/20221021144453/https://assets-global.website-files.com/626ab670470f4322713394d1/6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+    "imageCapture": "20221021144453",
+    "sha256": "1a8ada90dbc672757bac16f2358df10cc37aecd416e0a4b6832e8b6243d9280d",
+    "reviewManifest": "data/historical/review/acl-2022.json"
+   },
+   {
+    "day": 5,
+    "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+    "pageCapture": "20221206183720",
+    "imageArchivedUrl": "https://web.archive.org/web/20221021031943/https://assets-global.website-files.com/626ab670470f4322713394d1/634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+    "imageCapture": "20221021031943",
+    "sha256": "d262880eacd83ae8d08de4405631562cd3673cdc14b0b2278d397063962156b3",
+    "reviewManifest": "data/historical/review/acl-2022.json"
+   },
+   {
+    "day": 6,
+    "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+    "pageCapture": "20221206183720",
+    "imageArchivedUrl": "https://web.archive.org/web/20221026174018/https://assets-global.website-files.com/626ab670470f4322713394d1/634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png",
+    "imageCapture": "20221026174018",
+    "sha256": "15e865504817f65175e95e42c30695fc48dcd20dbc171b8df907ea56aa9b3af2",
+    "reviewManifest": "data/historical/review/acl-2022.json"
+   }
+  ]
+ }
+}

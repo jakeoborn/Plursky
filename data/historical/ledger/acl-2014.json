@@ -1,0 +1,185 @@
+{
+  "id": "acl-2014",
+  "method": "official_sources",
+  "official": "https://www.aclfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2014-10-03",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2014-schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20141007085130/http://www.aclfestival.com:80/2014-schedule-weekend-one/",
+          "captureTimestamp": "20141007085130",
+          "printed": "Friday Oct 3rd",
+          "sha256": "b89929c515896ddbf7c09abfc441cf49c2975b1169fcc0292377633b17a8ad19",
+          "bytes": 426062,
+          "rows": 41,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2014-10-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2014-schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20141007085130/http://www.aclfestival.com:80/2014-schedule-weekend-one/",
+          "captureTimestamp": "20141007085130",
+          "printed": "Saturday Oct 4th",
+          "sha256": "b89929c515896ddbf7c09abfc441cf49c2975b1169fcc0292377633b17a8ad19",
+          "bytes": 426062,
+          "rows": 41,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2014-10-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2014-schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20141007085130/http://www.aclfestival.com:80/2014-schedule-weekend-one/",
+          "captureTimestamp": "20141007085130",
+          "printed": "Sunday Oct 5th",
+          "sha256": "b89929c515896ddbf7c09abfc441cf49c2975b1169fcc0292377633b17a8ad19",
+          "bytes": 426062,
+          "rows": 41,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2014-10-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2014-schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20141016210458/http://www.aclfestival.com:80/2014-schedule-weekend-two/",
+          "captureTimestamp": "20141016210458",
+          "printed": "Friday Oct 10th",
+          "sha256": "4c5b798c7f97e809ab035c7a6216d9536798e2c1f5674add89d0a655dfc2d0b0",
+          "bytes": 423978,
+          "rows": 41,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2014-10-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2014-schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20141016210458/http://www.aclfestival.com:80/2014-schedule-weekend-two/",
+          "captureTimestamp": "20141016210458",
+          "printed": "Saturday Oct 11th",
+          "sha256": "4c5b798c7f97e809ab035c7a6216d9536798e2c1f5674add89d0a655dfc2d0b0",
+          "bytes": 423978,
+          "rows": 35,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2,
+          "cancelled": 6
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2014-10-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/2014-schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20141016210458/http://www.aclfestival.com:80/2014-schedule-weekend-two/",
+          "captureTimestamp": "20141016210458",
+          "printed": "Sunday Oct 12th",
+          "sha256": "4c5b798c7f97e809ab035c7a6216d9536798e2c1f5674add89d0a655dfc2d0b0",
+          "bytes": 423978,
+          "rows": 41,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 5,
+      "stage": "Miller Lite",
+      "start": "11:30",
+      "end": "12:30",
+      "billing": "Knifight",
+      "reason": "printed *canceled* on the final official page: the set did not happen",
+      "canceled": true
+    },
+    {
+      "day": 5,
+      "stage": "Austin Ventures",
+      "start": "11:15",
+      "end": "11:45",
+      "billing": "Riders Against the Storm",
+      "reason": "printed *canceled* on the final official page: the set did not happen",
+      "canceled": true
+    },
+    {
+      "day": 5,
+      "stage": "Austin Ventures",
+      "start": "12:00",
+      "end": "12:40",
+      "billing": "THE NIGHTOWLS",
+      "reason": "printed *canceled* on the final official page: the set did not happen",
+      "canceled": true
+    },
+    {
+      "day": 5,
+      "stage": "RetailMeNot",
+      "start": "11:30",
+      "end": "12:30",
+      "billing": "The Chain Gang of 1974",
+      "reason": "printed *canceled* on the final official page: the set did not happen",
+      "canceled": true
+    },
+    {
+      "day": 5,
+      "stage": "Zilker",
+      "start": "11:15",
+      "end": "12:00",
+      "billing": "Wesley Bray and The Disciples of Joy",
+      "reason": "printed *canceled* on the final official page: the set did not happen",
+      "canceled": true
+    },
+    {
+      "day": 5,
+      "stage": "Zilker",
+      "start": "12:15",
+      "end": "13:00",
+      "billing": "The Levites",
+      "reason": "printed *canceled* on the final official page: the set did not happen",
+      "canceled": true
+    }
+  ],
+  "dropped": []
+}

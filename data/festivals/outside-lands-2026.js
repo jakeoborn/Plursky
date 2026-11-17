@@ -253,6 +253,7 @@
 
   const CONFIG = {
     id: "outside-lands-2026",
+    officialEvent: { website: "https://www.sfoutsidelands.com/", observedAt: "2026-11-11" },
     // No mapSource: sfoutsidelands.com/info returns 404 as of 2026-09-24 and no
     // other first-party page on the post-festival site carries a map.
     // No hours field: held (see SOURCE hours above).
@@ -266,6 +267,8 @@
     locationShort: "Golden Gate Park",
     dates: "Aug 7–9, 2026",
     year: 2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#F7C63D", accent2: "#FF9CD9", source: { url: "https://www.sfoutsidelands.com/css/tailwind.css?id=cc9f31449bb5e89532dac2b769634b60", observedAt: "2026-10-09", seenAs: "Tailwind theme colour 'themeGold' (.text-themeGold color: rgb(247 198 61); .bg-themeGold), used on 20 homepage elements, plus .text3d-gold and a #f7c63d hard-shadow utility in the stylesheet (19 occurrences)", confidence: "medium" }, note: "No official site is recorded in the data file so the well-known domain sfoutsidelands.com was used; no theme-color meta; the site's Tailwind palette is Navy #0a2f3f / Mist #fff9e9 neutrals with Gold the most-used accent, ahead of Bubblegum #ff9cd9 (17 uses, nav hover) and Sunset #f0633a (10 uses, link text)." },
     // gates day 1 (11:00 PDT) -> close of the final day (22:00 PDT)
     startMs: Date.UTC(2026, 7, 7, 18, 0, 0),
     endMs:   Date.UTC(2026, 7, 10, 5, 0, 0),
@@ -314,10 +317,14 @@
     ],
     weatherEndpoint: "https://api.weather.gov/points/37.77,-122.49",
     mainStageId: "landsend",
-    // Generated abstract overlay, NOT the official patron map — that art is
-    // rights-restricted and is never copied into this repo (lostlands-2026.jpg
-    // precedent). Authored in the same 0-100 frame as the stages above.
+    // Generated abstract overlay, authored in the same 0-100 frame as the
+    // stages above; the poster view and the stage pins use it.
+    // The real map lays the festival's OWN map (Jake, 2026-11-11: "let's just
+    // use the map we do it for other festivals"), fitted to the streets by
+    // map-sources/outside-lands-2026-geo-ties.json from https://sfoutsidelands.com/assets/maps/ol26-patron-map_73026.pdf
     mapImage: "osl-2026.svg",
+    mapGeoref: { image: "geo-maps/outside-lands-2026.webp", bounds: [-122.4984607, 37.7644441, -122.4762446, 37.7739127], model: "affine",
+                 ties: "map-sources/outside-lands-2026-geo-ties.json", rmsM: 13.4, looRmsM: 30.5 },
     mapStyle: "image-overlay",
     mapTheme: "park",
     // The overlay prints no stage names, so pills carry them.

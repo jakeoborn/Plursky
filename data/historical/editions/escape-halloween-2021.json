@@ -1,0 +1,1077 @@
+{
+ "id": "escape-halloween-2021",
+ "festivalId": "escape-halloween",
+ "name": "Escape Halloween 2021",
+ "year": 2021,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2021-10-29",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2021-10-30",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "escape-halloween-2021:the-grimm",
+   "name": "The Grimm"
+  },
+  {
+   "id": "escape-halloween-2021:psycho-circus",
+   "name": "Psycho Circus"
+  },
+  {
+   "id": "escape-halloween-2021:sanitarium",
+   "name": "Sanitarium"
+  },
+  {
+   "id": "escape-halloween-2021:sewer-district",
+   "name": "Sewer District"
+  }
+ ],
+ "artists": [
+  {
+   "id": "escape-halloween-2021:henry-fong",
+   "name": "Henry Fong",
+   "key": "henry-fong",
+   "performers": [
+    "henry-fong"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:elephante",
+   "name": "Elephante",
+   "key": "elephante",
+   "performers": [
+    "elephante"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:loud-luxury",
+   "name": "Loud Luxury",
+   "key": "loud-luxury",
+   "performers": [
+    "loud-luxury"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:eric-prydz",
+   "name": "Eric Prydz",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:dack-janiels",
+   "name": "Dack Janiels",
+   "key": "dack-janiels",
+   "performers": [
+    "dack-janiels"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:vampa",
+   "name": "Vampa",
+   "key": "vampa",
+   "performers": [
+    "vampa"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:lucii",
+   "name": "Lucii",
+   "key": "lucii",
+   "performers": [
+    "lucii"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:black-sun-empire",
+   "name": "Black Sun Empire",
+   "key": "black-sun-empire",
+   "performers": [
+    "black-sun-empire"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:sullivan-king",
+   "name": "Sullivan King",
+   "key": "sullivan-king",
+   "performers": [
+    "sullivan-king"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:trampa",
+   "name": "Trampa",
+   "key": "trampa",
+   "performers": [
+    "trampa"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:noisia",
+   "name": "Noisia",
+   "key": "noisia",
+   "performers": [
+    "noisia"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:doctor-p-b2b-funtcase",
+   "name": "Doctor P B2B FuntCase",
+   "key": "doctor-p-b2b-funtcase",
+   "performers": [
+    "doctor-p",
+    "funtcase"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:ganja-white-night",
+   "name": "Ganja White Night",
+   "key": "ganja-white-night",
+   "performers": [
+    "ganja-white-night"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:zomboy",
+   "name": "Zomboy",
+   "key": "zomboy",
+   "performers": [
+    "zomboy"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:soren",
+   "name": "SOREN",
+   "key": "soren",
+   "performers": [
+    "soren"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:mrotek",
+   "name": "Mrotek",
+   "key": "mrotek",
+   "performers": [
+    "mrotek"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:junkie-kid",
+   "name": "Junkie Kid",
+   "key": "junkie-kid",
+   "performers": [
+    "junkie-kid"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:toneshifterz",
+   "name": "Toneshifterz",
+   "key": "toneshifterz",
+   "performers": [
+    "toneshifterz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:lady-faith",
+   "name": "Lady Faith",
+   "key": "lady-faith",
+   "performers": [
+    "lady-faith"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:dj-isaac",
+   "name": "DJ Isaac",
+   "key": "dj-isaac",
+   "performers": [
+    "dj-isaac"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:bioweapon",
+   "name": "Bioweapon",
+   "key": "bioweapon",
+   "performers": [
+    "bioweapon"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:gammer-hd",
+   "name": "Gammer HD",
+   "key": "gammer-hd",
+   "performers": [
+    "gammer-hd"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:mad-dog",
+   "name": "Mad Dog",
+   "key": "mad-dog",
+   "performers": [
+    "mad-dog"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:shmitty",
+   "name": "Shmitty",
+   "key": "shmitty",
+   "performers": [
+    "shmitty"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:carlo-lio",
+   "name": "Carlo Lio",
+   "key": "carlo-lio",
+   "performers": [
+    "carlo-lio"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:green-velvet",
+   "name": "Green Velvet",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:will-clarke",
+   "name": "Will Clarke",
+   "key": "will-clarke",
+   "performers": [
+    "will-clarke"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:artbat",
+   "name": "ARTBAT",
+   "key": "artbat",
+   "performers": [
+    "artbat"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:loco-dice-b2b-nicole-moudaber",
+   "name": "Loco Dice B2B Nicole Moudaber",
+   "key": "loco-dice-b2b-nicole-moudaber",
+   "performers": [
+    "loco-dice",
+    "nicole-moudaber"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:dj-adam-auburn",
+   "name": "DJ Adam Auburn",
+   "key": "dj-adam-auburn",
+   "performers": [
+    "dj-adam-auburn"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:partywithray",
+   "name": "partywithray",
+   "key": "partywithray",
+   "performers": [
+    "partywithray"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:william-black",
+   "name": "William Black",
+   "key": "william-black",
+   "performers": [
+    "william-black"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:vintage-culture",
+   "name": "Vintage Culture",
+   "key": "vintage-culture",
+   "performers": [
+    "vintage-culture"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:benny-benassi",
+   "name": "Benny Benassi",
+   "key": "benny-benassi",
+   "performers": [
+    "benny-benassi"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:diesel",
+   "name": "Diesel",
+   "key": "diesel",
+   "performers": [
+    "diesel"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:kshmr",
+   "name": "KSHMR",
+   "key": "kshmr",
+   "performers": [
+    "kshmr"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:gryffin-dj-set",
+   "name": "Gryffin (DJ Set)",
+   "key": "gryffin-dj-set",
+   "performers": [
+    "gryffin-dj-set"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:londonbridge",
+   "name": "LondonBridge",
+   "key": "londonbridge",
+   "performers": [
+    "londonbridge"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:mersiv",
+   "name": "Mersiv",
+   "key": "mersiv",
+   "performers": [
+    "mersiv"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:machinedrum-holly",
+   "name": "Machinedrum + Holly",
+   "key": "machinedrum-holly",
+   "performers": [
+    "machinedrum-holly"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:baauer",
+   "name": "Baauer",
+   "key": "baauer",
+   "performers": [
+    "baauer"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:dabin",
+   "name": "Dabin",
+   "key": "dabin",
+   "performers": [
+    "dabin"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:jstjr",
+   "name": "JSTJR",
+   "key": "jstjr",
+   "performers": [
+    "jstjr"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:ekali",
+   "name": "Ekali",
+   "key": "ekali",
+   "performers": [
+    "ekali"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:playboi-carti",
+   "name": "Playboi Carti",
+   "key": "playboi-carti",
+   "performers": [
+    "playboi-carti"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:jauz",
+   "name": "Jauz",
+   "key": "jauz",
+   "performers": [
+    "jauz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:ranger-trucco",
+   "name": "Ranger Trucco",
+   "key": "ranger-trucco",
+   "performers": [
+    "ranger-trucco"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:nightfunk",
+   "name": "NightFunk",
+   "key": "nightfunk",
+   "performers": [
+    "nightfunk"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:lucati",
+   "name": "Lucati",
+   "key": "lucati",
+   "performers": [
+    "lucati"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:vnssa",
+   "name": "VNSSA",
+   "key": "vnssa",
+   "performers": [
+    "vnssa"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:mark-knight",
+   "name": "Mark Knight",
+   "key": "mark-knight",
+   "performers": [
+    "mark-knight"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:sonny-fodera",
+   "name": "Sonny Fodera",
+   "key": "sonny-fodera",
+   "performers": [
+    "sonny-fodera"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:tchami",
+   "name": "Tchami",
+   "key": "tchami",
+   "performers": [
+    "tchami"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:avision",
+   "name": "Avision",
+   "key": "avision",
+   "performers": [
+    "avision"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:hi-lo",
+   "name": "HI-LO",
+   "key": "hi-lo",
+   "performers": [
+    "hi-lo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:layton-giordani",
+   "name": "Layton Giordani",
+   "key": "layton-giordani",
+   "performers": [
+    "layton-giordani"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:ida-engberg",
+   "name": "Ida Engberg",
+   "key": "ida-engberg",
+   "performers": [
+    "ida-engberg"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:cirez-d",
+   "name": "Cirez D",
+   "key": "cirez-d",
+   "performers": [
+    "cirez-d"
+   ]
+  },
+  {
+   "id": "escape-halloween-2021:adam-beyer-presents-drumcode",
+   "name": "Adam Beyer presents Drumcode",
+   "key": "adam-beyer-presents-drumcode",
+   "performers": [
+    "adam-beyer-presents-drumcode"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "escape-halloween-2021:d1:the-grimm:1700:henry-fong",
+   "artistId": "escape-halloween-2021:henry-fong",
+   "day": 1,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "escape-halloween-2021:d1:the-grimm:1830:armnhmr",
+   "artistId": "escape-halloween-2021:armnhmr",
+   "day": 1,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "18:30",
+   "end": "19:45"
+  },
+  {
+   "id": "escape-halloween-2021:d1:the-grimm:1945:elephante",
+   "artistId": "escape-halloween-2021:elephante",
+   "day": 1,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "19:45",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:the-grimm:2100:loud-luxury",
+   "artistId": "escape-halloween-2021:loud-luxury",
+   "day": 1,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "escape-halloween-2021:d1:the-grimm:2215:the-chainsmokers",
+   "artistId": "escape-halloween-2021:the-chainsmokers",
+   "day": 1,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "escape-halloween-2021:d1:the-grimm:2330:eric-prydz",
+   "artistId": "escape-halloween-2021:eric-prydz",
+   "day": 1,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "escape-halloween-2021:d1:the-grimm:0045:dj-snake",
+   "artistId": "escape-halloween-2021:dj-snake",
+   "day": 1,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:psycho-circus:1600:dack-janiels",
+   "artistId": "escape-halloween-2021:dack-janiels",
+   "day": 1,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:psycho-circus:1700:vampa",
+   "artistId": "escape-halloween-2021:vampa",
+   "day": 1,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:psycho-circus:1800:lucii",
+   "artistId": "escape-halloween-2021:lucii",
+   "day": 1,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:psycho-circus:1900:black-sun-empire",
+   "artistId": "escape-halloween-2021:black-sun-empire",
+   "day": 1,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:psycho-circus:2000:sullivan-king",
+   "artistId": "escape-halloween-2021:sullivan-king",
+   "day": 1,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:psycho-circus:2100:trampa",
+   "artistId": "escape-halloween-2021:trampa",
+   "day": 1,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:psycho-circus:2200:noisia",
+   "artistId": "escape-halloween-2021:noisia",
+   "day": 1,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:psycho-circus:2300:doctor-p-b2b-funtcase",
+   "artistId": "escape-halloween-2021:doctor-p-b2b-funtcase",
+   "day": 1,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:psycho-circus:0000:ganja-white-night",
+   "artistId": "escape-halloween-2021:ganja-white-night",
+   "day": 1,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:psycho-circus:0100:zomboy",
+   "artistId": "escape-halloween-2021:zomboy",
+   "day": 1,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sanitarium:1600:soren",
+   "artistId": "escape-halloween-2021:soren",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sanitarium:1730:mrotek",
+   "artistId": "escape-halloween-2021:mrotek",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sanitarium:1900:junkie-kid",
+   "artistId": "escape-halloween-2021:junkie-kid",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sanitarium:2000:toneshifterz",
+   "artistId": "escape-halloween-2021:toneshifterz",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sanitarium:2100:lady-faith",
+   "artistId": "escape-halloween-2021:lady-faith",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sanitarium:2200:dj-isaac",
+   "artistId": "escape-halloween-2021:dj-isaac",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sanitarium:2300:bioweapon",
+   "artistId": "escape-halloween-2021:bioweapon",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sanitarium:0000:gammer-hd",
+   "artistId": "escape-halloween-2021:gammer-hd",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sanitarium:0100:mad-dog",
+   "artistId": "escape-halloween-2021:mad-dog",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sewer-district:1600:shmitty",
+   "artistId": "escape-halloween-2021:shmitty",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "16:00",
+   "end": "17:45"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sewer-district:1745:carlo-lio",
+   "artistId": "escape-halloween-2021:carlo-lio",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "17:45",
+   "end": "19:30"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sewer-district:1930:green-velvet",
+   "artistId": "escape-halloween-2021:green-velvet",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sewer-district:2100:will-clarke",
+   "artistId": "escape-halloween-2021:will-clarke",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sewer-district:2230:artbat",
+   "artistId": "escape-halloween-2021:artbat",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2021:d1:sewer-district:0000:loco-dice-b2b-nicole-moudaber",
+   "artistId": "escape-halloween-2021:loco-dice-b2b-nicole-moudaber",
+   "day": 1,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "00:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:the-grimm:1600:dj-adam-auburn",
+   "artistId": "escape-halloween-2021:dj-adam-auburn",
+   "day": 2,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:the-grimm:1700:partywithray",
+   "artistId": "escape-halloween-2021:partywithray",
+   "day": 2,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "escape-halloween-2021:d2:the-grimm:1815:william-black",
+   "artistId": "escape-halloween-2021:william-black",
+   "day": 2,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "escape-halloween-2021:d2:the-grimm:1930:vintage-culture",
+   "artistId": "escape-halloween-2021:vintage-culture",
+   "day": 2,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "19:30",
+   "end": "20:45"
+  },
+  {
+   "id": "escape-halloween-2021:d2:the-grimm:2045:benny-benassi",
+   "artistId": "escape-halloween-2021:benny-benassi",
+   "day": 2,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:the-grimm:2200:diesel",
+   "artistId": "escape-halloween-2021:diesel",
+   "day": 2,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "22:00",
+   "end": "22:45"
+  },
+  {
+   "id": "escape-halloween-2021:d2:the-grimm:2245:kshmr",
+   "artistId": "escape-halloween-2021:kshmr",
+   "day": 2,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "22:45",
+   "end": "23:45"
+  },
+  {
+   "id": "escape-halloween-2021:d2:the-grimm:2345:gryffin-dj-set",
+   "artistId": "escape-halloween-2021:gryffin-dj-set",
+   "day": 2,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "23:45",
+   "end": "00:45"
+  },
+  {
+   "id": "escape-halloween-2021:d2:the-grimm:0045:zedd",
+   "artistId": "escape-halloween-2021:zedd",
+   "day": 2,
+   "stageId": "escape-halloween-2021:the-grimm",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:psycho-circus:1600:londonbridge",
+   "artistId": "escape-halloween-2021:londonbridge",
+   "day": 2,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "escape-halloween-2021:d2:psycho-circus:1730:mersiv",
+   "artistId": "escape-halloween-2021:mersiv",
+   "day": 2,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "escape-halloween-2021:d2:psycho-circus:1830:machinedrum-holly",
+   "artistId": "escape-halloween-2021:machinedrum-holly",
+   "day": 2,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "18:30",
+   "end": "19:45"
+  },
+  {
+   "id": "escape-halloween-2021:d2:psycho-circus:1945:baauer",
+   "artistId": "escape-halloween-2021:baauer",
+   "day": 2,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "escape-halloween-2021:d2:psycho-circus:2045:dabin",
+   "artistId": "escape-halloween-2021:dabin",
+   "day": 2,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "escape-halloween-2021:d2:psycho-circus:2145:jstjr",
+   "artistId": "escape-halloween-2021:jstjr",
+   "day": 2,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "escape-halloween-2021:d2:psycho-circus:2245:ekali",
+   "artistId": "escape-halloween-2021:ekali",
+   "day": 2,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "22:45",
+   "end": "23:45"
+  },
+  {
+   "id": "escape-halloween-2021:d2:psycho-circus:2345:playboi-carti",
+   "artistId": "escape-halloween-2021:playboi-carti",
+   "day": 2,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "23:45",
+   "end": "00:45"
+  },
+  {
+   "id": "escape-halloween-2021:d2:psycho-circus:0045:jauz",
+   "artistId": "escape-halloween-2021:jauz",
+   "day": 2,
+   "stageId": "escape-halloween-2021:psycho-circus",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sanitarium:1600:ranger-trucco",
+   "artistId": "escape-halloween-2021:ranger-trucco",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sanitarium:1700:nightfunk",
+   "artistId": "escape-halloween-2021:nightfunk",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sanitarium:1830:lucati",
+   "artistId": "escape-halloween-2021:lucati",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sanitarium:2000:vnssa",
+   "artistId": "escape-halloween-2021:vnssa",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sanitarium:2130:mark-knight",
+   "artistId": "escape-halloween-2021:mark-knight",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sanitarium:2300:sonny-fodera",
+   "artistId": "escape-halloween-2021:sonny-fodera",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sanitarium:0030:tchami",
+   "artistId": "escape-halloween-2021:tchami",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sanitarium",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sewer-district:1600:avision",
+   "artistId": "escape-halloween-2021:avision",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sewer-district:1730:hi-lo",
+   "artistId": "escape-halloween-2021:hi-lo",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sewer-district:1900:layton-giordani",
+   "artistId": "escape-halloween-2021:layton-giordani",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sewer-district:2030:ida-engberg",
+   "artistId": "escape-halloween-2021:ida-engberg",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sewer-district:2200:cirez-d",
+   "artistId": "escape-halloween-2021:cirez-d",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2021:d2:sewer-district:0000:adam-beyer-presents-drumcode",
+   "artistId": "escape-halloween-2021:adam-beyer-presents-drumcode",
+   "day": 2,
+   "stageId": "escape-halloween-2021:sewer-district",
+   "start": "00:00",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://escapehalloween.com/lineup/set-times/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20220128225856/https://escapehalloween.com/lineup/set-times/",
+    "captureTimestamp": "20220128225856",
+    "printed": "Friday, October 29",
+    "sha256": "ee7dcb63f6314627d7aaa3f3e95a64ef1ab20f2c9214c2f9cdb68bebbadd0574",
+    "rows": 32
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20211203030926/https://escapehalloween.com/lineup/set-times/day-2/",
+    "captureTimestamp": "20211203030926",
+    "printed": "Saturday, October 30",
+    "sha256": "906b476102ad2c7d7b6bd232583d32e3b409224cc8886b6b48c013bfd45f4e48",
+    "rows": 31
+   }
+  ]
+ }
+}

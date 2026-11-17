@@ -1,0 +1,1047 @@
+{
+ "id": "edc-orlando-2018",
+ "festivalId": "edc-orlando",
+ "name": "EDC Orlando 2018",
+ "year": 2018,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2018-11-09",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2018-11-10",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "edc-orlando-2018:4b-b2b-gta-b2b-valentino-khan",
+   "name": "4B B2B GTA B2B Valentino Khan",
+   "key": "4b-b2b-gta-b2b-valentino-khan",
+   "performers": [
+    "4b",
+    "gta",
+    "valentino-khan"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:acraze",
+   "name": "Acraze",
+   "key": "acraze",
+   "performers": [
+    "acraze"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:adin",
+   "name": "ADIN",
+   "key": "adin",
+   "performers": [
+    "adin"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:assembly",
+   "name": "Assembly",
+   "key": "assembly",
+   "performers": [
+    "assembly"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:badklaat",
+   "name": "BadKlaat",
+   "key": "badklaat",
+   "performers": [
+    "badklaat"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:bassnectar",
+   "name": "Bassnectar",
+   "key": "bassnectar",
+   "performers": [
+    "bassnectar"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:bassrush-experience",
+   "name": "Bassrush Experience",
+   "key": "bassrush-experience",
+   "performers": [
+    "bassrush-experience"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:boogie-t-b2b-squnto",
+   "name": "Boogie T B2B Squnto",
+   "key": "boogie-t-b2b-squnto",
+   "performers": [
+    "boogie-t",
+    "squnto"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:carlos-mendoza",
+   "name": "Carlos Mendoza",
+   "key": "carlos-mendoza",
+   "performers": [
+    "carlos-mendoza"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:damaged-goods",
+   "name": "Damaged Goods",
+   "key": "damaged-goods",
+   "performers": [
+    "damaged-goods"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:dave-neven",
+   "name": "Dave Neven",
+   "key": "dave-neven",
+   "performers": [
+    "dave-neven"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:denzo",
+   "name": "Denzo",
+   "key": "denzo",
+   "performers": [
+    "denzo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:dillon-francis-and-friends",
+   "name": "Dillon Francis & Friends",
+   "key": "dillon-francis-and-friends",
+   "performers": [
+    "dillon-francis-and-friends"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:dombresky",
+   "name": "Dombresky",
+   "key": "dombresky",
+   "performers": [
+    "dombresky"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:don-diablo",
+   "name": "Don Diablo",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:edgar-v",
+   "name": "Edgar V",
+   "key": "edgar-v",
+   "performers": [
+    "edgar-v"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:egzod",
+   "name": "Egzod",
+   "key": "egzod",
+   "performers": [
+    "egzod"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:el-dusty",
+   "name": "El Dusty",
+   "key": "el-dusty",
+   "performers": [
+    "el-dusty"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:factory-93-experience",
+   "name": "Factory 93 Experience",
+   "key": "factory-93-experience",
+   "performers": [
+    "factory-93-experience"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:fury-mc-dino",
+   "name": "Fury + MC Dino",
+   "key": "fury-mc-dino",
+   "performers": [
+    "fury-mc-dino"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:g-buck",
+   "name": "G-Buck",
+   "key": "g-buck",
+   "performers": [
+    "g-buck"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:ganja-white-night",
+   "name": "Ganja White Night",
+   "key": "ganja-white-night",
+   "performers": [
+    "ganja-white-night"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:george-acosta-classics-set",
+   "name": "George Acosta (Classics Set)",
+   "key": "george-acosta-classics-set",
+   "performers": [
+    "george-acosta-classics-set"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:grube-and-hovsepian",
+   "name": "Grube & Hovsepian",
+   "key": "grube-and-hovsepian",
+   "performers": [
+    "grube-and-hovsepian"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:gryffin",
+   "name": "Gryffin",
+   "key": "gryffin",
+   "performers": [
+    "gryffin"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:henry-fong",
+   "name": "Henry Fong",
+   "key": "henry-fong",
+   "performers": [
+    "henry-fong"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:hito",
+   "name": "Hito",
+   "key": "hito",
+   "performers": [
+    "hito"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:illenium",
+   "name": "Illenium",
+   "key": "illenium",
+   "performers": [
+    "illenium"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:jamie-jones-b2b-the-martinez-brothers",
+   "name": "Jamie Jones B2B The Martinez Brothers",
+   "key": "jamie-jones-b2b-the-martinez-brothers",
+   "performers": [
+    "jamie-jones",
+    "the-martinez-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:jamie-jones-presents-paradise",
+   "name": "Jamie Jones presents Paradise",
+   "key": "jamie-jones-presents-paradise",
+   "performers": [
+    "jamie-jones-presents-paradise"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:jayceeoh",
+   "name": "Jayceeoh",
+   "key": "jayceeoh",
+   "performers": [
+    "jayceeoh"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:jessica-audiffred",
+   "name": "Jessica Audiffred",
+   "key": "jessica-audiffred",
+   "performers": [
+    "jessica-audiffred"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:jochen-miller",
+   "name": "Jochen Miller",
+   "key": "jochen-miller",
+   "performers": [
+    "jochen-miller"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:joyryde",
+   "name": "JOYRYDE",
+   "key": "joyryde",
+   "performers": [
+    "joyryde"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:jupe",
+   "name": "Jupe",
+   "key": "jupe",
+   "performers": [
+    "jupe"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:kandy",
+   "name": "Kandy",
+   "key": "kandy",
+   "performers": [
+    "kandy"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:kayzo",
+   "name": "Kayzo",
+   "key": "kayzo",
+   "performers": [
+    "kayzo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:kevin-knapp",
+   "name": "Kevin Knapp",
+   "key": "kevin-knapp",
+   "performers": [
+    "kevin-knapp"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:landis",
+   "name": "Landis",
+   "key": "landis",
+   "performers": [
+    "landis"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:lauren-lane",
+   "name": "Lauren Lane",
+   "key": "lauren-lane",
+   "performers": [
+    "lauren-lane"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:loudpvck",
+   "name": "Loudpvck",
+   "key": "loudpvck",
+   "performers": [
+    "loudpvck"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:malaa",
+   "name": "Malaa",
+   "key": "malaa",
+   "performers": [
+    "malaa"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:mercer",
+   "name": "Mercer",
+   "key": "mercer",
+   "performers": [
+    "mercer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:midnight-tyrannosaurus",
+   "name": "Midnight Tyrannosaurus",
+   "key": "midnight-tyrannosaurus",
+   "performers": [
+    "midnight-tyrannosaurus"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:moksi",
+   "name": "Moksi",
+   "key": "moksi",
+   "performers": [
+    "moksi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:moody-good",
+   "name": "Moody Good",
+   "key": "moody-good",
+   "performers": [
+    "moody-good"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:nervo-b2b-alok",
+   "name": "Nervo B2B Alok",
+   "key": "nervo-b2b-alok",
+   "performers": [
+    "nervo",
+    "alok"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:nicole-moudaber-b2b-paco-osuna",
+   "name": "Nicole Moudaber B2B Paco Osuna",
+   "key": "nicole-moudaber-b2b-paco-osuna",
+   "performers": [
+    "nicole-moudaber",
+    "paco-osuna"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:nicole-moudaber-presents-moodzone",
+   "name": "Nicole Moudaber presents Moodzone",
+   "key": "nicole-moudaber-presents-moodzone",
+   "performers": [
+    "nicole-moudaber-presents-moodzone"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:nifra",
+   "name": "Nifra",
+   "key": "nifra",
+   "performers": [
+    "nifra"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:nitti-gritti",
+   "name": "Nitti Gritti",
+   "key": "nitti-gritti",
+   "performers": [
+    "nitti-gritti"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:omair",
+   "name": "OMAIR",
+   "key": "omair",
+   "performers": [
+    "omair"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:paco-osuna",
+   "name": "Paco Osuna",
+   "key": "paco-osuna",
+   "performers": [
+    "paco-osuna"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:patrick-topping",
+   "name": "Patrick Topping",
+   "key": "patrick-topping",
+   "performers": [
+    "patrick-topping"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:pendulum-dj-set",
+   "name": "Pendulum (DJ Set)",
+   "key": "pendulum-dj-set",
+   "performers": [
+    "pendulum-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:richy-ahmed",
+   "name": "Richy Ahmed",
+   "key": "richy-ahmed",
+   "performers": [
+    "richy-ahmed"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:saymyname",
+   "name": "SAYMYNAME",
+   "key": "saymyname",
+   "performers": [
+    "saymyname"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:sharps",
+   "name": "Sharps",
+   "key": "sharps",
+   "performers": [
+    "sharps"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:sinopoli",
+   "name": "Sinopoli",
+   "key": "sinopoli",
+   "performers": [
+    "sinopoli"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:sloth",
+   "name": "Sloth",
+   "key": "sloth",
+   "performers": [
+    "sloth"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:space-jesus",
+   "name": "Space Jesus",
+   "key": "space-jesus",
+   "performers": [
+    "space-jesus"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:suzy-solar",
+   "name": "Suzy Solar",
+   "key": "suzy-solar",
+   "performers": [
+    "suzy-solar"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:talla-2xlc-classics-set",
+   "name": "Talla 2XLC (Classics Set)",
+   "key": "talla-2xlc-classics-set",
+   "performers": [
+    "talla-2xlc-classics-set"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:tchami",
+   "name": "Tchami",
+   "key": "tchami",
+   "performers": [
+    "tchami"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:the-martinez-brothers",
+   "name": "The Martinez Brothers",
+   "key": "the-martinez-brothers",
+   "performers": [
+    "the-martinez-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:the-prototypes",
+   "name": "The Prototypes",
+   "key": "the-prototypes",
+   "performers": [
+    "the-prototypes"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:tiga",
+   "name": "Tiga",
+   "key": "tiga",
+   "performers": [
+    "tiga"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:timmy-trumpet",
+   "name": "Timmy Trumpet",
+   "key": "timmy-trumpet",
+   "performers": [
+    "timmy-trumpet"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:tiesto-sunset",
+   "name": "Tiësto (Sunset)",
+   "key": "tiesto-sunset",
+   "performers": [
+    "tiesto-sunset"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:vintage-culture",
+   "name": "Vintage Culture",
+   "key": "vintage-culture",
+   "performers": [
+    "vintage-culture"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2018:ydg",
+   "name": "YDG",
+   "key": "ydg",
+   "performers": [
+    "ydg"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://orlando.electricdaisycarnival.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20181217100647/https://orlando.electricdaisycarnival.com/lineup/",
+    "captureTimestamp": "20181217100647",
+    "sha256": "6e0491e57302e8871a9d519838161cf68192549c59d5a198611d4be27a6f58bf"
+   }
+  ]
+ }
+}

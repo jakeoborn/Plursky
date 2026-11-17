@@ -25,6 +25,12 @@ const COPY = [
   'icon-512.png',
   'og.svg',
   'data/artist-photos.js',
+  'data/artist-key.js',
+  'data/festival-art.js',
+  'data/plan-share-contract.js',
+  // The Artists directory and career slices: shipped, loaded on demand, never precached.
+  'data/artists/directory.json',
+  'data/artists/careers.json',
 ];
 
 execFileSync(process.execPath, [path.join(root, 'scripts', 'build-artist-photo-ledger.mjs')],
@@ -62,13 +68,19 @@ const dataFiles = existsSync(path.join(root, 'data', 'festivals'))
 const festivalArtFiles = existsSync(path.join(root, 'festival-art'))
   ? (await readdir(path.join(root, 'festival-art')))
       .filter(f => /\.(webp|jpe?g|png)$/i.test(f)).map(f => path.join('festival-art', f))
+      // The list tiles (Item 6) live one level down; data/festival-art.js names them.
+      .concat(existsSync(path.join(root, 'festival-art', 'tiles'))
+        ? (await readdir(path.join(root, 'festival-art', 'tiles'))).filter(f => /\.webp$/i.test(f)).map(f => path.join('festival-art', 'tiles', f))
+        : [])
   : [];
 
 // Past Festivals library (historical.jsx fetches these on demand; never
-// precached). Only the index and the edition files ship: sheets, ledgers and
-// review manifests are build inputs and provenance, not runtime data.
+// precached). Only the index, the edition files and the scan calendar (every
+// festival year's dates and venue, for the past-photo scan) ship: sheets,
+// ledgers, review manifests and the calendar's TSV sources are build inputs
+// and provenance, not runtime data.
 const historicalFiles = existsSync(path.join(root, 'data', 'historical', 'editions'))
-  ? ['data/historical/index.json', ...(await readdir(path.join(root, 'data', 'historical', 'editions')))
+  ? ['data/historical/index.json', 'data/historical/scan-calendar.json', ...(await readdir(path.join(root, 'data', 'historical', 'editions')))
       .filter(f => f.endsWith('.json')).map(f => path.join('data', 'historical', 'editions', f))]
   : [];
 
@@ -89,9 +101,14 @@ if (!buildFiles.length) {
   process.exit(1);
 }
 
+// Festival map art fitted to its venue (scripts/build-geo-plate.py). The real
+// map loads these by path, so a plate missing here is a map with no art offline.
+const geoPlateFiles = existsSync(path.join(root, 'geo-maps'))
+  ? (await readdir(path.join(root, 'geo-maps'))).filter(f => /\.webp$/i.test(f)).map(f => path.join('geo-maps', f)) : [];
+
 const artistPhotoFiles = existsSync(path.join(root, 'artist-photos'))
   ? (await readdir(path.join(root, 'artist-photos'))).filter(f => /\.(webp|png|jpg)$/.test(f)).map(f => path.join('artist-photos', f)) : [];
-const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles, ...historicalFiles, ...fontFiles, ...artistPhotoFiles])];
+const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles, ...historicalFiles, ...fontFiles, ...geoPlateFiles, ...artistPhotoFiles])];
 for (const file of allFiles) {
   const src = path.join(root, file);
   if (!existsSync(src)) {
@@ -114,6 +131,18 @@ for (const file of allFiles) {
   const missing = [...new Set(refs)].filter(f => !existsSync(path.join(dist, f)));
   if (missing.length) {
     console.error(`[build] index.html references files missing from dist/: ${missing.join(', ')}`);
+    process.exit(1);
+  }
+}
+// Same guard for the festival-art ledger: FestivalThumb loads every tile and
+// card it names at runtime, and the Item 6 tiles (one directory down) were
+// missed by the copy above while index.html still looked complete.
+{
+  const led = (await import('node:fs')).readFileSync(path.join(root, 'data', 'festival-art.js'), 'utf8');
+  const refs = [...led.matchAll(/(?:tile|card): "([^"]+)"/g)].map(m => m[1]);
+  const missing = [...new Set(refs)].filter(f => !existsSync(path.join(dist, f)));
+  if (!refs.length || missing.length) {
+    console.error(`[build] data/festival-art.js names files missing from dist/: ${missing.join(', ') || '(no paths parsed)'}`);
     process.exit(1);
   }
 }

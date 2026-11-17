@@ -1,0 +1,373 @@
+{
+  "id": "outside-lands-2017",
+  "method": "official_sources",
+  "official": "https://www.sfoutsidelands.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2017-08-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2017/08/11/",
+          "archivedUrl": "https://web.archive.org/web/20170816073910/http://lineup.sfoutsidelands.com/events/2017/08/11/",
+          "captureTimestamp": "20170816073910",
+          "printed": "Friday, August 11",
+          "sha256": "7fa38822fad982cb2ca608681992238fabafa2e132d15984ddcbae498bfd8a0b",
+          "bytes": 399194,
+          "rows": 36,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/gorillaz-",
+            "archivedUrl": "https://web.archive.org/web/20170817090604/http://lineup.sfoutsidelands.com/band/gorillaz-",
+            "captureTimestamp": "20170817090604",
+            "sha256": "4d42638bf1918fa53ed9386c69defd28a459373c9d4c800a509e7c52faf7e0b8",
+            "bytes": 391879,
+            "printed": "Friday, August 11, 8:05 PM Lands End"
+          },
+          "comedyShows": 5,
+          "comedyStage": "The Barbary",
+          "foodShows": 4,
+          "foodStage": "GastroMagic"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2017-08-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2017/08/12",
+          "archivedUrl": "https://web.archive.org/web/20170818181507/http://lineup.sfoutsidelands.com/events/2017/08/12",
+          "captureTimestamp": "20170818181507",
+          "printed": "Saturday, August 12",
+          "sha256": "a7488fc34bc6e81d033b54ed8668f1a5a2f4954dd196f934c66cb776972349d1",
+          "bytes": 398900,
+          "rows": 35,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/metallica",
+            "archivedUrl": "https://web.archive.org/web/20170905083151/http://lineup.sfoutsidelands.com/band/metallica",
+            "captureTimestamp": "20170905083151",
+            "sha256": "9ef208c2b99b4e295c0d337b5b5643376efa98e807eaeed5f7f734fc3a52f9a4",
+            "bytes": 387260,
+            "printed": "Saturday, August 12, 7:55 PM Lands End"
+          },
+          "comedyShows": 5,
+          "comedyStage": "The Barbary",
+          "foodShows": 4,
+          "foodStage": "GastroMagic"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2017-08-13",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.sfoutsidelands.com/events/2017/08/13",
+          "archivedUrl": "https://web.archive.org/web/20170818181512/http://lineup.sfoutsidelands.com/events/2017/08/13",
+          "captureTimestamp": "20170818181512",
+          "printed": "Sunday, August 13",
+          "sha256": "2040b84b545e807d705e2825cb33871e44a693674d29b608b8e5495414106353",
+          "bytes": 401558,
+          "rows": 38,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "12:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.sfoutsidelands.com/band/the-who",
+            "archivedUrl": "https://web.archive.org/web/20170910074150/http://lineup.sfoutsidelands.com/band/the-who",
+            "captureTimestamp": "20170910074150",
+            "sha256": "2207493fd45e0c37e395620674d281038b30bee54e3a938c53485ad23f06bd4d",
+            "bytes": 387205,
+            "printed": "Sunday, August 13, 7:35 PM Lands End"
+          },
+          "comedyShows": 6,
+          "comedyStage": "The Barbary",
+          "foodShows": 5,
+          "foodStage": "GastroMagic"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "13:00",
+      "end": "14:15",
+      "billing": "HELLO FROM THE MAGIC TAVERN WITH SPECIAL GUESTS MATT BESSER & DANIELLE SCHNEIDER",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "14:45",
+      "end": "15:45",
+      "billing": "Henry Rollins",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "16:15",
+      "end": "17:10",
+      "billing": "NICK KROLL / NICK THUNE",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "17:40",
+      "end": "18:55",
+      "billing": "Lovett or Leave It",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "19:25",
+      "end": "20:20",
+      "billing": "NICK KROLL / NICK THUNE",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "14:55",
+      "end": "15:25",
+      "billing": "NO HAM N’ EGGS WITH A TRIBE CALLED QUEST'S JAROBI WHITE, CHRIS COSENTINO AND JAZZ MAFIA",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "16:15",
+      "end": "16:45",
+      "billing": "BOUNCIN’ FOR BEIGNETS WITH BIG FREEDIA & BRENDA’S SOUL FOOD",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "17:45",
+      "end": "18:15",
+      "billing": "BIG DAY WITH BIG NIGHT: ANNA WEINBERG AND CHEF JENNIFER PUCCIO",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "19:25",
+      "end": "19:55",
+      "billing": "HOW TO MAKE YOUR YACHT ROCK... WITH MUSTACHE HARBOR AND WOODHOUSE FISH CO.",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "12:30",
+      "end": "13:30",
+      "billing": "TALK SHOW THE GAME SHOW STARRING GUY BRANUM",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "14:15",
+      "end": "15:00",
+      "billing": "Jeff Goldblum and the Mildred Snitzer Orchestra",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "15:30",
+      "end": "16:15",
+      "billing": "Jeff Goldblum and the Mildred Snitzer Orchestra",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "16:45",
+      "end": "17:45",
+      "billing": "WILD HORSES FEAT. STEPHANIE ALLYNNE, MARY HOLLAND, LAUREN LAPKUS, & ERIN WHITEHEAD",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "18:15",
+      "end": "19:15",
+      "billing": "NIKKI GLASER / TODD BARRY / TIFFANY HADDISH / JOEL KIM BOOSTER / AMY MILLER",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "13:30",
+      "end": "14:00",
+      "billing": "KIMCHI 3030 WITH ROY CHOI, DAN THE AUTOMATOR AND DEL THE FUNKY HOMOSAPIEN",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "14:50",
+      "end": "15:20",
+      "billing": "GETTING SAUCY WITH CHEF CHRIS BIANCO AND JOSEPH",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "17:40",
+      "end": "18:10",
+      "billing": "SHAKEN OR STIRRED WITH JAY LARSON AND PCH, TROU NORMAND AND MORE",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "19:10",
+      "end": "19:40",
+      "billing": "LET THEM EAT CHOCOLATE CAKE FEATURING BOYFRIEND & GUITTARD CHOCOLATE",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "12:00",
+      "end": "13:30",
+      "billing": "WILL YOU ACCEPT THIS ROSE? WITH ARDEN MYRIN & ERIN FOLEY FEAT. PAGET BREWSTER & STEVE HYTNER PLUS SPECIAL SURPRISE CAST MEMBERS",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "14:00",
+      "end": "14:45",
+      "billing": "Epic Rap Battles of History",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "15:15",
+      "end": "16:05",
+      "billing": "NIKKI GLASER / TODD BARRY / SAM MORRIL / JOEL KIM BOOSTER",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "16:30",
+      "end": "17:20",
+      "billing": "ROY WOOD JR. / TIFFANY HADDISH / SHANE TORRES / IRENE TU",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "17:45",
+      "end": "18:45",
+      "billing": "Last Podcast on the Left",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "19:15",
+      "end": "20:15",
+      "billing": "ROY WOOD JR. / SHANE TORRES / SAM MORRIL / AMY MILLER / IRENE TU",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "13:00",
+      "end": "13:30",
+      "billing": "BREAKDOWN BREAKDANCE WITH DJ QBERT, BELCAMPO, AND BEATZ N' PIECES",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "14:20",
+      "end": "14:50",
+      "billing": "AN ANNOTATED GUIDE TO EATING WELL WITH ACTION BRONSON",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "15:50",
+      "end": "16:20",
+      "billing": "THE 420 SHOW WITH MATT BESSER & HUMPHRY SLOCOMBE DELIVERED BY CAVIAR",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "17:55",
+      "end": "18:25",
+      "billing": "K.FLAY-a-DILLA WITH K.FLAY AND TACOLICIOUS",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "18:50",
+      "end": "19:20",
+      "billing": "CAFETERIA LINE WITH RICHIE NAKANO AND D.J. WILLIAMS’ SHOTS FIRED",
+      "reason": "GastroMagic is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets",
+      "food": true
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,1029 @@
+{
+ "id": "countdown-nye-2022",
+ "festivalId": "countdown-nye",
+ "name": "Countdown NYE 2022",
+ "year": 2022,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-12-30",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2022-12-31",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "countdown-nye-2022:ace-aura",
+   "name": "Ace Aura",
+   "key": "ace-aura",
+   "performers": [
+    "ace-aura"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:ahee",
+   "name": "AHEE",
+   "key": "ahee",
+   "performers": [
+    "ahee"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:alyx-ander",
+   "name": "Alyx Ander",
+   "key": "alyx-ander",
+   "performers": [
+    "alyx-ander"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:atliens",
+   "name": "ATLiens",
+   "key": "atliens",
+   "performers": [
+    "atliens"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:bloodsport-riot-ten-b2b-saymyname",
+   "name": "Bloodsport (Riot Ten B2B SAYMYNAME)",
+   "key": "bloodsport-riot-ten-b2b-saymyname",
+   "performers": [
+    "bloodsport-riot-ten",
+    "saymyname"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:blossom",
+   "name": "Blossom",
+   "key": "blossom",
+   "performers": [
+    "blossom"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:burko",
+   "name": "Burko",
+   "key": "burko",
+   "performers": [
+    "burko"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:canabliss",
+   "name": "Canabliss",
+   "key": "canabliss",
+   "performers": [
+    "canabliss"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:capozzi",
+   "name": "Capozzi",
+   "key": "capozzi",
+   "performers": [
+    "capozzi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:carl-craig",
+   "name": "Carl Craig",
+   "key": "carl-craig",
+   "performers": [
+    "carl-craig"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:champagne-drip",
+   "name": "Champagne Drip",
+   "key": "champagne-drip",
+   "performers": [
+    "champagne-drip"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:chyl",
+   "name": "CHYL",
+   "key": "chyl",
+   "performers": [
+    "chyl"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:craze",
+   "name": "Craze",
+   "key": "craze",
+   "performers": [
+    "craze"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:dabin",
+   "name": "Dabin",
+   "key": "dabin",
+   "performers": [
+    "dabin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:deadmau5",
+   "name": "deadmau5",
+   "key": "deadmau5",
+   "performers": [
+    "deadmau5"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:dr-apollo",
+   "name": "Dr. Apollo",
+   "key": "dr-apollo",
+   "performers": [
+    "dr-apollo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:ekali",
+   "name": "Ekali",
+   "key": "ekali",
+   "performers": [
+    "ekali"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:eli-brown",
+   "name": "Eli Brown",
+   "key": "eli-brown",
+   "performers": [
+    "eli-brown"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:eptic",
+   "name": "Eptic",
+   "key": "eptic",
+   "performers": [
+    "eptic"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:flosstradamus-b2b-valentino-khan",
+   "name": "Flosstradamus B2B Valentino Khan",
+   "key": "flosstradamus-b2b-valentino-khan",
+   "performers": [
+    "flosstradamus",
+    "valentino-khan"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:franklyn-watts",
+   "name": "Franklyn Watts",
+   "key": "franklyn-watts",
+   "performers": [
+    "franklyn-watts"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:funtcase",
+   "name": "FuntCase",
+   "key": "funtcase",
+   "performers": [
+    "funtcase"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:galantis",
+   "name": "Galantis",
+   "key": "galantis",
+   "performers": [
+    "galantis"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:good-times-ahead",
+   "name": "Good Times Ahead",
+   "key": "good-times-ahead",
+   "performers": [
+    "good-times-ahead"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:green-velvet",
+   "name": "Green Velvet",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:habstrakt",
+   "name": "Habstrakt",
+   "key": "habstrakt",
+   "performers": [
+    "habstrakt"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:hai-life",
+   "name": "HAI-LIFE",
+   "key": "hai-life",
+   "performers": [
+    "hai-life"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:honeyluv",
+   "name": "HoneyLuv",
+   "key": "honeyluv",
+   "performers": [
+    "honeyluv"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:jack-beats",
+   "name": "Jack Beats",
+   "key": "jack-beats",
+   "performers": [
+    "jack-beats"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:james-hype",
+   "name": "James Hype",
+   "key": "james-hype",
+   "performers": [
+    "james-hype"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:jantsen",
+   "name": "Jantsen",
+   "key": "jantsen",
+   "performers": [
+    "jantsen"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:jason-ross",
+   "name": "Jason Ross",
+   "key": "jason-ross",
+   "performers": [
+    "jason-ross"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:jauz",
+   "name": "Jauz",
+   "key": "jauz",
+   "performers": [
+    "jauz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:jeanie",
+   "name": "JEANIE",
+   "key": "jeanie",
+   "performers": [
+    "jeanie"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:julienne-by",
+   "name": "Julienne By",
+   "key": "julienne-by",
+   "performers": [
+    "julienne-by"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:justin-hawkes",
+   "name": "Justin Hawkes",
+   "key": "justin-hawkes",
+   "performers": [
+    "justin-hawkes"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:justin-martin",
+   "name": "Justin Martin",
+   "key": "justin-martin",
+   "performers": [
+    "justin-martin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:jvna",
+   "name": "JVNA",
+   "key": "jvna",
+   "performers": [
+    "jvna"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:kasto",
+   "name": "Kasto",
+   "key": "kasto",
+   "performers": [
+    "kasto"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:klaxx",
+   "name": "KLAXX",
+   "key": "klaxx",
+   "performers": [
+    "klaxx"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:loud-luxury",
+   "name": "Loud Luxury",
+   "key": "loud-luxury",
+   "performers": [
+    "loud-luxury"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:madeon-dj-set",
+   "name": "Madeon (DJ Set)",
+   "key": "madeon-dj-set",
+   "performers": [
+    "madeon-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:matroda",
+   "name": "Matroda",
+   "key": "matroda",
+   "performers": [
+    "matroda"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:mau-p",
+   "name": "Mau P",
+   "key": "mau-p",
+   "performers": [
+    "mau-p"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:maya-jane-coles",
+   "name": "Maya Jane Coles",
+   "key": "maya-jane-coles",
+   "performers": [
+    "maya-jane-coles"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:merakii",
+   "name": "MERAKII",
+   "key": "merakii",
+   "performers": [
+    "merakii"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:mikey-lion",
+   "name": "Mikey Lion",
+   "key": "mikey-lion",
+   "performers": [
+    "mikey-lion"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:minnesota",
+   "name": "Minnesota",
+   "key": "minnesota",
+   "performers": [
+    "minnesota"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:nazaar",
+   "name": "Nazaar",
+   "key": "nazaar",
+   "performers": [
+    "nazaar"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:pauline-herr",
+   "name": "Pauline Herr",
+   "key": "pauline-herr",
+   "performers": [
+    "pauline-herr"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:phaseone",
+   "name": "PhaseOne",
+   "key": "phaseone",
+   "performers": [
+    "phaseone"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:qrtr",
+   "name": "QRTR",
+   "key": "qrtr",
+   "performers": [
+    "qrtr"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:rankz",
+   "name": "Rankz",
+   "key": "rankz",
+   "performers": [
+    "rankz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:ray-volpe",
+   "name": "Ray Volpe",
+   "key": "ray-volpe",
+   "performers": [
+    "ray-volpe"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:remk",
+   "name": "RemK",
+   "key": "remk",
+   "performers": [
+    "remk"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:rohaan-b2b-saka",
+   "name": "Rohaan B2B Saka",
+   "key": "rohaan-b2b-saka",
+   "performers": [
+    "rohaan",
+    "saka"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:senza",
+   "name": "SENZA",
+   "key": "senza",
+   "performers": [
+    "senza"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:sidepiece",
+   "name": "SIDEPIECE",
+   "key": "sidepiece",
+   "performers": [
+    "sidepiece"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:slander-b2b-sullivan-king",
+   "name": "SLANDER B2B Sullivan King",
+   "key": "slander-b2b-sullivan-king",
+   "performers": [
+    "slander",
+    "sullivan-king"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:slander",
+   "name": "SLANDER",
+   "key": "slander",
+   "performers": [
+    "slander"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:sullivan-king",
+   "name": "Sullivan King",
+   "key": "sullivan-king",
+   "performers": [
+    "sullivan-king"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:taiki-nulight",
+   "name": "Taiki Nulight",
+   "key": "taiki-nulight",
+   "performers": [
+    "taiki-nulight"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:tchami",
+   "name": "Tchami",
+   "key": "tchami",
+   "performers": [
+    "tchami"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:tom-and-collins",
+   "name": "Tom & Collins",
+   "key": "tom-and-collins",
+   "performers": [
+    "tom-and-collins"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:uniiqu3",
+   "name": "UNiiQU3",
+   "key": "uniiqu3",
+   "performers": [
+    "uniiqu3"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:valentino-khan",
+   "name": "Valentino Khan",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:virtual-riot",
+   "name": "Virtual Riot",
+   "key": "virtual-riot",
+   "performers": [
+    "virtual-riot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:vnssa",
+   "name": "VNSSA",
+   "key": "vnssa",
+   "performers": [
+    "vnssa"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:wreckno",
+   "name": "Wreckno",
+   "key": "wreckno",
+   "performers": [
+    "wreckno"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:yellow-claw",
+   "name": "Yellow Claw",
+   "key": "yellow-claw",
+   "performers": [
+    "yellow-claw"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:yetep",
+   "name": "yetep",
+   "key": "yetep",
+   "performers": [
+    "yetep"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2022:zhu",
+   "name": "Zhu",
+   "key": "zhu",
+   "performers": [
+    "zhu"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://countdownnye.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20230101052439/https://countdownnye.com/lineup/",
+    "captureTimestamp": "20230101052439",
+    "sha256": "49fb941ca5c924f542fe007f8b1bc15b89966cf2fb3a9b100ab09384343ea9e5"
+   }
+  ]
+ }
+}

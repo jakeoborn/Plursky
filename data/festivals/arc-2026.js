@@ -219,6 +219,7 @@
 
   const CONFIG = {
     id:        "arc-2026",
+    officialEvent: { website: "https://arcmusicfestival.com/", observedAt: "2026-11-11" },
     // From the SOURCE note above: arcmusicfestival.com/set-times, read 2026-09-06. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://arcmusicfestival.com/set-times", observedAt: "2026-09-06", official: true },
     name:      "ARC Music Festival 2026",
@@ -229,6 +230,8 @@
     locationShort: "Union Park",
     dates:     "Sep 4–7, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#CFFB20", accent2: "#00FFFF", source: { url: "https://arcmusicfestival.com/", observedAt: "2026-10-09", seenAs: "inline :root{--highlightColor:#cffb20} with --linkColor and --headingsColor set to var(--highlightColor); .plotCustomCSS gradient #cffb20 -> aqua on .mainBuyTickets", confidence: "high" }, note: "The page-level :root block of the Plot 'bella' theme names this lime as the highlight/link/heading token (secondary highlight is #00ffff); the shared style-main.css carries only neutral and error colours; no theme-color meta." },
     // Official FAQ: "What are the hours of the festival? 2pm – 10pm".
     // Both bounds are the REAL published hours and match all four grids.
     startMs: Date.UTC(2026, 8, 4, 19, 0, 0),  // Sep 4 14:00 CDT, doors
@@ -266,6 +269,9 @@
       // vertices verbatim. Widening it to the union of all three would be a
       // change to what "inside the venue" means — do that deliberately or
       // not at all.
+      // The footprint is the festival grounds (the main park block the festival is built on), so the real map
+      // masks everything outside it.
+      footprintIsGrounds: true,
       footprint: [
         [41.8852543, -87.6667817], [41.8849738, -87.6667776], [41.8847242, -87.6667579], [41.8843510,
         -87.6667464], [41.8841866, -87.6667397], [41.8834051, -87.6667164], [41.8833952, -87.6667161],

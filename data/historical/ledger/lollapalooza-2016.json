@@ -1,0 +1,99 @@
+{
+  "id": "lollapalooza-2016",
+  "method": "official_sources",
+  "official": "https://www.lollapalooza.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2016-07-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.lollapalooza.com:80/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20160801150248/http://www.lollapalooza.com:80/schedule/",
+          "captureTimestamp": "20160801150248",
+          "printed": "Thursday Jul 28th",
+          "sha256": "d33c1530b2e573b3b7fad3f181f16a869081c05a680bcf24f7c6b69d99572e77",
+          "bytes": 656613,
+          "rows": 47,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:30am … 9:30pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2016-07-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.lollapalooza.com:80/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20160801150248/http://www.lollapalooza.com:80/schedule/",
+          "captureTimestamp": "20160801150248",
+          "printed": "Friday Jul 29th",
+          "sha256": "d33c1530b2e573b3b7fad3f181f16a869081c05a680bcf24f7c6b69d99572e77",
+          "bytes": 656613,
+          "rows": 48,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:30am … 9:30pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2016-07-30",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.lollapalooza.com:80/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20160801150248/http://www.lollapalooza.com:80/schedule/",
+          "captureTimestamp": "20160801150248",
+          "printed": "Saturday Jul 30th",
+          "sha256": "d33c1530b2e573b3b7fad3f181f16a869081c05a680bcf24f7c6b69d99572e77",
+          "bytes": 656613,
+          "rows": 47,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:30am … 9:30pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2016-07-31",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.lollapalooza.com:80/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20160801150248/http://www.lollapalooza.com:80/schedule/",
+          "captureTimestamp": "20160801150248",
+          "printed": "Sunday Jul 31st",
+          "sha256": "d33c1530b2e573b3b7fad3f181f16a869081c05a680bcf24f7c6b69d99572e77",
+          "bytes": 656613,
+          "rows": 48,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:30am … 9:30pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 4,
+      "stage": "Kidzapalooza",
+      "start": "16:45",
+      "end": "17:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

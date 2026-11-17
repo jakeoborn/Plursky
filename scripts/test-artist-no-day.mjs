@@ -19,6 +19,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serverReady } from "./lib/server-ready.mjs";
 
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
 function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } }
@@ -32,6 +33,7 @@ try {
   const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
   const FID = "acl-2026";
   const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 393, height: 844 } });
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.addInitScript(fid => {
     localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
     localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
@@ -101,6 +103,7 @@ try {
   // Pinned to ACL W1 Saturday 20:00 CDT, with the fixture saved.
   {
     const lctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 393, height: 844 } });
+    await wireVendor(lctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await lctx.addInitScript(fid => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
       localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");

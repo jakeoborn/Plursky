@@ -1,0 +1,434 @@
+{
+  "id": "electric-forest-2013",
+  "method": "official_sources",
+  "official": "https://electricforestfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2013-06-27",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://electricforestfestival.com/set-times.php",
+          "archivedUrl": "https://web.archive.org/web/20130805220047/http://electricforestfestival.com/set-times.php",
+          "captureTimestamp": "20130805220047",
+          "printed": "Thursday - June 27th",
+          "sha256": "f6136736fa26ba4b6ae6857b40026c7165238b0d3d03b3574bf976d71cf36b55",
+          "bytes": 111469,
+          "rows": 35,
+          "format": "ef-grid",
+          "stages": 6,
+          "axis": "5:15pm … 1:45am",
+          "blocksOnGrid": 28,
+          "groups": [
+            "MOVEMENT CURATED EVENT"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2013-06-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://electricforestfestival.com/set-times.php",
+          "archivedUrl": "https://web.archive.org/web/20130805220047/http://electricforestfestival.com/set-times.php",
+          "captureTimestamp": "20130805220047",
+          "printed": "Friday - June 28th",
+          "sha256": "f6136736fa26ba4b6ae6857b40026c7165238b0d3d03b3574bf976d71cf36b55",
+          "bytes": 111469,
+          "rows": 55,
+          "format": "ef-grid",
+          "stages": 6,
+          "axis": "12:00pm … 3:00am",
+          "blocksOnGrid": 47,
+          "openEnded": 1
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2013-06-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://electricforestfestival.com/set-times.php",
+          "archivedUrl": "https://web.archive.org/web/20130805220047/http://electricforestfestival.com/set-times.php",
+          "captureTimestamp": "20130805220047",
+          "printed": "Saturday - June 29th",
+          "sha256": "f6136736fa26ba4b6ae6857b40026c7165238b0d3d03b3574bf976d71cf36b55",
+          "bytes": 111469,
+          "rows": 53,
+          "format": "ef-grid",
+          "stages": 6,
+          "axis": "12:00pm … 3:15am",
+          "blocksOnGrid": 41,
+          "untimed": [
+            "Bell's Beer Tasting: *Forest Stage Bar beginning at 2:30pm"
+          ],
+          "misprints": [
+            "INSTRUMENTAL FORESTER - JessiJem & The Infamous Crotch Kickers: printed 2:00pm - 3:00pm; its block on the grid runs 14:00 to 14:45"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2013-06-30",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://electricforestfestival.com/set-times.php",
+          "archivedUrl": "https://web.archive.org/web/20130805220047/http://electricforestfestival.com/set-times.php",
+          "captureTimestamp": "20130805220047",
+          "printed": "Sunday - June 30th",
+          "sha256": "f6136736fa26ba4b6ae6857b40026c7165238b0d3d03b3574bf976d71cf36b55",
+          "bytes": 111469,
+          "rows": 48,
+          "format": "ef-grid",
+          "stages": 6,
+          "axis": "11:30am … 1:30am",
+          "blocksOnGrid": 45
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 3,
+      "stage": "Forest Stage",
+      "start": "",
+      "end": "",
+      "billing": "Bell's Beer Tasting",
+      "reason": "the page prints this entry with no set time (the words it prints instead are kept in the sheet)",
+      "untimed": true
+    },
+    {
+      "day": 3,
+      "stage": "Forest Stage",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "INSTRUMENTAL FORESTER - JessiJem & The Infamous Crotch Kickers",
+      "reason": "the printed range and the block's length on the page's own time grid disagree, so neither time can be confirmed",
+      "misprint": true
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "The Observatory",
+      "start": "20:00",
+      "end": "20:30",
+      "billing": "Atmospheric Entertainment by Quixotic",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "The Observatory",
+      "start": "23:15",
+      "end": "23:45",
+      "billing": "Atmospheric Entertainment by Quixotic",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "Silent Disco",
+      "start": "20:00",
+      "end": "02:00",
+      "billing": "Silent Frisco Residents Motion Potion & Mancub (Channel B)",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "Silent Disco",
+      "start": "23:00",
+      "end": "02:00",
+      "billing": "Elm and Oak Takeover",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Tripolee",
+      "start": "12:00",
+      "end": "13:15",
+      "billing": "Love Bomb Yoga Flow with Mary Clare Sweet",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Forest Stage",
+      "start": "13:00",
+      "end": "13:45",
+      "billing": "Drum Workshop w/ Kodi",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Observatory",
+      "start": "15:00",
+      "end": "15:30",
+      "billing": "Atmospheric Entertainment by Quixotic",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Observatory",
+      "start": "15:45",
+      "end": "16:45",
+      "billing": "Bell's presents Kyle Hollingsworth's Brewru Experience",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Observatory",
+      "start": "01:45",
+      "end": "02:15",
+      "billing": "Atmospheric Entertainment by Quixotic",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "Luna Breeze's Hula Hoop Workshop",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "20:00",
+      "end": "02:45",
+      "billing": "Silent Frisco Residents Motion Potion & Mancub (Channel B)",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "21:00",
+      "end": "22:00",
+      "billing": "Attak and Carma",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "22:15",
+      "end": "23:15",
+      "billing": "Cosby Sweater",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "23:15",
+      "end": "00:15",
+      "billing": "My Boy Elroy",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "00:30",
+      "end": "01:30",
+      "billing": "Thriftworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "01:45",
+      "end": "02:45",
+      "billing": "Christian Rich",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Silent Disco",
+      "start": "02:45",
+      "end": null,
+      "billing": "Secret Set",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Tripolee",
+      "start": "12:00",
+      "end": "13:15",
+      "billing": "Magic Breath with Mary Clare Sweet",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Forest Stage",
+      "start": "13:00",
+      "end": "13:45",
+      "billing": "Hoop Troupe Showcase",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Observatory",
+      "start": "16:15",
+      "end": "16:45",
+      "billing": "Atmospheric Entertainment by Quixotic",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Observatory",
+      "start": "17:45",
+      "end": "18:15",
+      "billing": "Atmospheric Entertainment by Quixotic",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Silent Disco",
+      "start": "14:30",
+      "end": "15:30",
+      "billing": "Luna Breeze's Hula Hoop Workshop",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Silent Disco",
+      "start": "18:00",
+      "end": "03:30",
+      "billing": "Silent Frisco Residents Motion Potion & Mancub (Channel B)",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Silent Disco",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "The Untz Challenge Winner #1, GKEN-E",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Silent Disco",
+      "start": "20:30",
+      "end": "21:30",
+      "billing": "Discovery Project Winners",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Silent Disco",
+      "start": "22:00",
+      "end": "23:00",
+      "billing": "The Dub Knight",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Silent Disco",
+      "start": "00:30",
+      "end": "01:30",
+      "billing": "Lynx",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Silent Disco",
+      "start": "02:30",
+      "end": "03:30",
+      "billing": "Shreddie Mercury",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Tripolee",
+      "start": "11:30",
+      "end": "12:45",
+      "billing": "Cosmic Con with Mary Clare Sweet",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Tripolee",
+      "start": "13:15",
+      "end": "14:15",
+      "billing": "Discovery Project Winner",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 4,
+      "stage": "Forest Stage",
+      "start": "12:30",
+      "end": "13:15",
+      "billing": "Drum Workshop w/ Kodi",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Silent Disco",
+      "start": "19:00",
+      "end": "01:00",
+      "billing": "Silent Frisco Residents Motion Potion & Mancub (Channel B)",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Silent Disco",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "Untz Challenge Winner #2, Lost Optical",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Silent Disco",
+      "start": "20:00",
+      "end": "21:00",
+      "billing": "Discovery Project Winner",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Silent Disco",
+      "start": "21:00",
+      "end": "23:00",
+      "billing": "THE UNSHEATHED!",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "dreamstate-socal-2024",
+  "method": "official_sources",
+  "official": "https://socal.dreamstateusa.com/lineup/set-times/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2024-11-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://socal.dreamstateusa.com/lineup/set-times/day-1/",
+          "archivedUrl": "https://web.archive.org/web/20241214040713/https://socal.dreamstateusa.com/lineup/set-times/day-1/",
+          "captureTimestamp": "20241214040713",
+          "printed": "Friday, November 22",
+          "sha256": "40fb42ba48b7f4e0d391128ae7c5fbe56d30910af5c683a563b21b3ded9f08d2",
+          "bytes": 319591,
+          "rows": 46
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://socal.dreamstateusa.com/lineup/set-times/day-2/",
+          "archivedUrl": "https://web.archive.org/web/20241214042202/https://socal.dreamstateusa.com/lineup/set-times/day-2/",
+          "captureTimestamp": "20241214042202",
+          "printed": "Saturday, November 23",
+          "sha256": "8635564102a211ed7796d230bcc611290a189f906504ff13e52e7135a79ca14c",
+          "bytes": 312394,
+          "rows": 46
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

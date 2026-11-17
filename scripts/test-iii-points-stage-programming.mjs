@@ -11,10 +11,10 @@ assert.equal(data.stages.length,13);assert.equal(rows.length,231);assert.ok(rows
 const sorted=x=>x.map(r=>JSON.stringify([r.day,r.stage,r.start,r.end,r.name])).sort();assert.deepEqual(sorted(rows),sorted(sheet));
 const night=t=>{let [h,m]=t.split(':').map(Number);return (h<8?h+24:h)*60+m;};
 for(const stage of data.stages)for(const day of stage.days){const sets=[...day.rows].sort((a,b)=>night(a.start)-night(b.start));for(let i=1;i<sets.length;i++)assert.ok(night(sets[i].start)>=night(sets[i-1].end),stage.name);}
-assert.match(data.source.sha256,/^[a-f0-9]{64}$/);assert.match(data.source.evidence,/screenshot/);
+assert.match(data.source.sha256,/^[a-f0-9]{64}$/);assert.match(data.source.evidence,/screenshot|Instagram/);
 const section=page.split('<section aria-labelledby="stage-programming-h"')[1].split('</section>')[0];
 assert.equal((section.match(/<time>/g)||[]).length,231);assert.equal((section.match(/<li>/g)||[]).length,231);assert.equal((section.match(/<details class="program-stage"/g)||[]).length,26);
-assert.doesNotMatch(section,/running order, not set times|End times are not supplied|Club Space/);assert.match(section,/Friday 12:00 AM is early Saturday/);assert.match(section,/supplied screenshot/);
+assert.doesNotMatch(section,/running order, not set times|End times are not supplied|Club Space/);assert.match(section,/Friday 12:00 AM is early Saturday/);assert.match(section,/Updated set times for the weekend/);
 assert.ok(rows.some(r=>r.name==='Homicide Jenny'&&r.day===2&&r.start==='19:00'&&r.end==='19:30'));
 assert.equal(rows.find(r=>r.name==='Loukeman').end,'18:05');
 assert.equal(rows.find(r=>r.name==='Dude Skywalker').day,1);assert.equal(rows.find(r=>r.name==='Jeremy Ismael').day,2);

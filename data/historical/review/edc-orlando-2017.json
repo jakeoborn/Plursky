@@ -1,0 +1,79 @@
+{
+ "id": "edc-orlando-2017",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-11-10",
+   "sha256": "96b36828e47969746bb93eee54826171edb10e9fe4eb8d0246f77ad2a29865f2",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/23331301_1939029429470719_3061741298535184076_o.png",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 45,
+   "note": "Header read off the graphic: FRIDAY, NOVEMBER 10",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 44,
+   "byEye": [
+    "d1 circuitGROUNDS 21:00-22:00 SNAILS: OCR read the range; by eye 9:00 PM - 10:00 PM SNAILS"
+   ],
+   "printedReadings": [
+    "KINETIC EXPERIENCE: DROP? Kinetic Field show segment (printed in light type), not an artist set"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2017-11-11",
+   "sha256": "96b36828e47969746bb93eee54826171edb10e9fe4eb8d0246f77ad2a29865f2",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/23331301_1939029429470719_3061741298535184076_o.png",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 43,
+   "note": "Header read off the graphic: SATURDAY, NOVEMBER 11",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 41,
+   "byEye": [
+    "d2 circuitGROUNDS 16:15-17:15 BONNIE X CLYDE: by eye 4:15 PM  5:15 PM (the dash between the times is not printed)",
+    "d2 BOOMBOX ART CAR 22:00-23:00 LANDIS: printed 10:00 PM - 11:00 AM; the next set starts 11:00 PM, so read as 23:00"
+   ],
+   "printedReadings": [
+    "KINETIC EXPERIENCE: DROP? Kinetic Field show segment (printed in light type), not an artist set",
+    "GETTER: printed gap: ends 10:40 PM, ZEDD starts 10:45 PM",
+    "K?D: question mark as printed",
+    "BONNIE X CLYDE: dash between times not printed on this row",
+    "LANDIS: PRINTED TYPO: end printed \"11:00 AM\"; read as 11:00 PM (next set starts 11:00 PM)"
+   ]
+  },
+  {
+   "day": 1,
+   "date": "2017-11-10",
+   "sha256": "72ebf4861e9a6524d63ff0ea0e6bf0331735cd6907bcf33de82037153ed0f3d5",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/electricbeach2017.png",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 8,
+   "note": "Header read off the graphic: FRIDAY · ORLANDO 2017 · NOVEMBER 10 - 11",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 6,
+   "byEye": [
+    "d1 Corona Electric Beach 20:30-21:30 PARTY FAVOR: headliner set in display type; by eye PARTY FAVOR 8:30pm - 9:30pm",
+    "d1 Corona Electric Beach 13:00-14:00 D3V: by eye 1pm - 2pm on a 3x crop"
+   ],
+   "printedReadings": []
+  },
+  {
+   "day": 2,
+   "date": "2017-11-11",
+   "sha256": "72ebf4861e9a6524d63ff0ea0e6bf0331735cd6907bcf33de82037153ed0f3d5",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/electricbeach2017.png",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 7,
+   "note": "Header read off the graphic: SATURDAY · ORLANDO 2017 · NOVEMBER 10 - 11",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 6,
+   "byEye": [
+    "d2 Corona Electric Beach 20:30-21:30 A-TRAK: printed as the A-Trak logo; by eye A-TRAK 8:30pm - 9:30pm"
+   ],
+   "printedReadings": []
+  }
+ ]
+}

@@ -2,10 +2,10 @@
   "festivalId": "iii-points-2026",
   "scope": "official-set-times",
   "source": {
-    "url": "https://www.iiipoints.com/",
-    "observedAt": "2026-10-05",
-    "sha256": "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9",
-    "evidence": "Attendee-supplied III Points-branded screenshot supplied by attendee; not a clock-time page on the website"
+    "url": "https://www.instagram.com/iiipoints/p/Dej7LGMlHyZ/",
+    "observedAt": "2026-10-18",
+    "sha256": "f79e20292fd017cb4e83a86fae8bba5f7b8efa84eb68f1441dbd687f5fd1b7d4",
+    "evidence": "III Points official Instagram carousel post 'UPDATED SET TIMES FOR THE WEEKEND' (posted 2026-10-16), Saturday grid slides 3-4; supersedes the attendee screenshot of 2026-10-05 (RC95 close swapped)"
   },
   "stages": [
     {
@@ -419,16 +419,16 @@
               "actId": "iiip-vtss"
             },
             {
-              "name": "999999999",
+              "name": "Charlotte de Witte",
               "start": "01:30",
               "end": "02:45",
-              "actId": "iiip-999999999"
+              "actId": "iiip-charlotte-de-witte"
             },
             {
-              "name": "Charlotte de Witte",
+              "name": "999999999",
               "start": "02:45",
               "end": "04:00",
-              "actId": "iiip-charlotte-de-witte"
+              "actId": "iiip-999999999"
             }
           ]
         }

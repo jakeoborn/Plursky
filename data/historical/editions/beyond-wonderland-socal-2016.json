@@ -1,0 +1,947 @@
+{
+ "id": "beyond-wonderland-socal-2016",
+ "festivalId": "beyond-wonderland-socal",
+ "name": "Beyond Wonderland SoCal 2016",
+ "year": 2016,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-03-18",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2016-03-19",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "beyond-wonderland-socal-2016:dada-life",
+   "name": "Dada Life",
+   "key": "dada-life",
+   "performers": [
+    "dada-life"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:carnage",
+   "name": "Carnage",
+   "key": "carnage",
+   "performers": [
+    "carnage"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:galantis",
+   "name": "Galantis",
+   "key": "galantis",
+   "performers": [
+    "galantis"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:marshmello",
+   "name": "Marshmello",
+   "key": "marshmello",
+   "performers": [
+    "marshmello"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:chris-lake",
+   "name": "Chris Lake",
+   "key": "chris-lake",
+   "performers": [
+    "chris-lake"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:vindata",
+   "name": "Vindata",
+   "key": "vindata",
+   "performers": [
+    "vindata"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:go-freek",
+   "name": "Go Freek",
+   "key": "go-freek",
+   "performers": [
+    "go-freek"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:adam-auburn",
+   "name": "Adam Auburn",
+   "key": "adam-auburn",
+   "performers": [
+    "adam-auburn"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:ferry-corsten-presents-gouryella",
+   "name": "Ferry Corsten presents Gouryella",
+   "key": "ferry-corsten-presents-gouryella",
+   "performers": [
+    "ferry-corsten-presents-gouryella"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:andrew-rayel",
+   "name": "Andrew Rayel",
+   "key": "andrew-rayel",
+   "performers": [
+    "andrew-rayel"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:pure-nrg-giuseppe-ottaviani-and-solarstone",
+   "name": "Pure NRG (Giuseppe Ottaviani & Solarstone)",
+   "key": "pure-nrg-giuseppe-ottaviani-and-solarstone",
+   "performers": [
+    "pure-nrg-giuseppe-ottaviani-and-solarstone"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:myon-and-shane-54-trance-showcase",
+   "name": "Myon & Shane 54 (Trance Showcase)",
+   "key": "myon-and-shane-54-trance-showcase",
+   "performers": [
+    "myon-and-shane-54-trance-showcase"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:bryan-kearney",
+   "name": "Bryan Kearney",
+   "key": "bryan-kearney",
+   "performers": [
+    "bryan-kearney"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:will-atkinson",
+   "name": "Will Atkinson",
+   "key": "will-atkinson",
+   "performers": [
+    "will-atkinson"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:jorn-van-deynhoven",
+   "name": "Jorn van Deynhoven",
+   "key": "jorn-van-deynhoven",
+   "performers": [
+    "jorn-van-deynhoven"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:leiel",
+   "name": "Leiel",
+   "key": "leiel",
+   "performers": [
+    "leiel"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:armand-van-helden",
+   "name": "Armand Van Helden",
+   "key": "armand-van-helden",
+   "performers": [
+    "armand-van-helden"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:kink",
+   "name": "KiNK",
+   "key": "kink",
+   "performers": [
+    "kink"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:waze-and-odyssey",
+   "name": "Waze & Odyssey",
+   "key": "waze-and-odyssey",
+   "performers": [
+    "waze-and-odyssey"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:patrick-topping",
+   "name": "Patrick Topping",
+   "key": "patrick-topping",
+   "performers": [
+    "patrick-topping"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:billy-kenny",
+   "name": "Billy Kenny",
+   "key": "billy-kenny",
+   "performers": [
+    "billy-kenny"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:trent-cantrelle",
+   "name": "Trent Cantrelle",
+   "key": "trent-cantrelle",
+   "performers": [
+    "trent-cantrelle"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:shagge",
+   "name": "Shagge",
+   "key": "shagge",
+   "performers": [
+    "shagge"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:graham-funke",
+   "name": "Graham Funke",
+   "key": "graham-funke",
+   "performers": [
+    "graham-funke"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:dj-coolwhip",
+   "name": "DJ Coolwhip",
+   "key": "dj-coolwhip",
+   "performers": [
+    "dj-coolwhip"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:brandon-elliot",
+   "name": "Brandon Elliot",
+   "key": "brandon-elliot",
+   "performers": [
+    "brandon-elliot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:trouble",
+   "name": "Trouble",
+   "key": "trouble",
+   "performers": [
+    "trouble"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:ruff-hauser",
+   "name": "Ruff Hauser",
+   "key": "ruff-hauser",
+   "performers": [
+    "ruff-hauser"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:moni",
+   "name": "Moni",
+   "key": "moni",
+   "performers": [
+    "moni"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:roy-wilkins",
+   "name": "Roy Wilkins",
+   "key": "roy-wilkins",
+   "performers": [
+    "roy-wilkins"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:neon-black",
+   "name": "Neon Black",
+   "key": "neon-black",
+   "performers": [
+    "neon-black"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:johnny-darko",
+   "name": "Johnny Darko",
+   "key": "johnny-darko",
+   "performers": [
+    "johnny-darko"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:the-real-deal-montiel",
+   "name": "The Real Deal Montiel",
+   "key": "the-real-deal-montiel",
+   "performers": [
+    "the-real-deal-montiel"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:pw-jones",
+   "name": "PW Jones",
+   "key": "pw-jones",
+   "performers": [
+    "pw-jones"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:deorro",
+   "name": "Deorro",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:yellow-claw",
+   "name": "Yellow Claw",
+   "key": "yellow-claw",
+   "performers": [
+    "yellow-claw"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:seven-lions",
+   "name": "Seven Lions",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:slander",
+   "name": "Slander",
+   "key": "slander",
+   "performers": [
+    "slander"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:klingande",
+   "name": "Klingande",
+   "key": "klingande",
+   "performers": [
+    "klingande"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:sleepy-tom",
+   "name": "Sleepy Tom",
+   "key": "sleepy-tom",
+   "performers": [
+    "sleepy-tom"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:biggs",
+   "name": "Biggs",
+   "key": "biggs",
+   "performers": [
+    "biggs"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:datsik",
+   "name": "Datsik",
+   "key": "datsik",
+   "performers": [
+    "datsik"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:ghastly",
+   "name": "Ghastly",
+   "key": "ghastly",
+   "performers": [
+    "ghastly"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:nghtmre",
+   "name": "NGHTMRE",
+   "key": "nghtmre",
+   "performers": [
+    "nghtmre"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:bro-safari",
+   "name": "Bro Safari",
+   "key": "bro-safari",
+   "performers": [
+    "bro-safari"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:troyboi",
+   "name": "TroyBoi",
+   "key": "troyboi",
+   "performers": [
+    "troyboi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:delta-heavy",
+   "name": "Delta Heavy",
+   "key": "delta-heavy",
+   "performers": [
+    "delta-heavy"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:calyx-and-teebee",
+   "name": "Calyx & TeeBee",
+   "key": "calyx-and-teebee",
+   "performers": [
+    "calyx-and-teebee"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:kasra-b2b-enei-b2b-mefjus",
+   "name": "Kasra B2B Enei B2B Mefjus",
+   "key": "kasra-b2b-enei-b2b-mefjus",
+   "performers": [
+    "kasra",
+    "enei",
+    "mefjus"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:spag-heddy",
+   "name": "Spag Heddy",
+   "key": "spag-heddy",
+   "performers": [
+    "spag-heddy"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:lumberjvck",
+   "name": "LUMBERJVCK",
+   "key": "lumberjvck",
+   "performers": [
+    "lumberjvck"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:adriatique",
+   "name": "Adriatique",
+   "key": "adriatique",
+   "performers": [
+    "adriatique"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:jimmy-edgar",
+   "name": "Jimmy Edgar",
+   "key": "jimmy-edgar",
+   "performers": [
+    "jimmy-edgar"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:redlight",
+   "name": "Redlight",
+   "key": "redlight",
+   "performers": [
+    "redlight"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:will-clarke",
+   "name": "Will Clarke",
+   "key": "will-clarke",
+   "performers": [
+    "will-clarke"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:my-nu-leng",
+   "name": "My Nu Leng",
+   "key": "my-nu-leng",
+   "performers": [
+    "my-nu-leng"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:sonny-fodera",
+   "name": "Sonny Fodera",
+   "key": "sonny-fodera",
+   "performers": [
+    "sonny-fodera"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:jack-eye-jones",
+   "name": "Jack Eye Jones",
+   "key": "jack-eye-jones",
+   "performers": [
+    "jack-eye-jones"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:zander",
+   "name": "Zander",
+   "key": "zander",
+   "performers": [
+    "zander"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:cstnza",
+   "name": "CSTNZA",
+   "key": "cstnza",
+   "performers": [
+    "cstnza"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:barrels",
+   "name": "Barrels",
+   "key": "barrels",
+   "performers": [
+    "barrels"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:cammakid",
+   "name": "Cammakid",
+   "key": "cammakid",
+   "performers": [
+    "cammakid"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:dreamstate-presents",
+   "name": "Dreamstate Presents",
+   "key": "dreamstate-presents",
+   "performers": [
+    "dreamstate-presents"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:bassrush-experience",
+   "name": "Bassrush Experience",
+   "key": "bassrush-experience",
+   "performers": [
+    "bassrush-experience"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2016:mc-dino",
+   "name": "MC Dino",
+   "key": "mc-dino",
+   "performers": [
+    "mc-dino"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://socal.beyondwonderland.com/experience/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20161221074029/https://socal.beyondwonderland.com/experience/lineup/",
+    "captureTimestamp": "20161221074029",
+    "sha256": "a11870587452c7f8d7294c7b834f8c58e229ed6ddd0106024b8b0932a9c78644"
+   }
+  ]
+ }
+}

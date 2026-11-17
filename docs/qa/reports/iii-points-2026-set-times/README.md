@@ -24,3 +24,16 @@ Website implementation requested October 5, clarified to include app set times O
 Generator note: template-source fingerprinting intentionally updates all 25 generated page dates; the ACL status moves from Happening now to This weekend on October 5. No other festival dataset changes.
 
 October 6 public-source reconciliation: https://www.iiipoints.com/experience/ now bills Homicide Jenny and no longer bills fakemink, but has no Nettspend billing or full clocks. The supplied screenshot controls the complete timetable; do not silently swap in this still-different running order.
+
+## First-party update, received October 18
+
+On October 16 the festival published "UPDATED SET TIMES FOR THE WEEKEND" as an Instagram carousel from the official @iiipoints account (https://www.instagram.com/iiipoints/p/Dej7LGMlHyZ/). The README above asked for exactly this reconciliation once first-party public grids became available.
+
+Every cell of both Saturday grid slides (slide 3: Mind Melt, Sector 3, Isotropic, RC95, 444, S3QU3NCE, Grand Central; slide 4: Vertex, Sector IV, Halo 88, Unforeseen, III Points Radio, Players Club) was re-read against the record. All 231 intervals are unchanged except one Saturday RC95 swap:
+
+- Charlotte de Witte: 02:45-04:00 -> 01:30-02:45
+- 999999999: 01:30-02:45 -> 02:45-04:00 (now closes RC95)
+
+`official.tsv`, the programming payload, and the dataset scheduleSource now track this first-party source. Slide 3 (carries the RC95 swap) SHA256: `f79e20292fd017cb4e83a86fae8bba5f7b8efa84eb68f1441dbd687f5fd1b7d4`. Slide 4 SHA256: `67828ad7b5c7b6f8f938ee96199271c03f28d2e00b476829fb41e26386a0941a`. The October 5 attendee screenshot (sha `8922970c...`) is superseded as the live source and stays in this file as history. The festival website's /set-times/ bundle still printed the pre-swap RC95 order when last checked October 18; the Instagram post is the newer first-party word.
+
+Friday rows: verified 2026-10-18 against the same carousel's slides 1-2 (slide 1 sha256 9c1bc394b8f27bf3ff85e10a7f4025a3e4bf95abac219062292aa7f9d9b2f4e0, slide 2 sha256 71019d4ee3c104abeceebe692b8e4efb5f31be87c83367e823517f1e284b66de): all 112 Friday intervals match this record on artist, start and end times. Seven rows differ in name presentation: five are stylization only (Malone Morez, B0YG1RL, iiry?, Maccabiii, Tech G1rls); two are billing detail the grid omits and this record keeps - Miguelle & Tons B2B Saraga (grid: Miguelle & Tons) and Rental Snakes (Live) (grid: Rental Snakes). No schedule changes; the record's fuller billings stand.

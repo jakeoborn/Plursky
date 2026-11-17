@@ -273,6 +273,7 @@
 
   const CONFIG = {
     id: "ultra-miami-2026",
+    officialEvent: { website: "https://ultramusicfestival.com/", observedAt: "2026-11-11" },
     // From the SOURCE note above: ultramusicfestival.com/lineup/set-times/, accessed 2026-08-28. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://ultramusicfestival.com/lineup/set-times/", observedAt: "2026-08-28", official: true },
     name: "Ultra Miami 2026",
@@ -283,6 +284,8 @@
     locationShort: "Bayfront Park",
     dates: "Mar 27–29, 2026",
     year: 2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#2CD0D6", source: { url: "https://ultramusicfestival.com/", observedAt: "2026-10-09", seenAs: "<meta name=\"theme-color\" content=\"#2cd0d6\"> for both light and dark prefers-color-scheme; the hex occurs 6 times in the homepage HTML", confidence: "high" }, note: "The site declares an explicit theme-color (preference a) and uses the same value for both colour schemes." },
     // gates day 1 (16:00 EDT) -> close of the final day (22:00 EDT)
     startMs: Date.UTC(2026, 2, 27, 20, 0, 0),
     endMs:   Date.UTC(2026, 2, 30, 2, 0, 0),
@@ -359,10 +362,15 @@
     ],
     weatherEndpoint: "https://api.weather.gov/points/25.78,-80.19",
     mainStageId: "main",
-    // Generated abstract overlay, NOT the official patron map — that art is
-    // rights-restricted and is never copied into this repo (lostlands-2026.jpg
-    // precedent). Authored in the same 0-100 frame as the stages above.
+    // Generated abstract overlay, authored in the same 0-100 frame as the
+    // stages above; the poster view and the stage pins use it.
+    // The real map lays the festival's OWN 2026 site map (Jake, 2026-11-12:
+    // "let's try to get each map overlayed on top of the real ground"), bent
+    // onto the streets by a thin-plate fit over
+    // map-sources/ultra-miami-2026-geo-ties.json from https://www.instagram.com/p/DWUu8iZjawz/
     mapImage: "ultra-2026.svg",
+    mapGeoref: { image: "geo-maps/ultra-miami-2026.webp", bounds: [-80.1892438, 25.7720042, -80.1838037, 25.7787024], model: "tps",
+                 ties: "map-sources/ultra-miami-2026-geo-ties.json", rmsM: 12.1, looRmsM: 12.1 },
     mapStyle: "image-overlay",
     mapTheme: "park",
     // The overlay prints no stage names, so pills carry them.

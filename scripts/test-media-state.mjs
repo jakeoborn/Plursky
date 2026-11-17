@@ -21,6 +21,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const reservePort = () => new Promise((resolve, reject) => {
   const s = createServer(); s.once('error', reject);
@@ -44,6 +45,7 @@ const SEED = {
 
 async function run(browser, label, cloudScript, expectLabel, expectWord) {
   const ctx = await browser.newContext({ timezoneId: 'America/Los_Angeles' });
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.addInitScript((seed) => {
     localStorage.setItem('onboarded', 'v1');
     localStorage.setItem('user_name', 'Test');
@@ -128,6 +130,7 @@ async function run(browser, label, cloudScript, expectLabel, expectWord) {
 
 async function runCloudClassification(browser) {
   const ctx = await browser.newContext({ timezoneId: 'America/Los_Angeles' });
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.addInitScript(() => {
     localStorage.setItem('onboarded', 'v1');
     localStorage.setItem('user_name', 'Test');

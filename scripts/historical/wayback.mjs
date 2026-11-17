@@ -13,7 +13,7 @@
 // ARC's "closest" to 2025 was a 2021 page, which is exactly the trap.
 
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 
@@ -48,13 +48,32 @@ async function politeFetch(url) {
 export const rawUrl = (timestamp, url) => `https://web.archive.org/web/${timestamp}id_/${url}`;
 export const viewUrl = (timestamp, url) => `https://web.archive.org/web/${timestamp}/${url}`;
 
+// Relay mode. Some research machines cannot reach the Wayback Machine
+// directly; there a fetching client (a scraping service) reads the same CDX
+// query and the same raw `id_` captures, and scripts/historical/relay-ingest.mjs
+// files them into CACHE_DIR exactly as this module would have, with the
+// served timestamp checked and `via` recorded. With PLURSKY_WAYBACK_RELAY=1
+// nothing is fetched here: a listing or capture that was not relayed is an
+// error, never a guess.
+export const RELAY = process.env.PLURSKY_WAYBACK_RELAY === "1";
+
+export const cdxQuery = (url, from, to) => `https://web.archive.org/cdx/search/cdx?url=${encodeURIComponent(url)}&from=${from}&to=${to}`
+  + `&filter=statuscode:200&collapse=digest&fl=timestamp,original,digest,length&output=json`;
+export const cdxCacheFile = q => join(CACHE_DIR, "cdx", sha256(q).slice(0, 24) + ".json");
+
 // Captures of `url` between `from` and `to` (YYYYMMDD), HTTP 200 only.
 export async function listCaptures(url, from, to) {
-  const q = `https://web.archive.org/cdx/search/cdx?url=${encodeURIComponent(url)}&from=${from}&to=${to}`
-    + `&filter=statuscode:200&collapse=digest&fl=timestamp,original,digest,length&output=json`;
-  const r = await politeFetch(q);
-  if (!r.ok) throw new Error(`CDX ${r.status} for ${url}`);
-  const rows = await r.json();
+  const q = cdxQuery(url, from, to);
+  let rows;
+  if (RELAY) {
+    const f = cdxCacheFile(q);
+    if (!existsSync(f)) throw new Error(`relay: no CDX listing filed for ${q}`);
+    rows = JSON.parse(readFileSync(f, "utf8")).rows;
+  } else {
+    const r = await politeFetch(q);
+    if (!r.ok) throw new Error(`CDX ${r.status} for ${url}`);
+    rows = await r.json();
+  }
   return rows.slice(1).map(([timestamp, original, digest, length]) => ({ timestamp, original, digest, length: +length }));
 }
 
@@ -66,9 +85,23 @@ export async function fetchCapture(timestamp, url, { binary = false } = {}) {
   const meta = file + ".json";
   let buf, rec;
   if (existsSync(file) && existsSync(meta)) {
-    buf = readFileSync(file);
     rec = JSON.parse(readFileSync(meta, "utf8"));
-  } else {
+    // A cache entry is trusted only if it IS the requested capture. An entry
+    // written before the exact-capture rule below (or by hand) can hold a
+    // neighbour under this key: ACL 2018 W2's 20181206131718 key held a
+    // 20190501000000 page. Move it aside (kept as evidence, never read again)
+    // and refetch, so a neighbour is never returned under the requested key.
+    if (rec.captureTimestamp !== timestamp) {
+      const stale = `.stale-${new Date().toISOString().slice(0, 10).replace(/-/g, "")}-${rec.captureTimestamp || "unknown"}`;
+      renameSync(file, file + stale);
+      renameSync(meta, meta + stale);
+      rec = undefined;
+    } else {
+      buf = readFileSync(file);
+    }
+  }
+  if (!rec) {
+    if (RELAY) throw new Error(`relay: capture ${timestamp} of ${url} was not filed`);
     const r = await politeFetch(rawUrl(timestamp, url));
     if (!r.ok) throw new Error(`${rawUrl(timestamp, url)} → HTTP ${r.status}`);
     buf = Buffer.from(await r.arrayBuffer());
@@ -78,9 +111,15 @@ export async function fetchCapture(timestamp, url, { binary = false } = {}) {
     rec = { requestedUrl: url, requestedTimestamp: timestamp, captureTimestamp: served,
       archivedUrl: viewUrl(served, url), contentType: r.headers.get("content-type"),
       sha256: sha256(buf), bytes: buf.length, observedAt: new Date().toISOString() };
-    mkdirSync(CACHE_DIR, { recursive: true });
-    writeFileSync(file, buf);
-    writeFileSync(meta, JSON.stringify(rec, null, 2));
+    // Only the exact capture is cached under its own key. A neighbour is
+    // returned (and recorded as served) but not kept, or every later run would
+    // get the neighbour back: ACL 2018 W2's 2018-12-06 key had held a 2019
+    // page since 2026-10-22 although Wayback serves the 2018 capture.
+    if (served === timestamp) {
+      mkdirSync(CACHE_DIR, { recursive: true });
+      writeFileSync(file, buf);
+      writeFileSync(meta, JSON.stringify(rec, null, 2));
+    }
   }
   return { buf, text: binary ? null : buf.toString("utf8"), file, ...rec };
 }

@@ -34,6 +34,7 @@ const MAPS = {
   'governors-ball-2026': ['https://support.govball.com/hc/en-us/articles/11579732251284-Is-there-a-current-festival-map', 2026],
   'coachella-2027': ['https://www.coachella.com/maps', 2026],
   'summerfest-2026': ['https://www.summerfest.com/about/', 2026],
+  'iii-points-2026': ['https://www.iiipoints.com/assets/campaign/festival-map-2026-1080.webp', 2026],
 };
 const HOURS = {
   'nocturnal-wonderland-2026': ['https://www.nocturnalwonderland.com/guide/hours-and-info/', 'Festival hours: 3:00 PM – 12:00 AM each day.'],

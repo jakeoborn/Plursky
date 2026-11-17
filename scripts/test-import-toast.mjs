@@ -7,6 +7,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const requestedPort=process.env.PLURSKY_IMPORT_TOAST_PORT;
 if(requestedPort&&!/^\d+$/.test(requestedPort))throw new Error('PLURSKY_IMPORT_TOAST_PORT must be a numeric TCP port');
@@ -18,6 +19,7 @@ try {
   const executablePath=['/opt/google/chrome/chrome','/usr/bin/google-chrome','/usr/bin/chromium'].find(existsSync);
   const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
   const ctx=await browser.newContext({timezoneId:'America/Los_Angeles'});
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.addInitScript(()=>{localStorage.setItem('onboarded','v1');localStorage.setItem('user_name','Test');localStorage.setItem('active_festival_id','edc-lv-2026');localStorage.setItem('active_festival_explicit','1');localStorage.setItem('edc-lv-2026_saved_v1',JSON.stringify(['n4']));localStorage.removeItem('plursky_moments_v1');indexedDB.deleteDatabase('plursky_memories');});
   // Every text any [role=status] region shows, with ms since load. The toast
   // wait below still timed out on GitHub CI after #193 while passing locally,
@@ -55,5 +57,14 @@ try {
   await sleep(800);
   const still=await page.evaluate(()=>[...document.querySelectorAll('[role=status]')].some(s=>/Imported 1 · 1 failed/.test(s.textContent||'')));
   if(!still){const log=await page.evaluate(()=>window.__statusLog||[]);throw new Error(`import toast was replaced within 800 ms:\n  ${log.join('\n  ')}`);}
-  console.log('✓ mixed batch landed 1 moment; the exact non-action toast "Imported 1 · 1 failed" stayed readable'); await browser.close();
+  // The same batch is diagnosable from the device log: one line per file with
+  // its tag reason, the failure with its error, and a batch summary. No coordinates.
+  const ilog=await page.evaluate(()=>typeof plurskyImportLog==='function'?plurskyImportLog():null);
+  const ev=e=>(ilog||[]).filter(r=>r.event===e);
+  if(!ilog) throw new Error('plurskyImportLog() missing');
+  if(ev('file').length!==1||!('reason' in ev('file')[0])||!ev('file')[0].tagSource) throw new Error(`import log: want 1 file row with reason+tagSource, got ${JSON.stringify(ev('file'))}`);
+  if(ev('file_failed').length!==1||!ev('file_failed')[0].error) throw new Error(`import log: want 1 file_failed row with error, got ${JSON.stringify(ev('file_failed'))}`);
+  const end=ev('batch_end')[0]; if(!end||end.landed!==1||end.failed!==1) throw new Error(`import log: batch_end ${JSON.stringify(end)}`);
+  if(/"lat"|"lng"|parsedGps/.test(JSON.stringify(ilog))) throw new Error('import log leaked coordinates');
+  console.log('✓ mixed batch landed 1 moment; the exact non-action toast "Imported 1 · 1 failed" stayed readable; the import log names each file\'s outcome'); await browser.close();
 } finally {server.kill('SIGTERM');}

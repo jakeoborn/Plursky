@@ -8,6 +8,37 @@ var _EXIF_TAG_GPS_LAT_REF = 0x0001;
 var _EXIF_TAG_GPS_LAT = 0x0002;
 var _EXIF_TAG_GPS_LNG_REF = 0x0003;
 var _EXIF_TAG_GPS_LNG = 0x0004;
+var IMPORT_LOG_KEY = "plursky_import_log_v1";
+function _importLog(event, detail) {
+  var row = {
+    t: new Date().toISOString(),
+    event,
+    ...(detail || {})
+  };
+  try {
+    console.info(`[plursky:import] ${event} ${JSON.stringify(detail || {})}`);
+  } catch {}
+  try {
+    var log = JSON.parse(localStorage.getItem(IMPORT_LOG_KEY) || "[]");
+    log.push(row);
+    localStorage.setItem(IMPORT_LOG_KEY, JSON.stringify(log.slice(-400)));
+  } catch {}
+}
+function plurskyImportLog() {
+  try {
+    return JSON.parse(localStorage.getItem(IMPORT_LOG_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+function _allFestivalAttendedIds() {
+  try {
+    var store = typeof getAttendedStore === "function" ? getAttendedStore() : {};
+    return [...new Set(Object.values(store).flatMap(n => Object.values(n || {}).flat()))];
+  } catch {
+    return [];
+  }
+}
 function _parseDateString(s) {
   if (!s) return null;
   var m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/.exec(s);
@@ -384,6 +415,1129 @@ async function _parseVideoMeta(file) {
   } catch {}
   return out;
 }
+var _VGPS_MAX_BOX = 64 * 1024 * 1024;
+var _VGPS_COORD_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}/;
+var _VGPS_KEY_RE = /location|ISO6709|gps/i;
+var _VGPS_TRACK_FORMATS = new Set(["hvc1", "hev1", "avc1", "avc3", "dvh1", "dvhe", "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64", "mebx", "tmcd"]);
+var _VGPS_VISUAL = new Set(["avc1", "avc3", "hvc1", "hev1", "dvh1", "dvhe"]);
+var _VGPS_ENTRY_KIDS = {
+  visual: {
+    avcC: 0,
+    hvcC: 0,
+    dvcC: 32,
+    dvvC: 32,
+    dvwC: 32,
+    colr: 0,
+    amve: 16,
+    pasp: 16,
+    btrt: 20,
+    clap: 40,
+    clli: 12,
+    mdcv: 32,
+    fiel: 10
+  },
+  mp4a: {
+    esds: 0,
+    wave: 0,
+    chan: 0,
+    btrt: 20
+  },
+  apac: {
+    dapa: 0,
+    ngst: 20,
+    btrt: 20
+  },
+  pcm: {
+    chan: 0,
+    btrt: 20,
+    wave: 0
+  },
+  alac: {
+    alac: 36,
+    chan: 0,
+    btrt: 20,
+    wave: 0
+  },
+  wave: {
+    frma: 12,
+    mp4a: 12,
+    esds: 0,
+    enda: 10,
+    chan: 0,
+    alac: 36,
+    "\0\0\0\0": 8
+  },
+  mebx: {
+    keys: 0
+  },
+  mebxKey: {
+    keyd: 0,
+    dtyp: 0
+  },
+  tmcd: {}
+};
+function _vgpsEntryHeader(fmt, dv, e, es) {
+  if (_VGPS_VISUAL.has(fmt)) return 86;
+  if (fmt === "mebx") return 16;
+  if (fmt === "tmcd") return 34;
+  if (es < 18) return -1;
+  var v = dv.getUint16(e + 16);
+  return v === 0 ? 36 : v === 1 ? 52 : v === 2 ? 72 : -1;
+}
+var _VGPS_RATES = new Set([8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000, 176400, 192000]);
+function _vgpsEntryHeaderFix(fmt, dv, e, eh, set) {
+  var u16 = o => dv.getUint16(e + o),
+    u32 = o => dv.getUint32(e + o);
+  var be = (n, w) => {
+    var b = [];
+    for (var i = w - 1; i >= 0; i--) b.push(Math.floor(n / 2 ** (8 * i)) & 0xff);
+    return b;
+  };
+  set(8, [0, 0, 0, 0, 0, 0]);
+  if (u16(14) !== 1) return "sample entry data reference";
+  if (_VGPS_VISUAL.has(fmt)) {
+    set(16, new Array(16).fill(0));
+    if (!u16(32) || !u16(34) || u16(32) > 16384 || u16(34) > 16384) return "sample entry dimensions";
+    set(36, [0, 0x48, 0, 0, 0, 0x48, 0, 0, 0, 0, 0, 0, 0, 1]);
+    set(50, new Array(32).fill(0));
+    set(82, [0, 0x18, 0xff, 0xff]);
+    return null;
+  }
+  if (fmt === "mebx") return null;
+  if (fmt === "tmcd") {
+    set(16, [0, 0, 0, 0]);
+    set(33, [0]);
+    var ts = u32(24),
+      fd = u32(28),
+      nf = dv.getUint8(e + 32);
+    if (!ts || ts > 1000000 || !fd || fd > ts || !nf || nf > 120 || u32(20) > 0xf) return "timecode entry";
+    return null;
+  }
+  var v = u16(16);
+  set(18, [0, 0, 0, 0, 0, 0]);
+  if (v === 2) {
+    if (u16(24) !== 3 || u16(26) !== 16 || u16(28) !== 0xfffe || u16(30) !== 0 || u32(32) !== 0x10000 || u32(36) !== 72 || u32(52) !== 0x7f000000) return "sound entry v2 constants";
+    var _rate = dv.getFloat64(e + 40),
+      _ch = u32(48),
+      _bits = u32(56),
+      flags = u32(60),
+      bpp = u32(64),
+      fpp = u32(68);
+    if (!_VGPS_RATES.has(_rate) || !_ch || _ch > 64 || ![0, 8, 16, 24, 32, 64].includes(_bits) || flags > 0xff || bpp > 65536 || fpp > 65536) return "sound entry v2 fields";
+    return null;
+  }
+  var ch = u16(24),
+    bits = u16(26),
+    cid = u16(28),
+    rate = u32(32);
+  if (!ch || ch > 64 || ![0, 8, 16, 24, 32].includes(bits) || ![0, 0xfffe, 0xffff].includes(cid) || u16(30) !== 0 || rate & 0xffff || !_VGPS_RATES.has(rate >>> 16)) return "sound entry fields";
+  if (v === 1) {
+    var spp = u32(36),
+      bpk = u32(40),
+      bpf = u32(44),
+      bps = u32(48);
+    if (spp > 65536 || bpk > 65536 || bpf > 4096 || bps > 64) return "sound entry v1 fields";
+  }
+  return null;
+}
+function _vgpsEntryKind(fmt) {
+  if (_VGPS_VISUAL.has(fmt)) return "visual";
+  if (fmt === "mp4a" || fmt === "apac" || fmt === "alac" || fmt === "mebx" || fmt === "tmcd") return fmt;
+  return "pcm";
+}
+var _VGPS_DTYP_NAMES = new Set(["detected-face", "com.apple.quicktime.live-photo-info", "milli-lux", "uuid"].map(k => "com.apple.quicktime." + k));
+function _vgpsChildShapeOk(t, u8, dv, c, cs) {
+  var s4 = o => String.fromCharCode(u8[o], u8[o + 1], u8[o + 2], u8[o + 3]);
+  if (t === "chan") return cs >= 24 && cs === 24 + 20 * dv.getUint32(c + 20);
+  if (t === "dtyp") {
+    if (cs < 16) return false;
+    var ns = dv.getUint32(c + 8);
+    if (ns === 0) return cs === 16;
+    var name = "";
+    for (var i = c + 12; i < c + cs; i++) name += String.fromCharCode(u8[i]);
+    return ns === 1 && _VGPS_DTYP_NAMES.has(name);
+  }
+  if (t === "keyd") return cs > 12 && (s4(c + 8) === "mdta" || s4(c + 8) === "fiel");
+  return true;
+}
+function _vgpsEntryChildren(kind, u8, dv, a, z, blank, onKeep) {
+  var allow = _VGPS_ENTRY_KIDS[kind];
+  var c = a;
+  while (c + 8 <= z) {
+    var cs = dv.getUint32(c);
+    if (cs < 8 || c + cs > z) return "unreadable sample entry";
+    var t = String.fromCharCode(u8[c + 4], u8[c + 5], u8[c + 6], u8[c + 7]);
+    var want = Object.prototype.hasOwnProperty.call(allow, t) ? allow[t] : -1;
+    var colrOk = t !== "colr" || cs === 19 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclx" || cs === 18 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclc";
+    if (want < 0 || want > 0 && cs !== want || !colrOk || !_vgpsChildShapeOk(t, u8, dv, c, cs)) blank(c, c + cs);else if (t === "wave") {
+      var r = _vgpsEntryChildren("wave", u8, dv, c + 8, c + cs, blank, onKeep);
+      if (r) return r;
+    } else if (kind === "mebx" && t === "keys") {
+      var k = c + 8;
+      while (k + 8 <= c + cs) {
+        var ks = dv.getUint32(k);
+        if (ks < 8 || k + ks > c + cs) return "unreadable timed keys";
+        var _r = _vgpsEntryChildren("mebxKey", u8, dv, k + 8, k + ks, blank, onKeep);
+        if (_r) return _r;
+        k += ks;
+      }
+      if (k !== c + cs) blank(k, c + cs, true);
+    } else if (onKeep) {
+      var _r2 = onKeep(t, c, c + cs);
+      if (_r2) return _r2;
+    }
+    c += cs;
+  }
+  if (c < z) blank(c, z, true);
+  return null;
+}
+var _VGPS_TIMED_KEYS = new Set(["video-orientation", "detected-face", "detected-face.bounds", "detected-face.face-id", "detected-face.roll-angle", "detected-face.yaw-angle", "live-photo-info", "com.apple.quicktime.live-photo-info", "scene-illuminance", "milli-lux", "cinematic-audio", "segment-identifier", "optical-center", "metadata.1", "uuid", "apple-maker-note.74", "apple-maker-note.97", "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber"].map(k => "com.apple.quicktime." + k));
+var _VGPS_KEEP_KEYS = new Set(["make", "model", "software", "creationdate", "full-frame-rate-playback-intent", "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber"].map(k => "com.apple.quicktime." + k));
+function _vgpsLatin1(u8, a, b) {
+  var s = "";
+  for (var i = a; i < b; i++) s += String.fromCharCode(u8[i]);
+  return s;
+}
+var _VGPS_TREF_KINDS = new Set(["cdep", "cdsc", "fall", "rndr", "hint", "chap", "tmcd", "sync", "scpt", "ssrc", "vdep", "vplx", "font", "hind", "ipir", "mpod", "subt", "thmb", "auxl"]);
+var _VGPS_CHILDREN = {
+  moov: new Set(["mvhd", "trak", "udta", "meta", "mvex"]),
+  trak: new Set(["tkhd", "edts", "mdia", "meta", "tapt", "tref", "udta", "load"]),
+  edts: new Set(["elst"]),
+  mdia: new Set(["mdhd", "hdlr", "minf", "elng", "udta"]),
+  minf: new Set(["vmhd", "smhd", "gmhd", "nmhd", "hmhd", "sthd", "dinf", "stbl", "hdlr"]),
+  stbl: new Set(["stsd", "stts", "ctts", "cslg", "stsc", "stsz", "stz2", "stco", "co64", "stss", "stsh", "stps", "sdtp", "sbgp", "sgpd"]),
+  gmhd: new Set(["gmin", "text", "tmcd"]),
+  tmcd: new Set(["tcmi"]),
+  dinf: new Set(["dref"]),
+  dref: new Set(["url ", "alis"]),
+  mvex: new Set(["mehd", "trex"]),
+  tapt: new Set(["clef", "prof", "enof"]),
+  tref: _VGPS_TREF_KINDS
+};
+var _VGPS_WALK = {
+  moov: 0,
+  trak: 0,
+  mdia: 0,
+  minf: 0,
+  stbl: 0,
+  udta: 0,
+  meta: 0,
+  ilst: 0,
+  edts: 0,
+  gmhd: 0,
+  dinf: 0,
+  mvex: 0,
+  tapt: 0,
+  tref: 0,
+  dref: 8
+};
+var _vgpsWalks = (type, parentType) => type in _VGPS_WALK || type === "tmcd" && parentType === "gmhd";
+var _VGPS_LEAF_LEN = (type, parentType, dv, p, P, ctx) => {
+  var v = P >= 1 ? dv.getUint8(p) : 0,
+    n = off => P >= off + 4 ? dv.getUint32(p + off) : 0;
+  if (parentType === "tref") {
+    if (P % 4) return -1;
+    for (var o = 0; o < P; o += 4) {
+      var id = dv.getUint32(p + o);
+      if (id < 1 || id > 1024) return -1;
+    }
+    return P;
+  }
+  switch (type) {
+    case "mvhd":
+      return v === 1 ? 112 : 100;
+    case "tkhd":
+      return v === 1 ? 96 : 84;
+    case "mdhd":
+      return v === 1 ? 36 : 24;
+    case "mehd":
+      return v === 1 ? 12 : 8;
+    case "vmhd":
+      return 12;
+    case "smhd":
+      return 8;
+    case "nmhd":
+    case "sthd":
+      return 4;
+    case "hmhd":
+      return 20;
+    case "gmin":
+      return 16;
+    case "text":
+      return 36;
+    case "load":
+      return 16;
+    case "trex":
+      return 24;
+    case "cslg":
+      return v === 1 ? 44 : 24;
+    case "clef":
+    case "prof":
+    case "enof":
+      return 12;
+    case "url ":
+    case "alis":
+      return 4;
+    case "hdlr":
+      return 24;
+    case "elng":
+      return 4;
+    case "tcmi":
+      return 24;
+    case "elst":
+      return 8 + n(4) * (v === 1 ? 20 : 12);
+    case "stts":
+    case "ctts":
+    case "co64":
+    case "stsh":
+      return 8 + n(4) * 8;
+    case "stss":
+    case "stps":
+    case "stco":
+      return 8 + n(4) * 4;
+    case "stsc":
+      return 8 + n(4) * 12;
+    case "stsz":
+      ctx.samples = n(8);
+      return 12 + (n(4) === 0 ? n(8) * 4 : 0);
+    case "stz2":
+      ctx.samples = n(8);
+      return 12 + Math.ceil(n(8) * (P >= 8 ? dv.getUint8(p + 7) : 0) / 8);
+    case "sdtp":
+      return ctx.samples == null ? null : 4 + ctx.samples;
+    case "sbgp":
+      return (v === 1 ? 16 : 12) + n(v === 1 ? 12 : 8) * 8;
+    case "sgpd":
+      {
+        if (v !== 1 && v !== 2) return null;
+        var hdr = v === 1 ? 16 : 20,
+          dl = n(8),
+          count = n(hdr - 4);
+        if (dl) return hdr + count * dl;
+        if (v !== 1) return null;
+        var at = hdr;
+        for (var i = 0; i < count; i++) {
+          if (at + 4 > P) return P + 1;
+          at += 4 + dv.getUint32(p + at);
+        }
+        return at;
+      }
+    default:
+      return null;
+  }
+};
+function _stripVideoGpsRegion(u8, layout = null) {
+  var dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+  var len = u8.byteLength;
+  var type4 = i => _vgpsLatin1(u8, i, i + 4);
+  var zero = (a, b) => {
+    for (var i = a; i < b && i < len; i++) u8[i] = 0;
+  };
+  var toFree = pos => {
+    u8[pos + 4] = 0x66;
+    u8[pos + 5] = 0x72;
+    u8[pos + 6] = 0x65;
+    u8[pos + 7] = 0x65;
+  };
+  var n = 0,
+    refuse = null,
+    curTrak = null;
+  var visit = (start, end, depth, parentType, scope) => {
+    if (depth > 8 || refuse) return;
+    var pos = start;
+    var scopeCtx = {};
+    if (parentType === "stbl") {
+      for (var q = start; q + 20 <= end;) {
+        var qs = dv.getUint32(q);
+        if (qs < 8 || q + qs > end) break;
+        if (qs >= 20 && (type4(q + 4) === "stsz" || type4(q + 4) === "stz2")) scopeCtx.samples = dv.getUint32(q + 16);
+        q += qs;
+      }
+    }
+    var _loop2 = function () {
+        var size = dv.getUint32(pos);
+        var type = type4(pos + 4);
+        var hdr = 8;
+        if (size === 1) {
+          if (pos + 16 > end) return 0;
+          size = dv.getUint32(pos + 8) * 4294967296 + dv.getUint32(pos + 12);
+          hdr = 16;
+        } else if (size === 0) size = end - pos;
+        if (size < hdr || pos + size > end) {
+          refuse = "malformed box";
+          return {
+            v: void 0
+          };
+        }
+        var payload = pos + hdr,
+          boxEnd = pos + size;
+        if (type === "free" || type === "skip") {
+          zero(payload, boxEnd);
+        } else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {
+          zero(payload, boxEnd);
+          toFree(pos);
+          n++;
+        } else if (type === "uuid" || type === "XMP_" || parentType === "meta" && !["hdlr", "keys", "ilst"].includes(type)) {
+          zero(payload, boxEnd);
+          toFree(pos);
+          n++;
+        } else if (type === "mvex") {
+          refuse = "fragmented movie";
+          return {
+            v: void 0
+          };
+        } else if (_VGPS_CHILDREN[parentType] && !_VGPS_CHILDREN[parentType].has(type)) {
+          zero(payload, boxEnd);
+          toFree(pos);
+          n++;
+        } else if (_VGPS_CHILDREN[parentType] && type !== "stsd" && !_vgpsWalks(type, parentType)) {
+          var want = _VGPS_LEAF_LEN(type, parentType, dv, payload, boxEnd - payload, scopeCtx);
+          if (want === null) {
+            zero(payload, boxEnd);
+            toFree(pos);
+            n++;
+          } else if (want < 0 || want > boxEnd - payload) {
+            refuse = "unreadable " + type;
+            return {
+              v: void 0
+            };
+          } else if (want < boxEnd - payload) {
+            zero(payload + want, boxEnd);
+            n++;
+          }
+          if (layout && curTrak && /^(stsz|stz2|stsc|stco|co64)$/.test(type)) {
+            if (curTrak[type]) {
+              refuse = "duplicate " + type;
+              return {
+                v: void 0
+              };
+            }
+            curTrak[type] = payload;
+          }
+        } else if (type === "©xyz" || type === "loci" || parentType === "udta" && type !== "meta") {
+          zero(payload, boxEnd);
+          toFree(pos);
+          n++;
+        } else if (type === "stsd") {
+          if (_VGPS_KEY_RE.test(_vgpsLatin1(u8, payload, boxEnd))) {
+            refuse = "timed location track";
+            return {
+              v: void 0
+            };
+          }
+          var count = boxEnd - payload >= 8 ? dv.getUint32(payload + 4) : 0;
+          var e = payload + 8;
+          var _loop3 = function () {
+              var es = e + 8 <= boxEnd ? dv.getUint32(e) : 0;
+              if (es < 8 || e + es > boxEnd) {
+                refuse = "unreadable sample table";
+                return {
+                  v: {
+                    v: void 0
+                  }
+                };
+              }
+              var fmt = type4(e + 4);
+              if (!_VGPS_TRACK_FORMATS.has(fmt)) {
+                refuse = "unknown track format " + JSON.stringify(fmt);
+                return {
+                  v: {
+                    v: void 0
+                  }
+                };
+              }
+              var fam = _VGPS_NAL_FAMILY[fmt];
+              if (layout && curTrak) (curTrak.fmts ||= []).push(fmt);
+              var eh = _vgpsEntryHeader(fmt, dv, e, es);
+              if (eh < 0 || eh > es) {
+                refuse = "unreadable sample entry";
+                return {
+                  v: {
+                    v: void 0
+                  }
+                };
+              }
+              var cfg = fam === "avc" ? "avcC" : fam ? "hvcC" : null;
+              var L = 0;
+              var blank = (a, z, tail) => {
+                zero(tail ? a : a + 8, z);
+                if (!tail) toFree(a);
+                n++;
+              };
+              var hb = _vgpsEntryHeaderFix(fmt, dv, e, eh, (at, bytes) => {
+                var ch = false;
+                for (var i = 0; i < bytes.length; i++) if (u8[e + at + i] !== bytes[i]) {
+                  u8[e + at + i] = bytes[i];
+                  ch = true;
+                }
+                if (ch) n++;
+              });
+              if (hb) {
+                refuse = hb;
+                return {
+                  v: {
+                    v: void 0
+                  }
+                };
+              }
+              var bad = _vgpsEntryChildren(_vgpsEntryKind(fmt), u8, dv, e + eh, e + es, blank, (t, a, z) => {
+                if (t === "avcC" || t === "hvcC") {
+                  if (t !== cfg) return "config box " + t + " in a " + fmt + " entry";
+                  var r = _vgpsConfig(fam, u8, a + 8, z);
+                  if (r.refuse) return r.refuse;
+                  if (L) return "two " + t + " boxes";
+                  L = r.L;
+                }
+                return null;
+              });
+              if (bad) {
+                refuse = bad;
+                return {
+                  v: {
+                    v: void 0
+                  }
+                };
+              }
+              if (fam) {
+                if (L !== 1 && L !== 2 && L !== 4) {
+                  refuse = "unreadable " + cfg;
+                  return {
+                    v: {
+                      v: void 0
+                    }
+                  };
+                }
+                if (layout && curTrak) {
+                  if (curTrak.fam && curTrak.fam !== fam || curTrak.lenSize && curTrak.lenSize !== L) {
+                    refuse = "mixed video sample entries";
+                    return {
+                      v: {
+                        v: void 0
+                      }
+                    };
+                  }
+                  curTrak.fam = fam;
+                  curTrak.lenSize = L;
+                }
+              }
+              if (fmt === "mebx") {
+                var body = _vgpsLatin1(u8, e, e + es);
+                var at = body.indexOf("keyd"),
+                  seen = 0;
+                while (at >= 4) {
+                  var ks = dv.getUint32(e + at - 4);
+                  if (ks < 12 || at - 4 + ks > es) {
+                    refuse = "unreadable timed key";
+                    return {
+                      v: {
+                        v: void 0
+                      }
+                    };
+                  }
+                  var name = body.slice(at + 8, at - 4 + ks);
+                  if (!_VGPS_TIMED_KEYS.has(name)) {
+                    refuse = "timed key " + JSON.stringify(name);
+                    return {
+                      v: {
+                        v: void 0
+                      }
+                    };
+                  }
+                  seen++;
+                  at = body.indexOf("keyd", at - 4 + ks);
+                }
+                if (!seen && body.includes("keys")) {
+                  refuse = "unreadable timed keys";
+                  return {
+                    v: {
+                      v: void 0
+                    }
+                  };
+                }
+              }
+              e += es;
+            },
+            _ret3;
+          for (var k = 0; k < count; k++) {
+            _ret3 = _loop3();
+            if (_ret3) return _ret3.v;
+          }
+        } else if (scope && type === "keys" && boxEnd - payload >= 8) {
+          if (scope.keysSeen++) {
+            refuse = "duplicate keys table";
+            return {
+              v: void 0
+            };
+          }
+          var _count = dv.getUint32(payload + 4);
+          var _k = payload + 8;
+          for (var i = 1; i <= _count && _k + 8 <= boxEnd; i++) {
+            var ks = dv.getUint32(_k);
+            if (ks < 8 || _k + ks > boxEnd) break;
+            var name = _vgpsLatin1(u8, _k + 8, _k + ks);
+            if (_VGPS_KEEP_KEYS.has(name)) scope.keep.add(i);
+            if (_VGPS_KEY_RE.test(name)) {
+              scope.hit.add(i);
+              var red = "plursky.redacted.".padEnd(ks - 8, "x").slice(0, ks - 8);
+              for (var j = 0; j < ks - 8; j++) u8[_k + 8 + j] = red.charCodeAt(j);
+            }
+            _k += ks;
+          }
+        } else if (scope && parentType === "ilst") {
+          scope.items.push({
+            idx: dv.getUint32(pos + 4),
+            payload,
+            boxEnd
+          });
+        }
+        if (_vgpsWalks(type, parentType)) {
+          var isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
+          var inner = type === "meta" ? {
+            hit: new Set(),
+            keep: new Set(),
+            items: [],
+            keysSeen: 0
+          } : scope;
+          var skip = isoMeta ? 4 : type === "tmcd" ? 0 : _VGPS_WALK[type] || 0;
+          var prevTrak = curTrak;
+          if (type === "trak" && layout) {
+            curTrak = {};
+            layout.push(curTrak);
+          }
+          visit(Math.min(boxEnd, payload + skip), boxEnd, depth + 1, type, inner);
+          curTrak = prevTrak;
+          if (type === "meta") {
+            for (var it of inner.items) {
+              var dataHdr = it.payload + 16 <= it.boxEnd && type4(it.payload + 4) === "data" ? 16 : 0;
+              if (!inner.keep.has(it.idx) || inner.hit.has(it.idx)) {
+                zero(it.payload + dataHdr, it.boxEnd);
+                n++;
+                continue;
+              }
+              var ds = dataHdr ? dv.getUint32(it.payload) : 0;
+              if (!dataHdr || ds < 16 || it.payload + ds > it.boxEnd) {
+                zero(it.payload, it.boxEnd);
+                n++;
+                continue;
+              }
+              if (it.payload + ds < it.boxEnd) {
+                zero(it.payload + ds, it.boxEnd);
+                n++;
+              }
+            }
+          }
+        }
+        pos = boxEnd;
+      },
+      _ret2;
+    while (pos + 8 <= end) {
+      _ret2 = _loop2();
+      if (_ret2 === 0) break;
+      if (_ret2) return _ret2.v;
+    }
+  };
+  visit(0, len, 0, null, null);
+  return refuse ? {
+    refuse
+  } : {
+    n
+  };
+}
+var _VGPS_NAL_FAMILY = {
+  avc1: "avc",
+  avc3: "avc",
+  hvc1: "hevc",
+  hev1: "hevc",
+  dvh1: "hevc",
+  dvhe: "hevc"
+};
+var _VGPS_HVCC_SEI = {
+  137: 24,
+  144: 4,
+  147: 1,
+  148: 8
+};
+function _vgpsFixedSei(b, p, len) {
+  if (len < 3 || (b[p] >> 1 & 0x3f) !== 39) return false;
+  var i = p + 2;
+  var z = p + len;
+  while (i < z) {
+    if (i === z - 1 && b[i] === 0x80) return true;
+    var t = 0,
+      s = 0;
+    while (i < z && b[i] === 0xff) {
+      t += 255;
+      i++;
+    }
+    if (i >= z) return false;
+    t += b[i++];
+    while (i < z && b[i] === 0xff) {
+      s += 255;
+      i++;
+    }
+    if (i >= z) return false;
+    s += b[i++];
+    if (_VGPS_HVCC_SEI[t] !== s || i + s > z) return false;
+    for (var k = i; k < i + s - 2; k++) if (b[k] === 0 && b[k + 1] === 0 && b[k + 2] === 3) return false;
+    i += s;
+  }
+  return false;
+}
+var _VGPS_PS_MAX = 128;
+function _vgpsConfig(fam, u8, p, z) {
+  var ps = (t, at, len) => len >= 1 && len <= _VGPS_PS_MAX && at + len <= z && !(u8[at] & 0x80) && (fam === "avc" ? (u8[at] & 0x1f) === t : (u8[at] >> 1 & 0x3f) === t);
+  if (fam === "avc") {
+    if (z - p < 7) return {
+      refuse: "unreadable avcC"
+    };
+    var _L = (u8[p + 4] & 3) + 1;
+    var _a = p + 6;
+    var lists = [[u8[p + 5] & 0x1f, 7]];
+    var walk = (n, t) => {
+      for (var i = 0; i < n; i++) {
+        if (_a + 2 > z) return false;
+        var len = u8[_a] << 8 | u8[_a + 1];
+        if (!ps(t, _a + 2, len)) return false;
+        _a += 2 + len;
+      }
+      return true;
+    };
+    if (!walk(u8[p + 5] & 0x1f, 7)) return {
+      refuse: "avcC carries a NAL it cannot vouch for"
+    };
+    if (_a + 1 > z) return {
+      refuse: "unreadable avcC"
+    };
+    var npps = u8[_a++];
+    if (!walk(npps, 8)) return {
+      refuse: "avcC carries a NAL it cannot vouch for"
+    };
+    if (_a < z && [100, 110, 122, 144].includes(u8[p + 1])) {
+      if (_a + 4 > z) return {
+        refuse: "unreadable avcC"
+      };
+      _a += 3;
+      var next = u8[_a++];
+      if (!walk(next, 13)) return {
+        refuse: "avcC carries a NAL it cannot vouch for"
+      };
+    }
+    if (_a !== z) return {
+      refuse: "avcC has trailing bytes"
+    };
+    return {
+      L: _L
+    };
+  }
+  if (z - p < 23) return {
+    refuse: "unreadable hvcC"
+  };
+  var L = (u8[p + 21] & 3) + 1;
+  var a = p + 23;
+  for (var k = 0, na = u8[p + 22]; k < na; k++) {
+    if (a + 3 > z) return {
+      refuse: "unreadable hvcC"
+    };
+    var nt = u8[a] & 0x3f,
+      nn = u8[a + 1] << 8 | u8[a + 2];
+    a += 3;
+    for (var q = 0; q < nn; q++) {
+      if (a + 2 > z) return {
+        refuse: "unreadable hvcC"
+      };
+      var len = u8[a] << 8 | u8[a + 1],
+        at = a + 2;
+      if (at + len > z) return {
+        refuse: "unreadable hvcC"
+      };
+      if (nt === 39 ? !_vgpsFixedSei(u8, at, len) : !(nt >= 32 && nt <= 34 && ps(nt, at, len))) return {
+        refuse: "hvcC carries an SEI it cannot vouch for"
+      };
+      a = at + len;
+    }
+  }
+  if (a !== z) return {
+    refuse: "hvcC has trailing bytes"
+  };
+  return {
+    L
+  };
+}
+function _vgpsNalAction(fam, b, q, len) {
+  var h = b[q];
+  if (h & 0x80) return "refuse";
+  if (fam === "avc") {
+    var _t = h & 0x1f;
+    if (_t >= 1 && _t <= 5) return "keep";
+    if (_t === 7 || _t === 8) return len <= _VGPS_PS_MAX ? "keep" : "refuse";
+    if (_t === 9) return len === 2 ? "keep" : "refuse";
+    if (_t === 10 || _t === 11) return len === 1 ? "keep" : "refuse";
+    if (_t === 6 || _t === 12) return "fill";
+    return "refuse";
+  }
+  if (len < 2) return "refuse";
+  var t = h >> 1 & 0x3f;
+  if (t <= 9 || t >= 16 && t <= 21) return "keep";
+  if (t >= 32 && t <= 34) return len <= _VGPS_PS_MAX ? "keep" : "refuse";
+  if (t === 35) return len === 3 ? "keep" : "refuse";
+  if (t === 36 || t === 37) return len === 2 ? "keep" : "refuse";
+  if (t >= 38 && t <= 40) return "fill";
+  if (t === 62) return "fill";
+  return "refuse";
+}
+function _vgpsFiller(fam, b, q, len) {
+  var out = new Uint8Array(len).fill(0xff);
+  var hl = fam === "avc" ? 1 : 2;
+  out[0] = fam === "avc" ? 0x0c : 0x4c;
+  if (fam === "hevc") out[1] = b[q + 1] & 7 || 1;
+  if (len > hl) out[len - 1] = 0x80;
+  return out;
+}
+function _vgpsSamples(u8, layout) {
+  var dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+  var out = [];
+  var _loop4 = function (t) {
+      if (!t.fmts || !t.fmts.length) return {
+        v: {
+          refuse: "track without a sample description"
+        }
+      };
+      if (t.fmts.some(f => _VGPS_NAL_FAMILY[f] !== undefined && _VGPS_NAL_FAMILY[f] !== t.fam)) return {
+        v: {
+          refuse: "mixed video sample entries"
+        }
+      };
+      var co = t.stco != null ? t.stco : t.co64;
+      if (t.stsz == null && t.stz2 == null || t.stsc == null || co == null || t.stco != null && t.co64 != null) return {
+        v: {
+          refuse: "track without sample tables"
+        }
+      };
+      var sizes;
+      if (t.stsz != null) {
+        var fixed = dv.getUint32(t.stsz + 4),
+          cnt = dv.getUint32(t.stsz + 8);
+        sizes = i => fixed || dv.getUint32(t.stsz + 12 + i * 4);
+        sizes.count = cnt;
+      } else {
+        var fs = u8[t.stz2 + 7],
+          _cnt = dv.getUint32(t.stz2 + 8),
+          base = t.stz2 + 12;
+        if (fs !== 4 && fs !== 8 && fs !== 16) return {
+          v: {
+            refuse: "unreadable stz2"
+          }
+        };
+        sizes = i => fs === 16 ? dv.getUint16(base + i * 2) : fs === 8 ? u8[base + i] : u8[base + (i >> 1)] >> (i & 1 ? 0 : 4) & 15;
+        sizes.count = _cnt;
+      }
+      var nChunks = dv.getUint32(co + 4),
+        wide = t.co64 != null;
+      var chunkOff = c => wide ? dv.getUint32(co + 8 + c * 8) * 4294967296 + dv.getUint32(co + 12 + c * 8) : dv.getUint32(co + 8 + c * 4);
+      var runs = dv.getUint32(t.stsc + 4);
+      var i = 0;
+      for (var r = 0; r < runs; r++) {
+        var first = dv.getUint32(t.stsc + 8 + r * 12),
+          spc = dv.getUint32(t.stsc + 12 + r * 12);
+        var next = r + 1 < runs ? dv.getUint32(t.stsc + 8 + (r + 1) * 12) : nChunks + 1;
+        if (first < 1 || next <= first || next > nChunks + 1) return {
+          v: {
+            refuse: "unreadable stsc"
+          }
+        };
+        for (var c = first; c < next; c++) {
+          var off = chunkOff(c - 1);
+          for (var k = 0; k < spc; k++, i++) {
+            if (i >= sizes.count) return {
+              v: {
+                refuse: "sample tables disagree"
+              }
+            };
+            var sz = sizes(i);
+            out.push({
+              off,
+              size: sz,
+              fam: t.fam || null,
+              L: t.lenSize || 0
+            });
+            off += sz;
+          }
+        }
+      }
+      if (i !== sizes.count) return {
+        v: {
+          refuse: "sample tables disagree"
+        }
+      };
+    },
+    _ret4;
+  for (var t of layout) {
+    _ret4 = _loop4(t);
+    if (_ret4) return _ret4.v;
+  }
+  out.sort((x, y) => x.off - y.off);
+  return {
+    samples: out
+  };
+}
+async function _vgpsNalPatches(blob, samples, start, end) {
+  var patches = [];
+  var buf = null,
+    bs = 0;
+  for (var s of samples) {
+    if (!buf || s.off < bs || s.off + s.size > bs + buf.length) {
+      bs = s.off;
+      buf = new Uint8Array(await blob.slice(bs, Math.min(end, Math.max(s.off + s.size, s.off + _VGPS_WIN))).arrayBuffer());
+      if (s.off + s.size > bs + buf.length) return {
+        refuse: "sample past mdat"
+      };
+    }
+    var z = s.off - bs + s.size;
+    var q = s.off - bs;
+    while (q < z) {
+      if (q + s.L > z) return {
+        refuse: "unparseable video sample"
+      };
+      var len = 0;
+      for (var k = 0; k < s.L; k++) len = len * 256 + buf[q + k];
+      q += s.L;
+      if (len < 1 || q + len > z) return {
+        refuse: "unparseable video sample"
+      };
+      var act = _vgpsNalAction(s.fam, buf, q, len);
+      if (act === "refuse") return {
+        refuse: "video NAL type " + (s.fam === "avc" ? buf[q] & 0x1f : buf[q] >> 1 & 0x3f)
+      };
+      if (act === "fill") {
+        var f = _vgpsFiller(s.fam, buf, q, len);
+        var same = true;
+        for (var _k2 = 0; _k2 < len && same; _k2++) same = f[_k2] === buf[q + _k2];
+        if (!same) patches.push({
+          off: bs + q,
+          bytes: f
+        });
+      }
+      q += len;
+    }
+  }
+  return {
+    patches
+  };
+}
+var _VGPS_WIN = 8 * 1024 * 1024,
+  _VGPS_OVERLAP = 4096;
+var _VGPS_ISO_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}(?:[+-]\d+(?:\.\d+)?)?\/?/g;
+async function _vgpsScanMedia(blob, start, end, init = []) {
+  var dec = new TextDecoder("windows-1252");
+  var patches = init.slice();
+  var inPatch = o => patches.find(p => o >= p.off && o < p.off + p.bytes.length);
+  var _loop5 = async function (w) {
+      var b = Math.min(end, w + _VGPS_WIN + _VGPS_OVERLAP);
+      var u8 = new Uint8Array(await blob.slice(w, b).arrayBuffer());
+      var s = dec.decode(u8);
+      var own = i => w + i < Math.min(end, w + _VGPS_WIN);
+      var metaRe = /meta/g;
+      var m;
+      while (m = metaRe.exec(s)) {
+        var _p = m.index - 4;
+        if (_p < 0 || !own(_p) || inPatch(w + _p)) continue;
+        var sz = new DataView(u8.buffer, u8.byteOffset + _p, 4).getUint32(0);
+        if (sz < 24 || sz > 1024 * 1024 || w + _p + sz > end) continue;
+        if (s.slice(_p + 12, _p + 16) !== "hdlr" && s.slice(_p + 16, _p + 20) !== "hdlr") continue;
+        var reg = new Uint8Array(await blob.slice(w + _p, w + _p + sz).arrayBuffer());
+        var r = _stripVideoGpsRegion(reg);
+        if (r.refuse) return {
+          v: {
+            refuse: "embedded meta: " + r.refuse
+          }
+        };
+        if (r.n) patches.push({
+          off: w + _p,
+          bytes: reg
+        });
+      }
+      _VGPS_ISO_RE.lastIndex = 0;
+      while (m = _VGPS_ISO_RE.exec(s)) {
+        if (!own(m.index)) continue;
+        var abs = w + m.index,
+          host = inPatch(abs);
+        if (host) {
+          host.bytes.fill(0, abs - host.off, Math.min(host.bytes.length, abs - host.off + m[0].length));
+        } else patches.push({
+          off: abs,
+          bytes: new Uint8Array(m[0].length)
+        });
+      }
+      var chk = u8.slice();
+      for (var _p2 of patches) {
+        var a = Math.max(_p2.off, w),
+          z = Math.min(_p2.off + _p2.bytes.length, b);
+        if (a < z) chk.set(_p2.bytes.subarray(a - _p2.off, z - _p2.off), a - w);
+      }
+      var cs = dec.decode(chk);
+      if (new RegExp(_VGPS_ISO_RE.source).test(cs) || /location\.ISO6709|location\.accuracy/.test(cs)) return {
+        v: {
+          refuse: "coordinate left in media"
+        }
+      };
+    },
+    _ret5;
+  for (var w = start; w < end; w += _VGPS_WIN) {
+    _ret5 = await _loop5(w);
+    if (_ret5) return _ret5.v;
+  }
+  patches.sort((x, y) => x.off - y.off);
+  var parts = [];
+  var at = start;
+  for (var p of patches) {
+    if (p.off < at) return {
+      refuse: "overlapping patches"
+    };
+    if (p.off > at) parts.push(blob.slice(at, p.off));
+    parts.push(p.bytes);
+    at = p.off + p.bytes.length;
+  }
+  if (at < end) parts.push(blob.slice(at, end));
+  return {
+    parts,
+    n: patches.length
+  };
+}
+async function _stripVideoGps(blob) {
+  try {
+    if (!blob || typeof blob.slice !== "function") return null;
+    var size = blob.size;
+    var head = async pos => new DataView(await blob.slice(pos, Math.min(size, pos + 16)).arrayBuffer());
+    var boxes = [];
+    for (var pos = 0; pos < size;) {
+      if (pos + 8 > size) return null;
+      var h = await head(pos);
+      var boxSize = h.getUint32(0),
+        hdr = 8;
+      var type = String.fromCharCode(h.getUint8(4), h.getUint8(5), h.getUint8(6), h.getUint8(7));
+      if (boxSize === 1) {
+        if (h.byteLength < 16) return null;
+        boxSize = h.getUint32(8) * 4294967296 + h.getUint32(12);
+        hdr = 16;
+      } else if (boxSize === 0) boxSize = size - pos;
+      if (boxSize < hdr || pos + boxSize > size) return null;
+      if (["moof", "mfra", "sidx", "styp", "ssix"].includes(type)) return null;
+      boxes.push({
+        pos,
+        boxSize,
+        hdr,
+        type
+      });
+      pos += boxSize;
+    }
+    if (boxes.filter(b => b.type === "moov").length !== 1) return null;
+    var done = new Map();
+    var redacted = 0,
+      samples = [];
+    for (var b of boxes) {
+      if (b.type === "mdat") continue;
+      if (b.boxSize > _VGPS_MAX_BOX) return null;
+      var u8 = new Uint8Array(await blob.slice(b.pos, b.pos + b.boxSize).arrayBuffer());
+      var layout = b.type === "moov" ? [] : null;
+      var r = _stripVideoGpsRegion(u8, layout);
+      if (r.refuse) {
+        console.warn("[backup] video GPS strip refused:", r.refuse);
+        return null;
+      }
+      redacted += r.n;
+      var s = _vgpsLatin1(u8, 0, u8.byteLength);
+      if (_VGPS_COORD_RE.test(s) || /ISO6709/.test(s)) {
+        console.warn("[backup] video GPS strip: coordinate left in", b.type);
+        return null;
+      }
+      if (layout) {
+        var v = _vgpsSamples(u8, layout);
+        if (v.refuse) {
+          console.warn("[backup] video GPS strip refused:", v.refuse);
+          return null;
+        }
+        samples = v.samples;
+      }
+      done.set(b, u8);
+    }
+    var parts = [];
+    var covered = 0;
+    var _loop6 = async function () {
+        if (_b.type !== "mdat") {
+          parts.push(done.get(_b));
+          return 0;
+        }
+        var a = _b.pos + _b.hdr,
+          z = _b.pos + _b.boxSize;
+        var mine = samples.filter(s => s.off >= a && s.off + s.size <= z);
+        covered += mine.length;
+        var np = await _vgpsNalPatches(blob, mine.filter(s => s.fam), a, z);
+        if (np.refuse) {
+          console.warn("[backup] video GPS strip refused:", np.refuse);
+          return {
+            v: null
+          };
+        }
+        var at = a,
+          gap = 0;
+        var gaps = [];
+        for (var _s of mine) {
+          if (_s.off > at) {
+            gaps.push({
+              off: at,
+              bytes: new Uint8Array(_s.off - at)
+            });
+            gap += _s.off - at;
+          }
+          at = Math.max(at, _s.off + _s.size);
+        }
+        if (at < z) {
+          gaps.push({
+            off: at,
+            bytes: new Uint8Array(z - at)
+          });
+          gap += z - at;
+        }
+        if (gap > _VGPS_MAX_BOX) {
+          console.warn("[backup] video GPS strip refused: too much unreferenced media");
+          return {
+            v: null
+          };
+        }
+        parts.push(blob.slice(_b.pos, a));
+        var r = await _vgpsScanMedia(blob, a, z, np.patches.concat(gaps));
+        if (r.refuse) {
+          console.warn("[backup] video GPS strip refused:", r.refuse);
+          return {
+            v: null
+          };
+        }
+        parts.push(...r.parts);
+        redacted += r.n;
+      },
+      _ret6;
+    for (var _b of boxes) {
+      _ret6 = await _loop6();
+      if (_ret6 === 0) continue;
+      if (_ret6) return _ret6.v;
+    }
+    if (covered !== samples.length) {
+      console.warn("[backup] video GPS strip refused: samples outside mdat");
+      return null;
+    }
+    var out = new Blob(parts, {
+      type: blob.type || "video/quicktime"
+    });
+    if (out.size !== size) return null;
+    return {
+      blob: out,
+      redacted
+    };
+  } catch (e) {
+    console.warn("[backup] video GPS strip failed:", e && e.message);
+    return null;
+  }
+}
 function _festivalTzOffsetHours(cfg) {
   var day1 = (cfg || window.FESTIVAL_CONFIG)?.dayDates?.[1];
   if (!day1) return -7;
@@ -432,14 +1586,6 @@ function _photoFestivalNightWeekend(date, cfgIn, utcMs) {
   }
   return null;
 }
-function _haversineMeters(lat1, lng1, lat2, lng2) {
-  var R = 6371000;
-  var toRad = d => d * Math.PI / 180;
-  var dLat = toRad(lat2 - lat1);
-  var dLng = toRad(lng2 - lng1);
-  var a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(a));
-}
 function _activeDataSet() {
   return {
     id: window.FESTIVAL_CONFIG?.id || null,
@@ -468,6 +1614,14 @@ function _festivalSiteMeters(cfg, lat, lng) {
   var g = cfg?.gps;
   if (!g || g.lat == null || g.lng == null) return null;
   return _haversineMeters(lat, lng, g.lat, g.lng);
+}
+var _OFF_VENUE_MARGIN_M = 500;
+function _offVenueMeters(cfg, lat, lng, acc) {
+  var g = cfg?.gps;
+  if (lat == null || lng == null || !g || g.lat == null || g.lng == null || !(g.onSiteRadiusMi > 0)) return null;
+  var err = acc != null && isFinite(acc) && acc >= 0 ? acc : _GPS_STAGE_MAX_ACC_M;
+  var past = _haversineMeters(lat, lng, g.lat, g.lng) - err - g.onSiteRadiusMi * 1609.34;
+  return past > _OFF_VENUE_MARGIN_M ? Math.round(past) : null;
 }
 function _resolveFestivalForPhoto(meta) {
   var active = _activeDataSet();
@@ -643,6 +1797,58 @@ function _matchArtistForPhoto({
   var attendedSet = new Set(attendedIds || []);
   var savedSet = new Set(savedIds || []);
   var priorIds = [...new Set([...(attendedIds || []), ...(savedIds || [])])];
+  var stageAnchorsAll = resolvedStageAnchors(cfg);
+  var fixGate = lat != null && lng != null ? stageFixGate(stageAnchorsAll, {
+    lat,
+    lng,
+    accuracy: acc
+  }, null, STAGE_FIX_PHOTO) : {
+    status: "none"
+  };
+  var trustedStage = fixGate.status === "trusted" ? fixGate.stageId : null;
+  var gpsGate = fixGate.status === "none" ? undefined : {
+    status: fixGate.status,
+    stageId: trustedStage,
+    distM: fixGate.distM != null ? Math.round(fixGate.distM) : null,
+    marginM: fixGate.marginM != null ? Math.round(fixGate.marginM) : null
+  };
+  var playingIn = a => {
+    var w = setWindow(a);
+    return !!w && photoMs >= w.startMs - 5 * 60000 && photoMs <= w.endMs + 10 * 60000;
+  };
+  var playingNow = artists.filter(playingIn).sort((x, y) => setWindow(x).startMs - setWindow(y).startMs || String(x.id).localeCompare(String(y.id)));
+  if (trustedStage) {
+    var here = playingNow.filter(a => a.stage === trustedStage);
+    if (here.length) {
+      var edge = a => {
+        var w = setWindow(a);
+        return photoMs < w.startMs ? w.startMs - photoMs : photoMs > w.endMs ? photoMs - w.endMs : 0;
+      };
+      var act = here.slice().sort((x, y) => edge(x) - edge(y))[0];
+      var anchor = stageAnchorsAll.find(g => g.stageId === trustedStage);
+      var surveyGrade = !!anchor && (anchor.anchorSource === "osm" || anchor.anchorSource === "crowd");
+      var unpinned = playingNow.some(a => a.id !== act.id && !stageAnchorsAll.some(g => g.stageId === a.stage));
+      var priorPlaying = priorIds.filter(id => id !== act.id && playingNow.some(a => a.id === id));
+      var ambiguous = !surveyGrade || unpinned || here.length > 1 || priorPlaying.length > 0;
+      var own = attendedSet.has(act.id) ? "attended" : savedSet.has(act.id) ? "saved" : null;
+      var over = priorPlaying.length ? ";over-" + (priorPlaying.some(id => attendedSet.has(id)) ? "attended" : "saved") : "";
+      return {
+        localDate,
+        gpsRejected,
+        artistId: act.id,
+        night: act.day,
+        festivalId,
+        resolvedBy,
+        reason: own ? own + "_set_time" : "stage_gps_time",
+        evidence: (own ? own + "+time+stage-gps" : "trusted-gps+time") + over,
+        suggested: false,
+        anchorSource: anchor ? anchor.anchorSource : null,
+        ambiguous,
+        alternatives: ambiguous ? [act.id, ...playingNow.filter(a => a.id !== act.id).map(a => a.id)] : undefined,
+        gpsGate
+      };
+    }
+  }
   var priorHits = priorIds.map(id => artists.find(a => a.id === id)).filter(Boolean).map(a => {
     var w = setWindow(a);
     return w ? {
@@ -656,6 +1862,26 @@ function _matchArtistForPhoto({
     var hit = priorHits[0];
     var topTier = priorHits.filter(h => h.score === hit.score);
     var _ambiguous = topTier.length > 1;
+    var attended = attendedSet.has(hit.a.id);
+    if (!attended) {
+      var away = _offVenueMeters(cfg, lat, lng, acc);
+      if (away != null) {
+        return {
+          localDate,
+          gpsRejected,
+          artistId: null,
+          night,
+          festivalId,
+          resolvedBy,
+          reason: "off_venue",
+          evidence: "gps-off-venue",
+          distMeters: away,
+          defeated: hit.a.id
+        };
+      }
+    }
+    var atStage = trustedStage != null && trustedStage === hit.a.stage;
+    var evidence = attended ? "attended+time" : atStage ? "saved+time+stage-gps" : "saved+time";
     return {
       localDate,
       gpsRejected,
@@ -663,9 +1889,26 @@ function _matchArtistForPhoto({
       night: hit.a.day,
       festivalId,
       resolvedBy,
-      reason: attendedSet.has(hit.a.id) ? "attended_set_time" : "saved_set_time",
+      reason: attended ? "attended_set_time" : "saved_set_time",
+      evidence,
+      suggested: !attended && !atStage,
       ambiguous: _ambiguous,
-      alternatives: _ambiguous ? topTier.map(h => h.a.id) : undefined
+      alternatives: _ambiguous ? topTier.map(h => h.a.id) : undefined,
+      gpsGate
+    };
+  }
+  {
+    var _away = _offVenueMeters(cfg, lat, lng, acc);
+    if (_away != null) return {
+      localDate,
+      gpsRejected,
+      artistId: null,
+      night,
+      festivalId,
+      resolvedBy,
+      reason: "off_venue",
+      evidence: "gps-off-venue",
+      distMeters: _away
     };
   }
   if (sLat != null && sLng != null) {
@@ -700,47 +1943,38 @@ function _matchArtistForPhoto({
   var minOfDay = localDate.hh * 60 + localDate.mm;
   var adjustedMin = minOfDay < 480 ? minOfDay + 1440 : minOfDay;
   var candidates = [];
-  for (var _a of artists) {
-    if (_a.day !== night) continue;
-    var [sh, sm] = _a.start.split(":").map(Number);
-    var [eh, em] = _a.end.split(":").map(Number);
+  for (var _a2 of artists) {
+    if (_a2.day !== night) continue;
+    var [sh, sm] = _a2.start.split(":").map(Number);
+    var [eh, em] = _a2.end.split(":").map(Number);
     var startMin = (sh < 8 ? sh + 24 : sh) * 60 + sm;
     var endMin = (eh < 8 ? eh + 24 : eh) * 60 + em;
     if (adjustedMin >= startMin - 5 && adjustedMin <= endMin + 10) {
       candidates.push({
-        a: _a,
+        a: _a2,
         startMin,
         endMin
       });
     }
   }
   if (candidates.length === 0) {
-    if (sLat != null && sLng != null) {
-      var _anchors2 = resolvedStageAnchors(cfg);
-      var nearStage = null,
-        nearStageM = Infinity,
-        nearSource = null;
-      for (var g of _anchors2) {
-        var _m = _haversineMeters(sLat, sLng, g.lat, g.lng);
-        if (_m < nearStageM) {
-          nearStageM = _m;
-          nearStage = g.stageId;
-          nearSource = g.anchorSource;
-        }
-      }
-      if (nearStage && nearStageM <= 120) {
+    {
+      var nearStage = trustedStage;
+      var nearStageM = fixGate.distM;
+      var nearSource = (stageAnchorsAll.find(g => g.stageId === trustedStage) || {}).anchorSource || null;
+      if (nearStage) {
         var best = null,
           bestGap = Infinity;
-        for (var _a2 of artists) {
-          if (_a2.day !== night || _a2.stage !== nearStage) continue;
-          var [_sh, _sm] = _a2.start.split(":").map(Number);
-          var [_eh, _em] = _a2.end.split(":").map(Number);
+        for (var _a3 of artists) {
+          if (_a3.day !== night || _a3.stage !== nearStage) continue;
+          var [_sh, _sm] = _a3.start.split(":").map(Number);
+          var [_eh, _em] = _a3.end.split(":").map(Number);
           var _startMin = (_sh < 8 ? _sh + 24 : _sh) * 60 + _sm;
           var _endMin = (_eh < 8 ? _eh + 24 : _eh) * 60 + _em;
           var gap = adjustedMin < _startMin ? _startMin - adjustedMin : adjustedMin > _endMin ? adjustedMin - _endMin : 0;
           if (gap > 0 && gap < bestGap) {
             bestGap = gap;
-            best = _a2;
+            best = _a3;
           }
         }
         if (best && bestGap <= 60) {
@@ -774,41 +2008,1142 @@ function _matchArtistForPhoto({
       reason: "no_artist_at_time"
     };
   }
-  var inAttended = candidates.filter(c => attendedSet.has(c.a.id));
-  var inSaved = candidates.filter(c => savedSet.has(c.a.id));
-  var pool = inAttended.length ? inAttended : inSaved.length ? inSaved : candidates;
-  var _anchors = resolvedStageAnchors(cfg);
-  var stageDist = a => {
-    if (sLat == null || sLng == null) return Infinity;
-    var anchor = _anchors.find(g => g.stageId === a.stage);
-    if (!anchor) return Infinity;
-    var dLat = sLat - anchor.lat,
-      dLng = sLng - anchor.lng;
-    return dLat * dLat + dLng * dLng;
-  };
-  pool.sort((x, y) => {
-    var dx = stageDist(x.a),
-      dy = stageDist(y.a);
-    if (dx !== Infinity && dy !== Infinity && Math.abs(dx - dy) > 1e-9) return dx - dy;
-    return Math.abs(adjustedMin - x.startMin) - Math.abs(adjustedMin - y.startMin);
-  });
-  var dists = pool.map(c => stageDist(c.a));
-  var gpsSeparated = dists.every(d => d !== Infinity) && [...dists].sort((a, b) => a - b).slice(0, 2).reduce((a, b) => b - a, 0) > 1e-9;
-  var winnerAnchor = _anchors.find(g => g.stageId === pool[0].a.stage) || null;
-  var gpsDecided = sLat != null && sLng != null && pool.length > 1 && gpsSeparated;
-  var anchorSource = gpsDecided ? winnerAnchor ? winnerAnchor.anchorSource : null : null;
-  var surveyGrade = anchorSource === "osm" || anchorSource === "crowd";
-  var ambiguous = pool.length > 1 && !gpsSeparated || anchorSource != null && !surveyGrade;
+  if (fixGate.status === "outside" && candidates.length > 1) {
+    var pinned = a => stageAnchorsAll.some(g => g.stageId === a.stage);
+    var left = candidates.filter(c => !pinned(c.a));
+    if (left.length === 1) {
+      return {
+        localDate,
+        gpsRejected,
+        artistId: left[0].a.id,
+        night,
+        festivalId,
+        resolvedBy,
+        reason: "unpinned_by_exclusion",
+        ambiguous: true,
+        anchorSource: null,
+        gpsGate,
+        alternatives: [left[0].a.id, ...candidates.filter(c => c !== left[0]).sort((x, y) => x.startMin - y.startMin).map(c => c.a.id)]
+      };
+    }
+    if (left.length > 1) {
+      var ordered = [...left.sort((x, y) => x.startMin - y.startMin), ...candidates.filter(c => pinned(c.a)).sort((x, y) => x.startMin - y.startMin)];
+      return {
+        localDate,
+        gpsRejected,
+        artistId: null,
+        night,
+        festivalId,
+        resolvedBy,
+        reason: "several_playing",
+        ambiguous: true,
+        anchorSource: null,
+        gpsGate,
+        alternatives: ordered.map(c => c.a.id)
+      };
+    }
+  }
+  if (candidates.length === 1) {
+    return {
+      localDate,
+      gpsRejected,
+      artistId: candidates[0].a.id,
+      night,
+      festivalId,
+      resolvedBy,
+      reason: "matched",
+      ambiguous: false,
+      anchorSource: null,
+      gpsGate
+    };
+  }
+  var several = candidates.slice().sort((x, y) => x.startMin - y.startMin || String(x.a.id).localeCompare(String(y.a.id)));
   return {
     localDate,
     gpsRejected,
-    artistId: pool[0].a.id,
+    artistId: null,
     night,
     festivalId,
     resolvedBy,
-    reason: "matched",
-    ambiguous,
-    anchorSource,
-    alternatives: ambiguous ? pool.map(c => c.a.id) : undefined
+    reason: "several_playing",
+    ambiguous: true,
+    anchorSource: null,
+    alternatives: several.map(c => c.a.id),
+    gpsGate
+  };
+}
+function _scanNightWindows(cfgIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  if (!cfg?.dayDates) return [];
+  var H = 3600000,
+    slack = 30 * 60000;
+  var out = [];
+  for (var {
+    weekend,
+    shift
+  } of festivalWeekendShifts(cfg)) {
+    for (var n of Object.keys(cfg.dayDates).map(Number)) {
+      var dm = cfg.dayDates[n];
+      if (!dm || typeof dm.midnightUtc !== "number") continue;
+      var midnight = dm.midnightUtc + shift;
+      out.push({
+        night: n,
+        weekend,
+        startMs: midnight + 11 * H - slack,
+        endMs: midnight + 30 * H + slack
+      });
+    }
+  }
+  return out.sort((a, b) => a.startMs - b.startMs);
+}
+function _scanQueryRanges(cfgIn) {
+  var ranges = [];
+  for (var w of _scanNightWindows(cfgIn)) {
+    var last = ranges[ranges.length - 1];
+    if (last && w.startMs <= last.endMs) last.endMs = Math.max(last.endMs, w.endMs);else ranges.push({
+      startMs: w.startMs,
+      endMs: w.endMs
+    });
+  }
+  return ranges;
+}
+function _photoKitAssetMeta(asset, cfgIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  var ms = Number(asset?.createdMs);
+  if (!isFinite(ms) || ms <= 0) return null;
+  var lat = Number(asset.lat),
+    lng = Number(asset.lng);
+  var hasGps = asset.lat != null && asset.lng != null && isFinite(lat) && isFinite(lng) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180 && !(lat === 0 && lng === 0);
+  var acc = Number(asset.acc);
+  return {
+    date: _wallClockFromUtc(ms, cfg),
+    rawUtcMs: ms,
+    lat: hasGps ? lat : null,
+    lng: hasGps ? lng : null,
+    acc: hasGps && asset.acc != null && isFinite(acc) && acc >= 0 ? acc : null,
+    timestampSource: "photokit",
+    locationSource: hasGps ? "photokit-gps" : "none"
+  };
+}
+var _SCAN_SET_BUFFER_MS = 15 * 60000;
+var _SCAN_TIME_RE = /^(\d{1,2}):(\d{2})$/;
+function _zonedWallToUtc(yr, mo, dy, hh, mm, tz) {
+  var guess = Date.UTC(yr, mo - 1, dy, hh, mm);
+  if (!tz || typeof Intl === "undefined") return null;
+  var fmt;
+  try {
+    fmt = new Intl.DateTimeFormat("en-US", {
+      timeZone: tz,
+      hourCycle: "h23",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  } catch {
+    return null;
+  }
+  var offsetAt = ms => {
+    var p = {};
+    for (var x of fmt.formatToParts(new Date(ms))) p[x.type] = x.value;
+    return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour % 24, +p.minute) - ms;
+  };
+  var t = guess - offsetAt(guess);
+  t = guess - offsetAt(t);
+  return t;
+}
+function _scanNightLocalDate(cfg, n, shift) {
+  var dm = cfg?.dayDates?.[n];
+  if (!dm || typeof dm.midnightUtc !== "number") return null;
+  var ms = dm.midnightUtc + shift + 12 * 3600000;
+  if (cfg.tz && typeof Intl !== "undefined") {
+    try {
+      var p = {};
+      for (var x of new Intl.DateTimeFormat("en-US", {
+        timeZone: cfg.tz,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return {
+        yr: +p.year,
+        mo: +p.month,
+        dy: +p.day
+      };
+    } catch {}
+  }
+  var d = new Date(ms + _festivalTzOffsetHours(cfg) * 3600000);
+  return {
+    yr: d.getUTCFullYear(),
+    mo: d.getUTCMonth() + 1,
+    dy: d.getUTCDate()
+  };
+}
+function _scanActUtc(cfg, n, shift, hhmm) {
+  var m = _SCAN_TIME_RE.exec(String(hhmm || ""));
+  if (!m) return null;
+  var h = +m[1];
+  var mi = +m[2];
+  var date = _scanNightLocalDate(cfg, n, shift);
+  if (!date) return null;
+  var dayAdd = 0;
+  if (h < 8) dayAdd = 1;
+  var base = new Date(Date.UTC(date.yr, date.mo - 1, date.dy + dayAdd));
+  var utc = _zonedWallToUtc(base.getUTCFullYear(), base.getUTCMonth() + 1, base.getUTCDate(), h, mi, cfg.tz);
+  if (utc != null) return utc;
+  var dm = cfg.dayDates[n];
+  return dm.midnightUtc + shift + ((h < 8 ? h + 24 : h) * 60 + mi) * 60000;
+}
+function _scanSetWindows(cfgIn, artistsIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  var artists = artistsIn || cfg?.id && window._DATA_SETS?.[cfg.id]?.artists || (cfg === window.FESTIVAL_CONFIG ? window.ARTISTS : null) || [];
+  if (!cfg?.dayDates) return [];
+  var out = [];
+  for (var {
+    weekend,
+    shift
+  } of festivalWeekendShifts(cfg)) {
+    for (var n of Object.keys(cfg.dayDates).map(Number).sort((a, b) => a - b)) {
+      if (!cfg.dayDates[n] || typeof cfg.dayDates[n].midnightUtc !== "number") continue;
+      var startMs = Infinity,
+        endMs = -Infinity,
+        acts = 0;
+      for (var a of artists) {
+        if (Number(a?.day) !== n || !actPlaysWeekend(a, weekend)) continue;
+        if (setTimeStatus(a) !== "confirmed") continue;
+        var s0 = _scanActUtc(cfg, n, shift, a.start),
+          e0 = _scanActUtc(cfg, n, shift, a.end);
+        if (s0 == null || e0 == null) continue;
+        var e1 = e0 <= s0 ? e0 + 24 * 3600000 : e0;
+        acts++;
+        if (s0 < startMs) startMs = s0;
+        if (e1 > endMs) endMs = e1;
+      }
+      out.push(acts ? {
+        night: n,
+        weekend,
+        source: "set-times",
+        startMs: startMs - _SCAN_SET_BUFFER_MS,
+        endMs: endMs + _SCAN_SET_BUFFER_MS,
+        acts
+      } : {
+        night: n,
+        weekend,
+        source: "none",
+        acts: 0
+      });
+    }
+  }
+  return out;
+}
+function _scanWindowReport(cfgIn, artistsIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  return _scanSetWindows(cfg, artistsIn).map(w => {
+    if (w.source !== "set-times") return {
+      night: w.night,
+      weekend: w.weekend,
+      source: w.source
+    };
+    var f = ms => {
+      var d = _wallClockFromUtcTz(ms, cfg);
+      return `${d.yr}-${String(d.mo).padStart(2, "0")}-${String(d.dy).padStart(2, "0")} ${String(d.hh).padStart(2, "0")}:${String(d.mm).padStart(2, "0")}`;
+    };
+    return {
+      night: w.night,
+      weekend: w.weekend,
+      source: w.source,
+      acts: w.acts,
+      start: f(w.startMs),
+      end: f(w.endMs)
+    };
+  });
+}
+function _wallClockFromUtcTz(ms, cfg) {
+  if (cfg?.tz && typeof Intl !== "undefined") {
+    try {
+      var p = {};
+      for (var x of new Intl.DateTimeFormat("en-US", {
+        timeZone: cfg.tz,
+        hourCycle: "h23",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return {
+        yr: +p.year,
+        mo: +p.month,
+        dy: +p.day,
+        hh: +p.hour % 24,
+        mm: +p.minute
+      };
+    } catch {}
+  }
+  return _wallClockFromUtc(ms, cfg);
+}
+function _histFamilyConfig(festivalId, setsIn) {
+  var sets = setsIn || window._DATA_SETS || {};
+  for (var id of Object.keys(sets).sort()) {
+    var m = /^(.*)-(\d{4})$/.exec(id);
+    var c = sets[id]?.config;
+    if (m && m[1] === festivalId && c?.gps && c.gps.lat != null && c.gps.lng != null && c.gps.onSiteRadiusMi > 0) return c;
+  }
+  return null;
+}
+function _histMidnightUtc(iso, tz) {
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+  return m ? _zonedWallToUtc(+m[1], +m[2], +m[3], 0, 0, tz) : null;
+}
+function _histEditionConfig(entry, family) {
+  if (!entry?.id || !entry.timezone || !Array.isArray(entry.days) || !entry.days.length || !family?.gps) return null;
+  var dayDates = {};
+  for (var d of entry.days) {
+    var ms = _histMidnightUtc(d.date, entry.timezone);
+    if (typeof ms !== "number") return null;
+    dayDates[d.day] = {
+      midnightUtc: ms,
+      date: d.date,
+      label: d.label || null
+    };
+  }
+  return {
+    id: entry.id,
+    name: entry.name,
+    shortName: entry.name,
+    tz: entry.timezone,
+    dayDates,
+    gps: {
+      lat: family.gps.lat,
+      lng: family.gps.lng,
+      onSiteRadiusMi: family.gps.onSiteRadiusMi
+    },
+    historical: true,
+    festivalId: entry.festivalId,
+    year: entry.year
+  };
+}
+function _histScanTargets(index, setsIn, calendar, nowMs) {
+  var now = typeof nowMs === "number" ? nowMs : Date.now();
+  var lib = new Map();
+  for (var e of index && index.editions || []) if (e && e.id && e.status !== "canceled") lib.set(e.id, e);
+  var out = new Map();
+  for (var c of calendar && calendar.editions || []) {
+    if (!c || !c.id || out.has(c.id) || !c.gps) continue;
+    var libEntry = lib.get(c.id) || null;
+    var cfg = _histEditionConfig(libEntry || c, {
+      gps: c.gps
+    });
+    if (!cfg) continue;
+    cfg.venue = c.venue || null;
+    out.set(c.id, {
+      entry: libEntry || c,
+      cfg,
+      inLibrary: !!libEntry
+    });
+  }
+  for (var _e of lib.values()) {
+    if (out.has(_e.id)) continue;
+    var fam = _histFamilyConfig(_e.festivalId, setsIn);
+    var _cfg = fam ? _histEditionConfig(_e, fam) : null;
+    if (_cfg) out.set(_e.id, {
+      entry: _e,
+      cfg: _cfg,
+      inLibrary: true
+    });
+  }
+  return [...out.values()].filter(t => Object.values(t.cfg.dayDates).some(d => d.midnightUtc <= now)).sort((a, b) => a.entry.year - b.entry.year || String(a.entry.id).localeCompare(String(b.entry.id)));
+}
+function _histAssetOnSite(asset, cfg) {
+  var g = cfg?.gps;
+  var lat = Number(asset?.lat),
+    lng = Number(asset?.lng);
+  if (!g || asset?.lat == null || asset?.lng == null || !isFinite(lat) || !isFinite(lng) || lat === 0 && lng === 0) return false;
+  var acc = Number(asset.acc);
+  var err = asset.acc != null && isFinite(acc) && acc >= 0 ? Math.min(acc, _OFF_VENUE_MARGIN_M) : 0;
+  return _haversineMeters(lat, lng, g.lat, g.lng) - err <= g.onSiteRadiusMi * 1609.34 + _OFF_VENUE_MARGIN_M;
+}
+function _histEditionArtists(edition) {
+  var names = new Map((edition && edition.artists || []).map(a => [a.id, a.name]));
+  var sets = edition && edition.sets || [];
+  var close = {};
+  for (var s of sets) {
+    var e = _hhmmNightMin(s.end);
+    if (s.start && e != null && (close[s.day] == null || e > close[s.day])) close[s.day] = e;
+  }
+  var hhmm = min => `${String(Math.floor(min / 60) % 24).padStart(2, "0")}:${String(min % 60).padStart(2, "0")}`;
+  var out = [];
+  for (var _s2 of sets) {
+    var st = _hhmmNightMin(_s2.start);
+    if (st == null || !_s2.artistId) continue;
+    var end = _s2.end;
+    if (_hhmmNightMin(end) == null) {
+      if (close[_s2.day] == null || close[_s2.day] <= st) continue;
+      end = hhmm(close[_s2.day]);
+    }
+    out.push({
+      id: _s2.artistId,
+      name: names.get(_s2.artistId) || "",
+      day: _s2.day,
+      stage: _s2.stageId || null,
+      start: _s2.start,
+      end,
+      setId: _s2.id,
+      endPrinted: !!_s2.end
+    });
+  }
+  return out;
+}
+function _histEditionMoments(editionId) {
+  var all = {};
+  try {
+    all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {};
+  } catch {}
+  var out = [];
+  for (var night of Object.keys(all)) for (var m of Array.isArray(all[night]) ? all[night] : []) {
+    if (m && m.festivalId === editionId) out.push(m);
+  }
+  return out.sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")));
+}
+function _histMomentEditionIds() {
+  var all = {};
+  try {
+    all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {};
+  } catch {}
+  var ids = new Set();
+  for (var night of Object.keys(all)) for (var m of Array.isArray(all[night]) ? all[night] : []) {
+    if (m && m.festivalStampSource === "past-edition" && /^[a-z0-9-]+-\d{4}$/.test(m.festivalId || "")) ids.add(m.festivalId);
+  }
+  return ids;
+}
+function _histDataSet(edition, cfg) {
+  return {
+    id: cfg.id,
+    config: cfg,
+    artists: _histEditionArtists(edition),
+    amenities: [],
+    resolvedBy: "past-edition-scan"
+  };
+}
+function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  var seen = seenIds instanceof Set ? seenIds : new Set(seenIds || []);
+  var windows = _scanSetWindows(cfg, artistsIn);
+  var timed = windows.filter(w => w.source === "set-times");
+  var untimed = new Set(windows.filter(w => w.source !== "set-times").map(w => `${w.night}|${w.weekend}`));
+  var keep = [];
+  var outside = 0,
+    outsideSets = 0,
+    fullNight = 0,
+    already = 0;
+  var _loop7 = function () {
+      if (!a || !a.id) return 0;
+      var ms = Number(a.createdMs);
+      if (!isFinite(ms)) {
+        outside++;
+        return 0;
+      }
+      var whole = false;
+      if (!timed.some(w => ms >= w.startMs && ms <= w.endMs)) {
+        var nw = _photoFestivalNightWeekend(null, cfg, ms);
+        if (!nw) {
+          outside++;
+          return 0;
+        }
+        if (!untimed.has(`${nw.night}|${nw.weekend}`)) {
+          outsideSets++;
+          return 0;
+        }
+        whole = true;
+      }
+      if (seen.has(a.id)) {
+        already++;
+        return 0;
+      }
+      if (whole) fullNight++;
+      keep.push(a);
+    },
+    _ret7;
+  for (var a of assets || []) {
+    _ret7 = _loop7();
+    if (_ret7 === 0) continue;
+  }
+  keep.sort((x, y) => Number(x.createdMs) - Number(y.createdMs));
+  return {
+    keep,
+    outside,
+    outsideSets,
+    fullNight,
+    untimedNights: untimed.size,
+    already,
+    nightsWithoutSetTimes: windows.filter(w => w.source !== "set-times").map(w => ({
+      night: w.night,
+      weekend: w.weekend
+    }))
+  };
+}
+function _pickerErrorIsCancel(err) {
+  var msg = String(err && (err.message || err.errorMessage) || err || "").trim();
+  return /^pick(Files|Media|Images|Videos)? cancel(l)?ed\.?$/i.test(msg);
+}
+function _scanChunks(assets, maxPhotos = 20) {
+  var chunks = [];
+  for (var a of assets || []) {
+    var last = chunks[chunks.length - 1];
+    if (a?.mediaType !== "video" && last && last.length < maxPhotos && last[0]?.mediaType !== "video") last.push(a);else chunks.push([a]);
+  }
+  return chunks;
+}
+var _SCAN_SEEN_KEY = "plursky_scan_seen_v1";
+var _SCAN_SEEN_MAX = 20000;
+function _scanSeenRead() {
+  try {
+    var v = JSON.parse(localStorage.getItem(_SCAN_SEEN_KEY) || "[]");
+    return new Set(Array.isArray(v) ? v.filter(x => typeof x === "string") : []);
+  } catch {
+    return new Set();
+  }
+}
+function _scanSeenAdd(ids) {
+  var cur = [..._scanSeenRead()];
+  var have = new Set(cur);
+  for (var id of ids || []) if (typeof id === "string" && !have.has(id)) {
+    cur.push(id);
+    have.add(id);
+  }
+  var trimmed = cur.length > _SCAN_SEEN_MAX ? cur.slice(cur.length - _SCAN_SEEN_MAX) : cur;
+  try {
+    localStorage.setItem(_SCAN_SEEN_KEY, JSON.stringify(trimmed));
+  } catch {}
+  return trimmed.length;
+}
+async function _pastScanFind(PS, onProgress) {
+  var [index, calendar] = await Promise.all([_histFetch("index.json").catch(() => null), _histFetch("scan-calendar.json").catch(() => null)]);
+  if (!index && !calendar) throw new Error("past festival lists unavailable");
+  var targets = _histScanTargets(index, null, calendar);
+  var seen = _scanSeenRead();
+  var found = [];
+  var already = 0;
+  var _loop8 = async function (t) {
+    if (onProgress && i % 10 === 0) onProgress(i, targets.length);
+    var assets = [];
+    for (var r of _scanQueryRanges(t.cfg)) {
+      var res = await PS.scan({
+        startMs: r.startMs,
+        endMs: r.endMs
+      });
+      assets.push(...(res?.assets || []));
+    }
+    var onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
+    if (!onSite.length) return 1;
+    var ds = _histDataSet(t.inLibrary ? await _histFetch(`editions/${t.entry.id}.json`) : null, t.cfg);
+    var pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
+    already += pick.already;
+    if (pick.keep.length) found.push({
+      t,
+      ds,
+      keep: pick.keep
+    });
+  };
+  for (var [i, t] of targets.entries()) {
+    if (await _loop8(t)) continue;
+  }
+  return {
+    found,
+    already,
+    years: targets.length
+  };
+}
+var _PAST_SCAN_HANDOFF_MS = 10 * 60 * 1000;
+function _pastScanHandoffSet(result) {
+  window._pastScanHandoff = result ? {
+    at: Date.now(),
+    result
+  } : null;
+  if (result) window.dispatchEvent(new Event("plursky:past-scan-handoff"));
+}
+function _pastScanHandoffTake() {
+  var h = window._pastScanHandoff;
+  window._pastScanHandoff = null;
+  return h && Date.now() - h.at < _PAST_SCAN_HANDOFF_MS ? h.result : null;
+}
+function _pastScanSummary(found) {
+  var photos = 0,
+    videos = 0;
+  var years = [];
+  for (var f of found || []) {
+    var v = f.keep.filter(a => a?.mediaType === "video").length;
+    videos += v;
+    photos += f.keep.length - v;
+    years.push({
+      id: f.t.entry.id,
+      name: f.t.entry.name,
+      year: f.t.entry.year,
+      count: f.keep.length
+    });
+  }
+  years.sort((a, b) => (b.year || 0) - (a.year || 0));
+  return {
+    photos,
+    videos,
+    total: photos + videos,
+    years
+  };
+}
+var _SCAN_DIAG_KEY = "plursky_scan_diag_v1";
+var _SCAN_DIAG_SALT_KEY = "plursky_scan_diag_salt_v1";
+var _SCAN_DIAG_MAX_EVENTS = 60;
+var _SCAN_DIAG_MAX_CHANGES = 80;
+var _SCAN_DIAG_MAX_RECORDS = 1500;
+var _SCAN_DIAG_MAX_CHARS = 38000;
+function _scanDiagSalt() {
+  try {
+    var s = localStorage.getItem(_SCAN_DIAG_SALT_KEY);
+    if (!s || !/^[0-9a-f]{32}$/.test(s)) {
+      var b = new Uint8Array(16);
+      if (window.crypto?.getRandomValues) window.crypto.getRandomValues(b);else for (var i = 0; i < 16; i++) b[i] = Math.floor(Math.random() * 256);
+      s = [...b].map(x => x.toString(16).padStart(2, "0")).join("");
+      localStorage.setItem(_SCAN_DIAG_SALT_KEY, s);
+    }
+    return s;
+  } catch {
+    return "nosalt";
+  }
+}
+function _scanDiagHash(id, salt) {
+  var str = `${salt}|${id}`;
+  var h1 = 0x811c9dc5,
+    h2 = 0x01000193 ^ 0x5bd1e995;
+  for (var i = 0; i < str.length; i++) {
+    var c = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ c, 0x01000193) >>> 0;
+    h2 = Math.imul(h2 ^ c, 0x5bd1e995) >>> 0;
+    h2 = (h2 ^ h2 >>> 13) >>> 0;
+  }
+  return h1.toString(16).padStart(8, "0") + h2.toString(16).padStart(8, "0");
+}
+var _scanDiagStr = (v, re, max = 40) => typeof v === "string" && v.length <= max && re.test(v) ? v : v == null ? null : "?";
+var _SCAN_DIAG_ID_RE = /^[A-Za-z0-9_.:-]+$/;
+var _SCAN_DIAG_LABEL_RE = /^[a-z0-9_-]+$/i;
+function _scanDiagRecord(m, night, salt) {
+  return {
+    h: _scanDiagHash(String(m.id), salt),
+    f: _scanDiagStr(m.festivalId, _SCAN_DIAG_ID_RE),
+    n: Number.isFinite(Number(night)) ? Number(night) : null,
+    a: _scanDiagStr(m.artistId, _SCAN_DIAG_ID_RE),
+    ts: _scanDiagStr(m.tagSource, _SCAN_DIAG_LABEL_RE),
+    fs: _scanDiagStr(m.festivalStampSource, _SCAN_DIAG_LABEL_RE),
+    tk: _scanDiagStr(m.takenAtSource, _SCAN_DIAG_LABEL_RE),
+    k: m.kind === "video" ? "v" : "p",
+    auto: m.autoTagged ? 1 : 0,
+    amb: m.tagAmbiguous ? 1 : 0,
+    rt: m.needsRetag ? 1 : 0,
+    fp: m._fingerprint ? 1 : 0
+  };
+}
+function _scanDiagRecords(all, salt) {
+  var out = [];
+  for (var night of Object.keys(all || {})) {
+    var arr = all[night];
+    if (!Array.isArray(arr)) continue;
+    for (var m of arr) if (m && m.id != null) out.push(_scanDiagRecord(m, night, salt));
+  }
+  return out;
+}
+function _scanDiagSummary(records) {
+  var byFest = {},
+    bySource = {};
+  for (var r of records) {
+    var f = r.f || "-",
+      n = r.n == null ? "-" : String(r.n),
+      a = r.a || "-";
+    byFest[f] = byFest[f] || {
+      total: 0,
+      nights: {}
+    };
+    byFest[f].total++;
+    var nn = byFest[f].nights[n] = byFest[f].nights[n] || {};
+    nn[a] = (nn[a] || 0) + 1;
+    var s = r.ts || "-";
+    bySource[s] = (bySource[s] || 0) + 1;
+  }
+  return {
+    total: records.length,
+    byFest,
+    bySource
+  };
+}
+function _scanDiagRead() {
+  try {
+    var v = JSON.parse(localStorage.getItem(_SCAN_DIAG_KEY) || "null");
+    if (v && typeof v === "object" && Array.isArray(v.events)) return v;
+  } catch {}
+  return {
+    v: 1,
+    before: null,
+    last: null,
+    events: []
+  };
+}
+function _scanDiagWrite(d) {
+  try {
+    localStorage.setItem(_SCAN_DIAG_KEY, JSON.stringify(d));
+    return true;
+  } catch {
+    return false;
+  }
+}
+function _scanDiagOrigin(stack) {
+  var names = [];
+  for (var line of String(stack || "").split("\n")) {
+    var m = line.match(/^\s*(?:at\s+)?(?:async\s+)?([A-Za-z_$][\w$.]*)\s*(?:@|\()/);
+    var nm = m && m[1].split(".").pop();
+    if (!nm || /^_scanDiag|^_writeMoments$|^Error$/.test(nm)) continue;
+    if (nm.length <= 40) names.push(nm);
+    if (names.length >= 4) break;
+  }
+  return names.join(">") || "?";
+}
+function _scanDiagEnsureBefore(allIn) {
+  try {
+    var d = _scanDiagRead();
+    if (d.before) return false;
+    var salt = _scanDiagSalt();
+    var all = allIn || JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    var records = _scanDiagRecords(all, salt);
+    d.before = {
+      t: new Date().toISOString(),
+      summary: _scanDiagSummary(records),
+      records: records.slice(0, _SCAN_DIAG_MAX_RECORDS),
+      truncated: records.length > _SCAN_DIAG_MAX_RECORDS
+    };
+    d.last = Object.fromEntries(records.map(r => [r.h, `${r.f}|${r.n}|${r.a}|${r.ts}`]));
+    d.events.push({
+      t: d.before.t,
+      ev: "before",
+      origin: "boot",
+      total: records.length
+    });
+    return _scanDiagWrite(d);
+  } catch {
+    return false;
+  }
+}
+function _scanDiagLog(ev, all, stack) {
+  try {
+    var d = _scanDiagRead();
+    var salt = _scanDiagSalt();
+    var cur = all || JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    var records = _scanDiagRecords(cur, salt);
+    var now = {};
+    for (var r of records) now[r.h] = `${r.f}|${r.n}|${r.a}|${r.ts}`;
+    var prev = d.last || {};
+    var added = 0,
+      removed = 0,
+      changed = 0;
+    var changes = [];
+    for (var h of Object.keys(now)) {
+      if (!(h in prev)) {
+        added++;
+        if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`+${h}:${now[h]}`);
+      } else if (prev[h] !== now[h]) {
+        changed++;
+        if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`~${h}:${prev[h]}>${now[h]}`);
+      }
+    }
+    for (var _h of Object.keys(prev)) if (!(_h in now)) {
+      removed++;
+      if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`-${_h}:${prev[_h]}`);
+    }
+    var origin = ev === "write" ? _scanDiagOrigin(stack) : ev;
+    var lastEv = d.events[d.events.length - 1];
+    if (ev === "write" && lastEv && lastEv.ev === "write" && lastEv.origin === origin) {
+      lastEv.writes = (lastEv.writes || 1) + 1;
+      lastEv.tEnd = new Date().toISOString();
+      lastEv.total = records.length;
+      lastEv.added += added;
+      lastEv.removed += removed;
+      lastEv.changed += changed;
+      for (var c of changes) if (lastEv.changes.length < _SCAN_DIAG_MAX_CHANGES) lastEv.changes.push(c);
+    } else {
+      d.events.push({
+        t: new Date().toISOString(),
+        ev,
+        origin,
+        total: records.length,
+        added,
+        removed,
+        changed,
+        changes
+      });
+      if (d.events.length > _SCAN_DIAG_MAX_EVENTS) {
+        d.events.splice(1, d.events.length - _SCAN_DIAG_MAX_EVENTS);
+      }
+    }
+    d.last = now;
+    return _scanDiagWrite(d);
+  } catch {
+    return false;
+  }
+}
+var _SCAN_DIAG_HASH_RE = /^[0-9a-f]{16}$/;
+var _SCAN_DIAG_ISO_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,3})?Z$/;
+var _SCAN_DIAG_NIGHT_RE = /^(-|_other|\d{1,3})$/;
+var _SCAN_DIAG_EV_RE = /^[a-z-]{1,20}$/;
+var _SCAN_DIAG_ORIGIN_RE = /^[A-Za-z0-9_$>?-]{1,170}$/;
+var _SCAN_DIAG_SEG = "[A-Za-z0-9_.:?-]{1,40}";
+var _SCAN_DIAG_STATE = `${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}`;
+var _SCAN_DIAG_CHANGE_RE = new RegExp(`^[+~-][0-9a-f]{16}:${_SCAN_DIAG_STATE}(>${_SCAN_DIAG_STATE})?$`);
+var _scanDiagInt = v => Number.isInteger(v) && v >= 0 && v < 1e7 ? v : 0;
+var _scanDiagKey = (k, re) => typeof k === "string" && k.length <= 40 && re.test(k);
+function _scanDiagCleanRecord(r) {
+  if (!r || typeof r !== "object" || !_SCAN_DIAG_HASH_RE.test(r.h)) return null;
+  return {
+    h: r.h,
+    f: _scanDiagStr(r.f, _SCAN_DIAG_ID_RE),
+    n: Number.isInteger(r.n) && r.n >= 0 && r.n < 1000 ? r.n : null,
+    a: _scanDiagStr(r.a, _SCAN_DIAG_ID_RE),
+    ts: _scanDiagStr(r.ts, _SCAN_DIAG_LABEL_RE),
+    fs: _scanDiagStr(r.fs, _SCAN_DIAG_LABEL_RE),
+    tk: _scanDiagStr(r.tk, _SCAN_DIAG_LABEL_RE),
+    k: r.k === "v" ? "v" : "p",
+    auto: r.auto ? 1 : 0,
+    amb: r.amb ? 1 : 0,
+    rt: r.rt ? 1 : 0,
+    fp: r.fp ? 1 : 0
+  };
+}
+function _scanDiagCleanCounts(obj, keyRe) {
+  var out = {};
+  if (!obj || typeof obj !== "object") return out;
+  for (var k of Object.keys(obj)) if (_scanDiagKey(k, keyRe)) out[k] = _scanDiagInt(obj[k]);
+  return out;
+}
+function _scanDiagCleanSummary(sIn) {
+  var sum = sIn && typeof sIn === "object" ? sIn : {};
+  var byFest = {};
+  for (var f of Object.keys(sum.byFest || {})) {
+    var fv = sum.byFest[f];
+    if (!_scanDiagKey(f, _SCAN_DIAG_ID_RE) || !fv || typeof fv !== "object") continue;
+    var nights = {};
+    for (var n of Object.keys(fv.nights || {})) {
+      if (_scanDiagKey(n, _SCAN_DIAG_NIGHT_RE)) nights[n] = _scanDiagCleanCounts(fv.nights[n], _SCAN_DIAG_ID_RE);
+    }
+    byFest[f] = {
+      total: _scanDiagInt(fv.total),
+      nights
+    };
+  }
+  return {
+    total: _scanDiagInt(sum.total),
+    byFest,
+    bySource: _scanDiagCleanCounts(sum.bySource, _SCAN_DIAG_ID_RE)
+  };
+}
+function _scanDiagCleanEvent(e) {
+  if (!e || typeof e !== "object") return null;
+  var out = {
+    t: typeof e.t === "string" && _SCAN_DIAG_ISO_RE.test(e.t) ? e.t : null,
+    ev: typeof e.ev === "string" && _SCAN_DIAG_EV_RE.test(e.ev) ? e.ev : "?",
+    origin: typeof e.origin === "string" && _SCAN_DIAG_ORIGIN_RE.test(e.origin) ? e.origin : "?",
+    total: _scanDiagInt(e.total)
+  };
+  if (typeof e.tEnd === "string" && _SCAN_DIAG_ISO_RE.test(e.tEnd)) out.tEnd = e.tEnd;
+  if (e.ev !== "before") {
+    out.added = _scanDiagInt(e.added);
+    out.removed = _scanDiagInt(e.removed);
+    out.changed = _scanDiagInt(e.changed);
+    if (Number.isInteger(e.writes)) out.writes = _scanDiagInt(e.writes);
+    out.changes = Array.isArray(e.changes) ? e.changes.filter(c => typeof c === "string" && c.length <= 260 && _SCAN_DIAG_CHANGE_RE.test(c)) : [];
+  }
+  return out;
+}
+function _scanDiagTop(obj, k, val = v => v) {
+  var e = Object.entries(obj);
+  if (e.length <= k) return {
+    out: obj,
+    cut: false
+  };
+  e.sort((x, y) => val(y[1]) - val(x[1]));
+  return {
+    out: Object.fromEntries(e.slice(0, k)),
+    rest: e.slice(k),
+    cut: true
+  };
+}
+function _scanDiagTrimSummary(sum, k) {
+  if (k === Infinity) return {
+    sum,
+    cut: false
+  };
+  var cut = false;
+  var byFest = {};
+  var f = _scanDiagTop(sum.byFest, k, v => v.total);
+  if (f.cut) {
+    cut = true;
+    byFest._other = {
+      total: f.rest.reduce((t, [, v]) => t + v.total, 0),
+      nights: {}
+    };
+  }
+  for (var [fid, fv] of Object.entries(f.out)) {
+    var nights = {};
+    var ns = _scanDiagTop(fv.nights, k, v => Object.values(v).reduce((t, c) => t + c, 0));
+    if (ns.cut) {
+      cut = true;
+      nights._other = {
+        _other: ns.rest.reduce((t, [, v]) => t + Object.values(v).reduce((a, c) => a + c, 0), 0)
+      };
+    }
+    for (var [n, arts] of Object.entries(ns.out)) {
+      var a = _scanDiagTop(arts, k);
+      if (a.cut) {
+        cut = true;
+        a.out = {
+          ...a.out,
+          _other: (a.out._other || 0) + a.rest.reduce((t, [, c]) => t + c, 0)
+        };
+      }
+      nights[n] = a.out;
+    }
+    byFest[fid] = {
+      total: fv.total,
+      nights
+    };
+  }
+  var src = _scanDiagTop(sum.bySource, k);
+  if (src.cut) {
+    cut = true;
+    src.out = {
+      ...src.out,
+      _other: (src.out._other || 0) + src.rest.reduce((t, [, c]) => t + c, 0)
+    };
+  }
+  return {
+    sum: {
+      total: sum.total,
+      byFest,
+      bySource: src.out
+    },
+    cut
+  };
+}
+function _scanDiagExportText(meta = {}) {
+  var d = _scanDiagRead();
+  var salt = _scanDiagSalt();
+  var all = (() => {
+    try {
+      return JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    } catch {
+      return {};
+    }
+  })();
+  var nowRecords = _scanDiagRecords(all, salt).map(_scanDiagCleanRecord).filter(Boolean);
+  var nowSummary = _scanDiagCleanSummary(_scanDiagSummary(nowRecords));
+  var b = d.before && typeof d.before === "object" ? d.before : null;
+  var beforeRecords = b && Array.isArray(b.records) ? b.records.map(_scanDiagCleanRecord).filter(Boolean) : [];
+  var beforeSummary = b ? _scanDiagCleanSummary(b.summary) : null;
+  var beforeT = b && typeof b.t === "string" && _SCAN_DIAG_ISO_RE.test(b.t) ? b.t : null;
+  var beforeCut = !!(b && b.truncated);
+  var events = (Array.isArray(d.events) ? d.events : []).map(_scanDiagCleanEvent).filter(Boolean);
+  var ver = typeof meta.appVersion === "string" && /^v\d+$/.test(meta.appVersion) ? meta.appVersion : null;
+  var created = new Date().toISOString();
+  var head = () => ({
+    schema: "plursky-scan-diag/1",
+    created,
+    app: ver,
+    activeFestival: _scanDiagStr(window.FESTIVAL_CONFIG?.id, _SCAN_DIAG_ID_RE),
+    scanSeen: (() => {
+      try {
+        return _scanSeenRead().size;
+      } catch {
+        return null;
+      }
+    })()
+  });
+  var build = ({
+    rec,
+    ev,
+    ch,
+    k
+  }) => {
+    var evKeep = ev >= events.length ? events : ev <= 0 ? [] : [events[0], ...events.slice(1).slice(-(ev - 1))];
+    var changesCut = false;
+    var evOut = evKeep.map(e => {
+      if (!e.changes) return e;
+      if (e.changes.length > ch || e.changes.length < e.added + e.removed + e.changed) changesCut = true;
+      return {
+        ...e,
+        changes: e.changes.slice(0, ch)
+      };
+    });
+    var bs = beforeSummary ? _scanDiagTrimSummary(beforeSummary, k) : null;
+    var ns = _scanDiagTrimSummary(nowSummary, k);
+    return {
+      ...head(),
+      truncated: {
+        records: beforeCut || beforeRecords.length > rec || nowRecords.length > rec,
+        events: events.length - evOut.length,
+        changes: changesCut,
+        summary: !!(bs && bs.cut) || ns.cut
+      },
+      eventsTotal: events.length,
+      before: b ? {
+        t: beforeT,
+        total: beforeSummary.total,
+        summary: bs.sum,
+        truncated: beforeCut || beforeRecords.length > rec,
+        records: beforeRecords.slice(0, rec)
+      } : null,
+      now: {
+        total: nowRecords.length,
+        summary: ns.sum,
+        truncated: nowRecords.length > rec,
+        records: nowRecords.slice(0, rec)
+      },
+      events: evOut
+    };
+  };
+  var steps = [];
+  for (var n = _SCAN_DIAG_MAX_RECORDS; n > 0; n = Math.floor(n * 0.7)) steps.push({
+    rec: n,
+    ev: _SCAN_DIAG_MAX_EVENTS,
+    ch: _SCAN_DIAG_MAX_CHANGES,
+    k: Infinity
+  });
+  steps.push({
+    rec: 0,
+    ev: _SCAN_DIAG_MAX_EVENTS,
+    ch: _SCAN_DIAG_MAX_CHANGES,
+    k: Infinity
+  }, {
+    rec: 0,
+    ev: 30,
+    ch: 20,
+    k: Infinity
+  }, {
+    rec: 0,
+    ev: 10,
+    ch: 5,
+    k: Infinity
+  });
+  for (var k of [200, 50, 20, 5, 1, 0]) steps.push({
+    rec: 0,
+    ev: 10,
+    ch: 5,
+    k
+  });
+  steps.push({
+    rec: 0,
+    ev: 0,
+    ch: 0,
+    k: 0
+  });
+  for (var p of steps) {
+    var text = JSON.stringify(build(p));
+    if (text.length <= _SCAN_DIAG_MAX_CHARS) return text;
+  }
+  return JSON.stringify({
+    ...head(),
+    truncated: {
+      records: true,
+      events: events.length,
+      changes: true,
+      summary: true
+    },
+    eventsTotal: events.length,
+    before: b ? {
+      total: beforeSummary.total
+    } : null,
+    now: {
+      total: nowRecords.length
+    }
+  }).slice(0, _SCAN_DIAG_MAX_CHARS);
+}
+async function _scanDiagShare(meta = {}) {
+  _scanDiagLog("share", null, "");
+  var text = _scanDiagExportText(meta);
+  var capShare = window.Capacitor?.Plugins?.Share;
+  if (capShare?.share && window.Capacitor?.isNativePlatform?.()) {
+    try {
+      await capShare.share({
+        title: "Plursky scan diagnostic",
+        text,
+        dialogTitle: "Send scan diagnostic"
+      });
+      return {
+        ok: true,
+        mode: "share",
+        chars: text.length
+      };
+    } catch (e) {
+      if (/cancel|abort/i.test(e?.message || "")) return {
+        ok: false,
+        mode: "cancelled",
+        chars: text.length
+      };
+      return {
+        ok: false,
+        mode: "error",
+        chars: text.length
+      };
+    }
+  }
+  if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
+    try {
+      await navigator.share({
+        title: "Plursky scan diagnostic",
+        text
+      });
+      return {
+        ok: true,
+        mode: "share",
+        chars: text.length
+      };
+    } catch (e) {
+      if (e?.name === "AbortError") return {
+        ok: false,
+        mode: "cancelled",
+        chars: text.length
+      };
+    }
+  }
+  var clip = typeof navigator !== "undefined" ? navigator.clipboard : null;
+  if (!clip || typeof clip.writeText !== "function") return {
+    ok: false,
+    mode: "unavailable",
+    chars: text.length
+  };
+  try {
+    await clip.writeText(text);
+    return {
+      ok: true,
+      mode: "copied",
+      chars: text.length
+    };
+  } catch {
+    return {
+      ok: false,
+      mode: "error",
+      chars: text.length
+    };
+  }
+}
+try {
+  _scanDiagEnsureBefore();
+} catch {}
+function _memoriesImportCopy(pickerAvailable, scanAvailable) {
+  if (pickerAvailable) return {
+    invite: "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.",
+    withSets: "Import photos or videos and they’ll land on the sets below."
+  };
+  if (scanAvailable) return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. Tap Scan my weekend above to bring in your festival nights.",
+    withSets: "Scan my weekend above and your clips will land on the sets below."
+  };
+  return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet.",
+    withSets: "This build can’t open your photo library, so the sets below are your library for now."
   };
 }

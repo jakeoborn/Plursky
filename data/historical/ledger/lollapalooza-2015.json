@@ -1,0 +1,79 @@
+{
+  "id": "lollapalooza-2015",
+  "method": "official_sources",
+  "official": "https://www.lollapalooza.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2015-07-31",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.lollapalooza.com:80/2015-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20150818033332/http://www.lollapalooza.com:80/2015-schedule/",
+          "captureTimestamp": "20150818033332",
+          "printed": "Friday Jul 31st",
+          "sha256": "e347de77afb35f980a4a4f301f30d1064283b0ab8f1cfae80f5966b108c66820",
+          "bytes": 502751,
+          "rows": 50,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 11:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2015-08-01",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.lollapalooza.com:80/2015-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20150818033332/http://www.lollapalooza.com:80/2015-schedule/",
+          "captureTimestamp": "20150818033332",
+          "printed": "Saturday Aug 1st",
+          "sha256": "e347de77afb35f980a4a4f301f30d1064283b0ab8f1cfae80f5966b108c66820",
+          "bytes": 502751,
+          "rows": 50,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 11:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2015-08-02",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.lollapalooza.com:80/2015-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20150818033332/http://www.lollapalooza.com:80/2015-schedule/",
+          "captureTimestamp": "20150818033332",
+          "printed": "Sunday Aug 2nd",
+          "sha256": "e347de77afb35f980a4a4f301f30d1064283b0ab8f1cfae80f5966b108c66820",
+          "bytes": 502751,
+          "rows": 52,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 11:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 3,
+      "stage": "Kidzapalooza",
+      "start": "16:30",
+      "end": "16:45",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

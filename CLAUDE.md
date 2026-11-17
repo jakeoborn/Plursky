@@ -5,6 +5,8 @@ Full ship flow: **[RELEASE.md](RELEASE.md)**. Open work: **[TODO.md](TODO.md)**.
 
 Read AGENT_LOG.md at session start; append a dated entry before ending a session. Narrowly-scoped handoffs, decisions, and open loops only.
 
+Never launch the general-purpose subagent. Use only narrowly scoped custom subagents with restricted tools; if none fits, do the work directly.
+
 Prefer decisions that improve UX, DX, and AX together; when they conflict, UX wins, then DX, then AX - and never break anything.
 
 ## 1. iOS version train is `1.x`, NOT `1.0.x`
@@ -37,7 +39,7 @@ list (each with `?v=`), and must load **before `spotify.jsx`**.
 ## 5. No bundler — everything is global across `<script type=text/babel>`
 Each `.jsx` is loaded as a separate Babel script. Top-level `function`/`const`
 declarations become **global**, so cross-file calls work by bare name
-(e.g. `useMomentPhoto`, `markAttended`, `createEdcPlaylist`). Load order only
+(e.g. `useMomentPhoto`, `markAttended`, `createAppleMusicPlaylist`). Load order only
 matters for **eval-time** references (e.g. a top-level `Object.assign(window,…)`);
 runtime calls resolve regardless of order. When splitting files, the consumer's
 `window`-exports must not name a symbol that moved out, unless that file loads first.

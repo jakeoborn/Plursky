@@ -1,0 +1,1584 @@
+{
+ "id": "beyond-wonderland-socal-2024",
+ "festivalId": "beyond-wonderland-socal",
+ "name": "Beyond Wonderland SoCal 2024",
+ "year": 2024,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-03-22",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2024-03-23",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "beyond-wonderland-socal-2024:999999999",
+   "name": "999999999",
+   "key": "999999999",
+   "performers": [
+    "999999999"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:a-trak-b2b-derrick-carter",
+   "name": "A-Trak B2B Derrick Carter",
+   "key": "a-trak-b2b-derrick-carter",
+   "performers": [
+    "a-trak",
+    "derrick-carter"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:a-m-c",
+   "name": "A.M.C",
+   "key": "a-m-c",
+   "performers": [
+    "a-m-c"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:afrojack-b2b-r3hab",
+   "name": "Afrojack B2B R3HAB",
+   "key": "afrojack-b2b-r3hab",
+   "performers": [
+    "afrojack",
+    "r3hab"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:alignment",
+   "name": "Alignment",
+   "key": "alignment",
+   "performers": [
+    "alignment"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:aluna-b2b-kaleena-zanders",
+   "name": "Aluna B2B Kaleena Zanders",
+   "key": "aluna-b2b-kaleena-zanders",
+   "performers": [
+    "aluna",
+    "kaleena-zanders"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:andrew-lux",
+   "name": "Andrew Lux",
+   "key": "andrew-lux",
+   "performers": [
+    "andrew-lux"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:andrew-rayel",
+   "name": "Andrew Rayel",
+   "key": "andrew-rayel",
+   "performers": [
+    "andrew-rayel"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:andy-c",
+   "name": "Andy C",
+   "key": "andy-c",
+   "performers": [
+    "andy-c"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:anfisa-letyago",
+   "name": "Anfisa Letyago",
+   "key": "anfisa-letyago",
+   "performers": [
+    "anfisa-letyago"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:angerfist",
+   "name": "Angerfist",
+   "key": "angerfist",
+   "performers": [
+    "angerfist"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:atmozfears-and-sound-rush-2-1",
+   "name": "Atmozfears & Sound Rush: 2/1",
+   "key": "atmozfears-and-sound-rush-2-1",
+   "performers": [
+    "atmozfears-and-sound-rush-2-1"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:baby-j-b2b-techno-tupac",
+   "name": "Baby J B2B Techno Tupac",
+   "key": "baby-j-b2b-techno-tupac",
+   "performers": [
+    "baby-j",
+    "techno-tupac"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:bart-skils-b2b-joyhauser",
+   "name": "Bart Skils B2B Joyhauser",
+   "key": "bart-skils-b2b-joyhauser",
+   "performers": [
+    "bart-skils",
+    "joyhauser"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:benny-benassi",
+   "name": "Benny Benassi",
+   "key": "benny-benassi",
+   "performers": [
+    "benny-benassi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:biscits",
+   "name": "Biscits",
+   "key": "biscits",
+   "performers": [
+    "biscits"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:black-tiger-sex-machine",
+   "name": "Black Tiger Sex Machine",
+   "key": "black-tiger-sex-machine",
+   "performers": [
+    "black-tiger-sex-machine"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:black-v-neck",
+   "name": "Black V Neck",
+   "key": "black-v-neck",
+   "performers": [
+    "black-v-neck"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:blossom",
+   "name": "Blossom",
+   "key": "blossom",
+   "performers": [
+    "blossom"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:bolo",
+   "name": "Bolo",
+   "key": "bolo",
+   "performers": [
+    "bolo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:bou",
+   "name": "Bou",
+   "key": "bou",
+   "performers": [
+    "bou"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:bryan-kearney",
+   "name": "Bryan Kearney",
+   "key": "bryan-kearney",
+   "performers": [
+    "bryan-kearney"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:calussa",
+   "name": "Calussa",
+   "key": "calussa",
+   "performers": [
+    "calussa"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:carola",
+   "name": "Carola",
+   "key": "carola",
+   "performers": [
+    "carola"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:chris-lorenzo",
+   "name": "Chris Lorenzo",
+   "key": "chris-lorenzo",
+   "performers": [
+    "chris-lorenzo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:clawz",
+   "name": "Clawz",
+   "key": "clawz",
+   "performers": [
+    "clawz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:coone",
+   "name": "Coone",
+   "key": "coone",
+   "performers": [
+    "coone"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:crankdat",
+   "name": "Crankdat",
+   "key": "crankdat",
+   "performers": [
+    "crankdat"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:creeds",
+   "name": "Creeds",
+   "key": "creeds",
+   "performers": [
+    "creeds"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:crystal-skies",
+   "name": "Crystal Skies",
+   "key": "crystal-skies",
+   "performers": [
+    "crystal-skies"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:d-ced",
+   "name": "D!CED",
+   "key": "d-ced",
+   "performers": [
+    "d-ced"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:dabin",
+   "name": "Dabin",
+   "key": "dabin",
+   "performers": [
+    "dabin"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:dark-heart",
+   "name": "Dark Heart",
+   "key": "dark-heart",
+   "performers": [
+    "dark-heart"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:dillon-francis-b2b-valentino-khan",
+   "name": "Dillon Francis B2B Valentino Khan",
+   "key": "dillon-francis-b2b-valentino-khan",
+   "performers": [
+    "dillon-francis",
+    "valentino-khan"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:dustin-husain",
+   "name": "Dustin Husain",
+   "key": "dustin-husain",
+   "performers": [
+    "dustin-husain"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:dzma",
+   "name": "DZMA",
+   "key": "dzma",
+   "performers": [
+    "dzma"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:eli-brown-b2b-lilly-palmer",
+   "name": "Eli Brown B2B Lilly Palmer",
+   "key": "eli-brown-b2b-lilly-palmer",
+   "performers": [
+    "eli-brown",
+    "lilly-palmer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:exodus-era",
+   "name": "Exodus Era",
+   "key": "exodus-era",
+   "performers": [
+    "exodus-era"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:fatima-hajji",
+   "name": "Fatima Hajji",
+   "key": "fatima-hajji",
+   "performers": [
+    "fatima-hajji"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:flava-d",
+   "name": "Flava D",
+   "key": "flava-d",
+   "performers": [
+    "flava-d"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:fomo",
+   "name": "FOMO",
+   "key": "fomo",
+   "performers": [
+    "fomo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:frosttop",
+   "name": "FrostTop",
+   "key": "frosttop",
+   "performers": [
+    "frosttop"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:funtcase",
+   "name": "FuntCase",
+   "key": "funtcase",
+   "performers": [
+    "funtcase"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:gareth-emery-presents-decade",
+   "name": "Gareth Emery Presents: Decade",
+   "key": "gareth-emery-presents-decade",
+   "performers": [
+    "gareth-emery-presents-decade"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:ghastly",
+   "name": "Ghastly",
+   "key": "ghastly",
+   "performers": [
+    "ghastly"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:grlskout",
+   "name": "Grlskout",
+   "key": "grlskout",
+   "performers": [
+    "grlskout"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:hamdi",
+   "name": "Hamdi",
+   "key": "hamdi",
+   "performers": [
+    "hamdi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:hartshorn",
+   "name": "Hartshorn",
+   "key": "hartshorn",
+   "performers": [
+    "hartshorn"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:haylee-wood",
+   "name": "Haylee Wood",
+   "key": "haylee-wood",
+   "performers": [
+    "haylee-wood"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:highlnd",
+   "name": "Highlnd",
+   "key": "highlnd",
+   "performers": [
+    "highlnd"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:hol",
+   "name": "HOL!",
+   "key": "hol",
+   "performers": [
+    "hol"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:hvdes",
+   "name": "HVDES",
+   "key": "hvdes",
+   "performers": [
+    "hvdes"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:i-hate-models",
+   "name": "I Hate Models",
+   "key": "i-hate-models",
+   "performers": [
+    "i-hate-models"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:infected-mushroom",
+   "name": "Infected Mushroom",
+   "key": "infected-mushroom",
+   "performers": [
+    "infected-mushroom"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:ion",
+   "name": "ION",
+   "key": "ion",
+   "performers": [
+    "ion"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:j-worra",
+   "name": "J. Worra",
+   "key": "j-worra",
+   "performers": [
+    "j-worra"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:jason-ross",
+   "name": "Jason Ross",
+   "key": "jason-ross",
+   "performers": [
+    "jason-ross"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:jauz",
+   "name": "Jauz",
+   "key": "jauz",
+   "performers": [
+    "jauz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:jawns",
+   "name": "Jawns",
+   "key": "jawns",
+   "performers": [
+    "jawns"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:jem-g",
+   "name": "Jem.G",
+   "key": "jem-g",
+   "performers": [
+    "jem-g"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:jia",
+   "name": "Jia",
+   "key": "jia",
+   "performers": [
+    "jia"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:jorza",
+   "name": "Jorza",
+   "key": "jorza",
+   "performers": [
+    "jorza"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:joyryde",
+   "name": "JOYRYDE",
+   "key": "joyryde",
+   "performers": [
+    "joyryde"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:julian-jeweil",
+   "name": "Julian Jeweil",
+   "key": "julian-jeweil",
+   "performers": [
+    "julian-jeweil"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:justin-credible",
+   "name": "Justin Credible",
+   "key": "justin-credible",
+   "performers": [
+    "justin-credible"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:jorgen",
+   "name": "Jörgen",
+   "key": "jorgen",
+   "performers": [
+    "jorgen"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:kanine",
+   "name": "Kanine",
+   "key": "kanine",
+   "performers": [
+    "kanine"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:keltek",
+   "name": "Keltek",
+   "key": "keltek",
+   "performers": [
+    "keltek"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:kill-the-noise-b2b-trivecta",
+   "name": "Kill The Noise B2B Trivecta",
+   "key": "kill-the-noise-b2b-trivecta",
+   "performers": [
+    "kill-the-noise",
+    "trivecta"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:kyle-walker-b2b-sosa",
+   "name": "Kyle Walker B2B Sosa",
+   "key": "kyle-walker-b2b-sosa",
+   "performers": [
+    "kyle-walker",
+    "sosa"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:kyle-watson",
+   "name": "Kyle Watson",
+   "key": "kyle-watson",
+   "performers": [
+    "kyle-watson"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:kyruh",
+   "name": "KYRUH",
+   "key": "kyruh",
+   "performers": [
+    "kyruh"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:last-heroes",
+   "name": "Last Heroes",
+   "key": "last-heroes",
+   "performers": [
+    "last-heroes"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:level-up",
+   "name": "Level Up",
+   "key": "level-up",
+   "performers": [
+    "level-up"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:madeon-dj-set",
+   "name": "Madeon (DJ Set)",
+   "key": "madeon-dj-set",
+   "performers": [
+    "madeon-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:madgrrl",
+   "name": "MADGRRL",
+   "key": "madgrrl",
+   "performers": [
+    "madgrrl"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:marauda",
+   "name": "MARAUDA",
+   "key": "marauda",
+   "performers": [
+    "marauda"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:max-styler",
+   "name": "Max Styler",
+   "key": "max-styler",
+   "performers": [
+    "max-styler"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:mefjus-with-mc-daxta",
+   "name": "Mefjus with MC Daxta",
+   "key": "mefjus-with-mc-daxta",
+   "performers": [
+    "mefjus-with-mc-daxta"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:metta-and-glyde",
+   "name": "Metta & Glyde",
+   "key": "metta-and-glyde",
+   "performers": [
+    "metta-and-glyde"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:miss-dre",
+   "name": "MISS DRE",
+   "key": "miss-dre",
+   "performers": [
+    "miss-dre"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:muerte",
+   "name": "Muerte",
+   "key": "muerte",
+   "performers": [
+    "muerte"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:nightfunk",
+   "name": "NightFunk",
+   "key": "nightfunk",
+   "performers": [
+    "nightfunk"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:no-redemption",
+   "name": "No Redemption",
+   "key": "no-redemption",
+   "performers": [
+    "no-redemption"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:nurko",
+   "name": "Nurko",
+   "key": "nurko",
+   "performers": [
+    "nurko"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:odd-mob",
+   "name": "Odd Mob",
+   "key": "odd-mob",
+   "performers": [
+    "odd-mob"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:oddkidout",
+   "name": "OddKidOut",
+   "key": "oddkidout",
+   "performers": [
+    "oddkidout"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:omnom",
+   "name": "Omnom",
+   "key": "omnom",
+   "performers": [
+    "omnom"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:one-true-god",
+   "name": "One True God",
+   "key": "one-true-god",
+   "performers": [
+    "one-true-god"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:paul-oakenfold",
+   "name": "Paul Oakenfold",
+   "key": "paul-oakenfold",
+   "performers": [
+    "paul-oakenfold"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:pickle",
+   "name": "Pickle",
+   "key": "pickle",
+   "performers": [
+    "pickle"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:raecola",
+   "name": "RaeCola",
+   "key": "raecola",
+   "performers": [
+    "raecola"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:ravell",
+   "name": "Ravell",
+   "key": "ravell",
+   "performers": [
+    "ravell"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:rezz",
+   "name": "Rezz",
+   "key": "rezz",
+   "performers": [
+    "rezz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:sara-landry",
+   "name": "Sara Landry",
+   "key": "sara-landry",
+   "performers": [
+    "sara-landry"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:saymynitti",
+   "name": "SAYMYNITTI",
+   "key": "saymynitti",
+   "performers": [
+    "saymynitti"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:shay-de-castro",
+   "name": "Shay De Castro",
+   "key": "shay-de-castro",
+   "performers": [
+    "shay-de-castro"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:sidepiece",
+   "name": "SIDEPIECE",
+   "key": "sidepiece",
+   "performers": [
+    "sidepiece"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:skepsis",
+   "name": "Skepsis",
+   "key": "skepsis",
+   "performers": [
+    "skepsis"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:slander",
+   "name": "SLANDER",
+   "key": "slander",
+   "performers": [
+    "slander"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:spartaque-b2b-brennen-grey",
+   "name": "Spartaque B2B Brennen Grey",
+   "key": "spartaque-b2b-brennen-grey",
+   "performers": [
+    "spartaque",
+    "brennen-grey"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:sportmode",
+   "name": "SPORTMODE",
+   "key": "sportmode",
+   "performers": [
+    "sportmode"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:subtronics",
+   "name": "Subtronics",
+   "key": "subtronics",
+   "performers": [
+    "subtronics"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:sullivan-king",
+   "name": "Sullivan King",
+   "key": "sullivan-king",
+   "performers": [
+    "sullivan-king"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:super-dark",
+   "name": "Super Dark",
+   "key": "super-dark",
+   "performers": [
+    "super-dark"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:taylor-torrence",
+   "name": "Taylor Torrence",
+   "key": "taylor-torrence",
+   "performers": [
+    "taylor-torrence"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:techno-tupac",
+   "name": "Techno Tupac",
+   "key": "techno-tupac",
+   "performers": [
+    "techno-tupac"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:tnt",
+   "name": "TNT",
+   "key": "tnt",
+   "performers": [
+    "tnt"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:tong",
+   "name": "TONG",
+   "key": "tong",
+   "performers": [
+    "tong"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:tony-romera",
+   "name": "Tony Romera",
+   "key": "tony-romera",
+   "performers": [
+    "tony-romera"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:trym",
+   "name": "Trym",
+   "key": "trym",
+   "performers": [
+    "trym"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:tsu-nami",
+   "name": "Tsu Nami",
+   "key": "tsu-nami",
+   "performers": [
+    "tsu-nami"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:wax-motif",
+   "name": "Wax Motif",
+   "key": "wax-motif",
+   "performers": [
+    "wax-motif"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:whethan",
+   "name": "Whethan",
+   "key": "whethan",
+   "performers": [
+    "whethan"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2024:will-sparks",
+   "name": "Will Sparks",
+   "key": "will-sparks",
+   "performers": [
+    "will-sparks"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://socal.beyondwonderland.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20240325035054/https://socal.beyondwonderland.com/lineup/",
+    "captureTimestamp": "20240325035054",
+    "sha256": "9843c8fc13696c10ddbebe5fe59b3bb5de8484055ceb9c871943eb616c29dc60"
+   }
+  ]
+ }
+}

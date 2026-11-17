@@ -1,0 +1,5464 @@
+{
+ "version": 1,
+ "brands": {
+  "acl": {
+   "lineages": [
+    {
+     "id": "acl:t-mobile",
+     "names": [
+      {
+       "printed": "T-MOBILE",
+       "editions": [
+        "acl-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:miller-lite",
+     "names": [
+      {
+       "printed": "MILLER LITE",
+       "editions": [
+        "acl-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:bmi",
+     "names": [
+      {
+       "printed": "BMI",
+       "editions": [
+        "acl-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:beatbox",
+     "names": [
+      {
+       "printed": "BEATBOX",
+       "editions": [
+        "acl-2025",
+        "acl-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:tito-s-handmade-vodka",
+     "names": [
+      {
+       "printed": "TITO'S HANDMADE VODKA",
+       "editions": [
+        "acl-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:lady-bird",
+     "names": [
+      {
+       "printed": "LADY BIRD",
+       "editions": [
+        "acl-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:american-express",
+     "names": [
+      {
+       "printed": "AMERICAN EXPRESS",
+       "editions": [
+        "acl-2025"
+       ]
+      },
+      {
+       "printed": "American Express",
+       "editions": [
+        "acl-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:austin-kiddie-limits",
+     "names": [
+      {
+       "printed": "AUSTIN KIDDIE LIMITS",
+       "editions": [
+        "acl-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:t-mobile-stage",
+     "names": [
+      {
+       "printed": "T-Mobile Stage",
+       "editions": [
+        "acl-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:miller-lite-stage",
+     "names": [
+      {
+       "printed": "Miller Lite Stage",
+       "editions": [
+        "acl-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:bmi-stage",
+     "names": [
+      {
+       "printed": "BMI Stage",
+       "editions": [
+        "acl-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:tito-s-stage",
+     "names": [
+      {
+       "printed": "Tito's Stage",
+       "editions": [
+        "acl-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:snapchat-stage",
+     "names": [
+      {
+       "printed": "Snapchat Stage",
+       "editions": [
+        "acl-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:amd",
+     "names": [
+      {
+       "printed": "AMD",
+       "editions": [
+        "acl-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:honda",
+     "names": [
+      {
+       "printed": "Honda",
+       "editions": [
+        "acl-2013",
+        "acl-2014",
+        "acl-2015",
+        "acl-2016",
+        "acl-2017",
+        "acl-2018",
+        "acl-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:austin-ventures",
+     "names": [
+      {
+       "printed": "Austin Ventures",
+       "editions": [
+        "acl-2013",
+        "acl-2014",
+        "acl-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:zilker-tent",
+     "names": [
+      {
+       "printed": "Zilker Tent",
+       "editions": [
+        "acl-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:bud-light",
+     "names": [
+      {
+       "printed": "Bud Light",
+       "editions": [
+        "acl-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:samsung-galaxy",
+     "names": [
+      {
+       "printed": "Samsung Galaxy",
+       "editions": [
+        "acl-2013",
+        "acl-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:sculpture",
+     "names": [
+      {
+       "printed": "Sculpture",
+       "editions": [
+        "acl-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:retailmenot",
+     "names": [
+      {
+       "printed": "RetailMeNot",
+       "editions": [
+        "acl-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:zilker",
+     "names": [
+      {
+       "printed": "Zilker",
+       "editions": [
+        "acl-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:homeaway",
+     "names": [
+      {
+       "printed": "HomeAway",
+       "editions": [
+        "acl-2015",
+        "acl-2016",
+        "acl-2017",
+        "acl-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:samsung",
+     "names": [
+      {
+       "printed": "Samsung",
+       "editions": [
+        "acl-2015",
+        "acl-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:cirrus-logic",
+     "names": [
+      {
+       "printed": "Cirrus Logic",
+       "editions": [
+        "acl-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:tito-s-handmade-vodka-2",
+     "names": [
+      {
+       "printed": "Tito’s Handmade Vodka",
+       "editions": [
+        "acl-2016",
+        "acl-2017",
+        "acl-2018",
+        "acl-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:barton-springs",
+     "names": [
+      {
+       "printed": "Barton Springs",
+       "editions": [
+        "acl-2017",
+        "acl-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:vrbo",
+     "names": [
+      {
+       "printed": "Vrbo",
+       "editions": [
+        "acl-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:ihg-hotels-and-resorts",
+     "names": [
+      {
+       "printed": "IHG HOTELS & RESORTS",
+       "editions": [
+        "acl-2023",
+        "acl-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "arc": {
+   "lineages": [
+    {
+     "id": "arc:the-grid",
+     "names": [
+      {
+       "printed": "The Grid",
+       "editions": [
+        "arc-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "arc:expansions",
+     "names": [
+      {
+       "printed": "Expansions",
+       "editions": [
+        "arc-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "arc:area909",
+     "names": [
+      {
+       "printed": "area909",
+       "editions": [
+        "arc-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "arc:the-midway",
+     "names": [
+      {
+       "printed": "The Midway",
+       "editions": [
+        "arc-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "beyond-wonderland-gorge": {
+   "lineages": [
+    {
+     "id": "beyond-wonderland-gorge:queen-s-valley",
+     "names": [
+      {
+       "printed": "Queen's Valley",
+       "editions": [
+        "beyond-wonderland-gorge-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-gorge:mad-hatter-s-castle",
+     "names": [
+      {
+       "printed": "Mad Hatter's Castle",
+       "editions": [
+        "beyond-wonderland-gorge-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-gorge:caterpillar-s-garden",
+     "names": [
+      {
+       "printed": "Caterpillar's Garden",
+       "editions": [
+        "beyond-wonderland-gorge-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "beyond-wonderland-socal": {
+   "lineages": [
+    {
+     "id": "beyond-wonderland-socal:queen-s-domain",
+     "names": [
+      {
+       "printed": "Queen's Domain",
+       "editions": [
+        "beyond-wonderland-socal-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:mad-hatter-s-castle",
+     "names": [
+      {
+       "printed": "Mad Hatter's Castle",
+       "editions": [
+        "beyond-wonderland-socal-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:caterpillar-s-garden",
+     "names": [
+      {
+       "printed": "Caterpillar's Garden",
+       "editions": [
+        "beyond-wonderland-socal-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:cheshire-woods",
+     "names": [
+      {
+       "printed": "Cheshire Woods",
+       "editions": [
+        "beyond-wonderland-socal-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:the-looking-glass",
+     "names": [
+      {
+       "printed": "The Looking Glass",
+       "editions": [
+        "beyond-wonderland-socal-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:the-sea-of-wonder",
+     "names": [
+      {
+       "printed": "The Sea of Wonder",
+       "editions": [
+        "beyond-wonderland-socal-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:beatbox",
+     "names": [
+      {
+       "printed": "Beatbox",
+       "editions": [
+        "beyond-wonderland-socal-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:madhatter-s-castle",
+     "names": [
+      {
+       "printed": "Madhatter's Castle",
+       "editions": [
+        "beyond-wonderland-socal-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:chess-village",
+     "names": [
+      {
+       "printed": "Chess Village",
+       "editions": [
+        "beyond-wonderland-socal-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:caterpillars-garden",
+     "names": [
+      {
+       "printed": "Caterpillars Garden",
+       "editions": [
+        "beyond-wonderland-socal-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:wide-awake-art-car",
+     "names": [
+      {
+       "printed": "Wide Awake Art Car",
+       "editions": [
+        "beyond-wonderland-socal-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:discovery-project",
+     "names": [
+      {
+       "printed": "Discovery Project",
+       "editions": [
+        "beyond-wonderland-socal-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "coachella": {
+   "lineages": [
+    {
+     "id": "coachella:coachella",
+     "names": [
+      {
+       "printed": "Coachella",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:gobi",
+     "names": [
+      {
+       "printed": "Gobi",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:mojave",
+     "names": [
+      {
+       "printed": "Mojave",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:outdoor",
+     "names": [
+      {
+       "printed": "Outdoor",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:sahara",
+     "names": [
+      {
+       "printed": "Sahara",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:yuma",
+     "names": [
+      {
+       "printed": "Yuma",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:do-lab",
+     "names": [
+      {
+       "printed": "Do Lab",
+       "editions": [
+        "coachella-2014",
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:despacio",
+     "names": [
+      {
+       "printed": "Despacio",
+       "editions": [
+        "coachella-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:sonora",
+     "names": [
+      {
+       "printed": "Sonora",
+       "editions": [
+        "coachella-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:main-stage",
+     "names": [
+      {
+       "printed": "Main Stage",
+       "editions": [
+        "coachella-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "crssd-fall": {
+   "lineages": [
+    {
+     "id": "crssd-fall:ocean-view",
+     "names": [
+      {
+       "printed": "Ocean View",
+       "editions": [
+        "crssd-fall-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "crssd-fall:the-palms",
+     "names": [
+      {
+       "printed": "The Palms",
+       "editions": [
+        "crssd-fall-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "crssd-fall:city-steps",
+     "names": [
+      {
+       "printed": "City Steps",
+       "editions": [
+        "crssd-fall-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "dreamstate-socal": {
+   "lineages": [
+    {
+     "id": "dreamstate-socal:the-dream",
+     "names": [
+      {
+       "printed": "THE DREAM",
+       "editions": [
+        "dreamstate-socal-2016",
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Dream",
+       "editions": [
+        "dreamstate-socal-2019",
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:the-sequence",
+     "names": [
+      {
+       "printed": "THE SEQUENCE",
+       "editions": [
+        "dreamstate-socal-2016",
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Sequence",
+       "editions": [
+        "dreamstate-socal-2019",
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:the-vision",
+     "names": [
+      {
+       "printed": "THE VISION",
+       "editions": [
+        "dreamstate-socal-2016",
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Vision",
+       "editions": [
+        "dreamstate-socal-2019",
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:timeless",
+     "names": [
+      {
+       "printed": "TIMELESS",
+       "editions": [
+        "dreamstate-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:the-void",
+     "names": [
+      {
+       "printed": "THE VOID",
+       "editions": [
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Void",
+       "editions": [
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Boombox Art Car",
+       "editions": [
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:beatbox-art-car",
+     "names": [
+      {
+       "printed": "BEATBOX ART CAR",
+       "editions": [
+        "dreamstate-socal-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "edc-lv": {
+   "lineages": [
+    {
+     "id": "edc-lv:kinetic-field",
+     "names": [
+      {
+       "printed": "Kinetic Field",
+       "editions": [
+        "edc-las-vegas-2025",
+        "edc-lv-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:cosmic-meadow",
+     "names": [
+      {
+       "printed": "Cosmic Meadow",
+       "editions": [
+        "edc-las-vegas-2025",
+        "edc-lv-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:circuit-grounds",
+     "names": [
+      {
+       "printed": "Circuit Grounds",
+       "editions": [
+        "edc-las-vegas-2025",
+        "edc-lv-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:neon-garden",
+     "names": [
+      {
+       "printed": "Neon Garden",
+       "editions": [
+        "edc-las-vegas-2025",
+        "edc-lv-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:basspod",
+     "names": [
+      {
+       "printed": "Basspod",
+       "editions": [
+        "edc-las-vegas-2025",
+        "edc-lv-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:wasteland",
+     "names": [
+      {
+       "printed": "Wasteland",
+       "editions": [
+        "edc-las-vegas-2025",
+        "edc-lv-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:quantum-valley",
+     "names": [
+      {
+       "printed": "Quantum Valley",
+       "editions": [
+        "edc-las-vegas-2025",
+        "edc-lv-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:stereo-bloom",
+     "names": [
+      {
+       "printed": "Stereo Bloom",
+       "editions": [
+        "edc-las-vegas-2025",
+        "edc-lv-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:bionic-jungle",
+     "names": [
+      {
+       "printed": "Bionic Jungle",
+       "editions": [
+        "edc-las-vegas-2025",
+        "edc-lv-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:forest-house",
+     "names": [
+      {
+       "printed": "Forest House",
+       "editions": [
+        "edc-las-vegas-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:beatbox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Art Car",
+       "editions": [
+        "edc-las-vegas-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:metaphoenix",
+     "names": [
+      {
+       "printed": "Metaphoenix",
+       "editions": [
+        "edc-las-vegas-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:ubuntu",
+     "names": [
+      {
+       "printed": "Ubuntu",
+       "editions": [
+        "edc-las-vegas-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:yeedc",
+     "names": [
+      {
+       "printed": "yeEDC!",
+       "editions": [
+        "edc-las-vegas-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:blacklight-bar",
+     "names": [
+      {
+       "printed": "Blacklight Bar",
+       "editions": [
+        "edc-las-vegas-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:parliament-art-car",
+     "names": [
+      {
+       "printed": "Parliament Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:forest-house-art-car",
+     "names": [
+      {
+       "printed": "Forest House Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:rynobus",
+     "names": [
+      {
+       "printed": "Rynobus",
+       "editions": [
+        "edc-las-vegas-2022",
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:boombox-art-car",
+     "names": [
+      {
+       "printed": "Boombox Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:corona-stage",
+     "names": [
+      {
+       "printed": "Corona Stage",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:allegiant-rave-hangar",
+     "names": [
+      {
+       "printed": "Allegiant Rave Hangar",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:pariah-express-art-car",
+     "names": [
+      {
+       "printed": "Pariah Express Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:house-of-dunkin",
+     "names": [
+      {
+       "printed": "House of Dunkin'",
+       "editions": [
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Boombox Art Car",
+       "editions": [
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:meta-phoenix",
+     "names": [
+      {
+       "printed": "Meta Phoenix",
+       "editions": [
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "edc-orlando": {
+   "lineages": [
+    {
+     "id": "edc-orlando:kineticfield",
+     "names": [
+      {
+       "printed": "kineticFIELD",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:neongarden",
+     "names": [
+      {
+       "printed": "neonGARDEN",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019"
+       ]
+      },
+      {
+       "printed": "neonGarden",
+       "editions": [
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:circuitgrounds",
+     "names": [
+      {
+       "printed": "circuitGROUNDS",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:boombox-art-car",
+     "names": [
+      {
+       "printed": "BOOMBOX ART CAR",
+       "editions": [
+        "edc-orlando-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:stereobloom",
+     "names": [
+      {
+       "printed": "stereoBLOOM",
+       "editions": [
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:wideawakeartcar",
+     "names": [
+      {
+       "printed": "wideawakeARTCAR",
+       "editions": [
+        "edc-orlando-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:kinetic-field",
+     "names": [
+      {
+       "printed": "Kinetic Field",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:circuit-grounds",
+     "names": [
+      {
+       "printed": "Circuit Grounds",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:neon-garden",
+     "names": [
+      {
+       "printed": "Neon Garden",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:stereo-bloom",
+     "names": [
+      {
+       "printed": "Stereo Bloom",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:rynobus",
+     "names": [
+      {
+       "printed": "Rynobus",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:corona-electric-beach",
+     "names": [
+      {
+       "printed": "Corona Electric Beach",
+       "editions": [
+        "edc-orlando-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:rynobus-art-car",
+     "names": [
+      {
+       "printed": "Rynobus Art Car",
+       "editions": [
+        "edc-orlando-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:anniversary-art-car",
+     "names": [
+      {
+       "printed": "Anniversary Art Car",
+       "editions": [
+        "edc-orlando-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:casa-bacardi",
+     "names": [
+      {
+       "printed": "Casa BACARDÍ",
+       "editions": [
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:casabacardi",
+     "names": [
+      {
+       "printed": "casaBACARDÍ",
+       "editions": [
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "electric-forest": {
+   "lineages": [
+    {
+     "id": "electric-forest:ranch-arena",
+     "names": [
+      {
+       "printed": "Ranch Arena",
+       "editions": [
+        "electric-forest-2012",
+        "electric-forest-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "electric-forest:sherwood-court",
+     "names": [
+      {
+       "printed": "Sherwood Court",
+       "editions": [
+        "electric-forest-2012",
+        "electric-forest-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "electric-forest:tripolee",
+     "names": [
+      {
+       "printed": "Tripolee",
+       "editions": [
+        "electric-forest-2012",
+        "electric-forest-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "electric-forest:forest-stage",
+     "names": [
+      {
+       "printed": "Forest Stage",
+       "editions": [
+        "electric-forest-2012",
+        "electric-forest-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "electric-forest:wagon-wheel",
+     "names": [
+      {
+       "printed": "Wagon Wheel",
+       "editions": [
+        "electric-forest-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "electric-forest:the-observatory",
+     "names": [
+      {
+       "printed": "The Observatory",
+       "editions": [
+        "electric-forest-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "escape-halloween": {
+   "lineages": [
+    {
+     "id": "escape-halloween:sewer-district",
+     "names": [
+      {
+       "printed": "Sewer District",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-cage",
+     "names": [
+      {
+       "printed": "The Cage",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:danse-macabre",
+     "names": [
+      {
+       "printed": "Danse Macabre",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:feeding-grounds",
+     "names": [
+      {
+       "printed": "Feeding Grounds",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-warehouse",
+     "names": [
+      {
+       "printed": "The Warehouse",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:beatbox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Art Car",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-big-top",
+     "names": [
+      {
+       "printed": "The Big Top",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:slaughterhouse",
+     "names": [
+      {
+       "printed": "SLAUGHTERHOUSE",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:ghouls-graveyard",
+     "names": [
+      {
+       "printed": "GHOULS' GRAVEYARD",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:chopping-block",
+     "names": [
+      {
+       "printed": "CHOPPING BLOCK",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:cannibals-tea-party",
+     "names": [
+      {
+       "printed": "CANNIBALS' TEA PARTY",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-grimm",
+     "names": [
+      {
+       "printed": "The Grimm",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      },
+      {
+       "printed": "THE GRIMM",
+       "editions": [
+        "escape-halloween-2022",
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:psycho-circus",
+     "names": [
+      {
+       "printed": "Psycho Circus",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:sanitarium",
+     "names": [
+      {
+       "printed": "Sanitarium",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      },
+      {
+       "printed": "SANITARIUM",
+       "editions": [
+        "escape-halloween-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:crazy-town",
+     "names": [
+      {
+       "printed": "Crazy Town",
+       "editions": [
+        "escape-halloween-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:wicked-woods",
+     "names": [
+      {
+       "printed": "WICKED WOODS",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-cauldron",
+     "names": [
+      {
+       "printed": "THE CAULDRON",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "BEATBOX BOOMBOX ART CAR",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:casa-bacardi",
+     "names": [
+      {
+       "printed": "CASA BACARDÍ",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:casa-bacardi-2",
+     "names": [
+      {
+       "printed": "CASA BACARDI",
+       "editions": [
+        "escape-halloween-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "governors-ball": {
+   "lineages": [
+    {
+     "id": "governors-ball:govballnyc",
+     "names": [
+      {
+       "printed": "GOVBALLNYC",
+       "editions": [
+        "governors-ball-2025"
+       ]
+      },
+      {
+       "printed": "GovBallNYC",
+       "editions": [
+        "governors-ball-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:kiehl-s",
+     "names": [
+      {
+       "printed": "KIEHL'S",
+       "editions": [
+        "governors-ball-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:the-grove",
+     "names": [
+      {
+       "printed": "THE GROVE",
+       "editions": [
+        "governors-ball-2025"
+       ]
+      },
+      {
+       "printed": "The Grove",
+       "editions": [
+        "governors-ball-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:snapchat-stage",
+     "names": [
+      {
+       "printed": "Snapchat Stage",
+       "editions": [
+        "governors-ball-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:gov-ball-nyc",
+     "names": [
+      {
+       "printed": "Gov Ball NYC",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:honda",
+     "names": [
+      {
+       "printed": "Honda",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:big-apple",
+     "names": [
+      {
+       "printed": "Big Apple",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bacardi",
+     "names": [
+      {
+       "printed": "Bacardi",
+       "editions": [
+        "governors-ball-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:gov-ball-nyc-stage",
+     "names": [
+      {
+       "printed": "Gov Ball NYC Stage",
+       "editions": [
+        "governors-ball-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bacardi-stage",
+     "names": [
+      {
+       "printed": "Bacardi Stage",
+       "editions": [
+        "governors-ball-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:honda-stage",
+     "names": [
+      {
+       "printed": "Honda Stage",
+       "editions": [
+        "governors-ball-2018",
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:american-eagle-stage",
+     "names": [
+      {
+       "printed": "American Eagle Stage",
+       "editions": [
+        "governors-ball-2018",
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:govballnyc-stage",
+     "names": [
+      {
+       "printed": "GOVBALLNYC Stage",
+       "editions": [
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bacardi-stage-2",
+     "names": [
+      {
+       "printed": "BACARDÍ Stage",
+       "editions": [
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:bud-light-dive-bar-sessions",
+     "names": [
+      {
+       "printed": "Bud Light Dive Bar Sessions",
+       "editions": [
+        "governors-ball-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "hard-summer": {
+   "lineages": [
+    {
+     "id": "hard-summer:hard-stage",
+     "names": [
+      {
+       "printed": "HARD Stage",
+       "editions": [
+        "hard-summer-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:harder-stage",
+     "names": [
+      {
+       "printed": "HARDER Stage",
+       "editions": [
+        "hard-summer-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:green-stage",
+     "names": [
+      {
+       "printed": "Green Stage",
+       "editions": [
+        "hard-summer-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:purple-stage",
+     "names": [
+      {
+       "printed": "Purple Stage",
+       "editions": [
+        "hard-summer-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:pink-stage",
+     "names": [
+      {
+       "printed": "Pink Stage",
+       "editions": [
+        "hard-summer-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Boombox Art Car",
+       "editions": [
+        "hard-summer-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:locals-only-ice-cream-truck",
+     "names": [
+      {
+       "printed": "Locals Only Ice Cream Truck",
+       "editions": [
+        "hard-summer-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:hard",
+     "names": [
+      {
+       "printed": "HARD",
+       "editions": [
+        "hard-summer-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:harder",
+     "names": [
+      {
+       "printed": "HARDER",
+       "editions": [
+        "hard-summer-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:green",
+     "names": [
+      {
+       "printed": "Green",
+       "editions": [
+        "hard-summer-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:purple",
+     "names": [
+      {
+       "printed": "Purple",
+       "editions": [
+        "hard-summer-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:pink",
+     "names": [
+      {
+       "printed": "Pink",
+       "editions": [
+        "hard-summer-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:ice-cream-truck",
+     "names": [
+      {
+       "printed": "Ice Cream Truck",
+       "editions": [
+        "hard-summer-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:beatbox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Art Car",
+       "editions": [
+        "hard-summer-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "iii-points": {
+   "lineages": [
+    {
+     "id": "iii-points:mind-melt",
+     "names": [
+      {
+       "printed": "MIND MELT",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:rc95",
+     "names": [
+      {
+       "printed": "RC95",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:grand-central",
+     "names": [
+      {
+       "printed": "GRAND CENTRAL",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:iii-points-radio",
+     "names": [
+      {
+       "printed": "III POINTS RADIO",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:unforeseen",
+     "names": [
+      {
+       "printed": "UNFORESEEN",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:door-iv",
+     "names": [
+      {
+       "printed": "DOOR IV",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:isotropic",
+     "names": [
+      {
+       "printed": "ISOTROPIC",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:halo-88",
+     "names": [
+      {
+       "printed": "HALO 88",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:players-club",
+     "names": [
+      {
+       "printed": "PLAYERS CLUB",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:sector-3",
+     "names": [
+      {
+       "printed": "SECTOR 3",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:vertex",
+     "names": [
+      {
+       "printed": "VERTEX",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:s3quenc3",
+     "names": [
+      {
+       "printed": "S3QUENC3",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:444",
+     "names": [
+      {
+       "printed": "444",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "lollapalooza": {
+   "lineages": [
+    {
+     "id": "lollapalooza:t-mobile",
+     "names": [
+      {
+       "printed": "T-MOBILE",
+       "editions": [
+        "lollapalooza-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:dollapalooza",
+     "names": [
+      {
+       "printed": "DOLLAPALOOZA",
+       "editions": [
+        "lollapalooza-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:lakeshore",
+     "names": [
+      {
+       "printed": "LAKESHORE",
+       "editions": [
+        "lollapalooza-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:kidzapalooza",
+     "names": [
+      {
+       "printed": "KIDZAPALOOZA",
+       "editions": [
+        "lollapalooza-2025"
+       ]
+      },
+      {
+       "printed": "Kidzapalooza",
+       "editions": [
+        "lollapalooza-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bmi",
+     "names": [
+      {
+       "printed": "BMI",
+       "editions": [
+        "lollapalooza-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:the-grove",
+     "names": [
+      {
+       "printed": "THE GROVE",
+       "editions": [
+        "lollapalooza-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:tito-s-handmade-vodka",
+     "names": [
+      {
+       "printed": "TITO'S HANDMADE VODKA",
+       "editions": [
+        "lollapalooza-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bud-light",
+     "names": [
+      {
+       "printed": "BUD LIGHT",
+       "editions": [
+        "lollapalooza-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:toyota-music-den",
+     "names": [
+      {
+       "printed": "TOYOTA MUSIC DEN",
+       "editions": [
+        "lollapalooza-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bud-light-backyard",
+     "names": [
+      {
+       "printed": "BUD LIGHT BACKYARD",
+       "editions": [
+        "lollapalooza-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:perry-s",
+     "names": [
+      {
+       "printed": "PERRY'S",
+       "editions": [
+        "lollapalooza-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:t-mobile-stage",
+     "names": [
+      {
+       "printed": "T-Mobile Stage",
+       "editions": [
+        "lollapalooza-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bud-light-stage",
+     "names": [
+      {
+       "printed": "Bud Light Stage",
+       "editions": [
+        "lollapalooza-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:perry-s-stage",
+     "names": [
+      {
+       "printed": "Perry's Stage",
+       "editions": [
+        "lollapalooza-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:tito-s-stage",
+     "names": [
+      {
+       "printed": "Tito's Stage",
+       "editions": [
+        "lollapalooza-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:allianz-stage",
+     "names": [
+      {
+       "printed": "Allianz Stage",
+       "editions": [
+        "lollapalooza-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:airbnb-stage",
+     "names": [
+      {
+       "printed": "Airbnb Stage",
+       "editions": [
+        "lollapalooza-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bmi-stage",
+     "names": [
+      {
+       "printed": "BMI Stage",
+       "editions": [
+        "lollapalooza-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bonus-tracks",
+     "names": [
+      {
+       "printed": "Bonus Tracks",
+       "editions": [
+        "lollapalooza-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:petrillo",
+     "names": [
+      {
+       "printed": "Petrillo",
+       "editions": [
+        "lollapalooza-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:lake-shore",
+     "names": [
+      {
+       "printed": "Lake Shore",
+       "editions": [
+        "lollapalooza-2013",
+        "lollapalooza-2014",
+        "lollapalooza-2017",
+        "lollapalooza-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:red-bull-sound-select",
+     "names": [
+      {
+       "printed": "Red Bull Sound Select",
+       "editions": [
+        "lollapalooza-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:palladia",
+     "names": [
+      {
+       "printed": "Palladia",
+       "editions": [
+        "lollapalooza-2014",
+        "lollapalooza-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:samsung-galaxy",
+     "names": [
+      {
+       "printed": "Samsung Galaxy",
+       "editions": [
+        "lollapalooza-2014",
+        "lollapalooza-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:pepsi",
+     "names": [
+      {
+       "printed": "Pepsi",
+       "editions": [
+        "lollapalooza-2015",
+        "lollapalooza-2016",
+        "lollapalooza-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:sprint",
+     "names": [
+      {
+       "printed": "Sprint",
+       "editions": [
+        "lollapalooza-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:petrillo-bandshell",
+     "names": [
+      {
+       "printed": "Petrillo Bandshell",
+       "editions": [
+        "lollapalooza-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:perry-s-2",
+     "names": [
+      {
+       "printed": "Perry’s",
+       "editions": [
+        "lollapalooza-2016",
+        "lollapalooza-2017",
+        "lollapalooza-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:samsung",
+     "names": [
+      {
+       "printed": "Samsung",
+       "editions": [
+        "lollapalooza-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:tito-s-handmade-vodka-2",
+     "names": [
+      {
+       "printed": "Tito’s Handmade Vodka",
+       "editions": [
+        "lollapalooza-2017",
+        "lollapalooza-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:grant-park",
+     "names": [
+      {
+       "printed": "Grant Park",
+       "editions": [
+        "lollapalooza-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:american-eagle",
+     "names": [
+      {
+       "printed": "American Eagle",
+       "editions": [
+        "lollapalooza-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:vip-lolla-lounge",
+     "names": [
+      {
+       "printed": "VIP Lolla Lounge",
+       "editions": [
+        "lollapalooza-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "lost-lands": {
+   "lineages": [
+    {
+     "id": "lost-lands:the-crater",
+     "names": [
+      {
+       "printed": "The Crater",
+       "editions": [
+        "lost-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lost-lands:the-grove",
+     "names": [
+      {
+       "printed": "The Grove",
+       "editions": [
+        "lost-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lost-lands:subsidia-stage",
+     "names": [
+      {
+       "printed": "Subsidia Stage",
+       "editions": [
+        "lost-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lost-lands:forest-stage",
+     "names": [
+      {
+       "printed": "Forest Stage",
+       "editions": [
+        "lost-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lost-lands:raptor-alley",
+     "names": [
+      {
+       "printed": "Raptor Alley",
+       "editions": [
+        "lost-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lost-lands:wompy-woods",
+     "names": [
+      {
+       "printed": "Wompy Woods",
+       "editions": [
+        "lost-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lost-lands:prehistoric-paradox",
+     "names": [
+      {
+       "printed": "Prehistoric Paradox",
+       "editions": [
+        "lost-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "nocturnal-wonderland": {
+   "lineages": [
+    {
+     "id": "nocturnal-wonderland:mystic-wild",
+     "names": [
+      {
+       "printed": "Mystic Wild",
+       "editions": [
+        "nocturnal-wonderland-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:dawn-mountain",
+     "names": [
+      {
+       "printed": "Dawn Mountain",
+       "editions": [
+        "nocturnal-wonderland-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:aurora-plains",
+     "names": [
+      {
+       "printed": "Aurora Plains",
+       "editions": [
+        "nocturnal-wonderland-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:rave-cave",
+     "names": [
+      {
+       "printed": "Rave Cave",
+       "editions": [
+        "nocturnal-wonderland-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:beatbox-boombox",
+     "names": [
+      {
+       "printed": "Beatbox Boombox",
+       "editions": [
+        "nocturnal-wonderland-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:wolves-den",
+     "names": [
+      {
+       "printed": "WOLVES' DEN",
+       "editions": [
+        "nocturnal-wonderland-2017",
+        "nocturnal-wonderland-2018",
+        "nocturnal-wonderland-2022"
+       ]
+      },
+      {
+       "printed": "Wolves' Den",
+       "editions": [
+        "nocturnal-wonderland-2019",
+        "nocturnal-wonderland-2021"
+       ],
+       "canceledEditions": [
+        {
+         "id": "nocturnal-wonderland-2024",
+         "status": "canceled",
+         "note": "Announced, then canceled before it opened (the Line Fire). Kept as a record; no set was played.",
+         "sources": [
+          {
+           "publisher": "Moon Lvnding",
+           "published": "2024-09-11",
+           "url": "https://moonlvnding.com/featured/breaking-nocturnal-wonderland-2024-canceled-as-wildfires-threaten-venue/"
+          },
+          {
+           "publisher": "Billboard",
+           "published": "2024-09-12",
+           "url": "https://www.billboard.com/pro/nocturnal-wonderland-2024-canceled-southern-california-wildfires/"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:labyrinth",
+     "names": [
+      {
+       "printed": "LABYRINTH",
+       "editions": [
+        "nocturnal-wonderland-2017",
+        "nocturnal-wonderland-2018",
+        "nocturnal-wonderland-2022"
+       ]
+      },
+      {
+       "printed": "Labyrinth",
+       "editions": [
+        "nocturnal-wonderland-2019",
+        "nocturnal-wonderland-2021"
+       ],
+       "canceledEditions": [
+        {
+         "id": "nocturnal-wonderland-2024",
+         "status": "canceled",
+         "note": "Announced, then canceled before it opened (the Line Fire). Kept as a record; no set was played.",
+         "sources": [
+          {
+           "publisher": "Moon Lvnding",
+           "published": "2024-09-11",
+           "url": "https://moonlvnding.com/featured/breaking-nocturnal-wonderland-2024-canceled-as-wildfires-threaten-venue/"
+          },
+          {
+           "publisher": "Billboard",
+           "published": "2024-09-12",
+           "url": "https://www.billboard.com/pro/nocturnal-wonderland-2024-canceled-southern-california-wildfires/"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:sunken-garden",
+     "names": [
+      {
+       "printed": "SUNKEN GARDEN",
+       "editions": [
+        "nocturnal-wonderland-2017",
+        "nocturnal-wonderland-2018",
+        "nocturnal-wonderland-2022"
+       ]
+      },
+      {
+       "printed": "Sunken Garden",
+       "editions": [
+        "nocturnal-wonderland-2019",
+        "nocturnal-wonderland-2021"
+       ],
+       "canceledEditions": [
+        {
+         "id": "nocturnal-wonderland-2024",
+         "status": "canceled",
+         "note": "Announced, then canceled before it opened (the Line Fire). Kept as a record; no set was played.",
+         "sources": [
+          {
+           "publisher": "Moon Lvnding",
+           "published": "2024-09-11",
+           "url": "https://moonlvnding.com/featured/breaking-nocturnal-wonderland-2024-canceled-as-wildfires-threaten-venue/"
+          },
+          {
+           "publisher": "Billboard",
+           "published": "2024-09-12",
+           "url": "https://www.billboard.com/pro/nocturnal-wonderland-2024-canceled-southern-california-wildfires/"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:temple-noctem",
+     "names": [
+      {
+       "printed": "TEMPLE NOCTEM",
+       "editions": [
+        "nocturnal-wonderland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:boombox-art-car",
+     "names": [
+      {
+       "printed": "BOOMBOX ART CAR",
+       "editions": [
+        "nocturnal-wonderland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:parliament-art-car",
+     "names": [
+      {
+       "printed": "Parliament Art Car",
+       "editions": [
+        "nocturnal-wonderland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:owloch-grove",
+     "names": [
+      {
+       "printed": "Owloch Grove",
+       "editions": [
+        "nocturnal-wonderland-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:beatbox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Art Car",
+       "editions": [],
+       "canceledEditions": [
+        {
+         "id": "nocturnal-wonderland-2024",
+         "status": "canceled",
+         "note": "Announced, then canceled before it opened (the Line Fire). Kept as a record; no set was played.",
+         "sources": [
+          {
+           "publisher": "Moon Lvnding",
+           "published": "2024-09-11",
+           "url": "https://moonlvnding.com/featured/breaking-nocturnal-wonderland-2024-canceled-as-wildfires-threaten-venue/"
+          },
+          {
+           "publisher": "Billboard",
+           "published": "2024-09-12",
+           "url": "https://www.billboard.com/pro/nocturnal-wonderland-2024-canceled-southern-california-wildfires/"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:alice-s-house",
+     "names": [
+      {
+       "printed": "Alice's House",
+       "editions": [
+        "nocturnal-wonderland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:queen-s-grounds",
+     "names": [
+      {
+       "printed": "Queen's Grounds",
+       "editions": [
+        "nocturnal-wonderland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:upside-down-room",
+     "names": [
+      {
+       "printed": "Upside Down Room",
+       "editions": [
+        "nocturnal-wonderland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:wide-awake-art-car",
+     "names": [
+      {
+       "printed": "Wide Awake Art Car",
+       "editions": [
+        "nocturnal-wonderland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:discovery-project",
+     "names": [
+      {
+       "printed": "Discovery Project",
+       "editions": [
+        "nocturnal-wonderland-2012",
+        "nocturnal-wonderland-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "outside-lands": {
+   "lineages": [
+    {
+     "id": "outside-lands:lands-end",
+     "names": [
+      {
+       "printed": "Lands End",
+       "editions": [
+        "outside-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:twin-peaks",
+     "names": [
+      {
+       "printed": "Twin Peaks",
+       "editions": [
+        "outside-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:sutro",
+     "names": [
+      {
+       "printed": "Sutro",
+       "editions": [
+        "outside-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:panhandle",
+     "names": [
+      {
+       "printed": "Panhandle",
+       "editions": [
+        "outside-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:soma-tent",
+     "names": [
+      {
+       "printed": "SOMA Tent",
+       "editions": [
+        "outside-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:dolores",
+     "names": [
+      {
+       "printed": "Dolores'",
+       "editions": [
+        "outside-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:duboce-triangle",
+     "names": [
+      {
+       "printed": "Duboce Triangle",
+       "editions": [
+        "outside-lands-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:lands-end-polo-field",
+     "names": [
+      {
+       "printed": "Lands End (Polo Field)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:sutro-lindley-meadow",
+     "names": [
+      {
+       "printed": "Sutro (Lindley Meadow)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:twin-peaks-hellman-hollow",
+     "names": [
+      {
+       "printed": "Twin Peaks (Hellman Hollow)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:panhandle-hellman-hollow",
+     "names": [
+      {
+       "printed": "Panhandle (Hellman Hollow)",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:the-dome-by-heineken",
+     "names": [
+      {
+       "printed": "The Dome By Heineken",
+       "editions": [
+        "outside-lands-2012"
+       ]
+      },
+      {
+       "printed": "The Dome by Heineken",
+       "editions": [
+        "outside-lands-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:mike-shine",
+     "names": [
+      {
+       "printed": "Mike Shine",
+       "editions": [
+        "outside-lands-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:the-house-by-heineken",
+     "names": [
+      {
+       "printed": "The House by Heineken",
+       "editions": [
+        "outside-lands-2014",
+        "outside-lands-2015",
+        "outside-lands-2016",
+        "outside-lands-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:presidio",
+     "names": [
+      {
+       "printed": "Presidio",
+       "editions": [
+        "outside-lands-2015",
+        "outside-lands-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "portola": {
+   "lineages": [
+    {
+     "id": "portola:pier-stage",
+     "names": [
+      {
+       "printed": "Pier Stage",
+       "editions": [
+        "portola-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "portola:crane-stage",
+     "names": [
+      {
+       "printed": "Crane Stage",
+       "editions": [
+        "portola-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "portola:warehouse",
+     "names": [
+      {
+       "printed": "Warehouse",
+       "editions": [
+        "portola-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "portola:ship-tent",
+     "names": [
+      {
+       "printed": "Ship Tent",
+       "editions": [
+        "portola-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "portola:despacio",
+     "names": [
+      {
+       "printed": "Despacio",
+       "editions": [
+        "portola-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "shambhala": {
+   "lineages": [
+    {
+     "id": "shambhala:living-room",
+     "names": [
+      {
+       "printed": "Living Room",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:rock-pit",
+     "names": [
+      {
+       "printed": "Rock Pit",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:pagoda",
+     "names": [
+      {
+       "printed": "Pagoda",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:fractal-forest",
+     "names": [
+      {
+       "printed": "Fractal Forest",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:labyrinth",
+     "names": [
+      {
+       "printed": "Labyrinth",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:village",
+     "names": [
+      {
+       "printed": "Village",
+       "editions": [
+        "shambhala-2011",
+        "shambhala-2012",
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:amphitheatre",
+     "names": [
+      {
+       "printed": "Amphitheatre",
+       "editions": [
+        "shambhala-2013",
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:grove",
+     "names": [
+      {
+       "printed": "Grove",
+       "editions": [
+        "shambhala-2014",
+        "shambhala-2015",
+        "shambhala-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "summerfest": {
+   "lineages": [
+    {
+     "id": "summerfest:amfam-amphitheater",
+     "names": [
+      {
+       "printed": "AmFam Amphitheater",
+       "editions": [
+        "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "summerfest:bmo-pavilion",
+     "names": [
+      {
+       "printed": "BMO Pavilion",
+       "editions": [
+        "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "summerfest:big-backyard",
+     "names": [
+      {
+       "printed": "Big Backyard",
+       "editions": [
+        "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "summerfest:generac-power-stage",
+     "names": [
+      {
+       "printed": "Generac Power Stage",
+       "editions": [
+        "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "summerfest:miller-lite-oasis",
+     "names": [
+      {
+       "printed": "Miller Lite Oasis",
+       "editions": [
+        "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "summerfest:aurora-pavilion",
+     "names": [
+      {
+       "printed": "Aurora Pavilion",
+       "editions": [
+        "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "summerfest:t-mobile-stage",
+     "names": [
+      {
+       "printed": "T-Mobile Stage",
+       "editions": [
+        "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "summerfest:uline-warehouse",
+     "names": [
+      {
+       "printed": "Uline Warehouse",
+       "editions": [
+        "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "summerfest:summerville",
+     "names": [
+      {
+       "printed": "Summerville",
+       "editions": [
+        "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "summerfest:amfam-house",
+     "names": [
+      {
+       "printed": "AmFam House",
+       "editions": [
+        "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "tomorrowland": {
+   "lineages": [
+    {
+     "id": "tomorrowland:mainstage",
+     "names": [
+      {
+       "printed": "Mainstage",
+       "editions": [
+        "tomorrowland-2017",
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:trance-energy",
+     "names": [
+      {
+       "printed": "Trance Energy",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:elrow",
+     "names": [
+      {
+       "printed": "Elrow",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:my-house",
+     "names": [
+      {
+       "printed": "My House",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:drumcode",
+     "names": [
+      {
+       "printed": "Drumcode",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:v-sessions",
+     "names": [
+      {
+       "printed": "V Sessions",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:super-you-and-me",
+     "names": [
+      {
+       "printed": "Super You&Me",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:toolroom-live",
+     "names": [
+      {
+       "printed": "Toolroom Live",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:monstercat",
+     "names": [
+      {
+       "printed": "Monstercat",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:global-hardcore-nation",
+     "names": [
+      {
+       "printed": "Global Hardcore Nation",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:the-sound-of-belgium",
+     "names": [
+      {
+       "printed": "The Sound of Belgium",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:winterclubbing",
+     "names": [
+      {
+       "printed": "Winterclubbing",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:the-sound-of-tomorrow",
+     "names": [
+      {
+       "printed": "The Sound of Tomorrow",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cubanisto",
+     "names": [
+      {
+       "printed": "Cubanisto",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:rituel-recordings",
+     "names": [
+      {
+       "printed": "Rituel Recordings",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:radio-ultra-modern",
+     "names": [
+      {
+       "printed": "Radio Ultra Modern",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:refune",
+     "names": [
+      {
+       "printed": "Refune",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:stmpd-rcrds",
+     "names": [
+      {
+       "printed": "STMPD RCRDS",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:diynamic",
+     "names": [
+      {
+       "printed": "Diynamic",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:paradise",
+     "names": [
+      {
+       "printed": "Paradise",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:jacked",
+     "names": [
+      {
+       "printed": "Jacked",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:i-love-techno",
+     "names": [
+      {
+       "printed": "I Love Techno",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:q-dance",
+     "names": [
+      {
+       "printed": "Q-dance",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      },
+      {
+       "printed": "Q-Dance",
+       "editions": [
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:bonzai",
+     "names": [
+      {
+       "printed": "Bonzai",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:future-sound-of-egypt",
+     "names": [
+      {
+       "printed": "Future Sound of Egypt",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:forma-t-and-hungry-music",
+     "names": [
+      {
+       "printed": "Forma.T & Hungry Music",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:crystal-events",
+     "names": [
+      {
+       "printed": "Crystal Events",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:all-day-i-dream",
+     "names": [
+      {
+       "printed": "All Day I Dream",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cubanisto-presents-hush-hush",
+     "names": [
+      {
+       "printed": "Cubanisto presents Hush Hush",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:smash-the-house",
+     "names": [
+      {
+       "printed": "Smash The House",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:ants",
+     "names": [
+      {
+       "printed": "ANTS",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:dave-clarke-presents",
+     "names": [
+      {
+       "printed": "Dave Clarke presents",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:claptone",
+     "names": [
+      {
+       "printed": "Claptone",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cda-invites-cocoon",
+     "names": [
+      {
+       "printed": "CDA invites Cocoon",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:versuz",
+     "names": [
+      {
+       "printed": "Versuz",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:robin-schulz-and-friends",
+     "names": [
+      {
+       "printed": "Robin Schulz & friends",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cafeina",
+     "names": [
+      {
+       "printed": "Cafeina",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:footworxx",
+     "names": [
+      {
+       "printed": "Footworxx",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:pussy-lounge",
+     "names": [
+      {
+       "printed": "Pussy Lounge",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:feestgedruis",
+     "names": [
+      {
+       "printed": "Feestgedruis",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:sanctuary",
+     "names": [
+      {
+       "printed": "Sanctuary",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:a-state-of-trance",
+     "names": [
+      {
+       "printed": "A State of Trance",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:sexy-by-nature",
+     "names": [
+      {
+       "printed": "Sexy by Nature",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:dim-mak",
+     "names": [
+      {
+       "printed": "Dim Mak",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:netsky-and-friends",
+     "names": [
+      {
+       "printed": "Netsky & friends",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:kozzmozz",
+     "names": [
+      {
+       "printed": "Kozzmozz",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:we-play-house",
+     "names": [
+      {
+       "printed": "We Play House",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:spinnin-sessions",
+     "names": [
+      {
+       "printed": "Spinnin' Sessions",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:age-of-love",
+     "names": [
+      {
+       "printed": "Age of Love",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:krankenhaus",
+     "names": [
+      {
+       "printed": "Krankenhaus",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:leaf",
+     "names": [
+      {
+       "printed": "Leaf",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:axtone",
+     "names": [
+      {
+       "printed": "Axtone",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:lost-frequencies-and-friends",
+     "names": [
+      {
+       "printed": "Lost Frequencies & friends",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:playdifferently-presents-model-1",
+     "names": [
+      {
+       "printed": "PLAYdifferently presents MODEL 1",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:barong-family",
+     "names": [
+      {
+       "printed": "Barong Family",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:tranceaddict",
+     "names": [
+      {
+       "printed": "Tranceaddict",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:generation-smash",
+     "names": [
+      {
+       "printed": "Generation Smash",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:b2b",
+     "names": [
+      {
+       "printed": "B2B",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:woody-weekend",
+     "names": [
+      {
+       "printed": "Woody Weekend",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cubanisto-presents-ketaloco",
+     "names": [
+      {
+       "printed": "Cubanisto presents Ketaloco",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:pryda",
+     "names": [
+      {
+       "printed": "Pryda",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:potion",
+     "names": [
+      {
+       "printed": "Potion",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cda-presents-mosaic",
+     "names": [
+      {
+       "printed": "CDA presents Mosaic",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:i-love-the-90-s",
+     "names": [
+      {
+       "printed": "I love the 90's",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:heldeep",
+     "names": [
+      {
+       "printed": "Heldeep",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:coone-and-the-gang",
+     "names": [
+      {
+       "printed": "Coone & The Gang",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:star-warz-invites-ram-records",
+     "names": [
+      {
+       "printed": "Star Warz invites RAM Records",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:loudness",
+     "names": [
+      {
+       "printed": "Loudness",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:coincidence",
+     "names": [
+      {
+       "printed": "Coincidence",
+       "editions": [
+        "tomorrowland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:freedom-stage-by-budweiser",
+     "names": [
+      {
+       "printed": "Freedom Stage by Budweiser",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:atmosphere",
+     "names": [
+      {
+       "printed": "Atmosphere",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:garden-of-madness",
+     "names": [
+      {
+       "printed": "Garden of Madness",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:organ-of-harmony",
+     "names": [
+      {
+       "printed": "Organ of Harmony",
+       "editions": [
+        "tomorrowland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:core",
+     "names": [
+      {
+       "printed": "Core",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2023"
+       ]
+      },
+      {
+       "printed": "CORE",
+       "editions": [
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:rose-garden",
+     "names": [
+      {
+       "printed": "Rose Garden",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:tulip",
+     "names": [
+      {
+       "printed": "Tulip",
+       "editions": [
+        "tomorrowland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cage",
+     "names": [
+      {
+       "printed": "Cage",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:youphoria",
+     "names": [
+      {
+       "printed": "Youphoria",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:arch",
+     "names": [
+      {
+       "printed": "Arch",
+       "editions": [
+        "tomorrowland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:leaf-by-jbl",
+     "names": [
+      {
+       "printed": "Leaf by JBL",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019"
+       ]
+      },
+      {
+       "printed": "LEAF by JBL",
+       "editions": [
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:house-of-mask-by-cubanisto",
+     "names": [
+      {
+       "printed": "House of Mask by Cubanisto",
+       "editions": [
+        "tomorrowland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:amicorum-spectaculum-presents-theatre-formidable",
+     "names": [
+      {
+       "printed": "Amicorum Spectaculum presents: Theatre Formidable",
+       "editions": [
+        "tomorrowland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:rave-cave",
+     "names": [
+      {
+       "printed": "Rave Cave",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:harbour-house",
+     "names": [
+      {
+       "printed": "Harbour House",
+       "editions": [
+        "tomorrowland-2018",
+        "tomorrowland-2019",
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:casa-corona",
+     "names": [
+      {
+       "printed": "Casa Corona",
+       "editions": [
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:l-orangerie",
+     "names": [
+      {
+       "printed": "L'Orangerie",
+       "editions": [
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:kara-savi",
+     "names": [
+      {
+       "printed": "Kara Savi",
+       "editions": [
+        "tomorrowland-2019",
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:lotus",
+     "names": [
+      {
+       "printed": "Lotus",
+       "editions": [
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:moose-bar",
+     "names": [
+      {
+       "printed": "Moose Bar",
+       "editions": [
+        "tomorrowland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:freedom",
+     "names": [
+      {
+       "printed": "Freedom",
+       "editions": [
+        "tomorrowland-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:the-rave-cave",
+     "names": [
+      {
+       "printed": "The Rave Cave",
+       "editions": [
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:crystal-garden",
+     "names": [
+      {
+       "printed": "Crystal Garden",
+       "editions": [
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:the-library",
+     "names": [
+      {
+       "printed": "The Library",
+       "editions": [
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:moosebar",
+     "names": [
+      {
+       "printed": "Moosebar",
+       "editions": [
+        "tomorrowland-2022",
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:freedom-by-bud",
+     "names": [
+      {
+       "printed": "Freedom by Bud",
+       "editions": [
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:the-rose-garden",
+     "names": [
+      {
+       "printed": "The Rose Garden",
+       "editions": [
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:elixir",
+     "names": [
+      {
+       "printed": "Elixir",
+       "editions": [
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:terra-solis",
+     "names": [
+      {
+       "printed": "Terra Solis",
+       "editions": [
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:rise-by-coke-studio",
+     "names": [
+      {
+       "printed": "Rise by Coke Studio",
+       "editions": [
+        "tomorrowland-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "tomorrowland-thailand": {
+   "lineages": [
+    {
+     "id": "tomorrowland-thailand:mainstage",
+     "names": [
+      {
+       "printed": "Mainstage",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:freedom-by-budweiser",
+     "names": [
+      {
+       "printed": "Freedom by Budweiser",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:crystal-garden-by-anker",
+     "names": [
+      {
+       "printed": "Crystal Garden by Anker",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:codex",
+     "names": [
+      {
+       "printed": "Codex",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:core",
+     "names": [
+      {
+       "printed": "CORE",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:papillon",
+     "names": [
+      {
+       "printed": "Papillon",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland-thailand:moose-bar",
+     "names": [
+      {
+       "printed": "Moose Bar",
+       "editions": [
+        "tomorrowland-thailand-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "ultra-miami": {
+   "lineages": [
+    {
+     "id": "ultra-miami:ultra-main-stage",
+     "names": [
+      {
+       "printed": "ULTRA Main Stage",
+       "editions": [
+        "ultra-miami-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": {
+      "editions": [
+       "ultra-miami-2026"
+      ],
+      "source": "https://ultramusicfestival.com/lineup/set-times/",
+      "quote": "ULTRA Main Stage",
+      "observedAt": "2026-08-28",
+      "why": "The official set-times page names the stage \"ULTRA Main Stage\" (data/festivals/ultra-miami-2026.js scheduleSource, official)."
+     }
+    },
+    {
+     "id": "ultra-miami:worldwide-stage",
+     "names": [
+      {
+       "printed": "Worldwide Stage",
+       "editions": [
+        "ultra-miami-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:megastructure",
+     "names": [
+      {
+       "printed": "Megastructure",
+       "editions": [
+        "ultra-miami-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:the-cove",
+     "names": [
+      {
+       "printed": "The Cove",
+       "editions": [
+        "ultra-miami-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:live-stage",
+     "names": [
+      {
+       "printed": "Live Stage",
+       "editions": [
+        "ultra-miami-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:umf-radio-stage",
+     "names": [
+      {
+       "printed": "UMF Radio Stage",
+       "editions": [
+        "ultra-miami-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:oasis",
+     "names": [
+      {
+       "printed": "Oasis",
+       "editions": [
+        "ultra-miami-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  }
+ }
+}

@@ -17,6 +17,7 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     // File/base64 recognition state.
     private var session: SHSession?
     private var savedCall: CAPPluginCall?
+    private var fileTimeout: DispatchWorkItem?
 
     // Live-mic recognition state. Touched on the main queue only, so a match,
     // the 12 s timeout, Cancel and an interruption can race without two of
@@ -58,13 +59,22 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     // song tag goes from "estimated from tracklist" to "proven from your
     // own recording". Reads the file's audio track in PCM chunks and feeds
     // them to the same SHSession streaming matcher.
+    //
+    // Build 39: every outcome resolves with a reason the JS maps to words:
+    // missing-file, no-audio, audio-failed, service-error, timeout, no-match
+    // (or busy). The debug payload carries only that reason and counts:
+    // never a path, a file name or a system error string. Neither file path
+    // touches the microphone.
     @objc func identifyFile(_ call: CAPPluginCall) {
-        guard let path = call.getString("path") else {
-            call.reject("Missing file path"); return
+        guard let path = call.getString("path"), !path.isEmpty else {
+            call.resolve(noMatch("missing-file")); return
         }
         let url = URL(string: path)?.isFileURL == true
             ? URL(string: path)!
             : URL(fileURLWithPath: path.replacingOccurrences(of: "file://", with: ""))
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            call.resolve(noMatch("missing-file")); return
+        }
         matchFromURL(url, call: call, tempURL: nil)
     }
 
@@ -72,22 +82,31 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     // blob straight from IndexedDB without the Filesystem plugin. We write it
     // to a temp file, run the same matcher, then delete the temp file.
     @objc func identifyBase64(_ call: CAPPluginCall) {
-        guard let b64 = call.getString("data"), let data = Data(base64Encoded: b64) else {
-            call.reject("Missing or invalid base64 data"); return
+        guard let b64 = call.getString("data"), let data = Data(base64Encoded: b64), !data.isEmpty else {
+            call.resolve(noMatch("audio-failed")); return
         }
         let ext = call.getString("ext") ?? "mp4"
         let tmp = URL(fileURLWithPath: NSTemporaryDirectory())
             .appendingPathComponent("shazam-\(UUID().uuidString).\(ext)")
-        do { try data.write(to: tmp) } catch { call.reject("Failed to write temp file"); return }
+        do { try data.write(to: tmp) } catch { call.resolve(noMatch("audio-failed")); return }
         matchFromURL(tmp, call: call, tempURL: tmp)
     }
 
-    private func resolveNoMatch(_ debug: [String: Any] = [:]) {
-        logDebug("NO MATCH (file path) · \(debug["reason"] ?? "")")
+    // Resolves the in-flight file call once, and only if it is still the
+    // call this attempt started for (a stale timer or a late delegate
+    // callback can never answer a newer call).
+    private func resolveFile(_ payload: [String: Any], for call: CAPPluginCall) {
         DispatchQueue.main.async {
-            self.savedCall?.resolve(["matched": false, "title": "", "artist": "", "debug": debug])
+            guard let saved = self.savedCall, saved === call else { return }
+            self.fileTimeout?.cancel(); self.fileTimeout = nil
             self.savedCall = nil
+            saved.resolve(payload)
         }
+    }
+
+    private func resolveNoMatch(_ debug: [String: Any], for call: CAPPluginCall) {
+        logDebug("NO MATCH (file path) · \(debug["reason"] ?? "")")
+        resolveFile(["matched": false, "title": "", "artist": "", "debug": debug], for: call)
     }
 
     // Shared file→PCM→matcher path. Deletes tempURL (if any) once the audio
@@ -103,6 +122,12 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
     // The signature-generator path is Apple's intended way to recognise a
     // pre-recorded file and gives the matcher the full, correctly-timed sample.
     private func matchFromURL(_ url: URL, call: CAPPluginCall, tempURL: URL?) {
+        // One file match at a time; a second call used to replace savedCall
+        // and leave the first promise hanging forever.
+        if savedCall != nil {
+            if let t = tempURL { try? FileManager.default.removeItem(at: t) }
+            call.resolve(noMatch("busy")); return
+        }
         savedCall = call
         session = SHSession()
         session?.delegate = self
@@ -119,10 +144,13 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
                 "sampleBuffers": 0,
                 "framesAppended": 0,
             ]
-            guard let track = asset.tracks(withMediaType: .audio).first,
-                  let reader = try? AVAssetReader(asset: asset) else {
-                debug["reason"] = "no-audio-track-or-reader"
-                self.resolveNoMatch(debug); return
+            guard let track = asset.tracks(withMediaType: .audio).first else {
+                debug["reason"] = "no-audio"
+                self.resolveNoMatch(debug, for: call); return
+            }
+            guard let reader = try? AVAssetReader(asset: asset) else {
+                debug["reason"] = "audio-failed"
+                self.resolveNoMatch(debug, for: call); return
             }
             debug["audioTrack"] = true
             let settings: [String: Any] = [
@@ -161,21 +189,24 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
                 CMSampleBufferInvalidate(sampleBuffer)
             }
             debug["readerStatus"] = reader.status.rawValue
-            if let err = reader.error { debug["readerError"] = err.localizedDescription }
-            guard appended else { debug["reason"] = "no-pcm-appended"; self.resolveNoMatch(debug); return }
+            if let err = reader.error as NSError? { debug["readerErrorCode"] = err.code }
+            guard appended else { debug["reason"] = "audio-failed"; self.resolveNoMatch(debug, for: call); return }
 
             // Match the accumulated signature; didFind/didNotFind resolves the call.
             let signature = generator.signature()
             self.session?.match(signature)
 
-            // Safety net if no delegate callback fires.
-            DispatchQueue.main.asyncAfter(deadline: .now() + 8) { [weak self] in
-                if let call = self?.savedCall {
-                    var timedOut = debug
-                    timedOut["reason"] = "match-timeout"
-                    call.resolve(["matched": false, "title": "", "artist": "", "debug": timedOut])
-                    self?.savedCall = nil
-                }
+            // Safety net if no delegate callback fires: a cancellable work
+            // item tied to THIS call.
+            var timedOut = debug
+            timedOut["reason"] = "timeout"
+            let timeout = DispatchWorkItem { [weak self] in
+                self?.resolveNoMatch(timedOut, for: call)
+            }
+            DispatchQueue.main.async {
+                self.fileTimeout?.cancel()
+                self.fileTimeout = timeout
+                DispatchQueue.main.asyncAfter(deadline: .now() + 8, execute: timeout)
             }
         }
     }
@@ -348,16 +379,27 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
         DispatchQueue.main.async { self.deliver(payload, from: session) }
     }
 
+    // No error = ShazamKit heard it and found nothing (a genuine no-match).
+    // An error = the service, the network or the signature failed. Only the
+    // numeric code goes back, never the system's error text.
     public func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: (any Error)?) {
         logDebug("DID-NOT-FIND · \(error?.localizedDescription ?? "no-error")")
-        let payload = noMatch("did-not-find", ["error": error?.localizedDescription ?? ""])
+        let payload: [String: Any]
+        if let err = error as NSError? {
+            let audio = err.domain == SHErrorDomain
+                && (err.code == SHError.Code.signatureInvalid.rawValue || err.code == SHError.Code.signatureDurationInvalid.rawValue)
+            payload = noMatch(audio ? "audio-failed" : "service-error", ["errorCode": err.code])
+        } else {
+            payload = noMatch("no-match")
+        }
         DispatchQueue.main.async { self.deliver(payload, from: session) }
     }
 
     private func deliver(_ payload: [String: Any], from session: SHSession) {
         if session === liveSession { finishLive(payload); return }
-        guard session === self.session else { return }
-        savedCall?.resolve(payload)
+        guard session === self.session, let call = savedCall else { return }
+        fileTimeout?.cancel(); fileTimeout = nil
         savedCall = nil
+        call.resolve(payload)
     }
 }

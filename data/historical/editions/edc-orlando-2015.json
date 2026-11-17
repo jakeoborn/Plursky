@@ -1,0 +1,817 @@
+{
+ "id": "edc-orlando-2015",
+ "festivalId": "edc-orlando",
+ "name": "EDC Orlando 2015",
+ "year": 2015,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-11-06",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2015-11-07",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "edc-orlando-2015:amine-edge-and-dance",
+   "name": "Amine Edge & DANCE",
+   "key": "amine-edge-and-dance",
+   "performers": [
+    "amine-edge-and-dance"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:andy-c-armanni-reign",
+   "name": "Andy C + Armanni Reign",
+   "key": "andy-c-armanni-reign",
+   "performers": [
+    "andy-c-armanni-reign"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:awt",
+   "name": "AWT",
+   "key": "awt",
+   "performers": [
+    "awt"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:bassrush-experience",
+   "name": "Bassrush Experience",
+   "key": "bassrush-experience",
+   "performers": [
+    "bassrush-experience"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:ben-gold",
+   "name": "Ben Gold",
+   "key": "ben-gold",
+   "performers": [
+    "ben-gold"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:bro-safari",
+   "name": "Bro Safari",
+   "key": "bro-safari",
+   "performers": [
+    "bro-safari"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:calvin-harris",
+   "name": "Calvin Harris",
+   "key": "calvin-harris",
+   "performers": [
+    "calvin-harris"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:chuckie",
+   "name": "Chuckie",
+   "key": "chuckie",
+   "performers": [
+    "chuckie"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:crizzly",
+   "name": "Crizzly",
+   "key": "crizzly",
+   "performers": [
+    "crizzly"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:dotcom",
+   "name": "Dotcom",
+   "key": "dotcom",
+   "performers": [
+    "dotcom"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:ed-rush-and-optical-the-upbeats",
+   "name": "Ed Rush & Optical + The Upbeats",
+   "key": "ed-rush-and-optical-the-upbeats",
+   "performers": [
+    "ed-rush-and-optical-the-upbeats"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:eric-prydz",
+   "name": "Eric Prydz",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:excision",
+   "name": "Excision",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:ferry-corsten",
+   "name": "Ferry Corsten",
+   "key": "ferry-corsten",
+   "performers": [
+    "ferry-corsten"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:flux-pavilion",
+   "name": "Flux Pavilion",
+   "key": "flux-pavilion",
+   "performers": [
+    "flux-pavilion"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:funtcase",
+   "name": "FuntCase",
+   "key": "funtcase",
+   "performers": [
+    "funtcase"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:fury-mc-dino",
+   "name": "Fury + MC Dino",
+   "key": "fury-mc-dino",
+   "performers": [
+    "fury-mc-dino"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:ilan-bluestone",
+   "name": "Ilan Bluestone",
+   "key": "ilan-bluestone",
+   "performers": [
+    "ilan-bluestone"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:jason-ross",
+   "name": "Jason Ross",
+   "key": "jason-ross",
+   "performers": [
+    "jason-ross"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:laidback-luke",
+   "name": "Laidback Luke",
+   "key": "laidback-luke",
+   "performers": [
+    "laidback-luke"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:mako",
+   "name": "Mako",
+   "key": "mako",
+   "performers": [
+    "mako"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:paul-van-dyk",
+   "name": "Paul Van Dyk",
+   "key": "paul-van-dyk",
+   "performers": [
+    "paul-van-dyk"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:shmitty",
+   "name": "Shmitty",
+   "key": "shmitty",
+   "performers": [
+    "shmitty"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:simon-patterson",
+   "name": "Simon Patterson",
+   "key": "simon-patterson",
+   "performers": [
+    "simon-patterson"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:snails",
+   "name": "Snails",
+   "key": "snails",
+   "performers": [
+    "snails"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:trollphace",
+   "name": "TrollPhace",
+   "key": "trollphace",
+   "performers": [
+    "trollphace"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:venice",
+   "name": "Venice",
+   "key": "venice",
+   "performers": [
+    "venice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:zav",
+   "name": "Zav",
+   "key": "zav",
+   "performers": [
+    "zav"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:4b",
+   "name": "4B",
+   "key": "4b",
+   "performers": [
+    "4b"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:alx",
+   "name": "ALX",
+   "key": "alx",
+   "performers": [
+    "alx"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:audien",
+   "name": "Audien",
+   "key": "audien",
+   "performers": [
+    "audien"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:bassnectar",
+   "name": "Bassnectar",
+   "key": "bassnectar",
+   "performers": [
+    "bassnectar"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:blasterjaxx",
+   "name": "Blasterjaxx",
+   "key": "blasterjaxx",
+   "performers": [
+    "blasterjaxx"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:carlos-mendoza",
+   "name": "Carlos Mendoza",
+   "key": "carlos-mendoza",
+   "performers": [
+    "carlos-mendoza"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:carnage",
+   "name": "Carnage",
+   "key": "carnage",
+   "performers": [
+    "carnage"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:cocodrills",
+   "name": "Cocodrills",
+   "key": "cocodrills",
+   "performers": [
+    "cocodrills"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:dallask",
+   "name": "DallasK",
+   "key": "dallask",
+   "performers": [
+    "dallask"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:damaged-goods",
+   "name": "Damaged Goods",
+   "key": "damaged-goods",
+   "performers": [
+    "damaged-goods"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:dannic",
+   "name": "Dannic",
+   "key": "dannic",
+   "performers": [
+    "dannic"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:david-steven",
+   "name": "David Steven",
+   "key": "david-steven",
+   "performers": [
+    "david-steven"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:drezo",
+   "name": "Drezo",
+   "key": "drezo",
+   "performers": [
+    "drezo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:eats-everything",
+   "name": "Eats Everything",
+   "key": "eats-everything",
+   "performers": [
+    "eats-everything"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:gorgon-city",
+   "name": "Gorgon City",
+   "key": "gorgon-city",
+   "performers": [
+    "gorgon-city"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:get-real-green-velvet-and-claude-vonstroke",
+   "name": "Get Real (Green Velvet & Claude VonStroke)",
+   "key": "get-real-green-velvet-and-claude-vonstroke",
+   "performers": [
+    "get-real-green-velvet-and-claude-vonstroke"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:jackal",
+   "name": "Jackal",
+   "key": "jackal",
+   "performers": [
+    "jackal"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:jose-estrada",
+   "name": "Jose Estrada",
+   "key": "jose-estrada",
+   "performers": [
+    "jose-estrada"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:justin-martin",
+   "name": "Justin Martin",
+   "key": "justin-martin",
+   "performers": [
+    "justin-martin"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:kidnap-kid",
+   "name": "Kidnap Kid",
+   "key": "kidnap-kid",
+   "performers": [
+    "kidnap-kid"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:loudpvck",
+   "name": "Loudpvck",
+   "key": "loudpvck",
+   "performers": [
+    "loudpvck"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:motez",
+   "name": "Motez",
+   "key": "motez",
+   "performers": [
+    "motez"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:no-mana",
+   "name": "No Mana",
+   "key": "no-mana",
+   "performers": [
+    "no-mana"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:quintino",
+   "name": "Quintino",
+   "key": "quintino",
+   "performers": [
+    "quintino"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:seven-lions",
+   "name": "Seven Lions",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:slander",
+   "name": "Slander",
+   "key": "slander",
+   "performers": [
+    "slander"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:the-magician",
+   "name": "The Magician",
+   "key": "the-magician",
+   "performers": [
+    "the-magician"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-orlando-2015:sheen-boogie",
+   "name": "Sheen Boogie",
+   "key": "sheen-boogie",
+   "performers": [
+    "sheen-boogie"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://orlando.electricdaisycarnival.com/experience/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20151219232734/https://orlando.electricdaisycarnival.com/experience/lineup/",
+    "captureTimestamp": "20151219232734",
+    "sha256": "b3c60b5225b30010e224771232e775989d7f5303531349fce6e62c1b2b1c80f6"
+   }
+  ]
+ }
+}

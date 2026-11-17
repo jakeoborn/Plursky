@@ -7,6 +7,9 @@ function isLegendary(a) {
   }
   return false;
 }
+function _searchFold(s) {
+  return String(s || "").normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+}
 function _msToIcsDate(ms) {
   var d = new Date(ms);
   var pad = n => String(n).padStart(2, "0");
@@ -15,9 +18,18 @@ function _msToIcsDate(ms) {
 function _artistMs(artist, hhmm) {
   return _wallMs(artistDayDate(artist), hhmm, FESTIVAL_CONFIG && FESTIVAL_CONFIG.tz);
 }
+function _noteLeftOutOfCalendar(n) {
+  try {
+    window.plurskyToast?.(`${n} saved set${n === 1 ? "" : "s"} left out: set times unconfirmed`, {
+      duration: 4000
+    });
+  } catch {}
+}
 async function exportSavedSetsICS(savedIds) {
-  var artists = activeLineup(savedIds).filter(a => savedIds.includes(a.id)).sort((a, b) => a.day - b.day || (a.start < b.start ? -1 : 1));
+  var artists = activeLineup(savedIds).filter(a => savedIds.includes(a.id)).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   if (!artists.length) return;
+  var leftUnconfirmed = artists.filter(setTimesUnconfirmed).length;
+  if (leftUnconfirmed) _noteLeftOutOfCalendar(leftUnconfirmed);
   var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", `PRODID:-//Plursky//${FESTIVAL_CONFIG.name}//EN`, "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
   artists.forEach(a => {
     var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
@@ -85,9 +97,9 @@ async function exportSavedSetsICS(savedIds) {
 function _nightShareText(ids) {
   var lines = festivalDayNums().flatMap(day => {
     var d = FESTIVAL_CONFIG.dayDates[day];
-    var dayArtists = activeLineup(ids).filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+    var dayArtists = activeLineup(ids).filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES));
     if (!dayArtists.length) return [];
-    return [`${d.short} · ${d.name.toUpperCase()}`, ...dayArtists.map(a => `  ${fmt12(a.start)}  ${a.name}`), ""];
+    return [`${d.short} · ${d.name.toUpperCase()}`, ...dayArtists.map(a => setTimesUnconfirmed(a) ? `  ${a.name} (${SET_TIMES_UNCONFIRMED.toLowerCase()})` : `  ${fmt12(a.start)}  ${a.name}`), ""];
   });
   return [`My ${FESTIVAL_CONFIG.name} lineup (${ids.length} sets):`, "", ...lines].join("\n").trim();
 }
@@ -112,16 +124,16 @@ function NightWizard({
   var dayStats = DAYS.map(d => {
     var sets = activeLineup(localIds).filter(a => a.day === d.n && local.has(a.id));
     var clashes = 0;
-    for (var i = 0; i < sets.length; i++) for (var j = i + 1; j < sets.length; j++) if (overlaps(sets[i], sets[j])) clashes++;
+    for (var i = 0; i < sets.length; i++) for (var j = i + 1; j < sets.length; j++) if (setsClash(sets[i], sets[j], undefined, localIds)) clashes++;
     return {
       ...d,
       count: sets.length,
       clashes
     };
   });
-  var sorted = activeLineup(localIds).filter(a => a.day === activeDay && local.has(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+  var sorted = activeLineup(localIds).filter(a => a.day === activeDay && local.has(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES));
   var conflictIds = new Set();
-  for (var i = 0; i < sorted.length; i++) for (var j = i + 1; j < sorted.length; j++) if (overlaps(sorted[i], sorted[j])) {
+  for (var i = 0; i < sorted.length; i++) for (var j = i + 1; j < sorted.length; j++) if (setsClash(sorted[i], sorted[j], undefined, localIds)) {
     conflictIds.add(sorted[i].id);
     conflictIds.add(sorted[j].id);
   }
@@ -131,9 +143,11 @@ function NightWizard({
       type: "set",
       artist: sorted[_i]
     });
-    if (_i < sorted.length - 1) {
-      var gS = toNightMin(sorted[_i].end),
-        gE = toNightMin(sorted[_i + 1].start);
+    var t0 = setTimingMin(sorted[_i]),
+      t1 = _i < sorted.length - 1 ? setTimingMin(sorted[_i + 1]) : null;
+    if (t0 && t1 && t0.end != null) {
+      var gS = t0.end,
+        gE = t1.start;
       if (gE > gS + 5) {
         var gapMin = gE - gS;
         var fits = activeLineup(localIds).filter(a => a.day === activeDay && !local.has(a.id) && toNightMin(a.start) >= gS && toNightMin(a.start) < gE - 14).sort((a, b) => b.tier - a.tier).slice(0, 3);
@@ -164,7 +178,7 @@ function NightWizard({
     onClose();
   };
   var autoFill = () => {
-    var candidates = activeLineup(localIds).filter(a => a.day === activeDay).sort((a, b) => b.tier - a.tier || toNightMin(a.start) - toNightMin(b.start));
+    var candidates = activeLineup(localIds).filter(a => a.day === activeDay && !setTimesUnconfirmed(a)).sort((a, b) => b.tier - a.tier || toNightMin(a.start) - toNightMin(b.start));
     var picked = [];
     var _loop2 = function (a) {
       if (picked.length >= 8) return 1;
@@ -445,7 +459,7 @@ function NightWizard({
           textAlign: "right",
           paddingTop: 14
         }
-      }, fmt12(a.start)), React.createElement("div", {
+      }, setTimesUnconfirmed(a) ? null : fmt12(a.start)), React.createElement("div", {
         style: {
           flex: 1,
           minWidth: 0,
@@ -487,7 +501,7 @@ function NightWizard({
         style: {
           whiteSpace: "nowrap"
         }
-      }, fmt12(a.start), "–", fmt12(a.end)))), React.createElement("button", {
+      }, setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : React.createElement(React.Fragment, null, fmt12(a.start), "–", fmt12(a.end))))), React.createElement("button", {
         onClick: () => drop(a.id),
         className: "duo-chip",
         "aria-label": `Drop ${a.name}`
@@ -598,6 +612,13 @@ function NightWizard({
     className: "duo-label duo-sun"
   }, "Sunrise"))))));
 }
+function stageLaneHue(stageId) {
+  var i = (typeof STAGES !== "undefined" ? STAGES : []).findIndex(s => s.id === stageId);
+  if (i < 0) return null;
+  return {
+    stroke: `var(--lane-${i % 6 + 1})`
+  };
+}
 function LineupOverview({
   sets,
   savedSet,
@@ -658,6 +679,7 @@ function LineupOverview({
   }) => {
     var on = stageFilter === stage.id;
     var mine = sets.filter(x => savedSet.has(x.a.id)).length;
+    var hue = stageLaneHue(stage.id);
     return React.createElement(React.Fragment, {
       key: stage.id
     }, React.createElement("button", {
@@ -675,10 +697,27 @@ function LineupOverview({
         textAlign: "left",
         font: `${on ? 650 : 500} 11px/14px var(--f-ui)`,
         color: on ? "var(--acc-ink)" : "var(--ink-2)",
-        overflowWrap: "anywhere"
+        overflowWrap: "anywhere",
+        ...(hue ? {
+          display: "flex",
+          alignItems: "baseline",
+          gap: 6
+        } : {})
       }
-    }, stage.name), React.createElement("div", {
+    }, hue && React.createElement("span", {
+      "data-lane-chip": true,
       "aria-hidden": "true",
+      style: {
+        flex: "none",
+        width: 8,
+        height: 8,
+        borderRadius: 2,
+        background: hue.stroke,
+        alignSelf: "center"
+      }
+    }), React.createElement("span", null, stage.name)), React.createElement("div", {
+      "aria-hidden": "true",
+      "data-overview-lane": stage.id,
       style: {
         position: "relative",
         height: 16
@@ -690,20 +729,23 @@ function LineupOverview({
     }) => {
       var mineSet = savedSet.has(a.id),
         live = isSetLive(a);
+      var left = pct(s),
+        width = `calc(${(e - s) / span * 100}% - 2px)`;
       return React.createElement("span", {
         key: a.id,
         style: {
           position: "absolute",
-          left: pct(s),
-          width: `calc(${(e - s) / span * 100}% - 2px)`,
-          top: mineSet ? 5.5 : 7,
-          height: mineSet ? 5 : 2,
+          left,
+          width,
+          top: mineSet ? 5.5 : hue ? 6.5 : 7,
+          height: mineSet ? 5 : hue ? 3 : 2,
           borderRadius: 3,
           minWidth: 2,
-          background: mineSet ? "var(--acc)" : live ? "var(--ink)" : "var(--line-2)"
+          background: mineSet ? "var(--acc)" : live ? "var(--ink)" : hue ? hue.stroke : "var(--line-2)"
         }
       });
     }), showNow && React.createElement("span", {
+      "aria-hidden": "true",
       style: {
         position: "absolute",
         left: pct(nowMin),
@@ -732,6 +774,115 @@ function LineupOverview({
       whiteSpace: "nowrap"
     }
   }, tick(m))))));
+}
+function LineupMiniStrip({
+  sets,
+  savedSet,
+  stageFilter,
+  onStage,
+  children
+}) {
+  var lanes = React.useMemo(() => {
+    var by = new Map();
+    for (var a of sets) {
+      var s = toNightMin(a.start),
+        e = toNightMin(a.end);
+      if (!Number.isFinite(s)) continue;
+      if (!by.has(a.stage)) by.set(a.stage, []);
+      by.get(a.stage).push({
+        a,
+        s,
+        e: Number.isFinite(e) && e > s ? e : s + 60
+      });
+    }
+    return STAGES.filter(st => by.has(st.id)).map(st => ({
+      stage: st,
+      sets: by.get(st.id)
+    }));
+  }, [sets]);
+  var all = lanes.flatMap(l => l.sets);
+  var t0 = all.length ? Math.min(...all.map(x => x.s)) : 0;
+  var span = all.length ? Math.max(60, Math.max(...all.map(x => x.e)) - t0) : 60;
+  return React.createElement("div", {
+    "data-lineup-mini": true,
+    role: "group",
+    "aria-label": "View, plan and stages",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      padding: "0 20px 8px",
+      overflowX: "auto",
+      overscrollBehaviorX: "contain",
+      scrollbarWidth: "none"
+    }
+  }, children, lanes.length > 1 && React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      flex: "none",
+      width: 1,
+      height: 20,
+      background: "var(--line)"
+    }
+  }), lanes.length > 1 && lanes.map(({
+    stage,
+    sets
+  }) => {
+    var on = stageFilter === stage.id,
+      hue = stageLaneHue(stage.id);
+    var mine = sets.filter(x => savedSet.has(x.a.id)).length;
+    return React.createElement("button", {
+      key: stage.id,
+      type: "button",
+      className: "duo-chip",
+      "data-mini-stage": stage.id,
+      "aria-pressed": on,
+      "aria-label": `${stage.name}, ${sets.length} set${sets.length === 1 ? "" : "s"}${mine ? `, ${mine} on your plan` : ""}`,
+      onClick: () => onStage(stage.id),
+      style: {
+        flex: "none"
+      }
+    }, React.createElement("span", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        whiteSpace: "nowrap"
+      }
+    }, hue && React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        width: 8,
+        height: 8,
+        borderRadius: 2,
+        background: hue.stroke
+      }
+    }), stage.name, React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        position: "relative",
+        width: 40,
+        height: 6,
+        flex: "none"
+      }
+    }, sets.map(({
+      a,
+      s,
+      e
+    }) => React.createElement("span", {
+      key: a.id,
+      style: {
+        position: "absolute",
+        left: `${(s - t0) / span * 100}%`,
+        width: `${(e - s) / span * 100}%`,
+        minWidth: 1,
+        top: savedSet.has(a.id) ? 0 : 2,
+        height: savedSet.has(a.id) ? 6 : 2,
+        borderRadius: 2,
+        background: savedSet.has(a.id) ? "var(--acc)" : hue ? hue.stroke : "var(--line-2)"
+      }
+    })))));
+  }));
 }
 function LineupFilterSheet({
   onClose,
@@ -790,7 +941,7 @@ function LineupFilterSheet({
     style: sectionLabel
   }, "Tier"), React.createElement("div", {
     style: row
-  }, opt("tierFilter", "all", "All tiers"), opt("tierFilter", "legend", "Legendary"), opt("tierFilter", "head", "Headliners"), opt("tierFilter", "prime", "Prime time"), opt("tierFilter", "open", "Openers")), React.createElement("div", {
+  }, opt("tierFilter", "all", "All tiers"), opt("tierFilter", "legend", "Legendary"), opt("tierFilter", "head", topTierLabel(true)), opt("tierFilter", "prime", "Prime time"), opt("tierFilter", "open", "Openers")), React.createElement("div", {
     className: "duo-sect",
     style: sectionLabel
   }, "Stage"), React.createElement("div", {
@@ -834,6 +985,14 @@ var _lineupDayWord = w => {
   var s = String(w || "");
   return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 };
+var _lineupUnsplit = stats => Array.isArray(stats) && stats.length === 1 && /^tba$/i.test(String(stats[0]?.label || "").trim());
+var _lineupUnsplitRange = n => {
+  try {
+    return FESTIVAL_CONFIG.dayDates?.[n]?.name || FESTIVAL_CONFIG.dates || "";
+  } catch {
+    return "";
+  }
+};
 function LineupScreen({
   state,
   setState
@@ -847,15 +1006,22 @@ function LineupScreen({
     }
     return state.lineupDay || NOW.day;
   });
-  var _schedTBA = typeof isScheduleTBA === "function" && isScheduleTBA();
+  var _schedTBA = typeof isScheduleTBA === "function" && isScheduleTBA() || shortlistMode();
+  var _untimed = shortlistMode();
+  var _fold = _untimed ? _searchFold : s => String(s || "").toLowerCase();
   var [filter, setFilter] = React.useState("all");
   var [stageFilter, setStageFilter] = React.useState("all");
   var [tierFilter, setTierFilter] = React.useState("all");
   var [wizardOpen, setWizardOpen] = React.useState(false);
   var [genreFilter, setGenreFilter] = React.useState("all");
   var [sortBy, setSortBy] = React.useState("time");
-  var hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
-  var [weekendFilter, setWeekendFilter] = React.useState(() => hasWeekends ? _weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1" : "all");
+  var _wkChoice = weekendIsUsersChoice();
+  var hasWeekends = _wkChoice || ARTISTS.some(a => a.weekend && a.weekend !== "both");
+  var [weekendFilter, _setWeekendFilter] = React.useState(() => _wkChoice ? chosenWeekend() || "all" : hasWeekends ? _weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1" : "all");
+  var setWeekendFilter = w => {
+    if (_wkChoice) chooseWeekend(FESTIVAL_CONFIG, w);
+    _setWeekendFilter(w);
+  };
   var [q, setQ] = React.useState("");
   var [searchOpen, setSearchOpen] = React.useState(false);
   React.useEffect(() => {
@@ -1071,7 +1237,7 @@ function LineupScreen({
     return named.length === 1 && tierFilter === "all" ? named[0] : null;
   })();
   var matchesActive = a => {
-    if (weekendFilter !== "all" && a.weekend !== weekendFilter && a.weekend !== "both") return false;
+    if (weekendFilter !== "all" && !actPlaysWeekend(a, weekendFilter)) return false;
     if (filter === "saved" && !state.saved.includes(a.id)) return false;
     if (filter === "now" && !isSetLive(a)) return false;
     if (stageFilter !== "all" && a.stage !== stageFilter) return false;
@@ -1098,9 +1264,10 @@ function LineupScreen({
   }, [day, weekendFilter]);
   var _nowBucket = filter === "now" ? Math.floor(Date.now() / 30000) : 0;
   var savedSetIds = React.useMemo(() => new Set(state.saved), [state.saved]);
+  var _acrossDays = _untimed && (!!q.trim() || filter === "saved");
   var dayArtists = React.useMemo(() => {
-    var term = q.trim().toLowerCase();
-    return lineupFor(weekendFilter).filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both").filter(a => filter === "all" || (filter === "saved" ? savedSetIds.has(a.id) : isSetLive(a))).filter(a => stageFilter === "all" || a.stage === stageFilter).filter(a => genreFilter === "all" || a.genre === genreFilter).filter(a => {
+    var term = _fold(q.trim());
+    return lineupFor(weekendFilter).filter(a => _acrossDays || a.day === day).filter(a => weekendFilter === "all" || actPlaysWeekend(a, weekendFilter)).filter(a => filter === "all" || (filter === "saved" ? savedSetIds.has(a.id) : isSetLive(a))).filter(a => stageFilter === "all" || a.stage === stageFilter).filter(a => genreFilter === "all" || a.genre === genreFilter).filter(a => {
       if (tierFilter === "all") return true;
       if (tierFilter === "head") return a.tier === 3;
       if (tierFilter === "prime") return a.tier === 2;
@@ -1110,8 +1277,9 @@ function LineupScreen({
     }).filter(a => {
       if (!term) return true;
       var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
-      return a.name.toLowerCase().includes(term) || (a.genre || "").toLowerCase().includes(term) || (st?.name || "").toLowerCase().includes(term);
+      return _fold(a.name).includes(term) || _fold(a.genre).includes(term) || _fold(st?.name).includes(term);
     }).sort((a, b) => {
+      if (_acrossDays && a.day !== b.day) return (a.day ?? 99) - (b.day ?? 99);
       if (sortBy === "tier") {
         if (a.tier !== b.tier) return b.tier - a.tier;
       } else if (sortBy === "stage") {
@@ -1119,75 +1287,72 @@ function LineupScreen({
         var bi = STAGES.findIndex(s => s.id === b.stage);
         if (ai !== bi) return ai - bi;
       }
-      return toNightMin(a.start) - toNightMin(b.start);
+      return compareSetsByTime(a, b, STAGES);
     });
-  }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds, _nowBucket]);
+  }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds, _nowBucket, _acrossDays]);
   var _otherDayHits = React.useMemo(() => {
-    var term = q.trim().toLowerCase();
+    var term = _fold(q.trim());
     if (!term) return 0;
     return lineupFor(weekendFilter).filter(a => {
       if (a.day === day) return false;
       var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
-      return a.name.toLowerCase().includes(term) || (a.genre || "").toLowerCase().includes(term) || (st?.name || "").toLowerCase().includes(term);
+      return _fold(a.name).includes(term) || _fold(a.genre).includes(term) || _fold(st?.name).includes(term);
     }).length;
   }, [q, day, weekendFilter]);
-  var dayStats = React.useMemo(() => DAYS.map(d => {
+  var attendV = useAttendVersion();
+  var _hasPendingDay = React.useMemo(() => _untimed && lineupFor(weekendFilter).some(a => a.day == null), [_untimed, weekendFilter]);
+  var dayStats = React.useMemo(() => [...DAYS, ...(_hasPendingDay ? [{
+    n: null,
+    label: "DAY",
+    date: "Day TBA"
+  }] : [])].map(d => {
     var savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     var clashes = 0;
-    for (var i = 0; i < savedThisDay.length; i++) for (var j = i + 1; j < savedThisDay.length; j++) if (overlaps(savedThisDay[i], savedThisDay[j])) clashes++;
+    for (var i = 0; i < savedThisDay.length; i++) for (var j = i + 1; j < savedThisDay.length; j++) if (setsClash(savedThisDay[i], savedThisDay[j], undefined, state.saved)) clashes++;
     return {
       ...d,
       count: savedThisDay.length,
       clashes
     };
-  }), [savedSetIds, weekendFilter]);
+  }), [savedSetIds, weekendFilter, attendV, _hasPendingDay]);
   var totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
   var savedToday = React.useMemo(() => lineupFor(weekendFilter).filter(a => a.day === day && savedSetIds.has(a.id)), [day, savedSetIds, weekendFilter]);
   var [syncOpen, setSyncOpen] = React.useState(false);
   var hasFeed = FESTIVALS_REGISTRY.some(e => e.available && e.config.id === FESTIVAL_CONFIG.id);
-  var CONFLICT_ACK_KEY = "plursky_conflicts_kept_both_v1";
-  var _pairKey = (idA, idB) => [idA, idB].sort().join("|");
-  var [ackedPairs, setAckedPairs] = React.useState(() => {
-    try {
-      return new Set(JSON.parse(localStorage.getItem(CONFLICT_ACK_KEY) || "[]"));
-    } catch {
-      return new Set();
-    }
-  });
+  var [splitPair, setSplitPair] = React.useState(null);
   var ackPair = (idA, idB) => {
-    setAckedPairs(prev => {
-      var next = new Set(prev);
-      next.add(_pairKey(idA, idB));
-      try {
-        localStorage.setItem(CONFLICT_ACK_KEY, JSON.stringify([...next]));
-      } catch {}
-      return next;
-    });
+    var a = ARTISTS.find(x => x.id === idA),
+      b = ARTISTS.find(x => x.id === idB);
+    if (a && b) acceptClash(a, b);
   };
   var {
     conflicts,
-    conflictById
+    conflictById,
+    acceptedById
   } = React.useMemo(() => {
     var _conflicts = [];
-    var _byId = {};
+    var _byId = {},
+      _acc = {};
     for (var i = 0; i < savedToday.length; i++) {
       for (var j = i + 1; j < savedToday.length; j++) {
-        if (overlaps(savedToday[i], savedToday[j])) {
-          var a = savedToday[i],
-            b = savedToday[j];
-          if (!ackedPairs.has(_pairKey(a.id, b.id))) {
-            _conflicts.push([a, b]);
-          }
+        var a = savedToday[i],
+          b = savedToday[j];
+        if (setsClash(a, b, undefined, state.saved)) {
+          _conflicts.push([a, b]);
           (_byId[a.id] = _byId[a.id] || []).push(b);
           (_byId[b.id] = _byId[b.id] || []).push(a);
+        } else if (setsOverlapAccepted(a, b, undefined, state.saved)) {
+          (_acc[a.id] = _acc[a.id] || []).push(b);
+          (_acc[b.id] = _acc[b.id] || []).push(a);
         }
       }
     }
     return {
       conflicts: _conflicts,
-      conflictById: _byId
+      conflictById: _byId,
+      acceptedById: _acc
     };
-  }, [savedToday, ackedPairs]);
+  }, [savedToday, attendV]);
   var liveSavedCount = savedInLineup(state.saved).length;
   var gridLead = viewMode === "grid" && !(filter === "saved" && liveSavedCount === 0);
   React.useEffect(() => {
@@ -1242,13 +1407,92 @@ function LineupScreen({
       } catch {}
     }, reduceMotion ? 0 : 260);
   };
+  var overviewSets = lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || actPlaysWeekend(a, weekendFilter)));
+  var onOverviewStage = id => {
+    if (viewMode === "grid") {
+      window.dispatchEvent(new CustomEvent("plursky:grid-stage", {
+        detail: id
+      }));
+      return;
+    }
+    setStageFilter(stageFilter === id ? "all" : id);
+  };
+  var modeChips = mini => React.createElement(React.Fragment, null, !_schedTBA && React.createElement("div", {
+    role: "radiogroup",
+    "aria-label": "View",
+    style: {
+      display: "flex",
+      gap: 8,
+      flex: "none"
+    }
+  }, [{
+    id: "list",
+    label: "List"
+  }, {
+    id: "grid",
+    label: "Grid"
+  }].map(o => React.createElement("button", {
+    key: o.id,
+    role: "radio",
+    "aria-checked": viewMode === o.id,
+    "aria-label": o.label,
+    className: "duo-chip duo-viewchip",
+    "data-mini-view": mini ? o.id : undefined,
+    onClick: () => setViewMode(o.id)
+  }, React.createElement("span", null, React.createElement("span", {
+    className: "lbl"
+  }, o.label), React.createElement("svg", {
+    className: "ic",
+    "aria-hidden": "true",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  }, o.id === "list" ? React.createElement("path", {
+    d: "M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"
+  }) : React.createElement("path", {
+    d: "M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"
+  })))))), [{
+    id: "saved",
+    label: _untimed ? "Shortlist" : "My plan",
+    n: _untimed ? totalSaved : dayStats.find(x => x.n === day)?.count
+  }, {
+    id: "now",
+    label: "Live",
+    n: NOW.night === day ? (NOW.liveIds || []).length : 0
+  }].map(o => {
+    var on = filter === o.id;
+    return React.createElement("button", {
+      key: o.id,
+      "aria-pressed": on,
+      className: "duo-chip",
+      style: {
+        flex: "none"
+      },
+      "data-lineup-show": mini ? undefined : o.id,
+      "data-mini-show": mini ? o.id : undefined,
+      onClick: () => setFilter(on ? "all" : o.id)
+    }, React.createElement("span", null, o.id === "now" && React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        width: 7,
+        height: 7,
+        borderRadius: 4,
+        background: NOW.night === day ? "var(--live)" : "var(--ink-3)"
+      }
+    }), o.label, o.n > 0 && React.createElement("b", null, o.n)));
+  }));
+  var showMini = !_schedTBA;
   var compactSummary = (() => {
     var d = dayStats.find(x => x.n === day);
-    var dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
+    var dayText = !d ? "" : _lineupUnsplit(dayStats) ? "Full lineup" : `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim();
     var stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
     var show = [stageName, filter === "saved" ? "My plan" : filter === "now" ? "Live" : null].filter(Boolean).join(" · ") || "All stages";
     var extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
-    return [dayText, hasWeekends ? weekendFilter === "W2" ? "Weekend 2" : "Weekend 1" : null, show, extra > 0 ? `+${extra} filter${extra === 1 ? "" : "s"}` : null, q.trim() ? `“${q.trim()}”` : null].filter(Boolean).join(" · ");
+    return [dayText, hasWeekends ? weekendFilter === "W2" ? "Weekend 2" : weekendFilter === "W1" ? "Weekend 1" : "Pick a weekend" : null, show, extra > 0 ? `+${extra} filter${extra === 1 ? "" : "s"}` : null, q.trim() ? `“${q.trim()}”` : null].filter(Boolean).join(" · ");
   })();
   var surpriseMe = () => {
     var savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
@@ -1353,7 +1597,7 @@ function LineupScreen({
     return React.createElement("button", {
       "data-save-day": true,
       onClick: save,
-      title: `Save the ${dayTopPicks.length} headliners for ${dayLabel}`,
+      title: `Save the ${dayTopPicks.length} ${posterBilled() ? "top-billed acts" : "headliners"} for ${dayLabel}`,
       style: {
         ...textBtn,
         color: "var(--ink)",
@@ -1361,7 +1605,7 @@ function LineupScreen({
       }
     }, "Save top picks · ", dayTopPicks.length);
   })() : null;
-  var myNight = totalSaved >= 2 ? (() => {
+  var myNight = totalSaved >= 2 && !_untimed ? (() => {
     var clash = dayStats.some(d => d.clashes > 0);
     return React.createElement("button", {
       onClick: () => setWizardOpen(true),
@@ -1384,14 +1628,22 @@ function LineupScreen({
     }), "My night");
   })() : null;
   var planActions = filter === "saved" ? React.createElement(React.Fragment, null, liveSavedCount > 0 && React.createElement(ShareLineupButton, {
-    state: state
-  }), liveSavedCount > 0 && React.createElement("button", {
+    state: state,
+    weekend: weekendFilter
+  }), liveSavedCount > 0 && !_untimed && React.createElement("button", {
     onClick: () => {
       window.plurskyHaptic?.("LIGHT");
       exportSavedSetsICS(savedInLineup(state.saved));
     },
     style: textBtn
-  }, "Calendar"), hasFeed && React.createElement("button", {
+  }, "Calendar"), liveSavedCount > 0 && _untimed && React.createElement("span", {
+    "data-untimed-note": true,
+    className: "duo-body-s duo-ink2",
+    style: {
+      fontWeight: 400,
+      padding: "0 4px"
+    }
+  }, "Calendar and My night open when set times are announced."), hasFeed && React.createElement("button", {
     "data-sched-check": true,
     onClick: () => setSyncOpen(true),
     "aria-label": "Check for schedule changes",
@@ -1407,20 +1659,25 @@ function LineupScreen({
       gap: 4
     }
   }, saveDayCard, myNight, planActions) : null;
-  var conflictCard = conflicts.length > 0 && filter === "saved" ? React.createElement(ConflictResolver, {
+  var conflictCard = splitPair ? React.createElement(SplitNightSheet, {
+    pair: splitPair,
+    onDone: () => setSplitPair(null),
+    onCancel: () => setSplitPair(null)
+  }) : conflicts.length > 0 && filter === "saved" ? React.createElement(ConflictResolver, {
     conflicts: conflicts,
     onKeep: (keepId, dropId) => {
+      noteClashLoser(dropId);
       setState({
         ...state,
         saved: state.saved.filter(id => id !== dropId)
       });
     },
     onKeepBoth: pair => ackPair(pair[0].id, pair[1].id),
-    onSplit: pair => setState({
-      ...state,
-      tab: "map",
-      focusStage: pair[0].stage
-    })
+    onSplit: pair => setSplitPair(pair)
+  }) : null;
+  var keepAlertsCard = filter === "saved" ? React.createElement(KeepAlertsRows, {
+    acts: lineupFor(weekendFilter).filter(a => a.day === day),
+    saved: state.saved
   }) : null;
   var vibeCard = stageFilter !== "all" ? (() => {
     var stage = STAGES.find(s => s.id === stageFilter);
@@ -1595,19 +1852,22 @@ function LineupScreen({
     "aria-label": "Festival day",
     style: {
       display: "flex",
-      gap: 22,
+      gap: _hasPendingDay ? 16 : 22,
       flexShrink: 0,
       flexWrap: "wrap",
       padding: "6px 20px 8px"
     }
   }, dayStats.map(d => {
     var on = d.n === day;
+    var unsplit = _lineupUnsplit(dayStats);
+    var label = d.n == null ? "TBA" : unsplit ? "Full lineup" : d.label;
+    var dateText = unsplit ? _lineupUnsplitRange(d.n) : String(d.date || "").split(" ")[1];
     return React.createElement("button", {
-      key: d.n,
+      key: d.n ?? "tba",
       role: "tab",
       "aria-selected": on,
       className: "duo-tab",
-      "aria-label": `${d.label} ${d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`,
+      "aria-label": `${label} ${d.n == null ? "" : unsplit ? dateText : d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`,
       onClick: () => {
         setDay(d.n);
         setState(s => ({
@@ -1620,12 +1880,12 @@ function LineupScreen({
       style: {
         fontSize: 12
       }
-    }, d.label), React.createElement("span", {
+    }, label), d.n != null && React.createElement("span", {
       className: "duo-data-s",
       style: {
         color: on ? "var(--ink-2)" : "var(--ink-3)"
       }
-    }, d.date.split(" ")[1]), d.count > 0 && React.createElement("span", {
+    }, dateText), d.count > 0 && React.createElement("span", {
       "aria-hidden": "true",
       className: "duo-data-s",
       style: {
@@ -1633,7 +1893,14 @@ function LineupScreen({
         whiteSpace: "nowrap"
       }
     }, d.count));
-  })), hasWeekends && React.createElement("div", {
+  })), hasWeekends && _wkChoice && weekendFilter === "all" && React.createElement("div", {
+    "data-weekend-ask": true,
+    className: "duo-body-s duo-ink2",
+    style: {
+      margin: "0 20px 6px",
+      fontWeight: 500
+    }
+  }, "Which weekend are you going?"), hasWeekends && React.createElement("div", {
     role: "tablist",
     "aria-label": "Weekend",
     className: "duo-seg",
@@ -1648,27 +1915,39 @@ function LineupScreen({
     label: "Weekend 2"
   }].map(w => {
     var on = weekendFilter === w.value;
+    var dates = _wkChoice ? weekendDatesText(FESTIVAL_CONFIG, w.value).replace(/, \d{4}$/, "") : "";
     return React.createElement("button", {
       key: w.value,
       role: "tab",
       "aria-selected": on,
       "aria-pressed": on,
-      onClick: () => setWeekendFilter(w.value)
-    }, w.label);
+      "data-weekend": w.value,
+      "aria-label": dates ? `${w.label}, ${dates}` : undefined,
+      onClick: () => setWeekendFilter(w.value),
+      style: dates ? {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 2,
+        lineHeight: "18px",
+        paddingTop: 6,
+        paddingBottom: 6
+      } : undefined
+    }, React.createElement("span", null, w.label), dates && React.createElement("span", {
+      className: "duo-body-s",
+      style: {
+        fontWeight: 400,
+        opacity: 0.8,
+        whiteSpace: "nowrap"
+      }
+    }, dates));
   })), !_schedTBA && React.createElement(LineupOverview, {
-    sets: lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both")),
+    sets: overviewSets,
     savedSet: savedSetIds,
     liveNight: NOW.night === day,
     stageFilter: viewMode === "list" ? stageFilter : "all",
-    onStage: id => {
-      if (viewMode === "grid") {
-        window.dispatchEvent(new CustomEvent("plursky:grid-stage", {
-          detail: id
-        }));
-        return;
-      }
-      setStageFilter(stageFilter === id ? "all" : id);
-    }
+    onStage: onOverviewStage
   }), React.createElement("div", {
     style: {
       display: "flex",
@@ -1679,68 +1958,7 @@ function LineupScreen({
       flexWrap: "wrap",
       rowGap: 0
     }
-  }, !_schedTBA && React.createElement("div", {
-    role: "radiogroup",
-    "aria-label": "View",
-    style: {
-      display: "flex",
-      gap: 8
-    }
-  }, [{
-    id: "list",
-    label: "List"
-  }, {
-    id: "grid",
-    label: "Grid"
-  }].map(o => React.createElement("button", {
-    key: o.id,
-    role: "radio",
-    "aria-checked": viewMode === o.id,
-    "aria-label": o.label,
-    className: "duo-chip duo-viewchip",
-    onClick: () => setViewMode(o.id)
-  }, React.createElement("span", null, React.createElement("span", {
-    className: "lbl"
-  }, o.label), React.createElement("svg", {
-    className: "ic",
-    "aria-hidden": "true",
-    width: "16",
-    height: "16",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round"
-  }, o.id === "list" ? React.createElement("path", {
-    d: "M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"
-  }) : React.createElement("path", {
-    d: "M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"
-  })))))), [{
-    id: "saved",
-    label: "My plan",
-    n: dayStats.find(x => x.n === day)?.count
-  }, {
-    id: "now",
-    label: "Live",
-    n: NOW.night === day ? (NOW.liveIds || []).length : 0
-  }].map(o => {
-    var on = filter === o.id;
-    return React.createElement("button", {
-      key: o.id,
-      "aria-pressed": on,
-      className: "duo-chip",
-      "data-lineup-show": o.id,
-      onClick: () => setFilter(on ? "all" : o.id)
-    }, React.createElement("span", null, o.id === "now" && React.createElement("span", {
-      "aria-hidden": "true",
-      style: {
-        width: 7,
-        height: 7,
-        borderRadius: 4,
-        background: NOW.night === day ? "var(--live)" : "var(--ink-3)"
-      }
-    }), o.label, o.n > 0 && React.createElement("b", null, o.n)));
-  })), !gridLead && searchRow, !gridLead && actionsRow)), React.createElement("div", {
+  }, modeChips(false)), !gridLead && searchRow, !gridLead && actionsRow)), React.createElement("div", {
     "data-lineup-compact": true,
     "data-collapsed": collapsed ? "1" : "0",
     inert: collapsed ? undefined : "",
@@ -1749,7 +1967,7 @@ function LineupScreen({
       flexShrink: 0,
       minHeight: 0,
       overflow: "hidden",
-      maxHeight: collapsed ? 56 : 0,
+      maxHeight: collapsed ? showMini ? 104 : 56 : 0,
       opacity: collapsed ? 1 : 0,
       borderBottom: collapsed ? "1px solid var(--line)" : "none",
       transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease"
@@ -1829,7 +2047,12 @@ function LineupScreen({
     r: "7"
   }), React.createElement("path", {
     d: "M21 21 L16.65 16.65"
-  }))))), !online && React.createElement("div", {
+  })))), showMini && React.createElement(LineupMiniStrip, {
+    sets: overviewSets,
+    savedSet: savedSetIds,
+    stageFilter: viewMode === "list" ? stageFilter : "all",
+    onStage: onOverviewStage
+  }, modeChips(true))), !online && React.createElement("div", {
     role: "status",
     className: "duo-card duo-body-s",
     style: {
@@ -1850,11 +2073,27 @@ function LineupScreen({
       background: "var(--ink-3)",
       flexShrink: 0
     }
-  }), "Offline · showing the schedule saved on this phone"), _schedTBA && React.createElement("div", {
+  }), "Offline · showing the schedule saved on this phone"), wizardOpen && React.createElement(NightWizard, {
+    state: state,
+    setState: setState,
+    onClose: () => setWizardOpen(false)
+  }), !gridLead && conflictCard, !gridLead && keepAlertsCard, !gridLead && vibeCard, React.createElement(ScrollBody, {
+    "data-lineup-scroll": true,
+    ref: useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`, viewMode === "list" && NOW.night === day && !!NOW.time && sortBy === "time"),
+    style: viewMode === "grid" ? {
+      overflowY: "hidden",
+      display: "flex",
+      flexDirection: "column",
+      padding: 0
+    } : {
+      padding: "0 20px 96px"
+    }
+  }, _schedTBA && viewMode === "list" && React.createElement("div", {
     role: "status",
+    "data-sched-tba": true,
     className: "duo-card",
     style: {
-      margin: "8px 16px 0",
+      margin: "8px 0 4px",
       padding: "12px 16px"
     }
   }, React.createElement("div", {
@@ -1868,22 +2107,7 @@ function LineupScreen({
       marginTop: 2,
       fontWeight: 400
     }
-  }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), wizardOpen && React.createElement(NightWizard, {
-    state: state,
-    setState: setState,
-    onClose: () => setWizardOpen(false)
-  }), !gridLead && conflictCard, !gridLead && vibeCard, React.createElement(ScrollBody, {
-    "data-lineup-scroll": true,
-    ref: useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`, viewMode === "list" && NOW.night === day && !!NOW.time && sortBy === "time"),
-    style: viewMode === "grid" ? {
-      overflowY: "hidden",
-      display: "flex",
-      flexDirection: "column",
-      padding: 0
-    } : {
-      padding: "0 20px 96px"
-    }
-  }, gridLead && (() => {
+  }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), gridLead && (() => {
     var dayMeta = DAYS.find(x => x.n === day);
     var dayArt = lineupFor(weekendFilter).filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both");
     return React.createElement("div", {
@@ -1904,7 +2128,7 @@ function LineupScreen({
         minHeight: 0
       }
     }, React.createElement(TimelineGrid, {
-      lead: React.createElement(React.Fragment, null, searchRow, actionsRow, conflictCard, vibeCard),
+      lead: React.createElement(React.Fragment, null, searchRow, actionsRow, conflictCard, keepAlertsCard, vibeCard),
       day: day,
       allDayArtists: dayArt,
       state: state,
@@ -1934,6 +2158,11 @@ function LineupScreen({
       title: "Nothing is on right now",
       sub: NOW.night === day ? "Between sets on this day." : "This day isn't live right now.",
       action: "Show all sets",
+      onAction: () => setFilter("all")
+    } : _untimed ? {
+      title: "Your shortlist is empty",
+      sub: "Pick a few artists now. Set times come later.",
+      action: "Browse the lineup",
       onAction: () => setFilter("all")
     } : {
       title: liveSavedCount === 0 ? "No sets saved yet" : "Nothing saved for this day",
@@ -1980,10 +2209,13 @@ function LineupScreen({
     }
   }, "Show all sets")), viewMode === "list" && (() => {
     var nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
+    var timeCol = dayArtists.some(a => a.start && !setTimesUnconfirmed(a));
     var renderRow = (a, pinned) => {
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       var saved = state.saved.includes(a.id);
       var clashWith = conflictById[a.id];
+      var acceptedWith = !clashWith && acceptedById[a.id];
+      var win = saved ? attendWindow(a, undefined, state.saved) : null;
       var isHighlighted = highlightId === a.id;
       var isLive = isSetLive(a);
       var ring = saved || isLive ? clashWith ? "cl" : "on" : "";
@@ -1997,7 +2229,7 @@ function LineupScreen({
         style: {
           animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined
         }
-      }, React.createElement("div", {
+      }, timeCol && React.createElement("div", {
         "data-set-time": true,
         className: `duo-data${saved || isLive ? "" : " duo-ink2"}`,
         style: {
@@ -2006,7 +2238,7 @@ function LineupScreen({
           whiteSpace: "nowrap",
           fontSize: 13
         }
-      }, fmt12(a.start)), React.createElement(DuoAvatar, {
+      }, setTimesUnconfirmed(a) ? null : fmt12(a.start)), React.createElement(DuoAvatar, {
         name: a.name,
         size: 42,
         ring: ring
@@ -2071,7 +2303,31 @@ function LineupScreen({
           color: "var(--clash)",
           fontWeight: 600
         }
-      }, "Clash · "), _lineupMetaValue(stage.name)), clashWith && !pinned && clashWith.map(o => React.createElement("span", {
+      }, "Clash · "), isTopBilled(a) && React.createElement("span", {
+        "data-top-billed": true,
+        style: {
+          color: "var(--ink)",
+          fontWeight: 600
+        }
+      }, TOP_BILLED, " · "), acceptedWith && React.createElement("span", {
+        "data-overlap-accepted": true,
+        style: {
+          color: "var(--ink-2)",
+          fontWeight: 600
+        }
+      }, "Overlap accepted · "), _lineupMetaValue(stage.name)), setTimesUnconfirmed(a) && React.createElement("span", {
+        "data-set-time-status": true,
+        style: {
+          font: "400 13px/1.385 var(--f-ui)",
+          color: "var(--ink-2)"
+        }
+      }, SET_TIMES_UNCONFIRMED), win && win.partial && React.createElement("span", {
+        "data-attend-window": a.id,
+        style: {
+          font: "400 13px/1.385 var(--f-ui)",
+          color: "var(--ink-2)"
+        }
+      }, attendWindowLabel(a, win)), clashWith && !pinned && clashWith.map(o => React.createElement("span", {
         key: o.id,
         "data-clash-with": o.id,
         style: {
@@ -2129,6 +2385,10 @@ function LineupScreen({
         }
       })));
     }
+    rows.push(React.createElement(SpotifyPhotoCredit, {
+      key: "__spcredit",
+      names: dayArtists.map(a => a.name)
+    }));
     if (nowMin != null) {
       var hour = Math.floor(nowMin / 60) * 60;
       var at = dayArtists.findIndex(a => isSetLive(a) || toNightMin(a.start) >= hour);
@@ -2661,7 +2921,7 @@ function SavedSidebar({
   state,
   setState
 }) {
-  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.day === day).sort((a, b) => a.start.localeCompare(b.start));
+  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.day === day && setTimingMin(a)).sort((a, b) => compareSetsByTime(a, b, STAGES));
   var unsave = (id, e) => {
     e.stopPropagation();
     setState(s => ({
@@ -3076,9 +3336,14 @@ function TimelineGrid({
     nowMin = toNightMin(NOW.time);
     if (nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) nowTop = minToTop(nowMin);
   }
+  var placed = allDayArtists.filter(a => {
+    var t = setTimingMin(a);
+    return t && t.end != null;
+  });
+  var unplaced = allDayArtists.filter(a => !placed.includes(a)).sort((a, b) => compareSetsByTime(a, b, STAGES));
   var cols = STAGES.map(s => ({
     stage: s,
-    artists: allDayArtists.filter(a => a.stage === s.id)
+    artists: placed.filter(a => a.stage === s.id)
   })).filter(c => c.artists.length > 0);
   var due = React.useMemo(() => {
     if (nowMin == null) return null;
@@ -3343,7 +3608,7 @@ function TimelineGrid({
           dueMins: due && due.id === a.id ? due.mins : null
         });
       }));
-    }))) : React.createElement("div", {
+    }))) : !unplaced.length && React.createElement("div", {
       className: "mono",
       style: {
         position: "sticky",
@@ -3355,8 +3620,102 @@ function TimelineGrid({
         letterSpacing: 1.2,
         color: "var(--muted)"
       }
-    }, "NO SETS ON THIS DAY"))))
+    }, "NO SETS ON THIS DAY"), unplaced.length > 0 && React.createElement(GridUnplacedGroup, {
+      width: boxW,
+      sets: unplaced,
+      state: state,
+      setState: setState
+    }))))
   );
+}
+function GridUnplacedGroup({
+  width,
+  sets,
+  state,
+  setState
+}) {
+  var groups = [{
+    key: "unconfirmed",
+    title: "Times unconfirmed",
+    sets: sets.filter(setTimesUnconfirmed)
+  }, {
+    key: "tba",
+    title: "Times TBA",
+    sets: sets.filter(a => !setTimesUnconfirmed(a))
+  }].filter(g => g.sets.length);
+  return React.createElement("div", {
+    "data-grid-unplaced": true,
+    style: {
+      position: "sticky",
+      left: 0,
+      width,
+      padding: "12px 16px 20px",
+      boxSizing: "border-box"
+    }
+  }, groups.map(g => React.createElement("section", {
+    key: g.key,
+    "data-grid-unplaced-group": g.key,
+    "aria-label": g.title,
+    style: {
+      marginTop: 8
+    }
+  }, React.createElement("h3", {
+    style: {
+      margin: "0 0 4px",
+      font: "650 15px/20px var(--f-ui)",
+      color: "var(--ink)"
+    }
+  }, g.title), g.sets.map(a => {
+    var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
+    var saved = state.saved.includes(a.id);
+    return React.createElement("div", {
+      key: a.id,
+      "data-grid-unplaced-set": a.id,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        minHeight: 52,
+        borderTop: "1px solid var(--line)"
+      }
+    }, React.createElement("button", {
+      onClick: () => setState({
+        ...state,
+        artist: a.id
+      }),
+      style: {
+        flex: 1,
+        minWidth: 0,
+        minHeight: 44,
+        padding: 0,
+        background: "transparent",
+        border: "none",
+        color: "var(--ink)",
+        textAlign: "left",
+        cursor: "pointer",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center"
+      }
+    }, React.createElement("span", {
+      className: "duo-headline",
+      style: {
+        fontSize: 15,
+        overflowWrap: "anywhere"
+      }
+    }, actDisplayName(a.name)), React.createElement("span", {
+      style: {
+        font: "400 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)",
+        overflowWrap: "anywhere"
+      }
+    }, st.name, setTimesUnconfirmed(a) ? ` · ${SET_TIMES_UNCONFIRMED}` : "")), React.createElement("button", {
+      onClick: () => toggleSave(state, setState, a.id),
+      className: "duo-chip",
+      "aria-pressed": saved,
+      "aria-label": saved ? `Unsave ${a.name}` : `Save ${a.name}`
+    }, React.createElement("span", null, saved ? "Saved" : "Save")));
+  }))));
 }
 function ConflictResolver({
   conflicts,
@@ -3385,6 +3744,11 @@ function ConflictResolver({
   var overlapEnd = a.end < b.end ? a.end : b.end;
   var next = () => {
     setIdx(i => i + 1 < conflicts.length ? i + 1 : i);
+  };
+  var sug = clashSuggestion(a, b);
+  var useSug = () => {
+    window.plurskyHaptic?.("LIGHT");
+    if (sug.kind === "keep") onKeep(sug.keepId, sug.dropId);else splitNight(a, b, sug.switchMin);
   };
   var crBtn = {
     ...fieldIconBtn,
@@ -3422,7 +3786,44 @@ function ConflictResolver({
       color: "var(--text-2)",
       fontVariantNumeric: "tabular-nums"
     }
-  }, "Overlap ", fmt12(overlapStart), "–", fmt12(overlapEnd))), [a, b].map((art, i) => {
+  }, "Overlap ", fmt12(overlapStart), "–", fmt12(overlapEnd))), sug && React.createElement("div", {
+    "data-clash-suggestion": sug.rule,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      minHeight: 52,
+      borderBottom: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, "Suggested"), React.createElement("div", {
+    style: {
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 500,
+      overflowWrap: "anywhere"
+    }
+  }, sug.reason)), React.createElement("button", {
+    type: "button",
+    "data-clash-suggestion-use": true,
+    "aria-label": `Apply suggestion: ${sug.reason}`,
+    onClick: useSug,
+    style: {
+      ...crBtn,
+      color: "var(--ink)",
+      fontWeight: 600
+    }
+  }, "Apply")), [a, b].map((art, i) => {
     var stg = i === 0 ? sA : sB;
     return React.createElement("div", {
       key: art.id,
@@ -3468,13 +3869,293 @@ function ConflictResolver({
   }, React.createElement("button", {
     onClick: () => onKeepBoth?.(pair),
     style: crBtn
-  }, "Keep both"), React.createElement("button", {
+  }, "Keep both"), splitRange(a, b).ok && React.createElement("button", {
     onClick: () => onSplit(pair),
     style: crBtn
   }, "Split the night"), conflicts.length > 1 && React.createElement("button", {
     onClick: next,
     style: crBtn
   }, "Next clash")));
+}
+function _BellIcon({
+  on
+}) {
+  return React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "18",
+    height: "18",
+    viewBox: "0 0 24 24",
+    fill: on ? "currentColor" : "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"
+  }), React.createElement("path", {
+    d: "M13.73 21a2 2 0 0 1-3.46 0",
+    fill: "none"
+  }));
+}
+function KeepAlertsRows({
+  acts,
+  saved,
+  style
+}) {
+  useAttendVersion();
+  var savedSet = new Set(saved || []);
+  var kept = new Set(alertsKeptIds());
+  var want = new Set([...clashLoserIds(), ...kept]);
+  var rows = (acts || []).filter(a => want.has(a.id) && !savedSet.has(a.id)).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+  if (!rows.length) return null;
+  return React.createElement("div", {
+    "data-keep-alerts-list": true,
+    role: "group",
+    "aria-label": "Not in your plan",
+    style: {
+      margin: "4px 20px 12px",
+      padding: "10px 14px 2px",
+      borderRadius: 14,
+      background: "var(--paper-2)",
+      ...style
+    }
+  }, React.createElement("div", {
+    style: {
+      ..._fieldEyebrow,
+      color: "var(--text-2)"
+    }
+  }, "Not in your plan"), rows.map((a, i) => {
+    var on = kept.has(a.id);
+    var stg = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE).name;
+    var name = actDisplayName(a.name);
+    return React.createElement("div", {
+      key: a.id,
+      "data-keep-alerts-row": a.id,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        minHeight: 52,
+        borderTop: i ? "1px solid var(--line)" : "none"
+      }
+    }, React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 15,
+        lineHeight: "20px",
+        fontWeight: 500,
+        color: "var(--text-2)",
+        overflowWrap: "anywhere"
+      }
+    }, name), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)",
+        fontVariantNumeric: "tabular-nums"
+      }
+    }, stg, " · ", fmt12(a.start), "–", fmt12(a.end), on ? " · reminder only" : "")), on ? React.createElement("button", {
+      type: "button",
+      "data-alerts-kept": a.id,
+      "aria-pressed": "true",
+      "aria-label": `Reminder on for ${name}. Tap to cancel`,
+      onClick: () => {
+        window.plurskyHaptic?.("LIGHT");
+        setAlertsKept(a.id, false);
+      },
+      style: {
+        ...fieldIconBtn,
+        color: "var(--ink)"
+      }
+    }, React.createElement(_BellIcon, {
+      on: true
+    })) : React.createElement("button", {
+      type: "button",
+      "data-keep-alerts": a.id,
+      "aria-label": `Keep alerts for ${name}`,
+      onClick: () => {
+        window.plurskyHaptic?.("LIGHT");
+        setAlertsKept(a.id, true);
+      },
+      style: {
+        ...fieldIconBtn,
+        width: "auto",
+        padding: "0 10px",
+        gap: 6,
+        color: "var(--text-2)",
+        fontSize: 15,
+        fontWeight: 500
+      }
+    }, React.createElement(_BellIcon, null), React.createElement("span", null, "Keep alerts")));
+  }));
+}
+function SplitNightSheet({
+  pair,
+  onDone,
+  onCancel
+}) {
+  var {
+    first,
+    second,
+    lo,
+    hi,
+    def,
+    ok
+  } = splitRange(pair && pair[0], pair && pair[1]);
+  var cur = ok ? attendWindow(first) : null;
+  var startAt = cur && cur.partial && cur.with === second.id ? toNightMin(cur.end) : def;
+  var [sw, setSw] = React.useState(snapSplitSwitch(startAt, lo, hi));
+  if (!ok) return null;
+  var t = nightMinToHHMM(sw);
+  var fS = (STAGES.find(s => s.id === first.stage) || UNPLACED_STAGE).name;
+  var sS = (STAGES.find(s => s.id === second.stage) || UNPLACED_STAGE).name;
+  var crBtn = {
+    ...fieldIconBtn,
+    width: "auto",
+    padding: "0 12px",
+    color: "var(--text-2)",
+    fontSize: 15,
+    fontWeight: 500
+  };
+  var blocked = splitBlocker(first, second);
+  if (blocked) return React.createElement("div", {
+    role: "group",
+    "aria-label": "Split the night",
+    "data-split-sheet": true,
+    "data-split-refused": true,
+    style: {
+      margin: "4px 20px 12px",
+      padding: "12px 14px 6px",
+      borderRadius: 14,
+      background: "var(--paper-2)"
+    }
+  }, React.createElement("div", {
+    style: {
+      ..._fieldEyebrow,
+      color: "var(--ink-2)"
+    }
+  }, "Split the night"), React.createElement("p", {
+    style: {
+      margin: "8px 0",
+      fontSize: 15,
+      lineHeight: "20px",
+      overflowWrap: "anywhere"
+    }
+  }, React.createElement("b", null, actDisplayName(blocked.act.name)), " is already split with ", React.createElement("b", null, actDisplayName(blocked.partner.name)), ". An act can be in one split at a time. To split it with another set, tap Reset on its row in your night first."), React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "flex-end",
+      flexWrap: "wrap",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("button", {
+    onClick: onCancel,
+    style: {
+      ...crBtn,
+      color: "var(--ink)",
+      fontWeight: 600
+    }
+  }, "OK")));
+  return React.createElement("div", {
+    role: "group",
+    "aria-label": "Split the night",
+    "data-split-sheet": true,
+    style: {
+      margin: "4px 20px 12px",
+      padding: "12px 14px 6px",
+      borderRadius: 14,
+      background: "var(--paper-2)"
+    }
+  }, React.createElement("div", {
+    style: {
+      ..._fieldEyebrow,
+      color: "var(--ink-2)"
+    }
+  }, "Split the night"), React.createElement("label", {
+    htmlFor: "split-switch",
+    style: {
+      display: "block",
+      marginTop: 8,
+      fontSize: 15,
+      lineHeight: "20px"
+    }
+  }, "Switch at ", React.createElement("b", {
+    "data-split-time": true,
+    style: {
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, fmt12(t))), React.createElement("input", {
+    id: "split-switch",
+    type: "range",
+    min: lo,
+    max: hi,
+    step: SPLIT_STEP_MIN,
+    value: sw,
+    onChange: e => setSw(snapSplitSwitch(e.target.value, lo, hi)),
+    "aria-valuetext": `Switch at ${fmt12(t)}`,
+    style: {
+      width: "100%",
+      minHeight: 44,
+      accentColor: "var(--acc)"
+    }
+  }), React.createElement("div", {
+    "data-split-preview": true,
+    style: {
+      display: "grid",
+      gap: 6,
+      padding: "4px 0 8px"
+    }
+  }, [[first, first.start, t, fS], [second, t, second.end, sS]].map(([art, s, e, stg]) => React.createElement("div", {
+    key: art.id,
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      gap: 10,
+      fontSize: 15,
+      lineHeight: "20px"
+    }
+  }, React.createElement("span", {
+    style: {
+      fontWeight: 600,
+      overflowWrap: "anywhere",
+      minWidth: 0
+    }
+  }, actDisplayName(art.name), React.createElement("span", {
+    style: {
+      fontWeight: 400,
+      color: "var(--text-2)"
+    }
+  }, " · ", stg)), React.createElement("span", {
+    style: {
+      flexShrink: 0,
+      fontVariantNumeric: "tabular-nums",
+      color: "var(--text-2)"
+    }
+  }, fmt12(s), "–", fmt12(e))))), React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "flex-end",
+      flexWrap: "wrap",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("button", {
+    onClick: onCancel,
+    style: crBtn
+  }, "Cancel"), React.createElement("button", {
+    "data-split-confirm": true,
+    onClick: () => {
+      if (splitNight(first, second, sw)) onDone?.();
+    },
+    style: {
+      ...crBtn,
+      color: "var(--ink)",
+      fontWeight: 600
+    }
+  }, "Split here")));
 }
 function TierStars({
   tier
@@ -3554,17 +4235,28 @@ function _icsEscape(s) {
   return String(s || "").replace(/[\\,;]/g, m => "\\" + m).replace(/\n/g, "\\n");
 }
 async function exportLineupICS(state) {
-  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
+  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   if (saved.length === 0) return {
     ok: false,
     reason: "empty"
+  };
+  var leftUnconfirmed = saved.filter(setTimesUnconfirmed).length;
+  var timed = saved.filter(a => {
+    var t = setTimingMin(a);
+    return t && t.end != null;
+  });
+  if (leftUnconfirmed) _noteLeftOutOfCalendar(leftUnconfirmed);
+  if (!timed.length) return {
+    ok: false,
+    reason: "no_times",
+    leftUnconfirmed
   };
   var tz = FESTIVAL_CONFIG.tz;
   var fid = FESTIVAL_CONFIG.id;
   var fname = FESTIVAL_CONFIG.shortName;
   var venue = FESTIVAL_CONFIG.locationShort;
   var dtstamp = _icsLocal(new Date());
-  var events = saved.map(a => {
+  var events = timed.map(a => {
     var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     var start = _icsLocal(_setTimeToLocalDate(a.day, a.start));
     var end = _icsLocal(_setTimeToLocalDate(a.day, a.end));
@@ -3592,7 +4284,8 @@ async function exportLineupICS(state) {
       return {
         ok: true,
         mode: "share",
-        count: saved.length
+        count: timed.length,
+        leftUnconfirmed
       };
     } catch (e) {
       if (e.name === "AbortError") return {
@@ -3607,7 +4300,8 @@ async function exportLineupICS(state) {
     return {
       ok: true,
       mode: "download",
-      count: saved.length
+      count: timed.length,
+      leftUnconfirmed
     };
   }
   var url = URL.createObjectURL(blob);
@@ -3621,23 +4315,20 @@ async function exportLineupICS(state) {
   return {
     ok: true,
     mode: "download",
-    count: saved.length
+    count: timed.length,
+    leftUnconfirmed
   };
 }
 function printLineupPDF(state) {
-  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
+  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   if (saved.length === 0) return {
     ok: false,
     reason: "empty"
   };
   var dayLabel = Object.fromEntries(DAYS.map(d => [d.n, `${d.label} · ${d.date.toUpperCase()}`]));
   var stages = [...new Set(saved.map(a => a.stage))].length;
-  var grouped = {
-    1: [],
-    2: [],
-    3: []
-  };
-  saved.forEach(a => grouped[a.day].push(a));
+  var grouped = {};
+  saved.forEach(a => (grouped[a.day] = grouped[a.day] || []).push(a));
   var dayBlock = (day, list) => list.length === 0 ? "" : `
     <section class="day">
       <h2>${dayLabel[day]}<span class="cnt">${list.length} sets</span></h2>
@@ -3646,7 +4337,7 @@ function printLineupPDF(state) {
         ${list.map(a => {
     var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     return `<tr>
-            <td class="time">${fmt12(a.start)}<span class="end">${fmt12(a.end)}</span></td>
+            <td class="time">${setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : `${fmt12(a.start)}<span class="end">${fmt12(a.end)}</span>`}</td>
             <td>
               <div class="name">${a.name.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</div>
               <div class="genre">${a.genre}</div>
@@ -3704,9 +4395,7 @@ function printLineupPDF(state) {
       ${FESTIVAL_CONFIG.dates.toUpperCase()} · ${FESTIVAL_CONFIG.year}
     </div>
   </div>
-  ${dayBlock(1, grouped[1])}
-  ${dayBlock(2, grouped[2])}
-  ${dayBlock(3, grouped[3])}
+  ${Object.keys(grouped).map(Number).sort((x, y) => x - y).map(d => dayBlock(d, grouped[d])).join("")}
   <footer>
     <span>plursky.com</span>
     <em>Three nights under the electric sky</em>
@@ -3729,6 +4418,68 @@ function printLineupPDF(state) {
     ok: true
   };
 }
+function shortlistText(savedIds, weekend, cfg = FESTIVAL_CONFIG) {
+  var ids = new Set(savedInLineup(savedIds));
+  if (!ids.size) return "";
+  var wk = weekend === "W1" || weekend === "W2" ? weekend : null;
+  var acts = lineupFor(wk || "all").filter(a => ids.has(a.id));
+  if (!acts.length) return "";
+  var multi = !!(cfg.weekendStartMs && cfg.weekendStartMs.W2);
+  var when = multi ? wk ? `Weekend ${wk === "W2" ? 2 : 1} · ${weekendDatesText(cfg, wk)}` : `Weekend not chosen · ${cfg.dates}` : `${cfg.dates}${cfg.year && !String(cfg.dates).includes(String(cfg.year)) ? `, ${cfg.year}` : ""}`;
+  var sh = wk ? (festivalWeekendShifts(cfg).find(s => s.weekend === wk) || {
+    shift: 0
+  }).shift : 0;
+  var M = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var dayHead = n => {
+    var d = cfg.dayDates && cfg.dayDates[n];
+    if (!d) return `DAY ${n}`;
+    if (multi && !wk) return d.name.toUpperCase();
+    var at = new Date((typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)) + sh);
+    return `${d.short} · ${M[at.getUTCMonth()]} ${at.getUTCDate()}`;
+  };
+  var byName = (a, b) => a.name.localeCompare(b.name);
+  var days = [...new Set(acts.map(a => a.day).filter(d => d != null))].sort((a, b) => a - b);
+  var blocks = days.map(n => [dayHead(n), ...acts.filter(a => a.day === n).sort(byName).map(a => `  ${a.name}`)].join("\n"));
+  var tba = acts.filter(a => a.day == null).sort(byName);
+  if (tba.length) blocks.push(["DAY TBA", ...tba.map(a => `  ${a.name}`)].join("\n"));
+  return [`My ${cfg.name} shortlist (${acts.length} artist${acts.length === 1 ? "" : "s"})`, when, "Set times not announced", "", blocks.join("\n\n"), "", "plursky.com"].join("\n");
+}
+async function shareShortlistText(state, weekend) {
+  var text = shortlistText(state.saved, weekend);
+  if (!text) return {
+    ok: false,
+    reason: "empty"
+  };
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: `My ${FESTIVAL_CONFIG.name} shortlist`,
+        text
+      });
+      return {
+        ok: true,
+        mode: "share"
+      };
+    } catch (e) {
+      if (e && e.name === "AbortError") return {
+        ok: false,
+        reason: "cancelled"
+      };
+    }
+  }
+  try {
+    await navigator.clipboard.writeText(text);
+    return {
+      ok: true,
+      mode: "copy"
+    };
+  } catch {
+    return {
+      ok: false,
+      reason: "copy_failed"
+    };
+  }
+}
 async function copyScheduleText(state) {
   var ids = savedInLineup(state.saved);
   if (!ids.length) return {
@@ -3737,10 +4488,11 @@ async function copyScheduleText(state) {
   };
   var lines = festivalDayNums().flatMap(day => {
     var d = FESTIVAL_CONFIG.dayDates[day];
-    var artists = activeLineup().filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+    var artists = activeLineup().filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES));
     if (!artists.length) return [];
     return [`${d.short} · ${d.name.toUpperCase()}`, ...artists.map(a => {
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
+      if (setTimesUnconfirmed(a)) return `  ${a.name}  @  ${stage ? stage.name : a.stage}  (${SET_TIMES_UNCONFIRMED.toLowerCase()})`;
       return `  ${fmt12(a.start)}  ${a.name}  @  ${stage ? stage.name : a.stage}`;
     }), ""];
   });
@@ -3765,10 +4517,312 @@ async function copyScheduleText(state) {
     };
   }
 }
-function ShareLineupButton({
-  state
+var PLAN_SHARE_LINK_ON = false;
+function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date.now()) {
+  var contract = typeof window !== "undefined" ? window.PlurskyPlanShare : null;
+  if (!contract) return {
+    error: "unavailable",
+    rows: [],
+    left: 0
+  };
+  var list = Array.from(savedIds || []);
+  var ids = new Set(list);
+  var acts = activeLineup(list).filter(a => ids.has(a.id)).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
+  var rows = [];
+  var left = 0;
+  var _loop4 = function (a) {
+    var t = setTimingMin(a);
+    var dd = artistDayDate(a, now, list),
+      base = cfg.dayDates && cfg.dayDates[a.day];
+    var shift = dd && base ? dd.midnightUtc - base.midnightUtc : null;
+    var s = t && t.end != null && shift != null ? _scanActUtc(cfg, a.day, shift, a.start) : null;
+    var e = s != null ? _scanActUtc(cfg, a.day, shift, a.end) : null;
+    if (s == null || e == null || !(e > s)) {
+      left++;
+      return 1;
+    }
+    var stage = STAGES.find(x => x.id === a.stage) || UNPLACED_STAGE;
+    rows.push({
+      act: a,
+      night: dd,
+      stageName: stage.name,
+      set: {
+        id: String(a.id),
+        artist: a.name,
+        stage: stage.name,
+        startsAt: new Date(s).toISOString(),
+        endsAt: new Date(e).toISOString()
+      }
+    });
+  };
+  for (var a of acts) {
+    if (_loop4(a)) continue;
+  }
+  rows.sort((x, y) => x.night.midnightUtc - y.night.midnightUtc);
+  if (typeof cfg.endMs !== "number") return {
+    error: "no_edition_end",
+    rows,
+    left
+  };
+  try {
+    var payload = contract.makePublicPlan({
+      kind: "schedule",
+      festivalId: cfg.id,
+      editionEnd: new Date(cfg.endMs).toISOString(),
+      sets: rows.map(r => r.set),
+      displayName: displayName || undefined
+    }, now);
+    return {
+      payload,
+      rows,
+      left
+    };
+  } catch (err) {
+    var msg = String(err && err.message || "");
+    return {
+      error: /window has ended/.test(msg) ? "ended" : /display name/.test(msg) ? "name" : "invalid",
+      rows,
+      left
+    };
+  }
+}
+function PlanShareLinkSheet({
+  saved,
+  onClose
 }) {
-  var [open, setOpen] = React.useState(false);
+  var cfg = FESTIVAL_CONFIG,
+    tz = cfg.tz;
+  var [nameOn, setNameOn] = React.useState(false);
+  var [name, setName] = React.useState("");
+  var d = planShareDraft(saved, nameOn ? name.trim() : "", cfg);
+  var fmtDay = ms => new Date(ms).toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    ...(tz ? {
+      timeZone: tz
+    } : {})
+  });
+  var byDay = [];
+  for (var r of d.rows) {
+    var g = byDay[byDay.length - 1];
+    if (g && g.night.midnightUtc === r.night.midnightUtc) g.rows.push(r);else byDay.push({
+      day: r.act.day,
+      night: r.night,
+      rows: [r]
+    });
+  }
+  var dayLabel = (n, m) => {
+    if (!m) return `Day ${n}`;
+    var date = Number.isFinite(m.y) ? new Date(Date.UTC(m.y, m.m, m.d)).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC"
+    }) : "";
+    return date ? `${m.name} · ${date}` : m.name;
+  };
+  var label = {
+    fontSize: 13,
+    color: "var(--text-2)",
+    lineHeight: "18px"
+  };
+  var ERR = {
+    ended: `Sharing for ${cfg.shortName || cfg.name} has closed. Links last until a week after the festival.`,
+    name: "That name can't go on a link. Use letters and numbers, up to 60 characters.",
+    no_edition_end: "This festival has no confirmed end date yet, so a link can't set when it ends.",
+    unavailable: "The link preview didn't load. Close and try again.",
+    invalid: "Something in this plan can't go on a link yet."
+  };
+  var footer = React.createElement("div", null, React.createElement("button", {
+    disabled: true,
+    "aria-disabled": "true",
+    style: {
+      width: "100%",
+      minHeight: 48,
+      borderRadius: 999,
+      border: "1px solid var(--line-2)",
+      background: "transparent",
+      color: "var(--text-2)",
+      font: "600 15px/20px var(--f-ui)",
+      cursor: "not-allowed"
+    }
+  }, "Create link"), React.createElement("div", {
+    style: {
+      ...label,
+      textAlign: "center",
+      marginTop: 8
+    }
+  }, "Links aren't live yet."));
+  return React.createElement(FieldSheet, {
+    title: "Share your plan as a link",
+    eyebrow: "Preview",
+    footer: footer,
+    onClose: onClose
+  }, React.createElement("div", {
+    "data-plan-share-sheet": true,
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 16
+    }
+  }, React.createElement("p", {
+    style: {
+      ...label,
+      margin: 0,
+      color: "var(--ink)",
+      fontSize: 15,
+      lineHeight: "21px"
+    }
+  }, "Anyone with the link will see exactly this. Nothing else leaves your phone."), d.error ? React.createElement("div", {
+    role: "alert",
+    "data-plan-share-error": d.error,
+    style: {
+      ...label,
+      color: "var(--ink)"
+    }
+  }, ERR[d.error] || ERR.invalid) : React.createElement(React.Fragment, null, React.createElement("div", {
+    style: {
+      border: "1px solid var(--line)",
+      borderRadius: 14,
+      padding: "12px 14px"
+    }
+  }, React.createElement("div", {
+    style: {
+      font: "700 17px/22px var(--f-ui)",
+      color: "var(--ink)",
+      overflowWrap: "anywhere"
+    }
+  }, nameOn && name.trim() ? `${name.trim()}'s ` : "", cfg.shortName || cfg.name, " plan"), React.createElement("div", {
+    style: {
+      ...label,
+      marginTop: 2
+    }
+  }, d.rows.length, " ", d.rows.length === 1 ? "set" : "sets"), byDay.map(g => React.createElement("div", {
+    key: g.night.midnightUtc,
+    style: {
+      marginTop: 12
+    }
+  }, React.createElement("div", {
+    "data-plan-share-day": true,
+    className: "duo-label duo-ink3",
+    style: {
+      marginBottom: 4
+    }
+  }, dayLabel(g.day, g.night)), g.rows.map(r => React.createElement("div", {
+    key: r.set.id,
+    "data-plan-share-set": r.set.id,
+    style: {
+      display: "flex",
+      gap: 10,
+      padding: "6px 0",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    className: "duo-data-s",
+    "aria-label": `${fmt12(r.act.start)} to ${fmt12(r.act.end)}`,
+    style: {
+      width: 80,
+      flexShrink: 0,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, React.createElement("div", {
+    "data-plan-share-start": true
+  }, fmt12(r.act.start)), React.createElement("div", {
+    "data-plan-share-end": true
+  }, "– ", fmt12(r.act.end))), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 600,
+      color: "var(--ink)",
+      overflowWrap: "anywhere"
+    }
+  }, r.set.artist), React.createElement("div", {
+    style: {
+      ...label,
+      overflowWrap: "anywhere"
+    }
+  }, r.stageName)))))), !d.rows.length && React.createElement("div", {
+    style: {
+      ...label,
+      marginTop: 10
+    }
+  }, "No sets with confirmed times yet.")), d.left > 0 && React.createElement("div", {
+    "data-plan-share-left": d.left,
+    style: label
+  }, d.left, " ", d.left === 1 ? "set doesn't" : "sets don't", " have confirmed times yet, so ", d.left === 1 ? "it stays" : "they stay", " off the link."), React.createElement("div", {
+    style: label,
+    "data-plan-share-ends": true
+  }, "The link stops working ", fmtDay(Date.parse(d.payload.expiresAt)), ", a week after the festival. You can turn it off sooner.")), React.createElement("label", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      minHeight: 44,
+      cursor: "pointer"
+    }
+  }, React.createElement("input", {
+    type: "checkbox",
+    checked: nameOn,
+    onChange: e => setNameOn(e.target.checked),
+    style: {
+      width: 20,
+      height: 20,
+      flexShrink: 0
+    }
+  }), React.createElement("span", {
+    style: {
+      fontSize: 15,
+      color: "var(--ink)"
+    }
+  }, "Show a name on the link")), nameOn && React.createElement("input", {
+    type: "text",
+    value: name,
+    maxLength: 60,
+    onChange: e => setName(e.target.value),
+    placeholder: "Name to show",
+    "aria-label": "Name to show on the link",
+    autoComplete: "off",
+    style: {
+      minHeight: 44,
+      padding: "0 12px",
+      borderRadius: 10,
+      border: "1px solid var(--line-2)",
+      background: "var(--s1)",
+      color: "var(--ink)",
+      font: "400 16px/20px var(--f-ui)"
+    }
+  }), React.createElement("div", {
+    style: label
+  }, "Never on the link: where you are, your notes, photos, account or crew.")));
+}
+function ShareLineupButton({
+  state,
+  weekend
+}) {
+  var untimed = shortlistMode();
+  var [open, _setOpen] = React.useState(false);
+  var btnRef = React.useRef(null);
+  var [anchor, setAnchor] = React.useState(null);
+  var setOpen = v => _setOpen(o => {
+    var next = typeof v === "function" ? v(o) : v;
+    if (next && btnRef.current) {
+      var r = btnRef.current.getBoundingClientRect();
+      setAnchor({
+        top: r.bottom + 6,
+        left: r.left,
+        right: window.innerWidth - r.right
+      });
+    }
+    return next;
+  });
+  var [linkOpen, setLinkOpen] = React.useState(false);
   var [busy, setBusy] = React.useState(false);
   var [done, setDone] = React.useState(null);
   var wrap = (key, fn) => async () => {
@@ -3781,7 +4835,7 @@ function ShareLineupButton({
     });
     setBusy(false);
     if (r?.ok) {
-      setDone(key);
+      setDone(r.mode === "copy" ? "txt" : key);
       setTimeout(() => setDone(null), 1800);
     } else if (r?.reason === "popup_blocked") {
       alert("Popup blocked — allow popups for plursky.com and try again.");
@@ -3792,6 +4846,8 @@ function ShareLineupButton({
       position: "relative"
     }
   }, React.createElement("button", {
+    ref: btnRef,
+    "data-share-lineup": true,
     onClick: () => setOpen(o => !o),
     disabled: busy,
     "aria-haspopup": "menu",
@@ -3827,54 +4883,95 @@ function ShareLineupButton({
     d: "M7 9 L12 4 L17 9"
   }), React.createElement("path", {
     d: "M5 14 V20 H19 V14"
-  })), done === "image" ? "Saved" : done === "cal" ? "Added" : done === "pdf" ? "Printed" : done === "txt" ? "Copied" : busy ? "…" : "Share"), open && React.createElement(React.Fragment, null, React.createElement("div", {
-    onClick: () => setOpen(false),
-    style: {
-      position: "fixed",
-      inset: 0,
-      zIndex: 60,
-      background: "transparent"
-    }
-  }), React.createElement("div", {
-    style: {
-      position: "absolute",
-      right: 0,
-      top: "calc(100% + 6px)",
-      zIndex: 61,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
-      padding: 5,
-      minWidth: 200,
-      boxShadow: "var(--shadow-pop)"
-    }
-  }, React.createElement(ShareMenuItem, {
-    icon: "img",
-    label: "Image for stories",
-    sub: "1080×1920 PNG",
-    onClick: wrap("image", shareLineupImage)
-  }), React.createElement(ShareMenuItem, {
-    icon: "cal",
-    label: "Add to calendar",
-    sub: ".ics with 15-min reminders",
-    onClick: wrap("cal", exportLineupICS)
-  }), React.createElement(ShareMenuItem, {
-    icon: "prn",
-    label: "Print schedule",
-    sub: "Save as PDF from print dialog",
-    onClick: wrap("pdf", async s => printLineupPDF(s))
-  }), React.createElement(ShareMenuItem, {
-    icon: "txt",
-    label: "Copy as text",
-    sub: "Paste anywhere",
-    onClick: wrap("txt", copyScheduleText)
-  }))));
+  })), done === "image" ? "Saved" : done === "cal" ? "Added" : done === "pdf" ? "Printed" : done === "txt" ? "Copied" : done === "shared" ? "Shared" : busy ? "…" : "Share"), open && (() => {
+    var menu = React.createElement(React.Fragment, null, React.createElement("div", {
+      onClick: () => setOpen(false),
+      style: {
+        position: "fixed",
+        inset: 0,
+        zIndex: 60,
+        background: "transparent"
+      }
+    }), React.createElement("div", {
+      style: untimed ? {
+        position: "fixed",
+        top: anchor ? anchor.top : 0,
+        left: Math.max(8, anchor ? anchor.left : 8),
+        zIndex: 61,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line-2)",
+        borderRadius: 14,
+        padding: 5,
+        minWidth: 200,
+        boxShadow: "var(--shadow-pop)"
+      } : {
+        position: "absolute",
+        right: 0,
+        top: "calc(100% + 6px)",
+        zIndex: 61,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line-2)",
+        borderRadius: 14,
+        padding: 5,
+        minWidth: 200,
+        boxShadow: "var(--shadow-pop)"
+      }
+    }, untimed ? React.createElement(React.Fragment, null, React.createElement(ShareMenuItem, {
+      icon: "txt",
+      label: "Share shortlist",
+      sub: "Text · set times not announced",
+      onClick: wrap("shared", s => shareShortlistText(s, weekend))
+    }), React.createElement(ShareMenuItem, {
+      icon: "cal",
+      label: "Add to calendar",
+      sub: "Opens when set times are announced",
+      disabled: true
+    }), React.createElement(ShareMenuItem, {
+      icon: "prn",
+      label: "Print schedule",
+      sub: "Opens when set times are announced",
+      disabled: true
+    })) : React.createElement(React.Fragment, null, React.createElement(ShareMenuItem, {
+      icon: "img",
+      label: "Image for stories",
+      sub: "1080×1920 PNG",
+      onClick: wrap("image", shareLineupImage)
+    }), React.createElement(ShareMenuItem, {
+      icon: "cal",
+      label: "Add to calendar",
+      sub: ".ics with 15-min reminders",
+      onClick: wrap("cal", exportLineupICS)
+    }), React.createElement(ShareMenuItem, {
+      icon: "prn",
+      label: "Print schedule",
+      sub: "Save as PDF from print dialog",
+      onClick: wrap("pdf", async s => printLineupPDF(s))
+    }), React.createElement(ShareMenuItem, {
+      icon: "txt",
+      label: "Copy as text",
+      sub: "Paste anywhere",
+      onClick: wrap("txt", copyScheduleText)
+    })), PLAN_SHARE_LINK_ON && React.createElement(ShareMenuItem, {
+      icon: "lnk",
+      label: "Share as a link",
+      sub: "Preview what a link shows",
+      onClick: () => {
+        setOpen(false);
+        setLinkOpen(true);
+      }
+    })));
+    return untimed ? ReactDOM.createPortal(menu, document.body) : menu;
+  })(), PLAN_SHARE_LINK_ON && linkOpen && React.createElement(PlanShareLinkSheet, {
+    saved: savedInLineup(state.saved),
+    onClose: () => setLinkOpen(false)
+  }));
 }
 function ShareMenuItem({
   icon,
   label,
   sub,
-  onClick
+  onClick,
+  disabled
 }) {
   var ico = icon === "img" ? React.createElement("svg", {
     width: "16",
@@ -3918,6 +5015,19 @@ function ShareMenuItem({
     d: "M8 3 V7"
   }), React.createElement("path", {
     d: "M16 3 V7"
+  })) : icon === "lnk" ? React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.7",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M10 14 a4 4 0 0 0 5.66 0 l3-3 a4 4 0 0 0 -5.66 -5.66 l-1 1"
+  }), React.createElement("path", {
+    d: "M14 10 a4 4 0 0 0 -5.66 0 l-3 3 a4 4 0 0 0 5.66 5.66 l1 -1"
   })) : icon === "txt" ? React.createElement("svg", {
     width: "16",
     height: "16",
@@ -3963,7 +5073,9 @@ function ShareMenuItem({
     height: "6"
   }));
   return React.createElement("button", {
-    onClick: onClick,
+    onClick: disabled ? undefined : onClick,
+    disabled: !!disabled,
+    "aria-disabled": disabled || undefined,
     style: {
       display: "flex",
       alignItems: "center",
@@ -3971,9 +5083,10 @@ function ShareMenuItem({
       width: "100%",
       padding: "9px 10px",
       borderRadius: 8,
+      opacity: disabled ? 0.55 : 1,
       background: "transparent",
       border: "none",
-      cursor: "pointer",
+      cursor: disabled ? "default" : "pointer",
       textAlign: "left",
       color: "var(--ink)",
       fontFamily: "inherit",
@@ -4025,7 +5138,7 @@ function toggleSave(state, setState, id) {
   var hasConflict = !has && a && next.some(sid => {
     if (sid === id) return false;
     var b = ARTISTS.find(x => x.id === sid);
-    return b && b.day === a.day && overlaps(a, b);
+    return b && b.day === a.day && setsClash(a, b, undefined, next);
   });
   if (hasConflict) {
     try {
@@ -4051,7 +5164,8 @@ function toggleSave(state, setState, id) {
     var liveNext = savedInLineup(next).length;
     var isFirstSave = !has && savedInLineup(state.saved).length === 0;
     var isMilestone = !has && [5, 10, 15, 20].includes(liveNext);
-    var msg = has ? `REMOVED · ${label}` : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO` : isMilestone ? `✦ ${liveNext} SETS · ${label} · LINEUP GROWING` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${liveNext} SETS`;
+    var unit = shortlistMode() ? "ARTIST" : "SET";
+    var msg = has ? `REMOVED · ${label}` : isFirstSave ? `✦ FIRST ${unit} SAVED · ${label} · LET'S GO` : isMilestone ? `✦ ${liveNext} ${unit}S · ${label} · LINEUP GROWING` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${liveNext} ${unit}S`;
     var undo = () => {
       if (has) {
         try {
@@ -4082,7 +5196,7 @@ function toggleSave(state, setState, id) {
   } catch {}
 }
 async function shareLineupImage(state) {
-  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
+  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   if (saved.length === 0) return {
     ok: false,
     reason: "empty"
@@ -4127,7 +5241,7 @@ async function shareLineupImage(state) {
     label: d.label,
     date: d.date.toUpperCase()
   }]));
-  var _loop4 = async function (a) {
+  var _loop5 = async function (a) {
     if (a.day !== lastDay) {
       lastDay = a.day;
       var dm = dayMeta[a.day];
@@ -4146,12 +5260,15 @@ async function shareLineupImage(state) {
     var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     ctx.fillStyle = stage.color;
     ctx.fillRect(80, y, 6, 78);
-    ctx.fillStyle = "#1a120d";
-    ctx.font = '500 28px "Geist Mono", monospace';
-    ctx.fillText(fmt12(a.start), 110, y + 32);
-    ctx.fillStyle = "rgba(26,18,13,0.45)";
-    ctx.font = '400 20px "Geist Mono", monospace';
-    ctx.fillText(fmt12(a.end), 110, y + 60);
+    var unconfirmed = setTimesUnconfirmed(a);
+    if (!unconfirmed) {
+      ctx.fillStyle = "#1a120d";
+      ctx.font = '500 28px "Geist Mono", monospace';
+      ctx.fillText(fmt12(a.start), 110, y + 32);
+      ctx.fillStyle = "rgba(26,18,13,0.45)";
+      ctx.font = '400 20px "Geist Mono", monospace';
+      ctx.fillText(fmt12(a.end), 110, y + 60);
+    }
     ctx.fillStyle = "#1a120d";
     ctx.font = '46px "Instrument Serif", serif';
     var name = a.name;
@@ -4162,12 +5279,12 @@ async function shareLineupImage(state) {
     ctx.fillText(name, 250, y + 38);
     ctx.fillStyle = stage.color;
     ctx.font = '600 18px "Geist Mono", monospace';
-    ctx.fillText(stage.name.toUpperCase() + " · " + a.genre.toUpperCase(), 250, y + 64);
+    ctx.fillText(stage.name.toUpperCase() + " · " + (unconfirmed ? SET_TIMES_UNCONFIRMED : a.genre).toUpperCase(), 250, y + 64);
     y += 92;
     if (y > H - 180) return 1;
   };
   for (var a of saved) {
-    if (await _loop4(a)) break;
+    if (await _loop5(a)) break;
   }
   ctx.fillStyle = "#1a120d";
   ctx.font = '500 22px "Geist Mono", monospace';

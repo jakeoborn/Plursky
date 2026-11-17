@@ -1,0 +1,1585 @@
+{
+ "id": "nocturnal-wonderland-2012",
+ "festivalId": "nocturnal-wonderland",
+ "name": "Nocturnal Wonderland 2012",
+ "year": 2012,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2012-09-21",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2012-09-22",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "nocturnal-wonderland-2012:labyrinth",
+   "name": "Labyrinth"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:alice-s-house",
+   "name": "Alice's House"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:sunken-garden",
+   "name": "Sunken Garden"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:wide-awake-art-car",
+   "name": "Wide Awake Art Car"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:discovery-project",
+   "name": "Discovery Project"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:queen-s-grounds",
+   "name": "Queen's Grounds"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:upside-down-room",
+   "name": "Upside Down Room"
+  }
+ ],
+ "artists": [
+  {
+   "id": "nocturnal-wonderland-2012:axwell",
+   "name": "Axwell",
+   "key": "axwell",
+   "performers": [
+    "axwell"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:fedde-le-grand",
+   "name": "Fedde le Grand",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:morgan-page",
+   "name": "Morgan Page",
+   "key": "morgan-page",
+   "performers": [
+    "morgan-page"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:cedric-gervais",
+   "name": "Cedric Gervais",
+   "key": "cedric-gervais",
+   "performers": [
+    "cedric-gervais"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:edx",
+   "name": "EDX",
+   "key": "edx",
+   "performers": [
+    "edx"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:manufactured-superstars",
+   "name": "Manufactured Superstars",
+   "key": "manufactured-superstars",
+   "performers": [
+    "manufactured-superstars"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:joaquin-bamaca",
+   "name": "Joaquin Bamaca",
+   "key": "joaquin-bamaca",
+   "performers": [
+    "joaquin-bamaca"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:above-and-beyond",
+   "name": "Above & Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:mat-zo",
+   "name": "Mat Zo",
+   "key": "mat-zo",
+   "performers": [
+    "mat-zo"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:cosmic-gate",
+   "name": "Cosmic Gate",
+   "key": "cosmic-gate",
+   "performers": [
+    "cosmic-gate"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:super8-and-tab",
+   "name": "Super8 & Tab",
+   "key": "super8-and-tab",
+   "performers": [
+    "super8-and-tab"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:norin-and-rad",
+   "name": "Norin & Rad",
+   "key": "norin-and-rad",
+   "performers": [
+    "norin-and-rad"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:boom-jinx",
+   "name": "Boom Jinx",
+   "key": "boom-jinx",
+   "performers": [
+    "boom-jinx"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:soundprank",
+   "name": "Soundprank",
+   "key": "soundprank",
+   "performers": [
+    "soundprank"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:dirtyphonics",
+   "name": "Dirtyphonics",
+   "key": "dirtyphonics",
+   "performers": [
+    "dirtyphonics"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:andy-c",
+   "name": "Andy C",
+   "key": "andy-c",
+   "performers": [
+    "andy-c"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:downlink",
+   "name": "Downlink",
+   "key": "downlink",
+   "performers": [
+    "downlink"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:the-prototypes",
+   "name": "The Prototypes",
+   "key": "the-prototypes",
+   "performers": [
+    "the-prototypes"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:skeptiks",
+   "name": "Skeptiks",
+   "key": "skeptiks",
+   "performers": [
+    "skeptiks"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:flinch",
+   "name": "Flinch",
+   "key": "flinch",
+   "performers": [
+    "flinch"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:fury",
+   "name": "Fury",
+   "key": "fury",
+   "performers": [
+    "fury"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:troy-kurtz",
+   "name": "Troy Kurtz",
+   "key": "troy-kurtz",
+   "performers": [
+    "troy-kurtz"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:astronomar",
+   "name": "Astronomar",
+   "key": "astronomar",
+   "performers": [
+    "astronomar"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:prince-club",
+   "name": "Prince Club",
+   "key": "prince-club",
+   "performers": [
+    "prince-club"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:justin-jay",
+   "name": "Justin Jay",
+   "key": "justin-jay",
+   "performers": [
+    "justin-jay"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:urulu",
+   "name": "Urulu",
+   "key": "urulu",
+   "performers": [
+    "urulu"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:bones",
+   "name": "Bones",
+   "key": "bones",
+   "performers": [
+    "bones"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:steve-huerta",
+   "name": "Steve Huerta",
+   "key": "steve-huerta",
+   "performers": [
+    "steve-huerta"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:shae-b",
+   "name": "Shae B",
+   "key": "shae-b",
+   "performers": [
+    "shae-b"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:seven8seven",
+   "name": "Seven8Seven",
+   "key": "seven8seven",
+   "performers": [
+    "seven8seven"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:kundo",
+   "name": "Kundo",
+   "key": "kundo",
+   "performers": [
+    "kundo"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:indo",
+   "name": "IndO",
+   "key": "indo",
+   "performers": [
+    "indo"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:mr-brooks",
+   "name": "Mr. Brooks",
+   "key": "mr-brooks",
+   "performers": [
+    "mr-brooks"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:lone-mtn-and-buddha",
+   "name": "Lone MTN & Buddha",
+   "key": "lone-mtn-and-buddha",
+   "performers": [
+    "lone-mtn-and-buddha"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:dskotek",
+   "name": "DSKOTEK",
+   "key": "dskotek",
+   "performers": [
+    "dskotek"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:the-beat-kidz",
+   "name": "The Beat Kidz",
+   "key": "the-beat-kidz",
+   "performers": [
+    "the-beat-kidz"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:novaspace",
+   "name": "NOVASPACE",
+   "key": "novaspace",
+   "performers": [
+    "novaspace"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:mstrex",
+   "name": "MSTREX",
+   "key": "mstrex",
+   "performers": [
+    "mstrex"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:sebastian-ingrosso",
+   "name": "Sebastian Ingrosso",
+   "key": "sebastian-ingrosso",
+   "performers": [
+    "sebastian-ingrosso"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:pretty-lights",
+   "name": "Pretty Lights",
+   "key": "pretty-lights",
+   "performers": [
+    "pretty-lights"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:benny-benassi",
+   "name": "Benny Benassi",
+   "key": "benny-benassi",
+   "performers": [
+    "benny-benassi"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:arty",
+   "name": "Arty",
+   "key": "arty",
+   "performers": [
+    "arty"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:r3hab",
+   "name": "R3hab",
+   "key": "r3hab",
+   "performers": [
+    "r3hab"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:john-dahlback",
+   "name": "John Dahlbäck",
+   "key": "john-dahlback",
+   "performers": [
+    "john-dahlback"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:chris-lake",
+   "name": "Chris Lake",
+   "key": "chris-lake",
+   "performers": [
+    "chris-lake"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:deniz-koyu",
+   "name": "Deniz Koyu",
+   "key": "deniz-koyu",
+   "performers": [
+    "deniz-koyu"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:funkagenda",
+   "name": "Funkagenda",
+   "key": "funkagenda",
+   "performers": [
+    "funkagenda"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:david-steven",
+   "name": "David Steven",
+   "key": "david-steven",
+   "performers": [
+    "david-steven"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:dash-berlin",
+   "name": "Dash Berlin",
+   "key": "dash-berlin",
+   "performers": [
+    "dash-berlin"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:atb",
+   "name": "ATB",
+   "key": "atb",
+   "performers": [
+    "atb"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:showtek",
+   "name": "Showtek",
+   "key": "showtek",
+   "performers": [
+    "showtek"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:w-and-w",
+   "name": "W&W",
+   "key": "w-and-w",
+   "performers": [
+    "w-and-w"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:simon-patterson",
+   "name": "Simon Patterson",
+   "key": "simon-patterson",
+   "performers": [
+    "simon-patterson"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:myon-and-shane54-with-aruna",
+   "name": "Myon & Shane54 with Aruna",
+   "key": "myon-and-shane54-with-aruna",
+   "performers": [
+    "myon-and-shane54-with-aruna"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:sean-tyas",
+   "name": "Sean Tyas",
+   "key": "sean-tyas",
+   "performers": [
+    "sean-tyas"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:tydi",
+   "name": "tyDi",
+   "key": "tydi",
+   "performers": [
+    "tydi"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:darin-epsilon",
+   "name": "Darin Epsilon",
+   "key": "darin-epsilon",
+   "performers": [
+    "darin-epsilon"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:subfocus-dj-set",
+   "name": "Subfocus dj set",
+   "key": "subfocus-dj-set",
+   "performers": [
+    "subfocus-dj-set"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:12th-planet",
+   "name": "12th Planet",
+   "key": "12th-planet",
+   "performers": [
+    "12th-planet"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:planet-of-the-drums",
+   "name": "Planet of the Drums",
+   "key": "planet-of-the-drums",
+   "performers": [
+    "planet-of-the-drums"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:crizzly",
+   "name": "Crizzly",
+   "key": "crizzly",
+   "performers": [
+    "crizzly"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:dub-fx",
+   "name": "Dub FX",
+   "key": "dub-fx",
+   "performers": [
+    "dub-fx"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:mediks",
+   "name": "Mediks",
+   "key": "mediks",
+   "performers": [
+    "mediks"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:deco",
+   "name": "Deco",
+   "key": "deco",
+   "performers": [
+    "deco"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:snareophobe-and-starfighterz",
+   "name": "Snareophobe & Starfighterz",
+   "key": "snareophobe-and-starfighterz",
+   "performers": [
+    "snareophobe-and-starfighterz"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:royksopp",
+   "name": "Röyksopp",
+   "key": "royksopp",
+   "performers": [
+    "royksopp"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:little-boots",
+   "name": "Little Boots",
+   "key": "little-boots",
+   "performers": [
+    "little-boots"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:bassjackers",
+   "name": "Bassjackers",
+   "key": "bassjackers",
+   "performers": [
+    "bassjackers"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:orbital",
+   "name": "Orbital",
+   "key": "orbital",
+   "performers": [
+    "orbital"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:neon-indian",
+   "name": "Neon Indian",
+   "key": "neon-indian",
+   "performers": [
+    "neon-indian"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:joachim-garraud",
+   "name": "Joachim Garraud",
+   "key": "joachim-garraud",
+   "performers": [
+    "joachim-garraud"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:dimitri-vegas-and-like-mike",
+   "name": "Dimitri Vegas and Like Mike",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:danny-avila",
+   "name": "Danny Avila",
+   "key": "danny-avila",
+   "performers": [
+    "danny-avila"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:james-egbert",
+   "name": "James Egbert",
+   "key": "james-egbert",
+   "performers": [
+    "james-egbert"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:danny-tenaglia",
+   "name": "Danny Tenaglia",
+   "key": "danny-tenaglia",
+   "performers": [
+    "danny-tenaglia"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:gui-boratto",
+   "name": "Gui Boratto",
+   "key": "gui-boratto",
+   "performers": [
+    "gui-boratto"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:mark-knight",
+   "name": "Mark Knight",
+   "key": "mark-knight",
+   "performers": [
+    "mark-knight"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:damian-lazarus",
+   "name": "Damian Lazarus",
+   "key": "damian-lazarus",
+   "performers": [
+    "damian-lazarus"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:16-bit-lolitas",
+   "name": "16 Bit Lolitas",
+   "key": "16-bit-lolitas",
+   "performers": [
+    "16-bit-lolitas"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:droog",
+   "name": "Droog",
+   "key": "droog",
+   "performers": [
+    "droog"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:slogun-and-ioh",
+   "name": "Slogun & iOh",
+   "key": "slogun-and-ioh",
+   "performers": [
+    "slogun-and-ioh"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:mitchell-claxton",
+   "name": "Mitchell Claxton",
+   "key": "mitchell-claxton",
+   "performers": [
+    "mitchell-claxton"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:vibeshock",
+   "name": "Vibeshock",
+   "key": "vibeshock",
+   "performers": [
+    "vibeshock"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:rykr",
+   "name": "RYKR",
+   "key": "rykr",
+   "performers": [
+    "rykr"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:monstergetdown",
+   "name": "Monstergetdown",
+   "key": "monstergetdown",
+   "performers": [
+    "monstergetdown"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:steve-prior",
+   "name": "Steve Prior",
+   "key": "steve-prior",
+   "performers": [
+    "steve-prior"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:yobill",
+   "name": "YOBILL",
+   "key": "yobill",
+   "performers": [
+    "yobill"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:dj-tory-tee",
+   "name": "DJ Tory Tee",
+   "key": "dj-tory-tee",
+   "performers": [
+    "dj-tory-tee"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:alpine",
+   "name": "Alpine",
+   "key": "alpine",
+   "performers": [
+    "alpine"
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2012:clinton-vansciver",
+   "name": "Clinton VanSciver",
+   "key": "clinton-vansciver",
+   "performers": [
+    "clinton-vansciver"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "nocturnal-wonderland-2012:d1:labyrinth:0030:axwell",
+   "artistId": "nocturnal-wonderland-2012:axwell",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:labyrinth:2300:alesso",
+   "artistId": "nocturnal-wonderland-2012:alesso",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:labyrinth:2130:fedde-le-grand",
+   "artistId": "nocturnal-wonderland-2012:fedde-le-grand",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:labyrinth:2015:morgan-page",
+   "artistId": "nocturnal-wonderland-2012:morgan-page",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:labyrinth:1915:cedric-gervais",
+   "artistId": "nocturnal-wonderland-2012:cedric-gervais",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:labyrinth:1815:edx",
+   "artistId": "nocturnal-wonderland-2012:edx",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:labyrinth:1715:manufactured-superstars",
+   "artistId": "nocturnal-wonderland-2012:manufactured-superstars",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:labyrinth:1700:joaquin-bamaca",
+   "artistId": "nocturnal-wonderland-2012:joaquin-bamaca",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "17:00",
+   "end": "17:15"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:alice-s-house:0000:above-and-beyond",
+   "artistId": "nocturnal-wonderland-2012:above-and-beyond",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "00:00",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:alice-s-house:2230:mat-zo",
+   "artistId": "nocturnal-wonderland-2012:mat-zo",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:alice-s-house:2100:cosmic-gate",
+   "artistId": "nocturnal-wonderland-2012:cosmic-gate",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:alice-s-house:2000:super8-and-tab",
+   "artistId": "nocturnal-wonderland-2012:super8-and-tab",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:alice-s-house:1900:norin-and-rad",
+   "artistId": "nocturnal-wonderland-2012:norin-and-rad",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:alice-s-house:1800:boom-jinx",
+   "artistId": "nocturnal-wonderland-2012:boom-jinx",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:alice-s-house:1700:soundprank",
+   "artistId": "nocturnal-wonderland-2012:soundprank",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:sunken-garden:0030:dirtyphonics",
+   "artistId": "nocturnal-wonderland-2012:dirtyphonics",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:sunken-garden:2300:andy-c",
+   "artistId": "nocturnal-wonderland-2012:andy-c",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:sunken-garden:2200:downlink",
+   "artistId": "nocturnal-wonderland-2012:downlink",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:sunken-garden:2100:the-prototypes",
+   "artistId": "nocturnal-wonderland-2012:the-prototypes",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:sunken-garden:2000:skeptiks",
+   "artistId": "nocturnal-wonderland-2012:skeptiks",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:sunken-garden:1900:flinch",
+   "artistId": "nocturnal-wonderland-2012:flinch",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:sunken-garden:1700:fury",
+   "artistId": "nocturnal-wonderland-2012:fury",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "17:00",
+   "end": "19:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:wide-awake-art-car:2300:troy-kurtz",
+   "artistId": "nocturnal-wonderland-2012:troy-kurtz",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:wide-awake-art-car",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:wide-awake-art-car:2200:astronomar",
+   "artistId": "nocturnal-wonderland-2012:astronomar",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:wide-awake-art-car",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:wide-awake-art-car:2100:prince-club",
+   "artistId": "nocturnal-wonderland-2012:prince-club",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:wide-awake-art-car",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:wide-awake-art-car:2000:justin-jay",
+   "artistId": "nocturnal-wonderland-2012:justin-jay",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:wide-awake-art-car",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:wide-awake-art-car:1900:urulu",
+   "artistId": "nocturnal-wonderland-2012:urulu",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:wide-awake-art-car",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:wide-awake-art-car:1815:bones",
+   "artistId": "nocturnal-wonderland-2012:bones",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:wide-awake-art-car",
+   "start": "18:15",
+   "end": "19:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:wide-awake-art-car:1730:steve-huerta",
+   "artistId": "nocturnal-wonderland-2012:steve-huerta",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:wide-awake-art-car",
+   "start": "17:30",
+   "end": "18:15"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:wide-awake-art-car:1700:shae-b",
+   "artistId": "nocturnal-wonderland-2012:shae-b",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:wide-awake-art-car",
+   "start": "17:00",
+   "end": "17:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:discovery-project:0100:seven8seven",
+   "artistId": "nocturnal-wonderland-2012:seven8seven",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:discovery-project:0000:kundo",
+   "artistId": "nocturnal-wonderland-2012:kundo",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:discovery-project:2300:indo",
+   "artistId": "nocturnal-wonderland-2012:indo",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:discovery-project:2200:mr-brooks",
+   "artistId": "nocturnal-wonderland-2012:mr-brooks",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:discovery-project:2100:lone-mtn-and-buddha",
+   "artistId": "nocturnal-wonderland-2012:lone-mtn-and-buddha",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:discovery-project:2000:dskotek",
+   "artistId": "nocturnal-wonderland-2012:dskotek",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:discovery-project:1900:the-beat-kidz",
+   "artistId": "nocturnal-wonderland-2012:the-beat-kidz",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:discovery-project:1800:novaspace",
+   "artistId": "nocturnal-wonderland-2012:novaspace",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d1:discovery-project:1700:mstrex",
+   "artistId": "nocturnal-wonderland-2012:mstrex",
+   "day": 1,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:labyrinth:0030:sebastian-ingrosso",
+   "artistId": "nocturnal-wonderland-2012:sebastian-ingrosso",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:labyrinth:2330:pretty-lights",
+   "artistId": "nocturnal-wonderland-2012:pretty-lights",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:labyrinth:2230:benny-benassi",
+   "artistId": "nocturnal-wonderland-2012:benny-benassi",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:labyrinth:2130:arty",
+   "artistId": "nocturnal-wonderland-2012:arty",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:labyrinth:2030:r3hab",
+   "artistId": "nocturnal-wonderland-2012:r3hab",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:labyrinth:1930:john-dahlback",
+   "artistId": "nocturnal-wonderland-2012:john-dahlback",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:labyrinth:1830:chris-lake",
+   "artistId": "nocturnal-wonderland-2012:chris-lake",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:labyrinth:1730:deniz-koyu",
+   "artistId": "nocturnal-wonderland-2012:deniz-koyu",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:labyrinth:1630:funkagenda",
+   "artistId": "nocturnal-wonderland-2012:funkagenda",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:labyrinth:1500:david-steven",
+   "artistId": "nocturnal-wonderland-2012:david-steven",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:labyrinth",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:alice-s-house:0030:dash-berlin",
+   "artistId": "nocturnal-wonderland-2012:dash-berlin",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:alice-s-house:2300:atb",
+   "artistId": "nocturnal-wonderland-2012:atb",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:alice-s-house:2130:showtek",
+   "artistId": "nocturnal-wonderland-2012:showtek",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:alice-s-house:2000:w-and-w",
+   "artistId": "nocturnal-wonderland-2012:w-and-w",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:alice-s-house:1900:simon-patterson",
+   "artistId": "nocturnal-wonderland-2012:simon-patterson",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:alice-s-house:1800:myon-and-shane54-with-aruna",
+   "artistId": "nocturnal-wonderland-2012:myon-and-shane54-with-aruna",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:alice-s-house:1700:sean-tyas",
+   "artistId": "nocturnal-wonderland-2012:sean-tyas",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:alice-s-house:1600:tydi",
+   "artistId": "nocturnal-wonderland-2012:tydi",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:alice-s-house:1500:darin-epsilon",
+   "artistId": "nocturnal-wonderland-2012:darin-epsilon",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:alice-s-house",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:sunken-garden:0045:subfocus-dj-set",
+   "artistId": "nocturnal-wonderland-2012:subfocus-dj-set",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:sunken-garden:2330:12th-planet",
+   "artistId": "nocturnal-wonderland-2012:12th-planet",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:sunken-garden:2200:planet-of-the-drums",
+   "artistId": "nocturnal-wonderland-2012:planet-of-the-drums",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:sunken-garden:2045:crizzly",
+   "artistId": "nocturnal-wonderland-2012:crizzly",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:sunken-garden:1940:dub-fx",
+   "artistId": "nocturnal-wonderland-2012:dub-fx",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "19:40",
+   "end": "20:45"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:sunken-garden:1800:mediks",
+   "artistId": "nocturnal-wonderland-2012:mediks",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "18:00",
+   "end": "19:40"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:sunken-garden:1600:deco",
+   "artistId": "nocturnal-wonderland-2012:deco",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:sunken-garden:1500:snareophobe-and-starfighterz",
+   "artistId": "nocturnal-wonderland-2012:snareophobe-and-starfighterz",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:sunken-garden",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:queen-s-grounds:0100:royksopp",
+   "artistId": "nocturnal-wonderland-2012:royksopp",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:queen-s-grounds",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:queen-s-grounds:0000:little-boots",
+   "artistId": "nocturnal-wonderland-2012:little-boots",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:queen-s-grounds",
+   "start": "00:00",
+   "end": "00:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:queen-s-grounds:2235:bassjackers",
+   "artistId": "nocturnal-wonderland-2012:bassjackers",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:queen-s-grounds",
+   "start": "22:35",
+   "end": "23:35"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:queen-s-grounds:2115:orbital",
+   "artistId": "nocturnal-wonderland-2012:orbital",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:queen-s-grounds",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:queen-s-grounds:1950:neon-indian",
+   "artistId": "nocturnal-wonderland-2012:neon-indian",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:queen-s-grounds",
+   "start": "19:50",
+   "end": "20:45"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:queen-s-grounds:1830:joachim-garraud",
+   "artistId": "nocturnal-wonderland-2012:joachim-garraud",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:queen-s-grounds",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:queen-s-grounds:1730:dimitri-vegas-and-like-mike",
+   "artistId": "nocturnal-wonderland-2012:dimitri-vegas-and-like-mike",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:queen-s-grounds",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:queen-s-grounds:1630:danny-avila",
+   "artistId": "nocturnal-wonderland-2012:danny-avila",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:queen-s-grounds",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:queen-s-grounds:1500:james-egbert",
+   "artistId": "nocturnal-wonderland-2012:james-egbert",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:queen-s-grounds",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:upside-down-room:0030:danny-tenaglia",
+   "artistId": "nocturnal-wonderland-2012:danny-tenaglia",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:upside-down-room",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:upside-down-room:2300:john-digweed",
+   "artistId": "nocturnal-wonderland-2012:john-digweed",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:upside-down-room",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:upside-down-room:2200:gui-boratto",
+   "artistId": "nocturnal-wonderland-2012:gui-boratto",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:upside-down-room",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:upside-down-room:2030:mark-knight",
+   "artistId": "nocturnal-wonderland-2012:mark-knight",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:upside-down-room",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:upside-down-room:1900:jamie-jones",
+   "artistId": "nocturnal-wonderland-2012:jamie-jones",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:upside-down-room",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:upside-down-room:1800:damian-lazarus",
+   "artistId": "nocturnal-wonderland-2012:damian-lazarus",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:upside-down-room",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:upside-down-room:1700:nicole-moudaber",
+   "artistId": "nocturnal-wonderland-2012:nicole-moudaber",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:upside-down-room",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:upside-down-room:1600:16-bit-lolitas",
+   "artistId": "nocturnal-wonderland-2012:16-bit-lolitas",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:upside-down-room",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:upside-down-room:1500:droog",
+   "artistId": "nocturnal-wonderland-2012:droog",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:upside-down-room",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:discovery-project:2245:slogun-and-ioh",
+   "artistId": "nocturnal-wonderland-2012:slogun-and-ioh",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "22:45",
+   "end": "23:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:discovery-project:2200:mitchell-claxton",
+   "artistId": "nocturnal-wonderland-2012:mitchell-claxton",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "22:00",
+   "end": "22:45"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:discovery-project:2100:danny-avila",
+   "artistId": "nocturnal-wonderland-2012:danny-avila",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:discovery-project:2015:vibeshock",
+   "artistId": "nocturnal-wonderland-2012:vibeshock",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "20:15",
+   "end": "21:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:discovery-project:1930:rykr",
+   "artistId": "nocturnal-wonderland-2012:rykr",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "19:30",
+   "end": "20:15"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:discovery-project:1845:monstergetdown",
+   "artistId": "nocturnal-wonderland-2012:monstergetdown",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "18:45",
+   "end": "19:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:discovery-project:1800:steve-prior",
+   "artistId": "nocturnal-wonderland-2012:steve-prior",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:discovery-project:1715:yobill",
+   "artistId": "nocturnal-wonderland-2012:yobill",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "17:15",
+   "end": "18:00"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:discovery-project:1630:dj-tory-tee",
+   "artistId": "nocturnal-wonderland-2012:dj-tory-tee",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "16:30",
+   "end": "17:15"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:discovery-project:1545:alpine",
+   "artistId": "nocturnal-wonderland-2012:alpine",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "15:45",
+   "end": "16:30"
+  },
+  {
+   "id": "nocturnal-wonderland-2012:d2:discovery-project:1500:clinton-vansciver",
+   "artistId": "nocturnal-wonderland-2012:clinton-vansciver",
+   "day": 2,
+   "stageId": "nocturnal-wonderland-2012:discovery-project",
+   "start": "15:00",
+   "end": "15:45"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "structured_html",
+  "official": "http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+  "captures": [
+   {
+    "day": 1,
+    "archivedUrl": "https://web.archive.org/web/20120925025007/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+    "captureTimestamp": "20120925025007",
+    "sha256": "2937deb39beb7da6d63dff2e0448fab973c557135bc9021b6de57c85f808a472"
+   },
+   {
+    "day": 2,
+    "archivedUrl": "https://web.archive.org/web/20120925025007/http://nocturnalwonderland.com/nw_2011/CA/lineup.php",
+    "captureTimestamp": "20120925025007",
+    "sha256": "2937deb39beb7da6d63dff2e0448fab973c557135bc9021b6de57c85f808a472"
+   }
+  ]
+ }
+}
