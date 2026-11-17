@@ -102,7 +102,8 @@ async function scenario(browser, build, { name, native = true, access = "authori
       await page.locator("[data-onb-scan-skip]").click();
       await page.waitForTimeout(400);
       const txt = await dlgText();
-      t(/1 \/ 3/.test(txt) && /Plan the night\./.test(txt), `${name}: "Continue on the web" did not open the story ("${txt.slice(0, 80)}")`);
+      // The story's first page is the editorial plan page (#250), not the old "1 / 3".
+      t(/01 \/ THE PLAN/.test(txt) && /Your night\./.test(txt), `${name}: "Continue on the web" did not open the story ("${txt.slice(0, 80)}")`);
       // A card drawn over a ledger portrait (a licensed photo) shows that
       // photo's credit under it, as the artist page's hero does. Pages 2 and 3
       // show 1 and 3 cards; the control requires at least one portrait.
