@@ -3080,6 +3080,63 @@
    }
   },
   {
+   "id": "outside-lands-2011",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2011",
+   "year": 2011,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-08-12",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2011-08-13",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2011-08-14",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 88,
+    "sets": 88
+   }
+  },
+  {
+   "id": "outside-lands-2010",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2010",
+   "year": 2010,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2010-08-14",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2010-08-15",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 55,
+    "sets": 55
+   }
+  },
+  {
    "id": "shambhala-2016",
    "festivalId": "shambhala",
    "festivalName": "Shambhala",

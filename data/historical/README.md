@@ -166,8 +166,30 @@ own print. The ledger keeps the anchor's page, hash and printed line
 (`meridiemFrom`), and the gate checks its weekday and date. The Barbary is the
 comedy tent and GastroMagic (2014 on) the chef-and-food stage: their shows are
 excluded rows, one for one with the page. Only captures taken after each
-festival are used. 2010 and 2011 use an older planner (myscheduler) not read
-yet; 2018 on has no archived grid of this kind.
+festival are used. 2010 and 2011 use an older planner (below); 2018 on has
+no archived grid of this kind.
+
+Archived Outside Lands schedule planner (2010 and 2011, format `myscheduler-data`):
+
+    node scripts/historical/gather-myscheduler.mjs <edition-id> <gather-dir> <official-url> <ts> <url> \
+      [--variety <stage>] [--restore <name>] …
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+myscheduler.sfoutsidelands.com (2010's /outsidelands-2010-schedule.html,
+2011's /grid.html) draws its grid in the browser from data written into the
+page: `festivalStart`, a `venueMap` of stages and an `entityMap` of sets, each
+with its date, 24-hour start and length in minutes. Every set therefore has a
+start, an end and a stage with no am/pm to read; the first day with sets must
+be `festivalStart`, and 2011's page writes the maps twice, identically. 2010
+was two days. An entry with no stage or start (2011's DJ Proof) is not a set:
+the ledger keeps it under `unscheduledActs`. 2011's Barbary is the comedy and
+variety stage (stand-up, sideshow, magic, circus): its shows are excluded rows,
+one for one with the page. The 2010 capture comes back with two names whose
+non-ASCII letters it cannot decode (a run of U+FFFD each); each is read by a
+restored name in the receipt that keeps every other character of the print
+and stands one letter for each lost run ("Janelle Monáe", "Marc D’Antonio"),
+and the ledger records both spellings (`restored`). Both captures were taken
+after the festival.
 
 Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, Governors Ball 2017–2019, format `acl-grid`):
 

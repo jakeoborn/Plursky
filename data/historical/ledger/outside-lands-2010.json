@@ -1,0 +1,55 @@
+{
+  "id": "outside-lands-2010",
+  "method": "official_sources",
+  "official": "https://www.sfoutsidelands.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2010-08-14",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://myscheduler.sfoutsidelands.com/outsidelands-2010-schedule.html",
+          "archivedUrl": "https://web.archive.org/web/20100818165735/http://myscheduler.sfoutsidelands.com/outsidelands-2010-schedule.html",
+          "captureTimestamp": "20100818165735",
+          "printed": "2010-08-14",
+          "sha256": "74230dcf47447dd9ba1e01ea6bf7ac9abedd462df808b3f9501497e2d25890b3",
+          "bytes": 46052,
+          "rows": 27,
+          "format": "myscheduler-data",
+          "firstStart": "2010-08-14 12:00:00",
+          "stages": 5,
+          "festivalStart": "2010-08-14",
+          "times": "written as data: each set's date, 24-hour start and length in minutes"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2010-08-15",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://myscheduler.sfoutsidelands.com/outsidelands-2010-schedule.html",
+          "archivedUrl": "https://web.archive.org/web/20100818165735/http://myscheduler.sfoutsidelands.com/outsidelands-2010-schedule.html",
+          "captureTimestamp": "20100818165735",
+          "printed": "2010-08-15",
+          "sha256": "74230dcf47447dd9ba1e01ea6bf7ac9abedd462df808b3f9501497e2d25890b3",
+          "bytes": 46052,
+          "rows": 28,
+          "format": "myscheduler-data",
+          "firstStart": "2010-08-15 12:00:00",
+          "stages": 5,
+          "festivalStart": "2010-08-14",
+          "times": "written as data: each set's date, 24-hour start and length in minutes",
+          "restored": [
+            "Isaiah Martin ft. Marc D���Antonio and Dustin Hengl → Isaiah Martin ft. Marc D’Antonio and Dustin Hengl",
+            "Janelle Mon��e → Janelle Monáe"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

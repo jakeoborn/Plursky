@@ -27,6 +27,7 @@ import { parseTomorrowland, eventDay } from "./historical/tml-schedule.mjs";
 import { parseElectricForest, navDay } from "./historical/ef-schedule.mjs";
 import { parseShambhala, slotLabel } from "./historical/shambhala-schedule.mjs";
 import { parseDoStuff, parseDoStuffBand, timeDay } from "./historical/dostuff-schedule.mjs";
+import { parseMyScheduler, restoreSets } from "./historical/myscheduler-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -314,6 +315,35 @@ if (base && edc) {
     dsMust("a newer Outside Lands anchor on another stage", dsPage, dsBand17.replace("Lands End<br>", "Sutro<br>"));
     dsMust("a newer Outside Lands anchor whose weekday is not its link's date", dsPage, dsBand15.replace("Saturday, August 10", "Friday, August 10"));
     dsMust("a newer Outside Lands anchor whose time is not its block's on the axis", dsPage, dsBand15.replace("1:00 PM", "1:10 PM"));
+    // Outside Lands' 2010-2011 planner: the page writes its stages and sets
+    // as data (each set's date, 24-hour start and length), twice in 2011.
+    const msEnt = (id, v, name, start, dur, extra = "") => `\t${id}: {\n\t\tid: ${id},\n\t\tvenueId: ${v},\n\t\tline1: '${name}',\n\t\tline2: '${extra}',\n\t\tstart: ${start === null ? "null" : `'${start}'`},\n\t\tduration: ${dur},\n\t\tminor: false\n\t}`;
+    const msMaps = `var venueMap = {  1: {id: 1, line1: "Lands End", line2: 'Polo Field', line3: "", secondary:false},  5: {id: 5, line1: "The Barbary", line2: 'Polo Field', line3: "", secondary:false}  }; var entityMap = { `
+      + [msEnt(39, 1, "Opener", "2011-08-12 12:00:00", 50), msEnt(46, 1, "Diego\\'s Band", "2011-08-12 18:30:00", 210), msEnt(52, 1, "Headliner", "2011-08-13 20:10:00", 105),
+        msEnt(177, 5, "Comedy: Two Comics", "2011-08-12 12:50:00", 30, "Comedy: Two Comics"), msEnt(80, "null", "Floating DJ", null, 60)].join(",\n") + "\n};";
+    const msPage = `<script>var festivalStart = Date.parseExact("2011-08-12", "yyyy-MM-dd");</script><script>${msMaps}</script><script>${msMaps}</script>`;
+    const mp = parseMyScheduler(msPage, { year: 2011 });
+    ok(JSON.stringify([mp.festivalStart, mp.stages, mp.unscheduled, mp.days.map(d => [d.date, d.firstStart, d.sets.map(x => [x.stage, x.start, x.end, x.artist, x.subtitle || ""])])])
+      === JSON.stringify(["2011-08-12", ["Lands End", "The Barbary"], ["Floating DJ"], [["2011-08-12", "2011-08-12 12:00:00", [["Lands End", "12:00", "12:50", "Opener", ""], ["Lands End", "18:30", "22:00", "Diego's Band", ""], ["The Barbary", "12:50", "13:20", "Comedy: Two Comics", "Comedy: Two Comics"]]], ["2011-08-13", "2011-08-13 20:10:00", [["Lands End", "20:10", "21:55", "Headliner", ""]]]]]),
+      `an Outside Lands planner must come back set by set, with its end from its length and an entry with no stage kept apart: ${JSON.stringify(mp)}`);
+    const msMust = (what, html, restore) => { let bad = false; try { const pg = parseMyScheduler(html, { year: 2011 }); if (restore) restoreSets(pg, restore); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    msMust("an Outside Lands planner whose two copies of the data differ", msPage.replace("'Opener'", "'Openers'"));
+    msMust("an Outside Lands planner of another year", msPage.replaceAll("2011-", "2012-"));
+    msMust("an Outside Lands planner whose first day is not festivalStart", msPage.replace('"2011-08-12", "yyyy', '"2011-08-11", "yyyy'));
+    msMust("an Outside Lands set on a stage the page does not name", msPage.replaceAll("venueId: 5,", "venueId: 7,"));
+    msMust("an Outside Lands set before 6 AM", msPage.replaceAll("2011-08-13 20:10:00", "2011-08-13 02:10:00"));
+    msMust("two Outside Lands sets overlapping on one stage", msPage.replaceAll("2011-08-12 18:30:00", "2011-08-12 12:30:00"));
+    msMust("an Outside Lands entry whose key is not its id", msPage.replaceAll("\t39: {", "\t38: {"));
+    msMust("an Outside Lands planner skipping a day", msPage.replaceAll("2011-08-13 20:10:00", "2011-08-14 20:10:00"));
+    msMust("an Outside Lands set with a length of no minutes", msPage.replaceAll("duration: 105", "duration: 0"));
+    // A billing the capture cannot decode is read only by a name that keeps
+    // every other character and stands one letter for each lost run.
+    const msLost = msPage.replaceAll("'Headliner'", "'Head��liner'");
+    ok(restoreSets(parseMyScheduler(msLost, { year: 2011 }), ["Headéliner"]).days[1].sets[0].artist === "Headéliner", "an undecodable Outside Lands billing must be read by its restored name");
+    msMust("an undecodable Outside Lands billing with no restored name", msLost, []);
+    msMust("an undecodable Outside Lands billing restored by a name that changes another letter", msLost, ["Heaxéliner"]);
+    msMust("an undecodable Outside Lands billing restored by two letters for one lost run", msLost, ["Headéeliner"]);
+    msMust("a restored Outside Lands name that reads no billing", msPage, ["Headéliner"]);
     // Coachella's lineup cards (2016's two divs, 2015's one span): every set
     // open-ended, a card with no set unscheduled, an entry without its time
     // or stage incomplete, and nothing read off data-weekend.
@@ -628,6 +658,13 @@ for (const [id, e] of Object.entries(editions)) {
           const T = +/^time_(\d+)$/.exec(s.firstSlot || "")?.[1];
           ok(s.printed.toUpperCase() === wd && !!T && new Date(T * 1000).toISOString().slice(0, 10) === d.date,
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" with first slot ${s.firstSlot}, not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // Outside Lands' 2010-2011 planner prints no day tab: it writes each
+        // set's start with its date as data.
+        if (s.format === "myscheduler-data") {
+          ok(s.printed === d.date && String(s.firstStart || "").startsWith(d.date + " "),
+            `${id} day ${d.day}: page ${s.captureTimestamp} writes "${s.printed}" (first start ${s.firstStart}), not ${d.date}`);
           continue;
         }
         ok(s.kind === "page" ? datedLabel(s.printed, e.year) === d.date : graphicPrints(s.printed, d.date, e.year, e.days.map(x => x.date)),
