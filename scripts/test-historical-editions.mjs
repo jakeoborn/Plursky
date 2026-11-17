@@ -361,6 +361,22 @@ if (base && edc) {
     oMust("a Lollapalooza 2011 anchor whose weekday is not its link's date", oPage, oBand.replace("Saturday, Aug. 6", "Friday, Aug. 6"));
     oMust("a Lollapalooza 2011 anchor on another stage", oPage, oBand.replace("<br>Bud Light</p>", "<br>Perry's</p>"));
     oMust("a Lollapalooza 2011 anchor printing no time (Date & Time TBA)", oPage, oBand.replace(/<a href[\s\S]*<\/a>/, "Date &amp; Time TBA"));
+    // ACL 2011 and 2012 mix the two: the newer tab row over the older grid
+    // (plain headers, no axis heights), the signings just after the table,
+    // and the older act page's "Playing" line.
+    const aPage = oPage.replace("<title>Lollapalooza 2011", "<title>ACL 2011")
+      .replace(/<div class="fl-vb-drop">[\s\S]*?<\/div>\n  <\/div>/, `<ul class="ds-schedule-days"><li class=""><a href="https://web.archive.org/events/2011/08/05/">Friday, August 5</a></li><li class="ds-schedule-days-current-date"><a href="https://web.archive.org/events/2011/08/06/">Saturday, August 6</a></li></ul>`)
+      .replace(`<th class="ds-times"><ul class="fl-schedule-times">`, `<th class="ds-times"><ul>`)
+      .replace(`</tbody><div class="ds-schedule-lower">`, `</tbody></table><div class="ds-schedule-lower">`);
+    const aBand = `<title>Headliner at ACL 2011</title><div class="ds-arrange ds-performance-location"> <h2>Playing</h2> <p> <a href="https://web.archive.org/events/2011/08/06">Saturday Aug 6 1:00 PM</a> on Bud Light<br> </p> </div>`;
+    const ap = parseDoStuff(aPage), aT = timeDay(ap, parseDoStuffBand(aBand), "headliner");
+    ok(JSON.stringify([ap.festival, ap.label, ap.date, ap.stages, ap.scale, ap.lower, aT.sets]) === JSON.stringify(["acl", "Saturday, August 6", "2011-08-06", ["Bud Light", "Perry's"], 2, 1, oT.sets]),
+      `an ACL 2011 grid (tab row over the older grid) must read as Lollapalooza 2011's does: ${JSON.stringify([ap, aT])}`);
+    const aMust = (what, html, band = aBand) => { let bad = false; try { timeDay(parseDoStuff(html), parseDoStuffBand(band), "headliner"); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    aMust("an ACL 2011 grid marked for another day than its current tab", aPage.replace("ds-player day6", "ds-player day5"));
+    aMust("an ACL 2011 current tab naming another weekday", aPage.replace(">Saturday, August 6<", ">Sunday, August 6<"));
+    aMust("an ACL 2011 page with no day tabs at all", aPage.replace(/<ul class="ds-schedule-days">[\s\S]*?<\/ul>/, ""));
+    aMust("an ACL 2011 page of another festival", aPage.replace("<title>ACL 2011", "<title>Other Fest 2011"));
     // Outside Lands' 2010-2011 planner: the page writes its stages and sets
     // as data (each set's date, 24-hour start and length), twice in 2011.
     const msEnt = (id, v, name, start, dur, extra = "") => `\t${id}: {\n\t\tid: ${id},\n\t\tvenueId: ${v},\n\t\tline1: '${name}',\n\t\tline2: '${extra}',\n\t\tstart: ${start === null ? "null" : `'${start}'`},\n\t\tduration: ${dur},\n\t\tminor: false\n\t}`;

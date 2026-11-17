@@ -1,0 +1,112 @@
+{
+  "id": "acl-2011",
+  "method": "official_sources",
+  "official": "https://www.aclfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2011-09-16",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.aclfestival.com:80/events/2011/09/16",
+          "archivedUrl": "https://web.archive.org/web/20110923112117/http://lineup.aclfestival.com:80/events/2011/09/16",
+          "captureTimestamp": "20110923112117",
+          "printed": "Friday, September 16",
+          "sha256": "8e329fc6bebcafd1fffdb82d7cfad9270a49d116b3c539d94a5a2ac549e2f124",
+          "bytes": 69888,
+          "rows": 45,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.aclfestival.com/band/kanye-west",
+            "archivedUrl": "https://web.archive.org/web/20110820024908/http://lineup.aclfestival.com/band/kanye-west",
+            "captureTimestamp": "20110820024908",
+            "sha256": "53d46f1538d15917a1a784f0300d959699abeab3c42a5431371a0c20212df081",
+            "bytes": 71498,
+            "printed": "Friday Sep 16 8:30 PM on Bud Light"
+          },
+          "signingsNotSets": 14
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2011-09-17",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.aclfestival.com:80/events/2011/09/17",
+          "archivedUrl": "https://web.archive.org/web/20110923112123/http://lineup.aclfestival.com:80/events/2011/09/17",
+          "captureTimestamp": "20110923112123",
+          "printed": "Saturday, September 17",
+          "sha256": "1ecf930462effaf3b76fb06b371de38b70d9b1959602d8bd59e3a9dbc9b1a641",
+          "bytes": 68977,
+          "rows": 44,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.aclfestival.com/band/stevie-wonder",
+            "archivedUrl": "https://web.archive.org/web/20110908055648/http://lineup.aclfestival.com/band/stevie-wonder",
+            "captureTimestamp": "20110908055648",
+            "sha256": "89b0a1ec70f22a63455f313c6dacb6b0d697010b718fecd9a1bac7d07d92825b",
+            "bytes": 67800,
+            "printed": "Saturday Sep 17 8:00 PM on Bud Light"
+          },
+          "signingsNotSets": 12
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2011-09-18",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.aclfestival.com:80/events/2011/09/18",
+          "archivedUrl": "https://web.archive.org/web/20110923112130/http://lineup.aclfestival.com:80/events/2011/09/18",
+          "captureTimestamp": "20110923112130",
+          "printed": "Sunday, September 18",
+          "sha256": "f39fcaf9d4162bfc2e2e275c9a4c29da0cc40647ea7cdf10712bdfe1df436a37",
+          "bytes": 70459,
+          "rows": 44,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.aclfestival.com/band/arcade-fire",
+            "archivedUrl": "https://web.archive.org/web/20110820025546/http://lineup.aclfestival.com/band/arcade-fire",
+            "captureTimestamp": "20110820025546",
+            "sha256": "418c1d13a89daf00ce9a682889508b768cbc33db6c2c51db0a2d31e1b7d368d3",
+            "bytes": 60359,
+            "printed": "Sunday Sep 18 8:30 PM on Bud Light"
+          },
+          "signingsNotSets": 17
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Austin Kiddie Limits presented by H-E-B",
+      "start": "15:15",
+      "end": "15:30",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

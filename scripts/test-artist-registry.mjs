@@ -92,7 +92,9 @@ const out = build();
   // Lollapalooza 2012 added one more short name billed at a second brand
   // (LP, also at ACL), left separate by the standing short-name rule: 136
   // rows. Raised to 140 under the same standing call and reported in that
-  // pull request. Past 140, stop and report.
+  // pull request. ACL 2011 and 2012 then added two more (Dev and WAX,
+  // both also at Lollapalooza 2012) and one more "+" billing:
+  // 139 rows. Past 140, stop and report.
   check(review.length <= 140, `review queue is ${review.length} rows (> 140 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');

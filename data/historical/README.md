@@ -222,6 +222,19 @@ afternoon, before the set). An anchor only fixes the day's meridiem: its time
 must still sit on its own block on the grid captured after the festival
 (Aug 20), and all three do.
 
+ACL 2011 and 2012 ran on the same site too (lineup.aclfestival.com, titled
+"ACL 2011", "ACL 2012"): the newer tab row ("Friday, September 16") over the
+older grid (plain stage headers, no axis heights, the "dayN" class checked),
+with the Waterloo Autograph Tent's signings just after the table, counted and
+never read as sets. The grids are captures taken after each festival (2011:
+Sep 23; 2012: Nov 8 for Friday, May 12, 2013 for Saturday and Sunday). The
+anchors are the headliners' own pages: Kanye West, Stevie Wonder and Arcade
+Fire for 2011 (captured in August and September, before the festival), The
+Black Keys, Jack White and Red Hot Chili Peppers for 2012 (captured Nov 8,
+after it). The kids' stage keeps its printed name each year ("Austin Kiddie
+Limits presented by H-E-B", "HEB-Kids"), kept as music as in 2013, and one
+unnamed "Special Guest" slot there each year is dropped.
+
 Archived Outside Lands schedule planner (2010 and 2011, format `myscheduler-data`):
 
     node scripts/historical/gather-myscheduler.mjs <edition-id> <gather-dir> <official-url> <ts> <url> \

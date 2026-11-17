@@ -46,7 +46,7 @@ export const TOLERANCE_PX = 1.5;
 // prints. Outside Lands' titles print the year ("Outside Lands 2013");
 // Lollapalooza's 2012 title prints the name alone, and its year is then the
 // day tab's own.
-export const FESTIVALS = { "Outside Lands": "outside-lands", "Lollapalooza": "lollapalooza" };
+export const FESTIVALS = { "Outside Lands": "outside-lands", "Lollapalooza": "lollapalooza", "ACL": "acl" };
 const titled = title => {
   const m = /^(.+?)(?: (20\d\d))?$/.exec(title);
   const festival = m && FESTIVALS[m[1]];
@@ -63,18 +63,20 @@ export function parseDoStuff(html) {
   const { festival, titleYear } = named;
   const grid = /<div class="ds-schedule[^"]*">([\s\S]*?)<\/table>/.exec(html)?.[1];
   if (!grid) throw new Error("no schedule grid");
-  // Two layouts. From 2012 a tab row names every day ("Saturday, August 10",
-  // the current one marked), each stage header's class carries the date and
-  // each axis row its height. Lollapalooza 2011's older one prints the days
-  // as a drop-down, the current day as plain text and the others as links
-  // ("Fri, Aug 5"), plain stage headers in column order and an axis with no
-  // heights; the year is then the title's, and the grid's "dayN" class must
-  // be the current day's date.
-  const older = !/<ul class="ds-schedule-days">/.test(html) && /<div class="fl-vb-drop">/.test(html);
+  // Two kinds of day tabs and two kinds of grid, met in three mixes. From 2012
+  // a tab row names every day ("Saturday, August 10", the current one
+  // marked), each stage header's class carries the date and each axis row its
+  // height. Lollapalooza 2011 prints the days as a drop-down, the current day
+  // as plain text and the others as links ("Fri, Aug 5"); ACL 2011 has the
+  // tab row. Both 2011 grids print plain stage headers in column order
+  // (`ds-stage1` …) and an axis with no heights; the grid's "dayN" class must
+  // then be the current day's date.
+  const tabRow = /<ul class="ds-schedule-days">/.test(html), drop = !tabRow && /<div class="fl-vb-drop">/.test(html);
+  const older = !/<th class="ds-venue-column-\d+-\d{8}">/.test(grid);
+  if (!tabRow && !drop) throw new Error("no day tabs");
   let tabs, date, label, stages, columns;
-  if (!older) {
+  if (tabRow) {
     const tabsHtml = /<ul class="ds-schedule-days">([\s\S]*?)<\/ul>/.exec(html)?.[1];
-    if (!tabsHtml) throw new Error("no day tabs");
     tabs = [...tabsHtml.matchAll(/<li class="([^"]*)">\s*<a href="[^"]*?\/events\/(\d{4})\/(\d{2})\/(\d{2})\/?">([^<]+)<\/a>/g)]
       .map(m => ({ current: /ds-schedule-days-current-date/.test(m[1]), date: `${m[2]}-${m[3]}-${m[4]}`, label: plain(m[5]) }));
     const cur = tabs.filter(t => t.current);
@@ -85,19 +87,9 @@ export function parseDoStuff(html) {
     const d = new Date(date + "T12:00:00Z");
     if (!lm || lm[1] !== d.toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" })
       || MONTHS.indexOf(lm[2].toLowerCase()) !== d.getUTCMonth() || +lm[3] !== d.getUTCDate()) throw new Error(`day tab "${label}" is not ${date}`);
-    const ymd = date.replaceAll("-", "");
-    const heads = [...grid.matchAll(/<th class="ds-venue-column-(\d+)-(\d{8})">([\s\S]*?)<\/th>/g)].map(m => ({ id: m[1], ymd: m[2], name: plain(m[3]) }));
-    if (!heads.length) throw new Error("no stage columns");
-    for (const h of heads) if (h.ymd !== ymd) throw new Error(`stage ${h.name} is printed for ${h.ymd}, the tab for ${date}`);
-    stages = heads.map(h => h.name);
-    columns = [...grid.matchAll(/<td class="ds-stage[^"]*ds-venue-column-(\d+)-\d{8}">([\s\S]*?)<\/td>/g)].map(m => {
-      const h = heads.find(x => x.id === m[1]);
-      if (!h) throw new Error(`a column for stage ${m[1]} has no header`);
-      return { stage: h.name, html: m[2] };
-    });
   } else {
-    if (titleYear === null) throw new Error(`the older layout's title "${title}" prints no year`);
-    const drop = /<div class="fl-vb-drop">([\s\S]*?)<\/div>\s*<\/div>/.exec(html)?.[1] || "";
+    if (titleYear === null) throw new Error(`the drop-down's title "${title}" prints no year`);
+    const dropHtml = /<div class="fl-vb-drop">([\s\S]*?)<\/div>\s*<\/div>/.exec(html)?.[1] || "";
     const dated = (lab, href) => {
       const lm = /^([A-Za-z]{3}), ([A-Za-z]{3}) (\d{1,2})$/.exec(lab), mo = lm ? MONTHS.findIndex(x => x.slice(0, 3) === lm[2].toLowerCase()) : -1;
       if (!lm || mo < 0) throw new Error(`day tab "${lab}" is not a weekday and date`);
@@ -107,12 +99,24 @@ export function parseDoStuff(html) {
       if (href !== null && href !== dt) throw new Error(`day tab "${lab}" links to ${href}`);
       return dt;
     };
-    const curs = [...drop.matchAll(/<span>([^<]+)<\/span>/g)].map(m => plain(m[1]));
+    const curs = [...dropHtml.matchAll(/<span>([^<]+)<\/span>/g)].map(m => plain(m[1]));
     if (curs.length !== 1) throw new Error(`${curs.length} current day tabs`);
     label = curs[0]; date = dated(label, null);
-    tabs = [{ current: true, date, label }, ...[...drop.matchAll(/<a href="[^"]*?\/events\/(\d{4})\/(\d{2})\/(\d{2})\/?">([^<]+)<\/a>/g)]
+    tabs = [{ current: true, date, label }, ...[...dropHtml.matchAll(/<a href="[^"]*?\/events\/(\d{4})\/(\d{2})\/(\d{2})\/?">([^<]+)<\/a>/g)]
       .map(m => ({ current: false, date: dated(plain(m[4]), `${m[1]}-${m[2]}-${m[3]}`), label: plain(m[4]) }))].sort((a, b) => a.date.localeCompare(b.date));
     if (new Set(tabs.map(t => t.date)).size !== tabs.length) throw new Error("a day tab is printed twice");
+  }
+  if (!older) {
+    const ymd = date.replaceAll("-", "");
+    const heads = [...grid.matchAll(/<th class="ds-venue-column-(\d+)-(\d{8})">([\s\S]*?)<\/th>/g)].map(m => ({ id: m[1], ymd: m[2], name: plain(m[3]) }));
+    for (const h of heads) if (h.ymd !== ymd) throw new Error(`stage ${h.name} is printed for ${h.ymd}, the tab for ${date}`);
+    stages = heads.map(h => h.name);
+    columns = [...grid.matchAll(/<td class="ds-stage[^"]*ds-venue-column-(\d+)-\d{8}">([\s\S]*?)<\/td>/g)].map(m => {
+      const h = heads.find(x => x.id === m[1]);
+      if (!h) throw new Error(`a column for stage ${m[1]} has no header`);
+      return { stage: h.name, html: m[2] };
+    });
+  } else {
     const dayClass = /<div class="ds-schedule[^"]*\bday(\d+)\b/.exec(html)?.[1];
     if (+dayClass !== +date.slice(8)) throw new Error(`the grid is marked day ${dayClass}, its tab prints ${date}`);
     const header = /<tr class="ds-schedule-header">([\s\S]*?)<\/tr>/.exec(grid)?.[1] || "";
@@ -124,11 +128,12 @@ export function parseDoStuff(html) {
     });
     if (columns.length !== stages.length) throw new Error(`${columns.length} columns for ${stages.length} stage headers`);
   }
+  if (!stages.length) throw new Error("no stage columns");
   const year = +date.slice(0, 4);
   if (titleYear !== null && titleYear !== year) throw new Error(`day ${date} is not in ${title}`);
   // The axis: 15-minute rows, each a printed label and a height in px.
   const rows = older
-    ? [...(/<ul class="fl-schedule-times">([\s\S]*?)<\/ul>/.exec(grid)?.[1] || "").matchAll(/<li>\s*([\d:]+)\s*<\/li>/g)].map(m => ({ height: null, label: m[1].trim() }))
+    ? [...(/<th class="ds-times">\s*<ul[^>]*>([\s\S]*?)<\/ul>/.exec(grid)?.[1] || "").matchAll(/<li>\s*([\d:]+)\s*<\/li>/g)].map(m => ({ height: null, label: m[1].trim() }))
     : [...grid.matchAll(/<li style="height: ([\d.]+)px;[^"]*" class="ds-schedule-row-(\d+)">\s*([\d:]+)\s*<\/li>/g)].map(m => ({ height: +m[1], label: m[3].trim() }));
   if (rows.length < 2) throw new Error("no hour axis");
   const step = rows.map(r => hm(r.label));
@@ -180,10 +185,11 @@ export function parseDoStuff(html) {
   // Every block on the grid is read: a set or a misprint, never skipped.
   const printedBlocks = (grid.match(/class="ds-event-box[ "]/g) || []).length;
   if (printedBlocks !== blocks.length + misprints.length) throw new Error(`the grid prints ${printedBlocks} blocks, ${blocks.length + misprints.length} were read`);
-  // Below the grid the older layout lists autograph signings (the f.y.e.
-  // Autograph Tent), each with its own clock time: not sets, never read as
+  // Below the grid the 2011 pages list autograph signings (Lollapalooza's
+  // f.y.e. Autograph Tent, ACL's Waterloo Autograph Tent), each with its own clock time: not sets, never read as
   // any, only counted for the ledger.
-  const lower = [...(/<div class="ds-schedule-lower">([\s\S]*)$/.exec(grid)?.[1] || "").matchAll(/<div class="ds-event-lower-time">/g)].length;
+  // (Lollapalooza 2011 prints them in the grid's last row, ACL 2011 just after it.)
+  const lower = [...(/<div class="ds-schedule-lower">([\s\S]*)$/.exec(html.slice(html.indexOf('<div class="ds-schedule ')))?.[1] || "").matchAll(/<div class="ds-event-lower-time">/g)].length;
   return { title, festival, year, label, date, tabs, stages, lower, axis: { first: rows[0].label, last: rows.at(-1).label, rows: rows.length }, scale, blocks, misprints };
 }
 

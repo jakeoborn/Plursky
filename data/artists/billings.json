@@ -81718,6 +81718,6391 @@
   "mainStage": null
  },
  {
+  "id": "acl-2011:d1:amd:1225:asleep-at-the-wheel",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "AMD",
+  "start": "12:25",
+  "end": "13:10",
+  "printed": "Asleep at the Wheel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "asleep-at-the-wheel",
+    "role": "performer"
+   }
+  ],
+  "act": "asleep-at-the-wheel",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:amd:1410:brandi-carlile",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "AMD",
+  "start": "14:10",
+  "end": "15:10",
+  "printed": "Brandi Carlile",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brandi-carlile",
+    "role": "performer"
+   }
+  ],
+  "act": "brandi-carlile",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:amd:1610:ray-lamontagne",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "AMD",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "Ray LaMontagne",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ray-lamontagne",
+    "role": "performer"
+   }
+  ],
+  "act": "ray-lamontagne",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:amd:1810:bright-eyes",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "AMD",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "Bright Eyes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bright-eyes",
+    "role": "performer"
+   }
+  ],
+  "act": "bright-eyes",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:amd:2010:coldplay",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "AMD",
+  "start": "20:10",
+  "end": "21:40",
+  "printed": "Coldplay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coldplay",
+    "role": "performer"
+   }
+  ],
+  "act": "coldplay",
+  "closing": true,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:honda:1145:cults",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Honda",
+  "start": "11:45",
+  "end": "12:25",
+  "printed": "Cults",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cults",
+    "role": "performer"
+   }
+  ],
+  "act": "cults",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:honda:1310:wild-beasts",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Honda",
+  "start": "13:10",
+  "end": "14:10",
+  "printed": "Wild Beasts",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wild-beasts",
+    "role": "performer"
+   }
+  ],
+  "act": "wild-beasts",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:honda:1510:james-blake",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Honda",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "James Blake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-blake",
+    "role": "performer"
+   }
+  ],
+  "act": "james-blake",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:honda:1710:cold-war-kids",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Honda",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "Cold War Kids",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cold-war-kids",
+    "role": "performer"
+   }
+  ],
+  "act": "cold-war-kids",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:honda:1910:santigold",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Honda",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "Santigold",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "santigold",
+    "role": "performer"
+   }
+  ],
+  "act": "santigold",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-kiddie-limits-presented-by-h-e-b:1130:the-school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "11:30",
+  "end": "11:55",
+  "printed": "The School of Rock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "the-school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-kiddie-limits-presented-by-h-e-b:1230:heidi-swedberg",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "12:30",
+  "end": "12:55",
+  "printed": "Heidi Swedberg",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "heidi-swedberg",
+    "role": "performer"
+   }
+  ],
+  "act": "heidi-swedberg",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-kiddie-limits-presented-by-h-e-b:1330:mariana-iranzi",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "13:30",
+  "end": "13:55",
+  "printed": "Mariana Iranzi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mariana-iranzi",
+    "role": "performer"
+   }
+  ],
+  "act": "mariana-iranzi",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-kiddie-limits-presented-by-h-e-b:1430:sara-hickman",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "14:30",
+  "end": "14:55",
+  "printed": "Sara Hickman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sara-hickman",
+    "role": "performer"
+   }
+  ],
+  "act": "sara-hickman",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-kiddie-limits-presented-by-h-e-b:1530:brady-rymer",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "15:30",
+  "end": "16:00",
+  "printed": "Brady Rymer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brady-rymer",
+    "role": "performer"
+   }
+  ],
+  "act": "brady-rymer",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-ventures:1120:miniature-tigers",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "11:20",
+  "end": "12:00",
+  "printed": "Miniature Tigers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miniature-tigers",
+    "role": "performer"
+   }
+  ],
+  "act": "miniature-tigers",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-ventures:1220:an-horse",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "12:20",
+  "end": "13:00",
+  "printed": "An Horse",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "an-horse",
+    "role": "performer"
+   }
+  ],
+  "act": "an-horse",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-ventures:1320:reptar",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "13:20",
+  "end": "14:00",
+  "printed": "Reptar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "reptar",
+    "role": "performer"
+   }
+  ],
+  "act": "reptar",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-ventures:1430:fool-s-gold",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "Fool's Gold",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fool-s-gold",
+    "role": "performer"
+   }
+  ],
+  "act": "fool-s-gold",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-ventures:1545:electric-touch",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "Electric Touch",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "electric-touch",
+    "role": "performer"
+   }
+  ],
+  "act": "electric-touch",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-ventures:1700:kurt-vile-and-the-violators",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "Kurt Vile and the Violators",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kurt-vile-and-the-violators",
+    "role": "performer"
+   }
+  ],
+  "act": "kurt-vile-and-the-violators",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-ventures:1815:north-mississippi-allstars",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "North Mississippi Allstars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "north-mississippi-allstars",
+    "role": "performer"
+   }
+  ],
+  "act": "north-mississippi-allstars",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:austin-ventures:1930:sara-bareilles",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Sara Bareilles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sara-bareilles",
+    "role": "performer"
+   }
+  ],
+  "act": "sara-bareilles",
+  "closing": true,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:bmi:1115:hudson-moore",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "BMI",
+  "start": "11:15",
+  "end": "12:00",
+  "printed": "Hudson Moore",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hudson-moore",
+    "role": "performer"
+   }
+  ],
+  "act": "hudson-moore",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:bmi:1245:ha-ha-tonka",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "BMI",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Ha Ha Tonka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ha-ha-tonka",
+    "role": "performer"
+   }
+  ],
+  "act": "ha-ha-tonka",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:bmi:1430:bobby-long",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "BMI",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Bobby Long",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bobby-long",
+    "role": "performer"
+   }
+  ],
+  "act": "bobby-long",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:bmi:1630:beardyman",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "BMI",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Beardyman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beardyman",
+    "role": "performer"
+   }
+  ],
+  "act": "beardyman",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:bmi:1830:gary-clark-jr",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "BMI",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Gary Clark Jr.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gary-clark-jr",
+    "role": "performer"
+   }
+  ],
+  "act": "gary-clark-jr",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:vista-equity:1200:the-barton-hills-choir",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Vista Equity",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "The Barton Hills Choir",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-barton-hills-choir",
+    "role": "performer"
+   }
+  ],
+  "act": "the-barton-hills-choir",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:vista-equity:1330:disciples-of-christ",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Vista Equity",
+  "start": "13:30",
+  "end": "14:30",
+  "printed": "Disciples Of Christ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disciples-of-christ",
+    "role": "performer"
+   }
+  ],
+  "act": "disciples-of-christ",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:vista-equity:1500:francisca-valenzuela",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Vista Equity",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Francisca Valenzuela",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "francisca-valenzuela",
+    "role": "performer"
+   }
+  ],
+  "act": "francisca-valenzuela",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:vista-equity:1630:the-cave-singers",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Vista Equity",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "The Cave Singers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-cave-singers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-cave-singers",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:vista-equity:1800:charles-bradley",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Vista Equity",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Charles Bradley",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charles-bradley",
+    "role": "performer"
+   }
+  ],
+  "act": "charles-bradley",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:vista-equity:1930:mavis-staples",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Vista Equity",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Mavis Staples",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mavis-staples",
+    "role": "performer"
+   }
+  ],
+  "act": "mavis-staples",
+  "closing": true,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:google:1145:futurebirds",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Google+",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "Futurebirds",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "futurebirds",
+    "role": "performer"
+   }
+  ],
+  "act": "futurebirds",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:google:1330:the-secret-sisters",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Google+",
+  "start": "13:30",
+  "end": "14:30",
+  "printed": "The Secret Sisters",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-secret-sisters",
+    "role": "performer"
+   }
+  ],
+  "act": "the-secret-sisters",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:google:1530:smith-westerns",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Google+",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "Smith Westerns",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "smith-westerns",
+    "role": "performer"
+   }
+  ],
+  "act": "smith-westerns",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:google:1730:foster-the-people",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Google+",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Foster The People",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "foster-the-people",
+    "role": "performer"
+   }
+  ],
+  "act": "foster-the-people",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:google:1930:pretty-lights",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Google+",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Pretty Lights",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pretty-lights",
+    "role": "performer"
+   }
+  ],
+  "act": "pretty-lights",
+  "closing": true,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:bud-light:1230:theophilus-london",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "12:30",
+  "end": "13:30",
+  "printed": "Theophilus London",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "theophilus-london",
+    "role": "performer"
+   }
+  ],
+  "act": "theophilus-london",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:bud-light:1430:delta-spirit",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Delta Spirit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "delta-spirit",
+    "role": "performer"
+   }
+  ],
+  "act": "delta-spirit",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:bud-light:1630:big-boi",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Big Boi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-boi",
+    "role": "performer"
+   }
+  ],
+  "act": "big-boi",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:bud-light:1830:nas-and-damian-jr-gong-marley",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Nas & Damian \"Jr Gong\" Marley",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nas-and-damian-jr-gong-marley",
+    "role": "performer"
+   }
+  ],
+  "act": "nas-and-damian-jr-gong-marley",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d1:bud-light:2030:kanye-west",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-16",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Kanye West",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kanye-west",
+    "role": "performer"
+   }
+  ],
+  "act": "kanye-west",
+  "closing": true,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:amd:1230:the-antlers",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "AMD",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "The Antlers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-antlers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-antlers",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:amd:1400:young-the-giant",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "AMD",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Young The Giant",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "young-the-giant",
+    "role": "performer"
+   }
+  ],
+  "act": "young-the-giant",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:amd:1600:iron-and-wine",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "AMD",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Iron & Wine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "iron-and-wine",
+    "role": "performer"
+   }
+  ],
+  "act": "iron-and-wine",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:amd:1800:cut-copy",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "AMD",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Cut Copy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cut-copy",
+    "role": "performer"
+   }
+  ],
+  "act": "cut-copy",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:amd:2000:my-morning-jacket",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "AMD",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "My Morning Jacket",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "my-morning-jacket",
+    "role": "performer"
+   }
+  ],
+  "act": "my-morning-jacket",
+  "closing": true,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:honda:1145:federico-aubele",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Honda",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "Federico Aubele",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "federico-aubele",
+    "role": "performer"
+   }
+  ],
+  "act": "federico-aubele",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:honda:1315:the-belle-brigade",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Honda",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "The Belle Brigade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-belle-brigade",
+    "role": "performer"
+   }
+  ],
+  "act": "the-belle-brigade",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:honda:1500:city-and-colour",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Honda",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "City and Colour",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "city-and-colour",
+    "role": "performer"
+   }
+  ],
+  "act": "city-and-colour",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:honda:1700:fitz-and-the-tantrums",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Honda",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Fitz and the Tantrums",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fitz-and-the-tantrums",
+    "role": "performer"
+   }
+  ],
+  "act": "fitz-and-the-tantrums",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:honda:1900:chromeo",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Honda",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Chromeo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chromeo",
+    "role": "performer"
+   }
+  ],
+  "act": "chromeo",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-kiddie-limits-presented-by-h-e-b:1130:heidi-swedberg",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "11:30",
+  "end": "11:55",
+  "printed": "Heidi Swedberg",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "heidi-swedberg",
+    "role": "performer"
+   }
+  ],
+  "act": "heidi-swedberg",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-kiddie-limits-presented-by-h-e-b:1230:brady-rymer",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "12:30",
+  "end": "12:55",
+  "printed": "Brady Rymer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brady-rymer",
+    "role": "performer"
+   }
+  ],
+  "act": "brady-rymer",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-kiddie-limits-presented-by-h-e-b:1330:sara-hickman",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "13:30",
+  "end": "13:55",
+  "printed": "Sara Hickman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sara-hickman",
+    "role": "performer"
+   }
+  ],
+  "act": "sara-hickman",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-kiddie-limits-presented-by-h-e-b:1430:quinn-sullivan",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "14:30",
+  "end": "14:55",
+  "printed": "Quinn Sullivan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quinn-sullivan",
+    "role": "performer"
+   }
+  ],
+  "act": "quinn-sullivan",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-kiddie-limits-presented-by-h-e-b:1530:recess-monkey",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "15:30",
+  "end": "16:00",
+  "printed": "Recess Monkey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "recess-monkey",
+    "role": "performer"
+   }
+  ],
+  "act": "recess-monkey",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-ventures:1115:elizaveta",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "11:15",
+  "end": "11:45",
+  "printed": "Elizaveta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elizaveta",
+    "role": "performer"
+   }
+  ],
+  "act": "elizaveta",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-ventures:1200:fresh-millions",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Fresh Millions",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fresh-millions",
+    "role": "performer"
+   }
+  ],
+  "act": "fresh-millions",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-ventures:1300:cowboy-and-indian",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "13:00",
+  "end": "13:40",
+  "printed": "Cowboy and Indian",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cowboy-and-indian",
+    "role": "performer"
+   }
+  ],
+  "act": "cowboy-and-indian",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-ventures:1400:phosphorescent",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "Phosphorescent",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phosphorescent",
+    "role": "performer"
+   }
+  ],
+  "act": "phosphorescent",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-ventures:1515:daniel-lanois-black-dub",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "Daniel Lanois' Black Dub",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-lanois-black-dub",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-lanois-black-dub",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-ventures:1630:the-moondoggies",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "16:30",
+  "end": "17:15",
+  "printed": "The Moondoggies",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-moondoggies",
+    "role": "performer"
+   }
+  ],
+  "act": "the-moondoggies",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-ventures:1745:wanda-jackson",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "17:45",
+  "end": "18:30",
+  "printed": "Wanda Jackson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wanda-jackson",
+    "role": "performer"
+   }
+  ],
+  "act": "wanda-jackson",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:austin-ventures:1900:court-yard-hounds",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Court Yard Hounds",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "court-yard-hounds",
+    "role": "performer"
+   }
+  ],
+  "act": "court-yard-hounds",
+  "closing": true,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:bmi:1115:tyler-bryant",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "BMI",
+  "start": "11:15",
+  "end": "12:00",
+  "printed": "Tyler Bryant",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyler-bryant",
+    "role": "performer"
+   }
+  ],
+  "act": "tyler-bryant",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:bmi:1230:the-kingston-springs",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "BMI",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "The Kingston Springs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-kingston-springs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-kingston-springs",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:bmi:1400:jon-pardi",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "BMI",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Jon Pardi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jon-pardi",
+    "role": "performer"
+   }
+  ],
+  "act": "jon-pardi",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:bmi:1600:chancellor-warhol",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "BMI",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Chancellor Warhol",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chancellor-warhol",
+    "role": "performer"
+   }
+  ],
+  "act": "chancellor-warhol",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:bmi:1800:patrice-pike",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "BMI",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Patrice Pike",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "patrice-pike",
+    "role": "performer"
+   }
+  ],
+  "act": "patrice-pike",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:vista-equity:1130:the-warrior-gospel-band",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Vista Equity",
+  "start": "11:30",
+  "end": "12:30",
+  "printed": "The Warrior Gospel Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-warrior-gospel-band",
+    "role": "performer"
+   }
+  ],
+  "act": "the-warrior-gospel-band",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:vista-equity:1300:endurance",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Vista Equity",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Endurance",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "endurance",
+    "role": "performer"
+   }
+  ],
+  "act": "endurance",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:vista-equity:1430:tyree-morris-and-the-hearts-of-worship",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Vista Equity",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Tyree Morris & The Hearts of Worship",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyree-morris-and-the-hearts-of-worship",
+    "role": "performer"
+   }
+  ],
+  "act": "tyree-morris-and-the-hearts-of-worship",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:vista-equity:1600:abigail-washburn-and-the-village",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Vista Equity",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Abigail Washburn & The Village",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "abigail-washburn-and-the-village",
+    "role": "performer"
+   }
+  ],
+  "act": "abigail-washburn-and-the-village",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:vista-equity:1730:gillian-welch",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Vista Equity",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Gillian Welch",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gillian-welch",
+    "role": "performer"
+   }
+  ],
+  "act": "gillian-welch",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:vista-equity:1900:preservation-hall-jazz-band-and-the-del-mccoury-band",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Vista Equity",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Preservation Hall Jazz Band and The Del McCoury Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "preservation-hall-jazz-band-and-the-del-mccoury-band",
+    "role": "performer"
+   }
+  ],
+  "act": "preservation-hall-jazz-band-and-the-del-mccoury-band",
+  "closing": true,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:google:1145:telekinesis",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Google+",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "Telekinesis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "telekinesis",
+    "role": "performer"
+   }
+  ],
+  "act": "telekinesis",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:google:1315:twin-shadow",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Google+",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "Twin Shadow",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "twin-shadow",
+    "role": "performer"
+   }
+  ],
+  "act": "twin-shadow",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:google:1500:alexander",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Google+",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Alexander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alexander",
+    "role": "performer"
+   }
+  ],
+  "act": "alexander",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:google:1700:skrillex",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Google+",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Skrillex",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skrillex",
+    "role": "performer"
+   }
+  ],
+  "act": "skrillex",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:google:1900:tv-on-the-radio",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Google+",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "TV On The Radio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tv-on-the-radio",
+    "role": "performer"
+   }
+  ],
+  "act": "tv-on-the-radio",
+  "closing": true,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:bud-light:1230:aloe-blacc-and-the-grand-scheme",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "Aloe Blacc & The Grand Scheme",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aloe-blacc-and-the-grand-scheme",
+    "role": "performer"
+   }
+  ],
+  "act": "aloe-blacc-and-the-grand-scheme",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:bud-light:1400:j-roddy-walston-and-the-business",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "J. Roddy Walston & the Business",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "j-roddy-walston-and-the-business",
+    "role": "performer"
+   }
+  ],
+  "act": "j-roddy-walston-and-the-business",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:bud-light:1600:alison-krauss-and-union-station",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Alison Krauss & Union Station",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alison-krauss-and-union-station",
+    "role": "performer"
+   }
+  ],
+  "act": "alison-krauss-and-union-station",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:bud-light:1800:cee-lo",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Cee Lo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cee-lo",
+    "role": "performer"
+   }
+  ],
+  "act": "cee-lo",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d2:bud-light:2000:stevie-wonder",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-17",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "Stevie Wonder",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stevie-wonder",
+    "role": "performer"
+   }
+  ],
+  "act": "stevie-wonder",
+  "closing": true,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:amd:1230:mariachi-el-bronx",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "AMD",
+  "start": "12:30",
+  "end": "13:30",
+  "printed": "Mariachi El Bronx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mariachi-el-bronx",
+    "role": "performer"
+   }
+  ],
+  "act": "mariachi-el-bronx",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:amd:1430:the-walkmen",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "AMD",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "The Walkmen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-walkmen",
+    "role": "performer"
+   }
+  ],
+  "act": "the-walkmen",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:amd:1630:ryan-bingham-and-the-dead-horses",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "AMD",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Ryan Bingham & The Dead Horses",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ryan-bingham-and-the-dead-horses",
+    "role": "performer"
+   }
+  ],
+  "act": "ryan-bingham-and-the-dead-horses",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:amd:1830:manu-chao-la-ventura",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "AMD",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Manu Chao La Ventura",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "manu-chao-la-ventura",
+    "role": "performer"
+   }
+  ],
+  "act": "manu-chao-la-ventura",
+  "closing": true,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:honda:1145:wax",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Honda",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "WAX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wax",
+    "role": "performer"
+   }
+  ],
+  "act": "wax",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:honda:1330:dale-earnhardt-jr-jr",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Honda",
+  "start": "13:30",
+  "end": "14:30",
+  "printed": "Dale Earnhardt Jr. Jr.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dale-earnhardt-jr-jr",
+    "role": "performer"
+   }
+  ],
+  "act": "dale-earnhardt-jr-jr",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:honda:1530:awolnation",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Honda",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "AWOLNATION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "awolnation",
+    "role": "performer"
+   }
+  ],
+  "act": "awolnation",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:honda:1730:death-from-above-1979",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Honda",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Death From Above 1979",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "death-from-above-1979",
+    "role": "performer"
+   }
+  ],
+  "act": "death-from-above-1979",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:honda:1930:social-distortion",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Honda",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Social Distortion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "social-distortion",
+    "role": "performer"
+   }
+  ],
+  "act": "social-distortion",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-kiddie-limits-presented-by-h-e-b:1130:mariana-iranzi",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "11:30",
+  "end": "11:55",
+  "printed": "Mariana Iranzi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mariana-iranzi",
+    "role": "performer"
+   }
+  ],
+  "act": "mariana-iranzi",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-kiddie-limits-presented-by-h-e-b:1230:quinn-sullivan",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "12:30",
+  "end": "12:55",
+  "printed": "Quinn Sullivan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quinn-sullivan",
+    "role": "performer"
+   }
+  ],
+  "act": "quinn-sullivan",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-kiddie-limits-presented-by-h-e-b:1330:recess-monkey",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "13:30",
+  "end": "13:55",
+  "printed": "Recess Monkey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "recess-monkey",
+    "role": "performer"
+   }
+  ],
+  "act": "recess-monkey",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-kiddie-limits-presented-by-h-e-b:1430:the-q-brothers",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "14:30",
+  "end": "14:55",
+  "printed": "The Q Brothers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-q-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-q-brothers",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-kiddie-limits-presented-by-h-e-b:1515:peter-distefano-and-tor",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "15:15",
+  "end": "15:45",
+  "printed": "Peter DiStefano & Tor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peter-distefano-and-tor",
+    "role": "performer"
+   }
+  ],
+  "act": "peter-distefano-and-tor",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-kiddie-limits-presented-by-h-e-b:1605:the-school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Kiddie Limits presented by H-E-B",
+  "start": "16:05",
+  "end": "16:30",
+  "printed": "The School of Rock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "the-school-of-rock",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits-presented-by-h-e-b",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-ventures:1120:ruby-jane",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "11:20",
+  "end": "12:00",
+  "printed": "Ruby Jane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruby-jane",
+    "role": "performer"
+   }
+  ],
+  "act": "ruby-jane",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-ventures:1220:little-hurricane",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "12:20",
+  "end": "13:00",
+  "printed": "little hurricane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-hurricane",
+    "role": "performer"
+   }
+  ],
+  "act": "little-hurricane",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-ventures:1320:the-greencards",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "13:20",
+  "end": "14:00",
+  "printed": "The Greencards",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-greencards",
+    "role": "performer"
+   }
+  ],
+  "act": "the-greencards",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-ventures:1430:suzanna-choffel",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "Suzanna Choffel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suzanna-choffel",
+    "role": "performer"
+   }
+  ],
+  "act": "suzanna-choffel",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-ventures:1545:nick-13",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "Nick 13",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nick-13",
+    "role": "performer"
+   }
+  ],
+  "act": "nick-13",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-ventures:1700:joseph-arthur",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "Joseph Arthur",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joseph-arthur",
+    "role": "performer"
+   }
+  ],
+  "act": "joseph-arthur",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-ventures:1815:gomez",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "Gomez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gomez",
+    "role": "performer"
+   }
+  ],
+  "act": "gomez",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:austin-ventures:1930:hayes-carll",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Hayes Carll",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hayes-carll",
+    "role": "performer"
+   }
+  ],
+  "act": "hayes-carll",
+  "closing": true,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:bmi:1115:milkdrive",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "BMI",
+  "start": "11:15",
+  "end": "12:00",
+  "printed": "MilkDrive",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "milkdrive",
+    "role": "performer"
+   }
+  ],
+  "act": "milkdrive",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:bmi:1245:seth-walker",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "BMI",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Seth Walker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seth-walker",
+    "role": "performer"
+   }
+  ],
+  "act": "seth-walker",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:bmi:1430:courtney-jaye",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "BMI",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Courtney Jaye",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "courtney-jaye",
+    "role": "performer"
+   }
+  ],
+  "act": "courtney-jaye",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:bmi:1630:pernikoff-brothers",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "BMI",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Pernikoff Brothers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pernikoff-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "pernikoff-brothers",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:bmi:1830:we-are-augustines",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "BMI",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "We Are Augustines",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "we-are-augustines",
+    "role": "performer"
+   }
+  ],
+  "act": "we-are-augustines",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:vista-equity:1200:the-bells-of-joy",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Vista Equity",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "The Bells Of Joy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-bells-of-joy",
+    "role": "performer"
+   }
+  ],
+  "act": "the-bells-of-joy",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:vista-equity:1330:the-durdens",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Vista Equity",
+  "start": "13:30",
+  "end": "14:30",
+  "printed": "The Durdens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-durdens",
+    "role": "performer"
+   }
+  ],
+  "act": "the-durdens",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:vista-equity:1500:the-lee-boys",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Vista Equity",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "The Lee Boys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-lee-boys",
+    "role": "performer"
+   }
+  ],
+  "act": "the-lee-boys",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:vista-equity:1630:bomba-estereo",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Vista Equity",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Bomba Estereo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bomba-estereo",
+    "role": "performer"
+   }
+  ],
+  "act": "bomba-estereo",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:vista-equity:1800:jack-ingram",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Vista Equity",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Jack Ingram",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-ingram",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-ingram",
+  "closing": false,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:vista-equity:1930:randy-newman",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Vista Equity",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Randy Newman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "randy-newman",
+    "role": "performer"
+   }
+  ],
+  "act": "randy-newman",
+  "closing": true,
+  "stageLineage": "acl:vista-equity",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:google:1145:yellow-ostrich",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Google+",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "Yellow Ostrich",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yellow-ostrich",
+    "role": "performer"
+   }
+  ],
+  "act": "yellow-ostrich",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:google:1330:the-head-and-the-heart",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Google+",
+  "start": "13:30",
+  "end": "14:30",
+  "printed": "The Head and The Heart",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-head-and-the-heart",
+    "role": "performer"
+   }
+  ],
+  "act": "the-head-and-the-heart",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:google:1530:chiddy-bang",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Google+",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "Chiddy Bang",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chiddy-bang",
+    "role": "performer"
+   }
+  ],
+  "act": "chiddy-bang",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:google:1730:elbow",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Google+",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Elbow",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elbow",
+    "role": "performer"
+   }
+  ],
+  "act": "elbow",
+  "closing": false,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:google:1930:empire-of-the-sun",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Google+",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Empire Of The Sun",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "empire-of-the-sun",
+    "role": "performer"
+   }
+  ],
+  "act": "empire-of-the-sun",
+  "closing": true,
+  "stageLineage": "acl:google",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:bud-light:1230:graffiti6",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "12:30",
+  "end": "13:30",
+  "printed": "Graffiti6",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "graffiti6",
+    "role": "performer"
+   }
+  ],
+  "act": "graffiti6",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:bud-light:1430:the-airborne-toxic-event",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "The Airborne Toxic Event",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-airborne-toxic-event",
+    "role": "performer"
+   }
+  ],
+  "act": "the-airborne-toxic-event",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:bud-light:1630:broken-social-scene",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Broken Social Scene",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "broken-social-scene",
+    "role": "performer"
+   }
+  ],
+  "act": "broken-social-scene",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:bud-light:1830:fleet-foxes",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Fleet Foxes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fleet-foxes",
+    "role": "performer"
+   }
+  ],
+  "act": "fleet-foxes",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2011:d3:bud-light:2030:arcade-fire",
+  "source": "edition",
+  "festivalId": "acl-2011",
+  "festivalBrand": "acl",
+  "year": 2011,
+  "date": "2011-09-18",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Arcade Fire",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arcade-fire",
+    "role": "performer"
+   }
+  ],
+  "act": "arcade-fire",
+  "closing": true,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:amd:1230:asleep-at-the-wheel",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "AMD",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "Asleep at the Wheel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "asleep-at-the-wheel",
+    "role": "performer"
+   }
+  ],
+  "act": "asleep-at-the-wheel",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:amd:1415:delta-spirit",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "AMD",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "Delta Spirit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "delta-spirit",
+    "role": "performer"
+   }
+  ],
+  "act": "delta-spirit",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:amd:1615:the-afghan-whigs",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "AMD",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "The Afghan Whigs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-afghan-whigs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-afghan-whigs",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:amd:1815:weezer",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "AMD",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Weezer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "weezer",
+    "role": "performer"
+   }
+  ],
+  "act": "weezer",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:amd:2015:avicii",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "AMD",
+  "start": "20:15",
+  "end": "21:30",
+  "printed": "AVICII",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "avicii",
+    "role": "performer"
+   }
+  ],
+  "act": "avicii",
+  "closing": true,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:honda:1145:the-wombats",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Honda",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "The Wombats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-wombats",
+    "role": "performer"
+   }
+  ],
+  "act": "the-wombats",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:honda:1315:first-aid-kit",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Honda",
+  "start": "13:15",
+  "end": "14:15",
+  "printed": "First Aid Kit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "first-aid-kit",
+    "role": "performer"
+   }
+  ],
+  "act": "first-aid-kit",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:honda:1515:ben-howard",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Honda",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Ben Howard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-howard",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-howard",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:honda:1715:a-trak",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Honda",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "A-Trak",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-trak",
+    "role": "performer"
+   }
+  ],
+  "act": "a-trak",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:honda:1915:thievery-corporation",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Honda",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "Thievery Corporation",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thievery-corporation",
+    "role": "performer"
+   }
+  ],
+  "act": "thievery-corporation",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:heb-kids:1130:hullabaloo",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "HEB-Kids",
+  "start": "11:30",
+  "end": "11:55",
+  "printed": "Hullabaloo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hullabaloo",
+    "role": "performer"
+   }
+  ],
+  "act": "hullabaloo",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:heb-kids:1230:rocknoceros",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "HEB-Kids",
+  "start": "12:30",
+  "end": "12:55",
+  "printed": "Rocknoceros",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rocknoceros",
+    "role": "performer"
+   }
+  ],
+  "act": "rocknoceros",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:heb-kids:1330:big-don",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "HEB-Kids",
+  "start": "13:30",
+  "end": "13:55",
+  "printed": "Big Don",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-don",
+    "role": "performer"
+   }
+  ],
+  "act": "big-don",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:heb-kids:1430:orange-sherbet",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "HEB-Kids",
+  "start": "14:30",
+  "end": "14:55",
+  "printed": "Orange Sherbet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orange-sherbet",
+    "role": "performer"
+   }
+  ],
+  "act": "orange-sherbet",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:heb-kids:1515:charlie-belle",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "HEB-Kids",
+  "start": "15:15",
+  "end": "15:30",
+  "printed": "Charlie Belle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charlie-belle",
+    "role": "performer"
+   }
+  ],
+  "act": "charlie-belle",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:heb-kids:1530:ralph-s-world",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "HEB-Kids",
+  "start": "15:30",
+  "end": "16:00",
+  "printed": "Ralph's World",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ralph-s-world",
+    "role": "performer"
+   }
+  ],
+  "act": "ralph-s-world",
+  "closing": true,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:austin-ventures:1120:infantree",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "11:20",
+  "end": "12:00",
+  "printed": "Infantree",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "infantree",
+    "role": "performer"
+   }
+  ],
+  "act": "infantree",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:austin-ventures:1220:quiet-corral",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "12:20",
+  "end": "13:00",
+  "printed": "Quiet Corral",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quiet-corral",
+    "role": "performer"
+   }
+  ],
+  "act": "quiet-corral",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:austin-ventures:1320:river-city-extension",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "13:20",
+  "end": "14:00",
+  "printed": "River City Extension",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "river-city-extension",
+    "role": "performer"
+   }
+  ],
+  "act": "river-city-extension",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:austin-ventures:1430:lp",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "LP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lp",
+    "role": "performer"
+   }
+  ],
+  "act": "lp",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:austin-ventures:1545:jovanotti",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "Jovanotti",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jovanotti",
+    "role": "performer"
+   }
+  ],
+  "act": "jovanotti",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:austin-ventures:1700:trampled-by-turtles",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "Trampled by Turtles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trampled-by-turtles",
+    "role": "performer"
+   }
+  ],
+  "act": "trampled-by-turtles",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:austin-ventures:1815:black-lips",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "Black Lips",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-lips",
+    "role": "performer"
+   }
+  ],
+  "act": "black-lips",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:austin-ventures:1930:m-ward",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Austin Ventures",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "M. Ward",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "m-ward",
+    "role": "performer"
+   }
+  ],
+  "act": "m-ward",
+  "closing": true,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:bmi:1115:megan-mccormick",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "BMI",
+  "start": "11:15",
+  "end": "12:00",
+  "printed": "Megan McCormick",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megan-mccormick",
+    "role": "performer"
+   }
+  ],
+  "act": "megan-mccormick",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:bmi:1230:colorfeels",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "BMI",
+  "start": "12:30",
+  "end": "13:30",
+  "printed": "Colorfeels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "colorfeels",
+    "role": "performer"
+   }
+  ],
+  "act": "colorfeels",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:bmi:1430:justin-jones",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "BMI",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Justin Jones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-jones",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:bmi:1630:wild-belle",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "BMI",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Wild Belle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wild-belle",
+    "role": "performer"
+   }
+  ],
+  "act": "wild-belle",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:bmi:1830:patterson-hood",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "BMI",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Patterson Hood",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "patterson-hood",
+    "role": "performer"
+   }
+  ],
+  "act": "patterson-hood",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:zilker-stage:1200:stapletones",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Zilker Stage",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Stapletones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stapletones",
+    "role": "performer"
+   }
+  ],
+  "act": "stapletones",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:zilker-stage:1330:shields-of-faith",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Zilker Stage",
+  "start": "13:30",
+  "end": "14:30",
+  "printed": "Shields of Faith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shields-of-faith",
+    "role": "performer"
+   }
+  ],
+  "act": "shields-of-faith",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:zilker-stage:1500:the-relatives",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Zilker Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "The Relatives",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-relatives",
+    "role": "performer"
+   }
+  ],
+  "act": "the-relatives",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:zilker-stage:1630:lance-herbstrong",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Zilker Stage",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Lance Herbstrong",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lance-herbstrong",
+    "role": "performer"
+   }
+  ],
+  "act": "lance-herbstrong",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:zilker-stage:1800:the-soul-rebels",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Zilker Stage",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "The Soul Rebels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-soul-rebels",
+    "role": "performer"
+   }
+  ],
+  "act": "the-soul-rebels",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:zilker-stage:1930:umphrey-s-mcgee",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Zilker Stage",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Umphrey's McGee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "umphrey-s-mcgee",
+    "role": "performer"
+   }
+  ],
+  "act": "umphrey-s-mcgee",
+  "closing": true,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:barton-springs:1145:he-s-my-brother-she-s-my-sister",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Barton Springs",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "He's My Brother, She's My Sister",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "he-s-my-brother-she-s-my-sister",
+    "role": "performer"
+   }
+  ],
+  "act": "he-s-my-brother-she-s-my-sister",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:barton-springs:1330:patrick-watson",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Barton Springs",
+  "start": "13:30",
+  "end": "14:30",
+  "printed": "Patrick Watson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "patrick-watson",
+    "role": "performer"
+   }
+  ],
+  "act": "patrick-watson",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:barton-springs:1530:esperanza-spalding",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Barton Springs",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "Esperanza Spalding",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "esperanza-spalding",
+    "role": "performer"
+   }
+  ],
+  "act": "esperanza-spalding",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:barton-springs:1730:alabama-shakes",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Barton Springs",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Alabama Shakes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alabama-shakes",
+    "role": "performer"
+   }
+  ],
+  "act": "alabama-shakes",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:barton-springs:1930:m83",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Barton Springs",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "M83",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "m83",
+    "role": "performer"
+   }
+  ],
+  "act": "m83",
+  "closing": true,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:bud-light:1230:los-campesinos",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "12:30",
+  "end": "13:30",
+  "printed": "Los Campesinos!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-campesinos",
+    "role": "performer"
+   }
+  ],
+  "act": "los-campesinos",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:bud-light:1430:the-war-on-drugs",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "The War On Drugs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-war-on-drugs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-war-on-drugs",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:bud-light:1630:tegan-and-sara",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Tegan and Sara",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tegan-and-sara",
+    "role": "performer"
+   }
+  ],
+  "act": "tegan-and-sara",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d1:bud-light:1830:florence-the-machine",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Florence + The Machine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "florence-the-machine",
+    "role": "act"
+   }
+  ],
+  "act": "florence-the-machine",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "acl-2012:d1:bud-light:2030:the-black-keys",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-12",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "The Black Keys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-black-keys",
+    "role": "performer"
+   }
+  ],
+  "act": "the-black-keys",
+  "closing": true,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:amd:1230:dev",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "AMD",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "Dev",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dev",
+    "role": "performer"
+   }
+  ],
+  "act": "dev",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:amd:1400:the-whigs",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "AMD",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "The Whigs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-whigs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-whigs",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:amd:1600:metric",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "AMD",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Metric",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "metric",
+    "role": "performer"
+   }
+  ],
+  "act": "metric",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:amd:1800:the-shins",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "AMD",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "The Shins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-shins",
+    "role": "performer"
+   }
+  ],
+  "act": "the-shins",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:amd:2000:jack-white",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "AMD",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "Jack White",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-white",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-white",
+  "closing": true,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:honda:1145:caveman",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Honda",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "Caveman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "caveman",
+    "role": "performer"
+   }
+  ],
+  "act": "caveman",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:honda:1315:zola-jesus",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Honda",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "Zola Jesus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zola-jesus",
+    "role": "performer"
+   }
+  ],
+  "act": "zola-jesus",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:honda:1500:big-k-r-i-t",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Honda",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Big K.R.I.T.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-k-r-i-t",
+    "role": "performer"
+   }
+  ],
+  "act": "big-k-r-i-t",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:honda:1700:big-gigantic",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Honda",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Big Gigantic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-gigantic",
+    "role": "performer"
+   }
+  ],
+  "act": "big-gigantic",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:honda:1900:bassnectar",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Honda",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "BASSNECTAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bassnectar",
+    "role": "performer"
+   }
+  ],
+  "act": "bassnectar",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:heb-kids:1130:rocknoceros",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "HEB-Kids",
+  "start": "11:30",
+  "end": "11:55",
+  "printed": "Rocknoceros",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rocknoceros",
+    "role": "performer"
+   }
+  ],
+  "act": "rocknoceros",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:heb-kids:1230:jambo",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "HEB-Kids",
+  "start": "12:30",
+  "end": "12:55",
+  "printed": "Jambo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jambo",
+    "role": "performer"
+   }
+  ],
+  "act": "jambo",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:heb-kids:1330:orange-sherbet",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "HEB-Kids",
+  "start": "13:30",
+  "end": "13:55",
+  "printed": "Orange Sherbet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orange-sherbet",
+    "role": "performer"
+   }
+  ],
+  "act": "orange-sherbet",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:heb-kids:1430:hullabaloo",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "HEB-Kids",
+  "start": "14:30",
+  "end": "14:55",
+  "printed": "Hullabaloo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hullabaloo",
+    "role": "performer"
+   }
+  ],
+  "act": "hullabaloo",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:heb-kids:1515:justin-jones",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "HEB-Kids",
+  "start": "15:15",
+  "end": "15:30",
+  "printed": "Justin Jones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-jones",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:heb-kids:1530:peter-distefano-and-tor-all-stars",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "HEB-Kids",
+  "start": "15:30",
+  "end": "16:00",
+  "printed": "Peter DiStefano & Tor All Stars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peter-distefano-and-tor-all-stars",
+    "role": "performer"
+   }
+  ],
+  "act": "peter-distefano-and-tor-all-stars",
+  "closing": true,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:austin-ventures:1115:quiet-company",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "11:15",
+  "end": "11:45",
+  "printed": "Quiet Company",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quiet-company",
+    "role": "performer"
+   }
+  ],
+  "act": "quiet-company",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:austin-ventures:1200:wild-child",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Wild Child",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wild-child",
+    "role": "performer"
+   }
+  ],
+  "act": "wild-child",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:austin-ventures:1300:wheeler-brothers",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "13:00",
+  "end": "13:40",
+  "printed": "Wheeler Brothers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wheeler-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "wheeler-brothers",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:austin-ventures:1400:dry-the-river",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "Dry the River",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dry-the-river",
+    "role": "performer"
+   }
+  ],
+  "act": "dry-the-river",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:austin-ventures:1515:father-john-misty",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "Father John Misty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "father-john-misty",
+    "role": "performer"
+   }
+  ],
+  "act": "father-john-misty",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:austin-ventures:1630:michael-kiwanuka",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "16:30",
+  "end": "17:15",
+  "printed": "Michael Kiwanuka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "michael-kiwanuka",
+    "role": "performer"
+   }
+  ],
+  "act": "michael-kiwanuka",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:austin-ventures:1745:punch-brothers",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "17:45",
+  "end": "18:30",
+  "printed": "Punch Brothers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "punch-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "punch-brothers",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:austin-ventures:1900:steve-earle",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Austin Ventures",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Steve Earle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steve-earle",
+    "role": "performer"
+   }
+  ],
+  "act": "steve-earle",
+  "closing": true,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:bmi:1115:nikki-lane",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "BMI",
+  "start": "11:15",
+  "end": "12:00",
+  "printed": "Nikki Lane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nikki-lane",
+    "role": "performer"
+   }
+  ],
+  "act": "nikki-lane",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:bmi:1230:native-run",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "BMI",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "Native Run",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "native-run",
+    "role": "performer"
+   }
+  ],
+  "act": "native-run",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:bmi:1400:gardens-and-villa",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "BMI",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Gardens & Villa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gardens-and-villa",
+    "role": "performer"
+   }
+  ],
+  "act": "gardens-and-villa",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:bmi:1600:space-capone",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "BMI",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Space Capone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "space-capone",
+    "role": "performer"
+   }
+  ],
+  "act": "space-capone",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:bmi:1800:kishi-bashi",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "BMI",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Kishi Bashi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kishi-bashi",
+    "role": "performer"
+   }
+  ],
+  "act": "kishi-bashi",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:zilker-stage:1130:disciples-of-joy",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Zilker Stage",
+  "start": "11:30",
+  "end": "12:30",
+  "printed": "Disciples of Joy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disciples-of-joy",
+    "role": "performer"
+   }
+  ],
+  "act": "disciples-of-joy",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:zilker-stage:1300:the-baylor-choir",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Zilker Stage",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "The Baylor Choir",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-baylor-choir",
+    "role": "performer"
+   }
+  ],
+  "act": "the-baylor-choir",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:zilker-stage:1420:sonambulo",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Zilker Stage",
+  "start": "14:20",
+  "end": "15:30",
+  "printed": "Sonámbulo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sonambulo",
+    "role": "performer"
+   }
+  ],
+  "act": "sonambulo",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:zilker-stage:1600:la-vida-boheme",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Zilker Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "La Vida Bohéme",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-vida-boheme",
+    "role": "performer"
+   }
+  ],
+  "act": "la-vida-boheme",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:zilker-stage:1730:lee-fields-and-the-expressions",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Zilker Stage",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Lee Fields & The Expressions",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lee-fields-and-the-expressions",
+    "role": "performer"
+   }
+  ],
+  "act": "lee-fields-and-the-expressions",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:zilker-stage:1900:antibalas",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Zilker Stage",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Antibalas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "antibalas",
+    "role": "performer"
+   }
+  ],
+  "act": "antibalas",
+  "closing": true,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:barton-springs:1145:the-deep-dark-woods",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Barton Springs",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "The Deep Dark Woods",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-deep-dark-woods",
+    "role": "performer"
+   }
+  ],
+  "act": "the-deep-dark-woods",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:barton-springs:1315:bombay-bicycle-club",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Barton Springs",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "Bombay Bicycle Club",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bombay-bicycle-club",
+    "role": "performer"
+   }
+  ],
+  "act": "bombay-bicycle-club",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:barton-springs:1500:oberhofer",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Barton Springs",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Oberhofer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oberhofer",
+    "role": "performer"
+   }
+  ],
+  "act": "oberhofer",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:barton-springs:1700:band-of-skulls",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Barton Springs",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Band of Skulls",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "band-of-skulls",
+    "role": "performer"
+   }
+  ],
+  "act": "band-of-skulls",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:barton-springs:1900:gotye",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Barton Springs",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Gotye",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gotye",
+    "role": "performer"
+   }
+  ],
+  "act": "gotye",
+  "closing": true,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:bud-light:1230:civil-twilight",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "Civil Twilight",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "civil-twilight",
+    "role": "performer"
+   }
+  ],
+  "act": "civil-twilight",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:bud-light:1400:rufus-wainwright",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Rufus Wainwright",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rufus-wainwright",
+    "role": "performer"
+   }
+  ],
+  "act": "rufus-wainwright",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:bud-light:1600:andrew-bird",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Andrew Bird",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrew-bird",
+    "role": "performer"
+   }
+  ],
+  "act": "andrew-bird",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:bud-light:1800:the-roots",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "The Roots",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-roots",
+    "role": "performer"
+   }
+  ],
+  "act": "the-roots",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d2:bud-light:2000:neil-young-and-crazy-horse",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-13",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "Neil Young and Crazy Horse",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neil-young-and-crazy-horse",
+    "role": "performer"
+   }
+  ],
+  "act": "neil-young-and-crazy-horse",
+  "closing": true,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:amd:1215:the-boxer-rebellion",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "AMD",
+  "start": "12:15",
+  "end": "13:15",
+  "printed": "The Boxer Rebellion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-boxer-rebellion",
+    "role": "performer"
+   }
+  ],
+  "act": "the-boxer-rebellion",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:amd:1415:gary-clark-jr",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "AMD",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "Gary Clark Jr.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gary-clark-jr",
+    "role": "performer"
+   }
+  ],
+  "act": "gary-clark-jr",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:amd:1615:the-civil-wars",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "AMD",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "The Civil Wars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-civil-wars",
+    "role": "performer"
+   }
+  ],
+  "act": "the-civil-wars",
+  "closing": false,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:amd:1815:the-avett-brothers",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "AMD",
+  "start": "18:15",
+  "end": "19:30",
+  "printed": "The Avett Brothers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-avett-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-avett-brothers",
+  "closing": true,
+  "stageLineage": "acl:amd",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:honda:1130:the-features",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Honda",
+  "start": "11:30",
+  "end": "12:15",
+  "printed": "The Features",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-features",
+    "role": "performer"
+   }
+  ],
+  "act": "the-features",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:honda:1315:freelance-whales",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Honda",
+  "start": "13:15",
+  "end": "14:15",
+  "printed": "Freelance Whales",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freelance-whales",
+    "role": "performer"
+   }
+  ],
+  "act": "freelance-whales",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:honda:1515:polica",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Honda",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "POLICA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "polica",
+    "role": "performer"
+   }
+  ],
+  "act": "polica",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:honda:1715:die-antwoord",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Honda",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "Die Antwoord",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "die-antwoord",
+    "role": "performer"
+   }
+  ],
+  "act": "die-antwoord",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:honda:1930:crystal-castles",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Honda",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Crystal Castles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crystal-castles",
+    "role": "performer"
+   }
+  ],
+  "act": "crystal-castles",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:heb-kids:1130:big-don",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "HEB-Kids",
+  "start": "11:30",
+  "end": "11:55",
+  "printed": "Big Don",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-don",
+    "role": "performer"
+   }
+  ],
+  "act": "big-don",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:heb-kids:1230:jambo",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "HEB-Kids",
+  "start": "12:30",
+  "end": "12:55",
+  "printed": "Jambo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jambo",
+    "role": "performer"
+   }
+  ],
+  "act": "jambo",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:heb-kids:1330:the-q-brothers",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "HEB-Kids",
+  "start": "13:30",
+  "end": "13:55",
+  "printed": "The Q Brothers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-q-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-q-brothers",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:heb-kids:1430:the-school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "HEB-Kids",
+  "start": "14:30",
+  "end": "14:55",
+  "printed": "The School of Rock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "the-school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:heb-kids:1515:peter-distefano-and-tor",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "HEB-Kids",
+  "start": "15:15",
+  "end": "15:45",
+  "printed": "Peter DiStefano & Tor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peter-distefano-and-tor",
+    "role": "performer"
+   }
+  ],
+  "act": "peter-distefano-and-tor",
+  "closing": false,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:heb-kids:1605:ralph-s-world",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "HEB-Kids",
+  "start": "16:05",
+  "end": "16:30",
+  "printed": "Ralph's World",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ralph-s-world",
+    "role": "performer"
+   }
+  ],
+  "act": "ralph-s-world",
+  "closing": true,
+  "stageLineage": "acl:heb-kids",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:austin-ventures:1120:the-eastern-sea",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "11:20",
+  "end": "12:00",
+  "printed": "The Eastern Sea",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-eastern-sea",
+    "role": "performer"
+   }
+  ],
+  "act": "the-eastern-sea",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:austin-ventures:1220:kopecky-family-band",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "12:20",
+  "end": "13:00",
+  "printed": "Kopecky Family Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kopecky-family-band",
+    "role": "performer"
+   }
+  ],
+  "act": "kopecky-family-band",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:austin-ventures:1320:moon-duo",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "13:20",
+  "end": "14:00",
+  "printed": "Moon Duo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moon-duo",
+    "role": "performer"
+   }
+  ],
+  "act": "moon-duo",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:austin-ventures:1430:the-devil-makes-three",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "The Devil Makes Three",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-devil-makes-three",
+    "role": "performer"
+   }
+  ],
+  "act": "the-devil-makes-three",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:austin-ventures:1545:bad-books",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "Bad Books",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bad-books",
+    "role": "performer"
+   }
+  ],
+  "act": "bad-books",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:austin-ventures:1700:the-lumineers",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "The Lumineers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-lumineers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-lumineers",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:austin-ventures:1815:old-97-s",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "Old 97's",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "old-97-s",
+    "role": "performer"
+   }
+  ],
+  "act": "old-97-s",
+  "closing": false,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:austin-ventures:1930:randy-rogers-band",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Austin Ventures",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Randy Rogers Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "randy-rogers-band",
+    "role": "performer"
+   }
+  ],
+  "act": "randy-rogers-band",
+  "closing": true,
+  "stageLineage": "acl:austin-ventures",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:bmi:1105:noah-gundersen",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "BMI",
+  "start": "11:05",
+  "end": "11:50",
+  "printed": "Noah Gundersen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noah-gundersen",
+    "role": "performer"
+   }
+  ],
+  "act": "noah-gundersen",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:bmi:1215:royal-teeth",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "BMI",
+  "start": "12:15",
+  "end": "13:15",
+  "printed": "Royal Teeth",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "royal-teeth",
+    "role": "performer"
+   }
+  ],
+  "act": "royal-teeth",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:bmi:1415:lera-lynn",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "BMI",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "Lera Lynn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lera-lynn",
+    "role": "performer"
+   }
+  ],
+  "act": "lera-lynn",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:bmi:1615:the-dunwells",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "BMI",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "The Dunwells",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-dunwells",
+    "role": "performer"
+   }
+  ],
+  "act": "the-dunwells",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:bmi:1815:willis-earl-beal",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "BMI",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Willis Earl Beal",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "willis-earl-beal",
+    "role": "performer"
+   }
+  ],
+  "act": "willis-earl-beal",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:zilker-stage:1145:g-s-t",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Zilker Stage",
+  "start": "11:45",
+  "end": "12:45",
+  "printed": "G.S.T.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "g-s-t",
+    "role": "performer"
+   }
+  ],
+  "act": "g-s-t",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:zilker-stage:1315:the-mighty-sincere-voices",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Zilker Stage",
+  "start": "13:15",
+  "end": "14:15",
+  "printed": "The Mighty Sincere Voices",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-mighty-sincere-voices",
+    "role": "performer"
+   }
+  ],
+  "act": "the-mighty-sincere-voices",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:zilker-stage:1445:the-aaron-ivey-band",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Zilker Stage",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "The Aaron Ivey Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-aaron-ivey-band",
+    "role": "performer"
+   }
+  ],
+  "act": "the-aaron-ivey-band",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:zilker-stage:1615:thundercat",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Zilker Stage",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "Thundercat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thundercat",
+    "role": "performer"
+   }
+  ],
+  "act": "thundercat",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:zilker-stage:1745:ruthie-foster",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Zilker Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Ruthie Foster",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruthie-foster",
+    "role": "performer"
+   }
+  ],
+  "act": "ruthie-foster",
+  "closing": false,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:zilker-stage:1915:barrington-levy",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Zilker Stage",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "Barrington Levy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "barrington-levy",
+    "role": "performer"
+   }
+  ],
+  "act": "barrington-levy",
+  "closing": true,
+  "stageLineage": "acl:zilker-stage",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:barton-springs:1130:alt-j",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Barton Springs",
+  "start": "11:30",
+  "end": "12:15",
+  "printed": "Alt-J",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alt-j",
+    "role": "performer"
+   }
+  ],
+  "act": "alt-j",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:barton-springs:1315:stars",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Barton Springs",
+  "start": "13:15",
+  "end": "14:15",
+  "printed": "Stars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stars",
+    "role": "performer"
+   }
+  ],
+  "act": "stars",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:barton-springs:1515:tennis",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Barton Springs",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Tennis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tennis",
+    "role": "performer"
+   }
+  ],
+  "act": "tennis",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:barton-springs:1715:dj-mel",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Barton Springs",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "DJ Mel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-mel",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-mel",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:barton-springs:1915:childish-gambino",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Barton Springs",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "Childish Gambino",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "childish-gambino",
+    "role": "performer"
+   }
+  ],
+  "act": "childish-gambino",
+  "closing": true,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:bud-light:1215:kimbra",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "12:15",
+  "end": "13:15",
+  "printed": "Kimbra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kimbra",
+    "role": "performer"
+   }
+  ],
+  "act": "kimbra",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:bud-light:1415:needtobreathe",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "NEEDTOBREATHE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "needtobreathe",
+    "role": "performer"
+   }
+  ],
+  "act": "needtobreathe",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:bud-light:1615:two-door-cinema-club",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "Two Door Cinema Club",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "two-door-cinema-club",
+    "role": "performer"
+   }
+  ],
+  "act": "two-door-cinema-club",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:bud-light:1815:iggy-and-the-stooges",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Iggy & The Stooges",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "iggy-and-the-stooges",
+    "role": "performer"
+   }
+  ],
+  "act": "iggy-and-the-stooges",
+  "closing": false,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2012:d3:bud-light:2015:red-hot-chili-peppers",
+  "source": "edition",
+  "festivalId": "acl-2012",
+  "festivalBrand": "acl",
+  "year": 2012,
+  "date": "2012-10-14",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": "20:15",
+  "end": "22:00",
+  "printed": "Red Hot Chili Peppers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "red-hot-chili-peppers",
+    "role": "performer"
+   }
+  ],
+  "act": "red-hot-chili-peppers",
+  "closing": true,
+  "stageLineage": "acl:bud-light",
+  "mainStage": null
+ },
+ {
   "id": "acl-2013:d1:amd:1200:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2013",

@@ -1,0 +1,112 @@
+{
+  "id": "acl-2012",
+  "method": "official_sources",
+  "official": "https://www.aclfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2012-10-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.aclfestival.com/events/2012/10/12/",
+          "archivedUrl": "https://web.archive.org/web/20121108115637/http://lineup.aclfestival.com/events/2012/10/12/",
+          "captureTimestamp": "20121108115637",
+          "printed": "Friday, October 12",
+          "sha256": "8113e7b872d350a999c07b576ab4b778095f4208127c9eb75ee39c1a6ef1dfa3",
+          "bytes": 82403,
+          "rows": 45,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.aclfestival.com/band/the-black-keys",
+            "archivedUrl": "https://web.archive.org/web/20121108114731/http://lineup.aclfestival.com/band/the-black-keys",
+            "captureTimestamp": "20121108114731",
+            "sha256": "8a9479489034197b9d227d9e59a3f0c113a6b19f2169a156bbc176c5b471d8a5",
+            "bytes": 69336,
+            "printed": "Friday Oct 12 8:30 PM on Bud Light"
+          },
+          "signingsNotSets": 13
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2012-10-13",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.aclfestival.com/events/2012/10/13/",
+          "archivedUrl": "https://web.archive.org/web/20130512063321/http://lineup.aclfestival.com/events/2012/10/13/",
+          "captureTimestamp": "20130512063321",
+          "printed": "Saturday, October 13",
+          "sha256": "eca9d04a0ff78ed71da514be6ec9083466732571eac7e872d99cdcb8953f25bc",
+          "bytes": 82589,
+          "rows": 45,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.aclfestival.com/band/jack-white",
+            "archivedUrl": "https://web.archive.org/web/20121108113851/http://lineup.aclfestival.com/band/jack-white",
+            "captureTimestamp": "20121108113851",
+            "sha256": "d0ed841a96d0ee2a42fcfba6ccab844f223e47306241c4f16e2c4766fbf5947d",
+            "bytes": 68544,
+            "printed": "Saturday Oct 13 8:00 PM on AMD"
+          },
+          "signingsNotSets": 14
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2012-10-14",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://lineup.aclfestival.com/events/2012/10/14/",
+          "archivedUrl": "https://web.archive.org/web/20130512032736/http://lineup.aclfestival.com/events/2012/10/14/",
+          "captureTimestamp": "20130512032736",
+          "printed": "Sunday, October 14",
+          "sha256": "a8624d46313d92c9424d8bbc800f517e2fa699ed642529f7507a326d8ecf6873",
+          "bytes": 82213,
+          "rows": 45,
+          "format": "dostuff-grid",
+          "stages": 8,
+          "axis": "11:00 … 10:00",
+          "pxPerMinute": 2,
+          "axisStart": "11:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "http://lineup.aclfestival.com/band/red-hot-chili-peppers",
+            "archivedUrl": "https://web.archive.org/web/20121108114609/http://lineup.aclfestival.com/band/red-hot-chili-peppers",
+            "captureTimestamp": "20121108114609",
+            "sha256": "b59a211fe96d2904a0d2a41ebf9cbc748ae2ed39566b0e7793db793a34fe3227",
+            "bytes": 87363,
+            "printed": "Sunday Oct 14 8:15 PM on Bud Light"
+          },
+          "signingsNotSets": 17
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 3,
+      "stage": "HEB-Kids",
+      "start": "15:50",
+      "end": "16:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

@@ -152,6 +152,16 @@ export const EDITIONS = {
       ["2025-10-10", "Friday"], ["2025-10-11", "Saturday"], ["2025-10-12", "Sunday"]],
     dayLabels: ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
       "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"] },
+  // ACL 2011 and 2012: the official lineup.aclfestival.com day grids, the
+  // same DoStuff site as Outside Lands and Lollapalooza (format
+  // "dostuff-grid"), the grid's times with no am/pm fixed by one act's own
+  // page per day.
+  "acl-2011": { festivalId: "acl", name: "Austin City Limits 2011", year: 2011,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2011-09-16", "Friday"], ["2011-09-17", "Saturday"], ["2011-09-18", "Sunday"]] },
+  "acl-2012": { festivalId: "acl", name: "Austin City Limits 2012", year: 2012,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2012-10-12", "Friday"], ["2012-10-13", "Saturday"], ["2012-10-14", "Sunday"]] },
   // ACL 2014-2016, 2018, 2019: the official aclfestival.com schedule grid, one
   // archived page per weekend (format "acl-grid", acl-schedule.mjs). The grid
   // prints ranges with no am/pm; each start is read off the page's own printed

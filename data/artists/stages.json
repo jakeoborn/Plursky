@@ -404,6 +404,71 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "acl:austin-kiddie-limits-presented-by-h-e-b",
+     "names": [
+      {
+       "printed": "Austin Kiddie Limits presented by H-E-B",
+       "editions": [
+        "acl-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:vista-equity",
+     "names": [
+      {
+       "printed": "Vista Equity",
+       "editions": [
+        "acl-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:google",
+     "names": [
+      {
+       "printed": "Google+",
+       "editions": [
+        "acl-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:heb-kids",
+     "names": [
+      {
+       "printed": "HEB-Kids",
+       "editions": [
+        "acl-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:zilker-stage",
+     "names": [
+      {
+       "printed": "Zilker Stage",
+       "editions": [
+        "acl-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

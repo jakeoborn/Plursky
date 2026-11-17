@@ -40,6 +40,8 @@
  "dreamstate-socal-2023": { "stages": 4, "setsPerDay": [36, 34], "droppedPerDay": [0, 0] },
  "dreamstate-socal-2024": { "stages": 5, "setsPerDay": [46, 46], "droppedPerDay": [0, 0] },
  "dreamstate-socal-2025": { "stages": 5, "setsPerDay": [42, 42], "droppedPerDay": [0, 0] },
+ "acl-2011": { "stages": 8, "setsPerDay": [44, 44, 44], "droppedPerDay": [1, 0, 0] },
+ "acl-2012": { "stages": 8, "setsPerDay": [45, 45, 44], "droppedPerDay": [0, 0, 1] },
  "acl-2013": { "stages": 9, "setsPerDay": [44, 43, 44, 45, 43], "droppedPerDay": [0, 0, 0, 0, 0] },
  "acl-2014": { "stages": 9, "setsPerDay": [41, 41, 41, 41, 35, 41], "droppedPerDay": [0, 0, 0, 0, 0, 0] },
  "acl-2015": { "stages": 8, "setsPerDay": [41, 41, 41, 41, 41, 41], "droppedPerDay": [1, 1, 1, 1, 1, 1] },
