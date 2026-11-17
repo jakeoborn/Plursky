@@ -1414,24 +1414,236 @@ function getSetTrackIntervals(festivalId) {
   const e = _readSetTrackStore()[festivalId];
   return (e && e.runs) || {};
 }
+// Clear removes this festival's runs and "Still here" taps. Corrections the
+// user typed stay: they are answers, not location.
 function clearSetTrack(festivalId) {
   const all = _readSetTrackStore();
-  if (!(festivalId in all)) return false;
-  delete all[festivalId];
+  const taps = _readJsonStore(SET_TAP_STORE_KEY);
+  const had = festivalId in all, hadTaps = festivalId in taps;
+  if (!had && !hadTaps) return false;
+  delete all[festivalId]; delete taps[festivalId];
   try { localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all)); } catch {}
+  try { localStorage.setItem(SET_TAP_STORE_KEY, JSON.stringify(taps)); } catch {}
   try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
   return true;
 }
+
+// ── SPEC-200 Build 2: taps, corrections, and moments as evidence ──
+// Same rules as the runs above: on this phone only, a stage id and a time,
+// never a coordinate, never synced, never in a backup.
+const SET_TAP_STORE_KEY = "plursky_set_taps_v1";        // { [festivalId]: [{ ms, stageId }] }
+const SET_MANUAL_STORE_KEY = "plursky_set_manual_v1";   // { [festivalId]: { [artistId]: "full" | "partial" | "absent" } }
+const SET_MANUAL_VALUES = ["full", "partial", "absent"];
+function _readJsonStore(key) {
+  try { const s = JSON.parse(localStorage.getItem(key) || "{}"); return s && typeof s === "object" && !Array.isArray(s) ? s : {}; } catch { return {}; }
+}
+// A tap's points per stage, in the engine's point shape.
+function getSetTapPoints(festivalId) {
+  const out = {};
+  for (const t of (_readJsonStore(SET_TAP_STORE_KEY)[festivalId] || [])) {
+    if (!t || typeof t.ms !== "number" || t.stageId == null) continue;
+    (out[t.stageId] = out[t.stageId] || []).push({ from: t.ms, to: t.ms, src: "photo", via: t.hand ? "hand" : "tap" });
+  }
+  return out;
+}
+function _recordSetTap(festivalId, ms, stageId, hand = false) {
+  const all = _readJsonStore(SET_TAP_STORE_KEY);
+  const list = Array.isArray(all[festivalId]) ? all[festivalId] : [];
+  if (!list.some(t => t.ms === ms && t.stageId === stageId)) list.push(hand ? { ms, stageId, hand: true } : { ms, stageId });
+  all[festivalId] = list;
+  try { localStorage.setItem(SET_TAP_STORE_KEY, JSON.stringify(all)); } catch { return false; }
+  try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
+  return true;
+}
+// Foreground only, across the await: a fix that resolves after the app was
+// hidden is dropped, never stored. Every hide bumps the epoch, so a pending
+// tap or calibration from before the hide can tell it was interrupted even if
+// the app is visible again by the time its fix arrives. Same rule as Live
+// check-in, which cancels its attempt on hide.
+let _fgEpoch = 0;
+try { document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") _fgEpoch++; }); } catch {}
+const _appHidden = () => { try { return document.visibilityState === "hidden"; } catch { return false; } };
+// Reads one fix while the app stays in front. { hidden: true } when the app
+// was or went to the background at any point before the fix came back.
+async function _foregroundFix() {
+  if (_appHidden()) return { hidden: true };
+  const epoch = _fgEpoch;
+  const fix = typeof _checkinFix === "function" ? await _checkinFix() : null;
+  if (epoch !== _fgEpoch || _appHidden()) return { hidden: true };
+  return fix;
+}
+// "Still here": one foreground fix on the user's tap, through the one stage
+// fix gate on attendance rules and measured stages only. It asks for nothing
+// new: the same location permission Check-in and the map already use, read
+// once, while the app is open. Returns the gate's answer either way.
+async function setTrackStillHere(cfg = window.FESTIVAL_CONFIG) {
+  if (setTrackEligibility(cfg, Date.now()) !== "live") return { status: "not-live" };
+  const fix = await _foregroundFix();
+  if (fix && fix.hidden) return { status: "hidden" };
+  if (!fix) return { status: "none" };
+  if (fix.denied) return { status: "denied" };
+  const now = Date.now();
+  const g = stageFixGate(attendEvidenceAnchors(cfg), fix, now, STAGE_FIX_ATTEND);
+  if (g.status !== "trusted") return { status: g.status };
+  const ms = typeof fix.timestamp === "number" ? fix.timestamp : now;
+  _recordSetTap(cfg.id, ms, g.stageId);
+  return { status: "trusted", stageId: g.stageId, ms };
+}
+// "Still here" at an art car: no fix is read (a moving stage has no position
+// to match), so the tap is the user's own mark at that stage, labelled as one.
+function setTrackStillHereHand(cfg, a, nowMs = Date.now()) {
+  if (!cfg || !cfg.id || !a || !a.stage) return { status: "none" };
+  const phase = typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, nowMs) : "upcoming";
+  if (phase !== "live") return { status: "not-live" };
+  _recordSetTap(cfg.id, nowMs, a.stage, true);
+  return { status: "hand", stageId: a.stage, ms: nowMs };
+}
+// The user's own answer for one set, or null. "absent" means "I was not there".
+function getSetManual(festivalId, artistId) {
+  const v = (_readJsonStore(SET_MANUAL_STORE_KEY)[festivalId] || {})[artistId];
+  return SET_MANUAL_VALUES.includes(v) ? v : null;
+}
+// value null clears the correction, so the evidence speaks again.
+function setSetManual(festivalId, artistId, value) {
+  if (!festivalId || !artistId) return false;
+  if (value != null && !SET_MANUAL_VALUES.includes(value)) return false;
+  const all = _readJsonStore(SET_MANUAL_STORE_KEY);
+  const fest = { ...(all[festivalId] || {}) };
+  if (value == null) delete fest[artistId]; else fest[artistId] = value;
+  all[festivalId] = fest;
+  try { localStorage.setItem(SET_MANUAL_STORE_KEY, JSON.stringify(all)); } catch { return false; }
+  try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
+  return true;
+}
+// Moments are parsed once per change of the stored string, not once per row.
+let _setMomentMemo = { raw: null, fid: null, out: {} };
+function _setMomentPoints(cfg) {
+  let raw = null;
+  try { raw = localStorage.getItem(typeof MOMENTS_KEY !== "undefined" ? MOMENTS_KEY : "plursky_moments_v1"); } catch {}
+  if (_setMomentMemo.raw === raw && _setMomentMemo.fid === cfg.id) return _setMomentMemo.out;
+  let moments = {};
+  try { moments = JSON.parse(raw || "{}") || {}; } catch {}
+  const ds = (_attendedDataSets()[cfg.id]) || {};
+  const out = attendMomentPoints(moments, cfg, ds.artists || window.ARTISTS || []);
+  _setMomentMemo = { raw, fid: cfg.id, out };
+  return out;
+}
+// Every kind of evidence for a festival, in the shape attendanceVerdict takes.
+function setTrackEvidence(cfg = window.FESTIVAL_CONFIG) {
+  if (!cfg || !cfg.id) return {};
+  return attendMergeEvidence(getSetTrackIntervals(cfg.id), getSetTapPoints(cfg.id), _setMomentPoints(cfg));
+}
+
+// ── Calibrate stages: a stage position measured on this phone ──
+// For a festival whose stages have no measured position. While the festival
+// is on, the user stands at a stage and taps "I'm at" it. A tap counts only
+// with a fix of 30 m or better inside the venue. Two taps at the same stage at
+// least 10 minutes apart that land within 30 m of each other store the stage
+// at their midpoint. A position the user stood at, never a poster read. It
+// stays on this phone: no sync, no backup, no other user. Clear removes it.
+const SET_CALIB_STORE_KEY = "plursky_stage_calib_v1";   // { [festivalId]: { pending: { [stageId]: { ms, lat, lng } }, anchors: { [stageId]: { lat, lng, ms } } } }
+const STAGE_CALIB = { maxAccM: 30, minGapMs: 10 * 60000, agreeM: 30, venuePadM: 300 };
+function _readCalib(festivalId) {
+  const e = _readJsonStore(SET_CALIB_STORE_KEY)[festivalId] || {};
+  return { pending: (e.pending && typeof e.pending === "object") ? e.pending : {}, anchors: (e.anchors && typeof e.anchors === "object") ? e.anchors : {} };
+}
+function _writeCalib(festivalId, e) {
+  const all = _readJsonStore(SET_CALIB_STORE_KEY);
+  all[festivalId] = e;
+  try { localStorage.setItem(SET_CALIB_STORE_KEY, JSON.stringify(all)); } catch { return false; }
+  try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
+  return true;
+}
+// An art car moves, so it has no fixed position to calibrate or to match a
+// fix against. Its sets take a hand "Still here" mark and a correction only
+// (Jake 2026-11-15).
+function _stageIsMobile(stageId, stages) {
+  const st = (stages || []).find(x => x && x.id === stageId);
+  return /art[- ]car/i.test(String(stageId || "")) || !!(st && /art[- ]car/i.test(st.name || ""));
+}
+// Stages that host a set in this festival's lineup (all stages when the
+// lineup has no stage yet), minus art cars. These are the ones a calibration
+// must cover.
+function _calibStages(cfg) {
+  const ds = (_attendedDataSets()[cfg.id]) || {};
+  const active = window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id === cfg.id;
+  const stages = ds.stages || (active ? window.STAGES : null) || [];
+  const artists = ds.artists || (active ? window.ARTISTS : null) || [];
+  const used = new Set(artists.map(a => a && a.stage).filter(Boolean));
+  return (used.size ? stages.filter(st => used.has(st.id)) : stages).filter(st => !_stageIsMobile(st.id, stages));
+}
+// The calibrated stages, as anchors, for stages without a measured one. Empty
+// until every stage with a set has a position (measured or calibrated).
+function stageCalibrationAnchors(cfg, measuredIds = new Set()) {
+  if (!cfg || !cfg.id) return [];
+  const anchors = _readCalib(cfg.id).anchors;
+  const need = _calibStages(cfg).map(st => st.id).filter(id => !measuredIds.has(id));
+  if (!need.length || need.some(id => !anchors[id])) return [];
+  return need.map(id => ({ stageId: id, lat: anchors[id].lat, lng: anchors[id].lng, anchorSource: "device" }));
+}
+// Is the fix inside the festival's mapped venue (with a margin)? Without a
+// mapped venue, being inside the live festival window is the only check.
+function _calibOnSite(cfg, fix) {
+  const b = cfg && cfg.mapGeoref && cfg.mapGeoref.bounds;
+  if (!Array.isArray(b) || b.length !== 4) return true;
+  const padLat = STAGE_CALIB.venuePadM / 111320, padLng = STAGE_CALIB.venuePadM / (111320 * Math.cos(fix.lat * Math.PI / 180));
+  return fix.lng >= b[0] - padLng && fix.lng <= b[2] + padLng && fix.lat >= b[1] - padLat && fix.lat <= b[3] + padLat;
+}
+// One "I'm at" tap. Pure apart from the store; the fix is passed in.
+// status: not-live | none | denied | coarse | off-site | first | too-soon | moved | set
+function calibrateStageTap(cfg, stageId, fix, nowMs = Date.now()) {
+  if (!cfg || !cfg.id || !stageId) return { status: "none" };
+  const phase = typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, nowMs) : "upcoming";
+  if (phase !== "live") return { status: "not-live" };
+  if (!fix) return { status: "none" };
+  if (fix.denied) return { status: "denied" };
+  if (!Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return { status: "none" };
+  if (!Number.isFinite(fix.accuracy) || fix.accuracy > STAGE_CALIB.maxAccM) return { status: "coarse", accM: Number.isFinite(fix.accuracy) ? fix.accuracy : null };
+  if (!_calibOnSite(cfg, fix)) return { status: "off-site" };
+  const ms = typeof fix.timestamp === "number" ? fix.timestamp : nowMs;
+  const e = _readCalib(cfg.id);
+  const p = e.pending[stageId];
+  if (p && ms - p.ms < STAGE_CALIB.minGapMs) return { status: "too-soon", waitMs: STAGE_CALIB.minGapMs - (ms - p.ms) };
+  if (p && _haversineMeters(p.lat, p.lng, fix.lat, fix.lng) <= STAGE_CALIB.agreeM) {
+    e.anchors[stageId] = { lat: (p.lat + fix.lat) / 2, lng: (p.lng + fix.lng) / 2, ms };
+    delete e.pending[stageId];
+    _writeCalib(cfg.id, e);
+    return { status: "set" };
+  }
+  // A first tap, or a second one that landed somewhere else: start over here.
+  e.pending[stageId] = { ms, lat: fix.lat, lng: fix.lng };
+  _writeCalib(cfg.id, e);
+  return { status: p ? "moved" : "first" };
+}
+async function stageCalibrateNow(cfg, stageId) {
+  const fix = await _foregroundFix();
+  if (fix && fix.hidden) return { status: "hidden" };
+  return calibrateStageTap(cfg, stageId, fix, Date.now());
+}
+function clearStageCalibration(festivalId) {
+  const all = _readJsonStore(SET_CALIB_STORE_KEY);
+  if (!(festivalId in all)) return false;
+  delete all[festivalId];
+  try { localStorage.setItem(SET_CALIB_STORE_KEY, JSON.stringify(all)); } catch {}
+  try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
+  return true;
+}
+
 // The one read of a tracked set (spec PR 4): attendanceVerdict over the
-// stored runs, with its label ("Full set" / "≈ 30 of 60 min"). Null when set
-// tracking recorded nothing at this set's stage. Every surface asks this;
-// none restates a threshold.
+// stored runs, taps and moments, with its label ("Full set" / "≈ 30 of 60
+// min"). Null when nothing puts you at this set's stage, or when you said you
+// were not there. A correction is shown as yours, never as a sensor reading.
+// Every surface asks this; none restates a threshold.
 function setTrackVerdict(a, cfg = window.FESTIVAL_CONFIG) {
   if (!a || !cfg || !cfg.id) return null;
-  const iv = getSetTrackIntervals(cfg.id);
-  if (!iv[a.stage] || !iv[a.stage].length) return null;
-  const v = attendanceVerdict(a, iv, cfg);
-  return v.verdict === "none" ? null : { ...v, label: attendanceVerdictLabel(v) };
+  const manual = getSetManual(cfg.id, a.id);
+  if (manual === "absent") return null;
+  const iv = setTrackEvidence(cfg);
+  if (!manual && (!iv[a.stage] || !iv[a.stage].length)) return null;
+  const v = attendanceVerdict(a, iv, cfg, manual ? { manual } : {});
+  if (v.verdict === "none") return null;
+  const label = attendanceVerdictLabel(v);
+  return { ...v, manual, label: manual && label ? `${label} · your edit` : label };
 }
 // Full and part sets set tracking timed across a lineup (the recap line).
 function setTrackSummary(artists, cfg = window.FESTIVAL_CONFIG) {
@@ -2449,14 +2661,22 @@ function SetTrackingCard() {
   const name = (cfg && (cfg.shortName || cfg.name)) || "this festival";
   const on = getSetTracking() === "on";
   const elig = setTrackEligibility(cfg, Date.now());
-  const hasData = !!(cfg && Object.keys(getSetTrackIntervals(cfg.id)).length);
+  const hasData = !!(cfg && (Object.keys(getSetTrackIntervals(cfg.id)).length || Object.keys(getSetTapPoints(cfg.id)).length));
+  const canReview = !!(cfg && setReviewRows(cfg).length);
+  const [reviewing, setReviewing] = React.useState(false);
   const btn = (primary) => ({
     background: primary ? "var(--acc)" : "var(--s3)", color: primary ? "var(--on-acc)" : "var(--ink)",
     border: "none", borderRadius: 999, padding: "0 16px", minHeight: 44,
     fontFamily: "var(--f-ui)", fontSize: 14, fontWeight: 650, cursor: "pointer",
   });
   const body = { fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: 12 };
-  const status = elig === "no-stages" ? `${name}'s stages aren't measured yet, so sets can't be timed here.`
+  const phase = cfg && typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, Date.now()) : "upcoming";
+  const calib = cfg ? stageCalibrationStatus(cfg) : null;
+  const canCalibrate = !!(calib && calib.needed && phase === "live");
+  const [calibrating, setCalibrating] = React.useState(false);
+  const status = elig === "no-stages" ? (canCalibrate
+      ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.`
+      : `${name}'s stages aren't measured yet, so sets can't be timed here.`)
     : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one."
     : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses."
     : elig === "ended" ? `On. ${name} is over, so nothing is counting.`
@@ -2492,11 +2712,289 @@ function SetTrackingCard() {
           ) : elig !== "no-stages" && (
             <button data-set-tracking-setup onClick={() => setAsking(true)} style={btn(false)}>Set up</button>
           )}
+          {canCalibrate && (
+            <button data-stage-calibrate-open onClick={() => setCalibrating(true)} style={btn(false)}>Calibrate stages</button>
+          )}
+          {canReview && (
+            <button data-set-review-open onClick={() => setReviewing(true)} style={btn(false)}>Review your sets</button>
+          )}
           {hasData && (
             <button data-set-tracking-clear onClick={() => clearSetTrack(cfg.id)} style={btn(false)}>Clear {name} times</button>
           )}
+          {calib && calib.done > 0 && (
+            <button data-stage-calibrate-clear onClick={() => clearStageCalibration(cfg.id)} style={btn(false)}>Clear stage calibration</button>
+          )}
         </div>
       )}
+      {reviewing && <SetReviewSheet cfg={cfg} onClose={() => setReviewing(false)} />}
+      {calibrating && <StageCalibrateSheet cfg={cfg} onClose={() => setCalibrating(false)} />}
+    </div>
+  );
+}
+
+// How far calibration has got: stages that still need a position on this
+// phone (no measured one), how many are done, and which tap is pending.
+function stageCalibrationStatus(cfg) {
+  if (!cfg || !cfg.id) return null;
+  const measured = new Set(((typeof resolvedStageAnchors === "function") ? resolvedStageAnchors(cfg) : [])
+    .filter(a => a.anchorSource === "osm" || a.anchorSource === "crowd").map(a => a.stageId));
+  const e = _readCalib(cfg.id);
+  const stages = _calibStages(cfg).filter(st => !measured.has(st.id));
+  return {
+    stages: stages.map(st => ({ id: st.id, name: st.name || st.short || st.id, done: !!e.anchors[st.id], pendingMs: e.pending[st.id] ? e.pending[st.id].ms : null })),
+    needed: stages.length,
+    done: stages.filter(st => e.anchors[st.id]).length,
+  };
+}
+const _CALIB_NOTE = {
+  first: "First tap noted. Tap again from the same spot in 10 minutes or more to confirm.",
+  "too-soon": "Wait a little: the second tap needs 10 minutes after the first.",
+  moved: "That tap landed more than 30 m from the first one, so this one counts as a new first tap.",
+  set: "Stage calibrated on this phone.",
+  coarse: "Location is too rough here (needs 30 m or better). Nothing was noted.",
+  "off-site": "You don't seem to be at the venue, so nothing was noted.",
+  denied: "Location is off for Plursky, so nothing was noted.",
+  "not-live": "Calibration works only while the festival is on.",
+  hidden: "You left Plursky before your location came in, so nothing was noted.",
+  none: "Couldn't get a location, so nothing was noted.",
+};
+// The Calibrate stages sheet: one row per stage that needs a position.
+function StageCalibrateSheet({ cfg = window.FESTIVAL_CONFIG, onClose }) {
+  const [, bump] = React.useReducer(x => x + 1, 0);
+  const [busy, setBusy] = React.useState(null);
+  const [note, setNote] = React.useState(null);   // { stageId, status }
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  const st = stageCalibrationStatus(cfg) || { stages: [], needed: 0, done: 0 };
+  const tap = async (id) => {
+    setBusy(id); setNote(null);
+    const r = await stageCalibrateNow(cfg, id);
+    setBusy(null); setNote({ stageId: id, status: r.status });
+  };
+  return (
+    <FieldSheet title="Calibrate stages" eyebrow={(cfg.shortName || cfg.name || "").toUpperCase()} onClose={onClose}>
+      <div data-stage-calibrate style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: 12 }}>
+        Stand at a stage and tap "I'm here". Tap again from the same spot 10 minutes later to confirm. The stage's position stays on this phone and is never shared. Sets are timed once every stage below is done ({st.done} of {st.needed}).
+      </div>
+      {st.stages.map(s => (
+        <div key={s.id} data-stage-calibrate-row={s.id} style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 56, borderBottom: "1px solid var(--line)" }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 15, fontWeight: 650, overflowWrap: "anywhere" }}>{s.name}</div>
+            <div data-stage-calibrate-state className="duo-data-s duo-ink3">
+              {s.done ? "Calibrated" : s.pendingMs ? `First tap at ${_setClock(s.pendingMs, cfg)}` : "Not calibrated"}
+            </div>
+            {note && note.stageId === s.id && <div data-stage-calibrate-note role="status" style={{ fontSize: 13, color: "var(--ink-2)", marginTop: 4 }}>{_CALIB_NOTE[note.status] || _CALIB_NOTE.none}</div>}
+          </div>
+          <button className="duo-chip" data-stage-calibrate-tap={s.id} disabled={!!busy} onClick={() => tap(s.id)}>
+            <span>{busy === s.id ? "Checking…" : s.done ? "Redo" : "I'm here"}</span>
+          </button>
+        </div>
+      ))}
+    </FieldSheet>
+  );
+}
+
+// ── SPEC-200 Build 2: the correction screens ──
+// Festival-local clock for an evidence time ("9:42 PM"). Times only: the why
+// list never shows a place.
+function _setClock(ms, cfg) {
+  try {
+    return new Intl.DateTimeFormat("en-US", { timeZone: (cfg && cfg.tz) || undefined, hour: "numeric", minute: "2-digit" }).format(new Date(ms));
+  } catch { return ""; }
+}
+// The sets this user saved for a festival (the lineup's star), read-only.
+function _savedSetIds(festivalId) {
+  try { const v = JSON.parse(localStorage.getItem(`${festivalId}_saved_v1`) || "[]"); return Array.isArray(v) ? v : []; } catch { return []; }
+}
+const _SET_EVIDENCE_WORD = { gps: "Set tracking", checkin: "Check-in", photo: "Photo", tap: "Still here tap", hand: "Still here · your mark" };
+// The sets worth reviewing: anything with evidence at its stage in its window,
+// a correction, or a set you marked as caught. Time order.
+function setReviewRows(cfg = window.FESTIVAL_CONFIG) {
+  if (!cfg || !cfg.id) return [];
+  const ds = (_attendedDataSets()[cfg.id]) || {};
+  const artists = ds.artists || (window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id === cfg.id ? window.ARTISTS : []) || [];
+  const iv = setTrackEvidence(cfg);
+  const attended = new Set(Object.values(getAllAttended(cfg.id)).flat());
+  const saved = new Set(_savedSetIds(cfg.id));
+  const now = Date.now();
+  const rows = [];
+  for (const a of artists) {
+    const manual = getSetManual(cfg.id, a.id);
+    const ev = attendEvidenceList(a, iv, cfg);
+    // A saved set counts here only once it is over: before that, no record
+    // just means "not yet".
+    const w = saved.has(a.id) && attendTimeClass(a) !== "blank" ? attendSetWindowMs(a, cfg, []) : null;
+    const savedOver = !!w && w.endMs < now;
+    if (!manual && !ev.length && !attended.has(a.id) && !savedOver) continue;
+    rows.push({ a, manual, ev, verdict: setTrackVerdict(a, cfg) });
+  }
+  const key = r => (r.ev[0] && r.ev[0].from) || 0;
+  const min = a => { const n = toNightMin(a.start); return Number.isFinite(n) ? n : 9999; };
+  const day = a => (typeof a.day === "number" ? a.day : 99);
+  return rows.sort((x, y) => day(x.a) - day(y.a) || min(x.a) - min(y.a) || key(x) - key(y) || String(x.a.id).localeCompare(String(y.a.id)));
+}
+
+// One set: what the evidence says, why, and your answer. A correction wins
+// over the evidence and is labelled as yours; "Use the evidence" removes it.
+function SetCorrectionPanel({ a, cfg }) {
+  const [, bump] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  const manual = getSetManual(cfg.id, a.id);
+  const v = setTrackVerdict(a, cfg);
+  const ev = attendEvidenceList(a, setTrackEvidence(cfg), cfg);
+  const said = manual === "absent" ? "You said you weren't there"
+    : v && v.label ? v.label
+    : ev.length ? "You were there, length unknown" : "No record";
+  const opt = (value, text) => {
+    const on = manual === value;
+    return (
+      <button key={text} data-set-manual={value || "clear"} aria-pressed={on}
+        onClick={() => setSetManual(cfg.id, a.id, value)} style={{
+          minHeight: 44, padding: "0 14px", borderRadius: 999, cursor: "pointer",
+          border: on ? "none" : "1px solid var(--line-2)",
+          background: on ? "var(--acc)" : "transparent", color: on ? "var(--on-acc)" : "var(--ink)",
+          fontFamily: "var(--f-ui)", fontSize: 14, fontWeight: 650,
+        }}>{text}</button>
+    );
+  };
+  return (
+    <div data-set-correction={a.id}>
+      <div data-set-correction-said className="duo-headline" style={{ marginBottom: 4 }}>{said}</div>
+      <div className="duo-data-s duo-ink3" style={{ marginBottom: 12 }}>
+        {a.start && a.end ? `${fmt12(a.start)} to ${fmt12(a.end)}` : "Set time not published"}
+      </div>
+      <div className="duo-label duo-ink3" style={{ marginBottom: 6 }}>WHY</div>
+      {ev.length ? (
+        <ul data-set-why style={{ listStyle: "none", margin: "0 0 14px", padding: 0 }}>
+          {ev.map((e, i) => (
+            <li key={i} style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.6 }}>
+              {_SET_EVIDENCE_WORD[e.kind] || "Evidence"} · {_setClock(e.from, cfg)}{e.to > e.from ? ` to ${_setClock(e.to, cfg)}` : ""}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div style={{ fontSize: 14, color: "var(--ink-2)", marginBottom: 14 }}>Nothing on this phone places you at this stage during the set.</div>
+      )}
+      <div className="duo-label duo-ink3" style={{ marginBottom: 6 }}>YOUR ANSWER</div>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        {opt("full", "Full set")}
+        {opt("partial", "Part of it")}
+        {opt("absent", "I wasn't there")}
+        {manual && opt(null, "Use the evidence")}
+      </div>
+    </div>
+  );
+}
+
+function SetCorrectionSheet({ a, cfg = window.FESTIVAL_CONFIG, onClose }) {
+  return (
+    <FieldSheet title={a.name} eyebrow="YOUR SET" onClose={onClose}>
+      <SetCorrectionPanel a={a} cfg={cfg} />
+    </FieldSheet>
+  );
+}
+
+// Every set worth a look, one row each; a row opens its correction.
+function SetReviewSheet({ cfg = window.FESTIVAL_CONFIG, onClose }) {
+  const [, bump] = React.useReducer(x => x + 1, 0);
+  const [open, setOpen] = React.useState(null);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  const rows = setReviewRows(cfg);
+  const stages = ((_attendedDataSets()[cfg.id] || {}).stages) || window.STAGES || [];
+  if (open) {
+    const a = rows.find(r => r.a.id === open)?.a;
+    if (a) return <SetCorrectionSheet a={a} cfg={cfg} onClose={() => setOpen(null)} />;
+  }
+  return (
+    <FieldSheet title="Your sets" eyebrow={(cfg.shortName || cfg.name || "").toUpperCase()} onClose={onClose}>
+      {rows.length ? rows.map(({ a, manual, verdict, ev }) => {
+        const stage = stages.find(s => s.id === a.stage);
+        // No evidence and no answer is "No record", never a miss: a gap in
+        // what this phone saw is not proof you weren't there.
+        const tag = manual === "absent" ? "Not there · your edit" : verdict && verdict.label ? verdict.label
+          : ev.length ? "Length unknown" : "No record";
+        return (
+          <button key={a.id} data-set-review-row={a.id} onClick={() => setOpen(a.id)} style={{
+            display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 56, padding: "8px 0",
+            background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
+            textAlign: "left", cursor: "pointer", color: "var(--ink)",
+          }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 15, fontWeight: 650, overflowWrap: "anywhere" }}>{a.name}</div>
+              <div className="duo-data-s duo-ink3">{[stage && (stage.short || stage.name), a.start && fmt12(a.start)].filter(Boolean).join(" · ")}</div>
+            </div>
+            <span data-set-review-tag className="duo-data-s" style={{
+              flex: "none", padding: "2px 8px", borderRadius: 999, background: "var(--s3)",
+              color: manual ? "var(--acc-ink)" : verdict && verdict.label ? "var(--ink)" : "var(--ink-3)",
+              fontStyle: verdict && verdict.label || manual ? "normal" : "italic",
+            }}>{tag}</span>
+          </button>
+        );
+      }) : <div style={{ fontSize: 14, color: "var(--ink-2)" }}>No sets to review yet.</div>}
+    </FieldSheet>
+  );
+}
+
+// On an artist's set card: "Still here" while the set is on (one tap, one
+// foreground fix), and the way into this set's correction.
+function SetAttendanceRow({ a }) {
+  const [, bump] = React.useReducer(x => x + 1, 0);
+  const [tap, setTap] = React.useState(null);   // null | "busy" | gate status
+  const [fixing, setFixing] = React.useState(false);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  const cfg = window.FESTIVAL_CONFIG;
+  if (!a || !cfg || !cfg.id || !a.stage) return null;
+  const stages = ((_attendedDataSets()[cfg.id] || {}).stages) || window.STAGES || [];
+  const mobile = _stageIsMobile(a.stage, stages);
+  const phase = typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, Date.now()) : "upcoming";
+  const elig = mobile ? (phase === "live" || phase === "ended" ? phase : "not-live") : setTrackEligibility(cfg, Date.now());
+  if (elig !== "live" && elig !== "ended") return null;
+  const live = elig === "live" && typeof isSetLive === "function" && isSetLive(a);
+  const v = setTrackVerdict(a, cfg);
+  const manual = getSetManual(cfg.id, a.id);
+  // Asking "were you here?" before a set starts makes no sense.
+  const w = attendTimeClass(a) === "blank" ? null : attendSetWindowMs(a, cfg, []);
+  const started = !!w && w.startMs <= Date.now();
+  if (!live && !v && !manual && !started) return null;
+  const onTap = async () => {
+    setTap("busy");
+    const r = mobile ? setTrackStillHereHand(cfg, a) : await setTrackStillHere(cfg);
+    setTap(r.status === "trusted" || r.status === "hand" ? (r.stageId === a.stage ? "here" : "other") : r.status);
+  };
+  const note = tap === "here" ? "Noted: you're here."
+    : tap === "other" ? "Noted, at a different stage than this set."
+    : tap === "denied" ? "Location is off for Plursky, so nothing was noted."
+    : tap === "hidden" ? "You left Plursky before your location came in, so nothing was noted."
+    : tap && tap !== "busy" ? "Couldn't place you at a stage, so nothing was noted."
+    : null;
+  return (
+    <div data-set-attendance style={{ marginTop: 10 }}>
+      {(v && v.label || manual === "absent") && (
+        <div data-set-attendance-label className="duo-data-s" style={{ marginBottom: 6 }}>
+          {manual === "absent" ? "Not there · your edit" : v.label}
+        </div>
+      )}
+      <div style={{ display: "flex", columnGap: 8, flexWrap: "wrap" }}>
+        {live && (
+          <button className="duo-chip" data-set-still-here disabled={tap === "busy"} onClick={onTap}>
+            <span>{tap === "busy" ? "Checking…" : "Still here"}</span>
+          </button>
+        )}
+        <button className="duo-chip" data-set-fix onClick={() => setFixing(true)}><span>{v || manual ? "Fix" : "Were you here?"}</span></button>
+      </div>
+      {note && <div data-set-still-here-note role="status" style={{ fontSize: 13, color: "var(--ink-2)", marginTop: 6 }}>{note}</div>}
+      {fixing && <SetCorrectionSheet a={a} cfg={cfg} onClose={() => setFixing(false)} />}
     </div>
   );
 }
