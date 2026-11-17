@@ -92,7 +92,7 @@ Re-run any claim here with `node scripts/anchor-residuals.mjs`.
 
 - [ ] **Redraw `ultra-2026.svg` from the surveyed layout** — design work, and the
       only thing that clears Ultra's art waiver (`ART_WAIVERS` in
-      `scripts/verify.mjs`, **expires 2026-12-01**, and an expired waiver is a
+      `scripts/verify.mjs`, **expires 2027-02-01**, and an expired waiver is a
       hard CI failure). The measured anchors are all `osm` now, but the drawn
       art is not an affine image of Bayfront Park: pushed through the basis,
       `main` lands 53 grid units (~387 m) from where the art draws it. Founder

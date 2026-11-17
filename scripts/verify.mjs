@@ -1407,7 +1407,9 @@ const REGISTRATION_TOL_M = 25;
     // art is the festival's own patron map) or by re-deriving stage x/y so
     // the shipped art coordinates agree with the measured world.
     "acl-2026": {
-      expires: "2026-12-01",
+      expires: "2027-09-01",
+      // Re-dated 2026-11-13 (was 2026-12-01): ACL 2027 dates are not announced;
+      // assumed early October, as in 2026. Re-check when they are announced.
       // 2026-11-12: titos/bmi/beatbox joined as satellite reads, 76/101/96 m
       // from where the basis affine draws them (anchor-residuals.mjs): the art
       // is distorted at its NE and S edges too, the same defect that put
@@ -1417,7 +1419,9 @@ const REGISTRATION_TOL_M = 25;
     "ultra-miami-2026": {
       // Chosen to force the redraw into the quiet window before the 2027
       // festival roll, rather than into Ultra flip week.
-      expires: "2026-12-01",
+      expires: "2027-02-01",
+      // Re-dated 2026-11-13 (was 2026-12-01): about eight weeks before Ultra
+      // 2027 (announced for Mar 26-28, 2027). Re-check if that changes.
       note: "ultra-2026.svg is drawn art, not a projection; redraw it from the surveyed layout, then delete this waiver.",
     },
   };
@@ -1561,7 +1565,9 @@ const REGISTRATION_TOL_M = 25;
       // which needs a schema change, since gpsAnchors are stageId-keyed.
       // The expiry forces that schema work into the same quiet-window batch
       // as the art waivers above.
-      expires: "2026-12-01",
+      expires: "2027-05-01",
+      // Re-dated 2026-11-13 (was 2026-12-01): Gov Ball 2027 dates are not
+      // announced; assumed early June, as in 2026. Re-check when they are announced.
       note: "3 anchors, all of them the basis — structurally uncheckable " +
             "until a landmark tie point exists. grove is satellite-measured; " +
             "verizon and snapchat agree with the official 2026 patron map " +
@@ -1583,7 +1589,9 @@ const REGISTRATION_TOL_M = 25;
       // plus one independent anchor, from a post-festival capture or an
       // on-site survey. Delete it then, or let it expire and gate the
       // festival again.
-      expires: "2026-12-01",
+      expires: "2027-10-01",
+      // Re-dated 2026-11-13 (was 2026-12-01): about five weeks before EDC
+      // Orlando 2027 (Nov 5-7, 2027). Re-check if those dates change.
       note: "all 5 anchors are poster reads off the official 2026 map; no " +
             "satellite capture shows an EDC Orlando build (Esri Wayback at " +
             "Tinker Field: 2021-01-28, 2023-02-06, 2024-04-26 only). " +
@@ -3669,6 +3677,24 @@ for (const [label, file] of [
   }
 }
 
+// ── 1z-b8a2. Public artist pages (SPEC-206 B) ─────────────────────────────
+// artists/ is generated from data/artists/careers.json: --check fails on a
+// stale page, an orphan or a stale sitemap-artists.xml, and the gate holds
+// the thin-content rule, every billing as a row, the snapshot labels, the
+// banned words and the photo-licence rule, each against a mutation.
+{
+  console.log("▸ Artist pages gate — one page per qualifying artist, every billing, no unlicensed photo");
+  try {
+    execFileSync(process.execPath, ["scripts/gen-artist-pages.mjs", "--check"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    const out = execFileSync(process.execPath, ["scripts/test-artist-pages.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist pages failed${detail ? ` — ${detail.split("\n").slice(0, 6).join(" | ")}` : ""}`);
+  }
+}
+
 // ── 1z-b8b. Official embeds on festival pages ────────────────────────────
 // Watch & listen shows only the festival's OWN posts: the official site links
 // the account, the platform names that account as the author, the post is
@@ -3768,6 +3794,23 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`readiness probe failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8e. Genre hub pages (SPEC-206 A) ─────────────────────────────────
+// genres/ is generated from the EDC Las Vegas 2026 lineup's own genre tags
+// (the only festival ruled in): --check fails on a stale page, an orphan or a
+// stale sitemap-genres.xml, and the gate holds the allowlist, exact act lists
+// and the "Checked on" stamp, each against a mutation.
+{
+  console.log("▸ Genre pages gate — EDC only, own tags only, nothing guessed");
+  try {
+    execFileSync(process.execPath, ["scripts/gen-genre-pages.mjs", "--check"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    const out = execFileSync(process.execPath, ["scripts/test-genre-pages.mjs"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`genre pages failed${detail ? ` — ${detail.split("\n").slice(0, 6).join(" | ")}` : ""}`);
   }
 }
 
@@ -4040,6 +4083,16 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`set attendance failed${detail ? ` — ${detail}` : ""}`);
+  }
+
+  console.log("▸ Set evidence gate: check-ins, GPS-placed photos, Still here taps, stage calibration, corrections that say so, No record");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-evidence.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set evidence failed${detail ? `: ${detail}` : ""}`);
   }
 
   console.log("▸ Set-tracking gate — opt-in, foreground, measured stages, runs equal the engine's, no coordinates stored");

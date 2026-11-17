@@ -902,11 +902,6 @@ function PyroStarburst({ color }) {
   );
 }
 
-// "CC-BY-SA-3.0" → "CC BY-SA 3.0": the ledger's SPDX-style id, as printed.
-function _licenseLabel(id) {
-  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/-DE$/, " DE").replace(/^(Public|Press)-/, "$1 ");
-}
-const _creditLink = { color: "inherit", textDecoration: "underline", textUnderlineOffset: 2 };
 
 function ArtistScreen({ state, setState }) {
   const a = ARTISTS.find(ar => ar.id === state.artist);
@@ -1369,14 +1364,8 @@ function ArtistScreen({ state, setState }) {
           name to its deed; "Cropped" is the change notice. One line at 320:
           the ledger caps author length (scripts/lib/artist-photo-ledger.mjs). */}
       {heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && (
-        <div data-artist-photo-credit="1" aria-label={"Photo credit: " + heroCacheRec.author + ", " + _licenseLabel(heroCacheRec.license) + ", cropped"} style={{
-          padding: "8px 18px 0", fontSize: "var(--fs-label)", lineHeight: "16px",
-          color: "var(--text-3)", whiteSpace: "nowrap",
-        }}>
-          <a href={heroCacheRec.sourceUrl} target="_blank" rel="noopener noreferrer" style={_creditLink}>{heroCacheRec.author}</a>
-          {" · "}<a href={heroCacheRec.licenseUrl} target="_blank" rel="noopener noreferrer" style={_creditLink}>{_licenseLabel(heroCacheRec.license)}</a>
-          {" · Cropped"}
-        </div>
+        <PhotoCredit data-artist-photo-credit="1" style={{ padding: "8px 18px 0", whiteSpace: "nowrap" }}
+          credit={{ author: heroCacheRec.author, sourceUrl: heroCacheRec.sourceUrl, license: heroCacheRec.license, licenseUrl: heroCacheRec.licenseUrl, changes: "Cropped" }} />
       )}
 
       {/* B2B artist tabs — one per individual artist */}
@@ -1439,6 +1428,7 @@ function ArtistScreen({ state, setState }) {
                 <button className="duo-chip" onClick={() => go({ tab: "map", focusStage: a.stage, artist: null })}><span>On map</span></button>
                 {a.day != null && <button className="duo-chip" onClick={() => go({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })}><span>Schedule</span></button>}
               </div>
+              {typeof SetAttendanceRow === "function" && <SetAttendanceRow a={a} />}
             </div>
           );
         })()}
