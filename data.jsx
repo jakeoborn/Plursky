@@ -1221,6 +1221,103 @@ const FESTIVALS_REGISTRY = [
     region:    "North America",
   },
   {
+    // ── Lightning in a Bottle 2027 — Buena Vista Lake, CA ──
+    // Added 2026-11-17 as a gated preview. Dates and venue from libfestival.org, read 2026-11-17: page title
+    // "Lightning in a Bottle 2027 | May 26-30, Buena Vista Lake, CA" and "Lightning
+    // in a Bottle returns May 26–30, 2027 to Buena Vista Lake, CA". No 2027 lineup yet.
+    config: {
+      id:        "lightning-in-a-bottle-2027",
+      officialEvent: { website: "https://www.libfestival.org/", observedAt: "2026-11-17" },
+      name:      "Lightning in a Bottle 2027",
+      shortName: "LiB",
+      brand:     "Lightning in a Bottle",
+      tagline:   "Five days of music, art and camping by Do LaB",
+      location:  "Buena Vista Lake, CA",
+      locationShort: "Buena Vista Lake",
+      dates:     "May 26–30, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.libfestival.org/", observedAt: "2026-11-17" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#f59e0b",
+    emoji:     "⚡",
+    region:    "North America",
+  },
+  {
+    // ── World Club Dome 2027 — Deutsche Bank Park, Frankfurt ──
+    // Added 2026-11-17 as a gated preview. Dates and venue from worldclubdome.com, read 2026-11-17: page title
+    // "World Club Dome 2027 | Frankfurt, 4.–6. Juni" and "World Club Dome Festival
+    // 2027 im Deutsche Bank Park Frankfurt". No full 2027 lineup yet.
+    config: {
+      id:        "world-club-dome-2027",
+      officialEvent: { website: "https://www.worldclubdome.com/", observedAt: "2026-11-17" },
+      name:      "World Club Dome 2027",
+      shortName: "World Club Dome",
+      brand:     "World Club Dome",
+      tagline:   "Three days of EDM inside Frankfurt's stadium",
+      location:  "Deutsche Bank Park · Frankfurt, Germany",
+      locationShort: "Deutsche Bank Park",
+      dates:     "Jun 4–6, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.worldclubdome.com/", observedAt: "2026-11-17" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#6366f1",
+    emoji:     "🏟️",
+    region:    "Europe",
+  },
+  {
+    // ── Excision's Bass Canyon 2027 — The Gorge Amphitheatre, George WA ──
+    // Added 2026-11-17 as a gated preview. Dates and venue from basscanyon.com, read 2026-11-17: page title "Bass
+    // Canyon Festival Featuring Excision | The Gorge Aug 13-14-15, 2027" and "The
+    // Gorge Amphitheatre, WA". No 2027 lineup yet.
+    config: {
+      id:        "bass-canyon-2027",
+      officialEvent: { website: "https://www.basscanyon.com/", observedAt: "2026-11-17" },
+      name:      "Bass Canyon 2027",
+      shortName: "Bass Canyon",
+      brand:     "Bass Canyon",
+      tagline:   "Three nights of Excision and bass at The Gorge",
+      location:  "Gorge Amphitheatre · George, WA",
+      locationShort: "The Gorge",
+      dates:     "Aug 13–15, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.basscanyon.com/", observedAt: "2026-11-17" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#84cc16",
+    emoji:     "🦖",
+    region:    "North America",
+  },
+  {
+    // ── Medusa Sunbeach Festival 2027 — Playa de Cullera, Spain ──
+    // Added 2026-11-17 as a gated preview. Dates and venue from medusasunbeach.com, read 2026-11-17: "12 Sun Down ·
+    // 13, 14, 15 y 16 de agosto de 2027 · Playa de Cullera". The 12th is the Sun
+    // Down opening night, so the dates below are the four festival days. No 2027
+    // lineup yet.
+    config: {
+      id:        "medusa-2027",
+      officialEvent: { website: "https://www.medusasunbeach.com/", observedAt: "2026-11-17" },
+      name:      "Medusa Festival 2027",
+      shortName: "Medusa",
+      brand:     "Medusa",
+      tagline:   "Four days of electronic music on the beach at Cullera",
+      location:  "Playa de Cullera · Cullera, Spain",
+      locationShort: "Playa de Cullera",
+      dates:     "Aug 13–16, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.medusasunbeach.com/", observedAt: "2026-11-17" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#14b8a6",
+    emoji:     "🐍",
+    region:    "Europe",
+  },
+  {
     // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
     // Flip 2026-09-11: stage + set time per act come from the Lost Lands app
     // schedule (app v10.0.0, as captured 2026-09-10); the SCHEDULE block
