@@ -50,7 +50,7 @@ import { parsePrimaveraHorarios } from "./primavera-horarios-schedule.mjs";
 import { parsePrimaveraCompletos } from "./primavera-completos-schedule.mjs";
 import { parseInsomniacMusic } from "./insomniac-music-schedule.mjs";
 import { parseTmlCms } from "./tml-cms-schedule.mjs";
-import { parseDoStuffEmbed } from "./dostuff-embed-schedule.mjs";
+import { parseDoStuffEmbed, embedPageOk, pageLoadsScript, EMBED_PAGES } from "./dostuff-embed-schedule.mjs";
 import { parseHardWp } from "./hard-wp-schedule.mjs";
 import { parseLollaLineup } from "./lolla-lineup.mjs";
 import { parseTmlDrupal } from "./tml-drupal-schedule.mjs";
@@ -495,34 +495,46 @@ export async function importGather(id, dir) {
         }
       } else if (s.format === "dostuff-embed") {
         // The official lineup widget's embed script (Outside Lands 2022-2025,
-        // dostuff-embed-schedule.mjs): one capture holds every day. Its own
-        // name, run of days and time zone must be the edition's, every set's
-        // offset the zone's, and the capture must postdate the festival. The
-        // official lineup page that loads it (embeddedBy) was captured on the
-        // festival's own site moments before it. Shows on the food-and-drink
-        // stage must be the sheet's excluded rows of each day, one for one.
+        // Lightning in a Bottle 2018-2019, dostuff-embed-schedule.mjs): one
+        // capture holds every day. Its own name and time zone must be the
+        // edition's, every set's offset the zone's, the edition's days the
+        // run's days it prints sets on, and the capture must postdate the
+        // festival. The official lineup page that loads it (embeddedBy) was
+        // captured on the festival's own site close to it (EMBED_PAGES), and
+        // its HTML loads this very script. Shows on the food-and-drink stage
+        // and on programme stages must be the sheet's excluded rows of each
+        // day, one for one.
         const w = parseDoStuffEmbed(cap.text, { rolloverHour: ed.rolloverHour });
         if (w.name !== ed.name && !ed.name.startsWith(w.name + " ")) throw new Error(`${s.url} @${s.captureTimestamp}: the widget is "${w.name}", not ${ed.name}`);
-        if (w.run.join() !== ed.dates.map(([d]) => d).join() || s.run !== `${w.startDate} to ${w.endDate}`) throw new Error(`${s.url} @${s.captureTimestamp}: the widget's run is ${w.startDate} to ${w.endDate}, the edition's ${ed.dates[0][0]} to ${ed.dates.at(-1)[0]}, the receipt says "${s.run}"`);
+        if (w.setDays.join() !== ed.dates.map(([d]) => d).join() || s.run !== `${w.startDate} to ${w.endDate}`) throw new Error(`${s.url} @${s.captureTimestamp}: the widget's run is ${w.startDate} to ${w.endDate} with sets on ${w.setDays.join(", ")}, the edition's days ${ed.dates.map(([d]) => d).join(", ")}, the receipt says "${s.run}"`);
         if (w.timezone !== ed.timezone) throw new Error(`${s.url} @${s.captureTimestamp}: the widget's time zone is ${w.timezone}, not ${ed.timezone}`);
         if (s.captureTimestamp.slice(0, 8) <= ed.dates.at(-1)[0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the festival ended`);
-        const eb = s.embeddedBy || {}, gap = (Date.parse(s.captureTimestamp.replace(/(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)/, "$1-$2-$3T$4:$5:$6Z")) - Date.parse(String(eb.captureTimestamp).replace(/(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)/, "$1-$2-$3T$4:$5:$6Z"))) / 1000;
-        if (!/^https?:\/\/(www\.)?sfoutsidelands\.com\/lineup\/$/.test(eb.url || "") || !(gap >= 0 && gap <= 120)) throw new Error(`${s.url} @${s.captureTimestamp}: embeddedBy ${eb.url} @${eb.captureTimestamp} is not the official lineup page captured just before it`);
-        if (s.foodStage && !w.stages.includes(s.foodStage)) throw new Error(`${s.url} @${s.captureTimestamp}: no stage "${s.foodStage}"`);
-        for (const [i, d] of w.days.entries()) {
-          const day = i + 1;
+        const eb = s.embeddedBy || {};
+        if (!embedPageOk(ed.festivalId, s.captureTimestamp, eb)) throw new Error(`${s.url} @${s.captureTimestamp}: embeddedBy ${eb.url} @${eb.captureTimestamp} is not the official lineup page ${EMBED_PAGES[ed.festivalId]?.label || "(no rule for this festival)"}`);
+        const pcap = await fetchCapture(eb.captureTimestamp, eb.url);
+        if (pcap.captureTimestamp !== eb.captureTimestamp || !pageLoadsScript(pcap.text, s.url)) throw new Error(`${eb.url} @${eb.captureTimestamp}: the page does not load ${s.url}`);
+        const progStages = s.programmeStages || [];
+        for (const st of [s.foodStage, ...progStages].filter(Boolean)) if (!w.stages.includes(st)) throw new Error(`${s.url} @${s.captureTimestamp}: no stage "${st}"`);
+        for (const [i, [date]] of ed.dates.entries()) {
+          const day = i + 1, d = w.days.find(x => x.date === date);
           if (!days.includes(day)) throw new Error(`${s.url} @${s.captureTimestamp}: prints day ${day}, the sheet does not cite it`);
           if (d.date !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is ${d.date}, the receipt says "${s.printed[day]}"`);
           const k = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
-          const fed = d.sets.filter(x => x.stage === s.foodStage);
-          const pg = fed.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x.food).map(k).sort().join("\n");
-          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${fed.length} show(s) on ${s.foodStage || "no food stage"}, the sheet excludes others`);
-          agree(day, d.sets.filter(x => !fed.includes(x)).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          const fed = d.sets.filter(x => x.stage === s.foodStage), prog = d.sets.filter(x => progStages.includes(x.stage));
+          for (const [flag, list, what] of [["food", fed, s.foodStage || "no food stage"], ["programme", prog, progStages.join(", ") || "no programme stage"]]) {
+            const pg = list.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x[flag]).map(k).sort().join("\n");
+            if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${list.length} show(s) on ${what}, the sheet excludes others`);
+          }
+          agree(day, d.sets.filter(x => !fed.includes(x) && !prog.includes(x)).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          const twice = w.drawnTwice.filter(x => x.date === date);
           Object.assign(ledgerDays[day - 1].sources.at(-1), { run: s.run, timezone: w.timezone, grouping: w.grouping, stages: new Set(d.sets.map(x => x.stage)).size,
-            embeddedBy: { url: eb.url, archivedUrl: `https://web.archive.org/web/${eb.captureTimestamp}/${eb.url}`, captureTimestamp: eb.captureTimestamp },
+            embeddedBy: { url: eb.url, archivedUrl: `https://web.archive.org/web/${eb.captureTimestamp}/${eb.url}`, captureTimestamp: eb.captureTimestamp, loads: s.url },
             times: "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+            ...(w.byAct && { billing: "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set" }),
             ...(d.sets.some(x => x.billedUnder.length > 1) && { sharedSets: d.sets.filter(x => x.billedUnder.length > 1).map(x => `${x.artist} (under ${x.billedUnder.join(", ")})`) }),
-            ...(fed.length && { foodShows: fed.length, foodStage: s.foodStage }) });
+            ...(twice.length && { drawnTwice: twice.map(x => `${x.artist} (${x.stage} ${x.start}-${x.end}${x.title ? `, titled "${x.title}"` : ""})`) }),
+            ...(fed.length && { foodShows: fed.length, foodStage: s.foodStage }),
+            ...(prog.length && { programmeShows: prog.length, programmeStages: progStages.filter(x => d.sets.some(y => y.stage === x)) }) });
         }
       } else if (s.format === "lolla-cards") {
         // One page lists every act's sets, each with its printed day, start

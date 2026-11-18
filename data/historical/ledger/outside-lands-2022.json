@@ -24,9 +24,11 @@
           "embeddedBy": {
             "url": "https://sfoutsidelands.com/lineup/",
             "archivedUrl": "https://web.archive.org/web/20220808025839/https://sfoutsidelands.com/lineup/",
-            "captureTimestamp": "20220808025839"
+            "captureTimestamp": "20220808025839",
+            "loads": "https://22-osl.dostff.co/embeds/lineup.js"
           },
-          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once"
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set"
         }
       ]
     },
@@ -51,9 +53,11 @@
           "embeddedBy": {
             "url": "https://sfoutsidelands.com/lineup/",
             "archivedUrl": "https://web.archive.org/web/20220808025839/https://sfoutsidelands.com/lineup/",
-            "captureTimestamp": "20220808025839"
+            "captureTimestamp": "20220808025839",
+            "loads": "https://22-osl.dostff.co/embeds/lineup.js"
           },
           "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
           "foodShows": 1,
           "foodStage": "Cocktail Magic"
         }
@@ -80,9 +84,11 @@
           "embeddedBy": {
             "url": "https://sfoutsidelands.com/lineup/",
             "archivedUrl": "https://web.archive.org/web/20220808025839/https://sfoutsidelands.com/lineup/",
-            "captureTimestamp": "20220808025839"
+            "captureTimestamp": "20220808025839",
+            "loads": "https://22-osl.dostff.co/embeds/lineup.js"
           },
-          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once"
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set"
         }
       ]
     }

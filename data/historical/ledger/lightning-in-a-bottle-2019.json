@@ -1,0 +1,211 @@
+{
+  "id": "lightning-in-a-bottle-2019",
+  "method": "official_sources",
+  "official": "https://lightninginabottle.org/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-05-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lib2019.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20190528194756/https://lib2019.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20190528194756",
+          "printed": "2019-05-08",
+          "sha256": "b3f0484467673fb06453fd7ae37dc041673bd2f129c04265333aa45a7377516f",
+          "bytes": 593188,
+          "rows": 1,
+          "format": "dostuff-embed",
+          "run": "2019-05-08 to 2019-05-13",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Music",
+          "stages": 1,
+          "embeddedBy": {
+            "url": "https://lightninginabottle.org/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20190528183058/https://lightninginabottle.org/lineup/",
+            "captureTimestamp": "20190528183058",
+            "loads": "https://lib2019.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2019-05-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lib2019.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20190528194756/https://lib2019.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20190528194756",
+          "printed": "2019-05-09",
+          "sha256": "b3f0484467673fb06453fd7ae37dc041673bd2f129c04265333aa45a7377516f",
+          "bytes": 593188,
+          "rows": 32,
+          "format": "dostuff-embed",
+          "run": "2019-05-08 to 2019-05-13",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Music",
+          "stages": 5,
+          "embeddedBy": {
+            "url": "https://lightninginabottle.org/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20190528183058/https://lightninginabottle.org/lineup/",
+            "captureTimestamp": "20190528183058",
+            "loads": "https://lib2019.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2019-05-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lib2019.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20190528194756/https://lib2019.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20190528194756",
+          "printed": "2019-05-10",
+          "sha256": "b3f0484467673fb06453fd7ae37dc041673bd2f129c04265333aa45a7377516f",
+          "bytes": 593188,
+          "rows": 68,
+          "format": "dostuff-embed",
+          "run": "2019-05-08 to 2019-05-13",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Music",
+          "stages": 10,
+          "embeddedBy": {
+            "url": "https://lightninginabottle.org/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20190528183058/https://lightninginabottle.org/lineup/",
+            "captureTimestamp": "20190528183058",
+            "loads": "https://lib2019.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "sharedSets": [
+            "Asteroids & Earthquakes B2B Kimothy Leary (under Asteroids & Earthquakes, Kimothy Leary)",
+            "Def3 x BRYX (under BRYX, Def3)"
+          ],
+          "programmeShows": 2,
+          "programmeStages": [
+            "Yoga Sol",
+            "Yoga Luna"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2019-05-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lib2019.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20190528194756/https://lib2019.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20190528194756",
+          "printed": "2019-05-11",
+          "sha256": "b3f0484467673fb06453fd7ae37dc041673bd2f129c04265333aa45a7377516f",
+          "bytes": 593188,
+          "rows": 63,
+          "format": "dostuff-embed",
+          "run": "2019-05-08 to 2019-05-13",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Music",
+          "stages": 8,
+          "embeddedBy": {
+            "url": "https://lightninginabottle.org/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20190528183058/https://lightninginabottle.org/lineup/",
+            "captureTimestamp": "20190528183058",
+            "loads": "https://lib2019.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "sharedSets": [
+            "Doc Martin, Marques Wyatt, DJ Dan, PATRICIO (under DJ Dan, Doc Martin, Marques Wyatt, PATRICIO)"
+          ],
+          "drawnTwice": [
+            "Left/Right (The Stacks 02:00-03:00)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2019-05-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lib2019.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20190528194756/https://lib2019.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20190528194756",
+          "printed": "2019-05-12",
+          "sha256": "b3f0484467673fb06453fd7ae37dc041673bd2f129c04265333aa45a7377516f",
+          "bytes": 593188,
+          "rows": 65,
+          "format": "dostuff-embed",
+          "run": "2019-05-08 to 2019-05-13",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Music",
+          "stages": 10,
+          "embeddedBy": {
+            "url": "https://lightninginabottle.org/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20190528183058/https://lightninginabottle.org/lineup/",
+            "captureTimestamp": "20190528183058",
+            "loads": "https://lib2019.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "programmeShows": 2,
+          "programmeStages": [
+            "Yoga Sol",
+            "Meditation Grove"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 3,
+      "stage": "Yoga Luna",
+      "start": "10:00",
+      "end": "11:00",
+      "billing": "divaDanielle feat. Annie Dolly",
+      "reason": "Yoga Sol, Yoga Luna and Meditation Grove hold yoga, movement and meditation sessions, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Yoga Sol",
+      "start": "22:00",
+      "end": "00:00",
+      "billing": "Scott Nice",
+      "reason": "Yoga Sol, Yoga Luna and Meditation Grove hold yoga, movement and meditation sessions, not music sets",
+      "programme": true
+    },
+    {
+      "day": 5,
+      "stage": "Meditation Grove",
+      "start": "10:30",
+      "end": "11:30",
+      "billing": "Shawni",
+      "reason": "Yoga Sol, Yoga Luna and Meditation Grove hold yoga, movement and meditation sessions, not music sets",
+      "programme": true
+    },
+    {
+      "day": 5,
+      "stage": "Yoga Sol",
+      "start": "15:15",
+      "end": "16:30",
+      "billing": "Shawni",
+      "reason": "Yoga Sol, Yoga Luna and Meditation Grove hold yoga, movement and meditation sessions, not music sets",
+      "programme": true
+    }
+  ],
+  "dropped": []
+}

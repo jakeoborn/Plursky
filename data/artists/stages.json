@@ -2850,6 +2850,172 @@
     }
    ]
   },
+  "lightning-in-a-bottle": {
+   "lineages": [
+    {
+     "id": "lightning-in-a-bottle:beacon",
+     "names": [
+      {
+       "printed": "Beacon",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:crossroads",
+     "names": [
+      {
+       "printed": "Crossroads",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:favela-bar",
+     "names": [
+      {
+       "printed": "Favela Bar",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:grand-artique",
+     "names": [
+      {
+       "printed": "Grand Artique",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:lakeside",
+     "names": [
+      {
+       "printed": "Lakeside",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:pagoda-bar",
+     "names": [
+      {
+       "printed": "Pagoda Bar",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:lightning",
+     "names": [
+      {
+       "printed": "Lightning",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:memory-palace",
+     "names": [
+      {
+       "printed": "Memory Palace",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:thunder",
+     "names": [
+      {
+       "printed": "Thunder",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:woogie",
+     "names": [
+      {
+       "printed": "Woogie",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:favela",
+     "names": [
+      {
+       "printed": "Favela",
+       "editions": [
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:the-stacks",
+     "names": [
+      {
+       "printed": "The Stacks",
+       "editions": [
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "lollapalooza": {
    "lineages": [
     {

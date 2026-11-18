@@ -179,11 +179,11 @@
    ]
   },
   {
-   "id": "outside-lands-2025:chase-icon",
-   "name": "Chase Icon",
-   "key": "chase-icon",
+   "id": "outside-lands-2025:chase-icon-live",
+   "name": "Chase Icon (Live)",
+   "key": "chase-icon-live",
    "performers": [
-    "chase-icon"
+    "chase-icon-live"
    ]
   },
   {
@@ -483,11 +483,11 @@
    ]
   },
   {
-   "id": "outside-lands-2025:kate-bollinger",
-   "name": "Kate Bollinger",
-   "key": "kate-bollinger",
+   "id": "outside-lands-2025:kate-bollinger-solo",
+   "name": "Kate Bollinger (Solo)",
+   "key": "kate-bollinger-solo",
    "performers": [
-    "kate-bollinger"
+    "kate-bollinger-solo"
    ]
   },
   {
@@ -592,6 +592,14 @@
    "key": "sarah-kinsley",
    "performers": [
     "sarah-kinsley"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:kate-bollinger",
+   "name": "Kate Bollinger",
+   "key": "kate-bollinger",
+   "performers": [
+    "kate-bollinger"
    ]
   },
   {
@@ -740,11 +748,11 @@
    ]
   },
   {
-   "id": "outside-lands-2025:baloney-and-friends",
-   "name": "BALONEY & FRIENDS",
-   "key": "baloney-and-friends",
+   "id": "outside-lands-2025:baloney",
+   "name": "BALONEY",
+   "key": "baloney",
    "performers": [
-    "baloney-and-friends"
+    "baloney"
    ]
   },
   {
@@ -756,11 +764,11 @@
    ]
   },
   {
-   "id": "outside-lands-2025:reparations-feat-big-freedia",
-   "name": "REPARATIONS FEAT. Big Freedia",
-   "key": "reparations-feat-big-freedia",
+   "id": "outside-lands-2025:reparations",
+   "name": "REPARATIONS",
+   "key": "reparations",
    "performers": [
-    "reparations-feat-big-freedia"
+    "reparations"
    ]
   },
   {
@@ -772,11 +780,11 @@
    ]
   },
   {
-   "id": "outside-lands-2025:princess-feat-big-freedia",
-   "name": "PRINCESS FEAT. Big Freedia",
-   "key": "princess-feat-big-freedia",
+   "id": "outside-lands-2025:princess",
+   "name": "PRINCESS",
+   "key": "princess",
    "performers": [
-    "princess-feat-big-freedia"
+    "princess"
    ]
   },
   {
@@ -1141,7 +1149,7 @@
   },
   {
    "id": "outside-lands-2025:beya-b2b-mark-o-brien",
-   "name": "BEYA b2b Mark O'Brien",
+   "name": "BEYA b2b Mark O’Brien",
    "key": "beya-b2b-mark-o-brien",
    "performers": [
     "beya",
@@ -1295,8 +1303,8 @@
    "end": "17:00"
   },
   {
-   "id": "outside-lands-2025:d1:fake-and-gay-dolores:1700:chase-icon",
-   "artistId": "outside-lands-2025:chase-icon",
+   "id": "outside-lands-2025:d1:fake-and-gay-dolores:1700:chase-icon-live",
+   "artistId": "outside-lands-2025:chase-icon-live",
    "day": 1,
    "stageId": "outside-lands-2025:fake-and-gay-dolores",
    "start": "17:00",
@@ -1647,8 +1655,8 @@
    "end": "14:45"
   },
   {
-   "id": "outside-lands-2025:d2:duboce-triangle:1535:kate-bollinger",
-   "artistId": "outside-lands-2025:kate-bollinger",
+   "id": "outside-lands-2025:d2:duboce-triangle:1535:kate-bollinger-solo",
+   "artistId": "outside-lands-2025:kate-bollinger-solo",
    "day": 2,
    "stageId": "outside-lands-2025:duboce-triangle",
    "start": "15:35",
@@ -1943,8 +1951,8 @@
    "end": "13:45"
   },
   {
-   "id": "outside-lands-2025:d2:oasis-arts-dolores:1345:baloney-and-friends",
-   "artistId": "outside-lands-2025:baloney-and-friends",
+   "id": "outside-lands-2025:d2:oasis-arts-dolores:1345:baloney",
+   "artistId": "outside-lands-2025:baloney",
    "day": 2,
    "stageId": "outside-lands-2025:oasis-arts-dolores",
    "start": "13:45",
@@ -1959,8 +1967,8 @@
    "end": "15:45"
   },
   {
-   "id": "outside-lands-2025:d2:oasis-arts-dolores:1545:reparations-feat-big-freedia",
-   "artistId": "outside-lands-2025:reparations-feat-big-freedia",
+   "id": "outside-lands-2025:d2:oasis-arts-dolores:1545:reparations",
+   "artistId": "outside-lands-2025:reparations",
    "day": 2,
    "stageId": "outside-lands-2025:oasis-arts-dolores",
    "start": "15:45",
@@ -1975,8 +1983,8 @@
    "end": "18:15"
   },
   {
-   "id": "outside-lands-2025:d2:oasis-arts-dolores:1815:princess-feat-big-freedia",
-   "artistId": "outside-lands-2025:princess-feat-big-freedia",
+   "id": "outside-lands-2025:d2:oasis-arts-dolores:1815:princess",
+   "artistId": "outside-lands-2025:princess",
    "day": 2,
    "stageId": "outside-lands-2025:oasis-arts-dolores",
    "start": "18:15",
@@ -2432,7 +2440,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20250811205727/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20250811205727"
+     "captureTimestamp": "20250811205727",
+     "loads": "https://ds25festlands.dostff.co/embeds/lineup.js"
     }
    },
    {
@@ -2448,7 +2457,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20250811205727/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20250811205727"
+     "captureTimestamp": "20250811205727",
+     "loads": "https://ds25festlands.dostff.co/embeds/lineup.js"
     }
    },
    {
@@ -2464,7 +2474,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20250811205727/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20250811205727"
+     "captureTimestamp": "20250811205727",
+     "loads": "https://ds25festlands.dostff.co/embeds/lineup.js"
     }
    }
   ]

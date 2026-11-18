@@ -737,11 +737,11 @@
    ]
   },
   {
-   "id": "outside-lands-2024:baloney-and-friends",
-   "name": "BALONEY & FRIENDS",
-   "key": "baloney-and-friends",
+   "id": "outside-lands-2024:baloney",
+   "name": "BALONEY",
+   "key": "baloney",
    "performers": [
-    "baloney-and-friends"
+    "baloney"
    ]
   },
   {
@@ -842,7 +842,7 @@
   },
   {
    "id": "outside-lands-2024:post-malone-performing-a-special-country-set",
-   "name": "Post Malone: Performing a Special Country Set",
+   "name": "Post Malone (Performing a Special Country Set)",
    "key": "post-malone-performing-a-special-country-set",
    "performers": [
     "post-malone-performing-a-special-country-set"
@@ -1812,8 +1812,8 @@
    "end": "13:15"
   },
   {
-   "id": "outside-lands-2024:d2:oasis-dolores:1315:baloney-and-friends",
-   "artistId": "outside-lands-2024:baloney-and-friends",
+   "id": "outside-lands-2024:d2:oasis-dolores:1315:baloney",
+   "artistId": "outside-lands-2024:baloney",
    "day": 2,
    "stageId": "outside-lands-2024:oasis-dolores",
    "start": "13:15",
@@ -2245,7 +2245,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20240827141201/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20240827141201"
+     "captureTimestamp": "20240827141201",
+     "loads": "https://fest24outsidelands.dostff.co/embeds/lineup.js"
     }
    },
    {
@@ -2261,7 +2262,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20240827141201/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20240827141201"
+     "captureTimestamp": "20240827141201",
+     "loads": "https://fest24outsidelands.dostff.co/embeds/lineup.js"
     }
    },
    {
@@ -2277,7 +2279,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20240827141201/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20240827141201"
+     "captureTimestamp": "20240827141201",
+     "loads": "https://fest24outsidelands.dostff.co/embeds/lineup.js"
     }
    }
   ]

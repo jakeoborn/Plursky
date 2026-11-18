@@ -24,9 +24,11 @@
           "embeddedBy": {
             "url": "https://sfoutsidelands.com/lineup/",
             "archivedUrl": "https://web.archive.org/web/20230814134823/https://sfoutsidelands.com/lineup/",
-            "captureTimestamp": "20230814134823"
+            "captureTimestamp": "20230814134823",
+            "loads": "https://osl23fest.dostff.co/embeds/lineup.js"
           },
           "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
           "foodShows": 4,
           "foodStage": "Cocktail Magic"
         }
@@ -53,9 +55,11 @@
           "embeddedBy": {
             "url": "https://sfoutsidelands.com/lineup/",
             "archivedUrl": "https://web.archive.org/web/20230814134823/https://sfoutsidelands.com/lineup/",
-            "captureTimestamp": "20230814134823"
+            "captureTimestamp": "20230814134823",
+            "loads": "https://osl23fest.dostff.co/embeds/lineup.js"
           },
           "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
           "sharedSets": [
             "PRINCESS Feat. Adore Delano (under Adore Delano, PRINCESS)"
           ],
@@ -85,9 +89,11 @@
           "embeddedBy": {
             "url": "https://sfoutsidelands.com/lineup/",
             "archivedUrl": "https://web.archive.org/web/20230814134823/https://sfoutsidelands.com/lineup/",
-            "captureTimestamp": "20230814134823"
+            "captureTimestamp": "20230814134823",
+            "loads": "https://osl23fest.dostff.co/embeds/lineup.js"
           },
           "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
           "sharedSets": [
             "Âme Live b2b Trikk (under Trikk, Âme Live)"
           ],
@@ -103,7 +109,7 @@
       "stage": "Cocktail Magic",
       "start": "12:00",
       "end": "13:30",
-      "billing": "Cuffin’ All Thangs R&B Party feat. AMP & Trixamillion",
+      "billing": "Cuffin’ All Thangs R&B Party ft. AMP & Trixamillion",
       "reason": "a show on Cocktail Magic, the festival's food-and-drink stage (as GastroMagic's in earlier years)",
       "food": true
     },
@@ -184,7 +190,7 @@
       "stage": "Cocktail Magic",
       "start": "12:15",
       "end": "13:45",
-      "billing": "Love Supreme feat. bella d., King Most, & Travie Bobbito",
+      "billing": "Love Supreme featuring bella d., King Most, & Travie Bobbito",
       "reason": "a show on Cocktail Magic, the festival's food-and-drink stage (as GastroMagic's in earlier years)",
       "food": true
     },

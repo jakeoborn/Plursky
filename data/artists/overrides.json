@@ -4173,36 +4173,6 @@
    "source": "https://sfoutsidelands.com/lineup/"
   },
   {
-   "printed": "REPARATIONS FEAT. Big Freedia",
-   "performers": [
-    {
-     "name": "REPARATIONS",
-     "role": "performer"
-    },
-    {
-     "name": "Big Freedia",
-     "role": "guest"
-    }
-   ],
-   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
-   "source": "https://sfoutsidelands.com/lineup/"
-  },
-  {
-   "printed": "PRINCESS FEAT. Big Freedia",
-   "performers": [
-    {
-     "name": "PRINCESS",
-     "role": "performer"
-    },
-    {
-     "name": "Big Freedia",
-     "role": "guest"
-    }
-   ],
-   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
-   "source": "https://sfoutsidelands.com/lineup/"
-  },
-  {
    "printed": "Big Freedia with SF Gay Men's Chorus",
    "performers": [
     {
@@ -4242,6 +4212,84 @@
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone (as EDC Las Vegas prints Girl Math (VNSSA B2B Nala)).",
    "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "Frameworks (Live Band)",
+   "performers": [
+    {
+     "name": "Frameworks",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Live Band",
+   "why": "\"Live Band\" names the set's format (the act playing with a live band), not a second act: it is the set tag, and the billing counts on Frameworks.",
+   "source": "https://lightninginabottle.org/lineup/"
+  },
+  {
+   "printed": "Flying Lotus (3D)",
+   "performers": [
+    {
+     "name": "Flying Lotus",
+     "role": "performer"
+    }
+   ],
+   "setTag": "3D",
+   "why": "\"3D\" names the set's format (the act's 3D live show), not a second act: it is the set tag, and the billing counts on Flying Lotus.",
+   "source": "https://lightninginabottle.org/lineup/"
+  },
+  {
+   "printed": "Kate Bollinger (Solo)",
+   "performers": [
+    {
+     "name": "Kate Bollinger",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Solo",
+   "why": "\"Solo\" names the set's format (the act playing alone), not a second act: it is the set tag, and the billing counts on Kate Bollinger.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "Tah Rei (Sunday Revival)",
+   "performers": [
+    {
+     "name": "Tah Rei",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Sunday Revival",
+   "why": "\"Sunday Revival\" names the Sunday programme the set opens, not a second act: it is the set tag, and the billing counts on Tah Rei.",
+   "source": "https://lightninginabottle.org/lineup/"
+  },
+  {
+   "printed": "divaDanielle feat. Annie Dolly",
+   "performers": [
+    {
+     "name": "divaDanielle",
+     "role": "performer"
+    },
+    {
+     "name": "Annie Dolly",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://lightninginabottle.org/lineup/"
+  },
+  {
+   "printed": "Escapade (Walker & Royce + Ardalan)",
+   "performers": [
+    {
+     "name": "Escapade",
+     "role": "project",
+     "parents": [
+      "Walker & Royce",
+      "Ardalan"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name, joined by \"+\" (Walker & Royce is one duo's name): the billed name is a project with them as parents, and it never counts as either billed alone.",
+   "source": "https://lightninginabottle.org/lineup/"
   }
  ],
  "pending": [
@@ -4858,16 +4906,40 @@
    "why": "Left as printed: the page prints no \"aka\", so whether the parenthetical gives the same act's other name or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule); the billing is neither merged nor credited to Shaquille O'Neal."
   },
   {
-   "printed": "Hard French x Brown Amy feat. CarrieOnDisco and Oscar (EW)",
+   "printed": "Hard French x Brown Amy featuring CarrieOnDisco and Oscar (EW)",
    "why": "Left as printed, one act: who is behind the \"x\" is not sourced, and the guests' \"and\" and the \"(EW)\" parenthetical may each be one name or two. Renders as its own billing until a first-party page rules it."
-  },
-  {
-   "printed": "A Family Affair feat. DJ Nico, Digital KitKat & Freaky Emo",
-   "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split. Renders as its own billing until a first-party page rules it."
   },
   {
    "key": "j-i-d",
    "why": "Short name billed at Lollapalooza 2019 and Outside Lands 2023 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+  },
+  {
+   "printed": "Comunit Takeover w/ Itzone, Jonn, Wuuan",
+   "why": "Left as printed: a crew's takeover of the stage with its DJs listed; whether the takeover is one set or three, and who \"Comunit\" names, is not sourced. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Carlo x Ofier",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"x\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "SOULECTION ft Joe Kay, Sasha Marie & Andres",
+   "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split (the A Family Affair rule). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Andres (SOULECTION)",
+   "why": "Left as printed: the parenthetical names the crew the DJ is known from, but \"Andres\" alone could be any act of that name, so the billing is not reduced to it. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "b3k",
+   "why": "Short name billed at Lightning in a Bottle 2019 and HARD Summer 2026 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+  },
+  {
+   "key": "lum",
+   "why": "Short name billed at Lightning in a Bottle 2019 and Day Zero Tulum 2027 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+  },
+  {
+   "key": "tor",
+   "why": "Short name billed at Lightning in a Bottle 2018 and Shambhala 2014 and 2024 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
   }
  ]
 }

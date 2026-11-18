@@ -2702,6 +2702,83 @@
    }
   },
   {
+   "id": "lightning-in-a-bottle-2019",
+   "festivalId": "lightning-in-a-bottle",
+   "festivalName": "Lightning in a Bottle",
+   "name": "Lightning in a Bottle 2019",
+   "year": 2019,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-05-08",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2019-05-09",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2019-05-10",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2019-05-11",
+     "label": "Saturday"
+    },
+    {
+     "day": 5,
+     "date": "2019-05-12",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 216,
+    "sets": 229
+   }
+  },
+  {
+   "id": "lightning-in-a-bottle-2018",
+   "festivalId": "lightning-in-a-bottle",
+   "festivalName": "Lightning in a Bottle",
+   "name": "Lightning in a Bottle 2018",
+   "year": 2018,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-05-24",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2018-05-25",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2018-05-26",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2018-05-27",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 10,
+    "artists": 214,
+    "sets": 224
+   }
+  },
+  {
    "id": "lollapalooza-2025",
    "festivalId": "lollapalooza",
    "festivalName": "Lollapalooza",
@@ -3380,7 +3457,7 @@
    ],
    "counts": {
     "stages": 10,
-    "artists": 138,
+    "artists": 139,
     "sets": 155
    }
   },
@@ -3442,7 +3519,7 @@
    ],
    "counts": {
     "stages": 9,
-    "artists": 114,
+    "artists": 113,
     "sets": 126
    }
   },
@@ -3473,7 +3550,7 @@
    ],
    "counts": {
     "stages": 7,
-    "artists": 113,
+    "artists": 112,
     "sets": 127
    }
   },

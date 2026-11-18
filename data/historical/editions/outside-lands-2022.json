@@ -904,14 +904,6 @@
    ]
   },
   {
-   "id": "outside-lands-2022:forester-dj-set",
-   "name": "Forester (DJ set)",
-   "key": "forester-dj-set",
-   "performers": [
-    "forester-dj-set"
-   ]
-  },
-  {
    "id": "outside-lands-2022:forester",
    "name": "Forester",
    "key": "forester",
@@ -1906,8 +1898,8 @@
    "end": "14:30"
   },
   {
-   "id": "outside-lands-2022:d3:the-music-den-by-toyota:1515:forester-dj-set",
-   "artistId": "outside-lands-2022:forester-dj-set",
+   "id": "outside-lands-2022:d3:the-music-den-by-toyota:1515:forester",
+   "artistId": "outside-lands-2022:forester",
    "day": 3,
    "stageId": "outside-lands-2022:the-music-den-by-toyota",
    "start": "15:15",
@@ -1995,7 +1987,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20220808025839/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20220808025839"
+     "captureTimestamp": "20220808025839",
+     "loads": "https://22-osl.dostff.co/embeds/lineup.js"
     }
    },
    {
@@ -2011,7 +2004,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20220808025839/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20220808025839"
+     "captureTimestamp": "20220808025839",
+     "loads": "https://22-osl.dostff.co/embeds/lineup.js"
     }
    },
    {
@@ -2027,7 +2021,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20220808025839/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20220808025839"
+     "captureTimestamp": "20220808025839",
+     "loads": "https://22-osl.dostff.co/embeds/lineup.js"
     }
    }
   ]

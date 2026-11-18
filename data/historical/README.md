@@ -506,10 +506,10 @@ after it). The kids' stage keeps its printed name each year ("Austin Kiddie
 Limits presented by H-E-B", "HEB-Kids"), kept as music as in 2013, and one
 unnamed "Special Guest" slot there each year is dropped.
 
-Archived Outside Lands lineup widget (2022 to 2025, format `dostuff-embed`):
+Archived DoStuff lineup widgets (Outside Lands 2022 to 2025, Lightning in a Bottle 2018 and 2019, format `dostuff-embed`):
 
     node scripts/historical/gather-dostuff-embed.mjs <edition-id> <gather-dir> <official-url> \
-      <ts> <embed-url> <page-ts> <page-url> [--food <stage>]
+      <ts> <embed-url> <page-ts> <page-url> [--food <stage>] [--programme <stage>]...
     node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
 
 From 2022 the official lineup page (sfoutsidelands.com/lineup/) draws its
@@ -533,6 +533,26 @@ stage, is the food stage as GastroMagic was: its shows are excluded rows, one
 for one with the widget. 2022 has 127 sets on 7 stages (Friday 5 to Sunday 7
 August), 2023 126 on 9, 2024 139 on 9 and 2025 155 on 10. 2018 and 2019 have
 no archived widget of this kind.
+
+When the options print `"show_performance_titles": false` (every capture
+here), the widget draws each set under its act's name and never its title,
+so a set drawn under one act is billed as that act ("Forester", not
+"Forester (DJ set)"), and a set drawn under several acts is billed as its
+title, the festival's one name for the shared set. Two performances with the
+same stage, start, end and billing are one set drawn twice and counted once.
+The edition's days are the run's days the widget prints a set on: the run
+may reach one day past them at either end (a gate day, a last morning) and
+no further.
+
+Lightning in a Bottle 2018 and 2019 come from `lib2018.dostff.co` and
+`lib2019.dostff.co`. Their archived lineup pages (lightninginabottle.org/lineup/)
+and scripts were captured days apart, so each page must be captured within a
+month of its script and its HTML must load that very script (`embeddedBy.loads`
+in the ledger). Its yoga and meditation stages (Yoga Sol in 2018; Yoga Sol,
+Yoga Luna and Meditation Grove in 2019) are programme stages
+(`--programme`): their sessions are excluded rows, one for one with the
+widget. 2018 (Lake San Antonio) has 224 sets on 10 stages, Thursday 24 to
+Sunday 27 May; 2019 (Buena Vista Lake) 229 on 8, Wednesday 8 to Sunday 12 May.
 
 Archived Outside Lands schedule planner (2010 and 2011, format `myscheduler-data`):
 

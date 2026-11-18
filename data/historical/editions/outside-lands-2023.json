@@ -136,7 +136,7 @@
   },
   {
    "id": "outside-lands-2023:la-dona",
-   "name": "La Doña",
+   "name": "La Doña",
    "key": "la-dona",
    "performers": [
     "la-dona"
@@ -856,14 +856,6 @@
    ]
   },
   {
-   "id": "outside-lands-2023:mild-minds-dj-set",
-   "name": "Mild Minds (DJ Set)",
-   "key": "mild-minds-dj-set",
-   "performers": [
-    "mild-minds-dj-set"
-   ]
-  },
-  {
    "id": "outside-lands-2023:wild-child-dj-set",
    "name": "Wild Child (DJ Set)",
    "key": "wild-child-dj-set",
@@ -920,11 +912,11 @@
    ]
   },
   {
-   "id": "outside-lands-2023:a-family-affair-feat-dj-nico-digital-kitkat-and-freaky-emo",
-   "name": "A Family Affair feat. DJ Nico, Digital KitKat & Freaky Emo",
-   "key": "a-family-affair-feat-dj-nico-digital-kitkat-and-freaky-emo",
+   "id": "outside-lands-2023:a-family-affair-featuring-dj-nico-digital-kitkat-and-freaky-emo",
+   "name": "A Family Affair featuring DJ Nico, Digital KitKat & Freaky Emo",
+   "key": "a-family-affair-featuring-dj-nico-digital-kitkat-and-freaky-emo",
    "performers": [
-    "a-family-affair-feat-dj-nico-digital-kitkat-and-freaky-emo"
+    "a-family-affair-featuring-dj-nico-digital-kitkat-and-freaky-emo"
    ]
   },
   {
@@ -968,11 +960,11 @@
    ]
   },
   {
-   "id": "outside-lands-2023:hard-french-x-brown-amy-feat-carrieondisco-and-oscar-ew",
-   "name": "Hard French x Brown Amy feat. CarrieOnDisco and Oscar (EW)",
-   "key": "hard-french-x-brown-amy-feat-carrieondisco-and-oscar-ew",
+   "id": "outside-lands-2023:hard-french-x-brown-amy-featuring-carrieondisco-and-oscar-ew",
+   "name": "Hard French x Brown Amy featuring CarrieOnDisco and Oscar (EW)",
+   "key": "hard-french-x-brown-amy-featuring-carrieondisco-and-oscar-ew",
    "performers": [
-    "hard-french-x-brown-amy-feat-carrieondisco-and-oscar-ew"
+    "hard-french-x-brown-amy-featuring-carrieondisco-and-oscar-ew"
    ]
   }
  ],
@@ -1850,8 +1842,8 @@
    "end": "13:10"
   },
   {
-   "id": "outside-lands-2023:d3:the-music-den-by-toyota:1355:mild-minds-dj-set",
-   "artistId": "outside-lands-2023:mild-minds-dj-set",
+   "id": "outside-lands-2023:d3:the-music-den-by-toyota:1355:mild-minds",
+   "artistId": "outside-lands-2023:mild-minds",
    "day": 3,
    "stageId": "outside-lands-2023:the-music-den-by-toyota",
    "start": "13:55",
@@ -1930,8 +1922,8 @@
    "end": "21:35"
   },
   {
-   "id": "outside-lands-2023:d3:hard-french-dolores:1300:a-family-affair-feat-dj-nico-digital-kitkat-and-freaky-emo",
-   "artistId": "outside-lands-2023:a-family-affair-feat-dj-nico-digital-kitkat-and-freaky-emo",
+   "id": "outside-lands-2023:d3:hard-french-dolores:1300:a-family-affair-featuring-dj-nico-digital-kitkat-and-freaky-emo",
+   "artistId": "outside-lands-2023:a-family-affair-featuring-dj-nico-digital-kitkat-and-freaky-emo",
    "day": 3,
    "stageId": "outside-lands-2023:hard-french-dolores",
    "start": "13:00",
@@ -1978,8 +1970,8 @@
    "end": "18:20"
   },
   {
-   "id": "outside-lands-2023:d3:hard-french-dolores:1820:hard-french-x-brown-amy-feat-carrieondisco-and-oscar-ew",
-   "artistId": "outside-lands-2023:hard-french-x-brown-amy-feat-carrieondisco-and-oscar-ew",
+   "id": "outside-lands-2023:d3:hard-french-dolores:1820:hard-french-x-brown-amy-featuring-carrieondisco-and-oscar-ew",
+   "artistId": "outside-lands-2023:hard-french-x-brown-amy-featuring-carrieondisco-and-oscar-ew",
    "day": 3,
    "stageId": "outside-lands-2023:hard-french-dolores",
    "start": "18:20",
@@ -2003,7 +1995,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20230814134823/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20230814134823"
+     "captureTimestamp": "20230814134823",
+     "loads": "https://osl23fest.dostff.co/embeds/lineup.js"
     }
    },
    {
@@ -2019,7 +2012,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20230814134823/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20230814134823"
+     "captureTimestamp": "20230814134823",
+     "loads": "https://osl23fest.dostff.co/embeds/lineup.js"
     }
    },
    {
@@ -2035,7 +2029,8 @@
     "embeddedBy": {
      "url": "https://sfoutsidelands.com/lineup/",
      "archivedUrl": "https://web.archive.org/web/20230814134823/https://sfoutsidelands.com/lineup/",
-     "captureTimestamp": "20230814134823"
+     "captureTimestamp": "20230814134823",
+     "loads": "https://osl23fest.dostff.co/embeds/lineup.js"
     }
    }
   ]

@@ -1,7 +1,8 @@
 // dostuff-embed-schedule.mjs — read an official festival lineup widget's
 // embed script (format "dostuff-embed"): https://<site>.dostff.co/embeds/lineup.js,
 // the script the festival's own lineup page loads into its <div id="ds-fest">
-// (Outside Lands 2022-2025, sfoutsidelands.com/lineup/).
+// (Outside Lands 2022-2025, sfoutsidelands.com/lineup/; Lightning in a
+// Bottle 2018-2019, lightninginabottle.org/lineup/).
 //
 // The script sets `window._fest_options = {…}` on one line: the festival's
 // name, its first and last day (start_date, end_date), its time zone, and the
@@ -14,6 +15,12 @@
 //
 // A performance shared by two artists (a b2b set, a feature) appears under
 // each of them with the same id; it is one set, billed as its own `name`.
+// When the options print `"show_performance_titles": false` (Lightning in a
+// Bottle 2019), the widget draws each set under its act's name and never its
+// title, so the set is billed as that act (Outside Lands 2022-2025 and
+// Lightning in a Bottle 2019); a set drawn under several acts is billed as
+// its title, the festival's one name for the shared set. Two performances
+// with the same stage, start, end and billing are one set drawn twice.
 // Every start and end carries its UTC offset, which must be the festival's
 // time zone's offset at that instant, so the clock time is the printed one.
 // The day is the start's local date (before `rolloverHour`, the night of the
@@ -23,6 +30,29 @@
 // no start, end or stage, an end not after its start, one id carrying two
 // different sets, a wrong offset, a day outside the run, two sets on one
 // stage at once.
+
+// The official lineup page that loads each festival's widget, and how far
+// apart the page's capture and the script's may be (seconds, script minus
+// page). Outside Lands' pages were captured seconds before their scripts.
+// Lightning in a Bottle's script hosts are one per year (lib2018.dostff.co),
+// and its archived pages and scripts are days apart, so the page must have
+// been captured within a month of the script and load that very script.
+export const EMBED_PAGES = {
+  "outside-lands": { page: /^https?:\/\/(www\.)?sfoutsidelands\.com\/lineup\/$/, minGap: 0, maxGap: 120, label: "captured seconds before the script" },
+  "lightning-in-a-bottle": { page: /^https?:\/\/(www\.)?lightninginabottle\.org\/lineup\/$/, minGap: -31 * 86400, maxGap: 31 * 86400, label: "captured within a month of the script" },
+};
+const tsSec = ts => /^\d{14}$/.test(ts || "") ? Date.parse(ts.replace(/(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)/, "$1-$2-$3T$4:$5:$6Z")) / 1000 : NaN;
+// Whether `embeddedBy` (an archived page) is the festival's official lineup
+// page captured close enough to the script's capture `ts`.
+export function embedPageOk(festivalId, ts, embeddedBy) {
+  const rule = EMBED_PAGES[festivalId], eb = embeddedBy || {}, gap = tsSec(ts) - tsSec(eb.captureTimestamp);
+  return !!rule && rule.page.test(eb.url || "") && gap >= rule.minGap && gap <= rule.maxGap;
+}
+// Whether a page's HTML loads the script at `scriptUrl` (its own <script src>).
+export function pageLoadsScript(html, scriptUrl) {
+  const bare = String(scriptUrl).replace(/^https?:/, "");
+  return [...String(html).matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)].some(m => m[1].replace(/^https?:/, "") === bare);
+}
 
 const ISO = /^(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2}):00(?:\.000)?([+-]\d{2}:\d{2})$/;
 
@@ -68,9 +98,12 @@ export function parseDoStuffEmbed(text, { rolloverHour = 6 } = {}) {
       (billedUnder.get(p.id) || billedUnder.set(p.id, new Set()).get(p.id)).add(String(a.name).trim());
     }
   }
-  const sets = [];
+  const byAct = o.show_performance_titles === false, sets = [], drawnTwice = [];
   for (const p of byId.values()) {
-    const s = ISO.exec(p.start || ""), e = ISO.exec(p.end || ""), billing = String(p.name || "").trim(), stage = String(p.stage || "").trim();
+    const under = [...billedUnder.get(p.id)], title = String(p.name || "").trim();
+    let billing = title;
+    if (byAct && under.length === 1) billing = under[0];
+    const s = ISO.exec(p.start || ""), e = ISO.exec(p.end || ""), stage = String(p.stage || "").trim();
     if (!s || !e) throw new Error(`dostuff-embed: performance ${p.id} (${billing}) prints "${p.start}" to "${p.end}", not two times with their offsets`);
     if (!billing || !stage) throw new Error(`dostuff-embed: performance ${p.id} has no name or no stage`);
     for (const [x, iso] of [[s, p.start], [e, p.end]])
@@ -79,8 +112,11 @@ export function parseDoStuffEmbed(text, { rolloverHour = 6 } = {}) {
     if (Date.parse(p.end) - Date.parse(p.start) > 12 * 36e5) throw new Error(`dostuff-embed: ${billing} runs over twelve hours`);
     const date = +s[2] < rolloverHour ? nextDate(s[1], -1) : s[1];
     if (!run.includes(date)) throw new Error(`dostuff-embed: ${billing} starts ${p.start}, on ${date}, outside the run ${startDate} to ${endDate}`);
-    sets.push({ id: p.id, date, stage, start: `${s[2]}:${s[3]}`, end: `${e[2]}:${e[3]}`, artist: billing,
-      billedUnder: [...billedUnder.get(p.id)].sort(), startIso: p.start, endIso: p.end });
+    const set = { id: p.id, date, stage, start: `${s[2]}:${s[3]}`, end: `${e[2]}:${e[3]}`, artist: billing,
+      billedUnder: under.sort(), startIso: p.start, endIso: p.end, ...(billing !== title && { title }) };
+    const twin = sets.find(x => x.stage === stage && x.startIso === p.start && x.endIso === p.end && x.artist === billing);
+    if (twin) { drawnTwice.push(set); continue; }
+    sets.push(set);
   }
   sets.sort((a, b) => a.date.localeCompare(b.date) || a.stage.localeCompare(b.stage) || a.startIso.localeCompare(b.startIso));
   for (let i = 1; i < sets.length; i++) {
@@ -88,6 +124,9 @@ export function parseDoStuffEmbed(text, { rolloverHour = 6 } = {}) {
     if (a.stage === b.stage && Date.parse(b.startIso) < Date.parse(a.endIso)) throw new Error(`dostuff-embed: ${a.artist} and ${b.artist} overlap on ${a.stage}`);
   }
   const days = run.map(date => ({ date, sets: sets.filter(x => x.date === date) }));
-  return { name, startDate, endDate, run, timezone, grouping: g.name, lineups: g.lineups.map(l => l.name),
-    artists, performances: sets.length, stages: [...new Set(sets.map(x => x.stage))], days, sets };
+  return { name, startDate, endDate, run, timezone, grouping: g.name, lineups: g.lineups.map(l => l.name), byAct,
+    artists, performances: sets.length, stages: [...new Set(sets.map(x => x.stage))], days, sets, drawnTwice,
+    // The run's days the widget prints a set on (a gate day before the music,
+    // or a last morning after it, prints none).
+    setDays: days.filter(d => d.sets.length).map(d => d.date) };
 }

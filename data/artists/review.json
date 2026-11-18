@@ -469,6 +469,34 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "lightning-in-a-bottle-2018:d4:crossroads:2130:comunit-takeover-w-itzone-jonn-wuuan",
+  "printed": "Comunit Takeover w/ Itzone, Jonn, Wuuan",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: a crew's takeover of the stage with its DJs listed; whether the takeover is one set or three, and who \"Comunit\" names, is not sourced. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lightning-in-a-bottle-2019:d3:grand-artique:0115:carlo-x-ofier",
+  "printed": "Carlo x Ofier",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"x\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lightning-in-a-bottle-2019:d3:thunder:2025:soulection-ft-joe-kay-sasha-marie-and-andres",
+  "printed": "SOULECTION ft Joe Kay, Sasha Marie & Andres",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split (the A Family Affair rule). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lightning-in-a-bottle-2019:d4:beacon:0245:andres-soulection",
+  "printed": "Andres (SOULECTION)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical names the crew the DJ is known from, but \"Andres\" alone could be any act of that name, so the billing is not reduced to it. Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "lollapalooza-2012:d3:bud-light:1815:florence-the-machine",
   "printed": "Florence + The Machine",
   "reason": "\"+\" billing",
@@ -546,15 +574,8 @@
   "why": "Left as printed: the page prints no \"aka\", so whether the parenthetical gives the same act's other name or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule); the billing is neither merged nor credited to Shaquille O'Neal."
  },
  {
-  "id": "outside-lands-2023:d3:hard-french-dolores:1300:a-family-affair-feat-dj-nico-digital-kitkat-and-freaky-emo",
-  "printed": "A Family Affair feat. DJ Nico, Digital KitKat & Freaky Emo",
-  "reason": "feat / with billing",
-  "pending": true,
-  "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split. Renders as its own billing until a first-party page rules it."
- },
- {
-  "id": "outside-lands-2023:d3:hard-french-dolores:1820:hard-french-x-brown-amy-feat-carrieondisco-and-oscar-ew",
-  "printed": "Hard French x Brown Amy feat. CarrieOnDisco and Oscar (EW)",
+  "id": "outside-lands-2023:d3:hard-french-dolores:1820:hard-french-x-brown-amy-featuring-carrieondisco-and-oscar-ew",
+  "printed": "Hard French x Brown Amy featuring CarrieOnDisco and Oscar (EW)",
   "reason": "parenthetical is not a known set tag",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"x\" is not sourced, and the guests' \"and\" and the \"(EW)\" parenthetical may each be one name or two. Renders as its own billing until a first-party page rules it."
@@ -924,6 +945,13 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:b3k",
+  "printed": "B3K",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Lightning in a Bottle 2019 and HARD Summer 2026 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
   "id": "key:k-d",
   "printed": "k?d",
   "reason": "very short name billed at more than one festival brand",
@@ -964,6 +992,13 @@
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:lum",
+  "printed": "LUM",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Lightning in a Bottle 2019 and Day Zero Tulum 2027 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  },
  {
   "id": "key:sza",
@@ -1209,6 +1244,13 @@
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:tor",
+  "printed": "Tor",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Lightning in a Bottle 2018 and Shambhala 2014 and 2024 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  },
  {
   "id": "key:wet",

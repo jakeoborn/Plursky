@@ -150,8 +150,15 @@ const out = build();
   // Diesel (Shaquille O'Neal) (no "aka"), an "x" billing with an unsettled
   // guest list, a feat. list whose "&" may be one act or two, and the short
   // name J.I.D (Lollapalooza 2019 and Outside Lands 2023): 177 rows, raised
-  // here and reported in that pull request. Past 177, stop and report.
-  check(review.length <= 177, `review queue is ${review.length} rows (> 177 means stop and report)`);
+  // here and reported in that pull request. Outside Lands' widget hides set
+  // titles, so its feat. list is now billed as the act's own name ("A Family
+  // Affair featuring ...", no longer a review row, 176), and Lightning in a
+  // Bottle 2018-2019 adds seven pending rows: a crew takeover listing its DJs,
+  // an "x" billing (Carlo x Ofier), a feat. list whose "&" may be one act or
+  // two (SOULECTION ft ...), Andres (SOULECTION) (a short name the crew tag
+  // cannot settle), and three short names billed at other brands (B3K, LUM,
+  // Tor): 183 rows. Past 183, stop and report.
+  check(review.length <= 183, `review queue is ${review.length} rows (> 183 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

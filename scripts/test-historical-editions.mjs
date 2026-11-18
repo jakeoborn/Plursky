@@ -39,7 +39,7 @@ import { parseLollaLineup, cardDate as lollaCardDate } from "./historical/lolla-
 import { parseTmlDrupal, titleDate as tmlTitleDate } from "./historical/tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, datesFromPost as shambhalaRun, readDatesPost } from "./historical/shambhala-webflow-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
-import { parseDoStuffEmbed } from "./historical/dostuff-embed-schedule.mjs";
+import { parseDoStuffEmbed, embedPageOk, pageLoadsScript } from "./historical/dostuff-embed-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -172,18 +172,29 @@ if (base && edc) {
     mustFail("a Lollapalooza 2018 card day whose weekday is not its date", m => { lcCap(m).printed = "Sun 8/04"; }, lo18);
     mustFail("a Lollapalooza 2018 page read off another site", m => { const c = lcCap(m); c.archivedUrl = c.archivedUrl.replace("www.lollapalooza.com", "www.lollapaloozafans.com"); }, lo18);
   }
-  // Outside Lands 2022-2025: the official lineup widget's script prints each
-  // set's whole date; the day is inside the run its options print, and the
-  // official lineup page that loads it was captured moments before.
+  // Outside Lands 2022-2025 and Lightning in a Bottle 2018-2019: the official
+  // lineup widget's script prints each set's whole date; the day is inside
+  // the run its options print (a gate day at either end at most), and the
+  // official lineup page that loads it was captured close to it (Outside
+  // Lands: moments before; Lightning in a Bottle: within a month).
   const osl23 = editions["outside-lands-2023"];
   if (osl23) {
     const deCap = m => m.provenance.captures.find(c => c.format === "dostuff-embed" && c.day === 2);
     mustFail("an Outside Lands widget day printed for another day", m => { deCap(m).printed = "2023-08-13"; }, osl23);
-    mustFail("an Outside Lands widget run that is not the edition's", m => { deCap(m).run = "2023-08-11 to 2023-08-14"; }, osl23);
+    mustFail("an Outside Lands widget run that leaves out a day of the edition", m => { deCap(m).run = "2023-08-12 to 2023-08-13"; }, osl23);
+    mustFail("an Outside Lands widget run two days past the edition", m => { deCap(m).run = "2023-08-11 to 2023-08-15"; }, osl23);
     mustFail("an Outside Lands widget read off another site", m => { const c = deCap(m); c.archivedUrl = c.archivedUrl.replace("osl23fest.dostff.co", "oslfans.dostff.co"); }, osl23);
     mustFail("an Outside Lands widget embedded by another site's page", m => { deCap(m).embeddedBy.url = "https://www.oslfans.com/lineup/"; }, osl23);
     mustFail("an Outside Lands widget whose page was captured an hour before", m => { deCap(m).embeddedBy.captureTimestamp = "20230814124823"; }, osl23);
     mustFail("an Outside Lands widget captured before its page", m => { deCap(m).embeddedBy.captureTimestamp = "20230814134830"; }, osl23);
+  }
+  const lib18 = editions["lightning-in-a-bottle-2018"];
+  if (lib18) {
+    const libCap = m => m.provenance.captures.find(c => c.format === "dostuff-embed" && c.day === 1);
+    mustFail("a Lightning in a Bottle widget day printed for another day", m => { libCap(m).printed = "2018-05-23"; }, lib18);
+    mustFail("a Lightning in a Bottle widget whose page was captured two months away", m => { libCap(m).embeddedBy.captureTimestamp = "20180904142540"; }, lib18);
+    mustFail("a Lightning in a Bottle widget embedded by another festival's page", m => { libCap(m).embeddedBy.url = "https://sfoutsidelands.com/lineup/"; }, lib18);
+    mustFail("a Lightning in a Bottle widget read off another site", m => { const c = libCap(m); c.archivedUrl = c.archivedUrl.replace("lib2018.dostff.co", "libfans.dostff.co"); }, lib18);
   }
   const lolla = editions["lollapalooza-2025"], acl = editions["acl-2025"];
   if (lolla && acl) {
@@ -863,6 +874,29 @@ if (base && edc) {
     deMust("an Outside Lands set with no name", deScript({ artists: deWith(0, () => ({ name: " " })) }));
     deMust("one Outside Lands id drawn as two sets", deScript({ artists: deWith(2, () => ({ stage: "Sutro" })) }));
     deMust("two Outside Lands sets overlapping on one stage", deScript({ artists: deWith(3, () => ({ start: "2023-08-11T21:00:00.000-07:00", end: "2023-08-11T22:00:00.000-07:00" })) }));
+    // With set titles hidden (show_performance_titles false: Outside Lands
+    // 2022-2025, Lightning in a Bottle 2019) a set is billed as the act it is
+    // drawn under; a shared set keeps its title; a second performance in the
+    // very same slot with the same billing is one set drawn twice, and a gate
+    // day with no set is not a day the widget prints sets on.
+    const deAct = [{ name: "Headliner", performances: [dePerf(1, "11T20:40", "11T21:55", "Lands End", "Headliner (Special Set)")] },
+      { name: "B", performances: [dePerf(2, "12T01:00", "12T02:00", "SOMA", "B b2b C")] }, { name: "C", performances: [dePerf(2, "12T01:00", "12T02:00", "SOMA", "B b2b C")] },
+      { name: "Late", performances: [dePerf(4, "11T23:00", "12T00:00", "SOMA", "Surprise"), dePerf(5, "11T23:00", "12T00:00", "SOMA", "Late")] }];
+    const dea = parseDoStuffEmbed(deScript({ artists: deAct, show_performance_titles: false, end_date: "2023-08-13" }));
+    ok(JSON.stringify([dea.byAct, dea.setDays, dea.sets.map(x => x.artist), dea.drawnTwice.map(x => x.artist)])
+      === JSON.stringify([true, ["2023-08-11"], ["Headliner", "Late", "B b2b C"], ["Late"]]),
+      `a widget with set titles hidden must bill each set as its act, a shared set as its title, one slot drawn twice once: ${JSON.stringify([dea.byAct, dea.setDays, dea.sets.map(x => x.artist), dea.drawnTwice.map(x => x.artist)])}`);
+    ok(parseDoStuffEmbed(deScript({ artists: deAct.slice(0, 3) })).sets.some(x => x.artist === "Headliner (Special Set)"), "a widget that shows set titles must bill each set as its title");
+    deMust("a widget with titles shown and two sets in one slot", deScript({ artists: deAct }));
+    const dePage = `<div id="ds-fest"></div>\n<script src="https://lib2019.dostff.co/embeds/lineup.js"></script>`;
+    ok(pageLoadsScript(dePage, "https://lib2019.dostff.co/embeds/lineup.js") && !pageLoadsScript(dePage, "https://lib2018.dostff.co/embeds/lineup.js")
+      && !pageLoadsScript(`<a href="https://lib2019.dostff.co/embeds/lineup.js">`, "https://lib2019.dostff.co/embeds/lineup.js"), "a lineup page must load the widget's own script, by its <script src>");
+    ok(embedPageOk("lightning-in-a-bottle", "20181121121544", { url: "https://lightninginabottle.org/lineup/", captureTimestamp: "20181104142540" })
+      && !embedPageOk("lightning-in-a-bottle", "20181121121544", { url: "https://lightninginabottle.org/lineup/", captureTimestamp: "20180904142540" })
+      && !embedPageOk("lightning-in-a-bottle", "20181121121544", { url: "https://sfoutsidelands.com/lineup/", captureTimestamp: "20181121121540" })
+      && !embedPageOk("outside-lands", "20230814134825", { url: "https://sfoutsidelands.com/lineup/", captureTimestamp: "20230813134825" })
+      && !embedPageOk("coachella", "20230814134825", { url: "https://www.coachella.com/lineup/", captureTimestamp: "20230814134820" }),
+      "a widget's lineup page must be its own festival's, captured within that festival's window of the script");
     // EDC Las Vegas's 2012 and 2013 music pages: one page prints every day by
     // stage, each day's heading with no year; a time before noon is the night.
     const im12Day = (cls, label, acts, host = "") => `<div class="lineup-day ${cls}"><h2>${label}</h2><div class="inner">${host}`
@@ -1228,7 +1262,6 @@ for (const id of Object.keys(editions)) {
 }
 
 // ── dates come from the page, not from editions.mjs alone ──
-const deSeconds = ts => /^\d{14}$/.test(ts || "") ? Date.parse(ts.replace(/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/, "$1-$2-$3T$4:$5:$6Z")) / 1000 : NaN;
 const MONTH = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
 // Numeric headers (Dreamstate's "FRI 11.17.23") read through the same
 // graphicPrints as named ones; a printed year must be the edition's.
@@ -1316,14 +1349,17 @@ for (const [id, e] of Object.entries(editions)) {
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (year from ${s.yearFrom}, Las Vegas from ${s.place}), not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
-        // Outside Lands' 2022-2025 lineup widget prints each set's whole date,
-        // inside the run its options print, from a dostff.co script that the
-        // official lineup page loaded (captured up to two minutes before).
+        // The official lineup widget (Outside Lands 2022-2025, Lightning in a
+        // Bottle 2018-2019) prints each set's whole date, inside the run its
+        // options print (a gate day at either end at most), from a dostff.co
+        // script that the festival's own lineup page loaded, captured within
+        // that festival's window of the script (EMBED_PAGES).
         if (s.format === "dostuff-embed") {
-          const eb = s.embeddedBy || {}, gap = deSeconds(s.captureTimestamp) - deSeconds(eb.captureTimestamp);
-          ok(s.printed === d.date && s.run === `${e.days[0].date} to ${e.days.at(-1).date}`
+          const eb = s.embeddedBy || {}, run = /^(\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})$/.exec(s.run || "");
+          const span = (a, b) => (Date.parse(b + "T12:00:00Z") - Date.parse(a + "T12:00:00Z")) / 864e5;
+          ok(s.printed === d.date && run && span(run[1], e.days[0].date) >= 0 && span(run[1], e.days[0].date) <= 1 && span(e.days.at(-1).date, run[2]) >= 0 && span(e.days.at(-1).date, run[2]) <= 1
             && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/[a-z0-9-]+\.dostff\.co\/embeds\/lineup\.js$/.test(s.archivedUrl || "")
-            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?sfoutsidelands\.com\/lineup\/$/.test(eb.archivedUrl || "") && gap >= 0 && gap <= 120,
+            && eb.archivedUrl === `https://web.archive.org/web/${eb.captureTimestamp}/${eb.url}` && embedPageOk(e.festivalId, s.captureTimestamp, eb),
             `${id} day ${d.day}: widget ${s.captureTimestamp} prints "${s.printed}" (run "${s.run}") at ${s.archivedUrl}, loaded by ${eb.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }

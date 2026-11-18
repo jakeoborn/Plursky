@@ -63,6 +63,20 @@ export const EDITIONS = {
   "outside-lands-2023": { festivalId: "outside-lands", name: "Outside Lands 2023", year: 2023, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2023-08-11","Friday"],["2023-08-12","Saturday"],["2023-08-13","Sunday"]] },
   "outside-lands-2024": { festivalId: "outside-lands", name: "Outside Lands 2024", year: 2024, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2024-08-09","Friday"],["2024-08-10","Saturday"],["2024-08-11","Sunday"]] },
   "outside-lands-2025": { festivalId: "outside-lands", name: "Outside Lands 2025", year: 2025, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2025-08-08","Friday"],["2025-08-09","Saturday"],["2025-08-10","Sunday"]] },
+  // Lightning in a Bottle 2018 (Lake San Antonio) and 2019 (Buena Vista
+  // Lake, the festival's own homepage for each year): the official lineup
+  // page (lightninginabottle.org/lineup/) loads the same DoStuff widget
+  // (format "dostuff-embed"), one script host per year (lib2018.dostff.co,
+  // lib2019.dostff.co), each captured after the festival. The widget's run
+  // includes gate days with no music (2018's Wednesday arrival day), so the
+  // edition's days are the run's days it prints sets on. 2019's Wednesday
+  // carries one late set (YoHm at Beacon). Its options hide set titles, so
+  // each 2019 set is billed as the act it is drawn under. The yoga and
+  // meditation stages hold classes and are excluded rows.
+  "lightning-in-a-bottle-2018": { festivalId: "lightning-in-a-bottle", name: "Lightning in a Bottle 2018", year: 2018, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2018-05-24", "Thursday"], ["2018-05-25", "Friday"], ["2018-05-26", "Saturday"], ["2018-05-27", "Sunday"]] },
+  "lightning-in-a-bottle-2019": { festivalId: "lightning-in-a-bottle", name: "Lightning in a Bottle 2019", year: 2019, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2019-05-08", "Wednesday"], ["2019-05-09", "Thursday"], ["2019-05-10", "Friday"], ["2019-05-11", "Saturday"], ["2019-05-12", "Sunday"]] },
   // Governors Ball 2011-2012: the official governorsballmusicfestival.com
   // schedule page (/lineup/schedule/, a WordPress template, format
   // "govball-wp", govball-wp-schedule.mjs), one archived page per year, each
