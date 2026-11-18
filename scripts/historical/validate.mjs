@@ -6,6 +6,7 @@ import { EDITIONS, KEPT_STAGES, PRINTED_LONG_SETS, PRINTED_NON_LATIN, dropReason
 import { printedDate as govBallDate } from "./govball-wp-schedule.mjs";
 import { tabDate as primaveraDate } from "./primavera-horarios-schedule.mjs";
 import { tabRun as primaveraRun } from "./primavera-completos-schedule.mjs";
+import { tabDate as szigetDate } from "./sziget-days-schedule.mjs";
 import { cardDate as lollaCardDate } from "./lolla-lineup.mjs";
 import { printedDate as insomniacDate } from "./insomniac-music-schedule.mjs";
 import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
@@ -62,6 +63,9 @@ export const OFFICIAL_HOSTS = {
   // sonar.es: Sónar Barcelona's own site; each year's timetable lives at
   // /en/<year>/schedules.
   "sonar": ["sonar.es"],
+  // sziget.hu: the festival's own site through 2013 (its English programme
+  // lived at /festival_english/programs); szigetfestival.com is its site today.
+  "sziget": ["sziget.hu", "szigetfestival.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -472,6 +476,14 @@ function officialSources(e, meta, p) {
         // "Friday May 29"); its weekday must fall on that date in the year.
         if (primaveraDate(c.printed, e.year) !== date || !(c.tabs || []).includes(c.printed) || !/Parc del Fòrum/.test(c.heading || ""))
           p.push(`${tag}: the page's day tab "${c.printed}" (heading "${c.heading}") does not print ${date} at Parc del Fòrum`);
+      } else if (c.format === "sziget-days") {
+        // Sziget's day programme prints each day as a tab with no year
+        // ("August 14. Saturday"); its weekday must fall on that date in the
+        // year, the tab must be one of the page's own, and the page must be
+        // the English programme's day page for that date.
+        if (szigetDate(c.printed, e.year) !== date || !(c.tabs || []).includes(c.printed)
+          || !new RegExp(`/festival_english/programs/-/days\\?day=${date}&`).test(c.archivedUrl || ""))
+          p.push(`${tag}: the page's day tab "${c.printed}" at ${c.archivedUrl} does not print ${date}`);
       } else if (c.format === "sonar-calendar") {
         // Sónar's timetable heads each of a day's sessions with the weekday
         // and the day of the month ("Friday 19 | Sónar by Day"), no year; the

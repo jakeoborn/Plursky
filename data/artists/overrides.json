@@ -5072,6 +5072,1885 @@
    "setTag": "A/V set",
    "why": "The printing bills the first name and adds the rest with \"feat.\" / \"ft.\": the first name is the performer, each added name is credited as a guest on the same set. \"A/V set\" is the set tag.",
    "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Gwar (US)",
+   "performers": [
+    {
+     "name": "Gwar",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Toy Dolls (UK)",
+   "performers": [
+    {
+     "name": "The Toy Dolls",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Ska-P (ES)",
+   "performers": [
+    {
+     "name": "Ska-P",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Hives (S)",
+   "performers": [
+    {
+     "name": "The Hives",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Madness (UK)",
+   "performers": [
+    {
+     "name": "Madness",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Cankisou (CZ)",
+   "performers": [
+    {
+     "name": "Cankisou",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Csík Zenekar (H)",
+   "performers": [
+    {
+     "name": "Csík Zenekar",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Amparo Sanchez (E)",
+   "performers": [
+    {
+     "name": "Amparo Sanchez",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Orquesta Buena Vista Social Club® és Omara Portuondo (CUB)",
+   "performers": [
+    {
+     "name": "Orquesta Buena Vista Social Club",
+     "role": "cobilled"
+    },
+    {
+     "name": "Omara Portuondo",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name. The printing joins two acts with \"és\" (Hungarian for \"and\"): each is credited as co-billed on the same set. The \"®\" after the orchestra's name is a trademark mark, not part of the name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Ill Niño (USA)",
+   "performers": [
+    {
+     "name": "Ill Niño",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Children of Bodom (FIN)",
+   "performers": [
+    {
+     "name": "Children of Bodom",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Picturebooks (D)",
+   "performers": [
+    {
+     "name": "The Picturebooks",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Inspector Cluzo (FR)",
+   "performers": [
+    {
+     "name": "Inspector Cluzo",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Peaches (D)",
+   "performers": [
+    {
+     "name": "Peaches",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Bad Religion (USA)",
+   "performers": [
+    {
+     "name": "Bad Religion",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "DJ Shadow (USA )",
+   "performers": [
+    {
+     "name": "DJ Shadow",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Andy Moor (UK)",
+   "performers": [
+    {
+     "name": "Andy Moor",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Sander van Doorn (NL)",
+   "performers": [
+    {
+     "name": "Sander van Doorn",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "K.I.Z. (D)",
+   "performers": [
+    {
+     "name": "K.I.Z.",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Young Punx (UK)",
+   "performers": [
+    {
+     "name": "Young Punx",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Public Image Ltd. (UK)",
+   "performers": [
+    {
+     "name": "Public Image Ltd.",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Specials (UK)",
+   "performers": [
+    {
+     "name": "The Specials",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Faithless (UK)",
+   "performers": [
+    {
+     "name": "Faithless",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Kries (CRO)",
+   "performers": [
+    {
+     "name": "Kries",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Besh o droM (H)",
+   "performers": [
+    {
+     "name": "Besh o droM",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Dirtmusic és Tamikrest (Mali, USA, AUS)",
+   "performers": [
+    {
+     "name": "Dirtmusic",
+     "role": "cobilled"
+    },
+    {
+     "name": "Tamikrest",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name. The printing joins two acts with \"és\" (Hungarian for \"and\"): each is credited as co-billed on the same set.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Tony Allen (NIG)",
+   "performers": [
+    {
+     "name": "Tony Allen",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Drums are for Parades (B)",
+   "performers": [
+    {
+     "name": "Drums are for Parades",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Skindred (UK)",
+   "performers": [
+    {
+     "name": "Skindred",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The 69 Eyes (FIN)",
+   "performers": [
+    {
+     "name": "The 69 Eyes",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Foreign Beggars (UK)",
+   "performers": [
+    {
+     "name": "Foreign Beggars",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Black Box Revelation (B)",
+   "performers": [
+    {
+     "name": "Black Box Revelation",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Qualitons feat Kovács Kati",
+   "performers": [
+    {
+     "name": "Qualitons",
+     "role": "performer"
+    },
+    {
+     "name": "Kovács Kati",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "C-Mon & Kypski (NL)",
+   "performers": [
+    {
+     "name": "C-Mon & Kypski",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Gorillaz Sound System (UK)",
+   "performers": [
+    {
+     "name": "Gorillaz Sound System",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Simian Mobile Disco Live (UK)",
+   "performers": [
+    {
+     "name": "Simian Mobile Disco",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Live",
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name. \"Live\" is the set tag.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Boys Noize vs. Erol Alkan (D)",
+   "performers": [
+    {
+     "name": "Boys Noize",
+     "role": "cobilled"
+    },
+    {
+     "name": "Erol Alkan",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name. The printing sets two acts against each other with \"vs.\": each side is credited as co-billed on the same set.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Lyapis Trubetskoy (BY)",
+   "performers": [
+    {
+     "name": "Lyapis Trubetskoy",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Papa Roach (USA)",
+   "performers": [
+    {
+     "name": "Papa Roach",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Gentleman and the Evolution (D)",
+   "performers": [
+    {
+     "name": "Gentleman and the Evolution",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Mika (UK)",
+   "performers": [
+    {
+     "name": "Mika",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Thirty Seconds to Mars (USA)",
+   "performers": [
+    {
+     "name": "Thirty Seconds to Mars",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Daniel Kahn & The Painted Bird (USA)",
+   "performers": [
+    {
+     "name": "Daniel Kahn & The Painted Bird",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Söndörgő + Ferus Mustafov (H, MAC)",
+   "performers": [
+    {
+     "name": "Söndörgő",
+     "role": "cobilled"
+    },
+    {
+     "name": "Ferus Mustafov",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name. The printing joins two acts with \"+\": each is credited as co-billed on the same set.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Rotfront (D, H, UKR)",
+   "performers": [
+    {
+     "name": "Rotfront",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Oi Va Voi (UK)",
+   "performers": [
+    {
+     "name": "Oi Va Voi",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Overdrive (SRB)",
+   "performers": [
+    {
+     "name": "Overdrive",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Enter Shikari (UK)",
+   "performers": [
+    {
+     "name": "Enter Shikari",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Paradise Lost (UK)",
+   "performers": [
+    {
+     "name": "Paradise Lost",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Antitela (UKR)",
+   "performers": [
+    {
+     "name": "Antitela",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "zZz (NL)",
+   "performers": [
+    {
+     "name": "zZz",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Vive la Féte (B)",
+   "performers": [
+    {
+     "name": "Vive la Féte",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Charlie Winston (UK)",
+   "performers": [
+    {
+     "name": "Charlie Winston",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Erik Sumo Band feat. Kiss Erzsi",
+   "performers": [
+    {
+     "name": "Erik Sumo Band",
+     "role": "performer"
+    },
+    {
+     "name": "Kiss Erzsi",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Gotan Project (F)",
+   "performers": [
+    {
+     "name": "Gotan Project",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Adam Beyer (S)",
+   "performers": [
+    {
+     "name": "Adam Beyer",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Joel Mull (S)",
+   "performers": [
+    {
+     "name": "Joel Mull",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Subsonica (I)",
+   "performers": [
+    {
+     "name": "Subsonica",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Cribs (UK)",
+   "performers": [
+    {
+     "name": "The Cribs",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Tankcsapda (H)",
+   "performers": [
+    {
+     "name": "Tankcsapda",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Iron Maiden (UK)",
+   "performers": [
+    {
+     "name": "Iron Maiden",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Jaune Toujours (B)",
+   "performers": [
+    {
+     "name": "Jaune Toujours",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Rupa & the April Fishes (USA)",
+   "performers": [
+    {
+     "name": "Rupa & the April Fishes",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Los De Abajo (MEX)",
+   "performers": [
+    {
+     "name": "Los De Abajo",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Kamelot (USA)",
+   "performers": [
+    {
+     "name": "Kamelot",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Wildbirds & Peacedrums (S)",
+   "performers": [
+    {
+     "name": "Wildbirds & Peacedrums",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Ez3kiel (F)",
+   "performers": [
+    {
+     "name": "Ez3kiel",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Nina Hagen (D)",
+   "performers": [
+    {
+     "name": "Nina Hagen",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Calvin Harris (UK)",
+   "performers": [
+    {
+     "name": "Calvin Harris",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Infected Mushroom (ISR)",
+   "performers": [
+    {
+     "name": "Infected Mushroom",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Danko Jones (CAN)",
+   "performers": [
+    {
+     "name": "Danko Jones",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Billy Talent (CAN)",
+   "performers": [
+    {
+     "name": "Billy Talent",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Kasabian (UK)",
+   "performers": [
+    {
+     "name": "Kasabian",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Muse (UK)",
+   "performers": [
+    {
+     "name": "Muse",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Mahala Rai Banda (ROM)",
+   "performers": [
+    {
+     "name": "Mahala Rai Banda",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Parno Graszt (H)",
+   "performers": [
+    {
+     "name": "Parno Graszt",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "O8OO1 (E)",
+   "performers": [
+    {
+     "name": "O8OO1",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Shantel & Bucovina Club Orkestar (D)",
+   "performers": [
+    {
+     "name": "Shantel & Bucovina Club Orkestar",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Monster Magnet (USA)",
+   "performers": [
+    {
+     "name": "Monster Magnet",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Fear Factory (USA)",
+   "performers": [
+    {
+     "name": "Fear Factory",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Skip The Use (F)",
+   "performers": [
+    {
+     "name": "Skip The Use",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Madensuyu (B)",
+   "performers": [
+    {
+     "name": "Madensuyu",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Yeasayer (USA)",
+   "performers": [
+    {
+     "name": "Yeasayer",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Major Lazer (JAM)",
+   "performers": [
+    {
+     "name": "Major Lazer",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Die Antwoord (ZA)",
+   "performers": [
+    {
+     "name": "Die Antwoord",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Prince (USA)",
+   "performers": [
+    {
+     "name": "Prince",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Klezmatics (USA)",
+   "performers": [
+    {
+     "name": "The Klezmatics",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Boban Markovic Orkestar (SRB)",
+   "performers": [
+    {
+     "name": "Boban Markovic Orkestar",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Leningrad (RU)",
+   "performers": [
+    {
+     "name": "Leningrad",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Maccabees (UK)",
+   "performers": [
+    {
+     "name": "The Maccabees",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Flogging Molly (USA)",
+   "performers": [
+    {
+     "name": "Flogging Molly",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Rise Against (USA)",
+   "performers": [
+    {
+     "name": "Rise Against",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Interpol (USA)",
+   "performers": [
+    {
+     "name": "Interpol",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Pulp (UK)",
+   "performers": [
+    {
+     "name": "Pulp",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Within Temptation (NL)",
+   "performers": [
+    {
+     "name": "Within Temptation",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Motörhead (UK)",
+   "performers": [
+    {
+     "name": "Motörhead",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "LaBrassBanda (D)",
+   "performers": [
+    {
+     "name": "LaBrassBanda",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Les Hurlements d'Leo (F)",
+   "performers": [
+    {
+     "name": "Les Hurlements d'Leo",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Ojos de Brujo (ES)",
+   "performers": [
+    {
+     "name": "Ojos de Brujo",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "AfroCubism (CU/ML)",
+   "performers": [
+    {
+     "name": "AfroCubism",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Terry Poison (ISR)",
+   "performers": [
+    {
+     "name": "Terry Poison",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Bloody Beetroots Death Crew 77 (I)",
+   "performers": [
+    {
+     "name": "The Bloody Beetroots Death Crew 77",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Suicidal Tendencies (USA)",
+   "performers": [
+    {
+     "name": "Suicidal Tendencies",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Hurts (UK)",
+   "performers": [
+    {
+     "name": "Hurts",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Dorian Concept (A)",
+   "performers": [
+    {
+     "name": "Dorian Concept",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Empire of The Sun (AUS)",
+   "performers": [
+    {
+     "name": "Empire of The Sun",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Ben L’oncle Soul (F)",
+   "performers": [
+    {
+     "name": "Ben L’oncle Soul",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "La Roux (UK)",
+   "performers": [
+    {
+     "name": "La Roux",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Good Charlotte (USA)",
+   "performers": [
+    {
+     "name": "Good Charlotte",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Chemical Brothers (UK)",
+   "performers": [
+    {
+     "name": "The Chemical Brothers",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "3 Feet Smaller (A)",
+   "performers": [
+    {
+     "name": "3 Feet Smaller",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Helloween (D)",
+   "performers": [
+    {
+     "name": "Helloween",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Judas Priest (UK)",
+   "performers": [
+    {
+     "name": "Judas Priest",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Felix Lajko and his Band, feat. Bea Palya",
+   "performers": [
+    {
+     "name": "Felix Lajko and his Band",
+     "role": "performer"
+    },
+    {
+     "name": "Bea Palya",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Rotfront (D)",
+   "performers": [
+    {
+     "name": "Rotfront",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Xiu Xiu (USA)",
+   "performers": [
+    {
+     "name": "Xiu Xiu",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Crystal Castles (CAN)",
+   "performers": [
+    {
+     "name": "Crystal Castles",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "De Jeugd van Tegenwoordig (NL)",
+   "performers": [
+    {
+     "name": "De Jeugd van Tegenwoordig",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Bomb The Bass (UK)",
+   "performers": [
+    {
+     "name": "Bomb The Bass",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Hudson Mohawke (UK)",
+   "performers": [
+    {
+     "name": "Hudson Mohawke",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Goose (B)",
+   "performers": [
+    {
+     "name": "Goose",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Batucada Sound Machine (NZ)",
+   "performers": [
+    {
+     "name": "Batucada Sound Machine",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "British Sea Power (UK)",
+   "performers": [
+    {
+     "name": "British Sea Power",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Skunk Anansie (UK)",
+   "performers": [
+    {
+     "name": "Skunk Anansie",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Dizzee Rascal (UK)",
+   "performers": [
+    {
+     "name": "Dizzee Rascal",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Prodigy (UK)",
+   "performers": [
+    {
+     "name": "The Prodigy",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Haunted (S)",
+   "performers": [
+    {
+     "name": "The Haunted",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Deftones (USA)",
+   "performers": [
+    {
+     "name": "Deftones",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Magnifico (SLO)",
+   "performers": [
+    {
+     "name": "Magnifico",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Sly & Robbie feat. Jr. Reid (JAM)",
+   "performers": [
+    {
+     "name": "Sly & Robbie",
+     "role": "performer"
+    },
+    {
+     "name": "Jr. Reid",
+     "role": "guest"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name. The printing bills the first name and adds the rest with \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "DeWolff (NL)",
+   "performers": [
+    {
+     "name": "DeWolff",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Peter Bjorn & John (S)",
+   "performers": [
+    {
+     "name": "Peter Bjorn & John",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Turbostaat (D)",
+   "performers": [
+    {
+     "name": "Turbostaat",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Kode9 (UK)",
+   "performers": [
+    {
+     "name": "Kode9",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Trentemoller (DK)",
+   "performers": [
+    {
+     "name": "Trentemoller",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Overflow (HR)",
+   "performers": [
+    {
+     "name": "Overflow",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Hadouken! (UK)",
+   "performers": [
+    {
+     "name": "Hadouken!",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Kate Nash (UK)",
+   "performers": [
+    {
+     "name": "Kate Nash",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Kaiser Chiefs (UK)",
+   "performers": [
+    {
+     "name": "Kaiser Chiefs",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Thirty Seconds To Mars (USA)",
+   "performers": [
+    {
+     "name": "Thirty Seconds To Mars",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The Sorrow (A)",
+   "performers": [
+    {
+     "name": "The Sorrow",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Lostprophets (UK)",
+   "performers": [
+    {
+     "name": "Lostprophets",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Ska Cubano (UK)",
+   "performers": [
+    {
+     "name": "Ska Cubano",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Debout Sur Le Zinc (F)",
+   "performers": [
+    {
+     "name": "Debout Sur Le Zinc",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Csík band feat. Tibor Kiss",
+   "performers": [
+    {
+     "name": "Csík band",
+     "role": "performer"
+    },
+    {
+     "name": "Tibor Kiss",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Goran Bregovic Wedding And Funeral Band (BIH)",
+   "performers": [
+    {
+     "name": "Goran Bregovic Wedding And Funeral Band",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Hindi Zahra (F)",
+   "performers": [
+    {
+     "name": "Hindi Zahra",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Watcha Clan (F)",
+   "performers": [
+    {
+     "name": "Watcha Clan",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Buraka Som Sistema (P)",
+   "performers": [
+    {
+     "name": "Buraka Som Sistema",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Gaslamp Killer (UK)",
+   "performers": [
+    {
+     "name": "Gaslamp Killer",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Zombie Nation (D)",
+   "performers": [
+    {
+     "name": "Zombie Nation",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Mariachi El Bronx (USA)",
+   "performers": [
+    {
+     "name": "Mariachi El Bronx",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Gogol Bordello (USA)",
+   "performers": [
+    {
+     "name": "Gogol Bordello",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "The National (USA)",
+   "performers": [
+    {
+     "name": "The National",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Manic Street Preachers (UK)",
+   "performers": [
+    {
+     "name": "Manic Street Preachers",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "White Lies (UK)",
+   "performers": [
+    {
+     "name": "White Lies",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Sonata Arctica (FIN)",
+   "performers": [
+    {
+     "name": "Sonata Arctica",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Socalled (CAN)",
+   "performers": [
+    {
+     "name": "Socalled",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Choc Quib Town (CO)",
+   "performers": [
+    {
+     "name": "Choc Quib Town",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Cheikh Lô (SN)",
+   "performers": [
+    {
+     "name": "Cheikh Lô",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Cowboy Junkies (CAN)",
+   "performers": [
+    {
+     "name": "Cowboy Junkies",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Baskerville LIVE (NL)",
+   "performers": [
+    {
+     "name": "Baskerville",
+     "role": "performer"
+    }
+   ],
+   "setTag": "LIVE",
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name. \"LIVE\" is the set tag.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Marina & The Diamonds (UK)",
+   "performers": [
+    {
+     "name": "Marina & The Diamonds",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Selah Sue (B)",
+   "performers": [
+    {
+     "name": "Selah Sue",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Kid Cudi (USA)",
+   "performers": [
+    {
+     "name": "Kid Cudi",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Shtetl Superstars (UK) featl. Laszlo Kollar-Klemencz",
+   "performers": [
+    {
+     "name": "Shtetl Superstars",
+     "role": "performer"
+    },
+    {
+     "name": "Laszlo Kollar-Klemencz",
+     "role": "guest"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name. \"featl.\" is the programme's misspelling of \"feat.\": the first name is the performer and the added name is credited as a guest on the same set.",
+   "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "Kees van Hondt & friends (NL) Feest / Mulatsag / Fest",
+   "performers": [
+    {
+     "name": "Kees van Hondt & friends",
+     "role": "performer"
+    }
+   ],
+   "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name. The words after the code are the show's title in Dutch, Hungarian and English (\"Feest / Mulatság / Fest\", a party), not an act.",
+   "source": "https://www.sziget.hu/festival_english/programs"
   }
  ],
  "pending": [
@@ -5758,6 +7637,10 @@
   {
    "key": "mow",
    "why": "Short name billed at Primavera Sound 2019 and Sónar 2018 (each on its own official timetable). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+  },
+  {
+   "printed": "Muzsikas feat. Ildiko Toth \"Fecske\" and Zoltan Farkas \"Batyu\"",
+   "why": "Left as printed: the guests are printed with nicknames in quotes and joined by \"and\", and no first-party page settles how each guest is named, so the guests are not split. Renders as its own billing until a first-party page rules it."
   }
  ]
 }

@@ -164,9 +164,12 @@ const out = build();
   // 2016-2019 and 2022 add six: four billings whose "&" may join one act or
   // two (Congo Natty feat. ... Nãnci & Phoebe, bRUNA & Wooky + Alba G.
   // Corral, Ratkje & Barruk, LAO & Wasted Fates) and two short names also
-  // billed at Primavera Sound (MOW, Za!): 193 rows. Past 193, stop and
-  // report.
-  check(review.length <= 193, `review queue is ${review.length} rows (> 193 means stop and report)`);
+  // billed at Primavera Sound (MOW, Za!): 193 rows. Sziget 2010-2011 adds
+  // one: a feat. list whose guests are printed with nicknames in quotes
+  // (Muzsikas feat. Ildiko Toth "Fecske" and Zoltan Farkas "Batyu"); its
+  // country-tagged billings ("The Cribs (UK)") are ruled under its house
+  // style: 194 rows. Past 194, stop and report.
+  check(review.length <= 194, `review queue is ${review.length} rows (> 194 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
