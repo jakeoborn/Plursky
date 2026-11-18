@@ -582,26 +582,6 @@ export async function importGather(id, dir) {
           cityStages: page.cityStages, citySets: page.citySets,
           times: "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets",
           ...(page.sets.some(x => x.openEnd) && { openEnded: page.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }) });
-      } else if (s.format === "primavera-completos") {
-        // One page per day: Primavera Sound's full timetable, Parc del Fòrum
-        // beside the city venues (primavera-completos-schedule.mjs). Its day
-        // tabs must name one run of days in the edition's year that holds the
-        // edition's days in a row; the page's own tab is the day it prints.
-        // Only the Fòrum's stages are read as sets; every block's start sits
-        // on its row plus its offset and every printed range is drawn two
-        // pixels a minute, in the city's columns too, or the parser throws.
-        const page = parsePrimaveraCompletos(cap.text, { year: ed.year });
-        if (!`,${page.tabDates.join()},`.includes(`,${ed.dates.map(([d]) => d).join()},`)) throw new Error(`${s.url} @${s.captureTimestamp}: its day tabs print ${page.tabDates.join(", ")}, which do not hold the edition's days in a row`);
-        const day = ed.dates.findIndex(([d]) => d === page.date) + 1;
-        if (day < 1) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${page.date}, not one of the edition's days`);
-        if (days.join() !== String(day)) throw new Error(`${s.url} @${s.captureTimestamp}: prints day ${day}, the sheet cites it for ${days.join(",")}`);
-        if (page.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is printed as "${page.label}", the receipt says "${s.printed[day]}"`);
-        if (s.captureTimestamp.slice(0, 8) <= ed.dates.at(-1)[0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the festival ended`);
-        agree(day, page.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
-        Object.assign(ledgerDays[day - 1].sources.at(-1), { heading: page.heading, active: page.active, tabs: page.tabs, stages: page.stages.length, axis: page.axis,
-          cityStages: page.cityStages, citySets: page.citySets,
-          times: "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets",
-          ...(page.sets.some(x => x.openEnd) && { openEnded: page.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }) });
       } else if (s.format === "insomniac-music") {
         // One page prints every day by stage (EDC Las Vegas 2012-2013,
         // insomniac-music-schedule.mjs): each day's heading prints its weekday
