@@ -1203,10 +1203,16 @@ function FieldSheet({
   }, footer)));
 }
 function _duoMembers(name) {
-  return String(name || "").split(/\s+b\d+b\s+|\s+with\s+/i).map(s => s.trim()).filter(Boolean);
+  var parts = String(name || "").split(/\s+b\d+b\s+|\s+with\s+|\s+\+\s+/i).map(s => s.trim()).filter(Boolean);
+  if (parts.length < 2) return parts;
+  return parts.map(p => p.replace(/\s+pres\.?\s+.*$/i, "").replace(/\s*\([^)]*\)\s*$/, "").trim() || p);
 }
 function _duoInitials(name) {
-  return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2).map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
+  var clean = String(name || "").replace(/\([^)]*\)/g, " ").replace(/\s+pres\.?\s+.*$/i, "");
+  var words = clean.split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w));
+  var kept = words.filter((w, i) => i === 0 || /^[^A-Za-z0-9]*[A-Za-z]/.test(w));
+  var pick = kept.slice(0, 2);
+  return pick.map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
 function _duoFaceAccent() {
   try {

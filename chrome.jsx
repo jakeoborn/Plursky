@@ -915,12 +915,25 @@ function FieldSheet({ title, eyebrow, footer, onClose, children }) {
 // useArtistPhoto) or their initials. A b2b is two whole faces overlapped in
 // the same footprint; a 3+ chain shows its first two. ring: "on" = on your
 // plan, "cl" = in a clash.
+// Billings join members with "b2b", "with" or a spaced "+" ("Allen Watts +
+// Talla 2XLC"). A split member drops its project or set note ("Will Rees pres
+// Parallel Worlds" is Will Rees; "Aly & Fila (Live)" is Aly & Fila) so its
+// face looks up the person, not the billing. "&" stays inside one act
+// ("Above & Beyond"), and an unsplit name is looked up exactly as billed.
 function _duoMembers(name) {
-  return String(name || "").split(/\s+b\d+b\s+|\s+with\s+/i).map(s => s.trim()).filter(Boolean);
+  const parts = String(name || "").split(/\s+b\d+b\s+|\s+with\s+|\s+\+\s+/i).map(s => s.trim()).filter(Boolean);
+  if (parts.length < 2) return parts;
+  return parts.map(p => p.replace(/\s+pres\.?\s+.*$/i, "").replace(/\s*\([^)]*\)\s*$/, "").trim() || p);
 }
+// Initials from the act's name, not its billing note: "(Live)", "(Classics
+// Set)" and "pres ..." are dropped, and words that start with a letter win
+// over a number after the first word ("John 00 Fleming" is JF, not J0).
 function _duoInitials(name) {
-  return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2)
-    .map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
+  const clean = String(name || "").replace(/\([^)]*\)/g, " ").replace(/\s+pres\.?\s+.*$/i, "");
+  const words = clean.split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w));
+  const kept = words.filter((w, i) => i === 0 || /^[^A-Za-z0-9]*[A-Za-z]/.test(w));
+  const pick = kept.slice(0, 2);
+  return pick.map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
 // The current festival's identity colour (registry accent), for initials.
 function _duoFaceAccent() {
