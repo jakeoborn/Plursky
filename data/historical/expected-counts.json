@@ -117,6 +117,8 @@
  "shambhala-2016": { "stages": 6, "setsPerDay": [26, 69, 68, 66], "droppedPerDay": [3, 3, 4, 3] },
  "shambhala-2024": { "stages": 7, "setsPerDay": [23, 76, 68, 75], "droppedPerDay": [0, 5, 6, 5] },
  "shambhala-2025": { "stages": 7, "setsPerDay": [22, 68, 71, 79], "droppedPerDay": [0, 6, 7, 7] },
+ "edc-las-vegas-2012": { "stages": 9, "setsPerDay": [81, 78, 83], "droppedPerDay": [0, 1, 0] },
+ "edc-las-vegas-2013": { "stages": 8, "setsPerDay": [78, 80, 76], "droppedPerDay": [0, 0, 0] },
  "outside-lands-2012": { "stages": 5, "setsPerDay": [29, 29, 29], "droppedPerDay": [0, 0, 0] },
  "outside-lands-2013": { "stages": 6, "setsPerDay": [36, 37, 36], "droppedPerDay": [0, 0, 1] },
  "outside-lands-2014": { "stages": 5, "setsPerDay": [29, 29, 28], "droppedPerDay": [0, 0, 0] },

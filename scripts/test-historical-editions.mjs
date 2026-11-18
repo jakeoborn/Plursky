@@ -30,6 +30,7 @@ import { parseDoStuff, parseDoStuffBand, timeDay } from "./historical/dostuff-sc
 import { parseMyScheduler, restoreSets } from "./historical/myscheduler-schedule.mjs";
 import { parseEfScheduler } from "./historical/ef-scheduler-schedule.mjs";
 import { parseGovBallWp, printedDate as govBallDate } from "./historical/govball-wp-schedule.mjs";
+import { parseInsomniacMusic, printedDate as insomniacDate } from "./historical/insomniac-music-schedule.mjs";
 import { parseTmlDrupal, titleDate as tmlTitleDate } from "./historical/tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, datesFromPost as shambhalaRun, readDatesPost } from "./historical/shambhala-webflow-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
@@ -105,6 +106,16 @@ if (base && edc) {
     mustFail("a Shambhala page dated off another site", m => { shCap(m).datesFrom.archivedUrl = shCap(m).datesFrom.archivedUrl.replace("www.shambhalamusicfestival.com", "www.clashfinder.com"); }, sh25);
     mustFail("a Shambhala page whose weekday is not its day", m => { shCap(m).printed = "Saturday"; }, sh25);
     mustFail("a listed long set read half an hour longer (Shambhala 2025)", m => { m.sets.find(x => x.start === "00:30" && x.end === "09:00").end = "09:30"; }, sh25, () => {}, /over 8 hours/);
+  }
+  // EDC Las Vegas 2012-2013: one page prints every day, with no year in its
+  // headings; the year is the page's own, on the brand's root domain.
+  const edc12 = editions["edc-las-vegas-2012"];
+  if (edc12) {
+    const imCap = m => m.provenance.captures.find(c => c.format === "insomniac-music" && c.day === 2);
+    mustFail("an EDC day heading whose weekday is not its day", m => { imCap(m).printed = "Sunday - June 9th"; }, edc12);
+    mustFail("an EDC page dated by neither its title nor its description", m => { imCap(m).yearFrom = "the capture's timestamp"; }, edc12);
+    mustFail("an EDC page that never names Las Vegas", m => { imCap(m).place = "the URL"; }, edc12);
+    mustFail("an EDC page on another city's subdomain", m => { const c = imCap(m); c.archivedUrl = c.archivedUrl.replace("//electricdaisycarnival.com/", "//orlando.electricdaisycarnival.com/"); }, edc12);
   }
   const lolla = editions["lollapalooza-2025"], acl = editions["acl-2025"];
   if (lolla && acl) {
@@ -517,6 +528,52 @@ if (base && edc) {
     gbMust("two Governors Ball sets overlapping on one stage", gbPage(undefined, [[gbD2[0][0], "hypem", [gbBlock("hypem", "f", "Day Two", "1:00 pm - 1:40 pm"), gbBlock("hypem", "h", "Clash", "1:30 pm - 2:00 pm")]], gbD2[1]]));
     gbMust("a Governors Ball block in another stage's column", gbPage().replace('class="honda-block g"', 'class="hypem-block g"'));
     gbMust("a Governors Ball block with two names", gbPage().replace("<h2>Two Honda</h2>", "<h2>Two</h2><h2>Honda</h2>"));
+    // EDC Las Vegas's 2012 and 2013 music pages: one page prints every day by
+    // stage, each day's heading with no year; a time before noon is the night.
+    const im12Day = (cls, label, acts, host = "") => `<div class="lineup-day ${cls}"><h2>${label}</h2><div class="inner">${host}`
+      + acts.map(([a, t]) => `<h3 class="no-date"><a href="artist.php?id=1">${a}</a></h3><p class="set-time">${t}</p><div class="artist-divider"></div>`).join("") + `</div></div>`;
+    const im12Stage = (name, d1, d2) => `<div class="stage-group group"><h3 class="all-stage-title">${name}</h3>${im12Day("friday", "Friday - June 8th", d1, `<h3 class="sponsor">Hosted By: Dim Mak</h3>`)}${im12Day("saturday", "Saturday - June 9th", d2)}</div>`;
+    const im12Main = [["Late &amp; Act", "12:00AM - 1:30AM"], ["Opener", "9:00PM - 10:00PM"], ["Closer", "4:30AM - 5:30AM"]];
+    const im12 = (main = im12Main, title = "Music - Electric Daisy Carnival 2012 - Presented by Insomniac Events", og = "http://electricdaisycarnival.com/LasVegas/music.php") =>
+      `<title>${title}</title><meta property="og:url" content="${og}"><ul id="lineup-nav"><li><a href="music.php?stage=kineticfield">kineticFIELD</a></li><li><a href="music.php?stage=basspod">bassPOD</a></li><li><a href="music.php?stage=all">All Stages</a></li></ul>`
+      + im12Stage("kineticFIELD", main, [["Sat One", "8:00PM - 9:00PM"]]) + im12Stage("bassPOD", [["Bass One", "10:00PM - 11:15PM"]], [["Bass Two", "11:00PM - 12:30AM"]]) + `<!-- end #lineup-inner -->`;
+    const imp = parseInsomniacMusic(im12(), { year: 2012 });
+    ok(JSON.stringify([imp.template, imp.yearFrom, imp.place, imp.stages, imp.days.map(d => [d.date, d.label, d.hosts, d.sets.map(x => [x.stage, x.start, x.end, x.artist])])])
+      === JSON.stringify(["2012", "the page's title", "the page's own og:url", ["kineticFIELD", "bassPOD"], [
+        ["2012-06-08", "Friday - June 8th", ["kineticFIELD: Dim Mak", "bassPOD: Dim Mak"], [["kineticFIELD", "21:00", "22:00", "Opener"], ["kineticFIELD", "00:00", "01:30", "Late & Act"], ["kineticFIELD", "04:30", "05:30", "Closer"], ["bassPOD", "22:00", "23:15", "Bass One"]]],
+        ["2012-06-09", "Saturday - June 9th", [], [["kineticFIELD", "20:00", "21:00", "Sat One"], ["bassPOD", "23:00", "00:30", "Bass Two"]]]]]),
+      `an EDC 2012 music page must come back set by set, a time before noon the night's: ${JSON.stringify(imp)}`);
+    const im13Art = (a, t, b = a, u = t) => `<div class="artist"><div class="top-wrap"><h3><span>${a}<br><em>${t}</em></span></h3></div><div class="bottom-wrap"><h4>${b}<br><span>${u}</span></h4></div></div>`;
+    const im13 = (art = im13Art("Borgore", "4:30AM - 5:30AM")) => `<title>Music - Experience - Electric Daisy Carnival Las Vegas - Presented by Insomniac Events</title>`
+      + `<meta name="description" content="The official website of Electric Daisy Carnival Las Vegas - Friday June 21st, Saturday June 22nd 2013">`
+      + `<a href="#" class="stage stage-all" data-filter="stage-all">All Stages</a><a href="#" class="stage stage-kineticfield" data-filter="stage-">kineticFIELD</a><!-- STAGE SORT -->`
+      + `<div class="stage clearfix stage-all stage-kineticfield"><h3>kineticFIELD</h3><div class="day"><h5>Fri - June 21st <div class="host hard"><span>Hosted by</span></div></h5>${art}${im13Art("Dada Life", "3:30AM - 4:30AM")}</div>`
+      + `<div class="day"><h5>Sat - June 22nd</h5>${im13Art("Kaskade", "2:00AM - 3:30AM")}${im13Art("Kaskade", "2:00AM - 3:30AM")}</div></div><!-- END STAGE SORT -->`;
+    const imq = parseInsomniacMusic(im13(), { year: 2013 });
+    ok(JSON.stringify([imq.template, imq.yearFrom, imq.place, imq.days.map(d => [d.date, d.hosts, d.repeats, d.sets.map(x => [x.start, x.end, x.artist])])])
+      === JSON.stringify(["2013", "the page's description", "the page's title", [["2013-06-21", ["kineticFIELD: hard"], 0, [["03:30", "04:30", "Dada Life"], ["04:30", "05:30", "Borgore"]]], ["2013-06-22", [], 1, [["02:00", "03:30", "Kaskade"]]]]]),
+      `an EDC 2013 music page must read both copies of a block and drop a repeat: ${JSON.stringify(imq)}`);
+    const imOut = (html, year) => parseInsomniacMusic(html, { year }).days.flatMap(d => d.misprints.map(x => `${x.artist}: ${x.misprint}`)).join("; ");
+    ok(imOut(im13(im13Art("Borgore", "4:30AM - 5:30AM", "Borgore", "4:00AM - 5:30AM")), 2013) === "Borgore: the block prints two readings (Borgore 4:30AM - 5:30AM / Borgore 4:00AM - 5:30AM)"
+      && imOut(im12([["Clash A", "10:00PM - 11:00PM"], ["Clash B", "10:30PM - 11:30PM"]]), 2012) === "Clash A: printed while another set on the stage is still on; Clash B: printed while another set on the stage is still on"
+      && imOut(im12([["Back", "11:00PM - 10:00PM"]]), 2012) === "Back: the range runs backwards",
+      "an EDC block whose readings disagree, two sets at once, or a backwards range must be a misprint, never a set");
+    ok(insomniacDate("Friday - June 8th", 2012) === "2012-06-08" && insomniacDate("Fri - June 21st", 2013) === "2013-06-21" && insomniacDate("Fri - June 8th", 2013) === null && insomniacDate("Friday - June 8rd", 2012) === null,
+      "an EDC day heading must print its own weekday and ordinal");
+    const imMust = (what, html, year = 2012) => { let bad = false; try { parseInsomniacMusic(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    imMust("an EDC page of another year", im12(), 2013);
+    imMust("an EDC page that does not name Las Vegas", im12(undefined, undefined, "http://electricdaisycarnival.com/Orlando/music.php"));
+    imMust("an EDC page of another festival", im12(undefined, "Music - Beyond Wonderland 2012"));
+    imMust("an EDC 2013 page whose description names another year", im13().replace("June 22nd 2013", "June 22nd 2014"), 2013);
+    imMust("an EDC heading whose weekday is not its date", im12().replace("Friday - June 8th", "Thursday - June 8th"));
+    imMust("an EDC page skipping a day", im12().replaceAll("Saturday - June 9th", "Sunday - June 10th").replaceAll('lineup-day saturday', 'lineup-day sunday'));
+    imMust("an EDC day class that is not its heading's weekday", im12().replace('lineup-day saturday', 'lineup-day sunday'));
+    imMust("an EDC range with no meridiem", im12([["Opener", "9:00 - 10:00PM"]]));
+    imMust("an EDC stage menu that is not its stages", im12().replace("bassPOD</a>", "bassPOD</a></li><li><a href=\"music.php?stage=neongarden\">neonGARDEN</a>"));
+    imMust("an EDC stage printing other days", im12().replace("Saturday - June 9th</h2><div class=\"inner\"><h3 class=\"no-date\"><a href=\"artist.php?id=1\">Bass Two", "Sunday - June 10th</h2><div class=\"inner\"><h3 class=\"no-date\"><a href=\"artist.php?id=1\">Bass Two"));
+    imMust("an EDC act heading with no set time", im12().replace('<p class="set-time">9:00PM - 10:00PM</p>', ""));
+    imMust("an EDC 2013 block with one reading", im13(`<div class="artist"><h3><span>Borgore<br><em>4:30AM - 5:30AM</em></span></h3></div>`), 2013);
+    imMust("an EDC 2013 page with no stage sort", im13().replace("<!-- STAGE SORT -->", ""), 2013);
     // Shambhala's 2024-2025 Webflow day page: the weekday in its title and
     // active tab, a "Last Published" stamp, an hour axis from 10 AM, and one
     // column per stage whose blocks carry each range three ways.
@@ -905,6 +962,15 @@ for (const [id, e] of Object.entries(editions)) {
           ok(s.weekday === s.printed && s.printed.toUpperCase() === wd && shambhalaRun(s.datesFrom?.printed, e.year)?.[s.printed] === d.date
             && String(s.published || "").startsWith(String(e.year)) && s.pxPerHour === 70 && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?shambhalamusicfestival\.com\//.test(s.datesFrom?.archivedUrl || ""),
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (published ${s.published}) and the post "${s.datesFrom?.printed}", not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // EDC Las Vegas's 2012-2013 music page prints each day's heading
+        // ("Friday - June 8th"), with the year from its own title or
+        // description, on the brand's root domain.
+        if (s.format === "insomniac-music") {
+          ok(insomniacDate(s.printed, e.year) === d.date && /^the page's (title|description)$/.test(s.yearFrom || "") && /^the page's (title|own og:url)$/.test(s.place || "")
+            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?electricdaisycarnival\.com\//.test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (year from ${s.yearFrom}, Las Vegas from ${s.place}), not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         // Governors Ball's 2011-2012 schedule prints each day's heading

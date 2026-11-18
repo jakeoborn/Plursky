@@ -1,0 +1,88 @@
+{
+  "id": "edc-las-vegas-2013",
+  "method": "official_sources",
+  "official": "https://lasvegas.electricdaisycarnival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2013-06-21",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.electricdaisycarnival.com/music.php",
+          "archivedUrl": "https://web.archive.org/web/20130719203755/http://www.electricdaisycarnival.com/music.php",
+          "captureTimestamp": "20130719203755",
+          "printed": "Fri - June 21st",
+          "sha256": "4c268954748711f6278d95e6a8fc4f9d02c07602a7c74aa16fc067d243fd4491",
+          "bytes": 669984,
+          "rows": 78,
+          "format": "insomniac-music",
+          "template": "2013",
+          "yearFrom": "the page's description",
+          "place": "the page's title",
+          "stages": 8,
+          "times": "each range printed with its own am or pm; a time before noon is the night of the day above",
+          "hosts": [
+            "cosmicMEADOW: hard",
+            "neonGARDEN: enter"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2013-06-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.electricdaisycarnival.com/music.php",
+          "archivedUrl": "https://web.archive.org/web/20130719203755/http://www.electricdaisycarnival.com/music.php",
+          "captureTimestamp": "20130719203755",
+          "printed": "Sat - June 22nd",
+          "sha256": "4c268954748711f6278d95e6a8fc4f9d02c07602a7c74aa16fc067d243fd4491",
+          "bytes": 669984,
+          "rows": 80,
+          "format": "insomniac-music",
+          "template": "2013",
+          "yearFrom": "the page's description",
+          "place": "the page's title",
+          "stages": 8,
+          "times": "each range printed with its own am or pm; a time before noon is the night of the day above",
+          "hosts": [
+            "cosmicMEADOW: hard",
+            "neonGARDEN: carl-cox"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2013-06-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.electricdaisycarnival.com/music.php",
+          "archivedUrl": "https://web.archive.org/web/20130719203755/http://www.electricdaisycarnival.com/music.php",
+          "captureTimestamp": "20130719203755",
+          "printed": "Sun - June 23rd",
+          "sha256": "4c268954748711f6278d95e6a8fc4f9d02c07602a7c74aa16fc067d243fd4491",
+          "bytes": 669984,
+          "rows": 76,
+          "format": "insomniac-music",
+          "template": "2013",
+          "yearFrom": "the page's description",
+          "place": "the page's title",
+          "stages": 8,
+          "times": "each range printed with its own am or pm; a time before noon is the night of the day above",
+          "hosts": [
+            "cosmicMEADOW: hard",
+            "neonGARDEN: get-lost",
+            "bassPOD: ram"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}
