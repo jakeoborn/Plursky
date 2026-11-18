@@ -2582,6 +2582,45 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "hard-summer:rbma-discotheque",
+     "names": [
+      {
+       "printed": "RBMA Discotheque",
+       "editions": [
+        "hard-summer-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:fool-s-gold-clubhouse",
+     "names": [
+      {
+       "printed": "Fool's Gold Clubhouse",
+       "editions": [
+        "hard-summer-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:owsla-tent",
+     "names": [
+      {
+       "printed": "OWSLA Tent",
+       "editions": [
+        "hard-summer-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

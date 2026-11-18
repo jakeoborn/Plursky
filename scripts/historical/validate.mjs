@@ -7,6 +7,7 @@ import { printedDate as govBallDate } from "./govball-wp-schedule.mjs";
 import { printedDate as insomniacDate } from "./insomniac-music-schedule.mjs";
 import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
 import { printedDate as tmlCmsDate } from "./tml-cms-schedule.mjs";
+import { readRun as hardRun } from "./hard-wp-schedule.mjs";
 import { datesFromPost as shambhalaRun } from "./shambhala-webflow-schedule.mjs";
 import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, undatedOwnPost, weekdayOf } from "./lib.mjs";
 
@@ -15,7 +16,9 @@ import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGrap
 export const OFFICIAL_HOSTS = {
   "governors-ball": ["governorsballmusicfestival.com", "cdn.prod.website-files.com"],
   "lollapalooza": ["lollapalooza.com", "cdn.prod.website-files.com"],
-  "hard-summer": ["hardsummer.com"],
+  // hardfest.com: HARD's own site, where HARD Summer 2012's page lived
+  // (/hardsummer/) before the festival had its own domain.
+  "hard-summer": ["hardsummer.com", "hardfest.com"],
   "electric-forest": ["electricforestfestival.com", "electricforest.com"],
   "coachella": ["coachella.com"],
   // 2012-2013 Las Vegas pages lived on the brand's root domain
@@ -402,6 +405,11 @@ function officialSources(e, meta, p) {
         // description, and the page names Las Vegas.
         if (insomniacDate(c.printed, e.year) !== date || !/^the page's (title|description)$/.test(c.yearFrom || "") || !/^the page's (title|own og:url)$/.test(c.place || ""))
           p.push(`${tag}: the page's day "${c.printed}" (year from ${c.yearFrom}, Las Vegas from ${c.place}) does not print ${date}`);
+      } else if (c.format === "hard-wp") {
+        // HARD Summer's 2012 page heads each day with its weekday alone
+        // ("FRIDAY"); the date is the run the page's own essential info prints
+        // ("Friday, August 3rd & Saturday, August 4th, 2012").
+        if (hardRun(c.dateFrom, e.year)?.[c.printed] !== date) p.push(`${tag}: the page's day "${c.printed}" (run "${c.dateFrom}") does not print ${date}`);
       } else if (c.format === "govball-wp") {
         // Governors Ball's 2011-2012 schedule prints each day's heading
         // ("SATURDAY 6/23", no year); 2011's one day is the one the page's
