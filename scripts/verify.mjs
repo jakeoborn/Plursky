@@ -4116,6 +4116,18 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
     fail(`set tracking failed${detail ? ` — ${detail}` : ""}`);
   }
 
+  // SPEC-212 W3: the opt-in is per festival; a legacy global yes moves to
+  // the festival active at upgrade and nowhere else.
+  console.log("▸ Set-tracking per-festival gate — a yes for one festival is not a yes for the next");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-tracking-per-festival.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set tracking per festival failed${detail ? ` — ${detail}` : ""}`);
+  }
+
   console.log("▸ Signal-aware gate — 2G/Data Saver/queued sends = weak signal, heartbeat 60s, strip + card, export key, mutations");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-signal-aware.mjs"],
