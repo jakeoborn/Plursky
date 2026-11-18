@@ -3967,6 +3967,21 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// Save and cancel states (SPEC-212 W4): an active subscriber's Me row says
+// whether Plus renews, ends (the save message) or has a billing issue, from
+// fixture receipts; every button is Apple's own subscription page.
+{
+  console.log("▸ Plus renewal gate — renewing, ending (save message), billing, Season Pass");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-plus-renewal.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Plus renewal states failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // TestFlight uploads stay internal-only: the export plist sets
 // testFlightInternalTestingOnly, and an external beta group or public link
 // stops build-upload-testflight.mjs before anything uploads.

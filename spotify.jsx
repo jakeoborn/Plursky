@@ -8269,6 +8269,13 @@ function MeScreen({ state, setState }) {
   // them, so the IAPs read as missing. This row is the unconditional one.
   const [plusOpen, setPlusOpen] = React.useState(false);
   useDeclareModal(plusOpen);   // hides the search FAB, which paints over this — see chrome.jsx
+  // Re-read on every entitlement change: RevenueCat answers after the first
+  // paint, and a purchase, a restore or a lapse can land while Me is open.
+  const [, plusBump] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => {
+    window.addEventListener("plursky-plus-change", plusBump);
+    return () => window.removeEventListener("plursky-plus-change", plusBump);
+  }, []);
   const plusActive = _isPlusSub();
 
   // Stats — kept locally per the spec; intentionally cheap, not precious.
@@ -8364,24 +8371,7 @@ function MeScreen({ state, setState }) {
             not find the IAPs". Above the grid it lands at ~409px, fully
             visible at scrollTop=0. Moving it back down re-breaks that. */}
         {plusActive ? (
-          <div style={{
-            display: "flex", alignItems: "center", gap: 12,
-            width: "100%", padding: "14px 16px", marginBottom: 14,
-            background: "var(--s2)", boxShadow: "var(--e1)",
-            borderRadius: "var(--rad-md)", color: "var(--ink)", textAlign: "left",
-          }}>
-            <span style={{
-              width: 30, height: 30, borderRadius: "50%", flexShrink: 0,
-              background: "var(--signal)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              color: "var(--on-signal)", fontSize: 16, fontWeight: 700, lineHeight: 1,
-            }}>+</span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="duo-headline">Plursky+</div>
-              <div className="duo-label duo-ink3" style={{ marginTop: 4 }}>Active · thank you</div>
-            </div>
-            <span className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700 }}>✓</span>
-          </div>
+          <PlusActiveRow />
         ) : (
           <button onClick={() => setPlusOpen(true)}
             aria-label="Plursky Plus — see what's included and subscribe"
@@ -9838,7 +9828,65 @@ async function _initRevenueCat() {
 
 function _syncEntitlements(info) {
   const active = info?.entitlements?.active?.[RC_ENTITLEMENT];
+  _setPlusRenewal(plusRenewalState(info));
   _setPlusSub(!!active);
+}
+
+// ── Save and cancel states (SPEC-212 W4) ──────────────────────
+// What an ACTIVE subscriber's Plus row says about renewal, read from the
+// entitlement RevenueCat returns. Only a subscription can renew, so only the
+// auto-renewing products get renewal words; the Season Pass (no expiry, or
+// not a subscription) just stays active.
+//   renewing  willRenew true                  → "Monthly · renews Dec 18"
+//   ending    willRenew false (they cancelled) → the save message: ends on the
+//             date, and how to turn renewal back on, in Apple's own settings
+//   billing   Apple flagged a billing issue    → update the payment method
+// Nothing here can cancel, delay or hide cancelling: every button opens
+// Apple's own subscription page. Pure; the clock is a parameter.
+const PLUS_RENEWAL_KEY = "plursky_plus_renewal_v1";   // { state, untilMs, plan } only: no receipt, no ids
+const PLUS_MANAGE_URL = "https://apps.apple.com/account/subscriptions";
+const _PLUS_RENEWING_PLANS = { [RC_PRODUCT_IDS.monthly]: "Monthly", [RC_PRODUCT_IDS.annual]: "Annual" };
+function plusRenewalState(info) {
+  const ent = info?.entitlements?.active?.[RC_ENTITLEMENT];
+  if (!ent || typeof ent !== "object") return null;
+  const plan = _PLUS_RENEWING_PLANS[ent.productIdentifier] || null;
+  const until = typeof ent.expirationDate === "string" ? Date.parse(ent.expirationDate) : NaN;
+  if (!plan || !Number.isFinite(until)) return { state: "lasting", untilMs: null, plan: null };
+  if (ent.billingIssueDetectedAt) return { state: "billing", untilMs: until, plan };
+  if (ent.willRenew === false) return { state: "ending", untilMs: until, plan };
+  if (ent.willRenew === true) return { state: "renewing", untilMs: until, plan };
+  return { state: "lasting", untilMs: null, plan };
+}
+function _plusRenewal() {
+  try {
+    const r = JSON.parse(localStorage.getItem(PLUS_RENEWAL_KEY) || "null");
+    return r && ["lasting", "renewing", "ending", "billing"].includes(r.state) ? r : null;
+  } catch { return null; }
+}
+function _setPlusRenewal(r) {
+  const next = r ? JSON.stringify({ state: r.state, untilMs: Number.isFinite(r.untilMs) ? r.untilMs : null, plan: r.plan || null }) : null;
+  let prev = null;
+  try {
+    prev = localStorage.getItem(PLUS_RENEWAL_KEY);
+    if (next) localStorage.setItem(PLUS_RENEWAL_KEY, next); else localStorage.removeItem(PLUS_RENEWAL_KEY);
+  } catch {}
+  if (prev !== next) { try { window.dispatchEvent(new CustomEvent("plursky-plus-change", { detail: { renewal: true } })); } catch {} }
+}
+// Pure. The row's words for a renewal state; the date is the store's own.
+function plusRenewalCopy(r) {
+  const day = ms => { try { return new Date(ms).toLocaleDateString("en-US", { month: "short", day: "numeric" }); } catch { return ""; } };
+  if (!r || r.state === "lasting" || !Number.isFinite(r.untilMs)) return { line: "Active · thank you", note: null, cta: null };
+  if (r.state === "renewing") return { line: `${r.plan} · renews ${day(r.untilMs)}`, note: null, cta: "Manage" };
+  if (r.state === "ending") return {
+    line: `${r.plan} · ends ${day(r.untilMs)}`,
+    note: `Renewal is off, so Plursky+ stops on ${day(r.untilMs)}. To keep it, turn renewal back on in your Apple subscriptions.`,
+    cta: "Keep Plursky+",
+  };
+  return {
+    line: `${r.plan} · payment issue`,
+    note: "Apple couldn't take the renewal payment. Update your payment method in your Apple subscriptions to keep Plursky+.",
+    cta: "Update payment",
+  };
 }
 
 // There is no StoreKit in the browser, so the web build cannot charge anyone.
@@ -10296,6 +10344,62 @@ function _setPlusSub(v) {
   if (prev !== (v ? "1" : "0")) {
     try { window.dispatchEvent(new CustomEvent("plursky-plus-change", { detail: { active: !!v } })); } catch {}
   }
+}
+
+// The Me tab's row for an active subscriber, with the save and cancel states
+// (plusRenewalCopy). Reactive: RevenueCat answers after the first paint, and
+// a cancel or a billing issue can land at any time. The button is a plain
+// link to Apple's own subscription page; nothing here cancels or blocks it.
+function PlusActiveRow() {
+  const [, bump] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => {
+    window.addEventListener("plursky-plus-change", bump);
+    return () => window.removeEventListener("plursky-plus-change", bump);
+  }, []);
+  const r = _plusRenewal();
+  const copy = plusRenewalCopy(r);
+  const save = !!r && (r.state === "ending" || r.state === "billing");
+  const seen = React.useRef(null);
+  React.useEffect(() => {
+    if (!save || seen.current === r.state) return;
+    seen.current = r.state;
+    _plusEvent("plus_save_view", { trigger: r.state });
+  }, [save, r && r.state]);
+  return (
+    <div data-plus-active={r ? r.state : "lasting"} style={{
+      width: "100%", padding: "14px 16px", marginBottom: 14,
+      background: "var(--s2)", boxShadow: "var(--e1)",
+      borderRadius: "var(--rad-md)", color: "var(--ink)", textAlign: "left", boxSizing: "border-box",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <span aria-hidden="true" style={{
+          width: 30, height: 30, borderRadius: "50%", flexShrink: 0,
+          background: "var(--signal)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          color: "var(--on-signal)", fontSize: 16, fontWeight: 700, lineHeight: 1,
+        }}>+</span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div className="duo-headline">Plursky+</div>
+          <div data-plus-active-line className="duo-label duo-ink3" style={{ marginTop: 4, overflowWrap: "anywhere" }}>{copy.line}</div>
+        </div>
+        {!save && <span aria-hidden="true" className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700 }}>✓</span>}
+      </div>
+      {copy.note && (
+        <div data-plus-save-note style={{ font: "400 14px/1.43 var(--f-ui)", color: "var(--ink-2)", marginTop: 10 }}>{copy.note}</div>
+      )}
+      {copy.cta && (
+        <a data-plus-manage href={PLUS_MANAGE_URL} target="_blank" rel="noopener noreferrer"
+          onClick={() => { if (save) _plusEvent("plus_save_tap", { trigger: r.state }); }}
+          style={{
+            display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: 44, marginTop: 10,
+            padding: "8px 16px", boxSizing: "border-box", maxWidth: "100%", textAlign: "center", borderRadius: 22,
+            textDecoration: "none", fontFamily: "var(--f-ui)", fontSize: 14, fontWeight: 650,
+            border: save ? "none" : "1px solid var(--line-2)",
+            background: save ? "var(--acc)" : "transparent", color: save ? "var(--on-acc)" : "var(--ink)",
+          }}>{copy.cta}</a>
+      )}
+    </div>
+  );
 }
 
 // Initialize RevenueCat on first load (non-blocking)
