@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // gather-dostuff.mjs — a gather folder (sheet.tsv + receipts.json) for an
-// Outside Lands or Lollapalooza edition read from its official per-day schedule grids
+// Outside Lands, Lollapalooza or Governors Ball edition read from its official per-day schedule grids
 // (format "dostuff-grid", dostuff-schedule.mjs), from the research cache.
 // import-gather.mjs then re-reads every page and must agree.
 //
@@ -12,7 +12,8 @@
 // fixes the day's axis (dostuff-schedule.mjs). Every block becomes a sheet
 // row, as printed. Shows in the festival's comedy tent (`--comedy <stage>`)
 // shows on its chef-and-food stage (`--food <stage>`, GastroMagic) and blocks
-// whose place disagrees with their printed range are excluded rows.
+// whose place disagrees with their printed range are excluded rows, as are
+// sets the edition's movedSets says were played in another slot.
 
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -47,8 +48,12 @@ for (let i = 0; i < groups.length; i += 4) {
   if (band.festival !== ed.festivalId || (band.year !== null && band.year !== ed.year)) throw new Error(`${aurl}: "${band.title}" is not an act's page of ${ed.name}`);
   const t = timeDay(page, band, slug);
   const ref = `page ${ts}`;
+  // A set the festival moved to another slot after the grid was printed
+  // (the edition's movedSets, each with the official post that says so).
+  const moved = x => (ed.movedSets || []).find(m => m.date === page.date && m.stage === x.stage && m.start === x.start && m.artist === x.artist);
   for (const x of t.sets) rows.push({ day, date: page.date, stage: x.stage, start: x.start, end: x.end, artist: x.artist, source_ref: ref,
-    note: comedy && x.stage === comedy ? "show in the comedy tent" : food && x.stage === food ? "show on the food stage" : "" });
+    note: comedy && x.stage === comedy ? "show in the comedy tent" : food && x.stage === food ? "show on the food stage"
+      : moved(x) ? `moved: played ${moved(x).to.date} ${moved(x).to.start} on ${moved(x).to.stage}` : "" });
   for (const x of page.misprints) rows.push({ day, date: page.date, stage: x.stage, start: "", end: "", artist: x.artist, source_ref: ref,
     note: `misprint: prints "${x.printed}", ${x.misprint}` });
   sources.push({ kind: "page", match: ref, url, captureTimestamp: ts, format: "dostuff-grid", printed: { [day]: page.label },
@@ -59,6 +64,7 @@ if (missing.length) throw new Error(`no grid for ${missing.join(", ")}`);
 const exclude = [];
 if (rows.some(r => r.note === "show in the comedy tent")) exclude.push({ note: "^show in the comedy tent$", reason: `${comedy} is the festival's comedy tent: its shows are comedy, not music sets`, comedy: true });
 if (rows.some(r => r.note === "show on the food stage")) exclude.push({ note: "^show on the food stage$", reason: `${food} is the festival's chef-and-food stage: its shows are cooking demos, food contests and themed food events, not music sets`, food: true });
+if (rows.some(r => r.note.startsWith("moved:"))) exclude.push({ note: "^moved: ", reason: "the festival moved this set to another slot after the grid was printed, and its own post says so (the edition's movedSets); it is listed where it was played", moved: true });
 if (rows.some(r => r.note.startsWith("misprint:"))) exclude.push({ note: "^misprint: ", reason: "the block's place on the grid disagrees with its printed range, so its time cannot be read", misprint: true });
 mkdirSync(out, { recursive: true });
 const cols = ["day", "date", "stage", "start", "end", "artist", "source_kind", "source_ref", "note"];

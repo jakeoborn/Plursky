@@ -1,0 +1,99 @@
+{
+  "id": "governors-ball-2015",
+  "method": "official_sources",
+  "official": "https://governorsballmusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2015-06-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lineup.governorsballmusicfestival.com/events/2015/06/05/",
+          "archivedUrl": "https://web.archive.org/web/20150613052427/https://lineup.governorsballmusicfestival.com/events/2015/06/05/",
+          "captureTimestamp": "20150613052427",
+          "printed": "Friday, June 5",
+          "sha256": "9c9d57ead0da8e26cf409a9d2111242724f685d78de5b3cc9979485ff3452858",
+          "bytes": 82253,
+          "rows": 23,
+          "format": "dostuff-grid",
+          "stages": 4,
+          "axis": "12:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "https://lineup.governorsballmusicfestival.com/band/drake",
+            "archivedUrl": "https://web.archive.org/web/20150622040334/https://lineup.governorsballmusicfestival.com/band/drake",
+            "captureTimestamp": "20150622040334",
+            "sha256": "7101320314bb66fc525675881aebede581c32e6691c3c957db1f31b99a391119",
+            "bytes": 68894,
+            "printed": "Friday Jun 5 9:30 PM on GovBallNYC Stage"
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2015-06-06",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lineup.governorsballmusicfestival.com/events/2015/06/06/",
+          "archivedUrl": "https://web.archive.org/web/20150617091630/https://lineup.governorsballmusicfestival.com/events/2015/06/06/",
+          "captureTimestamp": "20150617091630",
+          "printed": "Saturday, June 6",
+          "sha256": "d1a01085b41b69607ae3954610157c49c15404478793306c9b709372826627c5",
+          "bytes": 82107,
+          "rows": 22,
+          "format": "dostuff-grid",
+          "stages": 4,
+          "axis": "12:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "https://lineup.governorsballmusicfestival.com/band/marina-and-the-diamonds",
+            "archivedUrl": "https://web.archive.org/web/20150609040656/https://lineup.governorsballmusicfestival.com/band/marina-and-the-diamonds",
+            "captureTimestamp": "20150609040656",
+            "sha256": "28c68d66a5bb629b9c4ee0c53a9746cc931fdf9e8794ea87b6f31fc645b2e7a9",
+            "bytes": 78825,
+            "printed": "Saturday Jun 6 3:00 PM on GovBallNYC Stage"
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2015-06-07",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lineup.governorsballmusicfestival.com/events/2015/06/07/",
+          "archivedUrl": "https://web.archive.org/web/20150617082728/https://lineup.governorsballmusicfestival.com/events/2015/06/07/",
+          "captureTimestamp": "20150617082728",
+          "printed": "Sunday, June 7",
+          "sha256": "db97609fa2f1189270664bb7a3334df9eaf4061ade06a823bd71a8e8d28da634",
+          "bytes": 82078,
+          "rows": 22,
+          "format": "dostuff-grid",
+          "stages": 4,
+          "axis": "12:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "https://lineup.governorsballmusicfestival.com/band/the-black-keys",
+            "archivedUrl": "https://web.archive.org/web/20150618102430/https://lineup.governorsballmusicfestival.com/band/the-black-keys",
+            "captureTimestamp": "20150618102430",
+            "sha256": "b3efa0af1e6041220422bbf8503cc4d660d7b3049f80a87d9e3ea5316af892d1",
+            "bytes": 73613,
+            "printed": "Sunday Jun 7 9:15 PM on GovBallNYC Stage"
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

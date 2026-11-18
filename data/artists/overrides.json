@@ -3970,6 +3970,18 @@
    ],
    "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
    "source": "https://www.lollapalooza.com/"
+  },
+  {
+   "printed": "Pat Mahoney DJ Set (DFA / LCD SOUNDSYSTEM )",
+   "performers": [
+    {
+     "name": "Pat Mahoney",
+     "role": "performer"
+    }
+   ],
+   "setTag": "DJ Set",
+   "why": "The parenthetical names the label and the band the DJ is known from, not a second act on the set: the DJ is the performer, and neither is credited as playing. \"DJ Set\" is the set tag.",
+   "source": "https://governorsballmusicfestival.com/"
   }
  ],
  "pending": [

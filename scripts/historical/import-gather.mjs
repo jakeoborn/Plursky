@@ -168,7 +168,7 @@ export async function importGather(id, dir) {
     }
     const date = ed.dates[+r.day - 1]?.[0];
     if (r.date !== date) throw new Error(`row ${r.artist}: day ${r.day} is ${r.date}, the edition says ${date}`);
-    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }), ...(ex.incomplete && { incomplete: true }), ...(ex.comedy && { comedy: true }), ...(ex.food && { food: true }), ...(ex.programme && { programme: true }), ...(ex.overlay && { overlay: true }) }); continue; }
+    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }), ...(ex.incomplete && { incomplete: true }), ...(ex.comedy && { comedy: true }), ...(ex.food && { food: true }), ...(ex.programme && { programme: true }), ...(ex.overlay && { overlay: true }), ...(ex.moved && { moved: true }) }); continue; }
     const hits = rc.sources.map((s, i) => [s, i]).filter(([s]) => (r.source_ref || "").includes(s.match)
       && (!s.when?.stage || new RegExp(s.when.stage).test(r.stage)) && (!s.when?.stageNot || !new RegExp(s.when.stageNot).test(r.stage)));
     if (hits.length !== 1) throw new Error(`row d${r.day} ${r.stage} ${r.start} ${r.artist}: ${hits.length} sources match its source_ref`);
@@ -414,7 +414,12 @@ export async function importGather(id, dir) {
         const fed = t.sets.filter(x => s.foodStage && x.stage === s.foodStage);
         const pgF = fed.map(k).sort().join("\n"), shF = excluded.filter(x => x.day === day && x.food).map(k).sort().join("\n");
         if (pgF !== shF) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${fed.length} show(s) on ${s.foodStage || "no food stage"}, the sheet excludes others`);
-        agree(day, t.sets.filter(x => !funny.includes(x) && !fed.includes(x)).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+        // A set the edition's movedSets says the festival moved is an excluded
+        // row of the day it was printed on, one for one; it counts where it was played.
+        const mv = t.sets.filter(x => (ed.movedSets || []).some(m => m.date === page.date && m.stage === x.stage && m.start === x.start && m.artist === x.artist));
+        const pgV = mv.map(k).sort().join("\n"), shV = excluded.filter(x => x.day === day && x.moved).map(k).sort().join("\n");
+        if (pgV !== shV) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${mv.length} moved set(s), the sheet excludes others`);
+        agree(day, t.sets.filter(x => !funny.includes(x) && !fed.includes(x) && !mv.includes(x)).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
         Object.assign(ledgerDays[day - 1].sources.at(-1), { stages: page.stages.length, axis: `${page.axis.first} … ${page.axis.last}`, pxPerMinute: page.scale,
           axisStart: t.axisStart, meridiem: "read off the anchor act's own page on the lineup site",
           anchor: { url: s.anchor.url, archivedUrl: acap.archivedUrl, captureTimestamp: acap.captureTimestamp, sha256: acap.sha256, bytes: acap.bytes, printed: t.anchor.text },
@@ -709,6 +714,20 @@ export async function importGather(id, dir) {
   if (unused.length) throw new Error(`set-times graphics no source uses and none excludes:\n  ${unused.map(u => `${u.cites} (${u.page})`).join("\n  ")}`);
   if (stale.length) throw new Error(`notUsedGraphics entries that are used, on no receipt page, or have no reason: ${stale.map(n => n.cites).join(", ")}`);
   for (const c of ed.cancelledDays || []) if (!cancelledLedger.some(x => x.date === c.date)) throw new Error(`no source prints cancelled day ${c.date} with its banner`);
+  // Each moved set: excluded where it was printed, listed where it was
+  // played, and the festival's own archived page says so in the quoted words.
+  const movedRows = excluded.filter(x => x.moved);
+  if (movedRows.length !== (ed.movedSets || []).length) throw new Error(`${movedRows.length} row(s) excluded as moved, the edition's movedSets has ${(ed.movedSets || []).length}`);
+  for (const m of ed.movedSets || []) {
+    const from = ed.dates.findIndex(([d]) => d === m.date) + 1, to = ed.dates.findIndex(([d]) => d === m.to.date) + 1;
+    if (!movedRows.some(x => x.day === from && x.stage === m.stage && x.start === m.start && x.billing === m.artist)) throw new Error(`moved set ${m.artist} ${m.date} ${m.start}: not an excluded moved row of that day`);
+    if (!out.some(r => r.day === to && r.stage === m.to.stage && r.start === m.to.start && r.artist === m.artist)) throw new Error(`moved set ${m.artist}: no set on ${m.to.date} ${m.to.start} at ${m.to.stage}`);
+    const cap = await fetchCapture(m.source.captureTimestamp, m.source.url);
+    if (cap.captureTimestamp !== m.source.captureTimestamp) throw new Error(`${m.source.url}: Wayback served ${cap.captureTimestamp}, not ${m.source.captureTimestamp}`);
+    const text = cap.text.replace(/<[^>]+>/g, " ").replace(/&#8217;|&rsquo;/g, "'").replace(/&nbsp;|\s+/g, " ");
+    for (const q of m.quotes || []) if (!text.includes(q)) throw new Error(`moved set ${m.artist}: ${m.source.url} @${m.source.captureTimestamp} does not print "${q}"`);
+    if (!(m.quotes || []).length) throw new Error(`moved set ${m.artist}: no quote from the official page`);
+  }
   const ledger = { id, method: "official_sources", official: rc.official, days: ledgerDays, excluded,
     ...(cancelledLedger.length && { cancelledDays: cancelledLedger }), ...(offDayLedger.length && { offDays: offDayLedger }), ...(unscheduledLedger.length && { unscheduledActs: unscheduledLedger }), ...(notUsedGraphics.length && { notUsedGraphics }) };
   writeFileSync(join(ROOT, `data/historical/ledger/${id}.json`), JSON.stringify(ledger, null, 2) + "\n");

@@ -2396,6 +2396,59 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "governors-ball:you-re-doing-great-stage",
+     "names": [
+      {
+       "printed": "YOU'RE DOING GREAT STAGE",
+       "editions": [
+        "governors-ball-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:hondastage",
+     "names": [
+      {
+       "printed": "HondaSTAGE",
+       "editions": [
+        "governors-ball-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:skyy-vodka-tent",
+     "names": [
+      {
+       "printed": "SKYY VODKA TENT",
+       "editions": [
+        "governors-ball-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:gotham-tent",
+     "names": [
+      {
+       "printed": "Gotham Tent",
+       "editions": [
+        "governors-ball-2014",
+        "governors-ball-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

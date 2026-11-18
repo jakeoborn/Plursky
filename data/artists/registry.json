@@ -1573,6 +1573,7 @@
    "edc-orlando-2017:d1:kineticfield:2112:diplo-b2b-a-trak",
    "edc-orlando-2017:d2:corona-electric-beach:2030:a-trak",
    "electric-forest-2013:d3:tripolee:0145:a-trak",
+   "governors-ball-2015:d3:honda-stage:1645:a-trak",
    "hard-summer-2012:d1:fool-s-gold-clubhouse:2350:a-trak",
    "hard-summer-2012:d2:hard-stage:1845:a-trak",
    "lollapalooza-2017:d1:perry-s:1745:a-trak",
@@ -6274,7 +6275,8 @@
   "key": "alt-j",
   "name": "alt-J",
   "aliases": [
-   "Alt-J"
+   "Alt-J",
+   "ALT-J"
   ],
   "kind": "performer",
   "parents": [],
@@ -6285,6 +6287,7 @@
    "acl-2015:d6:honda:1830:alt-j",
    "coachella-2015:d2:coachella:1930:alt-j",
    "coachella-2015:d5:coachella:1930:alt-j",
+   "governors-ball-2013:d2:hondastage:1645:alt-j",
    "lollapalooza-2013:d3:lake-shore:1700:alt-j",
    "lollapalooza-2015:d1:bud-light:1830:alt-j",
    "lollapalooza-2017:d3:grant-park:1815:alt-j",
@@ -6353,6 +6356,7 @@
    "coachella-2014:d6:gobi:1825:alunageorge",
    "coachella-2016:d2:sahara:1840:alunageorge",
    "coachella-2016:d5:sahara:1840:alunageorge",
+   "governors-ball-2014:d3:gotham-tent:1545:alunageorge",
    "lollapalooza-2016:d1:pepsi:1830:alunageorge",
    "shambhala-2016:d2:pagoda:0000:alunageorge"
   ],
@@ -8820,6 +8824,7 @@
   "billings": [
    "coachella-2015:d1:outdoor:1625:angus-and-julia-stone",
    "coachella-2015:d4:outdoor:1620:angus-and-julia-stone",
+   "governors-ball-2015:d2:honda-stage:1645:angus-and-julia-stone",
    "lollapalooza-2015:d3:palladia:1645:angus-and-julia-stone",
    "outside-lands-2015:d2:sutro:1620:angus-and-julia-stone"
   ],
@@ -8855,6 +8860,21 @@
   ],
   "firstSeen": "2025-10-04",
   "lastSeen": "2025-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "animal-collective",
+  "name": "ANIMAL COLLECTIVE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2013:d2:you-re-doing-great-stage:2000:animal-collective"
+  ],
+  "firstSeen": "2013-06-08",
+  "lastSeen": "2013-06-08",
   "photo": null,
   "links": []
  },
@@ -10949,6 +10969,21 @@
   "links": []
  },
  {
+  "key": "astr",
+  "name": "ASTR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d2:gotham-tent:1245:astr"
+  ],
+  "firstSeen": "2015-06-06",
+  "lastSeen": "2015-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "astral-projection",
   "name": "Astral Projection",
   "aliases": [],
@@ -11327,11 +11362,12 @@
   "projects": [],
   "billings": [
    "governors-ball-2012:d1:honda-stage:1725:atmosphere",
+   "governors-ball-2015:d2:big-apple-stage:1745:atmosphere",
    "lollapalooza-2011:d2:sony:1930:atmosphere",
    "outside-lands-2014:d2:sutro:1900:atmosphere"
   ],
   "firstSeen": "2011-08-06",
-  "lastSeen": "2014-08-09",
+  "lastSeen": "2015-06-06",
   "photo": null,
   "links": []
  },
@@ -12496,8 +12532,8 @@
   "key": "axwell-ingrosso",
   "name": "Axwell /\\ Ingrosso",
   "aliases": [
-   "Axwell ^ Ingrosso",
-   "Axwell Λ Ingrosso"
+   "Axwell Λ Ingrosso",
+   "Axwell ^ Ingrosso"
   ],
   "kind": "performer",
   "parents": [],
@@ -12505,6 +12541,7 @@
   "billings": [
    "coachella-2015:d2:outdoor:2355:axwell-ingrosso",
    "coachella-2015:d5:outdoor:2355:axwell-ingrosso",
+   "governors-ball-2014:d3:honda-stage:2145:axwell-ingrosso",
    "tomorrowland-2015:d2:mainstage:2345:axwell-ingrosso",
    "tomorrowland-2016:d2:mainstage:2345:axwell-ingrosso",
    "tomorrowland-2017:d1:mainstage:2300:axwell-ingrosso",
@@ -12512,7 +12549,7 @@
    "tomorrowland-2018:d1:mainstage:2250:axwell-ingrosso",
    "tomorrowland-2018:d4:mainstage:2250:axwell-ingrosso"
   ],
-  "firstSeen": "2015-04-11",
+  "firstSeen": "2014-06-08",
   "lastSeen": "2018-07-27",
   "photo": null,
   "links": []
@@ -12602,7 +12639,9 @@
  {
   "key": "azealia-banks",
   "name": "Azealia Banks",
-  "aliases": [],
+  "aliases": [
+   "AZEALIA BANKS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -12610,7 +12649,8 @@
    "coachella-2012:d2:gobi:1450:azealia-banks",
    "coachella-2012:d5:gobi:1450:azealia-banks",
    "coachella-2015:d1:coachella:1700:azealia-banks",
-   "coachella-2015:d4:coachella:1655:azealia-banks"
+   "coachella-2015:d4:coachella:1655:azealia-banks",
+   "governors-ball-2013:d2:skyy-vodka-tent:1800:azealia-banks"
   ],
   "firstSeen": "2012-04-14",
   "lastSeen": "2015-04-17",
@@ -13968,6 +14008,7 @@
    "coachella-2014:d5:gobi:1545:banks",
    "coachella-2017:d1:gobi:1910:banks",
    "coachella-2017:d4:gobi:1910:banks",
+   "governors-ball-2014:d3:gotham-tent:1415:banks",
    "governors-ball-2017:d2:bacardi:2000:banks",
    "lollapalooza-2015:d2:pepsi:1945:banks",
    "lollapalooza-2017:d3:lake-shore:1930:banks"
@@ -15091,6 +15132,7 @@
    "coachella-2014:d4:mojave:1725:bastille",
    "coachella-2017:d2:outdoor:1745:bastille",
    "coachella-2017:d5:outdoor:1745:bastille",
+   "governors-ball-2014:d1:big-apple-stage:1545:bastille",
    "lollapalooza-2016:d1:samsung:1630:bastille"
   ],
   "firstSeen": "2014-04-11",
@@ -15459,11 +15501,12 @@
   "billings": [
    "coachella-2016:d3:outdoor:2015:beach-house",
    "coachella-2016:d6:outdoor:2015:beach-house",
+   "governors-ball-2013:d1:you-re-doing-great-stage:2000:beach-house",
    "governors-ball-2017:d1:big-apple:1945:beach-house",
    "lollapalooza-2013:d3:lake-shore:1900:beach-house",
    "outside-lands-2016:d1:sutro:1950:beach-house"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2013-06-07",
   "lastSeen": "2017-06-02",
   "photo": null,
   "links": []
@@ -15540,14 +15583,17 @@
  {
   "key": "bear-mountain",
   "name": "Bear Mountain",
-  "aliases": [],
+  "aliases": [
+   "BEAR MOUNTAIN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2013:d3:bud-light:1115:bear-mountain"
+   "acl-2013:d3:bud-light:1115:bear-mountain",
+   "governors-ball-2013:d1:skyy-vodka-tent:1245:bear-mountain"
   ],
-  "firstSeen": "2013-10-06",
+  "firstSeen": "2013-06-07",
   "lastSeen": "2013-10-06",
   "photo": null,
   "links": []
@@ -16027,18 +16073,21 @@
  {
   "key": "beirut",
   "name": "Beirut",
-  "aliases": [],
+  "aliases": [
+   "BEIRUT"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2012:d3:mojave:2030:beirut",
    "coachella-2012:d6:mojave:2030:beirut",
+   "governors-ball-2013:d3:you-re-doing-great-stage:1745:beirut",
    "lollapalooza-2011:d2:google:2045:beirut",
    "outside-lands-2011:d3:sutro:1850:beirut"
   ],
   "firstSeen": "2011-08-06",
-  "lastSeen": "2012-04-22",
+  "lastSeen": "2013-06-09",
   "photo": null,
   "links": []
  },
@@ -16263,6 +16312,21 @@
   ],
   "firstSeen": "2018-07-27",
   "lastSeen": "2026-08-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ben-cameron",
+  "name": "Ben Cameron",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2014:d3:gotham-tent:1215:ben-cameron"
+  ],
+  "firstSeen": "2014-06-08",
+  "lastSeen": "2014-06-08",
   "photo": null,
   "links": []
  },
@@ -16744,6 +16808,7 @@
    "acl-2017:d5:miller-lite:untimed:benjamin-booker",
    "coachella-2015:d2:gobi:1540:benjamin-booker",
    "coachella-2015:d5:gobi:1540:benjamin-booker",
+   "governors-ball-2015:d1:big-apple-stage:1415:benjamin-booker",
    "lollapalooza-2014:d2:the-grove:1250:benjamin-booker",
    "outside-lands-2015:d3:sutro:1520:benjamin-booker"
   ],
@@ -17066,16 +17131,19 @@
  {
   "key": "best-coast",
   "name": "Best Coast",
-  "aliases": [],
+  "aliases": [
+   "BEST COAST"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2013:d1:you-re-doing-great-stage:1545:best-coast",
    "lollapalooza-2011:d3:google:1745:best-coast",
    "outside-lands-2011:d1:panhandle:1950:best-coast"
   ],
   "firstSeen": "2011-08-07",
-  "lastSeen": "2011-08-12",
+  "lastSeen": "2013-06-07",
   "photo": null,
   "links": []
  },
@@ -17604,6 +17672,7 @@
    "electric-forest-2012:d4:sherwood-court:0030:big-gigantic",
    "electric-forest-2015:d4:sherwood-court:0030:big-gigantic-feat-the-motet",
    "governors-ball-2012:d1:honda-stage:1410:big-gigantic",
+   "governors-ball-2015:d3:honda-stage:1845:big-gigantic",
    "lollapalooza-2012:d3:perry-s:1745:big-gigantic",
    "lollapalooza-2016:d3:perry-s:1900:big-gigantic",
    "outside-lands-2012:d3:twin-peaks-hellman-hollow:1405:big-gigantic",
@@ -18404,6 +18473,21 @@
   "links": []
  },
  {
+  "key": "bishop-nehru",
+  "name": "Bishop Nehru",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d3:gotham-tent:1245:bishop-nehru"
+  ],
+  "firstSeen": "2015-06-07",
+  "lastSeen": "2015-06-07",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bit-funk",
   "name": "Bit Funk",
   "aliases": [],
@@ -18530,6 +18614,21 @@
   ],
   "firstSeen": "2018-07-27",
   "lastSeen": "2019-07-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bjork",
+  "name": "Björk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d2:govballnyc-stage:1900:bjork"
+  ],
+  "firstSeen": "2015-06-06",
+  "lastSeen": "2015-06-06",
   "photo": null,
   "links": []
  },
@@ -18721,6 +18820,7 @@
    "acl-2014:d4:austin-ventures:1200:black-pistol-fire",
    "acl-2019:d1:miller-lite:1500:black-pistol-fire",
    "acl-2019:d4:miller-lite:1500:black-pistol-fire",
+   "governors-ball-2015:d1:big-apple-stage:1245:black-pistol-fire",
    "lollapalooza-2015:d1:bmi:1410:black-pistol-fire"
   ],
   "firstSeen": "2014-10-10",
@@ -19247,13 +19347,14 @@
    "acl-2014:d1:miller-lite:1515:bleachers",
    "acl-2014:d4:miller-lite:1515:bleachers",
    "acl-2021:d4:lady-bird:1600:bleachers",
+   "governors-ball-2014:d3:govballnyc-stage:1330:bleachers",
    "governors-ball-2017:d1:gov-ball-nyc:1645:bleachers",
    "lollapalooza-2014:d3:lake-shore:1330:bleachers",
    "lollapalooza-2025:d2:bud-light:1830:bleachers",
    "outside-lands-2014:d1:twin-peaks:1410:bleachers",
    "outside-lands-2017:d3:lands-end:1450:bleachers"
   ],
-  "firstSeen": "2014-08-03",
+  "firstSeen": "2014-06-08",
   "lastSeen": "2026-10-03",
   "photo": null,
   "links": []
@@ -19490,6 +19591,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2013:d3:skyy-vodka-tent:2000:bloc-party",
    "hard-summer-2012:d1:hard-stage:2330:bloc-party",
    "lollapalooza-2012:d2:sony:2015:bloc-party",
    "lollapalooza-2016:d4:lakeshore:1925:bloc-party",
@@ -23066,6 +23168,7 @@
    "acl-2014:d5:miller-lite:1930:broken-bells",
    "coachella-2014:d1:outdoor:1930:broken-bells",
    "coachella-2014:d4:outdoor:1910:broken-bells",
+   "governors-ball-2014:d2:govballnyc-stage:1645:broken-bells",
    "lollapalooza-2014:d1:samsung-galaxy:1830:broken-bells"
   ],
   "firstSeen": "2014-04-11",
@@ -26736,10 +26839,11 @@
    "acl-2014:d4:bmi:1215:catfish-and-the-bottlemen",
    "acl-2016:d2:honda:1630:catfish-and-the-bottlemen",
    "acl-2016:d5:honda:1630:catfish-and-the-bottlemen",
+   "governors-ball-2014:d2:honda-stage:1215:catfish-and-the-bottlemen",
    "lollapalooza-2015:d2:samsung-galaxy:1245:catfish-and-the-bottlemen",
    "lollapalooza-2018:d3:grant-park:untimed:catfish-and-the-bottlemen"
   ],
-  "firstSeen": "2014-10-10",
+  "firstSeen": "2014-06-07",
   "lastSeen": "2018-08-04",
   "photo": null,
   "links": []
@@ -26848,6 +26952,21 @@
   ],
   "firstSeen": "2012-08-12",
   "lastSeen": "2017-04-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cayucas",
+  "name": "Cayucas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2014:d3:gotham-tent:1250:cayucas"
+  ],
+  "firstSeen": "2014-06-08",
+  "lastSeen": "2014-06-08",
   "photo": null,
   "links": []
  },
@@ -27551,6 +27670,7 @@
    "acl-2017:d2:honda:2000:chance-the-rapper",
    "acl-2017:d5:honda:untimed:chance-the-rapper",
    "coachella-2014:d3:coachella:1510:chance-the-rapper",
+   "governors-ball-2014:d2:gotham-tent:1545:chance-the-rapper",
    "governors-ball-2017:d1:gov-ball-nyc:2145:chance-the-rapper",
    "lollapalooza-2013:d1:bmi:1850:chance-the-rapper",
    "lollapalooza-2014:d3:perry-s:2030:chance-the-rapper",
@@ -27929,11 +28049,12 @@
    "acl-2026:af49",
    "lollapalooza-2026:lo56",
    "outside-lands-2026:os7",
+   "governors-ball-2015:d1:honda-stage:1500:charli-xcx",
    "governors-ball-2017:d1:big-apple:1545:charli-xcx",
    "lollapalooza-2015:d2:sprint:1500:charli-xcx",
    "lollapalooza-2017:d4:lake-shore:1530:charli-xcx"
   ],
-  "firstSeen": "2015-08-01",
+  "firstSeen": "2015-06-05",
   "lastSeen": "2026-10-02",
   "photo": null,
   "links": []
@@ -28146,9 +28267,10 @@
   "projects": [],
   "billings": [
    "acl-2015:d2:austin-ventures:1330:charlotte-oc",
-   "acl-2015:d5:austin-ventures:1330:charlotte-oc"
+   "acl-2015:d5:austin-ventures:1330:charlotte-oc",
+   "governors-ball-2015:d2:honda-stage:1215:charlotte-oc"
   ],
-  "firstSeen": "2015-10-03",
+  "firstSeen": "2015-06-06",
   "lastSeen": "2015-10-10",
   "photo": null,
   "links": []
@@ -28602,7 +28724,9 @@
  {
   "key": "cherub",
   "name": "Cherub",
-  "aliases": [],
+  "aliases": [
+   "CHERUB"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -28612,6 +28736,7 @@
    "acl-2015:d4:miller-lite:1500:cherub",
    "electric-forest-2012:d2:tripolee:1500:cherub",
    "electric-forest-2014:d1:ranch-arena:1700:cherub",
+   "governors-ball-2013:d3:skyy-vodka-tent:1245:cherub",
    "lollapalooza-2013:d2:perry-s:untimed:cherub",
    "lollapalooza-2016:d2:bud-light:1645:cherub",
    "outside-lands-2013:d2:panhandle:1325:cherub"
@@ -28975,6 +29100,7 @@
    "acl-2019:d5:american-express:2000:childish-gambino",
    "coachella-2012:d2:main-stage:1450:childish-gambino",
    "coachella-2012:d5:main-stage:1450:childish-gambino",
+   "governors-ball-2014:d2:honda-stage:1900:childish-gambino",
    "governors-ball-2017:d2:honda:2115:childish-gambino",
    "lollapalooza-2012:d3:google-play:2045:childish-gambino",
    "lollapalooza-2014:d3:bud-light:1845:childish-gambino",
@@ -29967,6 +30093,7 @@
    "coachella-2014:d1:coachella:1955:chromeo",
    "coachella-2014:d4:coachella:1940:chromeo",
    "governors-ball-2012:d1:hype-machine-stage:1820:chromeo",
+   "governors-ball-2015:d1:govballnyc-stage:1645:chromeo",
    "hard-summer-2012:d1:rbma-discotheque:2300:chromeo",
    "lollapalooza-2014:d3:bud-light:1645:chromeo",
    "lollapalooza-2018:d4:lake-shore:untimed:chromeo",
@@ -29992,6 +30119,21 @@
   ],
   "firstSeen": "2016-04-16",
   "lastSeen": "2016-04-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chronixx-and-the-zincfence-redemption",
+  "name": "Chronixx and the Zincfence Redemption",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d3:big-apple-stage:1415:chronixx-and-the-zincfence-redemption"
+  ],
+  "firstSeen": "2015-06-07",
+  "lastSeen": "2015-06-07",
   "photo": null,
   "links": []
  },
@@ -30767,6 +30909,7 @@
    "coachella-2014:d3:mojave:1535:classixx",
    "coachella-2014:d6:mojave:1535:classixx",
    "electric-forest-2014:d1:tripolee:0045:classixx",
+   "governors-ball-2014:d2:honda-stage:1500:classixx",
    "lollapalooza-2016:d4:petrillo-bandshell:1345:classixx",
    "outside-lands-2015:d2:panhandle:1955:classixx"
   ],
@@ -30892,10 +31035,11 @@
   "projects": [],
   "billings": [
    "coachella-2015:d2:coachella:1415:clean-bandit",
-   "coachella-2015:d5:coachella:1415:clean-bandit"
+   "coachella-2015:d5:coachella:1415:clean-bandit",
+   "governors-ball-2015:d2:govballnyc-stage:1330:clean-bandit"
   ],
   "firstSeen": "2015-04-11",
-  "lastSeen": "2015-04-18",
+  "lastSeen": "2015-06-06",
   "photo": null,
   "links": []
  },
@@ -31776,7 +31920,9 @@
  {
   "key": "cold-war-kids",
   "name": "Cold War Kids",
-  "aliases": [],
+  "aliases": [
+   "COLD WAR KIDS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -31786,6 +31932,7 @@
    "acl-2016:d4:cirrus-logic:1700:cold-war-kids",
    "coachella-2016:d3:outdoor:1740:cold-war-kids",
    "coachella-2016:d6:outdoor:1740:cold-war-kids",
+   "governors-ball-2013:d3:hondastage:1500:cold-war-kids",
    "lollapalooza-2011:d3:google:2030:cold-war-kids",
    "lollapalooza-2015:d1:samsung-galaxy:1545:cold-war-kids",
    "outside-lands-2015:d2:lands-end:1540:cold-war-kids"
@@ -32490,9 +32637,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2016:d5:miller-lite:1930:conor-oberst"
+   "acl-2016:d5:miller-lite:1930:conor-oberst",
+   "governors-ball-2015:d2:honda-stage:1845:conor-oberst"
   ],
-  "firstSeen": "2016-10-08",
+  "firstSeen": "2015-06-06",
   "lastSeen": "2016-10-08",
   "photo": null,
   "links": []
@@ -33945,6 +34093,21 @@
   "links": []
  },
  {
+  "key": "cris-cab",
+  "name": "Cris Cab",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2014:d3:honda-stage:1215:cris-cab"
+  ],
+  "firstSeen": "2014-06-08",
+  "lastSeen": "2014-06-08",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "crisis-era",
   "name": "Crisis Era",
   "aliases": [
@@ -34281,7 +34444,9 @@
  {
   "key": "crystal-castles",
   "name": "Crystal Castles",
-  "aliases": [],
+  "aliases": [
+   "CRYSTAL CASTLES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -34291,6 +34456,7 @@
    "acl-2017:d4:honda:untimed:crystal-castles",
    "coachella-2017:d1:sahara:1800:crystal-castles",
    "coachella-2017:d4:sahara:1800:crystal-castles",
+   "governors-ball-2013:d1:skyy-vodka-tent:1745:crystal-castles",
    "lollapalooza-2011:d1:sony:1915:crystal-castles",
    "lollapalooza-2013:d1:red-bull-sound-select:1615:crystal-castles",
    "lollapalooza-2017:d2:pepsi:2100:crystal-castles"
@@ -34656,8 +34822,8 @@
   "key": "cut-copy",
   "name": "Cut Copy",
   "aliases": [
-   "cut / copy",
-   "CUT COPY"
+   "CUT COPY",
+   "cut / copy"
   ],
   "kind": "performer",
   "parents": [],
@@ -34666,6 +34832,7 @@
    "acl-2011:d2:amd:1800:cut-copy",
    "acl-2017:d2:honda:1800:cut-copy",
    "electric-forest-2014:d4:sherwood-court:0030:cut-copy",
+   "governors-ball-2013:d2:gov-ball-nyc-stage:1715:cut-copy",
    "governors-ball-2018:d2:gov-ball-nyc-stage:1645:cut-copy",
    "lollapalooza-2014:d2:the-grove:2100:cut-copy",
    "outside-lands-2014:d3:twin-peaks:1840:cut-copy"
@@ -35783,15 +35950,18 @@
  },
  {
   "key": "damian-jr-gong-marley",
-  "name": "DAMIAN ‘JR. GONG’ MARLEY",
-  "aliases": [],
+  "name": "Damian \"Jr Gong\" Marley",
+  "aliases": [
+   "DAMIAN ‘JR. GONG’ MARLEY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2014:d1:honda-stage:1845:damian-jr-gong-marley",
    "governors-ball-2018:d1:bacardi-stage:2000:damian-jr-gong-marley"
   ],
-  "firstSeen": "2018-06-01",
+  "firstSeen": "2014-06-06",
   "lastSeen": "2018-06-01",
   "photo": null,
   "links": []
@@ -35865,6 +36035,21 @@
   ],
   "firstSeen": "2012-06-09",
   "lastSeen": "2012-06-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "damon-albarn",
+  "name": "Damon Albarn",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2014:d1:honda-stage:2115:damon-albarn"
+  ],
+  "firstSeen": "2014-06-06",
+  "lastSeen": "2014-06-06",
   "photo": null,
   "links": []
  },
@@ -38837,6 +39022,7 @@
    "escape-halloween-2019:d1:the-grimm:0030:deadmau5",
    "escape-halloween-2024:d1:the-grimm:2045:deadmau5",
    "escape-halloween-2025:d1:the-big-top:2210:deadmau5",
+   "governors-ball-2015:d2:govballnyc-stage:2130:deadmau5",
    "lollapalooza-2011:d3:bud-light:2030:deadmau5",
    "nocturnal-wonderland-2021:d1:wolves-den:2300:deadmau5",
    "outside-lands-2011:d3:twin-peaks:2000:deadmau5",
@@ -38857,9 +39043,10 @@
   "projects": [],
   "billings": [
    "coachella-2016:d3:gobi:2245:deafheaven",
-   "coachella-2016:d6:gobi:2245:deafheaven"
+   "coachella-2016:d6:gobi:2245:deafheaven",
+   "governors-ball-2014:d2:gotham-tent:1415:deafheaven"
   ],
-  "firstSeen": "2016-04-17",
+  "firstSeen": "2014-06-07",
   "lastSeen": "2016-04-24",
   "photo": null,
   "links": []
@@ -38981,6 +39168,7 @@
   "projects": [],
   "billings": [
    "acl-2011:d3:honda:1730:death-from-above-1979",
+   "governors-ball-2015:d1:big-apple-stage:1745:death-from-above-1979",
    "lollapalooza-2011:d2:bud-light:1600:death-from-above-1979",
    "lollapalooza-2015:d2:samsung-galaxy:1600:death-from-above-1979"
   ],
@@ -39471,15 +39659,18 @@
  {
   "key": "deerhunter",
   "name": "Deerhunter",
-  "aliases": [],
+  "aliases": [
+   "DEERHUNTER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2016:d2:mojave:1740:deerhunter",
-   "coachella-2016:d5:mojave:1740:deerhunter"
+   "coachella-2016:d5:mojave:1740:deerhunter",
+   "governors-ball-2013:d3:you-re-doing-great-stage:1545:deerhunter"
   ],
-  "firstSeen": "2016-04-16",
+  "firstSeen": "2013-06-09",
   "lastSeen": "2016-04-23",
   "photo": null,
   "links": []
@@ -41223,6 +41414,21 @@
   "links": []
  },
  {
+  "key": "diarrhea-planet",
+  "name": "Diarrhea Planet",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2014:d2:big-apple-stage:1245:diarrhea-planet"
+  ],
+  "firstSeen": "2014-06-07",
+  "lastSeen": "2014-06-07",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dice-and-kastor",
   "name": "Dice & Kastor",
   "aliases": [],
@@ -41550,6 +41756,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2015:d1:honda-stage:1330:diiv",
    "lollapalooza-2013:d3:the-grove:1800:diiv",
    "outside-lands-2016:d3:panhandle:1620:diiv"
   ],
@@ -41685,6 +41892,7 @@
    "edc-orlando-2023:d1:kinetic-field:1956:dillon-francis-b2b-valentino-khan",
    "edc-orlando-2024:d2:kinetic-field:2119:dillon-francis-b2b-disco-lines",
    "escape-halloween-2019:d1:the-grimm:2315:dillon-francis",
+   "governors-ball-2013:d1:hondastage:1645:dillon-francis",
    "hard-summer-2012:d2:owsla-tent:2210:dillon-francis",
    "lollapalooza-2015:d1:perry-s:1900:dillon-francis",
    "lollapalooza-2018:d2:perry-s:untimed:dillon-francis",
@@ -42052,6 +42260,21 @@
   "links": []
  },
  {
+  "key": "dinosaur-jr",
+  "name": "DINOSAUR JR.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2013:d1:gov-ball-nyc-stage:1500:dinosaur-jr"
+  ],
+  "firstSeen": "2013-06-07",
+  "lastSeen": "2013-06-07",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dion",
   "name": "Diøn",
   "aliases": [],
@@ -42270,9 +42493,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2013:d2:you-re-doing-great-stage:1545:dirty-projectors",
    "governors-ball-2018:d3:bacardi-stage:1745:dirty-projectors"
   ],
-  "firstSeen": "2018-06-03",
+  "firstSeen": "2013-06-08",
   "lastSeen": "2018-06-03",
   "photo": null,
   "links": []
@@ -42481,6 +42705,7 @@
    "coachella-2014:d6:outdoor:2135:disclosure",
    "coachella-2016:d2:coachella:1935:disclosure",
    "coachella-2016:d5:coachella:1935:disclosure",
+   "governors-ball-2014:d2:honda-stage:1645:disclosure",
    "lollapalooza-2013:d1:the-grove:1800:disclosure",
    "lollapalooza-2016:d3:bud-light:2030:disclosure",
    "outside-lands-2014:d1:lands-end:1835:disclosure",
@@ -42972,14 +43197,17 @@
  {
   "key": "divine-fits",
   "name": "Divine Fits",
-  "aliases": [],
+  "aliases": [
+   "DIVINE FITS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2013:d3:honda:1630:divine-fits"
+   "acl-2013:d3:honda:1630:divine-fits",
+   "governors-ball-2013:d2:gov-ball-nyc-stage:1545:divine-fits"
   ],
-  "firstSeen": "2013-10-06",
+  "firstSeen": "2013-06-08",
   "lastSeen": "2013-10-06",
   "photo": null,
   "links": []
@@ -47078,10 +47306,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2015:d3:big-apple-stage:1245:dma-s",
    "lollapalooza-2015:d3:pepsi:1350:dma-s",
    "outside-lands-2015:d3:sutro:1200:dma-s"
   ],
-  "firstSeen": "2015-08-02",
+  "firstSeen": "2015-06-07",
   "lastSeen": "2015-08-09",
   "photo": null,
   "links": []
@@ -48767,7 +48996,8 @@
    "acl-2015:d2:samsung:2030:drake",
    "acl-2015:d5:samsung:2030:drake",
    "coachella-2015:d3:coachella:2215:drake",
-   "coachella-2015:d6:coachella:2215:drake"
+   "coachella-2015:d6:coachella:2215:drake",
+   "governors-ball-2015:d1:govballnyc-stage:2130:drake"
   ],
   "firstSeen": "2015-04-12",
   "lastSeen": "2015-10-10",
@@ -49258,6 +49488,7 @@
   "billings": [
    "coachella-2014:d2:mojave:1345:drowners",
    "coachella-2014:d5:mojave:1345:drowners",
+   "governors-ball-2014:d1:big-apple-stage:1245:drowners",
    "lollapalooza-2013:d1:the-grove:1200:drowners",
    "lollapalooza-2016:d3:bmi:1520:drowners"
   ],
@@ -50703,6 +50934,21 @@
   "links": []
  },
  {
+  "key": "earl-sweatshirt",
+  "name": "Earl Sweatshirt",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2014:d3:honda-stage:1500:earl-sweatshirt"
+  ],
+  "firstSeen": "2014-06-08",
+  "lastSeen": "2014-06-08",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "early-james",
   "name": "EARLY JAMES",
   "aliases": [],
@@ -51007,9 +51253,10 @@
   "projects": [],
   "billings": [
    "acl-2015:d2:samsung:1245:echosmith",
-   "acl-2015:d5:samsung:1245:echosmith"
+   "acl-2015:d5:samsung:1245:echosmith",
+   "governors-ball-2015:d3:govballnyc-stage:1330:echosmith"
   ],
-  "firstSeen": "2015-10-03",
+  "firstSeen": "2015-06-07",
   "lastSeen": "2015-10-10",
   "photo": null,
   "links": []
@@ -51495,6 +51742,7 @@
   "name": "Edward Sharpe and the Magnetic Zeros",
   "aliases": [
    "Edward Sharpe & The Magnetic Zeros",
+   "EDWARD SHARPE & THE MAGNETIC ZEROS",
    "Edward Sharpe And The Magnetic Zeros"
   ],
   "kind": "performer",
@@ -51504,6 +51752,7 @@
    "coachella-2016:d3:outdoor:1900:edward-sharpe-and-the-magnetic-zeros",
    "coachella-2016:d6:outdoor:1900:edward-sharpe-and-the-magnetic-zeros",
    "electric-forest-2015:d3:ranch-arena:1800:edward-sharpe-and-the-magnetic-zeros",
+   "governors-ball-2013:d2:you-re-doing-great-stage:1745:edward-sharpe-and-the-magnetic-zeros",
    "outside-lands-2010:d2:twin-peaks:1540:edward-sharpe-and-the-magnetic-zeros"
   ],
   "firstSeen": "2010-08-15",
@@ -53417,6 +53666,7 @@
    "edc-las-vegas-2013:d2:cosmicmeadow:2345:empire-of-the-sun",
    "electric-forest-2013:d3:ranch-arena:0045:empire-of-the-sun",
    "governors-ball-2011:d1:big-apple-stage:2000:empire-of-the-sun",
+   "governors-ball-2014:d3:gotham-tent:2015:empire-of-the-sun",
    "outside-lands-2010:d2:twin-peaks:2025:empire-of-the-sun",
    "outside-lands-2017:d2:twin-peaks:2055:empire-of-the-sun"
   ],
@@ -54066,6 +54316,21 @@
   ],
   "firstSeen": "2011-08-12",
   "lastSeen": "2021-10-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "erykah-badu-and-the-cannabinoids",
+  "name": "ERYKAH BADU & THE CANNABINOIDS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2013:d1:skyy-vodka-tent:2000:erykah-badu-and-the-cannabinoids"
+  ],
+  "firstSeen": "2013-06-07",
+  "lastSeen": "2013-06-07",
   "photo": null,
   "links": []
  },
@@ -56253,16 +56518,19 @@
  {
   "key": "feist",
   "name": "Feist",
-  "aliases": [],
+  "aliases": [
+   "FEIST"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2012:d2:outdoor:2040:feist",
-   "coachella-2012:d5:outdoor:2040:feist"
+   "coachella-2012:d5:outdoor:2040:feist",
+   "governors-ball-2013:d1:gov-ball-nyc-stage:1845:feist"
   ],
   "firstSeen": "2012-04-14",
-  "lastSeen": "2012-04-21",
+  "lastSeen": "2013-06-07",
   "photo": null,
   "links": []
  },
@@ -57314,6 +57582,7 @@
    "coachella-2012:d6:main-stage:1645:fitz-and-the-tantrums",
    "coachella-2015:d3:outdoor:2120:fitz-and-the-tantrums",
    "coachella-2015:d6:outdoor:2125:fitz-and-the-tantrums",
+   "governors-ball-2014:d2:big-apple-stage:1545:fitz-and-the-tantrums",
    "lollapalooza-2011:d2:music-unlimited:1430:fitz-and-the-tantrums",
    "lollapalooza-2014:d2:samsung-galaxy:1615:fitz-and-the-tantrums",
    "lollapalooza-2019:d1:bud-light:untimed:fitz-and-the-tantrums",
@@ -58040,9 +58309,9 @@
  },
  {
   "key": "florence-the-machine",
-  "name": "Florence + the Machine",
+  "name": "Florence + The Machine",
   "aliases": [
-   "Florence + The Machine",
+   "Florence + the Machine",
    "FLORENCE + THE MACHINE"
   ],
   "kind": "performer",
@@ -58053,6 +58322,7 @@
    "acl-2015:d6:samsung:2030:florence-the-machine",
    "coachella-2015:d3:coachella:2050:florence-the-machine",
    "coachella-2015:d6:coachella:2100:florence-the-machine",
+   "governors-ball-2015:d1:govballnyc-stage:1930:florence-the-machine",
    "governors-ball-2019:d2:govballnyc-stage:2115:florence-the-machine",
    "lollapalooza-2012:d3:bud-light:1815:florence-the-machine",
    "lollapalooza-2015:d3:samsung-galaxy:2100:florence-the-machine"
@@ -58290,6 +58560,7 @@
    "coachella-2014:d4:gobi:2130:flume",
    "coachella-2016:d3:outdoor:2135:flume",
    "coachella-2016:d6:outdoor:2135:flume",
+   "governors-ball-2015:d2:big-apple-stage:2000:flume",
    "governors-ball-2017:d1:honda:2045:flume",
    "lollapalooza-2014:d3:the-grove:1915:flume",
    "lollapalooza-2016:d4:samsung:1825:flume",
@@ -58436,6 +58707,7 @@
    "coachella-2015:d1:mojave:2200:flying-lotus",
    "coachella-2015:d4:mojave:2200:flying-lotus",
    "electric-forest-2014:d3:sherwood-court:2130:flying-lotus",
+   "governors-ball-2015:d3:gotham-tent:2000:flying-lotus",
    "lollapalooza-2015:d1:pepsi:2100:flying-lotus",
    "shambhala-2025:d3:grove:0100:flying-lotus"
   ],
@@ -58473,12 +58745,13 @@
    "acl-2016:d4:samsung:1600:foals",
    "coachella-2016:d1:coachella:1725:foals",
    "coachella-2016:d4:coachella:1720:foals",
+   "governors-ball-2013:d3:gov-ball-nyc-stage:1645:foals",
    "lollapalooza-2013:d2:petrillo:untimed:foals",
    "lollapalooza-2016:d2:samsung:1600:foals",
    "outside-lands-2013:d3:lands-end:1450:foals",
    "outside-lands-2016:d1:sutro:1550:foals"
   ],
-  "firstSeen": "2013-08-03",
+  "firstSeen": "2013-06-09",
   "lastSeen": "2016-10-07",
   "photo": null,
   "links": []
@@ -58768,6 +59041,7 @@
    "acl-2024:d4:honda:1810:foster-the-people",
    "coachella-2014:d2:coachella:2020:foster-the-people",
    "coachella-2014:d5:coachella:2020:foster-the-people",
+   "governors-ball-2014:d3:govballnyc-stage:1845:foster-the-people",
    "lollapalooza-2011:d1:sony:1500:foster-the-people",
    "lollapalooza-2014:d2:samsung-galaxy:1815:foster-the-people",
    "lollapalooza-2017:d2:bud-light:1900:foster-the-people",
@@ -59268,10 +59542,11 @@
   "projects": [],
   "billings": [
    "coachella-2014:d3:gobi:1555:frank-turner",
-   "coachella-2014:d6:gobi:1555:frank-turner"
+   "coachella-2014:d6:gobi:1555:frank-turner",
+   "governors-ball-2014:d3:govballnyc-stage:1500:frank-turner"
   ],
   "firstSeen": "2014-04-13",
-  "lastSeen": "2014-04-20",
+  "lastSeen": "2014-06-08",
   "photo": null,
   "links": []
  },
@@ -59750,9 +60025,10 @@
    "lollapalooza-2026:lo88",
    "coachella-2027:coa27-freddie-gibbs",
    "acl-2021:d2:t-mobile:1720:freddie-gibbs",
-   "acl-2021:d5:t-mobile:1720:freddie-gibbs"
+   "acl-2021:d5:t-mobile:1720:freddie-gibbs",
+   "governors-ball-2013:d3:skyy-vodka-tent:1415:freddie-gibbs"
   ],
-  "firstSeen": "2021-10-02",
+  "firstSeen": "2013-06-09",
   "lastSeen": "2027-04-11",
   "photo": null,
   "links": []
@@ -60506,6 +60782,21 @@
   "links": []
  },
  {
+  "key": "fucked-up",
+  "name": "FUCKED UP",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2013:d2:skyy-vodka-tent:1545:fucked-up"
+  ],
+  "firstSeen": "2013-06-08",
+  "lastSeen": "2013-06-08",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fuga",
   "name": "Fuga",
   "aliases": [],
@@ -61033,9 +61324,10 @@
    "acl-2015:d4:honda:1800:future",
    "coachella-2017:d2:coachella:1930:future",
    "coachella-2017:d5:coachella:1930:future",
+   "governors-ball-2015:d1:govballnyc-stage:1500:future",
    "lollapalooza-2016:d2:bud-light:1845:future"
   ],
-  "firstSeen": "2015-10-09",
+  "firstSeen": "2015-06-05",
   "lastSeen": "2017-04-22",
   "photo": null,
   "links": []
@@ -61206,6 +61498,7 @@
    "coachella-2014:d5:gobi:1905:future-islands",
    "coachella-2017:d3:outdoor:1810:future-islands",
    "coachella-2017:d6:outdoor:1810:future-islands",
+   "governors-ball-2015:d2:gotham-tent:1745:future-islands",
    "outside-lands-2017:d1:twin-peaks:1850:future-islands"
   ],
   "firstSeen": "2014-04-12",
@@ -62047,7 +62340,8 @@
   "key": "gary-clark-jr",
   "name": "Gary Clark Jr.",
   "aliases": [
-   "Gary Clark Jr"
+   "Gary Clark Jr",
+   "GARY CLARK JR."
   ],
   "kind": "performer",
   "parents": [],
@@ -62063,6 +62357,7 @@
    "coachella-2016:d2:coachella:1535:gary-clark-jr",
    "coachella-2016:d5:coachella:1535:gary-clark-jr",
    "electric-forest-2012:d2:ranch-arena:1515:gary-clark-jr",
+   "governors-ball-2013:d3:hondastage:1645:gary-clark-jr",
    "lollapalooza-2012:d3:playstation:1515:gary-clark-jr",
    "lollapalooza-2015:d1:sprint:1845:gary-clark-jr",
    "lollapalooza-2019:d3:t-mobile:untimed:gary-clark-jr",
@@ -65187,6 +65482,7 @@
    "edc-orlando-2023:d3:neon-garden:2030:gorgon-city",
    "edc-orlando-2025:d1:stereobloom:2230:gorgon-city",
    "escape-halloween-2019:d2:psycho-circus:2100:gorgon-city-b2b-nora-en-pure",
+   "governors-ball-2015:d1:gotham-tent:1415:gorgon-city-live",
    "outside-lands-2014:d2:the-house-by-heineken:1800:gorgon-city",
    "shambhala-2014:d4:pagoda:2230:gorgon-city",
    "shambhala-2016:d2:pagoda:0100:gorgon-city",
@@ -66436,6 +66732,7 @@
    "coachella-2016:d2:mojave:2245:grimes",
    "coachella-2016:d5:mojave:2245:grimes",
    "edc-las-vegas-2022:d2:cosmic-meadow:2205:grimes-dj-set",
+   "governors-ball-2014:d1:gotham-tent:2015:grimes",
    "lollapalooza-2016:d3:lakeshore:1930:grimes",
    "outside-lands-2016:d1:twin-peaks:1850:grimes"
   ],
@@ -66478,6 +66775,7 @@
    "acl-2019:d6:t-mobile:1900:griz",
    "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:0100:griz",
    "electric-forest-2012:d2:wagon-wheel:2215:griz",
+   "governors-ball-2013:d2:hondastage:1330:griz",
    "lollapalooza-2013:d2:perry-s:untimed:griz",
    "lollapalooza-2016:d2:perry-s:1915:griz",
    "outside-lands-2013:d2:panhandle:1950:griz",
@@ -66525,15 +66823,18 @@
  {
   "key": "grizzly-bear",
   "name": "Grizzly Bear",
-  "aliases": [],
+  "aliases": [
+   "GRIZZLY BEAR"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2013:d3:gov-ball-nyc-stage:1845:grizzly-bear",
    "lollapalooza-2013:d3:red-bull-sound-select:1800:grizzly-bear",
    "outside-lands-2013:d2:twin-peaks:1850:grizzly-bear"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2013-06-09",
   "lastSeen": "2013-08-10",
   "photo": null,
   "links": []
@@ -67079,7 +67380,8 @@
   "key": "guns-n-roses",
   "name": "Guns N' Roses",
   "aliases": [
-   "Guns N’ Roses"
+   "Guns N’ Roses",
+   "GUNS N' ROSES"
   ],
   "kind": "performer",
   "parents": [],
@@ -67088,9 +67390,10 @@
    "acl-2019:d1:american-express:1930:guns-n-roses",
    "acl-2019:d4:american-express:1930:guns-n-roses",
    "coachella-2016:d2:coachella:2230:guns-n-roses",
-   "coachella-2016:d5:coachella:2230:guns-n-roses"
+   "coachella-2016:d5:coachella:2230:guns-n-roses",
+   "governors-ball-2013:d2:gov-ball-nyc-stage:2130:guns-n-roses"
   ],
-  "firstSeen": "2016-04-16",
+  "firstSeen": "2013-06-08",
   "lastSeen": "2019-10-11",
   "photo": null,
   "links": []
@@ -67525,9 +67828,10 @@
    "acl-2014:d3:miller-lite:1130:haerts",
    "acl-2014:d6:miller-lite:1130:haerts",
    "coachella-2015:d1:mojave:1230:haerts",
-   "coachella-2015:d4:mojave:1230:haerts"
+   "coachella-2015:d4:mojave:1230:haerts",
+   "governors-ball-2014:d1:govballnyc-stage:1215:haerts"
   ],
-  "firstSeen": "2014-10-05",
+  "firstSeen": "2014-06-06",
   "lastSeen": "2015-04-17",
   "photo": null,
   "links": []
@@ -67563,11 +67867,12 @@
    "acl-2016:d6:homeaway:1900:haim",
    "coachella-2014:d1:outdoor:1655:haim",
    "coachella-2014:d4:outdoor:1640:haim",
+   "governors-ball-2013:d3:gov-ball-nyc-stage:1330:haim",
    "lollapalooza-2013:d2:the-grove:untimed:haim",
    "lollapalooza-2016:d4:bud-light:1845:haim",
    "outside-lands-2014:d2:lands-end:1630:haim"
   ],
-  "firstSeen": "2013-08-03",
+  "firstSeen": "2013-06-09",
   "lastSeen": "2016-10-09",
   "photo": null,
   "links": []
@@ -67722,10 +68027,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2014:d3:big-apple-stage:1245:half-moon-run",
    "lollapalooza-2013:d3:bmi:1850:half-moon-run"
   ],
   "firstSeen": "2013-08-04",
-  "lastSeen": "2013-08-04",
+  "lastSeen": "2014-06-08",
   "photo": null,
   "links": []
  },
@@ -69538,10 +69844,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2015:d3:gotham-tent:1415:hermitude",
    "lollapalooza-2015:d2:pepsi:1600:hermitude",
    "shambhala-2016:d2:grove:0000:hermitude"
   ],
-  "firstSeen": "2015-08-01",
+  "firstSeen": "2015-06-07",
   "lastSeen": "2016-08-05",
   "photo": null,
   "links": []
@@ -70430,7 +70737,9 @@
  {
   "key": "holy-ghost",
   "name": "Holy Ghost!",
-  "aliases": [],
+  "aliases": [
+   "HOLY GHOST!"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -70438,9 +70747,10 @@
    "coachella-2014:d2:gobi:1645:holy-ghost",
    "coachella-2014:d5:gobi:1645:holy-ghost",
    "electric-forest-2013:d2:sherwood-court:2300:holy-ghost",
+   "governors-ball-2013:d1:hondastage:1500:holy-ghost",
    "outside-lands-2014:d1:lands-end:1535:holy-ghost"
   ],
-  "firstSeen": "2013-06-28",
+  "firstSeen": "2013-06-07",
   "lastSeen": "2014-08-08",
   "photo": null,
   "links": []
@@ -70483,16 +70793,19 @@
  },
  {
   "key": "holychild",
-  "name": "HOLYCHILD",
-  "aliases": [],
+  "name": "HolyChild",
+  "aliases": [
+   "HOLYCHILD"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2015:d5:homeaway:1200:holychild",
+   "governors-ball-2015:d2:govballnyc-stage:1215:holychild",
    "lollapalooza-2015:d2:bud-light:1300:holychild"
   ],
-  "firstSeen": "2015-08-01",
+  "firstSeen": "2015-06-06",
   "lastSeen": "2015-10-10",
   "photo": null,
   "links": []
@@ -70971,6 +71284,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2015:d3:big-apple-stage:2000:hot-chip",
    "lollapalooza-2013:d1:lake-shore:1925:hot-chip",
    "lollapalooza-2015:d1:bud-light:1630:hot-chip",
    "outside-lands-2015:d3:lands-end:1620:hot-chip"
@@ -71707,6 +72021,21 @@
   ],
   "firstSeen": "2018-07-28",
   "lastSeen": "2019-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hunter-hunted",
+  "name": "Hunter Hunted",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2014:d2:govballnyc-stage:1215:hunter-hunted"
+  ],
+  "firstSeen": "2014-06-07",
+  "lastSeen": "2014-06-07",
   "photo": null,
   "links": []
  },
@@ -72487,16 +72816,19 @@
  {
   "key": "icona-pop",
   "name": "Icona Pop",
-  "aliases": [],
+  "aliases": [
+   "ICONA POP"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2014:d2:miller-lite:1730:icona-pop",
    "acl-2014:d5:miller-lite:1730:icona-pop",
+   "governors-ball-2013:d2:skyy-vodka-tent:1415:icona-pop",
    "lollapalooza-2013:d1:lake-shore:1345:icona-pop"
   ],
-  "firstSeen": "2013-08-02",
+  "firstSeen": "2013-06-08",
   "lastSeen": "2014-10-11",
   "photo": null,
   "links": []
@@ -73799,9 +74131,10 @@
    "acl-2014:d5:honda:1630:interpol",
    "coachella-2015:d1:coachella:1925:interpol",
    "coachella-2015:d4:coachella:1920:interpol",
+   "governors-ball-2014:d3:big-apple-stage:2000:interpol",
    "lollapalooza-2014:d1:bud-light:1645:interpol"
   ],
-  "firstSeen": "2014-08-01",
+  "firstSeen": "2014-06-08",
   "lastSeen": "2015-04-17",
   "photo": null,
   "links": []
@@ -74490,6 +74823,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2014:d3:honda-stage:1645:j-cole",
    "lollapalooza-2012:d3:bud-light:1615:j-cole",
    "lollapalooza-2016:d1:samsung:2030:j-cole",
    "outside-lands-2016:d1:twin-peaks:2040:j-cole"
@@ -74719,8 +75053,8 @@
   "name": "J. Roddy Walston & The Business",
   "aliases": [
    "J Roddy Walston and the Business",
-   "J Roddy Walston and The Business",
-   "J. Roddy Walston & the Business"
+   "J. Roddy Walston & the Business",
+   "J Roddy Walston and The Business"
   ],
   "kind": "performer",
   "parents": [],
@@ -74731,11 +75065,12 @@
    "acl-2014:d4:austin-ventures:1715:j-roddy-walston-and-the-business",
    "coachella-2014:d3:outdoor:1250:j-roddy-walston-and-the-business",
    "coachella-2014:d6:outdoor:1250:j-roddy-walston-and-the-business",
+   "governors-ball-2015:d2:big-apple-stage:1415:j-roddy-walston-and-the-business",
    "lollapalooza-2011:d2:playstation:1200:j-roddy-walston-and-the-business",
    "lollapalooza-2014:d1:bud-light:1445:j-roddy-walston-and-the-business"
   ],
   "firstSeen": "2011-08-06",
-  "lastSeen": "2014-10-10",
+  "lastSeen": "2015-06-06",
   "photo": null,
   "links": []
  },
@@ -75027,6 +75362,7 @@
    "acl-2012:d2:amd:2000:jack-white",
    "coachella-2015:d2:coachella:2115:jack-white",
    "coachella-2015:d5:coachella:2115:jack-white",
+   "governors-ball-2014:d2:govballnyc-stage:2130:jack-white",
    "governors-ball-2018:d1:gov-ball-nyc-stage:2115:jack-white",
    "lollapalooza-2012:d3:red-bull-soundstage:2015:jack-white",
    "lollapalooza-2018:d4:grant-park:untimed:jack-white",
@@ -75963,6 +76299,7 @@
    "acl-2019:d5:miller-lite:1900:james-blake",
    "acl-2022:d1:honda:1800:james-blake",
    "acl-2022:d6:honda:1800:james-blake",
+   "governors-ball-2014:d3:honda-stage:1845:james-blake",
    "governors-ball-2018:d1:honda-stage:2115:james-blake",
    "tomorrowland-2010:d1:release:2000:james-blake"
   ],
@@ -76592,13 +76929,16 @@
  {
   "key": "janelle-monae",
   "name": "Janelle Monáe",
-  "aliases": [],
+  "aliases": [
+   "Janelle Monae"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2018:d3:american-express:1600:janelle-monae",
    "acl-2018:d6:american-express:1600:janelle-monae",
+   "governors-ball-2014:d1:govballnyc-stage:1500:janelle-monae",
    "lollapalooza-2019:d2:t-mobile:untimed:janelle-monae",
    "outside-lands-2010:d2:sutro:1505:janelle-monae"
   ],
@@ -76728,9 +77068,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2013:d2:gov-ball-nyc-stage:1430:japandroids",
    "governors-ball-2018:d2:bacardi-stage:1545:japandroids"
   ],
-  "firstSeen": "2018-06-02",
+  "firstSeen": "2013-06-08",
   "lastSeen": "2018-06-02",
   "photo": null,
   "links": []
@@ -76830,15 +77171,18 @@
  },
  {
   "key": "jason-isbell",
-  "name": "JASON ISBELL",
-  "aliases": [],
+  "name": "Jason Isbell",
+  "aliases": [
+   "JASON ISBELL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2014:d1:govballnyc-stage:1330:jason-isbell",
    "outside-lands-2016:d3:sutro:1715:jason-isbell"
   ],
-  "firstSeen": "2016-08-07",
+  "firstSeen": "2014-06-06",
   "lastSeen": "2016-08-07",
   "photo": null,
   "links": []
@@ -78030,10 +78374,11 @@
    "acl-2019:d4:vrbo:1830:jenny-lewis",
    "coachella-2015:d3:outdoor:1730:jenny-lewis",
    "coachella-2015:d6:outdoor:1720:jenny-lewis",
+   "governors-ball-2014:d1:honda-stage:1645:jenny-lewis",
    "lollapalooza-2014:d2:the-grove:1945:jenny-lewis",
    "outside-lands-2014:d3:sutro:1550:jenny-lewis"
   ],
-  "firstSeen": "2014-08-02",
+  "firstSeen": "2014-06-06",
   "lastSeen": "2019-10-11",
   "photo": null,
   "links": []
@@ -82614,6 +82959,21 @@
   "links": []
  },
  {
+  "key": "julian-casablancas-the-voidz",
+  "name": "Julian Casablancas+The Voidz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2014:d1:govballnyc-stage:1645:julian-casablancas-the-voidz"
+  ],
+  "firstSeen": "2014-06-06",
+  "lastSeen": "2014-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "julian-cross",
   "name": "Julian Cross",
   "aliases": [],
@@ -84425,12 +84785,15 @@
  {
   "key": "kanye-west",
   "name": "Kanye West",
-  "aliases": [],
+  "aliases": [
+   "KANYE WEST"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2011:d1:bud-light:2030:kanye-west",
+   "governors-ball-2013:d3:gov-ball-nyc-stage:2130:kanye-west",
    "outside-lands-2014:d1:lands-end:2020:kanye-west"
   ],
   "firstSeen": "2011-09-16",
@@ -85079,6 +85442,21 @@
   ],
   "firstSeen": "2014-04-11",
   "lastSeen": "2014-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kate-tempest",
+  "name": "Kate Tempest",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d2:big-apple-stage:1245:kate-tempest"
+  ],
+  "firstSeen": "2015-06-06",
+  "lastSeen": "2015-06-06",
   "photo": null,
   "links": []
  },
@@ -85804,6 +86182,7 @@
    "coachella-2012:d4:main-stage:1440:kendrick-lamar",
    "coachella-2017:d3:coachella:2235:kendrick-lamar",
    "coachella-2017:d6:coachella:2235:kendrick-lamar",
+   "governors-ball-2013:d2:hondastage:1845:kendrick-lamar",
    "lollapalooza-2013:d2:bud-light:untimed:kendrick-lamar",
    "outside-lands-2015:d2:twin-peaks:2040:kendrick-lamar"
   ],
@@ -86944,10 +87323,11 @@
   "projects": [],
   "billings": [
    "coachella-2015:d1:mojave:1655:kiesza",
-   "coachella-2015:d4:mojave:1655:kiesza"
+   "coachella-2015:d4:mojave:1655:kiesza",
+   "governors-ball-2015:d2:gotham-tent:1545:kiesza"
   ],
   "firstSeen": "2015-04-10",
-  "lastSeen": "2015-04-17",
+  "lastSeen": "2015-06-06",
   "photo": null,
   "links": []
  },
@@ -87566,7 +87946,9 @@
  {
   "key": "kings-of-leon",
   "name": "Kings of Leon",
-  "aliases": [],
+  "aliases": [
+   "KINGS OF LEON"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -87574,6 +87956,7 @@
    "acl-2026:af08",
    "acl-2013:d2:samsung-galaxy:2000:kings-of-leon",
    "acl-2013:d5:samsung-galaxy:2000:kings-of-leon",
+   "governors-ball-2013:d2:gov-ball-nyc-stage:1845:kings-of-leon",
    "lollapalooza-2014:d3:samsung-galaxy:2015:kings-of-leon",
    "outside-lands-2010:d2:lands-end:1950:kings-of-leon"
   ],
@@ -89750,9 +90133,9 @@
  },
  {
   "key": "kurt-vile-and-the-violators",
-  "name": "Kurt Vile and The Violators",
+  "name": "Kurt Vile and the Violators",
   "aliases": [
-   "Kurt Vile and the Violators"
+   "Kurt Vile and The Violators"
   ],
   "kind": "performer",
   "parents": [],
@@ -89761,6 +90144,7 @@
    "acl-2011:d1:austin-ventures:1700:kurt-vile-and-the-violators",
    "acl-2015:d3:austin-ventures:1730:kurt-vile-and-the-violators",
    "acl-2015:d6:austin-ventures:1730:kurt-vile-and-the-violators",
+   "governors-ball-2014:d1:big-apple-stage:1415:kurt-vile-and-the-violators",
    "lollapalooza-2016:d1:petrillo-bandshell:1800:kurt-vile-and-the-violators",
    "outside-lands-2013:d3:sutro:1430:kurt-vile-and-the-violators"
   ],
@@ -90426,10 +90810,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2013:d3:circuitgrounds:2125:la-roux"
+   "edc-las-vegas-2013:d3:circuitgrounds:2125:la-roux",
+   "governors-ball-2014:d1:gotham-tent:1745:la-roux"
   ],
   "firstSeen": "2013-06-23",
-  "lastSeen": "2013-06-23",
+  "lastSeen": "2014-06-06",
   "photo": null,
   "links": []
  },
@@ -90958,6 +91343,7 @@
    "acl-2014:d5:samsung-galaxy:1830:lana-del-rey",
    "coachella-2014:d3:outdoor:2015:lana-del-rey",
    "coachella-2014:d6:outdoor:2015:lana-del-rey",
+   "governors-ball-2015:d3:honda-stage:2115:lana-del-rey",
    "lollapalooza-2013:d1:the-grove:2045:lana-del-rey",
    "lollapalooza-2016:d1:bud-light:2045:lana-del-rey",
    "outside-lands-2016:d3:twin-peaks:2025:lana-del-rey"
@@ -94800,6 +95186,36 @@
   "links": []
  },
  {
+  "key": "little-comets",
+  "name": "Little Comets",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2014:d1:honda-stage:1215:little-comets"
+  ],
+  "firstSeen": "2014-06-06",
+  "lastSeen": "2014-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "little-daylight",
+  "name": "Little Daylight",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2014:d1:gotham-tent:1245:little-daylight"
+  ],
+  "firstSeen": "2014-06-06",
+  "lastSeen": "2014-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "little-dragon",
   "name": "Little Dragon",
   "aliases": [
@@ -94813,6 +95229,7 @@
    "coachella-2014:d6:mojave:1915:little-dragon",
    "coachella-2017:d1:gobi:2145:little-dragon",
    "coachella-2017:d4:gobi:2145:little-dragon",
+   "governors-ball-2015:d2:govballnyc-stage:1645:little-dragon",
    "hard-summer-2012:d1:hard-stage:1930:little-dragon",
    "lollapalooza-2012:d3:perry-s:1515:little-dragon",
    "lollapalooza-2017:d2:lake-shore:1945:little-dragon",
@@ -95320,7 +95737,9 @@
  {
   "key": "local-natives",
   "name": "Local Natives",
-  "aliases": [],
+  "aliases": [
+   "LOCAL NATIVES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -95331,6 +95750,7 @@
    "acl-2016:d6:honda:1600:local-natives",
    "coachella-2017:d2:coachella:1525:local-natives",
    "coachella-2017:d5:coachella:1525:local-natives",
+   "governors-ball-2013:d1:you-re-doing-great-stage:1745:local-natives",
    "governors-ball-2017:d2:big-apple:1745:local-natives",
    "lollapalooza-2011:d2:sony:1730:local-natives",
    "lollapalooza-2013:d2:red-bull-sound-select:untimed:local-natives",
@@ -95494,11 +95914,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2015:d3:honda-stage:1500:logic",
    "governors-ball-2017:d3:big-apple:2000:logic",
    "lollapalooza-2015:d3:perry-s:1820:logic",
    "lollapalooza-2018:d3:grant-park:untimed:logic"
   ],
-  "firstSeen": "2015-08-02",
+  "firstSeen": "2015-06-07",
   "lastSeen": "2018-08-04",
   "photo": null,
   "links": []
@@ -97463,10 +97884,11 @@
    "acl-2014:d5:austin-ventures:1730:lucius",
    "acl-2025:d3:beatbox:1530:lucius",
    "acl-2025:d6:beatbox:1530:lucius",
+   "governors-ball-2014:d2:govballnyc-stage:1500:lucius",
    "lollapalooza-2014:d1:palladia:1400:lucius",
    "outside-lands-2014:d3:sutro:1430:lucius"
   ],
-  "firstSeen": "2014-08-01",
+  "firstSeen": "2014-06-07",
   "lastSeen": "2025-10-12",
   "photo": null,
   "links": []
@@ -102387,7 +102809,8 @@
   "key": "marina-and-the-diamonds",
   "name": "Marina and the Diamonds",
   "aliases": [
-   "Marina and The Diamonds"
+   "Marina and The Diamonds",
+   "Marina And The Diamonds"
   ],
   "kind": "performer",
   "parents": [],
@@ -102395,6 +102818,7 @@
   "billings": [
    "coachella-2015:d3:coachella:1745:marina-and-the-diamonds",
    "coachella-2015:d6:coachella:1740:marina-and-the-diamonds",
+   "governors-ball-2015:d2:govballnyc-stage:1500:marina-and-the-diamonds",
    "lollapalooza-2015:d3:sprint:1645:marina-and-the-diamonds"
   ],
   "firstSeen": "2015-04-12",
@@ -105581,6 +106005,21 @@
   "links": []
  },
  {
+  "key": "mayer-hawthorne",
+  "name": "Mayer Hawthorne",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d3:gotham-tent:1545:mayer-hawthorne"
+  ],
+  "firstSeen": "2015-06-07",
+  "lastSeen": "2015-06-07",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mayer-hawthorne-and-the-county",
   "name": "Mayer Hawthorne & The County",
   "aliases": [],
@@ -106626,9 +107065,10 @@
    "acl-2015:d4:samsung:1215:meg-myers",
    "coachella-2016:d3:gobi:1545:meg-myers",
    "coachella-2016:d6:gobi:1540:meg-myers",
+   "governors-ball-2014:d3:govballnyc-stage:1215:meg-myers",
    "lollapalooza-2014:d2:the-grove:1450:meg-myers"
   ],
-  "firstSeen": "2014-08-02",
+  "firstSeen": "2014-06-08",
   "lastSeen": "2016-04-24",
   "photo": null,
   "links": []
@@ -110414,6 +110854,7 @@
    "acl-2014:d6:honda:1215:m",
    "coachella-2015:d3:gobi:1425:m",
    "coachella-2015:d6:gobi:1425:m",
+   "governors-ball-2015:d1:gotham-tent:1545:m",
    "governors-ball-2019:d1:american-eagle-stage:1745:m",
    "lollapalooza-2016:d2:lakeshore:1500:m"
   ],
@@ -111479,7 +111920,9 @@
  {
   "key": "moon-hooch",
   "name": "Moon Hooch",
-  "aliases": [],
+  "aliases": [
+   "MOON HOOCH"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -111487,9 +111930,10 @@
    "electric-forest-2013:d3:tripolee:1500:moon-hooch",
    "electric-forest-2013:d3:the-observatory:0030:moon-hooch",
    "electric-forest-2013:d4:the-observatory:2200:moon-hooch",
+   "governors-ball-2013:d2:skyy-vodka-tent:1215:moon-hooch",
    "shambhala-2025:d2:living-room:1930:moon-hooch"
   ],
-  "firstSeen": "2013-06-29",
+  "firstSeen": "2013-06-08",
   "lastSeen": "2025-07-25",
   "photo": null,
   "links": []
@@ -111509,6 +111953,7 @@
    "coachella-2016:d2:coachella:1430:moon-taxi",
    "coachella-2016:d5:coachella:1430:moon-taxi",
    "electric-forest-2014:d4:sherwood-court:1730:moon-taxi",
+   "governors-ball-2015:d2:honda-stage:1500:moon-taxi",
    "lollapalooza-2012:d2:bmi:1410:moon-taxi",
    "lollapalooza-2015:d3:bud-light:1600:moon-taxi",
    "outside-lands-2016:d1:panhandle:1330:moon-taxi"
@@ -113106,11 +113551,12 @@
    "acl-2013:d3:amd:1330:ms-mr",
    "coachella-2014:d1:coachella:1450:ms-mr",
    "coachella-2014:d4:coachella:1445:ms-mr",
+   "governors-ball-2013:d2:you-re-doing-great-stage:1415:ms-mr",
    "lollapalooza-2013:d3:the-grove:1530:ms-mr",
    "lollapalooza-2015:d1:sprint:1645:ms-mr",
    "outside-lands-2013:d3:panhandle:1800:ms-mr"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2013-06-08",
   "lastSeen": "2015-07-31",
   "photo": null,
   "links": []
@@ -113860,11 +114306,12 @@
   "projects": [],
   "billings": [
    "acl-2011:d2:amd:2000:my-morning-jacket",
+   "governors-ball-2015:d1:honda-stage:2115:my-morning-jacket",
    "lollapalooza-2011:d2:bud-light:2000:my-morning-jacket",
    "outside-lands-2010:d1:lands-end:1700:my-morning-jacket"
   ],
   "firstSeen": "2010-08-14",
-  "lastSeen": "2011-09-17",
+  "lastSeen": "2015-06-05",
   "photo": null,
   "links": []
  },
@@ -114760,10 +115207,11 @@
   "billings": [
    "coachella-2014:d2:outdoor:0000:nas",
    "coachella-2014:d5:outdoor:0000:nas",
+   "governors-ball-2013:d2:hondastage:2130:nas",
    "governors-ball-2019:d3:govballnyc-stage:2020:nas",
    "lollapalooza-2014:d2:palladia:1745:nas"
   ],
-  "firstSeen": "2014-04-12",
+  "firstSeen": "2013-06-08",
   "lastSeen": "2019-06-02",
   "photo": null,
   "links": []
@@ -115628,10 +116076,11 @@
   "billings": [
    "acl-2013:d3:austin-ventures:1930:neko-case",
    "coachella-2014:d1:outdoor:1815:neko-case",
-   "coachella-2014:d4:outdoor:1755:neko-case"
+   "coachella-2014:d4:outdoor:1755:neko-case",
+   "governors-ball-2014:d1:big-apple-stage:1745:neko-case"
   ],
   "firstSeen": "2013-10-06",
-  "lastSeen": "2014-04-18",
+  "lastSeen": "2014-06-06",
   "photo": null,
   "links": []
  },
@@ -118689,10 +119138,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d2:main-stage:1830:noel-gallagher-s-high-flying-birds",
-   "coachella-2012:d5:main-stage:1830:noel-gallagher-s-high-flying-birds"
+   "coachella-2012:d5:main-stage:1830:noel-gallagher-s-high-flying-birds",
+   "governors-ball-2015:d3:govballnyc-stage:1845:noel-gallagher-s-high-flying-birds"
   ],
   "firstSeen": "2012-04-14",
-  "lastSeen": "2012-04-21",
+  "lastSeen": "2015-06-07",
   "photo": null,
   "links": []
  },
@@ -120289,6 +120739,7 @@
    "coachella-2015:d3:gobi:2135:odesza",
    "coachella-2015:d6:gobi:2135:odesza",
    "electric-forest-2015:d1:ranch-arena:2215:odesza",
+   "governors-ball-2015:d1:gotham-tent:1745:odesza",
    "lollapalooza-2015:d3:bud-light:1730:odesza",
    "lollapalooza-2018:d4:bud-light:untimed:odesza",
    "outside-lands-2015:d3:twin-peaks:1705:odesza",
@@ -120336,7 +120787,8 @@
   "key": "of-monsters-and-men",
   "name": "Of Monsters and Men",
   "aliases": [
-   "Of Monsters And Men"
+   "Of Monsters And Men",
+   "OF MONSTERS AND MEN"
   ],
   "kind": "performer",
   "parents": [],
@@ -120346,6 +120798,7 @@
    "acl-2015:d6:samsung:1830:of-monsters-and-men",
    "coachella-2016:d1:coachella:1840:of-monsters-and-men",
    "coachella-2016:d4:coachella:1840:of-monsters-and-men",
+   "governors-ball-2013:d1:gov-ball-nyc-stage:1645:of-monsters-and-men",
    "lollapalooza-2012:d3:google-play:1800:of-monsters-and-men",
    "lollapalooza-2015:d3:samsung-galaxy:1915:of-monsters-and-men",
    "outside-lands-2012:d1:sutro-lindley-meadow:1740:of-monsters-and-men"
@@ -121419,6 +121872,21 @@
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2027-04-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "on-an-on",
+  "name": "ON AN ON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2013:d3:hondastage:1215:on-an-on"
+  ],
+  "firstSeen": "2013-06-09",
+  "lastSeen": "2013-06-09",
   "photo": null,
   "links": []
  },
@@ -122610,6 +123078,7 @@
    "acl-2014:d4:honda:2015:outkast",
    "coachella-2014:d1:coachella:2305:outkast",
    "coachella-2014:d4:coachella:2305:outkast",
+   "governors-ball-2014:d1:govballnyc-stage:2115:outkast",
    "lollapalooza-2014:d2:samsung-galaxy:2015:outkast"
   ],
   "firstSeen": "2014-04-11",
@@ -122987,14 +123456,17 @@
  {
   "key": "pacific-air",
   "name": "Pacific Air",
-  "aliases": [],
+  "aliases": [
+   "PACIFIC AIR"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2013:d1:hondastage:1215:pacific-air",
    "lollapalooza-2013:d1:bmi:1630:pacific-air"
   ],
-  "firstSeen": "2013-08-02",
+  "firstSeen": "2013-06-07",
   "lastSeen": "2013-08-02",
   "photo": null,
   "links": []
@@ -123433,6 +123905,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2014:d2:govballnyc-stage:1330:papa",
    "lollapalooza-2014:d2:palladia:1215:papa",
    "outside-lands-2012:d1:twin-peaks-hellman-hollow:1245:papa"
   ],
@@ -123479,7 +123952,9 @@
  {
   "key": "paper-diamond",
   "name": "Paper Diamond",
-  "aliases": [],
+  "aliases": [
+   "PAPER DIAMOND"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -123489,6 +123964,7 @@
    "edc-las-vegas-2012:d1:basspod:2030:paper-diamond",
    "electric-forest-2012:d2:sherwood-court:2200:paper-diamond",
    "electric-forest-2014:d1:ranch-arena:2030:paper-diamond",
+   "governors-ball-2013:d2:hondastage:1500:paper-diamond",
    "lollapalooza-2017:d1:perry-s:1430:paper-diamond",
    "outside-lands-2011:d2:panhandle:1950:paper-diamond",
    "shambhala-2013:d3:pagoda:2230:paper-diamond",
@@ -124208,6 +124684,21 @@
   ],
   "firstSeen": "2017-07-30",
   "lastSeen": "2023-07-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pat-mahoney",
+  "name": "Pat Mahoney",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d1:govballnyc-stage:1845:pat-mahoney-dj-set-dfa-lcd-soundsystem"
+  ],
+  "firstSeen": "2015-06-05",
+  "lastSeen": "2015-06-05",
   "photo": null,
   "links": []
  },
@@ -125403,17 +125894,20 @@
  {
   "key": "people-under-the-stairs",
   "name": "People Under The Stairs",
-  "aliases": [],
+  "aliases": [
+   "People Under the Stairs"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "governors-ball-2011:d1:gotham-stage:1655:people-under-the-stairs",
+   "governors-ball-2015:d1:gotham-tent:1245:people-under-the-stairs",
    "outside-lands-2010:d1:lands-end:1200:people-under-the-stairs",
    "shambhala-2013:d4:amphitheatre:2300:people-under-the-stairs"
   ],
   "firstSeen": "2010-08-14",
-  "lastSeen": "2013-08-11",
+  "lastSeen": "2015-06-05",
   "photo": null,
   "links": []
  },
@@ -126631,6 +127125,7 @@
    "acl-2013:d3:bud-light:1900:phoenix",
    "acl-2018:d3:honda:1800:phoenix",
    "acl-2022:d4:honda:1800:phoenix",
+   "governors-ball-2014:d1:govballnyc-stage:1850:phoenix",
    "governors-ball-2017:d2:gov-ball-nyc:2115:phoenix",
    "lollapalooza-2013:d3:bud-light:2030:phoenix",
    "outside-lands-2010:d2:lands-end:1755:phoenix",
@@ -127948,8 +128443,8 @@
   "key": "polica",
   "name": "Poliça",
   "aliases": [
-   "Polica",
    "POLICA",
+   "Polica",
    "POLIÇA"
   ],
   "kind": "performer",
@@ -127959,6 +128454,7 @@
    "acl-2012:d3:honda:1515:polica",
    "acl-2014:d2:austin-ventures:1530:polica",
    "acl-2014:d5:austin-ventures:1530:polica",
+   "governors-ball-2013:d1:you-re-doing-great-stage:1415:polica",
    "lollapalooza-2012:d3:sony:1330:polica",
    "outside-lands-2016:d1:twin-peaks:1540:polica"
   ],
@@ -128265,6 +128761,7 @@
    "acl-2017:d6:homeaway:untimed:portugal-the-man",
    "acl-2023:d1:honda:1610:portugal-the-man",
    "acl-2023:d4:miller-lite:1910:portugal-the-man",
+   "governors-ball-2013:d3:gov-ball-nyc-stage:1500:portugal-the-man",
    "lollapalooza-2011:d3:sony:1700:portugal-the-man",
    "lollapalooza-2014:d1:kidzapalooza:1405:portugal-the-man",
    "lollapalooza-2014:d1:samsung-galaxy:1630:portugal-the-man",
@@ -128583,6 +129080,7 @@
    "edc-las-vegas-2012:d3:kineticfield:2330:pretty-lights",
    "electric-forest-2013:d4:ranch-arena:2300:pretty-lights",
    "governors-ball-2011:d1:big-apple-stage:2230:pretty-lights",
+   "governors-ball-2013:d1:hondastage:2130:pretty-lights",
    "lollapalooza-2011:d2:perry-s:2030:pretty-lights",
    "nocturnal-wonderland-2012:d2:labyrinth:2330:pretty-lights",
    "outside-lands-2010:d1:sutro:1415:pretty-lights",
@@ -128830,6 +129328,21 @@
   ],
   "firstSeen": "2016-09-30",
   "lastSeen": "2016-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "priory",
+  "name": "Priory",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d1:govballnyc-stage:1215:priory"
+  ],
+  "firstSeen": "2015-06-05",
+  "lastSeen": "2015-06-05",
   "photo": null,
   "links": []
  },
@@ -130990,10 +131503,11 @@
   "billings": [
    "coachella-2016:d1:sahara:2305:rae-sremmurd",
    "coachella-2016:d4:sahara:2245:rae-sremmurd",
+   "governors-ball-2015:d1:govballnyc-stage:1330:rae-sremmurd",
    "governors-ball-2017:d2:bacardi:1545:rae-sremmurd",
    "lollapalooza-2017:d4:pepsi:2100:rae-sremmurd"
   ],
-  "firstSeen": "2016-04-15",
+  "firstSeen": "2015-06-05",
   "lastSeen": "2017-08-06",
   "photo": null,
   "links": []
@@ -131866,10 +132380,11 @@
   "billings": [
    "coachella-2015:d2:sahara:2315:ratatat",
    "coachella-2015:d5:sahara:2315:ratatat",
+   "governors-ball-2015:d1:gotham-tent:2030:ratatat",
    "lollapalooza-2011:d1:google:2045:ratatat"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2015-04-18",
+  "lastSeen": "2015-06-05",
   "photo": null,
   "links": []
  },
@@ -131933,6 +132448,7 @@
   "billings": [
    "coachella-2014:d3:outdoor:1200:ratking",
    "coachella-2014:d6:outdoor:1200:ratking",
+   "governors-ball-2014:d1:gotham-tent:1415:ratking",
    "lollapalooza-2014:d2:the-grove:1350:ratking"
   ],
   "firstSeen": "2014-04-13",
@@ -133365,9 +133881,10 @@
    "acl-2013:d2:austin-ventures:1300:reignwolf",
    "acl-2013:d5:austin-ventures:1300:reignwolf",
    "acl-2018:d4:honda:1340:reignwolf",
+   "governors-ball-2013:d1:hondastage:1330:reignwolf",
    "lollapalooza-2013:d2:petrillo:untimed:reignwolf"
   ],
-  "firstSeen": "2013-08-03",
+  "firstSeen": "2013-06-07",
   "lastSeen": "2018-10-12",
   "photo": null,
   "links": []
@@ -135264,6 +135781,21 @@
   "links": []
  },
  {
+  "key": "rjd2",
+  "name": "RJD2",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2014:d2:honda-stage:1330:rjd2"
+  ],
+  "firstSeen": "2014-06-07",
+  "lastSeen": "2014-06-07",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rl-grime",
   "name": "RL Grime",
   "aliases": [
@@ -135313,16 +135845,19 @@
  {
   "key": "roadkill-ghost-choir",
   "name": "Roadkill Ghost Choir",
-  "aliases": [],
+  "aliases": [
+   "ROADKILL GHOST CHOIR"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2013:d3:austin-ventures:1320:roadkill-ghost-choir",
    "electric-forest-2014:d2:forest-stage:2000:roadkill-ghost-choir",
+   "governors-ball-2013:d3:you-re-doing-great-stage:1245:roadkill-ghost-choir",
    "lollapalooza-2014:d1:the-grove:1200:roadkill-ghost-choir"
   ],
-  "firstSeen": "2013-10-06",
+  "firstSeen": "2013-06-09",
   "lastSeen": "2014-08-01",
   "photo": null,
   "links": []
@@ -135660,7 +136195,8 @@
   "key": "robert-delong",
   "name": "Robert Delong",
   "aliases": [
-   "Robert DeLong"
+   "Robert DeLong",
+   "ROBERT DELONG"
   ],
   "kind": "performer",
   "parents": [],
@@ -135669,10 +136205,11 @@
    "coachella-2016:d1:outdoor:1545:robert-delong",
    "coachella-2016:d4:outdoor:1540:robert-delong",
    "electric-forest-2013:d4:tripolee:1545:robert-delong",
+   "governors-ball-2013:d2:skyy-vodka-tent:1245:robert-delong",
    "lollapalooza-2013:d1:lake-shore:1215:robert-delong",
    "outside-lands-2015:d1:twin-peaks:1410:robert-delong"
   ],
-  "firstSeen": "2013-06-30",
+  "firstSeen": "2013-06-08",
   "lastSeen": "2016-04-22",
   "photo": null,
   "links": []
@@ -137045,6 +137582,7 @@
    "acl-2017:d1:barton-springs:1715:royal-blood",
    "coachella-2015:d2:outdoor:1500:royal-blood",
    "coachella-2015:d5:outdoor:1500:royal-blood",
+   "governors-ball-2015:d3:big-apple-stage:1545:royal-blood",
    "governors-ball-2017:d3:gov-ball-nyc:1645:royal-blood",
    "lollapalooza-2014:d1:bmi:1850:royal-blood",
    "lollapalooza-2017:d3:lake-shore:1715:royal-blood",
@@ -137271,6 +137809,21 @@
   "links": []
  },
  {
+  "key": "ruby-velle-and-the-soulphonics",
+  "name": "RUBY VELLE & THE SOULPHONICS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2013:d2:hondastage:1215:ruby-velle-and-the-soulphonics"
+  ],
+  "firstSeen": "2013-06-08",
+  "lastSeen": "2013-06-08",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rud-elgin",
   "name": "Rud Elgin",
   "aliases": [],
@@ -137328,11 +137881,12 @@
   "billings": [
    "coachella-2014:d3:mojave:1645:rudimental",
    "coachella-2014:d6:mojave:1645:rudimental",
+   "governors-ball-2015:d1:big-apple-stage:1545:rudimental",
    "lollapalooza-2014:d1:the-grove:1800:rudimental",
    "outside-lands-2013:d3:twin-peaks:1405:rudimental"
   ],
   "firstSeen": "2013-08-11",
-  "lastSeen": "2014-08-01",
+  "lastSeen": "2015-06-05",
   "photo": null,
   "links": []
  },
@@ -137500,11 +138054,12 @@
    "coachella-2015:d5:mojave:1855:run-the-jewels",
    "coachella-2016:d2:coachella:1655:run-the-jewels",
    "coachella-2016:d5:coachella:1655:run-the-jewels",
+   "governors-ball-2014:d1:honda-stage:1330:run-the-jewels",
    "lollapalooza-2014:d3:palladia:1545:run-the-jewels",
    "lollapalooza-2017:d2:grant-park:1845:run-the-jewels",
    "outside-lands-2014:d1:lands-end:1415:run-the-jewels-el-p-and-killer-mike"
   ],
-  "firstSeen": "2014-08-03",
+  "firstSeen": "2014-06-06",
   "lastSeen": "2017-10-15",
   "photo": null,
   "links": []
@@ -137766,6 +138321,21 @@
   "links": []
  },
  {
+  "key": "rustie",
+  "name": "Rustie",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d2:gotham-tent:1415:rustie"
+  ],
+  "firstSeen": "2015-06-06",
+  "lastSeen": "2015-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ruston-kelly",
   "name": "Ruston Kelly",
   "aliases": [],
@@ -137897,6 +138467,7 @@
    "acl-2017:d4:miller-lite:untimed:ryan-adams",
    "coachella-2015:d3:outdoor:1835:ryan-adams",
    "coachella-2015:d6:outdoor:1830:ryan-adams",
+   "governors-ball-2015:d2:honda-stage:2115:ryan-adams",
    "lollapalooza-2017:d2:tito-s-handmade-vodka:1800:ryan-adams"
   ],
   "firstSeen": "2015-04-12",
@@ -140572,10 +141143,11 @@
    "coachella-2012:d5:gobi:2215:sbtrkt",
    "coachella-2015:d2:mojave:2250:sbtrkt",
    "coachella-2015:d5:mojave:2250:sbtrkt",
+   "governors-ball-2015:d2:gotham-tent:2015:sbtrkt",
    "lollapalooza-2012:d1:google-play:1645:sbtrkt"
   ],
   "firstSeen": "2012-04-14",
-  "lastSeen": "2015-04-18",
+  "lastSeen": "2015-06-06",
   "photo": null,
   "links": []
  },
@@ -142985,6 +143557,7 @@
   "projects": [],
   "billings": [
    "acl-2018:d2:barton-springs:1730:sharon-van-etten",
+   "governors-ball-2015:d2:big-apple-stage:1545:sharon-van-etten",
    "lollapalooza-2012:d1:playstation:1500:sharon-van-etten",
    "lollapalooza-2019:d4:lake-shore:untimed:sharon-van-etten",
    "outside-lands-2012:d1:sutro-lindley-meadow:1315:sharon-van-etten"
@@ -145548,15 +146121,18 @@
  {
   "key": "skaters",
   "name": "Skaters",
-  "aliases": [],
+  "aliases": [
+   "SKATERS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2014:d3:honda-stage:1330:skaters",
    "lollapalooza-2013:d3:the-grove:1415:skaters"
   ],
   "firstSeen": "2013-08-04",
-  "lastSeen": "2013-08-04",
+  "lastSeen": "2014-06-08",
   "photo": null,
   "links": []
  },
@@ -146006,6 +146582,7 @@
    "coachella-2014:d2:sahara:2325:skrillex",
    "coachella-2014:d5:sahara:2325:skrillex",
    "electric-forest-2015:d2:ranch-arena:0030:skrillex",
+   "governors-ball-2014:d2:honda-stage:2130:skrillex",
    "hard-summer-2012:d2:hard-stage:0040:skrillex",
    "lollapalooza-2011:d1:perry-s:1815:skrillex",
    "lollapalooza-2014:d3:bud-light:2030:skrillex",
@@ -146489,6 +147066,7 @@
   "billings": [
    "coachella-2014:d2:outdoor:2110:sleigh-bells",
    "coachella-2014:d5:outdoor:2105:sleigh-bells",
+   "governors-ball-2014:d2:gotham-tent:2015:sleigh-bells",
    "outside-lands-2017:d1:twin-peaks:1715:sleigh-bells"
   ],
   "firstSeen": "2014-04-12",
@@ -147866,6 +148444,21 @@
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2022-05-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "solid-gold",
+  "name": "SOLID GOLD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2013:d1:you-re-doing-great-stage:1245:solid-gold"
+  ],
+  "firstSeen": "2013-06-07",
+  "lastSeen": "2013-06-07",
   "photo": null,
   "links": []
  },
@@ -149875,11 +150468,12 @@
    "acl-2017:d5:miller-lite:untimed:spoon",
    "acl-2022:d3:honda:1600:spoon",
    "acl-2022:d6:honda:1600:spoon",
+   "governors-ball-2014:d2:big-apple-stage:2015:spoon",
    "lollapalooza-2014:d2:bud-light:1845:spoon",
    "lollapalooza-2017:d1:lake-shore:1945:spoon",
    "outside-lands-2014:d3:lands-end:1640:spoon"
   ],
-  "firstSeen": "2014-08-02",
+  "firstSeen": "2014-06-07",
   "lastSeen": "2026-07-03",
   "photo": null,
   "links": []
@@ -150070,11 +150664,12 @@
    "coachella-2015:d3:coachella:1630:st-lucia",
    "coachella-2015:d6:coachella:1625:st-lucia",
    "electric-forest-2014:d4:sherwood-court:1915:st-lucia",
+   "governors-ball-2013:d1:gov-ball-nyc-stage:1330:st-lucia",
    "lollapalooza-2013:d2:the-grove:untimed:st-lucia",
    "lollapalooza-2016:d3:pepsi:1945:st-lucia",
    "outside-lands-2016:d1:lands-end:1525:st-lucia"
   ],
-  "firstSeen": "2013-08-03",
+  "firstSeen": "2013-06-07",
   "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
@@ -150124,6 +150719,7 @@
    "coachella-2012:d5:gobi:1945:st-vincent",
    "coachella-2015:d3:outdoor:2000:st-vincent",
    "coachella-2015:d6:outdoor:2010:st-vincent",
+   "governors-ball-2015:d1:big-apple-stage:2000:st-vincent",
    "lollapalooza-2018:d3:bud-light:untimed:st-vincent",
    "outside-lands-2015:d1:lands-end:1630:st-vincent"
   ],
@@ -150635,6 +151231,21 @@
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2025-05-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "steel-pulse",
+  "name": "STEEL PULSE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2013:d3:you-re-doing-great-stage:1415:steel-pulse"
+  ],
+  "firstSeen": "2013-06-09",
+  "lastSeen": "2013-06-09",
   "photo": null,
   "links": []
  },
@@ -151774,10 +152385,11 @@
   "billings": [
    "acl-2015:d3:austin-ventures:1530:strand-of-oaks",
    "acl-2015:d6:austin-ventures:1530:strand-of-oaks",
+   "governors-ball-2015:d3:honda-stage:1330:strand-of-oaks",
    "lollapalooza-2015:d3:pepsi:1645:strand-of-oaks",
    "outside-lands-2015:d1:sutro:1310:strand-of-oaks"
   ],
-  "firstSeen": "2015-08-02",
+  "firstSeen": "2015-06-07",
   "lastSeen": "2015-10-11",
   "photo": null,
   "links": []
@@ -151900,6 +152512,21 @@
   ],
   "firstSeen": "2026-06-06",
   "lastSeen": "2026-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "streets-of-laredo",
+  "name": "STREETS OF LAREDO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d3:govballnyc-stage:1215:streets-of-laredo"
+  ],
+  "firstSeen": "2015-06-07",
+  "lastSeen": "2015-06-07",
   "photo": null,
   "links": []
  },
@@ -152048,6 +152675,7 @@
    "acl-2024:d6:honda:2040:sturgill-simpson",
    "coachella-2015:d3:gobi:1525:sturgill-simpson",
    "coachella-2015:d6:gobi:1525:sturgill-simpson",
+   "governors-ball-2015:d3:govballnyc-stage:1500:sturgill-simpson",
    "lollapalooza-2015:d2:bud-light:1445:sturgill-simpson"
   ],
   "firstSeen": "2015-04-12",
@@ -154129,6 +154757,21 @@
   "links": []
  },
  {
+  "key": "swear-and-shake",
+  "name": "SWEAR AND SHAKE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2013:d1:gov-ball-nyc-stage:1215:swear-and-shake"
+  ],
+  "firstSeen": "2013-06-07",
+  "lastSeen": "2013-06-07",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sweater-beats",
   "name": "Sweater Beats",
   "aliases": [],
@@ -155421,6 +156064,7 @@
    "acl-2019:d4:honda:2015:tame-impala",
    "coachella-2015:d1:coachella:2115:tame-impala",
    "coachella-2015:d4:coachella:2115:tame-impala",
+   "governors-ball-2015:d3:govballnyc-stage:1645:tame-impala",
    "lollapalooza-2012:d1:sony:1515:tame-impala",
    "lollapalooza-2015:d2:samsung-galaxy:1800:tame-impala",
    "lollapalooza-2019:d2:bud-light:untimed:tame-impala",
@@ -155548,10 +156192,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2014:d2:big-apple-stage:1415:tanlines",
    "outside-lands-2012:d1:panhandle-hellman-hollow:1330:tanlines"
   ],
   "firstSeen": "2012-08-10",
-  "lastSeen": "2012-08-10",
+  "lastSeen": "2014-06-07",
   "photo": null,
   "links": []
  },
@@ -157255,6 +157900,7 @@
    "coachella-2014:d6:outdoor:1605:the-1975",
    "coachella-2016:d3:coachella:1810:the-1975",
    "coachella-2016:d6:coachella:1810:the-1975",
+   "governors-ball-2014:d1:honda-stage:1500:the-1975",
    "governors-ball-2019:d2:govballnyc-stage:1845:the-1975",
    "lollapalooza-2014:d3:the-grove:1645:the-1975",
    "lollapalooza-2016:d1:bud-light:1900:the-1975"
@@ -157621,7 +158267,9 @@
  {
   "key": "the-avett-brothers",
   "name": "The Avett Brothers",
-  "aliases": [],
+  "aliases": [
+   "THE AVETT BROTHERS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -157629,6 +158277,7 @@
    "acl-2012:d3:amd:1815:the-avett-brothers",
    "acl-2014:d2:honda:1830:the-avett-brothers",
    "acl-2014:d5:honda:1830:the-avett-brothers",
+   "governors-ball-2013:d3:hondastage:2130:the-avett-brothers",
    "lollapalooza-2014:d3:samsung-galaxy:1800:the-avett-brothers",
    "outside-lands-2017:d2:sutro:1840:the-avett-brothers"
   ],
@@ -157994,6 +158643,7 @@
    "acl-2012:d1:bud-light:2030:the-black-keys",
    "coachella-2012:d1:main-stage:2145:the-black-keys",
    "coachella-2012:d4:main-stage:2145:the-black-keys",
+   "governors-ball-2015:d3:govballnyc-stage:2115:the-black-keys",
    "lollapalooza-2012:d1:red-bull-soundstage:2030:the-black-keys",
    "outside-lands-2011:d2:lands-end:1815:the-black-keys",
    "outside-lands-2015:d2:lands-end:2025:the-black-keys"
@@ -158109,10 +158759,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2014:d3:gotham-tent:1745:the-bloody-beetroots-live",
    "tomorrowland-2015:d1:dim-mak:2215:the-bloody-beetroots-sbcr-dj-set",
    "tomorrowland-2018:d4:organ-of-harmony:2215:the-bloody-beetroots-live"
   ],
-  "firstSeen": "2015-07-24",
+  "firstSeen": "2014-06-08",
   "lastSeen": "2018-07-27",
   "photo": null,
   "links": []
@@ -158430,6 +159081,7 @@
   "projects": [],
   "billings": [
    "acl-2014:d2:retailmenot:1130:the-chain-gang-of-1974",
+   "governors-ball-2014:d1:gotham-tent:1215:the-chain-gang-of-1974",
    "lollapalooza-2011:d2:bmi:1545:the-chain-gang-of-1974"
   ],
   "firstSeen": "2011-08-06",
@@ -158821,6 +159473,7 @@
   "billings": [
    "acl-2015:d3:honda:1630:the-decemberists",
    "acl-2015:d6:honda:1630:the-decemberists",
+   "governors-ball-2015:d1:honda-stage:1845:the-decemberists",
    "outside-lands-2011:d3:lands-end:1815:the-decemberists"
   ],
   "firstSeen": "2011-08-14",
@@ -158887,6 +159540,7 @@
   "billings": [
    "acl-2014:d3:samsung-galaxy:1215:the-districts",
    "acl-2014:d6:samsung-galaxy:1215:the-districts",
+   "governors-ball-2015:d1:honda-stage:1215:the-districts",
    "lollapalooza-2014:d2:lake-shore:1200:the-districts",
    "lollapalooza-2017:d2:grant-park:1245:the-districts",
    "outside-lands-2014:d2:panhandle:1325:the-districts"
@@ -159597,6 +160251,7 @@
    "coachella-2014:d1:sahara:1930:the-glitch-mob",
    "coachella-2014:d4:sahara:1930:the-glitch-mob",
    "electric-forest-2014:d1:ranch-arena:2215:the-glitch-mob",
+   "governors-ball-2014:d2:gotham-tent:1745:the-glitch-mob",
    "governors-ball-2018:d1:american-eagle-stage:2000:the-glitch-mob",
    "lollapalooza-2011:d2:perry-s:1900:the-glitch-mob",
    "lollapalooza-2014:d1:perry-s:1915:the-glitch-mob",
@@ -159789,6 +160444,7 @@
    "coachella-2014:d5:outdoor:1715:the-head-and-the-heart",
    "coachella-2017:d2:coachella:1645:the-head-and-the-heart",
    "coachella-2017:d5:coachella:1645:the-head-and-the-heart",
+   "governors-ball-2014:d3:govballnyc-stage:1645:the-head-and-the-heart",
    "governors-ball-2017:d2:gov-ball-nyc:1645:the-head-and-the-heart",
    "lollapalooza-2012:d1:sony:1715:the-head-and-the-heart",
    "lollapalooza-2014:d2:lake-shore:1915:the-head-and-the-heart",
@@ -160073,6 +160729,7 @@
   "billings": [
    "coachella-2014:d2:gobi:1330:the-internet",
    "coachella-2014:d5:gobi:1330:the-internet",
+   "governors-ball-2014:d2:gotham-tent:1245:the-internet",
    "governors-ball-2019:d1:govballnyc-stage:1645:the-internet"
   ],
   "firstSeen": "2014-04-12",
@@ -160344,6 +161001,7 @@
   "billings": [
    "coachella-2016:d1:outdoor:1815:the-kills",
    "coachella-2016:d4:outdoor:1810:the-kills",
+   "governors-ball-2014:d3:big-apple-stage:1745:the-kills",
    "lollapalooza-2011:d1:bud-light:1630:the-kills",
    "outside-lands-2012:d2:lands-end-polo-field:1810:the-kills"
   ],
@@ -160413,6 +161071,7 @@
   "projects": [],
   "billings": [
    "electric-forest-2012:d2:wagon-wheel:0200:the-knocks",
+   "governors-ball-2013:d1:skyy-vodka-tent:1415:the-knocks",
    "outside-lands-2016:d2:twin-peaks:1405:the-knocks"
   ],
   "firstSeen": "2012-06-29",
@@ -160735,6 +161394,7 @@
    "acl-2012:d3:austin-ventures:1700:the-lumineers",
    "acl-2023:d1:honda:2010:the-lumineers",
    "acl-2023:d4:honda:2010:the-lumineers",
+   "governors-ball-2013:d3:hondastage:1845:the-lumineers",
    "lollapalooza-2013:d2:lake-shore:untimed:the-lumineers"
   ],
   "firstSeen": "2012-10-14",
@@ -161292,6 +161952,7 @@
    "acl-2016:d5:cirrus-logic:1730:the-naked-and-famous",
    "coachella-2014:d3:coachella:1740:the-naked-and-famous",
    "coachella-2014:d6:coachella:1735:the-naked-and-famous",
+   "governors-ball-2014:d2:big-apple-stage:1745:the-naked-and-famous",
    "lollapalooza-2011:d1:sony:1330:the-naked-and-famous"
   ],
   "firstSeen": "2011-08-05",
@@ -161818,6 +162479,21 @@
   "links": []
  },
  {
+  "key": "the-picturebooks",
+  "name": "The Picturebooks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d3:honda-stage:1215:the-picturebooks"
+  ],
+  "firstSeen": "2015-06-07",
+  "lastSeen": "2015-06-07",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-pimps-of-joytime",
   "name": "The Pimps of Joytime",
   "aliases": [],
@@ -162326,10 +163002,11 @@
    "acl-2023:d1:ihg-hotels-and-resorts:1910:the-revivalists",
    "acl-2023:d4:ihg-hotels-and-resorts:1910:the-revivalists",
    "electric-forest-2014:d2:sherwood-court:1530:the-revivalists",
+   "governors-ball-2013:d3:gov-ball-nyc-stage:1215:the-revivalists",
    "lollapalooza-2019:d4:t-mobile:untimed:the-revivalists",
    "outside-lands-2015:d1:panhandle:1455:the-revivalists"
   ],
-  "firstSeen": "2014-06-27",
+  "firstSeen": "2013-06-09",
   "lastSeen": "2026-06-26",
   "photo": null,
   "links": []
@@ -162426,6 +163103,21 @@
   ],
   "firstSeen": "2014-10-04",
   "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-rubens",
+  "name": "THE RUBENS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2013:d2:you-re-doing-great-stage:1245:the-rubens"
+  ],
+  "firstSeen": "2013-06-08",
+  "lastSeen": "2013-06-08",
   "photo": null,
   "links": []
  },
@@ -162994,6 +163686,7 @@
    "acl-2015:d3:samsung:2030:the-strokes",
    "acl-2025:d2:t-mobile:2015:the-strokes",
    "acl-2025:d5:t-mobile:2015:the-strokes",
+   "governors-ball-2014:d2:govballnyc-stage:1845:the-strokes",
    "governors-ball-2019:d3:govballnyc-stage:2215:the-strokes",
    "lollapalooza-2019:d1:t-mobile:untimed:the-strokes",
    "outside-lands-2010:d1:twin-peaks:2045:the-strokes"
@@ -163394,7 +164087,8 @@
   "key": "the-vaccines",
   "name": "The Vaccines",
   "aliases": [
-   "the vaccines"
+   "the vaccines",
+   "THE VACCINES"
   ],
   "kind": "performer",
   "parents": [],
@@ -163402,6 +164096,7 @@
   "billings": [
    "coachella-2012:d2:gobi:1340:the-vaccines",
    "coachella-2012:d5:gobi:1340:the-vaccines",
+   "governors-ball-2013:d3:hondastage:1330:the-vaccines",
    "lollapalooza-2011:d1:music-unlimited:1245:the-vaccines",
    "lollapalooza-2013:d3:petrillo:1730:the-vaccines",
    "lollapalooza-2018:d4:bud-light:untimed:the-vaccines",
@@ -163567,6 +164262,7 @@
    "acl-2022:d5:t-mobile:1910:the-war-on-drugs",
    "coachella-2015:d1:coachella:1810:the-war-on-drugs",
    "coachella-2015:d4:coachella:1805:the-war-on-drugs",
+   "governors-ball-2015:d3:big-apple-stage:1745:the-war-on-drugs",
    "lollapalooza-2012:d1:google-play:1415:the-war-on-drugs",
    "lollapalooza-2015:d1:palladia:1730:the-war-on-drugs"
   ],
@@ -163847,7 +164543,9 @@
  {
   "key": "the-xx",
   "name": "The xx",
-  "aliases": [],
+  "aliases": [
+   "THE XX"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -163859,9 +164557,10 @@
    "acl-2017:d4:honda:untimed:the-xx",
    "coachella-2017:d1:coachella:2050:the-xx",
    "coachella-2017:d4:coachella:2050:the-xx",
+   "governors-ball-2013:d3:you-re-doing-great-stage:2020:the-xx",
    "lollapalooza-2017:d3:bud-light:2045:the-xx"
   ],
-  "firstSeen": "2017-04-14",
+  "firstSeen": "2013-06-09",
   "lastSeen": "2026-10-04",
   "photo": null,
   "links": []
@@ -164129,13 +164828,16 @@
  {
   "key": "thievery-corporation",
   "name": "Thievery Corporation",
-  "aliases": [],
+  "aliases": [
+   "THIEVERY CORPORATION"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2012:d1:honda:1915:thievery-corporation",
    "electric-forest-2012:d2:ranch-arena:0030:thievery-corporation",
+   "governors-ball-2013:d2:skyy-vodka-tent:2000:thievery-corporation",
    "lollapalooza-2013:d1:petrillo:1715:thievery-corporation"
   ],
   "firstSeen": "2012-06-29",
@@ -167264,6 +167966,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "governors-ball-2013:d1:skyy-vodka-tent:1545:totally-enormous-extinct-dinosaurs",
    "lollapalooza-2012:d1:perry-s:1400:totally-enormous-extinct-dinosaurs",
    "nocturnal-wonderland-2017:d2:sunken-garden:2230:totally-enormous-extinct-dinosaurs-dj-set",
    "outside-lands-2017:d3:the-house-by-heineken:1830:totally-enormous-extinct-dinosaurs-dj-set",
@@ -168882,6 +169585,7 @@
    "acl-2011:d2:google:1900:tv-on-the-radio",
    "acl-2015:d2:miller-lite:1920:tv-on-the-radio",
    "acl-2015:d5:miller-lite:1920:tv-on-the-radio",
+   "governors-ball-2014:d1:big-apple-stage:2000:tv-on-the-radio",
    "lollapalooza-2015:d3:sprint:2015:tv-on-the-radio"
   ],
   "firstSeen": "2011-09-17",
@@ -169116,7 +169820,9 @@
  {
   "key": "twin-shadow",
   "name": "Twin Shadow",
-  "aliases": [],
+  "aliases": [
+   "TWIN SHADOW"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -169124,6 +169830,7 @@
    "acl-2011:d2:google:1315:twin-shadow",
    "acl-2018:d3:american-express:1400:twin-shadow",
    "acl-2018:d6:american-express:1400:twin-shadow",
+   "governors-ball-2013:d3:skyy-vodka-tent:1545:twin-shadow",
    "lollapalooza-2012:d2:google-play:2030:twin-shadow"
   ],
   "firstSeen": "2011-09-17",
@@ -169666,6 +170373,7 @@
   "name": "Tyler The Creator",
   "aliases": [
    "TYLER, THE CREATOR",
+   "Tyler, the Creator",
    "Tyler, The Creator"
   ],
   "kind": "performer",
@@ -169678,13 +170386,14 @@
    "acl-2024:d6:american-express:2045:tyler-the-creator",
    "coachella-2015:d2:outdoor:2115:tyler-the-creator",
    "coachella-2015:d5:outdoor:2115:tyler-the-creator",
+   "governors-ball-2014:d3:big-apple-stage:1545:tyler-the-creator",
    "governors-ball-2019:d1:govballnyc-stage:2145:tyler-the-creator",
    "governors-ball-2025:d1:govballnyc:2045:tyler-the-creator",
    "lollapalooza-2015:d2:palladia:1745:tyler-the-creator",
    "lollapalooza-2018:d2:grant-park:untimed:tyler-the-creator",
    "lollapalooza-2025:d1:t-mobile:2100:tyler-the-creator"
   ],
-  "firstSeen": "2015-04-11",
+  "firstSeen": "2014-06-08",
   "lastSeen": "2025-07-31",
   "photo": null,
   "links": []
@@ -171008,6 +171717,7 @@
   "billings": [
    "acl-2013:d1:amd:1800:vampire-weekend",
    "acl-2013:d4:lady-bird:1800:vampire-weekend",
+   "governors-ball-2014:d3:govballnyc-stage:2115:vampire-weekend",
    "lollapalooza-2013:d3:bud-light:1830:vampire-weekend",
    "lollapalooza-2018:d3:bud-light:untimed:vampire-weekend",
    "outside-lands-2013:d3:lands-end:1750:vampire-weekend"
@@ -171046,6 +171756,7 @@
    "acl-2017:d6:miller-lite:untimed:vance-joy",
    "coachella-2015:d3:mojave:1730:vance-joy",
    "coachella-2015:d6:mojave:1730:vance-joy",
+   "governors-ball-2015:d1:honda-stage:1645:vance-joy",
    "lollapalooza-2014:d2:bud-light:1300:vance-joy",
    "lollapalooza-2017:d3:bud-light:1700:vance-joy",
    "outside-lands-2014:d2:panhandle:1630:vance-joy",
@@ -174132,11 +174843,12 @@
   "billings": [
    "coachella-2014:d2:gobi:1755:washed-out",
    "coachella-2014:d5:gobi:1755:washed-out",
+   "governors-ball-2014:d1:gotham-tent:1545:washed-out",
    "lollapalooza-2012:d2:google-play:1930:washed-out",
    "outside-lands-2012:d1:panhandle-hellman-hollow:1950:washed-out"
   ],
   "firstSeen": "2012-08-04",
-  "lastSeen": "2014-04-19",
+  "lastSeen": "2014-06-06",
   "photo": null,
   "links": []
  },
@@ -174690,6 +175402,21 @@
   ],
   "firstSeen": "2012-10-12",
   "lastSeen": "2027-04-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "weird-al-yankovic",
+  "name": "\"Weird Al\" Yankovic",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d3:gotham-tent:1745:weird-al-yankovic"
+  ],
+  "firstSeen": "2015-06-07",
+  "lastSeen": "2015-06-07",
   "photo": null,
   "links": []
  },
@@ -175328,6 +176055,21 @@
   "links": []
  },
  {
+  "key": "white-lung",
+  "name": "White Lung",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "governors-ball-2015:d2:honda-stage:1330:white-lung"
+  ],
+  "firstSeen": "2015-06-06",
+  "lastSeen": "2015-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "white-noise",
   "name": "White Noise",
   "aliases": [],
@@ -175705,6 +176447,7 @@
    "acl-2013:d4:austin-ventures:1815:wild-belle",
    "acl-2016:d3:cirrus-logic:1300:wild-belle",
    "acl-2016:d6:cirrus-logic:1300:wild-belle",
+   "governors-ball-2014:d3:big-apple-stage:1415:wild-belle",
    "lollapalooza-2013:d3:lake-shore:1330:wild-belle",
    "lollapalooza-2015:d3:pepsi:1915:wild-belle",
    "outside-lands-2013:d1:twin-peaks:1415:wild-belle"
@@ -175796,16 +176539,19 @@
  {
   "key": "wild-nothing",
   "name": "Wild Nothing",
-  "aliases": [],
+  "aliases": [
+   "WILD NOTHING"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2013:d1:samsung-galaxy:1115:wild-nothing",
    "acl-2013:d4:samsung-galaxy:1115:wild-nothing",
+   "governors-ball-2013:d2:gov-ball-nyc-stage:1330:wild-nothing",
    "lollapalooza-2013:d3:red-bull-sound-select:1415:wild-nothing"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2013-06-08",
   "lastSeen": "2013-10-11",
   "photo": null,
   "links": []
@@ -178357,16 +179103,19 @@
  {
   "key": "yeasayer",
   "name": "Yeasayer",
-  "aliases": [],
+  "aliases": [
+   "YEASAYER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "electric-forest-2013:d4:sherwood-court:2230:yeasayer",
+   "governors-ball-2013:d3:skyy-vodka-tent:1745:yeasayer",
    "lollapalooza-2016:d1:lakeshore:1530:yeasayer",
    "outside-lands-2013:d1:twin-peaks:1900:yeasayer"
   ],
-  "firstSeen": "2013-06-30",
+  "firstSeen": "2013-06-09",
   "lastSeen": "2016-07-28",
   "photo": null,
   "links": []
@@ -179079,7 +179828,8 @@
   "key": "young-the-giant",
   "name": "Young The Giant",
   "aliases": [
-   "Young the Giant"
+   "Young the Giant",
+   "YOUNG THE GIANT"
   ],
   "kind": "performer",
   "parents": [],
@@ -179088,6 +179838,7 @@
    "acl-2011:d2:amd:1400:young-the-giant",
    "acl-2016:d3:miller-lite:1900:young-the-giant",
    "acl-2016:d6:miller-lite:1900:young-the-giant",
+   "governors-ball-2013:d1:hondastage:1845:young-the-giant",
    "lollapalooza-2011:d1:bud-light:1300:young-the-giant",
    "lollapalooza-2014:d3:lake-shore:1915:young-the-giant",
    "outside-lands-2013:d2:lands-end:1540:young-the-giant",
