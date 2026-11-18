@@ -3777,6 +3777,37 @@
    }
   },
   {
+   "id": "primavera-sound-2012",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2012",
+   "year": 2012,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-05-31",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2012-06-01",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2012-06-02",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 10,
+    "artists": 179,
+    "sets": 191
+   }
+  },
+  {
    "id": "shambhala-2025",
    "festivalId": "shambhala",
    "festivalName": "Shambhala",

@@ -139,9 +139,12 @@ const out = build();
   // SOUNDBATH WITH JÓNSI, ALEX SOMERS AND PAUL CORLEY under the feat. rule
   // and left two curated days as printed (FOUR TET PRESENTS and DEKMANTEL
   // PRESENTS, names joined by "/" in one all-day block, as Crew Love): 172
-  // rows, raised here and reported in that pull request. Past 172, stop and
-  // report.
-  check(review.length <= 172, `review queue is ${review.length} rows (> 172 means stop and report)`);
+  // rows, raised here and reported in that pull request. Primavera Sound
+  // 2012 ruled Barry Hogan DJ (ATP) and Jeff Mangum (Neutral Milk Hotel) and
+  // left the short name OFF! (Primavera Sound 2012 and Coachella 2015) to a
+  // first-party link: 173 rows, raised here and reported in that pull
+  // request. Past 173, stop and report.
+  check(review.length <= 173, `review queue is ${review.length} rows (> 173 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

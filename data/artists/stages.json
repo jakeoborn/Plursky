@@ -4611,6 +4611,110 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-ray-ban",
+     "names": [
+      {
+       "printed": "Escenario Ray-Ban",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-pitchfork",
+     "names": [
+      {
+       "printed": "Escenario Pitchfork",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-vice",
+     "names": [
+      {
+       "printed": "Escenario Vice",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-adidas-originals",
+     "names": [
+      {
+       "printed": "Escenario adidas Originals",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-mini",
+     "names": [
+      {
+       "printed": "Escenario MINI",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-san-miguel",
+     "names": [
+      {
+       "printed": "Escenario San Miguel",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-atp",
+     "names": [
+      {
+       "printed": "Escenario ATP",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:salon-myspace-smint",
+     "names": [
+      {
+       "printed": "Salón Myspace Smint",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
