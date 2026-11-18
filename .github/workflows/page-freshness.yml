@@ -47,9 +47,20 @@ jobs:
       - name: Generated pages current, calendar included
         run: node scripts/gen-festival-pages.mjs --check-strict
 
+      # Also time-driven, also with no commit to trigger it: the Apple Music
+      # developer token (APPLE_DEV_TOKEN) expires on a date, and every Apple
+      # Music call fails together when it does. Red 21 days ahead, every day,
+      # until it is renewed. always(): a stale page must not hide this.
+      - name: Apple Music developer token not near expiry
+        if: always()
+        run: node scripts/check-musickit-token.mjs --self-test && node scripts/check-musickit-token.mjs --min-days 21
+
       - name: How to fix
         if: failure()
         run: |
           echo "A generated page no longer matches the registry or the calendar."
           echo "Fix locally, then open a PR:"
           echo "  node scripts/gen-festival-pages.mjs"
+          echo "If the Apple Music token step failed, re-sign it (key holder only):"
+          echo "  node scripts/sign-musickit-token.mjs <TEAM_ID> <KEY_ID> <AuthKey.p8>"
+          echo "  then paste into APPLE_DEV_TOKEN, bump the cache-bust, and rebuild iOS too."
