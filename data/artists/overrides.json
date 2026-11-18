@@ -4367,6 +4367,711 @@
    "setTag": "1969 In Remix Set",
    "why": "\"1969 In Remix Set\" names the set's theme, not a second act: it is the set tag, and the billing counts on Motion Potion, billed at Outside Lands 2018 and 2019 under that name.",
    "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "John Luther Adams + Barcelona Symphony Orchestra",
+   "performers": [
+    {
+     "name": "John Luther Adams",
+     "role": "cobilled"
+    },
+    {
+     "name": "Barcelona Symphony Orchestra",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "King Midas Sound + Fennesz",
+   "performers": [
+    {
+     "name": "King Midas Sound",
+     "role": "cobilled"
+    },
+    {
+     "name": "Fennesz",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "David August (live band)",
+   "performers": [
+    {
+     "name": "David August",
+     "role": "performer"
+    }
+   ],
+   "setTag": "live band",
+   "why": "The artist plays with a band the printing does not name; \"(live band)\" is the set tag.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Niño de Elche + Los Voluble: “En el Nombre de”",
+   "performers": [
+    {
+     "name": "Niño de Elche",
+     "role": "cobilled"
+    },
+    {
+     "name": "Los Voluble",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged. The words after the colon are the show's title, not an act.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Hot Shotz (Powell + Lorenzo Senni)",
+   "performers": [
+    {
+     "name": "Hot Shotz",
+     "role": "project",
+     "parents": [
+      "Powell",
+      "Lorenzo Senni"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone (the Girl Math rule).",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Ed Banger House Party: Busy P + Para One + Boston Bun",
+   "performers": [
+    {
+     "name": "Busy P",
+     "role": "cobilled"
+    },
+    {
+     "name": "Para One",
+     "role": "cobilled"
+    },
+    {
+     "name": "Boston Bun",
+     "role": "cobilled"
+    }
+   ],
+   "why": "The set is presented under the Ed Banger House Party banner, which is not an artist; the names after the colon are the DJs, each credited as co-billed.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Trill Squad: Toner + Sanatruja",
+   "performers": [
+    {
+     "name": "Trill Squad",
+     "role": "project",
+     "parents": [
+      "Toner",
+      "Sanatruja"
+     ]
+    }
+   ],
+   "why": "The printing names the crew and, after the colon, the people playing for it: the crew is a project with them as parents (the Girl Math rule).",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Björk DJ Set (Opening Night - separate ticket)",
+   "performers": [
+    {
+     "name": "Björk",
+     "role": "performer"
+    }
+   ],
+   "setTag": "DJ Set",
+   "why": "\"DJ Set\" is the set tag; the parenthetical is a ticketing note for the opening night, not an act.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Arca (live) & Jesse Kanda (AV)",
+   "performers": [
+    {
+     "name": "Arca",
+     "role": "cobilled"
+    },
+    {
+     "name": "Jesse Kanda",
+     "role": "cobilled"
+    }
+   ],
+   "why": "The printing tags each name with its own part of the set (Arca live, Jesse Kanda on visuals): each is credited as co-billed; nothing is merged.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "TodaysArt: Dopplereffekt + Antivj + Scientists + Artist-coders - Entropy",
+   "performers": [
+    {
+     "name": "Dopplereffekt",
+     "role": "cobilled"
+    },
+    {
+     "name": "Antivj",
+     "role": "cobilled"
+    }
+   ],
+   "why": "The piece \"Entropy\" is presented under the TodaysArt banner, which is not an artist. Dopplereffekt and Antivj are the named acts, each credited as co-billed; \"Scientists\" and \"Artist-coders\" name no act.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "TodaysArt: Tarik Barri ft. Lea Fabrikant",
+   "performers": [
+    {
+     "name": "Tarik Barri",
+     "role": "performer"
+    },
+    {
+     "name": "Lea Fabrikant",
+     "role": "guest"
+    }
+   ],
+   "why": "Presented under the TodaysArt banner, which is not an artist. The printing bills the first name and adds the rest with \"feat.\" / \"ft.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Father ft. Danger Incorporated",
+   "performers": [
+    {
+     "name": "Father",
+     "role": "performer"
+    },
+    {
+     "name": "Danger Incorporated",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"feat.\" / \"ft.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Floorplan Live (Robert Hood & Lyric Hood)",
+   "performers": [
+    {
+     "name": "Floorplan",
+     "role": "project",
+     "parents": [
+      "Robert Hood",
+      "Lyric Hood"
+     ]
+    }
+   ],
+   "setTag": "Live",
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone (the Girl Math rule). \"Live\" is the set tag.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Jon Hopkins (DJ)",
+   "performers": [
+    {
+     "name": "Jon Hopkins",
+     "role": "performer"
+    }
+   ],
+   "setTag": "DJ",
+   "why": "\"(DJ)\" is the set tag.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Nosaj Thing + Daito Manabe",
+   "performers": [
+    {
+     "name": "Nosaj Thing",
+     "role": "cobilled"
+    },
+    {
+     "name": "Daito Manabe",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Soulection presents Joe Kay + Jarreau Vandal",
+   "performers": [
+    {
+     "name": "Joe Kay",
+     "role": "cobilled"
+    },
+    {
+     "name": "Jarreau Vandal",
+     "role": "cobilled"
+    }
+   ],
+   "why": "The set is presented under the Soulection banner, which is not an artist; the named DJs are each credited as co-billed.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "t q d (royal t, dj q & flava d)",
+   "performers": [
+    {
+     "name": "t q d",
+     "role": "project",
+     "parents": [
+      "royal t",
+      "dj q",
+      "flava d"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone (the Girl Math rule).",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "DESPACIO (James Murphy + 2manydjs)",
+   "performers": [
+    {
+     "name": "DESPACIO",
+     "role": "project",
+     "parents": [
+      "James Murphy",
+      "2manydjs"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone (the Girl Math rule).",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "OBC (Barcelona Symphony Orchestra) + Brad Lubman play Terry Riley: IN C",
+   "performers": [
+    {
+     "name": "Barcelona Symphony Orchestra",
+     "role": "cobilled"
+    },
+    {
+     "name": "Brad Lubman",
+     "role": "cobilled"
+    }
+   ],
+   "why": "The parenthetical gives OBC's English name, the orchestra Sónar 2016 bills as Barcelona Symphony Orchestra. The orchestra and Brad Lubman are each credited as co-billed; Terry Riley is the composer of the work played (\"IN C\"), not a performer.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Jenny Hval (Insomnia & We Are Europe present)",
+   "performers": [
+    {
+     "name": "Jenny Hval",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the festivals presenting the set (Sónar's partners in the We Are Europe network), not acts on it: the artist is the performer.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Kode9 x Kōji Morimoto AV",
+   "performers": [
+    {
+     "name": "Kode9",
+     "role": "cobilled"
+    },
+    {
+     "name": "Kōji Morimoto",
+     "role": "cobilled"
+    }
+   ],
+   "setTag": "AV",
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged. \"AV\" is the set tag.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Yuzo Koshiro x Motohiro Kawashima live",
+   "performers": [
+    {
+     "name": "Yuzo Koshiro",
+     "role": "cobilled"
+    },
+    {
+     "name": "Motohiro Kawashima",
+     "role": "cobilled"
+    }
+   ],
+   "setTag": "live",
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged. \"live\" is the set tag.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Rainforest Spiritual Enslavement (Dominick Fernow x Philippe Hallais x Silent Servant)",
+   "performers": [
+    {
+     "name": "Rainforest Spiritual Enslavement",
+     "role": "project",
+     "parents": [
+      "Dominick Fernow",
+      "Philippe Hallais",
+      "Silent Servant"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone (the Girl Math rule).",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Violet x Photonz",
+   "performers": [
+    {
+     "name": "Violet",
+     "role": "cobilled"
+    },
+    {
+     "name": "Photonz",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "KOKOKO! (Nuits Sonores & We Are Europe present)",
+   "performers": [
+    {
+     "name": "KOKOKO!",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the festivals presenting the set (Sónar's partners in the We Are Europe network), not acts on it: the artist is the performer.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "King Doudou (Nuits Sonores & We Are Europe present)",
+   "performers": [
+    {
+     "name": "King Doudou",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the festivals presenting the set (Sónar's partners in the We Are Europe network), not acts on it: the artist is the performer.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Suzanne Kraft x Jonny Nash",
+   "performers": [
+    {
+     "name": "Suzanne Kraft",
+     "role": "cobilled"
+    },
+    {
+     "name": "Jonny Nash",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Russell Haswell ft. Sue Tompkins",
+   "performers": [
+    {
+     "name": "Russell Haswell",
+     "role": "performer"
+    },
+    {
+     "name": "Sue Tompkins",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"feat.\" / \"ft.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Die Angel: Ilpo Väisänen + Schneider TM",
+   "performers": [
+    {
+     "name": "Die Angel",
+     "role": "project",
+     "parents": [
+      "Ilpo Väisänen",
+      "Schneider TM"
+     ]
+    }
+   ],
+   "why": "The printing names the duo and, after the colon, the people in it: the duo is a project with them as parents (the Girl Math rule).",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "DJ Stingray x Mumdance",
+   "performers": [
+    {
+     "name": "DJ Stingray",
+     "role": "cobilled"
+    },
+    {
+     "name": "Mumdance",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Pina + Gnomalab",
+   "performers": [
+    {
+     "name": "Pina",
+     "role": "cobilled"
+    },
+    {
+     "name": "Gnomalab",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Ouchhh + Za!: Superstrings",
+   "performers": [
+    {
+     "name": "Ouchhh",
+     "role": "cobilled"
+    },
+    {
+     "name": "Za!",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged. \"Superstrings\" is the show's title, not an act.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Daito Manabe + Kamitani Lab: dissonant imaginary",
+   "performers": [
+    {
+     "name": "Daito Manabe",
+     "role": "cobilled"
+    },
+    {
+     "name": "Kamitani Lab",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged. \"dissonant imaginary\" is the show's title, not an act.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Desert + Desilence",
+   "performers": [
+    {
+     "name": "Desert",
+     "role": "cobilled"
+    },
+    {
+     "name": "Desilence",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Murlo (Live AV)",
+   "performers": [
+    {
+     "name": "Murlo",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Live AV",
+   "why": "\"(Live AV)\" is the set tag.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Actress + Young Paint Live AI/AV",
+   "performers": [
+    {
+     "name": "Actress",
+     "role": "cobilled"
+    },
+    {
+     "name": "Young Paint",
+     "role": "cobilled"
+    }
+   ],
+   "setTag": "Live AI/AV",
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged. \"Live AI/AV\" is the set tag.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Ca7riel + Paco Amoroso",
+   "performers": [
+    {
+     "name": "Ca7riel",
+     "role": "cobilled"
+    },
+    {
+     "name": "Paco Amoroso",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Neon Chambers (Kangding Ray + Sigha)",
+   "performers": [
+    {
+     "name": "Neon Chambers",
+     "role": "project",
+     "parents": [
+      "Kangding Ray",
+      "Sigha"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone (the Girl Math rule).",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Niño de Elche + Ylia + Banda “La Valenciana”: 'Concert de músika festera'",
+   "performers": [
+    {
+     "name": "Niño de Elche",
+     "role": "cobilled"
+    },
+    {
+     "name": "Ylia",
+     "role": "cobilled"
+    },
+    {
+     "name": "Banda “La Valenciana”",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Sónar's timetable bills the named artists together on one set joined by \"+\" or \"x\": each is credited as co-billed; nothing is merged. The words after the colon are the show's title, not an act.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Yugen Kala dj set feat. Dømochevsky AV set",
+   "performers": [
+    {
+     "name": "Yugen Kala",
+     "role": "performer"
+    },
+    {
+     "name": "Dømochevsky",
+     "role": "guest"
+    }
+   ],
+   "setTag": "dj set",
+   "why": "The printing bills the first name and adds the rest with \"feat.\" / \"ft.\": the first name is the performer, each added name is credited as a guest on the same set. \"dj set\" is the set tag; \"AV set\" says the guest plays visuals.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Scotch Rolex ft MC Yallah & Lord Spikeheart",
+   "performers": [
+    {
+     "name": "Scotch Rolex",
+     "role": "performer"
+    },
+    {
+     "name": "MC Yallah",
+     "role": "mc"
+    },
+    {
+     "name": "Lord Spikeheart",
+     "role": "guest"
+    }
+   ],
+   "why": "The first name is the performer. \"MC Yallah\" is named as an MC and credited as MC; the \"&\" adds Lord Spikeheart, credited as a guest on the same set.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Herrensauna XXL (Salome b2b Cadency b2b CEM b2b MCMLXXXV 6h set)",
+   "performers": [
+    {
+     "name": "Salome",
+     "role": "b2b"
+    },
+    {
+     "name": "Cadency",
+     "role": "b2b"
+    },
+    {
+     "name": "CEM",
+     "role": "b2b"
+    },
+    {
+     "name": "MCMLXXXV",
+     "role": "b2b"
+    }
+   ],
+   "setTag": "6h set",
+   "why": "The parenthetical is a b2b of four named DJs presented under the Herrensauna XXL banner, which is not an artist: each DJ is credited b2b. \"6h set\" is the set tag.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Or:la ft Mikaela Stafford AV DJ set",
+   "performers": [
+    {
+     "name": "Or:la",
+     "role": "performer"
+    },
+    {
+     "name": "Mikaela Stafford",
+     "role": "guest"
+    }
+   ],
+   "setTag": "AV DJ set",
+   "why": "The printing bills the first name and adds the rest with \"feat.\" / \"ft.\": the first name is the performer, each added name is credited as a guest on the same set. \"AV DJ set\" is the set tag.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Critical Soundsystem (Kasra / Halogenix / Enei / MC Jakes)",
+   "performers": [
+    {
+     "name": "Kasra",
+     "role": "cobilled"
+    },
+    {
+     "name": "Halogenix",
+     "role": "cobilled"
+    },
+    {
+     "name": "Enei",
+     "role": "cobilled"
+    },
+    {
+     "name": "MC Jakes",
+     "role": "mc"
+    }
+   ],
+   "why": "The set is presented under the Critical Soundsystem banner (the label's showcase), which is not an artist. The DJs named in the parenthetical are each credited as co-billed, and MC Jakes as MC.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "Kabza De Small x DJ Maphorisa (Scorpion Kings) 6h set",
+   "performers": [
+    {
+     "name": "Scorpion Kings",
+     "role": "project",
+     "parents": [
+      "Kabza De Small",
+      "DJ Maphorisa"
+     ]
+    }
+   ],
+   "setTag": "6h set",
+   "why": "The parenthetical names the duo the two artists form: the duo is a project with them as parents, and it never counts as either artist billed alone. \"6h set\" is the set tag.",
+   "source": "https://sonar.es/en"
+  },
+  {
+   "printed": "MBODJ ft. Akyute A/V set",
+   "performers": [
+    {
+     "name": "MBODJ",
+     "role": "performer"
+    },
+    {
+     "name": "Akyute",
+     "role": "guest"
+    }
+   ],
+   "setTag": "A/V set",
+   "why": "The printing bills the first name and adds the rest with \"feat.\" / \"ft.\": the first name is the performer, each added name is credited as a guest on the same set. \"A/V set\" is the set tag.",
+   "source": "https://sonar.es/en"
   }
  ],
  "pending": [
@@ -5029,6 +5734,30 @@
   {
    "printed": "As You Like It Ft. MossMoss & Rich Korach",
    "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split (the A Family Affair rule). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Congo Natty feat. Congo Dubz, Tenor Fly, Nãnci & Phoebe",
+   "why": "Left as printed: the printing does not settle whether \"Nãnci & Phoebe\" is one guest act or two, so the guests are not split. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "bRUNA & Wooky + Alba G. Corral",
+   "why": "Left as printed: whether \"bRUNA & Wooky\" is one act or two is not sourced, so the \"+\" billing is not split. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Ratkje & Barruk: Avant Joik (Insomnia & We Are Europe present)",
+   "why": "Left as printed: the \"&\" joins two surnames the page does not give in full, so the performers are not named. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "LAO & Wasted Fates (N.A.A.F.I.)",
+   "why": "Left as printed: the printing does not settle whether the \"&\" joins two acts or names one, so the billing is not split. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "za",
+   "why": "Short name billed at Primavera Sound and Sónar 2019 (each on its own official timetable, Sónar's as Ouchhh + Za!: Superstrings). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+  },
+  {
+   "key": "mow",
+   "why": "Short name billed at Primavera Sound 2019 and Sónar 2018 (each on its own official timetable). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
   }
  ]
 }

@@ -735,6 +735,34 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it. (Shambhala 2024 prints \"TF Marz B2B Parkbreezy\" as its own billing.)"
  },
  {
+  "id": "sonar-2016:d2:sonarvillage-by-estrella-damm:1800:congo-natty-feat-congo-dubz-tenor-fly-nanci-and-phoebe",
+  "printed": "Congo Natty feat. Congo Dubz, Tenor Fly, Nãnci & Phoebe",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: the printing does not settle whether \"Nãnci & Phoebe\" is one guest act or two, so the guests are not split. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "sonar-2016:d3:sonarhall:1430:bruna-and-wooky-alba-g-corral",
+  "printed": "bRUNA & Wooky + Alba G. Corral",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed: whether \"bRUNA & Wooky\" is one act or two is not sourced, so the \"+\" billing is not split. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "sonar-2018:d1:sonarcomplex:1600:ratkje-and-barruk-avant-joik-insomnia-and-we-are-europe-present",
+  "printed": "Ratkje & Barruk: Avant Joik (Insomnia & We Are Europe present)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed: the \"&\" joins two surnames the page does not give in full, so the performers are not named. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "sonar-2019:d2:sonardome-presented-by-red-bull:2040:lao-and-wasted-fates-n-a-a-f-i",
+  "printed": "LAO & Wasted Fates (N.A.A.F.I.)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the printing does not settle whether the \"&\" joins two acts or names one, so the billing is not split. Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "tomorrowland-2010:d1:i-love-the-90-s:2330:johan-gielen-and-cor-fijneman-back2back-airscape",
   "printed": "Johan Gielen & Cor Fijneman back2back (Airscape)",
   "reason": "parenthetical is not a known set tag",
@@ -1307,5 +1335,19 @@
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:za",
+  "printed": "ZA!",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Primavera Sound and Sónar 2019 (each on its own official timetable, Sónar's as Ouchhh + Za!: Superstrings). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
+  "id": "key:mow",
+  "printed": "MOW",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Primavera Sound 2019 and Sónar 2018 (each on its own official timetable). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  }
 ]

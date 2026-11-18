@@ -40,6 +40,7 @@ import { parseTmlDrupal, titleDate as tmlTitleDate } from "./historical/tml-drup
 import { parseShambhalaWebflow, datesFromPost as shambhalaRun, readDatesPost } from "./historical/shambhala-webflow-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
 import { parseDoStuffEmbed, embedPageOk, pageLoadsScript, scriptSetsSrc } from "./historical/dostuff-embed-schedule.mjs";
+import { parseSonarSchedule } from "./historical/sonar-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -853,6 +854,37 @@ if (base && edc) {
     pcMust("a Primavera Sound 2016 row with a cell missing", pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 60, "EARLY &amp; LATE", "(23:35 - 00:05)"), ""]), ...pcRows.slice(1)] }));
     pcMust("two Primavera Sound 2016 sets overlapping on one stage", pcPage({ rows: [...pcRows.slice(0, 2), psRow("0:00", [pcBox("forum", 0, 30, "CLASH", "(00:00 - 00:15)"), "", ""]), pcRows[3]] }));
     pcMust("a Primavera Sound 2016 block with no name", pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 60, "", "(23:35 - 00:05)"), "", ""]), ...pcRows.slice(1)] }));
+    // Sónar's timetable: one dated calendar per session, its stages as
+    // columns and its events as JSON; a night runs past midnight and stays
+    // that night's.
+    const snEsc = x => JSON.stringify(x).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+    const snEv = (title, start, end, column, tz = "dia", extra = {}) => ({ title, start, end, allDay: false, timezone: tz, column, link_artist: "", ...extra });
+    const snCal = ({ date = "20160616", tz = "dia", init = 13, end = 22, cols = [{ id: 1, name: "SonarVillage" }, { id: 2, name: "Stage+D" }], events, id = `calendar_${date}_${tz}`, dataDate = date }) =>
+      `<div id="${id}" class="calendar_mod" data-events="${snEsc(events)}" data-columns="${snEsc(cols)}" data-date="${dataDate}" data-init-hour="${init}" data-end-hour="${end}" data-timezone="${tz}">`;
+    const snDay = [snEv("Day Act", "13:00", "14:00", 1), snEv("Next &amp; Co", "14:00", "15:30", 1), snEv("A Talk", "11:00", "12:00", 2)];
+    const snNight = [snEv("Night Act", "23:30", "01:00", 1, "nit"), snEv("Closer", "05:00", "07:00", 1, "nit")];
+    const snPage = ({ title = "Schedule - Sónar Barcelona 2016", h1 = "Thursday 16 | Sónar by Day ", h2 = "Thursday 16 | Sónar by Night", day = {}, night = {} } = {}) =>
+      `<title>${title}</title><h1 class="no-text">Sonar Sónar Barcelona 2016</h1><h3>${h1}</h3>${snCal({ events: snDay, ...day })}<h3>${h2}</h3>${snCal({ tz: "nit", init: 20, end: 7, cols: [{ id: 1, name: "SonarClub" }], events: snNight, ...night })}`;
+    const snp = parseSonarSchedule(snPage(), { year: 2016, programme: ["Stage+D"] });
+    ok(JSON.stringify([snp.days.map(d => [d.date, d.label]), snp.stages, snp.sessions.map(x => x.hours), snp.days[0].sets.map(x => [x.session, x.stage, x.start, x.end, x.artist, !!x.programme])])
+      === JSON.stringify([[["2016-06-16", "Thursday 16 | Sónar by Day · Thursday 16 | Sónar by Night"]], ["SonarVillage", "Stage+D", "SonarClub"], ["13:00 to 22:00", "20:00 to 07:00"],
+        [["dia", "SonarVillage", "13:00", "14:00", "Day Act", false], ["dia", "SonarVillage", "14:00", "15:30", "Next & Co", false], ["dia", "Stage+D", "11:00", "12:00", "A Talk", true],
+          ["nit", "SonarClub", "23:30", "01:00", "Night Act", false], ["nit", "SonarClub", "05:00", "07:00", "Closer", false]]]),
+      `a Sónar timetable must come back as one day of both sessions, a night set after midnight that night's and Sónar+D's entries marked programme: ${JSON.stringify(snp)}`);
+    const snMust = (what, html, year = 2016, programme = ["Stage+D"]) => { let bad = false; try { parseSonarSchedule(html, { year, programme }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    snMust("a Sónar 2016 timetable read as another year's", snPage(), 2017);
+    snMust("a Sónar page naming no edition", snPage({ title: "Schedules" }).replace("Sonar Sónar Barcelona 2016", "Sonar"));
+    snMust("a Sónar session headed with another weekday", snPage({ h1: "Friday 16 | Sónar by Day" }));
+    snMust("a Sónar session headed as the other session", snPage({ h2: "Thursday 16 | Sónar by Day" }));
+    snMust("a Sónar calendar whose id and date disagree", snPage({ day: { dataDate: "20160617" } }));
+    snMust("a Sónar set in a column the calendar does not print", snPage({ day: { events: [snEv("Lost", "13:00", "14:00", 9)] } }));
+    snMust("a Sónar day set outside the session's hours", snPage({ day: { events: [snEv("Early", "11:00", "12:00", 1)] } }));
+    snMust("a Sónar Sónar+D entry out of hours read as a music set", snPage(), 2016, []);
+    snMust("two Sónar sets overlapping on one stage", snPage({ night: { events: [snEv("Night Act", "23:30", "01:00", 1, "nit"), snEv("Clash", "00:30", "02:00", 1, "nit")] } }));
+    snMust("a Sónar set printed all-day", snPage({ day: { events: [snEv("Day Act", "13:00", "14:00", 1, "dia", { allDay: true })] } }));
+    snMust("a Sónar night set filed under the day session", snPage({ night: { events: [snEv("Night Act", "23:30", "01:00", 1, "dia")] } }));
+    snMust("a Sónar set with no 24-hour end", snPage({ day: { events: [snEv("Day Act", "13:00", "2pm", 1)] } }));
+    snMust("a Sónar calendar drawn twice, differently", snPage() + snCal({ events: snDay, init: 12 }));
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.
@@ -1405,6 +1437,16 @@ for (const [id, e] of Object.entries(editions)) {
           ok(primaveraDate(s.printed, e.year) === d.date && (s.tabs || []).includes(s.printed) && /Parc del Fòrum/.test(s.heading || "")
             && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?primaverasound\.(es|com)(:80)?\//.test(s.archivedUrl || ""),
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // Sónar's timetable heads each session of a day with its weekday, its
+        // day of the month and the session ("Thursday 16 | Sónar by Day"), on
+        // the year's own page at sonar.es, which names the edition.
+        if (s.format === "sonar-calendar") {
+          const W = wd[0] + wd.slice(1).toLowerCase(), parts = String(s.printed || "").split(" · ");
+          ok(parts.every(x => new RegExp(`^${W} ${dd} \\| Sónar by (Day|Night)$`).test(x)) && new RegExp(`Sónar Barcelona ${e.year}\\b`).test(s.named || "")
+            && new RegExp(`^https://web\\.archive\\.org/web/\\d{14}/https?://(www\\.)?sonar\\.es/[a-z]{2}/${e.year}/schedules$`).test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (named "${s.named}") at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         // Primavera Sound's 2016-2019 full timetable prints the day as a

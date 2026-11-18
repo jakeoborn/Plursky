@@ -59,6 +59,9 @@ export const OFFICIAL_HOSTS = {
   // primaverasound.es: the festival's own site through 2015 (Barcelona's
   // timetable lived at /horarios); primaverasound.com is its site today.
   "primavera-sound": ["primaverasound.es", "primaverasound.com"],
+  // sonar.es: Sónar Barcelona's own site; each year's timetable lives at
+  // /en/<year>/schedules.
+  "sonar": ["sonar.es"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -388,7 +391,13 @@ function officialSources(e, meta, p) {
       // A post-event capture can fall in the next year (Escape 2019's set
       // times survive only in an Aug 2020 capture). Its own day tab must
       // still print this day's weekday and date in the edition year.
-      if (ts && !(ts.startsWith(String(e.year)) || ts.startsWith(String(e.year + 1)))) p.push(`${tag}: page capture ${ts} is not from ${e.year} or the year after`);
+      // Sónar keeps each year's timetable at its own address
+      // (sonar.es/<lang>/<year>/schedules) and the page names its edition, so
+      // a later capture of that address cannot be a later year's timetable
+      // (2016's survives only in 2018 and 2019 captures).
+      const yearPage = c.format === "sonar-calendar" && new RegExp(`^https?://(www\\.)?sonar\\.es/[a-z]{2}/${e.year}/schedules$`).test((c.archivedUrl || "").replace(/^https:\/\/web\.archive\.org\/web\/\d{14}\//, ""))
+        && new RegExp(`Sónar Barcelona ${e.year}\\b`).test(c.named || "");
+      if (ts && !yearPage && !(ts.startsWith(String(e.year)) || ts.startsWith(String(e.year + 1)))) p.push(`${tag}: page capture ${ts} is not from ${e.year} or the year after`);
       if (ts && ts !== c.captureTimestamp) p.push(`${tag}: captureTimestamp ${c.captureTimestamp} ≠ the archived URL's ${ts}`);
       // Shambhala's tabs print the weekday alone; the date is the one the
       // day's table writes its first slot as (<td id="time_T">, T a UTC epoch).
@@ -463,6 +472,15 @@ function officialSources(e, meta, p) {
         // "Friday May 29"); its weekday must fall on that date in the year.
         if (primaveraDate(c.printed, e.year) !== date || !(c.tabs || []).includes(c.printed) || !/Parc del Fòrum/.test(c.heading || ""))
           p.push(`${tag}: the page's day tab "${c.printed}" (heading "${c.heading}") does not print ${date} at Parc del Fòrum`);
+      } else if (c.format === "sonar-calendar") {
+        // Sónar's timetable heads each of a day's sessions with the weekday
+        // and the day of the month ("Friday 19 | Sónar by Day"), no year; the
+        // page itself names the edition's year (its title or logo), and every
+        // heading of the day must print the same weekday and day.
+        const parts = String(c.printed || "").split(" · "), d = new Date(date + "T12:00:00Z");
+        const want = `${["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][d.getUTCDay()]} ${d.getUTCDate()}`;
+        if (!parts.length || parts.some(x => !new RegExp(`^${want} \\| Sónar by (Day|Night)$`).test(x)) || !new RegExp(`Sónar Barcelona ${e.year}\\b`).test(c.named || ""))
+          p.push(`${tag}: the page's headings "${c.printed}" (edition "${c.named}") do not print ${date}`);
       } else if (c.format === "primavera-completos") {
         // Primavera Sound's 2016-2019 full timetable prints each day as a
         // weekday and a day of the month ("MIÉRCOLES 1"; 2019 the whole date); the row of tabs names its

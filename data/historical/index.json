@@ -4359,6 +4359,181 @@
    }
   },
   {
+   "id": "sonar-2022",
+   "festivalId": "sonar",
+   "festivalName": "Sónar Barcelona",
+   "name": "Sónar Barcelona 2022",
+   "year": 2022,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-06-16",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2022-06-17",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2022-06-18",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 112,
+    "sets": 115
+   }
+  },
+  {
+   "id": "sonar-2019",
+   "festivalId": "sonar",
+   "festivalName": "Sónar Barcelona",
+   "name": "Sónar Barcelona 2019",
+   "year": 2019,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-07-18",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2019-07-19",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2019-07-20",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2019-07-21",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 133,
+    "sets": 133
+   }
+  },
+  {
+   "id": "sonar-2018",
+   "festivalId": "sonar",
+   "festivalName": "Sónar Barcelona",
+   "name": "Sónar Barcelona 2018",
+   "year": 2018,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-06-14",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2018-06-15",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2018-06-16",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2018-06-17",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 13,
+    "artists": 136,
+    "sets": 138
+   }
+  },
+  {
+   "id": "sonar-2017",
+   "festivalId": "sonar",
+   "festivalName": "Sónar Barcelona",
+   "name": "Sónar Barcelona 2017",
+   "year": 2017,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-06-14",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2017-06-15",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2017-06-16",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2017-06-17",
+     "label": "Saturday"
+    },
+    {
+     "day": 5,
+     "date": "2017-06-18",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 10,
+    "artists": 139,
+    "sets": 141
+   }
+  },
+  {
+   "id": "sonar-2016",
+   "festivalId": "sonar",
+   "festivalName": "Sónar Barcelona",
+   "name": "Sónar Barcelona 2016",
+   "year": 2016,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-06-16",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2016-06-17",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2016-06-18",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 116,
+    "sets": 118
+   }
+  },
+  {
    "id": "tomorrowland-2023",
    "festivalId": "tomorrowland",
    "festivalName": "Tomorrowland",
