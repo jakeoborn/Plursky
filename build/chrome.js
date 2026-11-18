@@ -3554,6 +3554,7 @@ function SetTrackingCard() {
   var hasData = !!(cfg && (Object.keys(getSetTrackIntervals(cfg.id)).length || Object.keys(getSetTapPoints(cfg.id)).length));
   var canReview = !!(cfg && setReviewRows(cfg).length);
   var [reviewing, setReviewing] = React.useState(false);
+  var [weekend, setWeekend] = React.useState(false);
   var btn = primary => ({
     background: primary ? "var(--acc)" : "var(--s3)",
     color: primary ? "var(--on-acc)" : "var(--ink)",
@@ -3669,7 +3670,11 @@ function SetTrackingCard() {
     "data-set-review-open": true,
     onClick: () => setReviewing(true),
     style: btn(false)
-  }, "Review your sets"), hasData && React.createElement("button", {
+  }, "Review your sets"), canReview && yourWeekendEnabled() && React.createElement("button", {
+    "data-your-weekend-open": true,
+    onClick: () => setWeekend(true),
+    style: btn(false)
+  }, "Your weekend"), hasData && React.createElement("button", {
     "data-set-tracking-clear": true,
     onClick: () => clearSetTrack(cfg.id),
     style: btn(false)
@@ -3680,6 +3685,9 @@ function SetTrackingCard() {
   }, "Clear stage calibration")), reviewing && React.createElement(SetReviewSheet, {
     cfg: cfg,
     onClose: () => setReviewing(false)
+  }), weekend && React.createElement(YourWeekendSheet, {
+    cfg: cfg,
+    onClose: () => setWeekend(false)
   }), calibrating && React.createElement(StageCalibrateSheet, {
     cfg: cfg,
     onClose: () => setCalibrating(false)
@@ -3845,6 +3853,221 @@ function setReviewRows(cfg = window.FESTIVAL_CONFIG) {
   };
   var day = a => typeof a.day === "number" ? a.day : 99;
   return rows.sort((x, y) => day(x.a) - day(y.a) || min(x.a) - min(y.a) || key(x) - key(y) || String(x.a.id).localeCompare(String(y.a.id)));
+}
+var YOUR_WEEKEND_FLAG_KEY = "plursky_flag_your_weekend";
+function yourWeekendEnabled() {
+  try {
+    return localStorage.getItem(YOUR_WEEKEND_FLAG_KEY) === "on";
+  } catch {
+    return false;
+  }
+}
+function yourWeekendNights(rows, cfg) {
+  var nights = new Map();
+  var tz = cfg && cfg.tz || undefined;
+  var nightOf = ms => {
+    try {
+      return new Intl.DateTimeFormat("en-US", {
+        timeZone: tz,
+        weekday: "short",
+        month: "short",
+        day: "numeric"
+      }).format(new Date(ms - 8 * 3600000));
+    } catch {
+      return "";
+    }
+  };
+  var _loop2 = function () {
+      var {
+        a,
+        manual,
+        verdict
+      } = r || {};
+      if (!a || manual === "absent") return 0;
+      if (!(manual === "full" || manual === "partial" || verdict && verdict.caught)) return 0;
+      var ev = r.ev || [];
+      var runs = ev.map(e => ({
+        from: e.from,
+        to: e.to,
+        src: e.kind === "gps" ? "gps" : "photo"
+      }));
+      var w = attendTimeClass(a) === "blank" ? null : attendSetWindowMs(a, cfg, runs);
+      var marks = [];
+      if (w) {
+        var L = w.endMs - w.startMs;
+        var share = ms => Math.min(1, Math.max(0, (ms - w.startMs) / L));
+        for (var e of ev) {
+          if (e.kind === "gps") {
+            var l = share(e.from),
+              rr = share(e.to);
+            if (rr > l) marks.push({
+              kind: "run",
+              l,
+              w: rr - l
+            });
+          } else marks.push({
+            kind: "point",
+            via: e.kind,
+            l: share(e.from)
+          });
+        }
+      }
+      var dd = cfg && cfg.dayDates && cfg.dayDates[a.day];
+      var label = w ? nightOf(w.startMs) : dd && dd.short || (a.day != null ? `Day ${a.day}` : "");
+      var key = w ? `n:${label}` : `d:${a.day}`;
+      if (!nights.has(key)) nights.set(key, {
+        key,
+        label,
+        sortMs: Infinity,
+        day: typeof a.day === "number" ? a.day : 99,
+        sets: []
+      });
+      var n = nights.get(key);
+      if (w && w.startMs < n.sortMs) n.sortMs = w.startMs;
+      n.sets.push({
+        id: a.id,
+        name: a.name,
+        stage: a.stage,
+        start: a.start || "",
+        end: a.end || "",
+        startMs: w ? w.startMs : null,
+        mine: !!manual,
+        tag: manual ? verdict && verdict.label || (manual === "full" ? "Full set · your edit" : "Part of it · your edit") : verdict && verdict.label || "Length unknown",
+        marks
+      });
+    },
+    _ret2;
+  for (var r of rows || []) {
+    _ret2 = _loop2();
+    if (_ret2 === 0) continue;
+  }
+  var out = [...nights.values()];
+  for (var n of out) n.sets.sort((x, y) => (x.startMs ?? Infinity) - (y.startMs ?? Infinity) || String(x.id).localeCompare(String(y.id)));
+  return out.sort((x, y) => x.sortMs - y.sortMs || x.day - y.day);
+}
+function YourWeekendSheet({
+  cfg = window.FESTIVAL_CONFIG,
+  onClose
+}) {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  var [open, setOpen] = React.useState(null);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  var rows = setReviewRows(cfg);
+  var nights = yourWeekendNights(rows, cfg);
+  var stages = (_attendedDataSets()[cfg.id] || {}).stages || window.STAGES || [];
+  if (open) {
+    var a = rows.find(r => r.a.id === open)?.a;
+    if (a) return React.createElement(SetCorrectionSheet, {
+      a: a,
+      cfg: cfg,
+      onClose: () => setOpen(null)
+    });
+  }
+  var count = nights.reduce((s, n) => s + n.sets.length, 0);
+  return React.createElement(FieldSheet, {
+    title: "Your weekend",
+    eyebrow: (cfg.shortName || cfg.name || "").toUpperCase(),
+    onClose: onClose
+  }, React.createElement("div", {
+    "data-your-weekend-summary": true,
+    className: "duo-data-s duo-ink3",
+    style: {
+      marginBottom: 12
+    }
+  }, count ? `${count} set${count === 1 ? "" : "s"} caught on this phone` : "No sets caught on this phone yet."), nights.map(n => React.createElement("section", {
+    key: n.key,
+    "data-your-weekend-night": n.label,
+    style: {
+      marginBottom: 16
+    }
+  }, React.createElement("div", {
+    className: "duo-label duo-ink3",
+    style: {
+      marginBottom: 4
+    }
+  }, n.label.toUpperCase()), n.sets.map(s => {
+    var stage = stages.find(st => st.id === s.stage);
+    return React.createElement("button", {
+      key: s.id,
+      "data-your-weekend-set": s.id,
+      onClick: () => setOpen(s.id),
+      style: {
+        display: "block",
+        width: "100%",
+        padding: "10px 0",
+        background: "transparent",
+        border: "none",
+        borderBottom: "1px solid var(--line)",
+        textAlign: "left",
+        cursor: "pointer",
+        color: "var(--ink)"
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "baseline",
+        gap: 12,
+        flexWrap: "wrap"
+      }
+    }, React.createElement("div", {
+      style: {
+        flex: "1 1 160px",
+        minWidth: 0,
+        fontSize: 15,
+        fontWeight: 650,
+        overflowWrap: "anywhere"
+      }
+    }, s.name), React.createElement("span", {
+      "data-your-weekend-tag": true,
+      className: "duo-data-s",
+      style: {
+        color: s.mine ? "var(--acc-ink)" : "var(--ink)"
+      }
+    }, s.tag)), React.createElement("div", {
+      className: "duo-data-s duo-ink3",
+      style: {
+        marginBottom: 6
+      }
+    }, [stage && (stage.short || stage.name), s.start && s.end ? `${fmt12(s.start)} to ${fmt12(s.end)}` : "Set time not published"].filter(Boolean).join(" · ")), s.startMs != null && s.marks.length > 0 && React.createElement("div", {
+      "data-your-weekend-track": true,
+      "aria-hidden": "true",
+      style: {
+        position: "relative",
+        height: 8,
+        borderRadius: 4,
+        background: "var(--s3)"
+      }
+    }, s.marks.map((m, i) => m.kind === "run" ? React.createElement("span", {
+      key: i,
+      "data-your-weekend-run": true,
+      style: {
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: `${(m.l * 100).toFixed(2)}%`,
+        width: `${Math.max(1, m.w * 100).toFixed(2)}%`,
+        borderRadius: 4,
+        background: "var(--acc)"
+      }
+    }) : React.createElement("span", {
+      key: i,
+      "data-your-weekend-point": true,
+      style: {
+        position: "absolute",
+        top: -2,
+        width: 12,
+        height: 12,
+        marginLeft: -6,
+        left: `${(m.l * 100).toFixed(2)}%`,
+        borderRadius: 6,
+        background: "var(--acc)",
+        boxShadow: "0 0 0 2px var(--s2)"
+      }
+    }))));
+  }))));
 }
 function SetCorrectionPanel({
   a,
