@@ -2850,6 +2850,172 @@
     }
    ]
   },
+  "lightning-in-a-bottle": {
+   "lineages": [
+    {
+     "id": "lightning-in-a-bottle:beacon",
+     "names": [
+      {
+       "printed": "Beacon",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:crossroads",
+     "names": [
+      {
+       "printed": "Crossroads",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:favela-bar",
+     "names": [
+      {
+       "printed": "Favela Bar",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:grand-artique",
+     "names": [
+      {
+       "printed": "Grand Artique",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:lakeside",
+     "names": [
+      {
+       "printed": "Lakeside",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:pagoda-bar",
+     "names": [
+      {
+       "printed": "Pagoda Bar",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:lightning",
+     "names": [
+      {
+       "printed": "Lightning",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:memory-palace",
+     "names": [
+      {
+       "printed": "Memory Palace",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:thunder",
+     "names": [
+      {
+       "printed": "Thunder",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:woogie",
+     "names": [
+      {
+       "printed": "Woogie",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:favela",
+     "names": [
+      {
+       "printed": "Favela",
+       "editions": [
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:the-stacks",
+     "names": [
+      {
+       "printed": "The Stacks",
+       "editions": [
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "lollapalooza": {
    "lineages": [
     {
@@ -4083,6 +4249,117 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "outside-lands:the-music-den-by-toyota",
+     "names": [
+      {
+       "printed": "The Music Den by Toyota",
+       "editions": [
+        "outside-lands-2022",
+        "outside-lands-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:fake-and-gay-dolores",
+     "names": [
+      {
+       "printed": "FAKE and GAY @ Dolores’",
+       "editions": [
+        "outside-lands-2023",
+        "outside-lands-2024",
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:oasis-dolores",
+     "names": [
+      {
+       "printed": "OASIS @ Dolores’",
+       "editions": [
+        "outside-lands-2023",
+        "outside-lands-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:hard-french-dolores",
+     "names": [
+      {
+       "printed": "Hard French @ Dolores’",
+       "editions": [
+        "outside-lands-2023",
+        "outside-lands-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:casa-bacardi",
+     "names": [
+      {
+       "printed": "CASA BACARDÍ",
+       "editions": [
+        "outside-lands-2024",
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:soma",
+     "names": [
+      {
+       "printed": "SOMA",
+       "editions": [
+        "outside-lands-2024",
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:oasis-arts-dolores",
+     "names": [
+      {
+       "printed": "OASIS ARTS @ Dolores’",
+       "editions": [
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:polyglamorous-dolores",
+     "names": [
+      {
+       "printed": "Polyglamorous @ Dolores’",
+       "editions": [
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -4902,6 +5179,301 @@
        "editions": [
         "shambhala-2024",
         "shambhala-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "sonar": {
+   "lineages": [
+    {
+     "id": "sonar:l-auditori",
+     "names": [
+      {
+       "printed": "L'Auditori",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarcomplex",
+     "names": [
+      {
+       "printed": "SonarComplex",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonardome",
+     "names": [
+      {
+       "printed": "SonarDôme",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarhall",
+     "names": [
+      {
+       "printed": "SonarHall",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarvillage-by-estrella-damm",
+     "names": [
+      {
+       "printed": "SonarVillage by Estrella Damm",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarcar",
+     "names": [
+      {
+       "printed": "SonarCar",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarclub",
+     "names": [
+      {
+       "printed": "SonarClub",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarlab",
+     "names": [
+      {
+       "printed": "SonarLab",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarpub",
+     "names": [
+      {
+       "printed": "SonarPub",
+       "editions": [
+        "sonar-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarxs",
+     "names": [
+      {
+       "printed": "SonarXS",
+       "editions": [
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarpub-by-thunder-bitch",
+     "names": [
+      {
+       "printed": "SonarPub by Thunder Bitch",
+       "editions": [
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:despacio",
+     "names": [
+      {
+       "printed": "Despacio",
+       "editions": [
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:l-auditori-sala-1-pau-casals",
+     "names": [
+      {
+       "printed": "L'Auditori: Sala 1 - Pau Casals",
+       "editions": [
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonardome-by-red-bull-music",
+     "names": [
+      {
+       "printed": "SonarDôme by Red Bull Music",
+       "editions": [
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarlab-resident-advisor",
+     "names": [
+      {
+       "printed": "SonarLab - Resident Advisor",
+       "editions": [
+        "sonar-2018",
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:teatre-grec",
+     "names": [
+      {
+       "printed": "Teatre Grec",
+       "editions": [
+        "sonar-2018",
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonardome-presented-by-red-bull",
+     "names": [
+      {
+       "printed": "SonarDôme presented by Red Bull",
+       "editions": [
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:capella-macba",
+     "names": [
+      {
+       "printed": "Capella MACBA",
+       "editions": [
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarpark-by-dice",
+     "names": [
+      {
+       "printed": "SonarPark by DICE",
+       "editions": [
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarlab-by-resident-advisor",
+     "names": [
+      {
+       "printed": "SonarLab by Resident Advisor",
+       "editions": [
+        "sonar-2022"
        ]
       }
      ],

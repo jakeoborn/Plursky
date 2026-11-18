@@ -1,0 +1,81 @@
+{
+  "id": "sonar-2016",
+  "method": "official_sources",
+  "official": "https://sonar.es/en",
+  "days": [
+    {
+      "day": 1,
+      "date": "2016-06-16",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2016/schedules",
+          "archivedUrl": "https://web.archive.org/web/20180615215253/https://sonar.es/en/2016/schedules",
+          "captureTimestamp": "20180615215253",
+          "printed": "Thursday 16 | Sónar by Day · Thursday 16 | Sónar by Night",
+          "sha256": "c0c571cf98b8f96bf080c32a756dda3c2b176e0538ccfe9936d68f2c63fa84a8",
+          "bytes": 214472,
+          "rows": 21,
+          "format": "sonar-calendar",
+          "named": "Schedule - Sónar Barcelona 2016",
+          "sessions": [
+            "Thursday 16 | Sónar by Day: 13:00 to 23:00",
+            "Thursday 16 | Sónar by Night: 20:00 to 07:00"
+          ],
+          "stages": 5,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2016-06-17",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2016/schedules",
+          "archivedUrl": "https://web.archive.org/web/20180615215253/https://sonar.es/en/2016/schedules",
+          "captureTimestamp": "20180615215253",
+          "printed": "Friday 17 | Sónar by Day · Friday 17 | Sónar by Night",
+          "sha256": "c0c571cf98b8f96bf080c32a756dda3c2b176e0538ccfe9936d68f2c63fa84a8",
+          "bytes": 214472,
+          "rows": 49,
+          "format": "sonar-calendar",
+          "named": "Schedule - Sónar Barcelona 2016",
+          "sessions": [
+            "Friday 17 | Sónar by Day: 13:00 to 23:00",
+            "Friday 17 | Sónar by Night: 20:00 to 07:00"
+          ],
+          "stages": 8,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2016-06-18",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2016/schedules",
+          "archivedUrl": "https://web.archive.org/web/20180615215253/https://sonar.es/en/2016/schedules",
+          "captureTimestamp": "20180615215253",
+          "printed": "Saturday 18 | Sónar by Day · Saturday 18 | Sónar by Night",
+          "sha256": "c0c571cf98b8f96bf080c32a756dda3c2b176e0538ccfe9936d68f2c63fa84a8",
+          "bytes": 214472,
+          "rows": 48,
+          "format": "sonar-calendar",
+          "named": "Schedule - Sónar Barcelona 2016",
+          "sessions": [
+            "Saturday 18 | Sónar by Day: 13:00 to 23:00",
+            "Saturday 18 | Sónar by Night: 20:00 to 07:00"
+          ],
+          "stages": 8,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

@@ -39,6 +39,8 @@ import { parseLollaLineup, cardDate as lollaCardDate } from "./historical/lolla-
 import { parseTmlDrupal, titleDate as tmlTitleDate } from "./historical/tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, datesFromPost as shambhalaRun, readDatesPost } from "./historical/shambhala-webflow-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
+import { parseDoStuffEmbed, embedPageOk, pageLoadsScript, scriptSetsSrc } from "./historical/dostuff-embed-schedule.mjs";
+import { parseSonarSchedule } from "./historical/sonar-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -170,6 +172,38 @@ if (base && edc) {
     mustFail("a Lollapalooza 2018 card day printed for another day", m => { lcCap(m).printed = "Fri 8/03"; }, lo18);
     mustFail("a Lollapalooza 2018 card day whose weekday is not its date", m => { lcCap(m).printed = "Sun 8/04"; }, lo18);
     mustFail("a Lollapalooza 2018 page read off another site", m => { const c = lcCap(m); c.archivedUrl = c.archivedUrl.replace("www.lollapalooza.com", "www.lollapaloozafans.com"); }, lo18);
+  }
+  // Outside Lands 2018-2019 and 2022-2025 and Lightning in a Bottle
+  // 2018-2019: the official lineup widget's script prints each set's whole
+  // date; the day is inside the run its options print (a gate day at either
+  // end at most), and the official lineup page that loads it was captured
+  // within a month of it (Outside Lands 2019: through the site's own script,
+  // captured within a day of the page on the page's own host).
+  const osl23 = editions["outside-lands-2023"];
+  if (osl23) {
+    const deCap = m => m.provenance.captures.find(c => c.format === "dostuff-embed" && c.day === 2);
+    mustFail("an Outside Lands widget day printed for another day", m => { deCap(m).printed = "2023-08-13"; }, osl23);
+    mustFail("an Outside Lands widget run that leaves out a day of the edition", m => { deCap(m).run = "2023-08-12 to 2023-08-13"; }, osl23);
+    mustFail("an Outside Lands widget run two days past the edition", m => { deCap(m).run = "2023-08-11 to 2023-08-15"; }, osl23);
+    mustFail("an Outside Lands widget read off another site", m => { const c = deCap(m); c.archivedUrl = c.archivedUrl.replace("osl23fest.dostff.co", "oslfans.dostff.co"); }, osl23);
+    mustFail("an Outside Lands widget embedded by another site's page", m => { deCap(m).embeddedBy.url = "https://www.oslfans.com/lineup/"; }, osl23);
+    mustFail("an Outside Lands widget whose page was captured two months before", m => { deCap(m).embeddedBy.captureTimestamp = "20230614134823"; }, osl23);
+    mustFail("an Outside Lands widget whose page was captured two months after", m => { deCap(m).embeddedBy.captureTimestamp = "20231014134830"; }, osl23);
+  }
+  const osl19 = editions["outside-lands-2019"];
+  if (osl19) {
+    const viaCap = m => m.provenance.captures.find(c => c.format === "dostuff-embed" && c.day === 1);
+    mustFail("an Outside Lands widget loaded through another site's script", m => { viaCap(m).embeddedBy.via.url = "https://www.oslfans.com/assets/js/dist/main.js"; }, osl19);
+    mustFail("an Outside Lands widget loaded through a site script captured two days after its page", m => { viaCap(m).embeddedBy.via.captureTimestamp = "20190826062646"; }, osl19);
+    mustFail("an Outside Lands widget loaded through a site page, not a script", m => { viaCap(m).embeddedBy.via.url = "https://www.sfoutsidelands.com/lineup/"; }, osl19);
+  }
+  const lib18 = editions["lightning-in-a-bottle-2018"];
+  if (lib18) {
+    const libCap = m => m.provenance.captures.find(c => c.format === "dostuff-embed" && c.day === 1);
+    mustFail("a Lightning in a Bottle widget day printed for another day", m => { libCap(m).printed = "2018-05-23"; }, lib18);
+    mustFail("a Lightning in a Bottle widget whose page was captured two months away", m => { libCap(m).embeddedBy.captureTimestamp = "20180904142540"; }, lib18);
+    mustFail("a Lightning in a Bottle widget embedded by another festival's page", m => { libCap(m).embeddedBy.url = "https://sfoutsidelands.com/lineup/"; }, lib18);
+    mustFail("a Lightning in a Bottle widget read off another site", m => { const c = libCap(m); c.archivedUrl = c.archivedUrl.replace("lib2018.dostff.co", "libfans.dostff.co"); }, lib18);
   }
   const lolla = editions["lollapalooza-2025"], acl = editions["acl-2025"];
   if (lolla && acl) {
@@ -820,6 +854,101 @@ if (base && edc) {
     pcMust("a Primavera Sound 2016 row with a cell missing", pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 60, "EARLY &amp; LATE", "(23:35 - 00:05)"), ""]), ...pcRows.slice(1)] }));
     pcMust("two Primavera Sound 2016 sets overlapping on one stage", pcPage({ rows: [...pcRows.slice(0, 2), psRow("0:00", [pcBox("forum", 0, 30, "CLASH", "(00:00 - 00:15)"), "", ""]), pcRows[3]] }));
     pcMust("a Primavera Sound 2016 block with no name", pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 60, "", "(23:35 - 00:05)"), "", ""]), ...pcRows.slice(1)] }));
+    // Sónar's timetable: one dated calendar per session, its stages as
+    // columns and its events as JSON; a night runs past midnight and stays
+    // that night's.
+    const snEsc = x => JSON.stringify(x).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+    const snEv = (title, start, end, column, tz = "dia", extra = {}) => ({ title, start, end, allDay: false, timezone: tz, column, link_artist: "", ...extra });
+    const snCal = ({ date = "20160616", tz = "dia", init = 13, end = 22, cols = [{ id: 1, name: "SonarVillage" }, { id: 2, name: "Stage+D" }], events, id = `calendar_${date}_${tz}`, dataDate = date }) =>
+      `<div id="${id}" class="calendar_mod" data-events="${snEsc(events)}" data-columns="${snEsc(cols)}" data-date="${dataDate}" data-init-hour="${init}" data-end-hour="${end}" data-timezone="${tz}">`;
+    const snDay = [snEv("Day Act", "13:00", "14:00", 1), snEv("Next &amp; Co", "14:00", "15:30", 1), snEv("A Talk", "11:00", "12:00", 2)];
+    const snNight = [snEv("Night Act", "23:30", "01:00", 1, "nit"), snEv("Closer", "05:00", "07:00", 1, "nit")];
+    const snPage = ({ title = "Schedule - Sónar Barcelona 2016", h1 = "Thursday 16 | Sónar by Day ", h2 = "Thursday 16 | Sónar by Night", day = {}, night = {} } = {}) =>
+      `<title>${title}</title><h1 class="no-text">Sonar Sónar Barcelona 2016</h1><h3>${h1}</h3>${snCal({ events: snDay, ...day })}<h3>${h2}</h3>${snCal({ tz: "nit", init: 20, end: 7, cols: [{ id: 1, name: "SonarClub" }], events: snNight, ...night })}`;
+    const snp = parseSonarSchedule(snPage(), { year: 2016, programme: ["Stage+D"] });
+    ok(JSON.stringify([snp.days.map(d => [d.date, d.label]), snp.stages, snp.sessions.map(x => x.hours), snp.days[0].sets.map(x => [x.session, x.stage, x.start, x.end, x.artist, !!x.programme])])
+      === JSON.stringify([[["2016-06-16", "Thursday 16 | Sónar by Day · Thursday 16 | Sónar by Night"]], ["SonarVillage", "Stage+D", "SonarClub"], ["13:00 to 22:00", "20:00 to 07:00"],
+        [["dia", "SonarVillage", "13:00", "14:00", "Day Act", false], ["dia", "SonarVillage", "14:00", "15:30", "Next & Co", false], ["dia", "Stage+D", "11:00", "12:00", "A Talk", true],
+          ["nit", "SonarClub", "23:30", "01:00", "Night Act", false], ["nit", "SonarClub", "05:00", "07:00", "Closer", false]]]),
+      `a Sónar timetable must come back as one day of both sessions, a night set after midnight that night's and Sónar+D's entries marked programme: ${JSON.stringify(snp)}`);
+    const snMust = (what, html, year = 2016, programme = ["Stage+D"]) => { let bad = false; try { parseSonarSchedule(html, { year, programme }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    snMust("a Sónar 2016 timetable read as another year's", snPage(), 2017);
+    snMust("a Sónar page naming no edition", snPage({ title: "Schedules" }).replace("Sonar Sónar Barcelona 2016", "Sonar"));
+    snMust("a Sónar session headed with another weekday", snPage({ h1: "Friday 16 | Sónar by Day" }));
+    snMust("a Sónar session headed as the other session", snPage({ h2: "Thursday 16 | Sónar by Day" }));
+    snMust("a Sónar calendar whose id and date disagree", snPage({ day: { dataDate: "20160617" } }));
+    snMust("a Sónar set in a column the calendar does not print", snPage({ day: { events: [snEv("Lost", "13:00", "14:00", 9)] } }));
+    snMust("a Sónar day set outside the session's hours", snPage({ day: { events: [snEv("Early", "11:00", "12:00", 1)] } }));
+    snMust("a Sónar Sónar+D entry out of hours read as a music set", snPage(), 2016, []);
+    snMust("two Sónar sets overlapping on one stage", snPage({ night: { events: [snEv("Night Act", "23:30", "01:00", 1, "nit"), snEv("Clash", "00:30", "02:00", 1, "nit")] } }));
+    snMust("a Sónar set printed all-day", snPage({ day: { events: [snEv("Day Act", "13:00", "14:00", 1, "dia", { allDay: true })] } }));
+    snMust("a Sónar night set filed under the day session", snPage({ night: { events: [snEv("Night Act", "23:30", "01:00", 1, "dia")] } }));
+    snMust("a Sónar set with no 24-hour end", snPage({ day: { events: [snEv("Day Act", "13:00", "2pm", 1)] } }));
+    snMust("a Sónar calendar drawn twice, differently", snPage() + snCal({ events: snDay, init: 12 }));
+    // Outside Lands' 2022-2025 lineup widget: its script sets the options on
+    // one line of JSON; each artist lists its performances, a shared set (a
+    // b2b) under each artist with the same id, every time with its offset.
+    const dePerf = (id, start, end, stage, name) => ({ id, start: `2023-08-${start}:00.000-07:00`, end: `2023-08-${end}:00.000-07:00`, stage, name });
+    const deArtists = [{ name: "Headliner", performances: [dePerf(1, "11T20:40", "11T21:55", "Lands End", "Headliner")] },
+      { name: "B", performances: [dePerf(2, "12T01:00", "12T02:00", "SOMA", "B b2b C")] }, { name: "C", performances: [dePerf(2, "12T01:00", "12T02:00", "SOMA", "B b2b C")] },
+      { name: "Day Two", performances: [dePerf(3, "12T14:00", "12T15:00", "Lands End", "Day Two")] }];
+    const deScript = ({ artists = deArtists, ...o } = {}) => `(function(){\n  window._fest_options = ${JSON.stringify({ name: "Outside Lands 2023", start_date: "2023-08-11", end_date: "2023-08-12",
+      timezone: "America/Los_Angeles", initial_grouping: { name: "Interactive Lineup", lineups: [{ name: "All", artists }] }, ...o })};\n  \n  var el = document.getElementById("ds-fest");\n})();`;
+    const dep = parseDoStuffEmbed(deScript());
+    ok(JSON.stringify([dep.name, dep.run, dep.timezone, dep.grouping, dep.artists, dep.performances, dep.stages, dep.days.map(d => [d.date, d.sets.map(x => [x.stage, x.start, x.end, x.artist, x.billedUnder.join("+")])])])
+      === JSON.stringify(["Outside Lands 2023", ["2023-08-11", "2023-08-12"], "America/Los_Angeles", "Interactive Lineup", 4, 3, ["Lands End", "SOMA"],
+        [["2023-08-11", [["Lands End", "20:40", "21:55", "Headliner", "Headliner"], ["SOMA", "01:00", "02:00", "B b2b C", "B+C"]]], ["2023-08-12", [["Lands End", "14:00", "15:00", "Day Two", "Day Two"]]]]]),
+      `an Outside Lands widget must come back as one set per performance, a b2b once, a set after midnight on the night before: ${JSON.stringify(dep.days)}`);
+    const deMust = (what, text) => { let bad = false; try { parseDoStuffEmbed(text); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    const deWith = (i, f) => deArtists.map((a, j) => j === i ? { ...a, performances: a.performances.map(x => ({ ...x, ...f(x) })) } : a);
+    deMust("an Outside Lands script with no options", deScript().replace("window._fest_options", "window._fest"));
+    deMust("Outside Lands options broken over two lines", deScript().replace('"timezone"', '\n"timezone"'));
+    deMust("Outside Lands options with no time zone", deScript({ timezone: "" }));
+    deMust("Outside Lands options with no run of days", deScript({ end_date: "2023-08-10" }));
+    deMust("an Outside Lands set whose offset is not the zone's", deScript({ artists: deWith(0, x => ({ start: x.start.replace("-07:00", "-08:00") })) }));
+    deMust("an Outside Lands set ending before it starts", deScript({ artists: deWith(0, x => ({ end: x.start.replace("20:40", "20:00") })) }));
+    deMust("an Outside Lands set over twelve hours", deScript({ artists: deWith(0, x => ({ start: "2023-08-11T08:40:00.000-07:00" })) }));
+    deMust("an Outside Lands set outside the run", deScript({ artists: deWith(3, x => ({ start: "2023-08-13T14:00:00.000-07:00", end: "2023-08-13T15:00:00.000-07:00" })) }));
+    deMust("an Outside Lands set with seconds", deScript({ artists: deWith(0, x => ({ start: "2023-08-11T20:40:30.000-07:00" })) }));
+    deMust("an Outside Lands set with no stage", deScript({ artists: deWith(0, () => ({ stage: "" })) }));
+    deMust("an Outside Lands set with no name", deScript({ artists: deWith(0, () => ({ name: " " })) }));
+    deMust("one Outside Lands id drawn as two sets", deScript({ artists: deWith(2, () => ({ stage: "Sutro" })) }));
+    deMust("two Outside Lands sets overlapping on one stage", deScript({ artists: deWith(3, () => ({ start: "2023-08-11T21:00:00.000-07:00", end: "2023-08-11T22:00:00.000-07:00" })) }));
+    // With set titles hidden (show_performance_titles false: Outside Lands
+    // 2022-2025, Lightning in a Bottle 2019) a set is billed as the act it is
+    // drawn under; a shared set keeps its title; a second performance in the
+    // very same slot with the same billing is one set drawn twice, and a gate
+    // day with no set is not a day the widget prints sets on.
+    const deAct = [{ name: "Headliner", performances: [dePerf(1, "11T20:40", "11T21:55", "Lands End", "Headliner (Special Set)")] },
+      { name: "B", performances: [dePerf(2, "12T01:00", "12T02:00", "SOMA", "B b2b C")] }, { name: "C", performances: [dePerf(2, "12T01:00", "12T02:00", "SOMA", "B b2b C")] },
+      { name: "Late", performances: [dePerf(4, "11T23:00", "12T00:00", "SOMA", "Surprise"), dePerf(5, "11T23:00", "12T00:00", "SOMA", "Late")] }];
+    const dea = parseDoStuffEmbed(deScript({ artists: deAct, show_performance_titles: false, end_date: "2023-08-13" }));
+    ok(JSON.stringify([dea.byAct, dea.setDays, dea.sets.map(x => x.artist), dea.drawnTwice.map(x => x.artist)])
+      === JSON.stringify([true, ["2023-08-11"], ["Headliner", "Late", "B b2b C"], ["Late"]]),
+      `a widget with set titles hidden must bill each set as its act, a shared set as its title, one slot drawn twice once: ${JSON.stringify([dea.byAct, dea.setDays, dea.sets.map(x => x.artist), dea.drawnTwice.map(x => x.artist)])}`);
+    ok(parseDoStuffEmbed(deScript({ artists: deAct.slice(0, 3) })).sets.some(x => x.artist === "Headliner (Special Set)"), "a widget that shows set titles must bill each set as its title");
+    deMust("a widget with titles shown and two sets in one slot", deScript({ artists: deAct }));
+    const dePage = `<div id="ds-fest"></div>\n<script src="https://lib2019.dostff.co/embeds/lineup.js"></script>`;
+    ok(pageLoadsScript(dePage, "https://lib2019.dostff.co/embeds/lineup.js") && !pageLoadsScript(dePage, "https://lib2018.dostff.co/embeds/lineup.js")
+      && !pageLoadsScript(`<a href="https://lib2019.dostff.co/embeds/lineup.js">`, "https://lib2019.dostff.co/embeds/lineup.js"), "a lineup page must load the widget's own script, by its <script src>");
+    const shell = `<script src="https://web.archive.org/assets/js/dist/main.js?v=9"></script><script src="https://web.archive.org/web/2019/https://x.example/a.js"></script>`;
+    ok(pageLoadsScript(shell, "https://www.sfoutsidelands.com/assets/js/dist/main.js?v=9", "https://www.sfoutsidelands.com/lineup/")
+      && !pageLoadsScript(shell, "https://www.sfoutsidelands.com/assets/js/dist/main.js?v=8", "https://www.sfoutsidelands.com/lineup/")
+      && !pageLoadsScript(shell, "https://x.example/a.js", "https://www.sfoutsidelands.com/lineup/"),
+      "a page read as rendered from the archive loads its site-relative script on its own host, never an archive capture link");
+    const mainJs = `e.setAttribute("id","dostuff-js"),e.setAttribute("src","https://sfosl19.dostff.co/embeds/lineup.js")`;
+    ok(scriptSetsSrc(mainJs, "https://sfosl19.dostff.co/embeds/lineup.js") && !scriptSetsSrc(mainJs, "https://sfosl.dostff.co/embeds/lineup.js")
+      && !scriptSetsSrc(`// see "https://sfosl19.dostff.co/embeds/lineup.js"`, "https://sfosl19.dostff.co/embeds/lineup.js")
+      && !scriptSetsSrc(mainJs.replace("lineup.js", "lineup.js?v=2"), "https://sfosl19.dostff.co/embeds/lineup.js"),
+      "a site script must set a <script>'s src to the widget's own address, whole");
+    ok(embedPageOk("lightning-in-a-bottle", "20181121121544", { url: "https://lightninginabottle.org/lineup/", captureTimestamp: "20181104142540" })
+      && !embedPageOk("lightning-in-a-bottle", "20181121121544", { url: "https://lightninginabottle.org/lineup/", captureTimestamp: "20180904142540" })
+      && !embedPageOk("lightning-in-a-bottle", "20181121121544", { url: "https://sfoutsidelands.com/lineup/", captureTimestamp: "20181121121540" })
+      && !embedPageOk("outside-lands", "20230814134825", { url: "https://sfoutsidelands.com/lineup/", captureTimestamp: "20230613134825" })
+      && embedPageOk("outside-lands", "20190820205437", { url: "https://www.sfoutsidelands.com/lineup/", captureTimestamp: "20190824062635", via: { url: "https://www.sfoutsidelands.com/assets/js/dist/main.js?v=1", captureTimestamp: "20190824062646" } })
+      && !embedPageOk("outside-lands", "20190820205437", { url: "https://www.sfoutsidelands.com/lineup/", captureTimestamp: "20190824062635", via: { url: "https://cdn.example.com/assets/main.js", captureTimestamp: "20190824062646" } })
+      && !embedPageOk("coachella", "20230814134825", { url: "https://www.coachella.com/lineup/", captureTimestamp: "20230814134820" }),
+      "a widget's lineup page must be its own festival's, captured within that festival's window of the script");
     // EDC Las Vegas's 2012 and 2013 music pages: one page prints every day by
     // stage, each day's heading with no year; a time before noon is the night.
     const im12Day = (cls, label, acts, host = "") => `<div class="lineup-day ${cls}"><h2>${label}</h2><div class="inner">${host}`
@@ -1272,6 +1401,20 @@ for (const [id, e] of Object.entries(editions)) {
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (year from ${s.yearFrom}, Las Vegas from ${s.place}), not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
+        // The official lineup widget (Outside Lands 2018-2019 and 2022-2025, Lightning in a
+        // Bottle 2018-2019) prints each set's whole date, inside the run its
+        // options print (a gate day at either end at most), from a dostff.co
+        // script that the festival's own lineup page loaded, captured within
+        // that festival's window of the script (EMBED_PAGES).
+        if (s.format === "dostuff-embed") {
+          const eb = s.embeddedBy || {}, run = /^(\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2})$/.exec(s.run || "");
+          const span = (a, b) => (Date.parse(b + "T12:00:00Z") - Date.parse(a + "T12:00:00Z")) / 864e5;
+          ok(s.printed === d.date && run && span(run[1], e.days[0].date) >= 0 && span(run[1], e.days[0].date) <= 1 && span(e.days.at(-1).date, run[2]) >= 0 && span(e.days.at(-1).date, run[2]) <= 1
+            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/[a-z0-9-]+\.dostff\.co\/embeds\/lineup\.js$/.test(s.archivedUrl || "")
+            && eb.archivedUrl === `https://web.archive.org/web/${eb.captureTimestamp}/${eb.url}` && embedPageOk(e.festivalId, s.captureTimestamp, eb),
+            `${id} day ${d.day}: widget ${s.captureTimestamp} prints "${s.printed}" (run "${s.run}") at ${s.archivedUrl}, loaded by ${eb.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
         // Lollapalooza's 2018 lineup cards print each set's day as "Sat 8/04",
         // on Lollapalooza's own site, and the day is never timed.
         if (s.format === "lolla-cards") {
@@ -1294,6 +1437,16 @@ for (const [id, e] of Object.entries(editions)) {
           ok(primaveraDate(s.printed, e.year) === d.date && (s.tabs || []).includes(s.printed) && /Parc del Fòrum/.test(s.heading || "")
             && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?primaverasound\.(es|com)(:80)?\//.test(s.archivedUrl || ""),
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // Sónar's timetable heads each session of a day with its weekday, its
+        // day of the month and the session ("Thursday 16 | Sónar by Day"), on
+        // the year's own page at sonar.es, which names the edition.
+        if (s.format === "sonar-calendar") {
+          const W = wd[0] + wd.slice(1).toLowerCase(), parts = String(s.printed || "").split(" · ");
+          ok(parts.every(x => new RegExp(`^${W} ${dd} \\| Sónar by (Day|Night)$`).test(x)) && new RegExp(`Sónar Barcelona ${e.year}\\b`).test(s.named || "")
+            && new RegExp(`^https://web\\.archive\\.org/web/\\d{14}/https?://(www\\.)?sonar\\.es/[a-z]{2}/${e.year}/schedules$`).test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (named "${s.named}") at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         // Primavera Sound's 2016-2019 full timetable prints the day as a

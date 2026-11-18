@@ -53,6 +53,34 @@ export const EDITIONS = {
   "outside-lands-2015": { festivalId: "outside-lands", name: "Outside Lands 2015", year: 2015, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2015-08-07","Friday"],["2015-08-08","Saturday"],["2015-08-09","Sunday"]] },
   "outside-lands-2016": { festivalId: "outside-lands", name: "Outside Lands 2016", year: 2016, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2016-08-05","Friday"],["2016-08-06","Saturday"],["2016-08-07","Sunday"]] },
   "outside-lands-2017": { festivalId: "outside-lands", name: "Outside Lands 2017", year: 2017, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2017-08-11","Friday"],["2017-08-12","Saturday"],["2017-08-13","Sunday"]] },
+  // Outside Lands 2018 and 2019, from the official lineup widget
+  // (sfosl.dostff.co, sfosl19.dostff.co), Golden Gate Park as every year.
+  "outside-lands-2018": { festivalId: "outside-lands", name: "Outside Lands 2018", year: 2018, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2018-08-10","Friday"],["2018-08-11","Saturday"],["2018-08-12","Sunday"]] },
+  "outside-lands-2019": { festivalId: "outside-lands", name: "Outside Lands 2019", year: 2019, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2019-08-09","Friday"],["2019-08-10","Saturday"],["2019-08-11","Sunday"]] },
+  // Outside Lands 2022-2025: the official lineup page (sfoutsidelands.com/
+  // lineup/) loads a DoStuff widget whose embed script carries every set
+  // with its start, end and stage (format "dostuff-embed",
+  // dostuff-embed-schedule.mjs). One post-festival capture per year, each
+  // taken seconds after the official page that loads it. Cocktail Magic,
+  // the food-and-drink stage (2022-2023), is excluded as GastroMagic is.
+  "outside-lands-2022": { festivalId: "outside-lands", name: "Outside Lands 2022", year: 2022, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2022-08-05","Friday"],["2022-08-06","Saturday"],["2022-08-07","Sunday"]] },
+  "outside-lands-2023": { festivalId: "outside-lands", name: "Outside Lands 2023", year: 2023, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2023-08-11","Friday"],["2023-08-12","Saturday"],["2023-08-13","Sunday"]] },
+  "outside-lands-2024": { festivalId: "outside-lands", name: "Outside Lands 2024", year: 2024, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2024-08-09","Friday"],["2024-08-10","Saturday"],["2024-08-11","Sunday"]] },
+  "outside-lands-2025": { festivalId: "outside-lands", name: "Outside Lands 2025", year: 2025, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2025-08-08","Friday"],["2025-08-09","Saturday"],["2025-08-10","Sunday"]] },
+  // Lightning in a Bottle 2018 (Lake San Antonio) and 2019 (Buena Vista
+  // Lake, the festival's own homepage for each year): the official lineup
+  // page (lightninginabottle.org/lineup/) loads the same DoStuff widget
+  // (format "dostuff-embed"), one script host per year (lib2018.dostff.co,
+  // lib2019.dostff.co), each captured after the festival. The widget's run
+  // includes gate days with no music (2018's Wednesday arrival day), so the
+  // edition's days are the run's days it prints sets on. 2019's Wednesday
+  // carries one late set (YoHm at Beacon). Its options hide set titles, so
+  // each 2019 set is billed as the act it is drawn under. The yoga and
+  // meditation stages hold classes and are excluded rows.
+  "lightning-in-a-bottle-2018": { festivalId: "lightning-in-a-bottle", name: "Lightning in a Bottle 2018", year: 2018, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2018-05-24", "Thursday"], ["2018-05-25", "Friday"], ["2018-05-26", "Saturday"], ["2018-05-27", "Sunday"]] },
+  "lightning-in-a-bottle-2019": { festivalId: "lightning-in-a-bottle", name: "Lightning in a Bottle 2019", year: 2019, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2019-05-08", "Wednesday"], ["2019-05-09", "Thursday"], ["2019-05-10", "Friday"], ["2019-05-11", "Saturday"], ["2019-05-12", "Sunday"]] },
   // Governors Ball 2011-2012: the official governorsballmusicfestival.com
   // schedule page (/lineup/schedule/, a WordPress template, format
   // "govball-wp", govball-wp-schedule.mjs), one archived page per year, each
@@ -146,6 +174,31 @@ export const EDITIONS = {
   "primavera-sound-2019": { festivalId: "primavera-sound", name: "Primavera Sound 2019", year: 2019,
     timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
     dates: [["2019-05-29", "Wednesday"], ["2019-05-30", "Thursday"], ["2019-05-31", "Friday"], ["2019-06-01", "Saturday"]] },
+  // Sónar Barcelona 2016-2019 and 2022: the festival's own timetable page
+  // (sonar.es/en/<year>/schedules, format "sonar-calendar",
+  // sonar-schedule.mjs), one archived page per year, captured after the
+  // festival. It prints every session as a dated calendar: Sónar by Day
+  // (from 1 PM at Fira Montjuïc) and Sónar by Night (8 PM to 7 or 8 AM at
+  // Fira Gran Via), plus the concerts the festival programmes in the city
+  // on its opening and closing nights (L'Auditori, Teatre Grec, Capella
+  // MACBA, 2017's Björk opening night). A night set after midnight is that
+  // night's: the day runs from 10 AM. 2022's Sónar+D stages (talks,
+  // masterclasses, installations) are printed on the same page and excluded.
+  "sonar-2016": { festivalId: "sonar", name: "Sónar Barcelona 2016", year: 2016,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2016-06-16", "Thursday"], ["2016-06-17", "Friday"], ["2016-06-18", "Saturday"]] },
+  "sonar-2017": { festivalId: "sonar", name: "Sónar Barcelona 2017", year: 2017,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2017-06-14", "Wednesday"], ["2017-06-15", "Thursday"], ["2017-06-16", "Friday"], ["2017-06-17", "Saturday"], ["2017-06-18", "Sunday"]] },
+  "sonar-2018": { festivalId: "sonar", name: "Sónar Barcelona 2018", year: 2018,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2018-06-14", "Thursday"], ["2018-06-15", "Friday"], ["2018-06-16", "Saturday"], ["2018-06-17", "Sunday"]] },
+  "sonar-2019": { festivalId: "sonar", name: "Sónar Barcelona 2019", year: 2019,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2019-07-18", "Thursday"], ["2019-07-19", "Friday"], ["2019-07-20", "Saturday"], ["2019-07-21", "Sunday"]] },
+  "sonar-2022": { festivalId: "sonar", name: "Sónar Barcelona 2022", year: 2022,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2022-06-16", "Thursday"], ["2022-06-17", "Friday"], ["2022-06-18", "Saturday"]] },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.
@@ -722,6 +775,8 @@ export const PRINTED_NON_LATIN = {
   "governors-ball-2014": ["Axwell Λ Ingrosso"],
   // The trio's own Greek lambda, as Coachella's 2012 lineup page prints it.
   "coachella-2012": ["NOISIΛ"],
+  // The act's own kanji, in the JSON of Sónar's 2018 timetable page.
+  "sonar-2018": ["DITC 音"],
 };
 
 const ACTIVITY_REASON = "non-music Bonus Tracks activity";
