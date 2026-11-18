@@ -55,6 +55,7 @@ import { parseHardWp } from "./hard-wp-schedule.mjs";
 import { parseLollaLineup } from "./lolla-lineup.mjs";
 import { parseTmlDrupal } from "./tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, readDatesPost } from "./shambhala-webflow-schedule.mjs";
+import { parseSonarSchedule } from "./sonar-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
@@ -616,6 +617,37 @@ export async function importGather(id, dir) {
             : "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall",
           ...(page.sets.some(x => x.openEnd) && { openEnded: page.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }),
           ...(page.blanks.length && { emptySlots: page.blanks.map(x => `${x.stage}: ${x.printed}, no act named`) }) });
+      } else if (s.format === "sonar-calendar") {
+        // One page prints the whole edition: Sónar Barcelona's own timetable
+        // (sonar.es/en/<year>/schedules, sonar-schedule.mjs), one calendar per
+        // session (Sónar by Day, Sónar by Night), each dated by the page and
+        // headed with its weekday and day of the month. The page must name the
+        // edition's year, print exactly the edition's days, and be captured
+        // after the festival ended (a capture during the festival can hold a
+        // draft: 2018's of 15 June draws two SonarDôme sets at once). Every
+        // day it prints is cited. Rows on Sónar+D's programme stages (talks,
+        // masterclasses, installations) must be the sheet's excluded rows of
+        // that day, one for one.
+        const progStages = s.programmeStages || [];
+        const page = parseSonarSchedule(cap.text, { year: ed.year, programme: progStages });
+        if (page.days.map(d => d.date).join() !== ed.dates.map(([d]) => d).join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${page.days.map(d => d.date).join(", ")}, not the edition's days`);
+        if (s.captureTimestamp.slice(0, 8) <= ed.dates.at(-1)[0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the festival ended`);
+        if (days.join() !== ed.dates.map((_, i) => i + 1).join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints every day, the sheet cites it for ${days.join(",")}`);
+        for (const st of progStages) if (!page.stages.includes(st)) throw new Error(`${s.url} @${s.captureTimestamp}: no stage "${st}"`);
+        const named = [page.title, page.logo].find(x => new RegExp(`Sónar Barcelona ${ed.year}\\b`).test(x));
+        const k = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
+        for (const [i, d] of page.days.entries()) {
+          const day = i + 1;
+          if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is headed "${d.label}", the receipt says "${s.printed[day]}"`);
+          const prog = d.sets.filter(x => x.programme);
+          const pg = prog.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x.programme).map(k).sort().join("\n");
+          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${prog.length} programme entr(ies), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+          agree(day, d.sets.filter(x => !x.programme).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          const ss = page.sessions.filter(x => x.date === d.date);
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { named, sessions: ss.map(x => `${x.label}: ${x.hours}`), stages: new Set(d.sets.filter(x => !x.programme).map(x => x.stage)).size,
+            times: "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's",
+            ...(prog.length && { programmeShows: prog.length, programmeStages: progStages.filter(x => prog.some(y => y.stage === x)) }) });
+        }
       } else if (s.format === "primavera-completos") {
         // One page per day: Primavera Sound's full timetable, Parc del Fòrum
         // beside the city venues (primavera-completos-schedule.mjs). Its day
