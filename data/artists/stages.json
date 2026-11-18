@@ -4155,6 +4155,569 @@
     }
    ]
   },
+  "primavera-sound": {
+   "lineages": [
+    {
+     "id": "primavera-sound:atp",
+     "names": [
+      {
+       "printed": "ATP",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:auditori-rockdelux",
+     "names": [
+      {
+       "printed": "Auditori Rockdelux",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ray-ban",
+     "names": [
+      {
+       "printed": "Ray-Ban",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:h-and-m-pro",
+     "names": [
+      {
+       "printed": "H&M PRO",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:pitchfork",
+     "names": [
+      {
+       "printed": "Pitchfork",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ray-ban-unplugged",
+     "names": [
+      {
+       "printed": "Ray-Ban Unplugged",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:heineken-hidden-stage",
+     "names": [
+      {
+       "printed": "Heineken Hidden Stage",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:heineken",
+     "names": [
+      {
+       "printed": "Heineken",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:adidas-originals",
+     "names": [
+      {
+       "printed": "adidas Originals",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:primavera",
+     "names": [
+      {
+       "printed": "Primavera",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:bowers-and-wilkins-sound-system",
+     "names": [
+      {
+       "printed": "Bowers & Wilkins Sound System",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:primavera-concierto-gratuito",
+     "names": [
+      {
+       "printed": "Primavera (concierto gratuito)",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:firestone-stage",
+     "names": [
+      {
+       "printed": "Firestone Stage",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:nightpro",
+     "names": [
+      {
+       "printed": "NightPro",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:h-and-m",
+     "names": [
+      {
+       "printed": "H&M",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:minimusica",
+     "names": [
+      {
+       "printed": "minimúsica",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:desperados-club-feat-bowers-and-wilkins-sound-system",
+     "names": [
+      {
+       "printed": "Desperados Club feat. Bowers & Wilkins Sound System",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:night-pro",
+     "names": [
+      {
+       "printed": "Night Pro",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:bacardi-live",
+     "names": [
+      {
+       "printed": "Bacardí Live",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:mango",
+     "names": [
+      {
+       "printed": "Mango",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:mango-house",
+     "names": [
+      {
+       "printed": "Mango House",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:xiringuito-aperol",
+     "names": [
+      {
+       "printed": "Xiringuito Aperol",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:desperados-cube",
+     "names": [
+      {
+       "printed": "Desperados Cube",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:your-heineken-stage",
+     "names": [
+      {
+       "printed": "Your Heineken Stage",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:lotus",
+     "names": [
+      {
+       "printed": "Lotus",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:seat",
+     "names": [
+      {
+       "printed": "Seat",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ocb-paper-sessions",
+     "names": [
+      {
+       "printed": "OCB PAPER SESSIONS",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:pull-and-bear",
+     "names": [
+      {
+       "printed": "Pull&Bear",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:seat-village",
+     "names": [
+      {
+       "printed": "Seat Village",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ray-ban-studios",
+     "names": [
+      {
+       "printed": "Ray-Ban Studios",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:el-punto-by-adidas-originals",
+     "names": [
+      {
+       "printed": "El Punto by adidas Originals",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:primavera-with-apple-music",
+     "names": [
+      {
+       "printed": "Primavera with Apple Music",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:desperados-club",
+     "names": [
+      {
+       "printed": "Desperados Club",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:the-warehouse",
+     "names": [
+      {
+       "printed": "The Warehouse",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:radio-primavera-sound",
+     "names": [
+      {
+       "printed": "Radio Primavera Sound",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-ray-ban",
+     "names": [
+      {
+       "printed": "Escenario Ray-Ban",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-pitchfork",
+     "names": [
+      {
+       "printed": "Escenario Pitchfork",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-vice",
+     "names": [
+      {
+       "printed": "Escenario Vice",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-adidas-originals",
+     "names": [
+      {
+       "printed": "Escenario adidas Originals",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-mini",
+     "names": [
+      {
+       "printed": "Escenario MINI",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-san-miguel",
+     "names": [
+      {
+       "printed": "Escenario San Miguel",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-atp",
+     "names": [
+      {
+       "printed": "Escenario ATP",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:salon-myspace-smint",
+     "names": [
+      {
+       "printed": "Salón Myspace Smint",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "shambhala": {
    "lineages": [
     {

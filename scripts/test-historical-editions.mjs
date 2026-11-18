@@ -30,6 +30,8 @@ import { parseDoStuff, parseDoStuffBand, timeDay } from "./historical/dostuff-sc
 import { parseMyScheduler, restoreSets } from "./historical/myscheduler-schedule.mjs";
 import { parseEfScheduler } from "./historical/ef-scheduler-schedule.mjs";
 import { parseGovBallWp, printedDate as govBallDate } from "./historical/govball-wp-schedule.mjs";
+import { parsePrimaveraHorarios, tabDate as primaveraDate } from "./historical/primavera-horarios-schedule.mjs";
+import { parsePrimaveraCompletos, tabRun as primaveraRun } from "./historical/primavera-completos-schedule.mjs";
 import { parseInsomniacMusic, printedDate as insomniacDate } from "./historical/insomniac-music-schedule.mjs";
 import { parseTmlCms, printedDate as tmlCmsDate } from "./historical/tml-cms-schedule.mjs";
 import { parseHardWp, readRun as hardRun } from "./historical/hard-wp-schedule.mjs";
@@ -98,6 +100,27 @@ if (base && edc) {
     const longSet = m => m.sets.find(x => x.start === "13:00" && x.end === "01:00");
     mustFail("a listed long set read an hour longer (Tomorrowland 2013)", m => { longSet(m).end = "02:00"; }, tml13, () => {}, /over 8 hours/);
     mustFail("a listed long set credited to another act (Tomorrowland 2013)", m => { const s = longSet(m); s.artistId = m.sets.find(x => x.artistId !== s.artistId).artistId; }, tml13, () => {}, /over 8 hours/);
+  }
+  // Primavera Sound's 2015 tabs print no year: the weekday must fall on the
+  // day's date, the tab must be one the page printed, and the page must be
+  // Primavera's own Parc del Fòrum timetable.
+  const ps15 = editions["primavera-sound-2015"];
+  if (ps15) {
+    const psCap = m => m.provenance.captures.find(c => c.format === "primavera-horarios" && c.day === 3);
+    mustFail("a Primavera Sound tab whose weekday is not its day", m => { psCap(m).printed = "Saturday May 29"; }, ps15, () => {}, /does not print/);
+    mustFail("a Primavera Sound tab the page does not print", m => { psCap(m).tabs = psCap(m).tabs.filter(t => t !== psCap(m).printed); }, ps15, () => {}, /does not print/);
+    mustFail("a Primavera Sound timetable for the city stages", m => { psCap(m).heading = "Horarios Ciutat"; }, ps15, () => {}, /Parc del Fòrum/);
+    mustFail("a Primavera Sound page off another site", m => { psCap(m).archivedUrl = psCap(m).archivedUrl.replace("www.primaverasound.es", "www.clashfinder.com"); }, ps15);
+  }
+  // Primavera Sound's 2016 tabs print a weekday and a day of the month: the
+  // row of tabs as a whole must name the day, on the full timetable.
+  const ps16 = editions["primavera-sound-2016"];
+  if (ps16) {
+    const pcCap = m => m.provenance.captures.find(c => c.format === "primavera-completos" && c.day === 3);
+    mustFail("a Primavera Sound 2016 tab on another day of the run", m => { pcCap(m).printed = "JUEVES 2"; }, ps16, () => {}, /does not print/);
+    mustFail("Primavera Sound 2016 tabs that name no run in the year", m => { pcCap(m).tabs = pcCap(m).tabs.map(t => t === "LUNES 30" ? "MARTES 30" : t); }, ps16, () => {}, /does not print/);
+    mustFail("a Primavera Sound 2016 page that is one venue's", m => { pcCap(m).active = "PARC DEL FÒRUM"; }, ps16, () => {}, /full timetable/);
+    mustFail("a Primavera Sound 2016 page off another site", m => { pcCap(m).archivedUrl = pcCap(m).archivedUrl.replace("www.primaverasound.es", "www.clashfinder.com"); }, ps16);
   }
   // Shambhala 2024-2025 pages print no date: a capture is dated by the run
   // the festival's own post prints, and must be published in the year.
@@ -674,6 +697,129 @@ if (base && edc) {
     gbMust("two Governors Ball sets overlapping on one stage", gbPage(undefined, [[gbD2[0][0], "hypem", [gbBlock("hypem", "f", "Day Two", "1:00 pm - 1:40 pm"), gbBlock("hypem", "h", "Clash", "1:30 pm - 2:00 pm")]], gbD2[1]]));
     gbMust("a Governors Ball block in another stage's column", gbPage().replace('class="honda-block g"', 'class="hypem-block g"'));
     gbMust("a Governors Ball block with two names", gbPage().replace("<h2>Two Honda</h2>", "<h2>Two</h2><h2>Honda</h2>"));
+    // Primavera Sound's 2015 Fòrum timetable: one page a day, day tabs with no
+    // year in Catalan, Spanish or English, a 15-minute grid with a cell per
+    // stage, each block on its row plus its offset and two pixels a minute.
+    const psBox = (add, h, name, hora) => `<div class="concertContainer"><div class="concertBox KKaddMinutes-${add}" style="height:${h}px;top:0px;"><a href="/artistas?id=1"><div class="artista">${name}</div><div class="hora ">${hora}</div></a></div></div>`;
+    const psTabs = (own = 1, labels = ["dimecres 27 de maig", "jueves 28 de mayo", "Friday May 29", "dissabte 30 de maig"]) => `<div id="title_dias" class="font01 group">`
+      + labels.map((l, i) => i === own ? `<span class="rojo">${l}</span>` : `<span class=""><a href="/horarios?d=${i + 1}">${l}</a> </span>`).join("") + `</div>`;
+    const psRow = (t, cells) => `<tr><td class="horaleft">${t}</td>${cells.map(c => `<td>${c}</td>`).join("")}<td class="horaright"><span>${t}</span></td></tr>`;
+    const psRows = [psRow("23:30", [psBox(5, 60, "Early &amp; Late", "(23:35 - 00:05)"), ""]), psRow("23:45", ["", psBox(0, 120, "Over Midnight", "(23:45 - 00:45)")]),
+      psRow("0:00", ["", ""]), psRow("0:15", [psBox(0, 0, "No End", "(00:15)"), ""])];
+    const psPage = ({ tabs = psTabs(), heading = "Horarios Parc del Fòrum", stages = ["Ray-Ban", "H&amp;M PRO"], foot = stages, rows = psRows, picker = "forum" } = {}) =>
+      `<h1 class="font01">${heading}</h1>${tabs}<select name="l" id="horarios-escenarios-select"><option value="ciutat">ciutat</option><option value="${picker}" selected="selected">${picker}</option></select>`
+      + `<table id="listaHorarios"><thead><tr><th></th>${stages.map(x => `<th class="escenario">${x}</th>`).join("")}<th></th></tr></thead><tbody>${rows.join("")}`
+      + `<tr id="footer-header"><td></td>${foot.map(x => `<td class="escenario">${x}</td>`).join("")}<td></td></tr></tbody></table>`;
+    const psp = parsePrimaveraHorarios(psPage(), { year: 2015 });
+    ok(JSON.stringify([psp.date, psp.label, psp.tabDates, psp.stages, psp.axis, psp.sets.map(x => [x.stage, x.start, x.end, x.artist, !!x.openEnd])])
+      === JSON.stringify(["2015-05-28", "jueves 28 de mayo", ["2015-05-27", "2015-05-28", "2015-05-29", "2015-05-30"], ["Ray-Ban", "H&M PRO"], "23:30-00:15",
+        [["Ray-Ban", "23:35", "00:05", "Early & Late", false], ["H&M PRO", "23:45", "00:45", "Over Midnight", false], ["Ray-Ban", "00:15", "", "No End", true]]]),
+      `a Primavera Sound timetable must come back set by set, past midnight and a start-only block open: ${JSON.stringify(psp)}`);
+    ok(primaveraDate("dimecres 27 de maig", 2015) === "2015-05-27" && primaveraDate("miércoles 27 de mayo", 2015) === "2015-05-27" && primaveraDate("Wednesday May 27", 2015) === "2015-05-27"
+      && primaveraDate("dimecres 27 de maig", 2016) === null && primaveraDate("dijous 27 de maig", 2015) === null && primaveraDate("miércoles 27 de maig", 2015) === null,
+      "a Primavera Sound day tab must print its own weekday in the edition's year, in one language");
+    const psMust = (what, html, year = 2015) => { let bad = false; try { parsePrimaveraHorarios(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    psMust("a Primavera Sound timetable of another year", psPage(), 2016);
+    psMust("a Primavera Sound page that is not Parc del Fòrum's", psPage({ heading: "Horarios Ciutat" }));
+    psMust("a Primavera Sound page with the city picked", psPage({ picker: "ciutat" }));
+    psMust("a Primavera Sound page with no day of its own", psPage({ tabs: psTabs(-1) }));
+    psMust("a Primavera Sound page with two days of its own", psPage({ tabs: psTabs(1).replace('<span class=""><a href="/horarios?d=3">Friday May 29</a> </span>', '<span class="rojo">Friday May 29</span>') }));
+    psMust("Primavera Sound tabs that skip a day", psPage({ tabs: psTabs(1, ["dimecres 27 de maig", "jueves 28 de mayo", "Saturday May 30"]) }));
+    psMust("a Primavera Sound block off its row's time", psPage({ rows: [psRow("23:30", [psBox(0, 60, "Early &amp; Late", "(23:35 - 00:05)"), ""]), ...psRows.slice(1)] }));
+    psMust("a Primavera Sound block offset a whole row", psPage({ rows: [psRow("23:30", [psBox(15, 60, "Early &amp; Late", "(23:45 - 00:15)"), ""]), ...psRows.slice(1)] }));
+    psMust("a Primavera Sound block not drawn two pixels a minute", psPage({ rows: [psRow("23:30", [psBox(5, 61, "Early &amp; Late", "(23:35 - 00:05)"), ""]), ...psRows.slice(1)] }));
+    psMust("a Primavera Sound row skipping 15 minutes", psPage({ rows: [psRows[0], psRow("0:00", ["", ""]), ...psRows.slice(3)] }));
+    psMust("a Primavera Sound row closing on another time", psPage({ rows: [psRows[0].replace("<span>23:30</span>", "<span>23:45</span>"), ...psRows.slice(1)] }));
+    psMust("a Primavera Sound footer naming other stages", psPage({ foot: ["Ray-Ban", "Pitchfork"] }));
+    psMust("a Primavera Sound row with a cell missing", psPage({ rows: [psRow("23:30", [psBox(5, 60, "Early &amp; Late", "(23:35 - 00:05)")]), ...psRows.slice(1)] }));
+    psMust("two Primavera Sound sets overlapping on one stage", psPage({ rows: [...psRows.slice(0, 2), psRow("0:00", [psBox(0, 30, "Clash", "(00:00 - 00:15)"), ""]), psRows[3]] }));
+    psMust("a Primavera Sound block with no name", psPage({ rows: [psRow("23:30", [psBox(5, 60, "", "(23:35 - 00:05)"), ""]), ...psRows.slice(1)] }));
+    // The 2012 template (2012 and 2013): stage headers with a width, no
+    // footer, each block a start alone inside its row's 15 minutes, and an
+    // empty slot with no artist id counted apart, never read as a set.
+    const ps12Box = (name, hora, inner = true, id = "1") => `<div class="concertBoxSinCaja" style="height:-44702280px;">${inner ? '<div class="concertBox2" style="width:197px;height:-44702280px;">' : ""}`
+      + `<a href="/artistaSingle?idArtista=${id}" class="artistaAnchor"><div class="artista">${name}</div><div class="hora horaInLine"> ${hora} </div></a>${inner ? "</div>" : ""}</div>`;
+    const ps12Rows = [psRow("23:30", [ps12Box("Early &amp; Late", "(23:40)"), ""]), psRow("23:45", ["", ps12Box("Over Midnight", "(23:45)", false)]),
+      psRow("0:00", [ps12Box("", "(00:05)", true, ""), ""]), psRow("0:15", [ps12Box("After", "(00:20)"), ""])];
+    const ps12Page = ({ rows = ps12Rows, foot = "" } = {}) => `<h1 class="font01">Horarios Parc del Fòrum</h1>${psTabs(1, ["jueves 31 de mayo", "viernes 01 de junio", "sábado 02 de junio"])}`
+      + `<table id="listaHorarios"><thead><tr><th></th><th class="escenario" width="200">Ray-Ban</th><th class="escenario" width="200">H&amp;M PRO</th><th></th></tr></thead><tbody>${rows.join("")}${foot}</tbody></table>`;
+    const ps12 = parsePrimaveraHorarios(ps12Page(), { year: 2012 });
+    ok(JSON.stringify([ps12.template, ps12.date, ps12.label, ps12.axis, ps12.sets.map(x => [x.stage, x.start, x.end, x.artist, !!x.openEnd]), ps12.blanks])
+      === JSON.stringify(["2012", "2012-06-01", "viernes 01 de junio", "23:30-00:15", [["Ray-Ban", "23:40", "", "Early & Late", true], ["H&M PRO", "23:45", "", "Over Midnight", true], ["Ray-Ban", "00:20", "", "After", true]],
+        [{ stage: "Ray-Ban", printed: "(00:05)" }]]),
+      `a 2012 Primavera Sound timetable must come back start by start, open-ended, its empty slot apart: ${JSON.stringify(ps12)}`);
+    psMust("a 2012 Primavera Sound page read in another year", ps12Page(), 2013);
+    psMust("a 2012 Primavera Sound block printing a range", ps12Page({ rows: [psRow("23:30", [ps12Box("Early &amp; Late", "(23:40 - 00:10)"), ""]), ...ps12Rows.slice(1)] }), 2012);
+    psMust("a 2012 Primavera Sound block past its row's 15 minutes", ps12Page({ rows: [psRow("23:30", [ps12Box("Early &amp; Late", "(23:50)"), ""]), ...ps12Rows.slice(1)] }), 2012);
+    psMust("a 2012 Primavera Sound page with a footer", ps12Page({ foot: '<tr id="footer-header"><td></td><td class="escenario">Ray-Ban</td><td class="escenario">H&amp;M PRO</td><td></td></tr>' }), 2012);
+    psMust("a Primavera Sound page mixing both templates", ps12Page({ rows: [psRow("23:30", [ps12Box("Early &amp; Late", "(23:40)"), psBox(5, 60, "New", "(23:35 - 00:05)")]), ...ps12Rows.slice(1)] }), 2012);
+    psMust("two 2012 Primavera Sound sets starting together on one stage", ps12Page({ rows: [psRow("23:30", [ps12Box("Early &amp; Late", "(23:40)") + ps12Box("Twin", "(23:40)"), ""]), ...ps12Rows.slice(1)] }), 2012);
+    psMust("a 2012 Primavera Sound block with an artist id and no name", ps12Page({ rows: [psRow("23:30", [ps12Box("", "(23:40)", true, "7"), ""]), ...ps12Rows.slice(1)] }), 2012);
+    psMust("a 2012 Primavera Sound inner box with no block", ps12Page({ rows: [psRow("23:30", [ps12Box("Early &amp; Late", "(23:40)") + '<div class="concertBox2" style="width:197px;height:-1px;"></div>', ""]), ...ps12Rows.slice(1)] }), 2012);
+    // Primavera Sound's 2016 full timetable: Parc del Fòrum's columns beside
+    // the city's, tabs that print a weekday and a day of the month only, each
+    // block in its own venue's colour, on its row plus its offset and two
+    // pixels a minute. Only the Fòrum's blocks are sets.
+    ok(JSON.stringify(primaveraRun(["LUNES 30", "MARTES 31", "MIÉRCOLES 1"], 2016)) === JSON.stringify(["2016-05-30", "2016-05-31", "2016-06-01"])
+      && primaveraRun(["LUNES 30", "MARTES 31", "MIÉRCOLES 1"], 2017) === null && primaveraRun(["JUEVES 1"], 2016) === null
+      && primaveraRun(["LUNES 30", "DIMARTS 31", "MIÉRCOLES 1"], 2016) === null && JSON.stringify(primaveraRun(["Monday 30", "Tuesday 31"], 2016)) === JSON.stringify(["2016-05-30", "2016-05-31"])
+      && JSON.stringify(primaveraRun(["MIÉ-03", "JUE-04", "LUN-08"], 2017)) === JSON.stringify(["2017-05-03", "2017-05-04", "2017-05-08"])
+      && primaveraRun(["MIÉ-03", "JUE-04", "LUN-15"], 2017) === null && primaveraRun(["MIÉ-03", "MIÉRCOLES 4"], 2017) === null
+      && JSON.stringify(primaveraRun(["2019-05-29", "2019-05-30"], 2019)) === JSON.stringify(["2019-05-29", "2019-05-30"])
+      && primaveraRun(["2019-05-29", "2019-05-30"], 2018) === null && primaveraRun(["2019-05-30", "2019-05-29"], 2019) === null
+      && primaveraRun(["2019-05-20", "2019-05-29"], 2019) === null && primaveraRun(["2019-02-30"], 2019) === null && primaveraRun(["2019-05-29", "JUEVES 30"], 2019) === null,
+      "a row of Primavera Sound 2016-2019 tabs must name exactly one run of days in the year, a week apart at most, in one language");
+    const pcBox = (venue, add, h, name, hora) => `<div class="concertContainer"><div class="concertBox${venue} KKaddMinutes-${add}" style="height:${h}px;top:0px;"><a href="/2016_artists?id=1" class="artistaAnchor" style="text-align:center;"><div class="hora ">${hora}</div><div class="2016_artists"> ${name}</div></a></div></div>`;
+    const pcLabels = ["LUNES 30", "MARTES 31", "MIÉRCOLES 1", "JUEVES 2"];
+    const pcTabs = (own = 3, labels = pcLabels) => `<div id="title_dias" class="font01 group">`
+      + labels.map((l, i) => i === own ? `<span class="rojo">${l}</span>` : `<span class=""><a href="/horarios?d=${i + 1}&amp;l=forum&amp;content=">${l}</a> </span>`).join("") + `</div>`;
+    const pcRows = [psRow("23:30", [pcBox("forum", 5, 60, "EARLY &amp; LATE", "(23:35 - 00:05)"), "", pcBox("ciutat", 0, 30, "CITY ACT", "(23:30 - 23:45)")]),
+      psRow("23:45", ["", pcBox("forum", 0, 120, "OVER MIDNIGHT", "(23:45 - 00:45)"), ""]), psRow("0:00", ["", "", ""]), psRow("0:15", [pcBox("forum", 0, 95, "NO END", "(00:15)"), "", ""])];
+    const pcCols = [["forum", "Ray-Ban"], ["forum", "H&amp;M"], ["ciutat", "DayPro"]];
+    const pcPage = ({ tabs = pcTabs(), heading = "Horarios", active = "Horarios completos", groups = [["forum", "PARC DEL FÒRUM"], ["forum", ""], ["ciutat", "Primavera a la Ciutat"]], cols = pcCols, foot = cols, rows = pcRows } = {}) =>
+      `<h1 class="font01">${heading}</h1><ul><li class="horarios-location active"><a href="/horarios?">${active}</a></li><li class="horarios-location "><a href="/horarios?content=forum">PARC DEL FÒRUM</a></li></ul>${tabs}`
+      + `<table id="listaHorarios"><thead><tr><th style="width:35px;" class="TituloEscenarioforum"></th>${groups.map(([v, t]) => `<th class="TituloEscenario${v}">${t ? `<h3>${t}</h3>` : ""}</th>`).join("")}</tr></thead>`
+      + `<thead><tr><th></th>${cols.map(([v, x]) => `<th class="escenario${v}">${x}</th>`).join("")}<th></th></tr></thead><tbody>${rows.join("")}`
+      + `<tr id="footer-header"><td></td>${foot.map(([v, x]) => `<td class="escenario${v}">${x}</td>`).join("")}<td></td></tr></tbody></table>`;
+    const pcp = parsePrimaveraCompletos(pcPage(), { year: 2016 });
+    ok(JSON.stringify([pcp.date, pcp.label, pcp.tabDates, pcp.stages, pcp.cityStages, pcp.citySets, pcp.axis, pcp.sets.map(x => [x.stage, x.start, x.end, x.artist, !!x.openEnd])])
+      === JSON.stringify(["2016-06-02", "JUEVES 2", ["2016-05-30", "2016-05-31", "2016-06-01", "2016-06-02"], ["Ray-Ban", "H&M"], ["DayPro"], 1, "23:30-00:15",
+        [["Ray-Ban", "23:35", "00:05", "EARLY & LATE", false], ["H&M", "23:45", "00:45", "OVER MIDNIGHT", false], ["Ray-Ban", "00:15", "", "NO END", true]]]),
+      `a Primavera Sound 2016 timetable must come back as Parc del Fòrum's sets only, past midnight and a start-only block open: ${JSON.stringify(pcp)}`);
+    const pcMust = (what, html, year = 2016) => { let bad = false; try { parsePrimaveraCompletos(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    pcMust("a Primavera Sound 2016 timetable of another year", pcPage(), 2017);
+    pcMust("a Primavera Sound 2016 page under another heading", pcPage({ heading: "Artistas" }));
+    pcMust("a Primavera Sound 2016 page showing one venue only", pcPage({ active: "PARC DEL FÒRUM" }));
+    pcMust("a Primavera Sound 2016 page with no day of its own", pcPage({ tabs: pcTabs(-1) }));
+    pcMust("Primavera Sound 2016 tabs out of order", pcPage({ tabs: pcTabs(2, ["LUNES 30", "MARTES 31", "JUEVES 2", "MIÉRCOLES 1"]) }));
+    pcMust("Primavera Sound 2016 tabs in two languages", pcPage({ tabs: pcTabs(3, ["LUNES 30", "DIMARTS 31", "MIÉRCOLES 1", "JUEVES 2"]) }));
+    pcMust("a Primavera Sound 2016 Fòrum column headed as the city", pcPage({ groups: [["forum", "Primavera a la Ciutat"], ["forum", ""], ["ciutat", "Primavera a la Ciutat"]] }));
+    pcMust("Primavera Sound 2016 city stages with no city heading", pcPage({ groups: [["forum", "PARC DEL FÒRUM"], ["forum", ""], ["ciutat", ""]] }));
+    pcMust("a Primavera Sound 2016 page with no Fòrum stage", pcPage({ cols: pcCols.map(([, x]) => ["ciutat", x]), rows: [psRow("23:30", ["", "", ""]), psRow("23:45", ["", "", ""])] }));
+    pcMust("a Primavera Sound 2016 name linked to another year's artist page", pcPage().replace('<a href="/2016_artists?id=1" class="artistaAnchor" style="text-align:center;"><div class="hora ">(23:35', '<a href="/2015_artists?id=1" class="artistaAnchor" style="text-align:center;"><div class="hora ">(23:35'));
+    pcMust("a Primavera Sound 2016 block linking to no artist's page", pcPage().replace('<a href="/2016_artists?id=1" class="artistaAnchor" style="text-align:center;"><div class="hora ">(23:35', '<a href="/horarios?d=1" class="artistaAnchor" style="text-align:center;"><div class="hora ">(23:35'));
+    // 2019 prints whole dates on its tabs, "Set times" over the page and the
+    // Fòrum's heading in mixed case, and keeps 2017's name class: the link
+    // carries the year.
+    const pc19 = pcPage({ tabs: pcTabs(1, ["2019-05-29", "2019-05-30", "2019-05-31"]), heading: "Set times", active: "All set times", groups: [["forum", "Parc del Fòrum"], ["forum", ""], ["ciutat", "Primavera a la Ciutat"]] })
+      .replaceAll("2016_artists?id=", "2019_artists?id=").replaceAll('class="2016_artists"', 'class="artists_2017"');
+    const pcp19 = parsePrimaveraCompletos(pc19, { year: 2019 });
+    ok(pcp19.date === "2019-05-30" && pcp19.label === "2019-05-30" && pcp19.sets.length === 3 && pcp19.citySets === 1,
+      `a Primavera Sound 2019 timetable must read like 2016's, its tabs whole dates: ${JSON.stringify(pcp19)}`);
+    pcMust("a Primavera Sound 2019 page read as 2017's", pc19, 2017);
+    ok(parsePrimaveraCompletos(pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 60, "EARLY &amp; LATE", "(23:35 - 00:05)"), "", pcBox("ciutat", 0, 60, "CITY ACT", "(23:30 - 00:00)")]), psRow("23:45", ["", pcBox("forum", 0, 120, "OVER MIDNIGHT", "(23:45 - 00:45)"), pcBox("ciutat", 0, 30, "CITY TALK", "(23:45 - 00:00)")]), ...pcRows.slice(2)] }), { year: 2016 }).citySets === 2,
+      "two Primavera Sound city sessions at once must be read (the city is never this edition's sets)");
+    pcMust("a Primavera Sound 2019 page with another year's dates on its tabs", pc19.replace(">2019-05-31<", ">2018-05-31<"), 2019);
+    pcMust("a Primavera Sound 2016 city block in a Fòrum column", pcPage({ rows: [psRow("23:30", [pcBox("ciutat", 5, 60, "EARLY &amp; LATE", "(23:35 - 00:05)"), "", ""]), ...pcRows.slice(1)] }));
+    pcMust("a Primavera Sound 2016 block off its row's time", pcPage({ rows: [psRow("23:30", [pcBox("forum", 0, 60, "EARLY &amp; LATE", "(23:35 - 00:05)"), "", ""]), ...pcRows.slice(1)] }));
+    pcMust("a Primavera Sound 2016 block not drawn two pixels a minute", pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 61, "EARLY &amp; LATE", "(23:35 - 00:05)"), "", ""]), ...pcRows.slice(1)] }));
+    pcMust("a Primavera Sound 2016 city block not drawn two pixels a minute", pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 60, "EARLY &amp; LATE", "(23:35 - 00:05)"), "", pcBox("ciutat", 0, 31, "CITY ACT", "(23:30 - 23:45)")]), ...pcRows.slice(1)] }));
+    pcMust("a Primavera Sound 2016 row skipping 15 minutes", pcPage({ rows: [pcRows[0], psRow("0:00", ["", "", ""]), pcRows[3]] }));
+    pcMust("a Primavera Sound 2016 footer naming other stages", pcPage({ foot: [pcCols[0], pcCols[1], ["ciutat", "Sala Apolo"]] }));
+    pcMust("a Primavera Sound 2016 footer moving a stage to the other venue", pcPage({ foot: [pcCols[0], pcCols[1], ["forum", "DayPro"]] }));
+    pcMust("a Primavera Sound 2016 row with a cell missing", pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 60, "EARLY &amp; LATE", "(23:35 - 00:05)"), ""]), ...pcRows.slice(1)] }));
+    pcMust("two Primavera Sound 2016 sets overlapping on one stage", pcPage({ rows: [...pcRows.slice(0, 2), psRow("0:00", [pcBox("forum", 0, 30, "CLASH", "(00:00 - 00:15)"), "", ""]), pcRows[3]] }));
+    pcMust("a Primavera Sound 2016 block with no name", pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 60, "", "(23:35 - 00:05)"), "", ""]), ...pcRows.slice(1)] }));
     // EDC Las Vegas's 2012 and 2013 music pages: one page prints every day by
     // stage, each day's heading with no year; a time before noon is the night.
     const im12Day = (cls, label, acts, host = "") => `<div class="lineup-day ${cls}"><h2>${label}</h2><div class="inner">${host}`
@@ -1140,6 +1286,24 @@ for (const [id, e] of Object.entries(editions)) {
           ok(hardRun(s.dateFrom, e.year)?.[s.printed] === d.date && s.printed === wd && s.pxPerMinute > 0
             && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?(hardfest|hardsummer)\.com(:80)?\//.test(s.archivedUrl || ""),
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (run "${s.dateFrom}") at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // Primavera Sound's Fòrum timetable prints the day as its own tab,
+        // no year, in Catalan, Spanish or English, on Primavera's own site.
+        if (s.format === "primavera-horarios") {
+          ok(primaveraDate(s.printed, e.year) === d.date && (s.tabs || []).includes(s.printed) && /Parc del Fòrum/.test(s.heading || "")
+            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?primaverasound\.(es|com)(:80)?\//.test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // Primavera Sound's 2016-2019 full timetable prints the day as a
+        // weekday and a day of the month (2019: the whole date); the row of
+        // tabs names one run of days in the year, on Primavera's own site.
+        if (s.format === "primavera-completos") {
+          const run = primaveraRun(s.tabs, e.year);
+          ok(run && run[(s.tabs || []).indexOf(s.printed)] === d.date && /^(Horarios completos|All set times)$/.test(s.active || "")
+            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?primaverasound\.(es|com)(:80)?\//.test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (tabs ${(s.tabs || []).join(", ")}) at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         // Governors Ball's 2011-2012 schedule prints each day's heading

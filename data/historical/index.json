@@ -3597,6 +3597,217 @@
    }
   },
   {
+   "id": "primavera-sound-2019",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2019",
+   "year": 2019,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-05-29",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2019-05-30",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2019-05-31",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2019-06-01",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 16,
+    "artists": 262,
+    "sets": 267
+   }
+  },
+  {
+   "id": "primavera-sound-2018",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2018",
+   "year": 2018,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-05-30",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2018-05-31",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2018-06-01",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2018-06-02",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 14,
+    "artists": 224,
+    "sets": 225
+   }
+  },
+  {
+   "id": "primavera-sound-2017",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2017",
+   "year": 2017,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-05-31",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2017-06-01",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2017-06-02",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2017-06-03",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 14,
+    "artists": 216,
+    "sets": 221
+   }
+  },
+  {
+   "id": "primavera-sound-2016",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2016",
+   "year": 2016,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-06-01",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2016-06-02",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2016-06-03",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2016-06-04",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 14,
+    "artists": 207,
+    "sets": 221
+   }
+  },
+  {
+   "id": "primavera-sound-2015",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2015",
+   "year": 2015,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-05-27",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2015-05-28",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2015-05-29",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2015-05-30",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 183,
+    "sets": 196
+   }
+  },
+  {
+   "id": "primavera-sound-2012",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2012",
+   "year": 2012,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-05-31",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2012-06-01",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2012-06-02",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 10,
+    "artists": 179,
+    "sets": 191
+   }
+  },
+  {
    "id": "shambhala-2025",
    "festivalId": "shambhala",
    "festivalName": "Shambhala",

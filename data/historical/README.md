@@ -96,6 +96,90 @@ backwards or more than six hours, or starts off the axis by over an hour, is a
 misprint and an excluded row, never read another way (2012's Turf War, printed
 "11:45 pm - 12:10 pm"). Sets in a column must run in order with no overlap.
 
+Archived Primavera Sound timetable (2012 and 2015, format `primavera-horarios`):
+
+    node scripts/historical/gather-primavera-horarios.mjs <edition-id> <gather-dir> <official-url> <ts> <day-url> [ … one pair per day ]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+primaverasound.es/horarios?d=N&l=forum was the festival's own Parc del Fòrum
+timetable, one page a day. The page prints a row of day tabs, its own day the
+one not linked, in whichever language it was served (Catalan "dimecres 27 de
+maig", Spanish "jueves 28 de mayo", English "Friday May 29"), with no year:
+each tab's weekday must fall on its date in the edition's year, and the tabs
+must be the edition's days in order. The heading must name Parc del Fòrum, so
+the city shows (Primavera a la Ciutat, `l=ciutat`) are never read. The grid
+has a column per stage (repeated in a footer row) and a row every 15 minutes
+that opens and closes with its own time, carrying on past midnight to 6:30.
+Each set is a block in its stage's cell that prints its range on the 24-hour
+clock ("(23:45 - 01:15)"); its start must be the row's time plus the block's
+own offset (`KKaddMinutes-N`, under 15), and the block must be drawn two
+pixels a minute tall. A block that prints its start alone ("(03:00)", 2015's
+Zamilska) is an open end. Sets on a stage must run in order with no overlap;
+anything else stops the read. The 2015 day pages were captured after the
+festival (Wednesday's on May 31, the rest in September). Wednesday 27 May is
+the ATP stage alone; the three main days have 11 stages each.
+
+2012 is the same page on an older template ("2012"): the stage headers carry
+a width, there is no footer row, and every block prints its start alone
+("(17:10)"), which must fall inside its row's 15 minutes; there is no offset
+class and the block heights are server artefacts, not read. Every 2012 set
+is open-ended. A page can draw an empty slot, an empty name under an anchor
+with no artist id: it names no act, so it is listed in the ledger
+(`emptySlots`) and never read as a set (one each on Thursday and Friday, on
+the ATP stage). The three day pages were read in Spanish (`lang=es`, so the
+stage names agree across days), captured 1 July 2012: Thursday 31 May has 8
+Fòrum stages, Friday and Saturday 10. 2013's pages use the same template,
+but only Wednesday's and Thursday's survive from after the festival (the
+later captures of Friday and Saturday are error pages), so 2013 is not
+loaded.
+
+Archived Primavera Sound full timetable (2016 to 2019, format `primavera-completos`):
+
+    node scripts/historical/gather-primavera-completos.mjs <edition-id> <gather-dir> <official-url> <ts> <day-url> [ … one pair per day ]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+From 2016 the same /horarios?d=N&l=forum address serves the full timetable
+("Horarios completos" active in the venue submenu): one page a day of the
+whole festival week, Parc del Fòrum's columns first under "PARC DEL FÒRUM",
+then the city venues' under "Primavera a la Ciutat", each stage header and
+each block marked with its venue (`escenarioforum`, `concertBoxciutat`). The
+day tabs print a weekday and a day of the month only ("MIÉRCOLES 1"), so the
+row as a whole names its dates: exactly one run of consecutive days in the
+edition's year must have those weekdays and days (2016: Monday 30 May to
+Sunday 5 June), and the edition's days must sit in it in a row. The grid,
+the 15-minute rows, the block offsets, the two-pixels-a-minute heights and
+the no-overlap rule are checked as for 2015, in the city's columns too, but
+only the Fòrum's blocks become sets. A start-only block ("(18:00)", 2016's
+minimúsica) is an open end. Wednesday 1 June is one free concert on the
+Primavera stage; Thursday to Saturday have 12 or 13 Fòrum stages. The night
+runs to 06:00, so the 2016 day runs from 10 AM. Pages captured 19 June 2016.
+
+2017 is the same page with three changes. The tabs print a short weekday
+("MIÉ-31") and list only the season's days with shows, so the run may skip
+days: each tab must be the first day after the one before with its weekday
+and day of the month, no more than a week on. One Fòrum stage (Mango House)
+is printed after the city's columns, still marked as the Fòrum's. Each name
+links to that year's artist page (`2017_artists?id=…`), and the link's year
+must be the edition's. Wednesday 31 May is the Fòrum's free opening on two
+stages. Pages captured 20 to 23 June 2017.
+
+2018 is the same page again, still headed "Horarios", its tabs printing
+whole dates ("2018-05-30", Monday 28 May to Sunday 3 June) and its names
+keeping 2017's class. Wednesday 30 May is the Fòrum's opening on three
+stages, Thursday to Saturday have 13 or 14. One start-only block (Skepta,
+"(02:45)") is an open end. Pages captured 27 October 2018.
+
+2019 is the same page again, headed "Set times" with "All set times" active
+and the Fòrum's columns under "Parc del Fòrum". The tabs print whole dates
+as 2018's do ("2019-05-30", Monday 27 May to Sunday 2 June), which must fall
+in the edition's year, each later than the one before and at most a week on. The
+names keep 2017's class (`artists_2017`), so only the link's year
+(`2019_artists?id=…`) is read. Day Pro, a city conference, prints two
+sessions at once on Friday 31 May, so the no-overlap rule holds for the
+Fòrum's stages only; the city's columns are never sets. Wednesday 29 May is
+the Fòrum's opening night on two stages, Thursday to Saturday have 16, and
+Sunday 2 June is the city's alone. Pages captured 23 July 2019.
+
 Archived Lollapalooza lineup cards (2018, format `lolla-cards`):
 
     node scripts/historical/gather-lolla-cards.mjs <edition-id> <gather-dir> <official-url> <ts> <url>

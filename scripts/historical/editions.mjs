@@ -92,6 +92,60 @@ export const EDITIONS = {
   "governors-ball-2015": { festivalId: "governors-ball", name: "Governors Ball 2015", year: 2015,
     timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
     dates: [["2015-06-05", "Friday"], ["2015-06-06", "Saturday"], ["2015-06-07", "Sunday"]] },
+  // Primavera Sound 2012: the official primaverasound.es timetable for Parc
+  // del Fòrum on its older template (format "primavera-horarios", template
+  // "2012"), one archived page per day in Spanish, each captured in July
+  // 2012. The tabs print Thursday 31 May to Saturday 2 June with no year.
+  // Every block prints its start alone, so every set is open-ended; the
+  // night runs to 6:30 AM. The city shows are on other pages and are not
+  // loaded. 2013's pages survive after the festival for two of its four
+  // days only, so 2013 is not loaded.
+  "primavera-sound-2012": { festivalId: "primavera-sound", name: "Primavera Sound 2012", year: 2012,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2012-05-31", "Thursday"], ["2012-06-01", "Friday"], ["2012-06-02", "Saturday"]] },
+  // Primavera Sound 2015: the official primaverasound.es timetable for Parc
+  // del Fòrum (/horarios?d=N&l=forum, format "primavera-horarios",
+  // primavera-horarios-schedule.mjs), one archived page per day, each
+  // captured after the festival. The page's day tabs print Wednesday 27 May
+  // (an opening night on the ATP stage alone) and the three main days, with
+  // no year; every set prints its range on the 24-hour clock. The city shows
+  // (Primavera a la Ciutat) are on other pages and are not loaded. The night
+  // runs to 5:30 AM.
+  "primavera-sound-2015": { festivalId: "primavera-sound", name: "Primavera Sound 2015", year: 2015,
+    timezone: "Europe/Madrid", rolloverHour: 6, method: "official_sources",
+    dates: [["2015-05-27", "Wednesday"], ["2015-05-28", "Thursday"], ["2015-05-29", "Friday"], ["2015-05-30", "Saturday"]] },
+  // Primavera Sound 2016: the official full timetable ("Horarios completos",
+  // format "primavera-completos", primavera-completos-schedule.mjs), one
+  // archived page per day, each captured after the festival. The page prints
+  // the whole week, Parc del Fòrum beside the city venues; only the Fòrum's
+  // stages are this edition's. Wednesday 1 June is one free concert on the
+  // Fòrum's Primavera stage, printed "Primavera (concierto gratuito)". The
+  // last sets of a night run to 06:00 and the first of the next start at
+  // 12:00, so the day runs from 10 AM.
+  "primavera-sound-2016": { festivalId: "primavera-sound", name: "Primavera Sound 2016", year: 2016,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2016-06-01", "Wednesday"], ["2016-06-02", "Thursday"], ["2016-06-03", "Friday"], ["2016-06-04", "Saturday"]] },
+  // Primavera Sound 2017: the same full timetable, its tabs printed "MIÉ-31"
+  // and listing only the season's days with shows. Wednesday 31 May is the
+  // Fòrum's free opening (the Heineken Hidden Stage and the Primavera stage,
+  // printed "Primavera (concierto gratuito)"); the day runs from 10 AM.
+  "primavera-sound-2017": { festivalId: "primavera-sound", name: "Primavera Sound 2017", year: 2017,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2017-05-31", "Wednesday"], ["2017-06-01", "Thursday"], ["2017-06-02", "Friday"], ["2017-06-03", "Saturday"]] },
+  // Primavera Sound 2018: the same full timetable, its tabs printing whole
+  // dates (Monday 28 May to Sunday 3 June), captured in October 2018.
+  // Wednesday 30 May is the Fòrum's opening on three stages; the day runs
+  // from 10 AM.
+  "primavera-sound-2018": { festivalId: "primavera-sound", name: "Primavera Sound 2018", year: 2018,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2018-05-30", "Wednesday"], ["2018-05-31", "Thursday"], ["2018-06-01", "Friday"], ["2018-06-02", "Saturday"]] },
+  // Primavera Sound 2019: the same full timetable, headed "Set times", its
+  // tabs printing whole dates (Monday 27 May to Sunday 2 June). Wednesday 29
+  // May is the Fòrum's opening night on the Primavera and Night Pro stages;
+  // Sunday 2 June is the city's alone. The day runs from 10 AM.
+  "primavera-sound-2019": { festivalId: "primavera-sound", name: "Primavera Sound 2019", year: 2019,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2019-05-29", "Wednesday"], ["2019-05-30", "Thursday"], ["2019-05-31", "Friday"], ["2019-06-01", "Saturday"]] },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.

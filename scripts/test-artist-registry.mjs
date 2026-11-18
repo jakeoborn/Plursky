@@ -121,8 +121,30 @@ const out = build();
   // request. Governors Ball 2015 ruled Pat Mahoney's DJ set under the existing
   // band-parenthetical rule and left one "+" billing as printed (Florence +
   // The Machine): 163 rows, raised here and reported in that pull request.
-  // Past 163, stop and report.
-  check(review.length <= 163, `review queue is ${review.length} rows (> 163 means stop and report)`);
+  // Primavera Sound 2016 ruled three billings under the existing feat., set
+  // tag and band-parenthetical rules (BEN WATT BAND FEAT. BERNARD BUTLER, BOB
+  // MOULD (SOLO ELECTRIC), FARIS BADWAN (THE HORRORS)) and left one
+  // parenthetical as printed (OPTIMO (ESPACIO)): 164 rows, raised here and
+  // reported in that pull request. Primavera Sound 2017 ruled three more under
+  // the same band-parenthetical and set tag rules and a new one for a name
+  // printed with how it is said (PATRICK CODENYS (FRONT 242), !!! (CHK CHK
+  // CHK) and its DJ SET), leaving the queue at 164. Primavera Sound 2019
+  // ruled one billing under the existing feat. rule (HURRICANE G FEAT TONY
+  // TOUCH) and left six as printed: two parentheticals naming the people
+  // behind an act (SHAKTI ALLIANCE (IVY, MODET, VIR), TONY TOUCH & FRIENDS
+  // (DON CHEZINA + SONI WITHANEYE)), three feat. billings whose guests the
+  // printing does not settle (a show title, a one-letter guest, a "&" that
+  // may be one act or two) and the short name IDK: 170 rows, raised here and
+  // reported in that pull request. Primavera Sound 2018 ruled LIMINAL
+  // SOUNDBATH WITH JÓNSI, ALEX SOMERS AND PAUL CORLEY under the feat. rule
+  // and left two curated days as printed (FOUR TET PRESENTS and DEKMANTEL
+  // PRESENTS, names joined by "/" in one all-day block, as Crew Love): 172
+  // rows, raised here and reported in that pull request. Primavera Sound
+  // 2012 ruled Barry Hogan DJ (ATP) and Jeff Mangum (Neutral Milk Hotel) and
+  // left the short name OFF! (Primavera Sound 2012 and Coachella 2015) to a
+  // first-party link: 173 rows, raised here and reported in that pull
+  // request. Past 173, stop and report.
+  check(review.length <= 173, `review queue is ${review.length} rows (> 173 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
