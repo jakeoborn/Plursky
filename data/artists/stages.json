@@ -6289,6 +6289,497 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cafe-d-anvers-invites-cocoon",
+     "names": [
+      {
+       "printed": "Café d'Anvers invites Cocoon",
+       "editions": [
+        "tomorrowland-2010",
+        "tomorrowland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:m-nus",
+     "names": [
+      {
+       "printed": "M_nus",
+       "editions": [
+        "tomorrowland-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:versuz-invites-martin-solveig-and-friends",
+     "names": [
+      {
+       "printed": "Versuz invites Martin Solveig and friends",
+       "editions": [
+        "tomorrowland-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:starwarz",
+     "names": [
+      {
+       "printed": "Starwarz",
+       "editions": [
+        "tomorrowland-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:ghoststyle",
+     "names": [
+      {
+       "printed": "Ghoststyle",
+       "editions": [
+        "tomorrowland-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:release",
+     "names": [
+      {
+       "printed": "RELEASE",
+       "editions": [
+        "tomorrowland-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:flugel-island",
+     "names": [
+      {
+       "printed": "Flugel Island",
+       "editions": [
+        "tomorrowland-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cafe-d-anvers-celebrates-15-years-of-ovum-recordings",
+     "names": [
+      {
+       "printed": "Café d'Anvers celebrates 15 years of Ovum Recordings",
+       "editions": [
+        "tomorrowland-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:kompakt",
+     "names": [
+      {
+       "printed": "Kompakt",
+       "editions": [
+        "tomorrowland-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:blue-flame",
+     "names": [
+      {
+       "printed": "Blue Flame",
+       "editions": [
+        "tomorrowland-2010",
+        "tomorrowland-2011",
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:la-rocca",
+     "names": [
+      {
+       "printed": "La Rocca",
+       "editions": [
+        "tomorrowland-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:coincidence-records",
+     "names": [
+      {
+       "printed": "Coincidence Records",
+       "editions": [
+        "tomorrowland-2010",
+        "tomorrowland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:global-underground",
+     "names": [
+      {
+       "printed": "Global Underground",
+       "editions": [
+        "tomorrowland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:untitled",
+     "names": [
+      {
+       "printed": "Untitled!",
+       "editions": [
+        "tomorrowland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:above-and-beyond-s-group-therapy-stage",
+     "names": [
+      {
+       "printed": "Above & Beyond's Group Therapy Stage",
+       "editions": [
+        "tomorrowland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:krush-club-invites-defected",
+     "names": [
+      {
+       "printed": "Krush Club invites Defected",
+       "editions": [
+        "tomorrowland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:format",
+     "names": [
+      {
+       "printed": "FormaT",
+       "editions": [
+        "tomorrowland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cafe-d-anvers-invites-ovum-recordings",
+     "names": [
+      {
+       "printed": "Café d'Anvers invites Ovum Recordings",
+       "editions": [
+        "tomorrowland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:m-nus-2",
+     "names": [
+      {
+       "printed": "M-nus",
+       "editions": [
+        "tomorrowland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:versuz-invites-size-matters",
+     "names": [
+      {
+       "printed": "Versuz invites Size Matters",
+       "editions": [
+        "tomorrowland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:paul-van-dyk-presents-evolution",
+     "names": [
+      {
+       "printed": "Paul van Dyk presents Evolution",
+       "editions": [
+        "tomorrowland-2011"
+       ]
+      },
+      {
+       "printed": "Paul van Dyk presents EVOLUTION",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:la-rocca-invites-we-love",
+     "names": [
+      {
+       "printed": "La Rocca invites We Love",
+       "editions": [
+        "tomorrowland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:above-and-beyond-group-therapy-stage",
+     "names": [
+      {
+       "printed": "Above & Beyond Group Therapy stage",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:untitled-invites-dub-police",
+     "names": [
+      {
+       "printed": "Untitled! invites Dub Police",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:twentyfive",
+     "names": [
+      {
+       "printed": "Twentyfive",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:desperados-cirque",
+     "names": [
+      {
+       "printed": "Desperados Cirque",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:samsung-galaxy-secret-forest",
+     "names": [
+      {
+       "printed": "Samsung Galaxy Secret Forest",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:cocoon-heroes",
+     "names": [
+      {
+       "printed": "Cocoon Heroes",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:star-warz-presents-shogun-audio",
+     "names": [
+      {
+       "printed": "Star Warz presents \"Shogun Audio\"",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:parquet-recordings",
+     "names": [
+      {
+       "printed": "Parquet Recordings",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:ovum-recordings",
+     "names": [
+      {
+       "printed": "Ovum Recordings",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:richie-hawtin-presents-enter",
+     "names": [
+      {
+       "printed": "Richie Hawtin presents ENTER.",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:pearl",
+     "names": [
+      {
+       "printed": "Pearl",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:dirty-dutch-vs-smash-the-house",
+     "names": [
+      {
+       "printed": "Dirty Dutch vs Smash the House",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:daily-dubstep-invites-wheel-and-deal",
+     "names": [
+      {
+       "printed": "Daily Dubstep invites Wheel & Deal",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:riva-starr-presents-bateria-fantastica",
+     "names": [
+      {
+       "printed": "Riva Starr presents Bateria Fantastica",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "tomorrowland:woodstrasse",
+     "names": [
+      {
+       "printed": "Woodstrasse",
+       "editions": [
+        "tomorrowland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

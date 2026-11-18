@@ -96,6 +96,29 @@ backwards or more than six hours, or starts off the axis by over an hour, is a
 misprint and an excluded row, never read another way (2012's Turf War, printed
 "11:45 pm - 12:10 pm"). Sets in a column must run in order with no overlap.
 
+Archived Tomorrowland line-up pages (2010 to 2012, format `tml-cms`):
+
+    node scripts/historical/gather-tml-cms.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+tomorrowland.be printed one Drupal page per festival day
+(/cms/en/line-up/<weekday> in 2010 and 2011, /line-up/<weekday> in 2012). Its
+day tabs print each day as "Saturday 24 july" with no year: every tab must be
+a real date of the edition's year on its own weekday, the tabs must run on
+consecutive days, and exactly one is marked current, which is the page's day.
+The page's title must be Tomorrowland's and its body the line-up page's. Each
+stage is a heading (2011 also draws it with Cufón; the text is the same name),
+followed by its acts, each with exactly one 24-hour range (2010 and 2011 print
+the two times apart, 2012 as "21:30 > 23:00"); a time before 6 AM is the
+night's. A block named as its own stage ("Radio Ultra Modern on Friday!",
+"Samsung Galaxy Island Saturday") names no act; a block printed across two or
+more whole, shorter sets on its stage (an all-day MC, a live percussionist over
+the DJs) is not a set of its own; both are excluded rows with what they print.
+A backwards range, one over eight hours, or two sets printed on one stage at
+once (each of them) is a misprint and an excluded row. The same act printed
+twice with the same range is one set. The archived URL must be on
+tomorrowland.be.
+
 Archived Tomorrowland day timetables (2013 to 2016, format `tml-drupal`):
 
     node scripts/historical/gather-tml-drupal.mjs <edition-id> <gather-dir> <official-url> \
