@@ -3334,6 +3334,19 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "lollapalooza:kidzapalooza-presented-by-lifeway",
+     "names": [
+      {
+       "printed": "Kidzapalooza Presented By Lifeway",
+       "editions": [
+        "lollapalooza-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
