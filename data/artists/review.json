@@ -273,6 +273,20 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "edc-las-vegas-2012:d2:cosmicmeadow:1900:lee-curtiss-ryan-crosson-shaun-reeves-visionquest",
+  "printed": "Lee Curtiss, Ryan Crosson, Shaun Reeves (Visionquest)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names the crew (Visionquest) and the three names before it, but no first-party page says how the billing splits. Renders as its own billing until one rules it."
+ },
+ {
+  "id": "edc-las-vegas-2012:d2:circuitgrounds:0300:cosmic-gate-feat-emma-hewitt",
+  "printed": "Cosmic Gate feat. Emma Hewitt",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "edc-las-vegas-2022:d1:parliament-art-car:0100:sultan-shepard",
   "printed": "Sultan + Shepard",
   "reason": "\"+\" billing",
@@ -793,6 +807,13 @@
  {
   "id": "key:k-d",
   "printed": "k?d",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:bt",
+  "printed": "BT",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."

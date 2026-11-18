@@ -445,6 +445,18 @@ export const EDITIONS = {
     dates: [["2016-11-04", "Friday"], ["2016-11-05", "Saturday"]],
     notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
       source: "https://web.archive.org/web/20161204183828/https://orlando.electricdaisycarnival.com/experience/lineup/" }] },
+  // EDC Las Vegas 2012-2013: the festival's own music page (format
+  // "insomniac-music", insomniac-music-schedule.mjs), one archived page per
+  // year that prints every day by stage, captured after the festival. Each
+  // day's heading prints its weekday and date with no year; the year is the
+  // page's own title (2012) or description (2013). Music runs from the
+  // evening to 5:30 AM, so a time before noon is the night of the day above.
+  "edc-las-vegas-2012": { festivalId: "edc-lv", name: "EDC Las Vegas 2012", year: 2012,
+    timezone: "America/Los_Angeles", rolloverHour: 12, method: "official_sources",
+    dates: [["2012-06-08", "Friday"], ["2012-06-09", "Saturday"], ["2012-06-10", "Sunday"]] },
+  "edc-las-vegas-2013": { festivalId: "edc-lv", name: "EDC Las Vegas 2013", year: 2013,
+    timezone: "America/Los_Angeles", rolloverHour: 12, method: "official_sources",
+    dates: [["2013-06-21", "Friday"], ["2013-06-22", "Saturday"], ["2013-06-23", "Sunday"]] },
   "edc-las-vegas-2016": { festivalId: "edc-lv", name: "EDC Las Vegas 2016", year: 2016,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html", undated: true,
     dates: [["2016-06-17", "Friday"], ["2016-06-18", "Saturday"], ["2016-06-19", "Sunday"]],
@@ -548,6 +560,8 @@ export const KEPT_STAGES = {
   "nocturnal-wonderland-2012": ["Discovery Project"],
   "nocturnal-wonderland-2013": ["Discovery Project"],
   "beyond-wonderland-socal-2013": ["Discovery Project"],
+  // EDC Las Vegas 2013's music.php printed the same named-DJ stage.
+  "edc-las-vegas-2013": ["Discovery Project"],
 };
 
 // Non-music activities (talks, bingo, drag shows, classes, food, podcast

@@ -1,0 +1,106 @@
+{
+  "id": "edc-las-vegas-2012",
+  "method": "official_sources",
+  "official": "https://lasvegas.electricdaisycarnival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2012-06-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://electricdaisycarnival.com/LasVegas/music.php?stage=all",
+          "archivedUrl": "https://web.archive.org/web/20120806075338/http://electricdaisycarnival.com/LasVegas/music.php?stage=all",
+          "captureTimestamp": "20120806075338",
+          "printed": "Friday - June 8th",
+          "sha256": "2976963da0acd419eb728a9bb13ac3eeb2ef8bf8ed2dfcc3aff5bfa81ed889e5",
+          "bytes": 77718,
+          "rows": 81,
+          "format": "insomniac-music",
+          "template": "2012",
+          "yearFrom": "the page's title",
+          "place": "the page's own og:url",
+          "stages": 9,
+          "times": "each range printed with its own am or pm; a time before noon is the night of the day above",
+          "hosts": [
+            "cosmicMEADOW: Size Matters",
+            "circuitGROUNDS: Group Therapy",
+            "neonGARDEN: Dim Mak",
+            "bassPOD: Bassrush",
+            "Q-danceSTAGE: Q-Dance"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2012-06-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://electricdaisycarnival.com/LasVegas/music.php?stage=all",
+          "archivedUrl": "https://web.archive.org/web/20120806075338/http://electricdaisycarnival.com/LasVegas/music.php?stage=all",
+          "captureTimestamp": "20120806075338",
+          "printed": "Saturday - June 9th",
+          "sha256": "2976963da0acd419eb728a9bb13ac3eeb2ef8bf8ed2dfcc3aff5bfa81ed889e5",
+          "bytes": 77718,
+          "rows": 79,
+          "format": "insomniac-music",
+          "template": "2012",
+          "yearFrom": "the page's title",
+          "place": "the page's own og:url",
+          "stages": 9,
+          "times": "each range printed with its own am or pm; a time before noon is the night of the day above",
+          "hosts": [
+            "cosmicMEADOW: Enter•",
+            "circuitGROUNDS: A State of Trance",
+            "neonGARDEN: Undocumented",
+            "bassPOD: Bassrush",
+            "Q-danceSTAGE: Q-Dance"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2012-06-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://electricdaisycarnival.com/LasVegas/music.php?stage=all",
+          "archivedUrl": "https://web.archive.org/web/20120806075338/http://electricdaisycarnival.com/LasVegas/music.php?stage=all",
+          "captureTimestamp": "20120806075338",
+          "printed": "Sunday - June 10th",
+          "sha256": "2976963da0acd419eb728a9bb13ac3eeb2ef8bf8ed2dfcc3aff5bfa81ed889e5",
+          "bytes": 77718,
+          "rows": 83,
+          "format": "insomniac-music",
+          "template": "2012",
+          "yearFrom": "the page's title",
+          "place": "the page's own og:url",
+          "stages": 9,
+          "times": "each range printed with its own am or pm; a time before noon is the night of the day above",
+          "hosts": [
+            "cosmicMEADOW: Carl Cox & Friends",
+            "circuitGROUNDS: A State of Trance",
+            "neonGARDEN: Super You & Me",
+            "bassPOD: Ram Records",
+            "Q-danceSTAGE: Q-Dance"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "bassPOD",
+      "start": "01:30",
+      "end": "02:30",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}
