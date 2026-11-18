@@ -1,0 +1,451 @@
+{
+  "id": "tomorrowland-2012",
+  "method": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2012-07-27",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.be/line-up/friday",
+          "archivedUrl": "https://web.archive.org/web/20120903091117/http://www.tomorrowland.be/line-up/friday",
+          "captureTimestamp": "20120903091117",
+          "printed": "Friday 27 july",
+          "sha256": "25e662e309eb864c2557ad939ddb29c2583f5eacffb3799b7540b89e9f4c48d8",
+          "bytes": 92543,
+          "rows": 131,
+          "format": "tml-cms",
+          "template": "2012",
+          "tabs": [
+            "Friday 27 july",
+            "Saturday 28 july",
+            "Sunday 29 july"
+          ],
+          "stages": 15,
+          "times": "24-hour ranges; a time before 6 AM is the night of the day above",
+          "stagesWithNoSets": [
+            "Radio Ultra Modern"
+          ],
+          "acrossOtherSets": [
+            "Mainstage: MC Stretch 12:00 > 01:00",
+            "Carl Cox & Friends: MC Gunner 12:00 > 01:00",
+            "Untitled! invites Dub Police: Rod Azlan 17:00 > 01:00",
+            "Untitled! invites Dub Police: Ken Mac (from Pyramid) 12:00 > 00:00",
+            "Q-dance: Mc Chucky 12:00 > 01:00"
+          ],
+          "stageBlocks": [
+            "Radio Ultra Modern: Radio Ultra Modern on Friday! 12:30 > 01:00"
+          ],
+          "misprints": [
+            "Angger Dimas: 18:30 > 19:15 (printed while another set on the stage is still on)",
+            "Polina: 18:30 > 19:15 (printed while another set on the stage is still on)",
+            "Huma Noyd (live): 20:00 > 21:00 (printed while another set on the stage is still on)",
+            "DJ Rush (Techno Set): 17:00 > 21:00 (printed while another set on the stage is still on)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2012-07-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.be/line-up/saturday",
+          "archivedUrl": "https://web.archive.org/web/20120827014941/http://www.tomorrowland.be/line-up/saturday",
+          "captureTimestamp": "20120827014941",
+          "printed": "Saturday 28 july",
+          "sha256": "abcc8275863bb3523bdccc97db9429fbbab5ccd6c673b9be69d18f04a88daf3b",
+          "bytes": 92108,
+          "rows": 127,
+          "format": "tml-cms",
+          "template": "2012",
+          "tabs": [
+            "Friday 27 july",
+            "Saturday 28 july",
+            "Sunday 29 july"
+          ],
+          "stages": 14,
+          "times": "24-hour ranges; a time before 6 AM is the night of the day above",
+          "stagesWithNoSets": [
+            "Radio Ultra Modern",
+            "Woody Weekend"
+          ],
+          "acrossOtherSets": [
+            "Mainstage: MC Stretch 12:00 > 01:00",
+            "Paul van Dyk presents EVOLUTION: Mc Gunner 12:00 > 01:00",
+            "Super You&Me: Mister VI 16:00 > 01:00",
+            "Star Warz presents \"Shogun Audio\": SP:MC 20:00 > 00:00",
+            "Star Warz presents \"Shogun Audio\": MC Mantmast 20:00 > 00:00",
+            "Star Warz presents \"Shogun Audio\": DMC 16:00 > 21:00",
+            "Star Warz presents \"Shogun Audio\": MC V 14:00 > 16:00",
+            "V Sessions: Mc Mitch Crown 16:00 > 01:00",
+            "Q-dance: MC DV8 12:00 > 01:00"
+          ],
+          "stageBlocks": [
+            "Radio Ultra Modern: Radio Ultra Modern on Saturday 12:30 > 01:00",
+            "Woody Weekend: Woody Weekend 12:00 > 01:00"
+          ],
+          "misprints": [
+            "Laidback Luke: 18:00 > 19:30 (printed while another set on the stage is still on)",
+            "Polina: 18:00 > 19:00 (printed while another set on the stage is still on)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2012-07-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.be/line-up/sunday",
+          "archivedUrl": "https://web.archive.org/web/20120831130723/http://www.tomorrowland.be/line-up/sunday",
+          "captureTimestamp": "20120831130723",
+          "printed": "Sunday 29 july",
+          "sha256": "359c979fac59828114e944004ab59f4f7d6ea2aef2828de945e8c9a556bb4ec5",
+          "bytes": 89291,
+          "rows": 124,
+          "format": "tml-cms",
+          "template": "2012",
+          "tabs": [
+            "Friday 27 july",
+            "Saturday 28 july",
+            "Sunday 29 july"
+          ],
+          "stages": 15,
+          "times": "24-hour ranges; a time before 6 AM is the night of the day above",
+          "stagesWithNoSets": [
+            "Radio Ultra Modern"
+          ],
+          "acrossOtherSets": [
+            "Mainstage: Mc Stretch 12:00 > 00:00",
+            "Dave Clarke Presents: MC Gunner 12:00 > 00:00",
+            "Pearl: Vika Kova 12:00 > 00:00",
+            "Pearl: Sakso 12:00 > 23:00",
+            "Dirty Dutch vs Smash the House: Mister VI 12:00 > 00:00",
+            "Dirty Dutch vs Smash the House: MC Roga 12:00 > 23:00",
+            "Daily Dubstep invites Wheel & Deal: Mc Sgt Pokes 22:00 > 00:00",
+            "Daily Dubstep invites Wheel & Deal: MC Crazy D 20:00 > 22:00",
+            "Daily Dubstep invites Wheel & Deal: SP:MC 18:00 > 20:00",
+            "Q-dance: MC Villain 12:00 > 00:00"
+          ],
+          "stageBlocks": [
+            "Radio Ultra Modern: Radio Ultra Modern on Sunday 12:30 > 23:30"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Dim Mak Fight club",
+      "start": "18:30",
+      "end": "19:15",
+      "billing": "Angger Dimas",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 1,
+      "stage": "Dim Mak Fight club",
+      "start": "18:30",
+      "end": "19:15",
+      "billing": "Polina",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 1,
+      "stage": "Kne'Deep",
+      "start": "20:00",
+      "end": "21:00",
+      "billing": "Huma Noyd (live)",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 1,
+      "stage": "Kne'Deep",
+      "start": "17:00",
+      "end": "21:00",
+      "billing": "DJ Rush (Techno Set)",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 1,
+      "stage": "Mainstage",
+      "start": "12:00",
+      "end": "01:00",
+      "billing": "MC Stretch",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 1,
+      "stage": "Carl Cox & Friends",
+      "start": "12:00",
+      "end": "01:00",
+      "billing": "MC Gunner",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 1,
+      "stage": "Untitled! invites Dub Police",
+      "start": "17:00",
+      "end": "01:00",
+      "billing": "Rod Azlan",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 1,
+      "stage": "Untitled! invites Dub Police",
+      "start": "12:00",
+      "end": "00:00",
+      "billing": "Ken Mac (from Pyramid)",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 1,
+      "stage": "Q-dance",
+      "start": "12:00",
+      "end": "01:00",
+      "billing": "Mc Chucky",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 1,
+      "stage": "Radio Ultra Modern",
+      "start": "12:30",
+      "end": "01:00",
+      "billing": "Radio Ultra Modern on Friday!",
+      "reason": "a block named as its own stage (a radio broadcast or a sponsor's island) names no performer",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Super You&Me",
+      "start": "18:00",
+      "end": "19:30",
+      "billing": "Laidback Luke",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "Super You&Me",
+      "start": "18:00",
+      "end": "19:00",
+      "billing": "Polina",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "Mainstage",
+      "start": "12:00",
+      "end": "01:00",
+      "billing": "MC Stretch",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Paul van Dyk presents EVOLUTION",
+      "start": "12:00",
+      "end": "01:00",
+      "billing": "Mc Gunner",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Super You&Me",
+      "start": "16:00",
+      "end": "01:00",
+      "billing": "Mister VI",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Star Warz presents \"Shogun Audio\"",
+      "start": "20:00",
+      "end": "00:00",
+      "billing": "SP:MC",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Star Warz presents \"Shogun Audio\"",
+      "start": "20:00",
+      "end": "00:00",
+      "billing": "MC Mantmast",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Star Warz presents \"Shogun Audio\"",
+      "start": "16:00",
+      "end": "21:00",
+      "billing": "DMC",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Star Warz presents \"Shogun Audio\"",
+      "start": "14:00",
+      "end": "16:00",
+      "billing": "MC V",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "V Sessions",
+      "start": "16:00",
+      "end": "01:00",
+      "billing": "Mc Mitch Crown",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Q-dance",
+      "start": "12:00",
+      "end": "01:00",
+      "billing": "MC DV8",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Radio Ultra Modern",
+      "start": "12:30",
+      "end": "01:00",
+      "billing": "Radio Ultra Modern on Saturday",
+      "reason": "a block named as its own stage (a radio broadcast or a sponsor's island) names no performer",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Woody Weekend",
+      "start": "12:00",
+      "end": "01:00",
+      "billing": "Woody Weekend",
+      "reason": "a block named as its own stage (a radio broadcast or a sponsor's island) names no performer",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Mainstage",
+      "start": "12:00",
+      "end": "00:00",
+      "billing": "Mc Stretch",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Dave Clarke Presents",
+      "start": "12:00",
+      "end": "00:00",
+      "billing": "MC Gunner",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Pearl",
+      "start": "12:00",
+      "end": "00:00",
+      "billing": "Vika Kova",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Pearl",
+      "start": "12:00",
+      "end": "23:00",
+      "billing": "Sakso",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Dirty Dutch vs Smash the House",
+      "start": "12:00",
+      "end": "00:00",
+      "billing": "Mister VI",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Dirty Dutch vs Smash the House",
+      "start": "12:00",
+      "end": "23:00",
+      "billing": "MC Roga",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Daily Dubstep invites Wheel & Deal",
+      "start": "22:00",
+      "end": "00:00",
+      "billing": "Mc Sgt Pokes",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Daily Dubstep invites Wheel & Deal",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "MC Crazy D",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Daily Dubstep invites Wheel & Deal",
+      "start": "18:00",
+      "end": "20:00",
+      "billing": "SP:MC",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Q-dance",
+      "start": "12:00",
+      "end": "00:00",
+      "billing": "MC Villain",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Radio Ultra Modern",
+      "start": "12:30",
+      "end": "23:30",
+      "billing": "Radio Ultra Modern on Sunday",
+      "reason": "a block named as its own stage (a radio broadcast or a sponsor's island) names no performer",
+      "programme": true
+    }
+  ],
+  "dropped": []
+}

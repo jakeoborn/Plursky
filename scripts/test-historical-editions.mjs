@@ -31,6 +31,7 @@ import { parseMyScheduler, restoreSets } from "./historical/myscheduler-schedule
 import { parseEfScheduler } from "./historical/ef-scheduler-schedule.mjs";
 import { parseGovBallWp, printedDate as govBallDate } from "./historical/govball-wp-schedule.mjs";
 import { parseInsomniacMusic, printedDate as insomniacDate } from "./historical/insomniac-music-schedule.mjs";
+import { parseTmlCms, printedDate as tmlCmsDate } from "./historical/tml-cms-schedule.mjs";
 import { parseTmlDrupal, titleDate as tmlTitleDate } from "./historical/tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, datesFromPost as shambhalaRun, readDatesPost } from "./historical/shambhala-webflow-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
@@ -116,6 +117,15 @@ if (base && edc) {
     mustFail("an EDC page dated by neither its title nor its description", m => { imCap(m).yearFrom = "the capture's timestamp"; }, edc12);
     mustFail("an EDC page that never names Las Vegas", m => { imCap(m).place = "the URL"; }, edc12);
     mustFail("an EDC page on another city's subdomain", m => { const c = imCap(m); c.archivedUrl = c.archivedUrl.replace("//electricdaisycarnival.com/", "//orlando.electricdaisycarnival.com/"); }, edc12);
+  }
+  // Tomorrowland 2010-2012: each day page prints its day as its own tab, with
+  // no year, on the festival's own .be site.
+  const tml10 = editions["tomorrowland-2010"];
+  if (tml10) {
+    const tcCap = m => m.provenance.captures.find(c => c.format === "tml-cms" && c.day === 1);
+    mustFail("a Tomorrowland 2010 tab printed for another day", m => { tcCap(m).printed = "Sunday 25 july"; }, tml10);
+    mustFail("a Tomorrowland 2010 tab whose weekday is not its date", m => { tcCap(m).printed = "Friday 24 july"; }, tml10);
+    mustFail("a Tomorrowland 2010 page read off another site", m => { const c = tcCap(m); c.archivedUrl = c.archivedUrl.replace("www.tomorrowland.be", "www.tomorrowlandfans.com"); }, tml10);
   }
   const lolla = editions["lollapalooza-2025"], acl = editions["acl-2025"];
   if (lolla && acl) {
@@ -494,6 +504,45 @@ if (base && edc) {
     tdMust("Tomorrowland stage names in another order than the rows", tdPage(undefined, undefined, [tdNames[1], tdNames[0], ...tdNames.slice(2)]));
     tdMust("a Tomorrowland stage named twice", tdPage(undefined, undefined, [...tdNames, ["5", "Again"]]));
     tdMust("a Tomorrowland range with no time", tdPage().replace("22:30-23:00", "22:30"));
+    // Tomorrowland's 2010-2012 line-up page: a tab per day ("Saturday 28
+    // july", the page's own marked current), then each stage as a heading
+    // followed by its acts and ranges, 24-hour, a time before 6 AM the night's.
+    const tcTabs = (cur = 1, labels = ["Friday 27 july", "Saturday 28 july", "Sunday 29 july"], again = -1) => labels.map((l, i) =>
+      `<li class="left tab292"><a href="/line-up/x"${i === cur || i === again ? ' class="currentactive"' : ""} title="${l}">${l.split(" ")[0]}</a></li>`).join("");
+    const tcStage = n => `<h5 class="stage"><img src="i.png"><span class="title-content-coverlineup">${n}</span></h5>`;
+    const tcAct = (a, r) => `<div class="left artist"><a href="/artist/x">${a}</a></div><div class="left lineup_right_wrapper"><div class="play lineup_right_time">${r.replace(" > ", "&nbsp;&gt;&nbsp;")}</div></div>`;
+    const tcBody = [tcStage("Mainstage"), tcAct("MC Allday", "12:00 > 01:00"), tcAct("Opener", "21:30 > 23:00"), tcAct("Late &amp; Co", "23:00 > 00:30"), tcAct("Night", "00:30 > 01:00"),
+      tcStage("Radio Modern"), tcAct("Radio Modern on Saturday!", "14:00 > 20:00"),
+      tcStage("Clash Stage"), tcAct("Clash One", "20:00 > 21:00"), tcAct("Clash Two", "20:30 > 21:30"), tcAct("Repeat", "22:00 > 23:00"), tcAct("Repeat", "22:00 > 23:00"), tcAct("Back", "23:00 > 22:00")].join("");
+    const tcPage = (tabs = tcTabs(), body = tcBody, title = "Tomorrowland") => `<title>${title}</title><body class="not-front page-line-up">${tabs}${body}</body>`;
+    const tcp = parseTmlCms(tcPage(), { year: 2012 });
+    ok(JSON.stringify([tcp.template, tcp.date, tcp.weekday, tcp.tabs, tcp.stages, tcp.blank, tcp.overlays.map(x => x.artist), tcp.stageBlocks.map(x => x.artist), tcp.repeats,
+      tcp.sets.map(x => [x.stage, x.start, x.end, x.artist]), tcp.misprints.map(x => `${x.artist}: ${x.misprint}`)])
+      === JSON.stringify(["2012", "2012-07-28", "saturday", ["Friday 27 july", "Saturday 28 july", "Sunday 29 july"], ["Mainstage", "Clash Stage"], ["Radio Modern"], ["MC Allday"], ["Radio Modern on Saturday!"], 1,
+        [["Mainstage", "21:30", "23:00", "Opener"], ["Mainstage", "23:00", "00:30", "Late & Co"], ["Mainstage", "00:30", "01:00", "Night"], ["Clash Stage", "22:00", "23:00", "Repeat"]],
+        ["Clash One: printed while another set on the stage is still on", "Clash Two: printed while another set on the stage is still on", "Back: the range runs backwards"]]),
+      `a Tomorrowland 2012 line-up page must come back set by set past midnight, an all-day block, a block named as its stage, two sets at once and a backwards range never as sets: ${JSON.stringify(tcp)}`);
+    const tc10Act = (a, f, t) => `<div class="left artist"><a href="/cms/en/artist/x">${a}</a></div>\n<div class="left play"><span class="date-display-single">${f}</span>&nbsp;&gt;&nbsp;<span class="date-display-single">${t}</span></div>`;
+    const tc10 = tcPage(tcTabs(0, ["Saturday 24 july", "Sunday 25 july"]), tcStage("<cufon><canvas></canvas><cufontext>Kompakt</cufontext></cufon>") + tc10Act("Late", "23:30", "01:00") + tc10Act("Early", "22:00", "23:30"));
+    const tcq = parseTmlCms(tc10, { year: 2010 });
+    ok(JSON.stringify([tcq.template, tcq.date, tcq.stages, tcq.sets.map(x => [x.start, x.end, x.artist])]) === JSON.stringify(["2010", "2010-07-24", ["Kompakt"], [["22:00", "23:30", "Early"], ["23:30", "01:00", "Late"]]]),
+      `a Tomorrowland 2010 line-up page must read two times per act and a stage name drawn in Cufón: ${JSON.stringify(tcq)}`);
+    ok(parseTmlCms(tcPage(undefined, tcStage("Solo") + tcAct("MC Over", "20:00 > 23:00") + tcAct("One", "21:00 > 22:00")), { year: 2012 }).misprints.map(x => x.artist).join() === "MC Over,One",
+      "a block over one set only is two sets at once, never dropped as an all-day block");
+    ok(tmlCmsDate("Saturday 24 july", 2010) === "2010-07-24" && tmlCmsDate("Saturday 24 july", 2011) === null && tmlCmsDate("Saturday 31 june", 2010) === null, "a Tomorrowland tab must print its own weekday and a real date");
+    const tcMust = (what, html, year = 2012) => { let bad = false; try { parseTmlCms(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    tcMust("a Tomorrowland 2012 page of another year", tcPage(), 2013);
+    tcMust("a Tomorrowland tab whose weekday is not its date", tcPage(tcTabs(1, ["Friday 27 july", "Sunday 28 july", "Sunday 29 july"])));
+    tcMust("Tomorrowland tabs that skip a day", tcPage(tcTabs(1, ["Friday 27 july", "Saturday 28 july", "Monday 30 july"])));
+    tcMust("two Tomorrowland tabs marked current", tcPage(tcTabs(1, undefined, 2)));
+    tcMust("no Tomorrowland tab marked current", tcPage(tcTabs(-1)));
+    tcMust("a Tomorrowland range with one time", tcPage(undefined, tcBody.replace("21:30&nbsp;&gt;&nbsp;23:00", "21:30")));
+    tcMust("a Tomorrowland act heading with no range", tcPage(undefined, tcBody.replace('<div class="left lineup_right_wrapper"><div class="play lineup_right_time">21:30&nbsp;&gt;&nbsp;23:00</div></div>', "")));
+    tcMust("a Tomorrowland 2010 act printing one time", tc10.replace('&nbsp;&gt;&nbsp;<span class="date-display-single">01:00</span>', "&nbsp;&gt;&nbsp;01:00"), 2010);
+    tcMust("a page that is not Tomorrowland's", tcPage(undefined, undefined, "Tomorrowland Fans"));
+    tcMust("a Tomorrowland page that is not the line-up", tcPage().replace("page-line-up", "page-news"));
+    tcMust("a Tomorrowland stage printed twice", tcPage(undefined, tcBody + tcStage("Mainstage") + tcAct("Again", "13:00 > 14:00")));
+    tcMust("a Tomorrowland range past 23:59", tcPage(undefined, tcBody.replace("21:30 > 23:00".replace(" > ", "&nbsp;&gt;&nbsp;"), "24:30&nbsp;&gt;&nbsp;25:00")));
     // Governors Ball's 2011-2012 WordPress schedule: a grid per day, a column
     // per stage, every range with its own am or pm.
     const gbBlock = (pre, cls, name, range, head = "") => `<div class="${pre}-block ${cls}">${head}<h2>${name}</h2><h3>${range}</h3></div>`;
@@ -947,6 +996,13 @@ for (const [id, e] of Object.entries(editions)) {
         if (s.format === "ef-scheduler") {
           ok(s.tabDate === d.date && s.printed === `${MONTH[m - 1][0]}${MONTH[m - 1].slice(1).toLowerCase()} ${dd}` && s.pxPerMinute > 0 && /^\d{2}:\d{2}$/.test(s.axisStart || ""),
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" for tab ${s.tabDate}, not ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // Tomorrowland's 2010-2012 line-up page prints its day as its own tab,
+        // with no year, on the festival's own .be site.
+        if (s.format === "tml-cms") {
+          ok(tmlCmsDate(s.printed, e.year) === d.date && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?tomorrowland\.be(:80)?\//.test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         // Tomorrowland's 2013-2016 day page prints its weekday and date in

@@ -6,6 +6,7 @@ import { EDITIONS, KEPT_STAGES, PRINTED_LONG_SETS, PRINTED_NON_LATIN, dropReason
 import { printedDate as govBallDate } from "./govball-wp-schedule.mjs";
 import { printedDate as insomniacDate } from "./insomniac-music-schedule.mjs";
 import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
+import { printedDate as tmlCmsDate } from "./tml-cms-schedule.mjs";
 import { datesFromPost as shambhalaRun } from "./shambhala-webflow-schedule.mjs";
 import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, undatedOwnPost, weekdayOf } from "./lib.mjs";
 
@@ -36,7 +37,8 @@ export const OFFICIAL_HOSTS = {
   "nocturnal-wonderland": ["nocturnalwonderland.com"],
   "countdown-nye": ["countdownnye.com"],
   "dreamstate-socal": ["dreamstateusa.com"],
-  "tomorrowland": ["tomorrowland.com"],
+  // tomorrowland.be: the festival's own site until 2012.
+  "tomorrowland": ["tomorrowland.com", "tomorrowland.be"],
   "shambhala": ["shambhalamusicfestival.com"],
   // The schedule grid and act pages lived on the lineup subdomain (DoStuff).
   "outside-lands": ["sfoutsidelands.com", "lineup.sfoutsidelands.com"],
@@ -378,6 +380,10 @@ function officialSources(e, meta, p) {
         const [, m, d] = date.split("-").map(Number);
         const md = `${new Date(date + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", timeZone: "UTC" })} ${d}`;
         if (c.tabDate !== date || c.printed !== md) p.push(`${tag}: the page's day tab "${c.printed}" (${c.tabDate}) does not print ${date}`);
+      } else if (c.format === "tml-cms") {
+        // Tomorrowland's 2010-2012 line-up page prints its day as its own
+        // tab, with no year ("Saturday 24 july").
+        if (tmlCmsDate(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
       } else if (c.format === "tml-drupal") {
         // Tomorrowland's 2013-2016 day page prints its weekday and date with
         // no year in its title ("Saturday/ 27 July").
