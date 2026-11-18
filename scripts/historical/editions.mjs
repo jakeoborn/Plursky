@@ -282,6 +282,16 @@ export const EDITIONS = {
   // day ("Q-dance", "Woody Weekend"), which is how the stages are kept. Times
   // are 24-hour and every slot's width and gap on the page's own hour axis
   // must agree with its printed range. 2014 ran two weekends.
+  // Tomorrowland 2010 to 2012: the festival's own line-up page per day
+  // (tomorrowland.be, format "tml-cms", tml-cms-schedule.mjs), each captured
+  // after the festival. Every stage prints its sets with a 24-hour range; the
+  // day is the page's own tab ("Saturday 24 july"), no year. 2010 ran two days.
+  "tomorrowland-2010": { festivalId: "tomorrowland", name: "Tomorrowland 2010", year: 2010,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2010-07-24", "Saturday"], ["2010-07-25", "Sunday"]] },
+  "tomorrowland-2011": { festivalId: "tomorrowland", name: "Tomorrowland 2011", year: 2011,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2011-07-22", "Friday"], ["2011-07-23", "Saturday"], ["2011-07-24", "Sunday"]] },
+  "tomorrowland-2012": { festivalId: "tomorrowland", name: "Tomorrowland 2012", year: 2012,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2012-07-27", "Friday"], ["2012-07-28", "Saturday"], ["2012-07-29", "Sunday"]] },
   "tomorrowland-2013": { festivalId: "tomorrowland", name: "Tomorrowland 2013", year: 2013,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2013-07-26", "Friday"], ["2013-07-27", "Saturday"], ["2013-07-28", "Sunday"]] },
   "tomorrowland-2014": { festivalId: "tomorrowland", name: "Tomorrowland 2014", year: 2014,

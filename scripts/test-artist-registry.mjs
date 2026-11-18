@@ -109,8 +109,13 @@ const out = build();
   // feat./with rule and left three as printed: "Lee Curtiss, Ryan Crosson,
   // Shaun Reeves (Visionquest)", the short name BT, and Cosmic Gate feat.
   // Emma Hewitt (already pending, now printed in 2012 too): 155 rows, raised
-  // here and reported in that pull request. Past 155, stop and report.
-  check(review.length <= 155, `review queue is ${review.length} rows (> 155 means stop and report)`);
+  // here and reported in that pull request. Tomorrowland 2010 to 2012 ruled 26
+  // billings under the existing feat., MC, aka and band rules and left six as
+  // printed: five parentheticals naming the people or crew behind a billing
+  // (Airscape, Club Cheval, Frequency 7 and Killa Productions, NGA, Fiocco)
+  // and the short name NU: 161 rows, raised here and reported in that pull
+  // request. Past 161, stop and report.
+  check(review.length <= 161, `review queue is ${review.length} rows (> 161 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

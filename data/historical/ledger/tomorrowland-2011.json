@@ -1,0 +1,363 @@
+{
+  "id": "tomorrowland-2011",
+  "method": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2011-07-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.be:80/cms/en/line-up/friday",
+          "archivedUrl": "https://web.archive.org/web/20110803195002/http://www.tomorrowland.be:80/cms/en/line-up/friday",
+          "captureTimestamp": "20110803195002",
+          "printed": "Friday 22 july",
+          "sha256": "d7ec5b62e11e7d8627faabc88c130529469e6d9e6bdda5b280beeea7bc127bb9",
+          "bytes": 135186,
+          "rows": 94,
+          "format": "tml-cms",
+          "template": "2010",
+          "tabs": [
+            "Friday 22 july",
+            "Saturday 23 july",
+            "Sunday 24 july"
+          ],
+          "stages": 12,
+          "times": "24-hour ranges; a time before 6 AM is the night of the day above",
+          "stagesWithNoSets": [
+            "Radio Ultra Modern",
+            "Samsung Galaxy Island"
+          ],
+          "acrossOtherSets": [
+            "Versuz: MC Shurakano 13:59 > 00:45",
+            "Q-dance: Mc Chucky 14:00 > 01:00"
+          ],
+          "stageBlocks": [
+            "Radio Ultra Modern: Radio Ultra Modern 15:00 > 00:45",
+            "Samsung Galaxy Island: Samsung Galaxy Island Friday 14:00 > 00:50"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2011-07-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.be:80/cms/en/line-up/saturday",
+          "archivedUrl": "https://web.archive.org/web/20110802065019/http://www.tomorrowland.be:80/cms/en/line-up/saturday",
+          "captureTimestamp": "20110802065019",
+          "printed": "Saturday 23 july",
+          "sha256": "876bedd6fff6ed34ff2afc6b7bf37e76e345cc71c93b6b2a25a298843a7e2cd8",
+          "bytes": 145178,
+          "rows": 94,
+          "format": "tml-cms",
+          "template": "2010",
+          "tabs": [
+            "Friday 22 july",
+            "Saturday 23 july",
+            "Sunday 24 july"
+          ],
+          "stages": 12,
+          "times": "24-hour ranges; a time before 6 AM is the night of the day above",
+          "stagesWithNoSets": [
+            "Radio Ultra Modern",
+            "Samsung Galaxy Island"
+          ],
+          "acrossOtherSets": [
+            "Krush Club invites Defected: Shovell (live on percussion) 16:00 > 00:00",
+            "Star Warz: MC Bassline 22:00 > 01:00",
+            "Star Warz: MC Mush 13:00 > 01:00",
+            "Star Warz: SP:MC 12:59 > 01:00",
+            "Versuz: Sakso 11:59 > 23:00",
+            "Versuz: MC Shurakano 11:59 > 00:45",
+            "Q-dance: MC Villain 12:00 > 01:00"
+          ],
+          "stageBlocks": [
+            "Radio Ultra Modern: Radio Ultra Modern 13:00 > 00:45",
+            "Samsung Galaxy Island: Samsung Galaxy Island Saturday 12:00 > 00:50"
+          ],
+          "misprints": [
+            "Nabil: 20:00 > 22:00 (printed while another set on the stage is still on)",
+            "Mousa: 20:00 > 22:00 (printed while another set on the stage is still on)",
+            "Younes: 20:00 > 22:00 (printed while another set on the stage is still on)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2011-07-24",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.be:80/cms/en/line-up/sunday",
+          "archivedUrl": "https://web.archive.org/web/20110727234807/http://www.tomorrowland.be:80/cms/en/line-up/sunday",
+          "captureTimestamp": "20110727234807",
+          "printed": "Sunday 24 july",
+          "sha256": "abfa8216b458b8815922c2cbf2be784d5b66a2a9ab55a6cc0d7e429bfb6331ba",
+          "bytes": 152320,
+          "rows": 103,
+          "format": "tml-cms",
+          "template": "2010",
+          "tabs": [
+            "Friday 22 july",
+            "Saturday 23 july",
+            "Sunday 24 july"
+          ],
+          "stages": 12,
+          "times": "24-hour ranges; a time before 6 AM is the night of the day above",
+          "stagesWithNoSets": [
+            "Radio Ultra Modern",
+            "Samsung Galaxy Island"
+          ],
+          "acrossOtherSets": [
+            "Versuz invites Size Matters: Sakso 10:59 > 23:45",
+            "Versuz invites Size Matters: Mc Shurakano 10:59 > 23:45",
+            "Q-dance: MC DV8 11:00 > 00:00"
+          ],
+          "stageBlocks": [
+            "Radio Ultra Modern: Radio Ultra Modern 12:00 > 23:30",
+            "Samsung Galaxy Island: Samsung Galaxy Island Sunday 11:00 > 23:50"
+          ],
+          "misprints": [
+            "R3hab vs Quintino: 15:00 > 16:30 (printed while another set on the stage is still on)",
+            "MC Ambush: 15:00 > 16:30 (printed while another set on the stage is still on)",
+            "Joeri: 11:00 > 14:00 (printed while another set on the stage is still on)",
+            "Philip: 11:00 > 14:00 (printed while another set on the stage is still on)"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Versuz",
+      "start": "13:59",
+      "end": "00:45",
+      "billing": "MC Shurakano",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 1,
+      "stage": "Q-dance",
+      "start": "14:00",
+      "end": "01:00",
+      "billing": "Mc Chucky",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 1,
+      "stage": "Radio Ultra Modern",
+      "start": "15:00",
+      "end": "00:45",
+      "billing": "Radio Ultra Modern",
+      "reason": "a block named as its own stage (a radio broadcast or a sponsor's island) names no performer",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Samsung Galaxy Island",
+      "start": "14:00",
+      "end": "00:50",
+      "billing": "Samsung Galaxy Island Friday",
+      "reason": "a block named as its own stage (a radio broadcast or a sponsor's island) names no performer",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Cafeina",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Nabil",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "Cafeina",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Mousa",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "Cafeina",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Younes",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "Krush Club invites Defected",
+      "start": "16:00",
+      "end": "00:00",
+      "billing": "Shovell (live on percussion)",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Star Warz",
+      "start": "22:00",
+      "end": "01:00",
+      "billing": "MC Bassline",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Star Warz",
+      "start": "13:00",
+      "end": "01:00",
+      "billing": "MC Mush",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Star Warz",
+      "start": "12:59",
+      "end": "01:00",
+      "billing": "SP:MC",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Versuz",
+      "start": "11:59",
+      "end": "23:00",
+      "billing": "Sakso",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Versuz",
+      "start": "11:59",
+      "end": "00:45",
+      "billing": "MC Shurakano",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Q-dance",
+      "start": "12:00",
+      "end": "01:00",
+      "billing": "MC Villain",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Radio Ultra Modern",
+      "start": "13:00",
+      "end": "00:45",
+      "billing": "Radio Ultra Modern",
+      "reason": "a block named as its own stage (a radio broadcast or a sponsor's island) names no performer",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Samsung Galaxy Island",
+      "start": "12:00",
+      "end": "00:50",
+      "billing": "Samsung Galaxy Island Saturday",
+      "reason": "a block named as its own stage (a radio broadcast or a sponsor's island) names no performer",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Smash The House",
+      "start": "15:00",
+      "end": "16:30",
+      "billing": "R3hab vs Quintino",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 3,
+      "stage": "Smash The House",
+      "start": "15:00",
+      "end": "16:30",
+      "billing": "MC Ambush",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 3,
+      "stage": "La Rocca invites We Love",
+      "start": "11:00",
+      "end": "14:00",
+      "billing": "Joeri",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 3,
+      "stage": "La Rocca invites We Love",
+      "start": "11:00",
+      "end": "14:00",
+      "billing": "Philip",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 3,
+      "stage": "Versuz invites Size Matters",
+      "start": "10:59",
+      "end": "23:45",
+      "billing": "Sakso",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Versuz invites Size Matters",
+      "start": "10:59",
+      "end": "23:45",
+      "billing": "Mc Shurakano",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Q-dance",
+      "start": "11:00",
+      "end": "00:00",
+      "billing": "MC DV8",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 3,
+      "stage": "Radio Ultra Modern",
+      "start": "12:00",
+      "end": "23:30",
+      "billing": "Radio Ultra Modern",
+      "reason": "a block named as its own stage (a radio broadcast or a sponsor's island) names no performer",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Samsung Galaxy Island",
+      "start": "11:00",
+      "end": "23:50",
+      "billing": "Samsung Galaxy Island Sunday",
+      "reason": "a block named as its own stage (a radio broadcast or a sponsor's island) names no performer",
+      "programme": true
+    }
+  ],
+  "dropped": []
+}

@@ -3547,6 +3547,392 @@
    ],
    "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
    "source": "https://lasvegas.electricdaisycarnival.com/"
+  },
+  {
+   "printed": "Urban Forms feat. Mc Divine",
+   "performers": [
+    {
+     "name": "Urban Forms",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Divine",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Kasra & One87 feat. DMC",
+   "performers": [
+    {
+     "name": "Kasra & One87",
+     "role": "performer"
+    },
+    {
+     "name": "DMC",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"Kasra & One87\" is kept as printed, one billed name (\"&\" and \"vs\" are never split).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Murdock & Netsky feat. Quest One MC",
+   "performers": [
+    {
+     "name": "Murdock & Netsky",
+     "role": "performer"
+    },
+    {
+     "name": "Quest One MC",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"Murdock & Netsky\" is kept as printed, one billed name (\"&\" and \"vs\" are never split).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Friction feat. MC ID",
+   "performers": [
+    {
+     "name": "Friction",
+     "role": "performer"
+    },
+    {
+     "name": "MC ID",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Don Camilo ft. Isaac Maine",
+   "performers": [
+    {
+     "name": "Don Camilo",
+     "role": "performer"
+    },
+    {
+     "name": "Isaac Maine",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "The Flexican ft. Mc Sef",
+   "performers": [
+    {
+     "name": "The Flexican",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Sef",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Kerri Chandler & Red D feat. Lady Linn",
+   "performers": [
+    {
+     "name": "Kerri Chandler & Red D",
+     "role": "performer"
+    },
+    {
+     "name": "Lady Linn",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"Kerri Chandler & Red D\" is kept as printed, one billed name (\"&\" and \"vs\" are never split).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Mark with a K (live)",
+   "performers": [
+    {
+     "name": "Mark with a K",
+     "role": "performer"
+    }
+   ],
+   "setTag": "live",
+   "why": "The billed name is the act's own name and contains \"with\" (the Mark With a K rule): one performer, nobody is added. \"(live)\" is the set tag.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "One87 & Hookerz feat. MC Nice",
+   "performers": [
+    {
+     "name": "One87 & Hookerz",
+     "role": "performer"
+    },
+    {
+     "name": "MC Nice",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"One87 & Hookerz\" is kept as printed, one billed name (\"&\" and \"vs\" are never split).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "AKS (Addicted Kru Sound)",
+   "performers": [
+    {
+     "name": "AKS",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical spells out the billed initials (Addicted Kru Sound): the same act's full name, not a second act. The billing counts on AKS, as printed (the aka rule).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Marc Acardipane aka Marshall Masters Feat. The Ultimate MC",
+   "performers": [
+    {
+     "name": "Marc Acardipane",
+     "role": "performer"
+    },
+    {
+     "name": "The Ultimate MC",
+     "role": "mc"
+    }
+   ],
+   "why": "\"aka\" gives the same act's other name, not a second act: the billing counts on Marc Acardipane, the billed name. The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Barem (live - After The Storm, Album Tour)",
+   "performers": [
+    {
+     "name": "Barem",
+     "role": "performer"
+    }
+   ],
+   "setTag": "live - After The Storm, Album Tour",
+   "why": "The parenthetical says how the act played the set (live, on its album tour), not who: Barem is the performer and the parenthetical is the set tag.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Kryptic Minds feat. SP:MC",
+   "performers": [
+    {
+     "name": "Kryptic Minds",
+     "role": "performer"
+    },
+    {
+     "name": "SP:MC",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Pinch & Gemmy feat. MC Pokes",
+   "performers": [
+    {
+     "name": "Pinch & Gemmy",
+     "role": "performer"
+    },
+    {
+     "name": "MC Pokes",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"Pinch & Gemmy\" is kept as printed, one billed name (\"&\" and \"vs\" are never split).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Goldorak & Solpher ft. Mc D.O.C.",
+   "performers": [
+    {
+     "name": "Goldorak & Solpher",
+     "role": "performer"
+    },
+    {
+     "name": "Mc D.O.C.",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"Goldorak & Solpher\" is kept as printed, one billed name (\"&\" and \"vs\" are never split).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Kastor & Dice ft MC Swift",
+   "performers": [
+    {
+     "name": "Kastor & Dice",
+     "role": "performer"
+    },
+    {
+     "name": "MC Swift",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"Kastor & Dice\" is kept as printed, one billed name (\"&\" and \"vs\" are never split).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Caspa ft. MC Rod Azlan",
+   "performers": [
+    {
+     "name": "Caspa",
+     "role": "performer"
+    },
+    {
+     "name": "MC Rod Azlan",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Red D feat. Lady Linn, Gustaph & Saxman",
+   "performers": [
+    {
+     "name": "Red D",
+     "role": "performer"
+    },
+    {
+     "name": "Lady Linn",
+     "role": "guest"
+    },
+    {
+     "name": "Gustaph",
+     "role": "guest"
+    },
+    {
+     "name": "Saxman",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Roksonix ft & Mc Skydro",
+   "performers": [
+    {
+     "name": "Roksonix",
+     "role": "performer"
+    },
+    {
+     "name": "Mc Skydro",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. The stray \"&\" after \"ft\" adds nobody.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "One87 & Hookerz ft. MC Mush",
+   "performers": [
+    {
+     "name": "One87 & Hookerz",
+     "role": "performer"
+    },
+    {
+     "name": "MC Mush",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"One87 & Hookerz\" is kept as printed, one billed name (\"&\" and \"vs\" are never split).",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Pendulum (dj set) ft MC Verse",
+   "performers": [
+    {
+     "name": "Pendulum",
+     "role": "performer"
+    },
+    {
+     "name": "MC Verse",
+     "role": "mc"
+    }
+   ],
+   "setTag": "dj set",
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"(dj set)\" is the set tag.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Friction ft. MC Linguistics",
+   "performers": [
+    {
+     "name": "Friction",
+     "role": "performer"
+    },
+    {
+     "name": "MC Linguistics",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Surfing Leons ft. Miss Eaves",
+   "performers": [
+    {
+     "name": "Surfing Leons",
+     "role": "performer"
+    },
+    {
+     "name": "Miss Eaves",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Joachim Garraud ft. Chris Willis",
+   "performers": [
+    {
+     "name": "Joachim Garraud",
+     "role": "performer"
+    },
+    {
+     "name": "Chris Willis",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Riva Starr Bateria Fantastica ft Giom",
+   "performers": [
+    {
+     "name": "Riva Starr Bateria Fantastica",
+     "role": "performer"
+    },
+    {
+     "name": "Giom",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. The billed name is a show (the stage that day is \"Riva Starr presents Bateria Fantastica\"), kept as printed.",
+   "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Apl.de.Ap Dj set (Black Eyed Peas)",
+   "performers": [
+    {
+     "name": "Apl.de.Ap",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Dj set",
+   "why": "The parenthetical names the band the DJ is known from, not a second act on the set: the DJ is the performer, and the band is never credited as playing. \"Dj set\" is the set tag.",
+   "source": "https://www.tomorrowland.com/"
   }
  ],
  "pending": [
@@ -4089,6 +4475,30 @@
   {
    "printed": "Lee Curtiss, Ryan Crosson, Shaun Reeves (Visionquest)",
    "why": "Left as printed, one act: the parenthetical names the crew (Visionquest) and the three names before it, but no first-party page says how the billing splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "Johan Gielen & Cor Fijneman back2back (Airscape)",
+   "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "Panteros 666 & Myd (Club Cheval)",
+   "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "Ben Sims & Friends (Frequency 7 with Surgeon & Killa Productions with Paul Mac)",
+   "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "NGA (Allspark & Gaz feat. Mc Nice)",
+   "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "Jan Vervloet (Fiocco dj)",
+   "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "key": "nu",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]
 }

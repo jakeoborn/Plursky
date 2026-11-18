@@ -1,0 +1,4809 @@
+{
+ "id": "tomorrowland-2011",
+ "festivalId": "tomorrowland",
+ "name": "Tomorrowland 2011",
+ "year": 2011,
+ "timezone": "Europe/Brussels",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2011-07-22",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2011-07-23",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2011-07-24",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "tomorrowland-2011:mainstage",
+   "name": "Mainstage"
+  },
+  {
+   "id": "tomorrowland-2011:carl-cox-and-friends",
+   "name": "Carl Cox & Friends"
+  },
+  {
+   "id": "tomorrowland-2011:cafe-d-anvers",
+   "name": "Café d'Anvers"
+  },
+  {
+   "id": "tomorrowland-2011:blue-flame",
+   "name": "Blue Flame"
+  },
+  {
+   "id": "tomorrowland-2011:global-underground",
+   "name": "Global Underground"
+  },
+  {
+   "id": "tomorrowland-2011:tranceaddict",
+   "name": "Tranceaddict"
+  },
+  {
+   "id": "tomorrowland-2011:untitled",
+   "name": "Untitled!"
+  },
+  {
+   "id": "tomorrowland-2011:versuz",
+   "name": "Versuz"
+  },
+  {
+   "id": "tomorrowland-2011:we-play-house-recordings",
+   "name": "We Play House Recordings"
+  },
+  {
+   "id": "tomorrowland-2011:q-dance",
+   "name": "Q-dance"
+  },
+  {
+   "id": "tomorrowland-2011:winterclubbing",
+   "name": "Winterclubbing"
+  },
+  {
+   "id": "tomorrowland-2011:b2b",
+   "name": "B2B"
+  },
+  {
+   "id": "tomorrowland-2011:cafe-d-anvers-invites-cocoon",
+   "name": "Café d'Anvers invites Cocoon"
+  },
+  {
+   "id": "tomorrowland-2011:above-and-beyond-s-group-therapy-stage",
+   "name": "Above & Beyond's Group Therapy Stage"
+  },
+  {
+   "id": "tomorrowland-2011:krush-club-invites-defected",
+   "name": "Krush Club invites Defected"
+  },
+  {
+   "id": "tomorrowland-2011:star-warz",
+   "name": "Star Warz"
+  },
+  {
+   "id": "tomorrowland-2011:format",
+   "name": "FormaT"
+  },
+  {
+   "id": "tomorrowland-2011:kozzmozz",
+   "name": "Kozzmozz"
+  },
+  {
+   "id": "tomorrowland-2011:i-love-the-90-s",
+   "name": "I Love The 90's"
+  },
+  {
+   "id": "tomorrowland-2011:cafeina",
+   "name": "Cafeina"
+  },
+  {
+   "id": "tomorrowland-2011:ketaloco",
+   "name": "KetaLoco"
+  },
+  {
+   "id": "tomorrowland-2011:cafe-d-anvers-invites-ovum-recordings",
+   "name": "Café d'Anvers invites Ovum Recordings"
+  },
+  {
+   "id": "tomorrowland-2011:dim-mak",
+   "name": "Dim Mak"
+  },
+  {
+   "id": "tomorrowland-2011:m-nus",
+   "name": "M-nus"
+  },
+  {
+   "id": "tomorrowland-2011:kne-deep",
+   "name": "Kne'Deep"
+  },
+  {
+   "id": "tomorrowland-2011:versuz-invites-size-matters",
+   "name": "Versuz invites Size Matters"
+  },
+  {
+   "id": "tomorrowland-2011:daily-dubstep",
+   "name": "Daily Dubstep"
+  },
+  {
+   "id": "tomorrowland-2011:smash-the-house",
+   "name": "Smash The House"
+  },
+  {
+   "id": "tomorrowland-2011:paul-van-dyk-presents-evolution",
+   "name": "Paul van Dyk presents Evolution"
+  },
+  {
+   "id": "tomorrowland-2011:la-rocca-invites-we-love",
+   "name": "La Rocca invites We Love"
+  },
+  {
+   "id": "tomorrowland-2011:coincidence-records",
+   "name": "Coincidence Records"
+  }
+ ],
+ "artists": [
+  {
+   "id": "tomorrowland-2011:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:arno-cost",
+   "name": "Arno Cost",
+   "key": "arno-cost",
+   "performers": [
+    "arno-cost"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:yves-v-vs-digital-lab-and-pedro-henriques",
+   "name": "YVES V vs Digital LAB & Pedro Henriques",
+   "key": "yves-v-vs-digital-lab-and-pedro-henriques",
+   "performers": [
+    "yves-v-vs-digital-lab-and-pedro-henriques"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dirty-south",
+   "name": "Dirty South",
+   "key": "dirty-south",
+   "performers": [
+    "dirty-south"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:faithless-soundsystem",
+   "name": "Faithless Soundsystem",
+   "key": "faithless-soundsystem",
+   "performers": [
+    "faithless-soundsystem"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:swedish-house-mafia",
+   "name": "Swedish House Mafia",
+   "key": "swedish-house-mafia",
+   "performers": [
+    "swedish-house-mafia"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:jon-rundell",
+   "name": "Jon Rundell",
+   "key": "jon-rundell",
+   "performers": [
+    "jon-rundell"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:yousef",
+   "name": "Yousef",
+   "key": "yousef",
+   "performers": [
+    "yousef"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:marco-bailey",
+   "name": "Marco Bailey",
+   "key": "marco-bailey",
+   "performers": [
+    "marco-bailey"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:sebastien-leger",
+   "name": "Sébastien Léger",
+   "key": "sebastien-leger",
+   "performers": [
+    "sebastien-leger"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:green-velvet",
+   "name": "Green Velvet",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:joachim",
+   "name": "Joachim",
+   "key": "joachim",
+   "performers": [
+    "joachim"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:patrick-schmidt",
+   "name": "Patrick Schmidt",
+   "key": "patrick-schmidt",
+   "performers": [
+    "patrick-schmidt"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:hermanez",
+   "name": "Hermanez",
+   "key": "hermanez",
+   "performers": [
+    "hermanez"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:nic-fanciulli",
+   "name": "Nic Fanciulli",
+   "key": "nic-fanciulli",
+   "performers": [
+    "nic-fanciulli"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:seth-troxler-and-bill-patrick",
+   "name": "Seth Troxler & Bill Patrick",
+   "key": "seth-troxler-and-bill-patrick",
+   "performers": [
+    "seth-troxler-and-bill-patrick"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:matthias-tanzmann",
+   "name": "Matthias Tanzmann",
+   "key": "matthias-tanzmann",
+   "performers": [
+    "matthias-tanzmann"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:steve-lawler",
+   "name": "Steve Lawler",
+   "key": "steve-lawler",
+   "performers": [
+    "steve-lawler"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dimaro",
+   "name": "diMaro",
+   "key": "dimaro",
+   "performers": [
+    "dimaro"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:moonflower",
+   "name": "Moonflower",
+   "key": "moonflower",
+   "performers": [
+    "moonflower"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:n8n-remixed",
+   "name": "N8N Remixed",
+   "key": "n8n-remixed",
+   "performers": [
+    "n8n-remixed"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:fanny-west",
+   "name": "Fanny West",
+   "key": "fanny-west",
+   "performers": [
+    "fanny-west"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:the-opposites",
+   "name": "The Opposites",
+   "key": "the-opposites",
+   "performers": [
+    "the-opposites"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:tlp-vs-mystique",
+   "name": "TLP vs Mystique",
+   "key": "tlp-vs-mystique",
+   "performers": [
+    "tlp-vs-mystique"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:nicolaz",
+   "name": "Nicolaz",
+   "key": "nicolaz",
+   "performers": [
+    "nicolaz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:the-flexican-ft-mc-sef",
+   "name": "The Flexican ft. Mc Sef",
+   "key": "the-flexican-ft-mc-sef",
+   "performers": [
+    "the-flexican-ft-mc-sef"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:discobar-galaxie",
+   "name": "Discobar Galaxie",
+   "key": "discobar-galaxie",
+   "performers": [
+    "discobar-galaxie"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:neon",
+   "name": "Neon",
+   "key": "neon",
+   "performers": [
+    "neon"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:the-oddword",
+   "name": "The Oddword",
+   "key": "the-oddword",
+   "performers": [
+    "the-oddword"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:de-jeugd-van-tegenwoordig",
+   "name": "De Jeugd Van Tegenwoordig",
+   "key": "de-jeugd-van-tegenwoordig",
+   "performers": [
+    "de-jeugd-van-tegenwoordig"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:x-ian",
+   "name": "X-ian",
+   "key": "x-ian",
+   "performers": [
+    "x-ian"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:pole-folder",
+   "name": "Pole Folder",
+   "key": "pole-folder",
+   "performers": [
+    "pole-folder"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:anthony-pappa",
+   "name": "Anthony Pappa",
+   "key": "anthony-pappa",
+   "performers": [
+    "anthony-pappa"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:satoshi-tomiie",
+   "name": "Satoshi Tomiie",
+   "key": "satoshi-tomiie",
+   "performers": [
+    "satoshi-tomiie"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dave-seaman",
+   "name": "Dave Seaman",
+   "key": "dave-seaman",
+   "performers": [
+    "dave-seaman"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:fred-baker",
+   "name": "Fred Baker",
+   "key": "fred-baker",
+   "performers": [
+    "fred-baker"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:rory-james-has-won-tranceaddict-contest",
+   "name": "Rory James has won TranceAddict contest!",
+   "key": "rory-james-has-won-tranceaddict-contest",
+   "performers": [
+    "rory-james-has-won-tranceaddict-contest"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:orjan-nilsen",
+   "name": "Orjan Nilsen",
+   "key": "orjan-nilsen",
+   "performers": [
+    "orjan-nilsen"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:arnej",
+   "name": "Arnej",
+   "key": "arnej",
+   "performers": [
+    "arnej"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:tydi",
+   "name": "tyDi",
+   "key": "tydi",
+   "performers": [
+    "tydi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:sied-van-riel",
+   "name": "Sied Van Riel",
+   "key": "sied-van-riel",
+   "performers": [
+    "sied-van-riel"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:simon-patterson",
+   "name": "Simon Patterson",
+   "key": "simon-patterson",
+   "performers": [
+    "simon-patterson"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:ferry-corsten",
+   "name": "Ferry Corsten",
+   "key": "ferry-corsten",
+   "performers": [
+    "ferry-corsten"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:aly-and-fila",
+   "name": "Aly & Fila",
+   "key": "aly-and-fila",
+   "performers": [
+    "aly-and-fila"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:jonas-lion",
+   "name": "Jonas Lion",
+   "key": "jonas-lion",
+   "performers": [
+    "jonas-lion"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:baselab-sound",
+   "name": "Baselab Sound",
+   "key": "baselab-sound",
+   "performers": [
+    "baselab-sound"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:goldorak-and-solpher",
+   "name": "Goldorak & Solpher",
+   "key": "goldorak-and-solpher",
+   "performers": [
+    "goldorak-and-solpher"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:piro",
+   "name": "Piro",
+   "key": "piro",
+   "performers": [
+    "piro"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:girl-unit",
+   "name": "Girl Unit",
+   "key": "girl-unit",
+   "performers": [
+    "girl-unit"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:von-d",
+   "name": "Von D",
+   "key": "von-d",
+   "performers": [
+    "von-d"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:hijak-vs-kastor-and-dice",
+   "name": "Hijak vs Kastor & Dice",
+   "key": "hijak-vs-kastor-and-dice",
+   "performers": [
+    "hijak-vs-kastor-and-dice"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:kito",
+   "name": "Kito",
+   "key": "kito",
+   "performers": [
+    "kito"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:the-others",
+   "name": "The Others",
+   "key": "the-others",
+   "performers": [
+    "the-others"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:cookie-monsta-and-funtcase",
+   "name": "Cookie Monsta & Funtcase",
+   "key": "cookie-monsta-and-funtcase",
+   "performers": [
+    "cookie-monsta-and-funtcase"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:artwork-and-mc-rod-azlan",
+   "name": "Artwork & MC Rod Azlan",
+   "key": "artwork-and-mc-rod-azlan",
+   "performers": [
+    "artwork-and-mc-rod-azlan"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:sem-thomasson",
+   "name": "Sem Thomasson",
+   "key": "sem-thomasson",
+   "performers": [
+    "sem-thomasson"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dehasse",
+   "name": "Dehasse",
+   "key": "dehasse",
+   "performers": [
+    "dehasse"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:stefan-k-and-tom-leclercq",
+   "name": "Stefan K & Tom Leclercq",
+   "key": "stefan-k-and-tom-leclercq",
+   "performers": [
+    "stefan-k-and-tom-leclercq"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:don-diablo",
+   "name": "Don Diablo",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:sunnery-james-and-ryan-marciano",
+   "name": "Sunnery James & Ryan Marciano",
+   "key": "sunnery-james-and-ryan-marciano",
+   "performers": [
+    "sunnery-james-and-ryan-marciano"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:bingo-players",
+   "name": "Bingo Players",
+   "key": "bingo-players",
+   "performers": [
+    "bingo-players"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:fedde-le-grand",
+   "name": "Fedde Le Grand",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:maxim-lany",
+   "name": "Maxim Lany",
+   "key": "maxim-lany",
+   "performers": [
+    "maxim-lany"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:san-soda-live",
+   "name": "San Soda (live)",
+   "key": "san-soda-live",
+   "performers": [
+    "san-soda-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:kerri-chandler-and-red-d-feat-lady-linn",
+   "name": "Kerri Chandler & Red D feat. Lady Linn",
+   "key": "kerri-chandler-and-red-d-feat-lady-linn",
+   "performers": [
+    "kerri-chandler-and-red-d-feat-lady-linn"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:tensnake-live",
+   "name": "Tensnake (live)",
+   "key": "tensnake-live",
+   "performers": [
+    "tensnake-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:motor-city-drum-ensemble",
+   "name": "Motor City Drum Ensemble",
+   "key": "motor-city-drum-ensemble",
+   "performers": [
+    "motor-city-drum-ensemble"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:henrik-schwarz-live",
+   "name": "Henrik Schwarz (live)",
+   "key": "henrik-schwarz-live",
+   "performers": [
+    "henrik-schwarz-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dixon-vs-ame",
+   "name": "Dixon vs Âme",
+   "key": "dixon-vs-ame",
+   "performers": [
+    "dixon-vs-ame"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:jones-and-sjoekoe",
+   "name": "Jones & Sjoekoe",
+   "key": "jones-and-sjoekoe",
+   "performers": [
+    "jones-and-sjoekoe"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:mark-with-a-k-live",
+   "name": "Mark with a K (live)",
+   "key": "mark-with-a-k-live",
+   "performers": [
+    "mark-with-a-k-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:davoodi-vs-bestien",
+   "name": "Davoodi vs Bestien",
+   "key": "davoodi-vs-bestien",
+   "performers": [
+    "davoodi-vs-bestien"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dj-ghost-vs-gave",
+   "name": "DJ Ghost vs Gave",
+   "key": "dj-ghost-vs-gave",
+   "performers": [
+    "dj-ghost-vs-gave"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:teka-b-live",
+   "name": "Teka B Live",
+   "key": "teka-b-live",
+   "performers": [
+    "teka-b-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dr-rude",
+   "name": "Dr. Rude",
+   "key": "dr-rude",
+   "performers": [
+    "dr-rude"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:brennan-heart",
+   "name": "Brennan Heart",
+   "key": "brennan-heart",
+   "performers": [
+    "brennan-heart"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:coone",
+   "name": "Coone",
+   "key": "coone",
+   "performers": [
+    "coone"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:psyko-punkz",
+   "name": "Psyko Punkz",
+   "key": "psyko-punkz",
+   "performers": [
+    "psyko-punkz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:kasparov",
+   "name": "Kasparov",
+   "key": "kasparov",
+   "performers": [
+    "kasparov"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:luk-vs-p-jay-vs-vox-d",
+   "name": "Luk vs P-Jay vs Vox-D",
+   "key": "luk-vs-p-jay-vs-vox-d",
+   "performers": [
+    "luk-vs-p-jay-vs-vox-d"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dj-rebel",
+   "name": "DJ Rebel",
+   "key": "dj-rebel",
+   "performers": [
+    "dj-rebel"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dimitri-wouters",
+   "name": "Dimitri Wouters",
+   "key": "dimitri-wouters",
+   "performers": [
+    "dimitri-wouters"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:john-00-flemming",
+   "name": "John 00 Flemming",
+   "key": "john-00-flemming",
+   "performers": [
+    "john-00-flemming"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:norion",
+   "name": "Norion",
+   "key": "norion",
+   "performers": [
+    "norion"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:gms",
+   "name": "GMS",
+   "key": "gms",
+   "performers": [
+    "gms"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:talamasca",
+   "name": "Talamasca",
+   "key": "talamasca",
+   "performers": [
+    "talamasca"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:firaga",
+   "name": "Firaga",
+   "key": "firaga",
+   "performers": [
+    "firaga"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:astral-projection",
+   "name": "Astral Projection",
+   "key": "astral-projection",
+   "performers": [
+    "astral-projection"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:astrix",
+   "name": "Astrix",
+   "key": "astrix",
+   "performers": [
+    "astrix"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:raving-george",
+   "name": "Raving George",
+   "key": "raving-george",
+   "performers": [
+    "raving-george"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:mason",
+   "name": "Mason",
+   "key": "mason",
+   "performers": [
+    "mason"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:steve-aoki",
+   "name": "Steve Aoki",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:avicii",
+   "name": "Avicii",
+   "key": "avicii",
+   "performers": [
+    "avicii"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:martin-solveig",
+   "name": "Martin Solveig",
+   "key": "martin-solveig",
+   "performers": [
+    "martin-solveig"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dimitri-vegas-and-like-mike",
+   "name": "Dimitri Vegas & Like Mike",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dj-licious",
+   "name": "DJ Licious",
+   "key": "dj-licious",
+   "performers": [
+    "dj-licious"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dj-geo",
+   "name": "DJ Geo",
+   "key": "dj-geo",
+   "performers": [
+    "dj-geo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:daniel-bovie-and-roy-rox",
+   "name": "Daniel Bovie & Roy Rox",
+   "key": "daniel-bovie-and-roy-rox",
+   "performers": [
+    "daniel-bovie-and-roy-rox"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:sharam",
+   "name": "Sharam",
+   "key": "sharam",
+   "performers": [
+    "sharam"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:joachim-garraud",
+   "name": "Joachim Garraud",
+   "key": "joachim-garraud",
+   "performers": [
+    "joachim-garraud"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:hardwell",
+   "name": "Hardwell",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:john-dahlback",
+   "name": "John Dahlback",
+   "key": "john-dahlback",
+   "performers": [
+    "john-dahlback"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:fausto",
+   "name": "Fausto",
+   "key": "fausto",
+   "performers": [
+    "fausto"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dr-phunk",
+   "name": "Dr. Phunk",
+   "key": "dr-phunk",
+   "performers": [
+    "dr-phunk"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:bioweapon",
+   "name": "Bioweapon",
+   "key": "bioweapon",
+   "performers": [
+    "bioweapon"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:headhunterz",
+   "name": "Headhunterz",
+   "key": "headhunterz",
+   "performers": [
+    "headhunterz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:fenix",
+   "name": "Fenix",
+   "key": "fenix",
+   "performers": [
+    "fenix"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:noisecontrollers",
+   "name": "Noisecontrollers",
+   "key": "noisecontrollers",
+   "performers": [
+    "noisecontrollers"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:ran-d",
+   "name": "Ran-D",
+   "key": "ran-d",
+   "performers": [
+    "ran-d"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:alpha2-and-e-force",
+   "name": "Alpha² & E-Force",
+   "key": "alpha2-and-e-force",
+   "performers": [
+    "alpha2-and-e-force"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:b-front",
+   "name": "B-Front",
+   "key": "b-front",
+   "performers": [
+    "b-front"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:nosferatu",
+   "name": "Nosferatu",
+   "key": "nosferatu",
+   "performers": [
+    "nosferatu"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:tofke-vs-ugur-yurt",
+   "name": "Tofke vs Ugur yurt",
+   "key": "tofke-vs-ugur-yurt",
+   "performers": [
+    "tofke-vs-ugur-yurt"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:bp",
+   "name": "BP",
+   "key": "bp",
+   "performers": [
+    "bp"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:massimo-girardi",
+   "name": "Massimo Girardi",
+   "key": "massimo-girardi",
+   "performers": [
+    "massimo-girardi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:chris-tietjen",
+   "name": "Chris Tietjen",
+   "key": "chris-tietjen",
+   "performers": [
+    "chris-tietjen"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:raresh",
+   "name": "Raresh",
+   "key": "raresh",
+   "performers": [
+    "raresh"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:guy-gerber",
+   "name": "Guy Gerber",
+   "key": "guy-gerber",
+   "performers": [
+    "guy-gerber"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:daniel-kandi",
+   "name": "Daniel Kandi",
+   "key": "daniel-kandi",
+   "performers": [
+    "daniel-kandi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:cosmic-gate",
+   "name": "Cosmic Gate",
+   "key": "cosmic-gate",
+   "performers": [
+    "cosmic-gate"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:super8-and-tab",
+   "name": "Super8 & Tab",
+   "key": "super8-and-tab",
+   "performers": [
+    "super8-and-tab"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:sander-van-doorn",
+   "name": "Sander van Doorn",
+   "key": "sander-van-doorn",
+   "performers": [
+    "sander-van-doorn"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:jaytech",
+   "name": "Jaytech",
+   "key": "jaytech",
+   "performers": [
+    "jaytech"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:above-and-beyond",
+   "name": "Above & Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:mat-zo",
+   "name": "Mat Zo",
+   "key": "mat-zo",
+   "performers": [
+    "mat-zo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:soulspinnas",
+   "name": "Soulspinnas",
+   "key": "soulspinnas",
+   "performers": [
+    "soulspinnas"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:tom-de-neef-vs-sven-van-hees",
+   "name": "Tom de Neef vs Sven van Hees",
+   "key": "tom-de-neef-vs-sven-van-hees",
+   "performers": [
+    "tom-de-neef-vs-sven-van-hees"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:ya-mo",
+   "name": "Ya'Mo",
+   "key": "ya-mo",
+   "performers": [
+    "ya-mo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:copyright",
+   "name": "Copyright",
+   "key": "copyright",
+   "performers": [
+    "copyright"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:the-shapeshifters",
+   "name": "The Shapeshifters",
+   "key": "the-shapeshifters",
+   "performers": [
+    "the-shapeshifters"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:sandy-rivera",
+   "name": "Sandy Rivera",
+   "key": "sandy-rivera",
+   "performers": [
+    "sandy-rivera"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:chocolate-puma",
+   "name": "Chocolate Puma",
+   "key": "chocolate-puma",
+   "performers": [
+    "chocolate-puma"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:contraddict",
+   "name": "Contraddict",
+   "key": "contraddict",
+   "performers": [
+    "contraddict"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:atmospherix",
+   "name": "Atmospherix",
+   "key": "atmospherix",
+   "performers": [
+    "atmospherix"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:alert-and-bonafide",
+   "name": "Alert & Bonafide",
+   "key": "alert-and-bonafide",
+   "performers": [
+    "alert-and-bonafide"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:logistics",
+   "name": "Logistics",
+   "key": "logistics",
+   "performers": [
+    "logistics"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:vicelord",
+   "name": "Vicelord",
+   "key": "vicelord",
+   "performers": [
+    "vicelord"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:foxy-lady-and-mc-elvee",
+   "name": "Foxy Lady & MC Elvee",
+   "key": "foxy-lady-and-mc-elvee",
+   "performers": [
+    "foxy-lady-and-mc-elvee"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:tito-and-echo-virus-vs-mc-ebony",
+   "name": "Tito & Echo Virus vs MC Ebony",
+   "key": "tito-and-echo-virus-vs-mc-ebony",
+   "performers": [
+    "tito-and-echo-virus-vs-mc-ebony"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:one87-and-hookerz-feat-mc-nice",
+   "name": "One87 & Hookerz feat. MC Nice",
+   "key": "one87-and-hookerz-feat-mc-nice",
+   "performers": [
+    "one87-and-hookerz-feat-mc-nice"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dom-and-roland-vs-klute",
+   "name": "Dom & Roland vs Klute",
+   "key": "dom-and-roland-vs-klute",
+   "performers": [
+    "dom-and-roland-vs-klute"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dj-die",
+   "name": "Dj Die",
+   "key": "dj-die",
+   "performers": [
+    "dj-die"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dj-silver",
+   "name": "Dj Silver",
+   "key": "dj-silver",
+   "performers": [
+    "dj-silver"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:netsky",
+   "name": "Netsky",
+   "key": "netsky",
+   "performers": [
+    "netsky"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:marky",
+   "name": "Marky",
+   "key": "marky",
+   "performers": [
+    "marky"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:bad-dancer",
+   "name": "Bad Dancer",
+   "key": "bad-dancer",
+   "performers": [
+    "bad-dancer"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:panteros-666-and-myd-club-cheval",
+   "name": "Panteros 666 & Myd (Club Cheval)",
+   "key": "panteros-666-and-myd-club-cheval",
+   "performers": [
+    "panteros-666-and-myd-club-cheval"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:breakbot",
+   "name": "Breakbot",
+   "key": "breakbot",
+   "performers": [
+    "breakbot"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:bart-b-more",
+   "name": "Bart B More",
+   "key": "bart-b-more",
+   "performers": [
+    "bart-b-more"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:style-of-eye",
+   "name": "Style of eye",
+   "key": "style-of-eye",
+   "performers": [
+    "style-of-eye"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:brodinski",
+   "name": "Brodinski",
+   "key": "brodinski",
+   "performers": [
+    "brodinski"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:don-rimini",
+   "name": "Don Rimini",
+   "key": "don-rimini",
+   "performers": [
+    "don-rimini"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:surfing-leons",
+   "name": "Surfing Leons",
+   "key": "surfing-leons",
+   "performers": [
+    "surfing-leons"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:aks-addicted-kru-sound",
+   "name": "AKS (Addicted Kru Sound)",
+   "key": "aks-addicted-kru-sound",
+   "performers": [
+    "aks-addicted-kru-sound"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:spacid",
+   "name": "Spacid",
+   "key": "spacid",
+   "performers": [
+    "spacid"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:marcel-dettmann-and-marcel-fengler",
+   "name": "Marcel Dettmann & Marcel Fengler",
+   "key": "marcel-dettmann-and-marcel-fengler",
+   "performers": [
+    "marcel-dettmann-and-marcel-fengler"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:speedy-j",
+   "name": "Speedy J",
+   "key": "speedy-j",
+   "performers": [
+    "speedy-j"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:ben-sims-and-friends-frequency-7-with-surgeon-and-killa-productions-with-paul-mac",
+   "name": "Ben Sims & Friends (Frequency 7 with Surgeon & Killa Productions with Paul Mac)",
+   "key": "ben-sims-and-friends-frequency-7-with-surgeon-and-killa-productions-with-paul-mac",
+   "performers": [
+    "ben-sims-and-friends-frequency-7-with-surgeon-and-killa-productions-with-paul-mac"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:kr-z",
+   "name": "Kr!z",
+   "key": "kr-z",
+   "performers": [
+    "kr-z"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dj-ward",
+   "name": "Dj Ward",
+   "key": "dj-ward",
+   "performers": [
+    "dj-ward"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:marc-acardipane-aka-marshall-masters-feat-the-ultimate-mc",
+   "name": "Marc Acardipane aka Marshall Masters Feat. The Ultimate MC",
+   "key": "marc-acardipane-aka-marshall-masters-feat-the-ultimate-mc",
+   "performers": [
+    "marc-acardipane-aka-marshall-masters-feat-the-ultimate-mc"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:jan-vervloet-fiocco-dj",
+   "name": "Jan Vervloet (Fiocco dj)",
+   "key": "jan-vervloet-fiocco-dj",
+   "performers": [
+    "jan-vervloet-fiocco-dj"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:virtual-zone",
+   "name": "Virtual Zone",
+   "key": "virtual-zone",
+   "performers": [
+    "virtual-zone"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dj-wout",
+   "name": "Dj Wout",
+   "key": "dj-wout",
+   "performers": [
+    "dj-wout"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:ray-and-anita",
+   "name": "Ray & Anita",
+   "key": "ray-and-anita",
+   "performers": [
+    "ray-and-anita"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:bonzai-all-stars",
+   "name": "Bonzaï All Stars",
+   "key": "bonzai-all-stars",
+   "performers": [
+    "bonzai-all-stars"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:phill-and-steve",
+   "name": "Phill & Steve",
+   "key": "phill-and-steve",
+   "performers": [
+    "phill-and-steve"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:2dirty",
+   "name": "2Dirty",
+   "key": "2dirty",
+   "performers": [
+    "2dirty"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:marko",
+   "name": "Marko",
+   "key": "marko",
+   "performers": [
+    "marko"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:stereo-clash",
+   "name": "Stereo Clash",
+   "key": "stereo-clash",
+   "performers": [
+    "stereo-clash"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:gregor-salto",
+   "name": "Gregor Salto",
+   "key": "gregor-salto",
+   "performers": [
+    "gregor-salto"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:roma",
+   "name": "Roma",
+   "key": "roma",
+   "performers": [
+    "roma"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:don-cabron",
+   "name": "Don Cabron",
+   "key": "don-cabron",
+   "performers": [
+    "don-cabron"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dimitri-andreas",
+   "name": "Dimitri Andreas",
+   "key": "dimitri-andreas",
+   "performers": [
+    "dimitri-andreas"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:caspar",
+   "name": "Caspar",
+   "key": "caspar",
+   "performers": [
+    "caspar"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:stijn",
+   "name": "Stijn",
+   "key": "stijn",
+   "performers": [
+    "stijn"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:don-santos",
+   "name": "don Santos",
+   "key": "don-santos",
+   "performers": [
+    "don-santos"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:the-jelly-bellies",
+   "name": "The Jelly Bellies",
+   "key": "the-jelly-bellies",
+   "performers": [
+    "the-jelly-bellies"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:thomas-gold",
+   "name": "Thomas Gold",
+   "key": "thomas-gold",
+   "performers": [
+    "thomas-gold"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:nervo",
+   "name": "NERVO",
+   "key": "nervo",
+   "performers": [
+    "nervo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:wolfgang-gartner",
+   "name": "Wolfgang Gartner",
+   "key": "wolfgang-gartner",
+   "performers": [
+    "wolfgang-gartner"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:laidback-luke",
+   "name": "Laidback Luke",
+   "key": "laidback-luke",
+   "performers": [
+    "laidback-luke"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:chuckie",
+   "name": "Chuckie",
+   "key": "chuckie",
+   "performers": [
+    "chuckie"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:2-many-dj-s",
+   "name": "2 Many Dj's",
+   "key": "2-many-dj-s",
+   "performers": [
+    "2-many-dj-s"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:kutski",
+   "name": "Kutski",
+   "key": "kutski",
+   "performers": [
+    "kutski"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:demoniak",
+   "name": "Demoniak",
+   "key": "demoniak",
+   "performers": [
+    "demoniak"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:toneshifterz",
+   "name": "Toneshifterz",
+   "key": "toneshifterz",
+   "performers": [
+    "toneshifterz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:technoboy",
+   "name": "Technoboy",
+   "key": "technoboy",
+   "performers": [
+    "technoboy"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:ambassador-inc",
+   "name": "Ambassador Inc.",
+   "key": "ambassador-inc",
+   "performers": [
+    "ambassador-inc"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:digital-punk",
+   "name": "Digital Punk",
+   "key": "digital-punk",
+   "performers": [
+    "digital-punk"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:luna",
+   "name": "Luna",
+   "key": "luna",
+   "performers": [
+    "luna"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:wildstylez",
+   "name": "Wildstylez",
+   "key": "wildstylez",
+   "performers": [
+    "wildstylez"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:zatox",
+   "name": "Zatox",
+   "key": "zatox",
+   "performers": [
+    "zatox"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:promo",
+   "name": "Promo",
+   "key": "promo",
+   "performers": [
+    "promo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:bartholomeo",
+   "name": "Bartholomeo",
+   "key": "bartholomeo",
+   "performers": [
+    "bartholomeo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:smos",
+   "name": "Smos",
+   "key": "smos",
+   "performers": [
+    "smos"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:m-a-n-i-k",
+   "name": "M A N I K",
+   "key": "m-a-n-i-k",
+   "performers": [
+    "m-a-n-i-k"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:prinz",
+   "name": "Prinz",
+   "key": "prinz",
+   "performers": [
+    "prinz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:shlomi-aber",
+   "name": "Shlomi Aber",
+   "key": "shlomi-aber",
+   "performers": [
+    "shlomi-aber"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:kink",
+   "name": "KiNK",
+   "key": "kink",
+   "performers": [
+    "kink"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:josh-wink",
+   "name": "Josh Wink",
+   "key": "josh-wink",
+   "performers": [
+    "josh-wink"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:jacob-van-hage",
+   "name": "Jacob Van Hage",
+   "key": "jacob-van-hage",
+   "performers": [
+    "jacob-van-hage"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:gtronic",
+   "name": "Gtronic",
+   "key": "gtronic",
+   "performers": [
+    "gtronic"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:sound-of-stereo",
+   "name": "Sound of Stereo",
+   "key": "sound-of-stereo",
+   "performers": [
+    "sound-of-stereo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:tai",
+   "name": "TAI",
+   "key": "tai",
+   "performers": [
+    "tai"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:mustard-pimp",
+   "name": "Mustard Pimp",
+   "key": "mustard-pimp",
+   "performers": [
+    "mustard-pimp"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:uffie",
+   "name": "Uffie",
+   "key": "uffie",
+   "performers": [
+    "uffie"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:myback",
+   "name": "MYBACK",
+   "key": "myback",
+   "performers": [
+    "myback"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:felix-cartal",
+   "name": "Felix Cartal",
+   "key": "felix-cartal",
+   "performers": [
+    "felix-cartal"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:autoerotique",
+   "name": "Autoerotique",
+   "key": "autoerotique",
+   "performers": [
+    "autoerotique"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dada-life",
+   "name": "Dada Life",
+   "key": "dada-life",
+   "performers": [
+    "dada-life"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:steve-aoki-vs-afrojack",
+   "name": "Steve Aoki vs Afrojack",
+   "key": "steve-aoki-vs-afrojack",
+   "performers": [
+    "steve-aoki-vs-afrojack"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:igor-vicente",
+   "name": "Igor Vicente",
+   "key": "igor-vicente",
+   "performers": [
+    "igor-vicente"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:fabrizio-maurizi",
+   "name": "Fabrizio Maurizi",
+   "key": "fabrizio-maurizi",
+   "performers": [
+    "fabrizio-maurizi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:ambivalent",
+   "name": "Ambivalent",
+   "key": "ambivalent",
+   "performers": [
+    "ambivalent"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:heartthrob-live",
+   "name": "Heartthrob (live)",
+   "key": "heartthrob-live",
+   "performers": [
+    "heartthrob-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:magda",
+   "name": "Magda",
+   "key": "magda",
+   "performers": [
+    "magda"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:barem-live-after-the-storm-album-tour",
+   "name": "Barem (live - After The Storm, Album Tour)",
+   "key": "barem-live-after-the-storm-album-tour",
+   "performers": [
+    "barem-live-after-the-storm-album-tour"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:matthew-hoag-vs-dejan-milcevic",
+   "name": "Matthew Hoag vs Dejan Milcevic",
+   "key": "matthew-hoag-vs-dejan-milcevic",
+   "performers": [
+    "matthew-hoag-vs-dejan-milcevic"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:gaetano-parisio",
+   "name": "Gaetano Parisio",
+   "key": "gaetano-parisio",
+   "performers": [
+    "gaetano-parisio"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:alex-flatner",
+   "name": "Alex Flatner",
+   "key": "alex-flatner",
+   "performers": [
+    "alex-flatner"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:du-art",
+   "name": "Du Art",
+   "key": "du-art",
+   "performers": [
+    "du-art"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:huma-noyd-live",
+   "name": "Huma Noyd (live)",
+   "key": "huma-noyd-live",
+   "performers": [
+    "huma-noyd-live"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dj-rush",
+   "name": "DJ Rush",
+   "key": "dj-rush",
+   "performers": [
+    "dj-rush"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:frank-kvitta",
+   "name": "Frank Kvitta",
+   "key": "frank-kvitta",
+   "performers": [
+    "frank-kvitta"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:pet-trio-pet-duo-vs-miss-djax",
+   "name": "Pet Trio: Pet Duo vs Miss Djax",
+   "key": "pet-trio-pet-duo-vs-miss-djax",
+   "performers": [
+    "pet-trio-pet-duo-vs-miss-djax"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:marco-remus",
+   "name": "Marco Remus",
+   "key": "marco-remus",
+   "performers": [
+    "marco-remus"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:e-s-p",
+   "name": "E.S.P.",
+   "key": "e-s-p",
+   "performers": [
+    "e-s-p"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:danny-corten",
+   "name": "Danny Corten",
+   "key": "danny-corten",
+   "performers": [
+    "danny-corten"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:dave-lambert",
+   "name": "Dave Lambert",
+   "key": "dave-lambert",
+   "performers": [
+    "dave-lambert"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:norman-doray",
+   "name": "Norman Doray",
+   "key": "norman-doray",
+   "performers": [
+    "norman-doray"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:barry-fore",
+   "name": "Barry Fore",
+   "key": "barry-fore",
+   "performers": [
+    "barry-fore"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:third-party",
+   "name": "Third Party",
+   "key": "third-party",
+   "performers": [
+    "third-party"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:an21-and-max-vangeli",
+   "name": "AN21 & Max Vangeli",
+   "key": "an21-and-max-vangeli",
+   "performers": [
+    "an21-and-max-vangeli"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:groove-armada-presents-red-light",
+   "name": "Groove Armada presents Red Light",
+   "key": "groove-armada-presents-red-light",
+   "performers": [
+    "groove-armada-presents-red-light"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:steve-angello",
+   "name": "Steve Angello",
+   "key": "steve-angello",
+   "performers": [
+    "steve-angello"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:subreachers",
+   "name": "Subreachers",
+   "key": "subreachers",
+   "performers": [
+    "subreachers"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:science",
+   "name": "Science",
+   "key": "science",
+   "performers": [
+    "science"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:cyrax-and-numerus",
+   "name": "Cyrax & Numerus",
+   "key": "cyrax-and-numerus",
+   "performers": [
+    "cyrax-and-numerus"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:bunzer0",
+   "name": "Bunzer0",
+   "key": "bunzer0",
+   "performers": [
+    "bunzer0"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:nga-allspark-and-gaz-feat-mc-nice",
+   "name": "NGA (Allspark & Gaz feat. Mc Nice)",
+   "key": "nga-allspark-and-gaz-feat-mc-nice",
+   "performers": [
+    "nga-allspark-and-gaz-feat-mc-nice"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:grimelock",
+   "name": "Grimelock",
+   "key": "grimelock",
+   "performers": [
+    "grimelock"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:kryptic-minds-feat-sp-mc",
+   "name": "Kryptic Minds feat. SP:MC",
+   "key": "kryptic-minds-feat-sp-mc",
+   "performers": [
+    "kryptic-minds-feat-sp-mc"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:n-type",
+   "name": "N-Type",
+   "key": "n-type",
+   "performers": [
+    "n-type"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:pinch-and-gemmy-feat-mc-pokes",
+   "name": "Pinch & Gemmy feat. MC Pokes",
+   "key": "pinch-and-gemmy-feat-mc-pokes",
+   "performers": [
+    "pinch-and-gemmy-feat-mc-pokes"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:yves-v",
+   "name": "Yves V",
+   "key": "yves-v",
+   "performers": [
+    "yves-v"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:swanky-tunes",
+   "name": "Swanky Tunes",
+   "key": "swanky-tunes",
+   "performers": [
+    "swanky-tunes"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:angger-dimas",
+   "name": "Angger Dimas",
+   "key": "angger-dimas",
+   "performers": [
+    "angger-dimas"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:michael-woods",
+   "name": "Michael Woods",
+   "key": "michael-woods",
+   "performers": [
+    "michael-woods"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:regi",
+   "name": "Regi",
+   "key": "regi",
+   "performers": [
+    "regi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:sidney-samson",
+   "name": "Sidney Samson",
+   "key": "sidney-samson",
+   "performers": [
+    "sidney-samson"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:david-tort",
+   "name": "David Tort",
+   "key": "david-tort",
+   "performers": [
+    "david-tort"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:austin-leeds",
+   "name": "Austin Leeds",
+   "key": "austin-leeds",
+   "performers": [
+    "austin-leeds"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:ummet-ozcan",
+   "name": "Ummet Ozcan",
+   "key": "ummet-ozcan",
+   "performers": [
+    "ummet-ozcan"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:rank-1",
+   "name": "Rank 1",
+   "key": "rank-1",
+   "performers": [
+    "rank-1"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:giuseppe-ottaviani",
+   "name": "Giuseppe Ottaviani",
+   "key": "giuseppe-ottaviani",
+   "performers": [
+    "giuseppe-ottaviani"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:m-i-k-e",
+   "name": "M.I.K.E.",
+   "key": "m-i-k-e",
+   "performers": [
+    "m-i-k-e"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:gabriel-and-dresden",
+   "name": "Gabriel & Dresden",
+   "key": "gabriel-and-dresden",
+   "performers": [
+    "gabriel-and-dresden"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:markus-schulz",
+   "name": "Markus Schulz",
+   "key": "markus-schulz",
+   "performers": [
+    "markus-schulz"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:paul-van-dyk",
+   "name": "Paul van Dyk",
+   "key": "paul-van-dyk",
+   "performers": [
+    "paul-van-dyk"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:iris-menza",
+   "name": "Iris Menza",
+   "key": "iris-menza",
+   "performers": [
+    "iris-menza"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:audiofly",
+   "name": "Audiofly",
+   "key": "audiofly",
+   "performers": [
+    "audiofly"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:riva-starr",
+   "name": "Riva Starr",
+   "key": "riva-starr",
+   "performers": [
+    "riva-starr"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:james-zabiela",
+   "name": "James Zabiela",
+   "key": "james-zabiela",
+   "performers": [
+    "james-zabiela"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:m-a-n-d-y",
+   "name": "M.A.N.D.Y",
+   "key": "m-a-n-d-y",
+   "performers": [
+    "m-a-n-d-y"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:sasha",
+   "name": "Sasha",
+   "key": "sasha",
+   "performers": [
+    "sasha"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:edward-molton",
+   "name": "Edward Molton",
+   "key": "edward-molton",
+   "performers": [
+    "edward-molton"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:evad",
+   "name": "Evad",
+   "key": "evad",
+   "performers": [
+    "evad"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:jazzmin",
+   "name": "Jazzmin",
+   "key": "jazzmin",
+   "performers": [
+    "jazzmin"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:psytox",
+   "name": "Psytox",
+   "key": "psytox",
+   "performers": [
+    "psytox"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:tom-dazing-and-gols",
+   "name": "Tom Dazing & Gols",
+   "key": "tom-dazing-and-gols",
+   "performers": [
+    "tom-dazing-and-gols"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:steffi",
+   "name": "Steffi",
+   "key": "steffi",
+   "performers": [
+    "steffi"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:tama-sumo",
+   "name": "Tama Sumo",
+   "key": "tama-sumo",
+   "performers": [
+    "tama-sumo"
+   ]
+  },
+  {
+   "id": "tomorrowland-2011:pierre-and-juannes",
+   "name": "Pierre & Juannes",
+   "key": "pierre-and-juannes",
+   "performers": [
+    "pierre-and-juannes"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "tomorrowland-2011:d1:mainstage:1430:alesso",
+   "artistId": "tomorrowland-2011:alesso",
+   "day": 1,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:mainstage:1600:arno-cost",
+   "artistId": "tomorrowland-2011:arno-cost",
+   "day": 1,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:mainstage:1730:yves-v-vs-digital-lab-and-pedro-henriques",
+   "artistId": "tomorrowland-2011:yves-v-vs-digital-lab-and-pedro-henriques",
+   "day": 1,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:mainstage:1900:kaskade",
+   "artistId": "tomorrowland-2011:kaskade",
+   "day": 1,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:mainstage:2030:dirty-south",
+   "artistId": "tomorrowland-2011:dirty-south",
+   "day": 1,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:mainstage:2200:faithless-soundsystem",
+   "artistId": "tomorrowland-2011:faithless-soundsystem",
+   "day": 1,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:mainstage:2300:swedish-house-mafia",
+   "artistId": "tomorrowland-2011:swedish-house-mafia",
+   "day": 1,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:carl-cox-and-friends:1400:jon-rundell",
+   "artistId": "tomorrowland-2011:jon-rundell",
+   "day": 1,
+   "stageId": "tomorrowland-2011:carl-cox-and-friends",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:carl-cox-and-friends:1530:yousef",
+   "artistId": "tomorrowland-2011:yousef",
+   "day": 1,
+   "stageId": "tomorrowland-2011:carl-cox-and-friends",
+   "start": "15:30",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:carl-cox-and-friends:1700:marco-bailey",
+   "artistId": "tomorrowland-2011:marco-bailey",
+   "day": 1,
+   "stageId": "tomorrowland-2011:carl-cox-and-friends",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:carl-cox-and-friends:1830:sebastien-leger",
+   "artistId": "tomorrowland-2011:sebastien-leger",
+   "day": 1,
+   "stageId": "tomorrowland-2011:carl-cox-and-friends",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:carl-cox-and-friends:2000:green-velvet",
+   "artistId": "tomorrowland-2011:green-velvet",
+   "day": 1,
+   "stageId": "tomorrowland-2011:carl-cox-and-friends",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:carl-cox-and-friends:2130:adam-beyer",
+   "artistId": "tomorrowland-2011:adam-beyer",
+   "day": 1,
+   "stageId": "tomorrowland-2011:carl-cox-and-friends",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:carl-cox-and-friends:2300:carl-cox",
+   "artistId": "tomorrowland-2011:carl-cox",
+   "day": 1,
+   "stageId": "tomorrowland-2011:carl-cox-and-friends",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:cafe-d-anvers:1430:joachim",
+   "artistId": "tomorrowland-2011:joachim",
+   "day": 1,
+   "stageId": "tomorrowland-2011:cafe-d-anvers",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:cafe-d-anvers:1530:patrick-schmidt",
+   "artistId": "tomorrowland-2011:patrick-schmidt",
+   "day": 1,
+   "stageId": "tomorrowland-2011:cafe-d-anvers",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:cafe-d-anvers:1630:hermanez",
+   "artistId": "tomorrowland-2011:hermanez",
+   "day": 1,
+   "stageId": "tomorrowland-2011:cafe-d-anvers",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:cafe-d-anvers:1730:nic-fanciulli",
+   "artistId": "tomorrowland-2011:nic-fanciulli",
+   "day": 1,
+   "stageId": "tomorrowland-2011:cafe-d-anvers",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:cafe-d-anvers:1900:seth-troxler-and-bill-patrick",
+   "artistId": "tomorrowland-2011:seth-troxler-and-bill-patrick",
+   "day": 1,
+   "stageId": "tomorrowland-2011:cafe-d-anvers",
+   "start": "19:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:cafe-d-anvers:2100:matthias-tanzmann",
+   "artistId": "tomorrowland-2011:matthias-tanzmann",
+   "day": 1,
+   "stageId": "tomorrowland-2011:cafe-d-anvers",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:cafe-d-anvers:2300:steve-lawler",
+   "artistId": "tomorrowland-2011:steve-lawler",
+   "day": 1,
+   "stageId": "tomorrowland-2011:cafe-d-anvers",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:1400:dimaro",
+   "artistId": "tomorrowland-2011:dimaro",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:1500:moonflower",
+   "artistId": "tomorrowland-2011:moonflower",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:1545:n8n-remixed",
+   "artistId": "tomorrowland-2011:n8n-remixed",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "15:45",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:1630:fanny-west",
+   "artistId": "tomorrowland-2011:fanny-west",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "16:30",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:1700:the-opposites",
+   "artistId": "tomorrowland-2011:the-opposites",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:1745:tlp-vs-mystique",
+   "artistId": "tomorrowland-2011:tlp-vs-mystique",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:1845:nicolaz",
+   "artistId": "tomorrowland-2011:nicolaz",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:2000:the-flexican-ft-mc-sef",
+   "artistId": "tomorrowland-2011:the-flexican-ft-mc-sef",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:2100:discobar-galaxie",
+   "artistId": "tomorrowland-2011:discobar-galaxie",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:2230:neon",
+   "artistId": "tomorrowland-2011:neon",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "22:30",
+   "end": "23:15"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:2315:the-oddword",
+   "artistId": "tomorrowland-2011:the-oddword",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "23:15",
+   "end": "00:15"
+  },
+  {
+   "id": "tomorrowland-2011:d1:blue-flame:0015:de-jeugd-van-tegenwoordig",
+   "artistId": "tomorrowland-2011:de-jeugd-van-tegenwoordig",
+   "day": 1,
+   "stageId": "tomorrowland-2011:blue-flame",
+   "start": "00:15",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:global-underground:1400:x-ian",
+   "artistId": "tomorrowland-2011:x-ian",
+   "day": 1,
+   "stageId": "tomorrowland-2011:global-underground",
+   "start": "14:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:global-underground:1700:pole-folder",
+   "artistId": "tomorrowland-2011:pole-folder",
+   "day": 1,
+   "stageId": "tomorrowland-2011:global-underground",
+   "start": "17:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:global-underground:1900:anthony-pappa",
+   "artistId": "tomorrowland-2011:anthony-pappa",
+   "day": 1,
+   "stageId": "tomorrowland-2011:global-underground",
+   "start": "19:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:global-underground:2100:satoshi-tomiie",
+   "artistId": "tomorrowland-2011:satoshi-tomiie",
+   "day": 1,
+   "stageId": "tomorrowland-2011:global-underground",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:global-underground:2300:dave-seaman",
+   "artistId": "tomorrowland-2011:dave-seaman",
+   "day": 1,
+   "stageId": "tomorrowland-2011:global-underground",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:tranceaddict:1400:fred-baker",
+   "artistId": "tomorrowland-2011:fred-baker",
+   "day": 1,
+   "stageId": "tomorrowland-2011:tranceaddict",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:tranceaddict:1500:rory-james-has-won-tranceaddict-contest",
+   "artistId": "tomorrowland-2011:rory-james-has-won-tranceaddict-contest",
+   "day": 1,
+   "stageId": "tomorrowland-2011:tranceaddict",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:tranceaddict:1600:orjan-nilsen",
+   "artistId": "tomorrowland-2011:orjan-nilsen",
+   "day": 1,
+   "stageId": "tomorrowland-2011:tranceaddict",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:tranceaddict:1700:arnej",
+   "artistId": "tomorrowland-2011:arnej",
+   "day": 1,
+   "stageId": "tomorrowland-2011:tranceaddict",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:tranceaddict:1800:tydi",
+   "artistId": "tomorrowland-2011:tydi",
+   "day": 1,
+   "stageId": "tomorrowland-2011:tranceaddict",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "tomorrowland-2011:d1:tranceaddict:1915:sied-van-riel",
+   "artistId": "tomorrowland-2011:sied-van-riel",
+   "day": 1,
+   "stageId": "tomorrowland-2011:tranceaddict",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:tranceaddict:2030:simon-patterson",
+   "artistId": "tomorrowland-2011:simon-patterson",
+   "day": 1,
+   "stageId": "tomorrowland-2011:tranceaddict",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:tranceaddict:2200:ferry-corsten",
+   "artistId": "tomorrowland-2011:ferry-corsten",
+   "day": 1,
+   "stageId": "tomorrowland-2011:tranceaddict",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:tranceaddict:2330:aly-and-fila",
+   "artistId": "tomorrowland-2011:aly-and-fila",
+   "day": 1,
+   "stageId": "tomorrowland-2011:tranceaddict",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:untitled:1400:jonas-lion",
+   "artistId": "tomorrowland-2011:jonas-lion",
+   "day": 1,
+   "stageId": "tomorrowland-2011:untitled",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:untitled:1500:baselab-sound",
+   "artistId": "tomorrowland-2011:baselab-sound",
+   "day": 1,
+   "stageId": "tomorrowland-2011:untitled",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:untitled:1600:goldorak-and-solpher",
+   "artistId": "tomorrowland-2011:goldorak-and-solpher",
+   "day": 1,
+   "stageId": "tomorrowland-2011:untitled",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:untitled:1700:piro",
+   "artistId": "tomorrowland-2011:piro",
+   "day": 1,
+   "stageId": "tomorrowland-2011:untitled",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:untitled:1800:girl-unit",
+   "artistId": "tomorrowland-2011:girl-unit",
+   "day": 1,
+   "stageId": "tomorrowland-2011:untitled",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:untitled:1900:von-d",
+   "artistId": "tomorrowland-2011:von-d",
+   "day": 1,
+   "stageId": "tomorrowland-2011:untitled",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:untitled:2000:hijak-vs-kastor-and-dice",
+   "artistId": "tomorrowland-2011:hijak-vs-kastor-and-dice",
+   "day": 1,
+   "stageId": "tomorrowland-2011:untitled",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:untitled:2100:kito",
+   "artistId": "tomorrowland-2011:kito",
+   "day": 1,
+   "stageId": "tomorrowland-2011:untitled",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:untitled:2200:the-others",
+   "artistId": "tomorrowland-2011:the-others",
+   "day": 1,
+   "stageId": "tomorrowland-2011:untitled",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:untitled:2300:cookie-monsta-and-funtcase",
+   "artistId": "tomorrowland-2011:cookie-monsta-and-funtcase",
+   "day": 1,
+   "stageId": "tomorrowland-2011:untitled",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:untitled:0000:artwork-and-mc-rod-azlan",
+   "artistId": "tomorrowland-2011:artwork-and-mc-rod-azlan",
+   "day": 1,
+   "stageId": "tomorrowland-2011:untitled",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:versuz:1400:sem-thomasson",
+   "artistId": "tomorrowland-2011:sem-thomasson",
+   "day": 1,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:versuz:1530:dehasse",
+   "artistId": "tomorrowland-2011:dehasse",
+   "day": 1,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "15:30",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:versuz:1700:stefan-k-and-tom-leclercq",
+   "artistId": "tomorrowland-2011:stefan-k-and-tom-leclercq",
+   "day": 1,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:versuz:1800:don-diablo",
+   "artistId": "tomorrowland-2011:don-diablo",
+   "day": 1,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:versuz:1930:sunnery-james-and-ryan-marciano",
+   "artistId": "tomorrowland-2011:sunnery-james-and-ryan-marciano",
+   "day": 1,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:versuz:2100:bingo-players",
+   "artistId": "tomorrowland-2011:bingo-players",
+   "day": 1,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:versuz:2300:fedde-le-grand",
+   "artistId": "tomorrowland-2011:fedde-le-grand",
+   "day": 1,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:we-play-house-recordings:1400:maxim-lany",
+   "artistId": "tomorrowland-2011:maxim-lany",
+   "day": 1,
+   "stageId": "tomorrowland-2011:we-play-house-recordings",
+   "start": "14:00",
+   "end": "15:15"
+  },
+  {
+   "id": "tomorrowland-2011:d1:we-play-house-recordings:1515:san-soda-live",
+   "artistId": "tomorrowland-2011:san-soda-live",
+   "day": 1,
+   "stageId": "tomorrowland-2011:we-play-house-recordings",
+   "start": "15:15",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:we-play-house-recordings:1630:kerri-chandler-and-red-d-feat-lady-linn",
+   "artistId": "tomorrowland-2011:kerri-chandler-and-red-d-feat-lady-linn",
+   "day": 1,
+   "stageId": "tomorrowland-2011:we-play-house-recordings",
+   "start": "16:30",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:we-play-house-recordings:1930:tensnake-live",
+   "artistId": "tomorrowland-2011:tensnake-live",
+   "day": 1,
+   "stageId": "tomorrowland-2011:we-play-house-recordings",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:we-play-house-recordings:2030:motor-city-drum-ensemble",
+   "artistId": "tomorrowland-2011:motor-city-drum-ensemble",
+   "day": 1,
+   "stageId": "tomorrowland-2011:we-play-house-recordings",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:we-play-house-recordings:2200:henrik-schwarz-live",
+   "artistId": "tomorrowland-2011:henrik-schwarz-live",
+   "day": 1,
+   "stageId": "tomorrowland-2011:we-play-house-recordings",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:we-play-house-recordings:2300:dixon-vs-ame",
+   "artistId": "tomorrowland-2011:dixon-vs-ame",
+   "day": 1,
+   "stageId": "tomorrowland-2011:we-play-house-recordings",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:q-dance:1400:jones-and-sjoekoe",
+   "artistId": "tomorrowland-2011:jones-and-sjoekoe",
+   "day": 1,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:q-dance:1530:mark-with-a-k-live",
+   "artistId": "tomorrowland-2011:mark-with-a-k-live",
+   "day": 1,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "15:30",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:q-dance:1600:davoodi-vs-bestien",
+   "artistId": "tomorrowland-2011:davoodi-vs-bestien",
+   "day": 1,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:q-dance:1700:dj-ghost-vs-gave",
+   "artistId": "tomorrowland-2011:dj-ghost-vs-gave",
+   "day": 1,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:q-dance:1800:teka-b-live",
+   "artistId": "tomorrowland-2011:teka-b-live",
+   "day": 1,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "18:00",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:q-dance:1830:dr-rude",
+   "artistId": "tomorrowland-2011:dr-rude",
+   "day": 1,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:q-dance:2000:brennan-heart",
+   "artistId": "tomorrowland-2011:brennan-heart",
+   "day": 1,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:q-dance:2130:coone",
+   "artistId": "tomorrowland-2011:coone",
+   "day": 1,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:q-dance:2230:psyko-punkz",
+   "artistId": "tomorrowland-2011:psyko-punkz",
+   "day": 1,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:q-dance:0000:kasparov",
+   "artistId": "tomorrowland-2011:kasparov",
+   "day": 1,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:winterclubbing:1400:luk-vs-p-jay-vs-vox-d",
+   "artistId": "tomorrowland-2011:luk-vs-p-jay-vs-vox-d",
+   "day": 1,
+   "stageId": "tomorrowland-2011:winterclubbing",
+   "start": "14:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:winterclubbing:1700:dj-rebel",
+   "artistId": "tomorrowland-2011:dj-rebel",
+   "day": 1,
+   "stageId": "tomorrowland-2011:winterclubbing",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:winterclubbing:1800:dimitri-wouters",
+   "artistId": "tomorrowland-2011:dimitri-wouters",
+   "day": 1,
+   "stageId": "tomorrowland-2011:winterclubbing",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:winterclubbing:2000:dj-rebel",
+   "artistId": "tomorrowland-2011:dj-rebel",
+   "day": 1,
+   "stageId": "tomorrowland-2011:winterclubbing",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:winterclubbing:2100:luk-vs-p-jay-vs-vox-d",
+   "artistId": "tomorrowland-2011:luk-vs-p-jay-vs-vox-d",
+   "day": 1,
+   "stageId": "tomorrowland-2011:winterclubbing",
+   "start": "21:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:b2b:1400:john-00-flemming",
+   "artistId": "tomorrowland-2011:john-00-flemming",
+   "day": 1,
+   "stageId": "tomorrowland-2011:b2b",
+   "start": "14:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:b2b:1600:norion",
+   "artistId": "tomorrowland-2011:norion",
+   "day": 1,
+   "stageId": "tomorrowland-2011:b2b",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:b2b:1730:gms",
+   "artistId": "tomorrowland-2011:gms",
+   "day": 1,
+   "stageId": "tomorrowland-2011:b2b",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:b2b:1900:talamasca",
+   "artistId": "tomorrowland-2011:talamasca",
+   "day": 1,
+   "stageId": "tomorrowland-2011:b2b",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:b2b:2030:firaga",
+   "artistId": "tomorrowland-2011:firaga",
+   "day": 1,
+   "stageId": "tomorrowland-2011:b2b",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d1:b2b:2200:astral-projection",
+   "artistId": "tomorrowland-2011:astral-projection",
+   "day": 1,
+   "stageId": "tomorrowland-2011:b2b",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "tomorrowland-2011:d1:b2b:2330:astrix",
+   "artistId": "tomorrowland-2011:astrix",
+   "day": 1,
+   "stageId": "tomorrowland-2011:b2b",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:mainstage:1300:raving-george",
+   "artistId": "tomorrowland-2011:raving-george",
+   "day": 2,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:mainstage:1430:mason",
+   "artistId": "tomorrowland-2011:mason",
+   "day": 2,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:mainstage:1600:steve-aoki",
+   "artistId": "tomorrowland-2011:steve-aoki",
+   "day": 2,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:mainstage:1730:afrojack",
+   "artistId": "tomorrowland-2011:afrojack",
+   "day": 2,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:mainstage:1900:avicii",
+   "artistId": "tomorrowland-2011:avicii",
+   "day": 2,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:mainstage:2030:martin-solveig",
+   "artistId": "tomorrowland-2011:martin-solveig",
+   "day": 2,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:mainstage:2200:dimitri-vegas-and-like-mike",
+   "artistId": "tomorrowland-2011:dimitri-vegas-and-like-mike",
+   "day": 2,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:mainstage:2300:tiesto",
+   "artistId": "tomorrowland-2011:tiesto",
+   "day": 2,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:versuz:1200:dj-licious",
+   "artistId": "tomorrowland-2011:dj-licious",
+   "day": 2,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:versuz:1330:dj-geo",
+   "artistId": "tomorrowland-2011:dj-geo",
+   "day": 2,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:versuz:1500:daniel-bovie-and-roy-rox",
+   "artistId": "tomorrowland-2011:daniel-bovie-and-roy-rox",
+   "day": 2,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "15:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:versuz:1700:sharam",
+   "artistId": "tomorrowland-2011:sharam",
+   "day": 2,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "17:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:versuz:1900:joachim-garraud",
+   "artistId": "tomorrowland-2011:joachim-garraud",
+   "day": 2,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "19:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:versuz:2100:hardwell",
+   "artistId": "tomorrowland-2011:hardwell",
+   "day": 2,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:versuz:2300:john-dahlback",
+   "artistId": "tomorrowland-2011:john-dahlback",
+   "day": 2,
+   "stageId": "tomorrowland-2011:versuz",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:q-dance:1200:fausto",
+   "artistId": "tomorrowland-2011:fausto",
+   "day": 2,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:q-dance:1330:dr-phunk",
+   "artistId": "tomorrowland-2011:dr-phunk",
+   "day": 2,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:q-dance:1500:bioweapon",
+   "artistId": "tomorrowland-2011:bioweapon",
+   "day": 2,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:q-dance:1630:headhunterz",
+   "artistId": "tomorrowland-2011:headhunterz",
+   "day": 2,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:q-dance:1800:fenix",
+   "artistId": "tomorrowland-2011:fenix",
+   "day": 2,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:q-dance:1900:noisecontrollers",
+   "artistId": "tomorrowland-2011:noisecontrollers",
+   "day": 2,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:q-dance:2030:ran-d",
+   "artistId": "tomorrowland-2011:ran-d",
+   "day": 2,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:q-dance:2130:alpha2-and-e-force",
+   "artistId": "tomorrowland-2011:alpha2-and-e-force",
+   "day": 2,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:q-dance:2300:b-front",
+   "artistId": "tomorrowland-2011:b-front",
+   "day": 2,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:q-dance:0000:nosferatu",
+   "artistId": "tomorrowland-2011:nosferatu",
+   "day": 2,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafe-d-anvers-invites-cocoon:1230:tofke-vs-ugur-yurt",
+   "artistId": "tomorrowland-2011:tofke-vs-ugur-yurt",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-cocoon",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafe-d-anvers-invites-cocoon:1330:bp",
+   "artistId": "tomorrowland-2011:bp",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-cocoon",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafe-d-anvers-invites-cocoon:1500:massimo-girardi",
+   "artistId": "tomorrowland-2011:massimo-girardi",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-cocoon",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafe-d-anvers-invites-cocoon:1630:chris-tietjen",
+   "artistId": "tomorrowland-2011:chris-tietjen",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-cocoon",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafe-d-anvers-invites-cocoon:1800:raresh",
+   "artistId": "tomorrowland-2011:raresh",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-cocoon",
+   "start": "18:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafe-d-anvers-invites-cocoon:2030:guy-gerber",
+   "artistId": "tomorrowland-2011:guy-gerber",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-cocoon",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafe-d-anvers-invites-cocoon:2200:sven-vath",
+   "artistId": "tomorrowland-2011:sven-vath",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-cocoon",
+   "start": "22:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:above-and-beyond-s-group-therapy-stage:1400:daniel-kandi",
+   "artistId": "tomorrowland-2011:daniel-kandi",
+   "day": 2,
+   "stageId": "tomorrowland-2011:above-and-beyond-s-group-therapy-stage",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:above-and-beyond-s-group-therapy-stage:1530:cosmic-gate",
+   "artistId": "tomorrowland-2011:cosmic-gate",
+   "day": 2,
+   "stageId": "tomorrowland-2011:above-and-beyond-s-group-therapy-stage",
+   "start": "15:30",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:above-and-beyond-s-group-therapy-stage:1700:super8-and-tab",
+   "artistId": "tomorrowland-2011:super8-and-tab",
+   "day": 2,
+   "stageId": "tomorrowland-2011:above-and-beyond-s-group-therapy-stage",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:above-and-beyond-s-group-therapy-stage:1830:sander-van-doorn",
+   "artistId": "tomorrowland-2011:sander-van-doorn",
+   "day": 2,
+   "stageId": "tomorrowland-2011:above-and-beyond-s-group-therapy-stage",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:above-and-beyond-s-group-therapy-stage:2000:jaytech",
+   "artistId": "tomorrowland-2011:jaytech",
+   "day": 2,
+   "stageId": "tomorrowland-2011:above-and-beyond-s-group-therapy-stage",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:above-and-beyond-s-group-therapy-stage:2130:above-and-beyond",
+   "artistId": "tomorrowland-2011:above-and-beyond",
+   "day": 2,
+   "stageId": "tomorrowland-2011:above-and-beyond-s-group-therapy-stage",
+   "start": "21:30",
+   "end": "23:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:above-and-beyond-s-group-therapy-stage:2330:mat-zo",
+   "artistId": "tomorrowland-2011:mat-zo",
+   "day": 2,
+   "stageId": "tomorrowland-2011:above-and-beyond-s-group-therapy-stage",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:krush-club-invites-defected:1300:soulspinnas",
+   "artistId": "tomorrowland-2011:soulspinnas",
+   "day": 2,
+   "stageId": "tomorrowland-2011:krush-club-invites-defected",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:krush-club-invites-defected:1430:tom-de-neef-vs-sven-van-hees",
+   "artistId": "tomorrowland-2011:tom-de-neef-vs-sven-van-hees",
+   "day": 2,
+   "stageId": "tomorrowland-2011:krush-club-invites-defected",
+   "start": "14:30",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:krush-club-invites-defected:1630:ya-mo",
+   "artistId": "tomorrowland-2011:ya-mo",
+   "day": 2,
+   "stageId": "tomorrowland-2011:krush-club-invites-defected",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:krush-club-invites-defected:1800:copyright",
+   "artistId": "tomorrowland-2011:copyright",
+   "day": 2,
+   "stageId": "tomorrowland-2011:krush-club-invites-defected",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:krush-club-invites-defected:1930:the-shapeshifters",
+   "artistId": "tomorrowland-2011:the-shapeshifters",
+   "day": 2,
+   "stageId": "tomorrowland-2011:krush-club-invites-defected",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:krush-club-invites-defected:2100:sandy-rivera",
+   "artistId": "tomorrowland-2011:sandy-rivera",
+   "day": 2,
+   "stageId": "tomorrowland-2011:krush-club-invites-defected",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:krush-club-invites-defected:2300:chocolate-puma",
+   "artistId": "tomorrowland-2011:chocolate-puma",
+   "day": 2,
+   "stageId": "tomorrowland-2011:krush-club-invites-defected",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:1300:contraddict",
+   "artistId": "tomorrowland-2011:contraddict",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:1345:atmospherix",
+   "artistId": "tomorrowland-2011:atmospherix",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:1430:alert-and-bonafide",
+   "artistId": "tomorrowland-2011:alert-and-bonafide",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:1515:logistics",
+   "artistId": "tomorrowland-2011:logistics",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:1615:vicelord",
+   "artistId": "tomorrowland-2011:vicelord",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "16:15",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:1700:foxy-lady-and-mc-elvee",
+   "artistId": "tomorrowland-2011:foxy-lady-and-mc-elvee",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:1800:tito-and-echo-virus-vs-mc-ebony",
+   "artistId": "tomorrowland-2011:tito-and-echo-virus-vs-mc-ebony",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:1900:one87-and-hookerz-feat-mc-nice",
+   "artistId": "tomorrowland-2011:one87-and-hookerz-feat-mc-nice",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:2000:dom-and-roland-vs-klute",
+   "artistId": "tomorrowland-2011:dom-and-roland-vs-klute",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:2100:dj-die",
+   "artistId": "tomorrowland-2011:dj-die",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:2200:dj-silver",
+   "artistId": "tomorrowland-2011:dj-silver",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:2300:netsky",
+   "artistId": "tomorrowland-2011:netsky",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:star-warz:0000:marky",
+   "artistId": "tomorrowland-2011:marky",
+   "day": 2,
+   "stageId": "tomorrowland-2011:star-warz",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:format:1200:bad-dancer",
+   "artistId": "tomorrowland-2011:bad-dancer",
+   "day": 2,
+   "stageId": "tomorrowland-2011:format",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:format:1330:panteros-666-and-myd-club-cheval",
+   "artistId": "tomorrowland-2011:panteros-666-and-myd-club-cheval",
+   "day": 2,
+   "stageId": "tomorrowland-2011:format",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:format:1500:breakbot",
+   "artistId": "tomorrowland-2011:breakbot",
+   "day": 2,
+   "stageId": "tomorrowland-2011:format",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:format:1630:bart-b-more",
+   "artistId": "tomorrowland-2011:bart-b-more",
+   "day": 2,
+   "stageId": "tomorrowland-2011:format",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:format:1800:style-of-eye",
+   "artistId": "tomorrowland-2011:style-of-eye",
+   "day": 2,
+   "stageId": "tomorrowland-2011:format",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:format:1930:brodinski",
+   "artistId": "tomorrowland-2011:brodinski",
+   "day": 2,
+   "stageId": "tomorrowland-2011:format",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:format:2100:don-rimini",
+   "artistId": "tomorrowland-2011:don-rimini",
+   "day": 2,
+   "stageId": "tomorrowland-2011:format",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:format:2230:surfing-leons",
+   "artistId": "tomorrowland-2011:surfing-leons",
+   "day": 2,
+   "stageId": "tomorrowland-2011:format",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:format:0000:aks-addicted-kru-sound",
+   "artistId": "tomorrowland-2011:aks-addicted-kru-sound",
+   "day": 2,
+   "stageId": "tomorrowland-2011:format",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:kozzmozz:1300:spacid",
+   "artistId": "tomorrowland-2011:spacid",
+   "day": 2,
+   "stageId": "tomorrowland-2011:kozzmozz",
+   "start": "13:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:kozzmozz:1500:marcel-dettmann-and-marcel-fengler",
+   "artistId": "tomorrowland-2011:marcel-dettmann-and-marcel-fengler",
+   "day": 2,
+   "stageId": "tomorrowland-2011:kozzmozz",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:kozzmozz:1630:speedy-j",
+   "artistId": "tomorrowland-2011:speedy-j",
+   "day": 2,
+   "stageId": "tomorrowland-2011:kozzmozz",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:kozzmozz:1800:ben-sims-and-friends-frequency-7-with-surgeon-and-killa-productions-with-paul-mac",
+   "artistId": "tomorrowland-2011:ben-sims-and-friends-frequency-7-with-surgeon-and-killa-productions-with-paul-mac",
+   "day": 2,
+   "stageId": "tomorrowland-2011:kozzmozz",
+   "start": "18:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:kozzmozz:2100:kr-z",
+   "artistId": "tomorrowland-2011:kr-z",
+   "day": 2,
+   "stageId": "tomorrowland-2011:kozzmozz",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:kozzmozz:2230:chris-liebing",
+   "artistId": "tomorrowland-2011:chris-liebing",
+   "day": 2,
+   "stageId": "tomorrowland-2011:kozzmozz",
+   "start": "22:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:i-love-the-90-s:1400:dj-ward",
+   "artistId": "tomorrowland-2011:dj-ward",
+   "day": 2,
+   "stageId": "tomorrowland-2011:i-love-the-90-s",
+   "start": "14:00",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:i-love-the-90-s:1730:marc-acardipane-aka-marshall-masters-feat-the-ultimate-mc",
+   "artistId": "tomorrowland-2011:marc-acardipane-aka-marshall-masters-feat-the-ultimate-mc",
+   "day": 2,
+   "stageId": "tomorrowland-2011:i-love-the-90-s",
+   "start": "17:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:i-love-the-90-s:1800:jan-vervloet-fiocco-dj",
+   "artistId": "tomorrowland-2011:jan-vervloet-fiocco-dj",
+   "day": 2,
+   "stageId": "tomorrowland-2011:i-love-the-90-s",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:i-love-the-90-s:1930:virtual-zone",
+   "artistId": "tomorrowland-2011:virtual-zone",
+   "day": 2,
+   "stageId": "tomorrowland-2011:i-love-the-90-s",
+   "start": "19:30",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:i-love-the-90-s:2000:dj-wout",
+   "artistId": "tomorrowland-2011:dj-wout",
+   "day": 2,
+   "stageId": "tomorrowland-2011:i-love-the-90-s",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:i-love-the-90-s:2130:dj-ward",
+   "artistId": "tomorrowland-2011:dj-ward",
+   "day": 2,
+   "stageId": "tomorrowland-2011:i-love-the-90-s",
+   "start": "21:30",
+   "end": "23:00",
+   "billing": "DJ Ward"
+  },
+  {
+   "id": "tomorrowland-2011:d2:i-love-the-90-s:2300:ray-and-anita",
+   "artistId": "tomorrowland-2011:ray-and-anita",
+   "day": 2,
+   "stageId": "tomorrowland-2011:i-love-the-90-s",
+   "start": "23:00",
+   "end": "23:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:i-love-the-90-s:2330:bonzai-all-stars",
+   "artistId": "tomorrowland-2011:bonzai-all-stars",
+   "day": 2,
+   "stageId": "tomorrowland-2011:i-love-the-90-s",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafeina:1200:phill-and-steve",
+   "artistId": "tomorrowland-2011:phill-and-steve",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafeina",
+   "start": "12:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafeina:1400:2dirty",
+   "artistId": "tomorrowland-2011:2dirty",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafeina",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafeina:1530:marko",
+   "artistId": "tomorrowland-2011:marko",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafeina",
+   "start": "15:30",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafeina:1700:stereo-clash",
+   "artistId": "tomorrowland-2011:stereo-clash",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafeina",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafeina:1830:gregor-salto",
+   "artistId": "tomorrowland-2011:gregor-salto",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafeina",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:cafeina:2200:roma",
+   "artistId": "tomorrowland-2011:roma",
+   "day": 2,
+   "stageId": "tomorrowland-2011:cafeina",
+   "start": "22:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:ketaloco:1200:don-cabron",
+   "artistId": "tomorrowland-2011:don-cabron",
+   "day": 2,
+   "stageId": "tomorrowland-2011:ketaloco",
+   "start": "12:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:ketaloco:1500:dimitri-andreas",
+   "artistId": "tomorrowland-2011:dimitri-andreas",
+   "day": 2,
+   "stageId": "tomorrowland-2011:ketaloco",
+   "start": "15:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:ketaloco:1700:caspar",
+   "artistId": "tomorrowland-2011:caspar",
+   "day": 2,
+   "stageId": "tomorrowland-2011:ketaloco",
+   "start": "17:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:ketaloco:1900:stijn",
+   "artistId": "tomorrowland-2011:stijn",
+   "day": 2,
+   "stageId": "tomorrowland-2011:ketaloco",
+   "start": "19:00",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:ketaloco:2100:don-santos",
+   "artistId": "tomorrowland-2011:don-santos",
+   "day": 2,
+   "stageId": "tomorrowland-2011:ketaloco",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d2:ketaloco:2300:the-jelly-bellies",
+   "artistId": "tomorrowland-2011:the-jelly-bellies",
+   "day": 2,
+   "stageId": "tomorrowland-2011:ketaloco",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:mainstage:1130:nicolaz",
+   "artistId": "tomorrowland-2011:nicolaz",
+   "day": 3,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "11:30",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:mainstage:1300:thomas-gold",
+   "artistId": "tomorrowland-2011:thomas-gold",
+   "day": 3,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:mainstage:1430:nervo",
+   "artistId": "tomorrowland-2011:nervo",
+   "day": 3,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:mainstage:1600:wolfgang-gartner",
+   "artistId": "tomorrowland-2011:wolfgang-gartner",
+   "day": 3,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "16:00",
+   "end": "17:20"
+  },
+  {
+   "id": "tomorrowland-2011:d3:mainstage:1720:laidback-luke",
+   "artistId": "tomorrowland-2011:laidback-luke",
+   "day": 3,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "17:20",
+   "end": "18:50"
+  },
+  {
+   "id": "tomorrowland-2011:d3:mainstage:1900:chuckie",
+   "artistId": "tomorrowland-2011:chuckie",
+   "day": 3,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:mainstage:2030:david-guetta",
+   "artistId": "tomorrowland-2011:david-guetta",
+   "day": 3,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "20:30",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:mainstage:2230:2-many-dj-s",
+   "artistId": "tomorrowland-2011:2-many-dj-s",
+   "day": 3,
+   "stageId": "tomorrowland-2011:mainstage",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:q-dance:1100:kutski",
+   "artistId": "tomorrowland-2011:kutski",
+   "day": 3,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "11:00",
+   "end": "12:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:q-dance:1230:demoniak",
+   "artistId": "tomorrowland-2011:demoniak",
+   "day": 3,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:q-dance:1330:toneshifterz",
+   "artistId": "tomorrowland-2011:toneshifterz",
+   "day": 3,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:q-dance:1500:technoboy",
+   "artistId": "tomorrowland-2011:technoboy",
+   "day": 3,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:q-dance:1630:ambassador-inc",
+   "artistId": "tomorrowland-2011:ambassador-inc",
+   "day": 3,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "16:30",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:q-dance:1700:digital-punk",
+   "artistId": "tomorrowland-2011:digital-punk",
+   "day": 3,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:q-dance:1830:luna",
+   "artistId": "tomorrowland-2011:luna",
+   "day": 3,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:q-dance:2000:wildstylez",
+   "artistId": "tomorrowland-2011:wildstylez",
+   "day": 3,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:q-dance:2130:zatox",
+   "artistId": "tomorrowland-2011:zatox",
+   "day": 3,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:q-dance:2300:promo",
+   "artistId": "tomorrowland-2011:promo",
+   "day": 3,
+   "stageId": "tomorrowland-2011:q-dance",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:cafe-d-anvers-invites-ovum-recordings:1130:bartholomeo",
+   "artistId": "tomorrowland-2011:bartholomeo",
+   "day": 3,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-ovum-recordings",
+   "start": "11:30",
+   "end": "12:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:cafe-d-anvers-invites-ovum-recordings:1230:smos",
+   "artistId": "tomorrowland-2011:smos",
+   "day": 3,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-ovum-recordings",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:cafe-d-anvers-invites-ovum-recordings:1330:m-a-n-i-k",
+   "artistId": "tomorrowland-2011:m-a-n-i-k",
+   "day": 3,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-ovum-recordings",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "tomorrowland-2011:d3:cafe-d-anvers-invites-ovum-recordings:1415:prinz",
+   "artistId": "tomorrowland-2011:prinz",
+   "day": 3,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-ovum-recordings",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "tomorrowland-2011:d3:cafe-d-anvers-invites-ovum-recordings:1515:shlomi-aber",
+   "artistId": "tomorrowland-2011:shlomi-aber",
+   "day": 3,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-ovum-recordings",
+   "start": "15:15",
+   "end": "17:15"
+  },
+  {
+   "id": "tomorrowland-2011:d3:cafe-d-anvers-invites-ovum-recordings:1715:kink",
+   "artistId": "tomorrowland-2011:kink",
+   "day": 3,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-ovum-recordings",
+   "start": "17:15",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:cafe-d-anvers-invites-ovum-recordings:1800:loco-dice",
+   "artistId": "tomorrowland-2011:loco-dice",
+   "day": 3,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-ovum-recordings",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:cafe-d-anvers-invites-ovum-recordings:2000:josh-wink",
+   "artistId": "tomorrowland-2011:josh-wink",
+   "day": 3,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-ovum-recordings",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:cafe-d-anvers-invites-ovum-recordings:2200:dubfire",
+   "artistId": "tomorrowland-2011:dubfire",
+   "day": 3,
+   "stageId": "tomorrowland-2011:cafe-d-anvers-invites-ovum-recordings",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:dim-mak:1200:jacob-van-hage",
+   "artistId": "tomorrowland-2011:jacob-van-hage",
+   "day": 3,
+   "stageId": "tomorrowland-2011:dim-mak",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:dim-mak:1300:gtronic",
+   "artistId": "tomorrowland-2011:gtronic",
+   "day": 3,
+   "stageId": "tomorrowland-2011:dim-mak",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:dim-mak:1400:sound-of-stereo",
+   "artistId": "tomorrowland-2011:sound-of-stereo",
+   "day": 3,
+   "stageId": "tomorrowland-2011:dim-mak",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:dim-mak:1500:tai",
+   "artistId": "tomorrowland-2011:tai",
+   "day": 3,
+   "stageId": "tomorrowland-2011:dim-mak",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:dim-mak:1600:mustard-pimp",
+   "artistId": "tomorrowland-2011:mustard-pimp",
+   "day": 3,
+   "stageId": "tomorrowland-2011:dim-mak",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:dim-mak:1700:uffie",
+   "artistId": "tomorrowland-2011:uffie",
+   "day": 3,
+   "stageId": "tomorrowland-2011:dim-mak",
+   "start": "17:00",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:dim-mak:1730:myback",
+   "artistId": "tomorrowland-2011:myback",
+   "day": 3,
+   "stageId": "tomorrowland-2011:dim-mak",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:dim-mak:1830:felix-cartal",
+   "artistId": "tomorrowland-2011:felix-cartal",
+   "day": 3,
+   "stageId": "tomorrowland-2011:dim-mak",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:dim-mak:1930:autoerotique",
+   "artistId": "tomorrowland-2011:autoerotique",
+   "day": 3,
+   "stageId": "tomorrowland-2011:dim-mak",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:dim-mak:2030:dada-life",
+   "artistId": "tomorrowland-2011:dada-life",
+   "day": 3,
+   "stageId": "tomorrowland-2011:dim-mak",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:dim-mak:2130:steve-aoki-vs-afrojack",
+   "artistId": "tomorrowland-2011:steve-aoki-vs-afrojack",
+   "day": 3,
+   "stageId": "tomorrowland-2011:dim-mak",
+   "start": "21:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:m-nus:1100:igor-vicente",
+   "artistId": "tomorrowland-2011:igor-vicente",
+   "day": 3,
+   "stageId": "tomorrowland-2011:m-nus",
+   "start": "11:00",
+   "end": "12:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:m-nus:1230:fabrizio-maurizi",
+   "artistId": "tomorrowland-2011:fabrizio-maurizi",
+   "day": 3,
+   "stageId": "tomorrowland-2011:m-nus",
+   "start": "12:30",
+   "end": "14:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:m-nus:1400:ambivalent",
+   "artistId": "tomorrowland-2011:ambivalent",
+   "day": 3,
+   "stageId": "tomorrowland-2011:m-nus",
+   "start": "14:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:m-nus:1600:heartthrob-live",
+   "artistId": "tomorrowland-2011:heartthrob-live",
+   "day": 3,
+   "stageId": "tomorrowland-2011:m-nus",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:m-nus:1700:magda",
+   "artistId": "tomorrowland-2011:magda",
+   "day": 3,
+   "stageId": "tomorrowland-2011:m-nus",
+   "start": "17:00",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:m-nus:1900:barem-live-after-the-storm-album-tour",
+   "artistId": "tomorrowland-2011:barem-live-after-the-storm-album-tour",
+   "day": 3,
+   "stageId": "tomorrowland-2011:m-nus",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:m-nus:2000:marco-carola",
+   "artistId": "tomorrowland-2011:marco-carola",
+   "day": 3,
+   "stageId": "tomorrowland-2011:m-nus",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:m-nus:2200:richie-hawtin",
+   "artistId": "tomorrowland-2011:richie-hawtin",
+   "day": 3,
+   "stageId": "tomorrowland-2011:m-nus",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:kne-deep:1115:matthew-hoag-vs-dejan-milcevic",
+   "artistId": "tomorrowland-2011:matthew-hoag-vs-dejan-milcevic",
+   "day": 3,
+   "stageId": "tomorrowland-2011:kne-deep",
+   "start": "11:15",
+   "end": "13:15"
+  },
+  {
+   "id": "tomorrowland-2011:d3:kne-deep:1315:gaetano-parisio",
+   "artistId": "tomorrowland-2011:gaetano-parisio",
+   "day": 3,
+   "stageId": "tomorrowland-2011:kne-deep",
+   "start": "13:15",
+   "end": "14:45"
+  },
+  {
+   "id": "tomorrowland-2011:d3:kne-deep:1445:alex-flatner",
+   "artistId": "tomorrowland-2011:alex-flatner",
+   "day": 3,
+   "stageId": "tomorrowland-2011:kne-deep",
+   "start": "14:45",
+   "end": "16:15"
+  },
+  {
+   "id": "tomorrowland-2011:d3:kne-deep:1615:du-art",
+   "artistId": "tomorrowland-2011:du-art",
+   "day": 3,
+   "stageId": "tomorrowland-2011:kne-deep",
+   "start": "16:15",
+   "end": "17:45"
+  },
+  {
+   "id": "tomorrowland-2011:d3:kne-deep:1745:huma-noyd-live",
+   "artistId": "tomorrowland-2011:huma-noyd-live",
+   "day": 3,
+   "stageId": "tomorrowland-2011:kne-deep",
+   "start": "17:45",
+   "end": "18:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:kne-deep:1830:dj-rush",
+   "artistId": "tomorrowland-2011:dj-rush",
+   "day": 3,
+   "stageId": "tomorrowland-2011:kne-deep",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:kne-deep:2000:frank-kvitta",
+   "artistId": "tomorrowland-2011:frank-kvitta",
+   "day": 3,
+   "stageId": "tomorrowland-2011:kne-deep",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:kne-deep:2130:pet-trio-pet-duo-vs-miss-djax",
+   "artistId": "tomorrowland-2011:pet-trio-pet-duo-vs-miss-djax",
+   "day": 3,
+   "stageId": "tomorrowland-2011:kne-deep",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:kne-deep:2230:marco-remus",
+   "artistId": "tomorrowland-2011:marco-remus",
+   "day": 3,
+   "stageId": "tomorrowland-2011:kne-deep",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:versuz-invites-size-matters:1100:e-s-p",
+   "artistId": "tomorrowland-2011:e-s-p",
+   "day": 3,
+   "stageId": "tomorrowland-2011:versuz-invites-size-matters",
+   "start": "11:00",
+   "end": "12:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:versuz-invites-size-matters:1200:danny-corten",
+   "artistId": "tomorrowland-2011:danny-corten",
+   "day": 3,
+   "stageId": "tomorrowland-2011:versuz-invites-size-matters",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:versuz-invites-size-matters:1300:dave-lambert",
+   "artistId": "tomorrowland-2011:dave-lambert",
+   "day": 3,
+   "stageId": "tomorrowland-2011:versuz-invites-size-matters",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:versuz-invites-size-matters:1430:norman-doray",
+   "artistId": "tomorrowland-2011:norman-doray",
+   "day": 3,
+   "stageId": "tomorrowland-2011:versuz-invites-size-matters",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:versuz-invites-size-matters:1600:barry-fore",
+   "artistId": "tomorrowland-2011:barry-fore",
+   "day": 3,
+   "stageId": "tomorrowland-2011:versuz-invites-size-matters",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:versuz-invites-size-matters:1730:third-party",
+   "artistId": "tomorrowland-2011:third-party",
+   "day": 3,
+   "stageId": "tomorrowland-2011:versuz-invites-size-matters",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:versuz-invites-size-matters:1900:an21-and-max-vangeli",
+   "artistId": "tomorrowland-2011:an21-and-max-vangeli",
+   "day": 3,
+   "stageId": "tomorrowland-2011:versuz-invites-size-matters",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:versuz-invites-size-matters:2030:groove-armada-presents-red-light",
+   "artistId": "tomorrowland-2011:groove-armada-presents-red-light",
+   "day": 3,
+   "stageId": "tomorrowland-2011:versuz-invites-size-matters",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:versuz-invites-size-matters:2200:steve-angello",
+   "artistId": "tomorrowland-2011:steve-angello",
+   "day": 3,
+   "stageId": "tomorrowland-2011:versuz-invites-size-matters",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:daily-dubstep:1200:subreachers",
+   "artistId": "tomorrowland-2011:subreachers",
+   "day": 3,
+   "stageId": "tomorrowland-2011:daily-dubstep",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:daily-dubstep:1330:science",
+   "artistId": "tomorrowland-2011:science",
+   "day": 3,
+   "stageId": "tomorrowland-2011:daily-dubstep",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:daily-dubstep:1500:cyrax-and-numerus",
+   "artistId": "tomorrowland-2011:cyrax-and-numerus",
+   "day": 3,
+   "stageId": "tomorrowland-2011:daily-dubstep",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:daily-dubstep:1600:bunzer0",
+   "artistId": "tomorrowland-2011:bunzer0",
+   "day": 3,
+   "stageId": "tomorrowland-2011:daily-dubstep",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:daily-dubstep:1700:nga-allspark-and-gaz-feat-mc-nice",
+   "artistId": "tomorrowland-2011:nga-allspark-and-gaz-feat-mc-nice",
+   "day": 3,
+   "stageId": "tomorrowland-2011:daily-dubstep",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:daily-dubstep:1800:grimelock",
+   "artistId": "tomorrowland-2011:grimelock",
+   "day": 3,
+   "stageId": "tomorrowland-2011:daily-dubstep",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:daily-dubstep:1930:kryptic-minds-feat-sp-mc",
+   "artistId": "tomorrowland-2011:kryptic-minds-feat-sp-mc",
+   "day": 3,
+   "stageId": "tomorrowland-2011:daily-dubstep",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:daily-dubstep:2100:n-type",
+   "artistId": "tomorrowland-2011:n-type",
+   "day": 3,
+   "stageId": "tomorrowland-2011:daily-dubstep",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:daily-dubstep:2230:pinch-and-gemmy-feat-mc-pokes",
+   "artistId": "tomorrowland-2011:pinch-and-gemmy-feat-mc-pokes",
+   "day": 3,
+   "stageId": "tomorrowland-2011:daily-dubstep",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:smash-the-house:1100:yves-v",
+   "artistId": "tomorrowland-2011:yves-v",
+   "day": 3,
+   "stageId": "tomorrowland-2011:smash-the-house",
+   "start": "11:00",
+   "end": "12:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:smash-the-house:1200:swanky-tunes",
+   "artistId": "tomorrowland-2011:swanky-tunes",
+   "day": 3,
+   "stageId": "tomorrowland-2011:smash-the-house",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:smash-the-house:1330:angger-dimas",
+   "artistId": "tomorrowland-2011:angger-dimas",
+   "day": 3,
+   "stageId": "tomorrowland-2011:smash-the-house",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:smash-the-house:1630:michael-woods",
+   "artistId": "tomorrowland-2011:michael-woods",
+   "day": 3,
+   "stageId": "tomorrowland-2011:smash-the-house",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:smash-the-house:1800:regi",
+   "artistId": "tomorrowland-2011:regi",
+   "day": 3,
+   "stageId": "tomorrowland-2011:smash-the-house",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:smash-the-house:1930:sidney-samson",
+   "artistId": "tomorrowland-2011:sidney-samson",
+   "day": 3,
+   "stageId": "tomorrowland-2011:smash-the-house",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:smash-the-house:2100:david-tort",
+   "artistId": "tomorrowland-2011:david-tort",
+   "day": 3,
+   "stageId": "tomorrowland-2011:smash-the-house",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:smash-the-house:2230:dimitri-vegas-and-like-mike",
+   "artistId": "tomorrowland-2011:dimitri-vegas-and-like-mike",
+   "day": 3,
+   "stageId": "tomorrowland-2011:smash-the-house",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:paul-van-dyk-presents-evolution:1130:austin-leeds",
+   "artistId": "tomorrowland-2011:austin-leeds",
+   "day": 3,
+   "stageId": "tomorrowland-2011:paul-van-dyk-presents-evolution",
+   "start": "11:30",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:paul-van-dyk-presents-evolution:1300:ummet-ozcan",
+   "artistId": "tomorrowland-2011:ummet-ozcan",
+   "day": 3,
+   "stageId": "tomorrowland-2011:paul-van-dyk-presents-evolution",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:paul-van-dyk-presents-evolution:1430:rank-1",
+   "artistId": "tomorrowland-2011:rank-1",
+   "day": 3,
+   "stageId": "tomorrowland-2011:paul-van-dyk-presents-evolution",
+   "start": "14:30",
+   "end": "15:45"
+  },
+  {
+   "id": "tomorrowland-2011:d3:paul-van-dyk-presents-evolution:1545:giuseppe-ottaviani",
+   "artistId": "tomorrowland-2011:giuseppe-ottaviani",
+   "day": 3,
+   "stageId": "tomorrowland-2011:paul-van-dyk-presents-evolution",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "tomorrowland-2011:d3:paul-van-dyk-presents-evolution:1645:m-i-k-e",
+   "artistId": "tomorrowland-2011:m-i-k-e",
+   "day": 3,
+   "stageId": "tomorrowland-2011:paul-van-dyk-presents-evolution",
+   "start": "16:45",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:paul-van-dyk-presents-evolution:1800:gabriel-and-dresden",
+   "artistId": "tomorrowland-2011:gabriel-and-dresden",
+   "day": 3,
+   "stageId": "tomorrowland-2011:paul-van-dyk-presents-evolution",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:paul-van-dyk-presents-evolution:1930:markus-schulz",
+   "artistId": "tomorrowland-2011:markus-schulz",
+   "day": 3,
+   "stageId": "tomorrowland-2011:paul-van-dyk-presents-evolution",
+   "start": "19:30",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:paul-van-dyk-presents-evolution:2230:paul-van-dyk",
+   "artistId": "tomorrowland-2011:paul-van-dyk",
+   "day": 3,
+   "stageId": "tomorrowland-2011:paul-van-dyk-presents-evolution",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:la-rocca-invites-we-love:1400:iris-menza",
+   "artistId": "tomorrowland-2011:iris-menza",
+   "day": 3,
+   "stageId": "tomorrowland-2011:la-rocca-invites-we-love",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:la-rocca-invites-we-love:1600:audiofly",
+   "artistId": "tomorrowland-2011:audiofly",
+   "day": 3,
+   "stageId": "tomorrowland-2011:la-rocca-invites-we-love",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:la-rocca-invites-we-love:1800:riva-starr",
+   "artistId": "tomorrowland-2011:riva-starr",
+   "day": 3,
+   "stageId": "tomorrowland-2011:la-rocca-invites-we-love",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:la-rocca-invites-we-love:1930:james-zabiela",
+   "artistId": "tomorrowland-2011:james-zabiela",
+   "day": 3,
+   "stageId": "tomorrowland-2011:la-rocca-invites-we-love",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:la-rocca-invites-we-love:2100:m-a-n-d-y",
+   "artistId": "tomorrowland-2011:m-a-n-d-y",
+   "day": 3,
+   "stageId": "tomorrowland-2011:la-rocca-invites-we-love",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:la-rocca-invites-we-love:2200:sasha",
+   "artistId": "tomorrowland-2011:sasha",
+   "day": 3,
+   "stageId": "tomorrowland-2011:la-rocca-invites-we-love",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:coincidence-records:1100:edward-molton",
+   "artistId": "tomorrowland-2011:edward-molton",
+   "day": 3,
+   "stageId": "tomorrowland-2011:coincidence-records",
+   "start": "11:00",
+   "end": "13:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:coincidence-records:1300:evad",
+   "artistId": "tomorrowland-2011:evad",
+   "day": 3,
+   "stageId": "tomorrowland-2011:coincidence-records",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:coincidence-records:1430:jazzmin",
+   "artistId": "tomorrowland-2011:jazzmin",
+   "day": 3,
+   "stageId": "tomorrowland-2011:coincidence-records",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:coincidence-records:1600:psytox",
+   "artistId": "tomorrowland-2011:psytox",
+   "day": 3,
+   "stageId": "tomorrowland-2011:coincidence-records",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:coincidence-records:1730:tom-dazing-and-gols",
+   "artistId": "tomorrowland-2011:tom-dazing-and-gols",
+   "day": 3,
+   "stageId": "tomorrowland-2011:coincidence-records",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "tomorrowland-2011:d3:coincidence-records:1900:steffi",
+   "artistId": "tomorrowland-2011:steffi",
+   "day": 3,
+   "stageId": "tomorrowland-2011:coincidence-records",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:coincidence-records:2030:tama-sumo",
+   "artistId": "tomorrowland-2011:tama-sumo",
+   "day": 3,
+   "stageId": "tomorrowland-2011:coincidence-records",
+   "start": "20:30",
+   "end": "22:30"
+  },
+  {
+   "id": "tomorrowland-2011:d3:coincidence-records:2230:pierre-and-juannes",
+   "artistId": "tomorrowland-2011:pierre-and-juannes",
+   "day": 3,
+   "stageId": "tomorrowland-2011:coincidence-records",
+   "start": "22:30",
+   "end": "00:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110803195002/http://www.tomorrowland.be:80/cms/en/line-up/friday",
+    "captureTimestamp": "20110803195002",
+    "printed": "Friday 22 july",
+    "sha256": "d7ec5b62e11e7d8627faabc88c130529469e6d9e6bdda5b280beeea7bc127bb9",
+    "rows": 94,
+    "format": "tml-cms"
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110802065019/http://www.tomorrowland.be:80/cms/en/line-up/saturday",
+    "captureTimestamp": "20110802065019",
+    "printed": "Saturday 23 july",
+    "sha256": "876bedd6fff6ed34ff2afc6b7bf37e76e345cc71c93b6b2a25a298843a7e2cd8",
+    "rows": 94,
+    "format": "tml-cms"
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110727234807/http://www.tomorrowland.be:80/cms/en/line-up/sunday",
+    "captureTimestamp": "20110727234807",
+    "printed": "Sunday 24 july",
+    "sha256": "abfa8216b458b8815922c2cbf2be784d5b66a2a9ab55a6cc0d7e429bfb6331ba",
+    "rows": 103,
+    "format": "tml-cms"
+   }
+  ]
+ }
+}

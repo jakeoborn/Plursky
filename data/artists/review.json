@@ -602,6 +602,41 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it. (Shambhala 2024 prints \"TF Marz B2B Parkbreezy\" as its own billing.)"
  },
  {
+  "id": "tomorrowland-2010:d1:i-love-the-90-s:2330:johan-gielen-and-cor-fijneman-back2back-airscape",
+  "printed": "Johan Gielen & Cor Fijneman back2back (Airscape)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+ },
+ {
+  "id": "tomorrowland-2011:d2:format:1330:panteros-666-and-myd-club-cheval",
+  "printed": "Panteros 666 & Myd (Club Cheval)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+ },
+ {
+  "id": "tomorrowland-2011:d2:kozzmozz:1800:ben-sims-and-friends-frequency-7-with-surgeon-and-killa-productions-with-paul-mac",
+  "printed": "Ben Sims & Friends (Frequency 7 with Surgeon & Killa Productions with Paul Mac)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+ },
+ {
+  "id": "tomorrowland-2011:d2:i-love-the-90-s:1800:jan-vervloet-fiocco-dj",
+  "printed": "Jan Vervloet (Fiocco dj)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+ },
+ {
+  "id": "tomorrowland-2011:d3:daily-dubstep:1700:nga-allspark-and-gaz-feat-mc-nice",
+  "printed": "NGA (Allspark & Gaz feat. Mc Nice)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+ },
+ {
   "id": "tomorrowland-2014:d2:star-warz:2300:special-guest-sub-focus-ft-id",
   "printed": "Special Guest: Sub Focus ft. ID",
   "reason": "feat / with billing",
@@ -1003,6 +1038,13 @@
  {
   "id": "key:sia",
   "printed": "Sia",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:nu",
+  "printed": "NU",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."

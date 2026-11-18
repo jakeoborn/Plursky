@@ -1,0 +1,196 @@
+{
+  "id": "tomorrowland-2010",
+  "method": "official_sources",
+  "official": "https://www.tomorrowland.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2010-07-24",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.be:80/cms/en/line-up/saturday",
+          "archivedUrl": "https://web.archive.org/web/20100731082203/http://www.tomorrowland.be:80/cms/en/line-up/saturday",
+          "captureTimestamp": "20100731082203",
+          "printed": "Saturday 24 july",
+          "sha256": "738a9d4f9bce8caf78f352e36b1a1abd93a619e8b428611dcb13e8bf7a29e4d2",
+          "bytes": 167926,
+          "rows": 116,
+          "format": "tml-cms",
+          "template": "2010",
+          "tabs": [
+            "Saturday 24 july",
+            "Sunday 25 july"
+          ],
+          "stages": 14,
+          "times": "24-hour ranges; a time before 6 AM is the night of the day above",
+          "acrossOtherSets": [
+            "Mainstage: MC Stretch 12:00 > 01:00",
+            "Q-Dance: MC Villain 11:55 > 01:00"
+          ],
+          "misprints": [
+            "Jon O'Bir: 23:00 > 00:00 (printed while another set on the stage is still on)",
+            "Activa: 23:00 > 00:00 (printed while another set on the stage is still on)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2010-07-25",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.tomorrowland.be:80/cms/en/line-up/sunday",
+          "archivedUrl": "https://web.archive.org/web/20100807211228/http://www.tomorrowland.be:80/cms/en/line-up/sunday",
+          "captureTimestamp": "20100807211228",
+          "printed": "Sunday 25 july",
+          "sha256": "d40c6fc2b29f5dad31ce52e73d65929185f642059da9f8adf7021617d83dd509",
+          "bytes": 167723,
+          "rows": 111,
+          "format": "tml-cms",
+          "template": "2010",
+          "tabs": [
+            "Saturday 24 july",
+            "Sunday 25 july"
+          ],
+          "stages": 14,
+          "times": "24-hour ranges; a time before 6 AM is the night of the day above",
+          "acrossOtherSets": [
+            "Mainstage: MC Stretch 11:00 > 00:00",
+            "Café d'Anvers celebrates 15 years of Ovum Recordings: MC P-Pholl 11:15 > 00:00",
+            "A State Of Trance: MC Gunner 11:00 > 00:00",
+            "Kompakt: Okinawa 69 15:00 > 00:00",
+            "Q-Dance: MC DV8 11:00 > 00:00"
+          ],
+          "misprints": [
+            "Philip: 11:30 > 14:30 (printed while another set on the stage is still on)",
+            "Joeri: 11:30 > 14:30 (printed while another set on the stage is still on)",
+            "Vibrasphere (live): 12:30 > 14:00 (printed while another set on the stage is still on)",
+            "Tension: 11:30 > 13:00 (printed while another set on the stage is still on)"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Tranceaddict",
+      "start": "23:00",
+      "end": "00:00",
+      "billing": "Jon O'Bir",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 1,
+      "stage": "Tranceaddict",
+      "start": "23:00",
+      "end": "00:00",
+      "billing": "Activa",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 1,
+      "stage": "Mainstage",
+      "start": "12:00",
+      "end": "01:00",
+      "billing": "MC Stretch",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 1,
+      "stage": "Q-Dance",
+      "start": "11:55",
+      "end": "01:00",
+      "billing": "MC Villain",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "La Rocca",
+      "start": "11:30",
+      "end": "14:30",
+      "billing": "Philip",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "La Rocca",
+      "start": "11:30",
+      "end": "14:30",
+      "billing": "Joeri",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "B2B",
+      "start": "12:30",
+      "end": "14:00",
+      "billing": "Vibrasphere (live)",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "B2B",
+      "start": "11:30",
+      "end": "13:00",
+      "billing": "Tension",
+      "reason": "the page prints two acts in one stage's time, a range over eight hours, or one that runs backwards, so neither the act nor the time can be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "Mainstage",
+      "start": "11:00",
+      "end": "00:00",
+      "billing": "MC Stretch",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Café d'Anvers celebrates 15 years of Ovum Recordings",
+      "start": "11:15",
+      "end": "00:00",
+      "billing": "MC P-Pholl",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "A State Of Trance",
+      "start": "11:00",
+      "end": "00:00",
+      "billing": "MC Gunner",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Kompakt",
+      "start": "15:00",
+      "end": "00:00",
+      "billing": "Okinawa 69",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    },
+    {
+      "day": 2,
+      "stage": "Q-Dance",
+      "start": "11:00",
+      "end": "00:00",
+      "billing": "MC DV8",
+      "reason": "an MC or live accompanist printed across two or more whole sets on the stage: not a set of its own",
+      "overlay": true
+    }
+  ],
+  "dropped": []
+}

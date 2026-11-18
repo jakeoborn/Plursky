@@ -47,6 +47,7 @@ import { parseMyScheduler, restoreSets } from "./myscheduler-schedule.mjs";
 import { parseEfScheduler } from "./ef-scheduler-schedule.mjs";
 import { parseGovBallWp } from "./govball-wp-schedule.mjs";
 import { parseInsomniacMusic } from "./insomniac-music-schedule.mjs";
+import { parseTmlCms } from "./tml-cms-schedule.mjs";
 import { parseTmlDrupal } from "./tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, readDatesPost } from "./shambhala-webflow-schedule.mjs";
 
@@ -165,7 +166,7 @@ export async function importGather(id, dir) {
     }
     const date = ed.dates[+r.day - 1]?.[0];
     if (r.date !== date) throw new Error(`row ${r.artist}: day ${r.day} is ${r.date}, the edition says ${date}`);
-    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }), ...(ex.incomplete && { incomplete: true }), ...(ex.comedy && { comedy: true }), ...(ex.food && { food: true }), ...(ex.programme && { programme: true }) }); continue; }
+    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }), ...(ex.incomplete && { incomplete: true }), ...(ex.comedy && { comedy: true }), ...(ex.food && { food: true }), ...(ex.programme && { programme: true }), ...(ex.overlay && { overlay: true }) }); continue; }
     const hits = rc.sources.map((s, i) => [s, i]).filter(([s]) => (r.source_ref || "").includes(s.match)
       && (!s.when?.stage || new RegExp(s.when.stage).test(r.stage)) && (!s.when?.stageNot || !new RegExp(s.when.stageNot).test(r.stage)));
     if (hits.length !== 1) throw new Error(`row d${r.day} ${r.stage} ${r.start} ${r.artist}: ${hits.length} sources match its source_ref`);
@@ -528,6 +529,28 @@ export async function importGather(id, dir) {
             ...(page.blank.length && { stagesWithNoSets: page.blank }),
             ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
         }
+      } else if (s.format === "tml-cms") {
+        // One page per day (Tomorrowland 2010-2012, tml-cms-schedule.mjs): its
+        // own day tab prints the day, every set a 24-hour range. Misprints,
+        // blocks printed across other sets (an MC, a live percussionist) and
+        // blocks named as their own stage must be the sheet's excluded rows
+        // of that day, one for one.
+        if (days.length !== 1) throw new Error(`page ${s.match} is cited for ${days.length} days; a Tomorrowland day page shows one`);
+        const day = days[0], d = parseTmlCms(cap.text, { year: ed.year });
+        if (d.date !== ed.dates[day - 1][0]) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${d.date}, the sheet cites it for day ${day} (${ed.dates[day - 1][0]})`);
+        if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: its day tab prints "${d.label}", the receipt says "${s.printed[day]}"`);
+        const k = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
+        for (const [flag, list] of [["misprint", d.misprints], ["overlay", d.overlays], ["programme", d.stageBlocks]]) {
+          const pg = list.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x[flag]).map(k).sort().join("\n");
+          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${list.length} ${flag} entr(ies), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+        }
+        agree(day, d.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+        Object.assign(ledgerDays[day - 1].sources.at(-1), { template: d.template, tabs: d.tabs, stages: d.stages.length,
+          times: "24-hour ranges; a time before 6 AM is the night of the day above",
+          ...(d.repeats && { drawnTwice: d.repeats }), ...(d.blank.length && { stagesWithNoSets: d.blank }),
+          ...(d.overlays.length && { acrossOtherSets: d.overlays.map(x => `${x.stage}: ${x.artist} ${x.printed}`) }),
+          ...(d.stageBlocks.length && { stageBlocks: d.stageBlocks.map(x => `${x.stage}: ${x.artist} ${x.printed}`) }),
+          ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
       } else if (s.format === "tml-drupal") {
         // One page per day (Tomorrowland 2013-2016, tml-drupal-schedule.mjs):
         // its title prints the day, and every slot's width and gap on the
