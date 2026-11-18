@@ -25,7 +25,8 @@
 - [ ] W3 accuracy gate: 17 of 20 sets within 10 min on a real album replay. The synthetic
       EDC reference (13 of 15, #503) does not count. Blocked on Jake's albums
 - [ ] W4 #502 @ `4d88b72e` (v647) Monthly win-back + recap hooks + save/cancel states.
-      v647 collides with #505's; whichever merges second re-bumps. Store offer not created
+      (#505 moved off v647 to v649 at `898a5a25`, which #515 also carries; #515 re-bumps
+      when it retargets to main.) Store offer not created
       yet (0 win-back offers read live in ASC); Jake's App Store Connect + RevenueCat taps
 - [ ] W5 #504 / #499 MusicKit token renewal command + expiry warning. The token itself
       expires Fri Nov 27, 8:14 PM CT and needs Jake's key
