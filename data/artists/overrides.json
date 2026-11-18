@@ -1,7 +1,38 @@
 {
  "merge": [],
  "split": [],
- "display": [],
+ "display": [
+  {
+   "key": "vnssa",
+   "name": "VNSSA",
+   "why": "Nine of the ten official billings print VNSSA (EDC Las Vegas, EDC Orlando, Escape, HARD Summer, Outside Lands 2023, ARC); Lightning in a Bottle 2019 alone prints VnssA. The registry would otherwise take the one mixed-case printing.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "key": "kll-smth",
+   "name": "kLL sMTH",
+   "why": "Shambhala 2024 prints the act as kLL sMTH; Lightning in a Bottle 2018 and 2019 print the plain title case Kll Smth, which drops the act's own casing.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "key": "nastynasty",
+   "name": "NastyNasty",
+   "why": "Shambhala 2012 prints NastyNasty; Lightning in a Bottle 2018 prints Nastynasty, which drops the second capital.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "key": "charlesthefirst",
+   "name": "CharlestheFirst",
+   "why": "Lollapalooza 2019 prints CharlestheFirst; Lightning in a Bottle 2019 prints Charlesthefirst, which drops the capital F.",
+   "source": "https://www.lollapalooza.com/"
+  },
+  {
+   "key": "major-league-djz",
+   "name": "Major League DJz",
+   "why": "Tomorrowland 2023 prints Major League DJz; Outside Lands 2022 prints Major League Djz and Shambhala 2025 MAJOR LEAGUE DJZ, so the one printing with the act's DJz casing is kept.",
+   "source": "https://www.tomorrowland.com/"
+  }
+ ],
  "project": [],
  "notAnAct": [],
  "billing": [
