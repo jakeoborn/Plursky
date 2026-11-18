@@ -86,6 +86,9 @@ function installBridge(cfg) {
 }
 
 const OFFER = { identifier: "plus_monthly_winback_50", price: 2.49, priceString: "€2,49", cycles: 3, period: "P1M", periodUnit: "MONTH", periodNumberOfUnits: 1 };
+// Three photo moments on EDC night 1: enough for the recap card (it needs 3).
+const RECAP_MOMENTS = { 1: [0, 1, 2].map(i => ({ id: `m${i}`, photoId: `p${i}`, night: 1, festivalId: "edc-lv-2026",
+  kind: "photo", takenAt: `2026-05-15 2${i}:10:00`, createdAt: Date.UTC(2026, 4, 16, 4 + i) })) };
 const LIVE = { native: true, metadata: { winback_enabled: true }, storefront: "USA", customer: lapsed(30), offers: [OFFER], regular: "€4,99", rescue: true };
 
 const PORT = await port();
@@ -95,12 +98,12 @@ async function runAll(spotifySrc, { shots = false, layout = false } = {}) {
   const fails = [];
   let checks = 0;
   const ok = (cond, msg) => { checks++; if (!cond) fails.push(msg); };
-  const open = async (cfg, { width = 393, next } = {}) => {
+  const open = async (cfg, { width = 393, next, tab = "me", seed = {} } = {}) => {
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, deviceScaleFactor: shots ? 3 : 1, timezoneId: "America/Chicago", serviceWorkers: "block" });
     if (spotifySrc !== SPOTIFY) await ctx.route(/\/build\/spotify\.js/, r => r.fulfill({ status: 200, contentType: "application/javascript", body: spotifySrc }));
     const src = installBridge.toString().replace(/SEASON_ID/g, JSON.stringify(SEASON)).replace(/MONTHLY_ID/g, JSON.stringify(MONTHLY));
     await ctx.addInitScript(`(${src})(${JSON.stringify(cfg)})`);
-    await ctx.addInitScript(({ next }) => {
+    await ctx.addInitScript(({ next, seed }) => {
       if (sessionStorage.getItem("__seeded")) return;
       sessionStorage.setItem("__seeded", "1");
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("user_name", "Test");
@@ -108,11 +111,13 @@ async function runAll(spotifySrc, { shots = false, layout = false } = {}) {
       localStorage.setItem("cloud_nudge_seen", "1");
       if (next) sessionStorage.setItem("__rc_next", JSON.stringify(next));
       localStorage.setItem("plursky_rescue_v1", JSON.stringify({ "rc:$RCAnonymousID:test": { paywallViewCount: 2, rescueEligibleAt: 1, rescueTrigger: "second_view" } }));
-    }, { next });
+      if (seed.moments) localStorage.setItem("plursky_moments_v1", JSON.stringify(seed.moments));
+      if (seed.plus) localStorage.setItem("plursky_plus_active", "1");
+    }, { next, seed });
     const page = await ctx.newPage();
     await page.clock.setFixedTime(new Date(NOW));
     const errors = []; page.on("pageerror", e => errors.push(String(e)));
-    await page.goto(`http://127.0.0.1:${PORT}/?tab=me`, { waitUntil: "domcontentloaded", timeout: 30000 });
+    await page.goto(`http://127.0.0.1:${PORT}/?tab=${tab}`, { waitUntil: "domcontentloaded", timeout: 30000 });
     await page.waitForFunction(() => typeof PlusGate === "function" && typeof winBackEligibility === "function", null, { timeout: 30000 });
     await sleep(500);
     return { ctx, page, errors };
@@ -217,6 +222,77 @@ async function runAll(spotifySrc, { shots = false, layout = false } = {}) {
     }
     await ctx.close();
   }
+  // ── 6. Retention hooks on the recap card (Home, after the festival) ──
+  {
+    const { ctx, page } = await open({ native: false });
+    const F = (cfg, now) => page.evaluate(([cfg, now]) => recapHookFestivalOver(cfg, now), [cfg, now]);
+    ok(await F({ endMs: NOW - DAY }, NOW) === true, "festival closed yesterday: not over");
+    ok(await F({ endMs: NOW + DAY }, NOW) === false, "festival closes tomorrow: already over");
+    ok(await F({}, NOW) === false && await F(null, NOW) === false, "no endMs: treated as over");
+    await ctx.close();
+  }
+  const recapEyebrow = page => page.getByText(/^(Recap ready|Last night in 15s|Your weekend is ready)$/).first().textContent().catch(() => "");   // textContent: the eyebrow is CSS-uppercased
+  const hook = page => page.locator("[data-recap-winback]");
+  const HOME = { tab: "home", seed: { moments: RECAP_MOMENTS } };
+  {
+    const { ctx, page, errors } = await open(LIVE, HOME);
+    await sleep(800);
+    ok(await hook(page).count() === 1, "lapsed US subscriber on the recap card: no resubscribe row");
+    const t = await hook(page).innerText().catch(() => "");
+    ok(/Welcome back to Plursky\+/.test(t) && /€2,49\/month for 3 months, then €4,99\/month/.test(t), `recap row text is not the store's (${t})`);
+    ok(await recapEyebrow(page) !== "Your weekend is ready", "a lapsed user is told the weekend is ready");
+    const ev = JSON.parse(await page.evaluate(() => localStorage.getItem("plursky_plus_events") || "[]"));
+    ok(ev.filter(e => e.name === "plus_winback_view" && e.trigger === "recap").length === 1, "recap row view not logged once with trigger recap");
+    await hook(page).click();
+    await page.getByRole("dialog", { name: "Plursky+" }).waitFor({ timeout: 10000 }).catch(() => {});
+    ok(await page.getByRole("dialog", { name: "Plursky+" }).count() === 1, "the recap row does not open Plursky+");
+    const seePlans = page.getByRole("button", { name: "See plans" });
+    if (await seePlans.count()) await seePlans.click();
+    await sleep(600);
+    ok(await card(page).count() === 1, "the recap row's sheet does not show the win-back offer");
+    ok(!errors.length, `page errors: ${errors.join(" | ")}`);
+    if (shots || layout) for (const w of [393, 320]) for (const big of [false, true]) {
+      const o = await open(LIVE, { ...HOME, width: w });
+      await sleep(800);
+      if (big) await o.page.evaluate(() => {
+        const els = [...document.body.querySelectorAll("*")]; const sz = els.map(e => parseFloat(getComputedStyle(e).fontSize));
+        els.forEach((e, i) => { if (sz[i]) e.style.setProperty("font-size", (sz[i] * 2) + "px", "important"); });
+      });
+      await sleep(300);
+      await hook(o.page).scrollIntoViewIfNeeded().catch(() => {}); await sleep(200);
+      const over = await o.page.evaluate(w => [...document.querySelectorAll("[data-recap-winback], [data-recap-winback] *")].map(e => e.getBoundingClientRect()).filter(r => r.width && (r.right > w + 0.5 || r.left < -0.5)).length, w);
+      ok(await hook(o.page).count() === 1 && over === 0, `@${w}${big ? " 200%" : ""}: recap row missing or ${over} element(s) run past the screen`);
+      if (shots) await o.page.screenshot({ path: join(SHOTS, `recap-winback-${w}${big ? "-200" : ""}.png`) });
+      await o.ctx.close();
+    }
+    await ctx.close();
+  }
+  for (const [name, cfg] of [
+    ["remote switch off", { ...LIVE, metadata: {} }],
+    ["non-US storefront", { ...LIVE, storefront: "GBR" }],
+    ["lapsed over 90 days", { ...LIVE, customer: lapsed(120) }],
+    ["store returned no offer", { ...LIVE, offers: [] }],
+  ]) {
+    const { ctx, page } = await open(cfg, HOME);
+    await sleep(800);
+    ok(await page.getByText(/^(Recap ready|Last night in 15s)$/).count() === 1, `${name}: the free recap card is gone`);
+    ok(await hook(page).count() === 0, `${name}: resubscribe row shown`);
+    await ctx.close();
+  }
+  {
+    const active = { entitlements: { active: { plus: { identifier: "plus" } } }, allExpirationDates: { [MONTHLY]: iso(NOW + 10 * DAY) } };
+    const { ctx, page, errors } = await open({ ...LIVE, customer: active }, { tab: "home", seed: { moments: RECAP_MOMENTS, plus: true } });
+    await sleep(800);
+    ok(await recapEyebrow(page) === "Your weekend is ready", `active Plus after the festival: eyebrow is "${await recapEyebrow(page)}"`);
+    ok(await hook(page).count() === 0, "active Plus is shown a resubscribe row");
+    ok(!errors.length, `page errors: ${errors.join(" | ")}`);
+    if (shots) for (const w of [393, 320]) {
+      await page.setViewportSize({ width: w, height: 852 }); await sleep(200);
+      await page.getByText("Your weekend is ready").scrollIntoViewIfNeeded().catch(() => {}); await sleep(200);
+      await page.screenshot({ path: join(SHOTS, `recap-weekend-ready-${w}.png`) });
+    }
+    await ctx.close();
+  }
   if (shots || layout) for (const w of [393, 320]) for (const big of [false, true]) {
     const { ctx, page } = await open(LIVE, { width: w });
     await openPaywall(page);
@@ -259,6 +335,9 @@ try {
     ["if (customerInfo.entitlements?.active?.[RC_ENTITLEMENT])", "if (false)"],
     ["if (current?.metadata?.winback_enabled !== true) return null;", ""],
     ["var showRescue = !showWinBack && ", "var showRescue = "],
+    ["var weekendReady = plusActive && ", "var weekendReady = "],
+    ["return Number.isFinite(end) && Number.isFinite(nowMs) && nowMs >= end;", "return true;"],
+    ["setWinBack(copy);", 'setWinBack(winBackCopy({ offerPrice: "$2.49", regularPrice: "$4.99", cycles: 3, periodUnit: "MONTH", periodNumberOfUnits: 1 }));'],
   ];
   let caught = 0;
   {

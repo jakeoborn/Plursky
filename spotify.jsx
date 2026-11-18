@@ -2173,6 +2173,26 @@ function HomeMemoriesStrip({ state, setState }) {
       return h >= 4 && h <= 15 && !!recapReady && recapReady.night < tonight;
     } catch { return false; }
   })();
+  // SPEC-212 W4 retention hooks on the recap moment. Plus active and the
+  // festival over: the card says the weekend is ready. Plus not active: ask the
+  // store for the Monthly win-back offer; only a live offer (its words from
+  // winBackCopy, so the store's own prices) adds a flat row under the card.
+  const plusActive = _isPlusSub();
+  const weekendReady = plusActive && !!recapReady && recapHookFestivalOver(window.FESTIVAL_CONFIG, Date.now());
+  const [winBack, setWinBack] = React.useState(null);
+  const [plusOpen, setPlusOpen] = React.useState(false);
+  const recapNight = recapReady ? recapReady.night : null;
+  React.useEffect(() => {
+    if (recapNight == null || plusActive) { setWinBack(null); return; }
+    let alive = true;
+    _winBackOffer().then(o => {
+      const copy = o ? winBackCopy(o) : null;
+      if (!alive) return;
+      setWinBack(copy);
+      if (copy) _plusEvent("plus_winback_view", { product_id: o.productId, displayed_price: o.offerPrice, trigger: "recap" });
+    }).catch(() => {});
+    return () => { alive = false; };
+  }, [recapNight, plusActive]);
   const playHighlights = () => {
     if (!recapReady || !highlightReel) return;
     _markRecapSeen(recapReady.night, recapReady.moments.length);
@@ -2230,7 +2250,7 @@ function HomeMemoriesStrip({ state, setState }) {
               </span>
               <span style={{ flex: 1, minWidth: 0 }}>
                 <span style={{ display: "block", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>
-                  {morningAfter ? "Last night in 15s" : "Recap ready"}
+                  {weekendReady ? "Your weekend is ready" : morningAfter ? "Last night in 15s" : "Recap ready"}
                 </span>
                 <span style={{ display: "block", fontSize: 17, lineHeight: "22px", fontWeight: 600, marginTop: 2 }}>
                   {morningAfter ? `Your ${recapReady.label}, recapped` : `Your ${recapReady.label}`}
@@ -2246,9 +2266,23 @@ function HomeMemoriesStrip({ state, setState }) {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
               </span>
             </button>
+            {winBack && (
+              <button data-recap-winback onClick={() => setPlusOpen(true)} style={{
+                width: "100%", display: "flex", alignItems: "center", gap: 8, minHeight: 44,
+                padding: "8px 0 0", border: "none", background: "none", cursor: "pointer",
+                textAlign: "left", color: "var(--ink)",
+              }}>
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  <span style={{ display: "block", fontSize: 15, lineHeight: "20px", fontWeight: 600 }}>{winBack.headline}</span>
+                  <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)", marginTop: 2 }}>{winBack.line}</span>
+                </span>
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0, color: "var(--text-2)" }}><path d="M9 6 L15 12 L9 18"/></svg>
+              </button>
+            )}
           </div>
         );
       })()}
+      {plusOpen && <PlusSheet feature="everything in Plursky+" onClose={() => setPlusOpen(false)} />}
       <FieldMediaRow>
         {recent.map(m => (
           <_HomeMemoryThumb key={m.id} moment={m} onClick={() => go(m.night || NOW.day)} />
@@ -10162,6 +10196,13 @@ function winBackCopy(offer) {
     line: `${offer.offerPrice}/${unit} for ${n} ${unit}${n === 1 ? "" : "s"}, then ${offer.regularPrice}/${unit}. Cancel anytime.`,
     cta: `Resubscribe for ${offer.offerPrice}/${unit}`,
   };
+}
+
+// Pure. True once the festival's close (endMs, the end of its last night) has
+// passed: the moment the recap card can say the whole weekend is ready.
+function recapHookFestivalOver(cfg, nowMs) {
+  const end = cfg && cfg.endMs;
+  return Number.isFinite(end) && Number.isFinite(nowMs) && nowMs >= end;
 }
 
 // The storefront's country code from the native build (StoreKit 2

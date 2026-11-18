@@ -3059,6 +3059,31 @@ function HomeMemoriesStrip({
       return false;
     }
   })();
+  var plusActive = _isPlusSub();
+  var weekendReady = plusActive && !!recapReady && recapHookFestivalOver(window.FESTIVAL_CONFIG, Date.now());
+  var [winBack, setWinBack] = React.useState(null);
+  var [plusOpen, setPlusOpen] = React.useState(false);
+  var recapNight = recapReady ? recapReady.night : null;
+  React.useEffect(() => {
+    if (recapNight == null || plusActive) {
+      setWinBack(null);
+      return;
+    }
+    var alive = true;
+    _winBackOffer().then(o => {
+      var copy = o ? winBackCopy(o) : null;
+      if (!alive) return;
+      setWinBack(copy);
+      if (copy) _plusEvent("plus_winback_view", {
+        product_id: o.productId,
+        displayed_price: o.offerPrice,
+        trigger: "recap"
+      });
+    }).catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [recapNight, plusActive]);
   var playHighlights = () => {
     if (!recapReady || !highlightReel) return;
     _markRecapSeen(recapReady.night, recapReady.moments.length);
@@ -3191,7 +3216,7 @@ function HomeMemoriesStrip({
         textTransform: "uppercase",
         color: "var(--text-2)"
       }
-    }, morningAfter ? "Last night in 15s" : "Recap ready"), React.createElement("span", {
+    }, weekendReady ? "Your weekend is ready" : morningAfter ? "Last night in 15s" : "Recap ready"), React.createElement("span", {
       style: {
         display: "block",
         fontSize: 17,
@@ -3233,8 +3258,62 @@ function HomeMemoriesStrip({
       strokeLinecap: "round"
     }, React.createElement("path", {
       d: "M6 6 L18 18 M18 6 L6 18"
-    })))));
-  })(), React.createElement(FieldMediaRow, null, recent.map(m => React.createElement(_HomeMemoryThumb, {
+    })))), winBack && React.createElement("button", {
+      "data-recap-winback": true,
+      onClick: () => setPlusOpen(true),
+      style: {
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        minHeight: 44,
+        padding: "8px 0 0",
+        border: "none",
+        background: "none",
+        cursor: "pointer",
+        textAlign: "left",
+        color: "var(--ink)"
+      }
+    }, React.createElement("span", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("span", {
+      style: {
+        display: "block",
+        fontSize: 15,
+        lineHeight: "20px",
+        fontWeight: 600
+      }
+    }, winBack.headline), React.createElement("span", {
+      style: {
+        display: "block",
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)",
+        marginTop: 2
+      }
+    }, winBack.line)), React.createElement("svg", {
+      "aria-hidden": "true",
+      width: "14",
+      height: "14",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      style: {
+        flexShrink: 0,
+        color: "var(--text-2)"
+      }
+    }, React.createElement("path", {
+      d: "M9 6 L15 12 L9 18"
+    }))));
+  })(), plusOpen && React.createElement(PlusSheet, {
+    feature: "everything in Plursky+",
+    onClose: () => setPlusOpen(false)
+  }), React.createElement(FieldMediaRow, null, recent.map(m => React.createElement(_HomeMemoryThumb, {
     key: m.id,
     moment: m,
     onClick: () => go(m.night || NOW.day)
@@ -14456,6 +14535,10 @@ function winBackCopy(offer) {
     line: `${offer.offerPrice}/${unit} for ${n} ${unit}${n === 1 ? "" : "s"}, then ${offer.regularPrice}/${unit}. Cancel anytime.`,
     cta: `Resubscribe for ${offer.offerPrice}/${unit}`
   };
+}
+function recapHookFestivalOver(cfg, nowMs) {
+  var end = cfg && cfg.endMs;
+  return Number.isFinite(end) && Number.isFinite(nowMs) && nowMs >= end;
 }
 async function _winBackStorefront() {
   try {
