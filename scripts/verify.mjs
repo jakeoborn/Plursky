@@ -3485,6 +3485,24 @@ for (const [label, file] of [
   }
 }
 
+// ── 1z-b5c1b. Festival truth audit self-test (offline, under a second) ──
+// The audit itself fetches official pages, so it runs by hand, not here. Its
+// --self-test does not fetch: it plants a defect for every check (dates,
+// empty days, waivers, and a venue page that names only the city) and fails
+// if any check misses it. Without this line, a broken audit stays green until
+// someone runs it before a festival.
+{
+  console.log("▸ Festival truth audit self-test — every check fires on a planted defect");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/audit-festival-truth.mjs", "--self-test"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival truth audit self-test failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5c2. Spotify artist images: attributed, temporary, never exported ──
 // Spotify's Developer Terms allow only temporary caching of Spotify cover art
 // and the Design Guidelines forbid cropping or overlaying it and require the
