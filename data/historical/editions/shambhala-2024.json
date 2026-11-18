@@ -1,0 +1,3971 @@
+{
+ "id": "shambhala-2024",
+ "festivalId": "shambhala",
+ "name": "Shambhala 2024",
+ "year": 2024,
+ "timezone": "America/Vancouver",
+ "rolloverHour": 10,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-07-25",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2024-07-26",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2024-07-27",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2024-07-28",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "shambhala-2024:amp",
+   "name": "AMP"
+  },
+  {
+   "id": "shambhala-2024:living-room",
+   "name": "Living Room"
+  },
+  {
+   "id": "shambhala-2024:fractal-forest",
+   "name": "Fractal Forest"
+  },
+  {
+   "id": "shambhala-2024:grove",
+   "name": "Grove"
+  },
+  {
+   "id": "shambhala-2024:the-pagoda",
+   "name": "The Pagoda"
+  },
+  {
+   "id": "shambhala-2024:the-village",
+   "name": "The Village"
+  },
+  {
+   "id": "shambhala-2024:secret-garden",
+   "name": "Secret Garden"
+  }
+ ],
+ "artists": [
+  {
+   "id": "shambhala-2024:s2",
+   "name": "S2",
+   "key": "s2",
+   "performers": [
+    "s2"
+   ]
+  },
+  {
+   "id": "shambhala-2024:shrimpnose",
+   "name": "Shrimpnose",
+   "key": "shrimpnose",
+   "performers": [
+    "shrimpnose"
+   ]
+  },
+  {
+   "id": "shambhala-2024:kll-smth",
+   "name": "kLL sMTH",
+   "key": "kll-smth",
+   "performers": [
+    "kll-smth"
+   ]
+  },
+  {
+   "id": "shambhala-2024:pigeon-hole",
+   "name": "Pigeon Hole",
+   "key": "pigeon-hole",
+   "performers": [
+    "pigeon-hole"
+   ]
+  },
+  {
+   "id": "shambhala-2024:mr-jennings",
+   "name": "Mr. Jennings",
+   "key": "mr-jennings",
+   "performers": [
+    "mr-jennings"
+   ]
+  },
+  {
+   "id": "shambhala-2024:skiitour",
+   "name": "SkiiTour",
+   "key": "skiitour",
+   "performers": [
+    "skiitour"
+   ]
+  },
+  {
+   "id": "shambhala-2024:ahee",
+   "name": "Ahee",
+   "key": "ahee",
+   "performers": [
+    "ahee"
+   ]
+  },
+  {
+   "id": "shambhala-2024:chmura",
+   "name": "Chmura",
+   "key": "chmura",
+   "performers": [
+    "chmura"
+   ]
+  },
+  {
+   "id": "shambhala-2024:tsuruda",
+   "name": "Tsuruda",
+   "key": "tsuruda",
+   "performers": [
+    "tsuruda"
+   ]
+  },
+  {
+   "id": "shambhala-2024:pav4n-and-strategy",
+   "name": "Pav4n & Strategy",
+   "key": "pav4n-and-strategy",
+   "performers": [
+    "pav4n-and-strategy"
+   ]
+  },
+  {
+   "id": "shambhala-2024:the-caracal-project",
+   "name": "The Caracal Project",
+   "key": "the-caracal-project",
+   "performers": [
+    "the-caracal-project"
+   ]
+  },
+  {
+   "id": "shambhala-2024:longwalkshortdock",
+   "name": "Longwalkshortdock",
+   "key": "longwalkshortdock",
+   "performers": [
+    "longwalkshortdock"
+   ]
+  },
+  {
+   "id": "shambhala-2024:marty-carter",
+   "name": "Marty Carter",
+   "key": "marty-carter",
+   "performers": [
+    "marty-carter"
+   ]
+  },
+  {
+   "id": "shambhala-2024:binks",
+   "name": "Binks",
+   "key": "binks",
+   "performers": [
+    "binks"
+   ]
+  },
+  {
+   "id": "shambhala-2024:sistersun",
+   "name": "Sistersun",
+   "key": "sistersun",
+   "performers": [
+    "sistersun"
+   ]
+  },
+  {
+   "id": "shambhala-2024:fort-knox-five",
+   "name": "Fort Knox Five",
+   "key": "fort-knox-five",
+   "performers": [
+    "fort-knox-five"
+   ]
+  },
+  {
+   "id": "shambhala-2024:hoola",
+   "name": "Hoola",
+   "key": "hoola",
+   "performers": [
+    "hoola"
+   ]
+  },
+  {
+   "id": "shambhala-2024:soohan",
+   "name": "Soohan",
+   "key": "soohan",
+   "performers": [
+    "soohan"
+   ]
+  },
+  {
+   "id": "shambhala-2024:adham-shaikh",
+   "name": "Adham Shaikh",
+   "key": "adham-shaikh",
+   "performers": [
+    "adham-shaikh"
+   ]
+  },
+  {
+   "id": "shambhala-2024:meowmix",
+   "name": "Meowmix",
+   "key": "meowmix",
+   "performers": [
+    "meowmix"
+   ]
+  },
+  {
+   "id": "shambhala-2024:tone-ranger",
+   "name": "Tone Ranger",
+   "key": "tone-ranger",
+   "performers": [
+    "tone-ranger"
+   ]
+  },
+  {
+   "id": "shambhala-2024:fungineers",
+   "name": "Fungineers",
+   "key": "fungineers",
+   "performers": [
+    "fungineers"
+   ]
+  },
+  {
+   "id": "shambhala-2024:prayer-handz",
+   "name": "Prayer Handz",
+   "key": "prayer-handz",
+   "performers": [
+    "prayer-handz"
+   ]
+  },
+  {
+   "id": "shambhala-2024:kurei",
+   "name": "Kurei",
+   "key": "kurei",
+   "performers": [
+    "kurei"
+   ]
+  },
+  {
+   "id": "shambhala-2024:secret-recipe",
+   "name": "Secret Recipe",
+   "key": "secret-recipe",
+   "performers": [
+    "secret-recipe"
+   ]
+  },
+  {
+   "id": "shambhala-2024:hypho",
+   "name": "Hypho",
+   "key": "hypho",
+   "performers": [
+    "hypho"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dj-co-kr",
+   "name": "DJ co.kr",
+   "key": "dj-co-kr",
+   "performers": [
+    "dj-co-kr"
+   ]
+  },
+  {
+   "id": "shambhala-2024:chef-boyarbeatz",
+   "name": "Chef Boyarbeatz",
+   "key": "chef-boyarbeatz",
+   "performers": [
+    "chef-boyarbeatz"
+   ]
+  },
+  {
+   "id": "shambhala-2024:taiki-nulight",
+   "name": "Taiki Nulight",
+   "key": "taiki-nulight",
+   "performers": [
+    "taiki-nulight"
+   ]
+  },
+  {
+   "id": "shambhala-2024:sammy-virji",
+   "name": "Sammy Virji",
+   "key": "sammy-virji",
+   "performers": [
+    "sammy-virji"
+   ]
+  },
+  {
+   "id": "shambhala-2024:gentlemens-club",
+   "name": "Gentlemens Club",
+   "key": "gentlemens-club",
+   "performers": [
+    "gentlemens-club"
+   ]
+  },
+  {
+   "id": "shambhala-2024:borne",
+   "name": "Borne",
+   "key": "borne",
+   "performers": [
+    "borne"
+   ]
+  },
+  {
+   "id": "shambhala-2024:luxuryus",
+   "name": "Luxuryus",
+   "key": "luxuryus",
+   "performers": [
+    "luxuryus"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dubconscious",
+   "name": "Dubconscious",
+   "key": "dubconscious",
+   "performers": [
+    "dubconscious"
+   ]
+  },
+  {
+   "id": "shambhala-2024:danni-g",
+   "name": "Danni G",
+   "key": "danni-g",
+   "performers": [
+    "danni-g"
+   ]
+  },
+  {
+   "id": "shambhala-2024:edit",
+   "name": "edIT",
+   "key": "edit",
+   "performers": [
+    "edit"
+   ]
+  },
+  {
+   "id": "shambhala-2024:ooah",
+   "name": "OOAH",
+   "key": "ooah",
+   "performers": [
+    "ooah"
+   ]
+  },
+  {
+   "id": "shambhala-2024:el-papachango",
+   "name": "El Papachango",
+   "key": "el-papachango",
+   "performers": [
+    "el-papachango"
+   ]
+  },
+  {
+   "id": "shambhala-2024:vhoor",
+   "name": "VHOOR",
+   "key": "vhoor",
+   "performers": [
+    "vhoor"
+   ]
+  },
+  {
+   "id": "shambhala-2024:honeydrip",
+   "name": "Honeydrip",
+   "key": "honeydrip",
+   "performers": [
+    "honeydrip"
+   ]
+  },
+  {
+   "id": "shambhala-2024:amp-live",
+   "name": "AMP Live",
+   "key": "amp-live",
+   "performers": [
+    "amp-live"
+   ]
+  },
+  {
+   "id": "shambhala-2024:onhell",
+   "name": "ONHELL",
+   "key": "onhell",
+   "performers": [
+    "onhell"
+   ]
+  },
+  {
+   "id": "shambhala-2024:the-glitch-mob",
+   "name": "The Glitch Mob",
+   "key": "the-glitch-mob",
+   "performers": [
+    "the-glitch-mob"
+   ]
+  },
+  {
+   "id": "shambhala-2024:mary-droppinz",
+   "name": "Mary Droppinz",
+   "key": "mary-droppinz",
+   "performers": [
+    "mary-droppinz"
+   ]
+  },
+  {
+   "id": "shambhala-2024:antidote-collective",
+   "name": "Antidote Collective",
+   "key": "antidote-collective",
+   "performers": [
+    "antidote-collective"
+   ]
+  },
+  {
+   "id": "shambhala-2024:freddy-j",
+   "name": "Freddy J",
+   "key": "freddy-j",
+   "performers": [
+    "freddy-j"
+   ]
+  },
+  {
+   "id": "shambhala-2024:underdog",
+   "name": "Underdog",
+   "key": "underdog",
+   "performers": [
+    "underdog"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dj-hannah",
+   "name": "DJ Hannah",
+   "key": "dj-hannah",
+   "performers": [
+    "dj-hannah"
+   ]
+  },
+  {
+   "id": "shambhala-2024:joanna-magik",
+   "name": "Joanna Magik",
+   "key": "joanna-magik",
+   "performers": [
+    "joanna-magik"
+   ]
+  },
+  {
+   "id": "shambhala-2024:maddy-o-neal",
+   "name": "Maddy O'Neal",
+   "key": "maddy-o-neal",
+   "performers": [
+    "maddy-o-neal"
+   ]
+  },
+  {
+   "id": "shambhala-2024:lun",
+   "name": "LŪN",
+   "key": "lun",
+   "performers": [
+    "lun"
+   ]
+  },
+  {
+   "id": "shambhala-2024:blu-detiger-dj-set",
+   "name": "Blu DeTiger (DJ Set)",
+   "key": "blu-detiger-dj-set",
+   "performers": [
+    "blu-detiger-dj-set"
+   ]
+  },
+  {
+   "id": "shambhala-2024:chromeo-dj-set",
+   "name": "Chromeo (DJ Set)",
+   "key": "chromeo-dj-set",
+   "performers": [
+    "chromeo-dj-set"
+   ]
+  },
+  {
+   "id": "shambhala-2024:the-funk-hunters",
+   "name": "The Funk Hunters",
+   "key": "the-funk-hunters",
+   "performers": [
+    "the-funk-hunters"
+   ]
+  },
+  {
+   "id": "shambhala-2024:stickybuds",
+   "name": "Stickybuds",
+   "key": "stickybuds",
+   "performers": [
+    "stickybuds"
+   ]
+  },
+  {
+   "id": "shambhala-2024:daily-bread",
+   "name": "Daily Bread",
+   "key": "daily-bread",
+   "performers": [
+    "daily-bread"
+   ]
+  },
+  {
+   "id": "shambhala-2024:rumpus",
+   "name": "Rumpus",
+   "key": "rumpus",
+   "performers": [
+    "rumpus"
+   ]
+  },
+  {
+   "id": "shambhala-2024:burchill",
+   "name": "Burchill",
+   "key": "burchill",
+   "performers": [
+    "burchill"
+   ]
+  },
+  {
+   "id": "shambhala-2024:joseph-martin",
+   "name": "Joseph Martin",
+   "key": "joseph-martin",
+   "performers": [
+    "joseph-martin"
+   ]
+  },
+  {
+   "id": "shambhala-2024:lazy-syrup-orchestra",
+   "name": "Lazy Syrup Orchestra",
+   "key": "lazy-syrup-orchestra",
+   "performers": [
+    "lazy-syrup-orchestra"
+   ]
+  },
+  {
+   "id": "shambhala-2024:civillian",
+   "name": "Civillian",
+   "key": "civillian",
+   "performers": [
+    "civillian"
+   ]
+  },
+  {
+   "id": "shambhala-2024:mews",
+   "name": "Mews",
+   "key": "mews",
+   "performers": [
+    "mews"
+   ]
+  },
+  {
+   "id": "shambhala-2024:handsome-tiger",
+   "name": "Handsome Tiger",
+   "key": "handsome-tiger",
+   "performers": [
+    "handsome-tiger"
+   ]
+  },
+  {
+   "id": "shambhala-2024:sundog",
+   "name": "Sundog",
+   "key": "sundog",
+   "performers": [
+    "sundog"
+   ]
+  },
+  {
+   "id": "shambhala-2024:metafloor",
+   "name": "Metafloor",
+   "key": "metafloor",
+   "performers": [
+    "metafloor"
+   ]
+  },
+  {
+   "id": "shambhala-2024:nina",
+   "name": "Nina",
+   "key": "nina",
+   "performers": [
+    "nina"
+   ]
+  },
+  {
+   "id": "shambhala-2024:atyya",
+   "name": "Atyya",
+   "key": "atyya",
+   "performers": [
+    "atyya"
+   ]
+  },
+  {
+   "id": "shambhala-2024:sicaria",
+   "name": "SICARIA",
+   "key": "sicaria",
+   "performers": [
+    "sicaria"
+   ]
+  },
+  {
+   "id": "shambhala-2024:ocean-wisdom",
+   "name": "Ocean Wisdom",
+   "key": "ocean-wisdom",
+   "performers": [
+    "ocean-wisdom"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dimond-saints",
+   "name": "Dimond Saints",
+   "key": "dimond-saints",
+   "performers": [
+    "dimond-saints"
+   ]
+  },
+  {
+   "id": "shambhala-2024:synkro",
+   "name": "Synkro",
+   "key": "synkro",
+   "performers": [
+    "synkro"
+   ]
+  },
+  {
+   "id": "shambhala-2024:the-librarian",
+   "name": "The Librarian",
+   "key": "the-librarian",
+   "performers": [
+    "the-librarian"
+   ]
+  },
+  {
+   "id": "shambhala-2024:goopsteppa",
+   "name": "Goopsteppa",
+   "key": "goopsteppa",
+   "performers": [
+    "goopsteppa"
+   ]
+  },
+  {
+   "id": "shambhala-2024:logan-hart",
+   "name": "Logan Hart",
+   "key": "logan-hart",
+   "performers": [
+    "logan-hart"
+   ]
+  },
+  {
+   "id": "shambhala-2024:birdhaus",
+   "name": "Birdhaus",
+   "key": "birdhaus",
+   "performers": [
+    "birdhaus"
+   ]
+  },
+  {
+   "id": "shambhala-2024:double-trouble",
+   "name": "Double Trouble",
+   "key": "double-trouble",
+   "performers": [
+    "double-trouble"
+   ]
+  },
+  {
+   "id": "shambhala-2024:case-of-the-mondays",
+   "name": "Case of the Mondays",
+   "key": "case-of-the-mondays",
+   "performers": [
+    "case-of-the-mondays"
+   ]
+  },
+  {
+   "id": "shambhala-2024:team-ezy",
+   "name": "Team EZY",
+   "key": "team-ezy",
+   "performers": [
+    "team-ezy"
+   ]
+  },
+  {
+   "id": "shambhala-2024:kyle-watson",
+   "name": "Kyle Watson",
+   "key": "kyle-watson",
+   "performers": [
+    "kyle-watson"
+   ]
+  },
+  {
+   "id": "shambhala-2024:justin-martin",
+   "name": "Justin Martin",
+   "key": "justin-martin",
+   "performers": [
+    "justin-martin"
+   ]
+  },
+  {
+   "id": "shambhala-2024:chris-lorenzo",
+   "name": "Chris Lorenzo",
+   "key": "chris-lorenzo",
+   "performers": [
+    "chris-lorenzo"
+   ]
+  },
+  {
+   "id": "shambhala-2024:matroda",
+   "name": "Matroda",
+   "key": "matroda",
+   "performers": [
+    "matroda"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dr-fresch-b2b-destructo",
+   "name": "Dr. Fresch B2B Destructo",
+   "key": "dr-fresch-b2b-destructo",
+   "performers": [
+    "dr-fresch",
+    "destructo"
+   ]
+  },
+  {
+   "id": "shambhala-2024:ben-fox",
+   "name": "Ben Fox",
+   "key": "ben-fox",
+   "performers": [
+    "ben-fox"
+   ]
+  },
+  {
+   "id": "shambhala-2024:zipper",
+   "name": "Zipper",
+   "key": "zipper",
+   "performers": [
+    "zipper"
+   ]
+  },
+  {
+   "id": "shambhala-2024:stylust",
+   "name": "Stylust",
+   "key": "stylust",
+   "performers": [
+    "stylust"
+   ]
+  },
+  {
+   "id": "shambhala-2024:ondamike",
+   "name": "OnDaMiKe",
+   "key": "ondamike",
+   "performers": [
+    "ondamike"
+   ]
+  },
+  {
+   "id": "shambhala-2024:subvert-w-armanni-reign",
+   "name": "Subvert w/ Armanni Reign",
+   "key": "subvert-w-armanni-reign",
+   "performers": [
+    "subvert-w-armanni-reign"
+   ]
+  },
+  {
+   "id": "shambhala-2024:friction",
+   "name": "Friction",
+   "key": "friction",
+   "performers": [
+    "friction"
+   ]
+  },
+  {
+   "id": "shambhala-2024:excision",
+   "name": "Excision",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dion-timmer",
+   "name": "Dion Timmer",
+   "key": "dion-timmer",
+   "performers": [
+    "dion-timmer"
+   ]
+  },
+  {
+   "id": "shambhala-2024:buddy-and-the-buffalo",
+   "name": "Buddy & The Buffalo",
+   "key": "buddy-and-the-buffalo",
+   "performers": [
+    "buddy-and-the-buffalo"
+   ]
+  },
+  {
+   "id": "shambhala-2024:baby-lemonade",
+   "name": "Baby Lemonade",
+   "key": "baby-lemonade",
+   "performers": [
+    "baby-lemonade"
+   ]
+  },
+  {
+   "id": "shambhala-2024:lil-bones",
+   "name": "Lil Bones",
+   "key": "lil-bones",
+   "performers": [
+    "lil-bones"
+   ]
+  },
+  {
+   "id": "shambhala-2024:melo-nade",
+   "name": "Melo.Nade",
+   "key": "melo-nade",
+   "performers": [
+    "melo-nade"
+   ]
+  },
+  {
+   "id": "shambhala-2024:wils",
+   "name": "Wils",
+   "key": "wils",
+   "performers": [
+    "wils"
+   ]
+  },
+  {
+   "id": "shambhala-2024:el-toro",
+   "name": "El Toro",
+   "key": "el-toro",
+   "performers": [
+    "el-toro"
+   ]
+  },
+  {
+   "id": "shambhala-2024:gabby-haze",
+   "name": "Gabby Haze",
+   "key": "gabby-haze",
+   "performers": [
+    "gabby-haze"
+   ]
+  },
+  {
+   "id": "shambhala-2024:marah",
+   "name": "MARAH",
+   "key": "marah",
+   "performers": [
+    "marah"
+   ]
+  },
+  {
+   "id": "shambhala-2024:zen-selekta",
+   "name": "Zen Selekta",
+   "key": "zen-selekta",
+   "performers": [
+    "zen-selekta"
+   ]
+  },
+  {
+   "id": "shambhala-2024:veil",
+   "name": "Veil",
+   "key": "veil",
+   "performers": [
+    "veil"
+   ]
+  },
+  {
+   "id": "shambhala-2024:mythm",
+   "name": "Mythm",
+   "key": "mythm",
+   "performers": [
+    "mythm"
+   ]
+  },
+  {
+   "id": "shambhala-2024:ternion-sound",
+   "name": "Ternion Sound",
+   "key": "ternion-sound",
+   "performers": [
+    "ternion-sound"
+   ]
+  },
+  {
+   "id": "shambhala-2024:truth",
+   "name": "Truth",
+   "key": "truth",
+   "performers": [
+    "truth"
+   ]
+  },
+  {
+   "id": "shambhala-2024:peekaboo",
+   "name": "Peekaboo",
+   "key": "peekaboo",
+   "performers": [
+    "peekaboo"
+   ]
+  },
+  {
+   "id": "shambhala-2024:g-jones",
+   "name": "G Jones",
+   "key": "g-jones",
+   "performers": [
+    "g-jones"
+   ]
+  },
+  {
+   "id": "shambhala-2024:eprom",
+   "name": "Eprom",
+   "key": "eprom",
+   "performers": [
+    "eprom"
+   ]
+  },
+  {
+   "id": "shambhala-2024:alissa-arnason",
+   "name": "Alissa Arnason",
+   "key": "alissa-arnason",
+   "performers": [
+    "alissa-arnason"
+   ]
+  },
+  {
+   "id": "shambhala-2024:monkey-twerk",
+   "name": "Monkey Twerk",
+   "key": "monkey-twerk",
+   "performers": [
+    "monkey-twerk"
+   ]
+  },
+  {
+   "id": "shambhala-2024:shawna-kmln",
+   "name": "Shawna (KMLN)",
+   "key": "shawna-kmln",
+   "performers": [
+    "shawna-kmln"
+   ]
+  },
+  {
+   "id": "shambhala-2024:lion-s",
+   "name": "Lion-S",
+   "key": "lion-s",
+   "performers": [
+    "lion-s"
+   ]
+  },
+  {
+   "id": "shambhala-2024:saturna",
+   "name": "Saturna",
+   "key": "saturna",
+   "performers": [
+    "saturna"
+   ]
+  },
+  {
+   "id": "shambhala-2024:tipper",
+   "name": "Tipper",
+   "key": "tipper",
+   "performers": [
+    "tipper"
+   ]
+  },
+  {
+   "id": "shambhala-2024:pleasensations",
+   "name": "Pleasensations",
+   "key": "pleasensations",
+   "performers": [
+    "pleasensations"
+   ]
+  },
+  {
+   "id": "shambhala-2024:astrocolor",
+   "name": "Astrocolor",
+   "key": "astrocolor",
+   "performers": [
+    "astrocolor"
+   ]
+  },
+  {
+   "id": "shambhala-2024:lion-babe",
+   "name": "Lion Babe",
+   "key": "lion-babe",
+   "performers": [
+    "lion-babe"
+   ]
+  },
+  {
+   "id": "shambhala-2024:moontricks",
+   "name": "Moontricks",
+   "key": "moontricks",
+   "performers": [
+    "moontricks"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dirtwire",
+   "name": "Dirtwire",
+   "key": "dirtwire",
+   "performers": [
+    "dirtwire"
+   ]
+  },
+  {
+   "id": "shambhala-2024:jgirl-and-manousos",
+   "name": "JGirl & Manousos",
+   "key": "jgirl-and-manousos",
+   "performers": [
+    "jgirl-and-manousos"
+   ]
+  },
+  {
+   "id": "shambhala-2024:fattycakes",
+   "name": "Fattycakes",
+   "key": "fattycakes",
+   "performers": [
+    "fattycakes"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dj-lefy",
+   "name": "DJ Lefy",
+   "key": "dj-lefy",
+   "performers": [
+    "dj-lefy"
+   ]
+  },
+  {
+   "id": "shambhala-2024:the-gaff",
+   "name": "The Gaff",
+   "key": "the-gaff",
+   "performers": [
+    "the-gaff"
+   ]
+  },
+  {
+   "id": "shambhala-2024:slynk",
+   "name": "Slynk",
+   "key": "slynk",
+   "performers": [
+    "slynk"
+   ]
+  },
+  {
+   "id": "shambhala-2024:smalltown-djs",
+   "name": "Smalltown DJs",
+   "key": "smalltown-djs",
+   "performers": [
+    "smalltown-djs"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dj-pee-wee-anderson-paak",
+   "name": "DJ Pee .Wee (Anderson .Paak)",
+   "key": "dj-pee-wee-anderson-paak",
+   "performers": [
+    "dj-pee-wee-anderson-paak"
+   ]
+  },
+  {
+   "id": "shambhala-2024:z-trip",
+   "name": "Z-Trip",
+   "key": "z-trip",
+   "performers": [
+    "z-trip"
+   ]
+  },
+  {
+   "id": "shambhala-2024:a-skillz",
+   "name": "A.Skillz",
+   "key": "a-skillz",
+   "performers": [
+    "a-skillz"
+   ]
+  },
+  {
+   "id": "shambhala-2024:stanton-warriors",
+   "name": "Stanton Warriors",
+   "key": "stanton-warriors",
+   "performers": [
+    "stanton-warriors"
+   ]
+  },
+  {
+   "id": "shambhala-2024:father-funk",
+   "name": "Father Funk",
+   "key": "father-funk",
+   "performers": [
+    "father-funk"
+   ]
+  },
+  {
+   "id": "shambhala-2024:neighbour",
+   "name": "Neighbour",
+   "key": "neighbour",
+   "performers": [
+    "neighbour"
+   ]
+  },
+  {
+   "id": "shambhala-2024:rosso",
+   "name": "Rosso",
+   "key": "rosso",
+   "performers": [
+    "rosso"
+   ]
+  },
+  {
+   "id": "shambhala-2024:pxlmtrees",
+   "name": "PXLMTREES",
+   "key": "pxlmtrees",
+   "performers": [
+    "pxlmtrees"
+   ]
+  },
+  {
+   "id": "shambhala-2024:def3",
+   "name": "Def3",
+   "key": "def3",
+   "performers": [
+    "def3"
+   ]
+  },
+  {
+   "id": "shambhala-2024:leland-river",
+   "name": "Leland River",
+   "key": "leland-river",
+   "performers": [
+    "leland-river"
+   ]
+  },
+  {
+   "id": "shambhala-2024:tf-marz-b2b-parkbreezy",
+   "name": "TF Marz B2B Parkbreezy",
+   "key": "tf-marz-b2b-parkbreezy",
+   "performers": [
+    "tf-marz",
+    "parkbreezy"
+   ]
+  },
+  {
+   "id": "shambhala-2024:oakk",
+   "name": "OAKK",
+   "key": "oakk",
+   "performers": [
+    "oakk"
+   ]
+  },
+  {
+   "id": "shambhala-2024:tor",
+   "name": "TOR",
+   "key": "tor",
+   "performers": [
+    "tor"
+   ]
+  },
+  {
+   "id": "shambhala-2024:kamauu",
+   "name": "KAMAUU",
+   "key": "kamauu",
+   "performers": [
+    "kamauu"
+   ]
+  },
+  {
+   "id": "shambhala-2024:jacques-greene",
+   "name": "Jacques Greene",
+   "key": "jacques-greene",
+   "performers": [
+    "jacques-greene"
+   ]
+  },
+  {
+   "id": "shambhala-2024:shlohmo",
+   "name": "Shlohmo",
+   "key": "shlohmo",
+   "performers": [
+    "shlohmo"
+   ]
+  },
+  {
+   "id": "shambhala-2024:mystic-state",
+   "name": "Mystic State",
+   "key": "mystic-state",
+   "performers": [
+    "mystic-state"
+   ]
+  },
+  {
+   "id": "shambhala-2024:barisone",
+   "name": "Barisone",
+   "key": "barisone",
+   "performers": [
+    "barisone"
+   ]
+  },
+  {
+   "id": "shambhala-2024:just-b",
+   "name": "Just-B",
+   "key": "just-b",
+   "performers": [
+    "just-b"
+   ]
+  },
+  {
+   "id": "shambhala-2024:bray",
+   "name": "Bray",
+   "key": "bray",
+   "performers": [
+    "bray"
+   ]
+  },
+  {
+   "id": "shambhala-2024:redword",
+   "name": "REDWORD",
+   "key": "redword",
+   "performers": [
+    "redword"
+   ]
+  },
+  {
+   "id": "shambhala-2024:sintra",
+   "name": "Sintra",
+   "key": "sintra",
+   "performers": [
+    "sintra"
+   ]
+  },
+  {
+   "id": "shambhala-2024:mikey-lion-b2b-dj-soup",
+   "name": "Mikey Lion B2B DJ SOUP",
+   "key": "mikey-lion-b2b-dj-soup",
+   "performers": [
+    "mikey-lion",
+    "dj-soup"
+   ]
+  },
+  {
+   "id": "shambhala-2024:bodysync",
+   "name": "Bodysync",
+   "key": "bodysync",
+   "performers": [
+    "bodysync"
+   ]
+  },
+  {
+   "id": "shambhala-2024:totally-enormous-extinct-dinosaurs",
+   "name": "Totally Enormous Extinct Dinosaurs",
+   "key": "totally-enormous-extinct-dinosaurs",
+   "performers": [
+    "totally-enormous-extinct-dinosaurs"
+   ]
+  },
+  {
+   "id": "shambhala-2024:disclosure",
+   "name": "Disclosure",
+   "key": "disclosure",
+   "performers": [
+    "disclosure"
+   ]
+  },
+  {
+   "id": "shambhala-2024:disco-lines",
+   "name": "Disco Lines",
+   "key": "disco-lines",
+   "performers": [
+    "disco-lines"
+   ]
+  },
+  {
+   "id": "shambhala-2024:max-styler",
+   "name": "Max Styler",
+   "key": "max-styler",
+   "performers": [
+    "max-styler"
+   ]
+  },
+  {
+   "id": "shambhala-2024:funkin-matt",
+   "name": "Funkin Matt",
+   "key": "funkin-matt",
+   "performers": [
+    "funkin-matt"
+   ]
+  },
+  {
+   "id": "shambhala-2024:law",
+   "name": "LAW",
+   "key": "law",
+   "performers": [
+    "law"
+   ]
+  },
+  {
+   "id": "shambhala-2024:triple-xl",
+   "name": "Triple XL",
+   "key": "triple-xl",
+   "performers": [
+    "triple-xl"
+   ]
+  },
+  {
+   "id": "shambhala-2024:phibes",
+   "name": "Phibes",
+   "key": "phibes",
+   "performers": [
+    "phibes"
+   ]
+  },
+  {
+   "id": "shambhala-2024:georgie-riot",
+   "name": "Georgie Riot",
+   "key": "georgie-riot",
+   "performers": [
+    "georgie-riot"
+   ]
+  },
+  {
+   "id": "shambhala-2024:hedex",
+   "name": "Hedex",
+   "key": "hedex",
+   "performers": [
+    "hedex"
+   ]
+  },
+  {
+   "id": "shambhala-2024:ganja-white-night",
+   "name": "Ganja White Night",
+   "key": "ganja-white-night",
+   "performers": [
+    "ganja-white-night"
+   ]
+  },
+  {
+   "id": "shambhala-2024:party-favor",
+   "name": "Party Favor",
+   "key": "party-favor",
+   "performers": [
+    "party-favor"
+   ]
+  },
+  {
+   "id": "shambhala-2024:kellan-it",
+   "name": "Kellan It",
+   "key": "kellan-it",
+   "performers": [
+    "kellan-it"
+   ]
+  },
+  {
+   "id": "shambhala-2024:mr-wu",
+   "name": "Mr. Wu",
+   "key": "mr-wu",
+   "performers": [
+    "mr-wu"
+   ]
+  },
+  {
+   "id": "shambhala-2024:ashez",
+   "name": "Ashez",
+   "key": "ashez",
+   "performers": [
+    "ashez"
+   ]
+  },
+  {
+   "id": "shambhala-2024:runekey",
+   "name": "Runekey",
+   "key": "runekey",
+   "performers": [
+    "runekey"
+   ]
+  },
+  {
+   "id": "shambhala-2024:fabula",
+   "name": "Fabula",
+   "key": "fabula",
+   "performers": [
+    "fabula"
+   ]
+  },
+  {
+   "id": "shambhala-2024:chrizpy-chriz",
+   "name": "Chrizpy Chriz",
+   "key": "chrizpy-chriz",
+   "performers": [
+    "chrizpy-chriz"
+   ]
+  },
+  {
+   "id": "shambhala-2024:just-john",
+   "name": "Just John",
+   "key": "just-john",
+   "performers": [
+    "just-john"
+   ]
+  },
+  {
+   "id": "shambhala-2024:saka",
+   "name": "Saka",
+   "key": "saka",
+   "performers": [
+    "saka"
+   ]
+  },
+  {
+   "id": "shambhala-2024:moore-kismet",
+   "name": "Moore Kismet",
+   "key": "moore-kismet",
+   "performers": [
+    "moore-kismet"
+   ]
+  },
+  {
+   "id": "shambhala-2024:tape-b",
+   "name": "Tape B",
+   "key": "tape-b",
+   "performers": [
+    "tape-b"
+   ]
+  },
+  {
+   "id": "shambhala-2024:eazybaked",
+   "name": "EAZYBAKED",
+   "key": "eazybaked",
+   "performers": [
+    "eazybaked"
+   ]
+  },
+  {
+   "id": "shambhala-2024:san-holo",
+   "name": "San Holo",
+   "key": "san-holo",
+   "performers": [
+    "san-holo"
+   ]
+  },
+  {
+   "id": "shambhala-2024:yheti",
+   "name": "Yheti",
+   "key": "yheti",
+   "performers": [
+    "yheti"
+   ]
+  },
+  {
+   "id": "shambhala-2024:lightcode-by-lsdream",
+   "name": "Lightcode by LSDREAM",
+   "key": "lightcode-by-lsdream",
+   "performers": [
+    "lightcode-by-lsdream"
+   ]
+  },
+  {
+   "id": "shambhala-2024:sijay-james",
+   "name": "Sijay James",
+   "key": "sijay-james",
+   "performers": [
+    "sijay-james"
+   ]
+  },
+  {
+   "id": "shambhala-2024:hoolaandthegang",
+   "name": "HOOLAANDTHEGANG",
+   "key": "hoolaandthegang",
+   "performers": [
+    "hoolaandthegang"
+   ]
+  },
+  {
+   "id": "shambhala-2024:nick-bike",
+   "name": "Nick Bike",
+   "key": "nick-bike",
+   "performers": [
+    "nick-bike"
+   ]
+  },
+  {
+   "id": "shambhala-2024:mark-woodyard",
+   "name": "Mark Woodyard",
+   "key": "mark-woodyard",
+   "performers": [
+    "mark-woodyard"
+   ]
+  },
+  {
+   "id": "shambhala-2024:foxy-moron",
+   "name": "Foxy Moron",
+   "key": "foxy-moron",
+   "performers": [
+    "foxy-moron"
+   ]
+  },
+  {
+   "id": "shambhala-2024:chimp-it",
+   "name": "Chimp It",
+   "key": "chimp-it",
+   "performers": [
+    "chimp-it"
+   ]
+  },
+  {
+   "id": "shambhala-2024:murge",
+   "name": "Murge",
+   "key": "murge",
+   "performers": [
+    "murge"
+   ]
+  },
+  {
+   "id": "shambhala-2024:honeycomb",
+   "name": "Honeycomb",
+   "key": "honeycomb",
+   "performers": [
+    "honeycomb"
+   ]
+  },
+  {
+   "id": "shambhala-2024:mat-the-alien",
+   "name": "Mat the Alien",
+   "key": "mat-the-alien",
+   "performers": [
+    "mat-the-alien"
+   ]
+  },
+  {
+   "id": "shambhala-2024:wajatta-ft-reggie-watts-and-john-tejada",
+   "name": "Wajatta ft: Reggie Watts & John Tejada",
+   "key": "wajatta-ft-reggie-watts-and-john-tejada",
+   "performers": [
+    "wajatta-ft-reggie-watts-and-john-tejada"
+   ]
+  },
+  {
+   "id": "shambhala-2024:sabo",
+   "name": "Sabo",
+   "key": "sabo",
+   "performers": [
+    "sabo"
+   ]
+  },
+  {
+   "id": "shambhala-2024:radio-fryer",
+   "name": "Radio Fryer",
+   "key": "radio-fryer",
+   "performers": [
+    "radio-fryer"
+   ]
+  },
+  {
+   "id": "shambhala-2024:shiny-things",
+   "name": "Shiny Things",
+   "key": "shiny-things",
+   "performers": [
+    "shiny-things"
+   ]
+  },
+  {
+   "id": "shambhala-2024:pineo-and-loeb",
+   "name": "Pineo & Loeb",
+   "key": "pineo-and-loeb",
+   "performers": [
+    "pineo-and-loeb"
+   ]
+  },
+  {
+   "id": "shambhala-2024:the-sponges",
+   "name": "The Sponges",
+   "key": "the-sponges",
+   "performers": [
+    "the-sponges"
+   ]
+  },
+  {
+   "id": "shambhala-2024:neon-steve",
+   "name": "Neon Steve",
+   "key": "neon-steve",
+   "performers": [
+    "neon-steve"
+   ]
+  },
+  {
+   "id": "shambhala-2024:wax-motif",
+   "name": "Wax Motif",
+   "key": "wax-motif",
+   "performers": [
+    "wax-motif"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dillon-francis",
+   "name": "Dillon Francis",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ]
+  },
+  {
+   "id": "shambhala-2024:marten-h-rger",
+   "name": "Marten Hørger",
+   "key": "marten-h-rger",
+   "performers": [
+    "marten-h-rger"
+   ]
+  },
+  {
+   "id": "shambhala-2024:bijou",
+   "name": "BIJOU",
+   "key": "bijou",
+   "performers": [
+    "bijou"
+   ]
+  },
+  {
+   "id": "shambhala-2024:cazztek",
+   "name": "Cazztek",
+   "key": "cazztek",
+   "performers": [
+    "cazztek"
+   ]
+  },
+  {
+   "id": "shambhala-2024:thomas-anthony",
+   "name": "Thomas Anthony",
+   "key": "thomas-anthony",
+   "performers": [
+    "thomas-anthony"
+   ]
+  },
+  {
+   "id": "shambhala-2024:wes-please",
+   "name": "Wes Please",
+   "key": "wes-please",
+   "performers": [
+    "wes-please"
+   ]
+  },
+  {
+   "id": "shambhala-2024:justin-hale",
+   "name": "Justin Hale",
+   "key": "justin-hale",
+   "performers": [
+    "justin-hale"
+   ]
+  },
+  {
+   "id": "shambhala-2024:rich-e-rich",
+   "name": "Rich-e-Rich",
+   "key": "rich-e-rich",
+   "performers": [
+    "rich-e-rich"
+   ]
+  },
+  {
+   "id": "shambhala-2024:alex-moon",
+   "name": "Alex Moon",
+   "key": "alex-moon",
+   "performers": [
+    "alex-moon"
+   ]
+  },
+  {
+   "id": "shambhala-2024:yetz",
+   "name": "Yetz",
+   "key": "yetz",
+   "performers": [
+    "yetz"
+   ]
+  },
+  {
+   "id": "shambhala-2024:footprints",
+   "name": "Footprints",
+   "key": "footprints",
+   "performers": [
+    "footprints"
+   ]
+  },
+  {
+   "id": "shambhala-2024:five-alarm-funk",
+   "name": "Five Alarm Funk",
+   "key": "five-alarm-funk",
+   "performers": [
+    "five-alarm-funk"
+   ]
+  },
+  {
+   "id": "shambhala-2024:o-flynn",
+   "name": "O'Flynn",
+   "key": "o-flynn",
+   "performers": [
+    "o-flynn"
+   ]
+  },
+  {
+   "id": "shambhala-2024:logic1000",
+   "name": "Logic1000",
+   "key": "logic1000",
+   "performers": [
+    "logic1000"
+   ]
+  },
+  {
+   "id": "shambhala-2024:ben-ufo",
+   "name": "Ben UFO",
+   "key": "ben-ufo",
+   "performers": [
+    "ben-ufo"
+   ]
+  },
+  {
+   "id": "shambhala-2024:bonobo",
+   "name": "Bonobo",
+   "key": "bonobo",
+   "performers": [
+    "bonobo"
+   ]
+  },
+  {
+   "id": "shambhala-2024:jasper-tygner",
+   "name": "Jasper Tygner",
+   "key": "jasper-tygner",
+   "performers": [
+    "jasper-tygner"
+   ]
+  },
+  {
+   "id": "shambhala-2024:frameworks",
+   "name": "Frameworks",
+   "key": "frameworks",
+   "performers": [
+    "frameworks"
+   ]
+  },
+  {
+   "id": "shambhala-2024:be-hazzy",
+   "name": "Be Hazzy",
+   "key": "be-hazzy",
+   "performers": [
+    "be-hazzy"
+   ]
+  },
+  {
+   "id": "shambhala-2024:naturalist",
+   "name": "Naturalist",
+   "key": "naturalist",
+   "performers": [
+    "naturalist"
+   ]
+  },
+  {
+   "id": "shambhala-2024:defied",
+   "name": "Defied",
+   "key": "defied",
+   "performers": [
+    "defied"
+   ]
+  },
+  {
+   "id": "shambhala-2024:coltcuts",
+   "name": "ColtCuts",
+   "key": "coltcuts",
+   "performers": [
+    "coltcuts"
+   ]
+  },
+  {
+   "id": "shambhala-2024:lyny",
+   "name": "LYNY",
+   "key": "lyny",
+   "performers": [
+    "lyny"
+   ]
+  },
+  {
+   "id": "shambhala-2024:one-true-god",
+   "name": "One True God",
+   "key": "one-true-god",
+   "performers": [
+    "one-true-god"
+   ]
+  },
+  {
+   "id": "shambhala-2024:zingara",
+   "name": "Zingara",
+   "key": "zingara",
+   "performers": [
+    "zingara"
+   ]
+  },
+  {
+   "id": "shambhala-2024:clozee",
+   "name": "CloZee",
+   "key": "clozee",
+   "performers": [
+    "clozee"
+   ]
+  },
+  {
+   "id": "shambhala-2024:lsdream",
+   "name": "LSDREAM",
+   "key": "lsdream",
+   "performers": [
+    "lsdream"
+   ]
+  },
+  {
+   "id": "shambhala-2024:barclay-crenshaw",
+   "name": "Barclay Crenshaw",
+   "key": "barclay-crenshaw",
+   "performers": [
+    "barclay-crenshaw"
+   ]
+  },
+  {
+   "id": "shambhala-2024:koan-sound",
+   "name": "Koan Sound",
+   "key": "koan-sound",
+   "performers": [
+    "koan-sound"
+   ]
+  },
+  {
+   "id": "shambhala-2024:skreid-b2b-trip-a",
+   "name": "Skreid B2B Trip A",
+   "key": "skreid-b2b-trip-a",
+   "performers": [
+    "skreid",
+    "trip-a"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dlb",
+   "name": "DLB",
+   "key": "dlb",
+   "performers": [
+    "dlb"
+   ]
+  },
+  {
+   "id": "shambhala-2024:trevor-galore",
+   "name": "Trevor Galore",
+   "key": "trevor-galore",
+   "performers": [
+    "trevor-galore"
+   ]
+  },
+  {
+   "id": "shambhala-2024:ill-gates",
+   "name": "Ill.Gates",
+   "key": "ill-gates",
+   "performers": [
+    "ill-gates"
+   ]
+  },
+  {
+   "id": "shambhala-2024:wolfy-lights-ft-kj-sawka",
+   "name": "Wolfy Lights ft KJ Sawka",
+   "key": "wolfy-lights-ft-kj-sawka",
+   "performers": [
+    "wolfy-lights-ft-kj-sawka"
+   ]
+  },
+  {
+   "id": "shambhala-2024:a-m-c-w-armanni-reign",
+   "name": "A.M.C w/ Armanni Reign",
+   "key": "a-m-c-w-armanni-reign",
+   "performers": [
+    "a-m-c-w-armanni-reign"
+   ]
+  },
+  {
+   "id": "shambhala-2024:dimension",
+   "name": "Dimension",
+   "key": "dimension",
+   "performers": [
+    "dimension"
+   ]
+  },
+  {
+   "id": "shambhala-2024:subtronics",
+   "name": "Subtronics",
+   "key": "subtronics",
+   "performers": [
+    "subtronics"
+   ]
+  },
+  {
+   "id": "shambhala-2024:juelz",
+   "name": "Juelz",
+   "key": "juelz",
+   "performers": [
+    "juelz"
+   ]
+  },
+  {
+   "id": "shambhala-2024:tha-funk-junkie",
+   "name": "Tha Funk Junkie",
+   "key": "tha-funk-junkie",
+   "performers": [
+    "tha-funk-junkie"
+   ]
+  },
+  {
+   "id": "shambhala-2024:creek-st",
+   "name": "Creek St.",
+   "key": "creek-st",
+   "performers": [
+    "creek-st"
+   ]
+  },
+  {
+   "id": "shambhala-2024:ghillie-and-skbr",
+   "name": "Ghillie & Skbr",
+   "key": "ghillie-and-skbr",
+   "performers": [
+    "ghillie-and-skbr"
+   ]
+  },
+  {
+   "id": "shambhala-2024:abstrakt-sonance",
+   "name": "Abstrakt Sonance",
+   "key": "abstrakt-sonance",
+   "performers": [
+    "abstrakt-sonance"
+   ]
+  },
+  {
+   "id": "shambhala-2024:versa",
+   "name": "Versa",
+   "key": "versa",
+   "performers": [
+    "versa"
+   ]
+  },
+  {
+   "id": "shambhala-2024:rowl",
+   "name": "Rowl",
+   "key": "rowl",
+   "performers": [
+    "rowl"
+   ]
+  },
+  {
+   "id": "shambhala-2024:okiro",
+   "name": "Okiro",
+   "key": "okiro",
+   "performers": [
+    "okiro"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "shambhala-2024:d1:amp:1200:s2",
+   "artistId": "shambhala-2024:s2",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "shambhala-2024:d1:amp:1300:shrimpnose",
+   "artistId": "shambhala-2024:shrimpnose",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "shambhala-2024:d1:amp:1400:kll-smth",
+   "artistId": "shambhala-2024:kll-smth",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "shambhala-2024:d1:amp:1500:pigeon-hole",
+   "artistId": "shambhala-2024:pigeon-hole",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "15:00",
+   "end": "16:15"
+  },
+  {
+   "id": "shambhala-2024:d1:amp:1615:mr-jennings",
+   "artistId": "shambhala-2024:mr-jennings",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "16:15",
+   "end": "17:30"
+  },
+  {
+   "id": "shambhala-2024:d1:amp:1730:skiitour",
+   "artistId": "shambhala-2024:skiitour",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "shambhala-2024:d1:amp:1900:ahee",
+   "artistId": "shambhala-2024:ahee",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "shambhala-2024:d1:amp:2030:chmura",
+   "artistId": "shambhala-2024:chmura",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "shambhala-2024:d1:amp:2130:tsuruda",
+   "artistId": "shambhala-2024:tsuruda",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "shambhala-2024:d1:amp:2230:pav4n-and-strategy",
+   "artistId": "shambhala-2024:pav4n-and-strategy",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "shambhala-2024:d1:amp:2330:the-caracal-project",
+   "artistId": "shambhala-2024:the-caracal-project",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "shambhala-2024:d1:amp:0030:longwalkshortdock",
+   "artistId": "shambhala-2024:longwalkshortdock",
+   "day": 1,
+   "stageId": "shambhala-2024:amp",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "shambhala-2024:d1:living-room:1200:marty-carter",
+   "artistId": "shambhala-2024:marty-carter",
+   "day": 1,
+   "stageId": "shambhala-2024:living-room",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "shambhala-2024:d1:living-room:1300:binks",
+   "artistId": "shambhala-2024:binks",
+   "day": 1,
+   "stageId": "shambhala-2024:living-room",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "shambhala-2024:d1:living-room:1400:sistersun",
+   "artistId": "shambhala-2024:sistersun",
+   "day": 1,
+   "stageId": "shambhala-2024:living-room",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "shambhala-2024:d1:living-room:1500:fort-knox-five",
+   "artistId": "shambhala-2024:fort-knox-five",
+   "day": 1,
+   "stageId": "shambhala-2024:living-room",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "shambhala-2024:d1:living-room:1630:hoola",
+   "artistId": "shambhala-2024:hoola",
+   "day": 1,
+   "stageId": "shambhala-2024:living-room",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "shambhala-2024:d1:living-room:1730:soohan",
+   "artistId": "shambhala-2024:soohan",
+   "day": 1,
+   "stageId": "shambhala-2024:living-room",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "shambhala-2024:d1:living-room:1900:adham-shaikh",
+   "artistId": "shambhala-2024:adham-shaikh",
+   "day": 1,
+   "stageId": "shambhala-2024:living-room",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "shambhala-2024:d1:living-room:2030:meowmix",
+   "artistId": "shambhala-2024:meowmix",
+   "day": 1,
+   "stageId": "shambhala-2024:living-room",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "shambhala-2024:d1:living-room:2200:tone-ranger",
+   "artistId": "shambhala-2024:tone-ranger",
+   "day": 1,
+   "stageId": "shambhala-2024:living-room",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d1:living-room:0000:fungineers",
+   "artistId": "shambhala-2024:fungineers",
+   "day": 1,
+   "stageId": "shambhala-2024:living-room",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "shambhala-2024:d1:living-room:0100:prayer-handz",
+   "artistId": "shambhala-2024:prayer-handz",
+   "day": 1,
+   "stageId": "shambhala-2024:living-room",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "shambhala-2024:d2:amp:1715:kurei",
+   "artistId": "shambhala-2024:kurei",
+   "day": 2,
+   "stageId": "shambhala-2024:amp",
+   "start": "17:15",
+   "end": "18:30"
+  },
+  {
+   "id": "shambhala-2024:d2:amp:1830:secret-recipe",
+   "artistId": "shambhala-2024:secret-recipe",
+   "day": 2,
+   "stageId": "shambhala-2024:amp",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "shambhala-2024:d2:amp:1930:hypho",
+   "artistId": "shambhala-2024:hypho",
+   "day": 2,
+   "stageId": "shambhala-2024:amp",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "shambhala-2024:d2:amp:2030:dj-co-kr",
+   "artistId": "shambhala-2024:dj-co-kr",
+   "day": 2,
+   "stageId": "shambhala-2024:amp",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "shambhala-2024:d2:amp:2130:chef-boyarbeatz",
+   "artistId": "shambhala-2024:chef-boyarbeatz",
+   "day": 2,
+   "stageId": "shambhala-2024:amp",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "shambhala-2024:d2:amp:2230:taiki-nulight",
+   "artistId": "shambhala-2024:taiki-nulight",
+   "day": 2,
+   "stageId": "shambhala-2024:amp",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d2:amp:0000:sammy-virji",
+   "artistId": "shambhala-2024:sammy-virji",
+   "day": 2,
+   "stageId": "shambhala-2024:amp",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "shambhala-2024:d2:amp:0130:gentlemens-club",
+   "artistId": "shambhala-2024:gentlemens-club",
+   "day": 2,
+   "stageId": "shambhala-2024:amp",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "shambhala-2024:d2:amp:0300:borne",
+   "artistId": "shambhala-2024:borne",
+   "day": 2,
+   "stageId": "shambhala-2024:amp",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:1300:luxuryus",
+   "artistId": "shambhala-2024:luxuryus",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:1400:dubconscious",
+   "artistId": "shambhala-2024:dubconscious",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:1500:danni-g",
+   "artistId": "shambhala-2024:danni-g",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:1630:edit",
+   "artistId": "shambhala-2024:edit",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:1730:ooah",
+   "artistId": "shambhala-2024:ooah",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:1830:el-papachango",
+   "artistId": "shambhala-2024:el-papachango",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:2000:vhoor",
+   "artistId": "shambhala-2024:vhoor",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:2130:honeydrip",
+   "artistId": "shambhala-2024:honeydrip",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:2230:amp-live",
+   "artistId": "shambhala-2024:amp-live",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:2330:onhell",
+   "artistId": "shambhala-2024:onhell",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:0030:the-glitch-mob",
+   "artistId": "shambhala-2024:the-glitch-mob",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:0130:mary-droppinz",
+   "artistId": "shambhala-2024:mary-droppinz",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "shambhala-2024:d2:living-room:0300:antidote-collective",
+   "artistId": "shambhala-2024:antidote-collective",
+   "day": 2,
+   "stageId": "shambhala-2024:living-room",
+   "start": "03:00",
+   "end": "05:15"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:1600:freddy-j",
+   "artistId": "shambhala-2024:freddy-j",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:1700:underdog",
+   "artistId": "shambhala-2024:underdog",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:1800:dj-hannah",
+   "artistId": "shambhala-2024:dj-hannah",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:1900:joanna-magik",
+   "artistId": "shambhala-2024:joanna-magik",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:2000:maddy-o-neal",
+   "artistId": "shambhala-2024:maddy-o-neal",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:2100:lun",
+   "artistId": "shambhala-2024:lun",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:2200:blu-detiger-dj-set",
+   "artistId": "shambhala-2024:blu-detiger-dj-set",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:2300:chromeo-dj-set",
+   "artistId": "shambhala-2024:chromeo-dj-set",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:0000:the-funk-hunters",
+   "artistId": "shambhala-2024:the-funk-hunters",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:0100:stickybuds",
+   "artistId": "shambhala-2024:stickybuds",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:0200:daily-bread",
+   "artistId": "shambhala-2024:daily-bread",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:0300:rumpus",
+   "artistId": "shambhala-2024:rumpus",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:0400:burchill",
+   "artistId": "shambhala-2024:burchill",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "04:00",
+   "end": "05:00"
+  },
+  {
+   "id": "shambhala-2024:d2:fractal-forest:0500:joseph-martin",
+   "artistId": "shambhala-2024:joseph-martin",
+   "day": 2,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "05:00",
+   "end": "06:30"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:1330:lazy-syrup-orchestra",
+   "artistId": "shambhala-2024:lazy-syrup-orchestra",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:1500:civillian",
+   "artistId": "shambhala-2024:civillian",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:1600:mews",
+   "artistId": "shambhala-2024:mews",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:1700:handsome-tiger",
+   "artistId": "shambhala-2024:handsome-tiger",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:1800:sundog",
+   "artistId": "shambhala-2024:sundog",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:1915:metafloor",
+   "artistId": "shambhala-2024:metafloor",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:2030:nina",
+   "artistId": "shambhala-2024:nina",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:2130:atyya",
+   "artistId": "shambhala-2024:atyya",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:2245:sicaria",
+   "artistId": "shambhala-2024:sicaria",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:0000:ocean-wisdom",
+   "artistId": "shambhala-2024:ocean-wisdom",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:0100:dimond-saints",
+   "artistId": "shambhala-2024:dimond-saints",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:0230:synkro",
+   "artistId": "shambhala-2024:synkro",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:0400:the-librarian",
+   "artistId": "shambhala-2024:the-librarian",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "04:00",
+   "end": "05:15"
+  },
+  {
+   "id": "shambhala-2024:d2:grove:0515:goopsteppa",
+   "artistId": "shambhala-2024:goopsteppa",
+   "day": 2,
+   "stageId": "shambhala-2024:grove",
+   "start": "05:15",
+   "end": "06:30"
+  },
+  {
+   "id": "shambhala-2024:d2:the-pagoda:1600:logan-hart",
+   "artistId": "shambhala-2024:logan-hart",
+   "day": 2,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-pagoda:1700:birdhaus",
+   "artistId": "shambhala-2024:birdhaus",
+   "day": 2,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-pagoda:1800:double-trouble",
+   "artistId": "shambhala-2024:double-trouble",
+   "day": 2,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "shambhala-2024:d2:the-pagoda:1915:case-of-the-mondays",
+   "artistId": "shambhala-2024:case-of-the-mondays",
+   "day": 2,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "shambhala-2024:d2:the-pagoda:2015:team-ezy",
+   "artistId": "shambhala-2024:team-ezy",
+   "day": 2,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "shambhala-2024:d2:the-pagoda:2140:kyle-watson",
+   "artistId": "shambhala-2024:kyle-watson",
+   "day": 2,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "21:40",
+   "end": "23:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-pagoda:2300:justin-martin",
+   "artistId": "shambhala-2024:justin-martin",
+   "day": 2,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-pagoda:0030:chris-lorenzo",
+   "artistId": "shambhala-2024:chris-lorenzo",
+   "day": 2,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "shambhala-2024:d2:the-pagoda:0130:matroda",
+   "artistId": "shambhala-2024:matroda",
+   "day": 2,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "01:30",
+   "end": "02:45"
+  },
+  {
+   "id": "shambhala-2024:d2:the-pagoda:0245:dr-fresch-b2b-destructo",
+   "artistId": "shambhala-2024:dr-fresch-b2b-destructo",
+   "day": 2,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "02:45",
+   "end": "04:45"
+  },
+  {
+   "id": "shambhala-2024:d2:the-pagoda:0445:ben-fox",
+   "artistId": "shambhala-2024:ben-fox",
+   "day": 2,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "04:45",
+   "end": "06:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-village:1900:zipper",
+   "artistId": "shambhala-2024:zipper",
+   "day": 2,
+   "stageId": "shambhala-2024:the-village",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-village:2000:stylust",
+   "artistId": "shambhala-2024:stylust",
+   "day": 2,
+   "stageId": "shambhala-2024:the-village",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-village:2100:ondamike",
+   "artistId": "shambhala-2024:ondamike",
+   "day": 2,
+   "stageId": "shambhala-2024:the-village",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-village:2200:subvert-w-armanni-reign",
+   "artistId": "shambhala-2024:subvert-w-armanni-reign",
+   "day": 2,
+   "stageId": "shambhala-2024:the-village",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-village:2300:friction",
+   "artistId": "shambhala-2024:friction",
+   "day": 2,
+   "stageId": "shambhala-2024:the-village",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "shambhala-2024:d2:the-village:0030:excision",
+   "artistId": "shambhala-2024:excision",
+   "day": 2,
+   "stageId": "shambhala-2024:the-village",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-village:0200:dion-timmer",
+   "artistId": "shambhala-2024:dion-timmer",
+   "day": 2,
+   "stageId": "shambhala-2024:the-village",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-village:0300:ahee",
+   "artistId": "shambhala-2024:ahee",
+   "day": 2,
+   "stageId": "shambhala-2024:the-village",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "shambhala-2024:d2:the-village:0400:buddy-and-the-buffalo",
+   "artistId": "shambhala-2024:buddy-and-the-buffalo",
+   "day": 2,
+   "stageId": "shambhala-2024:the-village",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "shambhala-2024:d2:secret-garden:1930:baby-lemonade",
+   "artistId": "shambhala-2024:baby-lemonade",
+   "day": 2,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "shambhala-2024:d2:secret-garden:2100:lil-bones",
+   "artistId": "shambhala-2024:lil-bones",
+   "day": 2,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "shambhala-2024:d2:secret-garden:2230:melo-nade",
+   "artistId": "shambhala-2024:melo-nade",
+   "day": 2,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d2:secret-garden:0000:wils",
+   "artistId": "shambhala-2024:wils",
+   "day": 2,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "shambhala-2024:d2:secret-garden:0130:el-toro",
+   "artistId": "shambhala-2024:el-toro",
+   "day": 2,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "shambhala-2024:d2:secret-garden:0300:gabby-haze",
+   "artistId": "shambhala-2024:gabby-haze",
+   "day": 2,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "03:00",
+   "end": "04:30"
+  },
+  {
+   "id": "shambhala-2024:d3:amp:1700:marah",
+   "artistId": "shambhala-2024:marah",
+   "day": 3,
+   "stageId": "shambhala-2024:amp",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "shambhala-2024:d3:amp:1800:zen-selekta",
+   "artistId": "shambhala-2024:zen-selekta",
+   "day": 3,
+   "stageId": "shambhala-2024:amp",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "shambhala-2024:d3:amp:1900:veil",
+   "artistId": "shambhala-2024:veil",
+   "day": 3,
+   "stageId": "shambhala-2024:amp",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "shambhala-2024:d3:amp:2000:mythm",
+   "artistId": "shambhala-2024:mythm",
+   "day": 3,
+   "stageId": "shambhala-2024:amp",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "shambhala-2024:d3:amp:2100:ternion-sound",
+   "artistId": "shambhala-2024:ternion-sound",
+   "day": 3,
+   "stageId": "shambhala-2024:amp",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "shambhala-2024:d3:amp:2230:truth",
+   "artistId": "shambhala-2024:truth",
+   "day": 3,
+   "stageId": "shambhala-2024:amp",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d3:amp:0000:peekaboo",
+   "artistId": "shambhala-2024:peekaboo",
+   "day": 3,
+   "stageId": "shambhala-2024:amp",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "shambhala-2024:d3:amp:0130:g-jones",
+   "artistId": "shambhala-2024:g-jones",
+   "day": 3,
+   "stageId": "shambhala-2024:amp",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "shambhala-2024:d3:amp:0300:eprom",
+   "artistId": "shambhala-2024:eprom",
+   "day": 3,
+   "stageId": "shambhala-2024:amp",
+   "start": "03:00",
+   "end": "04:30"
+  },
+  {
+   "id": "shambhala-2024:d3:living-room:1200:alissa-arnason",
+   "artistId": "shambhala-2024:alissa-arnason",
+   "day": 3,
+   "stageId": "shambhala-2024:living-room",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "shambhala-2024:d3:living-room:1300:monkey-twerk",
+   "artistId": "shambhala-2024:monkey-twerk",
+   "day": 3,
+   "stageId": "shambhala-2024:living-room",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "shambhala-2024:d3:living-room:1430:shawna-kmln",
+   "artistId": "shambhala-2024:shawna-kmln",
+   "day": 3,
+   "stageId": "shambhala-2024:living-room",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "shambhala-2024:d3:living-room:1600:lion-s",
+   "artistId": "shambhala-2024:lion-s",
+   "day": 3,
+   "stageId": "shambhala-2024:living-room",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "shambhala-2024:d3:living-room:1700:saturna",
+   "artistId": "shambhala-2024:saturna",
+   "day": 3,
+   "stageId": "shambhala-2024:living-room",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "shambhala-2024:d3:living-room:1800:tipper",
+   "artistId": "shambhala-2024:tipper",
+   "day": 3,
+   "stageId": "shambhala-2024:living-room",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "shambhala-2024:d3:living-room:1900:pleasensations",
+   "artistId": "shambhala-2024:pleasensations",
+   "day": 3,
+   "stageId": "shambhala-2024:living-room",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "shambhala-2024:d3:living-room:2100:astrocolor",
+   "artistId": "shambhala-2024:astrocolor",
+   "day": 3,
+   "stageId": "shambhala-2024:living-room",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "shambhala-2024:d3:living-room:2230:lion-babe",
+   "artistId": "shambhala-2024:lion-babe",
+   "day": 3,
+   "stageId": "shambhala-2024:living-room",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d3:living-room:0000:moontricks",
+   "artistId": "shambhala-2024:moontricks",
+   "day": 3,
+   "stageId": "shambhala-2024:living-room",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "shambhala-2024:d3:living-room:0200:dirtwire",
+   "artistId": "shambhala-2024:dirtwire",
+   "day": 3,
+   "stageId": "shambhala-2024:living-room",
+   "start": "02:00",
+   "end": "03:30"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:1700:jgirl-and-manousos",
+   "artistId": "shambhala-2024:jgirl-and-manousos",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:1800:fattycakes",
+   "artistId": "shambhala-2024:fattycakes",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:1900:dj-lefy",
+   "artistId": "shambhala-2024:dj-lefy",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:2000:the-gaff",
+   "artistId": "shambhala-2024:the-gaff",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:2100:slynk",
+   "artistId": "shambhala-2024:slynk",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:2200:smalltown-djs",
+   "artistId": "shambhala-2024:smalltown-djs",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:2300:dj-pee-wee-anderson-paak",
+   "artistId": "shambhala-2024:dj-pee-wee-anderson-paak",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:0000:z-trip",
+   "artistId": "shambhala-2024:z-trip",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:0100:a-skillz",
+   "artistId": "shambhala-2024:a-skillz",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:0200:stanton-warriors",
+   "artistId": "shambhala-2024:stanton-warriors",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:0300:fort-knox-five",
+   "artistId": "shambhala-2024:fort-knox-five",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:0400:father-funk",
+   "artistId": "shambhala-2024:father-funk",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "04:00",
+   "end": "05:00"
+  },
+  {
+   "id": "shambhala-2024:d3:fractal-forest:0500:neighbour",
+   "artistId": "shambhala-2024:neighbour",
+   "day": 3,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "05:00",
+   "end": "06:30"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:1500:rosso",
+   "artistId": "shambhala-2024:rosso",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "15:00",
+   "end": "16:15"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:1615:pxlmtrees",
+   "artistId": "shambhala-2024:pxlmtrees",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "16:15",
+   "end": "17:30"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:1730:def3",
+   "artistId": "shambhala-2024:def3",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "17:30",
+   "end": "18:45"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:1845:leland-river",
+   "artistId": "shambhala-2024:leland-river",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:2000:tf-marz-b2b-parkbreezy",
+   "artistId": "shambhala-2024:tf-marz-b2b-parkbreezy",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:2130:oakk",
+   "artistId": "shambhala-2024:oakk",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:2245:tor",
+   "artistId": "shambhala-2024:tor",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:0000:kamauu",
+   "artistId": "shambhala-2024:kamauu",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:0100:jacques-greene",
+   "artistId": "shambhala-2024:jacques-greene",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:0230:shlohmo",
+   "artistId": "shambhala-2024:shlohmo",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:0400:mystic-state",
+   "artistId": "shambhala-2024:mystic-state",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "04:00",
+   "end": "05:15"
+  },
+  {
+   "id": "shambhala-2024:d3:grove:0515:barisone",
+   "artistId": "shambhala-2024:barisone",
+   "day": 3,
+   "stageId": "shambhala-2024:grove",
+   "start": "05:15",
+   "end": "06:30"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:1530:just-b",
+   "artistId": "shambhala-2024:just-b",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:1630:bray",
+   "artistId": "shambhala-2024:bray",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:1730:redword",
+   "artistId": "shambhala-2024:redword",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:1830:sintra",
+   "artistId": "shambhala-2024:sintra",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:1930:mikey-lion-b2b-dj-soup",
+   "artistId": "shambhala-2024:mikey-lion-b2b-dj-soup",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:2100:bodysync",
+   "artistId": "shambhala-2024:bodysync",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:2215:totally-enormous-extinct-dinosaurs",
+   "artistId": "shambhala-2024:totally-enormous-extinct-dinosaurs",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:2330:disclosure",
+   "artistId": "shambhala-2024:disclosure",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:0100:disco-lines",
+   "artistId": "shambhala-2024:disco-lines",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "01:00",
+   "end": "02:15"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:0215:max-styler",
+   "artistId": "shambhala-2024:max-styler",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "02:15",
+   "end": "03:30"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:0330:funkin-matt",
+   "artistId": "shambhala-2024:funkin-matt",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "03:30",
+   "end": "04:45"
+  },
+  {
+   "id": "shambhala-2024:d3:the-pagoda:0445:law",
+   "artistId": "shambhala-2024:law",
+   "day": 3,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "04:45",
+   "end": "06:00"
+  },
+  {
+   "id": "shambhala-2024:d3:the-village:2030:triple-xl",
+   "artistId": "shambhala-2024:triple-xl",
+   "day": 3,
+   "stageId": "shambhala-2024:the-village",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "shambhala-2024:d3:the-village:2130:phibes",
+   "artistId": "shambhala-2024:phibes",
+   "day": 3,
+   "stageId": "shambhala-2024:the-village",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "shambhala-2024:d3:the-village:2230:georgie-riot",
+   "artistId": "shambhala-2024:georgie-riot",
+   "day": 3,
+   "stageId": "shambhala-2024:the-village",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "shambhala-2024:d3:the-village:2330:hedex",
+   "artistId": "shambhala-2024:hedex",
+   "day": 3,
+   "stageId": "shambhala-2024:the-village",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "shambhala-2024:d3:the-village:0030:ganja-white-night",
+   "artistId": "shambhala-2024:ganja-white-night",
+   "day": 3,
+   "stageId": "shambhala-2024:the-village",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "shambhala-2024:d3:the-village:0200:party-favor",
+   "artistId": "shambhala-2024:party-favor",
+   "day": 3,
+   "stageId": "shambhala-2024:the-village",
+   "start": "02:00",
+   "end": "03:30"
+  },
+  {
+   "id": "shambhala-2024:d3:secret-garden:2100:kellan-it",
+   "artistId": "shambhala-2024:kellan-it",
+   "day": 3,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "shambhala-2024:d3:secret-garden:2230:mr-wu",
+   "artistId": "shambhala-2024:mr-wu",
+   "day": 3,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d3:secret-garden:0000:ashez",
+   "artistId": "shambhala-2024:ashez",
+   "day": 3,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "shambhala-2024:d3:secret-garden:0130:runekey",
+   "artistId": "shambhala-2024:runekey",
+   "day": 3,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "shambhala-2024:d3:secret-garden:0300:fabula",
+   "artistId": "shambhala-2024:fabula",
+   "day": 3,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "03:00",
+   "end": "04:30"
+  },
+  {
+   "id": "shambhala-2024:d4:amp:1730:chrizpy-chriz",
+   "artistId": "shambhala-2024:chrizpy-chriz",
+   "day": 4,
+   "stageId": "shambhala-2024:amp",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "shambhala-2024:d4:amp:1830:just-john",
+   "artistId": "shambhala-2024:just-john",
+   "day": 4,
+   "stageId": "shambhala-2024:amp",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "shambhala-2024:d4:amp:1930:saka",
+   "artistId": "shambhala-2024:saka",
+   "day": 4,
+   "stageId": "shambhala-2024:amp",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "shambhala-2024:d4:amp:2030:moore-kismet",
+   "artistId": "shambhala-2024:moore-kismet",
+   "day": 4,
+   "stageId": "shambhala-2024:amp",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "shambhala-2024:d4:amp:2130:tape-b",
+   "artistId": "shambhala-2024:tape-b",
+   "day": 4,
+   "stageId": "shambhala-2024:amp",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "shambhala-2024:d4:amp:2245:eazybaked",
+   "artistId": "shambhala-2024:eazybaked",
+   "day": 4,
+   "stageId": "shambhala-2024:amp",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d4:amp:0000:san-holo",
+   "artistId": "shambhala-2024:san-holo",
+   "day": 4,
+   "stageId": "shambhala-2024:amp",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "shambhala-2024:d4:amp:0130:tipper",
+   "artistId": "shambhala-2024:tipper",
+   "day": 4,
+   "stageId": "shambhala-2024:amp",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "shambhala-2024:d4:amp:0230:yheti",
+   "artistId": "shambhala-2024:yheti",
+   "day": 4,
+   "stageId": "shambhala-2024:amp",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:1200:lightcode-by-lsdream",
+   "artistId": "shambhala-2024:lightcode-by-lsdream",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:1300:sijay-james",
+   "artistId": "shambhala-2024:sijay-james",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:1415:hoolaandthegang",
+   "artistId": "shambhala-2024:hoolaandthegang",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:1500:nick-bike",
+   "artistId": "shambhala-2024:nick-bike",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:1630:mark-woodyard",
+   "artistId": "shambhala-2024:mark-woodyard",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:1730:foxy-moron",
+   "artistId": "shambhala-2024:foxy-moron",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:1830:chimp-it",
+   "artistId": "shambhala-2024:chimp-it",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:1930:murge",
+   "artistId": "shambhala-2024:murge",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:2030:honeycomb",
+   "artistId": "shambhala-2024:honeycomb",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:2130:mat-the-alien",
+   "artistId": "shambhala-2024:mat-the-alien",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:2230:z-trip",
+   "artistId": "shambhala-2024:z-trip",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:0000:wajatta-ft-reggie-watts-and-john-tejada",
+   "artistId": "shambhala-2024:wajatta-ft-reggie-watts-and-john-tejada",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:0130:sabo",
+   "artistId": "shambhala-2024:sabo",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "01:30",
+   "end": "04:00"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:0400:radio-fryer",
+   "artistId": "shambhala-2024:radio-fryer",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "shambhala-2024:d4:living-room:0530:shiny-things",
+   "artistId": "shambhala-2024:shiny-things",
+   "day": 4,
+   "stageId": "shambhala-2024:living-room",
+   "start": "05:30",
+   "end": "07:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:1900:pineo-and-loeb",
+   "artistId": "shambhala-2024:pineo-and-loeb",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:2000:skiitour",
+   "artistId": "shambhala-2024:skiitour",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:2100:the-sponges",
+   "artistId": "shambhala-2024:the-sponges",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:2200:neon-steve",
+   "artistId": "shambhala-2024:neon-steve",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:2300:wax-motif",
+   "artistId": "shambhala-2024:wax-motif",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:0000:dillon-francis",
+   "artistId": "shambhala-2024:dillon-francis",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:0100:marten-h-rger",
+   "artistId": "shambhala-2024:marten-h-rger",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:0200:bijou",
+   "artistId": "shambhala-2024:bijou",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:0300:cazztek",
+   "artistId": "shambhala-2024:cazztek",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:0400:thomas-anthony",
+   "artistId": "shambhala-2024:thomas-anthony",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "04:00",
+   "end": "05:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:0500:wes-please",
+   "artistId": "shambhala-2024:wes-please",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "05:00",
+   "end": "06:30"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:0630:justin-hale",
+   "artistId": "shambhala-2024:justin-hale",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "06:30",
+   "end": "08:00"
+  },
+  {
+   "id": "shambhala-2024:d4:fractal-forest:0800:rich-e-rich",
+   "artistId": "shambhala-2024:rich-e-rich",
+   "day": 4,
+   "stageId": "shambhala-2024:fractal-forest",
+   "start": "08:00",
+   "end": "09:00"
+  },
+  {
+   "id": "shambhala-2024:d4:grove:1700:alex-moon",
+   "artistId": "shambhala-2024:alex-moon",
+   "day": 4,
+   "stageId": "shambhala-2024:grove",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "shambhala-2024:d4:grove:1800:yetz",
+   "artistId": "shambhala-2024:yetz",
+   "day": 4,
+   "stageId": "shambhala-2024:grove",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "shambhala-2024:d4:grove:1900:footprints",
+   "artistId": "shambhala-2024:footprints",
+   "day": 4,
+   "stageId": "shambhala-2024:grove",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "shambhala-2024:d4:grove:2000:five-alarm-funk",
+   "artistId": "shambhala-2024:five-alarm-funk",
+   "day": 4,
+   "stageId": "shambhala-2024:grove",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "shambhala-2024:d4:grove:2115:fungineers",
+   "artistId": "shambhala-2024:fungineers",
+   "day": 4,
+   "stageId": "shambhala-2024:grove",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "shambhala-2024:d4:grove:2215:o-flynn",
+   "artistId": "shambhala-2024:o-flynn",
+   "day": 4,
+   "stageId": "shambhala-2024:grove",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "shambhala-2024:d4:grove:2330:logic1000",
+   "artistId": "shambhala-2024:logic1000",
+   "day": 4,
+   "stageId": "shambhala-2024:grove",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "shambhala-2024:d4:grove:0100:ben-ufo",
+   "artistId": "shambhala-2024:ben-ufo",
+   "day": 4,
+   "stageId": "shambhala-2024:grove",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "shambhala-2024:d4:grove:0230:bonobo",
+   "artistId": "shambhala-2024:bonobo",
+   "day": 4,
+   "stageId": "shambhala-2024:grove",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "shambhala-2024:d4:grove:0400:jasper-tygner",
+   "artistId": "shambhala-2024:jasper-tygner",
+   "day": 4,
+   "stageId": "shambhala-2024:grove",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "shambhala-2024:d4:grove:0530:frameworks",
+   "artistId": "shambhala-2024:frameworks",
+   "day": 4,
+   "stageId": "shambhala-2024:grove",
+   "start": "05:30",
+   "end": "07:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:1600:be-hazzy",
+   "artistId": "shambhala-2024:be-hazzy",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:1700:naturalist",
+   "artistId": "shambhala-2024:naturalist",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:1800:defied",
+   "artistId": "shambhala-2024:defied",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:1900:coltcuts",
+   "artistId": "shambhala-2024:coltcuts",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:2000:lyny",
+   "artistId": "shambhala-2024:lyny",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:2100:one-true-god",
+   "artistId": "shambhala-2024:one-true-god",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:2200:zingara",
+   "artistId": "shambhala-2024:zingara",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:2330:clozee",
+   "artistId": "shambhala-2024:clozee",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:0100:lsdream",
+   "artistId": "shambhala-2024:lsdream",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "01:00",
+   "end": "02:15"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:0230:barclay-crenshaw",
+   "artistId": "shambhala-2024:barclay-crenshaw",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:0330:koan-sound",
+   "artistId": "shambhala-2024:koan-sound",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "03:30",
+   "end": "05:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-pagoda:0500:skreid-b2b-trip-a",
+   "artistId": "shambhala-2024:skreid-b2b-trip-a",
+   "day": 4,
+   "stageId": "shambhala-2024:the-pagoda",
+   "start": "05:00",
+   "end": "06:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-village:1800:dlb",
+   "artistId": "shambhala-2024:dlb",
+   "day": 4,
+   "stageId": "shambhala-2024:the-village",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-village:1900:trevor-galore",
+   "artistId": "shambhala-2024:trevor-galore",
+   "day": 4,
+   "stageId": "shambhala-2024:the-village",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-village:2000:ill-gates",
+   "artistId": "shambhala-2024:ill-gates",
+   "day": 4,
+   "stageId": "shambhala-2024:the-village",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-village:2100:wolfy-lights-ft-kj-sawka",
+   "artistId": "shambhala-2024:wolfy-lights-ft-kj-sawka",
+   "day": 4,
+   "stageId": "shambhala-2024:the-village",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-village:2300:a-m-c-w-armanni-reign",
+   "artistId": "shambhala-2024:a-m-c-w-armanni-reign",
+   "day": 4,
+   "stageId": "shambhala-2024:the-village",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-village:0000:dimension",
+   "artistId": "shambhala-2024:dimension",
+   "day": 4,
+   "stageId": "shambhala-2024:the-village",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "shambhala-2024:d4:the-village:0130:subtronics",
+   "artistId": "shambhala-2024:subtronics",
+   "day": 4,
+   "stageId": "shambhala-2024:the-village",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-village:0300:juelz",
+   "artistId": "shambhala-2024:juelz",
+   "day": 4,
+   "stageId": "shambhala-2024:the-village",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "shambhala-2024:d4:the-village:0400:tha-funk-junkie",
+   "artistId": "shambhala-2024:tha-funk-junkie",
+   "day": 4,
+   "stageId": "shambhala-2024:the-village",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "shambhala-2024:d4:secret-garden:1400:creek-st",
+   "artistId": "shambhala-2024:creek-st",
+   "day": 4,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "shambhala-2024:d4:secret-garden:2100:ghillie-and-skbr",
+   "artistId": "shambhala-2024:ghillie-and-skbr",
+   "day": 4,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "shambhala-2024:d4:secret-garden:2230:abstrakt-sonance",
+   "artistId": "shambhala-2024:abstrakt-sonance",
+   "day": 4,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "shambhala-2024:d4:secret-garden:0000:versa",
+   "artistId": "shambhala-2024:versa",
+   "day": 4,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "shambhala-2024:d4:secret-garden:0130:rowl",
+   "artistId": "shambhala-2024:rowl",
+   "day": 4,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "shambhala-2024:d4:secret-garden:0300:okiro",
+   "artistId": "shambhala-2024:okiro",
+   "day": 4,
+   "stageId": "shambhala-2024:secret-garden",
+   "start": "03:00",
+   "end": "04:30"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.shambhalamusicfestival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20240812142326/https://www.shambhalamusicfestival.com/set-times/thursday",
+    "captureTimestamp": "20240812142326",
+    "printed": "Thursday",
+    "sha256": "20d3aca2f57063e1b50051b2d9433990b889c5a3d8ed3dce60d2295135a48c24",
+    "rows": 23,
+    "format": "shambhala-webflow",
+    "weekday": "Thursday",
+    "published": "2024-07-29",
+    "datesFrom": {
+     "archivedUrl": "https://web.archive.org/web/20240812144505/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+     "captureTimestamp": "20240812144505",
+     "printed": "July 26-29, 2024",
+     "sha256": "26a7cace1ccfdeeb81b44dd7afd8d418bad7901464f1d021c3308408aa7e6b04"
+    }
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20240918135115/https://www.shambhalamusicfestival.com/set-times/friday",
+    "captureTimestamp": "20240918135115",
+    "printed": "Friday",
+    "sha256": "2017f4d0ae7b3e8dea2ba8434f86cefa029a9fa6f0820e86fe175c548341f6b1",
+    "rows": 81,
+    "format": "shambhala-webflow",
+    "weekday": "Friday",
+    "published": "2024-09-17",
+    "datesFrom": {
+     "archivedUrl": "https://web.archive.org/web/20240812144505/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+     "captureTimestamp": "20240812144505",
+     "printed": "July 26-29, 2024",
+     "sha256": "26a7cace1ccfdeeb81b44dd7afd8d418bad7901464f1d021c3308408aa7e6b04"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20240918143101/https://www.shambhalamusicfestival.com/set-times/saturday",
+    "captureTimestamp": "20240918143101",
+    "printed": "Saturday",
+    "sha256": "d2c1dfb0dfb8dfde17f11ea036d8b53fe26b2a045b1c9b6c0719e29e96d83d3f",
+    "rows": 74,
+    "format": "shambhala-webflow",
+    "weekday": "Saturday",
+    "published": "2024-09-17",
+    "datesFrom": {
+     "archivedUrl": "https://web.archive.org/web/20240812144505/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+     "captureTimestamp": "20240812144505",
+     "printed": "July 26-29, 2024",
+     "sha256": "26a7cace1ccfdeeb81b44dd7afd8d418bad7901464f1d021c3308408aa7e6b04"
+    }
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20240918133803/https://www.shambhalamusicfestival.com/set-times/sunday",
+    "captureTimestamp": "20240918133803",
+    "printed": "Sunday",
+    "sha256": "65bc6da233e02cabbeba2cc9c878a6247db812132aa597e051e4d60eb2699618",
+    "rows": 80,
+    "format": "shambhala-webflow",
+    "weekday": "Sunday",
+    "published": "2024-09-17",
+    "datesFrom": {
+     "archivedUrl": "https://web.archive.org/web/20240812144505/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2024",
+     "captureTimestamp": "20240812144505",
+     "printed": "July 26-29, 2024",
+     "sha256": "26a7cace1ccfdeeb81b44dd7afd8d418bad7901464f1d021c3308408aa7e6b04"
+    }
+   }
+  ]
+ }
+}

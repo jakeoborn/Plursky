@@ -100,8 +100,13 @@ const out = build();
   // "ID" guest, an ambiguous "vs", two one-name parentheticals, a "+" billing
   // and the short name GMS (seven rows: the "ID" billing prints on both
   // weekends). 147 rows, raised here and reported in that pull
-  // request. Past 147, stop and report.
-  check(review.length <= 147, `review queue is ${review.length} rows (> 147 means stop and report)`);
+  // request. Shambhala 2024 and 2025 ruled ten billings under the existing
+  // feat./with and event-title rules and left four as printed: three
+  // "Name (Act)" parentheticals (Shawna (KMLN), on both years; DJ Pee .Wee
+  // (Anderson .Paak); GUNFINGAZ (WRAZ & SUBSTANCE)) and one "x" billing
+  // (Parkbreezy x TF Marz): 152 rows, raised here and reported in that pull
+  // request. Past 152, stop and report.
+  check(review.length <= 152, `review queue is ${review.length} rows (> 152 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

@@ -31,6 +31,7 @@ import { parseMyScheduler, restoreSets } from "./historical/myscheduler-schedule
 import { parseEfScheduler } from "./historical/ef-scheduler-schedule.mjs";
 import { parseGovBallWp, printedDate as govBallDate } from "./historical/govball-wp-schedule.mjs";
 import { parseTmlDrupal, titleDate as tmlTitleDate } from "./historical/tml-drupal-schedule.mjs";
+import { parseShambhalaWebflow, datesFromPost as shambhalaRun, readDatesPost } from "./historical/shambhala-webflow-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -93,6 +94,17 @@ if (base && edc) {
     const longSet = m => m.sets.find(x => x.start === "13:00" && x.end === "01:00");
     mustFail("a listed long set read an hour longer (Tomorrowland 2013)", m => { longSet(m).end = "02:00"; }, tml13, () => {}, /over 8 hours/);
     mustFail("a listed long set credited to another act (Tomorrowland 2013)", m => { const s = longSet(m); s.artistId = m.sets.find(x => x.artistId !== s.artistId).artistId; }, tml13, () => {}, /over 8 hours/);
+  }
+  // Shambhala 2024-2025 pages print no date: a capture is dated by the run
+  // the festival's own post prints, and must be published in the year.
+  const sh25 = editions["shambhala-2025"];
+  if (sh25) {
+    const shCap = m => m.provenance.captures.find(c => c.format === "shambhala-webflow" && c.day === 2);
+    mustFail("a Shambhala page dated by a run the post does not print", m => { shCap(m).datesFrom.printed = "August 1-4, 2025"; }, sh25, () => {}, /does not|not 2025/);
+    mustFail("a Shambhala page published the year before", m => { shCap(m).published = "2024-09-17"; }, sh25, () => {}, /published/);
+    mustFail("a Shambhala page dated off another site", m => { shCap(m).datesFrom.archivedUrl = shCap(m).datesFrom.archivedUrl.replace("www.shambhalamusicfestival.com", "www.clashfinder.com"); }, sh25);
+    mustFail("a Shambhala page whose weekday is not its day", m => { shCap(m).printed = "Saturday"; }, sh25);
+    mustFail("a listed long set read half an hour longer (Shambhala 2025)", m => { m.sets.find(x => x.start === "00:30" && x.end === "09:00").end = "09:30"; }, sh25, () => {}, /over 8 hours/);
   }
   const lolla = editions["lollapalooza-2025"], acl = editions["acl-2025"];
   if (lolla && acl) {
@@ -505,6 +517,51 @@ if (base && edc) {
     gbMust("two Governors Ball sets overlapping on one stage", gbPage(undefined, [[gbD2[0][0], "hypem", [gbBlock("hypem", "f", "Day Two", "1:00 pm - 1:40 pm"), gbBlock("hypem", "h", "Clash", "1:30 pm - 2:00 pm")]], gbD2[1]]));
     gbMust("a Governors Ball block in another stage's column", gbPage().replace('class="honda-block g"', 'class="hypem-block g"'));
     gbMust("a Governors Ball block with two names", gbPage().replace("<h2>Two Honda</h2>", "<h2>Two</h2><h2>Honda</h2>"));
+    // Shambhala's 2024-2025 Webflow day page: the weekday in its title and
+    // active tab, a "Last Published" stamp, an hour axis from 10 AM, and one
+    // column per stage whose blocks carry each range three ways.
+    const swH = h => `${h % 12 || 12} ${h % 24 < 12 ? "am" : "pm"}`;
+    const swAxis = `<div class="time-column">` + Array.from({ length: 24 }, (_, i) => `<div class="time-marker">${swH(10 + i)}</div>`).join("") + `</div>`;
+    const sw12 = t => { const [h, m] = t.split(":").map(Number); return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "am" : "pm"}`; };
+    const swBlock = (name, a, b, { top, height, hidden = "", print } = {}) => {
+      const rel = t => { const [h, m] = t.split(":").map(Number); return ((h * 60 + m - 600) + 1440) % 1440; };
+      const x = rel(a), y = rel(b) || 1440;
+      return `<div role="listitem" class="playing-time w-dyn-item" style="top: ${top ?? Math.floor(x * 70 / 60)}px; min-height: ${height ?? (y - x) * 70 / 60 - 2}px;"><div class="pt-time"><div data-start="${a}" class="time">${print?.[0] ?? sw12(a)}</div><div>-</div><div data-end="${b}" class="time">${print?.[1] ?? sw12(b)}</div></div><div class="pt-body"><h3 class="pt-artist">${name}</h3>${hidden}</div></div>`;
+    };
+    const swCol = (cls, head, blocks) => `<div class="playing-times-column${cls ? ` ${cls}` : ""}">${head}<div class="playing-times w-dyn-list"><div role="list" class="w-dyn-items">${blocks.join("")}</div></div></div>`;
+    const swCols = [swCol("", `<img src="https://cdn.example/amp_logo.png" loading="lazy" alt="AMP stage" class="stage-logo-set">`, [swBlock("Opener", "12:00", "13:00"), swBlock("Late &amp; Co", "23:00", "00:30"), swBlock("Sunrise", "07:00", "09:00")]),
+      swCol("village", `<img src="https://cdn.example/village.png" loading="lazy" alt="The Village stage" class="stage-logo-set">`, [swBlock("Show", "15:00", "16:00", { hidden: `<h3 class="pt-artist w-condition-invisible">Guest</h3>` }), swBlock("Show", "15:00", "16:00"), swBlock("Twin A", "22:00", "23:00"), swBlock("Twin B", "22:00", "23:00"), swBlock("???? B2B ???", "04:00", "05:00")]),
+      swCol("secret-garden", `<img src="https://cdn.example/Secret_Garden.png" loading="lazy" alt="The Village stage" class="stage-logo-set">`, [swBlock("Morning Class", "11:00", "12:30")]),
+      swCol("grove", `<h2 class="stage-heading">Grove</h2>`, [])];
+    const swPage = ({ title = "Set Times - Friday | Shambhala Music Festival 2023", tab = "friday", pub = "Tue Sep 17 2024 13:51:15", axis = swAxis, cols = swCols } = {}) =>
+      `<html data-wf-page="x"><!-- Last Published: ${pub} GMT+0000 (Coordinated Universal Time) --><head><title>${title}</title></head><body><a href="/set-times/${tab}" aria-current="page" class="w--current">Day</a>`
+      + axis + `<div class="playing-times-grid">` + cols.join("") + `</div></body></html>`;
+    const swLogo = { "secret-garden": "Secret Garden" };
+    const swp = parseShambhalaWebflow(swPage(), { year: 2024, stageByLogo: swLogo });
+    ok(JSON.stringify([swp.weekday, swp.published, swp.axis, swp.pxPerHour, swp.stages, swp.blank, swp.renamed, swp.sets.map(x => [x.stage, x.start, x.end, x.artist]), swp.misprints.map(x => x.artist), swp.repeats.map(x => x.artist), swp.unnamed.map(x => x.artist)])
+      === JSON.stringify(["Friday", "2024-09-17", "10:00-09:00", 70, ["AMP", "The Village", "Secret Garden"], ["Grove"], [{ column: "secret-garden", printed: "The Village", as: "Secret Garden" }],
+        [["AMP", "12:00", "13:00", "Opener"], ["AMP", "23:00", "00:30", "Late & Co"], ["AMP", "07:00", "09:00", "Sunrise"], ["The Village", "15:00", "16:00", "Show"], ["Secret Garden", "11:00", "12:30", "Morning Class"]],
+        ["Twin A", "Twin B"], ["Show"], ["???? B2B ???"]]),
+      `a Shambhala day page must come back set by set past midnight, a repeated block once, two acts in one slot misprints and a mystery set unnamed: ${JSON.stringify(swp)}`);
+    ok(JSON.stringify(shambhalaRun("July 26-29, 2024", 2024)) === JSON.stringify({ Thursday: "2024-07-25", Friday: "2024-07-26", Saturday: "2024-07-27", Sunday: "2024-07-28" })
+      && shambhalaRun("July 25th to 28th, 2025", 2025)?.Friday === "2025-07-25" && shambhalaRun("July 26-29, 2024", 2025) === null && shambhalaRun("July 27-30, 2024", 2024) === null && shambhalaRun("July 26-28, 2024", 2024) === null,
+      "a Shambhala run must be printed for its year, Friday to Monday");
+    ok(readDatesPost("<p>Shambhala returns <b>July 26-29, 2024</b></p><p>See you July 26-29, 2024!</p>", 2024).days.Sunday === "2024-07-28", "a Shambhala dated post must read its run");
+    const swPostMust = (what, html) => { let bad = false; try { readDatesPost(html, 2024); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    swPostMust("a Shambhala post that prints two runs that disagree", "<p>July 26-29, 2024</p><p>August 2-5, 2024</p>");
+    swPostMust("a Shambhala post that prints no run in the year", "<p>July 25th to 28th, 2025</p>");
+    const swMust = (what, html, year = 2024, logo = swLogo) => { let bad = false; try { const p = parseShambhalaWebflow(html, { year, stageByLogo: logo }); bad = p.misprints.length !== 2 || p.sets.length !== 5; } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    swMust("a Shambhala page published in another year", swPage(), 2025);
+    swMust("a Shambhala page whose active tab is not its title's day", swPage({ tab: "saturday" }));
+    swMust("a Shambhala page whose title names no weekday", swPage({ title: "Set Times | Shambhala Music Festival" }));
+    swMust("a Shambhala axis that skips an hour", swPage({ axis: swAxis.replace(">1 pm<", ">2 pm<") }));
+    swMust("a Shambhala axis that starts at 11 AM", swPage({ axis: swAxis.replace('<div class="time-marker">10 am</div>', "") }));
+    swMust("two Shambhala columns with one name", swPage(), 2024, {});
+    swMust("a Shambhala column renamed against its logo", swPage({ cols: [swCols[0], swCols[1], swCols[2].replace("Secret_Garden.png", "Village.png"), swCols[3]] }));
+    swMust("a Shambhala block drawn an hour late", swPage({ cols: [swCols[0].replace("top: 140px", "top: 210px"), ...swCols.slice(1)] }));
+    swMust("a Shambhala block drawn too tall", swPage({ cols: [swCols[0].replace("min-height: 68px", "min-height: 80px"), ...swCols.slice(1)] }));
+    swMust("a Shambhala printed time that is not its data", swPage({ cols: [swCols[0].replace(">12:00 pm<", ">12:30 pm<"), ...swCols.slice(1)] }));
+    swMust("a Shambhala block with two shown names", swPage({ cols: [swCols[0].replace("<h3 class=\"pt-artist\">Opener</h3>", "<h3 class=\"pt-artist\">Opener</h3><h3 class=\"pt-artist\">Other</h3>"), ...swCols.slice(1)] }));
     // Coachella's lineup cards (2016's two divs, 2015's one span): every set
     // open-ended, a card with no set unscheduled, an entry without its time
     // or stage incomplete, and nothing read off data-weekend.
@@ -840,6 +897,14 @@ for (const [id, e] of Object.entries(editions)) {
         if (s.format === "tml-drupal") {
           ok(tmlTitleDate(s.printed, e.year) === d.date && s.titleDate === d.date && s.pxPerHour > 0,
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (title date ${s.titleDate}), not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // Shambhala's 2024-2025 page prints its weekday alone; the date is the
+        // run the festival's dated post prints, read off its own site.
+        if (s.format === "shambhala-webflow") {
+          ok(s.weekday === s.printed && s.printed.toUpperCase() === wd && shambhalaRun(s.datesFrom?.printed, e.year)?.[s.printed] === d.date
+            && String(s.published || "").startsWith(String(e.year)) && s.pxPerHour === 70 && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?shambhalamusicfestival\.com\//.test(s.datesFrom?.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (published ${s.published}) and the post "${s.datesFrom?.printed}", not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         // Governors Ball's 2011-2012 schedule prints each day's heading

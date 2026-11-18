@@ -78,6 +78,7 @@ export function buildEdition(id, rows, ledger) {
       ? ledger.days.flatMap(d => d.sources.map(s => s.kind === "page"
         ? { day: d.day, kind: "page", archivedUrl: s.archivedUrl, captureTimestamp: s.captureTimestamp, printed: s.printed, sha256: s.sha256, rows: s.rows,
             ...(s.firstSlot && { firstSlot: s.firstSlot }), ...(s.firstStart && { firstStart: s.firstStart }), ...(s.tabDate && { tabDate: s.tabDate }), ...(s.format === "govball-wp" && { format: s.format, dateFrom: s.dateFrom }), ...(s.format === "tml-drupal" && { format: s.format, titleDate: s.titleDate }),
+            ...(s.format === "shambhala-webflow" && { format: s.format, weekday: s.weekday, published: s.published, datesFrom: { archivedUrl: s.datesFrom.archivedUrl, captureTimestamp: s.datesFrom.captureTimestamp, printed: s.datesFrom.printed, sha256: s.datesFrom.sha256 } }),
             ...(s.anchor && { meridiemFrom: { archivedUrl: s.anchor.archivedUrl, captureTimestamp: s.anchor.captureTimestamp, printed: s.anchor.printed, sha256: s.anchor.sha256 } }) }
         : { day: d.day, kind: "graphic", imageUrl: s.imageUrl, foundAt: s.foundAt, published: s.published, rehostedBy: s.rehostedBy,
             fetchedAt: s.fetchedAt, printed: s.printed, sha256: s.sha256, rows: s.rows, receipt: s.receipt, reviewManifest: `data/historical/review/${id}.json`,
