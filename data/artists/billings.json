@@ -311995,6 +311995,1374 @@
   "mainStage": null
  },
  {
+  "id": "hard-summer-2012:d1:hard-stage:1725:alex-metric",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Hard Stage",
+  "start": "17:25",
+  "end": "18:15",
+  "printed": "ALEX METRIC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-metric",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-metric",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:hard-stage:1815:buraka-som-sistema",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Hard Stage",
+  "start": "18:15",
+  "end": "19:10",
+  "printed": "BURAKA SOM SISTEMA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "buraka-som-sistema",
+    "role": "performer"
+   }
+  ],
+  "act": "buraka-som-sistema",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:hard-stage:1930:little-dragon",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Hard Stage",
+  "start": "19:30",
+  "end": "20:20",
+  "printed": "LITTLE DRAGON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-dragon",
+    "role": "performer"
+   }
+  ],
+  "act": "little-dragon",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:hard-stage:2040:magnetic-man",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Hard Stage",
+  "start": "20:40",
+  "end": "21:40",
+  "printed": "MAGNETIC MAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "magnetic-man",
+    "role": "performer"
+   }
+  ],
+  "act": "magnetic-man",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:hard-stage:2205:miike-snow",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Hard Stage",
+  "start": "22:05",
+  "end": "23:05",
+  "printed": "MIIKE SNOW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miike-snow",
+    "role": "performer"
+   }
+  ],
+  "act": "miike-snow",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:hard-stage:2330:bloc-party",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Hard Stage",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "BLOC PARTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bloc-party",
+    "role": "performer"
+   }
+  ],
+  "act": "bloc-party",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:hard-stage:0050:boys-noize",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Hard Stage",
+  "start": "00:50",
+  "end": "01:50",
+  "printed": "BOYS NOIZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boys-noize",
+    "role": "performer"
+   }
+  ],
+  "act": "boys-noize",
+  "closing": true,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:harder-stage:1740:jokers-of-the-scene",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Harder Stage",
+  "start": "17:40",
+  "end": "18:30",
+  "printed": "JOKERS OF THE SCENE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jokers-of-the-scene",
+    "role": "performer"
+   }
+  ],
+  "act": "jokers-of-the-scene",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:harder-stage:1830:sound-pellegrino-thermal-team",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Harder Stage",
+  "start": "18:30",
+  "end": "19:20",
+  "printed": "SOUND PELLEGRINO THERMAL TEAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sound-pellegrino-thermal-team",
+    "role": "performer"
+   }
+  ],
+  "act": "sound-pellegrino-thermal-team",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:harder-stage:1920:riton",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Harder Stage",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "RITON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "riton",
+    "role": "performer"
+   }
+  ],
+  "act": "riton",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:harder-stage:2020:surkin",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Harder Stage",
+  "start": "20:20",
+  "end": "21:20",
+  "printed": "SURKIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "surkin",
+    "role": "performer"
+   }
+  ],
+  "act": "surkin",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:harder-stage:2120:fake-blood",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Harder Stage",
+  "start": "21:20",
+  "end": "22:20",
+  "printed": "FAKE BLOOD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fake-blood",
+    "role": "performer"
+   }
+  ],
+  "act": "fake-blood",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:harder-stage:2230:gesaffelstein",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Harder Stage",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "GESAFFELSTEIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gesaffelstein",
+    "role": "performer"
+   }
+  ],
+  "act": "gesaffelstein",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:harder-stage:2340:erol-alkan",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Harder Stage",
+  "start": "23:40",
+  "end": "00:40",
+  "printed": "EROL ALKAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "erol-alkan",
+    "role": "performer"
+   }
+  ],
+  "act": "erol-alkan",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:harder-stage:0040:joey-beltram",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Harder Stage",
+  "start": "00:40",
+  "end": "01:40",
+  "printed": "JOEY BELTRAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joey-beltram",
+    "role": "performer"
+   }
+  ],
+  "act": "joey-beltram",
+  "closing": true,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:rbma-discotheque:1710:lunice",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "RBMA Discotheque",
+  "start": "17:10",
+  "end": "17:55",
+  "printed": "LUNICE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lunice",
+    "role": "performer"
+   }
+  ],
+  "act": "lunice",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:rbma-discotheque:1755:baio",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "RBMA Discotheque",
+  "start": "17:55",
+  "end": "18:40",
+  "printed": "BAIO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baio",
+    "role": "performer"
+   }
+  ],
+  "act": "baio",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:rbma-discotheque:1840:john-talabot",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "RBMA Discotheque",
+  "start": "18:40",
+  "end": "19:35",
+  "printed": "JOHN TALABOT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-talabot",
+    "role": "performer"
+   }
+  ],
+  "act": "john-talabot",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:rbma-discotheque:1935:light-year",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "RBMA Discotheque",
+  "start": "19:35",
+  "end": "20:30",
+  "printed": "LIGHT YEAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "light-year",
+    "role": "performer"
+   }
+  ],
+  "act": "light-year",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:rbma-discotheque:2030:oliver",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "RBMA Discotheque",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "OLIVER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oliver",
+    "role": "performer"
+   }
+  ],
+  "act": "oliver",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:rbma-discotheque:2145:breakbot",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "RBMA Discotheque",
+  "start": "21:45",
+  "end": "22:45",
+  "printed": "BREAKBOT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "breakbot",
+    "role": "performer"
+   }
+  ],
+  "act": "breakbot",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:rbma-discotheque:2300:chromeo",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "RBMA Discotheque",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "CHROMEO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chromeo",
+    "role": "performer"
+   }
+  ],
+  "act": "chromeo",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:rbma-discotheque:0020:bootsy-collins-and-the-funk-unity-band",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "RBMA Discotheque",
+  "start": "00:20",
+  "end": "01:50",
+  "printed": "BOOTSY COLLINS & THE FUNK UNITY BAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bootsy-collins-and-the-funk-unity-band",
+    "role": "performer"
+   }
+  ],
+  "act": "bootsy-collins-and-the-funk-unity-band",
+  "closing": true,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:1740:jim-e-stack",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Fool's Gold Clubhouse",
+  "start": "17:40",
+  "end": "18:40",
+  "printed": "JIM-E STACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jim-e-stack",
+    "role": "performer"
+   }
+  ],
+  "act": "jim-e-stack",
+  "closing": false,
+  "stageLineage": "hard-summer:fool-s-gold-clubhouse",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:1840:mr-muthfuckin-exquire",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Fool's Gold Clubhouse",
+  "start": "18:40",
+  "end": "19:20",
+  "printed": "Mr. Muthfuckin’ eXquire",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mr-muthfuckin-exquire",
+    "role": "performer"
+   }
+  ],
+  "act": "mr-muthfuckin-exquire",
+  "closing": false,
+  "stageLineage": "hard-summer:fool-s-gold-clubhouse",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:1920:nick-catchdubs",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Fool's Gold Clubhouse",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "NICK CATCHDUBS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nick-catchdubs",
+    "role": "performer"
+   }
+  ],
+  "act": "nick-catchdubs",
+  "closing": false,
+  "stageLineage": "hard-summer:fool-s-gold-clubhouse",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:2020:action-bronson",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Fool's Gold Clubhouse",
+  "start": "20:20",
+  "end": "21:00",
+  "printed": "ACTION BRONSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "action-bronson",
+    "role": "performer"
+   }
+  ],
+  "act": "action-bronson",
+  "closing": false,
+  "stageLineage": "hard-summer:fool-s-gold-clubhouse",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:2100:craze",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Fool's Gold Clubhouse",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "CRAZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "craze",
+    "role": "performer"
+   }
+  ],
+  "act": "craze",
+  "closing": false,
+  "stageLineage": "hard-summer:fool-s-gold-clubhouse",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:2200:danny-brown",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Fool's Gold Clubhouse",
+  "start": "22:00",
+  "end": "22:40",
+  "printed": "DANNY BROWN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danny-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "danny-brown",
+  "closing": false,
+  "stageLineage": "hard-summer:fool-s-gold-clubhouse",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:2240:araabmuzik",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Fool's Gold Clubhouse",
+  "start": "22:40",
+  "end": "23:50",
+  "printed": "ARAABMUZIK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "araabmuzik",
+    "role": "performer"
+   }
+  ],
+  "act": "araabmuzik",
+  "closing": false,
+  "stageLineage": "hard-summer:fool-s-gold-clubhouse",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:2350:a-trak",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-03",
+  "day": 1,
+  "stage": "Fool's Gold Clubhouse",
+  "start": "23:50",
+  "end": "00:50",
+  "printed": "A-TRAK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-trak",
+    "role": "performer"
+   }
+  ],
+  "act": "a-trak",
+  "closing": true,
+  "stageLineage": "hard-summer:fool-s-gold-clubhouse",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:hard-stage:1720:jason-bentley",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Hard Stage",
+  "start": "17:20",
+  "end": "18:00",
+  "printed": "JASON BENTLEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jason-bentley",
+    "role": "performer"
+   }
+  ],
+  "act": "jason-bentley",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:hard-stage:1800:smims-and-belle",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Hard Stage",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "SMIMS & BELLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "smims-and-belle",
+    "role": "performer"
+   }
+  ],
+  "act": "smims-and-belle",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:hard-stage:1845:a-trak",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Hard Stage",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "A-TRAK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-trak",
+    "role": "performer"
+   }
+  ],
+  "act": "a-trak",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:hard-stage:2000:squarepusher",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Hard Stage",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "SQUAREPUSHER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "squarepusher",
+    "role": "performer"
+   }
+  ],
+  "act": "squarepusher",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:hard-stage:2125:bloody-beetroots",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Hard Stage",
+  "start": "21:25",
+  "end": "22:25",
+  "printed": "BLOODY BEETROOTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bloody-beetroots",
+    "role": "performer"
+   }
+  ],
+  "act": "bloody-beetroots",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:hard-stage:2255:nero",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Hard Stage",
+  "start": "22:55",
+  "end": "00:10",
+  "printed": "NERO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nero",
+    "role": "performer"
+   }
+  ],
+  "act": "nero",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:hard-stage:0040:skrillex",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Hard Stage",
+  "start": "00:40",
+  "end": "01:50",
+  "printed": "SKRILLEX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skrillex",
+    "role": "performer"
+   }
+  ],
+  "act": "skrillex",
+  "closing": true,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:harder-stage:1810:codes",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Harder Stage",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "CODES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "codes",
+    "role": "performer"
+   }
+  ],
+  "act": "codes",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:harder-stage:1910:trolley-snatcha",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Harder Stage",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "TROLLEY SNATCHA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trolley-snatcha",
+    "role": "performer"
+   }
+  ],
+  "act": "trolley-snatcha",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:harder-stage:2010:gaslamp-killer",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Harder Stage",
+  "start": "20:10",
+  "end": "21:20",
+  "printed": "GASLAMP KILLER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gaslamp-killer",
+    "role": "performer"
+   }
+  ],
+  "act": "gaslamp-killer",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:harder-stage:2120:12th-planet",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Harder Stage",
+  "start": "21:20",
+  "end": "22:40",
+  "printed": "12TH PLANET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "12th-planet",
+    "role": "performer"
+   }
+  ],
+  "act": "12th-planet",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:harder-stage:2240:datsik",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Harder Stage",
+  "start": "22:40",
+  "end": "00:00",
+  "printed": "DATSIK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "datsik",
+    "role": "performer"
+   }
+  ],
+  "act": "datsik",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:harder-stage:0000:dj-antention",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "Harder Stage",
+  "start": "00:00",
+  "end": "01:20",
+  "printed": "DJ ANTENTION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-antention",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-antention",
+  "closing": true,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:rbma-discotheque:1710:amtrac",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "RBMA Discotheque",
+  "start": "17:10",
+  "end": "17:50",
+  "printed": "AMTRAC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amtrac",
+    "role": "performer"
+   }
+  ],
+  "act": "amtrac",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:rbma-discotheque:1800:the-starship-connection",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "RBMA Discotheque",
+  "start": "18:00",
+  "end": "18:50",
+  "printed": "THE STARSHIP CONNECTION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-starship-connection",
+    "role": "performer"
+   }
+  ],
+  "act": "the-starship-connection",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:rbma-discotheque:1850:brenmar",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "RBMA Discotheque",
+  "start": "18:50",
+  "end": "19:40",
+  "printed": "BRENMAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brenmar",
+    "role": "performer"
+   }
+  ],
+  "act": "brenmar",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:rbma-discotheque:2120:justin-martin",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "RBMA Discotheque",
+  "start": "21:20",
+  "end": "22:20",
+  "printed": "JUSTIN MARTIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-martin",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-martin",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:rbma-discotheque:2220:brodinski",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "RBMA Discotheque",
+  "start": "22:20",
+  "end": "23:20",
+  "printed": "BRODINSKI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brodinski",
+    "role": "performer"
+   }
+  ],
+  "act": "brodinski",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:rbma-discotheque:2320:claude-vonstroke",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "RBMA Discotheque",
+  "start": "23:20",
+  "end": "00:20",
+  "printed": "CLAUDE VONSTROKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "claude-vonstroke",
+    "role": "performer"
+   }
+  ],
+  "act": "claude-vonstroke",
+  "closing": false,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:rbma-discotheque:0020:james-murphy",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "RBMA Discotheque",
+  "start": "00:20",
+  "end": "01:50",
+  "printed": "JAMES MURPHY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-murphy",
+    "role": "performer"
+   }
+  ],
+  "act": "james-murphy",
+  "closing": true,
+  "stageLineage": "hard-summer:rbma-discotheque",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:owsla-tent:1730:nick-thayer",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "OWSLA Tent",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "NICK THAYER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nick-thayer",
+    "role": "performer"
+   }
+  ],
+  "act": "nick-thayer",
+  "closing": false,
+  "stageLineage": "hard-summer:owsla-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:owsla-tent:1830:huoratron",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "OWSLA Tent",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "HUORATRON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "huoratron",
+    "role": "performer"
+   }
+  ],
+  "act": "huoratron",
+  "closing": false,
+  "stageLineage": "hard-summer:owsla-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:owsla-tent:1945:birdy-nam-nam",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "OWSLA Tent",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "BIRDY NAM NAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "birdy-nam-nam",
+    "role": "performer"
+   }
+  ],
+  "act": "birdy-nam-nam",
+  "closing": false,
+  "stageLineage": "hard-summer:owsla-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:owsla-tent:2110:alvin-risk",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "OWSLA Tent",
+  "start": "21:10",
+  "end": "22:10",
+  "printed": "ALVIN RISK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alvin-risk",
+    "role": "performer"
+   }
+  ],
+  "act": "alvin-risk",
+  "closing": false,
+  "stageLineage": "hard-summer:owsla-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:owsla-tent:2210:dillon-francis",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "OWSLA Tent",
+  "start": "22:10",
+  "end": "23:25",
+  "printed": "DILLON FRANCIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dillon-francis",
+    "role": "performer"
+   }
+  ],
+  "act": "dillon-francis",
+  "closing": false,
+  "stageLineage": "hard-summer:owsla-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2012:d2:owsla-tent:2325:zedd",
+  "source": "edition",
+  "festivalId": "hard-summer-2012",
+  "festivalBrand": "hard-summer",
+  "year": 2012,
+  "date": "2012-08-04",
+  "day": 2,
+  "stage": "OWSLA Tent",
+  "start": "23:25",
+  "end": "00:40",
+  "printed": "ZEDD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": true,
+  "stageLineage": "hard-summer:owsla-tent",
+  "mainStage": null
+ },
+ {
   "id": "hard-summer-2025:d1:hard-stage:2100:feid",
   "source": "edition",
   "festivalId": "hard-summer-2025",

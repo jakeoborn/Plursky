@@ -2583,6 +2583,32 @@
    }
   },
   {
+   "id": "hard-summer-2012",
+   "festivalId": "hard-summer",
+   "festivalName": "HARD Summer",
+   "name": "HARD Summer 2012",
+   "year": 2012,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-08-03",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-08-04",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 56,
+    "sets": 57
+   }
+  },
+  {
    "id": "lollapalooza-2025",
    "festivalId": "lollapalooza",
    "festivalName": "Lollapalooza",

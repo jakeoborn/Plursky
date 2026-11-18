@@ -177,7 +177,9 @@
  {
   "key": "12th-planet",
   "name": "12th Planet",
-  "aliases": [],
+  "aliases": [
+   "12TH PLANET"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -187,6 +189,7 @@
    "edc-orlando-2022:d1:circuit-grounds:1815:12th-planet",
    "electric-forest-2012:d3:tripolee:2230:12th-planet",
    "electric-forest-2014:d2:tripolee:2230:12th-planet",
+   "hard-summer-2012:d2:harder-stage:2120:12th-planet",
    "lollapalooza-2011:d3:perry-s:1700:12th-planet",
    "nocturnal-wonderland-2011:d1:sunken-garden:0100:12th-planet",
    "nocturnal-wonderland-2012:d2:sunken-garden:2330:12th-planet",
@@ -1539,8 +1542,8 @@
   "key": "a-trak",
   "name": "A-Trak",
   "aliases": [
-   "A-trak",
-   "A-TRAK"
+   "A-TRAK",
+   "A-trak"
   ],
   "kind": "performer",
   "parents": [],
@@ -1553,6 +1556,8 @@
    "edc-orlando-2017:d1:kineticfield:2112:diplo-b2b-a-trak",
    "edc-orlando-2017:d2:corona-electric-beach:2030:a-trak",
    "electric-forest-2013:d3:tripolee:0145:a-trak",
+   "hard-summer-2012:d1:fool-s-gold-clubhouse:2350:a-trak",
+   "hard-summer-2012:d2:hard-stage:1845:a-trak",
    "lollapalooza-2017:d1:perry-s:1745:a-trak",
    "nocturnal-wonderland-2021:d1:sunken-garden:2200:a-trak",
    "outside-lands-2013:d3:twin-peaks:1710:a-trak",
@@ -1560,7 +1565,7 @@
    "tomorrowland-2019:d2:garden-of-madness:2100:a-trak",
    "tomorrowland-2022:d5:kara-savi:1900:a-trak"
   ],
-  "firstSeen": "2012-10-12",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2022-07-23",
   "photo": null,
   "links": []
@@ -2218,16 +2223,19 @@
  {
   "key": "action-bronson",
   "name": "Action Bronson",
-  "aliases": [],
+  "aliases": [
+   "ACTION BRONSON"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2015:d1:coachella:1430:action-bronson",
    "coachella-2015:d4:coachella:1425:action-bronson",
+   "hard-summer-2012:d1:fool-s-gold-clubhouse:2020:action-bronson",
    "outside-lands-2017:d3:sutro:1710:action-bronson"
   ],
-  "firstSeen": "2015-04-10",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2017-08-13",
   "photo": null,
   "links": []
@@ -4903,16 +4911,19 @@
  {
   "key": "alex-metric",
   "name": "Alex Metric",
-  "aliases": [],
+  "aliases": [
+   "ALEX METRIC"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-las-vegas-2013:d1:cosmicmeadow:1900:alex-metric",
    "electric-forest-2014:d4:tripolee:1815:alex-metric",
+   "hard-summer-2012:d1:hard-stage:1725:alex-metric",
    "tomorrowland-2013:d1:tape:2115:alex-metric"
   ],
-  "firstSeen": "2013-06-21",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
@@ -6341,7 +6352,9 @@
  {
   "key": "alvin-risk",
   "name": "Alvin Risk",
-  "aliases": [],
+  "aliases": [
+   "ALVIN RISK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -6350,6 +6363,7 @@
    "coachella-2015:d4:sahara:1540:alvin-risk",
    "edc-las-vegas-2013:d1:cosmicmeadow:2045:alvin-risk",
    "electric-forest-2012:d2:tripolee:2000:alvin-risk",
+   "hard-summer-2012:d2:owsla-tent:2110:alvin-risk",
    "lollapalooza-2013:d3:perry-s:1300:alvin-risk"
   ],
   "firstSeen": "2012-06-29",
@@ -7353,15 +7367,18 @@
  {
   "key": "amtrac",
   "name": "Amtrac",
-  "aliases": [],
+  "aliases": [
+   "AMTRAC"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2017:d3:do-lab:1945:amtrac",
+   "hard-summer-2012:d2:rbma-discotheque:1710:amtrac",
    "shambhala-2015:d4:fractal-forest:0400:amtrac"
   ],
-  "firstSeen": "2015-08-09",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2017-04-16",
   "photo": null,
   "links": []
@@ -9580,7 +9597,8 @@
   "key": "araabmuzik",
   "name": "AraabMUZIK",
   "aliases": [
-   "AraabMuzik"
+   "AraabMuzik",
+   "ARAABMUZIK"
   ],
   "kind": "performer",
   "parents": [],
@@ -9588,7 +9606,8 @@
   "billings": [
    "coachella-2012:d3:mojave:1750:araabmuzik",
    "coachella-2012:d6:mojave:1750:araabmuzik",
-   "edc-las-vegas-2013:d3:cosmicmeadow:2100:araabmuzik"
+   "edc-las-vegas-2013:d3:cosmicmeadow:2100:araabmuzik",
+   "hard-summer-2012:d1:fool-s-gold-clubhouse:2240:araabmuzik"
   ],
   "firstSeen": "2012-04-15",
   "lastSeen": "2013-06-23",
@@ -13629,14 +13648,17 @@
  {
   "key": "baio",
   "name": "Baio",
-  "aliases": [],
+  "aliases": [
+   "BAIO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2012:d1:rbma-discotheque:1755:baio",
    "lollapalooza-2016:d3:pepsi:1350:baio"
   ],
-  "firstSeen": "2016-07-30",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2016-07-30",
   "photo": null,
   "links": []
@@ -18214,6 +18236,21 @@
   "links": []
  },
  {
+  "key": "birdy-nam-nam",
+  "name": "BIRDY NAM NAM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d2:owsla-tent:1945:birdy-nam-nam"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "birmingham-drive",
   "name": "Birmingham Drive",
   "aliases": [],
@@ -19365,16 +19402,19 @@
  {
   "key": "bloc-party",
   "name": "Bloc Party",
-  "aliases": [],
+  "aliases": [
+   "BLOC PARTY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2012:d1:hard-stage:2330:bloc-party",
    "lollapalooza-2012:d2:sony:2015:bloc-party",
    "lollapalooza-2016:d4:lakeshore:1925:bloc-party",
    "outside-lands-2012:d3:twin-peaks-hellman-hollow:1845:bloc-party"
   ],
-  "firstSeen": "2012-08-04",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2016-07-31",
   "photo": null,
   "links": []
@@ -19528,14 +19568,17 @@
  {
   "key": "bloody-beetroots",
   "name": "Bloody Beetroots",
-  "aliases": [],
+  "aliases": [
+   "BLOODY BEETROOTS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul38"
+   "ultra-miami-2026:ul38",
+   "hard-summer-2012:d2:hard-stage:2125:bloody-beetroots"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
@@ -20889,6 +20932,21 @@
   "links": []
  },
  {
+  "key": "bootsy-collins-and-the-funk-unity-band",
+  "name": "BOOTSY COLLINS & THE FUNK UNITY BAND",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d1:rbma-discotheque:0020:bootsy-collins-and-the-funk-unity-band"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "boozywoozy",
   "name": "Boozywoozy",
   "aliases": [],
@@ -21549,12 +21607,13 @@
    "edc-las-vegas-2025:d1:bionic-jungle:0400:boys-noize",
    "edc-las-vegas-2025:d2:cosmic-meadow:0230:boys-noize",
    "escape-halloween-2017:d2:chopping-block:0045:boys-noize-live",
+   "hard-summer-2012:d1:hard-stage:0050:boys-noize",
    "lollapalooza-2015:d2:perry-s:1745:boys-noize",
    "outside-lands-2014:d2:panhandle:1955:boys-noize",
    "shambhala-2016:d2:pagoda:0230:boys-noize",
    "tomorrowland-2017:d2:i-love-techno:1630:boys-noize"
   ],
-  "firstSeen": "2013-06-21",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
@@ -22118,7 +22177,9 @@
  {
   "key": "breakbot",
   "name": "Breakbot",
-  "aliases": [],
+  "aliases": [
+   "BREAKBOT"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -22127,6 +22188,7 @@
    "coachella-2012:d4:sahara:1430:breakbot",
    "coachella-2017:d2:gobi:2250:breakbot",
    "coachella-2017:d5:gobi:2250:breakbot",
+   "hard-summer-2012:d1:rbma-discotheque:2145:breakbot",
    "tomorrowland-2011:d2:format:1500:breakbot"
   ],
   "firstSeen": "2011-07-23",
@@ -22231,6 +22293,21 @@
   ],
   "firstSeen": "2023-10-06",
   "lastSeen": "2023-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "brenmar",
+  "name": "BRENMAR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d2:rbma-discotheque:1850:brenmar"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -22832,6 +22909,7 @@
    "coachella-2017:d2:sahara:1555:brodinski",
    "coachella-2017:d5:sahara:1555:brodinski",
    "electric-forest-2015:d1:jubilee:2115:brodinski",
+   "hard-summer-2012:d2:rbma-discotheque:2220:brodinski",
    "outside-lands-2017:d1:the-house-by-heineken:1800:brodinski",
    "tomorrowland-2011:d2:format:1930:brodinski"
   ],
@@ -23827,6 +23905,21 @@
   ],
   "firstSeen": "2018-07-27",
   "lastSeen": "2018-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "buraka-som-sistema",
+  "name": "BURAKA SOM SISTEMA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d1:hard-stage:1815:buraka-som-sistema"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
   "photo": null,
   "links": []
  },
@@ -29732,6 +29825,7 @@
    "coachella-2014:d1:coachella:1955:chromeo",
    "coachella-2014:d4:coachella:1940:chromeo",
    "governors-ball-2012:d1:hype-machine-stage:1820:chromeo",
+   "hard-summer-2012:d1:rbma-discotheque:2300:chromeo",
    "lollapalooza-2014:d3:bud-light:1645:chromeo",
    "outside-lands-2010:d2:twin-peaks:1715:chromeo",
    "outside-lands-2014:d1:lands-end:1705:chromeo",
@@ -30565,7 +30659,9 @@
  {
   "key": "claude-vonstroke",
   "name": "Claude VonStroke",
-  "aliases": [],
+  "aliases": [
+   "CLAUDE VONSTROKE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -30574,6 +30670,7 @@
    "coachella-2015:d6:sahara:1420:claude-vonstroke",
    "edc-las-vegas-2013:d2:cosmicmeadow:0415:claude-vonstroke",
    "electric-forest-2015:d3:tripolee:0145:claude-vonstroke",
+   "hard-summer-2012:d2:rbma-discotheque:2320:claude-vonstroke",
    "outside-lands-2017:d2:twin-peaks:1900:claude-vonstroke",
    "shambhala-2012:d2:pagoda:0130:claude-vonstroke",
    "shambhala-2015:d2:pagoda:0200:claude-vonstroke",
@@ -30581,7 +30678,7 @@
    "tomorrowland-2018:d3:core:1900:claude-vonstroke",
    "tomorrowland-2019:d2:core:2130:claude-vonstroke"
   ],
-  "firstSeen": "2012-08-10",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2019-07-20",
   "photo": null,
   "links": []
@@ -31290,6 +31387,21 @@
   ],
   "firstSeen": "2017-07-29",
   "lastSeen": "2024-05-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "codes",
+  "name": "CODES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d2:harder-stage:1810:codes"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -33388,16 +33500,19 @@
  {
   "key": "craze",
   "name": "Craze",
-  "aliases": [],
+  "aliases": [
+   "CRAZE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "lost-lands-2026:lls13",
    "edc-las-vegas-2022:d3:cosmic-meadow:0330:a-trak-b2b-craze",
-   "electric-forest-2013:d3:tripolee:2000:craze"
+   "electric-forest-2013:d3:tripolee:2000:craze",
+   "hard-summer-2012:d1:fool-s-gold-clubhouse:2100:craze"
   ],
-  "firstSeen": "2013-06-29",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -36202,7 +36317,9 @@
  {
   "key": "danny-brown",
   "name": "Danny Brown",
-  "aliases": [],
+  "aliases": [
+   "DANNY BROWN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -36212,9 +36329,10 @@
    "acl-2017:d6:honda:untimed:danny-brown",
    "electric-forest-2013:d3:tripolee:0045:danny-brown",
    "governors-ball-2017:d1:bacardi:1745:danny-brown",
+   "hard-summer-2012:d1:fool-s-gold-clubhouse:2200:danny-brown",
    "lollapalooza-2016:d1:petrillo-bandshell:1600:danny-brown"
   ],
-  "firstSeen": "2013-06-29",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -36978,6 +37096,7 @@
    "edc-las-vegas-2013:d1:basspod:0205:datsik",
    "electric-forest-2012:d2:tripolee:0100:datsik",
    "escape-halloween-2017:d1:ghouls-graveyard:0000:datsik",
+   "hard-summer-2012:d2:harder-stage:2240:datsik",
    "nocturnal-wonderland-2013:d1:queen-s-grounds:0100:datsik",
    "shambhala-2011:d2:village:0200:datsik",
    "shambhala-2012:d2:village:0230:datsik",
@@ -41362,6 +41481,7 @@
    "edc-orlando-2023:d1:kinetic-field:1956:dillon-francis-b2b-valentino-khan",
    "edc-orlando-2024:d2:kinetic-field:2119:dillon-francis-b2b-disco-lines",
    "escape-halloween-2019:d1:the-grimm:2315:dillon-francis",
+   "hard-summer-2012:d2:owsla-tent:2210:dillon-francis",
    "lollapalooza-2015:d1:perry-s:1900:dillon-francis",
    "nocturnal-wonderland-2017:d1:wolves-den:0100:dillon-francis",
    "nocturnal-wonderland-2022:d2:wolves-den:2145:dillon-francis",
@@ -41373,7 +41493,7 @@
    "tomorrowland-2015:d2:mainstage:1830:dillon-francis",
    "tomorrowland-2015:d3:barong-family:1800:dillon-francis"
   ],
-  "firstSeen": "2012-08-11",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2024-11-09",
   "photo": null,
   "links": []
@@ -42937,6 +43057,21 @@
   ],
   "firstSeen": "2019-10-25",
   "lastSeen": "2022-10-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-antention",
+  "name": "DJ ANTENTION",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d2:harder-stage:0000:dj-antention"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -53611,17 +53746,20 @@
  {
   "key": "erol-alkan",
   "name": "Erol Alkan",
-  "aliases": [],
+  "aliases": [
+   "EROL ALKAN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2015:d1:yuma:1645:erol-alkan",
    "coachella-2015:d4:yuma:1800:erol-alkan",
+   "hard-summer-2012:d1:harder-stage:2340:erol-alkan",
    "tomorrowland-2014:d3:forma-t:2000:erol-alkan",
    "tomorrowland-2014:d6:forma-t:2000:erol-alkan"
   ],
-  "firstSeen": "2014-07-20",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2015-04-17",
   "photo": null,
   "links": []
@@ -54881,12 +55019,15 @@
  {
   "key": "fake-blood",
   "name": "Fake Blood",
-  "aliases": [],
+  "aliases": [
+   "FAKE BLOOD"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-las-vegas-2013:d1:cosmicmeadow:2145:fake-blood",
+   "hard-summer-2012:d1:harder-stage:2120:fake-blood",
    "tomorrowland-2012:d3:forma-t:1730:fake-blood"
   ],
   "firstSeen": "2012-07-29",
@@ -61594,14 +61735,17 @@
  {
   "key": "gaslamp-killer",
   "name": "Gaslamp Killer",
-  "aliases": [],
+  "aliases": [
+   "GASLAMP KILLER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2017:d1:do-lab:1845:gaslamp-killer"
+   "coachella-2017:d1:do-lab:1845:gaslamp-killer",
+   "hard-summer-2012:d2:harder-stage:2010:gaslamp-killer"
   ],
-  "firstSeen": "2017-04-14",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2017-04-14",
   "photo": null,
   "links": []
@@ -62324,10 +62468,11 @@
    "coachella-2015:d6:mojave:2120:gesaffelstein",
    "edc-las-vegas-2025:d2:cosmic-meadow:0048:gesaffelstein",
    "governors-ball-2019:d1:honda-stage:2045:gesaffelstein",
+   "hard-summer-2012:d1:harder-stage:2230:gesaffelstein",
    "hard-summer-2025:d2:purple-stage:2049:gesaffelstein",
    "lollapalooza-2014:d3:perry-s:1615:gesaffelstein"
   ],
-  "firstSeen": "2014-08-03",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2025-08-03",
   "photo": null,
   "links": []
@@ -71260,6 +71405,21 @@
   "links": []
  },
  {
+  "key": "huoratron",
+  "name": "HUORATRON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d2:owsla-tent:1830:huoratron"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "huracan",
   "name": "Huracán",
   "aliases": [],
@@ -75569,6 +75729,21 @@
   "links": []
  },
  {
+  "key": "james-murphy",
+  "name": "JAMES MURPHY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d2:rbma-discotheque:0020:james-murphy"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "james-poole",
   "name": "James Poole",
   "aliases": [],
@@ -76203,15 +76378,18 @@
  {
   "key": "jason-bentley",
   "name": "Jason Bentley",
-  "aliases": [],
+  "aliases": [
+   "JASON BENTLEY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2015:d3:yuma:1735:jason-bentley",
-   "coachella-2015:d6:yuma:1735:jason-bentley"
+   "coachella-2015:d6:yuma:1735:jason-bentley",
+   "hard-summer-2012:d2:hard-stage:1720:jason-bentley"
   ],
-  "firstSeen": "2015-04-12",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2015-04-19",
   "photo": null,
   "links": []
@@ -78283,6 +78461,21 @@
   "links": []
  },
  {
+  "key": "jim-e-stack",
+  "name": "JIM-E STACK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d1:fool-s-gold-clubhouse:1740:jim-e-stack"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jim-smith",
   "name": "Jim Smith",
   "aliases": [],
@@ -79140,15 +79333,18 @@
  {
   "key": "joey-beltram",
   "name": "Joey Beltram",
-  "aliases": [],
+  "aliases": [
+   "JOEY BELTRAM"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2012:d1:harder-stage:0040:joey-beltram",
    "tomorrowland-2013:d3:kne-deep:1915:joey-beltram",
    "tomorrowland-2017:d1:the-sound-of-belgium:2000:joey-beltram"
   ],
-  "firstSeen": "2013-07-28",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2017-07-21",
   "photo": null,
   "links": []
@@ -79765,6 +79961,21 @@
   "links": []
  },
  {
+  "key": "john-talabot",
+  "name": "JOHN TALABOT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d1:rbma-discotheque:1840:john-talabot"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "john-talabot-dj-set",
   "name": "John Talabot DJ Set",
   "aliases": [],
@@ -79949,6 +80160,21 @@
   ],
   "firstSeen": "2017-07-23",
   "lastSeen": "2017-07-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jokers-of-the-scene",
+  "name": "JOKERS OF THE SCENE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d1:harder-stage:1740:jokers-of-the-scene"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
   "photo": null,
   "links": []
  },
@@ -82723,6 +82949,7 @@
    "edc-las-vegas-2013:d3:cosmicmeadow:0315:justin-martin",
    "edc-orlando-2022:d2:stereo-bloom:2130:justin-martin",
    "electric-forest-2014:d1:tripolee:2200:justin-martin",
+   "hard-summer-2012:d2:rbma-discotheque:2120:justin-martin",
    "outside-lands-2012:d1:the-dome-by-heineken:1800:justin-martin",
    "shambhala-2011:d2:pagoda:0230:justin-martin",
    "shambhala-2013:d4:pagoda:2230:justin-martin",
@@ -93200,14 +93427,17 @@
  {
   "key": "light-year",
   "name": "Light Year",
-  "aliases": [],
+  "aliases": [
+   "LIGHT YEAR"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2012:d1:rbma-discotheque:1935:light-year",
    "outside-lands-2015:d3:the-house-by-heineken:1630:light-year"
   ],
-  "firstSeen": "2015-08-09",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2015-08-09",
   "photo": null,
   "links": []
@@ -94079,7 +94309,9 @@
  {
   "key": "little-dragon",
   "name": "Little Dragon",
-  "aliases": [],
+  "aliases": [
+   "LITTLE DRAGON"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -94088,6 +94320,7 @@
    "coachella-2014:d6:mojave:1915:little-dragon",
    "coachella-2017:d1:gobi:2145:little-dragon",
    "coachella-2017:d4:gobi:2145:little-dragon",
+   "hard-summer-2012:d1:hard-stage:1930:little-dragon",
    "lollapalooza-2012:d3:perry-s:1515:little-dragon",
    "lollapalooza-2017:d2:lake-shore:1945:little-dragon",
    "outside-lands-2011:d3:sutro:1720:little-dragon",
@@ -97516,6 +97749,21 @@
   "links": []
  },
  {
+  "key": "lunice",
+  "name": "LUNICE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d1:rbma-discotheque:1710:lunice"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lunoize-and-lya",
   "name": "Lunoize & LYA",
   "aliases": [],
@@ -99334,15 +99582,18 @@
  {
   "key": "magnetic-man",
   "name": "Magnetic Man",
-  "aliases": [],
+  "aliases": [
+   "MAGNETIC MAN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "beyond-wonderland-socal-2012:d1:chess-village:2120:magnetic-man"
+   "beyond-wonderland-socal-2012:d1:chess-village:2120:magnetic-man",
+   "hard-summer-2012:d1:hard-stage:2040:magnetic-man"
   ],
   "firstSeen": "2012-03-17",
-  "lastSeen": "2012-03-17",
+  "lastSeen": "2012-08-03",
   "photo": null,
   "links": []
  },
@@ -107780,6 +108031,7 @@
    "coachella-2012:d5:outdoor:2210:miike-snow",
    "coachella-2016:d3:mojave:2145:miike-snow",
    "coachella-2016:d6:mojave:2145:miike-snow",
+   "hard-summer-2012:d1:hard-stage:2205:miike-snow",
    "lollapalooza-2012:d3:sony:1915:miike-snow",
    "lollapalooza-2016:d2:lakeshore:1900:miike-snow",
    "outside-lands-2016:d1:lands-end:1645:miike-snow"
@@ -111903,6 +112155,21 @@
   "links": []
  },
  {
+  "key": "mr-muthfuckin-exquire",
+  "name": "Mr. Muthfuckin’ eXquire",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d1:fool-s-gold-clubhouse:1840:mr-muthfuckin-exquire"
+  ],
+  "firstSeen": "2012-08-03",
+  "lastSeen": "2012-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mr-new-york",
   "name": "Mr. New York",
   "aliases": [],
@@ -115045,6 +115312,7 @@
    "coachella-2015:d1:outdoor:2135:nero",
    "coachella-2015:d4:outdoor:2135:nero",
    "escape-halloween-2017:d1:ghouls-graveyard:2300:nero-dj-set",
+   "hard-summer-2012:d2:hard-stage:2255:nero",
    "lollapalooza-2012:d1:perry-s:1900:nero",
    "lollapalooza-2015:d3:perry-s:2110:nero",
    "tomorrowland-2014:d2:super-you-and-me:2000:nero",
@@ -115824,14 +116092,17 @@
  {
   "key": "nick-catchdubs",
   "name": "Nick Catchdubs",
-  "aliases": [],
+  "aliases": [
+   "NICK CATCHDUBS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "electric-forest-2013:d3:tripolee:1845:nick-catchdubs"
+   "electric-forest-2013:d3:tripolee:1845:nick-catchdubs",
+   "hard-summer-2012:d1:fool-s-gold-clubhouse:1920:nick-catchdubs"
   ],
-  "firstSeen": "2013-06-29",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2013-06-29",
   "photo": null,
   "links": []
@@ -115946,11 +116217,14 @@
  {
   "key": "nick-thayer",
   "name": "Nick Thayer",
-  "aliases": [],
+  "aliases": [
+   "NICK THAYER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2012:d2:owsla-tent:1730:nick-thayer",
    "shambhala-2011:d2:fractal-forest:2330:nick-thayer",
    "shambhala-2013:d2:fractal-forest:2330:nick-thayer"
   ],
@@ -119844,9 +120118,10 @@
   "billings": [
    "edc-las-vegas-2013:d2:cosmicmeadow:1930:oliver",
    "electric-forest-2013:d3:tripolee:2215:oliver",
+   "hard-summer-2012:d1:rbma-discotheque:2030:oliver",
    "tomorrowland-2014:d5:desperados:1800:oliver"
   ],
-  "firstSeen": "2013-06-22",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2014-07-26",
   "photo": null,
   "links": []
@@ -134101,16 +134376,19 @@
  {
   "key": "riton",
   "name": "Riton",
-  "aliases": [],
+  "aliases": [
+   "RITON"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2012:d1:harder-stage:1920:riton",
    "tomorrowland-2017:d2:stmpd-rcrds:2000:riton",
    "tomorrowland-2019:d6:kara-savi:1530:riton",
    "tomorrowland-2022:d5:the-library:1800:riton"
   ],
-  "firstSeen": "2017-07-22",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2022-07-23",
   "photo": null,
   "links": []
@@ -144973,7 +145251,9 @@
  {
   "key": "skrillex",
   "name": "Skrillex",
-  "aliases": [],
+  "aliases": [
+   "SKRILLEX"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [
@@ -144987,6 +145267,7 @@
    "coachella-2014:d2:sahara:2325:skrillex",
    "coachella-2014:d5:sahara:2325:skrillex",
    "electric-forest-2015:d2:ranch-arena:0030:skrillex",
+   "hard-summer-2012:d2:hard-stage:0040:skrillex",
    "lollapalooza-2011:d1:perry-s:1815:skrillex",
    "lollapalooza-2014:d3:bud-light:2030:skrillex",
    "outside-lands-2012:d3:twin-peaks-hellman-hollow:2030:skrillex",
@@ -146022,6 +146303,21 @@
   ],
   "firstSeen": "2016-07-30",
   "lastSeen": "2016-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "smims-and-belle",
+  "name": "SMIMS & BELLE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d2:hard-stage:1800:smims-and-belle"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
   "photo": null,
   "links": []
  },
@@ -147873,15 +148169,18 @@
  {
   "key": "sound-pellegrino-thermal-team",
   "name": "Sound Pellegrino Thermal Team",
-  "aliases": [],
+  "aliases": [
+   "SOUND PELLEGRINO THERMAL TEAM"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2012:d1:harder-stage:1830:sound-pellegrino-thermal-team",
    "tomorrowland-2014:d3:forma-t:1400:sound-pellegrino-thermal-team",
    "tomorrowland-2014:d6:forma-t:1400:sound-pellegrino-thermal-team"
   ],
-  "firstSeen": "2014-07-20",
+  "firstSeen": "2012-08-03",
   "lastSeen": "2014-07-27",
   "photo": null,
   "links": []
@@ -148935,15 +149234,18 @@
  {
   "key": "squarepusher",
   "name": "Squarepusher",
-  "aliases": [],
+  "aliases": [
+   "SQUAREPUSHER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2015:d1:gobi:2250:squarepusher",
-   "coachella-2015:d4:gobi:2250:squarepusher"
+   "coachella-2015:d4:gobi:2250:squarepusher",
+   "hard-summer-2012:d2:hard-stage:2000:squarepusher"
   ],
-  "firstSeen": "2015-04-10",
+  "firstSeen": "2012-08-04",
   "lastSeen": "2015-04-17",
   "photo": null,
   "links": []
@@ -152674,15 +152976,18 @@
  {
   "key": "surkin",
   "name": "Surkin",
-  "aliases": [],
+  "aliases": [
+   "SURKIN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2012:d1:harder-stage:2020:surkin",
    "tomorrowland-2012:d3:forma-t:1430:surkin"
   ],
   "firstSeen": "2012-07-29",
-  "lastSeen": "2012-07-29",
+  "lastSeen": "2012-08-03",
   "photo": null,
   "links": []
  },
@@ -161802,6 +162107,21 @@
   "links": []
  },
  {
+  "key": "the-starship-connection",
+  "name": "THE STARSHIP CONNECTION",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2012:d2:rbma-discotheque:1800:the-starship-connection"
+  ],
+  "firstSeen": "2012-08-04",
+  "lastSeen": "2012-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-stepkids",
   "name": "The Stepkids",
   "aliases": [],
@@ -167041,11 +167361,14 @@
  {
   "key": "trolley-snatcha",
   "name": "Trolley Snatcha",
-  "aliases": [],
+  "aliases": [
+   "TROLLEY SNATCHA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2012:d2:harder-stage:1910:trolley-snatcha",
    "shambhala-2012:d4:village:0300:trolley-snatcha",
    "tomorrowland-2012:d1:untitled-invites-dub-police:2100:trolley-snatcha"
   ],
@@ -178657,6 +178980,7 @@
    "electric-forest-2014:d2:ranch-arena:0030:zedd",
    "escape-halloween-2017:d2:ghouls-graveyard:2300:zedd",
    "escape-halloween-2021:d2:the-grimm:0045:zedd",
+   "hard-summer-2012:d2:owsla-tent:2325:zedd",
    "lollapalooza-2012:d1:perry-s:1515:zedd",
    "lollapalooza-2014:d1:perry-s:2030:zedd",
    "outside-lands-2013:d1:twin-peaks:1725:zedd",
