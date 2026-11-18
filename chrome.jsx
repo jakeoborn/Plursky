@@ -2865,7 +2865,8 @@ function yourWeekendEnabled() {
 }
 // The timeline's model, pure over setReviewRows' rows: one entry per night,
 // each set you caught (the engine says caught, or you answered Full / Part)
-// with its evidence laid over the set's published window as shares of it.
+// with its evidence laid over the set's published window as shares of it,
+// and your own first and last time at its stage.
 // Left out: brief passes, "I wasn't there", and saved sets with nothing on
 // this phone. Whether those last show as a miss is an open founder call
 // (set-attendance spec, open decision 4), so nothing here marks a miss.
@@ -2895,6 +2896,20 @@ function yourWeekendNights(rows, cfg) {
         } else marks.push({ kind: "point", via: e.kind, l: share(e.from) });
       }
     }
+    // Your own times at this set: the first and last moment anything on this
+    // phone put you at its stage (a GPS run, a photo, a check-in, a tap),
+    // inside the set's window like the track and the verdict. A run that goes
+    // on past the end is the next act's, and one from before the start is the
+    // last act's, so neither moves these times.
+    const inSet = e => !w || (e.kind === "gps" ? Math.min(e.to, w.endMs) > Math.max(e.from, w.startMs) : e.from >= w.startMs && e.from <= w.endMs);
+    const youTimes = ev.filter(e => Number.isFinite(e.from) && inSet(e)).map(e => {
+      const to = Number.isFinite(e.to) && e.to > e.from ? e.to : e.from;
+      return w ? [Math.max(e.from, w.startMs), Math.min(to, w.endMs)] : [e.from, to];
+    });
+    const you = youTimes.length ? { fromMs: Math.min(...youTimes.map(t => t[0])), toMs: Math.max(...youTimes.map(t => t[1])) } : null;
+    const youText = you
+      ? (you.toMs > you.fromMs ? `You: ${_setClock(you.fromMs, cfg)} to ${_setClock(you.toMs, cfg)}` : `You: ${_setClock(you.fromMs, cfg)}`)
+      : "Your times: nothing on this phone";
     const dd = cfg && cfg.dayDates && cfg.dayDates[a.day];
     const label = w ? nightOf(w.startMs) : (dd && dd.short) || (a.day != null ? `Day ${a.day}` : "");
     const key = w ? `n:${label}` : `d:${a.day}`;
@@ -2906,7 +2921,7 @@ function yourWeekendNights(rows, cfg) {
       startMs: w ? w.startMs : null, mine: !!manual,
       tag: manual ? (verdict && verdict.label) || (manual === "full" ? "Full set · your edit" : "Part of it · your edit")
         : (verdict && verdict.label) || "Length unknown",
-      marks,
+      marks, you, youText,
     });
   }
   const out = [...nights.values()];
@@ -2952,8 +2967,9 @@ function YourWeekendSheet({ cfg = window.FESTIVAL_CONFIG, onClose }) {
                   <span data-your-weekend-tag className="duo-data-s" style={{ color: s.mine ? "var(--acc-ink)" : "var(--ink)" }}>{s.tag}</span>
                 </div>
                 <div className="duo-data-s duo-ink3" style={{ marginBottom: 6 }}>
-                  {[stage && (stage.short || stage.name), s.start && s.end ? `${fmt12(s.start)} to ${fmt12(s.end)}` : "Set time not published"].filter(Boolean).join(" · ")}
+                  {[stage && (stage.short || stage.name), s.start && s.end ? `Set ${fmt12(s.start)} to ${fmt12(s.end)}` : "Set time not published"].filter(Boolean).join(" · ")}
                 </div>
+                <div data-your-weekend-you className={s.you ? "duo-data-s" : "duo-data-s duo-ink3"} style={{ marginBottom: 6, color: s.you ? "var(--ink)" : undefined }}>{s.youText}</div>
                 {/* No evidence (your own answer alone) draws no track: an empty one reads as zero minutes. */}
                 {s.startMs != null && s.marks.length > 0 && (
                   <div data-your-weekend-track aria-hidden="true" style={{ position: "relative", height: 8, borderRadius: 4, background: "var(--s3)" }}>
