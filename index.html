@@ -374,7 +374,9 @@
   /* Landing spotlight (landing.jsx LandingSpotlight): the next festivals as swipeable photo cards. */
   .spot-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;padding:0 16px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
   .spot-rail::-webkit-scrollbar{display:none}
-  .spot-item{flex:0 0 min(78%,340px);scroll-snap-align:start;min-width:0;animation:springIn .5s cubic-bezier(.2,.8,.2,1) both}
+  .spot-item{flex:0 0 min(78%,340px);scroll-snap-align:start;min-width:0;animation:spotIn .45s ease-out both}
+  /* Opacity only: a moving card would put every caption box somewhere else from one frame to the next. */
+  @keyframes spotIn{from{opacity:0}to{opacity:1}}
   .spot-card{position:relative;display:block;width:100%;aspect-ratio:4/5;padding:0;border:0;border-radius:20px;overflow:hidden;background:#1C1B19;cursor:pointer;text-align:left;font:inherit;color:var(--media-ink);box-shadow:0 10px 30px -12px rgba(0,0,0,.45);transition:transform .18s ease}
   .spot-card:active{transform:scale(.975)}
   .spot-card:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
