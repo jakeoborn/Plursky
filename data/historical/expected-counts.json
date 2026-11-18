@@ -148,5 +148,10 @@
  "outside-lands-2024": { "stages": 9, "setsPerDay": [48, 46, 45], "droppedPerDay": [0, 0, 0] },
  "outside-lands-2025": { "stages": 10, "setsPerDay": [52, 50, 53], "droppedPerDay": [0, 0, 0] },
  "lightning-in-a-bottle-2018": { "stages": 10, "setsPerDay": [32, 66, 63, 63], "droppedPerDay": [0, 0, 0, 0] },
- "lightning-in-a-bottle-2019": { "stages": 8, "setsPerDay": [1, 32, 68, 63, 65], "droppedPerDay": [0, 0, 0, 0, 0] }
+ "lightning-in-a-bottle-2019": { "stages": 8, "setsPerDay": [1, 32, 68, 63, 65], "droppedPerDay": [0, 0, 0, 0, 0] },
+ "sonar-2016": { "stages": 9, "setsPerDay": [21, 49, 48], "droppedPerDay": [0, 0, 0] },
+ "sonar-2017": { "stages": 10, "setsPerDay": [1, 31, 54, 54, 1], "droppedPerDay": [0, 0, 0, 0, 0] },
+ "sonar-2018": { "stages": 13, "setsPerDay": [33, 52, 52, 1], "droppedPerDay": [0, 0, 0, 0] },
+ "sonar-2019": { "stages": 11, "setsPerDay": [30, 52, 50, 1], "droppedPerDay": [0, 0, 0, 0] },
+ "sonar-2022": { "stages": 8, "setsPerDay": [24, 46, 45], "droppedPerDay": [0, 0, 0] }
 }

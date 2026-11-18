@@ -5187,6 +5187,301 @@
     }
    ]
   },
+  "sonar": {
+   "lineages": [
+    {
+     "id": "sonar:l-auditori",
+     "names": [
+      {
+       "printed": "L'Auditori",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarcomplex",
+     "names": [
+      {
+       "printed": "SonarComplex",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonardome",
+     "names": [
+      {
+       "printed": "SonarDôme",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarhall",
+     "names": [
+      {
+       "printed": "SonarHall",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarvillage-by-estrella-damm",
+     "names": [
+      {
+       "printed": "SonarVillage by Estrella Damm",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarcar",
+     "names": [
+      {
+       "printed": "SonarCar",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarclub",
+     "names": [
+      {
+       "printed": "SonarClub",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarlab",
+     "names": [
+      {
+       "printed": "SonarLab",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarpub",
+     "names": [
+      {
+       "printed": "SonarPub",
+       "editions": [
+        "sonar-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarxs",
+     "names": [
+      {
+       "printed": "SonarXS",
+       "editions": [
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarpub-by-thunder-bitch",
+     "names": [
+      {
+       "printed": "SonarPub by Thunder Bitch",
+       "editions": [
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:despacio",
+     "names": [
+      {
+       "printed": "Despacio",
+       "editions": [
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:l-auditori-sala-1-pau-casals",
+     "names": [
+      {
+       "printed": "L'Auditori: Sala 1 - Pau Casals",
+       "editions": [
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonardome-by-red-bull-music",
+     "names": [
+      {
+       "printed": "SonarDôme by Red Bull Music",
+       "editions": [
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarlab-resident-advisor",
+     "names": [
+      {
+       "printed": "SonarLab - Resident Advisor",
+       "editions": [
+        "sonar-2018",
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:teatre-grec",
+     "names": [
+      {
+       "printed": "Teatre Grec",
+       "editions": [
+        "sonar-2018",
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonardome-presented-by-red-bull",
+     "names": [
+      {
+       "printed": "SonarDôme presented by Red Bull",
+       "editions": [
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:capella-macba",
+     "names": [
+      {
+       "printed": "Capella MACBA",
+       "editions": [
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarpark-by-dice",
+     "names": [
+      {
+       "printed": "SonarPark by DICE",
+       "editions": [
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarlab-by-resident-advisor",
+     "names": [
+      {
+       "printed": "SonarLab by Resident Advisor",
+       "editions": [
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "summerfest": {
    "lineages": [
     {

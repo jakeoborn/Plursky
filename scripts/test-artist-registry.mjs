@@ -160,9 +160,13 @@ const out = build();
   // Tor): 183 rows. Outside Lands 2018-2019 adds four: Florence + the
   // Machine (the "+" rule, already pending at ACL 2012), SOB x RBE (an "x"
   // billing) and two feat. lists whose "&" may be one act or two (Groove
-  // Well Ft. ..., As You Like It Ft. ...): 187 rows. Past 187, stop and
+  // Well Ft. ..., As You Like It Ft. ...): 187 rows. Sónar Barcelona
+  // 2016-2019 and 2022 add six: four billings whose "&" may join one act or
+  // two (Congo Natty feat. ... Nãnci & Phoebe, bRUNA & Wooky + Alba G.
+  // Corral, Ratkje & Barruk, LAO & Wasted Fates) and two short names also
+  // billed at Primavera Sound (MOW, Za!): 193 rows. Past 193, stop and
   // report.
-  check(review.length <= 187, `review queue is ${review.length} rows (> 187 means stop and report)`);
+  check(review.length <= 193, `review queue is ${review.length} rows (> 193 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

@@ -1,0 +1,1938 @@
+{
+ "id": "sonar-2022",
+ "festivalId": "sonar",
+ "name": "Sónar Barcelona 2022",
+ "year": 2022,
+ "timezone": "Europe/Madrid",
+ "rolloverHour": 10,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-06-16",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2022-06-17",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2022-06-18",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "sonar-2022:sonarcomplex",
+   "name": "SonarComplex"
+  },
+  {
+   "id": "sonar-2022:sonarhall",
+   "name": "SonarHall"
+  },
+  {
+   "id": "sonar-2022:sonarpark-by-dice",
+   "name": "SonarPark by DICE"
+  },
+  {
+   "id": "sonar-2022:sonarvillage-by-estrella-damm",
+   "name": "SonarVillage by Estrella Damm"
+  },
+  {
+   "id": "sonar-2022:sonarcar",
+   "name": "SonarCar"
+  },
+  {
+   "id": "sonar-2022:sonarclub",
+   "name": "SonarClub"
+  },
+  {
+   "id": "sonar-2022:sonarlab-by-resident-advisor",
+   "name": "SonarLab by Resident Advisor"
+  },
+  {
+   "id": "sonar-2022:sonarpub-by-thunder-bitch",
+   "name": "SonarPub by Thunder Bitch"
+  }
+ ],
+ "artists": [
+  {
+   "id": "sonar-2022:veeeky-presented-by-ministry-of-culture-of-taiwan",
+   "name": "veeeky presented by Ministry of Culture of Taiwan",
+   "key": "veeeky-presented-by-ministry-of-culture-of-taiwan",
+   "performers": [
+    "veeeky-presented-by-ministry-of-culture-of-taiwan"
+   ]
+  },
+  {
+   "id": "sonar-2022:tarta-relena",
+   "name": "Tarta Relena",
+   "key": "tarta-relena",
+   "performers": [
+    "tarta-relena"
+   ]
+  },
+  {
+   "id": "sonar-2022:eartheater",
+   "name": "Eartheater",
+   "key": "eartheater",
+   "performers": [
+    "eartheater"
+   ]
+  },
+  {
+   "id": "sonar-2022:lafawndah-presents-snug-harbour",
+   "name": "Lafawndah presents Snug Harbour",
+   "key": "lafawndah-presents-snug-harbour",
+   "performers": [
+    "lafawndah-presents-snug-harbour"
+   ]
+  },
+  {
+   "id": "sonar-2022:b1n0-live-a-v",
+   "name": "b1n0 Live A/V",
+   "key": "b1n0-live-a-v",
+   "performers": [
+    "b1n0-live-a-v"
+   ]
+  },
+  {
+   "id": "sonar-2022:sega-bodega",
+   "name": "Sega Bodega",
+   "key": "sega-bodega",
+   "performers": [
+    "sega-bodega"
+   ]
+  },
+  {
+   "id": "sonar-2022:paranoid-london-live",
+   "name": "Paranoid London Live",
+   "key": "paranoid-london-live",
+   "performers": [
+    "paranoid-london-live"
+   ]
+  },
+  {
+   "id": "sonar-2022:amnesia-scanner",
+   "name": "Amnesia Scanner",
+   "key": "amnesia-scanner",
+   "performers": [
+    "amnesia-scanner"
+   ]
+  },
+  {
+   "id": "sonar-2022:depresion-sonora",
+   "name": "Depresión Sonora",
+   "key": "depresion-sonora",
+   "performers": [
+    "depresion-sonora"
+   ]
+  },
+  {
+   "id": "sonar-2022:rojuu",
+   "name": "Rojuu",
+   "key": "rojuu",
+   "performers": [
+    "rojuu"
+   ]
+  },
+  {
+   "id": "sonar-2022:coucou-chloe",
+   "name": "COUCOU CHLOE",
+   "key": "coucou-chloe",
+   "performers": [
+    "coucou-chloe"
+   ]
+  },
+  {
+   "id": "sonar-2022:ms-nina",
+   "name": "Ms Nina",
+   "key": "ms-nina",
+   "performers": [
+    "ms-nina"
+   ]
+  },
+  {
+   "id": "sonar-2022:chico-blanco",
+   "name": "Chico Blanco",
+   "key": "chico-blanco",
+   "performers": [
+    "chico-blanco"
+   ]
+  },
+  {
+   "id": "sonar-2022:partiboi69",
+   "name": "Partiboi69",
+   "key": "partiboi69",
+   "performers": [
+    "partiboi69"
+   ]
+  },
+  {
+   "id": "sonar-2022:lechuga-zafiro",
+   "name": "Lechuga Zafiro",
+   "key": "lechuga-zafiro",
+   "performers": [
+    "lechuga-zafiro"
+   ]
+  },
+  {
+   "id": "sonar-2022:gela",
+   "name": "Gela",
+   "key": "gela",
+   "performers": [
+    "gela"
+   ]
+  },
+  {
+   "id": "sonar-2022:awwz",
+   "name": "AWWZ",
+   "key": "awwz",
+   "performers": [
+    "awwz"
+   ]
+  },
+  {
+   "id": "sonar-2022:simona",
+   "name": "Simona",
+   "key": "simona",
+   "performers": [
+    "simona"
+   ]
+  },
+  {
+   "id": "sonar-2022:manara",
+   "name": "Manara",
+   "key": "manara",
+   "performers": [
+    "manara"
+   ]
+  },
+  {
+   "id": "sonar-2022:uniiqu3-live",
+   "name": "UNIIQU3 Live",
+   "key": "uniiqu3-live",
+   "performers": [
+    "uniiqu3-live"
+   ]
+  },
+  {
+   "id": "sonar-2022:lady-shaka",
+   "name": "Lady Shaka",
+   "key": "lady-shaka",
+   "performers": [
+    "lady-shaka"
+   ]
+  },
+  {
+   "id": "sonar-2022:pongo",
+   "name": "Pongo",
+   "key": "pongo",
+   "performers": [
+    "pongo"
+   ]
+  },
+  {
+   "id": "sonar-2022:jayda-g",
+   "name": "Jayda G",
+   "key": "jayda-g",
+   "performers": [
+    "jayda-g"
+   ]
+  },
+  {
+   "id": "sonar-2022:ihhh-and-desilence-live-a-v",
+   "name": "IHHH & Desilence Live A/V",
+   "key": "ihhh-and-desilence-live-a-v",
+   "performers": [
+    "ihhh-and-desilence-live-a-v"
+   ]
+  },
+  {
+   "id": "sonar-2022:martin-messier-echo-chamber",
+   "name": "Martin Messier - ‘Echo Chamber’",
+   "key": "martin-messier-echo-chamber",
+   "performers": [
+    "martin-messier-echo-chamber"
+   ]
+  },
+  {
+   "id": "sonar-2022:lyra-pramuk-echoluminescence",
+   "name": "Lyra Pramuk - Echoluminescence",
+   "key": "lyra-pramuk-echoluminescence",
+   "performers": [
+    "lyra-pramuk-echoluminescence"
+   ]
+  },
+  {
+   "id": "sonar-2022:quayola-seta-transient-performance-presented-by-me-by-melia",
+   "name": "Quayola/Seta: 'Transient' Performance presented by ME by Meliá",
+   "key": "quayola-seta-transient-performance-presented-by-me-by-melia",
+   "performers": [
+    "quayola-seta-transient-performance-presented-by-me-by-melia"
+   ]
+  },
+  {
+   "id": "sonar-2022:vvv-trippin-you",
+   "name": "VVV [Trippin’you]",
+   "key": "vvv-trippin-you",
+   "performers": [
+    "vvv-trippin-you"
+   ]
+  },
+  {
+   "id": "sonar-2022:lsdxoxo-live",
+   "name": "LSDXOXO Live",
+   "key": "lsdxoxo-live",
+   "performers": [
+    "lsdxoxo-live"
+   ]
+  },
+  {
+   "id": "sonar-2022:samantha-hudson-liquidacion-total-por-cierre",
+   "name": "Samantha Hudson: 'Liquidación Total Por Cierre'",
+   "key": "samantha-hudson-liquidacion-total-por-cierre",
+   "performers": [
+    "samantha-hudson-liquidacion-total-por-cierre"
+   ]
+  },
+  {
+   "id": "sonar-2022:louisahhh-live",
+   "name": "Louisahhh Live",
+   "key": "louisahhh-live",
+   "performers": [
+    "louisahhh-live"
+   ]
+  },
+  {
+   "id": "sonar-2022:albal-b2b-rocio",
+   "name": "Albal b2b Rocío",
+   "key": "albal-b2b-rocio",
+   "performers": [
+    "albal",
+    "rocio"
+   ]
+  },
+  {
+   "id": "sonar-2022:juicy-bae",
+   "name": "Juicy Bae",
+   "key": "juicy-bae",
+   "performers": [
+    "juicy-bae"
+   ]
+  },
+  {
+   "id": "sonar-2022:el-bobe",
+   "name": "El Bobe",
+   "key": "el-bobe",
+   "performers": [
+    "el-bobe"
+   ]
+  },
+  {
+   "id": "sonar-2022:nino-de-elche-ylia-banda-la-valenciana-concert-de-musika-festera",
+   "name": "Niño de Elche + Ylia + Banda “La Valenciana”: 'Concert de músika festera'",
+   "key": "nino-de-elche-ylia-banda-la-valenciana-concert-de-musika-festera",
+   "performers": [
+    "nino-de-elche-ylia-banda-la-valenciana-concert-de-musika-festera"
+   ]
+  },
+  {
+   "id": "sonar-2022:yugen-kala-dj-set-feat-d-mochevsky-av-set",
+   "name": "Yugen Kala dj set feat. Dømochevsky AV set",
+   "key": "yugen-kala-dj-set-feat-d-mochevsky-av-set",
+   "performers": [
+    "yugen-kala-dj-set-feat-d-mochevsky-av-set"
+   ]
+  },
+  {
+   "id": "sonar-2022:scotch-rolex-ft-mc-yallah-and-lord-spikeheart",
+   "name": "Scotch Rolex ft MC Yallah & Lord Spikeheart",
+   "key": "scotch-rolex-ft-mc-yallah-and-lord-spikeheart",
+   "performers": [
+    "scotch-rolex-ft-mc-yallah-and-lord-spikeheart"
+   ]
+  },
+  {
+   "id": "sonar-2022:dj-marcelle-another-nice-mess",
+   "name": "DJ Marcelle / Another Nice Mess",
+   "key": "dj-marcelle-another-nice-mess",
+   "performers": [
+    "dj-marcelle-another-nice-mess"
+   ]
+  },
+  {
+   "id": "sonar-2022:ivy-barkakati",
+   "name": "Ivy Barkakati",
+   "key": "ivy-barkakati",
+   "performers": [
+    "ivy-barkakati"
+   ]
+  },
+  {
+   "id": "sonar-2022:miret-live",
+   "name": "Miret (Live)",
+   "key": "miret-live",
+   "performers": [
+    "miret-live"
+   ]
+  },
+  {
+   "id": "sonar-2022:jamz-supernova",
+   "name": "Jamz Supernova",
+   "key": "jamz-supernova",
+   "performers": [
+    "jamz-supernova"
+   ]
+  },
+  {
+   "id": "sonar-2022:kamo-mphela",
+   "name": "Kamo Mphela",
+   "key": "kamo-mphela",
+   "performers": [
+    "kamo-mphela"
+   ]
+  },
+  {
+   "id": "sonar-2022:yung-singh-b2b-suchi",
+   "name": "Yung Singh b2b SUCHI",
+   "key": "yung-singh-b2b-suchi",
+   "performers": [
+    "yung-singh",
+    "suchi"
+   ]
+  },
+  {
+   "id": "sonar-2022:polo-and-pan",
+   "name": "Polo & Pan",
+   "key": "polo-and-pan",
+   "performers": [
+    "polo-and-pan"
+   ]
+  },
+  {
+   "id": "sonar-2022:eris-drew-b2b-octo-octa",
+   "name": "Eris Drew b2b Octo Octa",
+   "key": "eris-drew-b2b-octo-octa",
+   "performers": [
+    "eris-drew",
+    "octo-octa"
+   ]
+  },
+  {
+   "id": "sonar-2022:herrensauna-xxl-salome-b2b-cadency-b2b-cem-b2b-mcmlxxxv-6h-set",
+   "name": "Herrensauna XXL (Salome b2b Cadency b2b CEM b2b MCMLXXXV 6h set)",
+   "key": "herrensauna-xxl-salome-b2b-cadency-b2b-cem-b2b-mcmlxxxv-6h-set",
+   "performers": [
+    "herrensauna-xxl-salome",
+    "cadency",
+    "cem",
+    "mcmlxxxv-6h-set"
+   ]
+  },
+  {
+   "id": "sonar-2022:santos-bacana",
+   "name": "Santos Bacana",
+   "key": "santos-bacana",
+   "performers": [
+    "santos-bacana"
+   ]
+  },
+  {
+   "id": "sonar-2022:c-tangana",
+   "name": "C. Tangana",
+   "key": "c-tangana",
+   "performers": [
+    "c-tangana"
+   ]
+  },
+  {
+   "id": "sonar-2022:djohnston",
+   "name": "DJohnston",
+   "key": "djohnston",
+   "performers": [
+    "djohnston"
+   ]
+  },
+  {
+   "id": "sonar-2022:moderat",
+   "name": "Moderat",
+   "key": "moderat",
+   "performers": [
+    "moderat"
+   ]
+  },
+  {
+   "id": "sonar-2022:or-la-ft-mikaela-stafford-av-dj-set",
+   "name": "Or:la ft Mikaela Stafford AV DJ set",
+   "key": "or-la-ft-mikaela-stafford-av-dj-set",
+   "performers": [
+    "or-la-ft-mikaela-stafford-av-dj-set"
+   ]
+  },
+  {
+   "id": "sonar-2022:the-blaze",
+   "name": "The Blaze",
+   "key": "the-blaze",
+   "performers": [
+    "the-blaze"
+   ]
+  },
+  {
+   "id": "sonar-2022:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ]
+  },
+  {
+   "id": "sonar-2022:anna-and-maotik-a-v-show",
+   "name": "ANNA & Maotik A/V show",
+   "key": "anna-and-maotik-a-v-show",
+   "performers": [
+    "anna-and-maotik-a-v-show"
+   ]
+  },
+  {
+   "id": "sonar-2022:gazzi",
+   "name": "GAZZI",
+   "key": "gazzi",
+   "performers": [
+    "gazzi"
+   ]
+  },
+  {
+   "id": "sonar-2022:venus-x",
+   "name": "Venus X",
+   "key": "venus-x",
+   "performers": [
+    "venus-x"
+   ]
+  },
+  {
+   "id": "sonar-2022:conducta",
+   "name": "Conducta",
+   "key": "conducta",
+   "performers": [
+    "conducta"
+   ]
+  },
+  {
+   "id": "sonar-2022:headie-one",
+   "name": "Headie One",
+   "key": "headie-one",
+   "performers": [
+    "headie-one"
+   ]
+  },
+  {
+   "id": "sonar-2022:critical-soundsystem-kasra-halogenix-enei-mc-jakes",
+   "name": "Critical Soundsystem (Kasra / Halogenix / Enei / MC Jakes)",
+   "key": "critical-soundsystem-kasra-halogenix-enei-mc-jakes",
+   "performers": [
+    "critical-soundsystem-kasra-halogenix-enei-mc-jakes"
+   ]
+  },
+  {
+   "id": "sonar-2022:tiga-and-hudson-mohawke-present-love-minus-zero",
+   "name": "Tiga & Hudson Mohawke present Love Minus Zero",
+   "key": "tiga-and-hudson-mohawke-present-love-minus-zero",
+   "performers": [
+    "tiga-and-hudson-mohawke-present-love-minus-zero"
+   ]
+  },
+  {
+   "id": "sonar-2022:skee-mask",
+   "name": "Skee Mask",
+   "key": "skee-mask",
+   "performers": [
+    "skee-mask"
+   ]
+  },
+  {
+   "id": "sonar-2022:avalon-emerson",
+   "name": "Avalon Emerson",
+   "key": "avalon-emerson",
+   "performers": [
+    "avalon-emerson"
+   ]
+  },
+  {
+   "id": "sonar-2022:brava",
+   "name": "BRAVA",
+   "key": "brava",
+   "performers": [
+    "brava"
+   ]
+  },
+  {
+   "id": "sonar-2022:nathy-peluso",
+   "name": "Nathy Peluso",
+   "key": "nathy-peluso",
+   "performers": [
+    "nathy-peluso"
+   ]
+  },
+  {
+   "id": "sonar-2022:pote-dj-set",
+   "name": "Poté DJ Set",
+   "key": "pote-dj-set",
+   "performers": [
+    "pote-dj-set"
+   ]
+  },
+  {
+   "id": "sonar-2022:bonobo",
+   "name": "Bonobo",
+   "key": "bonobo",
+   "performers": [
+    "bonobo"
+   ]
+  },
+  {
+   "id": "sonar-2022:agoria",
+   "name": "Agoria",
+   "key": "agoria",
+   "performers": [
+    "agoria"
+   ]
+  },
+  {
+   "id": "sonar-2022:jennifer-cardini-b2b-perel",
+   "name": "Jennifer Cardini b2b Perel",
+   "key": "jennifer-cardini-b2b-perel",
+   "performers": [
+    "jennifer-cardini",
+    "perel"
+   ]
+  },
+  {
+   "id": "sonar-2022:uncompressed-hainbach-look-mum-no-computer-cuckoo-presented-by-patreon",
+   "name": "'Uncompressed' (Hainbach, Look Mum No Computer, Cuckoo) presented by Patreon",
+   "key": "uncompressed-hainbach-look-mum-no-computer-cuckoo-presented-by-patreon",
+   "performers": [
+    "uncompressed-hainbach-look-mum-no-computer-cuckoo-presented-by-patreon"
+   ]
+  },
+  {
+   "id": "sonar-2022:eli-keszler",
+   "name": "Eli Keszler",
+   "key": "eli-keszler",
+   "performers": [
+    "eli-keszler"
+   ]
+  },
+  {
+   "id": "sonar-2022:hamill-industries-and-kiani-del-valle-ai-transmutations-una-compania-de-danza-posthumana",
+   "name": "Hamill Industries & Kiani del Valle “AI TRANSMUTATIONS - Una compañía de danza posthumana”",
+   "key": "hamill-industries-and-kiani-del-valle-ai-transmutations-una-compania-de-danza-posthumana",
+   "performers": [
+    "hamill-industries-and-kiani-del-valle-ai-transmutations-una-compania-de-danza-posthumana"
+   ]
+  },
+  {
+   "id": "sonar-2022:craig-leon",
+   "name": "Craig Leon",
+   "key": "craig-leon",
+   "performers": [
+    "craig-leon"
+   ]
+  },
+  {
+   "id": "sonar-2022:pedro-vian-and-mana",
+   "name": "Pedro Vian & Mana",
+   "key": "pedro-vian-and-mana",
+   "performers": [
+    "pedro-vian-and-mana"
+   ]
+  },
+  {
+   "id": "sonar-2022:serpentwithfeet",
+   "name": "serpentwithfeet",
+   "key": "serpentwithfeet",
+   "performers": [
+    "serpentwithfeet"
+   ]
+  },
+  {
+   "id": "sonar-2022:maria-arnal-i-marcel-bages-presenten-hiperutopia",
+   "name": "Maria Arnal i Marcel Bagés presenten 'Hiperutopia'",
+   "key": "maria-arnal-i-marcel-bages-presenten-hiperutopia",
+   "performers": [
+    "maria-arnal-i-marcel-bages-presenten-hiperutopia"
+   ]
+  },
+  {
+   "id": "sonar-2022:tomm-a-h",
+   "name": "Tomm¥ €a$h",
+   "key": "tomm-a-h",
+   "performers": [
+    "tomm-a-h"
+   ]
+  },
+  {
+   "id": "sonar-2022:umami-b2b-crks290",
+   "name": "Umami b2b CRKS290",
+   "key": "umami-b2b-crks290",
+   "performers": [
+    "umami",
+    "crks290"
+   ]
+  },
+  {
+   "id": "sonar-2022:la-chica",
+   "name": "La Chica",
+   "key": "la-chica",
+   "performers": [
+    "la-chica"
+   ]
+  },
+  {
+   "id": "sonar-2022:morad",
+   "name": "Morad",
+   "key": "morad",
+   "performers": [
+    "morad"
+   ]
+  },
+  {
+   "id": "sonar-2022:mori-rusowsky",
+   "name": "mori, rusowsky",
+   "key": "mori-rusowsky",
+   "performers": [
+    "mori-rusowsky"
+   ]
+  },
+  {
+   "id": "sonar-2022:vegyn",
+   "name": "Vegyn",
+   "key": "vegyn",
+   "performers": [
+    "vegyn"
+   ]
+  },
+  {
+   "id": "sonar-2022:for-those-i-love",
+   "name": "For Those I Love",
+   "key": "for-those-i-love",
+   "performers": [
+    "for-those-i-love"
+   ]
+  },
+  {
+   "id": "sonar-2022:overmono-live",
+   "name": "Overmono (Live)",
+   "key": "overmono-live",
+   "performers": [
+    "overmono-live"
+   ]
+  },
+  {
+   "id": "sonar-2022:airaboi",
+   "name": "Airaboi",
+   "key": "airaboi",
+   "performers": [
+    "airaboi"
+   ]
+  },
+  {
+   "id": "sonar-2022:virginie",
+   "name": "Virginie",
+   "key": "virginie",
+   "performers": [
+    "virginie"
+   ]
+  },
+  {
+   "id": "sonar-2022:recycled-j",
+   "name": "Recycled J",
+   "key": "recycled-j",
+   "performers": [
+    "recycled-j"
+   ]
+  },
+  {
+   "id": "sonar-2022:jyoty",
+   "name": "Jyoty",
+   "key": "jyoty",
+   "performers": [
+    "jyoty"
+   ]
+  },
+  {
+   "id": "sonar-2022:locoplaya",
+   "name": "Locoplaya",
+   "key": "locoplaya",
+   "performers": [
+    "locoplaya"
+   ]
+  },
+  {
+   "id": "sonar-2022:dj-python",
+   "name": "DJ Python",
+   "key": "dj-python",
+   "performers": [
+    "dj-python"
+   ]
+  },
+  {
+   "id": "sonar-2022:nu-genea-live-band",
+   "name": "Nu Genea live band",
+   "key": "nu-genea-live-band",
+   "performers": [
+    "nu-genea-live-band"
+   ]
+  },
+  {
+   "id": "sonar-2022:kiddy-smile",
+   "name": "Kiddy Smile",
+   "key": "kiddy-smile",
+   "performers": [
+    "kiddy-smile"
+   ]
+  },
+  {
+   "id": "sonar-2022:kabza-de-small-x-dj-maphorisa-scorpion-kings-6h-set",
+   "name": "Kabza De Small x DJ Maphorisa (Scorpion Kings) 6h set",
+   "key": "kabza-de-small-x-dj-maphorisa-scorpion-kings-6h-set",
+   "performers": [
+    "kabza-de-small-x-dj-maphorisa-scorpion-kings-6h-set"
+   ]
+  },
+  {
+   "id": "sonar-2022:lucient",
+   "name": "Lucient",
+   "key": "lucient",
+   "performers": [
+    "lucient"
+   ]
+  },
+  {
+   "id": "sonar-2022:the-chemical-brothers",
+   "name": "The Chemical Brothers",
+   "key": "the-chemical-brothers",
+   "performers": [
+    "the-chemical-brothers"
+   ]
+  },
+  {
+   "id": "sonar-2022:la-fleur",
+   "name": "La Fleur",
+   "key": "la-fleur",
+   "performers": [
+    "la-fleur"
+   ]
+  },
+  {
+   "id": "sonar-2022:eric-prydz",
+   "name": "Eric Prydz",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ]
+  },
+  {
+   "id": "sonar-2022:charlotte-de-witte",
+   "name": "Charlotte de Witte",
+   "key": "charlotte-de-witte",
+   "performers": [
+    "charlotte-de-witte"
+   ]
+  },
+  {
+   "id": "sonar-2022:reinier-zonneveld-live",
+   "name": "Reinier Zonneveld Live",
+   "key": "reinier-zonneveld-live",
+   "performers": [
+    "reinier-zonneveld-live"
+   ]
+  },
+  {
+   "id": "sonar-2022:anfisa-letyago",
+   "name": "Anfisa Letyago",
+   "key": "anfisa-letyago",
+   "performers": [
+    "anfisa-letyago"
+   ]
+  },
+  {
+   "id": "sonar-2022:mbodj-ft-akyute-a-v-set",
+   "name": "MBODJ ft. Akyute A/V set",
+   "key": "mbodj-ft-akyute-a-v-set",
+   "performers": [
+    "mbodj-ft-akyute-a-v-set"
+   ]
+  },
+  {
+   "id": "sonar-2022:nihiloxica",
+   "name": "Nihiloxica",
+   "key": "nihiloxica",
+   "performers": [
+    "nihiloxica"
+   ]
+  },
+  {
+   "id": "sonar-2022:ehua",
+   "name": "Ehua",
+   "key": "ehua",
+   "performers": [
+    "ehua"
+   ]
+  },
+  {
+   "id": "sonar-2022:robin-stewart-giant-swan-dj-set",
+   "name": "Robin Stewart (Giant Swan) DJ set",
+   "key": "robin-stewart-giant-swan-dj-set",
+   "performers": [
+    "robin-stewart-giant-swan-dj-set"
+   ]
+  },
+  {
+   "id": "sonar-2022:batu",
+   "name": "Batu",
+   "key": "batu",
+   "performers": [
+    "batu"
+   ]
+  },
+  {
+   "id": "sonar-2022:helena-hauff",
+   "name": "Helena Hauff",
+   "key": "helena-hauff",
+   "performers": [
+    "helena-hauff"
+   ]
+  },
+  {
+   "id": "sonar-2022:midland-and-shanti-celeste",
+   "name": "Midland & Shanti Celeste",
+   "key": "midland-and-shanti-celeste",
+   "performers": [
+    "midland-and-shanti-celeste"
+   ]
+  },
+  {
+   "id": "sonar-2022:etm",
+   "name": "ETM",
+   "key": "etm",
+   "performers": [
+    "etm"
+   ]
+  },
+  {
+   "id": "sonar-2022:arca",
+   "name": "Arca",
+   "key": "arca",
+   "performers": [
+    "arca"
+   ]
+  },
+  {
+   "id": "sonar-2022:joy-orbison",
+   "name": "Joy Orbison",
+   "key": "joy-orbison",
+   "performers": [
+    "joy-orbison"
+   ]
+  },
+  {
+   "id": "sonar-2022:aj-tracey",
+   "name": "AJ Tracey",
+   "key": "aj-tracey",
+   "performers": [
+    "aj-tracey"
+   ]
+  },
+  {
+   "id": "sonar-2022:folamour-power-to-the-ppl-a-v",
+   "name": "Folamour: Power to the PPL A/V",
+   "key": "folamour-power-to-the-ppl-a-v",
+   "performers": [
+    "folamour-power-to-the-ppl-a-v"
+   ]
+  },
+  {
+   "id": "sonar-2022:the-blessed-madonna",
+   "name": "The Blessed Madonna",
+   "key": "the-blessed-madonna",
+   "performers": [
+    "the-blessed-madonna"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "sonar-2022:d1:sonarcomplex:1400:veeeky-presented-by-ministry-of-culture-of-taiwan",
+   "artistId": "sonar-2022:veeeky-presented-by-ministry-of-culture-of-taiwan",
+   "day": 1,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "14:00",
+   "end": "14:45"
+  },
+  {
+   "id": "sonar-2022:d1:sonarcomplex:1600:tarta-relena",
+   "artistId": "sonar-2022:tarta-relena",
+   "day": 1,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "sonar-2022:d1:sonarcomplex:1800:eartheater",
+   "artistId": "sonar-2022:eartheater",
+   "day": 1,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "sonar-2022:d1:sonarcomplex:2020:lafawndah-presents-snug-harbour",
+   "artistId": "sonar-2022:lafawndah-presents-snug-harbour",
+   "day": 1,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "20:20",
+   "end": "21:20"
+  },
+  {
+   "id": "sonar-2022:d1:sonarhall:1430:b1n0-live-a-v",
+   "artistId": "sonar-2022:b1n0-live-a-v",
+   "day": 1,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "sonar-2022:d1:sonarhall:1630:sega-bodega",
+   "artistId": "sonar-2022:sega-bodega",
+   "day": 1,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "sonar-2022:d1:sonarhall:1830:paranoid-london-live",
+   "artistId": "sonar-2022:paranoid-london-live",
+   "day": 1,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "sonar-2022:d1:sonarhall:2030:amnesia-scanner",
+   "artistId": "sonar-2022:amnesia-scanner",
+   "day": 1,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2022:d1:sonarpark-by-dice:1500:depresion-sonora",
+   "artistId": "sonar-2022:depresion-sonora",
+   "day": 1,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "sonar-2022:d1:sonarpark-by-dice:1600:rojuu",
+   "artistId": "sonar-2022:rojuu",
+   "day": 1,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "sonar-2022:d1:sonarpark-by-dice:1715:coucou-chloe",
+   "artistId": "sonar-2022:coucou-chloe",
+   "day": 1,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "17:15",
+   "end": "18:05"
+  },
+  {
+   "id": "sonar-2022:d1:sonarpark-by-dice:1820:ms-nina",
+   "artistId": "sonar-2022:ms-nina",
+   "day": 1,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "18:20",
+   "end": "19:10"
+  },
+  {
+   "id": "sonar-2022:d1:sonarpark-by-dice:1920:chico-blanco",
+   "artistId": "sonar-2022:chico-blanco",
+   "day": 1,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "19:20",
+   "end": "20:20"
+  },
+  {
+   "id": "sonar-2022:d1:sonarpark-by-dice:2035:partiboi69",
+   "artistId": "sonar-2022:partiboi69",
+   "day": 1,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "20:35",
+   "end": "21:35"
+  },
+  {
+   "id": "sonar-2022:d1:sonarpark-by-dice:2145:lechuga-zafiro",
+   "artistId": "sonar-2022:lechuga-zafiro",
+   "day": 1,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "sonar-2022:d1:sonarvillage-by-estrella-damm:1300:gela",
+   "artistId": "sonar-2022:gela",
+   "day": 1,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "sonar-2022:d1:sonarvillage-by-estrella-damm:1430:awwz",
+   "artistId": "sonar-2022:awwz",
+   "day": 1,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "sonar-2022:d1:sonarvillage-by-estrella-damm:1600:simona",
+   "artistId": "sonar-2022:simona",
+   "day": 1,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "16:00",
+   "end": "16:30"
+  },
+  {
+   "id": "sonar-2022:d1:sonarvillage-by-estrella-damm:1630:manara",
+   "artistId": "sonar-2022:manara",
+   "day": 1,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "sonar-2022:d1:sonarvillage-by-estrella-damm:1800:uniiqu3-live",
+   "artistId": "sonar-2022:uniiqu3-live",
+   "day": 1,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "sonar-2022:d1:sonarvillage-by-estrella-damm:1905:lady-shaka",
+   "artistId": "sonar-2022:lady-shaka",
+   "day": 1,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "19:05",
+   "end": "20:15"
+  },
+  {
+   "id": "sonar-2022:d1:sonarvillage-by-estrella-damm:2015:gela",
+   "artistId": "sonar-2022:gela",
+   "day": 1,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "20:15",
+   "end": "20:40"
+  },
+  {
+   "id": "sonar-2022:d1:sonarvillage-by-estrella-damm:2040:pongo",
+   "artistId": "sonar-2022:pongo",
+   "day": 1,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "20:40",
+   "end": "21:50"
+  },
+  {
+   "id": "sonar-2022:d1:sonarvillage-by-estrella-damm:2200:jayda-g",
+   "artistId": "sonar-2022:jayda-g",
+   "day": 1,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarcomplex:1400:ihhh-and-desilence-live-a-v",
+   "artistId": "sonar-2022:ihhh-and-desilence-live-a-v",
+   "day": 2,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "14:00",
+   "end": "14:45"
+  },
+  {
+   "id": "sonar-2022:d2:sonarcomplex:1600:martin-messier-echo-chamber",
+   "artistId": "sonar-2022:martin-messier-echo-chamber",
+   "day": 2,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarcomplex:1815:lyra-pramuk-echoluminescence",
+   "artistId": "sonar-2022:lyra-pramuk-echoluminescence",
+   "day": 2,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "sonar-2022:d2:sonarcomplex:2030:quayola-seta-transient-performance-presented-by-me-by-melia",
+   "artistId": "sonar-2022:quayola-seta-transient-performance-presented-by-me-by-melia",
+   "day": 2,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarhall:1430:vvv-trippin-you",
+   "artistId": "sonar-2022:vvv-trippin-you",
+   "day": 2,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarhall:1630:lsdxoxo-live",
+   "artistId": "sonar-2022:lsdxoxo-live",
+   "day": 2,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarhall:1830:samantha-hudson-liquidacion-total-por-cierre",
+   "artistId": "sonar-2022:samantha-hudson-liquidacion-total-por-cierre",
+   "day": 2,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarhall:2030:louisahhh-live",
+   "artistId": "sonar-2022:louisahhh-live",
+   "day": 2,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpark-by-dice:1500:albal-b2b-rocio",
+   "artistId": "sonar-2022:albal-b2b-rocio",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpark-by-dice:1615:juicy-bae",
+   "artistId": "sonar-2022:juicy-bae",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "16:15",
+   "end": "17:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpark-by-dice:1710:el-bobe",
+   "artistId": "sonar-2022:el-bobe",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "17:10",
+   "end": "18:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpark-by-dice:1815:nino-de-elche-ylia-banda-la-valenciana-concert-de-musika-festera",
+   "artistId": "sonar-2022:nino-de-elche-ylia-banda-la-valenciana-concert-de-musika-festera",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "18:15",
+   "end": "19:05"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpark-by-dice:1920:yugen-kala-dj-set-feat-d-mochevsky-av-set",
+   "artistId": "sonar-2022:yugen-kala-dj-set-feat-d-mochevsky-av-set",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "19:20",
+   "end": "20:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpark-by-dice:2040:scotch-rolex-ft-mc-yallah-and-lord-spikeheart",
+   "artistId": "sonar-2022:scotch-rolex-ft-mc-yallah-and-lord-spikeheart",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "20:40",
+   "end": "21:40"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpark-by-dice:2150:dj-marcelle-another-nice-mess",
+   "artistId": "sonar-2022:dj-marcelle-another-nice-mess",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "21:50",
+   "end": "23:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarvillage-by-estrella-damm:1300:ivy-barkakati",
+   "artistId": "sonar-2022:ivy-barkakati",
+   "day": 2,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarvillage-by-estrella-damm:1430:miret-live",
+   "artistId": "sonar-2022:miret-live",
+   "day": 2,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarvillage-by-estrella-damm:1600:jamz-supernova",
+   "artistId": "sonar-2022:jamz-supernova",
+   "day": 2,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarvillage-by-estrella-damm:1730:kamo-mphela",
+   "artistId": "sonar-2022:kamo-mphela",
+   "day": 2,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarvillage-by-estrella-damm:1830:yung-singh-b2b-suchi",
+   "artistId": "sonar-2022:yung-singh-b2b-suchi",
+   "day": 2,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarvillage-by-estrella-damm:2000:polo-and-pan",
+   "artistId": "sonar-2022:polo-and-pan",
+   "day": 2,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarvillage-by-estrella-damm:2100:ivy-barkakati",
+   "artistId": "sonar-2022:ivy-barkakati",
+   "day": 2,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "21:00",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarvillage-by-estrella-damm:2130:eris-drew-b2b-octo-octa",
+   "artistId": "sonar-2022:eris-drew-b2b-octo-octa",
+   "day": 2,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "21:30",
+   "end": "00:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarcar:0000:herrensauna-xxl-salome-b2b-cadency-b2b-cem-b2b-mcmlxxxv-6h-set",
+   "artistId": "sonar-2022:herrensauna-xxl-salome-b2b-cadency-b2b-cem-b2b-mcmlxxxv-6h-set",
+   "day": 2,
+   "stageId": "sonar-2022:sonarcar",
+   "start": "00:00",
+   "end": "06:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarclub:2030:santos-bacana",
+   "artistId": "sonar-2022:santos-bacana",
+   "day": 2,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "20:30",
+   "end": "21:25"
+  },
+  {
+   "id": "sonar-2022:d2:sonarclub:2130:c-tangana",
+   "artistId": "sonar-2022:c-tangana",
+   "day": 2,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarclub:2240:djohnston",
+   "artistId": "sonar-2022:djohnston",
+   "day": 2,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "22:40",
+   "end": "23:50"
+  },
+  {
+   "id": "sonar-2022:d2:sonarclub:0000:moderat",
+   "artistId": "sonar-2022:moderat",
+   "day": 2,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "00:00",
+   "end": "01:15"
+  },
+  {
+   "id": "sonar-2022:d2:sonarclub:0125:or-la-ft-mikaela-stafford-av-dj-set",
+   "artistId": "sonar-2022:or-la-ft-mikaela-stafford-av-dj-set",
+   "day": 2,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "01:25",
+   "end": "02:35"
+  },
+  {
+   "id": "sonar-2022:d2:sonarclub:0250:the-blaze",
+   "artistId": "sonar-2022:the-blaze",
+   "day": 2,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "02:50",
+   "end": "04:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarclub:0410:richie-hawtin",
+   "artistId": "sonar-2022:richie-hawtin",
+   "day": 2,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "04:10",
+   "end": "05:55"
+  },
+  {
+   "id": "sonar-2022:d2:sonarclub:0600:anna-and-maotik-a-v-show",
+   "artistId": "sonar-2022:anna-and-maotik-a-v-show",
+   "day": 2,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "06:00",
+   "end": "07:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarlab-by-resident-advisor:2100:gazzi",
+   "artistId": "sonar-2022:gazzi",
+   "day": 2,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarlab-by-resident-advisor:2235:venus-x",
+   "artistId": "sonar-2022:venus-x",
+   "day": 2,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "22:35",
+   "end": "23:35"
+  },
+  {
+   "id": "sonar-2022:d2:sonarlab-by-resident-advisor:2340:conducta",
+   "artistId": "sonar-2022:conducta",
+   "day": 2,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "23:40",
+   "end": "00:40"
+  },
+  {
+   "id": "sonar-2022:d2:sonarlab-by-resident-advisor:0050:headie-one",
+   "artistId": "sonar-2022:headie-one",
+   "day": 2,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "00:50",
+   "end": "01:20"
+  },
+  {
+   "id": "sonar-2022:d2:sonarlab-by-resident-advisor:0130:critical-soundsystem-kasra-halogenix-enei-mc-jakes",
+   "artistId": "sonar-2022:critical-soundsystem-kasra-halogenix-enei-mc-jakes",
+   "day": 2,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "sonar-2022:d2:sonarlab-by-resident-advisor:0235:tiga-and-hudson-mohawke-present-love-minus-zero",
+   "artistId": "sonar-2022:tiga-and-hudson-mohawke-present-love-minus-zero",
+   "day": 2,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "02:35",
+   "end": "03:35"
+  },
+  {
+   "id": "sonar-2022:d2:sonarlab-by-resident-advisor:0340:skee-mask",
+   "artistId": "sonar-2022:skee-mask",
+   "day": 2,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "03:40",
+   "end": "05:20"
+  },
+  {
+   "id": "sonar-2022:d2:sonarlab-by-resident-advisor:0525:avalon-emerson",
+   "artistId": "sonar-2022:avalon-emerson",
+   "day": 2,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "05:25",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpub-by-thunder-bitch:2130:brava",
+   "artistId": "sonar-2022:brava",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "21:30",
+   "end": "23:15"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpub-by-thunder-bitch:2325:nathy-peluso",
+   "artistId": "sonar-2022:nathy-peluso",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "23:25",
+   "end": "00:25"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpub-by-thunder-bitch:0035:pote-dj-set",
+   "artistId": "sonar-2022:pote-dj-set",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "00:35",
+   "end": "02:05"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpub-by-thunder-bitch:0215:bonobo",
+   "artistId": "sonar-2022:bonobo",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "02:15",
+   "end": "03:15"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpub-by-thunder-bitch:0325:agoria",
+   "artistId": "sonar-2022:agoria",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "03:25",
+   "end": "05:25"
+  },
+  {
+   "id": "sonar-2022:d2:sonarpub-by-thunder-bitch:0530:jennifer-cardini-b2b-perel",
+   "artistId": "sonar-2022:jennifer-cardini-b2b-perel",
+   "day": 2,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "05:30",
+   "end": "07:30"
+  },
+  {
+   "id": "sonar-2022:d3:sonarcomplex:1400:uncompressed-hainbach-look-mum-no-computer-cuckoo-presented-by-patreon",
+   "artistId": "sonar-2022:uncompressed-hainbach-look-mum-no-computer-cuckoo-presented-by-patreon",
+   "day": 3,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "14:00",
+   "end": "14:45"
+  },
+  {
+   "id": "sonar-2022:d3:sonarcomplex:1600:eli-keszler",
+   "artistId": "sonar-2022:eli-keszler",
+   "day": 3,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "sonar-2022:d3:sonarcomplex:1815:hamill-industries-and-kiani-del-valle-ai-transmutations-una-compania-de-danza-posthumana",
+   "artistId": "sonar-2022:hamill-industries-and-kiani-del-valle-ai-transmutations-una-compania-de-danza-posthumana",
+   "day": 3,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "18:15",
+   "end": "19:00"
+  },
+  {
+   "id": "sonar-2022:d3:sonarcomplex:2020:craig-leon",
+   "artistId": "sonar-2022:craig-leon",
+   "day": 3,
+   "stageId": "sonar-2022:sonarcomplex",
+   "start": "20:20",
+   "end": "21:20"
+  },
+  {
+   "id": "sonar-2022:d3:sonarhall:1430:pedro-vian-and-mana",
+   "artistId": "sonar-2022:pedro-vian-and-mana",
+   "day": 3,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "sonar-2022:d3:sonarhall:1630:serpentwithfeet",
+   "artistId": "sonar-2022:serpentwithfeet",
+   "day": 3,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "sonar-2022:d3:sonarhall:1830:maria-arnal-i-marcel-bages-presenten-hiperutopia",
+   "artistId": "sonar-2022:maria-arnal-i-marcel-bages-presenten-hiperutopia",
+   "day": 3,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "sonar-2022:d3:sonarhall:2030:tomm-a-h",
+   "artistId": "sonar-2022:tomm-a-h",
+   "day": 3,
+   "stageId": "sonar-2022:sonarhall",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpark-by-dice:1500:umami-b2b-crks290",
+   "artistId": "sonar-2022:umami-b2b-crks290",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "15:00",
+   "end": "16:35"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpark-by-dice:1650:la-chica",
+   "artistId": "sonar-2022:la-chica",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "16:50",
+   "end": "17:35"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpark-by-dice:1750:morad",
+   "artistId": "sonar-2022:morad",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "17:50",
+   "end": "18:40"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpark-by-dice:1850:mori-rusowsky",
+   "artistId": "sonar-2022:mori-rusowsky",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "18:50",
+   "end": "19:35"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpark-by-dice:1945:vegyn",
+   "artistId": "sonar-2022:vegyn",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpark-by-dice:2055:for-those-i-love",
+   "artistId": "sonar-2022:for-those-i-love",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "20:55",
+   "end": "21:45"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpark-by-dice:2200:overmono-live",
+   "artistId": "sonar-2022:overmono-live",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpark-by-dice",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "sonar-2022:d3:sonarvillage-by-estrella-damm:1300:airaboi",
+   "artistId": "sonar-2022:airaboi",
+   "day": 3,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "13:00",
+   "end": "14:25"
+  },
+  {
+   "id": "sonar-2022:d3:sonarvillage-by-estrella-damm:1425:virginie",
+   "artistId": "sonar-2022:virginie",
+   "day": 3,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "14:25",
+   "end": "15:50"
+  },
+  {
+   "id": "sonar-2022:d3:sonarvillage-by-estrella-damm:1550:recycled-j",
+   "artistId": "sonar-2022:recycled-j",
+   "day": 3,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "15:50",
+   "end": "16:50"
+  },
+  {
+   "id": "sonar-2022:d3:sonarvillage-by-estrella-damm:1650:jyoty",
+   "artistId": "sonar-2022:jyoty",
+   "day": 3,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "16:50",
+   "end": "17:50"
+  },
+  {
+   "id": "sonar-2022:d3:sonarvillage-by-estrella-damm:1750:locoplaya",
+   "artistId": "sonar-2022:locoplaya",
+   "day": 3,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "17:50",
+   "end": "18:50"
+  },
+  {
+   "id": "sonar-2022:d3:sonarvillage-by-estrella-damm:1850:dj-python",
+   "artistId": "sonar-2022:dj-python",
+   "day": 3,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "18:50",
+   "end": "20:20"
+  },
+  {
+   "id": "sonar-2022:d3:sonarvillage-by-estrella-damm:2020:nu-genea-live-band",
+   "artistId": "sonar-2022:nu-genea-live-band",
+   "day": 3,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "20:20",
+   "end": "21:35"
+  },
+  {
+   "id": "sonar-2022:d3:sonarvillage-by-estrella-damm:2135:virginie",
+   "artistId": "sonar-2022:virginie",
+   "day": 3,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "21:35",
+   "end": "22:00"
+  },
+  {
+   "id": "sonar-2022:d3:sonarvillage-by-estrella-damm:2200:kiddy-smile",
+   "artistId": "sonar-2022:kiddy-smile",
+   "day": 3,
+   "stageId": "sonar-2022:sonarvillage-by-estrella-damm",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "sonar-2022:d3:sonarcar:0000:kabza-de-small-x-dj-maphorisa-scorpion-kings-6h-set",
+   "artistId": "sonar-2022:kabza-de-small-x-dj-maphorisa-scorpion-kings-6h-set",
+   "day": 3,
+   "stageId": "sonar-2022:sonarcar",
+   "start": "00:00",
+   "end": "06:00"
+  },
+  {
+   "id": "sonar-2022:d3:sonarclub:2130:lucient",
+   "artistId": "sonar-2022:lucient",
+   "day": 3,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "21:30",
+   "end": "22:20"
+  },
+  {
+   "id": "sonar-2022:d3:sonarclub:2230:the-chemical-brothers",
+   "artistId": "sonar-2022:the-chemical-brothers",
+   "day": 3,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "sonar-2022:d3:sonarclub:0010:la-fleur",
+   "artistId": "sonar-2022:la-fleur",
+   "day": 3,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "00:10",
+   "end": "01:25"
+  },
+  {
+   "id": "sonar-2022:d3:sonarclub:0130:eric-prydz",
+   "artistId": "sonar-2022:eric-prydz",
+   "day": 3,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "01:30",
+   "end": "02:45"
+  },
+  {
+   "id": "sonar-2022:d3:sonarclub:0250:charlotte-de-witte",
+   "artistId": "sonar-2022:charlotte-de-witte",
+   "day": 3,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "02:50",
+   "end": "04:30"
+  },
+  {
+   "id": "sonar-2022:d3:sonarclub:0440:reinier-zonneveld-live",
+   "artistId": "sonar-2022:reinier-zonneveld-live",
+   "day": 3,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "04:40",
+   "end": "05:40"
+  },
+  {
+   "id": "sonar-2022:d3:sonarclub:0545:anfisa-letyago",
+   "artistId": "sonar-2022:anfisa-letyago",
+   "day": 3,
+   "stageId": "sonar-2022:sonarclub",
+   "start": "05:45",
+   "end": "07:30"
+  },
+  {
+   "id": "sonar-2022:d3:sonarlab-by-resident-advisor:2130:mbodj-ft-akyute-a-v-set",
+   "artistId": "sonar-2022:mbodj-ft-akyute-a-v-set",
+   "day": 3,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "sonar-2022:d3:sonarlab-by-resident-advisor:2240:nihiloxica",
+   "artistId": "sonar-2022:nihiloxica",
+   "day": 3,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "22:40",
+   "end": "23:30"
+  },
+  {
+   "id": "sonar-2022:d3:sonarlab-by-resident-advisor:2340:ehua",
+   "artistId": "sonar-2022:ehua",
+   "day": 3,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "23:40",
+   "end": "01:00"
+  },
+  {
+   "id": "sonar-2022:d3:sonarlab-by-resident-advisor:0110:robin-stewart-giant-swan-dj-set",
+   "artistId": "sonar-2022:robin-stewart-giant-swan-dj-set",
+   "day": 3,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "01:10",
+   "end": "02:10"
+  },
+  {
+   "id": "sonar-2022:d3:sonarlab-by-resident-advisor:0215:batu",
+   "artistId": "sonar-2022:batu",
+   "day": 3,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "02:15",
+   "end": "03:30"
+  },
+  {
+   "id": "sonar-2022:d3:sonarlab-by-resident-advisor:0335:helena-hauff",
+   "artistId": "sonar-2022:helena-hauff",
+   "day": 3,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "03:35",
+   "end": "05:10"
+  },
+  {
+   "id": "sonar-2022:d3:sonarlab-by-resident-advisor:0515:midland-and-shanti-celeste",
+   "artistId": "sonar-2022:midland-and-shanti-celeste",
+   "day": 3,
+   "stageId": "sonar-2022:sonarlab-by-resident-advisor",
+   "start": "05:15",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpub-by-thunder-bitch:2200:etm",
+   "artistId": "sonar-2022:etm",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "22:00",
+   "end": "23:10"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpub-by-thunder-bitch:2325:arca",
+   "artistId": "sonar-2022:arca",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "23:25",
+   "end": "00:25"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpub-by-thunder-bitch:0040:joy-orbison",
+   "artistId": "sonar-2022:joy-orbison",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "00:40",
+   "end": "02:40"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpub-by-thunder-bitch:0245:aj-tracey",
+   "artistId": "sonar-2022:aj-tracey",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "02:45",
+   "end": "03:45"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpub-by-thunder-bitch:0355:folamour-power-to-the-ppl-a-v",
+   "artistId": "sonar-2022:folamour-power-to-the-ppl-a-v",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "03:55",
+   "end": "05:55"
+  },
+  {
+   "id": "sonar-2022:d3:sonarpub-by-thunder-bitch:0600:the-blessed-madonna",
+   "artistId": "sonar-2022:the-blessed-madonna",
+   "day": 3,
+   "stageId": "sonar-2022:sonarpub-by-thunder-bitch",
+   "start": "06:00",
+   "end": "07:30"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://sonar.es/en",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20221004200650/https://sonar.es/en/2022/schedules",
+    "captureTimestamp": "20221004200650",
+    "printed": "Thursday 16 | Sónar by Day",
+    "sha256": "de912e171cb04468f209614ca1647a581478c3ec1b3860ec8f5c39385a2f3618",
+    "rows": 24,
+    "format": "sonar-calendar",
+    "named": "Sónar Barcelona 2022 - Timetables",
+    "sessions": [
+     "Thursday 16 | Sónar by Day: 13:00 to 00:00"
+    ]
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20221004200650/https://sonar.es/en/2022/schedules",
+    "captureTimestamp": "20221004200650",
+    "printed": "Friday 17 | Sónar by Day · Friday 17 | Sónar by Night",
+    "sha256": "de912e171cb04468f209614ca1647a581478c3ec1b3860ec8f5c39385a2f3618",
+    "rows": 46,
+    "format": "sonar-calendar",
+    "named": "Sónar Barcelona 2022 - Timetables",
+    "sessions": [
+     "Friday 17 | Sónar by Day: 13:00 to 00:00",
+     "Friday 17 | Sónar by Night: 20:00 to 08:00"
+    ]
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20221004200650/https://sonar.es/en/2022/schedules",
+    "captureTimestamp": "20221004200650",
+    "printed": "Saturday 18 | Sónar by Day · Saturday 18 | Sónar by Night",
+    "sha256": "de912e171cb04468f209614ca1647a581478c3ec1b3860ec8f5c39385a2f3618",
+    "rows": 45,
+    "format": "sonar-calendar",
+    "named": "Sónar Barcelona 2022 - Timetables",
+    "sessions": [
+     "Saturday 18 | Sónar by Day: 13:00 to 00:00",
+     "Saturday 18 | Sónar by Night: 20:00 to 08:00"
+    ]
+   }
+  ]
+ }
+}
