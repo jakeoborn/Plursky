@@ -39,6 +39,7 @@ import { parseLollaLineup, cardDate as lollaCardDate } from "./historical/lolla-
 import { parseTmlDrupal, titleDate as tmlTitleDate } from "./historical/tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, datesFromPost as shambhalaRun, readDatesPost } from "./historical/shambhala-webflow-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
+import { parseDoStuffEmbed } from "./historical/dostuff-embed-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -170,6 +171,19 @@ if (base && edc) {
     mustFail("a Lollapalooza 2018 card day printed for another day", m => { lcCap(m).printed = "Fri 8/03"; }, lo18);
     mustFail("a Lollapalooza 2018 card day whose weekday is not its date", m => { lcCap(m).printed = "Sun 8/04"; }, lo18);
     mustFail("a Lollapalooza 2018 page read off another site", m => { const c = lcCap(m); c.archivedUrl = c.archivedUrl.replace("www.lollapalooza.com", "www.lollapaloozafans.com"); }, lo18);
+  }
+  // Outside Lands 2022-2025: the official lineup widget's script prints each
+  // set's whole date; the day is inside the run its options print, and the
+  // official lineup page that loads it was captured moments before.
+  const osl23 = editions["outside-lands-2023"];
+  if (osl23) {
+    const deCap = m => m.provenance.captures.find(c => c.format === "dostuff-embed" && c.day === 2);
+    mustFail("an Outside Lands widget day printed for another day", m => { deCap(m).printed = "2023-08-13"; }, osl23);
+    mustFail("an Outside Lands widget run that is not the edition's", m => { deCap(m).run = "2023-08-11 to 2023-08-14"; }, osl23);
+    mustFail("an Outside Lands widget read off another site", m => { const c = deCap(m); c.archivedUrl = c.archivedUrl.replace("osl23fest.dostff.co", "oslfans.dostff.co"); }, osl23);
+    mustFail("an Outside Lands widget embedded by another site's page", m => { deCap(m).embeddedBy.url = "https://www.oslfans.com/lineup/"; }, osl23);
+    mustFail("an Outside Lands widget whose page was captured an hour before", m => { deCap(m).embeddedBy.captureTimestamp = "20230814124823"; }, osl23);
+    mustFail("an Outside Lands widget captured before its page", m => { deCap(m).embeddedBy.captureTimestamp = "20230814134830"; }, osl23);
   }
   const lolla = editions["lollapalooza-2025"], acl = editions["acl-2025"];
   if (lolla && acl) {
@@ -820,6 +834,35 @@ if (base && edc) {
     pcMust("a Primavera Sound 2016 row with a cell missing", pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 60, "EARLY &amp; LATE", "(23:35 - 00:05)"), ""]), ...pcRows.slice(1)] }));
     pcMust("two Primavera Sound 2016 sets overlapping on one stage", pcPage({ rows: [...pcRows.slice(0, 2), psRow("0:00", [pcBox("forum", 0, 30, "CLASH", "(00:00 - 00:15)"), "", ""]), pcRows[3]] }));
     pcMust("a Primavera Sound 2016 block with no name", pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 60, "", "(23:35 - 00:05)"), "", ""]), ...pcRows.slice(1)] }));
+    // Outside Lands' 2022-2025 lineup widget: its script sets the options on
+    // one line of JSON; each artist lists its performances, a shared set (a
+    // b2b) under each artist with the same id, every time with its offset.
+    const dePerf = (id, start, end, stage, name) => ({ id, start: `2023-08-${start}:00.000-07:00`, end: `2023-08-${end}:00.000-07:00`, stage, name });
+    const deArtists = [{ name: "Headliner", performances: [dePerf(1, "11T20:40", "11T21:55", "Lands End", "Headliner")] },
+      { name: "B", performances: [dePerf(2, "12T01:00", "12T02:00", "SOMA", "B b2b C")] }, { name: "C", performances: [dePerf(2, "12T01:00", "12T02:00", "SOMA", "B b2b C")] },
+      { name: "Day Two", performances: [dePerf(3, "12T14:00", "12T15:00", "Lands End", "Day Two")] }];
+    const deScript = ({ artists = deArtists, ...o } = {}) => `(function(){\n  window._fest_options = ${JSON.stringify({ name: "Outside Lands 2023", start_date: "2023-08-11", end_date: "2023-08-12",
+      timezone: "America/Los_Angeles", initial_grouping: { name: "Interactive Lineup", lineups: [{ name: "All", artists }] }, ...o })};\n  \n  var el = document.getElementById("ds-fest");\n})();`;
+    const dep = parseDoStuffEmbed(deScript());
+    ok(JSON.stringify([dep.name, dep.run, dep.timezone, dep.grouping, dep.artists, dep.performances, dep.stages, dep.days.map(d => [d.date, d.sets.map(x => [x.stage, x.start, x.end, x.artist, x.billedUnder.join("+")])])])
+      === JSON.stringify(["Outside Lands 2023", ["2023-08-11", "2023-08-12"], "America/Los_Angeles", "Interactive Lineup", 4, 3, ["Lands End", "SOMA"],
+        [["2023-08-11", [["Lands End", "20:40", "21:55", "Headliner", "Headliner"], ["SOMA", "01:00", "02:00", "B b2b C", "B+C"]]], ["2023-08-12", [["Lands End", "14:00", "15:00", "Day Two", "Day Two"]]]]]),
+      `an Outside Lands widget must come back as one set per performance, a b2b once, a set after midnight on the night before: ${JSON.stringify(dep.days)}`);
+    const deMust = (what, text) => { let bad = false; try { parseDoStuffEmbed(text); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    const deWith = (i, f) => deArtists.map((a, j) => j === i ? { ...a, performances: a.performances.map(x => ({ ...x, ...f(x) })) } : a);
+    deMust("an Outside Lands script with no options", deScript().replace("window._fest_options", "window._fest"));
+    deMust("Outside Lands options broken over two lines", deScript().replace('"timezone"', '\n"timezone"'));
+    deMust("Outside Lands options with no time zone", deScript({ timezone: "" }));
+    deMust("Outside Lands options with no run of days", deScript({ end_date: "2023-08-10" }));
+    deMust("an Outside Lands set whose offset is not the zone's", deScript({ artists: deWith(0, x => ({ start: x.start.replace("-07:00", "-08:00") })) }));
+    deMust("an Outside Lands set ending before it starts", deScript({ artists: deWith(0, x => ({ end: x.start.replace("20:40", "20:00") })) }));
+    deMust("an Outside Lands set over twelve hours", deScript({ artists: deWith(0, x => ({ start: "2023-08-11T08:40:00.000-07:00" })) }));
+    deMust("an Outside Lands set outside the run", deScript({ artists: deWith(3, x => ({ start: "2023-08-13T14:00:00.000-07:00", end: "2023-08-13T15:00:00.000-07:00" })) }));
+    deMust("an Outside Lands set with seconds", deScript({ artists: deWith(0, x => ({ start: "2023-08-11T20:40:30.000-07:00" })) }));
+    deMust("an Outside Lands set with no stage", deScript({ artists: deWith(0, () => ({ stage: "" })) }));
+    deMust("an Outside Lands set with no name", deScript({ artists: deWith(0, () => ({ name: " " })) }));
+    deMust("one Outside Lands id drawn as two sets", deScript({ artists: deWith(2, () => ({ stage: "Sutro" })) }));
+    deMust("two Outside Lands sets overlapping on one stage", deScript({ artists: deWith(3, () => ({ start: "2023-08-11T21:00:00.000-07:00", end: "2023-08-11T22:00:00.000-07:00" })) }));
     // EDC Las Vegas's 2012 and 2013 music pages: one page prints every day by
     // stage, each day's heading with no year; a time before noon is the night.
     const im12Day = (cls, label, acts, host = "") => `<div class="lineup-day ${cls}"><h2>${label}</h2><div class="inner">${host}`
@@ -1185,6 +1228,7 @@ for (const id of Object.keys(editions)) {
 }
 
 // ── dates come from the page, not from editions.mjs alone ──
+const deSeconds = ts => /^\d{14}$/.test(ts || "") ? Date.parse(ts.replace(/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/, "$1-$2-$3T$4:$5:$6Z")) / 1000 : NaN;
 const MONTH = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
 // Numeric headers (Dreamstate's "FRI 11.17.23") read through the same
 // graphicPrints as named ones; a printed year must be the edition's.
@@ -1270,6 +1314,17 @@ for (const [id, e] of Object.entries(editions)) {
           ok(insomniacDate(s.printed, e.year) === d.date && /^the page's (title|description)$/.test(s.yearFrom || "") && /^the page's (title|own og:url)$/.test(s.place || "")
             && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?electricdaisycarnival\.com\//.test(s.archivedUrl || ""),
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (year from ${s.yearFrom}, Las Vegas from ${s.place}), not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // Outside Lands' 2022-2025 lineup widget prints each set's whole date,
+        // inside the run its options print, from a dostff.co script that the
+        // official lineup page loaded (captured up to two minutes before).
+        if (s.format === "dostuff-embed") {
+          const eb = s.embeddedBy || {}, gap = deSeconds(s.captureTimestamp) - deSeconds(eb.captureTimestamp);
+          ok(s.printed === d.date && s.run === `${e.days[0].date} to ${e.days.at(-1).date}`
+            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/[a-z0-9-]+\.dostff\.co\/embeds\/lineup\.js$/.test(s.archivedUrl || "")
+            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?sfoutsidelands\.com\/lineup\/$/.test(eb.archivedUrl || "") && gap >= 0 && gap <= 120,
+            `${id} day ${d.day}: widget ${s.captureTimestamp} prints "${s.printed}" (run "${s.run}") at ${s.archivedUrl}, loaded by ${eb.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         // Lollapalooza's 2018 lineup cards print each set's day as "Sat 8/04",

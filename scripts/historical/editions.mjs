@@ -53,6 +53,16 @@ export const EDITIONS = {
   "outside-lands-2015": { festivalId: "outside-lands", name: "Outside Lands 2015", year: 2015, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2015-08-07","Friday"],["2015-08-08","Saturday"],["2015-08-09","Sunday"]] },
   "outside-lands-2016": { festivalId: "outside-lands", name: "Outside Lands 2016", year: 2016, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2016-08-05","Friday"],["2016-08-06","Saturday"],["2016-08-07","Sunday"]] },
   "outside-lands-2017": { festivalId: "outside-lands", name: "Outside Lands 2017", year: 2017, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2017-08-11","Friday"],["2017-08-12","Saturday"],["2017-08-13","Sunday"]] },
+  // Outside Lands 2022-2025: the official lineup page (sfoutsidelands.com/
+  // lineup/) loads a DoStuff widget whose embed script carries every set
+  // with its start, end and stage (format "dostuff-embed",
+  // dostuff-embed-schedule.mjs). One post-festival capture per year, each
+  // taken seconds after the official page that loads it. Cocktail Magic,
+  // the food-and-drink stage (2022-2023), is excluded as GastroMagic is.
+  "outside-lands-2022": { festivalId: "outside-lands", name: "Outside Lands 2022", year: 2022, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2022-08-05","Friday"],["2022-08-06","Saturday"],["2022-08-07","Sunday"]] },
+  "outside-lands-2023": { festivalId: "outside-lands", name: "Outside Lands 2023", year: 2023, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2023-08-11","Friday"],["2023-08-12","Saturday"],["2023-08-13","Sunday"]] },
+  "outside-lands-2024": { festivalId: "outside-lands", name: "Outside Lands 2024", year: 2024, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2024-08-09","Friday"],["2024-08-10","Saturday"],["2024-08-11","Sunday"]] },
+  "outside-lands-2025": { festivalId: "outside-lands", name: "Outside Lands 2025", year: 2025, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2025-08-08","Friday"],["2025-08-09","Saturday"],["2025-08-10","Sunday"]] },
   // Governors Ball 2011-2012: the official governorsballmusicfestival.com
   // schedule page (/lineup/schedule/, a WordPress template, format
   // "govball-wp", govball-wp-schedule.mjs), one archived page per year, each

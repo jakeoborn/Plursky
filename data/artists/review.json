@@ -539,6 +539,27 @@
   "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
  },
  {
+  "id": "outside-lands-2023:d1:twin-peaks:1720:diesel-shaquille-o-neal",
+  "printed": "Diesel (Shaquille O'Neal)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the page prints no \"aka\", so whether the parenthetical gives the same act's other name or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule); the billing is neither merged nor credited to Shaquille O'Neal."
+ },
+ {
+  "id": "outside-lands-2023:d3:hard-french-dolores:1300:a-family-affair-feat-dj-nico-digital-kitkat-and-freaky-emo",
+  "printed": "A Family Affair feat. DJ Nico, Digital KitKat & Freaky Emo",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "outside-lands-2023:d3:hard-french-dolores:1820:hard-french-x-brown-amy-feat-carrieondisco-and-oscar-ew",
+  "printed": "Hard French x Brown Amy feat. CarrieOnDisco and Oscar (EW)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"x\" is not sourced, and the guests' \"and\" and the \"(EW)\" parenthetical may each be one name or two. Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "primavera-sound-2016:d2:ray-ban:0400:optimo-espacio",
   "printed": "OPTIMO (ESPACIO)",
   "reason": "parenthetical is not a known set tag",
@@ -1195,6 +1216,13 @@
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:j-i-d",
+  "printed": "J.I.D",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Lollapalooza 2019 and Outside Lands 2023 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  },
  {
   "id": "key:s-p-y",

@@ -3354,6 +3354,130 @@
    }
   },
   {
+   "id": "outside-lands-2025",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2025",
+   "year": 2025,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-08-08",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-08-09",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2025-08-10",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 10,
+    "artists": 138,
+    "sets": 155
+   }
+  },
+  {
+   "id": "outside-lands-2024",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2024",
+   "year": 2024,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-08-09",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-08-10",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2024-08-11",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 131,
+    "sets": 139
+   }
+  },
+  {
+   "id": "outside-lands-2023",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2023",
+   "year": 2023,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-08-11",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-08-12",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2023-08-13",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 114,
+    "sets": 126
+   }
+  },
+  {
+   "id": "outside-lands-2022",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2022",
+   "year": 2022,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-08-05",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-08-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-08-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 113,
+    "sets": 127
+   }
+  },
+  {
    "id": "outside-lands-2017",
    "festivalId": "outside-lands",
    "festivalName": "Outside Lands",

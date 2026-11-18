@@ -506,6 +506,34 @@ after it). The kids' stage keeps its printed name each year ("Austin Kiddie
 Limits presented by H-E-B", "HEB-Kids"), kept as music as in 2013, and one
 unnamed "Special Guest" slot there each year is dropped.
 
+Archived Outside Lands lineup widget (2022 to 2025, format `dostuff-embed`):
+
+    node scripts/historical/gather-dostuff-embed.mjs <edition-id> <gather-dir> <official-url> \
+      <ts> <embed-url> <page-ts> <page-url> [--food <stage>]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+From 2022 the official lineup page (sfoutsidelands.com/lineup/) draws its
+schedule with a script from the festival's own DoStuff site
+(`22-osl.dostff.co`, `osl23fest.dostff.co`, `fest24outsidelands.dostff.co`,
+`ds25festlands.dostff.co`, each `/embeds/lineup.js`). The script sets
+`window._fest_options` on one line of JSON: the festival's name, its first
+and last day, its time zone, and an "Interactive Lineup" grouping in which
+every artist lists its performances, each with an id, a stage, a billing and
+a start and end printed as whole dates with their UTC offset
+("2023-08-11T20:40:00.000-07:00"). A set shared by two artists (a b2b, a
+feature) appears under each with the same id and is one set, billed as its
+own name. Every offset must be the time zone's at that instant, every set end
+after its start and within twelve hours, every day inside the run the options
+print (a start before 6 AM is the night before), and no two sets may overlap
+on one stage. The run must be the edition's own days. Each script capture
+cites the official lineup page that loads it, captured up to two minutes
+before on sfoutsidelands.com (`embeddedBy`), and only captures taken after
+each festival are used. Cocktail Magic (2022, 2023), the cocktail-and-magic
+stage, is the food stage as GastroMagic was: its shows are excluded rows, one
+for one with the widget. 2022 has 127 sets on 7 stages (Friday 5 to Sunday 7
+August), 2023 126 on 9, 2024 139 on 9 and 2025 155 on 10. 2018 and 2019 have
+no archived widget of this kind.
+
 Archived Outside Lands schedule planner (2010 and 2011, format `myscheduler-data`):
 
     node scripts/historical/gather-myscheduler.mjs <edition-id> <gather-dir> <official-url> <ts> <url> \

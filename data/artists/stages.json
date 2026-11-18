@@ -4083,6 +4083,117 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "outside-lands:the-music-den-by-toyota",
+     "names": [
+      {
+       "printed": "The Music Den by Toyota",
+       "editions": [
+        "outside-lands-2022",
+        "outside-lands-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:fake-and-gay-dolores",
+     "names": [
+      {
+       "printed": "FAKE and GAY @ Dolores’",
+       "editions": [
+        "outside-lands-2023",
+        "outside-lands-2024",
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:oasis-dolores",
+     "names": [
+      {
+       "printed": "OASIS @ Dolores’",
+       "editions": [
+        "outside-lands-2023",
+        "outside-lands-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:hard-french-dolores",
+     "names": [
+      {
+       "printed": "Hard French @ Dolores’",
+       "editions": [
+        "outside-lands-2023",
+        "outside-lands-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:casa-bacardi",
+     "names": [
+      {
+       "printed": "CASA BACARDÍ",
+       "editions": [
+        "outside-lands-2024",
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:soma",
+     "names": [
+      {
+       "printed": "SOMA",
+       "editions": [
+        "outside-lands-2024",
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:oasis-arts-dolores",
+     "names": [
+      {
+       "printed": "OASIS ARTS @ Dolores’",
+       "editions": [
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:polyglamorous-dolores",
+     "names": [
+      {
+       "printed": "Polyglamorous @ Dolores’",
+       "editions": [
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

@@ -1,0 +1,102 @@
+{
+  "id": "outside-lands-2022",
+  "method": "official_sources",
+  "official": "https://sfoutsidelands.com/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2022-08-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://22-osl.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20220808025840/https://22-osl.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20220808025840",
+          "printed": "2022-08-05",
+          "sha256": "d178817c7f0b93759e96b0a7e651078bee0d001a26cdb3e2bb170038c914060c",
+          "bytes": 417817,
+          "rows": 43,
+          "format": "dostuff-embed",
+          "run": "2022-08-05 to 2022-08-07",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 7,
+          "embeddedBy": {
+            "url": "https://sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20220808025839/https://sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20220808025839"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2022-08-06",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://22-osl.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20220808025840/https://22-osl.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20220808025840",
+          "printed": "2022-08-06",
+          "sha256": "d178817c7f0b93759e96b0a7e651078bee0d001a26cdb3e2bb170038c914060c",
+          "bytes": 417817,
+          "rows": 42,
+          "format": "dostuff-embed",
+          "run": "2022-08-05 to 2022-08-07",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 8,
+          "embeddedBy": {
+            "url": "https://sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20220808025839/https://sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20220808025839"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "foodShows": 1,
+          "foodStage": "Cocktail Magic"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2022-08-07",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://22-osl.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20220808025840/https://22-osl.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20220808025840",
+          "printed": "2022-08-07",
+          "sha256": "d178817c7f0b93759e96b0a7e651078bee0d001a26cdb3e2bb170038c914060c",
+          "bytes": 417817,
+          "rows": 42,
+          "format": "dostuff-embed",
+          "run": "2022-08-05 to 2022-08-07",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 7,
+          "embeddedBy": {
+            "url": "https://sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20220808025839/https://sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20220808025839"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 2,
+      "stage": "Cocktail Magic",
+      "start": "19:00",
+      "end": "19:55",
+      "billing": "Perel",
+      "reason": "a show on Cocktail Magic, the festival's food-and-drink stage (as GastroMagic's in earlier years)",
+      "food": true
+    }
+  ],
+  "dropped": []
+}

@@ -4115,6 +4115,133 @@
    ],
    "why": "The parenthetical names the band the performer is known from, not a second act on the set; the set is billed to Jeff Mangum, as Coachella 2012 prints it.",
    "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "The Far Side (formerly of The Pharcyde)",
+   "performers": [
+    {
+     "name": "The Far Side",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the band the members are known from, not a second act on the set; the set is billed to The Far Side, as Outside Lands 2022 prints it.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "PRINCESS Feat. Adore Delano",
+   "performers": [
+    {
+     "name": "PRINCESS",
+     "role": "performer"
+    },
+    {
+     "name": "Adore Delano",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "REPARATIONS FEAT. Yvie Oddly",
+   "performers": [
+    {
+     "name": "REPARATIONS",
+     "role": "performer"
+    },
+    {
+     "name": "Yvie Oddly",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "PRINCESS FEAT. Willow Pill",
+   "performers": [
+    {
+     "name": "PRINCESS",
+     "role": "performer"
+    },
+    {
+     "name": "Willow Pill",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "REPARATIONS FEAT. Big Freedia",
+   "performers": [
+    {
+     "name": "REPARATIONS",
+     "role": "performer"
+    },
+    {
+     "name": "Big Freedia",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "PRINCESS FEAT. Big Freedia",
+   "performers": [
+    {
+     "name": "PRINCESS",
+     "role": "performer"
+    },
+    {
+     "name": "Big Freedia",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "Big Freedia with SF Gay Men's Chorus",
+   "performers": [
+    {
+     "name": "Big Freedia",
+     "role": "performer"
+    },
+    {
+     "name": "SF Gay Men's Chorus",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "Beck with Symphony",
+   "performers": [
+    {
+     "name": "Beck",
+     "role": "performer"
+    }
+   ],
+   "why": "The set is Beck's, played with an orchestra the printing does not name; \"with Symphony\" credits no act, so the set is billed to Beck alone.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "Girl Math (VNSSA b2b Nala)",
+   "performers": [
+    {
+     "name": "Girl Math",
+     "role": "project",
+     "parents": [
+      "VNSSA",
+      "Nala"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone (as EDC Las Vegas prints Girl Math (VNSSA B2B Nala)).",
+   "source": "https://sfoutsidelands.com/lineup/"
   }
  ],
  "pending": [
@@ -4725,6 +4852,22 @@
   {
    "key": "off",
    "why": "Short name billed at Primavera Sound 2012 and Coachella 2015 (each on its own official timetable). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+  },
+  {
+   "printed": "Diesel (Shaquille O'Neal)",
+   "why": "Left as printed: the page prints no \"aka\", so whether the parenthetical gives the same act's other name or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule); the billing is neither merged nor credited to Shaquille O'Neal."
+  },
+  {
+   "printed": "Hard French x Brown Amy feat. CarrieOnDisco and Oscar (EW)",
+   "why": "Left as printed, one act: who is behind the \"x\" is not sourced, and the guests' \"and\" and the \"(EW)\" parenthetical may each be one name or two. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "A Family Affair feat. DJ Nico, Digital KitKat & Freaky Emo",
+   "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "j-i-d",
+   "why": "Short name billed at Lollapalooza 2019 and Outside Lands 2023 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
   }
  ]
 }

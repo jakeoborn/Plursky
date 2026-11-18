@@ -1,0 +1,96 @@
+{
+  "id": "outside-lands-2025",
+  "method": "official_sources",
+  "official": "https://sfoutsidelands.com/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2025-08-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://ds25festlands.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20250811205728/https://ds25festlands.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20250811205728",
+          "printed": "2025-08-08",
+          "sha256": "d7003f8f86d059070acbe511d44753c91cc394bed874247f4a3715d97f644f6f",
+          "bytes": 466490,
+          "rows": 52,
+          "format": "dostuff-embed",
+          "run": "2025-08-08 to 2025-08-10",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 8,
+          "embeddedBy": {
+            "url": "https://sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20250811205727/https://sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20250811205727"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2025-08-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://ds25festlands.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20250811205728/https://ds25festlands.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20250811205728",
+          "printed": "2025-08-09",
+          "sha256": "d7003f8f86d059070acbe511d44753c91cc394bed874247f4a3715d97f644f6f",
+          "bytes": 466490,
+          "rows": 50,
+          "format": "dostuff-embed",
+          "run": "2025-08-08 to 2025-08-10",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 8,
+          "embeddedBy": {
+            "url": "https://sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20250811205727/https://sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20250811205727"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "sharedSets": [
+            "BALONEY DJ Set: DJ Subeaux (under BALONEY, DJ Subeaux)",
+            "REPARATIONS DJ SET: Miss Toto (under Miss Toto, REPARATIONS)",
+            "PRINCESS DJ SET: DJ Bella Spreads (under DJ Bella Spreads, PRINCESS)",
+            "OASIS DJ SET: DJ Bella Spreads (under DJ Bella Spreads, OASIS ARTS)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2025-08-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://ds25festlands.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20250811205728/https://ds25festlands.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20250811205728",
+          "printed": "2025-08-10",
+          "sha256": "d7003f8f86d059070acbe511d44753c91cc394bed874247f4a3715d97f644f6f",
+          "bytes": 466490,
+          "rows": 53,
+          "format": "dostuff-embed",
+          "run": "2025-08-08 to 2025-08-10",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 8,
+          "embeddedBy": {
+            "url": "https://sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20250811205727/https://sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20250811205727"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once"
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

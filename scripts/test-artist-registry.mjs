@@ -143,8 +143,15 @@ const out = build();
   // 2012 ruled Barry Hogan DJ (ATP) and Jeff Mangum (Neutral Milk Hotel) and
   // left the short name OFF! (Primavera Sound 2012 and Coachella 2015) to a
   // first-party link: 173 rows, raised here and reported in that pull
-  // request. Past 173, stop and report.
-  check(review.length <= 173, `review queue is ${review.length} rows (> 173 means stop and report)`);
+  // request. Outside Lands 2022 to 2025 ruled nine billings under the
+  // existing feat./with, band-parenthetical and project rules (the Dolores'
+  // drag shows' guests, The Far Side (formerly of The Pharcyde), Beck with an
+  // unnamed symphony, Girl Math (VNSSA b2b Nala)) and left four as printed:
+  // Diesel (Shaquille O'Neal) (no "aka"), an "x" billing with an unsettled
+  // guest list, a feat. list whose "&" may be one act or two, and the short
+  // name J.I.D (Lollapalooza 2019 and Outside Lands 2023): 177 rows, raised
+  // here and reported in that pull request. Past 177, stop and report.
+  check(review.length <= 177, `review queue is ${review.length} rows (> 177 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
