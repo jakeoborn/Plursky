@@ -1235,6 +1235,118 @@ var FESTIVALS_REGISTRY = [{
   region: "North America"
 }, {
   config: {
+    id: "lightning-in-a-bottle-2027",
+    officialEvent: {
+      website: "https://www.libfestival.org/",
+      observedAt: "2026-11-17"
+    },
+    name: "Lightning in a Bottle 2027",
+    shortName: "LiB",
+    brand: "Lightning in a Bottle",
+    tagline: "Five days of music, art and camping by Do LaB",
+    location: "Buena Vista Lake, CA",
+    locationShort: "Buena Vista Lake",
+    dates: "May 26–30, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.libfestival.org/",
+        observedAt: "2026-11-17"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#f59e0b",
+  emoji: "⚡",
+  region: "North America"
+}, {
+  config: {
+    id: "world-club-dome-2027",
+    officialEvent: {
+      website: "https://www.worldclubdome.com/",
+      observedAt: "2026-11-17"
+    },
+    name: "World Club Dome 2027",
+    shortName: "World Club Dome",
+    brand: "World Club Dome",
+    tagline: "Three days of EDM inside Frankfurt's stadium",
+    location: "Deutsche Bank Park · Frankfurt, Germany",
+    locationShort: "Deutsche Bank Park",
+    dates: "Jun 4–6, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.worldclubdome.com/",
+        observedAt: "2026-11-17"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#6366f1",
+  emoji: "🏟️",
+  region: "Europe"
+}, {
+  config: {
+    id: "bass-canyon-2027",
+    officialEvent: {
+      website: "https://www.basscanyon.com/",
+      observedAt: "2026-11-17"
+    },
+    name: "Bass Canyon 2027",
+    shortName: "Bass Canyon",
+    brand: "Bass Canyon",
+    tagline: "Three nights of Excision and bass at The Gorge",
+    location: "Gorge Amphitheatre · George, WA",
+    locationShort: "The Gorge",
+    dates: "Aug 13–15, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.basscanyon.com/",
+        observedAt: "2026-11-17"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#84cc16",
+  emoji: "🦖",
+  region: "North America"
+}, {
+  config: {
+    id: "medusa-2027",
+    officialEvent: {
+      website: "https://www.medusasunbeach.com/",
+      observedAt: "2026-11-17"
+    },
+    name: "Medusa Festival 2027",
+    shortName: "Medusa",
+    brand: "Medusa",
+    tagline: "Four days of electronic music on the beach at Cullera",
+    location: "Playa de Cullera · Cullera, Spain",
+    locationShort: "Playa de Cullera",
+    dates: "Aug 13–16, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.medusasunbeach.com/",
+        observedAt: "2026-11-17"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#14b8a6",
+  emoji: "🐍",
+  region: "Europe"
+}, {
+  config: {
     id: "lost-lands-2026",
     officialEvent: {
       website: "https://www.lostlandsfestival.com/",
