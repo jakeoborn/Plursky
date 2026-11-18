@@ -553,6 +553,41 @@
   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "shambhala-2024:d3:living-room:1430:shawna-kmln",
+  "printed": "Shawna (KMLN)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+ },
+ {
+  "id": "shambhala-2024:d3:fractal-forest:2300:dj-pee-wee-anderson-paak",
+  "printed": "DJ Pee .Wee (Anderson .Paak)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the page prints no \"aka\", so whether the parenthetical gives the same act's other name or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule); the billing is neither merged nor credited to Anderson .Paak."
+ },
+ {
+  "id": "shambhala-2025:d1:amp:1930:gunfingaz-wraz-and-substance",
+  "printed": "GUNFINGAZ (WRAZ & SUBSTANCE)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed: the parenthetical names people, but whether they are the members behind GUNFINGAZ or acts in their own right is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither split nor credited to them."
+ },
+ {
+  "id": "shambhala-2025:d1:living-room:2300:shawna-kmln",
+  "printed": "Shawna (KMLN)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+ },
+ {
+  "id": "shambhala-2025:d4:grove:0530:parkbreezy-x-tf-marz",
+  "printed": "Parkbreezy x TF Marz",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it. (Shambhala 2024 prints \"TF Marz B2B Parkbreezy\" as its own billing.)"
+ },
+ {
   "id": "tomorrowland-2014:d2:star-warz:2300:special-guest-sub-focus-ft-id",
   "printed": "Special Guest: Sub Focus ft. ID",
   "reason": "feat / with billing",

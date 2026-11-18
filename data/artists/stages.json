@@ -4048,6 +4048,62 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "shambhala:amp",
+     "names": [
+      {
+       "printed": "AMP",
+       "editions": [
+        "shambhala-2024",
+        "shambhala-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:the-pagoda",
+     "names": [
+      {
+       "printed": "The Pagoda",
+       "editions": [
+        "shambhala-2024",
+        "shambhala-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:the-village",
+     "names": [
+      {
+       "printed": "The Village",
+       "editions": [
+        "shambhala-2024",
+        "shambhala-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "shambhala:secret-garden",
+     "names": [
+      {
+       "printed": "Secret Garden",
+       "editions": [
+        "shambhala-2024",
+        "shambhala-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

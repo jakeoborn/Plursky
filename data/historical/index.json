@@ -3380,6 +3380,78 @@
    }
   },
   {
+   "id": "shambhala-2025",
+   "festivalId": "shambhala",
+   "festivalName": "Shambhala",
+   "name": "Shambhala 2025",
+   "year": 2025,
+   "timezone": "America/Vancouver",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-07-24",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2025-07-25",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2025-07-26",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2025-07-27",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 239,
+    "sets": 240
+   }
+  },
+  {
+   "id": "shambhala-2024",
+   "festivalId": "shambhala",
+   "festivalName": "Shambhala",
+   "name": "Shambhala 2024",
+   "year": 2024,
+   "timezone": "America/Vancouver",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-07-25",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2024-07-26",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2024-07-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2024-07-28",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 236,
+    "sets": 242
+   }
+  },
+  {
    "id": "shambhala-2016",
    "festivalId": "shambhala",
    "festivalName": "Shambhala",

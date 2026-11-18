@@ -3378,6 +3378,145 @@
    ],
    "why": "\"aka\" gives the same act's other name, not a second act: the billing counts on CLAUDE, the billed name, and the other name is not credited separately.",
    "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Subvert w/ Armanni Reign",
+   "performers": [
+    {
+     "name": "Subvert",
+     "role": "performer"
+    },
+    {
+     "name": "Armanni Reign",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "A.M.C w/ Armanni Reign",
+   "performers": [
+    {
+     "name": "A.M.C",
+     "role": "performer"
+    },
+    {
+     "name": "Armanni Reign",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Wolfy Lights ft KJ Sawka",
+   "performers": [
+    {
+     "name": "Wolfy Lights",
+     "role": "performer"
+    },
+    {
+     "name": "KJ Sawka",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Elektric Collective with Hoola",
+   "performers": [
+    {
+     "name": "Elektric Collective",
+     "role": "performer"
+    },
+    {
+     "name": "Hoola",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Mood Swing & Chevy Bass ft. Wilma",
+   "performers": [
+    {
+     "name": "Mood Swing & Chevy Bass",
+     "role": "performer"
+    },
+    {
+     "name": "Wilma",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"Mood Swing & Chevy Bass\" is kept as printed, one billed name (\"&\" is never split).",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Pineo & Loeb ft. K-OS",
+   "performers": [
+    {
+     "name": "Pineo & Loeb",
+     "role": "performer"
+    },
+    {
+     "name": "K-OS",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"Pineo & Loeb\" is kept as printed, one billed name (\"&\" is never split).",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Skream & Friends (Ft. Sgt. Pokes, Coki, Distinct Motive & more.......)",
+   "performers": [
+    {
+     "name": "Skream & Friends",
+     "role": "performer"
+    },
+    {
+     "name": "Sgt. Pokes",
+     "role": "guest"
+    },
+    {
+     "name": "Coki",
+     "role": "guest"
+    },
+    {
+     "name": "Distinct Motive",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"Skream & Friends\" is kept as printed, one billed name (\"&\" is never split). \"& more.......\" names nobody, so nobody else is credited.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Afternoon Saloon with Marin Patenaude",
+   "performers": [
+    {
+     "name": "Marin Patenaude",
+     "role": "performer"
+    }
+   ],
+   "why": "The printing names an event (a recurring AMP session) and the one act playing it, after \"with\" / \"w/\": that act is the performer; the event's title is not an act.",
+   "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Trip A with Sam Matthews",
+   "performers": [
+    {
+     "name": "Trip A",
+     "role": "performer"
+    },
+    {
+     "name": "Sam Matthews",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.shambhalamusicfestival.com/"
   }
  ],
  "pending": [
@@ -3896,6 +4035,22 @@
   {
    "key": "gms",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Shawna (KMLN)",
+   "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+  },
+  {
+   "printed": "DJ Pee .Wee (Anderson .Paak)",
+   "why": "Left as printed: the page prints no \"aka\", so whether the parenthetical gives the same act's other name or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule); the billing is neither merged nor credited to Anderson .Paak."
+  },
+  {
+   "printed": "GUNFINGAZ (WRAZ & SUBSTANCE)",
+   "why": "Left as printed: the parenthetical names people, but whether they are the members behind GUNFINGAZ or acts in their own right is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither split nor credited to them."
+  },
+  {
+   "printed": "Parkbreezy x TF Marz",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it. (Shambhala 2024 prints \"TF Marz B2B Parkbreezy\" as its own billing.)"
   }
  ]
 }
