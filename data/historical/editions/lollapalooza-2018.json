@@ -1,0 +1,3108 @@
+{
+ "id": "lollapalooza-2018",
+ "festivalId": "lollapalooza",
+ "name": "Lollapalooza 2018",
+ "year": 2018,
+ "timezone": "America/Chicago",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2018-08-02",
+   "label": "Thursday",
+   "untimed": true
+  },
+  {
+   "day": 2,
+   "date": "2018-08-03",
+   "label": "Friday",
+   "untimed": true
+  },
+  {
+   "day": 3,
+   "date": "2018-08-04",
+   "label": "Saturday",
+   "untimed": true
+  },
+  {
+   "day": 4,
+   "date": "2018-08-05",
+   "label": "Sunday",
+   "untimed": true
+  }
+ ],
+ "stages": [
+  {
+   "id": "lollapalooza-2018:grant-park",
+   "name": "Grant Park"
+  },
+  {
+   "id": "lollapalooza-2018:bud-light",
+   "name": "Bud Light"
+  },
+  {
+   "id": "lollapalooza-2018:perry-s",
+   "name": "Perry’s"
+  },
+  {
+   "id": "lollapalooza-2018:lake-shore",
+   "name": "Lake Shore"
+  },
+  {
+   "id": "lollapalooza-2018:american-eagle",
+   "name": "American Eagle"
+  },
+  {
+   "id": "lollapalooza-2018:tito-s-handmade-vodka",
+   "name": "Tito’s Handmade Vodka"
+  },
+  {
+   "id": "lollapalooza-2018:bmi",
+   "name": "BMI"
+  },
+  {
+   "id": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "name": "Kidzapalooza Presented By Lifeway"
+  }
+ ],
+ "artists": [
+  {
+   "id": "lollapalooza-2018:arctic-monkeys",
+   "name": "Arctic Monkeys",
+   "key": "arctic-monkeys",
+   "performers": [
+    "arctic-monkeys"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:chvrches",
+   "name": "CHVRCHES",
+   "key": "chvrches",
+   "performers": [
+    "chvrches"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:franz-ferdinand",
+   "name": "Franz Ferdinand",
+   "key": "franz-ferdinand",
+   "performers": [
+    "franz-ferdinand"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:stars",
+   "name": "Stars",
+   "key": "stars",
+   "performers": [
+    "stars"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:slaves-uk",
+   "name": "Slaves (UK)",
+   "key": "slaves-uk",
+   "performers": [
+    "slaves-uk"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:travis-scott",
+   "name": "TRAVIS SCOTT",
+   "key": "travis-scott",
+   "performers": [
+    "travis-scott"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:khalid",
+   "name": "KHALID",
+   "key": "khalid",
+   "performers": [
+    "khalid"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:rebelution",
+   "name": "Rebelution",
+   "key": "rebelution",
+   "performers": [
+    "rebelution"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:terror-jr",
+   "name": "Terror Jr",
+   "key": "terror-jr",
+   "performers": [
+    "terror-jr"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:cuco",
+   "name": "Cuco",
+   "key": "cuco",
+   "performers": [
+    "cuco"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:galantis",
+   "name": "Galantis",
+   "key": "galantis",
+   "performers": [
+    "galantis"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:rezz",
+   "name": "REZZ",
+   "key": "rezz",
+   "performers": [
+    "rezz"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:kayzo",
+   "name": "KAYZO",
+   "key": "kayzo",
+   "performers": [
+    "kayzo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:shiba-san",
+   "name": "Shiba San",
+   "key": "shiba-san",
+   "performers": [
+    "shiba-san"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:london-on-da-track",
+   "name": "London On Da Track",
+   "key": "london-on-da-track",
+   "performers": [
+    "london-on-da-track"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:4b",
+   "name": "4B",
+   "key": "4b",
+   "performers": [
+    "4b"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:space-jesus",
+   "name": "Space Jesus",
+   "key": "space-jesus",
+   "performers": [
+    "space-jesus"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:lzrd",
+   "name": "LZRD",
+   "key": "lzrd",
+   "performers": [
+    "lzrd"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:camila-cabello",
+   "name": "Camila Cabello",
+   "key": "camila-cabello",
+   "performers": [
+    "camila-cabello"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:lany",
+   "name": "LANY",
+   "key": "lany",
+   "performers": [
+    "lany"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:the-wombats",
+   "name": "The Wombats",
+   "key": "the-wombats",
+   "performers": [
+    "the-wombats"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:tyler-childers",
+   "name": "Tyler Childers",
+   "key": "tyler-childers",
+   "performers": [
+    "tyler-childers"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:jesse-baez",
+   "name": "Jesse Baez",
+   "key": "jesse-baez",
+   "performers": [
+    "jesse-baez"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:tycho",
+   "name": "Tycho",
+   "key": "tycho",
+   "performers": [
+    "tycho"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:jaden-smith",
+   "name": "Jaden Smith",
+   "key": "jaden-smith",
+   "performers": [
+    "jaden-smith"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:a-boogie-wit-da-hoodie",
+   "name": "A Boogie Wit Da Hoodie",
+   "key": "a-boogie-wit-da-hoodie",
+   "performers": [
+    "a-boogie-wit-da-hoodie"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:petit-biscuit",
+   "name": "Petit Biscuit",
+   "key": "petit-biscuit",
+   "performers": [
+    "petit-biscuit"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:g-herbo",
+   "name": "G Herbo",
+   "key": "g-herbo",
+   "performers": [
+    "g-herbo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:curtis-harding",
+   "name": "Curtis Harding",
+   "key": "curtis-harding",
+   "performers": [
+    "curtis-harding"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:allie-x",
+   "name": "Allie X",
+   "key": "allie-x",
+   "performers": [
+    "allie-x"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:valee",
+   "name": "Valee",
+   "key": "valee",
+   "performers": [
+    "valee"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:dj-taye",
+   "name": "DJ Taye",
+   "key": "dj-taye",
+   "performers": [
+    "dj-taye"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:billie-eilish",
+   "name": "BILLIE EILISH",
+   "key": "billie-eilish",
+   "performers": [
+    "billie-eilish"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:all-time-low",
+   "name": "All Time Low",
+   "key": "all-time-low",
+   "performers": [
+    "all-time-low"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:basement",
+   "name": "Basement",
+   "key": "basement",
+   "performers": [
+    "basement"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:nick-mulvey",
+   "name": "Nick Mulvey",
+   "key": "nick-mulvey",
+   "performers": [
+    "nick-mulvey"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:virgil-abloh",
+   "name": "Virgil Abloh",
+   "key": "virgil-abloh",
+   "performers": [
+    "virgil-abloh"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:madison-beer",
+   "name": "Madison Beer",
+   "key": "madison-beer",
+   "performers": [
+    "madison-beer"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:supa-bwe",
+   "name": "Supa Bwe",
+   "key": "supa-bwe",
+   "performers": [
+    "supa-bwe"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:gashi",
+   "name": "GASHI",
+   "key": "gashi",
+   "performers": [
+    "gashi"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:wes-period",
+   "name": "Wes Period",
+   "key": "wes-period",
+   "performers": [
+    "wes-period"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:fletcher",
+   "name": "FLETCHER",
+   "key": "fletcher",
+   "performers": [
+    "fletcher"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:larkin-poe",
+   "name": "Larkin Poe",
+   "key": "larkin-poe",
+   "performers": [
+    "larkin-poe"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:mister-g",
+   "name": "Mister G",
+   "key": "mister-g",
+   "performers": [
+    "mister-g"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:big-don",
+   "name": "Big Don",
+   "key": "big-don",
+   "performers": [
+    "big-don"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:lucy-kalantari-and-the-jazz-cats",
+   "name": "Lucy Kalantari & the Jazz Cats",
+   "key": "lucy-kalantari-and-the-jazz-cats",
+   "performers": [
+    "lucy-kalantari-and-the-jazz-cats"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:school-of-rock-allstars",
+   "name": "School of Rock AllStars",
+   "key": "school-of-rock-allstars",
+   "performers": [
+    "school-of-rock-allstars"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:bruno-mars",
+   "name": "BRUNO MARS",
+   "key": "bruno-mars",
+   "performers": [
+    "bruno-mars"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:tyler-the-creator",
+   "name": "TYLER, THE CREATOR",
+   "key": "tyler-the-creator",
+   "performers": [
+    "tyler-the-creator"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:walk-the-moon",
+   "name": "WALK THE MOON",
+   "key": "walk-the-moon",
+   "performers": [
+    "walk-the-moon"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:dermot-kennedy",
+   "name": "Dermot Kennedy",
+   "key": "dermot-kennedy",
+   "performers": [
+    "dermot-kennedy"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:alex-lahey",
+   "name": "Alex Lahey",
+   "key": "alex-lahey",
+   "performers": [
+    "alex-lahey"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:the-national",
+   "name": "The National",
+   "key": "the-national",
+   "performers": [
+    "the-national"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:post-malone",
+   "name": "Post Malone",
+   "key": "post-malone",
+   "performers": [
+    "post-malone"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:james-bay",
+   "name": "James Bay",
+   "key": "james-bay",
+   "performers": [
+    "james-bay"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:parquet-courts",
+   "name": "Parquet Courts",
+   "key": "parquet-courts",
+   "performers": [
+    "parquet-courts"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:welshly-arms",
+   "name": "Welshly Arms",
+   "key": "welshly-arms",
+   "performers": [
+    "welshly-arms"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:dillon-francis",
+   "name": "Dillon Francis",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:malaa",
+   "name": "Malaa",
+   "key": "malaa",
+   "performers": [
+    "malaa"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:alan-walker",
+   "name": "Alan Walker",
+   "key": "alan-walker",
+   "performers": [
+    "alan-walker"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:rusko",
+   "name": "Rusko",
+   "key": "rusko",
+   "performers": [
+    "rusko"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:valentino-khan",
+   "name": "Valentino Khan",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:taylor-bennett",
+   "name": "Taylor Bennett",
+   "key": "taylor-bennett",
+   "performers": [
+    "taylor-bennett"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:goldfish",
+   "name": "Goldfish",
+   "key": "goldfish",
+   "performers": [
+    "goldfish"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:kuuro",
+   "name": "KUURO",
+   "key": "kuuro",
+   "performers": [
+    "kuuro"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:noizu",
+   "name": "Noizu",
+   "key": "noizu",
+   "performers": [
+    "noizu"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:b-rns",
+   "name": "BØRNS",
+   "key": "b-rns",
+   "performers": [
+    "b-rns"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:alina-baraz",
+   "name": "Alina Baraz",
+   "key": "alina-baraz",
+   "performers": [
+    "alina-baraz"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:bebe-rexha",
+   "name": "Bebe Rexha",
+   "key": "bebe-rexha",
+   "performers": [
+    "bebe-rexha"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:lewis-capaldi",
+   "name": "Lewis Capaldi",
+   "key": "lewis-capaldi",
+   "performers": [
+    "lewis-capaldi"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:dream-wife",
+   "name": "Dream Wife",
+   "key": "dream-wife",
+   "performers": [
+    "dream-wife"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:brockhampton",
+   "name": "BROCKHAMPTON",
+   "key": "brockhampton",
+   "performers": [
+    "brockhampton"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:greta-van-fleet",
+   "name": "GRETA VAN FLEET",
+   "key": "greta-van-fleet",
+   "performers": [
+    "greta-van-fleet"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:jungle",
+   "name": "Jungle",
+   "key": "jungle",
+   "performers": [
+    "jungle"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:big-wild",
+   "name": "Big Wild",
+   "key": "big-wild",
+   "performers": [
+    "big-wild"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:lauv",
+   "name": "Lauv",
+   "key": "lauv",
+   "performers": [
+    "lauv"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:two-feet",
+   "name": "Two Feet",
+   "key": "two-feet",
+   "performers": [
+    "two-feet"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:post-animal",
+   "name": "Post Animal",
+   "key": "post-animal",
+   "performers": [
+    "post-animal"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:clairo",
+   "name": "Clairo",
+   "key": "clairo",
+   "performers": [
+    "clairo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:cleopatrick",
+   "name": "cleopatrick",
+   "key": "cleopatrick",
+   "performers": [
+    "cleopatrick"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:the-neighbourhood",
+   "name": "The Neighbourhood",
+   "key": "the-neighbourhood",
+   "performers": [
+    "the-neighbourhood"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:lizzo",
+   "name": "LIZZO",
+   "key": "lizzo",
+   "performers": [
+    "lizzo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:gang-of-youths",
+   "name": "Gang Of Youths",
+   "key": "gang-of-youths",
+   "performers": [
+    "gang-of-youths"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:matt-maeson",
+   "name": "Matt Maeson",
+   "key": "matt-maeson",
+   "performers": [
+    "matt-maeson"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:oshi",
+   "name": "Oshi",
+   "key": "oshi",
+   "performers": [
+    "oshi"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:buddy",
+   "name": "Buddy",
+   "key": "buddy",
+   "performers": [
+    "buddy"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:r-lum-r",
+   "name": "R.LUM.R",
+   "key": "r-lum-r",
+   "performers": [
+    "r-lum-r"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:chase-atlantic",
+   "name": "Chase Atlantic",
+   "key": "chase-atlantic",
+   "performers": [
+    "chase-atlantic"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:nothing-nowhere",
+   "name": "nothing,nowhere.",
+   "key": "nothing-nowhere",
+   "performers": [
+    "nothing-nowhere"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:cky",
+   "name": "CKY",
+   "key": "cky",
+   "performers": [
+    "cky"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:mainland",
+   "name": "Mainland",
+   "key": "mainland",
+   "performers": [
+    "mainland"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:aaron-nigel-smith",
+   "name": "Aaron Nigel Smith",
+   "key": "aaron-nigel-smith",
+   "performers": [
+    "aaron-nigel-smith"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:the-weeknd",
+   "name": "THE WEEKND",
+   "key": "the-weeknd",
+   "performers": [
+    "the-weeknd"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:logic",
+   "name": "Logic",
+   "key": "logic",
+   "performers": [
+    "logic"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:catfish-and-the-bottlemen",
+   "name": "Catfish and the Bottlemen",
+   "key": "catfish-and-the-bottlemen",
+   "performers": [
+    "catfish-and-the-bottlemen"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:bomba-estereo",
+   "name": "Bomba Estéreo",
+   "key": "bomba-estereo",
+   "performers": [
+    "bomba-estereo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:charlotte-cardin",
+   "name": "Charlotte Cardin",
+   "key": "charlotte-cardin",
+   "performers": [
+    "charlotte-cardin"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:vampire-weekend",
+   "name": "Vampire Weekend",
+   "key": "vampire-weekend",
+   "performers": [
+    "vampire-weekend"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:st-vincent",
+   "name": "St. Vincent",
+   "key": "st-vincent",
+   "performers": [
+    "st-vincent"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:ll-cool-j-feat-dj-z-trip",
+   "name": "LL COOL J FEAT. DJ Z-TRIP",
+   "key": "ll-cool-j-feat-dj-z-trip",
+   "performers": [
+    "ll-cool-j-feat-dj-z-trip"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:a-r-i-z-o-n-a",
+   "name": "A R I Z O N A",
+   "key": "a-r-i-z-o-n-a",
+   "performers": [
+    "a-r-i-z-o-n-a"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:yungblud",
+   "name": "Yungblud",
+   "key": "yungblud",
+   "performers": [
+    "yungblud"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:zedd",
+   "name": "ZEDD",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:illenium",
+   "name": "ILLENIUM",
+   "key": "illenium",
+   "performers": [
+    "illenium"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:zomboy",
+   "name": "Zomboy",
+   "key": "zomboy",
+   "performers": [
+    "zomboy"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:hippie-sabotage",
+   "name": "Hippie Sabotage",
+   "key": "hippie-sabotage",
+   "performers": [
+    "hippie-sabotage"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:ghastly",
+   "name": "Ghastly",
+   "key": "ghastly",
+   "performers": [
+    "ghastly"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:k-d",
+   "name": "K?D",
+   "key": "k-d",
+   "performers": [
+    "k-d"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:loudpvck",
+   "name": "LOUDPVCK",
+   "key": "loudpvck",
+   "performers": [
+    "loudpvck"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:brohug",
+   "name": "BROHUG",
+   "key": "brohug",
+   "performers": [
+    "brohug"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:blackgummy",
+   "name": "BlackGummy",
+   "key": "blackgummy",
+   "performers": [
+    "blackgummy"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:dua-lipa",
+   "name": "Dua Lipa",
+   "key": "dua-lipa",
+   "performers": [
+    "dua-lipa"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:daya",
+   "name": "Daya",
+   "key": "daya",
+   "performers": [
+    "daya"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:carly-rae-jepsen",
+   "name": "Carly Rae Jepsen",
+   "key": "carly-rae-jepsen",
+   "performers": [
+    "carly-rae-jepsen"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:sir-sly",
+   "name": "Sir Sly",
+   "key": "sir-sly",
+   "performers": [
+    "sir-sly"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:lovelytheband",
+   "name": "lovelytheband",
+   "key": "lovelytheband",
+   "performers": [
+    "lovelytheband"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:perry-farrell-s-kind-heaven",
+   "name": "Perry Farrell’s Kind Heaven",
+   "key": "perry-farrell-s-kind-heaven",
+   "performers": [
+    "perry-farrell-s-kind-heaven"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:tash-sultana",
+   "name": "Tash Sultana",
+   "key": "tash-sultana",
+   "performers": [
+    "tash-sultana"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:daniel-caesar",
+   "name": "Daniel Caesar",
+   "key": "daniel-caesar",
+   "performers": [
+    "daniel-caesar"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:goldlink",
+   "name": "GOLDLINK",
+   "key": "goldlink",
+   "performers": [
+    "goldlink"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:autograf",
+   "name": "Autograf",
+   "key": "autograf",
+   "performers": [
+    "autograf"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:pale-waves",
+   "name": "Pale Waves",
+   "key": "pale-waves",
+   "performers": [
+    "pale-waves"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:amy-shark",
+   "name": "Amy Shark",
+   "key": "amy-shark",
+   "performers": [
+    "amy-shark"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:femdot",
+   "name": "Femdot",
+   "key": "femdot",
+   "performers": [
+    "femdot"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:emilia-ali",
+   "name": "Emilia Ali",
+   "key": "emilia-ali",
+   "performers": [
+    "emilia-ali"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:luke-combs",
+   "name": "Luke Combs",
+   "key": "luke-combs",
+   "performers": [
+    "luke-combs"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:lil-pump",
+   "name": "Lil Pump",
+   "key": "lil-pump",
+   "performers": [
+    "lil-pump"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:tank-and-the-bangas",
+   "name": "Tank and The Bangas",
+   "key": "tank-and-the-bangas",
+   "performers": [
+    "tank-and-the-bangas"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:wallows",
+   "name": "Wallows",
+   "key": "wallows",
+   "performers": [
+    "wallows"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:droeloe",
+   "name": "DROELOE",
+   "key": "droeloe",
+   "performers": [
+    "droeloe"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:melvv",
+   "name": "MELVV",
+   "key": "melvv",
+   "performers": [
+    "melvv"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:vera-blue",
+   "name": "Vera Blue",
+   "key": "vera-blue",
+   "performers": [
+    "vera-blue"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:davie",
+   "name": "Davie",
+   "key": "davie",
+   "performers": [
+    "davie"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:morgxn",
+   "name": "morgxn",
+   "key": "morgxn",
+   "performers": [
+    "morgxn"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:bones-uk",
+   "name": "BONES (UK)",
+   "key": "bones-uk",
+   "performers": [
+    "bones-uk"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:grace-weber",
+   "name": "GRACE WEBER",
+   "key": "grace-weber",
+   "performers": [
+    "grace-weber"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:kb-whirly",
+   "name": "kb Whirly",
+   "key": "kb-whirly",
+   "performers": [
+    "kb-whirly"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:q-brothers",
+   "name": "Q Brothers",
+   "key": "q-brothers",
+   "performers": [
+    "q-brothers"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:jack-white",
+   "name": "Jack White",
+   "key": "jack-white",
+   "performers": [
+    "jack-white"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:portugal-the-man",
+   "name": "Portugal. The Man",
+   "key": "portugal-the-man",
+   "performers": [
+    "portugal-the-man"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:lykke-li",
+   "name": "Lykke Li",
+   "key": "lykke-li",
+   "performers": [
+    "lykke-li"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:anderson-east",
+   "name": "Anderson East",
+   "key": "anderson-east",
+   "performers": [
+    "anderson-east"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:the-regrettes",
+   "name": "The Regrettes",
+   "key": "the-regrettes",
+   "performers": [
+    "the-regrettes"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:odesza",
+   "name": "ODESZA",
+   "key": "odesza",
+   "performers": [
+    "odesza"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:lil-uzi-vert",
+   "name": "Lil Uzi Vert",
+   "key": "lil-uzi-vert",
+   "performers": [
+    "lil-uzi-vert"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:gucci-mane",
+   "name": "Gucci Mane",
+   "key": "gucci-mane",
+   "performers": [
+    "gucci-mane"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:the-vaccines",
+   "name": "The Vaccines",
+   "key": "the-vaccines",
+   "performers": [
+    "the-vaccines"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:the-coronas",
+   "name": "The Coronas",
+   "key": "the-coronas",
+   "performers": [
+    "the-coronas"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:excision",
+   "name": "Excision",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:bazzi",
+   "name": "Bazzi",
+   "key": "bazzi",
+   "performers": [
+    "bazzi"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:what-so-not",
+   "name": "What So Not",
+   "key": "what-so-not",
+   "performers": [
+    "what-so-not"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:troyboi",
+   "name": "TroyBoi",
+   "key": "troyboi",
+   "performers": [
+    "troyboi"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:chris-lake",
+   "name": "Chris Lake",
+   "key": "chris-lake",
+   "performers": [
+    "chris-lake"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:herobust",
+   "name": "Herobust",
+   "key": "herobust",
+   "performers": [
+    "herobust"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:ekali",
+   "name": "EKALI",
+   "key": "ekali",
+   "performers": [
+    "ekali"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:the-him",
+   "name": "The Him",
+   "key": "the-him",
+   "performers": [
+    "the-him"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:tim-gunter",
+   "name": "Tim Gunter",
+   "key": "tim-gunter",
+   "performers": [
+    "tim-gunter"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:chromeo",
+   "name": "Chromeo",
+   "key": "chromeo",
+   "performers": [
+    "chromeo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:manchester-orchestra",
+   "name": "Manchester Orchestra",
+   "key": "manchester-orchestra",
+   "performers": [
+    "manchester-orchestra"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:kali-uchis",
+   "name": "KALI UCHIS",
+   "key": "kali-uchis",
+   "performers": [
+    "kali-uchis"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:durand-jones-and-the-indications",
+   "name": "Durand Jones & The Indications",
+   "key": "durand-jones-and-the-indications",
+   "performers": [
+    "durand-jones-and-the-indications"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:freya-ridings",
+   "name": "Freya Ridings",
+   "key": "freya-ridings",
+   "performers": [
+    "freya-ridings"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:playboi-carti",
+   "name": "Playboi Carti",
+   "key": "playboi-carti",
+   "performers": [
+    "playboi-carti"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:quinn-xcii",
+   "name": "Quinn XCII",
+   "key": "quinn-xcii",
+   "performers": [
+    "quinn-xcii"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:rex-orange-county",
+   "name": "Rex Orange County",
+   "key": "rex-orange-county",
+   "performers": [
+    "rex-orange-county"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:cigarettes-after-sex",
+   "name": "Cigarettes After Sex",
+   "key": "cigarettes-after-sex",
+   "performers": [
+    "cigarettes-after-sex"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:sabrina-claudio",
+   "name": "Sabrina Claudio",
+   "key": "sabrina-claudio",
+   "performers": [
+    "sabrina-claudio"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:knox-fortune",
+   "name": "Knox Fortune",
+   "key": "knox-fortune",
+   "performers": [
+    "knox-fortune"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:jessie-reyez",
+   "name": "Jessie Reyez",
+   "key": "jessie-reyez",
+   "performers": [
+    "jessie-reyez"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:sasha-sloan",
+   "name": "Sasha Sloan",
+   "key": "sasha-sloan",
+   "performers": [
+    "sasha-sloan"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:dorothy",
+   "name": "Dorothy",
+   "key": "dorothy",
+   "performers": [
+    "dorothy"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:rainbow-kitten-surprise",
+   "name": "Rainbow Kitten Surprise",
+   "key": "rainbow-kitten-surprise",
+   "performers": [
+    "rainbow-kitten-surprise"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:nav",
+   "name": "NAV",
+   "key": "nav",
+   "performers": [
+    "nav"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:frenship",
+   "name": "Frenship",
+   "key": "frenship",
+   "performers": [
+    "frenship"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:superorganism",
+   "name": "Superorganism",
+   "key": "superorganism",
+   "performers": [
+    "superorganism"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:medasin",
+   "name": "Medasin",
+   "key": "medasin",
+   "performers": [
+    "medasin"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:john-splithoff",
+   "name": "John Splithoff",
+   "key": "john-splithoff",
+   "performers": [
+    "john-splithoff"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:mikky-ekko",
+   "name": "Mikky Ekko",
+   "key": "mikky-ekko",
+   "performers": [
+    "mikky-ekko"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:morgan-saint",
+   "name": "Morgan Saint",
+   "key": "morgan-saint",
+   "performers": [
+    "morgan-saint"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:van-william",
+   "name": "Van William",
+   "key": "van-william",
+   "performers": [
+    "van-william"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:the-wrecks",
+   "name": "The Wrecks",
+   "key": "the-wrecks",
+   "performers": [
+    "the-wrecks"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:the-aces",
+   "name": "The Aces",
+   "key": "the-aces",
+   "performers": [
+    "the-aces"
+   ]
+  },
+  {
+   "id": "lollapalooza-2018:justin-roberts-and-the-not-ready-for-naptime-players",
+   "name": "Justin Roberts & the Not Ready for Naptime Players",
+   "key": "justin-roberts-and-the-not-ready-for-naptime-players",
+   "performers": [
+    "justin-roberts-and-the-not-ready-for-naptime-players"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "lollapalooza-2018:d1:grant-park:untimed:arctic-monkeys",
+   "artistId": "lollapalooza-2018:arctic-monkeys",
+   "day": 1,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:grant-park:untimed:chvrches",
+   "artistId": "lollapalooza-2018:chvrches",
+   "day": 1,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:grant-park:untimed:franz-ferdinand",
+   "artistId": "lollapalooza-2018:franz-ferdinand",
+   "day": 1,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:grant-park:untimed:stars",
+   "artistId": "lollapalooza-2018:stars",
+   "day": 1,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:grant-park:untimed:slaves-uk",
+   "artistId": "lollapalooza-2018:slaves-uk",
+   "day": 1,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:bud-light:untimed:travis-scott",
+   "artistId": "lollapalooza-2018:travis-scott",
+   "day": 1,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:bud-light:untimed:khalid",
+   "artistId": "lollapalooza-2018:khalid",
+   "day": 1,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:bud-light:untimed:rebelution",
+   "artistId": "lollapalooza-2018:rebelution",
+   "day": 1,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:bud-light:untimed:terror-jr",
+   "artistId": "lollapalooza-2018:terror-jr",
+   "day": 1,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:bud-light:untimed:cuco",
+   "artistId": "lollapalooza-2018:cuco",
+   "day": 1,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:perry-s:untimed:galantis",
+   "artistId": "lollapalooza-2018:galantis",
+   "day": 1,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:perry-s:untimed:rezz",
+   "artistId": "lollapalooza-2018:rezz",
+   "day": 1,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:perry-s:untimed:kayzo",
+   "artistId": "lollapalooza-2018:kayzo",
+   "day": 1,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:perry-s:untimed:shiba-san",
+   "artistId": "lollapalooza-2018:shiba-san",
+   "day": 1,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:perry-s:untimed:london-on-da-track",
+   "artistId": "lollapalooza-2018:london-on-da-track",
+   "day": 1,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:perry-s:untimed:4b",
+   "artistId": "lollapalooza-2018:4b",
+   "day": 1,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:perry-s:untimed:space-jesus",
+   "artistId": "lollapalooza-2018:space-jesus",
+   "day": 1,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:perry-s:untimed:lzrd",
+   "artistId": "lollapalooza-2018:lzrd",
+   "day": 1,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:lake-shore:untimed:camila-cabello",
+   "artistId": "lollapalooza-2018:camila-cabello",
+   "day": 1,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:lake-shore:untimed:lany",
+   "artistId": "lollapalooza-2018:lany",
+   "day": 1,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:lake-shore:untimed:the-wombats",
+   "artistId": "lollapalooza-2018:the-wombats",
+   "day": 1,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:lake-shore:untimed:tyler-childers",
+   "artistId": "lollapalooza-2018:tyler-childers",
+   "day": 1,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:lake-shore:untimed:jesse-baez",
+   "artistId": "lollapalooza-2018:jesse-baez",
+   "day": 1,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:american-eagle:untimed:tycho",
+   "artistId": "lollapalooza-2018:tycho",
+   "day": 1,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:american-eagle:untimed:jaden-smith",
+   "artistId": "lollapalooza-2018:jaden-smith",
+   "day": 1,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:american-eagle:untimed:a-boogie-wit-da-hoodie",
+   "artistId": "lollapalooza-2018:a-boogie-wit-da-hoodie",
+   "day": 1,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:american-eagle:untimed:petit-biscuit",
+   "artistId": "lollapalooza-2018:petit-biscuit",
+   "day": 1,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:american-eagle:untimed:g-herbo",
+   "artistId": "lollapalooza-2018:g-herbo",
+   "day": 1,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:american-eagle:untimed:curtis-harding",
+   "artistId": "lollapalooza-2018:curtis-harding",
+   "day": 1,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:american-eagle:untimed:allie-x",
+   "artistId": "lollapalooza-2018:allie-x",
+   "day": 1,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:american-eagle:untimed:valee",
+   "artistId": "lollapalooza-2018:valee",
+   "day": 1,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:american-eagle:untimed:dj-taye",
+   "artistId": "lollapalooza-2018:dj-taye",
+   "day": 1,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:billie-eilish",
+   "artistId": "lollapalooza-2018:billie-eilish",
+   "day": 1,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:all-time-low",
+   "artistId": "lollapalooza-2018:all-time-low",
+   "day": 1,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:basement",
+   "artistId": "lollapalooza-2018:basement",
+   "day": 1,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:nick-mulvey",
+   "artistId": "lollapalooza-2018:nick-mulvey",
+   "day": 1,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:virgil-abloh",
+   "artistId": "lollapalooza-2018:virgil-abloh",
+   "day": 1,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:bmi:untimed:madison-beer",
+   "artistId": "lollapalooza-2018:madison-beer",
+   "day": 1,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:bmi:untimed:supa-bwe",
+   "artistId": "lollapalooza-2018:supa-bwe",
+   "day": 1,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:bmi:untimed:gashi",
+   "artistId": "lollapalooza-2018:gashi",
+   "day": 1,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:bmi:untimed:wes-period",
+   "artistId": "lollapalooza-2018:wes-period",
+   "day": 1,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:bmi:untimed:fletcher",
+   "artistId": "lollapalooza-2018:fletcher",
+   "day": 1,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:bmi:untimed:larkin-poe",
+   "artistId": "lollapalooza-2018:larkin-poe",
+   "day": 1,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:kidzapalooza-presented-by-lifeway:untimed:mister-g",
+   "artistId": "lollapalooza-2018:mister-g",
+   "day": 1,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:kidzapalooza-presented-by-lifeway:untimed:big-don",
+   "artistId": "lollapalooza-2018:big-don",
+   "day": 1,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:kidzapalooza-presented-by-lifeway:untimed:lucy-kalantari-and-the-jazz-cats",
+   "artistId": "lollapalooza-2018:lucy-kalantari-and-the-jazz-cats",
+   "day": 1,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d1:kidzapalooza-presented-by-lifeway:untimed:school-of-rock-allstars",
+   "artistId": "lollapalooza-2018:school-of-rock-allstars",
+   "day": 1,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:grant-park:untimed:bruno-mars",
+   "artistId": "lollapalooza-2018:bruno-mars",
+   "day": 2,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:grant-park:untimed:tyler-the-creator",
+   "artistId": "lollapalooza-2018:tyler-the-creator",
+   "day": 2,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:grant-park:untimed:walk-the-moon",
+   "artistId": "lollapalooza-2018:walk-the-moon",
+   "day": 2,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:grant-park:untimed:dermot-kennedy",
+   "artistId": "lollapalooza-2018:dermot-kennedy",
+   "day": 2,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:grant-park:untimed:alex-lahey",
+   "artistId": "lollapalooza-2018:alex-lahey",
+   "day": 2,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:bud-light:untimed:the-national",
+   "artistId": "lollapalooza-2018:the-national",
+   "day": 2,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:bud-light:untimed:post-malone",
+   "artistId": "lollapalooza-2018:post-malone",
+   "day": 2,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:bud-light:untimed:james-bay",
+   "artistId": "lollapalooza-2018:james-bay",
+   "day": 2,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:bud-light:untimed:parquet-courts",
+   "artistId": "lollapalooza-2018:parquet-courts",
+   "day": 2,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:bud-light:untimed:welshly-arms",
+   "artistId": "lollapalooza-2018:welshly-arms",
+   "day": 2,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:perry-s:untimed:dillon-francis",
+   "artistId": "lollapalooza-2018:dillon-francis",
+   "day": 2,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:perry-s:untimed:malaa",
+   "artistId": "lollapalooza-2018:malaa",
+   "day": 2,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:perry-s:untimed:alan-walker",
+   "artistId": "lollapalooza-2018:alan-walker",
+   "day": 2,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:perry-s:untimed:rusko",
+   "artistId": "lollapalooza-2018:rusko",
+   "day": 2,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:perry-s:untimed:valentino-khan",
+   "artistId": "lollapalooza-2018:valentino-khan",
+   "day": 2,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:perry-s:untimed:taylor-bennett",
+   "artistId": "lollapalooza-2018:taylor-bennett",
+   "day": 2,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:perry-s:untimed:goldfish",
+   "artistId": "lollapalooza-2018:goldfish",
+   "day": 2,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:perry-s:untimed:kuuro",
+   "artistId": "lollapalooza-2018:kuuro",
+   "day": 2,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:perry-s:untimed:noizu",
+   "artistId": "lollapalooza-2018:noizu",
+   "day": 2,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:lake-shore:untimed:b-rns",
+   "artistId": "lollapalooza-2018:b-rns",
+   "day": 2,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:lake-shore:untimed:alina-baraz",
+   "artistId": "lollapalooza-2018:alina-baraz",
+   "day": 2,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:lake-shore:untimed:bebe-rexha",
+   "artistId": "lollapalooza-2018:bebe-rexha",
+   "day": 2,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:lake-shore:untimed:lewis-capaldi",
+   "artistId": "lollapalooza-2018:lewis-capaldi",
+   "day": 2,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:lake-shore:untimed:dream-wife",
+   "artistId": "lollapalooza-2018:dream-wife",
+   "day": 2,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:american-eagle:untimed:brockhampton",
+   "artistId": "lollapalooza-2018:brockhampton",
+   "day": 2,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:american-eagle:untimed:greta-van-fleet",
+   "artistId": "lollapalooza-2018:greta-van-fleet",
+   "day": 2,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:american-eagle:untimed:jungle",
+   "artistId": "lollapalooza-2018:jungle",
+   "day": 2,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:american-eagle:untimed:big-wild",
+   "artistId": "lollapalooza-2018:big-wild",
+   "day": 2,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:american-eagle:untimed:lauv",
+   "artistId": "lollapalooza-2018:lauv",
+   "day": 2,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:american-eagle:untimed:two-feet",
+   "artistId": "lollapalooza-2018:two-feet",
+   "day": 2,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:american-eagle:untimed:post-animal",
+   "artistId": "lollapalooza-2018:post-animal",
+   "day": 2,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:american-eagle:untimed:clairo",
+   "artistId": "lollapalooza-2018:clairo",
+   "day": 2,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:american-eagle:untimed:cleopatrick",
+   "artistId": "lollapalooza-2018:cleopatrick",
+   "day": 2,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:the-neighbourhood",
+   "artistId": "lollapalooza-2018:the-neighbourhood",
+   "day": 2,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:lizzo",
+   "artistId": "lollapalooza-2018:lizzo",
+   "day": 2,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:gang-of-youths",
+   "artistId": "lollapalooza-2018:gang-of-youths",
+   "day": 2,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:matt-maeson",
+   "artistId": "lollapalooza-2018:matt-maeson",
+   "day": 2,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:oshi",
+   "artistId": "lollapalooza-2018:oshi",
+   "day": 2,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:bmi:untimed:buddy",
+   "artistId": "lollapalooza-2018:buddy",
+   "day": 2,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:bmi:untimed:r-lum-r",
+   "artistId": "lollapalooza-2018:r-lum-r",
+   "day": 2,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:bmi:untimed:chase-atlantic",
+   "artistId": "lollapalooza-2018:chase-atlantic",
+   "day": 2,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:bmi:untimed:nothing-nowhere",
+   "artistId": "lollapalooza-2018:nothing-nowhere",
+   "day": 2,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:bmi:untimed:cky",
+   "artistId": "lollapalooza-2018:cky",
+   "day": 2,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:bmi:untimed:mainland",
+   "artistId": "lollapalooza-2018:mainland",
+   "day": 2,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:kidzapalooza-presented-by-lifeway:untimed:mister-g",
+   "artistId": "lollapalooza-2018:mister-g",
+   "day": 2,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:kidzapalooza-presented-by-lifeway:untimed:big-don",
+   "artistId": "lollapalooza-2018:big-don",
+   "day": 2,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:kidzapalooza-presented-by-lifeway:untimed:aaron-nigel-smith",
+   "artistId": "lollapalooza-2018:aaron-nigel-smith",
+   "day": 2,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d2:kidzapalooza-presented-by-lifeway:untimed:lucy-kalantari-and-the-jazz-cats",
+   "artistId": "lollapalooza-2018:lucy-kalantari-and-the-jazz-cats",
+   "day": 2,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:grant-park:untimed:the-weeknd",
+   "artistId": "lollapalooza-2018:the-weeknd",
+   "day": 3,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:grant-park:untimed:logic",
+   "artistId": "lollapalooza-2018:logic",
+   "day": 3,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:grant-park:untimed:catfish-and-the-bottlemen",
+   "artistId": "lollapalooza-2018:catfish-and-the-bottlemen",
+   "day": 3,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:grant-park:untimed:bomba-estereo",
+   "artistId": "lollapalooza-2018:bomba-estereo",
+   "day": 3,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:grant-park:untimed:charlotte-cardin",
+   "artistId": "lollapalooza-2018:charlotte-cardin",
+   "day": 3,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:bud-light:untimed:vampire-weekend",
+   "artistId": "lollapalooza-2018:vampire-weekend",
+   "day": 3,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:bud-light:untimed:st-vincent",
+   "artistId": "lollapalooza-2018:st-vincent",
+   "day": 3,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:bud-light:untimed:ll-cool-j-feat-dj-z-trip",
+   "artistId": "lollapalooza-2018:ll-cool-j-feat-dj-z-trip",
+   "day": 3,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:bud-light:untimed:a-r-i-z-o-n-a",
+   "artistId": "lollapalooza-2018:a-r-i-z-o-n-a",
+   "day": 3,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:bud-light:untimed:yungblud",
+   "artistId": "lollapalooza-2018:yungblud",
+   "day": 3,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:perry-s:untimed:zedd",
+   "artistId": "lollapalooza-2018:zedd",
+   "day": 3,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:perry-s:untimed:illenium",
+   "artistId": "lollapalooza-2018:illenium",
+   "day": 3,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:perry-s:untimed:zomboy",
+   "artistId": "lollapalooza-2018:zomboy",
+   "day": 3,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:perry-s:untimed:hippie-sabotage",
+   "artistId": "lollapalooza-2018:hippie-sabotage",
+   "day": 3,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:perry-s:untimed:ghastly",
+   "artistId": "lollapalooza-2018:ghastly",
+   "day": 3,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:perry-s:untimed:k-d",
+   "artistId": "lollapalooza-2018:k-d",
+   "day": 3,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:perry-s:untimed:loudpvck",
+   "artistId": "lollapalooza-2018:loudpvck",
+   "day": 3,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:perry-s:untimed:brohug",
+   "artistId": "lollapalooza-2018:brohug",
+   "day": 3,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:perry-s:untimed:blackgummy",
+   "artistId": "lollapalooza-2018:blackgummy",
+   "day": 3,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:lake-shore:untimed:dua-lipa",
+   "artistId": "lollapalooza-2018:dua-lipa",
+   "day": 3,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:lake-shore:untimed:daya",
+   "artistId": "lollapalooza-2018:daya",
+   "day": 3,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:lake-shore:untimed:carly-rae-jepsen",
+   "artistId": "lollapalooza-2018:carly-rae-jepsen",
+   "day": 3,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:lake-shore:untimed:sir-sly",
+   "artistId": "lollapalooza-2018:sir-sly",
+   "day": 3,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:lake-shore:untimed:lovelytheband",
+   "artistId": "lollapalooza-2018:lovelytheband",
+   "day": 3,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:american-eagle:untimed:perry-farrell-s-kind-heaven",
+   "artistId": "lollapalooza-2018:perry-farrell-s-kind-heaven",
+   "day": 3,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:american-eagle:untimed:tash-sultana",
+   "artistId": "lollapalooza-2018:tash-sultana",
+   "day": 3,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:american-eagle:untimed:daniel-caesar",
+   "artistId": "lollapalooza-2018:daniel-caesar",
+   "day": 3,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:american-eagle:untimed:goldlink",
+   "artistId": "lollapalooza-2018:goldlink",
+   "day": 3,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:american-eagle:untimed:autograf",
+   "artistId": "lollapalooza-2018:autograf",
+   "day": 3,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:american-eagle:untimed:pale-waves",
+   "artistId": "lollapalooza-2018:pale-waves",
+   "day": 3,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:american-eagle:untimed:amy-shark",
+   "artistId": "lollapalooza-2018:amy-shark",
+   "day": 3,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:american-eagle:untimed:femdot",
+   "artistId": "lollapalooza-2018:femdot",
+   "day": 3,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:american-eagle:untimed:emilia-ali",
+   "artistId": "lollapalooza-2018:emilia-ali",
+   "day": 3,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:luke-combs",
+   "artistId": "lollapalooza-2018:luke-combs",
+   "day": 3,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:lil-pump",
+   "artistId": "lollapalooza-2018:lil-pump",
+   "day": 3,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:tank-and-the-bangas",
+   "artistId": "lollapalooza-2018:tank-and-the-bangas",
+   "day": 3,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:wallows",
+   "artistId": "lollapalooza-2018:wallows",
+   "day": 3,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:droeloe",
+   "artistId": "lollapalooza-2018:droeloe",
+   "day": 3,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:bmi:untimed:melvv",
+   "artistId": "lollapalooza-2018:melvv",
+   "day": 3,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:bmi:untimed:vera-blue",
+   "artistId": "lollapalooza-2018:vera-blue",
+   "day": 3,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:bmi:untimed:davie",
+   "artistId": "lollapalooza-2018:davie",
+   "day": 3,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:bmi:untimed:morgxn",
+   "artistId": "lollapalooza-2018:morgxn",
+   "day": 3,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:bmi:untimed:bones-uk",
+   "artistId": "lollapalooza-2018:bones-uk",
+   "day": 3,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:bmi:untimed:grace-weber",
+   "artistId": "lollapalooza-2018:grace-weber",
+   "day": 3,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:kidzapalooza-presented-by-lifeway:untimed:kb-whirly",
+   "artistId": "lollapalooza-2018:kb-whirly",
+   "day": 3,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:kidzapalooza-presented-by-lifeway:untimed:q-brothers",
+   "artistId": "lollapalooza-2018:q-brothers",
+   "day": 3,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d3:kidzapalooza-presented-by-lifeway:untimed:school-of-rock-allstars",
+   "artistId": "lollapalooza-2018:school-of-rock-allstars",
+   "day": 3,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:grant-park:untimed:jack-white",
+   "artistId": "lollapalooza-2018:jack-white",
+   "day": 4,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:grant-park:untimed:portugal-the-man",
+   "artistId": "lollapalooza-2018:portugal-the-man",
+   "day": 4,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:grant-park:untimed:lykke-li",
+   "artistId": "lollapalooza-2018:lykke-li",
+   "day": 4,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:grant-park:untimed:anderson-east",
+   "artistId": "lollapalooza-2018:anderson-east",
+   "day": 4,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:grant-park:untimed:the-regrettes",
+   "artistId": "lollapalooza-2018:the-regrettes",
+   "day": 4,
+   "stageId": "lollapalooza-2018:grant-park",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:bud-light:untimed:odesza",
+   "artistId": "lollapalooza-2018:odesza",
+   "day": 4,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:bud-light:untimed:lil-uzi-vert",
+   "artistId": "lollapalooza-2018:lil-uzi-vert",
+   "day": 4,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:bud-light:untimed:gucci-mane",
+   "artistId": "lollapalooza-2018:gucci-mane",
+   "day": 4,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:bud-light:untimed:the-vaccines",
+   "artistId": "lollapalooza-2018:the-vaccines",
+   "day": 4,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:bud-light:untimed:the-coronas",
+   "artistId": "lollapalooza-2018:the-coronas",
+   "day": 4,
+   "stageId": "lollapalooza-2018:bud-light",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:perry-s:untimed:excision",
+   "artistId": "lollapalooza-2018:excision",
+   "day": 4,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:perry-s:untimed:bazzi",
+   "artistId": "lollapalooza-2018:bazzi",
+   "day": 4,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:perry-s:untimed:what-so-not",
+   "artistId": "lollapalooza-2018:what-so-not",
+   "day": 4,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:perry-s:untimed:troyboi",
+   "artistId": "lollapalooza-2018:troyboi",
+   "day": 4,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:perry-s:untimed:chris-lake",
+   "artistId": "lollapalooza-2018:chris-lake",
+   "day": 4,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:perry-s:untimed:herobust",
+   "artistId": "lollapalooza-2018:herobust",
+   "day": 4,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:perry-s:untimed:ekali",
+   "artistId": "lollapalooza-2018:ekali",
+   "day": 4,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:perry-s:untimed:the-him",
+   "artistId": "lollapalooza-2018:the-him",
+   "day": 4,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:perry-s:untimed:tim-gunter",
+   "artistId": "lollapalooza-2018:tim-gunter",
+   "day": 4,
+   "stageId": "lollapalooza-2018:perry-s",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:lake-shore:untimed:chromeo",
+   "artistId": "lollapalooza-2018:chromeo",
+   "day": 4,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:lake-shore:untimed:manchester-orchestra",
+   "artistId": "lollapalooza-2018:manchester-orchestra",
+   "day": 4,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:lake-shore:untimed:kali-uchis",
+   "artistId": "lollapalooza-2018:kali-uchis",
+   "day": 4,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:lake-shore:untimed:durand-jones-and-the-indications",
+   "artistId": "lollapalooza-2018:durand-jones-and-the-indications",
+   "day": 4,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:lake-shore:untimed:freya-ridings",
+   "artistId": "lollapalooza-2018:freya-ridings",
+   "day": 4,
+   "stageId": "lollapalooza-2018:lake-shore",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:american-eagle:untimed:playboi-carti",
+   "artistId": "lollapalooza-2018:playboi-carti",
+   "day": 4,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:american-eagle:untimed:quinn-xcii",
+   "artistId": "lollapalooza-2018:quinn-xcii",
+   "day": 4,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:american-eagle:untimed:rex-orange-county",
+   "artistId": "lollapalooza-2018:rex-orange-county",
+   "day": 4,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:american-eagle:untimed:cigarettes-after-sex",
+   "artistId": "lollapalooza-2018:cigarettes-after-sex",
+   "day": 4,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:american-eagle:untimed:sabrina-claudio",
+   "artistId": "lollapalooza-2018:sabrina-claudio",
+   "day": 4,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:american-eagle:untimed:knox-fortune",
+   "artistId": "lollapalooza-2018:knox-fortune",
+   "day": 4,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:american-eagle:untimed:jessie-reyez",
+   "artistId": "lollapalooza-2018:jessie-reyez",
+   "day": 4,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:american-eagle:untimed:sasha-sloan",
+   "artistId": "lollapalooza-2018:sasha-sloan",
+   "day": 4,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:american-eagle:untimed:dorothy",
+   "artistId": "lollapalooza-2018:dorothy",
+   "day": 4,
+   "stageId": "lollapalooza-2018:american-eagle",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:rainbow-kitten-surprise",
+   "artistId": "lollapalooza-2018:rainbow-kitten-surprise",
+   "day": 4,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:nav",
+   "artistId": "lollapalooza-2018:nav",
+   "day": 4,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:frenship",
+   "artistId": "lollapalooza-2018:frenship",
+   "day": 4,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:superorganism",
+   "artistId": "lollapalooza-2018:superorganism",
+   "day": 4,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:medasin",
+   "artistId": "lollapalooza-2018:medasin",
+   "day": 4,
+   "stageId": "lollapalooza-2018:tito-s-handmade-vodka",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:bmi:untimed:john-splithoff",
+   "artistId": "lollapalooza-2018:john-splithoff",
+   "day": 4,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:bmi:untimed:mikky-ekko",
+   "artistId": "lollapalooza-2018:mikky-ekko",
+   "day": 4,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:bmi:untimed:morgan-saint",
+   "artistId": "lollapalooza-2018:morgan-saint",
+   "day": 4,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:bmi:untimed:van-william",
+   "artistId": "lollapalooza-2018:van-william",
+   "day": 4,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:bmi:untimed:the-wrecks",
+   "artistId": "lollapalooza-2018:the-wrecks",
+   "day": 4,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:bmi:untimed:the-aces",
+   "artistId": "lollapalooza-2018:the-aces",
+   "day": 4,
+   "stageId": "lollapalooza-2018:bmi",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:kidzapalooza-presented-by-lifeway:untimed:justin-roberts-and-the-not-ready-for-naptime-players",
+   "artistId": "lollapalooza-2018:justin-roberts-and-the-not-ready-for-naptime-players",
+   "day": 4,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:kidzapalooza-presented-by-lifeway:untimed:kb-whirly",
+   "artistId": "lollapalooza-2018:kb-whirly",
+   "day": 4,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  },
+  {
+   "id": "lollapalooza-2018:d4:kidzapalooza-presented-by-lifeway:untimed:q-brothers",
+   "artistId": "lollapalooza-2018:q-brothers",
+   "day": 4,
+   "stageId": "lollapalooza-2018:kidzapalooza-presented-by-lifeway",
+   "start": null,
+   "end": null
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.lollapalooza.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180614021223/https://www.lollapalooza.com/lineup/",
+    "captureTimestamp": "20180614021223",
+    "printed": "Thu 8/02",
+    "sha256": "b3f61af7efbea5ad310e5f49627e49abd2657ecf537c6f0b9628af93062a13b4",
+    "rows": 47,
+    "format": "lolla-cards"
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180614021223/https://www.lollapalooza.com/lineup/",
+    "captureTimestamp": "20180614021223",
+    "printed": "Fri 8/03",
+    "sha256": "b3f61af7efbea5ad310e5f49627e49abd2657ecf537c6f0b9628af93062a13b4",
+    "rows": 48,
+    "format": "lolla-cards"
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180614021223/https://www.lollapalooza.com/lineup/",
+    "captureTimestamp": "20180614021223",
+    "printed": "Sat 8/04",
+    "sha256": "b3f61af7efbea5ad310e5f49627e49abd2657ecf537c6f0b9628af93062a13b4",
+    "rows": 47,
+    "format": "lolla-cards"
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180614021223/https://www.lollapalooza.com/lineup/",
+    "captureTimestamp": "20180614021223",
+    "printed": "Sun 8/05",
+    "sha256": "b3f61af7efbea5ad310e5f49627e49abd2657ecf537c6f0b9628af93062a13b4",
+    "rows": 47,
+    "format": "lolla-cards"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-18",
+   "days": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "text": "The only archived 2018 lineup with stages was captured June 14, before the festival, so set times are not confirmed. The lineup and stages are as that page printed them. School of Rock AllStars' Sunday set was not shown on the page, so it is not listed.",
+   "source": "https://web.archive.org/web/20180614021223/https://www.lollapalooza.com/lineup/"
+  }
+ ]
+}
