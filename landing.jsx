@@ -440,8 +440,11 @@ function LandingSpotlight({ ordered, now, plus, onEnter }) {
                 className="spot-card"
                 onClick={() => onEnter(c.id, f)}
                 aria-label={`${c.name}. ${when.label}. ${c.location || ""}`}>
-                <img src={`./${rec.card}`} alt="" decoding="async" loading={i < 2 ? "eager" : "lazy"} />
-                <span className="spot-scrim" aria-hidden="true" />
+                {/* The photo and its scrim are clipped in their own box, so the card itself never hides text and grows with it at large type. */}
+                <span className="spot-media" aria-hidden="true">
+                  <img src={`./${rec.card}`} alt="" decoding="async" loading={i < 2 ? "eager" : "lazy"} />
+                  <span className="spot-scrim" />
+                </span>
                 <span className={`spot-when${when.live ? " live" : ""}`}>{when.live && <i aria-hidden="true" />}<span>{when.label}</span></span>
                 <span className="spot-text">
                   <span className={`spot-name${spotTitle.length > 16 ? " long" : ""}`}>{spotTitle}</span>
@@ -449,7 +452,7 @@ function LandingSpotlight({ ordered, now, plus, onEnter }) {
                 </span>
               </button>
               {credit && typeof PhotoCredit === "function" && (
-                <PhotoCredit credit={credit} style={{ marginTop: 6, padding: "0 2px", overflowWrap: "anywhere" }} />
+                <PhotoCredit className="spot-credit" credit={credit} style={{ padding: "0 2px", lineHeight: 1.35, overflowWrap: "anywhere" }} />
               )}
             </div>
           );
