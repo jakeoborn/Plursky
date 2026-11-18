@@ -1,5 +1,6 @@
 import Capacitor
 import ShazamKit
+import StoreKit
 import UIKit
 
 @objc(ShazamPlugin)
@@ -10,6 +11,7 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
         CAPPluginMethod(name: "identify", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "cancel", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "buildChannel", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "storefront", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "identifyFile", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "identifyBase64", returnType: CAPPluginReturnPromise)
     ]
@@ -51,6 +53,19 @@ public class ShazamPlugin: CAPPlugin, CAPBridgedPlugin, SHSessionDelegate {
         let sandbox = Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
         call.resolve(["channel": sandbox ? "testflight" : "appstore"])
         #endif
+    }
+
+    // The App Store storefront's country (ISO 3166-1 alpha-3, e.g. "USA"),
+    // for the Monthly win-back gate (SPEC-212 W4), which offers only in the
+    // US. Null when StoreKit has none; the JS treats null as "do not offer".
+    @objc func storefront(_ call: CAPPluginCall) {
+        Task {
+            if let code = await Storefront.current?.countryCode {
+                call.resolve(["countryCode": code])
+            } else {
+                call.resolve(["countryCode": NSNull()])
+            }
+        }
     }
 
     // Identify a song from a recorded video/audio FILE rather than the live

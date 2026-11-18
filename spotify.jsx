@@ -10113,6 +10113,113 @@ if (window.Capacitor?.isNativePlatform?.()) {
   } catch {}
 }
 
+// ── Monthly win-back (SPEC-212 W4; channel decision 2026-10-26) ──────────
+// A lapsed Monthly subscriber, within 90 days of the lapse, in a US
+// storefront, is offered Apple's win-back offer on Monthly. The discount, its
+// length and every price on screen come from the App Store through RevenueCat
+// (the offer's own priceString and cycles, the package's priceString), never
+// from a literal: the numbers Jake sets in App Store Connect are the numbers
+// shown. Apple also enforces eligibility and territory on its side; this gate
+// only decides whether to ASK, and fails closed at every layer:
+//   - not native, RevenueCat not up, any error or timeout       -> no card
+//   - the remote switch (current offering metadata
+//     `winback_enabled: true`) absent or anything else           -> no card
+//   - storefront unknown (a build older than the native method)  -> no card
+//   - Apple returns no eligible offer, or one with no price      -> no card
+// Annual is never asked about (its offer is held, SPEC-212 W4.1).
+const WINBACK_MAX_LAPSE_DAYS = 90;
+const WINBACK_STOREFRONTS = ["USA"];   // ISO 3166-1 alpha-3, as StoreKit's Storefront.countryCode reports it
+const WINBACK_PRODUCT_ID = RC_PRODUCT_IDS.monthly;
+
+// Pure. Who the app may ask Apple about. `customerInfo` is RevenueCat's
+// CustomerInfo; `storefront` the alpha-3 country code or null. The reason is
+// for tests and the local audit log only, never shown.
+function winBackEligibility(customerInfo, storefront, nowMs) {
+  const DAY = 86400000;
+  if (!customerInfo || typeof customerInfo !== "object") return { eligible: false, reason: "no-customer-info" };
+  if (customerInfo.entitlements?.active?.[RC_ENTITLEMENT]) return { eligible: false, reason: "active" };
+  const raw = customerInfo.allExpirationDates?.[WINBACK_PRODUCT_ID];
+  const exp = typeof raw === "string" ? Date.parse(raw) : NaN;
+  if (!Number.isFinite(exp)) return { eligible: false, reason: "never-monthly" };
+  if (exp > nowMs) return { eligible: false, reason: "not-lapsed" };
+  const lapsedDays = (nowMs - exp) / DAY;
+  if (lapsedDays > WINBACK_MAX_LAPSE_DAYS) return { eligible: false, reason: "lapsed-too-long", lapsedDays };
+  if (typeof storefront !== "string" || !storefront) return { eligible: false, reason: "unknown-storefront", lapsedDays };
+  if (!WINBACK_STOREFRONTS.includes(storefront.toUpperCase())) return { eligible: false, reason: "storefront", lapsedDays };
+  return { eligible: true, reason: "lapsed", lapsedDays };
+}
+
+// Pure. The card's words, from the store's own strings only. Null when the
+// store did not give everything the sentence needs.
+function winBackCopy(offer) {
+  if (!offer || typeof offer.offerPrice !== "string" || !offer.offerPrice
+    || typeof offer.regularPrice !== "string" || !offer.regularPrice
+    || !Number.isInteger(offer.cycles) || offer.cycles < 1) return null;
+  const n = offer.cycles, unit = offer.periodUnit === "MONTH" && offer.periodNumberOfUnits === 1 ? "month" : null;
+  if (!unit) return null;   // the decided offer is monthly; anything else is not this card's to word
+  return {
+    headline: "Welcome back to Plursky+",
+    line: `${offer.offerPrice}/${unit} for ${n} ${unit}${n === 1 ? "" : "s"}, then ${offer.regularPrice}/${unit}. Cancel anytime.`,
+    cta: `Resubscribe for ${offer.offerPrice}/${unit}`,
+  };
+}
+
+// The storefront's country code from the native build (StoreKit 2
+// Storefront.current), or null: web, a build older than the method, a
+// rejection or a timeout all read as unknown, which the gate treats as no.
+async function _winBackStorefront() {
+  try {
+    if (!window.Capacitor?.isNativePlatform?.() || typeof window.ShazamPlugin?.storefront !== "function") return null;
+    const r = await _withTimeout(window.ShazamPlugin.storefront(), 3000, "Storefront");
+    return (r && typeof r.countryCode === "string" && r.countryCode) || null;
+  } catch { return null; }
+}
+
+// The live offer, or null. Holds the package and Apple's offer object so the
+// purchase applies exactly what was shown.
+async function _winBackOffer(nowMs = Date.now()) {
+  if (!window.Capacitor?.isNativePlatform?.()) return null;
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return null;
+  try {
+    const Purchases = _rcPlugin();
+    const offerings = await _withTimeout(Purchases.getOfferings(), 10000, "Win-back offering lookup");
+    const current = offerings?.current;
+    if (current?.metadata?.winback_enabled !== true) return null;
+    const { customerInfo } = await _withTimeout(Purchases.getCustomerInfo(), 10000, "Win-back customer info");
+    const elig = winBackEligibility(customerInfo, await _winBackStorefront(), nowMs);
+    if (!elig.eligible) return null;
+    const pkg = (current.availablePackages || []).find(p => p.product?.identifier === WINBACK_PRODUCT_ID);
+    const regularPrice = pkg?.product?.priceString;
+    if (!pkg || typeof regularPrice !== "string" || !regularPrice) return null;
+    const res = await _withTimeout(Purchases.getEligibleWinBackOffersForPackage({ aPackage: pkg }), 10000, "Win-back eligibility");
+    const wb = (res?.eligibleWinBackOffers || [])[0];
+    if (!wb) return null;
+    const offer = { productId: WINBACK_PRODUCT_ID, offerId: wb.identifier || null, offerPrice: wb.priceString,
+      regularPrice, cycles: wb.cycles, periodUnit: wb.periodUnit, periodNumberOfUnits: wb.periodNumberOfUnits };
+    return winBackCopy(offer) ? { ...offer, pkg, winBackOffer: wb } : null;
+  } catch (e) {
+    console.warn("[plursky-iap] win-back offer unavailable:", _iapMsg(e));
+    return null;
+  }
+}
+
+// Buys Monthly with the shown offer. Same bounds and cancel shape as
+// _purchasePlus; Plus unlocks only through the `plus` entitlement.
+async function _purchaseWinBack(offer) {
+  if (!offer?.pkg || !offer?.winBackOffer) return { success: false, error: "Offer not available" };
+  try {
+    const { customerInfo } = await _withTimeout(
+      _rcPlugin().purchasePackageWithWinBackOffer({ aPackage: offer.pkg, winBackOffer: offer.winBackOffer }), 45000, "StoreKit purchase sheet");
+    _syncEntitlements(customerInfo);
+    return { success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT] };
+  } catch (e) {
+    if (e?.userCancelled === true || e?.code === "1" || e?.message?.includes("cancelled")) return { success: false, cancelled: true };
+    console.error("[plursky-iap] win-back purchase error:", _iapMsg(e));
+    return { success: false, error: _iapMsg(e) };
+  }
+}
+
 // Narrow event adapter. There is no production analytics SDK in Plursky, so
 // events go to a capped local audit log (and a DOM event a future sink can
 // subscribe to). Only allowlisted keys with primitive values survive: no
@@ -10352,8 +10459,26 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
     _rescueOffer().then(o => { if (!dead) setRescueOffer(o); });
     return () => { dead = true; };
   }, [rescue?.rescueEligibleAt]);
+  // Monthly win-back (SPEC-212 W4): null until the store answers, and null
+  // for good on any failure. While it shows, the Season Pass rescue does not:
+  // one discount at a time.
+  const [winBack, setWinBack] = React.useState(null);
+  const winBackSeen = React.useRef(false);
+  React.useEffect(() => {
+    if (!nativeBuy) return;
+    let dead = false;
+    _winBackOffer().then(o => { if (!dead) setWinBack(o); });
+    return () => { dead = true; };
+  }, []);
+  const winBackCopyNow = winBack ? winBackCopy(winBack) : null;
+  const showWinBack = nativeBuy && !!winBackCopyNow && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
+  React.useEffect(() => {
+    if (!showWinBack || winBackSeen.current) return;
+    winBackSeen.current = true;
+    _plusEvent("plus_winback_view", { product_id: winBack.productId, displayed_price: winBack.offerPrice });
+  }, [showWinBack]);
   const rescueTrigger = rescue?.rescueTrigger || null;
-  const showRescue = nativeBuy && !!rescue?.rescueEligibleAt && !rescue.rescuePurchased && !!rescueOffer && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
+  const showRescue = !showWinBack && nativeBuy && !!rescue?.rescueEligibleAt && !rescue.rescuePurchased && !!rescueOffer && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
   React.useEffect(() => {
     if (!showRescue || rescueSeen.current) return;
     rescueSeen.current = true;
@@ -10399,6 +10524,25 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
     } catch (e) {
       if (outcome === "error") _plusEvent("plus_purchase_result", {
         result: /timed out/i.test(e?.message || "") ? "timeout" : "error", product_id: target, rescue_trigger: trig });
+      setBuyError(e?.message || "Purchase could not be completed.");
+    } finally {
+      setBusy(false); setPending(null);
+    }
+  };
+
+  const handleWinBack = async () => {
+    setBusy(true); setPending("winback"); setBuyError(null);
+    _plusEvent("plus_purchase_start", { product_id: winBack.productId, displayed_price: winBack.offerPrice, trigger: "winback" });
+    try {
+      const result = await _withTimeout(_purchaseWinBack(winBack), 50000, "Purchase");
+      const outcome = result.success ? "success" : result.cancelled ? "cancel" : /timed out/i.test(result.error || "") ? "timeout" : "error";
+      _plusEvent("plus_purchase_result", { result: outcome, product_id: winBack.productId, trigger: "winback" });
+      if (result.success) {
+        _plusEvent("plus_entitlement_active", { product_id: winBack.productId, trigger: "winback" });
+        window.location.reload(); return;
+      }
+      if (!result.cancelled) setBuyError(result.error || "Purchase could not be completed.");
+    } catch (e) {
       setBuyError(e?.message || "Purchase could not be completed.");
     } finally {
       setBusy(false); setPending(null);
@@ -10500,6 +10644,28 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
         </div>
       )}
       {!showPlans ? null : canBuy ? (<>
+        {showWinBack && (
+          <section data-winback aria-label="Win-back offer" style={{
+            marginTop: 16, padding: "14px 14px 12px", borderRadius: 14,
+            background: "var(--paper-2)", border: "1.5px solid var(--signal)",
+          }}>
+            <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--signal)" }}>
+              Monthly · returning member
+            </div>
+            <div data-winback-headline style={{ marginTop: 4, fontSize: 17, lineHeight: "22px", fontWeight: 700 }}>
+              {winBackCopyNow.headline}
+            </div>
+            <div data-winback-line style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+              {winBackCopyNow.line}
+            </div>
+            <FieldButton data-winback-buy onClick={handleWinBack} disabled={busy} style={{ marginTop: 12 }}>
+              {pending === "winback" ? "Processing…" : winBackCopyNow.cta}
+            </FieldButton>
+            <p style={{ margin: "8px 0 0", fontSize: 12, lineHeight: "17px", color: "var(--text-2)" }}>
+              Auto-renews monthly at {winBack.regularPrice} after the offer until you cancel in Settings.
+            </p>
+          </section>
+        )}
         {showRescue && (
           <section aria-label="Festival launch price" style={{
             marginTop: 16, padding: "14px 14px 12px", borderRadius: 14,
@@ -10535,7 +10701,9 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
                 setPlan(p.id);
                 _plusEvent("plus_plan_select", { product_id: p.id, displayed_price: price, rescue_eligible: !!rescue?.rescueEligibleAt });
               }} disabled={busy} style={{
-                display: "flex", alignItems: "center", gap: 12, minHeight: 64, padding: "12px 14px",
+                // Wraps so a long store price (or 200% text) drops to its own line instead of
+                // running over the plan name.
+                display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12, minHeight: 64, padding: "12px 14px",
                 borderRadius: 14, background: "var(--paper-2)", color: "var(--ink)", textAlign: "left",
                 border: on ? "1.5px solid var(--signal)" : "1px solid var(--line-2)",
                 cursor: busy ? "wait" : "pointer", fontFamily: "inherit",
@@ -10545,11 +10713,11 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
                   border: on ? "none" : "1.5px solid var(--line-2)", background: on ? "var(--signal)" : "transparent",
                   color: "var(--on-signal)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800,
                 }}>{on ? "✓" : ""}</span>
-                <span style={{ flex: 1, minWidth: 0 }}>
+                <span data-plan-name style={{ flex: "1 1 120px", minWidth: 0 }}>
                   <span style={{ display: "block", fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{p.name}</span>
                   <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{p.sub}</span>
                 </span>
-                <span style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
+                <span data-plan-price style={{ marginLeft: "auto", fontSize: 17, lineHeight: "22px", fontWeight: 600, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
                   {price ? `${price}${p.unit}` : <span style={{ fontSize: 13, fontWeight: 500, color: "var(--text-2)" }}>{isNative ? "Loading…" : "App Store price"}</span>}
                 </span>
               </button>
@@ -10557,7 +10725,7 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
           })}
         </div>
         <FieldButton onClick={() => handlePurchase(selected.id)} disabled={busy || waitingForPrice} style={{ marginTop: 16 }}>
-          {pending && pending !== RESCUE_PRODUCT_ID ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta}
+          {pending && pending !== RESCUE_PRODUCT_ID && pending !== "winback" ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta}
         </FieldButton>
         {PLANS.map(p => (
           <p key={p.id} style={{ margin: "10px 0 0", fontSize: 12, lineHeight: "17px", color: "var(--text-2)" }}>{p.legal(priceOf(p.id))}</p>
