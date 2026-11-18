@@ -442,7 +442,7 @@ function LandingSpotlight({ ordered, now, plus, onEnter }) {
                 aria-label={`${c.name}. ${when.label}. ${c.location || ""}`}>
                 <img src={`./${rec.card}`} alt="" decoding="async" loading={i < 2 ? "eager" : "lazy"} />
                 <span className="spot-scrim" aria-hidden="true" />
-                <span className={`spot-when${when.live ? " live" : ""}`}>{when.live && <i aria-hidden="true" />}{when.label}</span>
+                <span className={`spot-when${when.live ? " live" : ""}`}>{when.live && <i aria-hidden="true" />}<span>{when.label}</span></span>
                 <span className="spot-text">
                   <span className={`spot-name${spotTitle.length > 16 ? " long" : ""}`}>{spotTitle}</span>
                   <span className="spot-meta">{c.location}{c.dates ? " · " + c.dates : ""}</span>

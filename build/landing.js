@@ -455,7 +455,7 @@ function LandingSpotlight({
       className: `spot-when${when.live ? " live" : ""}`
     }, when.live && React.createElement("i", {
       "aria-hidden": "true"
-    }), when.label), React.createElement("span", {
+    }), React.createElement("span", null, when.label)), React.createElement("span", {
       className: "spot-text"
     }, React.createElement("span", {
       className: `spot-name${spotTitle.length > 16 ? " long" : ""}`
