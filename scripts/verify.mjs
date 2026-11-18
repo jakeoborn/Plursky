@@ -3950,6 +3950,22 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// MusicKit token renewal (SPEC-212 W5): sign-musickit-token.mjs --write on
+// throwaway keys and a temp copy of spotify-api.jsx. Keeps the live kid,
+// verifies its own signature, stays in Apple's 6-month cap, and refuses a
+// key file naming another KEY_ID, a non-P-256 key, or a file with no token line.
+{
+  console.log("▸ MusicKit renew gate — sign + write in one command, self-verified, throwaway keys only");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-musickit-renew.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`MusicKit renew failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // TestFlight uploads stay internal-only: the export plist sets
 // testFlightInternalTestingOnly, and an external beta group or public link
 // stops build-upload-testflight.mjs before anything uploads.
