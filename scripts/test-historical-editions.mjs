@@ -32,6 +32,7 @@ import { parseEfScheduler } from "./historical/ef-scheduler-schedule.mjs";
 import { parseGovBallWp, printedDate as govBallDate } from "./historical/govball-wp-schedule.mjs";
 import { parseInsomniacMusic, printedDate as insomniacDate } from "./historical/insomniac-music-schedule.mjs";
 import { parseTmlCms, printedDate as tmlCmsDate } from "./historical/tml-cms-schedule.mjs";
+import { parseHardWp, readRun as hardRun } from "./historical/hard-wp-schedule.mjs";
 import { parseTmlDrupal, titleDate as tmlTitleDate } from "./historical/tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, datesFromPost as shambhalaRun, readDatesPost } from "./historical/shambhala-webflow-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
@@ -126,6 +127,15 @@ if (base && edc) {
     mustFail("a Tomorrowland 2010 tab printed for another day", m => { tcCap(m).printed = "Sunday 25 july"; }, tml10);
     mustFail("a Tomorrowland 2010 tab whose weekday is not its date", m => { tcCap(m).printed = "Friday 24 july"; }, tml10);
     mustFail("a Tomorrowland 2010 page read off another site", m => { const c = tcCap(m); c.archivedUrl = c.archivedUrl.replace("www.tomorrowland.be", "www.tomorrowlandfans.com"); }, tml10);
+  }
+  // HARD Summer 2012: one page draws both days; each heading prints its
+  // weekday alone and the dates are the run the page prints, on HARD's site.
+  const hs12 = editions["hard-summer-2012"];
+  if (hs12) {
+    const hwCap = m => m.provenance.captures.find(c => c.format === "hard-wp" && c.day === 2);
+    mustFail("a HARD Summer day heading printed for the other day", m => { hwCap(m).printed = "FRIDAY"; }, hs12);
+    mustFail("a HARD Summer run that is not the edition's", m => { hwCap(m).dateFrom = "Friday, August 2nd & Saturday, August 3rd, 2013"; }, hs12);
+    mustFail("a HARD Summer page read off another site", m => { const c = hwCap(m); c.archivedUrl = c.archivedUrl.replace("www.hardfest.com", "www.hardsummerfans.com"); }, hs12);
   }
   const lolla = editions["lollapalooza-2025"], acl = editions["acl-2025"];
   if (lolla && acl) {
@@ -543,6 +553,48 @@ if (base && edc) {
     tcMust("a Tomorrowland page that is not the line-up", tcPage().replace("page-line-up", "page-news"));
     tcMust("a Tomorrowland stage printed twice", tcPage(undefined, tcBody + tcStage("Mainstage") + tcAct("Again", "13:00 > 14:00")));
     tcMust("a Tomorrowland range past 23:59", tcPage(undefined, tcBody.replace("21:30 > 23:00".replace(" > ", "&nbsp;&gt;&nbsp;"), "24:30&nbsp;&gt;&nbsp;25:00")));
+    // HARD Summer's 2012 home page: a grid per day (half-hour labels, latest
+    // first), a column per stage, each set a block whose height is its length
+    // and whose top margin is the gap to the block above; ranges print no am
+    // or pm, and the dates are the run the page's essential info prints.
+    const hwGrid = (labels = ["10:00pm", "9:30pm", "9:00pm", "8:30pm", "8:00pm"]) => labels.map(l => `<div class="grid-section">\n<span>${l}</span></div>`).join("")
+      + `<!-- <div class="grid-section"><span>10:30pm</span></div> -->`;
+    const hwBlock = (m, h, a, r) => `<div class="settime" style="margin-top: ${m}px; height: ${h}px;"><span class="artist-name">${a}</span><br><span class="artist-time">${r}</span></div>`;
+    const hwCol = (day, name, cls, blocks) => `<!-- ${day} ${name.toUpperCase()} STAGE -->\n<div class="stage ${cls}">\n<h2 class="stage-name">${name}</h2>${blocks.join("")}</div>`;
+    const hwFri = [hwCol("FRIDAY", "Main", "main", [hwBlock(0, 120, "Closer", "9:00 - 10:00"), hwBlock(0, 120, "Opener &amp; Co", "8:00 - 9:00")]),
+      hwCol("FRIDAY", "Tent", "tent", [hwBlock(20, 60, "Late", "9:30 - 10:00"), hwBlock(20, 80, "Mid", "8:40 - 9:20"), hwBlock(20, 50, "Wrong Height", "8:00 - 8:30")])];
+    const hwSat = [hwCol("SATURDAY", "Club", "club", [hwBlock(0, 120, "Club One", "9:00 - 10:00"), hwBlock(0, 60, "Club Three", "8:30 - 9:00"), hwBlock(20, 60, "Club Two", "8:00 - 8:30")])];
+    const hwRun = "Friday, August 3rd &amp; Saturday, August 4th, 2012";
+    const hwDay = (cls, h1, cols, grid = hwGrid()) => `<div class="${cls}-sets sets"><h1>${h1}</h1>${grid}${cols.join("")}</div>`;
+    const hwPage = ({ title = "HARD Summer - August 3 &amp; 4", run = hwRun, fri = hwDay("friday", "FRIDAY", hwFri), sat = hwDay("saturday", "SATURDAY", hwSat) } = {}) =>
+      `<title>${title}</title><p>Music is scheduled from 5:00pm both days, ${run}.</p>${fri}${sat}`;
+    const hwp = parseHardWp(hwPage(), { year: 2012 });
+    ok(JSON.stringify([hwp.run, hwp.days.map(d => [d.label, d.date, d.weekday, d.axis, d.pxPerMinute, d.stages, d.columnTops, d.sets.map(x => [x.stage, x.start, x.end, x.artist]), d.misprints.map(x => `${x.artist}: ${x.misprint}`)])])
+      === JSON.stringify(["Friday, August 3rd & Saturday, August 4th, 2012", [
+        ["FRIDAY", "2012-08-03", "friday", "20:00-22:30", 2, ["Main", "Tent"], { Main: "22:00", Tent: "22:10" },
+          [["Main", "20:00", "21:00", "Opener & Co"], ["Main", "21:00", "22:00", "Closer"], ["Tent", "20:40", "21:20", "Mid"], ["Tent", "21:30", "22:00", "Late"]], ["Wrong Height: drawn 25 minutes long"]],
+        ["SATURDAY", "2012-08-04", "saturday", "20:00-22:30", 2, ["Club"], { Club: "22:00" },
+          [["Club", "20:30", "21:00", "Club Three"], ["Club", "21:00", "22:00", "Club One"]], ["Club Two: drawn 10 minutes earlier than its column puts it"]]]]),
+      `a HARD Summer 2012 page must read each range as the one time inside its day's grid, keep a column drawn a little high, and never keep a block drawn at the wrong length or place: ${JSON.stringify(hwp)}`);
+    ok(JSON.stringify(hardRun("Friday, August 3rd & Saturday, August 4th, 2012", 2012)) === JSON.stringify({ FRIDAY: "2012-08-03", SATURDAY: "2012-08-04" })
+      && hardRun("Friday, August 3rd & Saturday, August 4th, 2012", 2013) === null && hardRun("Friday, August 4th & Saturday, August 5th, 2012", 2012) === null,
+      "a HARD Summer run must print two consecutive days of the edition's year, each on its own weekday");
+    const hwMust = (what, html, year = 2012) => { let bad = false; try { parseHardWp(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    hwMust("a HARD Summer 2012 page of another year", hwPage(), 2013);
+    hwMust("a HARD Summer run whose weekday is not its date", hwPage({ run: "Friday, August 4th &amp; Saturday, August 5th, 2012" }));
+    hwMust("a HARD Summer run of two days a week apart", hwPage({ run: "Friday, August 3rd &amp; Saturday, August 11th, 2012" }));
+    hwMust("a HARD Summer page that prints no run", hwPage({ run: "see you there" }));
+    hwMust("a page that is not HARD Summer's", hwPage({ title: "HARD Day of the Dead" }));
+    hwMust("a HARD Summer day block headed as another day", hwPage({ fri: hwDay("friday", "SATURDAY", hwFri) }));
+    hwMust("a HARD Summer day the run does not print", hwPage({ sat: hwDay("sunday", "SUNDAY", hwSat) }));
+    hwMust("a HARD Summer grid that skips half an hour", hwPage({ fri: hwDay("friday", "FRIDAY", hwFri, hwGrid(["10:00pm", "9:30pm", "8:30pm", "8:00pm"])) }));
+    hwMust("a HARD Summer range that is no time inside the grid", hwPage().replace("9:30 - 10:00", "11:30 - 12:00"));
+    hwMust("a HARD Summer range with one time", hwPage().replace("9:30 - 10:00", "9:30"));
+    hwMust("a HARD Summer block with two acts", hwPage().replace('<span class="artist-name">Late</span>', '<span class="artist-name">Late</span><span class="artist-name">Later</span>'));
+    hwMust("a Saturday stage inside Friday's block", hwPage({ fri: hwDay("friday", "FRIDAY", [hwFri[0], hwFri[1].replace("FRIDAY TENT", "SATURDAY TENT")]) }));
+    hwMust("a HARD Summer stage printed twice on a day", hwPage({ fri: hwDay("friday", "FRIDAY", [hwFri[0], hwFri[0]]) }));
+    hwMust("a HARD Summer column whose blocks agree on no top", hwPage().replace(hwBlock(0, 60, "Club Three", "8:30 - 9:00"), hwBlock(10, 60, "Club Three", "8:30 - 9:00")));
+    hwMust("a HARD Summer column drawn off its grid", hwPage({ sat: hwDay("saturday", "SATURDAY", [hwCol("SATURDAY", "Club", "club", [hwBlock(120, 120, "Club One", "9:00 - 10:00"), hwBlock(0, 60, "Club Three", "8:30 - 9:00")])]) }));
     // Governors Ball's 2011-2012 WordPress schedule: a grid per day, a column
     // per stage, every range with its own am or pm.
     const gbBlock = (pre, cls, name, range, head = "") => `<div class="${pre}-block ${cls}">${head}<h2>${name}</h2><h3>${range}</h3></div>`;
@@ -1027,6 +1079,14 @@ for (const [id, e] of Object.entries(editions)) {
           ok(insomniacDate(s.printed, e.year) === d.date && /^the page's (title|description)$/.test(s.yearFrom || "") && /^the page's (title|own og:url)$/.test(s.place || "")
             && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?electricdaisycarnival\.com\//.test(s.archivedUrl || ""),
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (year from ${s.yearFrom}, Las Vegas from ${s.place}), not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // HARD Summer's 2012 page heads each day with its weekday alone; the
+        // date is the run its essential info prints, on HARD's own site.
+        if (s.format === "hard-wp") {
+          ok(hardRun(s.dateFrom, e.year)?.[s.printed] === d.date && s.printed === wd && s.pxPerMinute > 0
+            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?(hardfest|hardsummer)\.com(:80)?\//.test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (run "${s.dateFrom}") at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         // Governors Ball's 2011-2012 schedule prints each day's heading
