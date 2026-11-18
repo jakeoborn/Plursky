@@ -1347,6 +1347,118 @@ var FESTIVALS_REGISTRY = [{
   region: "Europe"
 }, {
   config: {
+    id: "project-glow-2027",
+    officialEvent: {
+      website: "https://projectglowfest.com/",
+      observedAt: "2026-11-18"
+    },
+    name: "Project GLOW 2027",
+    shortName: "Project GLOW",
+    brand: "Project GLOW",
+    tagline: "Two days of dance music at the RFK Festival Grounds",
+    location: "RFK Festival Grounds · Washington, DC",
+    locationShort: "RFK Festival Grounds",
+    dates: "Jun 5–6, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://projectglowfest.com/",
+        observedAt: "2026-11-18"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#a855f7",
+  emoji: "✨",
+  region: "North America"
+}, {
+  config: {
+    id: "beyond-wonderland-midwest-2027",
+    officialEvent: {
+      website: "https://midwest.beyondwonderland.com/",
+      observedAt: "2026-11-18"
+    },
+    name: "Beyond Wonderland Midwest 2027",
+    shortName: "Beyond Midwest",
+    brand: "Beyond Wonderland",
+    tagline: "Beyond Wonderland's Midwest edition, now at Chicagoland Speedway",
+    location: "Chicagoland Speedway · Chicago, IL",
+    locationShort: "Chicagoland Speedway",
+    dates: "Jun 10–13, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://midwest.beyondwonderland.com/",
+        observedAt: "2026-11-18"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#ec4899",
+  emoji: "🐇",
+  region: "North America"
+}, {
+  config: {
+    id: "lost-in-dreams-2027",
+    officialEvent: {
+      website: "https://www.lostindreamsfestival.com/",
+      observedAt: "2026-11-18"
+    },
+    name: "Lost In Dreams 2027",
+    shortName: "Lost In Dreams",
+    brand: "Lost In Dreams",
+    tagline: "Two days of art, music and lucid dreams",
+    location: "LA State Historic Park · Los Angeles, CA",
+    locationShort: "LA State Historic Park",
+    dates: "Jul 10–11, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.lostindreamsfestival.com/",
+        observedAt: "2026-11-18"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#818cf8",
+  emoji: "🌙",
+  region: "North America"
+}, {
+  config: {
+    id: "wasteland-2027",
+    officialEvent: {
+      website: "https://www.wastelandfest.com/",
+      observedAt: "2026-11-18"
+    },
+    name: "Wasteland Southern California 2027",
+    shortName: "Wasteland",
+    brand: "Wasteland",
+    tagline: "SoCal's hard dance festival from Basscon, Mutate and Unreal",
+    location: "San Bernardino, CA",
+    locationShort: "San Bernardino",
+    dates: "Sep 3–4, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://www.wastelandfest.com/",
+        observedAt: "2026-11-18"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#f97316",
+  emoji: "☢️",
+  region: "North America"
+}, {
+  config: {
     id: "lost-lands-2026",
     officialEvent: {
       website: "https://www.lostlandsfestival.com/",
