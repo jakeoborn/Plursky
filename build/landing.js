@@ -339,6 +339,141 @@ function useFittedPlaceholder(full, short) {
   }, [el, full, short]);
   return [text, ref];
 }
+function _spotlightWhen(entry, now) {
+  var phase = typeof _festivalPhase === "function" ? _festivalPhase(entry, now) : "upcoming";
+  if (phase === "live") return {
+    live: true,
+    label: "Happening now"
+  };
+  var start = entry?.config?.startMs;
+  if (!start) return {
+    live: false,
+    label: entry?.config?.dates || "Upcoming"
+  };
+  var ms = start - now;
+  var days = Math.floor(ms / 86400000);
+  if (days <= 0) {
+    var hrs = Math.floor(ms / 3600000);
+    return {
+      live: false,
+      label: hrs > 0 ? `In ${hrs} hr` : "Starting soon"
+    };
+  }
+  if (days === 1) return {
+    live: false,
+    label: "In 1 day"
+  };
+  if (days < 14) return {
+    live: false,
+    label: `In ${days} days`
+  };
+  if (days < 63) return {
+    live: false,
+    label: `In ${Math.round(days / 7)} weeks`
+  };
+  return {
+    live: false,
+    label: `In ${Math.round(days / 30.4)} months`
+  };
+}
+function _spotlightPicks(ordered, now, plus, max = 8) {
+  var phase = f => typeof _festivalPhase === "function" ? _festivalPhase(f, now) : "upcoming";
+  return (ordered || []).filter(f => {
+    var ph = phase(f);
+    if (ph !== "live" && ph !== "upcoming") return false;
+    if (!landingCanEnter(f, now, plus)) return false;
+    var rec = typeof festivalArtFor === "function" ? festivalArtFor(f.config.id) : null;
+    return !!(rec && /^festival-art\/[a-z0-9-]+\.webp$/.test(rec.card || ""));
+  }).slice(0, max);
+}
+function LandingSpotlight({
+  ordered,
+  now,
+  plus,
+  onEnter
+}) {
+  var picks = _spotlightPicks(ordered, now, plus);
+  if (picks.length === 0) return null;
+  return React.createElement("section", {
+    "data-landing-spotlight": true,
+    "aria-label": "Coming up",
+    style: {
+      margin: "18px -16px 0"
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "baseline",
+      justifyContent: "space-between",
+      padding: "0 16px"
+    }
+  }, React.createElement("h2", {
+    className: "duo-sect",
+    style: {
+      margin: "0 0 10px"
+    }
+  }, "Coming up"), picks.length > 1 && React.createElement("span", {
+    "aria-hidden": "true",
+    className: "duo-sect",
+    style: {
+      margin: "0 0 10px"
+    }
+  }, "Swipe →")), React.createElement("div", {
+    className: "spot-rail"
+  }, picks.map((f, i) => {
+    var c = f.config;
+    var rec = festivalArtFor(c.id);
+    var when = _spotlightWhen(f, now);
+    var spotTitle = String(c.name || c.shortName || "").replace(/\s+(19|20)\d{2}$/, "");
+    var credit = rec.author && rec.licenseId && rec.licenseUrl ? {
+      author: rec.author,
+      sourceUrl: rec.sourcePage,
+      license: rec.licenseId,
+      licenseUrl: rec.licenseUrl,
+      changes: rec.changes
+    } : null;
+    return React.createElement("div", {
+      key: c.id,
+      className: "spot-item",
+      style: {
+        animationDelay: `${Math.min(i, 5) * 70}ms`
+      }
+    }, React.createElement("button", {
+      "data-landing-spot": c.id,
+      className: "spot-card",
+      onClick: () => onEnter(c.id, f),
+      "aria-label": `${c.name}. ${when.label}. ${c.location || ""}`
+    }, React.createElement("span", {
+      className: "spot-media",
+      "aria-hidden": "true"
+    }, React.createElement("img", {
+      src: `./${rec.card}`,
+      alt: "",
+      decoding: "async",
+      loading: i < 2 ? "eager" : "lazy"
+    }), React.createElement("span", {
+      className: "spot-scrim"
+    })), React.createElement("span", {
+      className: `spot-when${when.live ? " live" : ""}`
+    }, when.live && React.createElement("i", {
+      "aria-hidden": "true"
+    }), React.createElement("span", null, when.label)), React.createElement("span", {
+      className: "spot-text"
+    }, React.createElement("span", {
+      className: `spot-name${spotTitle.length > 16 ? " long" : ""}`
+    }, spotTitle), React.createElement("span", {
+      className: "spot-meta"
+    }, c.location, c.dates ? " · " + c.dates : ""))), credit && typeof PhotoCredit === "function" && React.createElement(PhotoCredit, {
+      className: "spot-credit",
+      credit: credit,
+      style: {
+        padding: "0 2px",
+        lineHeight: 1.35,
+        overflowWrap: "anywhere"
+      }
+    }));
+  })));
+}
 function GeneralLandingScreen({
   state,
   setState
@@ -535,7 +670,12 @@ function GeneralLandingScreen({
       lineHeight: 1.38,
       opacity: 0.85
     }
-  }, phaseOf(primary) === "live" ? "Happening now" : primary.config.dates || "Upcoming"))), React.createElement("h2", {
+  }, phaseOf(primary) === "live" ? "Happening now" : primary.config.dates || "Upcoming"))), !term && React.createElement(LandingSpotlight, {
+    ordered: ordered,
+    now: now,
+    plus: plus,
+    onEnter: enterFestival
+  }), React.createElement("h2", {
     className: "duo-sect",
     style: eyebrow
   }, "Saved festivals"), saved.length > 0 ? saved.map(card) : React.createElement("p", {

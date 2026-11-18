@@ -1,0 +1,96 @@
+{
+  "id": "lollapalooza-2018",
+  "method": "official_sources",
+  "official": "https://www.lollapalooza.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2018-08-02",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20180614021223/https://www.lollapalooza.com/lineup/",
+          "captureTimestamp": "20180614021223",
+          "printed": "Thu 8/02",
+          "sha256": "b3f61af7efbea5ad310e5f49627e49abd2657ecf537c6f0b9628af93062a13b4",
+          "bytes": 1337274,
+          "rows": 47,
+          "format": "lolla-cards",
+          "stages": 8,
+          "cards": 183,
+          "timesConfirmed": false,
+          "times": "each card prints its set's start and no end; the capture predates the festival"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2018-08-03",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20180614021223/https://www.lollapalooza.com/lineup/",
+          "captureTimestamp": "20180614021223",
+          "printed": "Fri 8/03",
+          "sha256": "b3f61af7efbea5ad310e5f49627e49abd2657ecf537c6f0b9628af93062a13b4",
+          "bytes": 1337274,
+          "rows": 48,
+          "format": "lolla-cards",
+          "stages": 8,
+          "cards": 183,
+          "timesConfirmed": false,
+          "times": "each card prints its set's start and no end; the capture predates the festival"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2018-08-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20180614021223/https://www.lollapalooza.com/lineup/",
+          "captureTimestamp": "20180614021223",
+          "printed": "Sat 8/04",
+          "sha256": "b3f61af7efbea5ad310e5f49627e49abd2657ecf537c6f0b9628af93062a13b4",
+          "bytes": 1337274,
+          "rows": 47,
+          "format": "lolla-cards",
+          "stages": 8,
+          "cards": 183,
+          "timesConfirmed": false,
+          "times": "each card prints its set's start and no end; the capture predates the festival"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2018-08-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.lollapalooza.com/lineup/",
+          "archivedUrl": "https://web.archive.org/web/20180614021223/https://www.lollapalooza.com/lineup/",
+          "captureTimestamp": "20180614021223",
+          "printed": "Sun 8/05",
+          "sha256": "b3f61af7efbea5ad310e5f49627e49abd2657ecf537c6f0b9628af93062a13b4",
+          "bytes": 1337274,
+          "rows": 47,
+          "format": "lolla-cards",
+          "stages": 8,
+          "cards": 183,
+          "timesConfirmed": false,
+          "times": "each card prints its set's start and no end; the capture predates the festival",
+          "notShown": [
+            "School of Rock AllStars: listed for \"Sunday, 8/5\", its set behind the card's \"View more set times\" link"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}
