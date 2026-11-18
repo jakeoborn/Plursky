@@ -629,19 +629,30 @@ const _lineupUnsplitRange = (n) => {
 // photo here: a Spotify image may only be shown uncropped with nothing over it.
 // Shown on a day that is not running; on the running night Now leads instead.
 function _lineupHeadliners(dayArtists) {
-  let top = dayArtists.filter(isTopBilled);
-  if (!top.length) top = dayArtists.filter(a => a.tier === 3);
-  const key = a => (a.start && !setTimesUnconfirmed(a)) ? toNightMin(a.start) : -1;
-  return top.slice().sort((x, y) => key(y) - key(x)).slice(0, 3);
+  const timed = a => !!a.start && !setTimesUnconfirmed(a);
+  const late = (x, y) => (timed(y) ? toNightMin(y.start) : -1) - (timed(x) ? toNightMin(x.start) : -1);
+  // The poster's own top line, when the festival published one.
+  const billed = dayArtists.filter(isTopBilled);
+  if (billed.length) return { acts: billed.slice().sort(late).slice(0, 3), billed: true };
+  // Otherwise the closer of each of the first three stages, main stage first:
+  // the hour-derived tier misses a night that ends before 11 PM.
+  const acts = [];
+  for (const st of STAGES) {
+    const sets = dayArtists.filter(a => a.stage === st.id && timed(a));
+    if (!sets.length) continue;
+    acts.push(sets.slice().sort(late)[0]);
+    if (acts.length === 3) break;
+  }
+  return { acts, billed: false };
 }
-function LineupHeadliners({ acts, dayLabel, onOpen }) {
+function LineupHeadliners({ acts, billed, dayLabel, onOpen }) {
   const rec = typeof festivalArtFor === "function" ? festivalArtFor(FESTIVAL_CONFIG.id) : null;
   const [failed, setFailed] = React.useState(false);
   const photo = rec && /^festival-art\/[a-z0-9-]+\.webp$/.test(rec.card || "") && !failed ? rec.card : null;
   const credit = photo && rec.author && rec.licenseId && rec.licenseUrl
     ? { author: rec.author, sourceUrl: rec.sourcePage, license: rec.licenseId, licenseUrl: rec.licenseUrl, changes: rec.changes }
     : null;
-  const word = typeof posterBilled === "function" && posterBilled() ? "Top billed" : (acts.length === 1 ? "Headliner" : "Headliners");
+  const word = billed ? "Top billed" : (acts.length === 1 ? "Headliner" : "Headliners");
   return (
     <section data-lineup-headliners aria-label={`${dayLabel} ${word.toLowerCase()}`} style={{ margin: "8px 0 12px" }}>
       <div className={`lh-card${photo ? "" : " plain"}`}>
@@ -1565,10 +1576,10 @@ function LineupScreen({ state, setState }) {
           </div>
         )}
         {viewMode === "list" && filter === "all" && !q.trim() && !_chipFilterActive && NOW.night !== day && (() => {
-          const acts = _lineupHeadliners(dayArtists);
+          const { acts, billed } = _lineupHeadliners(dayArtists);
           if (!acts.length) return null;
           const dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
-          return <LineupHeadliners acts={acts} dayLabel={dayLabel} onOpen={id => setState({ ...state, artist: id })} />;
+          return <LineupHeadliners acts={acts} billed={billed} dayLabel={dayLabel} onOpen={id => setState({ ...state, artist: id })} />;
         })()}
         {gridLead && (() => {
           // v165: grid now shows only the selected day (like list mode) so

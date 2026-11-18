@@ -994,13 +994,34 @@ var _lineupUnsplitRange = n => {
   }
 };
 function _lineupHeadliners(dayArtists) {
-  var top = dayArtists.filter(isTopBilled);
-  if (!top.length) top = dayArtists.filter(a => a.tier === 3);
-  var key = a => a.start && !setTimesUnconfirmed(a) ? toNightMin(a.start) : -1;
-  return top.slice().sort((x, y) => key(y) - key(x)).slice(0, 3);
+  var timed = a => !!a.start && !setTimesUnconfirmed(a);
+  var late = (x, y) => (timed(y) ? toNightMin(y.start) : -1) - (timed(x) ? toNightMin(x.start) : -1);
+  var billed = dayArtists.filter(isTopBilled);
+  if (billed.length) return {
+    acts: billed.slice().sort(late).slice(0, 3),
+    billed: true
+  };
+  var acts = [];
+  var _loop3 = function (st) {
+      var sets = dayArtists.filter(a => a.stage === st.id && timed(a));
+      if (!sets.length) return 0;
+      acts.push(sets.slice().sort(late)[0]);
+      if (acts.length === 3) return 1;
+    },
+    _ret;
+  for (var st of STAGES) {
+    _ret = _loop3(st);
+    if (_ret === 0) continue;
+    if (_ret === 1) break;
+  }
+  return {
+    acts,
+    billed: false
+  };
 }
 function LineupHeadliners({
   acts,
+  billed,
   dayLabel,
   onOpen
 }) {
@@ -1014,7 +1035,7 @@ function LineupHeadliners({
     licenseUrl: rec.licenseUrl,
     changes: rec.changes
   } : null;
-  var word = typeof posterBilled === "function" && posterBilled() ? "Top billed" : acts.length === 1 ? "Headliner" : "Headliners";
+  var word = billed ? "Top billed" : acts.length === 1 ? "Headliner" : "Headliners";
   return React.createElement("section", {
     "data-lineup-headliners": true,
     "aria-label": `${dayLabel} ${word.toLowerCase()}`,
@@ -2177,11 +2198,15 @@ function LineupScreen({
       fontWeight: 400
     }
   }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), viewMode === "list" && filter === "all" && !q.trim() && !_chipFilterActive && NOW.night !== day && (() => {
-    var acts = _lineupHeadliners(dayArtists);
+    var {
+      acts,
+      billed
+    } = _lineupHeadliners(dayArtists);
     if (!acts.length) return null;
     var dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
     return React.createElement(LineupHeadliners, {
       acts: acts,
+      billed: billed,
       dayLabel: dayLabel,
       onOpen: id => setState({
         ...state,
@@ -3141,7 +3166,7 @@ function SavedSidebar({
 function fitGridBlocks(root) {
   if (!root) return;
   var cols = new Map();
-  var _loop3 = function (b) {
+  var _loop4 = function (b) {
       var name = b.querySelector("[data-grid-name]"),
         time = b.querySelector("[data-grid-time]");
       if (!name) return 0;
@@ -3169,10 +3194,10 @@ function fitGridBlocks(root) {
         b.dataset.gridGrown = "1";
       }
     },
-    _ret;
+    _ret2;
   for (var b of root.querySelectorAll("[data-grid-block]")) {
-    _ret = _loop3(b);
-    if (_ret === 0) continue;
+    _ret2 = _loop4(b);
+    if (_ret2 === 0) continue;
   }
   for (var col of [...cols.values()].flatMap(m => [...m.values()])) {
     col.sort((a, b) => a.dataset.top - b.dataset.top);
@@ -4611,7 +4636,7 @@ function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date
   var acts = activeLineup(list).filter(a => ids.has(a.id)).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   var rows = [];
   var left = 0;
-  var _loop4 = function (a) {
+  var _loop5 = function (a) {
     var t = setTimingMin(a);
     var dd = artistDayDate(a, now, list),
       base = cfg.dayDates && cfg.dayDates[a.day];
@@ -4637,7 +4662,7 @@ function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date
     });
   };
   for (var a of acts) {
-    if (_loop4(a)) continue;
+    if (_loop5(a)) continue;
   }
   rows.sort((x, y) => x.night.midnightUtc - y.night.midnightUtc);
   if (typeof cfg.endMs !== "number") return {
@@ -5322,7 +5347,7 @@ async function shareLineupImage(state) {
     label: d.label,
     date: d.date.toUpperCase()
   }]));
-  var _loop5 = async function (a) {
+  var _loop6 = async function (a) {
     if (a.day !== lastDay) {
       lastDay = a.day;
       var dm = dayMeta[a.day];
@@ -5365,7 +5390,7 @@ async function shareLineupImage(state) {
     if (y > H - 180) return 1;
   };
   for (var a of saved) {
-    if (await _loop5(a)) break;
+    if (await _loop6(a)) break;
   }
   ctx.fillStyle = "#1a120d";
   ctx.font = '500 22px "Geist Mono", monospace';
