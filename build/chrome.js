@@ -3939,6 +3939,16 @@ function yourWeekendNights(rows, cfg) {
           });
         }
       }
+      var inSet = e => !w || (e.kind === "gps" ? Math.min(e.to, w.endMs) > Math.max(e.from, w.startMs) : e.from >= w.startMs && e.from <= w.endMs);
+      var youTimes = ev.filter(e => Number.isFinite(e.from) && inSet(e)).map(e => {
+        var to = Number.isFinite(e.to) && e.to > e.from ? e.to : e.from;
+        return w ? [Math.max(e.from, w.startMs), Math.min(to, w.endMs)] : [e.from, to];
+      });
+      var you = youTimes.length ? {
+        fromMs: Math.min(...youTimes.map(t => t[0])),
+        toMs: Math.max(...youTimes.map(t => t[1]))
+      } : null;
+      var youText = you ? you.toMs > you.fromMs ? `You: ${_setClock(you.fromMs, cfg)} to ${_setClock(you.toMs, cfg)}` : `You: ${_setClock(you.fromMs, cfg)}` : "Your times: nothing on this phone";
       var dd = cfg && cfg.dayDates && cfg.dayDates[a.day];
       var label = w ? nightOf(w.startMs) : dd && dd.short || (a.day != null ? `Day ${a.day}` : "");
       var key = w ? `n:${label}` : `d:${a.day}`;
@@ -3960,7 +3970,9 @@ function yourWeekendNights(rows, cfg) {
         startMs: w ? w.startMs : null,
         mine: !!manual,
         tag: manual ? verdict && verdict.label || (manual === "full" ? "Full set · your edit" : "Part of it · your edit") : verdict && verdict.label || "Length unknown",
-        marks
+        marks,
+        you,
+        youText
       });
     },
     _ret2;
@@ -4058,7 +4070,14 @@ function YourWeekendSheet({
       style: {
         marginBottom: 6
       }
-    }, [stage && (stage.short || stage.name), s.start && s.end ? `${fmt12(s.start)} to ${fmt12(s.end)}` : "Set time not published"].filter(Boolean).join(" · ")), s.startMs != null && s.marks.length > 0 && React.createElement("div", {
+    }, [stage && (stage.short || stage.name), s.start && s.end ? `Set ${fmt12(s.start)} to ${fmt12(s.end)}` : "Set time not published"].filter(Boolean).join(" · ")), React.createElement("div", {
+      "data-your-weekend-you": true,
+      className: s.you ? "duo-data-s" : "duo-data-s duo-ink3",
+      style: {
+        marginBottom: 6,
+        color: s.you ? "var(--ink)" : undefined
+      }
+    }, s.youText), s.startMs != null && s.marks.length > 0 && React.createElement("div", {
       "data-your-weekend-track": true,
       "aria-hidden": "true",
       style: {

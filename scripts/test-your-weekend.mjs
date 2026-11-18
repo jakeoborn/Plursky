@@ -10,6 +10,8 @@
 //      start draws nothing.
 //   4. Nights: a set after midnight belongs to the night before (08:00 rule),
 //      and nights and sets come out in time order.
+//   3b. Your own times: the first and last evidence at the stage inside the set,
+//       in festival time; your answer alone invents none.
 //   5. Nothing says "Missed", and nothing carries a place.
 //   6. Mutations: each rule nudged in the compiled source must fail a check.
 import vm from "node:vm";
@@ -133,6 +135,21 @@ function run(S) {
   const om = over[0].sets[0].marks[0];
   check(om && om.l === 0 && Math.abs(om.w - 0.5) < 1e-9, `a run starting before the set is clipped to the window (${JSON.stringify(om)})`);
 
+  // ── 3b. Your own times: first and last evidence at the stage, inside the set ──
+  const yt = id => get(id) && get(id).youText;
+  check(yt("full") === "You: 8:00 PM to 9:00 PM", `a full set shows when you came and went (${yt("full")})`);
+  check(yt("half") === "You: 9:00 PM to 9:30 PM", `half a set shows you left at 9:30; the next act's run at that stage does not count (${yt("half")})`);
+  check(yt("photo") === "You: 9:20 PM", `a photo alone is one time, not a range (${yt("photo")})`);
+  check(yt("late") === "You: 12:00 AM to 1:00 AM", `after midnight reads in festival time (${yt("late")})`);
+  check(get("hand") && get("hand").you === null && yt("hand") === "Your times: nothing on this phone", `your own answer alone invents no times (${yt("hand")})`);
+  const ot = over[0].sets[0];
+  check(ot.youText === "You: 8:00 PM to 8:30 PM" && ot.you.fromMs === at(MID1, 20, 0), `time at the stage before the set is the last act's: clipped to the start (${ot.youText})`);
+  const two = S.yourWeekendNights([{ a: ACTS.full, manual: "full", ev: [
+    { kind: "gps", from: at(MID1, 20, 20), to: at(MID1, 20, 30) },
+    { kind: "photo", from: at(MID1, 20, 10), to: at(MID1, 20, 10) },
+    { kind: "gps", from: at(MID1, 20, 40), to: at(MID1, 20, 55) }], verdict: null }], cfg)[0].sets[0];
+  check(two.youText === "You: 8:10 PM to 8:55 PM", `earliest and latest across every kind, in any order (${two.youText})`);
+
   // ── 4. Nights ──
   const fri = nights.find(n => n.sets.some(s => s.id === "full"));
   check(!!fri && fri.sets.some(s => s.id === "late"), "a 00:00 set belongs to the night it follows");
@@ -163,6 +180,11 @@ const MUT = [
   ["new Date(ms - 8 * 3600000)", "new Date(ms)"],
   ["if (rr > l) marks.push", "if (true) marks.push"],
   ["Math.min(1, Math.max(0, (ms - w.startMs) / L))", "(ms - w.startMs) / L"],
+  // Your own times: departure read as the first run's end; arrival read from the first item; no-evidence invents the set window.
+  ["toMs: Math.max(...youTimes.map(t => t[1]))", "toMs: youTimes[0][1]"],
+  ["fromMs: Math.min(...youTimes.map(t => t[0]))", "fromMs: youTimes[0][0]"],
+  ["var inSet = e => !w || (", "var inSet = e => true || ("],
+  [': "Your times: nothing on this phone";', ': (w ? `You: ${_setClock(w.startMs, cfg)} to ${_setClock(w.endMs, cfg)}` : "Your times: nothing on this phone");'],
 ];
 let caught = 0, mutFail = 0;
 for (const [from, to] of MUT) {
