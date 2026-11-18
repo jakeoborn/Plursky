@@ -92,6 +92,17 @@ export const EDITIONS = {
   "governors-ball-2015": { festivalId: "governors-ball", name: "Governors Ball 2015", year: 2015,
     timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
     dates: [["2015-06-05", "Friday"], ["2015-06-06", "Saturday"], ["2015-06-07", "Sunday"]] },
+  // Primavera Sound 2012: the official primaverasound.es timetable for Parc
+  // del Fòrum on its older template (format "primavera-horarios", template
+  // "2012"), one archived page per day in Spanish, each captured in July
+  // 2012. The tabs print Thursday 31 May to Saturday 2 June with no year.
+  // Every block prints its start alone, so every set is open-ended; the
+  // night runs to 6:30 AM. The city shows are on other pages and are not
+  // loaded. 2013's pages survive after the festival for two of its four
+  // days only, so 2013 is not loaded.
+  "primavera-sound-2012": { festivalId: "primavera-sound", name: "Primavera Sound 2012", year: 2012,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2012-05-31", "Thursday"], ["2012-06-01", "Friday"], ["2012-06-02", "Saturday"]] },
   // Primavera Sound 2015: the official primaverasound.es timetable for Parc
   // del Fòrum (/horarios?d=N&l=forum, format "primavera-horarios",
   // primavera-horarios-schedule.mjs), one archived page per day, each

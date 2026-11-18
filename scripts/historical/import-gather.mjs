@@ -554,9 +554,14 @@ export async function importGather(id, dir) {
         if (page.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is printed as "${page.label}", the receipt says "${s.printed[day]}"`);
         if (s.captureTimestamp.slice(0, 8) <= ed.dates.at(-1)[0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the festival ended`);
         agree(day, page.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
-        Object.assign(ledgerDays[day - 1].sources.at(-1), { heading: page.heading, tabs: page.tabs, stages: page.stages.length, axis: page.axis,
-          times: "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall",
-          ...(page.sets.some(x => x.openEnd) && { openEnded: page.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }) });
+        // The 2012 template prints each start alone, on its own 15-minute
+        // row, and can draw an empty slot that names no act: that slot is
+        // listed, never read as a set.
+        Object.assign(ledgerDays[day - 1].sources.at(-1), { heading: page.heading, tabs: page.tabs, stages: page.stages.length, axis: page.axis, template: page.template,
+          times: page.template === "2012" ? "each block prints its start alone on the 24-hour clock, inside its own 15-minute row; no block prints an end"
+            : "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall",
+          ...(page.sets.some(x => x.openEnd) && { openEnded: page.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }),
+          ...(page.blanks.length && { emptySlots: page.blanks.map(x => `${x.stage}: ${x.printed}, no act named`) }) });
       } else if (s.format === "primavera-completos") {
         // One page per day: Primavera Sound's full timetable, Parc del Fòrum
         // beside the city venues (primavera-completos-schedule.mjs). Its day

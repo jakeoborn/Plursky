@@ -96,7 +96,7 @@ backwards or more than six hours, or starts off the axis by over an hour, is a
 misprint and an excluded row, never read another way (2012's Turf War, printed
 "11:45 pm - 12:10 pm"). Sets in a column must run in order with no overlap.
 
-Archived Primavera Sound timetable (2015, format `primavera-horarios`):
+Archived Primavera Sound timetable (2012 and 2015, format `primavera-horarios`):
 
     node scripts/historical/gather-primavera-horarios.mjs <edition-id> <gather-dir> <official-url> <ts> <day-url> [ … one pair per day ]
     node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
@@ -117,8 +117,21 @@ pixels a minute tall. A block that prints its start alone ("(03:00)", 2015's
 Zamilska) is an open end. Sets on a stage must run in order with no overlap;
 anything else stops the read. The 2015 day pages were captured after the
 festival (Wednesday's on May 31, the rest in September). Wednesday 27 May is
-the ATP stage alone; the three main days have 11 stages each. Other years'
-timetables (2012, 2013) are archived too and are not read yet.
+the ATP stage alone; the three main days have 11 stages each.
+
+2012 is the same page on an older template ("2012"): the stage headers carry
+a width, there is no footer row, and every block prints its start alone
+("(17:10)"), which must fall inside its row's 15 minutes; there is no offset
+class and the block heights are server artefacts, not read. Every 2012 set
+is open-ended. A page can draw an empty slot, an empty name under an anchor
+with no artist id: it names no act, so it is listed in the ledger
+(`emptySlots`) and never read as a set (one each on Thursday and Friday, on
+the ATP stage). The three day pages were read in Spanish (`lang=es`, so the
+stage names agree across days), captured 1 July 2012: Thursday 31 May has 8
+Fòrum stages, Friday and Saturday 10. 2013's pages use the same template,
+but only Wednesday's and Thursday's survive from after the festival (the
+later captures of Friday and Saturday are error pages), so 2013 is not
+loaded.
 
 Archived Primavera Sound full timetable (2016 to 2019, format `primavera-completos`):
 

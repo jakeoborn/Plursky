@@ -734,6 +734,28 @@ if (base && edc) {
     psMust("a Primavera Sound row with a cell missing", psPage({ rows: [psRow("23:30", [psBox(5, 60, "Early &amp; Late", "(23:35 - 00:05)")]), ...psRows.slice(1)] }));
     psMust("two Primavera Sound sets overlapping on one stage", psPage({ rows: [...psRows.slice(0, 2), psRow("0:00", [psBox(0, 30, "Clash", "(00:00 - 00:15)"), ""]), psRows[3]] }));
     psMust("a Primavera Sound block with no name", psPage({ rows: [psRow("23:30", [psBox(5, 60, "", "(23:35 - 00:05)"), ""]), ...psRows.slice(1)] }));
+    // The 2012 template (2012 and 2013): stage headers with a width, no
+    // footer, each block a start alone inside its row's 15 minutes, and an
+    // empty slot with no artist id counted apart, never read as a set.
+    const ps12Box = (name, hora, inner = true, id = "1") => `<div class="concertBoxSinCaja" style="height:-44702280px;">${inner ? '<div class="concertBox2" style="width:197px;height:-44702280px;">' : ""}`
+      + `<a href="/artistaSingle?idArtista=${id}" class="artistaAnchor"><div class="artista">${name}</div><div class="hora horaInLine"> ${hora} </div></a>${inner ? "</div>" : ""}</div>`;
+    const ps12Rows = [psRow("23:30", [ps12Box("Early &amp; Late", "(23:40)"), ""]), psRow("23:45", ["", ps12Box("Over Midnight", "(23:45)", false)]),
+      psRow("0:00", [ps12Box("", "(00:05)", true, ""), ""]), psRow("0:15", [ps12Box("After", "(00:20)"), ""])];
+    const ps12Page = ({ rows = ps12Rows, foot = "" } = {}) => `<h1 class="font01">Horarios Parc del Fòrum</h1>${psTabs(1, ["jueves 31 de mayo", "viernes 01 de junio", "sábado 02 de junio"])}`
+      + `<table id="listaHorarios"><thead><tr><th></th><th class="escenario" width="200">Ray-Ban</th><th class="escenario" width="200">H&amp;M PRO</th><th></th></tr></thead><tbody>${rows.join("")}${foot}</tbody></table>`;
+    const ps12 = parsePrimaveraHorarios(ps12Page(), { year: 2012 });
+    ok(JSON.stringify([ps12.template, ps12.date, ps12.label, ps12.axis, ps12.sets.map(x => [x.stage, x.start, x.end, x.artist, !!x.openEnd]), ps12.blanks])
+      === JSON.stringify(["2012", "2012-06-01", "viernes 01 de junio", "23:30-00:15", [["Ray-Ban", "23:40", "", "Early & Late", true], ["H&M PRO", "23:45", "", "Over Midnight", true], ["Ray-Ban", "00:20", "", "After", true]],
+        [{ stage: "Ray-Ban", printed: "(00:05)" }]]),
+      `a 2012 Primavera Sound timetable must come back start by start, open-ended, its empty slot apart: ${JSON.stringify(ps12)}`);
+    psMust("a 2012 Primavera Sound page read in another year", ps12Page(), 2013);
+    psMust("a 2012 Primavera Sound block printing a range", ps12Page({ rows: [psRow("23:30", [ps12Box("Early &amp; Late", "(23:40 - 00:10)"), ""]), ...ps12Rows.slice(1)] }), 2012);
+    psMust("a 2012 Primavera Sound block past its row's 15 minutes", ps12Page({ rows: [psRow("23:30", [ps12Box("Early &amp; Late", "(23:50)"), ""]), ...ps12Rows.slice(1)] }), 2012);
+    psMust("a 2012 Primavera Sound page with a footer", ps12Page({ foot: '<tr id="footer-header"><td></td><td class="escenario">Ray-Ban</td><td class="escenario">H&amp;M PRO</td><td></td></tr>' }), 2012);
+    psMust("a Primavera Sound page mixing both templates", ps12Page({ rows: [psRow("23:30", [ps12Box("Early &amp; Late", "(23:40)"), psBox(5, 60, "New", "(23:35 - 00:05)")]), ...ps12Rows.slice(1)] }), 2012);
+    psMust("two 2012 Primavera Sound sets starting together on one stage", ps12Page({ rows: [psRow("23:30", [ps12Box("Early &amp; Late", "(23:40)") + ps12Box("Twin", "(23:40)"), ""]), ...ps12Rows.slice(1)] }), 2012);
+    psMust("a 2012 Primavera Sound block with an artist id and no name", ps12Page({ rows: [psRow("23:30", [ps12Box("", "(23:40)", true, "7"), ""]), ...ps12Rows.slice(1)] }), 2012);
+    psMust("a 2012 Primavera Sound inner box with no block", ps12Page({ rows: [psRow("23:30", [ps12Box("Early &amp; Late", "(23:40)") + '<div class="concertBox2" style="width:197px;height:-1px;"></div>', ""]), ...ps12Rows.slice(1)] }), 2012);
     // Primavera Sound's 2016 full timetable: Parc del Fòrum's columns beside
     // the city's, tabs that print a weekday and a day of the month only, each
     // block in its own venue's colour, on its row plus its offset and two
