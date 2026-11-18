@@ -1,0 +1,1166 @@
+{
+ "id": "governors-ball-2013",
+ "festivalId": "governors-ball",
+ "name": "Governors Ball 2013",
+ "year": 2013,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2013-06-07",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2013-06-08",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2013-06-09",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "governors-ball-2013:gov-ball-nyc-stage",
+   "name": "GOV BALL NYC STAGE"
+  },
+  {
+   "id": "governors-ball-2013:you-re-doing-great-stage",
+   "name": "YOU'RE DOING GREAT STAGE"
+  },
+  {
+   "id": "governors-ball-2013:hondastage",
+   "name": "HondaSTAGE"
+  },
+  {
+   "id": "governors-ball-2013:skyy-vodka-tent",
+   "name": "SKYY VODKA TENT"
+  }
+ ],
+ "artists": [
+  {
+   "id": "governors-ball-2013:swear-and-shake",
+   "name": "SWEAR AND SHAKE",
+   "key": "swear-and-shake",
+   "performers": [
+    "swear-and-shake"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:st-lucia",
+   "name": "ST. LUCIA",
+   "key": "st-lucia",
+   "performers": [
+    "st-lucia"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:dinosaur-jr",
+   "name": "DINOSAUR JR.",
+   "key": "dinosaur-jr",
+   "performers": [
+    "dinosaur-jr"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:of-monsters-and-men",
+   "name": "OF MONSTERS AND MEN",
+   "key": "of-monsters-and-men",
+   "performers": [
+    "of-monsters-and-men"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:feist",
+   "name": "FEIST",
+   "key": "feist",
+   "performers": [
+    "feist"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:solid-gold",
+   "name": "SOLID GOLD",
+   "key": "solid-gold",
+   "performers": [
+    "solid-gold"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:polica",
+   "name": "POLICA",
+   "key": "polica",
+   "performers": [
+    "polica"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:best-coast",
+   "name": "BEST COAST",
+   "key": "best-coast",
+   "performers": [
+    "best-coast"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:local-natives",
+   "name": "LOCAL NATIVES",
+   "key": "local-natives",
+   "performers": [
+    "local-natives"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:beach-house",
+   "name": "BEACH HOUSE",
+   "key": "beach-house",
+   "performers": [
+    "beach-house"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:pacific-air",
+   "name": "PACIFIC AIR",
+   "key": "pacific-air",
+   "performers": [
+    "pacific-air"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:reignwolf",
+   "name": "REIGNWOLF",
+   "key": "reignwolf",
+   "performers": [
+    "reignwolf"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:holy-ghost",
+   "name": "HOLY GHOST!",
+   "key": "holy-ghost",
+   "performers": [
+    "holy-ghost"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:dillon-francis",
+   "name": "DILLON FRANCIS",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:young-the-giant",
+   "name": "YOUNG THE GIANT",
+   "key": "young-the-giant",
+   "performers": [
+    "young-the-giant"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:pretty-lights",
+   "name": "PRETTY LIGHTS",
+   "key": "pretty-lights",
+   "performers": [
+    "pretty-lights"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:bear-mountain",
+   "name": "BEAR MOUNTAIN",
+   "key": "bear-mountain",
+   "performers": [
+    "bear-mountain"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:the-knocks",
+   "name": "THE KNOCKS",
+   "key": "the-knocks",
+   "performers": [
+    "the-knocks"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:totally-enormous-extinct-dinosaurs",
+   "name": "TOTALLY ENORMOUS EXTINCT DINOSAURS",
+   "key": "totally-enormous-extinct-dinosaurs",
+   "performers": [
+    "totally-enormous-extinct-dinosaurs"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:crystal-castles",
+   "name": "CRYSTAL CASTLES",
+   "key": "crystal-castles",
+   "performers": [
+    "crystal-castles"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:erykah-badu-and-the-cannabinoids",
+   "name": "ERYKAH BADU & THE CANNABINOIDS",
+   "key": "erykah-badu-and-the-cannabinoids",
+   "performers": [
+    "erykah-badu-and-the-cannabinoids"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:wild-nothing",
+   "name": "WILD NOTHING",
+   "key": "wild-nothing",
+   "performers": [
+    "wild-nothing"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:japandroids",
+   "name": "JAPANDROIDS",
+   "key": "japandroids",
+   "performers": [
+    "japandroids"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:divine-fits",
+   "name": "DIVINE FITS",
+   "key": "divine-fits",
+   "performers": [
+    "divine-fits"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:cut-copy",
+   "name": "CUT COPY",
+   "key": "cut-copy",
+   "performers": [
+    "cut-copy"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:kings-of-leon",
+   "name": "KINGS OF LEON",
+   "key": "kings-of-leon",
+   "performers": [
+    "kings-of-leon"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:guns-n-roses",
+   "name": "GUNS N' ROSES",
+   "key": "guns-n-roses",
+   "performers": [
+    "guns-n-roses"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:the-rubens",
+   "name": "THE RUBENS",
+   "key": "the-rubens",
+   "performers": [
+    "the-rubens"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:ms-mr",
+   "name": "MS MR",
+   "key": "ms-mr",
+   "performers": [
+    "ms-mr"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:dirty-projectors",
+   "name": "DIRTY PROJECTORS",
+   "key": "dirty-projectors",
+   "performers": [
+    "dirty-projectors"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:edward-sharpe-and-the-magnetic-zeros",
+   "name": "EDWARD SHARPE & THE MAGNETIC ZEROS",
+   "key": "edward-sharpe-and-the-magnetic-zeros",
+   "performers": [
+    "edward-sharpe-and-the-magnetic-zeros"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:animal-collective",
+   "name": "ANIMAL COLLECTIVE",
+   "key": "animal-collective",
+   "performers": [
+    "animal-collective"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:ruby-velle-and-the-soulphonics",
+   "name": "RUBY VELLE & THE SOULPHONICS",
+   "key": "ruby-velle-and-the-soulphonics",
+   "performers": [
+    "ruby-velle-and-the-soulphonics"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:griz",
+   "name": "GRIZ",
+   "key": "griz",
+   "performers": [
+    "griz"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:paper-diamond",
+   "name": "PAPER DIAMOND",
+   "key": "paper-diamond",
+   "performers": [
+    "paper-diamond"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:alt-j",
+   "name": "ALT-J",
+   "key": "alt-j",
+   "performers": [
+    "alt-j"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:kendrick-lamar",
+   "name": "KENDRICK LAMAR",
+   "key": "kendrick-lamar",
+   "performers": [
+    "kendrick-lamar"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:nas",
+   "name": "NAS",
+   "key": "nas",
+   "performers": [
+    "nas"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:moon-hooch",
+   "name": "MOON HOOCH",
+   "key": "moon-hooch",
+   "performers": [
+    "moon-hooch"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:robert-delong",
+   "name": "ROBERT DELONG",
+   "key": "robert-delong",
+   "performers": [
+    "robert-delong"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:icona-pop",
+   "name": "ICONA POP",
+   "key": "icona-pop",
+   "performers": [
+    "icona-pop"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:fucked-up",
+   "name": "FUCKED UP",
+   "key": "fucked-up",
+   "performers": [
+    "fucked-up"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:azealia-banks",
+   "name": "AZEALIA BANKS",
+   "key": "azealia-banks",
+   "performers": [
+    "azealia-banks"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:thievery-corporation",
+   "name": "THIEVERY CORPORATION",
+   "key": "thievery-corporation",
+   "performers": [
+    "thievery-corporation"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:the-revivalists",
+   "name": "THE REVIVALISTS",
+   "key": "the-revivalists",
+   "performers": [
+    "the-revivalists"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:haim",
+   "name": "HAIM",
+   "key": "haim",
+   "performers": [
+    "haim"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:portugal-the-man",
+   "name": "PORTUGAL. THE MAN",
+   "key": "portugal-the-man",
+   "performers": [
+    "portugal-the-man"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:foals",
+   "name": "FOALS",
+   "key": "foals",
+   "performers": [
+    "foals"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:grizzly-bear",
+   "name": "GRIZZLY BEAR",
+   "key": "grizzly-bear",
+   "performers": [
+    "grizzly-bear"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:kanye-west",
+   "name": "KANYE WEST",
+   "key": "kanye-west",
+   "performers": [
+    "kanye-west"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:roadkill-ghost-choir",
+   "name": "ROADKILL GHOST CHOIR",
+   "key": "roadkill-ghost-choir",
+   "performers": [
+    "roadkill-ghost-choir"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:steel-pulse",
+   "name": "STEEL PULSE",
+   "key": "steel-pulse",
+   "performers": [
+    "steel-pulse"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:deerhunter",
+   "name": "DEERHUNTER",
+   "key": "deerhunter",
+   "performers": [
+    "deerhunter"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:beirut",
+   "name": "BEIRUT",
+   "key": "beirut",
+   "performers": [
+    "beirut"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:the-xx",
+   "name": "THE XX",
+   "key": "the-xx",
+   "performers": [
+    "the-xx"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:on-an-on",
+   "name": "ON AN ON",
+   "key": "on-an-on",
+   "performers": [
+    "on-an-on"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:the-vaccines",
+   "name": "THE VACCINES",
+   "key": "the-vaccines",
+   "performers": [
+    "the-vaccines"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:cold-war-kids",
+   "name": "COLD WAR KIDS",
+   "key": "cold-war-kids",
+   "performers": [
+    "cold-war-kids"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:gary-clark-jr",
+   "name": "GARY CLARK JR.",
+   "key": "gary-clark-jr",
+   "performers": [
+    "gary-clark-jr"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:the-lumineers",
+   "name": "THE LUMINEERS",
+   "key": "the-lumineers",
+   "performers": [
+    "the-lumineers"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:the-avett-brothers",
+   "name": "THE AVETT BROTHERS",
+   "key": "the-avett-brothers",
+   "performers": [
+    "the-avett-brothers"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:cherub",
+   "name": "CHERUB",
+   "key": "cherub",
+   "performers": [
+    "cherub"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:freddie-gibbs",
+   "name": "FREDDIE GIBBS",
+   "key": "freddie-gibbs",
+   "performers": [
+    "freddie-gibbs"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:twin-shadow",
+   "name": "TWIN SHADOW",
+   "key": "twin-shadow",
+   "performers": [
+    "twin-shadow"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:yeasayer",
+   "name": "YEASAYER",
+   "key": "yeasayer",
+   "performers": [
+    "yeasayer"
+   ]
+  },
+  {
+   "id": "governors-ball-2013:bloc-party",
+   "name": "BLOC PARTY",
+   "key": "bloc-party",
+   "performers": [
+    "bloc-party"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "governors-ball-2013:d1:gov-ball-nyc-stage:1215:swear-and-shake",
+   "artistId": "governors-ball-2013:swear-and-shake",
+   "day": 1,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2013:d1:gov-ball-nyc-stage:1330:st-lucia",
+   "artistId": "governors-ball-2013:st-lucia",
+   "day": 1,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2013:d1:gov-ball-nyc-stage:1500:dinosaur-jr",
+   "artistId": "governors-ball-2013:dinosaur-jr",
+   "day": 1,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2013:d1:gov-ball-nyc-stage:1645:of-monsters-and-men",
+   "artistId": "governors-ball-2013:of-monsters-and-men",
+   "day": 1,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2013:d1:gov-ball-nyc-stage:1845:feist",
+   "artistId": "governors-ball-2013:feist",
+   "day": 1,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2013:d1:you-re-doing-great-stage:1245:solid-gold",
+   "artistId": "governors-ball-2013:solid-gold",
+   "day": 1,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2013:d1:you-re-doing-great-stage:1415:polica",
+   "artistId": "governors-ball-2013:polica",
+   "day": 1,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2013:d1:you-re-doing-great-stage:1545:best-coast",
+   "artistId": "governors-ball-2013:best-coast",
+   "day": 1,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2013:d1:you-re-doing-great-stage:1745:local-natives",
+   "artistId": "governors-ball-2013:local-natives",
+   "day": 1,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2013:d1:you-re-doing-great-stage:2000:beach-house",
+   "artistId": "governors-ball-2013:beach-house",
+   "day": 1,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2013:d1:hondastage:1215:pacific-air",
+   "artistId": "governors-ball-2013:pacific-air",
+   "day": 1,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2013:d1:hondastage:1330:reignwolf",
+   "artistId": "governors-ball-2013:reignwolf",
+   "day": 1,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2013:d1:hondastage:1500:holy-ghost",
+   "artistId": "governors-ball-2013:holy-ghost",
+   "day": 1,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2013:d1:hondastage:1645:dillon-francis",
+   "artistId": "governors-ball-2013:dillon-francis",
+   "day": 1,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2013:d1:hondastage:1845:young-the-giant",
+   "artistId": "governors-ball-2013:young-the-giant",
+   "day": 1,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2013:d1:hondastage:2130:pretty-lights",
+   "artistId": "governors-ball-2013:pretty-lights",
+   "day": 1,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2013:d1:skyy-vodka-tent:1245:bear-mountain",
+   "artistId": "governors-ball-2013:bear-mountain",
+   "day": 1,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2013:d1:skyy-vodka-tent:1415:the-knocks",
+   "artistId": "governors-ball-2013:the-knocks",
+   "day": 1,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2013:d1:skyy-vodka-tent:1545:totally-enormous-extinct-dinosaurs",
+   "artistId": "governors-ball-2013:totally-enormous-extinct-dinosaurs",
+   "day": 1,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2013:d1:skyy-vodka-tent:1745:crystal-castles",
+   "artistId": "governors-ball-2013:crystal-castles",
+   "day": 1,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2013:d1:skyy-vodka-tent:2000:erykah-badu-and-the-cannabinoids",
+   "artistId": "governors-ball-2013:erykah-badu-and-the-cannabinoids",
+   "day": 1,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2013:d2:gov-ball-nyc-stage:1330:wild-nothing",
+   "artistId": "governors-ball-2013:wild-nothing",
+   "day": 2,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "13:30",
+   "end": "14:00"
+  },
+  {
+   "id": "governors-ball-2013:d2:gov-ball-nyc-stage:1430:japandroids",
+   "artistId": "governors-ball-2013:japandroids",
+   "day": 2,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "governors-ball-2013:d2:gov-ball-nyc-stage:1545:divine-fits",
+   "artistId": "governors-ball-2013:divine-fits",
+   "day": 2,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2013:d2:gov-ball-nyc-stage:1715:cut-copy",
+   "artistId": "governors-ball-2013:cut-copy",
+   "day": 2,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "governors-ball-2013:d2:gov-ball-nyc-stage:1845:kings-of-leon",
+   "artistId": "governors-ball-2013:kings-of-leon",
+   "day": 2,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2013:d2:gov-ball-nyc-stage:2130:guns-n-roses",
+   "artistId": "governors-ball-2013:guns-n-roses",
+   "day": 2,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2013:d2:you-re-doing-great-stage:1245:the-rubens",
+   "artistId": "governors-ball-2013:the-rubens",
+   "day": 2,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2013:d2:you-re-doing-great-stage:1415:ms-mr",
+   "artistId": "governors-ball-2013:ms-mr",
+   "day": 2,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2013:d2:you-re-doing-great-stage:1545:dirty-projectors",
+   "artistId": "governors-ball-2013:dirty-projectors",
+   "day": 2,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2013:d2:you-re-doing-great-stage:1745:edward-sharpe-and-the-magnetic-zeros",
+   "artistId": "governors-ball-2013:edward-sharpe-and-the-magnetic-zeros",
+   "day": 2,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2013:d2:you-re-doing-great-stage:2000:animal-collective",
+   "artistId": "governors-ball-2013:animal-collective",
+   "day": 2,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2013:d2:hondastage:1215:ruby-velle-and-the-soulphonics",
+   "artistId": "governors-ball-2013:ruby-velle-and-the-soulphonics",
+   "day": 2,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2013:d2:hondastage:1330:griz",
+   "artistId": "governors-ball-2013:griz",
+   "day": 2,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2013:d2:hondastage:1500:paper-diamond",
+   "artistId": "governors-ball-2013:paper-diamond",
+   "day": 2,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2013:d2:hondastage:1645:alt-j",
+   "artistId": "governors-ball-2013:alt-j",
+   "day": 2,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2013:d2:hondastage:1845:kendrick-lamar",
+   "artistId": "governors-ball-2013:kendrick-lamar",
+   "day": 2,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2013:d2:hondastage:2130:nas",
+   "artistId": "governors-ball-2013:nas",
+   "day": 2,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2013:d2:skyy-vodka-tent:1215:moon-hooch",
+   "artistId": "governors-ball-2013:moon-hooch",
+   "day": 2,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "12:15",
+   "end": "12:40"
+  },
+  {
+   "id": "governors-ball-2013:d2:skyy-vodka-tent:1245:robert-delong",
+   "artistId": "governors-ball-2013:robert-delong",
+   "day": 2,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2013:d2:skyy-vodka-tent:1415:icona-pop",
+   "artistId": "governors-ball-2013:icona-pop",
+   "day": 2,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2013:d2:skyy-vodka-tent:1545:fucked-up",
+   "artistId": "governors-ball-2013:fucked-up",
+   "day": 2,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2013:d2:skyy-vodka-tent:1800:azealia-banks",
+   "artistId": "governors-ball-2013:azealia-banks",
+   "day": 2,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2013:d2:skyy-vodka-tent:2000:thievery-corporation",
+   "artistId": "governors-ball-2013:thievery-corporation",
+   "day": 2,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2013:d3:gov-ball-nyc-stage:1215:the-revivalists",
+   "artistId": "governors-ball-2013:the-revivalists",
+   "day": 3,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2013:d3:gov-ball-nyc-stage:1330:haim",
+   "artistId": "governors-ball-2013:haim",
+   "day": 3,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2013:d3:gov-ball-nyc-stage:1500:portugal-the-man",
+   "artistId": "governors-ball-2013:portugal-the-man",
+   "day": 3,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2013:d3:gov-ball-nyc-stage:1645:foals",
+   "artistId": "governors-ball-2013:foals",
+   "day": 3,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2013:d3:gov-ball-nyc-stage:1845:grizzly-bear",
+   "artistId": "governors-ball-2013:grizzly-bear",
+   "day": 3,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2013:d3:gov-ball-nyc-stage:2130:kanye-west",
+   "artistId": "governors-ball-2013:kanye-west",
+   "day": 3,
+   "stageId": "governors-ball-2013:gov-ball-nyc-stage",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2013:d3:you-re-doing-great-stage:1245:roadkill-ghost-choir",
+   "artistId": "governors-ball-2013:roadkill-ghost-choir",
+   "day": 3,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2013:d3:you-re-doing-great-stage:1415:steel-pulse",
+   "artistId": "governors-ball-2013:steel-pulse",
+   "day": 3,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2013:d3:you-re-doing-great-stage:1545:deerhunter",
+   "artistId": "governors-ball-2013:deerhunter",
+   "day": 3,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2013:d3:you-re-doing-great-stage:1745:beirut",
+   "artistId": "governors-ball-2013:beirut",
+   "day": 3,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2013:d3:you-re-doing-great-stage:2020:the-xx",
+   "artistId": "governors-ball-2013:the-xx",
+   "day": 3,
+   "stageId": "governors-ball-2013:you-re-doing-great-stage",
+   "start": "20:20",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2013:d3:hondastage:1215:on-an-on",
+   "artistId": "governors-ball-2013:on-an-on",
+   "day": 3,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2013:d3:hondastage:1330:the-vaccines",
+   "artistId": "governors-ball-2013:the-vaccines",
+   "day": 3,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2013:d3:hondastage:1500:cold-war-kids",
+   "artistId": "governors-ball-2013:cold-war-kids",
+   "day": 3,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2013:d3:hondastage:1645:gary-clark-jr",
+   "artistId": "governors-ball-2013:gary-clark-jr",
+   "day": 3,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2013:d3:hondastage:1845:the-lumineers",
+   "artistId": "governors-ball-2013:the-lumineers",
+   "day": 3,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2013:d3:hondastage:2130:the-avett-brothers",
+   "artistId": "governors-ball-2013:the-avett-brothers",
+   "day": 3,
+   "stageId": "governors-ball-2013:hondastage",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2013:d3:skyy-vodka-tent:1245:cherub",
+   "artistId": "governors-ball-2013:cherub",
+   "day": 3,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2013:d3:skyy-vodka-tent:1415:freddie-gibbs",
+   "artistId": "governors-ball-2013:freddie-gibbs",
+   "day": 3,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2013:d3:skyy-vodka-tent:1545:twin-shadow",
+   "artistId": "governors-ball-2013:twin-shadow",
+   "day": 3,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2013:d3:skyy-vodka-tent:1745:yeasayer",
+   "artistId": "governors-ball-2013:yeasayer",
+   "day": 3,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2013:d3:skyy-vodka-tent:2000:bloc-party",
+   "artistId": "governors-ball-2013:bloc-party",
+   "day": 3,
+   "stageId": "governors-ball-2013:skyy-vodka-tent",
+   "start": "20:00",
+   "end": "21:30"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://governorsballmusicfestival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20130610205502/https://lineup.governorsballmusicfestival.com/events/2013/06/07/",
+    "captureTimestamp": "20130610205502",
+    "printed": "Friday, June 7",
+    "sha256": "77a5c67af2d3c37f68d30ae6151ea34451b3e10374ee3d3be76fa463881b6164",
+    "rows": 21,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20130610105834/https://lineup.governorsballmusicfestival.com/band/pretty-lights",
+     "captureTimestamp": "20130610105834",
+     "printed": "Friday Jun 7 9:30 PM on HondaSTAGE",
+     "sha256": "82304045f8594b5d7418d54b3fd5d5a8e1be6893d1dc5b61e7e9d6967ba225b6"
+    }
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20130701100529/https://lineup.governorsballmusicfestival.com/events/2013/06/08/",
+    "captureTimestamp": "20130701100529",
+    "printed": "Saturday, June 8",
+    "sha256": "aff6b9077a70ae4e2fb85b64d5a673beb426a6420e2930f0e5ec26b7338ab206",
+    "rows": 23,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20130703183601/https://lineup.governorsballmusicfestival.com/band/guns-n-roses",
+     "captureTimestamp": "20130703183601",
+     "printed": "Saturday Jun 8 9:30 PM on GOV BALL NYC STAGE",
+     "sha256": "d76dbcfa2c7755540dbc1a4e1606c016f6ac5ce9da9b96dd7d5c2fdb5a6190b3"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20130703142521/https://lineup.governorsballmusicfestival.com/events/2013/06/09/",
+    "captureTimestamp": "20130703142521",
+    "printed": "Sunday, June 9",
+    "sha256": "78c21730ac77803de2b8b5dbd97b0f3c648863dced0caebdee49cd5f56789a2f",
+    "rows": 22,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20130530102844/https://lineup.governorsballmusicfestival.com/band/kanye-west",
+     "captureTimestamp": "20130530102844",
+     "printed": "Sunday Jun 9 9:30 PM on GOV BALL NYC STAGE",
+     "sha256": "e7287e11f45d5b16ae4efdd1eeda07acaacc7a59a0d2aac267630cc84046ee58"
+    }
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-18",
+   "days": [
+    1,
+    2
+   ],
+   "text": "Friday was cut short by rain. Kings of Leon, printed as Friday's closer, played Saturday at 6:45 PM instead, as the festival's own posts said, so they are listed on Saturday only.",
+   "source": "https://web.archive.org/web/20130721210049/https://governorsballmusicfestival.com/"
+  }
+ ]
+}

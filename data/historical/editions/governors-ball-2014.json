@@ -1,0 +1,1187 @@
+{
+ "id": "governors-ball-2014",
+ "festivalId": "governors-ball",
+ "name": "Governors Ball 2014",
+ "year": 2014,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2014-06-06",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2014-06-07",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2014-06-08",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "governors-ball-2014:govballnyc-stage",
+   "name": "GovBallNYC Stage"
+  },
+  {
+   "id": "governors-ball-2014:big-apple-stage",
+   "name": "Big Apple Stage"
+  },
+  {
+   "id": "governors-ball-2014:honda-stage",
+   "name": "Honda Stage"
+  },
+  {
+   "id": "governors-ball-2014:gotham-tent",
+   "name": "Gotham Tent"
+  }
+ ],
+ "artists": [
+  {
+   "id": "governors-ball-2014:haerts",
+   "name": "Haerts",
+   "key": "haerts",
+   "performers": [
+    "haerts"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:jason-isbell",
+   "name": "Jason Isbell",
+   "key": "jason-isbell",
+   "performers": [
+    "jason-isbell"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:janelle-monae",
+   "name": "Janelle Monae",
+   "key": "janelle-monae",
+   "performers": [
+    "janelle-monae"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:julian-casablancas-the-voidz",
+   "name": "Julian Casablancas+The Voidz",
+   "key": "julian-casablancas-the-voidz",
+   "performers": [
+    "julian-casablancas-the-voidz"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:phoenix",
+   "name": "Phoenix",
+   "key": "phoenix",
+   "performers": [
+    "phoenix"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:outkast",
+   "name": "Outkast",
+   "key": "outkast",
+   "performers": [
+    "outkast"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:drowners",
+   "name": "Drowners",
+   "key": "drowners",
+   "performers": [
+    "drowners"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:kurt-vile-and-the-violators",
+   "name": "Kurt Vile and the Violators",
+   "key": "kurt-vile-and-the-violators",
+   "performers": [
+    "kurt-vile-and-the-violators"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:bastille",
+   "name": "Bastille",
+   "key": "bastille",
+   "performers": [
+    "bastille"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:neko-case",
+   "name": "Neko Case",
+   "key": "neko-case",
+   "performers": [
+    "neko-case"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:tv-on-the-radio",
+   "name": "TV on the Radio",
+   "key": "tv-on-the-radio",
+   "performers": [
+    "tv-on-the-radio"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:little-comets",
+   "name": "Little Comets",
+   "key": "little-comets",
+   "performers": [
+    "little-comets"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:run-the-jewels",
+   "name": "Run The Jewels",
+   "key": "run-the-jewels",
+   "performers": [
+    "run-the-jewels"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:the-1975",
+   "name": "The 1975",
+   "key": "the-1975",
+   "performers": [
+    "the-1975"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:jenny-lewis",
+   "name": "Jenny Lewis",
+   "key": "jenny-lewis",
+   "performers": [
+    "jenny-lewis"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:damian-jr-gong-marley",
+   "name": "Damian \"Jr Gong\" Marley",
+   "key": "damian-jr-gong-marley",
+   "performers": [
+    "damian-jr-gong-marley"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:damon-albarn",
+   "name": "Damon Albarn",
+   "key": "damon-albarn",
+   "performers": [
+    "damon-albarn"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:the-chain-gang-of-1974",
+   "name": "The Chain Gang of 1974",
+   "key": "the-chain-gang-of-1974",
+   "performers": [
+    "the-chain-gang-of-1974"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:little-daylight",
+   "name": "Little Daylight",
+   "key": "little-daylight",
+   "performers": [
+    "little-daylight"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:ratking",
+   "name": "Ratking",
+   "key": "ratking",
+   "performers": [
+    "ratking"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:washed-out",
+   "name": "Washed Out",
+   "key": "washed-out",
+   "performers": [
+    "washed-out"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:la-roux",
+   "name": "La Roux",
+   "key": "la-roux",
+   "performers": [
+    "la-roux"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:grimes",
+   "name": "Grimes",
+   "key": "grimes",
+   "performers": [
+    "grimes"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:hunter-hunted",
+   "name": "Hunter Hunted",
+   "key": "hunter-hunted",
+   "performers": [
+    "hunter-hunted"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:papa",
+   "name": "PAPA",
+   "key": "papa",
+   "performers": [
+    "papa"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:lucius",
+   "name": "Lucius",
+   "key": "lucius",
+   "performers": [
+    "lucius"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:broken-bells",
+   "name": "Broken Bells",
+   "key": "broken-bells",
+   "performers": [
+    "broken-bells"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:the-strokes",
+   "name": "The Strokes",
+   "key": "the-strokes",
+   "performers": [
+    "the-strokes"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:jack-white",
+   "name": "Jack White",
+   "key": "jack-white",
+   "performers": [
+    "jack-white"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:diarrhea-planet",
+   "name": "Diarrhea Planet",
+   "key": "diarrhea-planet",
+   "performers": [
+    "diarrhea-planet"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:tanlines",
+   "name": "Tanlines",
+   "key": "tanlines",
+   "performers": [
+    "tanlines"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:fitz-and-the-tantrums",
+   "name": "Fitz and the Tantrums",
+   "key": "fitz-and-the-tantrums",
+   "performers": [
+    "fitz-and-the-tantrums"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:the-naked-and-famous",
+   "name": "The Naked and Famous",
+   "key": "the-naked-and-famous",
+   "performers": [
+    "the-naked-and-famous"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:spoon",
+   "name": "Spoon",
+   "key": "spoon",
+   "performers": [
+    "spoon"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:catfish-and-the-bottlemen",
+   "name": "Catfish and the Bottlemen",
+   "key": "catfish-and-the-bottlemen",
+   "performers": [
+    "catfish-and-the-bottlemen"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:rjd2",
+   "name": "RJD2",
+   "key": "rjd2",
+   "performers": [
+    "rjd2"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:classixx",
+   "name": "Classixx",
+   "key": "classixx",
+   "performers": [
+    "classixx"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:disclosure",
+   "name": "Disclosure",
+   "key": "disclosure",
+   "performers": [
+    "disclosure"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:childish-gambino",
+   "name": "Childish Gambino",
+   "key": "childish-gambino",
+   "performers": [
+    "childish-gambino"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:skrillex",
+   "name": "Skrillex",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:the-internet",
+   "name": "The Internet",
+   "key": "the-internet",
+   "performers": [
+    "the-internet"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:deafheaven",
+   "name": "Deafheaven",
+   "key": "deafheaven",
+   "performers": [
+    "deafheaven"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:chance-the-rapper",
+   "name": "Chance The Rapper",
+   "key": "chance-the-rapper",
+   "performers": [
+    "chance-the-rapper"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:the-glitch-mob",
+   "name": "The Glitch Mob",
+   "key": "the-glitch-mob",
+   "performers": [
+    "the-glitch-mob"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:sleigh-bells",
+   "name": "Sleigh Bells",
+   "key": "sleigh-bells",
+   "performers": [
+    "sleigh-bells"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:meg-myers",
+   "name": "Meg Myers",
+   "key": "meg-myers",
+   "performers": [
+    "meg-myers"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:bleachers",
+   "name": "BLEACHERS",
+   "key": "bleachers",
+   "performers": [
+    "bleachers"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:frank-turner",
+   "name": "Frank Turner",
+   "key": "frank-turner",
+   "performers": [
+    "frank-turner"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:the-head-and-the-heart",
+   "name": "The Head and the Heart",
+   "key": "the-head-and-the-heart",
+   "performers": [
+    "the-head-and-the-heart"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:foster-the-people",
+   "name": "Foster The People",
+   "key": "foster-the-people",
+   "performers": [
+    "foster-the-people"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:vampire-weekend",
+   "name": "Vampire Weekend",
+   "key": "vampire-weekend",
+   "performers": [
+    "vampire-weekend"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:half-moon-run",
+   "name": "Half Moon Run",
+   "key": "half-moon-run",
+   "performers": [
+    "half-moon-run"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:wild-belle",
+   "name": "Wild Belle",
+   "key": "wild-belle",
+   "performers": [
+    "wild-belle"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:tyler-the-creator",
+   "name": "Tyler, the Creator",
+   "key": "tyler-the-creator",
+   "performers": [
+    "tyler-the-creator"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:the-kills",
+   "name": "The Kills",
+   "key": "the-kills",
+   "performers": [
+    "the-kills"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:interpol",
+   "name": "Interpol",
+   "key": "interpol",
+   "performers": [
+    "interpol"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:cris-cab",
+   "name": "Cris Cab",
+   "key": "cris-cab",
+   "performers": [
+    "cris-cab"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:skaters",
+   "name": "SKATERS",
+   "key": "skaters",
+   "performers": [
+    "skaters"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:earl-sweatshirt",
+   "name": "Earl Sweatshirt",
+   "key": "earl-sweatshirt",
+   "performers": [
+    "earl-sweatshirt"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:j-cole",
+   "name": "J. Cole",
+   "key": "j-cole",
+   "performers": [
+    "j-cole"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:james-blake",
+   "name": "James Blake",
+   "key": "james-blake",
+   "performers": [
+    "james-blake"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:axwell-ingrosso",
+   "name": "Axwell Λ Ingrosso",
+   "key": "axwell-ingrosso",
+   "performers": [
+    "axwell-ingrosso"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:ben-cameron",
+   "name": "Ben Cameron",
+   "key": "ben-cameron",
+   "performers": [
+    "ben-cameron"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:cayucas",
+   "name": "Cayucas",
+   "key": "cayucas",
+   "performers": [
+    "cayucas"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:banks",
+   "name": "Banks",
+   "key": "banks",
+   "performers": [
+    "banks"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:alunageorge",
+   "name": "AlunaGeorge",
+   "key": "alunageorge",
+   "performers": [
+    "alunageorge"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:the-bloody-beetroots-live",
+   "name": "The Bloody Beetroots (live)",
+   "key": "the-bloody-beetroots-live",
+   "performers": [
+    "the-bloody-beetroots-live"
+   ]
+  },
+  {
+   "id": "governors-ball-2014:empire-of-the-sun",
+   "name": "Empire of the Sun",
+   "key": "empire-of-the-sun",
+   "performers": [
+    "empire-of-the-sun"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "governors-ball-2014:d1:govballnyc-stage:1215:haerts",
+   "artistId": "governors-ball-2014:haerts",
+   "day": 1,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2014:d1:govballnyc-stage:1330:jason-isbell",
+   "artistId": "governors-ball-2014:jason-isbell",
+   "day": 1,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2014:d1:govballnyc-stage:1500:janelle-monae",
+   "artistId": "governors-ball-2014:janelle-monae",
+   "day": 1,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2014:d1:govballnyc-stage:1645:julian-casablancas-the-voidz",
+   "artistId": "governors-ball-2014:julian-casablancas-the-voidz",
+   "day": 1,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2014:d1:govballnyc-stage:1850:phoenix",
+   "artistId": "governors-ball-2014:phoenix",
+   "day": 1,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "18:50",
+   "end": "20:15"
+  },
+  {
+   "id": "governors-ball-2014:d1:govballnyc-stage:2115:outkast",
+   "artistId": "governors-ball-2014:outkast",
+   "day": 1,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2014:d1:big-apple-stage:1245:drowners",
+   "artistId": "governors-ball-2014:drowners",
+   "day": 1,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2014:d1:big-apple-stage:1415:kurt-vile-and-the-violators",
+   "artistId": "governors-ball-2014:kurt-vile-and-the-violators",
+   "day": 1,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2014:d1:big-apple-stage:1545:bastille",
+   "artistId": "governors-ball-2014:bastille",
+   "day": 1,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2014:d1:big-apple-stage:1745:neko-case",
+   "artistId": "governors-ball-2014:neko-case",
+   "day": 1,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2014:d1:big-apple-stage:2000:tv-on-the-radio",
+   "artistId": "governors-ball-2014:tv-on-the-radio",
+   "day": 1,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2014:d1:honda-stage:1215:little-comets",
+   "artistId": "governors-ball-2014:little-comets",
+   "day": 1,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2014:d1:honda-stage:1330:run-the-jewels",
+   "artistId": "governors-ball-2014:run-the-jewels",
+   "day": 1,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2014:d1:honda-stage:1500:the-1975",
+   "artistId": "governors-ball-2014:the-1975",
+   "day": 1,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2014:d1:honda-stage:1645:jenny-lewis",
+   "artistId": "governors-ball-2014:jenny-lewis",
+   "day": 1,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2014:d1:honda-stage:1845:damian-jr-gong-marley",
+   "artistId": "governors-ball-2014:damian-jr-gong-marley",
+   "day": 1,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2014:d1:honda-stage:2115:damon-albarn",
+   "artistId": "governors-ball-2014:damon-albarn",
+   "day": 1,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "governors-ball-2014:d1:gotham-tent:1215:the-chain-gang-of-1974",
+   "artistId": "governors-ball-2014:the-chain-gang-of-1974",
+   "day": 1,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "12:15",
+   "end": "12:40"
+  },
+  {
+   "id": "governors-ball-2014:d1:gotham-tent:1245:little-daylight",
+   "artistId": "governors-ball-2014:little-daylight",
+   "day": 1,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2014:d1:gotham-tent:1415:ratking",
+   "artistId": "governors-ball-2014:ratking",
+   "day": 1,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2014:d1:gotham-tent:1545:washed-out",
+   "artistId": "governors-ball-2014:washed-out",
+   "day": 1,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2014:d1:gotham-tent:1745:la-roux",
+   "artistId": "governors-ball-2014:la-roux",
+   "day": 1,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2014:d1:gotham-tent:2015:grimes",
+   "artistId": "governors-ball-2014:grimes",
+   "day": 1,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "20:15",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2014:d2:govballnyc-stage:1215:hunter-hunted",
+   "artistId": "governors-ball-2014:hunter-hunted",
+   "day": 2,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2014:d2:govballnyc-stage:1330:papa",
+   "artistId": "governors-ball-2014:papa",
+   "day": 2,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2014:d2:govballnyc-stage:1500:lucius",
+   "artistId": "governors-ball-2014:lucius",
+   "day": 2,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2014:d2:govballnyc-stage:1645:broken-bells",
+   "artistId": "governors-ball-2014:broken-bells",
+   "day": 2,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2014:d2:govballnyc-stage:1845:the-strokes",
+   "artistId": "governors-ball-2014:the-strokes",
+   "day": 2,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "18:45",
+   "end": "20:15"
+  },
+  {
+   "id": "governors-ball-2014:d2:govballnyc-stage:2130:jack-white",
+   "artistId": "governors-ball-2014:jack-white",
+   "day": 2,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2014:d2:big-apple-stage:1245:diarrhea-planet",
+   "artistId": "governors-ball-2014:diarrhea-planet",
+   "day": 2,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2014:d2:big-apple-stage:1415:tanlines",
+   "artistId": "governors-ball-2014:tanlines",
+   "day": 2,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2014:d2:big-apple-stage:1545:fitz-and-the-tantrums",
+   "artistId": "governors-ball-2014:fitz-and-the-tantrums",
+   "day": 2,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2014:d2:big-apple-stage:1745:the-naked-and-famous",
+   "artistId": "governors-ball-2014:the-naked-and-famous",
+   "day": 2,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2014:d2:big-apple-stage:2015:spoon",
+   "artistId": "governors-ball-2014:spoon",
+   "day": 2,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2014:d2:honda-stage:1215:catfish-and-the-bottlemen",
+   "artistId": "governors-ball-2014:catfish-and-the-bottlemen",
+   "day": 2,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2014:d2:honda-stage:1330:rjd2",
+   "artistId": "governors-ball-2014:rjd2",
+   "day": 2,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2014:d2:honda-stage:1500:classixx",
+   "artistId": "governors-ball-2014:classixx",
+   "day": 2,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2014:d2:honda-stage:1645:disclosure",
+   "artistId": "governors-ball-2014:disclosure",
+   "day": 2,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2014:d2:honda-stage:1900:childish-gambino",
+   "artistId": "governors-ball-2014:childish-gambino",
+   "day": 2,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "governors-ball-2014:d2:honda-stage:2130:skrillex",
+   "artistId": "governors-ball-2014:skrillex",
+   "day": 2,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2014:d2:gotham-tent:1245:the-internet",
+   "artistId": "governors-ball-2014:the-internet",
+   "day": 2,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2014:d2:gotham-tent:1415:deafheaven",
+   "artistId": "governors-ball-2014:deafheaven",
+   "day": 2,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2014:d2:gotham-tent:1545:chance-the-rapper",
+   "artistId": "governors-ball-2014:chance-the-rapper",
+   "day": 2,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2014:d2:gotham-tent:1745:the-glitch-mob",
+   "artistId": "governors-ball-2014:the-glitch-mob",
+   "day": 2,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2014:d2:gotham-tent:2015:sleigh-bells",
+   "artistId": "governors-ball-2014:sleigh-bells",
+   "day": 2,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2014:d3:govballnyc-stage:1215:meg-myers",
+   "artistId": "governors-ball-2014:meg-myers",
+   "day": 3,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2014:d3:govballnyc-stage:1330:bleachers",
+   "artistId": "governors-ball-2014:bleachers",
+   "day": 3,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2014:d3:govballnyc-stage:1500:frank-turner",
+   "artistId": "governors-ball-2014:frank-turner",
+   "day": 3,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2014:d3:govballnyc-stage:1645:the-head-and-the-heart",
+   "artistId": "governors-ball-2014:the-head-and-the-heart",
+   "day": 3,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2014:d3:govballnyc-stage:1845:foster-the-people",
+   "artistId": "governors-ball-2014:foster-the-people",
+   "day": 3,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2014:d3:govballnyc-stage:2115:vampire-weekend",
+   "artistId": "governors-ball-2014:vampire-weekend",
+   "day": 3,
+   "stageId": "governors-ball-2014:govballnyc-stage",
+   "start": "21:15",
+   "end": "22:45"
+  },
+  {
+   "id": "governors-ball-2014:d3:big-apple-stage:1245:half-moon-run",
+   "artistId": "governors-ball-2014:half-moon-run",
+   "day": 3,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2014:d3:big-apple-stage:1415:wild-belle",
+   "artistId": "governors-ball-2014:wild-belle",
+   "day": 3,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2014:d3:big-apple-stage:1545:tyler-the-creator",
+   "artistId": "governors-ball-2014:tyler-the-creator",
+   "day": 3,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2014:d3:big-apple-stage:1745:the-kills",
+   "artistId": "governors-ball-2014:the-kills",
+   "day": 3,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2014:d3:big-apple-stage:2000:interpol",
+   "artistId": "governors-ball-2014:interpol",
+   "day": 3,
+   "stageId": "governors-ball-2014:big-apple-stage",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2014:d3:honda-stage:1215:cris-cab",
+   "artistId": "governors-ball-2014:cris-cab",
+   "day": 3,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2014:d3:honda-stage:1330:skaters",
+   "artistId": "governors-ball-2014:skaters",
+   "day": 3,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2014:d3:honda-stage:1500:earl-sweatshirt",
+   "artistId": "governors-ball-2014:earl-sweatshirt",
+   "day": 3,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2014:d3:honda-stage:1645:j-cole",
+   "artistId": "governors-ball-2014:j-cole",
+   "day": 3,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2014:d3:honda-stage:1845:james-blake",
+   "artistId": "governors-ball-2014:james-blake",
+   "day": 3,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2014:d3:honda-stage:2145:axwell-ingrosso",
+   "artistId": "governors-ball-2014:axwell-ingrosso",
+   "day": 3,
+   "stageId": "governors-ball-2014:honda-stage",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2014:d3:gotham-tent:1215:ben-cameron",
+   "artistId": "governors-ball-2014:ben-cameron",
+   "day": 3,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "12:15",
+   "end": "12:40"
+  },
+  {
+   "id": "governors-ball-2014:d3:gotham-tent:1250:cayucas",
+   "artistId": "governors-ball-2014:cayucas",
+   "day": 3,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "12:50",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2014:d3:gotham-tent:1415:banks",
+   "artistId": "governors-ball-2014:banks",
+   "day": 3,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2014:d3:gotham-tent:1545:alunageorge",
+   "artistId": "governors-ball-2014:alunageorge",
+   "day": 3,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2014:d3:gotham-tent:1745:the-bloody-beetroots-live",
+   "artistId": "governors-ball-2014:the-bloody-beetroots-live",
+   "day": 3,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2014:d3:gotham-tent:2015:empire-of-the-sun",
+   "artistId": "governors-ball-2014:empire-of-the-sun",
+   "day": 3,
+   "stageId": "governors-ball-2014:gotham-tent",
+   "start": "20:15",
+   "end": "21:15"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://governorsballmusicfestival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20140614035055/https://lineup.governorsballmusicfestival.com/events/2014/06/06/",
+    "captureTimestamp": "20140614035055",
+    "printed": "Friday, June 6",
+    "sha256": "6930e626c2b201b0cf0f0a73c2e5dbc9a48ffefb5750b41c20e064803f0d89dc",
+    "rows": 23,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20140604211648/https://lineup.governorsballmusicfestival.com/band/outkast",
+     "captureTimestamp": "20140604211648",
+     "printed": "Friday Jun 6 9:15 PM on GovBallNYC Stage",
+     "sha256": "0b8247a37dddfd724596c4cc89785e3843daced5b446b62d0b7b79772820fe1b"
+    }
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20140616195603/https://lineup.governorsballmusicfestival.com/events/2014/06/07/",
+    "captureTimestamp": "20140616195603",
+    "printed": "Saturday, June 7",
+    "sha256": "f954615d7a69bd03faca193e7e2291ed14bc38ef7c6af568001585edd3a747e8",
+    "rows": 22,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20140528135101/https://lineup.governorsballmusicfestival.com/band/jack-white",
+     "captureTimestamp": "20140528135101",
+     "printed": "Saturday Jun 7 9:30 PM on GovBallNYC Stage",
+     "sha256": "55e49489a42af6342dc12409c5518b0c4bb022afd7ba00012ea1f0f7787b855d"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20140618204230/https://lineup.governorsballmusicfestival.com/events/2014/06/08/",
+    "captureTimestamp": "20140618204230",
+    "printed": "Sunday, June 8",
+    "sha256": "4146bd2212895656ff6b80245afb33cdebf3ac302ace7d1d38b9caf514f0564f",
+    "rows": 23,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20140604222057/https://lineup.governorsballmusicfestival.com/band/vampire-weekend",
+     "captureTimestamp": "20140604222057",
+     "printed": "Sunday Jun 8 9:15 PM on GovBallNYC Stage",
+     "sha256": "f9d609447b24629e6b1faab37c782a153a580c5e8c1252be7886bc19b9c57bac"
+    }
+   }
+  ]
+ }
+}

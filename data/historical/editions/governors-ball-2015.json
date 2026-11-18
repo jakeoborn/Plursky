@@ -1,0 +1,1171 @@
+{
+ "id": "governors-ball-2015",
+ "festivalId": "governors-ball",
+ "name": "Governors Ball 2015",
+ "year": 2015,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-06-05",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2015-06-06",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2015-06-07",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "governors-ball-2015:govballnyc-stage",
+   "name": "GovBallNYC Stage"
+  },
+  {
+   "id": "governors-ball-2015:big-apple-stage",
+   "name": "Big Apple Stage"
+  },
+  {
+   "id": "governors-ball-2015:honda-stage",
+   "name": "Honda Stage"
+  },
+  {
+   "id": "governors-ball-2015:gotham-tent",
+   "name": "Gotham Tent"
+  }
+ ],
+ "artists": [
+  {
+   "id": "governors-ball-2015:priory",
+   "name": "Priory",
+   "key": "priory",
+   "performers": [
+    "priory"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:rae-sremmurd",
+   "name": "Rae Sremmurd",
+   "key": "rae-sremmurd",
+   "performers": [
+    "rae-sremmurd"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:future",
+   "name": "Future",
+   "key": "future",
+   "performers": [
+    "future"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:chromeo",
+   "name": "Chromeo",
+   "key": "chromeo",
+   "performers": [
+    "chromeo"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:pat-mahoney-dj-set-dfa-lcd-soundsystem",
+   "name": "Pat Mahoney DJ Set (DFA / LCD SOUNDSYSTEM )",
+   "key": "pat-mahoney-dj-set-dfa-lcd-soundsystem",
+   "performers": [
+    "pat-mahoney-dj-set-dfa-lcd-soundsystem"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:florence-the-machine",
+   "name": "Florence + The Machine",
+   "key": "florence-the-machine",
+   "performers": [
+    "florence-the-machine"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:drake",
+   "name": "Drake",
+   "key": "drake",
+   "performers": [
+    "drake"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:black-pistol-fire",
+   "name": "Black Pistol Fire",
+   "key": "black-pistol-fire",
+   "performers": [
+    "black-pistol-fire"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:benjamin-booker",
+   "name": "Benjamin Booker",
+   "key": "benjamin-booker",
+   "performers": [
+    "benjamin-booker"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:rudimental",
+   "name": "Rudimental",
+   "key": "rudimental",
+   "performers": [
+    "rudimental"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:death-from-above-1979",
+   "name": "Death From Above 1979",
+   "key": "death-from-above-1979",
+   "performers": [
+    "death-from-above-1979"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:st-vincent",
+   "name": "St. Vincent",
+   "key": "st-vincent",
+   "performers": [
+    "st-vincent"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:the-districts",
+   "name": "The Districts",
+   "key": "the-districts",
+   "performers": [
+    "the-districts"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:diiv",
+   "name": "DIIV",
+   "key": "diiv",
+   "performers": [
+    "diiv"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:charli-xcx",
+   "name": "Charli XCX",
+   "key": "charli-xcx",
+   "performers": [
+    "charli-xcx"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:vance-joy",
+   "name": "Vance Joy",
+   "key": "vance-joy",
+   "performers": [
+    "vance-joy"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:the-decemberists",
+   "name": "The Decemberists",
+   "key": "the-decemberists",
+   "performers": [
+    "the-decemberists"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:my-morning-jacket",
+   "name": "My Morning Jacket",
+   "key": "my-morning-jacket",
+   "performers": [
+    "my-morning-jacket"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:people-under-the-stairs",
+   "name": "People Under the Stairs",
+   "key": "people-under-the-stairs",
+   "performers": [
+    "people-under-the-stairs"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:gorgon-city-live",
+   "name": "Gorgon City (live)",
+   "key": "gorgon-city-live",
+   "performers": [
+    "gorgon-city-live"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:m",
+   "name": "MØ",
+   "key": "m",
+   "performers": [
+    "m"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:odesza",
+   "name": "ODESZA",
+   "key": "odesza",
+   "performers": [
+    "odesza"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:ratatat",
+   "name": "Ratatat",
+   "key": "ratatat",
+   "performers": [
+    "ratatat"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:holychild",
+   "name": "HolyChild",
+   "key": "holychild",
+   "performers": [
+    "holychild"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:clean-bandit",
+   "name": "Clean Bandit",
+   "key": "clean-bandit",
+   "performers": [
+    "clean-bandit"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:marina-and-the-diamonds",
+   "name": "Marina And The Diamonds",
+   "key": "marina-and-the-diamonds",
+   "performers": [
+    "marina-and-the-diamonds"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:little-dragon",
+   "name": "Little Dragon",
+   "key": "little-dragon",
+   "performers": [
+    "little-dragon"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:bjork",
+   "name": "Björk",
+   "key": "bjork",
+   "performers": [
+    "bjork"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:deadmau5",
+   "name": "Deadmau5",
+   "key": "deadmau5",
+   "performers": [
+    "deadmau5"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:kate-tempest",
+   "name": "Kate Tempest",
+   "key": "kate-tempest",
+   "performers": [
+    "kate-tempest"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:j-roddy-walston-and-the-business",
+   "name": "J. Roddy Walston & the Business",
+   "key": "j-roddy-walston-and-the-business",
+   "performers": [
+    "j-roddy-walston-and-the-business"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:sharon-van-etten",
+   "name": "Sharon Van Etten",
+   "key": "sharon-van-etten",
+   "performers": [
+    "sharon-van-etten"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:atmosphere",
+   "name": "Atmosphere",
+   "key": "atmosphere",
+   "performers": [
+    "atmosphere"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:flume",
+   "name": "Flume",
+   "key": "flume",
+   "performers": [
+    "flume"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:charlotte-oc",
+   "name": "Charlotte OC",
+   "key": "charlotte-oc",
+   "performers": [
+    "charlotte-oc"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:white-lung",
+   "name": "White Lung",
+   "key": "white-lung",
+   "performers": [
+    "white-lung"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:moon-taxi",
+   "name": "Moon Taxi",
+   "key": "moon-taxi",
+   "performers": [
+    "moon-taxi"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:angus-and-julia-stone",
+   "name": "Angus & Julia Stone",
+   "key": "angus-and-julia-stone",
+   "performers": [
+    "angus-and-julia-stone"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:conor-oberst",
+   "name": "Conor Oberst",
+   "key": "conor-oberst",
+   "performers": [
+    "conor-oberst"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:ryan-adams",
+   "name": "Ryan Adams",
+   "key": "ryan-adams",
+   "performers": [
+    "ryan-adams"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:astr",
+   "name": "ASTR",
+   "key": "astr",
+   "performers": [
+    "astr"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:rustie",
+   "name": "Rustie",
+   "key": "rustie",
+   "performers": [
+    "rustie"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:kiesza",
+   "name": "Kiesza",
+   "key": "kiesza",
+   "performers": [
+    "kiesza"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:future-islands",
+   "name": "Future Islands",
+   "key": "future-islands",
+   "performers": [
+    "future-islands"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:sbtrkt",
+   "name": "SBTRKT",
+   "key": "sbtrkt",
+   "performers": [
+    "sbtrkt"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:streets-of-laredo",
+   "name": "STREETS OF LAREDO",
+   "key": "streets-of-laredo",
+   "performers": [
+    "streets-of-laredo"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:echosmith",
+   "name": "Echosmith",
+   "key": "echosmith",
+   "performers": [
+    "echosmith"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:sturgill-simpson",
+   "name": "Sturgill Simpson",
+   "key": "sturgill-simpson",
+   "performers": [
+    "sturgill-simpson"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:tame-impala",
+   "name": "Tame Impala",
+   "key": "tame-impala",
+   "performers": [
+    "tame-impala"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:noel-gallagher-s-high-flying-birds",
+   "name": "Noel Gallagher's High Flying Birds",
+   "key": "noel-gallagher-s-high-flying-birds",
+   "performers": [
+    "noel-gallagher-s-high-flying-birds"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:the-black-keys",
+   "name": "The Black Keys",
+   "key": "the-black-keys",
+   "performers": [
+    "the-black-keys"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:dma-s",
+   "name": "DMA's",
+   "key": "dma-s",
+   "performers": [
+    "dma-s"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:chronixx-and-the-zincfence-redemption",
+   "name": "Chronixx and the Zincfence Redemption",
+   "key": "chronixx-and-the-zincfence-redemption",
+   "performers": [
+    "chronixx-and-the-zincfence-redemption"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:royal-blood",
+   "name": "Royal Blood",
+   "key": "royal-blood",
+   "performers": [
+    "royal-blood"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:the-war-on-drugs",
+   "name": "The War on Drugs",
+   "key": "the-war-on-drugs",
+   "performers": [
+    "the-war-on-drugs"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:hot-chip",
+   "name": "Hot Chip",
+   "key": "hot-chip",
+   "performers": [
+    "hot-chip"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:the-picturebooks",
+   "name": "The Picturebooks",
+   "key": "the-picturebooks",
+   "performers": [
+    "the-picturebooks"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:strand-of-oaks",
+   "name": "Strand of Oaks",
+   "key": "strand-of-oaks",
+   "performers": [
+    "strand-of-oaks"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:logic",
+   "name": "Logic",
+   "key": "logic",
+   "performers": [
+    "logic"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:a-trak",
+   "name": "A-TRAK",
+   "key": "a-trak",
+   "performers": [
+    "a-trak"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:big-gigantic",
+   "name": "Big Gigantic",
+   "key": "big-gigantic",
+   "performers": [
+    "big-gigantic"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:lana-del-rey",
+   "name": "Lana Del Rey",
+   "key": "lana-del-rey",
+   "performers": [
+    "lana-del-rey"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:bishop-nehru",
+   "name": "Bishop Nehru",
+   "key": "bishop-nehru",
+   "performers": [
+    "bishop-nehru"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:hermitude",
+   "name": "Hermitude",
+   "key": "hermitude",
+   "performers": [
+    "hermitude"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:mayer-hawthorne",
+   "name": "Mayer Hawthorne",
+   "key": "mayer-hawthorne",
+   "performers": [
+    "mayer-hawthorne"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:weird-al-yankovic",
+   "name": "\"Weird Al\" Yankovic",
+   "key": "weird-al-yankovic",
+   "performers": [
+    "weird-al-yankovic"
+   ]
+  },
+  {
+   "id": "governors-ball-2015:flying-lotus",
+   "name": "Flying Lotus",
+   "key": "flying-lotus",
+   "performers": [
+    "flying-lotus"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "governors-ball-2015:d1:govballnyc-stage:1215:priory",
+   "artistId": "governors-ball-2015:priory",
+   "day": 1,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2015:d1:govballnyc-stage:1330:rae-sremmurd",
+   "artistId": "governors-ball-2015:rae-sremmurd",
+   "day": 1,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2015:d1:govballnyc-stage:1500:future",
+   "artistId": "governors-ball-2015:future",
+   "day": 1,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2015:d1:govballnyc-stage:1645:chromeo",
+   "artistId": "governors-ball-2015:chromeo",
+   "day": 1,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2015:d1:govballnyc-stage:1845:pat-mahoney-dj-set-dfa-lcd-soundsystem",
+   "artistId": "governors-ball-2015:pat-mahoney-dj-set-dfa-lcd-soundsystem",
+   "day": 1,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "18:45",
+   "end": "19:15"
+  },
+  {
+   "id": "governors-ball-2015:d1:govballnyc-stage:1930:florence-the-machine",
+   "artistId": "governors-ball-2015:florence-the-machine",
+   "day": 1,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "governors-ball-2015:d1:govballnyc-stage:2130:drake",
+   "artistId": "governors-ball-2015:drake",
+   "day": 1,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2015:d1:big-apple-stage:1245:black-pistol-fire",
+   "artistId": "governors-ball-2015:black-pistol-fire",
+   "day": 1,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2015:d1:big-apple-stage:1415:benjamin-booker",
+   "artistId": "governors-ball-2015:benjamin-booker",
+   "day": 1,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2015:d1:big-apple-stage:1545:rudimental",
+   "artistId": "governors-ball-2015:rudimental",
+   "day": 1,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2015:d1:big-apple-stage:1745:death-from-above-1979",
+   "artistId": "governors-ball-2015:death-from-above-1979",
+   "day": 1,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2015:d1:big-apple-stage:2000:st-vincent",
+   "artistId": "governors-ball-2015:st-vincent",
+   "day": 1,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2015:d1:honda-stage:1215:the-districts",
+   "artistId": "governors-ball-2015:the-districts",
+   "day": 1,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2015:d1:honda-stage:1330:diiv",
+   "artistId": "governors-ball-2015:diiv",
+   "day": 1,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2015:d1:honda-stage:1500:charli-xcx",
+   "artistId": "governors-ball-2015:charli-xcx",
+   "day": 1,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2015:d1:honda-stage:1645:vance-joy",
+   "artistId": "governors-ball-2015:vance-joy",
+   "day": 1,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2015:d1:honda-stage:1845:the-decemberists",
+   "artistId": "governors-ball-2015:the-decemberists",
+   "day": 1,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2015:d1:honda-stage:2115:my-morning-jacket",
+   "artistId": "governors-ball-2015:my-morning-jacket",
+   "day": 1,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2015:d1:gotham-tent:1245:people-under-the-stairs",
+   "artistId": "governors-ball-2015:people-under-the-stairs",
+   "day": 1,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2015:d1:gotham-tent:1415:gorgon-city-live",
+   "artistId": "governors-ball-2015:gorgon-city-live",
+   "day": 1,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2015:d1:gotham-tent:1545:m",
+   "artistId": "governors-ball-2015:m",
+   "day": 1,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2015:d1:gotham-tent:1745:odesza",
+   "artistId": "governors-ball-2015:odesza",
+   "day": 1,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2015:d1:gotham-tent:2030:ratatat",
+   "artistId": "governors-ball-2015:ratatat",
+   "day": 1,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2015:d2:govballnyc-stage:1215:holychild",
+   "artistId": "governors-ball-2015:holychild",
+   "day": 2,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2015:d2:govballnyc-stage:1330:clean-bandit",
+   "artistId": "governors-ball-2015:clean-bandit",
+   "day": 2,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2015:d2:govballnyc-stage:1500:marina-and-the-diamonds",
+   "artistId": "governors-ball-2015:marina-and-the-diamonds",
+   "day": 2,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2015:d2:govballnyc-stage:1645:little-dragon",
+   "artistId": "governors-ball-2015:little-dragon",
+   "day": 2,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2015:d2:govballnyc-stage:1900:bjork",
+   "artistId": "governors-ball-2015:bjork",
+   "day": 2,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "governors-ball-2015:d2:govballnyc-stage:2130:deadmau5",
+   "artistId": "governors-ball-2015:deadmau5",
+   "day": 2,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2015:d2:big-apple-stage:1245:kate-tempest",
+   "artistId": "governors-ball-2015:kate-tempest",
+   "day": 2,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2015:d2:big-apple-stage:1415:j-roddy-walston-and-the-business",
+   "artistId": "governors-ball-2015:j-roddy-walston-and-the-business",
+   "day": 2,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2015:d2:big-apple-stage:1545:sharon-van-etten",
+   "artistId": "governors-ball-2015:sharon-van-etten",
+   "day": 2,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2015:d2:big-apple-stage:1745:atmosphere",
+   "artistId": "governors-ball-2015:atmosphere",
+   "day": 2,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2015:d2:big-apple-stage:2000:flume",
+   "artistId": "governors-ball-2015:flume",
+   "day": 2,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2015:d2:honda-stage:1215:charlotte-oc",
+   "artistId": "governors-ball-2015:charlotte-oc",
+   "day": 2,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2015:d2:honda-stage:1330:white-lung",
+   "artistId": "governors-ball-2015:white-lung",
+   "day": 2,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2015:d2:honda-stage:1500:moon-taxi",
+   "artistId": "governors-ball-2015:moon-taxi",
+   "day": 2,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2015:d2:honda-stage:1645:angus-and-julia-stone",
+   "artistId": "governors-ball-2015:angus-and-julia-stone",
+   "day": 2,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2015:d2:honda-stage:1845:conor-oberst",
+   "artistId": "governors-ball-2015:conor-oberst",
+   "day": 2,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2015:d2:honda-stage:2115:ryan-adams",
+   "artistId": "governors-ball-2015:ryan-adams",
+   "day": 2,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2015:d2:gotham-tent:1245:astr",
+   "artistId": "governors-ball-2015:astr",
+   "day": 2,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2015:d2:gotham-tent:1415:rustie",
+   "artistId": "governors-ball-2015:rustie",
+   "day": 2,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2015:d2:gotham-tent:1545:kiesza",
+   "artistId": "governors-ball-2015:kiesza",
+   "day": 2,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2015:d2:gotham-tent:1745:future-islands",
+   "artistId": "governors-ball-2015:future-islands",
+   "day": 2,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2015:d2:gotham-tent:2015:sbtrkt",
+   "artistId": "governors-ball-2015:sbtrkt",
+   "day": 2,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "governors-ball-2015:d3:govballnyc-stage:1215:streets-of-laredo",
+   "artistId": "governors-ball-2015:streets-of-laredo",
+   "day": 3,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2015:d3:govballnyc-stage:1330:echosmith",
+   "artistId": "governors-ball-2015:echosmith",
+   "day": 3,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2015:d3:govballnyc-stage:1500:sturgill-simpson",
+   "artistId": "governors-ball-2015:sturgill-simpson",
+   "day": 3,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2015:d3:govballnyc-stage:1645:tame-impala",
+   "artistId": "governors-ball-2015:tame-impala",
+   "day": 3,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2015:d3:govballnyc-stage:1845:noel-gallagher-s-high-flying-birds",
+   "artistId": "governors-ball-2015:noel-gallagher-s-high-flying-birds",
+   "day": 3,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2015:d3:govballnyc-stage:2115:the-black-keys",
+   "artistId": "governors-ball-2015:the-black-keys",
+   "day": 3,
+   "stageId": "governors-ball-2015:govballnyc-stage",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "governors-ball-2015:d3:big-apple-stage:1245:dma-s",
+   "artistId": "governors-ball-2015:dma-s",
+   "day": 3,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2015:d3:big-apple-stage:1415:chronixx-and-the-zincfence-redemption",
+   "artistId": "governors-ball-2015:chronixx-and-the-zincfence-redemption",
+   "day": 3,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2015:d3:big-apple-stage:1545:royal-blood",
+   "artistId": "governors-ball-2015:royal-blood",
+   "day": 3,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2015:d3:big-apple-stage:1745:the-war-on-drugs",
+   "artistId": "governors-ball-2015:the-war-on-drugs",
+   "day": 3,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2015:d3:big-apple-stage:2000:hot-chip",
+   "artistId": "governors-ball-2015:hot-chip",
+   "day": 3,
+   "stageId": "governors-ball-2015:big-apple-stage",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "governors-ball-2015:d3:honda-stage:1215:the-picturebooks",
+   "artistId": "governors-ball-2015:the-picturebooks",
+   "day": 3,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "12:15",
+   "end": "12:45"
+  },
+  {
+   "id": "governors-ball-2015:d3:honda-stage:1330:strand-of-oaks",
+   "artistId": "governors-ball-2015:strand-of-oaks",
+   "day": 3,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2015:d3:honda-stage:1500:logic",
+   "artistId": "governors-ball-2015:logic",
+   "day": 3,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "governors-ball-2015:d3:honda-stage:1645:a-trak",
+   "artistId": "governors-ball-2015:a-trak",
+   "day": 3,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2015:d3:honda-stage:1845:big-gigantic",
+   "artistId": "governors-ball-2015:big-gigantic",
+   "day": 3,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "governors-ball-2015:d3:honda-stage:2115:lana-del-rey",
+   "artistId": "governors-ball-2015:lana-del-rey",
+   "day": 3,
+   "stageId": "governors-ball-2015:honda-stage",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "governors-ball-2015:d3:gotham-tent:1245:bishop-nehru",
+   "artistId": "governors-ball-2015:bishop-nehru",
+   "day": 3,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2015:d3:gotham-tent:1415:hermitude",
+   "artistId": "governors-ball-2015:hermitude",
+   "day": 3,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "governors-ball-2015:d3:gotham-tent:1545:mayer-hawthorne",
+   "artistId": "governors-ball-2015:mayer-hawthorne",
+   "day": 3,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2015:d3:gotham-tent:1745:weird-al-yankovic",
+   "artistId": "governors-ball-2015:weird-al-yankovic",
+   "day": 3,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "governors-ball-2015:d3:gotham-tent:2000:flying-lotus",
+   "artistId": "governors-ball-2015:flying-lotus",
+   "day": 3,
+   "stageId": "governors-ball-2015:gotham-tent",
+   "start": "20:00",
+   "end": "21:15"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://governorsballmusicfestival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150613052427/https://lineup.governorsballmusicfestival.com/events/2015/06/05/",
+    "captureTimestamp": "20150613052427",
+    "printed": "Friday, June 5",
+    "sha256": "9c9d57ead0da8e26cf409a9d2111242724f685d78de5b3cc9979485ff3452858",
+    "rows": 23,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20150622040334/https://lineup.governorsballmusicfestival.com/band/drake",
+     "captureTimestamp": "20150622040334",
+     "printed": "Friday Jun 5 9:30 PM on GovBallNYC Stage",
+     "sha256": "7101320314bb66fc525675881aebede581c32e6691c3c957db1f31b99a391119"
+    }
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150617091630/https://lineup.governorsballmusicfestival.com/events/2015/06/06/",
+    "captureTimestamp": "20150617091630",
+    "printed": "Saturday, June 6",
+    "sha256": "d1a01085b41b69607ae3954610157c49c15404478793306c9b709372826627c5",
+    "rows": 22,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20150609040656/https://lineup.governorsballmusicfestival.com/band/marina-and-the-diamonds",
+     "captureTimestamp": "20150609040656",
+     "printed": "Saturday Jun 6 3:00 PM on GovBallNYC Stage",
+     "sha256": "28c68d66a5bb629b9c4ee0c53a9746cc931fdf9e8794ea87b6f31fc645b2e7a9"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150617082728/https://lineup.governorsballmusicfestival.com/events/2015/06/07/",
+    "captureTimestamp": "20150617082728",
+    "printed": "Sunday, June 7",
+    "sha256": "db97609fa2f1189270664bb7a3334df9eaf4061ade06a823bd71a8e8d28da634",
+    "rows": 22,
+    "meridiemFrom": {
+     "archivedUrl": "https://web.archive.org/web/20150618102430/https://lineup.governorsballmusicfestival.com/band/the-black-keys",
+     "captureTimestamp": "20150618102430",
+     "printed": "Sunday Jun 7 9:15 PM on GovBallNYC Stage",
+     "sha256": "b3efa0af1e6041220422bbf8503cc4d660d7b3049f80a87d9e3ea5316af892d1"
+    }
+   }
+  ]
+ }
+}

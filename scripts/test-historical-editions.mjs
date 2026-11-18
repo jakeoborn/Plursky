@@ -1449,6 +1449,21 @@ for (const [printed, date, year, dates, want] of [
     mustFail("a cancelled day with no ledger proof", m => { delete m.provenance.cancelledDays; }, a13, undefined, /no ledger proof/);
     mustFail("a cancelled day's proof without its blocks", m => { m.provenance.cancelledDays[0].blocks = 0; }, a13, undefined, /no ledger proof/);
   }
+  // Governors Ball 2013: Kings of Leon, printed as Friday's closer, played
+  // Saturday (the festival's own posts). The set is listed on Saturday only,
+  // the ledger keeps Friday's block as an excluded moved row, and a note
+  // naming both days says why.
+  const gb13 = editions["governors-ball-2013"];
+  ok(gb13, "the Governors Ball 2013 edition must exist for the moved-set mutations");
+  if (gb13) {
+    const kol = gb13.sets.filter(x => x.artistId.endsWith(":kings-of-leon"));
+    const led = JSON.parse(readFileSync(H("ledger/governors-ball-2013.json"), "utf8"));
+    ok(kol.length === 1 && kol[0].day === 2 && kol[0].start === "18:45"
+      && led.excluded.length === 1 && led.excluded[0].moved && led.excluded[0].day === 1 && led.excluded[0].start === "21:30",
+      "Governors Ball 2013: Kings of Leon listed once, Saturday 18:45, with Friday's printed block an excluded moved row");
+    mustFail("a moved set with its note dropped", m => { delete m.notes; }, gb13, undefined, /notes differ|no note naming days 1 and 2/);
+    mustFail("a moved set's note narrowed to one day", m => { m.notes[0].days = [2]; }, gb13, undefined, /notes differ|no note naming days 1 and 2/);
+  }
 }
 
 // 7. The Wayback cache never hands back a neighbouring capture under the

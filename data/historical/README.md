@@ -366,6 +366,31 @@ the festival: the capture used (20120807041117) is the grid printed after it,
 with the evening moved later and eight afternoon sets no longer listed, and
 the edition carries a note saying so.
 
+Governors Ball 2013 ran on the same platform
+(lineup.governorsballmusicfestival.com, same format and tools). Its titles
+print the year ("Governors Ball 2013", "Kanye West at Governors Ball 2013").
+Each day's grid is a capture taken after the festival, with four stages, and
+its anchor is one headliner's own page: Pretty Lights (Friday 9:30 PM,
+HondaSTAGE), Guns N' Roses (Saturday) and Kanye West (Sunday, both 9:30 PM on
+the GOV BALL NYC STAGE). Friday was cut short by rain. The grid still prints
+Kings of Leon closing Friday, but the festival's own homepage (captured
+2013-07-21) posted that they would play Saturday at 6:45 PM, where the
+Saturday grid lists them. A set like this goes in the edition's `movedSets`
+with its from and to slots, the official page and the words quoted from it.
+gather-dostuff.mjs excludes the printed block as `moved`, and the import
+checks three things: that the page's moved blocks and the excluded rows match
+one for one, that the set is listed where it was played, and that the
+archived official page prints every quoted phrase. validate.mjs then requires
+a note naming both days. Press also reported Pretty Lights' Friday set as cut,
+but no official page says so, so it stays as printed.
+
+Governors Ball 2014 and 2015 are the same site and layout (four stages, axis
+from "12:00"), each day's grid captured after the festival. Anchors: Outkast,
+Jack White and Vampire Weekend (2014); Drake, Marina And The Diamonds and The
+Black Keys (2015). Deadmau5's 2015 page, captured before the festival, prints
+9:15 PM, but the final Saturday grid has him at 9:30, so that page cannot fix
+the axis, and Marina (captured after her set) anchors Saturday instead.
+
 Lollapalooza 2011 is the same site's older layout, read by the same tools.
 Its title prints the year ("Lollapalooza 2011"); the days are a drop-down
 (the current one as plain text, "Fri, Aug 5", the others as links whose

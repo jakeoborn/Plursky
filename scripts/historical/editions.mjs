@@ -66,6 +66,32 @@ export const EDITIONS = {
   "governors-ball-2012": { festivalId: "governors-ball", name: "Governors Ball 2012", year: 2012,
     timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
     dates: [["2012-06-23", "Saturday"], ["2012-06-24", "Sunday"]] },
+  // Governors Ball 2013: the official lineup.governorsballmusicfestival.com
+  // day grids (format "dostuff-grid", dostuff-schedule.mjs, the same DoStuff
+  // site as Outside Lands' and Lollapalooza 2012's), one page per day, each
+  // captured after the festival. Friday was cut short by rain: the grid still
+  // prints Kings of Leon closing Friday, but the festival's own homepage posts
+  // moved them to Saturday at 6:45 PM, the slot the Saturday grid prints, so
+  // Friday's block is excluded as moved (movedSets, checked against that page).
+  "governors-ball-2013": { festivalId: "governors-ball", name: "Governors Ball 2013", year: 2013,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2013-06-07", "Friday"], ["2013-06-08", "Saturday"], ["2013-06-09", "Sunday"]],
+    movedSets: [{ date: "2013-06-07", stage: "GOV BALL NYC STAGE", start: "21:30", artist: "KINGS OF LEON",
+      to: { date: "2013-06-08", stage: "GOV BALL NYC STAGE", start: "18:45" },
+      source: { url: "https://governorsballmusicfestival.com/", captureTimestamp: "20130721210049" },
+      quotes: ["Kings of Leon will be performing today at the Gov Ball NYC Stage at 6:45pm", "coming back on Saturday"] }],
+    notes: [{ asOf: "2026-11-18", days: [1, 2], text: "Friday was cut short by rain. Kings of Leon, printed as Friday's closer, played Saturday at 6:45 PM instead, as the festival's own posts said, so they are listed on Saturday only.",
+      source: "https://web.archive.org/web/20130721210049/https://governorsballmusicfestival.com/" }] },
+  // Governors Ball 2014-2015: the same lineup site and format, each day's grid
+  // captured after the festival. 2015's Saturday anchor is Marina And The
+  // Diamonds: Deadmau5's page, captured before the festival, prints 9:15 PM,
+  // which the final grid moved to 9:30.
+  "governors-ball-2014": { festivalId: "governors-ball", name: "Governors Ball 2014", year: 2014,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2014-06-06", "Friday"], ["2014-06-07", "Saturday"], ["2014-06-08", "Sunday"]] },
+  "governors-ball-2015": { festivalId: "governors-ball", name: "Governors Ball 2015", year: 2015,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2015-06-05", "Friday"], ["2015-06-06", "Saturday"], ["2015-06-07", "Sunday"]] },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.
@@ -638,6 +664,8 @@ export const PRINTED_NON_LATIN = {
   // The same lambda on Tomorrowland's own day timetables.
   "tomorrowland-2015": ["Axwell Λ Ingrosso"],
   "tomorrowland-2016": ["Axwell Λ Ingrosso"],
+  // The same lambda on Governors Ball's own 2014 lineup-site grid.
+  "governors-ball-2014": ["Axwell Λ Ingrosso"],
   // The trio's own Greek lambda, as Coachella's 2012 lineup page prints it.
   "coachella-2012": ["NOISIΛ"],
 };

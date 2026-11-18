@@ -134,6 +134,13 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     for (const d of n.days || []) if (!e.days.some(x => x.day === d)) p.push(`${e.id}: a note names day ${d}, which the edition does not have`);
   }
   for (const d of e.days) if (d.untimed && !(e.notes || []).some(n => n.days?.includes(d.day))) p.push(`${e.id}: day ${d.day} is untimed with no note saying why`);
+  // A set the festival moved (movedSets) is listed only where it was played,
+  // so a note must name both its printed day and its played day.
+  for (const m of meta.movedSets || []) {
+    const from = (meta.dates || []).findIndex(([d]) => d === m.date) + 1, to = (meta.dates || []).findIndex(([d]) => d === m.to?.date) + 1;
+    if (!from || !to) p.push(`${e.id}: moved set ${m.artist} names a date the edition does not have`);
+    else if (!(e.notes || []).some(n => n.days?.includes(from) && n.days?.includes(to))) p.push(`${e.id}: moved set ${m.artist} has no note naming days ${from} and ${to}`);
+  }
   // An edition-level status is the registry's, verbatim. "canceled" is the
   // only one, and it needs two dated sources from different publishers, each
   // published by the first day, plus an announcement date.
