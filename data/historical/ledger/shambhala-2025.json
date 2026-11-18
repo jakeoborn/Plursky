@@ -1,0 +1,370 @@
+{
+  "id": "shambhala-2025",
+  "method": "official_sources",
+  "official": "https://www.shambhalamusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2025-07-24",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.shambhalamusicfestival.com/set-times/thursday",
+          "archivedUrl": "https://web.archive.org/web/20250801032848/https://www.shambhalamusicfestival.com/set-times/thursday",
+          "captureTimestamp": "20250801032848",
+          "printed": "Thursday",
+          "sha256": "f8ba013f4caf8d432fa4d0789c69d4f59d8ab29e9bbe70fd67a20ae02881be75",
+          "bytes": 61318,
+          "rows": 22,
+          "format": "shambhala-webflow",
+          "weekday": "Thursday",
+          "published": "2025-07-22",
+          "stages": 2,
+          "axis": "10:00-09:00",
+          "pxPerHour": 70,
+          "datesFrom": {
+            "url": "https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2025-lineup",
+            "archivedUrl": "https://web.archive.org/web/20250316064003/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2025-lineup",
+            "captureTimestamp": "20250316064003",
+            "sha256": "57ed4215a13a42ebb7b9d215c58be2205f3145ff2e09caf6f4318528b81faba5",
+            "printed": "July 25th to 28th, 2025"
+          },
+          "times": "each block's 24-hour data, its printed 12-hour time and its place on the page's hour axis agree",
+          "stagesWithNoSets": [
+            "Fractal Forest",
+            "Grove",
+            "The Pagoda",
+            "The Village",
+            "Secret Garden"
+          ],
+          "stagesRenamed": [
+            "secret-garden column, its logo printed \"The Village\": Secret Garden"
+          ],
+          "drawnTwice": [
+            "GUNFINGAZ (WRAZ & SUBSTANCE) (AMP 7:30 pm - 9:00 pm)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2025-07-25",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.shambhalamusicfestival.com/set-times/friday",
+          "archivedUrl": "https://web.archive.org/web/20250801032858/https://www.shambhalamusicfestival.com/set-times/friday",
+          "captureTimestamp": "20250801032858",
+          "printed": "Friday",
+          "sha256": "9b64e51faf764049621cdcd23ffb587aeb1fd2478a2ec00b715327a438b6cf4e",
+          "bytes": 84161,
+          "rows": 74,
+          "format": "shambhala-webflow",
+          "weekday": "Friday",
+          "published": "2025-07-22",
+          "stages": 7,
+          "axis": "10:00-09:00",
+          "pxPerHour": 70,
+          "datesFrom": {
+            "url": "https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2025-lineup",
+            "archivedUrl": "https://web.archive.org/web/20250316064003/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2025-lineup",
+            "captureTimestamp": "20250316064003",
+            "sha256": "57ed4215a13a42ebb7b9d215c58be2205f3145ff2e09caf6f4318528b81faba5",
+            "printed": "July 25th to 28th, 2025"
+          },
+          "times": "each block's 24-hour data, its printed 12-hour time and its place on the page's hour axis agree",
+          "stagesRenamed": [
+            "secret-garden column, its logo printed \"The Village\": Secret Garden"
+          ],
+          "drawnTwice": [
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 8:30 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 8:30 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 8:30 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 8:30 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 8:30 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 8:30 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 8:30 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 8:30 pm)",
+            "Village Rinse Out Hosted by John Rolodex (The Village 3:00 pm - 8:30 pm)",
+            "Fly with Friends Acro Yoga with John Early & Brenna Bote (Secret Garden 3:00 pm - 4:30 pm)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2025-07-26",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.shambhalamusicfestival.com/set-times/saturday",
+          "archivedUrl": "https://web.archive.org/web/20250801032858/https://www.shambhalamusicfestival.com/set-times/saturday",
+          "captureTimestamp": "20250801032858",
+          "printed": "Saturday",
+          "sha256": "3002437942b4c705eda7d55d2019a0b441f5380be99217d3cdf978ac2592b3ff",
+          "bytes": 88995,
+          "rows": 78,
+          "format": "shambhala-webflow",
+          "weekday": "Saturday",
+          "published": "2025-07-22",
+          "stages": 7,
+          "axis": "10:00-09:00",
+          "pxPerHour": 70,
+          "datesFrom": {
+            "url": "https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2025-lineup",
+            "archivedUrl": "https://web.archive.org/web/20250316064003/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2025-lineup",
+            "captureTimestamp": "20250316064003",
+            "sha256": "57ed4215a13a42ebb7b9d215c58be2205f3145ff2e09caf6f4318528b81faba5",
+            "printed": "July 25th to 28th, 2025"
+          },
+          "times": "each block's 24-hour data, its printed 12-hour time and its place on the page's hour axis agree",
+          "stagesRenamed": [
+            "secret-garden column, its logo printed \"The Village\": Secret Garden"
+          ],
+          "drawnTwice": [
+            "Skream & Friends (Ft. Sgt. Pokes, Coki, Distinct Motive & more.......) (AMP 12:30 am - 9:00 am)",
+            "Skream & Friends (Ft. Sgt. Pokes, Coki, Distinct Motive & more.......) (AMP 12:30 am - 9:00 am)",
+            "Skream & Friends (Ft. Sgt. Pokes, Coki, Distinct Motive & more.......) (AMP 12:30 am - 9:00 am)",
+            "Tomahawk Bang & Notorious Cree (Living Room 2:00 am - 4:00 am)",
+            "Elektric Collective with Hoola (Living Room 11:30 pm - 12:15 am)",
+            "The Chillage (The Village 3:30 am - 6:00 am)",
+            "The Chillage (The Village 3:30 am - 6:00 am)",
+            "The Chillage (The Village 3:30 am - 6:00 am)",
+            "The Chillage (The Village 3:30 am - 6:00 am)",
+            "The Chillage (The Village 3:30 am - 6:00 am)",
+            "The Chillage (The Village 3:30 am - 6:00 am)",
+            "#WOMBTANG - Ladies DnB Takeover (Hosted by Crystal Fresh) (The Village 5:30 pm - 8:30 pm)",
+            "#WOMBTANG - Ladies DnB Takeover (Hosted by Crystal Fresh) (The Village 5:30 pm - 8:30 pm)",
+            "#WOMBTANG - Ladies DnB Takeover (Hosted by Crystal Fresh) (The Village 5:30 pm - 8:30 pm)",
+            "#WOMBTANG - Ladies DnB Takeover (Hosted by Crystal Fresh) (The Village 5:30 pm - 8:30 pm)",
+            "#WOMBTANG - Ladies DnB Takeover (Hosted by Crystal Fresh) (The Village 5:30 pm - 8:30 pm)",
+            "#WOMBTANG - Ladies DnB Takeover (Hosted by Crystal Fresh) (The Village 5:30 pm - 8:30 pm)",
+            "#WOMBTANG - Ladies DnB Takeover (Hosted by Crystal Fresh) (The Village 5:30 pm - 8:30 pm)",
+            "Sound Healing with The Troy Story 3 (Secret Garden 12:00 pm - 1:15 pm)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2025-07-27",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.shambhalamusicfestival.com/set-times/sunday",
+          "archivedUrl": "https://web.archive.org/web/20250801032858/https://www.shambhalamusicfestival.com/set-times/sunday",
+          "captureTimestamp": "20250801032858",
+          "printed": "Sunday",
+          "sha256": "b19783e313d6a429ac53a2c61dab9956c246e26f43c20dd57e6c52a9df76e786",
+          "bytes": 84534,
+          "rows": 86,
+          "format": "shambhala-webflow",
+          "weekday": "Sunday",
+          "published": "2025-07-22",
+          "stages": 7,
+          "axis": "10:00-09:00",
+          "pxPerHour": 70,
+          "datesFrom": {
+            "url": "https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2025-lineup",
+            "archivedUrl": "https://web.archive.org/web/20250316064003/https://www.shambhalamusicfestival.com/blog/shambhala-music-festival-2025-lineup",
+            "captureTimestamp": "20250316064003",
+            "sha256": "57ed4215a13a42ebb7b9d215c58be2205f3145ff2e09caf6f4318528b81faba5",
+            "printed": "July 25th to 28th, 2025"
+          },
+          "times": "each block's 24-hour data, its printed 12-hour time and its place on the page's hour axis agree",
+          "stagesRenamed": [
+            "secret-garden column, its logo printed \"The Village\": Secret Garden"
+          ],
+          "drawnTwice": [
+            "Pineo & Loeb ft. K-OS (Fractal Forest 7:00 pm - 8:00 pm)",
+            "Parkbreezy x TF Marz (Grove 5:30 am - 7:00 am)",
+            "DLB B2B Trevor Galore (The Village 5:00 pm - 6:00 pm)"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "Living Room",
+      "start": "14:30",
+      "end": "16:00",
+      "billing": "Hoola & We Love Lamp Showcase",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "The Village",
+      "start": "15:00",
+      "end": "20:30",
+      "billing": "Village Rinse Out Hosted by John Rolodex",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Secret Garden",
+      "start": "13:30",
+      "end": "15:00",
+      "billing": "Church of Central Raving with Giovanni Jaft",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Secret Garden",
+      "start": "15:00",
+      "end": "16:30",
+      "billing": "Fly with Friends Acro Yoga with John Early & Brenna Bote",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Secret Garden",
+      "start": "16:30",
+      "end": "18:00",
+      "billing": "Inhabit Your Body in Contact Dance with Peta Thompson & Siovhan Williamson",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Secret Garden",
+      "start": "18:00",
+      "end": "19:30",
+      "billing": "Music, Healing, and the History of Dance Culture with Brent Boychuck",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "The Village",
+      "start": "17:30",
+      "end": "20:30",
+      "billing": "#WOMBTANG - Ladies DnB Takeover (Hosted by Crystal Fresh)",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Secret Garden",
+      "start": "10:30",
+      "end": "12:00",
+      "billing": "Restorative Qi Gong with Shakya",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Secret Garden",
+      "start": "12:00",
+      "end": "13:15",
+      "billing": "Sound Healing with The Troy Story 3",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Secret Garden",
+      "start": "13:15",
+      "end": "15:00",
+      "billing": "Rooted in Ritual Yoga with Gina Bukovnik",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Secret Garden",
+      "start": "15:00",
+      "end": "16:30",
+      "billing": "Getting High on Your Own Supply with Cody Crawford",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Secret Garden",
+      "start": "16:30",
+      "end": "18:00",
+      "billing": "Hula Hoop Playshop with Amanda Panda",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Secret Garden",
+      "start": "18:00",
+      "end": "19:30",
+      "billing": "Documentary Storytelling with Daniel Pierce",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Fractal Forest",
+      "start": "14:00",
+      "end": "18:00",
+      "billing": "Fractal Funk Jam Hosted by Smalltown DJs featuring DJ Jazzy Jeff",
+      "category": "event-block",
+      "reason": "a curated event printed as one block (an event title with several acts and extras), not one billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Secret Garden",
+      "start": "10:30",
+      "end": "12:00",
+      "billing": "Mindful Moon Sound Healing",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Secret Garden",
+      "start": "12:00",
+      "end": "13:15",
+      "billing": "Ascend - Ecstatic Yoga with Matthew Yausie",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Secret Garden",
+      "start": "13:15",
+      "end": "14:30",
+      "billing": "Soften Your Senses - Blindfolded Yoga with Brenna Bote",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Secret Garden",
+      "start": "16:00",
+      "end": "17:30",
+      "billing": "Assomatic Release Twerkshop with The Troy Story 3",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Secret Garden",
+      "start": "17:30",
+      "end": "19:00",
+      "billing": "Sacred Plant Medicines with Evolved Alchemy",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Secret Garden",
+      "start": "19:00",
+      "end": "20:30",
+      "billing": "Warrior Qi Gong with Shakya",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    }
+  ]
+}

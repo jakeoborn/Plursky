@@ -29,6 +29,13 @@ export const EDITIONS = {
   "shambhala-2014": { festivalId: "shambhala", name: "Shambhala 2014", year: 2014, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2014-08-07","Thursday"],["2014-08-08","Friday"],["2014-08-09","Saturday"],["2014-08-10","Sunday"]] },
   "shambhala-2015": { festivalId: "shambhala", name: "Shambhala 2015", year: 2015, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2015-08-06","Thursday"],["2015-08-07","Friday"],["2015-08-08","Saturday"],["2015-08-09","Sunday"]] },
   "shambhala-2016": { festivalId: "shambhala", name: "Shambhala 2016", year: 2016, timezone: "America/Vancouver", rolloverHour: 11, method: "official_sources", dates: [["2016-08-04","Thursday"],["2016-08-05","Friday"],["2016-08-06","Saturday"],["2016-08-07","Sunday"]] },
+  // Shambhala 2024-2025: the festival's own set-times pages, one per weekday
+  // (format "shambhala-webflow"). A page prints its weekday and no date; the
+  // dates are the run the festival's dated announcement prints ("July 26-29,
+  // 2024", Friday to Monday), its Thursday the night before. The day runs
+  // from 10 AM, where every page's hour axis starts.
+  "shambhala-2024": { festivalId: "shambhala", name: "Shambhala 2024", year: 2024, timezone: "America/Vancouver", rolloverHour: 10, method: "official_sources", dates: [["2024-07-25","Thursday"],["2024-07-26","Friday"],["2024-07-27","Saturday"],["2024-07-28","Sunday"]] },
+  "shambhala-2025": { festivalId: "shambhala", name: "Shambhala 2025", year: 2025, timezone: "America/Vancouver", rolloverHour: 10, method: "official_sources", dates: [["2025-07-24","Thursday"],["2025-07-25","Friday"],["2025-07-26","Saturday"],["2025-07-27","Sunday"]] },
   // Outside Lands 2010-2011: the official schedule planner on
   // myscheduler.sfoutsidelands.com, one archived page per year that writes
   // every set as data (format "myscheduler-data", myscheduler-schedule.mjs).
@@ -570,6 +577,9 @@ export const PRINTED_LONG_SETS = {
   // Markus Schulz hosting his own stage, one slot from 13:00 to 01:00, 720
   // minutes wide on Tomorrowland's Friday 26 July 2013 timetable.
   "tomorrowland-2013": ["Markus Schulz|13:00|01:00"],
+  // Skream & Friends closing the AMP, 12:30 AM to 9:00 AM (510 minutes), on
+  // Shambhala's Saturday 2025 set-times page.
+  "shambhala-2025": ["Skream & Friends (Ft. Sgt. Pokes, Coki, Distinct Motive & more.......)|00:30|09:00"],
 };
 // Billings whose non-Latin letters are the artist's own styling, as the
 // festival's structured page printed them (not OCR). Each one was read on
@@ -612,6 +622,18 @@ export const PROGRAMME = {
   "shambhala-2014": ["Opening Ceremony with Soul Fire Dance", "Fashion Show w/ Sam Demoe"],
   "shambhala-2015": ["JoaqoPelli (Flute Ceremony, 11:11AM)", "JoaqoPelli (Flute Ceremony)", "Hoola (Band Changeover)", "Opening Ceremony w/ Soul Fire Dance", "Fashion Show"],
   "shambhala-2016": ["Classical Hour", "Yoga of Bass w/ FreQ Nasty & Claire", "Hosted by Def3 & ThinkTank", "Opening Ceremony with Soul Fire Dance", "SubPac Sound Healing w/ FreQ Nasty", "iLoveHoolaHoops Workshop with FunkConscious", "iLoveHoolaHoops Workshop with Dubconscious", "Fashion Fiasco Fantastico w/ DJ Faiith", "Circus Acts Insomniacs"],
+  // 2024-2025: the Secret Garden's daytime classes and talks, and a yoga
+  // class in the Living Room, in the same columns as the night's DJ sets.
+  "shambhala-2024": ["Church of Central Raving", "Fly With Me Acro Yoga - John Early & Brenna Bote", "Music, Healing and the History of Dance Culture",
+    "Kali Yoga Flow - Danya Buac", "Transformational Reset Yoga - Matthew Yausie", "Astro Herbalism - House of Origins",
+    "Pratyahara Blindfold Yoga - Brenna Bote & John Early", "Flipped Perspective Inversions - Matthew Yausie",
+    "Deep Bass Breathwork - Mala Wellness Collective", "Yoga w/ Celeste"],
+  "shambhala-2025": ["Church of Central Raving with Giovanni Jaft", "Fly with Friends Acro Yoga with John Early & Brenna Bote",
+    "Inhabit Your Body in Contact Dance with Peta Thompson & Siovhan Williamson", "Music, Healing, and the History of Dance Culture with Brent Boychuck",
+    "Restorative Qi Gong with Shakya", "Sound Healing with The Troy Story 3", "Rooted in Ritual Yoga with Gina Bukovnik",
+    "Getting High on Your Own Supply with Cody Crawford", "Hula Hoop Playshop with Amanda Panda", "Documentary Storytelling with Daniel Pierce",
+    "Mindful Moon Sound Healing", "Ascend - Ecstatic Yoga with Matthew Yausie", "Soften Your Senses - Blindfolded Yoga with Brenna Bote",
+    "Assomatic Release Twerkshop with The Troy Story 3", "Sacred Plant Medicines with Evolved Alchemy", "Warrior Qi Gong with Shakya"],
 };
 const PROGRAMME_REASON = "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance";
 
@@ -636,6 +658,10 @@ export const EVENT_BLOCKS = {
   "shambhala-2014": ["Ragga Jungle Rinse Out", "Hip Hop Showcase - Hosted by Emotionz w/ Blockparents, Vs. Lyndi Lysh & Digs, Northwest Division", "Hip Hop Showcase w/ Grhymes & Attikus, Ashleigh Eymann, Fresh Kils, Degree One (B-Boy Jam)", "Hip Hop Showcase w/ Scott Jackson, Pigeon Hole, Sweatshop Union, Emotionz LIVE BAND SET", "Liquid Soul Sessions w/ PK & Friends", "Fractal Funk Jam Hosted by Smalltown DJs"],
   "shambhala-2015": ["Ragga Jungle Rinse Out - Hosted by Hush", "Hip Hop Showcase ft. Grouch & Eligh", "Liquid Sunrise Jam", "Fractal Funk Jam - Hosted by Smalltown DJs"],
   "shambhala-2016": ["Ragga Jungle Rinse Out", "Hip Hop Showcase", "Sunrise Liquid Jam", "Fractal Funk Jam - Hosted by Smalltown DJs"],
+  "shambhala-2024": ["Village Rinse Out Hosted by John Rolodex", "DNB Girls Takeover Hosted By Crystal Fresh", "Fractal Funk Jam (Hosted by Smalltown DJS)",
+    "The Chillage - Ill.Gates, Mr. Bill, Shmani, Slowform", "Afternoon Saloon with Marin & Friends", "The Pride W/ Lion-S & Hoola"],
+  "shambhala-2025": ["Village Rinse Out Hosted by John Rolodex", "#WOMBTANG - Ladies DnB Takeover (Hosted by Crystal Fresh)",
+    "Fractal Funk Jam Hosted by Smalltown DJs featuring DJ Jazzy Jeff", "Hoola & We Love Lamp Showcase"],
 };
 const EVENT_BLOCK_REASON = "a curated event printed as one block (an event title with several acts and extras), not one billed performance";
 

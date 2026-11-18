@@ -47,6 +47,7 @@ import { parseMyScheduler, restoreSets } from "./myscheduler-schedule.mjs";
 import { parseEfScheduler } from "./ef-scheduler-schedule.mjs";
 import { parseGovBallWp } from "./govball-wp-schedule.mjs";
 import { parseTmlDrupal } from "./tml-drupal-schedule.mjs";
+import { parseShambhalaWebflow, readDatesPost } from "./shambhala-webflow-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
@@ -524,6 +525,37 @@ export async function importGather(id, dir) {
           times: "24-hour ranges, each checked against its slot's width and gap on the page's hour axis",
           ...(d.blank.length && { stagesWithNoSlot: d.blank }),
           ...(prog.length && { programmeShows: prog.length, programmeStages: progStages.filter(x => d.stages.includes(x)) }),
+          ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
+      } else if (s.format === "shambhala-webflow") {
+        // One page per weekday (Shambhala 2024-2025,
+        // shambhala-webflow-schedule.mjs): it prints its weekday and no date,
+        // and its "Last Published" stamp must be in the edition's year. The
+        // date is the run the festival's dated post prints, re-read here off
+        // the official host. Every block's printed time, its data and its
+        // place on the hour axis agree; two acts drawn in one slot must be
+        // the sheet's excluded misprint rows of that day, one for one.
+        if (days.length !== 1) throw new Error(`page ${s.match} is cited for ${days.length} days; a Shambhala day page shows one`);
+        const day = days[0], d = parseShambhalaWebflow(cap.text, { year: ed.year, stageByLogo: s.stageByLogo || {} });
+        if (d.weekday !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${d.weekday}, the receipt says "${s.printed[day]}"`);
+        if (d.published !== s.published) throw new Error(`${s.url} @${s.captureTimestamp}: last published ${d.published}, the receipt says ${s.published}`);
+        const f = s.datesFrom || {};
+        if (!f.url || new URL(f.url).hostname !== new URL(s.url).hostname) throw new Error(`${s.url}: the dates come from ${f.url || "nowhere"}, not the festival's own site`);
+        const dcap = await fetchCapture(f.captureTimestamp, f.url);
+        if (dcap.captureTimestamp !== f.captureTimestamp) throw new Error(`${f.url}: Wayback served ${dcap.captureTimestamp}, not ${f.captureTimestamp}`);
+        const post = readDatesPost(dcap.text, ed.year);
+        if (post.printed !== f.printed) throw new Error(`${f.url} @${f.captureTimestamp}: prints "${post.printed}", the receipt says "${f.printed}"`);
+        if (post.days[d.weekday] !== ed.dates[day - 1][0]) throw new Error(`${s.url} @${s.captureTimestamp}: the post dates ${d.weekday} ${post.days[d.weekday]}, the sheet cites the page for day ${day} (${ed.dates[day - 1][0]})`);
+        const k = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
+        const pg = d.misprints.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x.misprint).map(k).sort().join("\n");
+        if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${d.misprints.length} misprint(s), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+        agree(day, d.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+        Object.assign(ledgerDays[day - 1].sources.at(-1), { weekday: d.weekday, published: d.published, stages: d.stages.length, axis: d.axis, pxPerHour: d.pxPerHour,
+          datesFrom: { url: f.url, archivedUrl: dcap.archivedUrl, captureTimestamp: dcap.captureTimestamp, sha256: dcap.sha256, printed: post.printed },
+          times: "each block's 24-hour data, its printed 12-hour time and its place on the page's hour axis agree",
+          ...(d.blank.length && { stagesWithNoSets: d.blank }),
+          ...(d.renamed.length && { stagesRenamed: d.renamed.map(x => `${x.column} column, its logo printed "${x.printed}": ${x.as}`) }),
+          ...(d.repeats.length && { drawnTwice: d.repeats.map(x => `${x.artist} (${x.stage} ${x.printed})`) }),
+          ...(d.unnamed.length && { unnamedSlots: d.unnamed.map(x => `${x.stage} ${x.printed}: "${x.artist}"`) }),
           ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
       } else if (s.format === "day-tabs") {
         // Every day is on the page; each day's rows must equal its own pane.
