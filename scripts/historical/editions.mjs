@@ -103,6 +103,17 @@ export const EDITIONS = {
   "primavera-sound-2015": { festivalId: "primavera-sound", name: "Primavera Sound 2015", year: 2015,
     timezone: "Europe/Madrid", rolloverHour: 6, method: "official_sources",
     dates: [["2015-05-27", "Wednesday"], ["2015-05-28", "Thursday"], ["2015-05-29", "Friday"], ["2015-05-30", "Saturday"]] },
+  // Primavera Sound 2016: the official full timetable ("Horarios completos",
+  // format "primavera-completos", primavera-completos-schedule.mjs), one
+  // archived page per day, each captured after the festival. The page prints
+  // the whole week, Parc del Fòrum beside the city venues; only the Fòrum's
+  // stages are this edition's. Wednesday 1 June is one free concert on the
+  // Fòrum's Primavera stage, printed "Primavera (concierto gratuito)". The
+  // last sets of a night run to 06:00 and the first of the next start at
+  // 12:00, so the day runs from 10 AM.
+  "primavera-sound-2016": { festivalId: "primavera-sound", name: "Primavera Sound 2016", year: 2016,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2016-06-01", "Wednesday"], ["2016-06-02", "Thursday"], ["2016-06-03", "Friday"], ["2016-06-04", "Saturday"]] },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.

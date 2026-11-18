@@ -396826,6 +396826,5319 @@
   "mainStage": null
  },
  {
+  "id": "primavera-sound-2016:d1:primavera-concierto-gratuito:1700:doble-pletina",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-01",
+  "day": 1,
+  "stage": "Primavera (concierto gratuito)",
+  "start": "17:00",
+  "end": "17:35",
+  "printed": "DOBLE PLETINA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doble-pletina",
+    "role": "performer"
+   }
+  ],
+  "act": "doble-pletina",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera-concierto-gratuito",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d1:primavera-concierto-gratuito:1800:el-ultimo-vecino",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-01",
+  "day": 1,
+  "stage": "Primavera (concierto gratuito)",
+  "start": "18:00",
+  "end": "18:35",
+  "printed": "EL ÚLTIMO VECINO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "el-ultimo-vecino",
+    "role": "performer"
+   }
+  ],
+  "act": "el-ultimo-vecino",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera-concierto-gratuito",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d1:primavera-concierto-gratuito:1900:sr-chinarro",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-01",
+  "day": 1,
+  "stage": "Primavera (concierto gratuito)",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "SR. CHINARRO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sr-chinarro",
+    "role": "performer"
+   }
+  ],
+  "act": "sr-chinarro",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera-concierto-gratuito",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d1:primavera-concierto-gratuito:2030:goat",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-01",
+  "day": 1,
+  "stage": "Primavera (concierto gratuito)",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "GOAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goat",
+    "role": "performer"
+   }
+  ],
+  "act": "goat",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera-concierto-gratuito",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d1:primavera-concierto-gratuito:2200:suede",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-01",
+  "day": 1,
+  "stage": "Primavera (concierto gratuito)",
+  "start": "22:00",
+  "end": "23:30",
+  "printed": "SUEDE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suede",
+    "role": "performer"
+   }
+  ],
+  "act": "suede",
+  "closing": true,
+  "stageLineage": "primavera-sound:primavera-concierto-gratuito",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:1200:rory-phillips",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "RORY PHILLIPS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rory-phillips",
+    "role": "performer"
+   }
+  ],
+  "act": "rory-phillips",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:1300:floating-points",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "FLOATING POINTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "floating-points",
+    "role": "performer"
+   }
+  ],
+  "act": "floating-points",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:1400:erol-alkan",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "14:00",
+  "end": "16:00",
+  "printed": "EROL ALKAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "erol-alkan",
+    "role": "performer"
+   }
+  ],
+  "act": "erol-alkan",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:1600:todd-terje",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "TODD TERJE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "todd-terje",
+    "role": "performer"
+   }
+  ],
+  "act": "todd-terje",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:1700:jessy-lanza-dj",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "JESSY LANZA DJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessy-lanza-dj",
+    "role": "performer"
+   }
+  ],
+  "act": "jessy-lanza-dj",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:1830:har-mar-superstar-dj",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "HAR MAR SUPERSTAR DJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "har-mar-superstar-dj",
+    "role": "performer"
+   }
+  ],
+  "act": "har-mar-superstar-dj",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:2000:klavikon-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "20:00",
+  "end": "20:45",
+  "printed": "KLAVIKON (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "klavikon",
+    "role": "performer"
+   }
+  ],
+  "act": "klavikon",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:2045:raudive",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "RAUDIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raudive",
+    "role": "performer"
+   }
+  ],
+  "act": "raudive",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:2145:pina-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "21:45",
+  "end": "22:30",
+  "printed": "PINA (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "pina",
+    "role": "performer"
+   }
+  ],
+  "act": "pina",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:2230:eduardo-de-la-calle",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "EDUARDO DE LA CALLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eduardo-de-la-calle",
+    "role": "performer"
+   }
+  ],
+  "act": "eduardo-de-la-calle",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:0000:broken-english-club-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "BROKEN ENGLISH CLUB (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "broken-english-club",
+    "role": "performer"
+   }
+  ],
+  "act": "broken-english-club",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:0100:architectural",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "01:00",
+  "end": "02:30",
+  "printed": "ARCHITECTURAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "architectural",
+    "role": "performer"
+   }
+  ],
+  "act": "architectural",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:0230:powell-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "02:30",
+  "end": "03:30",
+  "printed": "POWELL (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "powell",
+    "role": "performer"
+   }
+  ],
+  "act": "powell",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:0330:helena-hauff",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "03:30",
+  "end": "05:30",
+  "printed": "HELENA HAUFF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "helena-hauff",
+    "role": "performer"
+   }
+  ],
+  "act": "helena-hauff",
+  "closing": true,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:auditori-rockdelux:1600:alessandro-cortini",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Auditori Rockdelux",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "ALESSANDRO CORTINI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alessandro-cortini",
+    "role": "performer"
+   }
+  ],
+  "act": "alessandro-cortini",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:auditori-rockdelux:1730:andy-shauf",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Auditori Rockdelux",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "ANDY SHAUF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andy-shauf",
+    "role": "performer"
+   }
+  ],
+  "act": "andy-shauf",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:auditori-rockdelux:1930:suede-night-thoughts",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Auditori Rockdelux",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "SUEDE “NIGHT THOUGHTS”",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suede-night-thoughts",
+    "role": "performer"
+   }
+  ],
+  "act": "suede-night-thoughts",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:auditori-rockdelux:2100:kamasi-washington",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Auditori Rockdelux",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "KAMASI WASHINGTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kamasi-washington",
+    "role": "performer"
+   }
+  ],
+  "act": "kamasi-washington",
+  "closing": true,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:firestone-stage:1625:beach-slang",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Firestone Stage",
+  "start": "16:25",
+  "end": "16:55",
+  "printed": "BEACH SLANG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beach-slang",
+    "role": "performer"
+   }
+  ],
+  "act": "beach-slang",
+  "closing": true,
+  "stageLineage": "primavera-sound:firestone-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban:1700:autumn-comets",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "17:00",
+  "end": "17:35",
+  "printed": "AUTUMN COMETS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "autumn-comets",
+    "role": "performer"
+   }
+  ],
+  "act": "autumn-comets",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban:1830:cass-mccombs",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "18:30",
+  "end": "19:20",
+  "printed": "CASS MCCOMBS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cass-mccombs",
+    "role": "performer"
+   }
+  ],
+  "act": "cass-mccombs",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban:2030:destroyer",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "20:30",
+  "end": "21:25",
+  "printed": "DESTROYER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "destroyer",
+    "role": "performer"
+   }
+  ],
+  "act": "destroyer",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban:2240:floating-points-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "22:40",
+  "end": "23:40",
+  "printed": "FLOATING POINTS (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "floating-points",
+    "role": "performer"
+   }
+  ],
+  "act": "floating-points",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban:0055:mbongwana-star",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "00:55",
+  "end": "01:45",
+  "printed": "MBONGWANA STAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mbongwana-star",
+    "role": "performer"
+   }
+  ],
+  "act": "mbongwana-star",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban:0250:battles",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "02:50",
+  "end": "03:50",
+  "printed": "BATTLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "battles",
+    "role": "performer"
+   }
+  ],
+  "act": "battles",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban:0400:optimo-espacio",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "04:00",
+  "end": "06:00",
+  "printed": "OPTIMO (ESPACIO)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "optimo-espacio",
+    "role": "act"
+   }
+  ],
+  "act": "optimo-espacio",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:1700:noga-erez",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "NOGA EREZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noga-erez",
+    "role": "performer"
+   }
+  ],
+  "act": "noga-erez",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:1800:cut-out-club",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "18:00",
+  "end": "18:40",
+  "printed": "CUT OUT CLUB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cut-out-club",
+    "role": "performer"
+   }
+  ],
+  "act": "cut-out-club",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:1900:tiny-fingers",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "19:00",
+  "end": "19:40",
+  "printed": "TINY FINGERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiny-fingers",
+    "role": "performer"
+   }
+  ],
+  "act": "tiny-fingers",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:2000:o-terno",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "20:00",
+  "end": "20:40",
+  "printed": "O TERNO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "o-terno",
+    "role": "performer"
+   }
+  ],
+  "act": "o-terno",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:2100:wedance",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "21:00",
+  "end": "21:40",
+  "printed": "WEDANCE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wedance",
+    "role": "performer"
+   }
+  ],
+  "act": "wedance",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:2200:dead-buttons",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "22:00",
+  "end": "22:40",
+  "printed": "DEAD BUTTONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dead-buttons",
+    "role": "performer"
+   }
+  ],
+  "act": "dead-buttons",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:2300:dtsq",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "23:00",
+  "end": "23:40",
+  "printed": "DTSQ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dtsq",
+    "role": "performer"
+   }
+  ],
+  "act": "dtsq",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:0000:inky",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "00:00",
+  "end": "00:40",
+  "printed": "INKY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "inky",
+    "role": "performer"
+   }
+  ],
+  "act": "inky",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:0100:jack-carty",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "01:00",
+  "end": "01:40",
+  "printed": "JACK CARTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-carty",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-carty",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:0200:gang-of-youths",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "02:00",
+  "end": "02:40",
+  "printed": "GANG OF YOUTHS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gang-of-youths",
+    "role": "performer"
+   }
+  ],
+  "act": "gang-of-youths",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:0300:moonchild-sanelly",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "03:00",
+  "end": "03:40",
+  "printed": "MOONCHILD SANELLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moonchild-sanelly",
+    "role": "performer"
+   }
+  ],
+  "act": "moonchild-sanelly",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:nightpro:0400:jay-cubed",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "NightPro",
+  "start": "04:00",
+  "end": "04:40",
+  "printed": "JAY CUBED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jay-cubed",
+    "role": "performer"
+   }
+  ],
+  "act": "jay-cubed",
+  "closing": true,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:primavera:1740:mueran-humanos",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Primavera",
+  "start": "17:40",
+  "end": "18:25",
+  "printed": "MUERAN HUMANOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mueran-humanos",
+    "role": "performer"
+   }
+  ],
+  "act": "mueran-humanos",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:primavera:1930:beak-and-gt",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Primavera",
+  "start": "19:30",
+  "end": "20:20",
+  "printed": "BEAK&gt;",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beak-and-gt",
+    "role": "performer"
+   }
+  ],
+  "act": "beak-and-gt",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:primavera:2135:suuns",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Primavera",
+  "start": "21:35",
+  "end": "22:30",
+  "printed": "SUUNS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suuns",
+    "role": "performer"
+   }
+  ],
+  "act": "suuns",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:primavera:2350:john-carpenter",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Primavera",
+  "start": "23:50",
+  "end": "00:50",
+  "printed": "JOHN CARPENTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-carpenter",
+    "role": "performer"
+   }
+  ],
+  "act": "john-carpenter",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:primavera:0150:thee-oh-sees",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Primavera",
+  "start": "01:50",
+  "end": "02:45",
+  "printed": "THEE OH SEES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thee-oh-sees",
+    "role": "performer"
+   }
+  ],
+  "act": "thee-oh-sees",
+  "closing": true,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:pitchfork:1730:nothing-places",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "17:30",
+  "end": "18:25",
+  "printed": "NOTHING PLACES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nothing-places",
+    "role": "performer"
+   }
+  ],
+  "act": "nothing-places",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:pitchfork:1900:car-seat-headrest",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "CAR SEAT HEADREST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "car-seat-headrest",
+    "role": "performer"
+   }
+  ],
+  "act": "car-seat-headrest",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:pitchfork:2025:empress-of",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "20:25",
+  "end": "21:25",
+  "printed": "EMPRESS OF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "empress-of",
+    "role": "performer"
+   }
+  ],
+  "act": "empress-of",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:pitchfork:2210:vince-staples",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "22:10",
+  "end": "23:10",
+  "printed": "VINCE STAPLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vince-staples",
+    "role": "performer"
+   }
+  ],
+  "act": "vince-staples",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:pitchfork:2345:protomartyr",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "23:45",
+  "end": "00:45",
+  "printed": "PROTOMARTYR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "protomartyr",
+    "role": "performer"
+   }
+  ],
+  "act": "protomartyr",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:pitchfork:0115:beach-slang",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "01:15",
+  "end": "02:15",
+  "printed": "BEACH SLANG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beach-slang",
+    "role": "performer"
+   }
+  ],
+  "act": "beach-slang",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:pitchfork:0245:neon-indian",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "02:45",
+  "end": "04:00",
+  "printed": "NEON INDIAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neon-indian",
+    "role": "performer"
+   }
+  ],
+  "act": "neon-indian",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:pitchfork:0410:hudson-mohawke-dj-set",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "04:10",
+  "end": "05:45",
+  "printed": "HUDSON MOHAWKE (DJ SET)",
+  "setTag": "DJ SET",
+  "performers": [
+   {
+    "key": "hudson-mohawke",
+    "role": "performer"
+   }
+  ],
+  "act": "hudson-mohawke",
+  "closing": true,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:adidas-originals:1730:alberto-montero",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "17:30",
+  "end": "18:10",
+  "printed": "ALBERTO MONTERO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alberto-montero",
+    "role": "performer"
+   }
+  ],
+  "act": "alberto-montero",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:adidas-originals:1840:julien-baker",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "18:40",
+  "end": "19:30",
+  "printed": "JULIEN BAKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julien-baker",
+    "role": "performer"
+   }
+  ],
+  "act": "julien-baker",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:adidas-originals:2005:c-c-maxigross",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "20:05",
+  "end": "21:00",
+  "printed": "C+C=MAXIGROSS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "c-c-maxigross",
+    "role": "performer"
+   }
+  ],
+  "act": "c-c-maxigross",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:adidas-originals:2130:a-r-kane",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "21:30",
+  "end": "22:25",
+  "printed": "A.R. KANE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-r-kane",
+    "role": "performer"
+   }
+  ],
+  "act": "a-r-kane",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:adidas-originals:2310:har-mar-superstar",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "23:10",
+  "end": "00:10",
+  "printed": "HAR MAR SUPERSTAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "har-mar-superstar",
+    "role": "performer"
+   }
+  ],
+  "act": "har-mar-superstar",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:adidas-originals:0050:holograma",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "00:50",
+  "end": "01:50",
+  "printed": "HOLÖGRAMA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holograma",
+    "role": "performer"
+   }
+  ],
+  "act": "holograma",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:adidas-originals:0220:fasenuova",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "02:20",
+  "end": "03:20",
+  "printed": "FASENUOVA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fasenuova",
+    "role": "performer"
+   }
+  ],
+  "act": "fasenuova",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:adidas-originals:0405:white-reaper",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "04:05",
+  "end": "05:00",
+  "printed": "WHITE REAPER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "white-reaper",
+    "role": "performer"
+   }
+  ],
+  "act": "white-reaper",
+  "closing": true,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban-unplugged:1800:white-reaper",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Ray-Ban Unplugged",
+  "start": "18:00",
+  "end": "18:35",
+  "printed": "WHITE REAPER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "white-reaper",
+    "role": "performer"
+   }
+  ],
+  "act": "white-reaper",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban-unplugged:1930:gang-of-youths",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Ray-Ban Unplugged",
+  "start": "19:30",
+  "end": "20:05",
+  "printed": "GANG OF YOUTHS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gang-of-youths",
+    "role": "performer"
+   }
+  ],
+  "act": "gang-of-youths",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban-unplugged:2100:el-ultimo-vecino",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Ray-Ban Unplugged",
+  "start": "21:00",
+  "end": "21:35",
+  "printed": "EL ÚLTIMO VECINO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "el-ultimo-vecino",
+    "role": "performer"
+   }
+  ],
+  "act": "el-ultimo-vecino",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban-unplugged:2230:jessy-lanza",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Ray-Ban Unplugged",
+  "start": "22:30",
+  "end": "23:05",
+  "printed": "JESSY LANZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessy-lanza",
+    "role": "performer"
+   }
+  ],
+  "act": "jessy-lanza",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:heineken:1800:algiers",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Heineken",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "ALGIERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "algiers",
+    "role": "performer"
+   }
+  ],
+  "act": "algiers",
+  "closing": false,
+  "stageLineage": "primavera-sound:heineken",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:heineken:2000:daughter",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Heineken",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "DAUGHTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daughter",
+    "role": "performer"
+   }
+  ],
+  "act": "daughter",
+  "closing": false,
+  "stageLineage": "primavera-sound:heineken",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:heineken:2220:explosions-in-the-sky",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Heineken",
+  "start": "22:20",
+  "end": "23:20",
+  "printed": "EXPLOSIONS IN THE SKY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "explosions-in-the-sky",
+    "role": "performer"
+   }
+  ],
+  "act": "explosions-in-the-sky",
+  "closing": false,
+  "stageLineage": "primavera-sound:heineken",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:heineken:0110:lcd-soundsystem",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Heineken",
+  "start": "01:10",
+  "end": "02:45",
+  "printed": "LCD SOUNDSYSTEM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lcd-soundsystem",
+    "role": "performer"
+   }
+  ],
+  "act": "lcd-soundsystem",
+  "closing": true,
+  "stageLineage": "primavera-sound:heineken",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:heineken-hidden-stage:1800:lee-ranaldo-and-el-rayo",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Heineken Hidden Stage",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "LEE RANALDO & EL RAYO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lee-ranaldo-and-el-rayo",
+    "role": "performer"
+   }
+  ],
+  "act": "lee-ranaldo-and-el-rayo",
+  "closing": false,
+  "stageLineage": "primavera-sound:heineken-hidden-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:heineken-hidden-stage:2030:peaches",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "Heineken Hidden Stage",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "PEACHES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peaches",
+    "role": "performer"
+   }
+  ],
+  "act": "peaches",
+  "closing": true,
+  "stageLineage": "primavera-sound:heineken-hidden-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:h-and-m:1855:the-james-hunter-six",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "H&M",
+  "start": "18:55",
+  "end": "19:50",
+  "printed": "THE JAMES HUNTER SIX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-james-hunter-six",
+    "role": "performer"
+   }
+  ],
+  "act": "the-james-hunter-six",
+  "closing": false,
+  "stageLineage": "primavera-sound:h-and-m",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:h-and-m:2110:air",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "H&M",
+  "start": "21:10",
+  "end": "22:10",
+  "printed": "AIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "air",
+    "role": "performer"
+   }
+  ],
+  "act": "air",
+  "closing": false,
+  "stageLineage": "primavera-sound:h-and-m",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d2:h-and-m:2330:tame-impala",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-02",
+  "day": 2,
+  "stage": "H&M",
+  "start": "23:30",
+  "end": "01:00",
+  "printed": "TAME IMPALA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tame-impala",
+    "role": "performer"
+   }
+  ],
+  "act": "tame-impala",
+  "closing": true,
+  "stageLineage": "primavera-sound:h-and-m",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:1200:scharre",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "12:00",
+  "end": "13:30",
+  "printed": "SCHARRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "scharre",
+    "role": "performer"
+   }
+  ],
+  "act": "scharre",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:1330:mano-le-tough",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "13:30",
+  "end": "15:00",
+  "printed": "MANO LE TOUGH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mano-le-tough",
+    "role": "performer"
+   }
+  ],
+  "act": "mano-le-tough",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:1500:simian-mobile-disco-dj",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "SIMIAN MOBILE DISCO DJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "simian-mobile-disco-dj",
+    "role": "performer"
+   }
+  ],
+  "act": "simian-mobile-disco-dj",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:1600:maceo-plex-b2b-maars",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "MACEO PLEX B2B MAARS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maceo-plex",
+    "role": "b2b"
+   },
+   {
+    "key": "maars",
+    "role": "b2b"
+   }
+  ],
+  "act": "maceo-plex-b2b-maars",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:1700:dj-supermarkt",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "DJ SUPERMARKT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-supermarkt",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-supermarkt",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:1800:bradford-cox",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "BRADFORD COX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bradford-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "bradford-cox",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:1900:black-lips-djs",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "BLACK LIPS DJS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-lips-djs",
+    "role": "performer"
+   }
+  ],
+  "act": "black-lips-djs",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:2000:dj-koze",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "DJ KOZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-koze",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-koze",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:2130:begun",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "BEGUN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "begun",
+    "role": "performer"
+   }
+  ],
+  "act": "begun",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:2230:sophie",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "SOPHIE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sophie",
+    "role": "performer"
+   }
+  ],
+  "act": "sophie",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:2330:daniel-kyo",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "23:30",
+  "end": "01:00",
+  "printed": "DANIEL KYO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-kyo",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-kyo",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:0100:black-devil-disco-club-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "BLACK DEVIL DISCO CLUB (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "black-devil-disco-club",
+    "role": "performer"
+   }
+  ],
+  "act": "black-devil-disco-club",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:0200:the-maghreban",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "02:00",
+  "end": "03:45",
+  "printed": "THE MAGHREBAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-maghreban",
+    "role": "performer"
+   }
+  ],
+  "act": "the-maghreban",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:0345:tiger-and-woods",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "03:45",
+  "end": "05:30",
+  "printed": "TIGER & WOODS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiger-and-woods",
+    "role": "performer"
+   }
+  ],
+  "act": "tiger-and-woods",
+  "closing": true,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:auditori-rockdelux:1600:lubomyr-melnyk",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Auditori Rockdelux",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "LUBOMYR MELNYK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lubomyr-melnyk",
+    "role": "performer"
+   }
+  ],
+  "act": "lubomyr-melnyk",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:auditori-rockdelux:1730:richard-dawson",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Auditori Rockdelux",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "RICHARD DAWSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richard-dawson",
+    "role": "performer"
+   }
+  ],
+  "act": "richard-dawson",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:auditori-rockdelux:1915:cabaret-voltaire",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Auditori Rockdelux",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "CABARET VOLTAIRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cabaret-voltaire",
+    "role": "performer"
+   }
+  ],
+  "act": "cabaret-voltaire",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:auditori-rockdelux:2045:robert-forster",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Auditori Rockdelux",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "ROBERT FORSTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "robert-forster",
+    "role": "performer"
+   }
+  ],
+  "act": "robert-forster",
+  "closing": true,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:firestone-stage:1625:shura",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Firestone Stage",
+  "start": "16:25",
+  "end": "16:55",
+  "printed": "SHURA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shura",
+    "role": "performer"
+   }
+  ],
+  "act": "shura",
+  "closing": true,
+  "stageLineage": "primavera-sound:firestone-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:ray-ban:1700:inspira",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "17:00",
+  "end": "17:35",
+  "printed": "INSPIRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "inspira",
+    "role": "performer"
+   }
+  ],
+  "act": "inspira",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:ray-ban:1830:ben-watt-band-feat-bernard-butler",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "BEN WATT BAND FEAT. BERNARD BUTLER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-watt-band",
+    "role": "performer"
+   },
+   {
+    "key": "bernard-butler",
+    "role": "guest"
+   }
+  ],
+  "act": "ben-watt-band-feat-bernard-butler",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:ray-ban:2015:selda-bagcan-and-boom-pam",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "20:15",
+  "end": "21:15",
+  "printed": "SELDA BAĞCAN & BOOM PAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "selda-bagcan-and-boom-pam",
+    "role": "performer"
+   }
+  ],
+  "act": "selda-bagcan-and-boom-pam",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:ray-ban:2215:dinosaur-jr",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "22:15",
+  "end": "23:15",
+  "printed": "DINOSAUR JR.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dinosaur-jr",
+    "role": "performer"
+   }
+  ],
+  "act": "dinosaur-jr",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:ray-ban:0035:animal-collective",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "00:35",
+  "end": "01:35",
+  "printed": "ANIMAL COLLECTIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "animal-collective",
+    "role": "performer"
+   }
+  ],
+  "act": "animal-collective",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:ray-ban:0250:the-avalanches",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "02:50",
+  "end": "03:50",
+  "printed": "THE AVALANCHES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-avalanches",
+    "role": "performer"
+   }
+  ],
+  "act": "the-avalanches",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:ray-ban:0400:maceo-plex",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "04:00",
+  "end": "06:00",
+  "printed": "MACEO PLEX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maceo-plex",
+    "role": "performer"
+   }
+  ],
+  "act": "maceo-plex",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:1700:oh-pep",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "OH PEP!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oh-pep",
+    "role": "performer"
+   }
+  ],
+  "act": "oh-pep",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:1800:chicago-toys",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "18:00",
+  "end": "18:40",
+  "printed": "CHICAGO TOYS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chicago-toys",
+    "role": "performer"
+   }
+  ],
+  "act": "chicago-toys",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:1900:mahmed",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "19:00",
+  "end": "19:40",
+  "printed": "MAHMED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mahmed",
+    "role": "performer"
+   }
+  ],
+  "act": "mahmed",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:2000:quarto-negro",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "20:00",
+  "end": "20:40",
+  "printed": "QUARTO NEGRO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quarto-negro",
+    "role": "performer"
+   }
+  ],
+  "act": "quarto-negro",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:2100:nuven",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "21:00",
+  "end": "21:40",
+  "printed": "NUVEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nuven",
+    "role": "performer"
+   }
+  ],
+  "act": "nuven",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:2200:tunacola",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "22:00",
+  "end": "22:40",
+  "printed": "TUNACOLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tunacola",
+    "role": "performer"
+   }
+  ],
+  "act": "tunacola",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:2300:anam",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "23:00",
+  "end": "23:40",
+  "printed": "ANAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anam",
+    "role": "performer"
+   }
+  ],
+  "act": "anam",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:0000:matilde-davoli",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "00:00",
+  "end": "00:40",
+  "printed": "MATILDE DAVOLI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matilde-davoli",
+    "role": "performer"
+   }
+  ],
+  "act": "matilde-davoli",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:0100:merkabah",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "01:00",
+  "end": "01:40",
+  "printed": "MERKABAH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "merkabah",
+    "role": "performer"
+   }
+  ],
+  "act": "merkabah",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:0200:methyl-ethel",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "02:00",
+  "end": "02:40",
+  "printed": "METHYL ETHEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "methyl-ethel",
+    "role": "performer"
+   }
+  ],
+  "act": "methyl-ethel",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:0300:altre-di-b",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "03:00",
+  "end": "03:40",
+  "printed": "ALTRE DI B",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "altre-di-b",
+    "role": "performer"
+   }
+  ],
+  "act": "altre-di-b",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:nightpro:0400:boira",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "NightPro",
+  "start": "04:00",
+  "end": "04:40",
+  "printed": "BÖIRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boira",
+    "role": "performer"
+   }
+  ],
+  "act": "boira",
+  "closing": true,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:primavera:1740:white-fence",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Primavera",
+  "start": "17:40",
+  "end": "18:25",
+  "printed": "WHITE FENCE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "white-fence",
+    "role": "performer"
+   }
+  ],
+  "act": "white-fence",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:primavera:1920:neil-michael-hagerty-and-the-howling-hex",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Primavera",
+  "start": "19:20",
+  "end": "20:10",
+  "printed": "NEIL MICHAEL HAGERTY & THE HOWLING HEX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neil-michael-hagerty-and-the-howling-hex",
+    "role": "performer"
+   }
+  ],
+  "act": "neil-michael-hagerty-and-the-howling-hex",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:primavera:2325:tortoise",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Primavera",
+  "start": "23:25",
+  "end": "00:25",
+  "printed": "TORTOISE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tortoise",
+    "role": "performer"
+   }
+  ],
+  "act": "tortoise",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:primavera:0145:kiasmos",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Primavera",
+  "start": "01:45",
+  "end": "02:40",
+  "printed": "KIASMOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kiasmos",
+    "role": "performer"
+   }
+  ],
+  "act": "kiasmos",
+  "closing": true,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:pitchfork:1730:aliment",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "17:30",
+  "end": "18:25",
+  "printed": "ALIMENT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aliment",
+    "role": "performer"
+   }
+  ],
+  "act": "aliment",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:pitchfork:1900:moses-sumney",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "MOSES SUMNEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moses-sumney",
+    "role": "performer"
+   }
+  ],
+  "act": "moses-sumney",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:pitchfork:2030:nao",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "NAO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nao",
+    "role": "performer"
+   }
+  ],
+  "act": "nao",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:pitchfork:2215:jay-rock",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "22:15",
+  "end": "23:10",
+  "printed": "JAY ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jay-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "jay-rock",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:pitchfork:2335:royal-headache",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "23:35",
+  "end": "00:30",
+  "printed": "ROYAL HEADACHE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "royal-headache",
+    "role": "performer"
+   }
+  ],
+  "act": "royal-headache",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:pitchfork:0100:holly-herndon",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "HOLLY HERNDON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holly-herndon",
+    "role": "performer"
+   }
+  ],
+  "act": "holly-herndon",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:pitchfork:0230:evian-christ",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "02:30",
+  "end": "03:50",
+  "printed": "EVIAN CHRIST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "evian-christ",
+    "role": "performer"
+   }
+  ],
+  "act": "evian-christ",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:pitchfork:0400:dj-koze",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "04:00",
+  "end": "06:00",
+  "printed": "DJ KOZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-koze",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-koze",
+  "closing": true,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:adidas-originals:1745:viva-belgrado",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "17:45",
+  "end": "18:30",
+  "printed": "VIVA BELGRADO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "viva-belgrado",
+    "role": "performer"
+   }
+  ],
+  "act": "viva-belgrado",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:adidas-originals:1855:alex-g",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "18:55",
+  "end": "19:40",
+  "printed": "ALEX G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-g",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-g",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:adidas-originals:2005:steve-gunn",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "20:05",
+  "end": "21:05",
+  "printed": "STEVE GUNN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steve-gunn",
+    "role": "performer"
+   }
+  ],
+  "act": "steve-gunn",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:adidas-originals:2135:cavern-of-anti-matter",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "21:35",
+  "end": "22:35",
+  "printed": "CAVERN OF ANTI-MATTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cavern-of-anti-matter",
+    "role": "performer"
+   }
+  ],
+  "act": "cavern-of-anti-matter",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:adidas-originals:2315:shellac",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "23:15",
+  "end": "00:15",
+  "printed": "SHELLAC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shellac",
+    "role": "performer"
+   }
+  ],
+  "act": "shellac",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:adidas-originals:0040:c-tangana",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "00:40",
+  "end": "01:35",
+  "printed": "C. TANGANA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "c-tangana",
+    "role": "performer"
+   }
+  ],
+  "act": "c-tangana",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:adidas-originals:0205:shura",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "02:05",
+  "end": "03:05",
+  "printed": "SHURA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shura",
+    "role": "performer"
+   }
+  ],
+  "act": "shura",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:adidas-originals:0350:sheer-mag",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "03:50",
+  "end": "04:50",
+  "printed": "SHEER MAG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sheer-mag",
+    "role": "performer"
+   }
+  ],
+  "act": "sheer-mag",
+  "closing": true,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:ray-ban-unplugged:1800:bearoid",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Ray-Ban Unplugged",
+  "start": "18:00",
+  "end": "18:35",
+  "printed": "BEAROID",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bearoid",
+    "role": "performer"
+   }
+  ],
+  "act": "bearoid",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:ray-ban-unplugged:1930:jack-carty",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Ray-Ban Unplugged",
+  "start": "19:30",
+  "end": "20:05",
+  "printed": "JACK CARTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-carty",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-carty",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:ray-ban-unplugged:2100:aliment",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Ray-Ban Unplugged",
+  "start": "21:00",
+  "end": "21:35",
+  "printed": "ALIMENT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aliment",
+    "role": "performer"
+   }
+  ],
+  "act": "aliment",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:ray-ban-unplugged:2230:chicago-toys",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Ray-Ban Unplugged",
+  "start": "22:30",
+  "end": "23:05",
+  "printed": "CHICAGO TOYS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chicago-toys",
+    "role": "performer"
+   }
+  ],
+  "act": "chicago-toys",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:heineken:2000:savages",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Heineken",
+  "start": "20:00",
+  "end": "20:50",
+  "printed": "SAVAGES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "savages",
+    "role": "performer"
+   }
+  ],
+  "act": "savages",
+  "closing": false,
+  "stageLineage": "primavera-sound:heineken",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:heineken:2215:radiohead",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Heineken",
+  "start": "22:15",
+  "end": "00:15",
+  "printed": "RADIOHEAD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "radiohead",
+    "role": "performer"
+   }
+  ],
+  "act": "radiohead",
+  "closing": false,
+  "stageLineage": "primavera-sound:heineken",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:heineken:0200:beach-house",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Heineken",
+  "start": "02:00",
+  "end": "03:00",
+  "printed": "BEACH HOUSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beach-house",
+    "role": "performer"
+   }
+  ],
+  "act": "beach-house",
+  "closing": true,
+  "stageLineage": "primavera-sound:heineken",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:heineken-hidden-stage:1700:los-hermanos-cubero",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Heineken Hidden Stage",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "LOS HERMANOS CUBERO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-hermanos-cubero",
+    "role": "performer"
+   }
+  ],
+  "act": "los-hermanos-cubero",
+  "closing": false,
+  "stageLineage": "primavera-sound:heineken-hidden-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:heineken-hidden-stage:1930:lush",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "Heineken Hidden Stage",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "LUSH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lush",
+    "role": "performer"
+   }
+  ],
+  "act": "lush",
+  "closing": true,
+  "stageLineage": "primavera-sound:heineken-hidden-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:h-and-m:1800:dungen",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "H&M",
+  "start": "18:00",
+  "end": "18:40",
+  "printed": "DUNGEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dungen",
+    "role": "performer"
+   }
+  ],
+  "act": "dungen",
+  "closing": false,
+  "stageLineage": "primavera-sound:h-and-m",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:h-and-m:1905:titus-andronicus",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "H&M",
+  "start": "19:05",
+  "end": "19:50",
+  "printed": "TITUS ANDRONICUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "titus-andronicus",
+    "role": "performer"
+   }
+  ],
+  "act": "titus-andronicus",
+  "closing": false,
+  "stageLineage": "primavera-sound:h-and-m",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:h-and-m:2100:beirut",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "H&M",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "BEIRUT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beirut",
+    "role": "performer"
+   }
+  ],
+  "act": "beirut",
+  "closing": false,
+  "stageLineage": "primavera-sound:h-and-m",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d3:h-and-m:0025:the-last-shadow-puppets",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-03",
+  "day": 3,
+  "stage": "H&M",
+  "start": "00:25",
+  "end": "01:55",
+  "printed": "THE LAST SHADOW PUPPETS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-last-shadow-puppets",
+    "role": "performer"
+   }
+  ],
+  "act": "the-last-shadow-puppets",
+  "closing": true,
+  "stageLineage": "primavera-sound:h-and-m",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:1200:bob-mould",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "BOB MOULD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-mould",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-mould",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:1300:matthew-dear",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "13:00",
+  "end": "14:30",
+  "printed": "MATTHEW DEAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matthew-dear",
+    "role": "performer"
+   }
+  ],
+  "act": "matthew-dear",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:1430:leon-vynehall",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "14:30",
+  "end": "16:00",
+  "printed": "LEON VYNEHALL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leon-vynehall",
+    "role": "performer"
+   }
+  ],
+  "act": "leon-vynehall",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:1600:trevor-jackson",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "TREVOR JACKSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trevor-jackson",
+    "role": "performer"
+   }
+  ],
+  "act": "trevor-jackson",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:1700:faris-badwan-the-horrors",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "FARIS BADWAN (THE HORRORS)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "faris-badwan",
+    "role": "performer"
+   }
+  ],
+  "act": "faris-badwan-the-horrors",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:1800:dave-p",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "DAVE P",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dave-p",
+    "role": "performer"
+   }
+  ],
+  "act": "dave-p",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:1900:suzanne-kraft",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "SUZANNE KRAFT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suzanne-kraft",
+    "role": "performer"
+   }
+  ],
+  "act": "suzanne-kraft",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:2030:dj-richard",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "DJ RICHARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-richard",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-richard",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:2130:daniel-baughman",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "DANIEL BAUGHMAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-baughman",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-baughman",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:2300:cleveland-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "CLEVELAND (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "cleveland",
+    "role": "performer"
+   }
+  ],
+  "act": "cleveland",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:0000:lena-willikens",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "00:00",
+  "end": "01:30",
+  "printed": "LENA WILLIKENS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lena-willikens",
+    "role": "performer"
+   }
+  ],
+  "act": "lena-willikens",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:0130:dorisburg-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "DORISBURG (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "dorisburg",
+    "role": "performer"
+   }
+  ],
+  "act": "dorisburg",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:0230:i-f",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "02:30",
+  "end": "04:00",
+  "printed": "I-F",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "i-f",
+    "role": "performer"
+   }
+  ],
+  "act": "i-f",
+  "closing": false,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:0400:disco-finale",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Bowers & Wilkins Sound System",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "DISCO FINALE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disco-finale",
+    "role": "performer"
+   }
+  ],
+  "act": "disco-finale",
+  "closing": true,
+  "stageLineage": "primavera-sound:bowers-and-wilkins-sound-system",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:auditori-rockdelux:1600:baby-dee",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Auditori Rockdelux",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "BABY DEE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baby-dee",
+    "role": "performer"
+   }
+  ],
+  "act": "baby-dee",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:auditori-rockdelux:1715:six-organs-of-admittance",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Auditori Rockdelux",
+  "start": "17:15",
+  "end": "18:00",
+  "printed": "SIX ORGANS OF ADMITTANCE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "six-organs-of-admittance",
+    "role": "performer"
+   }
+  ],
+  "act": "six-organs-of-admittance",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:auditori-rockdelux:1845:angel-witch",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Auditori Rockdelux",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "ANGEL WITCH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angel-witch",
+    "role": "performer"
+   }
+  ],
+  "act": "angel-witch",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:auditori-rockdelux:2015:current-93",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Auditori Rockdelux",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "CURRENT 93",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "current-93",
+    "role": "performer"
+   }
+  ],
+  "act": "current-93",
+  "closing": true,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:firestone-stage:1625:cass-mccombs",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Firestone Stage",
+  "start": "16:25",
+  "end": "16:55",
+  "printed": "CASS MCCOMBS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cass-mccombs",
+    "role": "performer"
+   }
+  ],
+  "act": "cass-mccombs",
+  "closing": true,
+  "stageLineage": "primavera-sound:firestone-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:ray-ban:1700:joana-serrat",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "17:00",
+  "end": "17:35",
+  "printed": "JOANA SERRAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joana-serrat",
+    "role": "performer"
+   }
+  ],
+  "act": "joana-serrat",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:ray-ban:1840:the-chills",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "18:40",
+  "end": "19:25",
+  "printed": "THE CHILLS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-chills",
+    "role": "performer"
+   }
+  ],
+  "act": "the-chills",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:ray-ban:2030:richard-hawley",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "RICHARD HAWLEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richard-hawley",
+    "role": "performer"
+   }
+  ],
+  "act": "richard-hawley",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:ray-ban:2245:orchestra-baobab",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "22:45",
+  "end": "23:40",
+  "printed": "ORCHESTRA BAOBAB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orchestra-baobab",
+    "role": "performer"
+   }
+  ],
+  "act": "orchestra-baobab",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:ray-ban:0050:julia-holter",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "00:50",
+  "end": "01:45",
+  "printed": "JULIA HOLTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julia-holter",
+    "role": "performer"
+   }
+  ],
+  "act": "julia-holter",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:ray-ban:0250:pantha-du-prince",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "02:50",
+  "end": "03:50",
+  "printed": "PANTHA DU PRINCE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pantha-du-prince",
+    "role": "performer"
+   }
+  ],
+  "act": "pantha-du-prince",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:ray-ban:0400:dj-coco",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "04:00",
+  "end": "06:00",
+  "printed": "DJ COCO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-coco",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-coco",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:1700:planeta-no",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "PLANETA NO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "planeta-no",
+    "role": "performer"
+   }
+  ],
+  "act": "planeta-no",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:1800:aldo-the-band",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "18:00",
+  "end": "18:40",
+  "printed": "ALDO THE BAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aldo-the-band",
+    "role": "performer"
+   }
+  ],
+  "act": "aldo-the-band",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:1900:gala-brie",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "19:00",
+  "end": "19:40",
+  "printed": "GALA BRIÊ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gala-brie",
+    "role": "performer"
+   }
+  ],
+  "act": "gala-brie",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:2000:kanaku-y-el-tigre",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "20:00",
+  "end": "20:40",
+  "printed": "KANAKU Y EL TIGRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kanaku-y-el-tigre",
+    "role": "performer"
+   }
+  ],
+  "act": "kanaku-y-el-tigre",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:2100:sycamore-age",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "21:00",
+  "end": "21:40",
+  "printed": "SYCAMORE AGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sycamore-age",
+    "role": "performer"
+   }
+  ],
+  "act": "sycamore-age",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:2200:wolves-as-friends",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "22:00",
+  "end": "22:40",
+  "printed": "WOLVES AS FRIENDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wolves-as-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "wolves-as-friends",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:2300:sun-glitters",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "23:00",
+  "end": "23:40",
+  "printed": "SUN GLITTERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sun-glitters",
+    "role": "performer"
+   }
+  ],
+  "act": "sun-glitters",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:0000:rss-boys",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "00:00",
+  "end": "00:40",
+  "printed": "RSS BOYS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rss-boys",
+    "role": "performer"
+   }
+  ],
+  "act": "rss-boys",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:0100:money-for-rope",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "01:00",
+  "end": "01:40",
+  "printed": "MONEY FOR ROPE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "money-for-rope",
+    "role": "performer"
+   }
+  ],
+  "act": "money-for-rope",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:0200:los-outsaiders",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "02:00",
+  "end": "02:40",
+  "printed": "LOS OUTSAIDERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-outsaiders",
+    "role": "performer"
+   }
+  ],
+  "act": "los-outsaiders",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:0300:the-meanies",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "03:00",
+  "end": "03:40",
+  "printed": "THE MEANIES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-meanies",
+    "role": "performer"
+   }
+  ],
+  "act": "the-meanies",
+  "closing": false,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:nightpro:0400:water-rats",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "NightPro",
+  "start": "04:00",
+  "end": "04:40",
+  "printed": "WATER RATS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "water-rats",
+    "role": "performer"
+   }
+  ],
+  "act": "water-rats",
+  "closing": true,
+  "stageLineage": "primavera-sound:nightpro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:primavera:1740:boredoms",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Primavera",
+  "start": "17:40",
+  "end": "18:35",
+  "printed": "BOREDOMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boredoms",
+    "role": "performer"
+   }
+  ],
+  "act": "boredoms",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:primavera:1930:autolux",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Primavera",
+  "start": "19:30",
+  "end": "20:20",
+  "printed": "AUTOLUX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "autolux",
+    "role": "performer"
+   }
+  ],
+  "act": "autolux",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:primavera:2135:drive-like-jehu",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Primavera",
+  "start": "21:35",
+  "end": "22:35",
+  "printed": "DRIVE LIKE JEHU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "drive-like-jehu",
+    "role": "performer"
+   }
+  ],
+  "act": "drive-like-jehu",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:primavera:2345:action-bronson",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Primavera",
+  "start": "23:45",
+  "end": "00:45",
+  "printed": "ACTION BRONSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "action-bronson",
+    "role": "performer"
+   }
+  ],
+  "act": "action-bronson",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:primavera:0150:ty-segall-and-the-muggers",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Primavera",
+  "start": "01:50",
+  "end": "02:45",
+  "printed": "TY SEGALL AND THE MUGGERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ty-segall-and-the-muggers",
+    "role": "performer"
+   }
+  ],
+  "act": "ty-segall-and-the-muggers",
+  "closing": true,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:pitchfork:1730:the-saurs",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "17:30",
+  "end": "18:25",
+  "printed": "THE SAURS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-saurs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-saurs",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:pitchfork:1900:dam-funk",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "DÂM-FUNK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dam-funk",
+    "role": "performer"
+   }
+  ],
+  "act": "dam-funk",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:pitchfork:2030:jenny-hval",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "JENNY HVAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jenny-hval",
+    "role": "performer"
+   }
+  ],
+  "act": "jenny-hval",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:pitchfork:2200:pusha-t",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "PUSHA T",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pusha-t",
+    "role": "performer"
+   }
+  ],
+  "act": "pusha-t",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:pitchfork:2330:chairlift",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "CHAIRLIFT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chairlift",
+    "role": "performer"
+   }
+  ],
+  "act": "chairlift",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:pitchfork:0100:parquet-courts",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "PARQUET COURTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "parquet-courts",
+    "role": "performer"
+   }
+  ],
+  "act": "parquet-courts",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:pitchfork:0235:roosevelt",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "02:35",
+  "end": "03:45",
+  "printed": "ROOSEVELT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roosevelt",
+    "role": "performer"
+   }
+  ],
+  "act": "roosevelt",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:pitchfork:0400:dj-richard",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "04:00",
+  "end": "06:00",
+  "printed": "DJ RICHARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-richard",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-richard",
+  "closing": true,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:adidas-originals:1745:pajaro-jack",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "17:45",
+  "end": "18:30",
+  "printed": "PÁJARO JACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pajaro-jack",
+    "role": "performer"
+   }
+  ],
+  "act": "pajaro-jack",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:adidas-originals:1855:u-s-girls",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "18:55",
+  "end": "19:40",
+  "printed": "U.S. GIRLS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "u-s-girls",
+    "role": "performer"
+   }
+  ],
+  "act": "u-s-girls",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:adidas-originals:2005:pxxr-gvng",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "20:05",
+  "end": "21:05",
+  "printed": "PXXR GVNG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pxxr-gvng",
+    "role": "performer"
+   }
+  ],
+  "act": "pxxr-gvng",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:adidas-originals:2135:los-chichos",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "21:35",
+  "end": "22:35",
+  "printed": "LOS CHICHOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-chichos",
+    "role": "performer"
+   }
+  ],
+  "act": "los-chichos",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:adidas-originals:2305:venom",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "23:05",
+  "end": "00:05",
+  "printed": "VENOM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "venom",
+    "role": "performer"
+   }
+  ],
+  "act": "venom",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:adidas-originals:0045:unsane",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "00:45",
+  "end": "01:45",
+  "printed": "UNSANE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "unsane",
+    "role": "performer"
+   }
+  ],
+  "act": "unsane",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:adidas-originals:0215:ho99o9",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "02:15",
+  "end": "03:15",
+  "printed": "HO99O9",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ho99o9",
+    "role": "performer"
+   }
+  ],
+  "act": "ho99o9",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:adidas-originals:0350:islam-chipsy-and-eek",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "03:50",
+  "end": "05:00",
+  "printed": "ISLAM CHIPSY & EEK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "islam-chipsy-and-eek",
+    "role": "performer"
+   }
+  ],
+  "act": "islam-chipsy-and-eek",
+  "closing": true,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:ray-ban-unplugged:1800:die-katapult",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Ray-Ban Unplugged",
+  "start": "18:00",
+  "end": "18:35",
+  "printed": "DIE KATAPULT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "die-katapult",
+    "role": "performer"
+   }
+  ],
+  "act": "die-katapult",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:ray-ban-unplugged:1930:mueran-humanos",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Ray-Ban Unplugged",
+  "start": "19:30",
+  "end": "20:05",
+  "printed": "MUERAN HUMANOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mueran-humanos",
+    "role": "performer"
+   }
+  ],
+  "act": "mueran-humanos",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:ray-ban-unplugged:2100:money-for-rope",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Ray-Ban Unplugged",
+  "start": "21:00",
+  "end": "21:35",
+  "printed": "MONEY FOR ROPE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "money-for-rope",
+    "role": "performer"
+   }
+  ],
+  "act": "money-for-rope",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:ray-ban-unplugged:2230:the-meanies",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Ray-Ban Unplugged",
+  "start": "22:30",
+  "end": "23:05",
+  "printed": "THE MEANIES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-meanies",
+    "role": "performer"
+   }
+  ],
+  "act": "the-meanies",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban-unplugged",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:heineken:1800:wild-nothing",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Heineken",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "WILD NOTHING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wild-nothing",
+    "role": "performer"
+   }
+  ],
+  "act": "wild-nothing",
+  "closing": false,
+  "stageLineage": "primavera-sound:heineken",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:heineken:2000:brian-wilson-performing-pet-sounds",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Heineken",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "BRIAN WILSON PERFORMING PET SOUNDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brian-wilson-performing-pet-sounds",
+    "role": "performer"
+   }
+  ],
+  "act": "brian-wilson-performing-pet-sounds",
+  "closing": false,
+  "stageLineage": "primavera-sound:heineken",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:heineken:2235:pj-harvey",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Heineken",
+  "start": "22:35",
+  "end": "23:50",
+  "printed": "PJ HARVEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pj-harvey",
+    "role": "performer"
+   }
+  ],
+  "act": "pj-harvey",
+  "closing": false,
+  "stageLineage": "primavera-sound:heineken",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:heineken:0140:moderat",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Heineken",
+  "start": "01:40",
+  "end": "03:00",
+  "printed": "MODERAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moderat",
+    "role": "performer"
+   }
+  ],
+  "act": "moderat",
+  "closing": true,
+  "stageLineage": "primavera-sound:heineken",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:heineken-hidden-stage:1700:bob-mould-solo-electric",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Heineken Hidden Stage",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "BOB MOULD (SOLO ELECTRIC)",
+  "setTag": "SOLO ELECTRIC",
+  "performers": [
+   {
+    "key": "bob-mould",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-mould",
+  "closing": false,
+  "stageLineage": "primavera-sound:heineken-hidden-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:heineken-hidden-stage:1930:cat-s-eyes",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "Heineken Hidden Stage",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "CAT'S EYES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cat-s-eyes",
+    "role": "performer"
+   }
+  ],
+  "act": "cat-s-eyes",
+  "closing": true,
+  "stageLineage": "primavera-sound:heineken-hidden-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:h-and-m:1855:manel",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "H&M",
+  "start": "18:55",
+  "end": "19:50",
+  "printed": "MANEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "manel",
+    "role": "performer"
+   }
+  ],
+  "act": "manel",
+  "closing": false,
+  "stageLineage": "primavera-sound:h-and-m",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:h-and-m:2125:deerhunter",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "H&M",
+  "start": "21:25",
+  "end": "22:25",
+  "printed": "DEERHUNTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deerhunter",
+    "role": "performer"
+   }
+  ],
+  "act": "deerhunter",
+  "closing": false,
+  "stageLineage": "primavera-sound:h-and-m",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:h-and-m:0000:sigur-ros",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "H&M",
+  "start": "00:00",
+  "end": "01:30",
+  "printed": "SIGUR RÓS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sigur-ros",
+    "role": "performer"
+   }
+  ],
+  "act": "sigur-ros",
+  "closing": true,
+  "stageLineage": "primavera-sound:h-and-m",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2016:d4:minimusica:1800:minimusica",
+  "source": "edition",
+  "festivalId": "primavera-sound-2016",
+  "festivalBrand": "primavera-sound",
+  "year": 2016,
+  "date": "2016-06-04",
+  "day": 4,
+  "stage": "minimúsica",
+  "start": "18:00",
+  "end": null,
+  "printed": "MINIMÚSICA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "minimusica",
+    "role": "performer"
+   }
+  ],
+  "act": "minimusica",
+  "closing": true,
+  "stageLineage": "primavera-sound:minimusica",
+  "mainStage": null
+ },
+ {
   "id": "shambhala-2011:d1:living-room:1200:russ-2-fari",
   "source": "edition",
   "festivalId": "shambhala-2011",

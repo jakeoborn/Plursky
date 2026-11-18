@@ -8,6 +8,7 @@
  "governors-ball-2014": { "stages": 4, "setsPerDay": [23, 22, 23], "droppedPerDay": [0, 0, 0] },
  "governors-ball-2015": { "stages": 4, "setsPerDay": [23, 22, 22], "droppedPerDay": [0, 0, 0] },
  "primavera-sound-2015": { "stages": 11, "setsPerDay": [6, 63, 65, 62], "droppedPerDay": [0, 0, 0, 0] },
+ "primavera-sound-2016": { "stages": 14, "setsPerDay": [5, 72, 71, 73], "droppedPerDay": [0, 0, 0, 0] },
  "governors-ball-2019": { "stages": 5, "setsPerDay": [25, 25, 16], "droppedPerDay": [0, 0, 0] },
  "governors-ball-2025": { "stages": 3, "setsPerDay": [20, 13, 20], "droppedPerDay": [0, 0, 0] },
  "lollapalooza-2025": { "stages": 11, "setsPerDay": [55, 56, 58, 56], "droppedPerDay": [3, 4, 2, 3] },

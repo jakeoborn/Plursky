@@ -4299,6 +4299,71 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "primavera-sound:primavera-concierto-gratuito",
+     "names": [
+      {
+       "printed": "Primavera (concierto gratuito)",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:firestone-stage",
+     "names": [
+      {
+       "printed": "Firestone Stage",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:nightpro",
+     "names": [
+      {
+       "printed": "NightPro",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:h-and-m",
+     "names": [
+      {
+       "printed": "H&M",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:minimusica",
+     "names": [
+      {
+       "printed": "minimúsica",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

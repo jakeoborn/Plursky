@@ -3982,6 +3982,44 @@
    "setTag": "DJ Set",
    "why": "The parenthetical names the label and the band the DJ is known from, not a second act on the set: the DJ is the performer, and neither is credited as playing. \"DJ Set\" is the set tag.",
    "source": "https://governorsballmusicfestival.com/"
+  },
+  {
+   "printed": "BEN WATT BAND FEAT. BERNARD BUTLER",
+   "performers": [
+    {
+     "name": "BEN WATT BAND",
+     "role": "performer"
+    },
+    {
+     "name": "BERNARD BUTLER",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "BOB MOULD (SOLO ELECTRIC)",
+   "performers": [
+    {
+     "name": "BOB MOULD",
+     "role": "performer"
+    }
+   ],
+   "setTag": "SOLO ELECTRIC",
+   "why": "\"SOLO ELECTRIC\" names the kind of set, not a person: it is the set tag, and the billing counts on BOB MOULD, who is also billed alone the same day (the Sian (Techno Classics) rule).",
+   "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "FARIS BADWAN (THE HORRORS)",
+   "performers": [
+    {
+     "name": "FARIS BADWAN",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the band the billed person is known from, not a second act on the set: the person is the performer, and the band is not credited as playing (the Pat Mahoney DJ Set (DFA / LCD SOUNDSYSTEM ) rule).",
+   "source": "https://www.primaverasound.es/"
   }
  ],
  "pending": [
@@ -4552,6 +4590,10 @@
   {
    "key": "nav",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "OPTIMO (ESPACIO)",
+   "why": "Left as printed, one act: the parenthetical may name the act's own club night or the people behind it, and no first-party page says which. Renders as its own billing until one rules it."
   }
  ]
 }

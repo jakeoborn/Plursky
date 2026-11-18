@@ -121,8 +121,12 @@ const out = build();
   // request. Governors Ball 2015 ruled Pat Mahoney's DJ set under the existing
   // band-parenthetical rule and left one "+" billing as printed (Florence +
   // The Machine): 163 rows, raised here and reported in that pull request.
-  // Past 163, stop and report.
-  check(review.length <= 163, `review queue is ${review.length} rows (> 163 means stop and report)`);
+  // Primavera Sound 2016 ruled three billings under the existing feat., set
+  // tag and band-parenthetical rules (BEN WATT BAND FEAT. BERNARD BUTLER, BOB
+  // MOULD (SOLO ELECTRIC), FARIS BADWAN (THE HORRORS)) and left one
+  // parenthetical as printed (OPTIMO (ESPACIO)): 164 rows, raised here and
+  // reported in that pull request. Past 164, stop and report.
+  check(review.length <= 164, `review queue is ${review.length} rows (> 164 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

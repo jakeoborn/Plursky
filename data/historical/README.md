@@ -118,7 +118,28 @@ Zamilska) is an open end. Sets on a stage must run in order with no overlap;
 anything else stops the read. The 2015 day pages were captured after the
 festival (Wednesday's on May 31, the rest in September). Wednesday 27 May is
 the ATP stage alone; the three main days have 11 stages each. Other years'
-timetables (2012, 2013, 2016 to 2019) are archived too and are not read yet.
+timetables (2012, 2013, 2017 to 2019) are archived too and are not read yet.
+
+Archived Primavera Sound full timetable (2016, format `primavera-completos`):
+
+    node scripts/historical/gather-primavera-completos.mjs <edition-id> <gather-dir> <official-url> <ts> <day-url> [ … one pair per day ]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+From 2016 the same /horarios?d=N&l=forum address serves the full timetable
+("Horarios completos" active in the venue submenu): one page a day of the
+whole festival week, Parc del Fòrum's columns first under "PARC DEL FÒRUM",
+then the city venues' under "Primavera a la Ciutat", each stage header and
+each block marked with its venue (`escenarioforum`, `concertBoxciutat`). The
+day tabs print a weekday and a day of the month only ("MIÉRCOLES 1"), so the
+row as a whole names its dates: exactly one run of consecutive days in the
+edition's year must have those weekdays and days (2016: Monday 30 May to
+Sunday 5 June), and the edition's days must sit in it in a row. The grid,
+the 15-minute rows, the block offsets, the two-pixels-a-minute heights and
+the no-overlap rule are checked as for 2015, in the city's columns too, but
+only the Fòrum's blocks become sets. A start-only block ("(18:00)", 2016's
+minimúsica) is an open end. Wednesday 1 June is one free concert on the
+Primavera stage; Thursday to Saturday have 12 or 13 Fòrum stages. The night
+runs to 06:00, so the 2016 day runs from 10 AM. Pages captured 19 June 2016.
 
 Archived Lollapalooza lineup cards (2018, format `lolla-cards`):
 

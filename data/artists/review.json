@@ -539,6 +539,13 @@
   "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
  },
  {
+  "id": "primavera-sound-2016:d2:ray-ban:0400:optimo-espacio",
+  "printed": "OPTIMO (ESPACIO)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical may name the act's own club night or the people behind it, and no first-party page says which. Renders as its own billing until one rules it."
+ },
+ {
   "id": "shambhala-2011:d3:labyrinth:0700:dj-solar-of-deliria",
   "printed": "DJ Solar (of Deliria)",
   "reason": "parenthetical is not a known set tag",
