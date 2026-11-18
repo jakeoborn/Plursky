@@ -4112,6 +4112,94 @@
     "artists": 386,
     "sets": 396
    }
+  },
+  {
+   "id": "tomorrowland-2012",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2012",
+   "year": 2012,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-07-27",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-07-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2012-07-29",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 36,
+    "artists": 370,
+    "sets": 382
+   }
+  },
+  {
+   "id": "tomorrowland-2011",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2011",
+   "year": 2011,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-07-22",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2011-07-23",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2011-07-24",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 31,
+    "artists": 286,
+    "sets": 291
+   }
+  },
+  {
+   "id": "tomorrowland-2010",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2010",
+   "year": 2010,
+   "timezone": "Europe/Brussels",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2010-07-24",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2010-07-25",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 25,
+    "artists": 225,
+    "sets": 227
+   }
   }
  ]
 }
