@@ -1,0 +1,154 @@
+{
+  "id": "primavera-sound-2019",
+  "method": "official_sources",
+  "official": "https://www.primaverasound.es/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-05-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.primaverasound.es/horarios?d=3&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20190723183551/https://www.primaverasound.es/horarios?d=3&l=forum&content=",
+          "captureTimestamp": "20190723183551",
+          "printed": "2019-05-29",
+          "sha256": "796db93b294f91ec38dda65adbccf6bf856f214c355ee04da2d3770f8ad60f26",
+          "bytes": 86675,
+          "rows": 8,
+          "format": "primavera-completos",
+          "heading": "Set times",
+          "active": "All set times",
+          "tabs": [
+            "2019-05-27",
+            "2019-05-28",
+            "2019-05-29",
+            "2019-05-30",
+            "2019-05-31",
+            "2019-06-01",
+            "2019-06-02"
+          ],
+          "stages": 2,
+          "axis": "13:30-06:30",
+          "cityStages": [
+            "Day Pro",
+            "Apolo Venue",
+            "La [2] de Apolo"
+          ],
+          "citySets": 15,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2019-05-30",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.primaverasound.es/horarios?d=4&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20190723183928/https://www.primaverasound.es/horarios?d=4&l=forum&content=",
+          "captureTimestamp": "20190723183928",
+          "printed": "2019-05-30",
+          "sha256": "f97282f799545c6436ef7a6e0888881c01140d76f7b1802f71a00e47dd1891e8",
+          "bytes": 122870,
+          "rows": 83,
+          "format": "primavera-completos",
+          "heading": "Set times",
+          "active": "All set times",
+          "tabs": [
+            "2019-05-27",
+            "2019-05-28",
+            "2019-05-29",
+            "2019-05-30",
+            "2019-05-31",
+            "2019-06-01",
+            "2019-06-02"
+          ],
+          "stages": 16,
+          "axis": "11:45-06:30",
+          "cityStages": [
+            "Day Pro",
+            "Living Primavera by IKEA"
+          ],
+          "citySets": 9,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2019-05-31",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.primaverasound.es/horarios?d=5&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20190723184303/https://www.primaverasound.es/horarios?d=5&l=forum&content=",
+          "captureTimestamp": "20190723184303",
+          "printed": "2019-05-31",
+          "sha256": "b96302c8181226933505ca85ee2f3be300b339e579d93fd78e74fc71dfcbeeb3",
+          "bytes": 125469,
+          "rows": 87,
+          "format": "primavera-completos",
+          "heading": "Set times",
+          "active": "All set times",
+          "tabs": [
+            "2019-05-27",
+            "2019-05-28",
+            "2019-05-29",
+            "2019-05-30",
+            "2019-05-31",
+            "2019-06-01",
+            "2019-06-02"
+          ],
+          "stages": 16,
+          "axis": "11:00-06:30",
+          "cityStages": [
+            "Day Pro",
+            "Living Primavera by IKEA"
+          ],
+          "citySets": 10,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2019-06-01",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.primaverasound.es/horarios?d=6&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20190723184655/https://www.primaverasound.es/horarios?d=6&l=forum&content=",
+          "captureTimestamp": "20190723184655",
+          "printed": "2019-06-01",
+          "sha256": "0f3e7e9e5bd5fd00d6091bc67293a067f448a3c181242936ffc5d7dad1949f1b",
+          "bytes": 122132,
+          "rows": 89,
+          "format": "primavera-completos",
+          "heading": "Set times",
+          "active": "All set times",
+          "tabs": [
+            "2019-05-27",
+            "2019-05-28",
+            "2019-05-29",
+            "2019-05-30",
+            "2019-05-31",
+            "2019-06-01",
+            "2019-06-02"
+          ],
+          "stages": 16,
+          "axis": "13:00-06:30",
+          "cityStages": [
+            "Day Pro",
+            "Living Primavera by IKEA"
+          ],
+          "citySets": 4,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

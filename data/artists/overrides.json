@@ -3982,6 +3982,116 @@
    "setTag": "DJ Set",
    "why": "The parenthetical names the label and the band the DJ is known from, not a second act on the set: the DJ is the performer, and neither is credited as playing. \"DJ Set\" is the set tag.",
    "source": "https://governorsballmusicfestival.com/"
+  },
+  {
+   "printed": "BEN WATT BAND FEAT. BERNARD BUTLER",
+   "performers": [
+    {
+     "name": "BEN WATT BAND",
+     "role": "performer"
+    },
+    {
+     "name": "BERNARD BUTLER",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "BOB MOULD (SOLO ELECTRIC)",
+   "performers": [
+    {
+     "name": "BOB MOULD",
+     "role": "performer"
+    }
+   ],
+   "setTag": "SOLO ELECTRIC",
+   "why": "\"SOLO ELECTRIC\" names the kind of set, not a person: it is the set tag, and the billing counts on BOB MOULD, who is also billed alone the same day (the Sian (Techno Classics) rule).",
+   "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "FARIS BADWAN (THE HORRORS)",
+   "performers": [
+    {
+     "name": "FARIS BADWAN",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the band the billed person is known from, not a second act on the set: the person is the performer, and the band is not credited as playing (the Pat Mahoney DJ Set (DFA / LCD SOUNDSYSTEM ) rule).",
+   "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "PATRICK CODENYS (FRONT 242)",
+   "performers": [
+    {
+     "name": "PATRICK CODENYS",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the band the billed person is known from, not a second act on the set: the person is the performer, and the band is not credited as playing (the Pat Mahoney DJ Set (DFA / LCD SOUNDSYSTEM ) rule).",
+   "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "!!! (CHK CHK CHK)",
+   "performers": [
+    {
+     "name": "!!! (CHK CHK CHK)",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical spells out how the band's own name is said, not a second act or a set tag: the billing counts on the name as printed, kept whole because \"!!!\" alone has no letters to key it by.",
+   "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "!!! (CHK CHK CHK) DJ SET",
+   "performers": [
+    {
+     "name": "!!! (CHK CHK CHK)",
+     "role": "performer"
+    }
+   ],
+   "setTag": "DJ SET",
+   "why": "\"DJ SET\" is the set tag, and the rest is the band's name with how it is said, kept whole as on its other billing the same day (the !!! (CHK CHK CHK) ruling).",
+   "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "HURRICANE G FEAT TONY TOUCH",
+   "performers": [
+    {
+     "name": "HURRICANE G",
+     "role": "performer"
+    },
+    {
+     "name": "TONY TOUCH",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "LIMINAL SOUNDBATH WITH JÓNSI, ALEX SOMERS AND PAUL CORLEY",
+   "performers": [
+    {
+     "name": "LIMINAL SOUNDBATH",
+     "role": "performer"
+    },
+    {
+     "name": "JÓNSI",
+     "role": "guest"
+    },
+    {
+     "name": "ALEX SOMERS",
+     "role": "guest"
+    },
+    {
+     "name": "PAUL CORLEY",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.primaverasound.es/"
   }
  ],
  "pending": [
@@ -4552,6 +4662,42 @@
   {
    "key": "nav",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "OPTIMO (ESPACIO)",
+   "why": "Left as printed, one act: the parenthetical may name the act's own club night or the people behind it, and no first-party page says which. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "SHAKTI ALLIANCE (IVY, MODET, VIR)",
+   "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "TONY TOUCH & FRIENDS (DON CHEZINA + SONI WITHANEYE)",
+   "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "BIRKINS FEAT. KEN STRINGFELLOW PLAY ZIGGY STARDUST",
+   "why": "Left as printed, one act: the billing is a show (an album played live) with a guest, and no first-party page says where the guest name ends and the show title begins. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "EL MATÓ A UN POLICÍA MOTORIZADO FEAT. AMAIA, J Y MANU FERRÓN",
+   "why": "Left as printed, one act: one guest is printed as the single letter \"J\", which cannot be told apart from other acts of that name without a first-party page. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "P POSTMAN FT. EMERGENCY TIARA, DARKO & MAHKENNA, DJ UNKNOWN",
+   "why": "Left as printed, one act: the printing does not say whether \"DARKO & MAHKENNA\" is one act or two, and no first-party page rules it. Renders as its own billing until one rules it."
+  },
+  {
+   "key": "idk",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "JOSEY REBELLE / CHAMPION / DAPHNI / FOUR TET / FOUR TET PRESENTS (FOUR TET PRESENTS)",
+   "why": "A curated day billed under its curator (\"… PRESENTS\"), its names joined by \"/\": the page prints one block for the whole day and does not say which names play when, or whether each is an act of its own. The billing renders as printed until a source rules it."
+  },
+  {
+   "printed": "ORPHEU THE WIZARD / PALMBOMEN II / DEKMANTEL SOUNDSYSTEM / PALMS TRAX / DEKMANTEL PRESENTS (DEKMANTEL PRESENTS)",
+   "why": "A curated day billed under its curator (\"… PRESENTS\"), its names joined by \"/\": the page prints one block for the whole day and does not say which names play when, or whether each is an act of its own. The billing renders as printed until a source rules it."
   }
  ]
 }

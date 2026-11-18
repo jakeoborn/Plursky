@@ -1,0 +1,212 @@
+{
+  "id": "primavera-sound-2017",
+  "method": "official_sources",
+  "official": "https://www.primaverasound.es/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2017-05-31",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.primaverasound.es:80/horarios?d=17&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20170620004650/http://www.primaverasound.es:80/horarios?d=17&l=forum&content=",
+          "captureTimestamp": "20170620004650",
+          "printed": "MIÉ-31",
+          "sha256": "55771189abbf0c335dd9ae67b470ce6fd890ada658eddb520cdced77d31a2934",
+          "bytes": 199058,
+          "rows": 6,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "MIÉ-03",
+            "JUE-04",
+            "LUN-08",
+            "MAR-09",
+            "MIÉ-10",
+            "JUE-11",
+            "LUN-15",
+            "MAR-16",
+            "MIÉ-17",
+            "JUE-18",
+            "LUN-22",
+            "MAR-23",
+            "MIÉ-24",
+            "JUE-25",
+            "LUN-29",
+            "MAR-30",
+            "MIÉ-31",
+            "JUE-01",
+            "VIE-02",
+            "SÁB-03",
+            "DOM-04"
+          ],
+          "stages": 2,
+          "axis": "11:45-06:30",
+          "cityStages": [
+            "Sala Apolo",
+            "La [2] de Apolo",
+            "BARTS",
+            "Day Pro"
+          ],
+          "citySets": 14,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2017-06-01",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.primaverasound.es:80/horarios?d=18&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20170623032535/http://www.primaverasound.es:80/horarios?d=18&l=forum&content=",
+          "captureTimestamp": "20170623032535",
+          "printed": "JUE-01",
+          "sha256": "457e57b91c05efabfb9a91d0e29669852a41257801e7cf306f5e4cb95f6b7376",
+          "bytes": 398796,
+          "rows": 74,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "MIÉ-03",
+            "JUE-04",
+            "LUN-08",
+            "MAR-09",
+            "MIÉ-10",
+            "JUE-11",
+            "LUN-15",
+            "MAR-16",
+            "MIÉ-17",
+            "JUE-18",
+            "LUN-22",
+            "MAR-23",
+            "MIÉ-24",
+            "JUE-25",
+            "LUN-29",
+            "MAR-30",
+            "MIÉ-31",
+            "JUE-01",
+            "VIE-02",
+            "SÁB-03",
+            "DOM-04"
+          ],
+          "stages": 13,
+          "axis": "11:00-06:30",
+          "cityStages": [
+            "Day Pro"
+          ],
+          "citySets": 8,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2017-06-02",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.primaverasound.es:80/horarios?d=19&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20170622030815/http://www.primaverasound.es:80/horarios?d=19&l=forum&content=",
+          "captureTimestamp": "20170622030815",
+          "printed": "VIE-02",
+          "sha256": "cf1c5d664d78976a5a10ebac6c78f170d07205764b2e602846514e5cb9f5004c",
+          "bytes": 428656,
+          "rows": 68,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "MIÉ-03",
+            "JUE-04",
+            "LUN-08",
+            "MAR-09",
+            "MIÉ-10",
+            "JUE-11",
+            "LUN-15",
+            "MAR-16",
+            "MIÉ-17",
+            "JUE-18",
+            "LUN-22",
+            "MAR-23",
+            "MIÉ-24",
+            "JUE-25",
+            "LUN-29",
+            "MAR-30",
+            "MIÉ-31",
+            "JUE-01",
+            "VIE-02",
+            "SÁB-03",
+            "DOM-04"
+          ],
+          "stages": 13,
+          "axis": "11:00-06:30",
+          "cityStages": [
+            "Seat",
+            "Sala Teatre",
+            "Day Pro"
+          ],
+          "citySets": 17,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2017-06-03",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.primaverasound.es:80/horarios?d=20&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20170623034154/http://www.primaverasound.es:80/horarios?d=20&l=forum&content=",
+          "captureTimestamp": "20170623034154",
+          "printed": "SÁB-03",
+          "sha256": "33f41949cef6dae24511b4bae0e64815ce61c09d9091e44579116f462fa2bb55",
+          "bytes": 425142,
+          "rows": 73,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "MIÉ-03",
+            "JUE-04",
+            "LUN-08",
+            "MAR-09",
+            "MIÉ-10",
+            "JUE-11",
+            "LUN-15",
+            "MAR-16",
+            "MIÉ-17",
+            "JUE-18",
+            "LUN-22",
+            "MAR-23",
+            "MIÉ-24",
+            "JUE-25",
+            "LUN-29",
+            "MAR-30",
+            "MIÉ-31",
+            "JUE-01",
+            "VIE-02",
+            "SÁB-03",
+            "DOM-04"
+          ],
+          "stages": 13,
+          "axis": "11:45-06:30",
+          "cityStages": [
+            "Seat",
+            "Sala Teatre",
+            "Day Pro"
+          ],
+          "citySets": 15,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}
