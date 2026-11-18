@@ -4,6 +4,7 @@
 
 import { EDITIONS, KEPT_STAGES, PRINTED_LONG_SETS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
 import { printedDate as govBallDate } from "./govball-wp-schedule.mjs";
+import { cardDate as lollaCardDate } from "./lolla-lineup.mjs";
 import { printedDate as insomniacDate } from "./insomniac-music-schedule.mjs";
 import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
 import { printedDate as tmlCmsDate } from "./tml-cms-schedule.mjs";
@@ -417,6 +418,10 @@ function officialSources(e, meta, p) {
         // ("FRIDAY"); the date is the run the page's own essential info prints
         // ("Friday, August 3rd & Saturday, August 4th, 2012").
         if (hardRun(c.dateFrom, e.year)?.[c.printed] !== date) p.push(`${tag}: the page's day "${c.printed}" (run "${c.dateFrom}") does not print ${date}`);
+      } else if (c.format === "lolla-cards") {
+        // Lollapalooza's 2018 lineup cards print each set's day as "Sat 8/04"
+        // (no year); the year is the cards' own "2018 Schedule:" heading.
+        if (lollaCardDate(c.printed, e.year) !== date) p.push(`${tag}: the page's day "${c.printed}" does not print ${date}`);
       } else if (c.format === "govball-wp") {
         // Governors Ball's 2011-2012 schedule prints each day's heading
         // ("SATURDAY 6/23", no year); 2011's one day is the one the page's

@@ -96,6 +96,26 @@ backwards or more than six hours, or starts off the axis by over an hour, is a
 misprint and an excluded row, never read another way (2012's Turf War, printed
 "11:45 pm - 12:10 pm"). Sets in a column must run in order with no overlap.
 
+Archived Lollapalooza lineup cards (2018, format `lolla-cards`):
+
+    node scripts/historical/gather-lolla-cards.mjs <edition-id> <gather-dir> <official-url> <ts> <url>
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+No archived capture of Lollapalooza's 2018 schedule grid holds the schedule
+(the September page is a playlist). The official lineup page's "Interactive
+Lineup" tab prints one card per act, and each card lists the act's sets under
+"2018 Schedule:" as day, start and stage ("Sat 8/04 8:30pm Grant Park"), with no
+end. The only capture that holds the cards is June 14, 2018, seven weeks before
+the festival, so the edition ships every day untimed, as 2019 does: the lineup
+and stages are as printed, the times are checked against the page and dropped.
+The year must be the page's description's and every card's schedule heading's;
+each set's weekday must be its date's, and its date one of the card's own day
+titles. A card shows at most two sets and links to the act's page for more: a
+day its titles list but no set it shows prints (School of Rock AllStars' Sunday)
+is kept in the ledger as not shown, never as a set. Import refuses a capture
+taken on or after the festival's first day, and any day the edition does not
+list as untimed.
+
 Archived HARD Summer home page (2012, format `hard-wp`):
 
     node scripts/historical/gather-hard-wp.mjs <edition-id> <gather-dir> <official-url> <ts> <url>

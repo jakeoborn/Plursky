@@ -347336,6 +347336,4546 @@
   "mainStage": null
  },
  {
+  "id": "lollapalooza-2018:d1:grant-park:untimed:arctic-monkeys",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Arctic Monkeys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arctic-monkeys",
+    "role": "performer"
+   }
+  ],
+  "act": "arctic-monkeys",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:grant-park:untimed:chvrches",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "CHVRCHES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chvrches",
+    "role": "performer"
+   }
+  ],
+  "act": "chvrches",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:grant-park:untimed:franz-ferdinand",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Franz Ferdinand",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "franz-ferdinand",
+    "role": "performer"
+   }
+  ],
+  "act": "franz-ferdinand",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:grant-park:untimed:stars",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Stars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stars",
+    "role": "performer"
+   }
+  ],
+  "act": "stars",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:grant-park:untimed:slaves-uk",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Slaves (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slaves-uk",
+    "role": "performer"
+   }
+  ],
+  "act": "slaves-uk",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:bud-light:untimed:travis-scott",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "TRAVIS SCOTT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "travis-scott",
+    "role": "performer"
+   }
+  ],
+  "act": "travis-scott",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:bud-light:untimed:khalid",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "KHALID",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "khalid",
+    "role": "performer"
+   }
+  ],
+  "act": "khalid",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:bud-light:untimed:rebelution",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "Rebelution",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rebelution",
+    "role": "performer"
+   }
+  ],
+  "act": "rebelution",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:bud-light:untimed:terror-jr",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "Terror Jr",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "terror-jr",
+    "role": "performer"
+   }
+  ],
+  "act": "terror-jr",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:bud-light:untimed:cuco",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "Cuco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cuco",
+    "role": "performer"
+   }
+  ],
+  "act": "cuco",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:perry-s:untimed:galantis",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Galantis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "galantis",
+    "role": "performer"
+   }
+  ],
+  "act": "galantis",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:perry-s:untimed:rezz",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "REZZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rezz",
+    "role": "performer"
+   }
+  ],
+  "act": "rezz",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:perry-s:untimed:kayzo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "KAYZO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kayzo",
+    "role": "performer"
+   }
+  ],
+  "act": "kayzo",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:perry-s:untimed:shiba-san",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Shiba San",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shiba-san",
+    "role": "performer"
+   }
+  ],
+  "act": "shiba-san",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:perry-s:untimed:london-on-da-track",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "London On Da Track",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "london-on-da-track",
+    "role": "performer"
+   }
+  ],
+  "act": "london-on-da-track",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:perry-s:untimed:4b",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "4B",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "4b",
+    "role": "performer"
+   }
+  ],
+  "act": "4b",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:perry-s:untimed:space-jesus",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Space Jesus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "space-jesus",
+    "role": "performer"
+   }
+  ],
+  "act": "space-jesus",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:perry-s:untimed:lzrd",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "LZRD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lzrd",
+    "role": "performer"
+   }
+  ],
+  "act": "lzrd",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:lake-shore:untimed:camila-cabello",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Camila Cabello",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camila-cabello",
+    "role": "performer"
+   }
+  ],
+  "act": "camila-cabello",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:lake-shore:untimed:lany",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "LANY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lany",
+    "role": "performer"
+   }
+  ],
+  "act": "lany",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:lake-shore:untimed:the-wombats",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "The Wombats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-wombats",
+    "role": "performer"
+   }
+  ],
+  "act": "the-wombats",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:lake-shore:untimed:tyler-childers",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Tyler Childers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyler-childers",
+    "role": "performer"
+   }
+  ],
+  "act": "tyler-childers",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:lake-shore:untimed:jesse-baez",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Jesse Baez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jesse-baez",
+    "role": "performer"
+   }
+  ],
+  "act": "jesse-baez",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:american-eagle:untimed:tycho",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Tycho",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tycho",
+    "role": "performer"
+   }
+  ],
+  "act": "tycho",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:american-eagle:untimed:jaden-smith",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Jaden Smith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jaden-smith",
+    "role": "performer"
+   }
+  ],
+  "act": "jaden-smith",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:american-eagle:untimed:a-boogie-wit-da-hoodie",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "A Boogie Wit Da Hoodie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-boogie-wit-da-hoodie",
+    "role": "performer"
+   }
+  ],
+  "act": "a-boogie-wit-da-hoodie",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:american-eagle:untimed:petit-biscuit",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Petit Biscuit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "petit-biscuit",
+    "role": "performer"
+   }
+  ],
+  "act": "petit-biscuit",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:american-eagle:untimed:g-herbo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "G Herbo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "g-herbo",
+    "role": "performer"
+   }
+  ],
+  "act": "g-herbo",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:american-eagle:untimed:curtis-harding",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Curtis Harding",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "curtis-harding",
+    "role": "performer"
+   }
+  ],
+  "act": "curtis-harding",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:american-eagle:untimed:allie-x",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Allie X",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "allie-x",
+    "role": "performer"
+   }
+  ],
+  "act": "allie-x",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:american-eagle:untimed:valee",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Valee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "valee",
+    "role": "performer"
+   }
+  ],
+  "act": "valee",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:american-eagle:untimed:dj-taye",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "DJ Taye",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-taye",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-taye",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:billie-eilish",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "BILLIE EILISH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billie-eilish",
+    "role": "performer"
+   }
+  ],
+  "act": "billie-eilish",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:all-time-low",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "All Time Low",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "all-time-low",
+    "role": "performer"
+   }
+  ],
+  "act": "all-time-low",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:basement",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Basement",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "basement",
+    "role": "performer"
+   }
+  ],
+  "act": "basement",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:nick-mulvey",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Nick Mulvey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nick-mulvey",
+    "role": "performer"
+   }
+  ],
+  "act": "nick-mulvey",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:virgil-abloh",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Virgil Abloh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "virgil-abloh",
+    "role": "performer"
+   }
+  ],
+  "act": "virgil-abloh",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:bmi:untimed:madison-beer",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Madison Beer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madison-beer",
+    "role": "performer"
+   }
+  ],
+  "act": "madison-beer",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:bmi:untimed:supa-bwe",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Supa Bwe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "supa-bwe",
+    "role": "performer"
+   }
+  ],
+  "act": "supa-bwe",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:bmi:untimed:gashi",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "GASHI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gashi",
+    "role": "performer"
+   }
+  ],
+  "act": "gashi",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:bmi:untimed:wes-period",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Wes Period",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wes-period",
+    "role": "performer"
+   }
+  ],
+  "act": "wes-period",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:bmi:untimed:fletcher",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "FLETCHER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fletcher",
+    "role": "performer"
+   }
+  ],
+  "act": "fletcher",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:bmi:untimed:larkin-poe",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Larkin Poe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "larkin-poe",
+    "role": "performer"
+   }
+  ],
+  "act": "larkin-poe",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:kidzapalooza-presented-by-lifeway:untimed:mister-g",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "Mister G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mister-g",
+    "role": "performer"
+   }
+  ],
+  "act": "mister-g",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:kidzapalooza-presented-by-lifeway:untimed:big-don",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "Big Don",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-don",
+    "role": "performer"
+   }
+  ],
+  "act": "big-don",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:kidzapalooza-presented-by-lifeway:untimed:lucy-kalantari-and-the-jazz-cats",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "Lucy Kalantari & the Jazz Cats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucy-kalantari-and-the-jazz-cats",
+    "role": "performer"
+   }
+  ],
+  "act": "lucy-kalantari-and-the-jazz-cats",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d1:kidzapalooza-presented-by-lifeway:untimed:school-of-rock-allstars",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-02",
+  "day": 1,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "School of Rock AllStars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock-allstars",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock-allstars",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:grant-park:untimed:bruno-mars",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "BRUNO MARS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bruno-mars",
+    "role": "performer"
+   }
+  ],
+  "act": "bruno-mars",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:grant-park:untimed:tyler-the-creator",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "TYLER, THE CREATOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyler-the-creator",
+    "role": "performer"
+   }
+  ],
+  "act": "tyler-the-creator",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:grant-park:untimed:walk-the-moon",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "WALK THE MOON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "walk-the-moon",
+    "role": "performer"
+   }
+  ],
+  "act": "walk-the-moon",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:grant-park:untimed:dermot-kennedy",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Dermot Kennedy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dermot-kennedy",
+    "role": "performer"
+   }
+  ],
+  "act": "dermot-kennedy",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:grant-park:untimed:alex-lahey",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Alex Lahey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-lahey",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-lahey",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:bud-light:untimed:the-national",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "The National",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-national",
+    "role": "performer"
+   }
+  ],
+  "act": "the-national",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:bud-light:untimed:post-malone",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "Post Malone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "post-malone",
+    "role": "performer"
+   }
+  ],
+  "act": "post-malone",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:bud-light:untimed:james-bay",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "James Bay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-bay",
+    "role": "performer"
+   }
+  ],
+  "act": "james-bay",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:bud-light:untimed:parquet-courts",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "Parquet Courts",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "parquet-courts",
+    "role": "performer"
+   }
+  ],
+  "act": "parquet-courts",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:bud-light:untimed:welshly-arms",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "Welshly Arms",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "welshly-arms",
+    "role": "performer"
+   }
+  ],
+  "act": "welshly-arms",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:perry-s:untimed:dillon-francis",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Dillon Francis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dillon-francis",
+    "role": "performer"
+   }
+  ],
+  "act": "dillon-francis",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:perry-s:untimed:malaa",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Malaa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "malaa",
+    "role": "performer"
+   }
+  ],
+  "act": "malaa",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:perry-s:untimed:alan-walker",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Alan Walker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alan-walker",
+    "role": "performer"
+   }
+  ],
+  "act": "alan-walker",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:perry-s:untimed:rusko",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Rusko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rusko",
+    "role": "performer"
+   }
+  ],
+  "act": "rusko",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:perry-s:untimed:valentino-khan",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Valentino Khan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "valentino-khan",
+    "role": "performer"
+   }
+  ],
+  "act": "valentino-khan",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:perry-s:untimed:taylor-bennett",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Taylor Bennett",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taylor-bennett",
+    "role": "performer"
+   }
+  ],
+  "act": "taylor-bennett",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:perry-s:untimed:goldfish",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Goldfish",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldfish",
+    "role": "performer"
+   }
+  ],
+  "act": "goldfish",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:perry-s:untimed:kuuro",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "KUURO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kuuro",
+    "role": "performer"
+   }
+  ],
+  "act": "kuuro",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:perry-s:untimed:noizu",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Noizu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noizu",
+    "role": "performer"
+   }
+  ],
+  "act": "noizu",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:lake-shore:untimed:b-rns",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "BØRNS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "borns",
+    "role": "performer"
+   }
+  ],
+  "act": "borns",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:lake-shore:untimed:alina-baraz",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Alina Baraz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alina-baraz",
+    "role": "performer"
+   }
+  ],
+  "act": "alina-baraz",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:lake-shore:untimed:bebe-rexha",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Bebe Rexha",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bebe-rexha",
+    "role": "performer"
+   }
+  ],
+  "act": "bebe-rexha",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:lake-shore:untimed:lewis-capaldi",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Lewis Capaldi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lewis-capaldi",
+    "role": "performer"
+   }
+  ],
+  "act": "lewis-capaldi",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:lake-shore:untimed:dream-wife",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Dream Wife",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dream-wife",
+    "role": "performer"
+   }
+  ],
+  "act": "dream-wife",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:american-eagle:untimed:brockhampton",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "BROCKHAMPTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brockhampton",
+    "role": "performer"
+   }
+  ],
+  "act": "brockhampton",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:american-eagle:untimed:greta-van-fleet",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "GRETA VAN FLEET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "greta-van-fleet",
+    "role": "performer"
+   }
+  ],
+  "act": "greta-van-fleet",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:american-eagle:untimed:jungle",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Jungle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jungle",
+    "role": "performer"
+   }
+  ],
+  "act": "jungle",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:american-eagle:untimed:big-wild",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Big Wild",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-wild",
+    "role": "performer"
+   }
+  ],
+  "act": "big-wild",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:american-eagle:untimed:lauv",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Lauv",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lauv",
+    "role": "performer"
+   }
+  ],
+  "act": "lauv",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:american-eagle:untimed:two-feet",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Two Feet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "two-feet",
+    "role": "performer"
+   }
+  ],
+  "act": "two-feet",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:american-eagle:untimed:post-animal",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Post Animal",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "post-animal",
+    "role": "performer"
+   }
+  ],
+  "act": "post-animal",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:american-eagle:untimed:clairo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Clairo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clairo",
+    "role": "performer"
+   }
+  ],
+  "act": "clairo",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:american-eagle:untimed:cleopatrick",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "cleopatrick",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cleopatrick",
+    "role": "performer"
+   }
+  ],
+  "act": "cleopatrick",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:the-neighbourhood",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "The Neighbourhood",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-neighbourhood",
+    "role": "performer"
+   }
+  ],
+  "act": "the-neighbourhood",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:lizzo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "LIZZO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lizzo",
+    "role": "performer"
+   }
+  ],
+  "act": "lizzo",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:gang-of-youths",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Gang Of Youths",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gang-of-youths",
+    "role": "performer"
+   }
+  ],
+  "act": "gang-of-youths",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:matt-maeson",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Matt Maeson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matt-maeson",
+    "role": "performer"
+   }
+  ],
+  "act": "matt-maeson",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:oshi",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Oshi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oshi",
+    "role": "performer"
+   }
+  ],
+  "act": "oshi",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:bmi:untimed:buddy",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Buddy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "buddy",
+    "role": "performer"
+   }
+  ],
+  "act": "buddy",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:bmi:untimed:r-lum-r",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "R.LUM.R",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "r-lum-r",
+    "role": "performer"
+   }
+  ],
+  "act": "r-lum-r",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:bmi:untimed:chase-atlantic",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Chase Atlantic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chase-atlantic",
+    "role": "performer"
+   }
+  ],
+  "act": "chase-atlantic",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:bmi:untimed:nothing-nowhere",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "nothing,nowhere.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nothing-nowhere",
+    "role": "performer"
+   }
+  ],
+  "act": "nothing-nowhere",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:bmi:untimed:cky",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "CKY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cky",
+    "role": "performer"
+   }
+  ],
+  "act": "cky",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:bmi:untimed:mainland",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Mainland",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mainland",
+    "role": "performer"
+   }
+  ],
+  "act": "mainland",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:kidzapalooza-presented-by-lifeway:untimed:mister-g",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "Mister G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mister-g",
+    "role": "performer"
+   }
+  ],
+  "act": "mister-g",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:kidzapalooza-presented-by-lifeway:untimed:big-don",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "Big Don",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-don",
+    "role": "performer"
+   }
+  ],
+  "act": "big-don",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:kidzapalooza-presented-by-lifeway:untimed:aaron-nigel-smith",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "Aaron Nigel Smith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aaron-nigel-smith",
+    "role": "performer"
+   }
+  ],
+  "act": "aaron-nigel-smith",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d2:kidzapalooza-presented-by-lifeway:untimed:lucy-kalantari-and-the-jazz-cats",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-03",
+  "day": 2,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "Lucy Kalantari & the Jazz Cats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucy-kalantari-and-the-jazz-cats",
+    "role": "performer"
+   }
+  ],
+  "act": "lucy-kalantari-and-the-jazz-cats",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:grant-park:untimed:the-weeknd",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "THE WEEKND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-weeknd",
+    "role": "performer"
+   }
+  ],
+  "act": "the-weeknd",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:grant-park:untimed:logic",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Logic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "logic",
+    "role": "performer"
+   }
+  ],
+  "act": "logic",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:grant-park:untimed:catfish-and-the-bottlemen",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Catfish and the Bottlemen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "catfish-and-the-bottlemen",
+    "role": "performer"
+   }
+  ],
+  "act": "catfish-and-the-bottlemen",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:grant-park:untimed:bomba-estereo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Bomba Estéreo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bomba-estereo",
+    "role": "performer"
+   }
+  ],
+  "act": "bomba-estereo",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:grant-park:untimed:charlotte-cardin",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Charlotte Cardin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charlotte-cardin",
+    "role": "performer"
+   }
+  ],
+  "act": "charlotte-cardin",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:bud-light:untimed:vampire-weekend",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "Vampire Weekend",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vampire-weekend",
+    "role": "performer"
+   }
+  ],
+  "act": "vampire-weekend",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:bud-light:untimed:st-vincent",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "St. Vincent",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "st-vincent",
+    "role": "performer"
+   }
+  ],
+  "act": "st-vincent",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:bud-light:untimed:ll-cool-j-feat-dj-z-trip",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "LL COOL J FEAT. DJ Z-TRIP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ll-cool-j",
+    "role": "performer"
+   },
+   {
+    "key": "dj-z-trip",
+    "role": "guest"
+   }
+  ],
+  "act": "ll-cool-j-feat-dj-z-trip",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:bud-light:untimed:a-r-i-z-o-n-a",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "A R I Z O N A",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-r-i-z-o-n-a",
+    "role": "performer"
+   }
+  ],
+  "act": "a-r-i-z-o-n-a",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:bud-light:untimed:yungblud",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "Yungblud",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yungblud",
+    "role": "performer"
+   }
+  ],
+  "act": "yungblud",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:perry-s:untimed:zedd",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "ZEDD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:perry-s:untimed:illenium",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "ILLENIUM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "illenium",
+    "role": "performer"
+   }
+  ],
+  "act": "illenium",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:perry-s:untimed:zomboy",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Zomboy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zomboy",
+    "role": "performer"
+   }
+  ],
+  "act": "zomboy",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:perry-s:untimed:hippie-sabotage",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Hippie Sabotage",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hippie-sabotage",
+    "role": "performer"
+   }
+  ],
+  "act": "hippie-sabotage",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:perry-s:untimed:ghastly",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Ghastly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ghastly",
+    "role": "performer"
+   }
+  ],
+  "act": "ghastly",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:perry-s:untimed:k-d",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "K?D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "k-d",
+    "role": "performer"
+   }
+  ],
+  "act": "k-d",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:perry-s:untimed:loudpvck",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "LOUDPVCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loudpvck",
+    "role": "performer"
+   }
+  ],
+  "act": "loudpvck",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:perry-s:untimed:brohug",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "BROHUG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brohug",
+    "role": "performer"
+   }
+  ],
+  "act": "brohug",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:perry-s:untimed:blackgummy",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "BlackGummy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blackgummy",
+    "role": "performer"
+   }
+  ],
+  "act": "blackgummy",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:lake-shore:untimed:dua-lipa",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Dua Lipa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dua-lipa",
+    "role": "performer"
+   }
+  ],
+  "act": "dua-lipa",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:lake-shore:untimed:daya",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Daya",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daya",
+    "role": "performer"
+   }
+  ],
+  "act": "daya",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:lake-shore:untimed:carly-rae-jepsen",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Carly Rae Jepsen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carly-rae-jepsen",
+    "role": "performer"
+   }
+  ],
+  "act": "carly-rae-jepsen",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:lake-shore:untimed:sir-sly",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Sir Sly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sir-sly",
+    "role": "performer"
+   }
+  ],
+  "act": "sir-sly",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:lake-shore:untimed:lovelytheband",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "lovelytheband",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lovelytheband",
+    "role": "performer"
+   }
+  ],
+  "act": "lovelytheband",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:american-eagle:untimed:perry-farrell-s-kind-heaven",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Perry Farrell’s Kind Heaven",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "perry-farrell-s-kind-heaven",
+    "role": "performer"
+   }
+  ],
+  "act": "perry-farrell-s-kind-heaven",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:american-eagle:untimed:tash-sultana",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Tash Sultana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tash-sultana",
+    "role": "performer"
+   }
+  ],
+  "act": "tash-sultana",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:american-eagle:untimed:daniel-caesar",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Daniel Caesar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-caesar",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-caesar",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:american-eagle:untimed:goldlink",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "GOLDLINK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldlink",
+    "role": "performer"
+   }
+  ],
+  "act": "goldlink",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:american-eagle:untimed:autograf",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Autograf",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "autograf",
+    "role": "performer"
+   }
+  ],
+  "act": "autograf",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:american-eagle:untimed:pale-waves",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Pale Waves",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pale-waves",
+    "role": "performer"
+   }
+  ],
+  "act": "pale-waves",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:american-eagle:untimed:amy-shark",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Amy Shark",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amy-shark",
+    "role": "performer"
+   }
+  ],
+  "act": "amy-shark",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:american-eagle:untimed:femdot",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Femdot",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "femdot",
+    "role": "performer"
+   }
+  ],
+  "act": "femdot",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:american-eagle:untimed:emilia-ali",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Emilia Ali",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emilia-ali",
+    "role": "performer"
+   }
+  ],
+  "act": "emilia-ali",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:luke-combs",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Luke Combs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luke-combs",
+    "role": "performer"
+   }
+  ],
+  "act": "luke-combs",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:lil-pump",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Lil Pump",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-pump",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-pump",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:tank-and-the-bangas",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Tank and The Bangas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tank-and-the-bangas",
+    "role": "performer"
+   }
+  ],
+  "act": "tank-and-the-bangas",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:wallows",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Wallows",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wallows",
+    "role": "performer"
+   }
+  ],
+  "act": "wallows",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:droeloe",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "DROELOE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "droeloe",
+    "role": "performer"
+   }
+  ],
+  "act": "droeloe",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:bmi:untimed:melvv",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "MELVV",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "melvv",
+    "role": "performer"
+   }
+  ],
+  "act": "melvv",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:bmi:untimed:vera-blue",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Vera Blue",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vera-blue",
+    "role": "performer"
+   }
+  ],
+  "act": "vera-blue",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:bmi:untimed:davie",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Davie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "davie",
+    "role": "performer"
+   }
+  ],
+  "act": "davie",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:bmi:untimed:morgxn",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "morgxn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morgxn",
+    "role": "performer"
+   }
+  ],
+  "act": "morgxn",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:bmi:untimed:bones-uk",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "BONES (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bones-uk",
+    "role": "performer"
+   }
+  ],
+  "act": "bones-uk",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:bmi:untimed:grace-weber",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "GRACE WEBER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grace-weber",
+    "role": "performer"
+   }
+  ],
+  "act": "grace-weber",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:kidzapalooza-presented-by-lifeway:untimed:kb-whirly",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "kb Whirly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kb-whirly",
+    "role": "performer"
+   }
+  ],
+  "act": "kb-whirly",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:kidzapalooza-presented-by-lifeway:untimed:q-brothers",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "Q Brothers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "q-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "q-brothers",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d3:kidzapalooza-presented-by-lifeway:untimed:school-of-rock-allstars",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-04",
+  "day": 3,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "School of Rock AllStars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock-allstars",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock-allstars",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:grant-park:untimed:jack-white",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Jack White",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-white",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-white",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:grant-park:untimed:portugal-the-man",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Portugal. The Man",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "portugal-the-man",
+    "role": "performer"
+   }
+  ],
+  "act": "portugal-the-man",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:grant-park:untimed:lykke-li",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Lykke Li",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lykke-li",
+    "role": "performer"
+   }
+  ],
+  "act": "lykke-li",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:grant-park:untimed:anderson-east",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "Anderson East",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anderson-east",
+    "role": "performer"
+   }
+  ],
+  "act": "anderson-east",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:grant-park:untimed:the-regrettes",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Grant Park",
+  "start": null,
+  "end": null,
+  "printed": "The Regrettes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-regrettes",
+    "role": "performer"
+   }
+  ],
+  "act": "the-regrettes",
+  "closing": null,
+  "stageLineage": "lollapalooza:grant-park",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:bud-light:untimed:odesza",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "ODESZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odesza",
+    "role": "performer"
+   }
+  ],
+  "act": "odesza",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:bud-light:untimed:lil-uzi-vert",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "Lil Uzi Vert",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-uzi-vert",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-uzi-vert",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:bud-light:untimed:gucci-mane",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "Gucci Mane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gucci-mane",
+    "role": "performer"
+   }
+  ],
+  "act": "gucci-mane",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:bud-light:untimed:the-vaccines",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "The Vaccines",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-vaccines",
+    "role": "performer"
+   }
+  ],
+  "act": "the-vaccines",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:bud-light:untimed:the-coronas",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Bud Light",
+  "start": null,
+  "end": null,
+  "printed": "The Coronas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-coronas",
+    "role": "performer"
+   }
+  ],
+  "act": "the-coronas",
+  "closing": null,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:perry-s:untimed:excision",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Excision",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "excision",
+    "role": "performer"
+   }
+  ],
+  "act": "excision",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:perry-s:untimed:bazzi",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Bazzi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bazzi",
+    "role": "performer"
+   }
+  ],
+  "act": "bazzi",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:perry-s:untimed:what-so-not",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "What So Not",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "what-so-not",
+    "role": "performer"
+   }
+  ],
+  "act": "what-so-not",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:perry-s:untimed:troyboi",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "TroyBoi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "troyboi",
+    "role": "performer"
+   }
+  ],
+  "act": "troyboi",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:perry-s:untimed:chris-lake",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Chris Lake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lake",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lake",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:perry-s:untimed:herobust",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Herobust",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "herobust",
+    "role": "performer"
+   }
+  ],
+  "act": "herobust",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:perry-s:untimed:ekali",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "EKALI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ekali",
+    "role": "performer"
+   }
+  ],
+  "act": "ekali",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:perry-s:untimed:the-him",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "The Him",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-him",
+    "role": "performer"
+   }
+  ],
+  "act": "the-him",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:perry-s:untimed:tim-gunter",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Perry’s",
+  "start": null,
+  "end": null,
+  "printed": "Tim Gunter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tim-gunter",
+    "role": "performer"
+   }
+  ],
+  "act": "tim-gunter",
+  "closing": null,
+  "stageLineage": "lollapalooza:perry-s-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:lake-shore:untimed:chromeo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Chromeo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chromeo",
+    "role": "performer"
+   }
+  ],
+  "act": "chromeo",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:lake-shore:untimed:manchester-orchestra",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Manchester Orchestra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "manchester-orchestra",
+    "role": "performer"
+   }
+  ],
+  "act": "manchester-orchestra",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:lake-shore:untimed:kali-uchis",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "KALI UCHIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kali-uchis",
+    "role": "performer"
+   }
+  ],
+  "act": "kali-uchis",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:lake-shore:untimed:durand-jones-and-the-indications",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Durand Jones & The Indications",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "durand-jones-and-the-indications",
+    "role": "performer"
+   }
+  ],
+  "act": "durand-jones-and-the-indications",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:lake-shore:untimed:freya-ridings",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Lake Shore",
+  "start": null,
+  "end": null,
+  "printed": "Freya Ridings",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freya-ridings",
+    "role": "performer"
+   }
+  ],
+  "act": "freya-ridings",
+  "closing": null,
+  "stageLineage": "lollapalooza:lake-shore",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:american-eagle:untimed:playboi-carti",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Playboi Carti",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "playboi-carti",
+    "role": "performer"
+   }
+  ],
+  "act": "playboi-carti",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:american-eagle:untimed:quinn-xcii",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Quinn XCII",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quinn-xcii",
+    "role": "performer"
+   }
+  ],
+  "act": "quinn-xcii",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:american-eagle:untimed:rex-orange-county",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Rex Orange County",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rex-orange-county",
+    "role": "performer"
+   }
+  ],
+  "act": "rex-orange-county",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:american-eagle:untimed:cigarettes-after-sex",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Cigarettes After Sex",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cigarettes-after-sex",
+    "role": "performer"
+   }
+  ],
+  "act": "cigarettes-after-sex",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:american-eagle:untimed:sabrina-claudio",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Sabrina Claudio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sabrina-claudio",
+    "role": "performer"
+   }
+  ],
+  "act": "sabrina-claudio",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:american-eagle:untimed:knox-fortune",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Knox Fortune",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "knox-fortune",
+    "role": "performer"
+   }
+  ],
+  "act": "knox-fortune",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:american-eagle:untimed:jessie-reyez",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Jessie Reyez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-reyez",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-reyez",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:american-eagle:untimed:sasha-sloan",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Sasha Sloan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sasha-sloan",
+    "role": "performer"
+   }
+  ],
+  "act": "sasha-sloan",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:american-eagle:untimed:dorothy",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "American Eagle",
+  "start": null,
+  "end": null,
+  "printed": "Dorothy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dorothy",
+    "role": "performer"
+   }
+  ],
+  "act": "dorothy",
+  "closing": null,
+  "stageLineage": "lollapalooza:american-eagle",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:rainbow-kitten-surprise",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Rainbow Kitten Surprise",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rainbow-kitten-surprise",
+    "role": "performer"
+   }
+  ],
+  "act": "rainbow-kitten-surprise",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:nav",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "NAV",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nav",
+    "role": "performer"
+   }
+  ],
+  "act": "nav",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:frenship",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Frenship",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frenship",
+    "role": "performer"
+   }
+  ],
+  "act": "frenship",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:superorganism",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Superorganism",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "superorganism",
+    "role": "performer"
+   }
+  ],
+  "act": "superorganism",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:medasin",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Tito’s Handmade Vodka",
+  "start": null,
+  "end": null,
+  "printed": "Medasin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "medasin",
+    "role": "performer"
+   }
+  ],
+  "act": "medasin",
+  "closing": null,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka-2",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:bmi:untimed:john-splithoff",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "John Splithoff",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-splithoff",
+    "role": "performer"
+   }
+  ],
+  "act": "john-splithoff",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:bmi:untimed:mikky-ekko",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Mikky Ekko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mikky-ekko",
+    "role": "performer"
+   }
+  ],
+  "act": "mikky-ekko",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:bmi:untimed:morgan-saint",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Morgan Saint",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morgan-saint",
+    "role": "performer"
+   }
+  ],
+  "act": "morgan-saint",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:bmi:untimed:van-william",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "Van William",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "van-william",
+    "role": "performer"
+   }
+  ],
+  "act": "van-william",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:bmi:untimed:the-wrecks",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "The Wrecks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-wrecks",
+    "role": "performer"
+   }
+  ],
+  "act": "the-wrecks",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:bmi:untimed:the-aces",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "BMI",
+  "start": null,
+  "end": null,
+  "printed": "The Aces",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-aces",
+    "role": "performer"
+   }
+  ],
+  "act": "the-aces",
+  "closing": null,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:kidzapalooza-presented-by-lifeway:untimed:justin-roberts-and-the-not-ready-for-naptime-players",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "Justin Roberts & the Not Ready for Naptime Players",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-roberts-and-the-not-ready-for-naptime-players",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-roberts-and-the-not-ready-for-naptime-players",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:kidzapalooza-presented-by-lifeway:untimed:kb-whirly",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "kb Whirly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kb-whirly",
+    "role": "performer"
+   }
+  ],
+  "act": "kb-whirly",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2018:d4:kidzapalooza-presented-by-lifeway:untimed:q-brothers",
+  "source": "edition",
+  "festivalId": "lollapalooza-2018",
+  "festivalBrand": "lollapalooza",
+  "year": 2018,
+  "date": "2018-08-05",
+  "day": 4,
+  "stage": "Kidzapalooza Presented By Lifeway",
+  "start": null,
+  "end": null,
+  "printed": "Q Brothers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "q-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "q-brothers",
+  "closing": null,
+  "stageLineage": "lollapalooza:kidzapalooza-presented-by-lifeway",
+  "mainStage": null
+ },
+ {
   "id": "lollapalooza-2019:d1:bud-light:untimed:lennon-stella",
   "source": "edition",
   "festivalId": "lollapalooza-2019",

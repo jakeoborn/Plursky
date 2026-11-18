@@ -49,6 +49,7 @@ import { parseGovBallWp } from "./govball-wp-schedule.mjs";
 import { parseInsomniacMusic } from "./insomniac-music-schedule.mjs";
 import { parseTmlCms } from "./tml-cms-schedule.mjs";
 import { parseHardWp } from "./hard-wp-schedule.mjs";
+import { parseLollaLineup } from "./lolla-lineup.mjs";
 import { parseTmlDrupal } from "./tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, readDatesPost } from "./shambhala-webflow-schedule.mjs";
 
@@ -487,6 +488,31 @@ export async function importGather(id, dir) {
             ...(prog.length && { programmeShows: prog.length, programmeStages: progStages.filter(x => d.stages.includes(x)) }),
             ...(d.repeats.length && { drawnTwice: d.repeats.map(x => `${x.artist} (${x.stage} ${x.printed})`) }),
             ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
+        }
+      } else if (s.format === "lolla-cards") {
+        // One page lists every act's sets, each with its printed day, start
+        // and stage, and no end (Lollapalooza 2018's lineup cards,
+        // lolla-lineup.mjs). Every day it prints is the edition's and is
+        // cited, and must be untimed: the page prints no end, and its only
+        // capture predates the festival. A day a card's own day titles list
+        // but no set it shows prints is kept in the ledger, never as a set.
+        const page = parseLollaLineup(cap.text, { year: ed.year });
+        const dayOf = date => ed.dates.findIndex(([d]) => d === date) + 1;
+        const printedDays = page.days.map(d => dayOf(d.date));
+        if (printedDays.some(d => d < 1)) throw new Error(`${s.url} @${s.captureTimestamp}: prints a day that is not the edition's (${page.days.map(d => d.date).join(", ")})`);
+        if (printedDays.join() !== days.join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints days ${printedDays.join(",")}, the sheet cites it for ${days.join(",")}`);
+        if (s.captureTimestamp.slice(0, 8) >= ed.dates[0][0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: a capture taken during or after the festival; this format is read only from a pre-festival page, untimed`);
+        for (const d of page.days) {
+          const day = dayOf(d.date);
+          if (!(ed.untimedDays || []).includes(day)) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is read off a page that prints no end times, captured before the festival, and the edition does not list it as untimed`);
+          if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is printed as "${d.label}", the receipt says "${s.printed[day]}"`);
+          if (got.some(r => r.day === day && r.end)) throw new Error(`${s.url} @${s.captureTimestamp}: the page prints no end times, but a day ${day} row has one`);
+          agree(day, d.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          const hid = page.hidden.filter(x => x.date === d.date);
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { stages: d.stages.length, cards: page.cards, timesConfirmed: false,
+            times: "each card prints its set's start and no end; the capture predates the festival",
+            ...(d.duplicates && { duplicateSets: d.duplicates }),
+            ...(hid.length && { notShown: hid.map(x => `${x.artist}: listed for "${x.title}", its set behind the card's "View more set times" link`) }) });
         }
       } else if (s.format === "govball-wp") {
         // One page prints every day: a grid per day, one column per stage,

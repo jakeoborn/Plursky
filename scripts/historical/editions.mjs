@@ -122,7 +122,7 @@ export const EDITIONS = {
     dates: [["2012-08-03", "Friday"], ["2012-08-04", "Saturday"], ["2012-08-05", "Sunday"]],
     notes: [{ asOf: "2026-11-17", days: [2], text: "Saturday's schedule changed during the festival. The official grid printed after the festival moves the evening sets later, to 10:45 PM, and no longer lists eight afternoon sets that its earlier version did. The times shown are that later grid's.",
       source: "https://web.archive.org/web/20120807041117/http://lineup.lollapalooza.com:80/events/2012/08/04" }] },
-  // Lollapalooza 2013-2017 and 2019: the official lollapalooza.com schedule
+  // Lollapalooza 2013-2017 and 2019 (2018: see below): the official lollapalooza.com schedule
   // grid, the same C3 page as ACL's (format "acl-grid"), one archived page per
   // year, each start read off the page's own hour axis.
   "lollapalooza-2013": { festivalId: "lollapalooza", name: "Lollapalooza 2013", year: 2013,
@@ -146,6 +146,17 @@ export const EDITIONS = {
   "lollapalooza-2017": { festivalId: "lollapalooza", name: "Lollapalooza 2017", year: 2017,
     timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
     dates: [["2017-08-03", "Thursday"], ["2017-08-04", "Friday"], ["2017-08-05", "Saturday"], ["2017-08-06", "Sunday"]] },
+  // Lollapalooza 2018: no archived schedule grid was captured that summer.
+  // The official lineup page's act cards (format "lolla-cards",
+  // lolla-lineup.mjs) print each set's day, start and stage, but the only
+  // capture that holds them is June 14, seven weeks before the festival, so
+  // its lineup ships and its times do not (as 2019).
+  "lollapalooza-2018": { festivalId: "lollapalooza", name: "Lollapalooza 2018", year: 2018,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
+    dates: [["2018-08-02", "Thursday"], ["2018-08-03", "Friday"], ["2018-08-04", "Saturday"], ["2018-08-05", "Sunday"]],
+    untimedDays: [1, 2, 3, 4],
+    notes: [{ asOf: "2026-11-18", days: [1, 2, 3, 4], text: "The only archived 2018 lineup with stages was captured June 14, before the festival, so set times are not confirmed. The lineup and stages are as that page printed them. School of Rock AllStars' Sunday set was not shown on the page, so it is not listed.",
+      source: "https://web.archive.org/web/20180614021223/https://www.lollapalooza.com/lineup/" }] },
   "lollapalooza-2019": { festivalId: "lollapalooza", name: "Lollapalooza 2019", year: 2019,
     timezone: "America/Chicago", rolloverHour: 6, method: "official_sources",
     dates: [["2019-08-01", "Thursday"], ["2019-08-02", "Friday"], ["2019-08-03", "Saturday"], ["2019-08-04", "Sunday"]],

@@ -1057,6 +1057,13 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:nav",
+  "printed": "NAV",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:tdj",
   "printed": "TDJ",
   "reason": "very short name billed at more than one festival brand",

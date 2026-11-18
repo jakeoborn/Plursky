@@ -33,6 +33,7 @@ import { parseGovBallWp, printedDate as govBallDate } from "./historical/govball
 import { parseInsomniacMusic, printedDate as insomniacDate } from "./historical/insomniac-music-schedule.mjs";
 import { parseTmlCms, printedDate as tmlCmsDate } from "./historical/tml-cms-schedule.mjs";
 import { parseHardWp, readRun as hardRun } from "./historical/hard-wp-schedule.mjs";
+import { parseLollaLineup, cardDate as lollaCardDate } from "./historical/lolla-lineup.mjs";
 import { parseTmlDrupal, titleDate as tmlTitleDate } from "./historical/tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, datesFromPost as shambhalaRun, readDatesPost } from "./historical/shambhala-webflow-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
@@ -136,6 +137,16 @@ if (base && edc) {
     mustFail("a HARD Summer day heading printed for the other day", m => { hwCap(m).printed = "FRIDAY"; }, hs12);
     mustFail("a HARD Summer run that is not the edition's", m => { hwCap(m).dateFrom = "Friday, August 2nd & Saturday, August 3rd, 2013"; }, hs12);
     mustFail("a HARD Summer page read off another site", m => { const c = hwCap(m); c.archivedUrl = c.archivedUrl.replace("www.hardfest.com", "www.hardsummerfans.com"); }, hs12);
+  }
+  // Lollapalooza 2018: the lineup cards print each set's day as "Sat 8/04" on
+  // Lollapalooza's own site; the capture predates the festival, so no day is
+  // timed.
+  const lo18 = editions["lollapalooza-2018"];
+  if (lo18) {
+    const lcCap = m => m.provenance.captures.find(c => c.format === "lolla-cards" && c.day === 3);
+    mustFail("a Lollapalooza 2018 card day printed for another day", m => { lcCap(m).printed = "Fri 8/03"; }, lo18);
+    mustFail("a Lollapalooza 2018 card day whose weekday is not its date", m => { lcCap(m).printed = "Sun 8/04"; }, lo18);
+    mustFail("a Lollapalooza 2018 page read off another site", m => { const c = lcCap(m); c.archivedUrl = c.archivedUrl.replace("www.lollapalooza.com", "www.lollapaloozafans.com"); }, lo18);
   }
   const lolla = editions["lollapalooza-2025"], acl = editions["acl-2025"];
   if (lolla && acl) {
@@ -595,6 +606,40 @@ if (base && edc) {
     hwMust("a HARD Summer stage printed twice on a day", hwPage({ fri: hwDay("friday", "FRIDAY", [hwFri[0], hwFri[0]]) }));
     hwMust("a HARD Summer column whose blocks agree on no top", hwPage().replace(hwBlock(0, 60, "Club Three", "8:30 - 9:00"), hwBlock(10, 60, "Club Three", "8:30 - 9:00")));
     hwMust("a HARD Summer column drawn off its grid", hwPage({ sat: hwDay("saturday", "SATURDAY", [hwCol("SATURDAY", "Club", "club", [hwBlock(120, 120, "Club One", "9:00 - 10:00"), hwBlock(0, 60, "Club Three", "8:30 - 9:00")])]) }));
+    // Lollapalooza's 2018 lineup page: one card per act, each set its day
+    // ("Sat 8/04"), start and stage, no end; a card shows at most two sets and
+    // links to the act's page for more.
+    const lcSet = (day, time, stage) => `<div class="layout__item c-lineup__details-session">\n<p class="c-lineup__details-session-times">\n${day}\n${time}    <br>\n<span>${stage}</span>\n</p>\n</div>`;
+    const lcCard = (id, name, titles, sets, { more = false, year = 2018, title = name } = {}) =>
+      `<div class="c-lineup__artist " data-weekends="[0,1,2]" data-id="${id}" data-title="${title}" data-position="0" data-sort-name="${name}" data-days="[1]" data-day-titles="${JSON.stringify(titles).replace(/"/g, "&quot;").replace(/\//g, "\\/")}" data-hashes="[]">`
+      + `<p class="c-lineup__caption-text js-view-details js-lineup__caption-text ">\n ${name}   </p>`
+      + `<h3 class="c-lineup__details-category-title">${year} Schedule:</h3>${sets.join("")}`
+      + (more ? `<a class="text--light-gray" href="https://www.lollapalooza.com/artist/x/">View more set times</a>` : "") + `</div>`;
+    const lcCards = [lcCard(1, "Headliner &amp; Co", ["Saturday, 8/4"], [lcSet("Sat 8/04", "8:30pm", "Grant Park")]),
+      lcCard(2, "Kid Act", ["Thursday, 8/2", "Saturday, 8/4", "Sunday, 8/5"], [lcSet("Thu 8/02", "1:30pm", "Kidz"), lcSet("Sat 8/04", "1:30pm", "Kidz")], { more: true }),
+      lcCard(3, "Opener", ["Thursday, 8/2"], [lcSet("Thu 8/02", "12:00pm", "Perry’s"), lcSet("Thu 8/02", "12:00pm", "Perry’s")])];
+    const lcPage = (cards = lcCards, desc = "Join us in Chicago August 2-5, 2018.") => `<meta name="description" content="${desc}">${cards.join("")}`;
+    const lcp = parseLollaLineup(lcPage(), { year: 2018 });
+    ok(JSON.stringify([lcp.cards, lcp.days.map(d => [d.date, d.label, d.stages, d.duplicates, d.sets.map(x => [x.stage, x.start, x.end, x.artist])]), lcp.hidden])
+      === JSON.stringify([3, [["2018-08-02", "Thu 8/02", ["Kidz", "Perry’s"], 1, [["Kidz", "13:30", "", "Kid Act"], ["Perry’s", "12:00", "", "Opener"]]],
+        ["2018-08-04", "Sat 8/04", ["Grant Park", "Kidz"], 0, [["Grant Park", "20:30", "", "Headliner & Co"], ["Kidz", "13:30", "", "Kid Act"]]]],
+        [{ date: "2018-08-05", artist: "Kid Act", title: "Sunday, 8/5" }]]),
+      `a Lollapalooza 2018 lineup page must read each card's sets as printed, with no end, count a set printed twice once, and keep a day only the card's day titles list out of the sets: ${JSON.stringify(lcp)}`);
+    ok(lollaCardDate("Sat 8/04", 2018) === "2018-08-04" && lollaCardDate("Saturday, 8/4", 2018) === "2018-08-04" && lollaCardDate("Sat 8/04", 2019) === null
+      && lollaCardDate("Sun 8/04", 2018) === null && lollaCardDate("Sat 8/32", 2018) === null, "a Lollapalooza card day must print its own weekday and a real date");
+    const lcMust = (what, html, year = 2018) => { let bad = false; try { parseLollaLineup(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    lcMust("a Lollapalooza 2018 page of another year", lcPage(), 2019);
+    lcMust("a Lollapalooza page whose description names another year", lcPage(lcCards, "Join us in Chicago August 1-4, 2019."));
+    lcMust("a Lollapalooza card scheduled for another year", lcPage([lcCard(1, "A", ["Saturday, 8/4"], [lcSet("Sat 8/04", "8:30pm", "Grant Park")], { year: 2017 })]));
+    lcMust("a Lollapalooza card with no set", lcPage([lcCard(1, "A", ["Saturday, 8/4"], [])]));
+    lcMust("a Lollapalooza set on a day its card does not list", lcPage([lcCard(1, "A", ["Saturday, 8/4"], [lcSet("Sun 8/05", "8:30pm", "Grant Park")])]));
+    lcMust("a Lollapalooza card day no set prints, with no link to more", lcPage([lcCard(1, "A", ["Saturday, 8/4", "Sunday, 8/5"], [lcSet("Sat 8/04", "8:30pm", "Grant Park")])]));
+    lcMust("a Lollapalooza set whose weekday is not its date", lcPage([lcCard(1, "A", ["Saturday, 8/4"], [lcSet("Sun 8/04", "8:30pm", "Grant Park")])]));
+    lcMust("a Lollapalooza set with no am or pm", lcPage([lcCard(1, "A", ["Saturday, 8/4"], [lcSet("Sat 8/04", "8:30", "Grant Park")])]));
+    lcMust("a Lollapalooza set with no stage", lcPage([lcCard(1, "A", ["Saturday, 8/4"], [lcSet("Sat 8/04", "8:30pm", "")])]));
+    lcMust("a Lollapalooza card captioned as another act", lcPage([lcCard(1, "A", ["Saturday, 8/4"], [lcSet("Sat 8/04", "8:30pm", "Grant Park")], { title: "B" })]));
+    lcMust("a Lollapalooza card printed twice", lcPage([lcCards[0], lcCards[0]]));
+    lcMust("a page with no Lollapalooza cards", lcPage([]));
     // Governors Ball's 2011-2012 WordPress schedule: a grid per day, a column
     // per stage, every range with its own am or pm.
     const gbBlock = (pre, cls, name, range, head = "") => `<div class="${pre}-block ${cls}">${head}<h2>${name}</h2><h3>${range}</h3></div>`;
@@ -1079,6 +1124,14 @@ for (const [id, e] of Object.entries(editions)) {
           ok(insomniacDate(s.printed, e.year) === d.date && /^the page's (title|description)$/.test(s.yearFrom || "") && /^the page's (title|own og:url)$/.test(s.place || "")
             && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?electricdaisycarnival\.com\//.test(s.archivedUrl || ""),
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (year from ${s.yearFrom}, Las Vegas from ${s.place}), not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
+        // Lollapalooza's 2018 lineup cards print each set's day as "Sat 8/04",
+        // on Lollapalooza's own site, and the day is never timed.
+        if (s.format === "lolla-cards") {
+          ok(lollaCardDate(s.printed, e.year) === d.date && s.printed.startsWith(wd.slice(0, 1) + wd.slice(1, 3).toLowerCase() + " ")
+            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?lollapalooza\.com(:80)?\//.test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
         // HARD Summer's 2012 page heads each day with its weekday alone; the

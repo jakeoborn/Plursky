@@ -3935,6 +3935,43 @@
    "source": "https://www.tomorrowland.com/"
   },
   {
+   "printed": "Slaves (UK)",
+   "performers": [
+    {
+     "name": "Slaves (UK)",
+     "role": "performer"
+    }
+   ],
+   "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Slaves\".",
+   "source": "https://www.lollapalooza.com/"
+  },
+  {
+   "printed": "BONES (UK)",
+   "performers": [
+    {
+     "name": "BONES (UK)",
+     "role": "performer"
+    }
+   ],
+   "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Bones\".",
+   "source": "https://www.lollapalooza.com/"
+  },
+  {
+   "printed": "LL COOL J FEAT. DJ Z-TRIP",
+   "performers": [
+    {
+     "name": "LL COOL J",
+     "role": "performer"
+    },
+    {
+     "name": "DJ Z-TRIP",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.lollapalooza.com/"
+  },
+  {
    "printed": "Pat Mahoney DJ Set (DFA / LCD SOUNDSYSTEM )",
    "performers": [
     {
@@ -4510,6 +4547,10 @@
   },
   {
    "key": "nu",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "nav",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]

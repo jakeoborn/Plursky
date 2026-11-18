@@ -2774,6 +2774,42 @@
    }
   },
   {
+   "id": "lollapalooza-2018",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2018",
+   "year": 2018,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-08-02",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2018-08-03",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2018-08-04",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2018-08-05",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 183,
+    "sets": 189
+   }
+  },
+  {
    "id": "lollapalooza-2017",
    "festivalId": "lollapalooza",
    "festivalName": "Lollapalooza",

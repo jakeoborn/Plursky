@@ -114,11 +114,15 @@ const out = build();
   // printed: five parentheticals naming the people or crew behind a billing
   // (Airscape, Club Cheval, Frequency 7 and Killa Productions, NGA, Fiocco)
   // and the short name NU: 161 rows, raised here and reported in that pull
+  // request. Lollapalooza 2018 ruled three billings under the existing
+  // country-code and feat. rules (Slaves (UK), BONES (UK), LL COOL J FEAT. DJ
+  // Z-TRIP) and left the short name NAV as printed (Coachella 2017 and
+  // Lollapalooza 2018): 162 rows, raised here and reported in that pull
   // request. Governors Ball 2015 ruled Pat Mahoney's DJ set under the existing
   // band-parenthetical rule and left one "+" billing as printed (Florence +
-  // The Machine): 162 rows, raised here and reported in that pull request.
-  // Past 162, stop and report.
-  check(review.length <= 162, `review queue is ${review.length} rows (> 162 means stop and report)`);
+  // The Machine): 163 rows, raised here and reported in that pull request.
+  // Past 163, stop and report.
+  check(review.length <= 163, `review queue is ${review.length} rows (> 163 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
