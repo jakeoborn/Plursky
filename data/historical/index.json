@@ -3597,6 +3597,42 @@
    }
   },
   {
+   "id": "primavera-sound-2017",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2017",
+   "year": 2017,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-05-31",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2017-06-01",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2017-06-02",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2017-06-03",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 14,
+    "artists": 216,
+    "sets": 221
+   }
+  },
+  {
    "id": "primavera-sound-2016",
    "festivalId": "primavera-sound",
    "festivalName": "Primavera Sound",

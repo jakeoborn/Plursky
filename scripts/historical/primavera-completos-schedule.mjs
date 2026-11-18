@@ -1,36 +1,40 @@
 // primavera-completos-schedule.mjs — Primavera Sound's own full timetable
 // ("Horarios completos", primaverasound.es/horarios?d=N&l=forum&content=),
-// 2016 template, read from an archived capture. Format "primavera-completos".
+// 2016 and 2017 template, read from an archived capture. Format
+// "primavera-completos".
 //
-// One page prints one day of the whole festival week, Parc del Fòrum and the
-// city venues ("Primavera a la Ciutat") side by side:
+// One page prints one day of the whole festival season, Parc del Fòrum and
+// the city venues ("Primavera a la Ciutat") side by side:
 //   - the heading "Horarios" ("Horaris", "Timetable"), with "Horarios
 //     completos" the active entry of the venue submenu;
-//   - a row of day tabs (<div id="title_dias">), one per day of the week, the
+//   - a row of day tabs (<div id="title_dias">), one per day with shows, the
 //     page's own day the one <span class="rojo"> that is not a link. A tab
-//     prints a weekday and a day of the month and nothing else ("MIÉRCOLES 1",
-//     in Spanish, Catalan or English). The tabs are consecutive days, so the
-//     row as a whole names its dates: there must be exactly one run of days
-//     in the edition's year whose weekdays and days of the month are the
-//     ones printed (2016: Monday 30 May to Sunday 5 June);
+//     prints a weekday and a day of the month and nothing else: "MIÉRCOLES 1"
+//     in 2016 (Spanish, Catalan or English), "MIÉ-31" in 2017. The tabs run
+//     forward in time, so the row as a whole names its dates: there must be
+//     exactly one run of days in the edition's year with the weekdays and
+//     days of the month printed, each tab no more than a week after the one
+//     before (2016: Monday 30 May to Sunday 5 June, every day; 2017: 3 May to
+//     4 June, the days with shows);
 //   - a grid (<table id="listaHorarios">) whose first header row groups the
 //     columns by venue (<th class="TituloEscenarioforum"> under "PARC DEL
 //     FÒRUM", <th class="TituloEscenariociutat"> under "Primavera a la
 //     Ciutat"), whose second names one stage per column, each marked with its
-//     venue (<th class="escenarioforum">, <th class="escenariociutat">), the
-//     same stages repeated in a footer row, then one row every 15 minutes,
-//     each opening and closing with its own time (<td class="horaleft">11:30
-//     </td> … <td class="horaright"><span>11:30</span></td>) and holding one
-//     cell per stage. Past midnight the times carry on (0:00 … 6:30).
+//     venue (<th class="escenarioforum">, <th class="escenariociutat">; 2017
+//     puts one Fòrum stage after the city's), the same stages repeated in a
+//     footer row, then one row every 15 minutes, each opening and closing
+//     with its own time (<td class="horaleft">11:30</td> … <td
+//     class="horaright"><span>11:30</span></td>) and holding one cell per
+//     stage. Past midnight the times carry on (0:00 … 6:30).
 // A set is a block in a stage's cell, drawn in that stage's venue:
 //   <div class="concertBoxforum KKaddMinutes-N" style="height:Hpx;top:Tpx;">
 //     <a …><div class="hora ">(12:00 - 13:30)</div>
-//     <div class="2016_artists"> NAME</div></a>
-// Its printed start must be its row's time plus N minutes (0 ≤ N < 15) and,
-// where it prints an end, it must be drawn two pixels a minute tall (H = 2 ×
-// length). A block that prints its start alone ("(18:00)", 2016's
-// minimúsica) is an open end, its height not read. Within a stage,
-// sets run in order with no overlap. Only Parc del Fòrum's stages are the
+//     <div class="2016_artists"> NAME</div></a>   (2017: class="artists_2017")
+// The name's class carries the edition's year. The block's printed start
+// must be its row's time plus N minutes (0 ≤ N < 15) and, where it prints an
+// end, it must be drawn two pixels a minute tall (H = 2 × length). A block
+// that prints its start alone ("(18:00)", 2016's minimúsica) is an open end,
+// its height not read. Within a stage, sets run in order with no overlap. Only Parc del Fòrum's stages are the
 // festival site's: the city's columns are read (every check above holds for
 // them too) and returned apart, as `cityStages`, never as sets. Anything else
 // throws: nothing on this page is read another way.
@@ -47,28 +51,42 @@ const WEEKDAYS = {
   en: ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"],
 };
 
-// "MIÉRCOLES 1" → { lang, wd: 3, dom: 1 }, or null.
+// Spanish short weekdays, as 2017's tabs print them ("MIÉ-31").
+const SHORT = { es: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"] };
+
+// "MIÉRCOLES 1" (2016) or "MIÉ-31" (2017) → { lang, wd, dom }, or null.
 export function tabDay(label) {
-  const m = /^(\S+) (\d{1,2})$/.exec(String(label || "").trim().toLowerCase());
+  const m = /^(\S+?)(?: |-)(\d{1,2})$/.exec(String(label || "").trim().toLowerCase());
   if (!m || +m[2] < 1 || +m[2] > 31) return null;
-  for (const [lang, names] of Object.entries(WEEKDAYS)) {
+  const short = / /.test(String(label).trim()) ? null : true;
+  for (const [lang, names] of Object.entries(short ? SHORT : WEEKDAYS)) {
     const wd = names.indexOf(m[1]);
-    if (wd >= 0) return { lang, wd, dom: +m[2] };
+    if (wd >= 0) return { lang: short ? `${lang}-short` : lang, wd, dom: +m[2] };
   }
   return null;
 }
 
-// The dates a row of consecutive day tabs names in `year`, or null: the one
-// run of days in that year whose weekdays and days of the month are the
-// tabs', all in one language.
+// The dates a row of day tabs names in `year`, or null. The tabs run forward
+// in time: 2016's are consecutive days, 2017's list only the days with shows,
+// skipping some (Thursday 4 May, then Monday 8 May). Each tab is the first
+// day after the one before with its weekday and day of the month, and no more
+// than a week after it; exactly one starting day in the year may fit, and all
+// the tabs are printed in one language.
 export function tabRun(labels, year) {
   const days = (labels || []).map(tabDay);
   if (!days.length || days.some(d => !d) || new Set(days.map(d => d.lang)).size !== 1) return null;
+  const fits = (d, x) => d.getUTCDay() === x.wd && d.getUTCDate() === x.dom;
   const runs = [];
   for (let t = Date.UTC(year, 0, 1); new Date(t).getUTCFullYear() === year; t += 864e5) {
-    const dates = days.map((_, i) => new Date(t + i * 864e5));
-    if (dates.at(-1).getUTCFullYear() !== year) break;
-    if (dates.every((d, i) => d.getUTCDay() === days[i].wd && d.getUTCDate() === days[i].dom)) runs.push(dates.map(d => d.toISOString().slice(0, 10)));
+    if (!fits(new Date(t), days[0])) continue;
+    const run = [t];
+    for (const x of days.slice(1)) {
+      let next = null;
+      for (let k = 1; k <= 7; k++) if (fits(new Date(run.at(-1) + k * 864e5), x)) { next = run.at(-1) + k * 864e5; break; }
+      if (next === null) break;
+      run.push(next);
+    }
+    if (run.length === days.length && new Date(run.at(-1)).getUTCFullYear() === year) runs.push(run.map(v => new Date(v).toISOString().slice(0, 10)));
   }
   return runs.length === 1 ? runs[0] : null;
 }
@@ -114,8 +132,6 @@ export function parsePrimaveraCompletos(html, { year } = {}) {
   if (!cols.length || cols.some(c => !c.stage) || new Set(cols.map(c => c.stage)).size !== cols.length) throw new Error(`${date}: stage headers ${cols.map(c => c.stage).join(", ")}`);
   if (!cols.some(c => c.venue === "forum")) throw new Error(`${date}: no Parc del Fòrum stage`);
   for (const v of new Set(cols.map(c => c.venue))) if (!titled.has(v)) throw new Error(`${date}: ${v} stages with no "${VENUES[v]}" heading over them`);
-  // Fòrum's columns come first, then the city's.
-  if (cols.findIndex(c => c.venue === "ciutat") >= 0 && cols.slice(cols.findIndex(c => c.venue === "ciutat")).some(c => c.venue === "forum")) throw new Error(`${date}: the venues' columns are mixed`);
   const stages = cols.map(c => c.stage);
   const body = /<tbody>([\s\S]*)$/.exec(table)?.[1] ?? "";
   const rows = [...body.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/g)].map(r => r[1]);
@@ -144,7 +160,9 @@ export function parsePrimaveraCompletos(html, { year } = {}) {
       for (const b of blocks) {
         const add = +b[2], height = +b[3];
         if (b[1] !== venue) throw new Error(`${date} ${hhmm(t)} ${stage}: a ${b[1]} block in a ${venue} column`);
-        const names = [...b[4].matchAll(/<div class="\d{4}_artists">([\s\S]*?)<\/div>/g)].map(x => plain(x[1]));
+        const names = [...b[4].matchAll(/<div class="(?:(\d{4})_artists|artists_(\d{4}))">([\s\S]*?)<\/div>/g)];
+        if (names.some(x => +(x[1] || x[2]) !== year)) throw new Error(`${date} ${hhmm(t)} ${stage}: a name marked for ${names.map(x => x[1] || x[2]).join(", ")}, not ${year}`);
+        names.forEach((x, i) => { names[i] = plain(x[3]); });
         const horas = [...b[4].matchAll(/<div class="hora ?">([\s\S]*?)<\/div>/g)].map(x => plain(x[1]));
         if (names.length !== 1 || !names[0] || horas.length !== 1) throw new Error(`${date} ${hhmm(t)} ${stage}: a block with ${names.length} name(s) and ${horas.length} time(s)`);
         const artist = names[0], printed = horas[0], where = `${date} ${stage} "${artist}"`;

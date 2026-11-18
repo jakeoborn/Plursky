@@ -4364,6 +4364,71 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "primavera-sound:desperados-club-feat-bowers-and-wilkins-sound-system",
+     "names": [
+      {
+       "printed": "Desperados Club feat. Bowers & Wilkins Sound System",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:night-pro",
+     "names": [
+      {
+       "printed": "Night Pro",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:bacardi-live",
+     "names": [
+      {
+       "printed": "Bacardí Live",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:mango",
+     "names": [
+      {
+       "printed": "Mango",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:mango-house",
+     "names": [
+      {
+       "printed": "Mango House",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

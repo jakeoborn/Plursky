@@ -740,8 +740,10 @@ if (base && edc) {
     // pixels a minute. Only the Fòrum's blocks are sets.
     ok(JSON.stringify(primaveraRun(["LUNES 30", "MARTES 31", "MIÉRCOLES 1"], 2016)) === JSON.stringify(["2016-05-30", "2016-05-31", "2016-06-01"])
       && primaveraRun(["LUNES 30", "MARTES 31", "MIÉRCOLES 1"], 2017) === null && primaveraRun(["JUEVES 1"], 2016) === null
-      && primaveraRun(["LUNES 30", "DIMARTS 31", "MIÉRCOLES 1"], 2016) === null && JSON.stringify(primaveraRun(["Monday 30", "Tuesday 31"], 2016)) === JSON.stringify(["2016-05-30", "2016-05-31"]),
-      "a row of Primavera Sound 2016 tabs must name exactly one run of days in the year, in one language");
+      && primaveraRun(["LUNES 30", "DIMARTS 31", "MIÉRCOLES 1"], 2016) === null && JSON.stringify(primaveraRun(["Monday 30", "Tuesday 31"], 2016)) === JSON.stringify(["2016-05-30", "2016-05-31"])
+      && JSON.stringify(primaveraRun(["MIÉ-03", "JUE-04", "LUN-08"], 2017)) === JSON.stringify(["2017-05-03", "2017-05-04", "2017-05-08"])
+      && primaveraRun(["MIÉ-03", "JUE-04", "LUN-15"], 2017) === null && primaveraRun(["MIÉ-03", "MIÉRCOLES 4"], 2017) === null,
+      "a row of Primavera Sound 2016-2017 tabs must name exactly one run of days in the year, a week apart at most, in one language");
     const pcBox = (venue, add, h, name, hora) => `<div class="concertContainer"><div class="concertBox${venue} KKaddMinutes-${add}" style="height:${h}px;top:0px;"><a href="/2016_artists?id=1"><div class="hora ">${hora}</div><div class="2016_artists"> ${name}</div></a></div></div>`;
     const pcLabels = ["LUNES 30", "MARTES 31", "MIÉRCOLES 1", "JUEVES 2"];
     const pcTabs = (own = 3, labels = pcLabels) => `<div id="title_dias" class="font01 group">`
@@ -764,12 +766,12 @@ if (base && edc) {
     pcMust("a Primavera Sound 2016 page under another heading", pcPage({ heading: "Artistas" }));
     pcMust("a Primavera Sound 2016 page showing one venue only", pcPage({ active: "PARC DEL FÒRUM" }));
     pcMust("a Primavera Sound 2016 page with no day of its own", pcPage({ tabs: pcTabs(-1) }));
-    pcMust("Primavera Sound 2016 tabs that skip a day", pcPage({ tabs: pcTabs(3, ["LUNES 30", "MARTES 31", "JUEVES 2", "VIERNES 3"]) }));
+    pcMust("Primavera Sound 2016 tabs out of order", pcPage({ tabs: pcTabs(2, ["LUNES 30", "MARTES 31", "JUEVES 2", "MIÉRCOLES 1"]) }));
     pcMust("Primavera Sound 2016 tabs in two languages", pcPage({ tabs: pcTabs(3, ["LUNES 30", "DIMARTS 31", "MIÉRCOLES 1", "JUEVES 2"]) }));
     pcMust("a Primavera Sound 2016 Fòrum column headed as the city", pcPage({ groups: [["forum", "Primavera a la Ciutat"], ["forum", ""], ["ciutat", "Primavera a la Ciutat"]] }));
     pcMust("Primavera Sound 2016 city stages with no city heading", pcPage({ groups: [["forum", "PARC DEL FÒRUM"], ["forum", ""], ["ciutat", ""]] }));
     pcMust("a Primavera Sound 2016 page with no Fòrum stage", pcPage({ cols: pcCols.map(([, x]) => ["ciutat", x]), rows: [psRow("23:30", ["", "", ""]), psRow("23:45", ["", "", ""])] }));
-    pcMust("Primavera Sound 2016 venues' columns mixed", pcPage({ cols: [pcCols[0], pcCols[2], pcCols[1]], rows: [psRow("23:30", ["", "", ""]), psRow("23:45", ["", "", ""])] }));
+    pcMust("a Primavera Sound 2016 name marked for another year", pcPage().replace('<div class="2016_artists"> EARLY', '<div class="2015_artists"> EARLY'));
     pcMust("a Primavera Sound 2016 city block in a Fòrum column", pcPage({ rows: [psRow("23:30", [pcBox("ciutat", 5, 60, "EARLY &amp; LATE", "(23:35 - 00:05)"), "", ""]), ...pcRows.slice(1)] }));
     pcMust("a Primavera Sound 2016 block off its row's time", pcPage({ rows: [psRow("23:30", [pcBox("forum", 0, 60, "EARLY &amp; LATE", "(23:35 - 00:05)"), "", ""]), ...pcRows.slice(1)] }));
     pcMust("a Primavera Sound 2016 block not drawn two pixels a minute", pcPage({ rows: [psRow("23:30", [pcBox("forum", 5, 61, "EARLY &amp; LATE", "(23:35 - 00:05)"), "", ""]), ...pcRows.slice(1)] }));

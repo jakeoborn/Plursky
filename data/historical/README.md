@@ -118,9 +118,9 @@ Zamilska) is an open end. Sets on a stage must run in order with no overlap;
 anything else stops the read. The 2015 day pages were captured after the
 festival (Wednesday's on May 31, the rest in September). Wednesday 27 May is
 the ATP stage alone; the three main days have 11 stages each. Other years'
-timetables (2012, 2013, 2017 to 2019) are archived too and are not read yet.
+timetables (2012, 2013, 2018, 2019) are archived too and are not read yet.
 
-Archived Primavera Sound full timetable (2016, format `primavera-completos`):
+Archived Primavera Sound full timetable (2016 and 2017, format `primavera-completos`):
 
     node scripts/historical/gather-primavera-completos.mjs <edition-id> <gather-dir> <official-url> <ts> <day-url> [ … one pair per day ]
     node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
@@ -140,6 +140,15 @@ only the Fòrum's blocks become sets. A start-only block ("(18:00)", 2016's
 minimúsica) is an open end. Wednesday 1 June is one free concert on the
 Primavera stage; Thursday to Saturday have 12 or 13 Fòrum stages. The night
 runs to 06:00, so the 2016 day runs from 10 AM. Pages captured 19 June 2016.
+
+2017 is the same page with three changes. The tabs print a short weekday
+("MIÉ-31") and list only the season's days with shows, so the run may skip
+days: each tab must be the first day after the one before with its weekday
+and day of the month, no more than a week on. One Fòrum stage (Mango House)
+is printed after the city's columns, still marked as the Fòrum's. The names'
+class carries the year (`artists_2017`, 2016's `2016_artists`) and must be the
+edition's. Wednesday 31 May is the Fòrum's free opening on two stages. Pages
+captured 20 to 23 June 2017. 2019's tabs print ISO dates and are not read yet.
 
 Archived Lollapalooza lineup cards (2018, format `lolla-cards`):
 

@@ -114,6 +114,13 @@ export const EDITIONS = {
   "primavera-sound-2016": { festivalId: "primavera-sound", name: "Primavera Sound 2016", year: 2016,
     timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
     dates: [["2016-06-01", "Wednesday"], ["2016-06-02", "Thursday"], ["2016-06-03", "Friday"], ["2016-06-04", "Saturday"]] },
+  // Primavera Sound 2017: the same full timetable, its tabs printed "MIÉ-31"
+  // and listing only the season's days with shows. Wednesday 31 May is the
+  // Fòrum's free opening (the Heineken Hidden Stage and the Primavera stage,
+  // printed "Primavera (concierto gratuito)"); the day runs from 10 AM.
+  "primavera-sound-2017": { festivalId: "primavera-sound", name: "Primavera Sound 2017", year: 2017,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2017-05-31", "Wednesday"], ["2017-06-01", "Thursday"], ["2017-06-02", "Friday"], ["2017-06-03", "Saturday"]] },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.

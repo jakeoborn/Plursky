@@ -4020,6 +4020,40 @@
    ],
    "why": "The parenthetical names the band the billed person is known from, not a second act on the set: the person is the performer, and the band is not credited as playing (the Pat Mahoney DJ Set (DFA / LCD SOUNDSYSTEM ) rule).",
    "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "PATRICK CODENYS (FRONT 242)",
+   "performers": [
+    {
+     "name": "PATRICK CODENYS",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the band the billed person is known from, not a second act on the set: the person is the performer, and the band is not credited as playing (the Pat Mahoney DJ Set (DFA / LCD SOUNDSYSTEM ) rule).",
+   "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "!!! (CHK CHK CHK)",
+   "performers": [
+    {
+     "name": "!!! (CHK CHK CHK)",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical spells out how the band's own name is said, not a second act or a set tag: the billing counts on the name as printed, kept whole because \"!!!\" alone has no letters to key it by.",
+   "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "!!! (CHK CHK CHK) DJ SET",
+   "performers": [
+    {
+     "name": "!!! (CHK CHK CHK)",
+     "role": "performer"
+    }
+   ],
+   "setTag": "DJ SET",
+   "why": "\"DJ SET\" is the set tag, and the rest is the band's name with how it is said, kept whole as on its other billing the same day (the !!! (CHK CHK CHK) ruling).",
+   "source": "https://www.primaverasound.es/"
   }
  ],
  "pending": [

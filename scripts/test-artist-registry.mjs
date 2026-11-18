@@ -125,7 +125,10 @@ const out = build();
   // tag and band-parenthetical rules (BEN WATT BAND FEAT. BERNARD BUTLER, BOB
   // MOULD (SOLO ELECTRIC), FARIS BADWAN (THE HORRORS)) and left one
   // parenthetical as printed (OPTIMO (ESPACIO)): 164 rows, raised here and
-  // reported in that pull request. Past 164, stop and report.
+  // reported in that pull request. Primavera Sound 2017 ruled three more under
+  // the same band-parenthetical and set tag rules and a new one for a name
+  // printed with how it is said (PATRICK CODENYS (FRONT 242), !!! (CHK CHK
+  // CHK) and its DJ SET), leaving the queue at 164. Past 164, stop and report.
   check(review.length <= 164, `review queue is ${review.length} rows (> 164 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
