@@ -3,7 +3,7 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
-## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-18 afternoon, main `49a3235f`, web v645)
+## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-18 5:40 PM CT, main `33a88b9e`, web v645)
 
 > Ledger lines for the merges below: `ops/build-ledger.jsonl` (the ledger has no
 > lines between 2026-10-24 and 2026-11-17; those merges are not backfilled here).
@@ -14,6 +14,7 @@
 - [x] #493 Top-tier round 1: photo spotlight, a face per member · v645
 - [x] #506 Lollapalooza 2018 by day and stage · #507 Governors Ball 2013–2015
 - [x] #509 Primavera Sound 2015 · #511 Primavera 2016–2019 · #513 Primavera 2012 (data only, v645)
+- [x] #514 Outside Lands + Lightning in a Bottle past editions · #516 Sónar Barcelona past editions (data only, v645)
 
 **Open (Claude Plur), none live yet:**
 - [ ] W2 #500 Decadence venue source @ `848e0912` (v650), CI 1/1, CLEAN: merge lane, then live-verify the pages
@@ -25,12 +26,13 @@
 - [ ] W3 accuracy gate: 17 of 20 sets within 10 min on a real album replay. The synthetic
       EDC reference (13 of 15, #503) does not count. Blocked on Jake's albums
 - [ ] W4 #502 @ `4d88b72e` (v647) Monthly win-back + recap hooks + save/cancel states.
-      (#505 moved off v647 to v649 at `898a5a25`, which #515 also carries; #515 re-bumps
-      when it retargets to main.) Store offer not created
+      (#505 is now v652 at `c8ae5987`; no open branch shares v647.) Store offer not created
       yet (0 win-back offers read live in ASC); Jake's App Store Connect + RevenueCat taps
 - [ ] W5 #504 / #499 MusicKit token renewal command + expiry warning. The token itself
       expires Fri Nov 27, 8:14 PM CT and needs Jake's key
 - [ ] W6 #503 replay harness · W7 #498 census rule: green and CLEAN, merge lane
+- [ ] #517 Sziget 2010/2011 past editions (Data lane), draft: 146/105 timed sets re-counted
+      independently from the archived day pages; capture hashes did not reproduce (see the PR)
 
 **Held:** #244 festival essentials (DIRTY; re-port after SPEC-212).
 
