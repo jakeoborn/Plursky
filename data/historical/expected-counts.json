@@ -139,6 +139,14 @@
  "outside-lands-2015": { "stages": 6, "setsPerDay": [35, 36, 36], "droppedPerDay": [0, 0, 0] },
  "outside-lands-2016": { "stages": 5, "setsPerDay": [30, 30, 30], "droppedPerDay": [0, 0, 0] },
  "outside-lands-2017": { "stages": 6, "setsPerDay": [36, 35, 38], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2018": { "stages": 5, "setsPerDay": [31, 31, 31], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2019": { "stages": 5, "setsPerDay": [31, 31, 32], "droppedPerDay": [0, 0, 0] },
  "outside-lands-2010": { "stages": 5, "setsPerDay": [27, 28], "droppedPerDay": [0, 0] },
- "outside-lands-2011": { "stages": 5, "setsPerDay": [31, 29, 28], "droppedPerDay": [0, 0, 0] }
+ "outside-lands-2011": { "stages": 5, "setsPerDay": [31, 29, 28], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2022": { "stages": 7, "setsPerDay": [43, 42, 42], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2023": { "stages": 9, "setsPerDay": [43, 40, 43], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2024": { "stages": 9, "setsPerDay": [48, 46, 45], "droppedPerDay": [0, 0, 0] },
+ "outside-lands-2025": { "stages": 10, "setsPerDay": [52, 50, 53], "droppedPerDay": [0, 0, 0] },
+ "lightning-in-a-bottle-2018": { "stages": 10, "setsPerDay": [32, 66, 63, 63], "droppedPerDay": [0, 0, 0, 0] },
+ "lightning-in-a-bottle-2019": { "stages": 8, "setsPerDay": [1, 32, 68, 63, 65], "droppedPerDay": [0, 0, 0, 0, 0] }
 }

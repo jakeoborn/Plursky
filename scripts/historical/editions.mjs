@@ -53,6 +53,34 @@ export const EDITIONS = {
   "outside-lands-2015": { festivalId: "outside-lands", name: "Outside Lands 2015", year: 2015, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2015-08-07","Friday"],["2015-08-08","Saturday"],["2015-08-09","Sunday"]] },
   "outside-lands-2016": { festivalId: "outside-lands", name: "Outside Lands 2016", year: 2016, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2016-08-05","Friday"],["2016-08-06","Saturday"],["2016-08-07","Sunday"]] },
   "outside-lands-2017": { festivalId: "outside-lands", name: "Outside Lands 2017", year: 2017, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2017-08-11","Friday"],["2017-08-12","Saturday"],["2017-08-13","Sunday"]] },
+  // Outside Lands 2018 and 2019, from the official lineup widget
+  // (sfosl.dostff.co, sfosl19.dostff.co), Golden Gate Park as every year.
+  "outside-lands-2018": { festivalId: "outside-lands", name: "Outside Lands 2018", year: 2018, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2018-08-10","Friday"],["2018-08-11","Saturday"],["2018-08-12","Sunday"]] },
+  "outside-lands-2019": { festivalId: "outside-lands", name: "Outside Lands 2019", year: 2019, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2019-08-09","Friday"],["2019-08-10","Saturday"],["2019-08-11","Sunday"]] },
+  // Outside Lands 2022-2025: the official lineup page (sfoutsidelands.com/
+  // lineup/) loads a DoStuff widget whose embed script carries every set
+  // with its start, end and stage (format "dostuff-embed",
+  // dostuff-embed-schedule.mjs). One post-festival capture per year, each
+  // taken seconds after the official page that loads it. Cocktail Magic,
+  // the food-and-drink stage (2022-2023), is excluded as GastroMagic is.
+  "outside-lands-2022": { festivalId: "outside-lands", name: "Outside Lands 2022", year: 2022, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2022-08-05","Friday"],["2022-08-06","Saturday"],["2022-08-07","Sunday"]] },
+  "outside-lands-2023": { festivalId: "outside-lands", name: "Outside Lands 2023", year: 2023, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2023-08-11","Friday"],["2023-08-12","Saturday"],["2023-08-13","Sunday"]] },
+  "outside-lands-2024": { festivalId: "outside-lands", name: "Outside Lands 2024", year: 2024, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2024-08-09","Friday"],["2024-08-10","Saturday"],["2024-08-11","Sunday"]] },
+  "outside-lands-2025": { festivalId: "outside-lands", name: "Outside Lands 2025", year: 2025, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2025-08-08","Friday"],["2025-08-09","Saturday"],["2025-08-10","Sunday"]] },
+  // Lightning in a Bottle 2018 (Lake San Antonio) and 2019 (Buena Vista
+  // Lake, the festival's own homepage for each year): the official lineup
+  // page (lightninginabottle.org/lineup/) loads the same DoStuff widget
+  // (format "dostuff-embed"), one script host per year (lib2018.dostff.co,
+  // lib2019.dostff.co), each captured after the festival. The widget's run
+  // includes gate days with no music (2018's Wednesday arrival day), so the
+  // edition's days are the run's days it prints sets on. 2019's Wednesday
+  // carries one late set (YoHm at Beacon). Its options hide set titles, so
+  // each 2019 set is billed as the act it is drawn under. The yoga and
+  // meditation stages hold classes and are excluded rows.
+  "lightning-in-a-bottle-2018": { festivalId: "lightning-in-a-bottle", name: "Lightning in a Bottle 2018", year: 2018, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2018-05-24", "Thursday"], ["2018-05-25", "Friday"], ["2018-05-26", "Saturday"], ["2018-05-27", "Sunday"]] },
+  "lightning-in-a-bottle-2019": { festivalId: "lightning-in-a-bottle", name: "Lightning in a Bottle 2019", year: 2019, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2019-05-08", "Wednesday"], ["2019-05-09", "Thursday"], ["2019-05-10", "Friday"], ["2019-05-11", "Saturday"], ["2019-05-12", "Sunday"]] },
   // Governors Ball 2011-2012: the official governorsballmusicfestival.com
   // schedule page (/lineup/schedule/, a WordPress template, format
   // "govball-wp", govball-wp-schedule.mjs), one archived page per year, each
