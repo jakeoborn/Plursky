@@ -993,6 +993,75 @@ var _lineupUnsplitRange = n => {
     return "";
   }
 };
+function _lineupHeadliners(dayArtists) {
+  var top = dayArtists.filter(isTopBilled);
+  if (!top.length) top = dayArtists.filter(a => a.tier === 3);
+  var key = a => a.start && !setTimesUnconfirmed(a) ? toNightMin(a.start) : -1;
+  return top.slice().sort((x, y) => key(y) - key(x)).slice(0, 3);
+}
+function LineupHeadliners({
+  acts,
+  dayLabel,
+  onOpen
+}) {
+  var rec = typeof festivalArtFor === "function" ? festivalArtFor(FESTIVAL_CONFIG.id) : null;
+  var [failed, setFailed] = React.useState(false);
+  var photo = rec && /^festival-art\/[a-z0-9-]+\.webp$/.test(rec.card || "") && !failed ? rec.card : null;
+  var credit = photo && rec.author && rec.licenseId && rec.licenseUrl ? {
+    author: rec.author,
+    sourceUrl: rec.sourcePage,
+    license: rec.licenseId,
+    licenseUrl: rec.licenseUrl,
+    changes: rec.changes
+  } : null;
+  var word = typeof posterBilled === "function" && posterBilled() ? "Top billed" : acts.length === 1 ? "Headliner" : "Headliners";
+  return React.createElement("section", {
+    "data-lineup-headliners": true,
+    "aria-label": `${dayLabel} ${word.toLowerCase()}`,
+    style: {
+      margin: "8px 0 12px"
+    }
+  }, React.createElement("div", {
+    className: `lh-card${photo ? "" : " plain"}`
+  }, photo && React.createElement("span", {
+    className: "lh-media",
+    "aria-hidden": "true"
+  }, React.createElement("img", {
+    src: `./${photo}`,
+    alt: "",
+    decoding: "async",
+    onError: () => setFailed(true)
+  }), React.createElement("span", {
+    className: "lh-scrim"
+  })), React.createElement("span", {
+    className: "lh-eyebrow"
+  }, dayLabel, " · ", word), React.createElement("ol", {
+    className: "lh-list"
+  }, acts.map((a, i) => {
+    var stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE).name;
+    var when = a.start && !setTimesUnconfirmed(a) ? fmt12(a.start) : null;
+    return React.createElement("li", {
+      key: a.id
+    }, React.createElement("button", {
+      "data-lineup-headliner": a.id,
+      className: "lh-act",
+      onClick: () => onOpen(a.id),
+      "aria-label": `${a.name}${when ? ", " + when : ""}${stage ? ", " + stage : ""}`
+    }, React.createElement("span", {
+      className: `lh-name${i === 0 ? " top" : ""}`
+    }, actDisplayName(a.name)), React.createElement("span", {
+      className: "lh-meta"
+    }, [when, stage].filter(Boolean).join(" · "))));
+  }))), credit && typeof PhotoCredit === "function" && React.createElement(PhotoCredit, {
+    className: "spot-credit",
+    credit: credit,
+    style: {
+      padding: "0 2px",
+      lineHeight: 1.35,
+      overflowWrap: "anywhere"
+    }
+  }));
+}
 function LineupScreen({
   state,
   setState
@@ -2107,7 +2176,19 @@ function LineupScreen({
       marginTop: 2,
       fontWeight: 400
     }
-  }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), gridLead && (() => {
+  }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), viewMode === "list" && filter === "all" && !q.trim() && !_chipFilterActive && NOW.night !== day && (() => {
+    var acts = _lineupHeadliners(dayArtists);
+    if (!acts.length) return null;
+    var dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
+    return React.createElement(LineupHeadliners, {
+      acts: acts,
+      dayLabel: dayLabel,
+      onOpen: id => setState({
+        ...state,
+        artist: id
+      })
+    });
+  })(), gridLead && (() => {
     var dayMeta = DAYS.find(x => x.n === day);
     var dayArt = lineupFor(weekendFilter).filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both");
     return React.createElement("div", {
