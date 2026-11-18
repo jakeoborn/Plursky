@@ -382,9 +382,9 @@
   .spot-card:hover>img{transform:scale(1.09)}
   .spot-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 45%,rgba(0,0,0,.82) 100%)}
   .spot-when{position:absolute;top:12px;left:12px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(0,0,0,.45);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font:600 12px/1.2 var(--f-ui);letter-spacing:.02em}
-  /* On a photo the pill keeps one look in both modes (--media-ink); only the dot is live green, and LIVE green only ever means live. */
+  /* On a photo the pill keeps one look in both modes (--media-ink); only the dot is live green (no glow: it would bleed under the words), and LIVE green only ever means live. */
   .spot-when{color:var(--media-ink)}
-  .spot-when>i{width:7px;height:7px;border-radius:50%;background:#3DF5A0;box-shadow:0 0 10px #3DF5A0;animation:duo-breathe 1.6s ease-in-out infinite}
+  .spot-when>i{width:7px;height:7px;border-radius:50%;background:#3DF5A0;animation:duo-breathe 1.6s ease-in-out infinite}
   @media (prefers-reduced-motion:reduce){.spot-when>i{animation:none}.spot-item{animation:none}.spot-card>img{transition:none}}
   .spot-text{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 18px;display:flex;flex-direction:column;gap:4px}
   .spot-name{font:400 34px/1.02 var(--f-display);letter-spacing:.01em;text-transform:uppercase;overflow-wrap:break-word;text-wrap:balance;text-shadow:0 2px 12px rgba(0,0,0,.35)}
