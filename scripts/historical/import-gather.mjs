@@ -46,6 +46,7 @@ import { parseDoStuff, parseDoStuffBand, timeDay } from "./dostuff-schedule.mjs"
 import { parseMyScheduler, restoreSets } from "./myscheduler-schedule.mjs";
 import { parseEfScheduler } from "./ef-scheduler-schedule.mjs";
 import { parseGovBallWp } from "./govball-wp-schedule.mjs";
+import { parsePrimaveraHorarios } from "./primavera-horarios-schedule.mjs";
 import { parseInsomniacMusic } from "./insomniac-music-schedule.mjs";
 import { parseTmlCms } from "./tml-cms-schedule.mjs";
 import { parseHardWp } from "./hard-wp-schedule.mjs";
@@ -58,8 +59,9 @@ const sha256 = buf => createHash("sha256").update(buf).digest("hex");
 // Pages that print a set with a start and no end: Electric Forest's grid
 // ("2:15am - Close"), Coachella's lineup cards and 2012 overlays (no end
 // times at all), Coachella 2017's lineup data (a few sets without an end) and
-// Shambhala's schedule tables (a start under each block, no end).
-const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards", "coachella-data", "coachella-overlays", "shambhala-table", "govball-wp"]);
+// Shambhala's schedule tables (a start under each block, no end), Governors
+// Ball 2011's "???" and Primavera Sound's start-only blocks ("(03:00)").
+const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards", "coachella-data", "coachella-overlays", "shambhala-table", "govball-wp", "primavera-horarios"]);
 
 const rowKey = r => [r.day, r.stage, r.start, r.end, r.artist].join("|");
 
@@ -537,6 +539,23 @@ export async function importGather(id, dir) {
             ...(d.sets.some(x => x.openEnd) && { openEnded: d.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }),
             ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
         }
+      } else if (s.format === "primavera-horarios") {
+        // One page per day: Primavera Sound's Parc del Fòrum timetable
+        // (primavera-horarios-schedule.mjs). Its day tabs must be the
+        // edition's days, in order, each weekday falling on its date in the
+        // edition's year; the page's own tab is the day it prints. Every
+        // block's start sits on its row plus its offset, and every printed
+        // range is drawn two pixels a minute, or the parser throws.
+        const page = parsePrimaveraHorarios(cap.text, { year: ed.year });
+        if (page.tabDates.join() !== ed.dates.map(([d]) => d).join()) throw new Error(`${s.url} @${s.captureTimestamp}: its day tabs print ${page.tabDates.join(", ")}, not the edition's days`);
+        const day = ed.dates.findIndex(([d]) => d === page.date) + 1;
+        if (days.join() !== String(day)) throw new Error(`${s.url} @${s.captureTimestamp}: prints day ${day}, the sheet cites it for ${days.join(",")}`);
+        if (page.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is printed as "${page.label}", the receipt says "${s.printed[day]}"`);
+        if (s.captureTimestamp.slice(0, 8) <= ed.dates.at(-1)[0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the festival ended`);
+        agree(day, page.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+        Object.assign(ledgerDays[day - 1].sources.at(-1), { heading: page.heading, tabs: page.tabs, stages: page.stages.length, axis: page.axis,
+          times: "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall",
+          ...(page.sets.some(x => x.openEnd) && { openEnded: page.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }) });
       } else if (s.format === "insomniac-music") {
         // One page prints every day by stage (EDC Las Vegas 2012-2013,
         // insomniac-music-schedule.mjs): each day's heading prints its weekday

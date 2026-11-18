@@ -4,6 +4,7 @@
 
 import { EDITIONS, KEPT_STAGES, PRINTED_LONG_SETS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
 import { printedDate as govBallDate } from "./govball-wp-schedule.mjs";
+import { tabDate as primaveraDate } from "./primavera-horarios-schedule.mjs";
 import { cardDate as lollaCardDate } from "./lolla-lineup.mjs";
 import { printedDate as insomniacDate } from "./insomniac-music-schedule.mjs";
 import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
@@ -45,7 +46,9 @@ export const OFFICIAL_HOSTS = {
   "tomorrowland": ["tomorrowland.com", "tomorrowland.be"],
   "shambhala": ["shambhalamusicfestival.com"],
   // The schedule grid and act pages lived on the lineup subdomain (DoStuff).
-  "outside-lands": ["sfoutsidelands.com", "lineup.sfoutsidelands.com"],
+  "outside-lands": ["sfoutsidelands.com", "lineup.sfoutsidelands.com"],  // primaverasound.es: the festival's own site through 2015 (Barcelona's
+  // timetable lived at /horarios); primaverasound.com is its site today.
+  "primavera-sound": ["primaverasound.es", "primaverasound.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -427,6 +430,12 @@ function officialSources(e, meta, p) {
         // ("SATURDAY 6/23", no year); 2011's one day is the one the page's
         // own description prints ("Saturday, June 18th, 2011").
         if (govBallDate(c.printed, e.year) !== date || !/^the (day's heading|page's description)$/.test(c.dateFrom || "")) p.push(`${tag}: the page's day "${c.printed}" (${c.dateFrom}) does not print ${date}`);
+      } else if (c.format === "primavera-horarios") {
+        // Primavera Sound's Fòrum timetable prints each day as a tab with no
+        // year, in Catalan, Spanish or English ("dimecres 27 de maig",
+        // "Friday May 29"); its weekday must fall on that date in the year.
+        if (primaveraDate(c.printed, e.year) !== date || !(c.tabs || []).includes(c.printed) || !/Parc del Fòrum/.test(c.heading || ""))
+          p.push(`${tag}: the page's day tab "${c.printed}" (heading "${c.heading}") does not print ${date} at Parc del Fòrum`);
       } else if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
       // Outside Lands' grid prints no am/pm: the day's meridiem comes from one
       // act's own page on the official site, which must print this day.
