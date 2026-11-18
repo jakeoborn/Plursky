@@ -546,6 +546,20 @@
   "why": "Left as printed, one act: the parenthetical may name the act's own club night or the people behind it, and no first-party page says which. Renders as its own billing until one rules it."
  },
  {
+  "id": "primavera-sound-2018:d2:xiringuito-aperol:1200:josey-rebelle-champion-daphni-four-tet-four-tet-presents-four-tet-presents",
+  "printed": "JOSEY REBELLE / CHAMPION / DAPHNI / FOUR TET / FOUR TET PRESENTS (FOUR TET PRESENTS)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "A curated day billed under its curator (\"… PRESENTS\"), its names joined by \"/\": the page prints one block for the whole day and does not say which names play when, or whether each is an act of its own. The billing renders as printed until a source rules it."
+ },
+ {
+  "id": "primavera-sound-2018:d4:xiringuito-aperol:1200:orpheu-the-wizard-palmbomen-ii-dekmantel-soundsystem-palms-trax-dekmantel-presents-dekmantel-presents",
+  "printed": "ORPHEU THE WIZARD / PALMBOMEN II / DEKMANTEL SOUNDSYSTEM / PALMS TRAX / DEKMANTEL PRESENTS (DEKMANTEL PRESENTS)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "A curated day billed under its curator (\"… PRESENTS\"), its names joined by \"/\": the page prints one block for the whole day and does not say which names play when, or whether each is an act of its own. The billing renders as printed until a source rules it."
+ },
+ {
   "id": "primavera-sound-2019:d2:xiringuito-aperol:1515:shakti-alliance-ivy-modet-vir",
   "printed": "SHAKTI ALLIANCE (IVY, MODET, VIR)",
   "reason": "parenthetical names people",

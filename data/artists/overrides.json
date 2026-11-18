@@ -4069,6 +4069,29 @@
    ],
    "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
    "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "LIMINAL SOUNDBATH WITH JÓNSI, ALEX SOMERS AND PAUL CORLEY",
+   "performers": [
+    {
+     "name": "LIMINAL SOUNDBATH",
+     "role": "performer"
+    },
+    {
+     "name": "JÓNSI",
+     "role": "guest"
+    },
+    {
+     "name": "ALEX SOMERS",
+     "role": "guest"
+    },
+    {
+     "name": "PAUL CORLEY",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.primaverasound.es/"
   }
  ],
  "pending": [
@@ -4667,6 +4690,14 @@
   {
    "key": "idk",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "JOSEY REBELLE / CHAMPION / DAPHNI / FOUR TET / FOUR TET PRESENTS (FOUR TET PRESENTS)",
+   "why": "A curated day billed under its curator (\"… PRESENTS\"), its names joined by \"/\": the page prints one block for the whole day and does not say which names play when, or whether each is an act of its own. The billing renders as printed until a source rules it."
+  },
+  {
+   "printed": "ORPHEU THE WIZARD / PALMBOMEN II / DEKMANTEL SOUNDSYSTEM / PALMS TRAX / DEKMANTEL PRESENTS (DEKMANTEL PRESENTS)",
+   "why": "A curated day billed under its curator (\"… PRESENTS\"), its names joined by \"/\": the page prints one block for the whole day and does not say which names play when, or whether each is an act of its own. The billing renders as printed until a source rules it."
   }
  ]
 }

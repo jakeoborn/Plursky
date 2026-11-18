@@ -135,8 +135,13 @@ const out = build();
   // (DON CHEZINA + SONI WITHANEYE)), three feat. billings whose guests the
   // printing does not settle (a show title, a one-letter guest, a "&" that
   // may be one act or two) and the short name IDK: 170 rows, raised here and
-  // reported in that pull request. Past 170, stop and report.
-  check(review.length <= 170, `review queue is ${review.length} rows (> 170 means stop and report)`);
+  // reported in that pull request. Primavera Sound 2018 ruled LIMINAL
+  // SOUNDBATH WITH JÓNSI, ALEX SOMERS AND PAUL CORLEY under the feat. rule
+  // and left two curated days as printed (FOUR TET PRESENTS and DEKMANTEL
+  // PRESENTS, names joined by "/" in one all-day block, as Crew Love): 172
+  // rows, raised here and reported in that pull request. Past 172, stop and
+  // report.
+  check(review.length <= 172, `review queue is ${review.length} rows (> 172 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

@@ -118,9 +118,9 @@ Zamilska) is an open end. Sets on a stage must run in order with no overlap;
 anything else stops the read. The 2015 day pages were captured after the
 festival (Wednesday's on May 31, the rest in September). Wednesday 27 May is
 the ATP stage alone; the three main days have 11 stages each. Other years'
-timetables (2012, 2013, 2018) are archived too and are not read yet.
+timetables (2012, 2013) are archived too and are not read yet.
 
-Archived Primavera Sound full timetable (2016, 2017 and 2019, format `primavera-completos`):
+Archived Primavera Sound full timetable (2016 to 2019, format `primavera-completos`):
 
     node scripts/historical/gather-primavera-completos.mjs <edition-id> <gather-dir> <official-url> <ts> <day-url> [ … one pair per day ]
     node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
@@ -150,10 +150,16 @@ links to that year's artist page (`2017_artists?id=…`), and the link's year
 must be the edition's. Wednesday 31 May is the Fòrum's free opening on two
 stages. Pages captured 20 to 23 June 2017.
 
+2018 is the same page again, still headed "Horarios", its tabs printing
+whole dates ("2018-05-30", Monday 28 May to Sunday 3 June) and its names
+keeping 2017's class. Wednesday 30 May is the Fòrum's opening on three
+stages, Thursday to Saturday have 13 or 14. One start-only block (Skepta,
+"(02:45)") is an open end. Pages captured 27 October 2018.
+
 2019 is the same page again, headed "Set times" with "All set times" active
 and the Fòrum's columns under "Parc del Fòrum". The tabs print whole dates
-("2019-05-30", Monday 27 May to Sunday 2 June), which must fall in the
-edition's year, each later than the one before and at most a week on. The
+as 2018's do ("2019-05-30", Monday 27 May to Sunday 2 June), which must fall
+in the edition's year, each later than the one before and at most a week on. The
 names keep 2017's class (`artists_2017`), so only the link's year
 (`2019_artists?id=…`) is read. Day Pro, a city conference, prints two
 sessions at once on Friday 31 May, so the no-overlap rule holds for the

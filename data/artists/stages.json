@@ -4559,6 +4559,58 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "primavera-sound:primavera-with-apple-music",
+     "names": [
+      {
+       "printed": "Primavera with Apple Music",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:desperados-club",
+     "names": [
+      {
+       "printed": "Desperados Club",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:the-warehouse",
+     "names": [
+      {
+       "printed": "The Warehouse",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:radio-primavera-sound",
+     "names": [
+      {
+       "printed": "Radio Primavera Sound",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

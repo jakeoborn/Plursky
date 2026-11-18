@@ -121,6 +121,13 @@ export const EDITIONS = {
   "primavera-sound-2017": { festivalId: "primavera-sound", name: "Primavera Sound 2017", year: 2017,
     timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
     dates: [["2017-05-31", "Wednesday"], ["2017-06-01", "Thursday"], ["2017-06-02", "Friday"], ["2017-06-03", "Saturday"]] },
+  // Primavera Sound 2018: the same full timetable, its tabs printing whole
+  // dates (Monday 28 May to Sunday 3 June), captured in October 2018.
+  // Wednesday 30 May is the Fòrum's opening on three stages; the day runs
+  // from 10 AM.
+  "primavera-sound-2018": { festivalId: "primavera-sound", name: "Primavera Sound 2018", year: 2018,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2018-05-30", "Wednesday"], ["2018-05-31", "Thursday"], ["2018-06-01", "Friday"], ["2018-06-02", "Saturday"]] },
   // Primavera Sound 2019: the same full timetable, headed "Set times", its
   // tabs printing whole dates (Monday 27 May to Sunday 2 June). Wednesday 29
   // May is the Fòrum's opening night on the Primavera and Night Pro stages;
