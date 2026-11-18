@@ -1516,6 +1516,68 @@
    }
   },
   {
+   "id": "edc-las-vegas-2013",
+   "festivalId": "edc-lv",
+   "festivalName": "EDC Las Vegas",
+   "name": "EDC Las Vegas 2013",
+   "year": 2013,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-06-21",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2013-06-22",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2013-06-23",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 228,
+    "sets": 234
+   }
+  },
+  {
+   "id": "edc-las-vegas-2012",
+   "festivalId": "edc-lv",
+   "festivalName": "EDC Las Vegas",
+   "name": "EDC Las Vegas 2012",
+   "year": 2012,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-06-08",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-06-09",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2012-06-10",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 223,
+    "sets": 242
+   }
+  },
+  {
    "id": "edc-mexico-2020",
    "festivalId": "edc-mexico",
    "festivalName": "EDC Mexico",

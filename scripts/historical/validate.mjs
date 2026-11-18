@@ -4,6 +4,7 @@
 
 import { EDITIONS, KEPT_STAGES, PRINTED_LONG_SETS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
 import { printedDate as govBallDate } from "./govball-wp-schedule.mjs";
+import { printedDate as insomniacDate } from "./insomniac-music-schedule.mjs";
 import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
 import { datesFromPost as shambhalaRun } from "./shambhala-webflow-schedule.mjs";
 import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, undatedOwnPost, weekdayOf } from "./lib.mjs";
@@ -16,7 +17,10 @@ export const OFFICIAL_HOSTS = {
   "hard-summer": ["hardsummer.com"],
   "electric-forest": ["electricforestfestival.com", "electricforest.com"],
   "coachella": ["coachella.com"],
-  "edc-lv": ["lasvegas.electricdaisycarnival.com"],
+  // 2012-2013 Las Vegas pages lived on the brand's root domain
+  // (/LasVegas/music.php, /music.php). "=" matches that host alone, so the
+  // other cities' subdomains (orlando., mexico.) are never Las Vegas's.
+  "edc-lv": ["lasvegas.electricdaisycarnival.com", "=electricdaisycarnival.com"],
   // assets-global.website-files.com is the same Webflow CDN under its older
   // hostname: every archived 2022 aclfestival.com/schedule capture embeds the
   // grids from it (/626ab670470f4322713394d1/). Allowed for ACL only (Instinct
@@ -51,6 +55,9 @@ export const REHOST_HOSTS = {
   "cdn-insomniac.s3.amazonaws.com": "Insomniac's CDN",
   "cdninstagram.com": "Instagram media",
 };
+// A host is in a list when it is an entry or a subdomain of one; an entry
+// written "=host" matches that host alone.
+export const hostIn = (list, host) => (list || []).some(h => h.startsWith("=") ? host === h.slice(1) : host === h || host.endsWith("." + h));
 const rehostOf = host => Object.keys(REHOST_HOSTS).find(h => host === h || host.endsWith("." + h));
 
 // Where the page citing a graphic may live, by the graphic's host: EDM
@@ -72,7 +79,7 @@ function officialArchive(url, festivalId, year, p, label) {
   const m = WAYBACK.exec(url || "");
   if (!m) return p.push(`${label}: "${url}" is not a Wayback archive URL`);
   const host = new URL(m[2]).hostname.replace(/^www\./, "");
-  if (!(OFFICIAL_HOSTS[festivalId] || []).some(h => host === h || host.endsWith("." + h)))
+  if (!hostIn(OFFICIAL_HOSTS[festivalId], host))
     p.push(`${label}: ${host} is not an official ${festivalId} property`);
   return m[1];
 }
@@ -383,6 +390,12 @@ function officialSources(e, meta, p) {
         if (!/^[0-9a-f]{64}$/.test(f.sha256 || "")) p.push(`${tag}: the dated post's hash is missing`);
         if (shambhalaRun(f.printed, e.year)?.[c.printed] !== date || c.weekday !== c.printed || !String(c.published || "").startsWith(String(e.year)))
           p.push(`${tag}: the page prints "${c.printed}" (published ${c.published}) and the post "${f.printed}", not ${date}`);
+      } else if (c.format === "insomniac-music") {
+        // EDC Las Vegas's 2012-2013 music page prints each day's heading
+        // ("Friday - June 8th", no year); the year is the page's own title or
+        // description, and the page names Las Vegas.
+        if (insomniacDate(c.printed, e.year) !== date || !/^the page's (title|description)$/.test(c.yearFrom || "") || !/^the page's (title|own og:url)$/.test(c.place || ""))
+          p.push(`${tag}: the page's day "${c.printed}" (year from ${c.yearFrom}, Las Vegas from ${c.place}) does not print ${date}`);
       } else if (c.format === "govball-wp") {
         // Governors Ball's 2011-2012 schedule prints each day's heading
         // ("SATURDAY 6/23", no year); 2011's one day is the one the page's
@@ -416,7 +429,7 @@ function officialSources(e, meta, p) {
     if (c.kind === "page") {
     } else if (c.kind === "graphic") {
       const host = hostOf(c.imageUrl);
-      const official = (OFFICIAL_HOSTS[e.festivalId] || []).some(h => host === h || host.endsWith("." + h));
+      const official = hostIn(OFFICIAL_HOSTS[e.festivalId], host);
       const rehost = rehostOf(host);
       if (!official && !rehost) p.push(`${tag}: graphic host ${host || "(none)"} is neither official nor an approved re-host`);
       if (rehost === "cdninstagram.com" && !/^https:\/\/www\.instagram\.com\/p\/[\w-]+\/$/.test(c.foundAt || ""))
@@ -468,7 +481,7 @@ function officialSources(e, meta, p) {
 function receiptLinks(c, e, official, host, tag, p) {
   const page = hostOf(c.foundAt), rehost = rehostOf(host);
   const allowed = official ? OFFICIAL_HOSTS[e.festivalId] || [] : RECEIPT_HOSTS[rehost] || [];
-  if (!allowed.some(h => page === h || page.endsWith("." + h))) p.push(`${tag}: found-at page ${page} is not where ${host} graphics are cited`);
+  if (!hostIn(allowed, page)) p.push(`${tag}: found-at page ${page} is not where ${host} graphics are cited`);
   const dated = /^\/(\d{4})\/(\d{2})\/(\d{2})\//.exec(new URL(c.foundAt).pathname);
   if (page === "edmidentity.com" && (!dated || dated.slice(1).join("-") !== c.published))
     p.push(`${tag}: found-at page ${c.foundAt} is not dated ${c.published}`);

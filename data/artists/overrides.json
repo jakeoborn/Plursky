@@ -3517,6 +3517,36 @@
    ],
    "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
    "source": "https://www.shambhalamusicfestival.com/"
+  },
+  {
+   "printed": "Junior Sanchez with CeCe Peniston",
+   "performers": [
+    {
+     "name": "Junior Sanchez",
+     "role": "performer"
+    },
+    {
+     "name": "CeCe Peniston",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://lasvegas.electricdaisycarnival.com/"
+  },
+  {
+   "printed": "Andy C w/ Armanni Reign",
+   "performers": [
+    {
+     "name": "Andy C",
+     "role": "performer"
+    },
+    {
+     "name": "Armanni Reign",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://lasvegas.electricdaisycarnival.com/"
   }
  ],
  "pending": [
@@ -4051,6 +4081,14 @@
   {
    "printed": "Parkbreezy x TF Marz",
    "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it. (Shambhala 2024 prints \"TF Marz B2B Parkbreezy\" as its own billing.)"
+  },
+  {
+   "key": "bt",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Lee Curtiss, Ryan Crosson, Shaun Reeves (Visionquest)",
+   "why": "Left as printed, one act: the parenthetical names the crew (Visionquest) and the three names before it, but no first-party page says how the billing splits. Renders as its own billing until one rules it."
   }
  ]
 }
