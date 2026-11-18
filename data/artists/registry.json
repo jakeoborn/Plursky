@@ -1266,6 +1266,7 @@
    "coachella-2016:d4:outdoor:1930:a-ap-rocky",
    "lollapalooza-2015:d3:bud-light:1930:a-ap-rocky",
    "lollapalooza-2025:d4:bud-light:2045:a-ap-rocky",
+   "primavera-sound-2012:d1:escenario-pitchfork:0145:a-ap-rocky",
    "primavera-sound-2018:d4:seat:0140:a-ap-rocky"
   ],
   "firstSeen": "2012-04-14",
@@ -1599,6 +1600,21 @@
   ],
   "firstSeen": "2016-08-07",
   "lastSeen": "2016-08-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "a-storm-of-light",
+  "name": "A Storm Of Light",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-atp:1815:a-storm-of-light"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -2009,6 +2025,21 @@
   "links": []
  },
  {
+  "key": "abdus",
+  "name": "Abdus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-adidas-originals:0030:abdus"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "abe-vigoda",
   "name": "Abe Vigoda",
   "aliases": [],
@@ -2184,6 +2215,21 @@
   ],
   "firstSeen": "2024-07-28",
   "lastSeen": "2024-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "absynthe-minded",
+  "name": "Absynthe Minded",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-adidas-originals:1815:absynthe-minded"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -3292,9 +3338,10 @@
   "projects": [],
   "billings": [
    "coachella-2014:d2:yuma:1500:aeroplane",
-   "coachella-2014:d5:yuma:1500:aeroplane"
+   "coachella-2014:d5:yuma:1500:aeroplane",
+   "primavera-sound-2012:d2:escenario-ray-ban:0430:aeroplane"
   ],
-  "firstSeen": "2014-04-12",
+  "firstSeen": "2012-06-01",
   "lastSeen": "2014-04-19",
   "photo": null,
   "links": []
@@ -3394,6 +3441,21 @@
   ],
   "firstSeen": "2026-03-27",
   "lastSeen": "2026-03-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "afrocubism",
+  "name": "Afrocubism",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-ray-ban:2100:afrocubism"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -5899,16 +5961,19 @@
  },
  {
   "key": "aliment",
-  "name": "ALIMENT",
-  "aliases": [],
+  "name": "Aliment",
+  "aliases": [
+   "ALIMENT"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d1:ray-ban-unplugged:2330:aliment",
    "primavera-sound-2016:d3:pitchfork:1730:aliment",
    "primavera-sound-2016:d3:ray-ban-unplugged:2100:aliment"
   ],
-  "firstSeen": "2016-06-03",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2016-06-03",
   "photo": null,
   "links": []
@@ -9646,15 +9711,18 @@
  },
  {
   "key": "animic",
-  "name": "ANÍMIC",
-  "aliases": [],
+  "name": "Anímic",
+  "aliases": [
+   "ANÍMIC"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d3:escenario-pitchfork:1700:animic",
    "primavera-sound-2017:d1:primavera-concierto-gratuito:1700:animic"
   ],
-  "firstSeen": "2017-05-31",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2017-05-31",
   "photo": null,
   "links": []
@@ -10499,7 +10567,8 @@
    "coachella-2012:d3:mojave:1750:araabmuzik",
    "coachella-2012:d6:mojave:1750:araabmuzik",
    "edc-las-vegas-2013:d3:cosmicmeadow:2100:araabmuzik",
-   "hard-summer-2012:d1:fool-s-gold-clubhouse:2240:araabmuzik"
+   "hard-summer-2012:d1:fool-s-gold-clubhouse:2240:araabmuzik",
+   "primavera-sound-2012:d2:escenario-pitchfork:0245:araabmuzik"
   ],
   "firstSeen": "2012-04-15",
   "lastSeen": "2013-06-23",
@@ -10626,6 +10695,22 @@
   ],
   "firstSeen": "2011-08-14",
   "lastSeen": "2017-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "archers-of-loaf",
+  "name": "Archers Of Loaf",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-ray-ban:1930:archers-of-loaf",
+   "primavera-sound-2012:d1:ray-ban-unplugged:1730:archers-of-loaf"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -11957,9 +12042,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2013:d3:red-bull-sound-select:1245:astro"
+   "lollapalooza-2013:d3:red-bull-sound-select:1245:astro",
+   "primavera-sound-2012:d3:escenario-adidas-originals:1700:astro"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2013-08-04",
   "photo": null,
   "links": []
@@ -12242,6 +12328,21 @@
   "links": []
  },
  {
+  "key": "atlas-sound",
+  "name": "Atlas Sound",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-pitchfork:2045:atlas-sound"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "atlast",
   "name": "ATLAST",
   "aliases": [],
@@ -12253,6 +12354,21 @@
   ],
   "firstSeen": "2019-09-15",
   "lastSeen": "2019-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "atleta",
+  "name": "Atleta",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-vice:1800:atleta"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -13141,15 +13257,18 @@
  },
  {
   "key": "autumn-comets",
-  "name": "AUTUMN COMETS",
-  "aliases": [],
+  "name": "Autumn Comets",
+  "aliases": [
+   "AUTUMN COMETS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d3:salon-myspace-smint:1930:autumn-comets",
    "primavera-sound-2016:d2:ray-ban:1700:autumn-comets"
   ],
-  "firstSeen": "2016-06-02",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2016-06-02",
   "photo": null,
   "links": []
@@ -15411,6 +15530,21 @@
   "links": []
  },
  {
+  "key": "barry-hogan",
+  "name": "Barry Hogan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-atp:0300:barry-hogan-dj-atp"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bart-and-baker",
   "name": "Bart & Baker",
   "aliases": [
@@ -16387,9 +16521,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d1:escenario-san-miguel:1820:baxter-dury",
    "primavera-sound-2015:d2:primavera:1855:baxter-dury"
   ],
-  "firstSeen": "2015-05-28",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2015-05-28",
   "photo": null,
   "links": []
@@ -16589,6 +16724,22 @@
   "links": []
  },
  {
+  "key": "beach-beach",
+  "name": "Beach Beach",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-pitchfork:1700:beach-beach",
+   "primavera-sound-2012:d2:ray-ban-unplugged:1810:beach-beach"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "beach-bunny",
   "name": "Beach Bunny",
   "aliases": [],
@@ -16619,10 +16770,11 @@
    "governors-ball-2017:d1:big-apple:1945:beach-house",
    "lollapalooza-2013:d3:lake-shore:1900:beach-house",
    "outside-lands-2016:d1:sutro:1950:beach-house",
+   "primavera-sound-2012:d3:escenario-mini:2145:beach-house",
    "primavera-sound-2016:d3:heineken:0200:beach-house",
    "primavera-sound-2018:d4:primavera-with-apple-music:0155:beach-house"
   ],
-  "firstSeen": "2013-06-07",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2018-06-02",
   "photo": null,
   "links": []
@@ -17278,6 +17430,7 @@
    "governors-ball-2013:d3:you-re-doing-great-stage:1745:beirut",
    "lollapalooza-2011:d2:google:2045:beirut",
    "outside-lands-2011:d3:sutro:1850:beirut",
+   "primavera-sound-2012:d1:escenario-mini:2315:beirut",
    "primavera-sound-2016:d3:h-and-m:2100:beirut"
   ],
   "firstSeen": "2011-08-06",
@@ -18031,9 +18184,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d2:escenario-ray-ban:0320:benga-live",
    "tomorrowland-2013:d3:daily-dubstep:2300:benga"
   ],
-  "firstSeen": "2013-07-28",
+  "firstSeen": "2012-06-01",
   "lastSeen": "2013-07-28",
   "photo": null,
   "links": []
@@ -18337,6 +18491,21 @@
   ],
   "firstSeen": "2016-06-03",
   "lastSeen": "2016-06-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bernhard-fleischmann",
+  "name": "Bernhard Fleischmann",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-adidas-originals:2200:bernhard-fleischmann"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -19103,6 +19272,21 @@
   "links": []
  },
  {
+  "key": "big-star-s-third",
+  "name": "Big Star's Third",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:auditori-rockdelux:2145:big-star-s-third"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "big-thief",
   "name": "Big Thief",
   "aliases": [
@@ -19158,6 +19342,22 @@
   ],
   "firstSeen": "2015-08-08",
   "lastSeen": "2026-09-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bigott",
+  "name": "Bigott",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:ray-ban-unplugged:2015:bigott",
+   "primavera-sound-2012:d2:escenario-mini:1800:bigott"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -20750,6 +20950,22 @@
   "links": []
  },
  {
+  "key": "bleached",
+  "name": "Bleached",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-vice:2145:bleached",
+   "primavera-sound-2012:d1:ray-ban-unplugged:2015:bleached"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bleachers",
   "name": "Bleachers",
   "aliases": [
@@ -22160,9 +22376,10 @@
    "coachella-2014:d3:gobi:1345:bombino",
    "coachella-2014:d6:gobi:1345:bombino",
    "electric-forest-2014:d4:ranch-arena:1500:bombino",
-   "outside-lands-2013:d2:panhandle:1630:bombino"
+   "outside-lands-2013:d2:panhandle:1630:bombino",
+   "primavera-sound-2012:d1:escenario-vice:0130:bombino"
   ],
-  "firstSeen": "2013-08-10",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2016-10-07",
   "photo": null,
   "links": []
@@ -23144,6 +23361,21 @@
   ],
   "firstSeen": "2026-06-18",
   "lastSeen": "2026-06-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "boxeur-the-coeur",
+  "name": "Boxeur the Coeur",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-adidas-originals:1815:boxeur-the-coeur"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -25521,6 +25753,21 @@
   "links": []
  },
  {
+  "key": "buffy-sainte-marie",
+  "name": "Buffy Sainte-Marie",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:auditori-rockdelux:2045:buffy-sainte-marie"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bufiman",
   "name": "BUFIMAN",
   "aliases": [],
@@ -26281,6 +26528,21 @@
   ],
   "firstSeen": "2016-06-03",
   "lastSeen": "2016-06-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cadence-weapon",
+  "name": "Cadence Weapon",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-adidas-originals:0145:cadence-weapon"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -27141,6 +27403,21 @@
   ],
   "firstSeen": "2014-04-12",
   "lastSeen": "2017-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "capitan",
+  "name": "Capitán",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:salon-myspace-smint:1930:capitan"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -30524,6 +30801,21 @@
   "links": []
  },
  {
+  "key": "chavez",
+  "name": "Chavez",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-mini:1900:chavez"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chaz-french",
   "name": "Chaz French",
   "aliases": [],
@@ -32033,10 +32325,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d2:escenario-mini:2145:christina-rosenvinge",
+   "primavera-sound-2012:d3:ray-ban-unplugged:2015:christina-rosenvinge",
    "primavera-sound-2015:d1:atp:1900:christina-rosenvinge",
    "primavera-sound-2018:d4:seat:1800:christina-rosenvinge"
   ],
-  "firstSeen": "2015-05-27",
+  "firstSeen": "2012-06-01",
   "lastSeen": "2018-06-02",
   "photo": null,
   "links": []
@@ -32195,9 +32489,10 @@
   "projects": [],
   "billings": [
    "electric-forest-2012:d3:tripolee:1730:chromatics",
-   "outside-lands-2013:d1:panhandle:1950:chromatics"
+   "outside-lands-2013:d1:panhandle:1950:chromatics",
+   "primavera-sound-2012:d3:escenario-pitchfork:2315:chromatics"
   ],
-  "firstSeen": "2012-06-30",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2013-08-09",
   "photo": null,
   "links": []
@@ -33941,6 +34236,21 @@
   ],
   "firstSeen": "2012-07-28",
   "lastSeen": "2026-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "codeine",
+  "name": "Codeine",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-atp:0045:codeine"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -36817,6 +37127,21 @@
   "links": []
  },
  {
+  "key": "cuchillo",
+  "name": "Cuchillo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-ray-ban:1700:cuchillo"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cuco",
   "name": "Cuco",
   "aliases": [
@@ -39169,9 +39494,10 @@
    "governors-ball-2017:d1:bacardi:1745:danny-brown",
    "hard-summer-2012:d1:fool-s-gold-clubhouse:2200:danny-brown",
    "lollapalooza-2016:d1:petrillo-bandshell:1600:danny-brown",
+   "primavera-sound-2012:d1:escenario-pitchfork:0030:danny-brown",
    "primavera-sound-2019:d2:ray-ban:2005:danny-brown"
   ],
-  "firstSeen": "2012-08-03",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -41711,9 +42037,10 @@
    "outside-lands-2026:os114",
    "acl-2022:d5:honda:1815:death-cab-for-cutie",
    "lollapalooza-2019:d2:bud-light:untimed:death-cab-for-cutie",
-   "outside-lands-2014:d2:lands-end:1800:death-cab-for-cutie"
+   "outside-lands-2014:d2:lands-end:1800:death-cab-for-cutie",
+   "primavera-sound-2012:d1:escenario-mini:2145:death-cab-for-cutie"
   ],
-  "firstSeen": "2014-08-09",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2026-08-09",
   "photo": null,
   "links": []
@@ -41773,6 +42100,21 @@
   ],
   "firstSeen": "2012-04-13",
   "lastSeen": "2023-10-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "death-in-vegas",
+  "name": "Death In Vegas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-mini:0230:death-in-vegas"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -42821,15 +43163,18 @@
  },
  {
   "key": "demdike-stare",
-  "name": "DEMDIKE STARE",
-  "aliases": [],
+  "name": "Demdike Stare",
+  "aliases": [
+   "DEMDIKE STARE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d3:escenario-atp:2145:demdike-stare",
    "primavera-sound-2019:d2:ray-ban-studios:0030:demdike-stare"
   ],
-  "firstSeen": "2019-05-30",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2019-05-30",
   "photo": null,
   "links": []
@@ -45162,6 +45507,21 @@
   "links": []
  },
  {
+  "key": "dirty-beaches",
+  "name": "Dirty Beaches",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-pitchfork:1915:dirty-beaches"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dirty-doering",
   "name": "Dirty Doering",
   "aliases": [],
@@ -45261,6 +45621,21 @@
   ],
   "firstSeen": "2010-07-24",
   "lastSeen": "2016-07-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dirty-three",
+  "name": "Dirty Three",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-atp:2315:dirty-three"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -46544,18 +46919,20 @@
   "key": "dj-coco",
   "name": "Dj Coco",
   "aliases": [
-   "DJ COCO"
+   "DJ COCO",
+   "DJ Coco"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d3:escenario-atp:0315:dj-coco",
    "primavera-sound-2015:d4:ray-ban:0410:dj-coco",
    "primavera-sound-2016:d4:ray-ban:0400:dj-coco",
    "primavera-sound-2017:d4:ray-ban:0505:dj-coco",
    "primavera-sound-2018:d4:ray-ban:0415:dj-coco"
   ],
-  "firstSeen": "2015-05-30",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2018-06-02",
   "photo": null,
   "links": []
@@ -50347,15 +50724,18 @@
  },
  {
   "key": "doble-pletina",
-  "name": "DOBLE PLETINA",
-  "aliases": [],
+  "name": "Doble Pletina",
+  "aliases": [
+   "DOBLE PLETINA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d1:escenario-vice:1700:doble-pletina",
    "primavera-sound-2016:d1:primavera-concierto-gratuito:1700:doble-pletina"
   ],
-  "firstSeen": "2016-06-01",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2016-06-01",
   "photo": null,
   "links": []
@@ -50783,6 +51163,21 @@
   "links": []
  },
  {
+  "key": "dominant-legs",
+  "name": "Dominant Legs",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-vice:0015:dominant-legs"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dominic-fike",
   "name": "Dominic Fike",
   "aliases": [
@@ -50864,6 +51259,21 @@
   ],
   "firstSeen": "2010-07-25",
   "lastSeen": "2018-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dominique-a",
+  "name": "Dominique A",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-ray-ban:2145:dominique-a"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -54669,6 +55079,21 @@
   "links": []
  },
  {
+  "key": "ed-wood",
+  "name": "Ed Wood",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-adidas-originals:0145:ed-wood"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "eddie",
   "name": "Eddie",
   "aliases": [],
@@ -55378,6 +55803,21 @@
   ],
   "firstSeen": "2017-11-11",
   "lastSeen": "2017-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "el-faro",
+  "name": "El Faro",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:salon-myspace-smint:1830:el-faro"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -57770,11 +58210,12 @@
    "coachella-2015:d1:yuma:1645:erol-alkan",
    "coachella-2015:d4:yuma:1800:erol-alkan",
    "hard-summer-2012:d1:harder-stage:2340:erol-alkan",
+   "primavera-sound-2012:d1:escenario-ray-ban:0415:erol-alkan",
    "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:1400:erol-alkan",
    "tomorrowland-2014:d3:forma-t:2000:erol-alkan",
    "tomorrowland-2014:d6:forma-t:2000:erol-alkan"
   ],
-  "firstSeen": "2012-08-03",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2016-06-02",
   "photo": null,
   "links": []
@@ -58537,6 +58978,21 @@
   ],
   "firstSeen": "2019-09-15",
   "lastSeen": "2019-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "evripidis-and-his-tragedies",
+  "name": "Evripidis and His Tragedies",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:salon-myspace-smint:1900:evripidis-and-his-tragedies"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -59645,15 +60101,18 @@
  },
  {
   "key": "fasenuova",
-  "name": "FASENUOVA",
-  "aliases": [],
+  "name": "Fasenuova",
+  "aliases": [
+   "FASENUOVA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d2:escenario-vice:1800:fasenuova",
    "primavera-sound-2016:d2:adidas-originals:0220:fasenuova"
   ],
-  "firstSeen": "2016-06-02",
+  "firstSeen": "2012-06-01",
   "lastSeen": "2016-06-02",
   "photo": null,
   "links": []
@@ -59790,9 +60249,10 @@
    "lollapalooza-2013:d1:lake-shore:1515:father-john-misty",
    "lollapalooza-2015:d1:palladia:1530:father-john-misty",
    "outside-lands-2012:d2:panhandle-hellman-hollow:1455:father-john-misty",
+   "primavera-sound-2012:d3:auditori-rockdelux:1600:father-john-misty",
    "primavera-sound-2018:d3:seat:2020:father-john-misty"
   ],
-  "firstSeen": "2012-08-11",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2026-06-19",
   "photo": null,
   "links": []
@@ -60506,6 +60966,21 @@
   "links": []
  },
  {
+  "key": "fernando-milagros",
+  "name": "Fernando Milagros",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:salon-myspace-smint:2000:fernando-milagros"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ferreck-dawn",
   "name": "Ferreck Dawn",
   "aliases": [],
@@ -60756,6 +61231,21 @@
   ],
   "firstSeen": "2017-08-11",
   "lastSeen": "2017-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "field-music",
+  "name": "Field Music",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-vice:2030:field-music"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -62587,6 +63077,21 @@
   "links": []
  },
  {
+  "key": "foam-lake",
+  "name": "Foam Lake",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-adidas-originals:2045:foam-lake"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "foex",
   "name": "Foex",
   "aliases": [],
@@ -62791,6 +63296,21 @@
   ],
   "firstSeen": "2019-06-01",
   "lastSeen": "2019-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "forest-swords",
+  "name": "Forest Swords",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-atp:2030:forest-swords"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -63714,9 +64234,10 @@
    "governors-ball-2017:d3:big-apple:1745:franz-ferdinand",
    "lollapalooza-2012:d2:bud-light:1930:franz-ferdinand",
    "lollapalooza-2018:d1:grant-park:untimed:franz-ferdinand",
-   "outside-lands-2012:d3:lands-end-polo-field:1440:franz-ferdinand"
+   "outside-lands-2012:d3:lands-end-polo-field:1440:franz-ferdinand",
+   "primavera-sound-2012:d1:escenario-san-miguel:0145:franz-ferdinand"
   ],
-  "firstSeen": "2012-08-04",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2018-08-02",
   "photo": null,
   "links": []
@@ -64418,6 +64939,21 @@
   ],
   "firstSeen": "2011-08-06",
   "lastSeen": "2011-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "friends",
+  "name": "Friends",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-mini:1900:friends"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -65863,6 +66399,21 @@
   ],
   "firstSeen": "2026-06-25",
   "lastSeen": "2026-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gabriel-y-venceras",
+  "name": "Gabriel y Vencerás",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:salon-myspace-smint:1700:gabriel-y-venceras"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -67824,6 +68375,21 @@
   "links": []
  },
  {
+  "key": "ginga",
+  "name": "GinGa",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-adidas-originals:1700:ginga"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ginger",
   "name": "Ginger",
   "aliases": [],
@@ -68091,17 +68657,36 @@
  },
  {
   "key": "girls",
-  "name": "GIRLS",
-  "aliases": [],
+  "name": "Girls",
+  "aliases": [
+   "GIRLS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2012:d1:outdoor:1740:girls",
-   "coachella-2012:d4:outdoor:1740:girls"
+   "coachella-2012:d4:outdoor:1740:girls",
+   "primavera-sound-2012:d2:escenario-mini:2015:girls"
   ],
   "firstSeen": "2012-04-13",
-  "lastSeen": "2012-04-20",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "girls-names",
+  "name": "Girls Names",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-vice:2030:girls-names",
+   "primavera-sound-2012:d3:ray-ban-unplugged:1810:girls-names"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -68728,6 +69313,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "godflesh",
+  "name": "Godflesh",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-atp:0030:godflesh"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -70917,9 +71517,10 @@
    "edc-las-vegas-2022:d2:cosmic-meadow:2205:grimes-dj-set",
    "governors-ball-2014:d1:gotham-tent:2015:grimes",
    "lollapalooza-2016:d3:lakeshore:1930:grimes",
-   "outside-lands-2016:d1:twin-peaks:1850:grimes"
+   "outside-lands-2016:d1:twin-peaks:1850:grimes",
+   "primavera-sound-2012:d1:escenario-pitchfork:2030:grimes"
   ],
-  "firstSeen": "2013-10-05",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2022-05-21",
   "photo": null,
   "links": []
@@ -71235,6 +71836,21 @@
   "links": []
  },
  {
+  "key": "grupo-de-expertos-solynieve",
+  "name": "Grupo de Expertos Solynieve",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-mini:2015:grupo-de-expertos-solynieve"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "gryffin",
   "name": "Gryffin",
   "aliases": [
@@ -71413,6 +72029,21 @@
   ],
   "firstSeen": "2019-08-01",
   "lastSeen": "2019-08-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gudar",
+  "name": "Gudar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:salon-myspace-smint:1800:gudar"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -72632,6 +73263,21 @@
   "links": []
  },
  {
+  "key": "hanni-el-khatib",
+  "name": "Hanni El Khatib",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-mini:2315:hanni-el-khatib"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hans-joachim-roedelius",
   "name": "Hans-Joachim Roedelius",
   "aliases": [],
@@ -73137,6 +73783,21 @@
   "links": []
  },
  {
+  "key": "harvey-milk",
+  "name": "Harvey Milk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-vice:2030:harvey-milk"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hatcha",
   "name": "Hatcha",
   "aliases": [],
@@ -73405,6 +74066,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hazte-lapon",
+  "name": "Hazte Lapón",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:salon-myspace-smint:1830:hazte-lapon"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -75835,6 +76511,21 @@
   "links": []
  },
  {
+  "key": "hot-panda",
+  "name": "Hot Panda",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-adidas-originals:2045:hot-panda"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hot-pink-delorean",
   "name": "Hot Pink Delorean",
   "aliases": [],
@@ -77063,6 +77754,21 @@
   "links": []
  },
  {
+  "key": "hype-williams",
+  "name": "Hype Williams",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-vice:0000:hype-williams"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hyperbeam",
   "name": "Hyperbeam",
   "aliases": [
@@ -77154,6 +77860,21 @@
   ],
   "firstSeen": "2014-06-27",
   "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "i-break-horses",
+  "name": "I Break Horses",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-atp:2030:i-break-horses"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -77386,6 +78107,21 @@
   ],
   "firstSeen": "2016-04-16",
   "lastSeen": "2017-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "iceage",
+  "name": "Iceage",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-pitchfork:1930:iceage"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -78153,6 +78889,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-11-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "inborn",
+  "name": "Inborn!",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-adidas-originals:2045:inborn"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -81251,6 +82002,21 @@
   "links": []
  },
  {
+  "key": "james-ferraro",
+  "name": "James Ferraro",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-pitchfork:1930:james-ferraro"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "james-flavour-dirt-crew",
   "name": "James Flavour (Dirt Crew)",
   "aliases": [],
@@ -81552,9 +82318,10 @@
   "billings": [
    "coachella-2015:d3:gobi:2020:jamie-xx",
    "coachella-2015:d6:gobi:2020:jamie-xx",
+   "primavera-sound-2012:d3:escenario-vice:0215:jamie-xx",
    "primavera-sound-2017:d3:heineken:0200:jamie-xx"
   ],
-  "firstSeen": "2015-04-12",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2017-06-02",
   "photo": null,
   "links": []
@@ -81992,17 +82759,20 @@
  },
  {
   "key": "japandroids",
-  "name": "JAPANDROIDS",
-  "aliases": [],
+  "name": "Japandroids",
+  "aliases": [
+   "JAPANDROIDS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "governors-ball-2013:d2:gov-ball-nyc-stage:1430:japandroids",
    "governors-ball-2018:d2:bacardi-stage:1545:japandroids",
+   "primavera-sound-2012:d1:escenario-vice:0245:japandroids",
    "primavera-sound-2017:d4:primavera:0150:japandroids"
   ],
-  "firstSeen": "2013-06-08",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2018-06-02",
   "photo": null,
   "links": []
@@ -83164,10 +83934,12 @@
   "projects": [],
   "billings": [
    "coachella-2012:d2:outdoor:1920:jeff-mangum",
-   "coachella-2012:d5:outdoor:1920:jeff-mangum"
+   "coachella-2012:d5:outdoor:1920:jeff-mangum",
+   "primavera-sound-2012:d2:auditori-rockdelux:1830:jeff-mangum-neutral-milk-hotel",
+   "primavera-sound-2012:d3:auditori-rockdelux:1915:jeff-mangum-neutral-milk-hotel"
   ],
   "firstSeen": "2012-04-14",
-  "lastSeen": "2012-04-21",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -83364,6 +84136,21 @@
   ],
   "firstSeen": "2023-07-22",
   "lastSeen": "2023-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jenn-grant",
+  "name": "Jenn Grant",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-adidas-originals:1815:jenn-grant"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -85075,6 +85862,21 @@
   "links": []
  },
  {
+  "key": "joe-crepusculo",
+  "name": "Joe Crepúsculo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:ray-ban-unplugged:2330:joe-crepusculo"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "joe-hertler-and-the-rainbow-seekers",
   "name": "Joe Hertler & The Rainbow Seekers",
   "aliases": [],
@@ -86018,10 +86820,11 @@
   "projects": [],
   "billings": [
    "hard-summer-2012:d1:rbma-discotheque:1840:john-talabot",
+   "primavera-sound-2012:d1:escenario-ray-ban:0310:john-talabot-live",
    "primavera-sound-2015:d4:bowers-and-wilkins-sound-system:0030:john-talabot",
    "primavera-sound-2018:d4:desperados-club:0200:john-talabot"
   ],
-  "firstSeen": "2012-08-03",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2018-06-02",
   "photo": null,
   "links": []
@@ -87385,15 +88188,18 @@
  },
  {
   "key": "josh-t-pearson",
-  "name": "JOSH T. PEARSON",
-  "aliases": [],
+  "name": "Josh T. Pearson",
+  "aliases": [
+   "JOSH T. PEARSON"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d3:auditori-rockdelux:2205:josh-t-pearson",
    "primavera-sound-2018:d3:heineken-hidden-stage:1830:josh-t-pearson"
   ],
-  "firstSeen": "2018-06-01",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2018-06-01",
   "photo": null,
   "links": []
@@ -89105,6 +89911,21 @@
   ],
   "firstSeen": "2012-04-15",
   "lastSeen": "2018-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "justice-live",
+  "name": "Justice live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-san-miguel:0145:justice-live"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -93390,6 +94211,21 @@
   "links": []
  },
  {
+  "key": "kindness",
+  "name": "Kindness",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-pitchfork:2315:kindness"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "king-arthur",
   "name": "King Arthur",
   "aliases": [],
@@ -93485,6 +94321,21 @@
   "links": []
  },
  {
+  "key": "king-of-the-opera",
+  "name": "King Of The Opera",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-adidas-originals:1930:king-of-the-opera"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "king-princess",
   "name": "King Princess",
   "aliases": [
@@ -93565,6 +94416,21 @@
   ],
   "firstSeen": "2026-07-30",
   "lastSeen": "2026-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kings-of-convenience",
+  "name": "Kings Of Convenience",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-san-miguel:2030:kings-of-convenience"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -93977,6 +94843,21 @@
   ],
   "firstSeen": "2016-06-02",
   "lastSeen": "2016-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kleenex-girl-wonder",
+  "name": "Kleenex Girl Wonder",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-vice:2300:kleenex-girl-wonder"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -95303,6 +96184,21 @@
   "links": []
  },
  {
+  "key": "kristen",
+  "name": "Kristen",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-adidas-originals:0030:kristen"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "krister-linder",
   "name": "Krister Linder",
   "aliases": [],
@@ -96498,6 +97394,21 @@
   "links": []
  },
  {
+  "key": "la-estrella-de-david",
+  "name": "La Estrella De David",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-ray-ban:1710:la-estrella-de-david"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "la-femme",
   "name": "La Femme",
   "aliases": [
@@ -97640,6 +98551,21 @@
   "links": []
  },
  {
+  "key": "las-nurses",
+  "name": "Las Nurses",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:salon-myspace-smint:1800:las-nurses"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "las-odio",
   "name": "LAS ODIO",
   "aliases": [],
@@ -97942,7 +98868,8 @@
   "billings": [
    "coachella-2012:d2:gobi:1830:laura-marling",
    "coachella-2012:d5:gobi:1830:laura-marling",
-   "outside-lands-2015:d2:sutro:1500:laura-marling"
+   "outside-lands-2015:d2:sutro:1500:laura-marling",
+   "primavera-sound-2012:d2:auditori-rockdelux:1715:laura-marling"
   ],
   "firstSeen": "2012-04-14",
   "lastSeen": "2015-08-08",
@@ -98819,6 +99746,21 @@
   ],
   "firstSeen": "2012-07-28",
   "lastSeen": "2012-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lee-ranaldo",
+  "name": "Lee Ranaldo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-atp:2045:lee-ranaldo"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -100174,6 +101116,21 @@
   "links": []
  },
  {
+  "key": "lfo",
+  "name": "LFO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-mini:0230:lfo"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lia-ices",
   "name": "Lia Ices",
   "aliases": [],
@@ -100915,6 +101872,21 @@
   "links": []
  },
  {
+  "key": "linda-martini",
+  "name": "Linda Martini",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-mini:1800:linda-martini"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lindsay-lowend",
   "name": "Lindsay Lowend",
   "aliases": [],
@@ -101267,15 +102239,18 @@
  },
  {
   "key": "lisabo",
-  "name": "LISABÖ",
-  "aliases": [],
+  "name": "Lisabö",
+  "aliases": [
+   "LISABÖ"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d3:escenario-ray-ban:1920:lisabo",
    "primavera-sound-2019:d3:adidas-originals:0145:lisabo"
   ],
-  "firstSeen": "2019-05-31",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2019-05-31",
   "photo": null,
   "links": []
@@ -101554,6 +102529,21 @@
   "links": []
  },
  {
+  "key": "liturgy",
+  "name": "Liturgy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-vice:2145:liturgy"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "live",
   "name": "Live",
   "aliases": [
@@ -101616,6 +102606,21 @@
   ],
   "firstSeen": "2017-10-13",
   "lastSeen": "2017-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "liz-coyles",
+  "name": "Liz Coyles",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-adidas-originals:1700:liz-coyles"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -102832,6 +103837,21 @@
   "links": []
  },
  {
+  "key": "los-negretes",
+  "name": "Los Negretes",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:salon-myspace-smint:1900:los-negretes"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "los-outsaiders",
   "name": "LOS OUTSAIDERS",
   "aliases": [],
@@ -103531,6 +104551,21 @@
   "links": []
  },
  {
+  "key": "lovely-bad-things",
+  "name": "Lovely Bad Things",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-adidas-originals:0030:lovely-bad-things"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lovely-laura-and-ben-santiago",
   "name": "Lovely Laura & Ben Santiago",
   "aliases": [],
@@ -103712,6 +104747,21 @@
   ],
   "firstSeen": "2026-07-03",
   "lastSeen": "2026-07-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lower-dens",
+  "name": "Lower Dens",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-pitchfork:2030:lower-dens"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -105791,7 +106841,8 @@
    "coachella-2016:d1:coachella:1955:m83",
    "coachella-2016:d4:coachella:1955:m83",
    "lollapalooza-2012:d1:sony:1930:m83",
-   "lollapalooza-2016:d2:samsung:1800:m83"
+   "lollapalooza-2016:d2:samsung:1800:m83",
+   "primavera-sound-2012:d2:escenario-mini:0115:m83"
   ],
   "firstSeen": "2012-04-13",
   "lastSeen": "2023-10-15",
@@ -107134,6 +108185,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-11-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "main",
+  "name": "Main",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-atp:0215:main"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -109289,6 +110355,21 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "marianne-faithfull",
+  "name": "Marianne Faithfull",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:auditori-rockdelux:2000:marianne-faithfull"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -111461,6 +112542,21 @@
   "links": []
  },
  {
+  "key": "matias-aguayo-rebolledo",
+  "name": "Matías Aguayo / Rebolledo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-pitchfork:0400:matias-aguayo-rebolledo"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "matilde-davoli",
   "name": "MATILDE DAVOLI",
   "aliases": [],
@@ -112802,9 +113898,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d2:escenario-vice:0015:mayhem",
    "shambhala-2013:d4:village:2200:mayhem"
   ],
-  "firstSeen": "2013-08-11",
+  "firstSeen": "2012-06-01",
   "lastSeen": "2013-08-11",
   "photo": null,
   "links": []
@@ -112878,10 +113975,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d1:outdoor:2050:mazzy-star",
-   "coachella-2012:d4:outdoor:2050:mazzy-star"
+   "coachella-2012:d4:outdoor:2050:mazzy-star",
+   "primavera-sound-2012:d1:escenario-ray-ban:2150:mazzy-star"
   ],
   "firstSeen": "2012-04-13",
-  "lastSeen": "2012-04-20",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -113991,6 +115089,21 @@
   ],
   "firstSeen": "2019-10-12",
   "lastSeen": "2021-10-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "megaphone-ou-la-mort",
+  "name": "Megaphone Ou La Mort",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:salon-myspace-smint:1700:megaphone-ou-la-mort"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -115315,6 +116428,21 @@
   "links": []
  },
  {
+  "key": "michael-gira",
+  "name": "Michael Gira",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:auditori-rockdelux:1730:michael-gira"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "michael-kiwanuka",
   "name": "Michael Kiwanuka",
   "aliases": [],
@@ -116536,6 +117664,22 @@
   "links": []
  },
  {
+  "key": "milagres",
+  "name": "Milagres",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-vice:1915:milagres",
+   "primavera-sound-2012:d3:ray-ban-unplugged:2130:milagres"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "milano",
   "name": "Milano",
   "aliases": [],
@@ -116609,6 +117753,21 @@
   ],
   "firstSeen": "2025-06-08",
   "lastSeen": "2025-06-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "milk-music",
+  "name": "Milk Music",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-pitchfork:1800:milk-music"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -120963,6 +122122,21 @@
   "links": []
  },
  {
+  "key": "mudhoney",
+  "name": "Mudhoney",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-atp:2200:mudhoney"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mueran-humanos",
   "name": "MUERAN HUMANOS",
   "aliases": [],
@@ -121018,10 +122192,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d3:escenario-vice:0115:mujeres",
    "primavera-sound-2015:d4:heineken-hidden-stage:1700:mujeres",
    "primavera-sound-2018:d4:adidas-originals:0320:mujeres"
   ],
-  "firstSeen": "2015-05-30",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2018-06-02",
   "photo": null,
   "links": []
@@ -121496,10 +122671,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d3:escenario-adidas-originals:2315:mutiny-on-the-bounty",
    "primavera-sound-2015:d2:ray-ban-unplugged:2230:mutiny-on-the-bounty",
    "primavera-sound-2015:d3:h-and-m-pro:0000:mutiny-on-the-bounty"
   ],
-  "firstSeen": "2015-05-28",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2015-05-29",
   "photo": null,
   "links": []
@@ -122545,6 +123721,21 @@
   "links": []
  },
  {
+  "key": "napalm-death",
+  "name": "Napalm Death",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-vice:2300:napalm-death"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "napoleon-gold",
   "name": "NAPOLEON GOLD",
   "aliases": [],
@@ -122556,6 +123747,21 @@
   ],
   "firstSeen": "2018-06-01",
   "lastSeen": "2018-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "napszyklat",
+  "name": "Napszyklat",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-adidas-originals:1930:napszyklat"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -122737,15 +123943,18 @@
  },
  {
   "key": "nat-simons",
-  "name": "NAT SIMONS",
-  "aliases": [],
+  "name": "Nat Simons",
+  "aliases": [
+   "NAT SIMONS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d3:salon-myspace-smint:1630:nat-simons",
    "primavera-sound-2018:d2:ray-ban:1700:nat-simons"
   ],
-  "firstSeen": "2018-05-31",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2018-05-31",
   "photo": null,
   "links": []
@@ -123751,6 +124960,7 @@
    "coachella-2012:d4:outdoor:1625:neon-indian",
    "governors-ball-2011:d1:big-apple-stage:1755:neon-indian",
    "nocturnal-wonderland-2012:d2:queen-s-grounds:1950:neon-indian",
+   "primavera-sound-2012:d3:escenario-ray-ban:0310:neon-indian",
    "primavera-sound-2016:d2:pitchfork:0245:neon-indian"
   ],
   "firstSeen": "2011-06-18",
@@ -124739,6 +125949,21 @@
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2024-05-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nick-garrie-plays-the-nightmare-of-j-b-stanislas",
+  "name": "Nick Garrie plays The Nightmare Of J.B. Stanislas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:auditori-rockdelux:1600:nick-garrie-plays-the-nightmare-of-j-b-stanislas"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -127822,6 +129047,21 @@
   "links": []
  },
  {
+  "key": "numbers-showcase-jackmaster-oneman-deadboy-spencer-redinho",
+  "name": "Numbers showcase: Jackmaster, Oneman, Deadboy, Spencer, Redinho",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-pitchfork:0300:numbers-showcase-jackmaster-oneman-deadboy-spencer-redinho"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nundos",
   "name": "Nundos",
   "aliases": [],
@@ -128221,6 +129461,21 @@
   ],
   "firstSeen": "2012-04-15",
   "lastSeen": "2012-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "obits",
+  "name": "Obits",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-vice:0300:obits"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -128754,9 +130009,10 @@
   "projects": [],
   "billings": [
    "coachella-2015:d3:mojave:1400:off",
-   "coachella-2015:d6:mojave:1400:off"
+   "coachella-2015:d6:mojave:1400:off",
+   "primavera-sound-2012:d3:escenario-vice:2255:off"
   ],
-  "firstSeen": "2015-04-12",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2015-04-19",
   "photo": null,
   "links": []
@@ -130631,6 +131887,21 @@
   "links": []
  },
  {
+  "key": "orthodox",
+  "name": "Orthodox",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-vice:1915:orthodox"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "orville-kline",
   "name": "Orville Kline",
   "aliases": [],
@@ -130882,10 +132153,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d1:gobi:1405:other-lives",
-   "coachella-2012:d4:gobi:1405:other-lives"
+   "coachella-2012:d4:gobi:1405:other-lives",
+   "primavera-sound-2012:d2:escenario-san-miguel:1755:other-lives"
   ],
   "firstSeen": "2012-04-13",
-  "lastSeen": "2012-04-20",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -133934,6 +135206,21 @@
   "links": []
  },
  {
+  "key": "pegasvs",
+  "name": "Pegasvs",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-pitchfork:1700:pegasvs"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pegboard-nerds",
   "name": "Pegboard Nerds",
   "aliases": [],
@@ -134721,6 +136008,22 @@
   ],
   "firstSeen": "2023-07-23",
   "lastSeen": "2023-07-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "peter-wolf-crier",
+  "name": "Peter Wolf Crier",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-vice:1915:peter-wolf-crier",
+   "primavera-sound-2012:d1:ray-ban-unplugged:2130:peter-wolf-crier"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -135729,6 +137032,21 @@
   "links": []
  },
  {
+  "key": "picore",
+  "name": "Picore",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-vice:1700:picore"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "picture-this",
   "name": "Picture This",
   "aliases": [],
@@ -136205,6 +137523,21 @@
   ],
   "firstSeen": "2026-03-28",
   "lastSeen": "2026-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pional",
+  "name": "Pional",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-vice:0415:pional-live"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -138817,9 +140150,10 @@
    "acl-2013:d1:austin-ventures:1945:purity-ring",
    "acl-2013:d4:austin-ventures:1945:purity-ring",
    "coachella-2016:d1:mojave:0000:purity-ring",
-   "coachella-2016:d4:mojave:0000:purity-ring"
+   "coachella-2016:d4:mojave:0000:purity-ring",
+   "primavera-sound-2012:d1:escenario-pitchfork:1815:purity-ring"
   ],
-  "firstSeen": "2013-10-04",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -141244,6 +142578,21 @@
   "links": []
  },
  {
+  "key": "rats-on-rafts",
+  "name": "Rats on Rafts",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-adidas-originals:2315:rats-on-rafts"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rattlesnake-milk",
   "name": "RATTLESNAKE MILK",
   "aliases": [],
@@ -141789,7 +143138,8 @@
    "coachella-2012:d6:gobi:1610:real-estate",
    "coachella-2017:d3:gobi:2150:real-estate",
    "coachella-2017:d6:gobi:2150:real-estate",
-   "outside-lands-2017:d2:sutro:1430:real-estate"
+   "outside-lands-2017:d2:sutro:1430:real-estate",
+   "primavera-sound-2012:d3:escenario-pitchfork:2200:real-estate"
   ],
   "firstSeen": "2012-04-15",
   "lastSeen": "2017-08-12",
@@ -142544,6 +143894,21 @@
   "links": []
  },
  {
+  "key": "refree",
+  "name": "Refree",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-ray-ban:1700:refree"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "refused",
   "name": "Refused",
   "aliases": [],
@@ -142552,10 +143917,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d1:outdoor:2320:refused",
-   "coachella-2012:d4:outdoor:2320:refused"
+   "coachella-2012:d4:outdoor:2320:refused",
+   "primavera-sound-2012:d1:escenario-ray-ban:0030:refused"
   ],
   "firstSeen": "2012-04-13",
-  "lastSeen": "2012-04-20",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -142730,9 +144096,10 @@
    "acl-2013:d5:austin-ventures:1300:reignwolf",
    "acl-2018:d4:honda:1340:reignwolf",
    "governors-ball-2013:d1:hondastage:1330:reignwolf",
-   "lollapalooza-2013:d2:petrillo:untimed:reignwolf"
+   "lollapalooza-2013:d2:petrillo:untimed:reignwolf",
+   "primavera-sound-2012:d1:escenario-adidas-originals:1930:reignwolf"
   ],
-  "firstSeen": "2013-06-07",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2018-10-12",
   "photo": null,
   "links": []
@@ -147137,6 +148504,21 @@
   "links": []
  },
  {
+  "key": "rufus-wainwright-and-his-band",
+  "name": "Rufus Wainwright and his Band",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-san-miguel:1950:rufus-wainwright-and-his-band"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rui",
   "name": "Rui",
   "aliases": [],
@@ -147495,9 +148877,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "governors-ball-2015:d2:gotham-tent:1415:rustie"
+   "governors-ball-2015:d2:gotham-tent:1415:rustie",
+   "primavera-sound-2012:d1:escenario-pitchfork:0430:rustie"
   ],
-  "firstSeen": "2015-06-06",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2015-06-06",
   "photo": null,
   "links": []
@@ -148457,15 +149840,18 @@
  },
  {
   "key": "saint-etienne",
-  "name": "SAINT ETIENNE",
-  "aliases": [],
+  "name": "Saint Etienne",
+  "aliases": [
+   "SAINT ETIENNE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d3:escenario-san-miguel:2300:saint-etienne",
    "primavera-sound-2017:d1:primavera-concierto-gratuito:2200:saint-etienne"
   ],
-  "firstSeen": "2017-05-31",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2017-05-31",
   "photo": null,
   "links": []
@@ -149481,6 +150867,21 @@
   "links": []
  },
  {
+  "key": "sandro-perri",
+  "name": "Sandro Perri",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-pitchfork:1815:sandro-perri"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sandro-silva",
   "name": "Sandro Silva",
   "aliases": [],
@@ -149624,6 +151025,21 @@
   ],
   "firstSeen": "2015-06-25",
   "lastSeen": "2015-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "santa-rita",
+  "name": "Santa Rita",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:salon-myspace-smint:1730:santa-rita"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -150366,7 +151782,8 @@
    "coachella-2015:d2:mojave:2250:sbtrkt",
    "coachella-2015:d5:mojave:2250:sbtrkt",
    "governors-ball-2015:d2:gotham-tent:2015:sbtrkt",
-   "lollapalooza-2012:d1:google-play:1645:sbtrkt"
+   "lollapalooza-2012:d1:google-play:1645:sbtrkt",
+   "primavera-sound-2012:d2:escenario-pitchfork:0130:sbtrkt"
   ],
   "firstSeen": "2012-04-14",
   "lastSeen": "2015-06-06",
@@ -151014,9 +152431,10 @@
   "billings": [
    "coachella-2014:d3:yuma:1515:scuba",
    "coachella-2014:d6:yuma:1515:scuba",
+   "primavera-sound-2012:d3:escenario-ray-ban:0415:scuba",
    "tomorrowland-2016:d3:dave-clarke-presents:1700:scuba"
   ],
-  "firstSeen": "2014-04-13",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2016-07-24",
   "photo": null,
   "links": []
@@ -151786,6 +153204,21 @@
   ],
   "firstSeen": "2023-07-29",
   "lastSeen": "2023-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "senior-i-el-cor-brutal",
+  "name": "Senior i El Cor Brutal",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-vice:1700:senior-i-el-cor-brutal"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -152908,9 +154341,11 @@
    "governors-ball-2015:d2:big-apple-stage:1545:sharon-van-etten",
    "lollapalooza-2012:d1:playstation:1500:sharon-van-etten",
    "lollapalooza-2019:d4:lake-shore:untimed:sharon-van-etten",
-   "outside-lands-2012:d1:sutro-lindley-meadow:1315:sharon-van-etten"
+   "outside-lands-2012:d1:sutro-lindley-meadow:1315:sharon-van-etten",
+   "primavera-sound-2012:d3:ray-ban-unplugged:2330:sharon-van-etten",
+   "primavera-sound-2012:d3:escenario-san-miguel:1810:sharon-van-etten"
   ],
-  "firstSeen": "2012-08-03",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
@@ -153245,13 +154680,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d3:escenario-atp:2300:shellac",
    "primavera-sound-2015:d4:adidas-originals:0130:shellac",
    "primavera-sound-2016:d3:adidas-originals:2315:shellac",
    "primavera-sound-2017:d3:adidas-originals:2005:shellac",
    "primavera-sound-2018:d3:adidas-originals:2150:shellac",
    "primavera-sound-2019:d4:ray-ban:2025:shellac"
   ],
-  "firstSeen": "2015-05-30",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2019-06-01",
   "photo": null,
   "links": []
@@ -155438,6 +156874,22 @@
   "links": []
  },
  {
+  "key": "siskiyou",
+  "name": "Siskiyou",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:ray-ban-unplugged:2230:siskiyou",
+   "primavera-sound-2012:d2:escenario-atp:1915:siskiyou"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sistemas-inestables",
   "name": "SISTEMAS INESTABLES",
   "aliases": [],
@@ -156627,15 +158079,18 @@
  },
  {
   "key": "sleep",
-  "name": "SLEEP",
-  "aliases": [],
+  "name": "Sleep",
+  "aliases": [
+   "SLEEP"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d1:escenario-atp:0100:sleep",
    "primavera-sound-2017:d4:primavera:2350:sleep"
   ],
-  "firstSeen": "2017-06-03",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2017-06-03",
   "photo": null,
   "links": []
@@ -156703,6 +158158,21 @@
   "links": []
  },
  {
+  "key": "sleepy-sun",
+  "name": "Sleepy Sun",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-atp:1915:sleepy-sun"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sleigh-bells",
   "name": "Sleigh Bells",
   "aliases": [],
@@ -156713,9 +158183,10 @@
    "coachella-2014:d2:outdoor:2110:sleigh-bells",
    "coachella-2014:d5:outdoor:2105:sleigh-bells",
    "governors-ball-2014:d2:gotham-tent:2015:sleigh-bells",
-   "outside-lands-2017:d1:twin-peaks:1715:sleigh-bells"
+   "outside-lands-2017:d1:twin-peaks:1715:sleigh-bells",
+   "primavera-sound-2012:d2:escenario-pitchfork:2300:sleigh-bells"
   ],
-  "firstSeen": "2014-04-12",
+  "firstSeen": "2012-06-01",
   "lastSeen": "2017-08-11",
   "photo": null,
   "links": []
@@ -160235,10 +161706,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d1:escenario-mini:0215:spiritualized",
    "primavera-sound-2015:d2:atp:2250:spiritualized",
    "primavera-sound-2018:d1:auditori-rockdelux:2000:spiritualized"
   ],
-  "firstSeen": "2015-05-28",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2018-05-30",
   "photo": null,
   "links": []
@@ -160255,6 +161727,21 @@
   ],
   "firstSeen": "2017-09-16",
   "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "spoek-mathambo",
+  "name": "Spoek Mathambo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-adidas-originals:0145:spoek-mathambo"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -160451,10 +161938,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "primavera-sound-2012:d1:escenario-mini:2015:sr-chinarro",
    "primavera-sound-2015:d3:ray-ban:1840:sr-chinarro",
    "primavera-sound-2016:d1:primavera-concierto-gratuito:1900:sr-chinarro"
   ],
-  "firstSeen": "2015-05-29",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2016-06-01",
   "photo": null,
   "links": []
@@ -160931,6 +162419,21 @@
   ],
   "firstSeen": "2012-10-14",
   "lastSeen": "2018-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "stasi",
+  "name": "Stasi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:salon-myspace-smint:1730:stasi"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -166122,6 +167625,21 @@
   "links": []
  },
  {
+  "key": "tall-firs",
+  "name": "Tall Firs",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-atp:1800:tall-firs"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tall-juan",
   "name": "Tall Juan",
   "aliases": [],
@@ -167518,6 +169036,21 @@
   "links": []
  },
  {
+  "key": "templeton",
+  "name": "Templeton",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:salon-myspace-smint:2030:templeton"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tempo-dance-co",
   "name": "Tempo Dance Co.",
   "aliases": [],
@@ -168273,9 +169806,10 @@
    "coachella-2014:d1:mojave:1840:the-afghan-whigs",
    "coachella-2014:d4:mojave:1840:the-afghan-whigs",
    "lollapalooza-2012:d1:red-bull-soundstage:1615:the-afghan-whigs",
+   "primavera-sound-2012:d1:escenario-san-miguel:2040:the-afghan-whigs",
    "primavera-sound-2017:d2:ray-ban:2240:the-afghan-whigs"
   ],
-  "firstSeen": "2012-08-03",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2017-06-01",
   "photo": null,
   "links": []
@@ -169436,6 +170970,21 @@
   "links": []
  },
  {
+  "key": "the-chameleons",
+  "name": "The Chameleons",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-ray-ban:1850:the-chameleons"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-chicks",
   "name": "THE CHICKS",
   "aliases": [],
@@ -169700,9 +171249,10 @@
    "acl-2013:d5:lady-bird:2000:the-cure",
    "acl-2019:d2:honda:2000:the-cure",
    "acl-2019:d5:honda:2000:the-cure",
-   "lollapalooza-2013:d3:red-bull-sound-select:2000:the-cure"
+   "lollapalooza-2013:d3:red-bull-sound-select:2000:the-cure",
+   "primavera-sound-2012:d2:escenario-san-miguel:2210:the-cure"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2012-06-01",
   "lastSeen": "2019-10-12",
   "photo": null,
   "links": []
@@ -169957,7 +171507,8 @@
   "billings": [
    "lollapalooza-2011:d2:google:1645:the-drums",
    "lollapalooza-2017:d1:lake-shore:1530:the-drums",
-   "outside-lands-2015:d1:panhandle:1805:the-drums"
+   "outside-lands-2015:d1:panhandle:1805:the-drums",
+   "primavera-sound-2012:d2:escenario-ray-ban:0105:the-drums"
   ],
   "firstSeen": "2011-08-06",
   "lastSeen": "2017-08-03",
@@ -170104,6 +171655,21 @@
   "links": []
  },
  {
+  "key": "the-experimental-tropic-blues-band",
+  "name": "The Experimental Tropic Blues Band",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-adidas-originals:2200:the-experimental-tropic-blues-band"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-family-crest",
   "name": "The Family Crest",
   "aliases": [],
@@ -170163,6 +171729,21 @@
   ],
   "firstSeen": "2012-10-14",
   "lastSeen": "2012-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-field",
+  "name": "The Field",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-pitchfork:0300:the-field"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -170466,6 +172047,21 @@
   ],
   "firstSeen": "2016-07-24",
   "lastSeen": "2017-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-ganjas",
+  "name": "The Ganjas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-adidas-originals:2315:the-ganjas"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -172188,9 +173784,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "outside-lands-2013:d1:panhandle:1505:the-men"
+   "outside-lands-2013:d1:panhandle:1505:the-men",
+   "primavera-sound-2012:d2:escenario-vice:0145:the-men"
   ],
-  "firstSeen": "2013-08-09",
+  "firstSeen": "2012-06-01",
   "lastSeen": "2013-08-09",
   "photo": null,
   "links": []
@@ -172857,6 +174454,21 @@
   "links": []
  },
  {
+  "key": "the-olivia-tremor-control",
+  "name": "The Olivia Tremor Control",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-vice:2145:the-olivia-tremor-control"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-opposites",
   "name": "The Opposites",
   "aliases": [],
@@ -173220,6 +174832,21 @@
   "links": []
  },
  {
+  "key": "the-pop-group",
+  "name": "The Pop Group",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-atp:0200:the-pop-group"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-pop-ups",
   "name": "The Pop Ups",
   "aliases": [],
@@ -173529,10 +175156,11 @@
   "projects": [],
   "billings": [
    "coachella-2012:d1:mojave:2055:the-rapture",
-   "coachella-2012:d4:mojave:2055:the-rapture"
+   "coachella-2012:d4:mojave:2055:the-rapture",
+   "primavera-sound-2012:d2:escenario-san-miguel:0215:the-rapture"
   ],
   "firstSeen": "2012-04-13",
-  "lastSeen": "2012-04-20",
+  "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
  },
@@ -173658,6 +175286,22 @@
   ],
   "firstSeen": "2018-10-07",
   "lastSeen": "2018-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-right-ons",
+  "name": "The Right Ons",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-mini:1800:the-right-ons",
+   "primavera-sound-2012:d3:salon-myspace-smint:2030:the-right-ons"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -175005,8 +176649,8 @@
   "key": "the-war-on-drugs",
   "name": "The War on Drugs",
   "aliases": [
-   "THE WAR ON DRUGS",
-   "The War On Drugs"
+   "The War On Drugs",
+   "THE WAR ON DRUGS"
   ],
   "kind": "performer",
   "parents": [],
@@ -175021,9 +176665,10 @@
    "governors-ball-2015:d3:big-apple-stage:1745:the-war-on-drugs",
    "lollapalooza-2012:d1:google-play:1415:the-war-on-drugs",
    "lollapalooza-2015:d1:palladia:1730:the-war-on-drugs",
+   "primavera-sound-2012:d2:escenario-pitchfork:2145:the-war-on-drugs",
    "primavera-sound-2018:d2:mango:2050:the-war-on-drugs"
   ],
-  "firstSeen": "2012-08-03",
+  "firstSeen": "2012-06-01",
   "lastSeen": "2026-10-04",
   "photo": null,
   "links": []
@@ -175078,7 +176723,8 @@
    "coachella-2015:d5:coachella:2325:the-weeknd",
    "lollapalooza-2012:d2:red-bull-soundstage:1915:the-weeknd",
    "lollapalooza-2015:d1:bud-light:2030:the-weeknd",
-   "lollapalooza-2018:d3:grant-park:untimed:the-weeknd"
+   "lollapalooza-2018:d3:grant-park:untimed:the-weeknd",
+   "primavera-sound-2012:d3:escenario-pitchfork:0030:the-weeknd"
   ],
   "firstSeen": "2012-04-15",
   "lastSeen": "2018-08-04",
@@ -175316,9 +176962,10 @@
    "coachella-2017:d4:coachella:2050:the-xx",
    "governors-ball-2013:d3:you-re-doing-great-stage:2020:the-xx",
    "lollapalooza-2017:d3:bud-light:2045:the-xx",
+   "primavera-sound-2012:d1:escenario-mini:0045:the-xx",
    "primavera-sound-2017:d3:heineken:2310:the-xx"
   ],
-  "firstSeen": "2013-06-09",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2026-10-04",
   "photo": null,
   "links": []
@@ -175429,10 +177076,11 @@
   "projects": [],
   "billings": [
    "outside-lands-2012:d2:panhandle-hellman-hollow:1805:thee-oh-sees",
+   "primavera-sound-2012:d1:escenario-atp:2330:thee-oh-sees",
    "primavera-sound-2015:d4:atp:0155:thee-oh-sees",
    "primavera-sound-2016:d2:primavera:0150:thee-oh-sees"
   ],
-  "firstSeen": "2012-08-11",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2016-06-02",
   "photo": null,
   "links": []
@@ -179395,6 +181043,21 @@
   "links": []
  },
  {
+  "key": "trash-talk",
+  "name": "Trash Talk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d2:escenario-pitchfork:0015:trash-talk"
+  ],
+  "firstSeen": "2012-06-01",
+  "lastSeen": "2012-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "trashlagoon",
   "name": "Trashlagoon",
   "aliases": [],
@@ -180216,6 +181879,21 @@
   ],
   "firstSeen": "2016-08-05",
   "lastSeen": "2027-01-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "trud",
+  "name": "Trud",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-adidas-originals:2200:trud"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -182340,6 +184018,21 @@
   "links": []
  },
  {
+  "key": "unicornibot",
+  "name": "Unicornibot",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-vice:1800:unicornibot"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "unified-highway",
   "name": "Unified Highway",
   "aliases": [],
@@ -183583,6 +185276,21 @@
   "links": []
  },
  {
+  "key": "veronica-falls",
+  "name": "Veronica Falls",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-mini:1900:veronica-falls"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "veronica-vasicka",
   "name": "Veronica Vasicka",
   "aliases": [
@@ -184209,6 +185917,21 @@
   ],
   "firstSeen": "2026-06-06",
   "lastSeen": "2027-04-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "villarroel",
+  "name": "Villarroel",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:salon-myspace-smint:2000:villarroel"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
@@ -186408,9 +188131,10 @@
    "coachella-2014:d5:gobi:1755:washed-out",
    "governors-ball-2014:d1:gotham-tent:1545:washed-out",
    "lollapalooza-2012:d2:google-play:1930:washed-out",
-   "outside-lands-2012:d1:panhandle-hellman-hollow:1950:washed-out"
+   "outside-lands-2012:d1:panhandle-hellman-hollow:1950:washed-out",
+   "primavera-sound-2012:d3:escenario-pitchfork:0200:washed-out"
   ],
-  "firstSeen": "2012-08-04",
+  "firstSeen": "2012-06-02",
   "lastSeen": "2014-06-06",
   "photo": null,
   "links": []
@@ -186697,9 +188421,10 @@
   "billings": [
    "lollapalooza-2013:d3:the-grove:1645:wavves",
    "lollapalooza-2016:d1:pepsi:1600:wavves",
-   "outside-lands-2013:d1:panhandle:1815:wavves"
+   "outside-lands-2013:d1:panhandle:1815:wavves",
+   "primavera-sound-2012:d2:escenario-mini:2315:wavves"
   ],
-  "firstSeen": "2013-08-04",
+  "firstSeen": "2012-06-01",
   "lastSeen": "2016-07-28",
   "photo": null,
   "links": []
@@ -187705,9 +189430,10 @@
   "billings": [
    "acl-2013:d3:austin-ventures:1700:white-denim",
    "lollapalooza-2014:d3:samsung-galaxy:1415:white-denim",
-   "outside-lands-2012:d1:sutro-lindley-meadow:1205:white-denim"
+   "outside-lands-2012:d1:sutro-lindley-meadow:1205:white-denim",
+   "primavera-sound-2012:d1:escenario-pitchfork:2145:white-denim"
   ],
-  "firstSeen": "2012-08-10",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2014-08-03",
   "photo": null,
   "links": []
@@ -188117,9 +189843,10 @@
   "billings": [
    "acl-2013:d2:samsung-galaxy:1800:wilco",
    "acl-2013:d5:samsung-galaxy:1800:wilco",
-   "outside-lands-2015:d1:lands-end:1800:wilco"
+   "outside-lands-2015:d1:lands-end:1800:wilco",
+   "primavera-sound-2012:d1:escenario-san-miguel:2300:wilco"
   ],
-  "firstSeen": "2013-10-05",
+  "firstSeen": "2012-05-31",
   "lastSeen": "2015-08-07",
   "photo": null,
   "links": []
@@ -188138,6 +189865,7 @@
    "coachella-2012:d3:mojave:1525:wild-beasts",
    "coachella-2012:d6:mojave:1525:wild-beasts",
    "outside-lands-2010:d1:panhandle-solar:1955:wild-beasts",
+   "primavera-sound-2012:d3:escenario-ray-ban:0030:wild-beasts",
    "primavera-sound-2017:d4:ray-ban:0050:wild-beasts"
   ],
   "firstSeen": "2010-08-14",
@@ -189348,6 +191076,21 @@
   ],
   "firstSeen": "2016-06-04",
   "lastSeen": "2016-06-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wolves-in-the-throne-room",
+  "name": "Wolves In The Throne Room",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d1:escenario-atp:0230:wolves-in-the-throne-room"
+  ],
+  "firstSeen": "2012-05-31",
+  "lastSeen": "2012-05-31",
   "photo": null,
   "links": []
  },
@@ -191211,6 +192954,21 @@
   ],
   "firstSeen": "2019-05-31",
   "lastSeen": "2019-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "yo-la-tengo",
+  "name": "Yo La Tengo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "primavera-sound-2012:d3:escenario-mini:0045:yo-la-tengo"
+  ],
+  "firstSeen": "2012-06-02",
+  "lastSeen": "2012-06-02",
   "photo": null,
   "links": []
  },
