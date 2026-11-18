@@ -3,6 +3,33 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
+## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-18, main `27b98071`, web v645)
+
+> Ledger lines for the merges below: `ops/build-ledger.jsonl` (the ledger has no
+> lines between 2026-10-24 and 2026-11-17; those merges are not backfilled here).
+
+**Merged since SPEC-212 was issued (merge lane):**
+- [x] #496 Tomorrowland 2010–2012 set times · #497 HARD Summer 2012 set times
+- [x] #486 Festivals batch 7 (2027 previews) · v644
+- [x] #493 Top-tier round 1: photo spotlight, a face per member · v645
+- [x] #506 Lollapalooza 2018 by day and stage · #507 Governors Ball 2013–2015
+
+**Open (Claude Plur), none live yet:**
+- [ ] W2 #500 Decadence venue source: refreshed onto main; merge lane, then live-verify the pages
+- [ ] W2 #508 daily set-times watch for Countdown NYE: NOT armed until merged (scheduled
+      workflows run only from main); after merge, one workflow_dispatch run to confirm
+- [ ] W3 #501 Your weekend timeline (flag): your own arrival and departure times per set
+- [ ] W3 per-festival set-tracking opt-in (stacked on #501, draft PR to come)
+- [ ] W3 accuracy gate: 17 of 20 sets within 10 min on a real album replay. The synthetic
+      EDC reference (13 of 15, #503) does not count. Blocked on Jake's albums
+- [ ] W4 #502 Monthly win-back + recap hooks + save/cancel states. Store offer not created
+      yet (0 win-back offers read live in ASC); Jake's App Store Connect + RevenueCat taps
+- [ ] W5 #504 / #499 MusicKit token renewal command + expiry warning. The token itself
+      expires Fri Nov 27, 8:14 PM CT and needs Jake's key
+- [ ] W6 #503 replay harness · W7 #498 census rule: green and CLEAN, merge lane
+
+**Held:** #244 festival essentials (DIRTY; re-port after SPEC-212).
+
 ## 📋 REPORT CLOSE-OUT — items pulled from agent reports (2026-06-07)
 
 > **Status: iOS 1.11 (22) SUBMITTED to Apple 2026-06-07** (pbxproj 4d8679c, carries
