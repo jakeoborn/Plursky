@@ -419,6 +419,14 @@ export const EDITIONS = {
   "nocturnal-wonderland-2023": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2023", year: 2023,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2023-09-16", "Saturday"], ["2023-09-17", "Sunday"]] },
+  // HARD Summer 2012: the festival's own home page (hardfest.com/hardsummer/,
+  // format "hard-wp", hard-wp-schedule.mjs), captured after the festival. It
+  // draws both days as a grid, one column per stage, each set a block with a
+  // range that prints no am or pm; the dates are the run the page's own
+  // essential info prints ("Friday, August 3rd & Saturday, August 4th, 2012").
+  "hard-summer-2012": { festivalId: "hard-summer", name: "HARD Summer 2012", year: 2012,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2012-08-03", "Friday"], ["2012-08-04", "Saturday"]] },
   "hard-summer-2018": { festivalId: "hard-summer", name: "HARD Summer 2018", year: 2018,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2018-08-04", "Saturday"], ["2018-08-05", "Sunday"]] },

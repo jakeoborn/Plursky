@@ -1,0 +1,979 @@
+{
+ "id": "hard-summer-2012",
+ "festivalId": "hard-summer",
+ "name": "HARD Summer 2012",
+ "year": 2012,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2012-08-03",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2012-08-04",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "hard-summer-2012:hard-stage",
+   "name": "Hard Stage"
+  },
+  {
+   "id": "hard-summer-2012:harder-stage",
+   "name": "Harder Stage"
+  },
+  {
+   "id": "hard-summer-2012:rbma-discotheque",
+   "name": "RBMA Discotheque"
+  },
+  {
+   "id": "hard-summer-2012:fool-s-gold-clubhouse",
+   "name": "Fool's Gold Clubhouse"
+  },
+  {
+   "id": "hard-summer-2012:owsla-tent",
+   "name": "OWSLA Tent"
+  }
+ ],
+ "artists": [
+  {
+   "id": "hard-summer-2012:alex-metric",
+   "name": "ALEX METRIC",
+   "key": "alex-metric",
+   "performers": [
+    "alex-metric"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:buraka-som-sistema",
+   "name": "BURAKA SOM SISTEMA",
+   "key": "buraka-som-sistema",
+   "performers": [
+    "buraka-som-sistema"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:little-dragon",
+   "name": "LITTLE DRAGON",
+   "key": "little-dragon",
+   "performers": [
+    "little-dragon"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:magnetic-man",
+   "name": "MAGNETIC MAN",
+   "key": "magnetic-man",
+   "performers": [
+    "magnetic-man"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:miike-snow",
+   "name": "MIIKE SNOW",
+   "key": "miike-snow",
+   "performers": [
+    "miike-snow"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:bloc-party",
+   "name": "BLOC PARTY",
+   "key": "bloc-party",
+   "performers": [
+    "bloc-party"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:boys-noize",
+   "name": "BOYS NOIZE",
+   "key": "boys-noize",
+   "performers": [
+    "boys-noize"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:jokers-of-the-scene",
+   "name": "JOKERS OF THE SCENE",
+   "key": "jokers-of-the-scene",
+   "performers": [
+    "jokers-of-the-scene"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:sound-pellegrino-thermal-team",
+   "name": "SOUND PELLEGRINO THERMAL TEAM",
+   "key": "sound-pellegrino-thermal-team",
+   "performers": [
+    "sound-pellegrino-thermal-team"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:riton",
+   "name": "RITON",
+   "key": "riton",
+   "performers": [
+    "riton"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:surkin",
+   "name": "SURKIN",
+   "key": "surkin",
+   "performers": [
+    "surkin"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:fake-blood",
+   "name": "FAKE BLOOD",
+   "key": "fake-blood",
+   "performers": [
+    "fake-blood"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:gesaffelstein",
+   "name": "GESAFFELSTEIN",
+   "key": "gesaffelstein",
+   "performers": [
+    "gesaffelstein"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:erol-alkan",
+   "name": "EROL ALKAN",
+   "key": "erol-alkan",
+   "performers": [
+    "erol-alkan"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:joey-beltram",
+   "name": "JOEY BELTRAM",
+   "key": "joey-beltram",
+   "performers": [
+    "joey-beltram"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:lunice",
+   "name": "LUNICE",
+   "key": "lunice",
+   "performers": [
+    "lunice"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:baio",
+   "name": "BAIO",
+   "key": "baio",
+   "performers": [
+    "baio"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:john-talabot",
+   "name": "JOHN TALABOT",
+   "key": "john-talabot",
+   "performers": [
+    "john-talabot"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:light-year",
+   "name": "LIGHT YEAR",
+   "key": "light-year",
+   "performers": [
+    "light-year"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:oliver",
+   "name": "OLIVER",
+   "key": "oliver",
+   "performers": [
+    "oliver"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:breakbot",
+   "name": "BREAKBOT",
+   "key": "breakbot",
+   "performers": [
+    "breakbot"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:chromeo",
+   "name": "CHROMEO",
+   "key": "chromeo",
+   "performers": [
+    "chromeo"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:bootsy-collins-and-the-funk-unity-band",
+   "name": "BOOTSY COLLINS & THE FUNK UNITY BAND",
+   "key": "bootsy-collins-and-the-funk-unity-band",
+   "performers": [
+    "bootsy-collins-and-the-funk-unity-band"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:jim-e-stack",
+   "name": "JIM-E STACK",
+   "key": "jim-e-stack",
+   "performers": [
+    "jim-e-stack"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:mr-muthfuckin-exquire",
+   "name": "Mr. Muthfuckin’ eXquire",
+   "key": "mr-muthfuckin-exquire",
+   "performers": [
+    "mr-muthfuckin-exquire"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:nick-catchdubs",
+   "name": "NICK CATCHDUBS",
+   "key": "nick-catchdubs",
+   "performers": [
+    "nick-catchdubs"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:action-bronson",
+   "name": "ACTION BRONSON",
+   "key": "action-bronson",
+   "performers": [
+    "action-bronson"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:craze",
+   "name": "CRAZE",
+   "key": "craze",
+   "performers": [
+    "craze"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:danny-brown",
+   "name": "DANNY BROWN",
+   "key": "danny-brown",
+   "performers": [
+    "danny-brown"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:araabmuzik",
+   "name": "ARAABMUZIK",
+   "key": "araabmuzik",
+   "performers": [
+    "araabmuzik"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:a-trak",
+   "name": "A-TRAK",
+   "key": "a-trak",
+   "performers": [
+    "a-trak"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:jason-bentley",
+   "name": "JASON BENTLEY",
+   "key": "jason-bentley",
+   "performers": [
+    "jason-bentley"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:smims-and-belle",
+   "name": "SMIMS & BELLE",
+   "key": "smims-and-belle",
+   "performers": [
+    "smims-and-belle"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:squarepusher",
+   "name": "SQUAREPUSHER",
+   "key": "squarepusher",
+   "performers": [
+    "squarepusher"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:bloody-beetroots",
+   "name": "BLOODY BEETROOTS",
+   "key": "bloody-beetroots",
+   "performers": [
+    "bloody-beetroots"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:nero",
+   "name": "NERO",
+   "key": "nero",
+   "performers": [
+    "nero"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:skrillex",
+   "name": "SKRILLEX",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:codes",
+   "name": "CODES",
+   "key": "codes",
+   "performers": [
+    "codes"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:trolley-snatcha",
+   "name": "TROLLEY SNATCHA",
+   "key": "trolley-snatcha",
+   "performers": [
+    "trolley-snatcha"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:gaslamp-killer",
+   "name": "GASLAMP KILLER",
+   "key": "gaslamp-killer",
+   "performers": [
+    "gaslamp-killer"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:12th-planet",
+   "name": "12TH PLANET",
+   "key": "12th-planet",
+   "performers": [
+    "12th-planet"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:datsik",
+   "name": "DATSIK",
+   "key": "datsik",
+   "performers": [
+    "datsik"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:dj-antention",
+   "name": "DJ ANTENTION",
+   "key": "dj-antention",
+   "performers": [
+    "dj-antention"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:amtrac",
+   "name": "AMTRAC",
+   "key": "amtrac",
+   "performers": [
+    "amtrac"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:the-starship-connection",
+   "name": "THE STARSHIP CONNECTION",
+   "key": "the-starship-connection",
+   "performers": [
+    "the-starship-connection"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:brenmar",
+   "name": "BRENMAR",
+   "key": "brenmar",
+   "performers": [
+    "brenmar"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:justin-martin",
+   "name": "JUSTIN MARTIN",
+   "key": "justin-martin",
+   "performers": [
+    "justin-martin"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:brodinski",
+   "name": "BRODINSKI",
+   "key": "brodinski",
+   "performers": [
+    "brodinski"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:claude-vonstroke",
+   "name": "CLAUDE VONSTROKE",
+   "key": "claude-vonstroke",
+   "performers": [
+    "claude-vonstroke"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:james-murphy",
+   "name": "JAMES MURPHY",
+   "key": "james-murphy",
+   "performers": [
+    "james-murphy"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:nick-thayer",
+   "name": "NICK THAYER",
+   "key": "nick-thayer",
+   "performers": [
+    "nick-thayer"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:huoratron",
+   "name": "HUORATRON",
+   "key": "huoratron",
+   "performers": [
+    "huoratron"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:birdy-nam-nam",
+   "name": "BIRDY NAM NAM",
+   "key": "birdy-nam-nam",
+   "performers": [
+    "birdy-nam-nam"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:alvin-risk",
+   "name": "ALVIN RISK",
+   "key": "alvin-risk",
+   "performers": [
+    "alvin-risk"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:dillon-francis",
+   "name": "DILLON FRANCIS",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ]
+  },
+  {
+   "id": "hard-summer-2012:zedd",
+   "name": "ZEDD",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "hard-summer-2012:d1:hard-stage:1725:alex-metric",
+   "artistId": "hard-summer-2012:alex-metric",
+   "day": 1,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "17:25",
+   "end": "18:15"
+  },
+  {
+   "id": "hard-summer-2012:d1:hard-stage:1815:buraka-som-sistema",
+   "artistId": "hard-summer-2012:buraka-som-sistema",
+   "day": 1,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "18:15",
+   "end": "19:10"
+  },
+  {
+   "id": "hard-summer-2012:d1:hard-stage:1930:little-dragon",
+   "artistId": "hard-summer-2012:little-dragon",
+   "day": 1,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "19:30",
+   "end": "20:20"
+  },
+  {
+   "id": "hard-summer-2012:d1:hard-stage:2040:magnetic-man",
+   "artistId": "hard-summer-2012:magnetic-man",
+   "day": 1,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "20:40",
+   "end": "21:40"
+  },
+  {
+   "id": "hard-summer-2012:d1:hard-stage:2205:miike-snow",
+   "artistId": "hard-summer-2012:miike-snow",
+   "day": 1,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "22:05",
+   "end": "23:05"
+  },
+  {
+   "id": "hard-summer-2012:d1:hard-stage:2330:bloc-party",
+   "artistId": "hard-summer-2012:bloc-party",
+   "day": 1,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "hard-summer-2012:d1:hard-stage:0050:boys-noize",
+   "artistId": "hard-summer-2012:boys-noize",
+   "day": 1,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "00:50",
+   "end": "01:50"
+  },
+  {
+   "id": "hard-summer-2012:d1:harder-stage:1740:jokers-of-the-scene",
+   "artistId": "hard-summer-2012:jokers-of-the-scene",
+   "day": 1,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "17:40",
+   "end": "18:30"
+  },
+  {
+   "id": "hard-summer-2012:d1:harder-stage:1830:sound-pellegrino-thermal-team",
+   "artistId": "hard-summer-2012:sound-pellegrino-thermal-team",
+   "day": 1,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "18:30",
+   "end": "19:20"
+  },
+  {
+   "id": "hard-summer-2012:d1:harder-stage:1920:riton",
+   "artistId": "hard-summer-2012:riton",
+   "day": 1,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "19:20",
+   "end": "20:20"
+  },
+  {
+   "id": "hard-summer-2012:d1:harder-stage:2020:surkin",
+   "artistId": "hard-summer-2012:surkin",
+   "day": 1,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "20:20",
+   "end": "21:20"
+  },
+  {
+   "id": "hard-summer-2012:d1:harder-stage:2120:fake-blood",
+   "artistId": "hard-summer-2012:fake-blood",
+   "day": 1,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "21:20",
+   "end": "22:20"
+  },
+  {
+   "id": "hard-summer-2012:d1:harder-stage:2230:gesaffelstein",
+   "artistId": "hard-summer-2012:gesaffelstein",
+   "day": 1,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "hard-summer-2012:d1:harder-stage:2340:erol-alkan",
+   "artistId": "hard-summer-2012:erol-alkan",
+   "day": 1,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "23:40",
+   "end": "00:40"
+  },
+  {
+   "id": "hard-summer-2012:d1:harder-stage:0040:joey-beltram",
+   "artistId": "hard-summer-2012:joey-beltram",
+   "day": 1,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "00:40",
+   "end": "01:40"
+  },
+  {
+   "id": "hard-summer-2012:d1:rbma-discotheque:1710:lunice",
+   "artistId": "hard-summer-2012:lunice",
+   "day": 1,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "17:10",
+   "end": "17:55"
+  },
+  {
+   "id": "hard-summer-2012:d1:rbma-discotheque:1755:baio",
+   "artistId": "hard-summer-2012:baio",
+   "day": 1,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "17:55",
+   "end": "18:40"
+  },
+  {
+   "id": "hard-summer-2012:d1:rbma-discotheque:1840:john-talabot",
+   "artistId": "hard-summer-2012:john-talabot",
+   "day": 1,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "18:40",
+   "end": "19:35"
+  },
+  {
+   "id": "hard-summer-2012:d1:rbma-discotheque:1935:light-year",
+   "artistId": "hard-summer-2012:light-year",
+   "day": 1,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "19:35",
+   "end": "20:30"
+  },
+  {
+   "id": "hard-summer-2012:d1:rbma-discotheque:2030:oliver",
+   "artistId": "hard-summer-2012:oliver",
+   "day": 1,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "hard-summer-2012:d1:rbma-discotheque:2145:breakbot",
+   "artistId": "hard-summer-2012:breakbot",
+   "day": 1,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "hard-summer-2012:d1:rbma-discotheque:2300:chromeo",
+   "artistId": "hard-summer-2012:chromeo",
+   "day": 1,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "hard-summer-2012:d1:rbma-discotheque:0020:bootsy-collins-and-the-funk-unity-band",
+   "artistId": "hard-summer-2012:bootsy-collins-and-the-funk-unity-band",
+   "day": 1,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "00:20",
+   "end": "01:50"
+  },
+  {
+   "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:1740:jim-e-stack",
+   "artistId": "hard-summer-2012:jim-e-stack",
+   "day": 1,
+   "stageId": "hard-summer-2012:fool-s-gold-clubhouse",
+   "start": "17:40",
+   "end": "18:40"
+  },
+  {
+   "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:1840:mr-muthfuckin-exquire",
+   "artistId": "hard-summer-2012:mr-muthfuckin-exquire",
+   "day": 1,
+   "stageId": "hard-summer-2012:fool-s-gold-clubhouse",
+   "start": "18:40",
+   "end": "19:20"
+  },
+  {
+   "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:1920:nick-catchdubs",
+   "artistId": "hard-summer-2012:nick-catchdubs",
+   "day": 1,
+   "stageId": "hard-summer-2012:fool-s-gold-clubhouse",
+   "start": "19:20",
+   "end": "20:20"
+  },
+  {
+   "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:2020:action-bronson",
+   "artistId": "hard-summer-2012:action-bronson",
+   "day": 1,
+   "stageId": "hard-summer-2012:fool-s-gold-clubhouse",
+   "start": "20:20",
+   "end": "21:00"
+  },
+  {
+   "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:2100:craze",
+   "artistId": "hard-summer-2012:craze",
+   "day": 1,
+   "stageId": "hard-summer-2012:fool-s-gold-clubhouse",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:2200:danny-brown",
+   "artistId": "hard-summer-2012:danny-brown",
+   "day": 1,
+   "stageId": "hard-summer-2012:fool-s-gold-clubhouse",
+   "start": "22:00",
+   "end": "22:40"
+  },
+  {
+   "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:2240:araabmuzik",
+   "artistId": "hard-summer-2012:araabmuzik",
+   "day": 1,
+   "stageId": "hard-summer-2012:fool-s-gold-clubhouse",
+   "start": "22:40",
+   "end": "23:50"
+  },
+  {
+   "id": "hard-summer-2012:d1:fool-s-gold-clubhouse:2350:a-trak",
+   "artistId": "hard-summer-2012:a-trak",
+   "day": 1,
+   "stageId": "hard-summer-2012:fool-s-gold-clubhouse",
+   "start": "23:50",
+   "end": "00:50"
+  },
+  {
+   "id": "hard-summer-2012:d2:hard-stage:1720:jason-bentley",
+   "artistId": "hard-summer-2012:jason-bentley",
+   "day": 2,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "17:20",
+   "end": "18:00"
+  },
+  {
+   "id": "hard-summer-2012:d2:hard-stage:1800:smims-and-belle",
+   "artistId": "hard-summer-2012:smims-and-belle",
+   "day": 2,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "hard-summer-2012:d2:hard-stage:1845:a-trak",
+   "artistId": "hard-summer-2012:a-trak",
+   "day": 2,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "hard-summer-2012:d2:hard-stage:2000:squarepusher",
+   "artistId": "hard-summer-2012:squarepusher",
+   "day": 2,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "hard-summer-2012:d2:hard-stage:2125:bloody-beetroots",
+   "artistId": "hard-summer-2012:bloody-beetroots",
+   "day": 2,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "21:25",
+   "end": "22:25"
+  },
+  {
+   "id": "hard-summer-2012:d2:hard-stage:2255:nero",
+   "artistId": "hard-summer-2012:nero",
+   "day": 2,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "22:55",
+   "end": "00:10"
+  },
+  {
+   "id": "hard-summer-2012:d2:hard-stage:0040:skrillex",
+   "artistId": "hard-summer-2012:skrillex",
+   "day": 2,
+   "stageId": "hard-summer-2012:hard-stage",
+   "start": "00:40",
+   "end": "01:50"
+  },
+  {
+   "id": "hard-summer-2012:d2:harder-stage:1810:codes",
+   "artistId": "hard-summer-2012:codes",
+   "day": 2,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "18:10",
+   "end": "19:10"
+  },
+  {
+   "id": "hard-summer-2012:d2:harder-stage:1910:trolley-snatcha",
+   "artistId": "hard-summer-2012:trolley-snatcha",
+   "day": 2,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "19:10",
+   "end": "20:10"
+  },
+  {
+   "id": "hard-summer-2012:d2:harder-stage:2010:gaslamp-killer",
+   "artistId": "hard-summer-2012:gaslamp-killer",
+   "day": 2,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "20:10",
+   "end": "21:20"
+  },
+  {
+   "id": "hard-summer-2012:d2:harder-stage:2120:12th-planet",
+   "artistId": "hard-summer-2012:12th-planet",
+   "day": 2,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "21:20",
+   "end": "22:40"
+  },
+  {
+   "id": "hard-summer-2012:d2:harder-stage:2240:datsik",
+   "artistId": "hard-summer-2012:datsik",
+   "day": 2,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "22:40",
+   "end": "00:00"
+  },
+  {
+   "id": "hard-summer-2012:d2:harder-stage:0000:dj-antention",
+   "artistId": "hard-summer-2012:dj-antention",
+   "day": 2,
+   "stageId": "hard-summer-2012:harder-stage",
+   "start": "00:00",
+   "end": "01:20"
+  },
+  {
+   "id": "hard-summer-2012:d2:rbma-discotheque:1710:amtrac",
+   "artistId": "hard-summer-2012:amtrac",
+   "day": 2,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "17:10",
+   "end": "17:50"
+  },
+  {
+   "id": "hard-summer-2012:d2:rbma-discotheque:1800:the-starship-connection",
+   "artistId": "hard-summer-2012:the-starship-connection",
+   "day": 2,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "18:00",
+   "end": "18:50"
+  },
+  {
+   "id": "hard-summer-2012:d2:rbma-discotheque:1850:brenmar",
+   "artistId": "hard-summer-2012:brenmar",
+   "day": 2,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "18:50",
+   "end": "19:40"
+  },
+  {
+   "id": "hard-summer-2012:d2:rbma-discotheque:2120:justin-martin",
+   "artistId": "hard-summer-2012:justin-martin",
+   "day": 2,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "21:20",
+   "end": "22:20"
+  },
+  {
+   "id": "hard-summer-2012:d2:rbma-discotheque:2220:brodinski",
+   "artistId": "hard-summer-2012:brodinski",
+   "day": 2,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "22:20",
+   "end": "23:20"
+  },
+  {
+   "id": "hard-summer-2012:d2:rbma-discotheque:2320:claude-vonstroke",
+   "artistId": "hard-summer-2012:claude-vonstroke",
+   "day": 2,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "23:20",
+   "end": "00:20"
+  },
+  {
+   "id": "hard-summer-2012:d2:rbma-discotheque:0020:james-murphy",
+   "artistId": "hard-summer-2012:james-murphy",
+   "day": 2,
+   "stageId": "hard-summer-2012:rbma-discotheque",
+   "start": "00:20",
+   "end": "01:50"
+  },
+  {
+   "id": "hard-summer-2012:d2:owsla-tent:1730:nick-thayer",
+   "artistId": "hard-summer-2012:nick-thayer",
+   "day": 2,
+   "stageId": "hard-summer-2012:owsla-tent",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "hard-summer-2012:d2:owsla-tent:1830:huoratron",
+   "artistId": "hard-summer-2012:huoratron",
+   "day": 2,
+   "stageId": "hard-summer-2012:owsla-tent",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "hard-summer-2012:d2:owsla-tent:1945:birdy-nam-nam",
+   "artistId": "hard-summer-2012:birdy-nam-nam",
+   "day": 2,
+   "stageId": "hard-summer-2012:owsla-tent",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "hard-summer-2012:d2:owsla-tent:2110:alvin-risk",
+   "artistId": "hard-summer-2012:alvin-risk",
+   "day": 2,
+   "stageId": "hard-summer-2012:owsla-tent",
+   "start": "21:10",
+   "end": "22:10"
+  },
+  {
+   "id": "hard-summer-2012:d2:owsla-tent:2210:dillon-francis",
+   "artistId": "hard-summer-2012:dillon-francis",
+   "day": 2,
+   "stageId": "hard-summer-2012:owsla-tent",
+   "start": "22:10",
+   "end": "23:25"
+  },
+  {
+   "id": "hard-summer-2012:d2:owsla-tent:2325:zedd",
+   "artistId": "hard-summer-2012:zedd",
+   "day": 2,
+   "stageId": "hard-summer-2012:owsla-tent",
+   "start": "23:25",
+   "end": "00:40"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.hardsummer.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120820035607/http://www.hardfest.com:80/hardsummer/",
+    "captureTimestamp": "20120820035607",
+    "printed": "FRIDAY",
+    "sha256": "30d996c4a58cee9e09c5e3caa97366067b03e3d972e120b367ec0c901d863a67",
+    "rows": 31,
+    "format": "hard-wp",
+    "dateFrom": "Friday, August 3rd & Saturday, August 4th, 2012"
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120820035607/http://www.hardfest.com:80/hardsummer/",
+    "captureTimestamp": "20120820035607",
+    "printed": "SATURDAY",
+    "sha256": "30d996c4a58cee9e09c5e3caa97366067b03e3d972e120b367ec0c901d863a67",
+    "rows": 26,
+    "format": "hard-wp",
+    "dateFrom": "Friday, August 3rd & Saturday, August 4th, 2012"
+   }
+  ]
+ }
+}

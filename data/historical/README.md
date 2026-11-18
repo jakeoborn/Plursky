@@ -96,6 +96,32 @@ backwards or more than six hours, or starts off the axis by over an hour, is a
 misprint and an excluded row, never read another way (2012's Turf War, printed
 "11:45 pm - 12:10 pm"). Sets in a column must run in order with no overlap.
 
+Archived HARD Summer home page (2012, format `hard-wp`):
+
+    node scripts/historical/gather-hard-wp.mjs <edition-id> <gather-dir> <official-url> <ts> <url>
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+In 2012 HARD Summer's page lived on HARD's own site (hardfest.com/hardsummer/),
+a WordPress page whose title must start "HARD Summer". It draws both days, each
+a block headed with its weekday alone ("FRIDAY"); the date of each is the run
+the page's own essential info prints ("Music is scheduled … both days, Friday,
+August 3rd & Saturday, August 4th, 2012."), which must be two consecutive days
+of the edition's year, each on its own weekday. Each day has an hour grid of
+half-hour labels with their own am or pm, latest first, with no gap; then one
+column per stage (an HTML comment names its day and stage), whose blocks print
+one act and a range with no am or pm ("11:30 - 12:30"). Each time is the one
+reading inside the day's grid. Every block is drawn with a height and a top
+margin: the page's scale is the pixels per minute most blocks agree on, and
+each block's printed end and place imply where its column starts. A column
+may sit a few minutes off its grid (2012's Saturday OWSLA Tent is drawn ten
+minutes high), which moves no printed time and is recorded as the column's
+top. A block whose height is not its length, that sits where its column does
+not put it (2012's Kill Frenzy and Zombie Disco Squad are drawn in each
+other's place), that runs backwards or over eight hours, or that is printed
+while another set on its stage is still on, is a misprint and an excluded
+row, never read another way. The archived URL must be on hardfest.com or
+hardsummer.com.
+
 Archived Tomorrowland line-up pages (2010 to 2012, format `tml-cms`):
 
     node scripts/historical/gather-tml-cms.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]
