@@ -10187,6 +10187,7 @@ function StageLineupSheet({
   var sets = activeLineup().filter(a => a.stage === stage.id && a.day === day).sort((a, b) => setTimingMin(a) && setTimingMin(b) ? toSlot(a.start) - toSlot(b.start) : compareSetsByTime(a, b, STAGES));
   var totalAcrossDays = activeLineup().filter(a => a.stage === stage.id).length;
   var heroInk = _inkOn(stage.color);
+  var closer = sets.filter(a => a.start && !(typeof setTimesUnconfirmed === "function" && setTimesUnconfirmed(a))).sort((a, b) => toSlot(b.start) * 60 + parseInt(b.start.split(":")[1] || 0) - (toSlot(a.start) * 60 + parseInt(a.start.split(":")[1] || 0)))[0] || null;
   React.useEffect(() => {
     var onKey = e => {
       if (e.key === "Escape") onClose();
@@ -10285,7 +10286,18 @@ function StageLineupSheet({
       gap: 8,
       padding: "8px 16px 0"
     }
-  }, [walk.known === false ? {
+  }, (walk.known === false && distM == null && closer ? [{
+    label: "Sets",
+    value: `${sets.length}`,
+    unit: day === NOW.night ? "today" : "set day",
+    note: `${totalAcrossDays} · ${DAYS.length} NIGHTS`
+  }, {
+    label: "Closes",
+    value: fmt12(closer.start).replace(/\s*[AP]M$/i, ""),
+    unit: (fmt12(closer.start).match(/[AP]M$/i) || [""])[0],
+    name: closer,
+    wide: true
+  }] : [walk.known === false ? {
     label: "Walk",
     value: "—",
     unit: "",
@@ -10310,7 +10322,49 @@ function StageLineupSheet({
     value: `${sets.length}`,
     unit: day === NOW.night ? "today" : "set day",
     note: `${totalAcrossDays} · ${DAYS.length} NIGHTS`
-  }].map(c => React.createElement("div", {
+  }]).map(c => c.name ? React.createElement("button", {
+    key: c.label,
+    "data-stage-closer": c.name.id,
+    onClick: () => onOpenArtist(c.name.id),
+    className: "duo-card duo-lift",
+    "aria-label": `Closes: ${c.name.name}, ${c.value} ${c.unit}`.trim(),
+    style: {
+      gridColumn: "span 2",
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      padding: "10px 12px",
+      minWidth: 0,
+      minHeight: 44,
+      border: "none",
+      textAlign: "left",
+      font: "inherit",
+      color: "var(--ink)",
+      cursor: "pointer"
+    }
+  }, React.createElement(DuoAvatar, {
+    name: c.name.name,
+    size: 44,
+    ring: "on"
+  }), React.createElement("span", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("span", {
+    className: "duo-label duo-ink3",
+    style: {
+      display: "block"
+    }
+  }, c.label, " · ", c.value, " ", c.unit), React.createElement("span", {
+    className: "duo-headline duo-name",
+    style: {
+      display: "block",
+      fontWeight: 700,
+      marginTop: 4,
+      overflowWrap: "anywhere"
+    }
+  }, actDisplayName(c.name.name)))) : React.createElement("div", {
     key: c.label,
     className: "duo-card",
     style: {

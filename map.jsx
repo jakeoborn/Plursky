@@ -7520,6 +7520,9 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
     .sort((a, b) => setTimingMin(a) && setTimingMin(b) ? toSlot(a.start) - toSlot(b.start) : compareSetsByTime(a, b, STAGES));
   const totalAcrossDays = activeLineup().filter(a => a.stage === stage.id).length;
   const heroInk = _inkOn(stage.color);
+  // Who closes this stage on the chosen day: its last set with a confirmed time.
+  const closer = sets.filter(a => a.start && !(typeof setTimesUnconfirmed === "function" && setTimesUnconfirmed(a)))
+    .sort((a, b) => toSlot(b.start) * 60 + parseInt(b.start.split(":")[1] || 0) - (toSlot(a.start) * 60 + parseInt(a.start.split(":")[1] || 0)))[0] || null;
   // Esc closes the place card (keyboard / a11y parity with the × button).
   React.useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") onClose(); };
@@ -7577,7 +7580,12 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
         display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(104px, 1fr))", gap: 8,
         padding: "8px 16px 0",
       }}>
-        {[
+        {(walk.known === false && distM == null && closer ? [
+          // A map with no survey has nothing to say about walking here, so
+          // the two dash cells give their room to who closes the night.
+          { label: "Sets", value: `${sets.length}`, unit: day === NOW.night ? "today" : "set day", note: `${totalAcrossDays} · ${DAYS.length} NIGHTS` },
+          { label: "Closes", value: fmt12(closer.start).replace(/\s*[AP]M$/i, ""), unit: (fmt12(closer.start).match(/[AP]M$/i) || [""])[0], name: closer, wide: true },
+        ] : [
           walk.known === false
             ? { label: "Walk", value: "—", unit: "", note: "UNSURVEYED" }
             : { label: "Walk", value: walkMinsLabel(walk), unit: "min", note: walk.peak ? "PEAK" : walk.plan ? "PLAN 20+" : null },
@@ -7585,7 +7593,17 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
             ? { label: "Distance", value: "—", unit: "", note: "UNSURVEYED" }
             : { label: "Distance", value: `${distM}`, unit: "m", note: null },
           { label: "Sets", value: `${sets.length}`, unit: day === NOW.night ? "today" : "set day", note: `${totalAcrossDays} · ${DAYS.length} NIGHTS` },
-        ].map(c => (
+        ]).map(c => c.name ? (
+          <button key={c.label} data-stage-closer={c.name.id} onClick={() => onOpenArtist(c.name.id)} className="duo-card duo-lift"
+            aria-label={`Closes: ${c.name.name}, ${c.value} ${c.unit}`.trim()}
+            style={{ gridColumn: "span 2", display: "flex", alignItems: "center", gap: 10, padding: "10px 12px", minWidth: 0, minHeight: 44, border: "none", textAlign: "left", font: "inherit", color: "var(--ink)", cursor: "pointer" }}>
+            <DuoAvatar name={c.name.name} size={44} ring="on" />
+            <span style={{ flex: 1, minWidth: 0 }}>
+              <span className="duo-label duo-ink3" style={{ display: "block" }}>{c.label} · {c.value} {c.unit}</span>
+              <span className="duo-headline duo-name" style={{ display: "block", fontWeight: 700, marginTop: 4, overflowWrap: "anywhere" }}>{actDisplayName(c.name.name)}</span>
+            </span>
+          </button>
+        ) : (
           <div key={c.label} className="duo-card" style={{ padding: "10px 12px", minWidth: 0 }}>
             <div className="duo-label duo-ink3">{c.label}</div>
             <div className="duo-clock" style={{ fontSize: 24, marginTop: 6, color: "var(--ink)" }}>
