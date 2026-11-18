@@ -121,6 +121,13 @@ export const EDITIONS = {
   "primavera-sound-2017": { festivalId: "primavera-sound", name: "Primavera Sound 2017", year: 2017,
     timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
     dates: [["2017-05-31", "Wednesday"], ["2017-06-01", "Thursday"], ["2017-06-02", "Friday"], ["2017-06-03", "Saturday"]] },
+  // Primavera Sound 2019: the same full timetable, headed "Set times", its
+  // tabs printing whole dates (Monday 27 May to Sunday 2 June). Wednesday 29
+  // May is the Fòrum's opening night on the Primavera and Night Pro stages;
+  // Sunday 2 June is the city's alone. The day runs from 10 AM.
+  "primavera-sound-2019": { festivalId: "primavera-sound", name: "Primavera Sound 2019", year: 2019,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2019-05-29", "Wednesday"], ["2019-05-30", "Thursday"], ["2019-05-31", "Friday"], ["2019-06-01", "Saturday"]] },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.

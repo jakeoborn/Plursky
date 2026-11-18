@@ -128,8 +128,15 @@ const out = build();
   // reported in that pull request. Primavera Sound 2017 ruled three more under
   // the same band-parenthetical and set tag rules and a new one for a name
   // printed with how it is said (PATRICK CODENYS (FRONT 242), !!! (CHK CHK
-  // CHK) and its DJ SET), leaving the queue at 164. Past 164, stop and report.
-  check(review.length <= 164, `review queue is ${review.length} rows (> 164 means stop and report)`);
+  // CHK) and its DJ SET), leaving the queue at 164. Primavera Sound 2019
+  // ruled one billing under the existing feat. rule (HURRICANE G FEAT TONY
+  // TOUCH) and left six as printed: two parentheticals naming the people
+  // behind an act (SHAKTI ALLIANCE (IVY, MODET, VIR), TONY TOUCH & FRIENDS
+  // (DON CHEZINA + SONI WITHANEYE)), three feat. billings whose guests the
+  // printing does not settle (a show title, a one-letter guest, a "&" that
+  // may be one act or two) and the short name IDK: 170 rows, raised here and
+  // reported in that pull request. Past 170, stop and report.
+  check(review.length <= 170, `review queue is ${review.length} rows (> 170 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

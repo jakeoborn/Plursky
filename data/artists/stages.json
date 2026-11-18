@@ -4429,6 +4429,136 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "primavera-sound:xiringuito-aperol",
+     "names": [
+      {
+       "printed": "Xiringuito Aperol",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:desperados-cube",
+     "names": [
+      {
+       "printed": "Desperados Cube",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:your-heineken-stage",
+     "names": [
+      {
+       "printed": "Your Heineken Stage",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:lotus",
+     "names": [
+      {
+       "printed": "Lotus",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:seat",
+     "names": [
+      {
+       "printed": "Seat",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ocb-paper-sessions",
+     "names": [
+      {
+       "printed": "OCB PAPER SESSIONS",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:pull-and-bear",
+     "names": [
+      {
+       "printed": "Pull&Bear",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:seat-village",
+     "names": [
+      {
+       "printed": "Seat Village",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ray-ban-studios",
+     "names": [
+      {
+       "printed": "Ray-Ban Studios",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:el-punto-by-adidas-originals",
+     "names": [
+      {
+       "printed": "El Punto by adidas Originals",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

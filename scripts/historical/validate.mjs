@@ -438,12 +438,12 @@ function officialSources(e, meta, p) {
         if (primaveraDate(c.printed, e.year) !== date || !(c.tabs || []).includes(c.printed) || !/Parc del Fòrum/.test(c.heading || ""))
           p.push(`${tag}: the page's day tab "${c.printed}" (heading "${c.heading}") does not print ${date} at Parc del Fòrum`);
       } else if (c.format === "primavera-completos") {
-        // Primavera Sound's 2016 full timetable prints each day as a weekday
-        // and a day of the month ("MIÉRCOLES 1"); the row of tabs names its
+        // Primavera Sound's 2016-2019 full timetable prints each day as a
+        // weekday and a day of the month ("MIÉRCOLES 1"; 2019 the whole date); the row of tabs names its
         // dates as one run of days in the year, and the page is the full
         // timetable, not one venue's.
         const run = primaveraRun(c.tabs, e.year), i = (c.tabs || []).indexOf(c.printed);
-        if (!run || i < 0 || run[i] !== date || !/^(Horarios|Horaris|Timetable)$/.test(c.heading || "") || !/^(Horarios completos|Horaris complets|Full timetable)$/.test(c.active || ""))
+        if (!run || i < 0 || run[i] !== date || !/^(Horarios|Horaris|Timetable|Set times)$/.test(c.heading || "") || !/^(Horarios completos|Horaris complets|Full timetable|All set times)$/.test(c.active || ""))
           p.push(`${tag}: the page's day tab "${c.printed}" (tabs ${(c.tabs || []).join(", ")}; "${c.heading}", "${c.active}") does not print ${date} on the full timetable`);
       } else if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
       // Outside Lands' grid prints no am/pm: the day's meridiem comes from one

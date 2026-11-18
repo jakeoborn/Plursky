@@ -118,9 +118,9 @@ Zamilska) is an open end. Sets on a stage must run in order with no overlap;
 anything else stops the read. The 2015 day pages were captured after the
 festival (Wednesday's on May 31, the rest in September). Wednesday 27 May is
 the ATP stage alone; the three main days have 11 stages each. Other years'
-timetables (2012, 2013, 2018, 2019) are archived too and are not read yet.
+timetables (2012, 2013, 2018) are archived too and are not read yet.
 
-Archived Primavera Sound full timetable (2016 and 2017, format `primavera-completos`):
+Archived Primavera Sound full timetable (2016, 2017 and 2019, format `primavera-completos`):
 
     node scripts/historical/gather-primavera-completos.mjs <edition-id> <gather-dir> <official-url> <ts> <day-url> [ … one pair per day ]
     node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
@@ -145,10 +145,21 @@ runs to 06:00, so the 2016 day runs from 10 AM. Pages captured 19 June 2016.
 ("MIÉ-31") and list only the season's days with shows, so the run may skip
 days: each tab must be the first day after the one before with its weekday
 and day of the month, no more than a week on. One Fòrum stage (Mango House)
-is printed after the city's columns, still marked as the Fòrum's. The names'
-class carries the year (`artists_2017`, 2016's `2016_artists`) and must be the
-edition's. Wednesday 31 May is the Fòrum's free opening on two stages. Pages
-captured 20 to 23 June 2017. 2019's tabs print ISO dates and are not read yet.
+is printed after the city's columns, still marked as the Fòrum's. Each name
+links to that year's artist page (`2017_artists?id=…`), and the link's year
+must be the edition's. Wednesday 31 May is the Fòrum's free opening on two
+stages. Pages captured 20 to 23 June 2017.
+
+2019 is the same page again, headed "Set times" with "All set times" active
+and the Fòrum's columns under "Parc del Fòrum". The tabs print whole dates
+("2019-05-30", Monday 27 May to Sunday 2 June), which must fall in the
+edition's year, each later than the one before and at most a week on. The
+names keep 2017's class (`artists_2017`), so only the link's year
+(`2019_artists?id=…`) is read. Day Pro, a city conference, prints two
+sessions at once on Friday 31 May, so the no-overlap rule holds for the
+Fòrum's stages only; the city's columns are never sets. Wednesday 29 May is
+the Fòrum's opening night on two stages, Thursday to Saturday have 16, and
+Sunday 2 June is the city's alone. Pages captured 23 July 2019.
 
 Archived Lollapalooza lineup cards (2018, format `lolla-cards`):
 

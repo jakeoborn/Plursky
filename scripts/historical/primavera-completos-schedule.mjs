@@ -1,16 +1,20 @@
 // primavera-completos-schedule.mjs — Primavera Sound's own full timetable
 // ("Horarios completos", primaverasound.es/horarios?d=N&l=forum&content=),
-// 2016 and 2017 template, read from an archived capture. Format
+// 2016, 2017 and 2019 template, read from an archived capture. Format
 // "primavera-completos".
 //
 // One page prints one day of the whole festival season, Parc del Fòrum and
 // the city venues ("Primavera a la Ciutat") side by side:
-//   - the heading "Horarios" ("Horaris", "Timetable"), with "Horarios
-//     completos" the active entry of the venue submenu;
+//   - the heading "Horarios" ("Horaris", "Timetable"; 2019: "Set times"),
+//     with "Horarios completos" ("All set times") the active entry of the
+//     venue submenu;
 //   - a row of day tabs (<div id="title_dias">), one per day with shows, the
 //     page's own day the one <span class="rojo"> that is not a link. A tab
 //     prints a weekday and a day of the month and nothing else: "MIÉRCOLES 1"
-//     in 2016 (Spanish, Catalan or English), "MIÉ-31" in 2017. The tabs run
+//     in 2016 (Spanish, Catalan or English), "MIÉ-31" in 2017; 2019's print
+//     the whole date ("2019-05-30"), which must fall in the edition's year,
+//     each tab later than the one before and no more than a week after it.
+//     Otherwise the tabs run
 //     forward in time, so the row as a whole names its dates: there must be
 //     exactly one run of days in the edition's year with the weekdays and
 //     days of the month printed, each tab no more than a week after the one
@@ -18,8 +22,8 @@
 //     4 June, the days with shows);
 //   - a grid (<table id="listaHorarios">) whose first header row groups the
 //     columns by venue (<th class="TituloEscenarioforum"> under "PARC DEL
-//     FÒRUM", <th class="TituloEscenariociutat"> under "Primavera a la
-//     Ciutat"), whose second names one stage per column, each marked with its
+//     FÒRUM", 2019 "Parc del Fòrum", <th class="TituloEscenariociutat"> under
+//     "Primavera a la Ciutat"), whose second names one stage per column, each marked with its
 //     venue (<th class="escenarioforum">, <th class="escenariociutat">; 2017
 //     puts one Fòrum stage after the city's), the same stages repeated in a
 //     footer row, then one row every 15 minutes, each opening and closing
@@ -28,15 +32,20 @@
 //     stage. Past midnight the times carry on (0:00 … 6:30).
 // A set is a block in a stage's cell, drawn in that stage's venue:
 //   <div class="concertBoxforum KKaddMinutes-N" style="height:Hpx;top:Tpx;">
-//     <a …><div class="hora ">(12:00 - 13:30)</div>
-//     <div class="2016_artists"> NAME</div></a>   (2017: class="artists_2017")
-// The name's class carries the edition's year. The block's printed start
+//     <a href="…2016_artists?id=123" class="artistaAnchor" …>
+//     <div class="hora ">(12:00 - 13:30)</div>
+//     <div class="2016_artists"> NAME</div></a>   (2017 and 2019: class="artists_2017")
+// The name links to the artist's page for the edition's year
+// ("2016_artists?id=…"); the year in the name's class is not read, since
+// 2019's page still prints 2017's class. The block's printed start
 // must be its row's time plus N minutes (0 ≤ N < 15) and, where it prints an
 // end, it must be drawn two pixels a minute tall (H = 2 × length). A block
 // that prints its start alone ("(18:00)", 2016's minimúsica) is an open end,
-// its height not read. Within a stage, sets run in order with no overlap. Only Parc del Fòrum's stages are the
-// festival site's: the city's columns are read (every check above holds for
-// them too) and returned apart, as `cityStages`, never as sets. Anything else
+// its height not read. Within a Fòrum stage, sets run in order with no
+// overlap. Only Parc del Fòrum's stages are the festival site's: the city's
+// columns are read (every check above but the overlap holds for them too;
+// 2019's Day Pro, a conference, prints two sessions at once on 31 May) and
+// returned apart, as `cityStages`, never as sets. Anything else
 // throws: nothing on this page is read another way.
 
 import { plain } from "./primavera-horarios-schedule.mjs";
@@ -55,6 +64,7 @@ const WEEKDAYS = {
 const SHORT = { es: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"] };
 
 // "MIÉRCOLES 1" (2016) or "MIÉ-31" (2017) → { lang, wd, dom }, or null.
+// A whole date ("2019-05-30") is read by tabRun itself.
 export function tabDay(label) {
   const m = /^(\S+?)(?: |-)(\d{1,2})$/.exec(String(label || "").trim().toLowerCase());
   if (!m || +m[2] < 1 || +m[2] > 31) return null;
@@ -73,6 +83,17 @@ export function tabDay(label) {
 // than a week after it; exactly one starting day in the year may fit, and all
 // the tabs are printed in one language.
 export function tabRun(labels, year) {
+  const iso = (labels || []).map(l => String(l || "").trim());
+  if (iso.length && iso.some(l => /^\d{4}-\d{2}-\d{2}$/.test(l))) {
+    const ok = iso.every((l, i) => {
+      const d = new Date(l + "T12:00:00Z");
+      if (Number.isNaN(d.getTime()) || d.toISOString().slice(0, 10) !== l || d.getUTCFullYear() !== year) return false;
+      if (!i) return true;
+      const gap = (d - new Date(iso[i - 1] + "T12:00:00Z")) / 864e5;
+      return gap >= 1 && gap <= 7;
+    });
+    return ok ? iso : null;
+  }
   const days = (labels || []).map(tabDay);
   if (!days.length || days.some(d => !d) || new Set(days.map(d => d.lang)).size !== 1) return null;
   const fits = (d, x) => d.getUTCDay() === x.wd && d.getUTCDate() === x.dom;
@@ -102,9 +123,9 @@ const VENUES = { forum: "PARC DEL FÒRUM", ciutat: "Primavera a la Ciutat" };
 export function parsePrimaveraCompletos(html, { year } = {}) {
   if (!year) throw new Error("no year");
   const heading = plain(/<h1 class="font01">([\s\S]*?)<\/h1>/.exec(html)?.[1] ?? "");
-  if (!/^(Horarios|Horaris|Timetable)$/.test(heading)) throw new Error(`the page's heading "${heading}" is not the timetable's`);
+  if (!/^(Horarios|Horaris|Timetable|Set times)$/.test(heading)) throw new Error(`the page's heading "${heading}" is not the timetable's`);
   const active = [...html.matchAll(/<li class="horarios-location active">([\s\S]*?)<\/li>/g)].map(x => plain(x[1]));
-  if (active.length !== 1 || !/^(Horarios completos|Horaris complets|Full timetable)$/.test(active[0])) throw new Error(`the page's venue submenu has "${active.join(", ")}" active, not the full timetable`);
+  if (active.length !== 1 || !/^(Horarios completos|Horaris complets|Full timetable|All set times)$/.test(active[0])) throw new Error(`the page's venue submenu has "${active.join(", ")}" active, not the full timetable`);
 
   // The day tabs: every day of the week, the page's own the one marked rojo.
   const tabsAt = html.indexOf('<div id="title_dias"');
@@ -126,7 +147,7 @@ export function parsePrimaveraCompletos(html, { year } = {}) {
   const heads = [...table.matchAll(/<thead>([\s\S]*?)<\/thead>/g)].map(x => x[1]);
   if (heads.length !== 2) throw new Error(`${date}: ${heads.length} header rows, not a venue row and a stage row`);
   const groups = [...heads[0].matchAll(/<th\b[^>]*class="TituloEscenario(forum|ciutat)"[^>]*>([\s\S]*?)<\/th>/g)].map(x => ({ venue: x[1], title: plain(x[2]) }));
-  for (const g of groups) if (g.title && g.title !== VENUES[g.venue]) throw new Error(`${date}: the ${g.venue} columns are headed "${g.title}"`);
+  for (const g of groups) if (g.title && g.title.toUpperCase() !== VENUES[g.venue].toUpperCase()) throw new Error(`${date}: the ${g.venue} columns are headed "${g.title}"`);
   const titled = new Set(groups.filter(g => g.title).map(g => g.venue));
   const cols = [...heads[1].matchAll(/<th class="escenario(forum|ciutat)">([\s\S]*?)<\/th>/g)].map(x => ({ venue: x[1], stage: plain(x[2]) }));
   if (!cols.length || cols.some(c => !c.stage) || new Set(cols.map(c => c.stage)).size !== cols.length) throw new Error(`${date}: stage headers ${cols.map(c => c.stage).join(", ")}`);
@@ -160,9 +181,10 @@ export function parsePrimaveraCompletos(html, { year } = {}) {
       for (const b of blocks) {
         const add = +b[2], height = +b[3];
         if (b[1] !== venue) throw new Error(`${date} ${hhmm(t)} ${stage}: a ${b[1]} block in a ${venue} column`);
-        const names = [...b[4].matchAll(/<div class="(?:(\d{4})_artists|artists_(\d{4}))">([\s\S]*?)<\/div>/g)];
-        if (names.some(x => +(x[1] || x[2]) !== year)) throw new Error(`${date} ${hhmm(t)} ${stage}: a name marked for ${names.map(x => x[1] || x[2]).join(", ")}, not ${year}`);
-        names.forEach((x, i) => { names[i] = plain(x[3]); });
+        const links = [...b[4].matchAll(/<a href="[^"]*?(\d{4})_artists\?id=\d+" class="artistaAnchor"/g)].map(x => +x[1]);
+        if ((b[4].match(/<a\b/g) || []).length !== 1 || links.length !== 1) throw new Error(`${date} ${hhmm(t)} ${stage}: a block that does not link to one artist's page`);
+        if (links[0] !== year) throw new Error(`${date} ${hhmm(t)} ${stage}: a name linked to ${links[0]}'s artist page, not ${year}'s`);
+        const names = [...b[4].matchAll(/<div class="(?:\d{4}_artists|artists_\d{4})">([\s\S]*?)<\/div>/g)].map(x => plain(x[1]));
         const horas = [...b[4].matchAll(/<div class="hora ?">([\s\S]*?)<\/div>/g)].map(x => plain(x[1]));
         if (names.length !== 1 || !names[0] || horas.length !== 1) throw new Error(`${date} ${hhmm(t)} ${stage}: a block with ${names.length} name(s) and ${horas.length} time(s)`);
         const artist = names[0], printed = horas[0], where = `${date} ${stage} "${artist}"`;
@@ -174,7 +196,7 @@ export function parsePrimaveraCompletos(html, { year } = {}) {
         if (!open && (len <= 0 || len > 360)) throw new Error(`${where}: "${printed}" does not run forward within the night`);
         if (!open && height !== 2 * len) throw new Error(`${where}: "${printed}" is ${len} minutes, drawn ${height}px tall (not 2px a minute)`);
         const start = at + add, prev = seen[k];
-        if (prev && start < prev.end) throw new Error(`${where}: starts at ${hhmm(start)}, before "${prev.artist}" ends`);
+        if (prev && start < prev.end && venue === "forum") throw new Error(`${where}: starts at ${hhmm(start)}, before "${prev.artist}" ends`);
         seen[k] = { artist, end: start + (len ?? 0) };
         (venue === "forum" ? sets : city).push({ stage, start: hhmm(s), end: open ? "" : hhmm(e), artist, printed, ...(open && { openEnd: true }) });
       }

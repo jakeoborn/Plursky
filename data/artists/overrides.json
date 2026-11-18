@@ -4054,6 +4054,21 @@
    "setTag": "DJ SET",
    "why": "\"DJ SET\" is the set tag, and the rest is the band's name with how it is said, kept whole as on its other billing the same day (the !!! (CHK CHK CHK) ruling).",
    "source": "https://www.primaverasound.es/"
+  },
+  {
+   "printed": "HURRICANE G FEAT TONY TOUCH",
+   "performers": [
+    {
+     "name": "HURRICANE G",
+     "role": "performer"
+    },
+    {
+     "name": "TONY TOUCH",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://www.primaverasound.es/"
   }
  ],
  "pending": [
@@ -4628,6 +4643,30 @@
   {
    "printed": "OPTIMO (ESPACIO)",
    "why": "Left as printed, one act: the parenthetical may name the act's own club night or the people behind it, and no first-party page says which. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "SHAKTI ALLIANCE (IVY, MODET, VIR)",
+   "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "TONY TOUCH & FRIENDS (DON CHEZINA + SONI WITHANEYE)",
+   "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "BIRKINS FEAT. KEN STRINGFELLOW PLAY ZIGGY STARDUST",
+   "why": "Left as printed, one act: the billing is a show (an album played live) with a guest, and no first-party page says where the guest name ends and the show title begins. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "EL MATÓ A UN POLICÍA MOTORIZADO FEAT. AMAIA, J Y MANU FERRÓN",
+   "why": "Left as printed, one act: one guest is printed as the single letter \"J\", which cannot be told apart from other acts of that name without a first-party page. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "P POSTMAN FT. EMERGENCY TIARA, DARKO & MAHKENNA, DJ UNKNOWN",
+   "why": "Left as printed, one act: the printing does not say whether \"DARKO & MAHKENNA\" is one act or two, and no first-party page rules it. Renders as its own billing until one rules it."
+  },
+  {
+   "key": "idk",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]
 }

@@ -407443,6 +407443,6431 @@
   "mainStage": null
  },
  {
+  "id": "primavera-sound-2019:d1:primavera:1700:mow",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-29",
+  "day": 1,
+  "stage": "Primavera",
+  "start": "17:00",
+  "end": "17:35",
+  "printed": "MOW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mow",
+    "role": "performer"
+   }
+  ],
+  "act": "mow",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d1:primavera:1800:melenas",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-29",
+  "day": 1,
+  "stage": "Primavera",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "MELENAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "melenas",
+    "role": "performer"
+   }
+  ],
+  "act": "melenas",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d1:primavera:1910:hatchie",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-29",
+  "day": 1,
+  "stage": "Primavera",
+  "start": "19:10",
+  "end": "20:00",
+  "printed": "HATCHIE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hatchie",
+    "role": "performer"
+   }
+  ],
+  "act": "hatchie",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d1:primavera:2030:cuco",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-29",
+  "day": 1,
+  "stage": "Primavera",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "CUCO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cuco",
+    "role": "performer"
+   }
+  ],
+  "act": "cuco",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d1:primavera:2200:big-red-machine",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-29",
+  "day": 1,
+  "stage": "Primavera",
+  "start": "22:00",
+  "end": "23:15",
+  "printed": "BIG RED MACHINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-red-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "big-red-machine",
+  "closing": true,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d1:night-pro:1800:egosex",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-29",
+  "day": 1,
+  "stage": "Night Pro",
+  "start": "18:00",
+  "end": "18:40",
+  "printed": "EGOSEX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "egosex",
+    "role": "performer"
+   }
+  ],
+  "act": "egosex",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d1:night-pro:1910:l8ching",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-29",
+  "day": 1,
+  "stage": "Night Pro",
+  "start": "19:10",
+  "end": "19:50",
+  "printed": "L8CHING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "l8ching",
+    "role": "performer"
+   }
+  ],
+  "act": "l8ching",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d1:night-pro:2010:meuko-meuko",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-29",
+  "day": 1,
+  "stage": "Night Pro",
+  "start": "20:10",
+  "end": "20:50",
+  "printed": "MEUKO! MEUKO!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meuko-meuko",
+    "role": "performer"
+   }
+  ],
+  "act": "meuko-meuko",
+  "closing": true,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:primavera:1720:alice-phoebe-lou",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Primavera",
+  "start": "17:20",
+  "end": "18:05",
+  "printed": "ALICE PHOEBE LOU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alice-phoebe-lou",
+    "role": "performer"
+   }
+  ],
+  "act": "alice-phoebe-lou",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:primavera:1900:stephen-malkmus-and-the-jicks",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Primavera",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "STEPHEN MALKMUS & THE JICKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stephen-malkmus-and-the-jicks",
+    "role": "performer"
+   }
+  ],
+  "act": "stephen-malkmus-and-the-jicks",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:primavera:2110:christine-and-the-queens",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Primavera",
+  "start": "21:10",
+  "end": "22:15",
+  "printed": "CHRISTINE AND THE QUEENS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "christine-and-the-queens",
+    "role": "performer"
+   }
+  ],
+  "act": "christine-and-the-queens",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:primavera:2325:guided-by-voices",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Primavera",
+  "start": "23:25",
+  "end": "00:40",
+  "printed": "GUIDED BY VOICES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "guided-by-voices",
+    "role": "performer"
+   }
+  ],
+  "act": "guided-by-voices",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:primavera:0155:charli-xcx",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Primavera",
+  "start": "01:55",
+  "end": "02:45",
+  "printed": "CHARLI XCX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charli-xcx",
+    "role": "performer"
+   }
+  ],
+  "act": "charli-xcx",
+  "closing": true,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:night-pro:1820:teskno",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Night Pro",
+  "start": "18:20",
+  "end": "19:00",
+  "printed": "TĘSKNO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teskno",
+    "role": "performer"
+   }
+  ],
+  "act": "teskno",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:night-pro:1920:belau",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Night Pro",
+  "start": "19:20",
+  "end": "20:00",
+  "printed": "BELAU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "belau",
+    "role": "performer"
+   }
+  ],
+  "act": "belau",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:night-pro:2020:malihini",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Night Pro",
+  "start": "20:20",
+  "end": "21:00",
+  "printed": "MALIHINI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "malihini",
+    "role": "performer"
+   }
+  ],
+  "act": "malihini",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:night-pro:2120:lonker-see",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Night Pro",
+  "start": "21:20",
+  "end": "22:00",
+  "printed": "LONKER SEE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lonker-see",
+    "role": "performer"
+   }
+  ],
+  "act": "lonker-see",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:night-pro:2220:we-will-fail",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Night Pro",
+  "start": "22:20",
+  "end": "23:00",
+  "printed": "WE WILL FAIL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "we-will-fail",
+    "role": "performer"
+   }
+  ],
+  "act": "we-will-fail",
+  "closing": true,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:xiringuito-aperol:1400:im",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Xiringuito Aperol",
+  "start": "14:00",
+  "end": "15:15",
+  "printed": "IM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "im",
+    "role": "performer"
+   }
+  ],
+  "act": "im",
+  "closing": false,
+  "stageLineage": "primavera-sound:xiringuito-aperol",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:xiringuito-aperol:1515:shakti-alliance-ivy-modet-vir",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Xiringuito Aperol",
+  "start": "15:15",
+  "end": "18:00",
+  "printed": "SHAKTI ALLIANCE (IVY, MODET, VIR)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shakti-alliance-ivy-modet-vir",
+    "role": "act"
+   }
+  ],
+  "act": "shakti-alliance-ivy-modet-vir",
+  "closing": true,
+  "stageLineage": "primavera-sound:xiringuito-aperol",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "primavera-sound-2019:d2:auditori-rockdelux:1600:bridget-st-john",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Auditori Rockdelux",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "BRIDGET ST. JOHN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bridget-st-john",
+    "role": "performer"
+   }
+  ],
+  "act": "bridget-st-john",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:auditori-rockdelux:1700:julien-baker",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Auditori Rockdelux",
+  "start": "17:00",
+  "end": "17:50",
+  "printed": "JULIEN BAKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julien-baker",
+    "role": "performer"
+   }
+  ],
+  "act": "julien-baker",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:auditori-rockdelux:1810:the-necks",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Auditori Rockdelux",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "THE NECKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-necks",
+    "role": "performer"
+   }
+  ],
+  "act": "the-necks",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:auditori-rockdelux:1930:terry-riley-and-gyan-riley",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Auditori Rockdelux",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "TERRY RILEY & GYAN RILEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "terry-riley-and-gyan-riley",
+    "role": "performer"
+   }
+  ],
+  "act": "terry-riley-and-gyan-riley",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:auditori-rockdelux:2055:apparat-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Auditori Rockdelux",
+  "start": "20:55",
+  "end": "22:00",
+  "printed": "APPARAT LIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "apparat-live",
+    "role": "performer"
+   }
+  ],
+  "act": "apparat-live",
+  "closing": true,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban:1640:las-odio",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "16:40",
+  "end": "17:15",
+  "printed": "LAS ODIO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "las-odio",
+    "role": "performer"
+   }
+  ],
+  "act": "las-odio",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban:1810:soccer-mommy",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "18:10",
+  "end": "18:55",
+  "printed": "SOCCER MOMMY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soccer-mommy",
+    "role": "performer"
+   }
+  ],
+  "act": "soccer-mommy",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban:2005:danny-brown",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "20:05",
+  "end": "21:05",
+  "printed": "DANNY BROWN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danny-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "danny-brown",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban:2220:nas",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "22:20",
+  "end": "23:20",
+  "printed": "NAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nas",
+    "role": "performer"
+   }
+  ],
+  "act": "nas",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban:0045:dirty-projectors",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "00:45",
+  "end": "01:50",
+  "printed": "DIRTY PROJECTORS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dirty-projectors",
+    "role": "performer"
+   }
+  ],
+  "act": "dirty-projectors",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban:0250:fka-twigs",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "02:50",
+  "end": "03:50",
+  "printed": "FKA TWIGS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fka-twigs",
+    "role": "performer"
+   }
+  ],
+  "act": "fka-twigs",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban:0400:nina-kraviz",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban",
+  "start": "04:00",
+  "end": "06:00",
+  "printed": "NINA KRAVIZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nina-kraviz",
+    "role": "performer"
+   }
+  ],
+  "act": "nina-kraviz",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:adidas-originals:1700:elena-setien",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "ELENA SETIÉN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elena-setien",
+    "role": "performer"
+   }
+  ],
+  "act": "elena-setien",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:adidas-originals:1825:dream-wife",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "18:25",
+  "end": "19:10",
+  "printed": "DREAM WIFE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dream-wife",
+    "role": "performer"
+   }
+  ],
+  "act": "dream-wife",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:adidas-originals:2005:shonen-knife",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "20:05",
+  "end": "20:50",
+  "printed": "SHONEN KNIFE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shonen-knife",
+    "role": "performer"
+   }
+  ],
+  "act": "shonen-knife",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:adidas-originals:2145:stiff-little-fingers",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "21:45",
+  "end": "22:30",
+  "printed": "STIFF LITTLE FINGERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stiff-little-fingers",
+    "role": "performer"
+   }
+  ],
+  "act": "stiff-little-fingers",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:adidas-originals:2330:carcass",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "CARCASS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carcass",
+    "role": "performer"
+   }
+  ],
+  "act": "carcass",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:adidas-originals:0120:myrkur",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "01:20",
+  "end": "02:05",
+  "printed": "MYRKUR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "myrkur",
+    "role": "performer"
+   }
+  ],
+  "act": "myrkur",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:adidas-originals:0300:nitzer-ebb",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "adidas Originals",
+  "start": "03:00",
+  "end": "04:00",
+  "printed": "NITZER EBB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nitzer-ebb",
+    "role": "performer"
+   }
+  ],
+  "act": "nitzer-ebb",
+  "closing": true,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:pitchfork:1745:odina",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "17:45",
+  "end": "18:20",
+  "printed": "ODINA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odina",
+    "role": "performer"
+   }
+  ],
+  "act": "odina",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:pitchfork:1915:tomberlin",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "19:15",
+  "end": "20:00",
+  "printed": "TOMBERLIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tomberlin",
+    "role": "performer"
+   }
+  ],
+  "act": "tomberlin",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:pitchfork:2055:clairo",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "20:55",
+  "end": "21:40",
+  "printed": "CLAIRO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clairo",
+    "role": "performer"
+   }
+  ],
+  "act": "clairo",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:pitchfork:2235:sigrid",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "22:35",
+  "end": "23:25",
+  "printed": "SIGRID",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sigrid",
+    "role": "performer"
+   }
+  ],
+  "act": "sigrid",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:pitchfork:0035:070-shake",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "00:35",
+  "end": "01:15",
+  "printed": "070 SHAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "070-shake",
+    "role": "performer"
+   }
+  ],
+  "act": "070-shake",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:pitchfork:0210:empress-of",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "02:10",
+  "end": "02:55",
+  "printed": "EMPRESS OF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "empress-of",
+    "role": "performer"
+   }
+  ],
+  "act": "empress-of",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:pitchfork:0405:mykki-blanco",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Pitchfork",
+  "start": "04:05",
+  "end": "05:55",
+  "printed": "MYKKI BLANCO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mykki-blanco",
+    "role": "performer"
+   }
+  ],
+  "act": "mykki-blanco",
+  "closing": true,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:desperados-cube:1800:mafalda",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Desperados Cube",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "MAFALDA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mafalda",
+    "role": "performer"
+   }
+  ],
+  "act": "mafalda",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:desperados-cube:1900:dam-funk",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Desperados Cube",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "DÂM-FUNK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dam-funk",
+    "role": "performer"
+   }
+  ],
+  "act": "dam-funk",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:desperados-cube:2030:krystal-klear",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Desperados Cube",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "KRYSTAL KLEAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "krystal-klear",
+    "role": "performer"
+   }
+  ],
+  "act": "krystal-klear",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:desperados-cube:2200:jayda-g",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Desperados Cube",
+  "start": "22:00",
+  "end": "23:30",
+  "printed": "JAYDA G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jayda-g",
+    "role": "performer"
+   }
+  ],
+  "act": "jayda-g",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:desperados-cube:2330:denis-sulta",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Desperados Cube",
+  "start": "23:30",
+  "end": "01:00",
+  "printed": "DENIS SULTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "denis-sulta",
+    "role": "performer"
+   }
+  ],
+  "act": "denis-sulta",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:desperados-cube:0100:job-jobse",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Desperados Cube",
+  "start": "01:00",
+  "end": "02:30",
+  "printed": "JOB JOBSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "job-jobse",
+    "role": "performer"
+   }
+  ],
+  "act": "job-jobse",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:desperados-cube:0230:octo-octa-b2b-eris-drew",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Desperados Cube",
+  "start": "02:30",
+  "end": "05:30",
+  "printed": "OCTO OCTA B2B ERIS DREW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "octo-octa",
+    "role": "b2b"
+   },
+   {
+    "key": "eris-drew",
+    "role": "b2b"
+   }
+  ],
+  "act": "octo-octa-b2b-eris-drew",
+  "closing": true,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:your-heineken-stage:1825:aliment-play-television-personalities",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Your Heineken Stage",
+  "start": "18:25",
+  "end": "19:10",
+  "printed": "ALIMENT PLAY TELEVISION PERSONALITIES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aliment-play-television-personalities",
+    "role": "performer"
+   }
+  ],
+  "act": "aliment-play-television-personalities",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:your-heineken-stage:2005:chandra",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Your Heineken Stage",
+  "start": "20:05",
+  "end": "20:50",
+  "printed": "CHANDRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chandra",
+    "role": "performer"
+   }
+  ],
+  "act": "chandra",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:your-heineken-stage:2145:viva-belgrado-play-at-the-drive-in",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Your Heineken Stage",
+  "start": "21:45",
+  "end": "22:30",
+  "printed": "VIVA BELGRADO PLAY AT THE DRIVE IN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "viva-belgrado-play-at-the-drive-in",
+    "role": "performer"
+   }
+  ],
+  "act": "viva-belgrado-play-at-the-drive-in",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:your-heineken-stage:2330:pylon-reenactment-society",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Your Heineken Stage",
+  "start": "23:30",
+  "end": "00:20",
+  "printed": "PYLON REENACTMENT SOCIETY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pylon-reenactment-society",
+    "role": "performer"
+   }
+  ],
+  "act": "pylon-reenactment-society",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:your-heineken-stage:0120:the-comet-is-coming",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Your Heineken Stage",
+  "start": "01:20",
+  "end": "02:05",
+  "printed": "THE COMET IS COMING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-comet-is-coming",
+    "role": "performer"
+   }
+  ],
+  "act": "the-comet-is-coming",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:your-heineken-stage:0300:severed-heads",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Your Heineken Stage",
+  "start": "03:00",
+  "end": "04:00",
+  "printed": "SEVERED HEADS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "severed-heads",
+    "role": "performer"
+   }
+  ],
+  "act": "severed-heads",
+  "closing": true,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:lotus:1830:r-e-a-l",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Lotus",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "R.E.A.L.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "r-e-a-l",
+    "role": "performer"
+   }
+  ],
+  "act": "r-e-a-l",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:lotus:2015:bakar",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Lotus",
+  "start": "20:15",
+  "end": "21:10",
+  "printed": "BAKAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bakar",
+    "role": "performer"
+   }
+  ],
+  "act": "bakar",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:lotus:2140:marie-davidson",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Lotus",
+  "start": "21:40",
+  "end": "22:35",
+  "printed": "MARIE DAVIDSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marie-davidson",
+    "role": "performer"
+   }
+  ],
+  "act": "marie-davidson",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:lotus:2310:princess-nokia",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Lotus",
+  "start": "23:10",
+  "end": "00:10",
+  "printed": "PRINCESS NOKIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "princess-nokia",
+    "role": "performer"
+   }
+  ],
+  "act": "princess-nokia",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:lotus:0050:sophie",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Lotus",
+  "start": "00:50",
+  "end": "01:50",
+  "printed": "SOPHIE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sophie",
+    "role": "performer"
+   }
+  ],
+  "act": "sophie",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:lotus:0225:yaeji",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Lotus",
+  "start": "02:25",
+  "end": "03:25",
+  "printed": "YAEJI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yaeji",
+    "role": "performer"
+   }
+  ],
+  "act": "yaeji",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:lotus:0355:maribou-state",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Lotus",
+  "start": "03:55",
+  "end": "04:55",
+  "printed": "MARIBOU STATE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maribou-state",
+    "role": "performer"
+   }
+  ],
+  "act": "maribou-state",
+  "closing": true,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:seat:1845:the-mani-las",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Seat",
+  "start": "18:45",
+  "end": "19:30",
+  "printed": "THE MANI-LAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-mani-las",
+    "role": "performer"
+   }
+  ],
+  "act": "the-mani-las",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:seat:2030:mac-demarco",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Seat",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "MAC DEMARCO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mac-demarco",
+    "role": "performer"
+   }
+  ],
+  "act": "mac-demarco",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:seat:2315:interpol",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Seat",
+  "start": "23:15",
+  "end": "00:25",
+  "printed": "INTERPOL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "interpol",
+    "role": "performer"
+   }
+  ],
+  "act": "interpol",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:seat:0205:future",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Seat",
+  "start": "02:05",
+  "end": "03:00",
+  "printed": "FUTURE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future",
+    "role": "performer"
+   }
+  ],
+  "act": "future",
+  "closing": true,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ocb-paper-sessions:1900:alice-phoebe-lou",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "OCB PAPER SESSIONS",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "ALICE PHOEBE LOU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alice-phoebe-lou",
+    "role": "performer"
+   }
+  ],
+  "act": "alice-phoebe-lou",
+  "closing": true,
+  "stageLineage": "primavera-sound:ocb-paper-sessions",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:pull-and-bear:1935:big-thief",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Pull&Bear",
+  "start": "19:35",
+  "end": "20:25",
+  "printed": "BIG THIEF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-thief",
+    "role": "performer"
+   }
+  ],
+  "act": "big-thief",
+  "closing": false,
+  "stageLineage": "primavera-sound:pull-and-bear",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:pull-and-bear:2150:courtney-barnett",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Pull&Bear",
+  "start": "21:50",
+  "end": "23:05",
+  "printed": "COURTNEY BARNETT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "courtney-barnett",
+    "role": "performer"
+   }
+  ],
+  "act": "courtney-barnett",
+  "closing": false,
+  "stageLineage": "primavera-sound:pull-and-bear",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:pull-and-bear:0030:erykah-badu",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Pull&Bear",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "ERYKAH BADU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "erykah-badu",
+    "role": "performer"
+   }
+  ],
+  "act": "erykah-badu",
+  "closing": true,
+  "stageLineage": "primavera-sound:pull-and-bear",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:seat-village:2100:erik-urano",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Seat Village",
+  "start": "21:00",
+  "end": "21:45",
+  "printed": "ERIK URANO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "erik-urano",
+    "role": "performer"
+   }
+  ],
+  "act": "erik-urano",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:seat-village:2215:chynna",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Seat Village",
+  "start": "22:15",
+  "end": "23:00",
+  "printed": "CHYNNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chynna",
+    "role": "performer"
+   }
+  ],
+  "act": "chynna",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:seat-village:0000:celeste",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Seat Village",
+  "start": "00:00",
+  "end": "00:45",
+  "printed": "CELESTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "celeste",
+    "role": "performer"
+   }
+  ],
+  "act": "celeste",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:seat-village:0130:idk",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Seat Village",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "IDK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "idk",
+    "role": "performer"
+   }
+  ],
+  "act": "idk",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:seat-village:0300:jarvis-cocker-dj-set",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Seat Village",
+  "start": "03:00",
+  "end": "05:00",
+  "printed": "JARVIS COCKER DJ SET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jarvis-cocker-dj-set",
+    "role": "performer"
+   }
+  ],
+  "act": "jarvis-cocker-dj-set",
+  "closing": true,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban-studios:2200:upsammy",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban Studios",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "UPSAMMY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "upsammy",
+    "role": "performer"
+   }
+  ],
+  "act": "upsammy",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban-studios:2300:objekt",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban Studios",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "OBJEKT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "objekt",
+    "role": "performer"
+   }
+  ],
+  "act": "objekt",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban-studios:0030:demdike-stare",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban Studios",
+  "start": "00:30",
+  "end": "01:30",
+  "printed": "DEMDIKE STARE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "demdike-stare",
+    "role": "performer"
+   }
+  ],
+  "act": "demdike-stare",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban-studios:0130:djrum",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban Studios",
+  "start": "01:30",
+  "end": "03:00",
+  "printed": "DJRUM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "djrum",
+    "role": "performer"
+   }
+  ],
+  "act": "djrum",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban-studios:0300:anastasia-kristensen-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban Studios",
+  "start": "03:00",
+  "end": "04:00",
+  "printed": "ANASTASIA KRISTENSEN LIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anastasia-kristensen-live",
+    "role": "performer"
+   }
+  ],
+  "act": "anastasia-kristensen-live",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:ray-ban-studios:0400:brat-star",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "Ray-Ban Studios",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "BRAT STAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brat-star",
+    "role": "performer"
+   }
+  ],
+  "act": "brat-star",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:2315:goa",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "El Punto by adidas Originals",
+  "start": "23:15",
+  "end": "00:00",
+  "printed": "GOA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goa",
+    "role": "performer"
+   }
+  ],
+  "act": "goa",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:0000:brat-star",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "El Punto by adidas Originals",
+  "start": "00:00",
+  "end": "01:15",
+  "printed": "BRAT STAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brat-star",
+    "role": "performer"
+   }
+  ],
+  "act": "brat-star",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:0115:gangsta-boo",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "El Punto by adidas Originals",
+  "start": "01:15",
+  "end": "02:00",
+  "printed": "GANGSTA BOO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gangsta-boo",
+    "role": "performer"
+   }
+  ],
+  "act": "gangsta-boo",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:0200:rico-nasty",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "El Punto by adidas Originals",
+  "start": "02:00",
+  "end": "02:45",
+  "printed": "RICO NASTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rico-nasty",
+    "role": "performer"
+   }
+  ],
+  "act": "rico-nasty",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:0245:japanese",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "El Punto by adidas Originals",
+  "start": "02:45",
+  "end": "03:30",
+  "printed": "JAPANESE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "japanese",
+    "role": "performer"
+   }
+  ],
+  "act": "japanese",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:0330:uzielito-mix",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-30",
+  "day": 2,
+  "stage": "El Punto by adidas Originals",
+  "start": "03:30",
+  "end": "05:00",
+  "printed": "UZIELITO MIX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "uzielito-mix",
+    "role": "performer"
+   }
+  ],
+  "act": "uzielito-mix",
+  "closing": true,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:primavera:1735:snail-mail",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Primavera",
+  "start": "17:35",
+  "end": "18:20",
+  "printed": "SNAIL MAIL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snail-mail",
+    "role": "performer"
+   }
+  ],
+  "act": "snail-mail",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:primavera:1930:beak-and-gt",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Primavera",
+  "start": "19:30",
+  "end": "20:20",
+  "printed": "BEAK&gt;",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beak-and-gt",
+    "role": "performer"
+   }
+  ],
+  "act": "beak-and-gt",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:primavera:2110:jawbreaker",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Primavera",
+  "start": "21:10",
+  "end": "22:25",
+  "printed": "JAWBREAKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jawbreaker",
+    "role": "performer"
+   }
+  ],
+  "act": "jawbreaker",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:primavera:2350:low",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Primavera",
+  "start": "23:50",
+  "end": "00:50",
+  "printed": "LOW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "low",
+    "role": "performer"
+   }
+  ],
+  "act": "low",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:primavera:0200:jungle",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Primavera",
+  "start": "02:00",
+  "end": "03:00",
+  "printed": "JUNGLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jungle",
+    "role": "performer"
+   }
+  ],
+  "act": "jungle",
+  "closing": true,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:night-pro:1655:han",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Night Pro",
+  "start": "16:55",
+  "end": "17:35",
+  "printed": "HÅN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "han",
+    "role": "performer"
+   }
+  ],
+  "act": "han",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:night-pro:1755:mayberian-sanskulotts",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Night Pro",
+  "start": "17:55",
+  "end": "18:35",
+  "printed": "MAYBERIAN SANSKÜLOTTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mayberian-sanskulotts",
+    "role": "performer"
+   }
+  ],
+  "act": "mayberian-sanskulotts",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:night-pro:1850:birthh",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Night Pro",
+  "start": "18:50",
+  "end": "19:30",
+  "printed": "BIRTHH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "birthh",
+    "role": "performer"
+   }
+  ],
+  "act": "birthh",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:night-pro:2000:nfx",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Night Pro",
+  "start": "20:00",
+  "end": "20:40",
+  "printed": "NFX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nfx",
+    "role": "performer"
+   }
+  ],
+  "act": "nfx",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:night-pro:2100:edsun",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Night Pro",
+  "start": "21:00",
+  "end": "21:40",
+  "printed": "EDSUN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "edsun",
+    "role": "performer"
+   }
+  ],
+  "act": "edsun",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:night-pro:2200:bronko-yotte",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Night Pro",
+  "start": "22:00",
+  "end": "22:40",
+  "printed": "BRONKO YOTTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bronko-yotte",
+    "role": "performer"
+   }
+  ],
+  "act": "bronko-yotte",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:night-pro:2300:5k-hd",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Night Pro",
+  "start": "23:00",
+  "end": "23:40",
+  "printed": "5K HD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "5k-hd",
+    "role": "performer"
+   }
+  ],
+  "act": "5k-hd",
+  "closing": true,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:xiringuito-aperol:1400:isa-bel",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Xiringuito Aperol",
+  "start": "14:00",
+  "end": "15:15",
+  "printed": "ISA·BEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isa-bel",
+    "role": "performer"
+   }
+  ],
+  "act": "isa-bel",
+  "closing": false,
+  "stageLineage": "primavera-sound:xiringuito-aperol",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:xiringuito-aperol:1515:xols",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Xiringuito Aperol",
+  "start": "15:15",
+  "end": "16:45",
+  "printed": "XOLS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xols",
+    "role": "performer"
+   }
+  ],
+  "act": "xols",
+  "closing": false,
+  "stageLineage": "primavera-sound:xiringuito-aperol",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:xiringuito-aperol:1645:phosky",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Xiringuito Aperol",
+  "start": "16:45",
+  "end": "18:00",
+  "printed": "PHOSKY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phosky",
+    "role": "performer"
+   }
+  ],
+  "act": "phosky",
+  "closing": true,
+  "stageLineage": "primavera-sound:xiringuito-aperol",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:auditori-rockdelux:1600:midori-takada",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Auditori Rockdelux",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "MIDORI TAKADA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "midori-takada",
+    "role": "performer"
+   }
+  ],
+  "act": "midori-takada",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:auditori-rockdelux:1730:maria-jose-llergo",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Auditori Rockdelux",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "MARÍA JOSÉ LLERGO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maria-jose-llergo",
+    "role": "performer"
+   }
+  ],
+  "act": "maria-jose-llergo",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:auditori-rockdelux:1920:julia-holter",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Auditori Rockdelux",
+  "start": "19:20",
+  "end": "20:30",
+  "printed": "JULIA HOLTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julia-holter",
+    "role": "performer"
+   }
+  ],
+  "act": "julia-holter",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:auditori-rockdelux:2100:dirty-projectors",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Auditori Rockdelux",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "DIRTY PROJECTORS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dirty-projectors",
+    "role": "performer"
+   }
+  ],
+  "act": "dirty-projectors",
+  "closing": true,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban:1645:lucy-dacus",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "16:45",
+  "end": "17:30",
+  "printed": "LUCY DACUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucy-dacus",
+    "role": "performer"
+   }
+  ],
+  "act": "lucy-dacus",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban:1825:sons-of-kemet-xl",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "18:25",
+  "end": "19:25",
+  "printed": "SONS OF KEMET XL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sons-of-kemet-xl",
+    "role": "performer"
+   }
+  ],
+  "act": "sons-of-kemet-xl",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban:2025:derby-motoreta-s-burrito-kachimba",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "20:25",
+  "end": "21:05",
+  "printed": "DERBY MOTORETA'S BURRITO KACHIMBA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "derby-motoreta-s-burrito-kachimba",
+    "role": "performer"
+   }
+  ],
+  "act": "derby-motoreta-s-burrito-kachimba",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban:2230:suede",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "22:30",
+  "end": "23:45",
+  "printed": "SUEDE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suede",
+    "role": "performer"
+   }
+  ],
+  "act": "suede",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban:0055:kate-tempest",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "00:55",
+  "end": "01:55",
+  "printed": "KATE TEMPEST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kate-tempest",
+    "role": "performer"
+   }
+  ],
+  "act": "kate-tempest",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban:0305:mura-masa",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "03:05",
+  "end": "04:00",
+  "printed": "MURA MASA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mura-masa",
+    "role": "performer"
+   }
+  ],
+  "act": "mura-masa",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban:0410:peggy-gou",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban",
+  "start": "04:10",
+  "end": "06:00",
+  "printed": "PEGGY GOU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peggy-gou",
+    "role": "performer"
+   }
+  ],
+  "act": "peggy-gou",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:adidas-originals:1700:lidia-damunt",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "LIDIA DAMUNT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lidia-damunt",
+    "role": "performer"
+   }
+  ],
+  "act": "lidia-damunt",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:adidas-originals:1830:pond",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "POND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pond",
+    "role": "performer"
+   }
+  ],
+  "act": "pond",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:adidas-originals:2010:fucked-up",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "20:10",
+  "end": "20:55",
+  "printed": "FUCKED UP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fucked-up",
+    "role": "performer"
+   }
+  ],
+  "act": "fucked-up",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:adidas-originals:2215:chai",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "22:15",
+  "end": "23:00",
+  "printed": "CHAI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chai",
+    "role": "performer"
+   }
+  ],
+  "act": "chai",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:adidas-originals:0000:amyl-and-the-sniffers",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "00:00",
+  "end": "00:50",
+  "printed": "AMYL AND THE SNIFFERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amyl-and-the-sniffers",
+    "role": "performer"
+   }
+  ],
+  "act": "amyl-and-the-sniffers",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:adidas-originals:0145:lisabo",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "01:45",
+  "end": "02:30",
+  "printed": "LISABÖ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lisabo",
+    "role": "performer"
+   }
+  ],
+  "act": "lisabo",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:adidas-originals:0325:bliss-signal",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "adidas Originals",
+  "start": "03:25",
+  "end": "04:10",
+  "printed": "BLISS SIGNAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bliss-signal",
+    "role": "performer"
+   }
+  ],
+  "act": "bliss-signal",
+  "closing": true,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:pitchfork:1745:putochinomaricon",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "17:45",
+  "end": "18:25",
+  "printed": "PUTOCHINOMARICÓN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "putochinomaricon",
+    "role": "performer"
+   }
+  ],
+  "act": "putochinomaricon",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:pitchfork:1920:just-mustard",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "19:20",
+  "end": "20:05",
+  "printed": "JUST MUSTARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "just-mustard",
+    "role": "performer"
+   }
+  ],
+  "act": "just-mustard",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:pitchfork:2100:liz-phair",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "21:00",
+  "end": "21:45",
+  "printed": "LIZ PHAIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "liz-phair",
+    "role": "performer"
+   }
+  ],
+  "act": "liz-phair",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:pitchfork:2305:aldous-harding",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "23:05",
+  "end": "23:55",
+  "printed": "ALDOUS HARDING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aldous-harding",
+    "role": "performer"
+   }
+  ],
+  "act": "aldous-harding",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:pitchfork:0055:yves-tumor",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "00:55",
+  "end": "01:40",
+  "printed": "YVES TUMOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yves-tumor",
+    "role": "performer"
+   }
+  ],
+  "act": "yves-tumor",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:pitchfork:0235:flohio",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "02:35",
+  "end": "03:20",
+  "printed": "FLOHIO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flohio",
+    "role": "performer"
+   }
+  ],
+  "act": "flohio",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:pitchfork:0415:iglooghost",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Pitchfork",
+  "start": "04:15",
+  "end": "05:00",
+  "printed": "IGLOOGHOST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "iglooghost",
+    "role": "performer"
+   }
+  ],
+  "act": "iglooghost",
+  "closing": true,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:desperados-cube:1800:ylia",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Desperados Cube",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "YLIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ylia",
+    "role": "performer"
+   }
+  ],
+  "act": "ylia",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:desperados-cube:1900:laurel-halo-dj-set",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Desperados Cube",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "LAUREL HALO DJ SET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laurel-halo-dj-set",
+    "role": "performer"
+   }
+  ],
+  "act": "laurel-halo-dj-set",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:desperados-cube:2030:steffi",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Desperados Cube",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "STEFFI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steffi",
+    "role": "performer"
+   }
+  ],
+  "act": "steffi",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:desperados-cube:2200:courtesy",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Desperados Cube",
+  "start": "22:00",
+  "end": "23:30",
+  "printed": "COURTESY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "courtesy",
+    "role": "performer"
+   }
+  ],
+  "act": "courtesy",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:desperados-cube:2330:dr-rubinstein",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Desperados Cube",
+  "start": "23:30",
+  "end": "01:00",
+  "printed": "DR. RUBINSTEIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-rubinstein",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-rubinstein",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:desperados-cube:0100:overmono-live-and-dj",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Desperados Cube",
+  "start": "01:00",
+  "end": "02:30",
+  "printed": "OVERMONO LIVE & DJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "overmono-live-and-dj",
+    "role": "performer"
+   }
+  ],
+  "act": "overmono-live-and-dj",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:desperados-cube:0230:joy-orbison",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Desperados Cube",
+  "start": "02:30",
+  "end": "04:00",
+  "printed": "JOY ORBISON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joy-orbison",
+    "role": "performer"
+   }
+  ],
+  "act": "joy-orbison",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:desperados-cube:0400:helena-hauff",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Desperados Cube",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "HELENA HAUFF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "helena-hauff",
+    "role": "performer"
+   }
+  ],
+  "act": "helena-hauff",
+  "closing": true,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:your-heineken-stage:1830:birkins-feat-ken-stringfellow-play-ziggy-stardust",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Your Heineken Stage",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "BIRKINS FEAT. KEN STRINGFELLOW PLAY ZIGGY STARDUST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "birkins-feat-ken-stringfellow-play-ziggy-stardust",
+    "role": "act"
+   }
+  ],
+  "act": "birkins-feat-ken-stringfellow-play-ziggy-stardust",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null,
+  "review": "feat / with billing"
+ },
+ {
+  "id": "primavera-sound-2019:d3:your-heineken-stage:2010:piroshka",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Your Heineken Stage",
+  "start": "20:10",
+  "end": "20:55",
+  "printed": "PIROSHKA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "piroshka",
+    "role": "performer"
+   }
+  ],
+  "act": "piroshka",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:your-heineken-stage:2150:el-mato-a-un-policia-motorizado-feat-amaia-j-y-manu-ferron",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Your Heineken Stage",
+  "start": "21:50",
+  "end": "22:50",
+  "printed": "EL MATÓ A UN POLICÍA MOTORIZADO FEAT. AMAIA, J Y MANU FERRÓN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "el-mato-a-un-policia-motorizado-feat-amaia-j-y-manu-ferron",
+    "role": "act"
+   }
+  ],
+  "act": "el-mato-a-un-policia-motorizado-feat-amaia-j-y-manu-ferron",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null,
+  "review": "feat / with billing"
+ },
+ {
+  "id": "primavera-sound-2019:d3:your-heineken-stage:0000:107-faunos",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Your Heineken Stage",
+  "start": "00:00",
+  "end": "00:50",
+  "printed": "107 FAUNOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "107-faunos",
+    "role": "performer"
+   }
+  ],
+  "act": "107-faunos",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:your-heineken-stage:0150:swervedriver",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Your Heineken Stage",
+  "start": "01:50",
+  "end": "02:30",
+  "printed": "SWERVEDRIVER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "swervedriver",
+    "role": "performer"
+   }
+  ],
+  "act": "swervedriver",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:your-heineken-stage:0330:kokoshca-play-las-grecas",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Your Heineken Stage",
+  "start": "03:30",
+  "end": "04:20",
+  "printed": "KOKOSHCA PLAY LAS GRECAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kokoshca-play-las-grecas",
+    "role": "performer"
+   }
+  ],
+  "act": "kokoshca-play-las-grecas",
+  "closing": true,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:lotus:1900:bflecha",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Lotus",
+  "start": "19:00",
+  "end": "19:45",
+  "printed": "BFLECHA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bflecha",
+    "role": "performer"
+   }
+  ],
+  "act": "bflecha",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:lotus:2000:wednesday-campanella",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Lotus",
+  "start": "20:00",
+  "end": "20:45",
+  "printed": "WEDNESDAY CAMPANELLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wednesday-campanella",
+    "role": "performer"
+   }
+  ],
+  "act": "wednesday-campanella",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:lotus:2100:sticky-m-a",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Lotus",
+  "start": "21:00",
+  "end": "21:45",
+  "printed": "STICKY M.A.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sticky-m-a",
+    "role": "performer"
+   }
+  ],
+  "act": "sticky-m-a",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:lotus:2235:tony-touch-and-friends-don-chezina-soni-withaneye",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Lotus",
+  "start": "22:35",
+  "end": "23:25",
+  "printed": "TONY TOUCH & FRIENDS (DON CHEZINA + SONI WITHANEYE)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tony-touch-and-friends-don-chezina-soni-withaneye",
+    "role": "act"
+   }
+  ],
+  "act": "tony-touch-and-friends-don-chezina-soni-withaneye",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "primavera-sound-2019:d3:lotus:0015:ivy-queen",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Lotus",
+  "start": "00:15",
+  "end": "01:15",
+  "printed": "IVY QUEEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ivy-queen",
+    "role": "performer"
+   }
+  ],
+  "act": "ivy-queen",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:lotus:0140:cybotron-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Lotus",
+  "start": "01:40",
+  "end": "02:50",
+  "printed": "CYBOTRON LIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cybotron-live",
+    "role": "performer"
+   }
+  ],
+  "act": "cybotron-live",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:lotus:0320:objekt-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Lotus",
+  "start": "03:20",
+  "end": "04:20",
+  "printed": "OBJEKT LIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "objekt-live",
+    "role": "performer"
+   }
+  ],
+  "act": "objekt-live",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:lotus:0450:agoria-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Lotus",
+  "start": "04:50",
+  "end": "05:45",
+  "printed": "AGORIA LIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "agoria-live",
+    "role": "performer"
+   }
+  ],
+  "act": "agoria-live",
+  "closing": true,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:seat:1845:pavvla",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Seat",
+  "start": "18:45",
+  "end": "19:30",
+  "printed": "PAVVLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pavvla",
+    "role": "performer"
+   }
+  ],
+  "act": "pavvla",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:seat:2030:carly-rae-jepsen",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Seat",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "CARLY RAE JEPSEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carly-rae-jepsen",
+    "role": "performer"
+   }
+  ],
+  "act": "carly-rae-jepsen",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:seat:2310:miley-cyrus",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Seat",
+  "start": "23:10",
+  "end": "00:10",
+  "printed": "MILEY CYRUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miley-cyrus",
+    "role": "performer"
+   }
+  ],
+  "act": "miley-cyrus",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:seat:0155:robyn",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Seat",
+  "start": "01:55",
+  "end": "03:00",
+  "printed": "ROBYN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "robyn",
+    "role": "performer"
+   }
+  ],
+  "act": "robyn",
+  "closing": true,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ocb-paper-sessions:1900:chai",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "OCB PAPER SESSIONS",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "CHAI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chai",
+    "role": "performer"
+   }
+  ],
+  "act": "chai",
+  "closing": true,
+  "stageLineage": "primavera-sound:ocb-paper-sessions",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:pull-and-bear:1935:kurt-vile-and-the-violators",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Pull&Bear",
+  "start": "19:35",
+  "end": "20:25",
+  "printed": "KURT VILE & THE VIOLATORS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kurt-vile-and-the-violators",
+    "role": "performer"
+   }
+  ],
+  "act": "kurt-vile-and-the-violators",
+  "closing": false,
+  "stageLineage": "primavera-sound:pull-and-bear",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:pull-and-bear:2135:janelle-monae",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Pull&Bear",
+  "start": "21:35",
+  "end": "23:05",
+  "printed": "JANELLE MONÁE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "janelle-monae",
+    "role": "performer"
+   }
+  ],
+  "act": "janelle-monae",
+  "closing": false,
+  "stageLineage": "primavera-sound:pull-and-bear",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:pull-and-bear:0020:tame-impala",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Pull&Bear",
+  "start": "00:20",
+  "end": "01:50",
+  "printed": "TAME IMPALA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tame-impala",
+    "role": "performer"
+   }
+  ],
+  "act": "tame-impala",
+  "closing": true,
+  "stageLineage": "primavera-sound:pull-and-bear",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:seat-village:2100:la-tiguerita",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Seat Village",
+  "start": "21:00",
+  "end": "21:45",
+  "printed": "LA TIGUERITA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-tiguerita",
+    "role": "performer"
+   }
+  ],
+  "act": "la-tiguerita",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:seat-village:2215:mucho-muchacho",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Seat Village",
+  "start": "22:15",
+  "end": "23:00",
+  "printed": "MUCHO MUCHACHO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mucho-muchacho",
+    "role": "performer"
+   }
+  ],
+  "act": "mucho-muchacho",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:seat-village:2345:junglepussy",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Seat Village",
+  "start": "23:45",
+  "end": "00:30",
+  "printed": "JUNGLEPUSSY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "junglepussy",
+    "role": "performer"
+   }
+  ],
+  "act": "junglepussy",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:seat-village:0130:aj-tracey",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Seat Village",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "AJ TRACEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aj-tracey",
+    "role": "performer"
+   }
+  ],
+  "act": "aj-tracey",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:seat-village:0300:tim-burgess-the-charlatans-dj-set",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Seat Village",
+  "start": "03:00",
+  "end": "05:00",
+  "printed": "TIM BURGESS (THE CHARLATANS) DJ SET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tim-burgess-the-charlatans-dj-set",
+    "role": "performer"
+   }
+  ],
+  "act": "tim-burgess-the-charlatans-dj-set",
+  "closing": true,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban-studios:2200:anthony-naples-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban Studios",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "ANTHONY NAPLES LIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anthony-naples-live",
+    "role": "performer"
+   }
+  ],
+  "act": "anthony-naples-live",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban-studios:2300:overmono-live-and-dj",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban Studios",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "OVERMONO LIVE & DJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "overmono-live-and-dj",
+    "role": "performer"
+   }
+  ],
+  "act": "overmono-live-and-dj",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban-studios:0000:object-blue",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban Studios",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "OBJECT BLUE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "object-blue",
+    "role": "performer"
+   }
+  ],
+  "act": "object-blue",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban-studios:0100:mad-miran",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban Studios",
+  "start": "01:00",
+  "end": "02:30",
+  "printed": "MAD MIRAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mad-miran",
+    "role": "performer"
+   }
+  ],
+  "act": "mad-miran",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban-studios:0230:roza-terenzi",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban Studios",
+  "start": "02:30",
+  "end": "04:00",
+  "printed": "ROZA TERENZI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roza-terenzi",
+    "role": "performer"
+   }
+  ],
+  "act": "roza-terenzi",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:ray-ban-studios:0400:batu",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "Ray-Ban Studios",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "BATU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "batu",
+    "role": "performer"
+   }
+  ],
+  "act": "batu",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:2315:somadamantina",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "El Punto by adidas Originals",
+  "start": "23:15",
+  "end": "00:00",
+  "printed": "SOMADAMANTINA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "somadamantina",
+    "role": "performer"
+   }
+  ],
+  "act": "somadamantina",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:0000:mark-luva",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "El Punto by adidas Originals",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "MARK LUVA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mark-luva",
+    "role": "performer"
+   }
+  ],
+  "act": "mark-luva",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:0100:la-zowi",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "El Punto by adidas Originals",
+  "start": "01:00",
+  "end": "01:45",
+  "printed": "LA ZOWI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-zowi",
+    "role": "performer"
+   }
+  ],
+  "act": "la-zowi",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:0145:gothboiclique",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "El Punto by adidas Originals",
+  "start": "01:45",
+  "end": "02:45",
+  "printed": "GOTHBOICLIQUE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gothboiclique",
+    "role": "performer"
+   }
+  ],
+  "act": "gothboiclique",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:0300:la-goony-chonga",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "El Punto by adidas Originals",
+  "start": "03:00",
+  "end": "03:45",
+  "printed": "LA GOONY CHONGA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-goony-chonga",
+    "role": "performer"
+   }
+  ],
+  "act": "la-goony-chonga",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:0345:rosa-pistola",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-05-31",
+  "day": 3,
+  "stage": "El Punto by adidas Originals",
+  "start": "03:45",
+  "end": "05:00",
+  "printed": "ROSA PISTOLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rosa-pistola",
+    "role": "performer"
+   }
+  ],
+  "act": "rosa-pistola",
+  "closing": true,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:primavera:1730:ama-lou",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Primavera",
+  "start": "17:30",
+  "end": "18:15",
+  "printed": "AMA LOU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ama-lou",
+    "role": "performer"
+   }
+  ],
+  "act": "ama-lou",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:primavera:1915:built-to-spill-performs-keep-it-like-a-secret",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Primavera",
+  "start": "19:15",
+  "end": "20:20",
+  "printed": "BUILT TO SPILL PERFORMS 'KEEP IT LIKE A SECRET'",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "built-to-spill-performs-keep-it-like-a-secret",
+    "role": "performer"
+   }
+  ],
+  "act": "built-to-spill-performs-keep-it-like-a-secret",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:primavera:2155:pusha-t",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Primavera",
+  "start": "21:55",
+  "end": "22:55",
+  "printed": "PUSHA T",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pusha-t",
+    "role": "performer"
+   }
+  ],
+  "act": "pusha-t",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:primavera:0015:primal-scream",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Primavera",
+  "start": "00:15",
+  "end": "01:25",
+  "printed": "PRIMAL SCREAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "primal-scream",
+    "role": "performer"
+   }
+  ],
+  "act": "primal-scream",
+  "closing": false,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:primavera:0235:roisin-murphy",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Primavera",
+  "start": "02:35",
+  "end": "03:35",
+  "printed": "RÓISÍN MURPHY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roisin-murphy",
+    "role": "performer"
+   }
+  ],
+  "act": "roisin-murphy",
+  "closing": true,
+  "stageLineage": "primavera-sound:primavera",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:night-pro:1630:p-postman-ft-emergency-tiara-darko-and-mahkenna-dj-unknown",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Night Pro",
+  "start": "16:30",
+  "end": "17:10",
+  "printed": "P POSTMAN FT. EMERGENCY TIARA, DARKO & MAHKENNA, DJ UNKNOWN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "p-postman-ft-emergency-tiara-darko-and-mahkenna-dj-unknown",
+    "role": "act"
+   }
+  ],
+  "act": "p-postman-ft-emergency-tiara-darko-and-mahkenna-dj-unknown",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null,
+  "review": "feat / with billing"
+ },
+ {
+  "id": "primavera-sound-2019:d4:night-pro:1730:bonish",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Night Pro",
+  "start": "17:30",
+  "end": "18:10",
+  "printed": "BONISH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bonish",
+    "role": "performer"
+   }
+  ],
+  "act": "bonish",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:night-pro:1830:kirara",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Night Pro",
+  "start": "18:30",
+  "end": "19:10",
+  "printed": "KIRARA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kirara",
+    "role": "performer"
+   }
+  ],
+  "act": "kirara",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:night-pro:1930:dtsq",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Night Pro",
+  "start": "19:30",
+  "end": "20:10",
+  "printed": "DTSQ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dtsq",
+    "role": "performer"
+   }
+  ],
+  "act": "dtsq",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:night-pro:2030:phoro",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Night Pro",
+  "start": "20:30",
+  "end": "21:10",
+  "printed": "PHORO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phoro",
+    "role": "performer"
+   }
+  ],
+  "act": "phoro",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:night-pro:2200:eli-almic-and-dj-rc",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Night Pro",
+  "start": "22:00",
+  "end": "22:40",
+  "printed": "ELI ALMIC & DJ RC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eli-almic-and-dj-rc",
+    "role": "performer"
+   }
+  ],
+  "act": "eli-almic-and-dj-rc",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:night-pro:2300:sistemas-inestables",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Night Pro",
+  "start": "23:00",
+  "end": "23:40",
+  "printed": "SISTEMAS INESTABLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sistemas-inestables",
+    "role": "performer"
+   }
+  ],
+  "act": "sistemas-inestables",
+  "closing": false,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:night-pro:0000:f5",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Night Pro",
+  "start": "00:00",
+  "end": "00:40",
+  "printed": "F5",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "f5",
+    "role": "performer"
+   }
+  ],
+  "act": "f5",
+  "closing": true,
+  "stageLineage": "primavera-sound:night-pro",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:xiringuito-aperol:1400:frinda-di-lanco",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Xiringuito Aperol",
+  "start": "14:00",
+  "end": "15:15",
+  "printed": "FRINDA DI LANCO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frinda-di-lanco",
+    "role": "performer"
+   }
+  ],
+  "act": "frinda-di-lanco",
+  "closing": false,
+  "stageLineage": "primavera-sound:xiringuito-aperol",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:xiringuito-aperol:1515:ecran-total",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Xiringuito Aperol",
+  "start": "15:15",
+  "end": "16:30",
+  "printed": "ECRAN TOTAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ecran-total",
+    "role": "performer"
+   }
+  ],
+  "act": "ecran-total",
+  "closing": false,
+  "stageLineage": "primavera-sound:xiringuito-aperol",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:xiringuito-aperol:1630:dj-supermarkt",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Xiringuito Aperol",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "DJ SUPERMARKT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-supermarkt",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-supermarkt",
+  "closing": true,
+  "stageLineage": "primavera-sound:xiringuito-aperol",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:auditori-rockdelux:1600:caterina-barbieri",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Auditori Rockdelux",
+  "start": "16:00",
+  "end": "16:55",
+  "printed": "CATERINA BARBIERI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "caterina-barbieri",
+    "role": "performer"
+   }
+  ],
+  "act": "caterina-barbieri",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:auditori-rockdelux:1730:tirzah",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Auditori Rockdelux",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "TIRZAH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tirzah",
+    "role": "performer"
+   }
+  ],
+  "act": "tirzah",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:auditori-rockdelux:1900:the-mystery-of-the-bulgarian-voices-featuring-lisa-gerrard",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Auditori Rockdelux",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "THE MYSTERY OF THE BULGARIAN VOICES FEATURING LISA GERRARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-mystery-of-the-bulgarian-voices-featuring-lisa-gerrard",
+    "role": "performer"
+   }
+  ],
+  "act": "the-mystery-of-the-bulgarian-voices-featuring-lisa-gerrard",
+  "closing": false,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:auditori-rockdelux:2100:tim-hecker-and-konoyo-ensemble",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Auditori Rockdelux",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "TIM HECKER & KONOYO ENSEMBLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tim-hecker-and-konoyo-ensemble",
+    "role": "performer"
+   }
+  ],
+  "act": "tim-hecker-and-konoyo-ensemble",
+  "closing": true,
+  "stageLineage": "primavera-sound:auditori-rockdelux",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban:1650:alondra-bentley",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "16:50",
+  "end": "17:25",
+  "printed": "ALONDRA BENTLEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alondra-bentley",
+    "role": "performer"
+   }
+  ],
+  "act": "alondra-bentley",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban:1820:dayme-arocena",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "18:20",
+  "end": "19:10",
+  "printed": "DAYMÉ AROCENA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dayme-arocena",
+    "role": "performer"
+   }
+  ],
+  "act": "dayme-arocena",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban:2025:shellac",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "20:25",
+  "end": "21:15",
+  "printed": "SHELLAC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shellac",
+    "role": "performer"
+   }
+  ],
+  "act": "shellac",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban:2255:jarvis-cocker-introducing-jarv-is",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "22:55",
+  "end": "00:10",
+  "printed": "JARVIS COCKER INTRODUCING JARV IS...",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jarvis-cocker-introducing-jarv-is",
+    "role": "performer"
+   }
+  ],
+  "act": "jarvis-cocker-introducing-jarv-is",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban:0130:stereolab",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "STEREOLAB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stereolab",
+    "role": "performer"
+   }
+  ],
+  "act": "stereolab",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban:0340:modeselektor-live",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "03:40",
+  "end": "04:50",
+  "printed": "MODESELEKTOR LIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "modeselektor-live",
+    "role": "performer"
+   }
+  ],
+  "act": "modeselektor-live",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban:0500:dj-rosario-and-sama-yax",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban",
+  "start": "05:00",
+  "end": "06:00",
+  "printed": "DJ ROSARIO & SAMA YAX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-rosario-and-sama-yax",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-rosario-and-sama-yax",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:adidas-originals:1700:carino",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "CARIÑO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carino",
+    "role": "performer"
+   }
+  ],
+  "act": "carino",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:adidas-originals:1835:haru-nemuri",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "18:35",
+  "end": "19:20",
+  "printed": "HARU NEMURI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "haru-nemuri",
+    "role": "performer"
+   }
+  ],
+  "act": "haru-nemuri",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:adidas-originals:2010:frank-carter-and-the-rattlesnakes",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "20:10",
+  "end": "21:05",
+  "printed": "FRANK CARTER & THE RATTLESNAKES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frank-carter-and-the-rattlesnakes",
+    "role": "performer"
+   }
+  ],
+  "act": "frank-carter-and-the-rattlesnakes",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:adidas-originals:2205:drab-majesty",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "22:05",
+  "end": "22:55",
+  "printed": "DRAB MAJESTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "drab-majesty",
+    "role": "performer"
+   }
+  ],
+  "act": "drab-majesty",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:adidas-originals:2355:june-of-44",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "23:55",
+  "end": "00:40",
+  "printed": "JUNE OF 44",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "june-of-44",
+    "role": "performer"
+   }
+  ],
+  "act": "june-of-44",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:adidas-originals:0135:the-messthetics",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "01:35",
+  "end": "02:25",
+  "printed": "THE MESSTHETICS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-messthetics",
+    "role": "performer"
+   }
+  ],
+  "act": "the-messthetics",
+  "closing": false,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:adidas-originals:0320:jpegmafia",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "adidas Originals",
+  "start": "03:20",
+  "end": "04:05",
+  "printed": "JPEGMAFIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jpegmafia",
+    "role": "performer"
+   }
+  ],
+  "act": "jpegmafia",
+  "closing": true,
+  "stageLineage": "primavera-sound:adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:pitchfork:1745:retirada",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "17:45",
+  "end": "18:30",
+  "printed": "RETIRADA!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "retirada",
+    "role": "performer"
+   }
+  ],
+  "act": "retirada",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:pitchfork:1925:nilufer-yanya",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "19:25",
+  "end": "20:10",
+  "printed": "NILÜFER YANYA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nilufer-yanya",
+    "role": "performer"
+   }
+  ],
+  "act": "nilufer-yanya",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:pitchfork:2105:loyle-carner",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "21:05",
+  "end": "21:50",
+  "printed": "LOYLE CARNER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loyle-carner",
+    "role": "performer"
+   }
+  ],
+  "act": "loyle-carner",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:pitchfork:2300:neneh-cherry",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "23:00",
+  "end": "23:50",
+  "printed": "NENEH CHERRY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neneh-cherry",
+    "role": "performer"
+   }
+  ],
+  "act": "neneh-cherry",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:pitchfork:0045:cupcakke",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "00:45",
+  "end": "01:30",
+  "printed": "CUPCAKKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cupcakke",
+    "role": "performer"
+   }
+  ],
+  "act": "cupcakke",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:pitchfork:0230:danny-l-harle",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "02:30",
+  "end": "03:15",
+  "printed": "DANNY L HARLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danny-l-harle",
+    "role": "performer"
+   }
+  ],
+  "act": "danny-l-harle",
+  "closing": false,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:pitchfork:0410:slowthai",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Pitchfork",
+  "start": "04:10",
+  "end": "04:55",
+  "printed": "SLOWTHAI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slowthai",
+    "role": "performer"
+   }
+  ],
+  "act": "slowthai",
+  "closing": true,
+  "stageLineage": "primavera-sound:pitchfork",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:desperados-cube:1800:nosedrip",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Desperados Cube",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "NOSEDRIP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nosedrip",
+    "role": "performer"
+   }
+  ],
+  "act": "nosedrip",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:desperados-cube:1930:epsilove",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Desperados Cube",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "EPSILOVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "epsilove",
+    "role": "performer"
+   }
+  ],
+  "act": "epsilove",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:desperados-cube:2030:izabel",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Desperados Cube",
+  "start": "20:30",
+  "end": "21:50",
+  "printed": "IZABEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "izabel",
+    "role": "performer"
+   }
+  ],
+  "act": "izabel",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:desperados-cube:2155:fantastic-man-b2b-tornado-wallace",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Desperados Cube",
+  "start": "21:55",
+  "end": "23:30",
+  "printed": "FANTASTIC MAN B2B TORNADO WALLACE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fantastic-man",
+    "role": "b2b"
+   },
+   {
+    "key": "tornado-wallace",
+    "role": "b2b"
+   }
+  ],
+  "act": "fantastic-man-b2b-tornado-wallace",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:desperados-cube:2330:hieroglyphic-being",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Desperados Cube",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "HIEROGLYPHIC BEING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hieroglyphic-being",
+    "role": "performer"
+   }
+  ],
+  "act": "hieroglyphic-being",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:desperados-cube:0030:mozhgan",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Desperados Cube",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "MOZHGAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mozhgan",
+    "role": "performer"
+   }
+  ],
+  "act": "mozhgan",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:desperados-cube:0200:veronica-vasicka",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Desperados Cube",
+  "start": "02:00",
+  "end": "02:40",
+  "printed": "VERONICA VASICKA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "veronica-vasicka",
+    "role": "performer"
+   }
+  ],
+  "act": "veronica-vasicka",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:desperados-cube:0240:jasss",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Desperados Cube",
+  "start": "02:40",
+  "end": "04:30",
+  "printed": "JASSS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jasss",
+    "role": "performer"
+   }
+  ],
+  "act": "jasss",
+  "closing": false,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:desperados-cube:0430:voiski",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Desperados Cube",
+  "start": "04:30",
+  "end": "06:00",
+  "printed": "VOISKI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "voiski",
+    "role": "performer"
+   }
+  ],
+  "act": "voiski",
+  "closing": true,
+  "stageLineage": "primavera-sound:desperados-cube",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:your-heineken-stage:1835:evripidis-and-his-tragedies-sing-the-magnetic-fields",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Your Heineken Stage",
+  "start": "18:35",
+  "end": "19:20",
+  "printed": "EVRIPIDIS AND HIS TRAGEDIES SING THE MAGNETIC FIELDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "evripidis-and-his-tragedies-sing-the-magnetic-fields",
+    "role": "performer"
+   }
+  ],
+  "act": "evripidis-and-his-tragedies-sing-the-magnetic-fields",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:your-heineken-stage:2015:me-and-the-bees-play-the-breeders",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Your Heineken Stage",
+  "start": "20:15",
+  "end": "21:00",
+  "printed": "ME AND THE BEES PLAY THE BREEDERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "me-and-the-bees-play-the-breeders",
+    "role": "performer"
+   }
+  ],
+  "act": "me-and-the-bees-play-the-breeders",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:your-heineken-stage:2355:the-bevis-frond",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Your Heineken Stage",
+  "start": "23:55",
+  "end": "00:40",
+  "printed": "THE BEVIS FROND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-bevis-frond",
+    "role": "performer"
+   }
+  ],
+  "act": "the-bevis-frond",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:your-heineken-stage:0140:bush-tetras",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Your Heineken Stage",
+  "start": "01:40",
+  "end": "02:25",
+  "printed": "BUSH TETRAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bush-tetras",
+    "role": "performer"
+   }
+  ],
+  "act": "bush-tetras",
+  "closing": false,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:your-heineken-stage:0320:mujeres-play-los-saicos",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Your Heineken Stage",
+  "start": "03:20",
+  "end": "04:05",
+  "printed": "MUJERES PLAY LOS SAICOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mujeres-play-los-saicos",
+    "role": "performer"
+   }
+  ],
+  "act": "mujeres-play-los-saicos",
+  "closing": true,
+  "stageLineage": "primavera-sound:your-heineken-stage",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:lotus:1900:museless",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Lotus",
+  "start": "19:00",
+  "end": "19:45",
+  "printed": "MUSELESS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "museless",
+    "role": "performer"
+   }
+  ],
+  "act": "museless",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:lotus:2000:rrucculla",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Lotus",
+  "start": "20:00",
+  "end": "20:45",
+  "printed": "RRUCCULLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rrucculla",
+    "role": "performer"
+   }
+  ],
+  "act": "rrucculla",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:lotus:2100:channel-tres",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Lotus",
+  "start": "21:00",
+  "end": "21:45",
+  "printed": "CHANNEL TRES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "channel-tres",
+    "role": "performer"
+   }
+  ],
+  "act": "channel-tres",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:lotus:2235:lizzo",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Lotus",
+  "start": "22:35",
+  "end": "23:35",
+  "printed": "LIZZO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lizzo",
+    "role": "performer"
+   }
+  ],
+  "act": "lizzo",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:lotus:0000:tierra-whack",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Lotus",
+  "start": "00:00",
+  "end": "00:40",
+  "printed": "TIERRA WHACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tierra-whack",
+    "role": "performer"
+   }
+  ],
+  "act": "tierra-whack",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:lotus:0110:david-august",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Lotus",
+  "start": "01:10",
+  "end": "02:15",
+  "printed": "DAVID AUGUST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-august",
+    "role": "performer"
+   }
+  ],
+  "act": "david-august",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:lotus:0250:richie-hawtin-close",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Lotus",
+  "start": "02:50",
+  "end": "04:05",
+  "printed": "RICHIE HAWTIN CLOSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richie-hawtin-close",
+    "role": "performer"
+   }
+  ],
+  "act": "richie-hawtin-close",
+  "closing": false,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:lotus:0420:avalon-emerson",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Lotus",
+  "start": "04:20",
+  "end": "05:45",
+  "printed": "AVALON EMERSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "avalon-emerson",
+    "role": "performer"
+   }
+  ],
+  "act": "avalon-emerson",
+  "closing": true,
+  "stageLineage": "primavera-sound:lotus",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:seat:1845:boy-pablo",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Seat",
+  "start": "18:45",
+  "end": "19:30",
+  "printed": "BOY PABLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boy-pablo",
+    "role": "performer"
+   }
+  ],
+  "act": "boy-pablo",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:seat:2045:kali-uchis",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Seat",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "KALI UCHIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kali-uchis",
+    "role": "performer"
+   }
+  ],
+  "act": "kali-uchis",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:seat:2300:solange",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Seat",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "SOLANGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "solange",
+    "role": "performer"
+   }
+  ],
+  "act": "solange",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:seat:0125:james-blake",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Seat",
+  "start": "01:25",
+  "end": "02:45",
+  "printed": "JAMES BLAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-blake",
+    "role": "performer"
+   }
+  ],
+  "act": "james-blake",
+  "closing": true,
+  "stageLineage": "primavera-sound:seat",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ocb-paper-sessions:1900:miya-folick",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "OCB PAPER SESSIONS",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "MIYA FOLICK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miya-folick",
+    "role": "performer"
+   }
+  ],
+  "act": "miya-folick",
+  "closing": true,
+  "stageLineage": "primavera-sound:ocb-paper-sessions",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:pull-and-bear:1940:nathy-peluso",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Pull&Bear",
+  "start": "19:40",
+  "end": "20:40",
+  "printed": "NATHY PELUSO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nathy-peluso",
+    "role": "performer"
+   }
+  ],
+  "act": "nathy-peluso",
+  "closing": false,
+  "stageLineage": "primavera-sound:pull-and-bear",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:pull-and-bear:2155:rosalia",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Pull&Bear",
+  "start": "21:55",
+  "end": "22:55",
+  "printed": "ROSALÍA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rosalia",
+    "role": "performer"
+   }
+  ],
+  "act": "rosalia",
+  "closing": false,
+  "stageLineage": "primavera-sound:pull-and-bear",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:pull-and-bear:0005:j-balvin",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Pull&Bear",
+  "start": "00:05",
+  "end": "01:20",
+  "printed": "J BALVIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "j-balvin",
+    "role": "performer"
+   }
+  ],
+  "act": "j-balvin",
+  "closing": true,
+  "stageLineage": "primavera-sound:pull-and-bear",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:seat-village:2100:ninhomalo",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Seat Village",
+  "start": "21:00",
+  "end": "21:30",
+  "printed": "NINHOMALO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ninhomalo",
+    "role": "performer"
+   }
+  ],
+  "act": "ninhomalo",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:seat-village:2155:calido-lehamo",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Seat Village",
+  "start": "21:55",
+  "end": "22:40",
+  "printed": "CÁLIDO LEHAMO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "calido-lehamo",
+    "role": "performer"
+   }
+  ],
+  "act": "calido-lehamo",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:seat-village:2250:kaydy-cain",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Seat Village",
+  "start": "22:50",
+  "end": "23:40",
+  "printed": "KAYDY CAIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaydy-cain",
+    "role": "performer"
+   }
+  ],
+  "act": "kaydy-cain",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:seat-village:2355:bbymutha",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Seat Village",
+  "start": "23:55",
+  "end": "00:45",
+  "printed": "BBYMUTHA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bbymutha",
+    "role": "performer"
+   }
+  ],
+  "act": "bbymutha",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:seat-village:0145:little-simz",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Seat Village",
+  "start": "01:45",
+  "end": "02:30",
+  "printed": "LITTLE SIMZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-simz",
+    "role": "performer"
+   }
+  ],
+  "act": "little-simz",
+  "closing": false,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:seat-village:0300:richard-colburn-belle-and-sebastian-dj-set",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Seat Village",
+  "start": "03:00",
+  "end": "05:00",
+  "printed": "RICHARD COLBURN (BELLE AND SEBASTIAN) DJ SET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richard-colburn-belle-and-sebastian-dj-set",
+    "role": "performer"
+   }
+  ],
+  "act": "richard-colburn-belle-and-sebastian-dj-set",
+  "closing": true,
+  "stageLineage": "primavera-sound:seat-village",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban-studios:2200:suzanne-ciani",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban Studios",
+  "start": "22:00",
+  "end": "22:45",
+  "printed": "SUZANNE CIANI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suzanne-ciani",
+    "role": "performer"
+   }
+  ],
+  "act": "suzanne-ciani",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban-studios:2245:dj-marcelle-another-nice-mess",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban Studios",
+  "start": "22:45",
+  "end": "00:15",
+  "printed": "DJ MARCELLE / ANOTHER NICE MESS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-marcelle-another-nice-mess",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-marcelle-another-nice-mess",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban-studios:0015:forest-drive-west",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban Studios",
+  "start": "00:15",
+  "end": "01:45",
+  "printed": "FOREST DRIVE WEST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "forest-drive-west",
+    "role": "performer"
+   }
+  ],
+  "act": "forest-drive-west",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban-studios:0145:aisha-devi",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban Studios",
+  "start": "01:45",
+  "end": "02:45",
+  "printed": "AÏSHA DEVI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aisha-devi",
+    "role": "performer"
+   }
+  ],
+  "act": "aisha-devi",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban-studios:0245:peach",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban Studios",
+  "start": "02:45",
+  "end": "04:15",
+  "printed": "PEACH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peach",
+    "role": "performer"
+   }
+  ],
+  "act": "peach",
+  "closing": false,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:ray-ban-studios:0415:martyn",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "Ray-Ban Studios",
+  "start": "04:15",
+  "end": "05:45",
+  "printed": "MARTYN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "martyn",
+    "role": "performer"
+   }
+  ],
+  "act": "martyn",
+  "closing": true,
+  "stageLineage": "primavera-sound:ray-ban-studios",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:2315:albany",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "El Punto by adidas Originals",
+  "start": "23:15",
+  "end": "00:00",
+  "printed": "ALBANY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "albany",
+    "role": "performer"
+   }
+  ],
+  "act": "albany",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:0000:ian-isiah",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "El Punto by adidas Originals",
+  "start": "00:00",
+  "end": "00:25",
+  "printed": "IAN ISIAH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ian-isiah",
+    "role": "performer"
+   }
+  ],
+  "act": "ian-isiah",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:0025:hurricane-g-feat-tony-touch",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "El Punto by adidas Originals",
+  "start": "00:25",
+  "end": "01:10",
+  "printed": "HURRICANE G FEAT TONY TOUCH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hurricane-g",
+    "role": "performer"
+   },
+   {
+    "key": "tony-touch",
+    "role": "guest"
+   }
+  ],
+  "act": "hurricane-g-feat-tony-touch",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:0110:kodie-shane",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "El Punto by adidas Originals",
+  "start": "01:10",
+  "end": "02:00",
+  "printed": "KODIE SHANE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kodie-shane",
+    "role": "performer"
+   }
+  ],
+  "act": "kodie-shane",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:0200:dj-playero",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "El Punto by adidas Originals",
+  "start": "02:00",
+  "end": "03:30",
+  "printed": "DJ PLAYERO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-playero",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-playero",
+  "closing": false,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
+  "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:0330:yung-beef-dj-set",
+  "source": "edition",
+  "festivalId": "primavera-sound-2019",
+  "festivalBrand": "primavera-sound",
+  "year": 2019,
+  "date": "2019-06-01",
+  "day": 4,
+  "stage": "El Punto by adidas Originals",
+  "start": "03:30",
+  "end": "05:00",
+  "printed": "YUNG BEEF DJ SET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yung-beef-dj-set",
+    "role": "performer"
+   }
+  ],
+  "act": "yung-beef-dj-set",
+  "closing": true,
+  "stageLineage": "primavera-sound:el-punto-by-adidas-originals",
+  "mainStage": null
+ },
+ {
   "id": "shambhala-2011:d1:living-room:1200:russ-2-fari",
   "source": "edition",
   "festivalId": "shambhala-2011",
