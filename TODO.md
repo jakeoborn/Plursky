@@ -3,7 +3,7 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
-## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-18, main `27b98071`, web v645)
+## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-18 afternoon, main `49a3235f`, web v645)
 
 > Ledger lines for the merges below: `ops/build-ledger.jsonl` (the ledger has no
 > lines between 2026-10-24 and 2026-11-17; those merges are not backfilled here).
@@ -13,16 +13,19 @@
 - [x] #486 Festivals batch 7 (2027 previews) · v644
 - [x] #493 Top-tier round 1: photo spotlight, a face per member · v645
 - [x] #506 Lollapalooza 2018 by day and stage · #507 Governors Ball 2013–2015
+- [x] #509 Primavera Sound 2015 · #511 Primavera 2016–2019 · #513 Primavera 2012 (data only, v645)
 
 **Open (Claude Plur), none live yet:**
-- [ ] W2 #500 Decadence venue source: refreshed onto main; merge lane, then live-verify the pages
-- [ ] W2 #508 daily set-times watch for Countdown NYE: NOT armed until merged (scheduled
+- [ ] W2 #500 Decadence venue source @ `848e0912` (v650), CI 1/1, CLEAN: merge lane, then live-verify the pages
+- [ ] W2 #508 daily set-times watch for Countdown NYE @ `9e9eb3a0`: NOT armed until merged (scheduled
       workflows run only from main); after merge, one workflow_dispatch run to confirm
-- [ ] W3 #501 Your weekend timeline (flag): your own arrival and departure times per set
-- [ ] W3 per-festival set-tracking opt-in (stacked on #501, draft PR to come)
+- [ ] W3 #501 Your weekend timeline (flag) @ `0f83d69f` (v646), CI 1/1: your own arrival and
+      departure times per set; Xcode simulator build + real screenshot posted
+- [ ] W3 #515 per-festival set-tracking opt-in @ `6e2cc0c0` (v649), draft, stacked on #501
 - [ ] W3 accuracy gate: 17 of 20 sets within 10 min on a real album replay. The synthetic
       EDC reference (13 of 15, #503) does not count. Blocked on Jake's albums
-- [ ] W4 #502 Monthly win-back + recap hooks + save/cancel states. Store offer not created
+- [ ] W4 #502 @ `4d88b72e` (v647) Monthly win-back + recap hooks + save/cancel states.
+      v647 collides with #505's; whichever merges second re-bumps. Store offer not created
       yet (0 win-back offers read live in ASC); Jake's App Store Connect + RevenueCat taps
 - [ ] W5 #504 / #499 MusicKit token renewal command + expiry warning. The token itself
       expires Fri Nov 27, 8:14 PM CT and needs Jake's key
