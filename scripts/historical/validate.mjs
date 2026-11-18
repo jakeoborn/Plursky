@@ -5,6 +5,7 @@
 import { EDITIONS, KEPT_STAGES, PRINTED_LONG_SETS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
 import { printedDate as govBallDate } from "./govball-wp-schedule.mjs";
 import { tabDate as primaveraDate } from "./primavera-horarios-schedule.mjs";
+import { tabRun as primaveraRun } from "./primavera-completos-schedule.mjs";
 import { cardDate as lollaCardDate } from "./lolla-lineup.mjs";
 import { printedDate as insomniacDate } from "./insomniac-music-schedule.mjs";
 import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
@@ -436,6 +437,14 @@ function officialSources(e, meta, p) {
         // "Friday May 29"); its weekday must fall on that date in the year.
         if (primaveraDate(c.printed, e.year) !== date || !(c.tabs || []).includes(c.printed) || !/Parc del Fòrum/.test(c.heading || ""))
           p.push(`${tag}: the page's day tab "${c.printed}" (heading "${c.heading}") does not print ${date} at Parc del Fòrum`);
+      } else if (c.format === "primavera-completos") {
+        // Primavera Sound's 2016-2019 full timetable prints each day as a
+        // weekday and a day of the month ("MIÉRCOLES 1"; 2019 the whole date); the row of tabs names its
+        // dates as one run of days in the year, and the page is the full
+        // timetable, not one venue's.
+        const run = primaveraRun(c.tabs, e.year), i = (c.tabs || []).indexOf(c.printed);
+        if (!run || i < 0 || run[i] !== date || !/^(Horarios|Horaris|Timetable|Set times)$/.test(c.heading || "") || !/^(Horarios completos|Horaris complets|Full timetable|All set times)$/.test(c.active || ""))
+          p.push(`${tag}: the page's day tab "${c.printed}" (tabs ${(c.tabs || []).join(", ")}; "${c.heading}", "${c.active}") does not print ${date} on the full timetable`);
       } else if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
       // Outside Lands' grid prints no am/pm: the day's meridiem comes from one
       // act's own page on the official site, which must print this day.
