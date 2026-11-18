@@ -506,15 +506,16 @@ after it). The kids' stage keeps its printed name each year ("Austin Kiddie
 Limits presented by H-E-B", "HEB-Kids"), kept as music as in 2013, and one
 unnamed "Special Guest" slot there each year is dropped.
 
-Archived DoStuff lineup widgets (Outside Lands 2022 to 2025, Lightning in a Bottle 2018 and 2019, format `dostuff-embed`):
+Archived DoStuff lineup widgets (Outside Lands 2018, 2019 and 2022 to 2025, Lightning in a Bottle 2018 and 2019, format `dostuff-embed`):
 
     node scripts/historical/gather-dostuff-embed.mjs <edition-id> <gather-dir> <official-url> \
-      <ts> <embed-url> <page-ts> <page-url> [--food <stage>] [--programme <stage>]...
+      <ts> <embed-url> <page-ts> <page-url> [--via <ts> <site-script-url>] \
+      [--food <stage>]... [--comedy <stage>] [--programme <stage>]...
     node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
 
-From 2022 the official lineup page (sfoutsidelands.com/lineup/) draws its
+From 2018 the official lineup page (sfoutsidelands.com/lineup/) draws its
 schedule with a script from the festival's own DoStuff site
-(`22-osl.dostff.co`, `osl23fest.dostff.co`, `fest24outsidelands.dostff.co`,
+(`sfosl.dostff.co`, `sfosl19.dostff.co`, `22-osl.dostff.co`, `osl23fest.dostff.co`, `fest24outsidelands.dostff.co`,
 `ds25festlands.dostff.co`, each `/embeds/lineup.js`). The script sets
 `window._fest_options` on one line of JSON: the festival's name, its first
 and last day, its time zone, and an "Interactive Lineup" grouping in which
@@ -526,13 +527,20 @@ own name. Every offset must be the time zone's at that instant, every set end
 after its start and within twelve hours, every day inside the run the options
 print (a start before 6 AM is the night before), and no two sets may overlap
 on one stage. The run must be the edition's own days. Each script capture
-cites the official lineup page that loads it, captured up to two minutes
-before on sfoutsidelands.com (`embeddedBy`), and only captures taken after
-each festival are used. Cocktail Magic (2022, 2023), the cocktail-and-magic
-stage, is the food stage as GastroMagic was: its shows are excluded rows, one
-for one with the widget. 2022 has 127 sets on 7 stages (Friday 5 to Sunday 7
-August), 2023 126 on 9, 2024 139 on 9 and 2025 155 on 10. 2018 and 2019 have
-no archived widget of this kind.
+cites the official lineup page that loads it on sfoutsidelands.com
+(`embeddedBy`), captured within a month of it, and only captures taken after
+each festival are used. The 2018 page loads the script by its own
+`<script src>`; the 2019 page is an app shell whose own main.js adds the
+widget's `<script>` on the lineup route, so its receipt also cites that
+main.js (`via`), captured eleven seconds after the page on the same host, and
+the import checks that it sets the widget's address whole. GastroMagic and
+Cocktail Magic (2018, 2019) are the food stages and The Barbary the comedy
+tent, as in the grid years; Cocktail Magic alone (2022, 2023) is the food
+stage later. Their shows are excluded rows, one for one with the widget.
+2018 has 93 sets on 5 stages (Friday 10 to Sunday 12 August), 2019 94 on 5
+(Friday 9 to Sunday 11 August), 2022 127 on 7 (Friday 5 to Sunday 7
+August), 2023 126 on 9, 2024 139 on 9 and 2025 155 on 10. There was no
+festival in 2020, and 2021 (October) has no archived widget of this kind.
 
 When the options print `"show_performance_titles": false` (every capture
 here), the widget draws each set under its act's name and never its title,

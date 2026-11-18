@@ -39,7 +39,7 @@ import { parseLollaLineup, cardDate as lollaCardDate } from "./historical/lolla-
 import { parseTmlDrupal, titleDate as tmlTitleDate } from "./historical/tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, datesFromPost as shambhalaRun, readDatesPost } from "./historical/shambhala-webflow-schedule.mjs";
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
-import { parseDoStuffEmbed, embedPageOk, pageLoadsScript } from "./historical/dostuff-embed-schedule.mjs";
+import { parseDoStuffEmbed, embedPageOk, pageLoadsScript, scriptSetsSrc } from "./historical/dostuff-embed-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -172,11 +172,12 @@ if (base && edc) {
     mustFail("a Lollapalooza 2018 card day whose weekday is not its date", m => { lcCap(m).printed = "Sun 8/04"; }, lo18);
     mustFail("a Lollapalooza 2018 page read off another site", m => { const c = lcCap(m); c.archivedUrl = c.archivedUrl.replace("www.lollapalooza.com", "www.lollapaloozafans.com"); }, lo18);
   }
-  // Outside Lands 2022-2025 and Lightning in a Bottle 2018-2019: the official
-  // lineup widget's script prints each set's whole date; the day is inside
-  // the run its options print (a gate day at either end at most), and the
-  // official lineup page that loads it was captured close to it (Outside
-  // Lands: moments before; Lightning in a Bottle: within a month).
+  // Outside Lands 2018-2019 and 2022-2025 and Lightning in a Bottle
+  // 2018-2019: the official lineup widget's script prints each set's whole
+  // date; the day is inside the run its options print (a gate day at either
+  // end at most), and the official lineup page that loads it was captured
+  // within a month of it (Outside Lands 2019: through the site's own script,
+  // captured within a day of the page on the page's own host).
   const osl23 = editions["outside-lands-2023"];
   if (osl23) {
     const deCap = m => m.provenance.captures.find(c => c.format === "dostuff-embed" && c.day === 2);
@@ -185,8 +186,15 @@ if (base && edc) {
     mustFail("an Outside Lands widget run two days past the edition", m => { deCap(m).run = "2023-08-11 to 2023-08-15"; }, osl23);
     mustFail("an Outside Lands widget read off another site", m => { const c = deCap(m); c.archivedUrl = c.archivedUrl.replace("osl23fest.dostff.co", "oslfans.dostff.co"); }, osl23);
     mustFail("an Outside Lands widget embedded by another site's page", m => { deCap(m).embeddedBy.url = "https://www.oslfans.com/lineup/"; }, osl23);
-    mustFail("an Outside Lands widget whose page was captured an hour before", m => { deCap(m).embeddedBy.captureTimestamp = "20230814124823"; }, osl23);
-    mustFail("an Outside Lands widget captured before its page", m => { deCap(m).embeddedBy.captureTimestamp = "20230814134830"; }, osl23);
+    mustFail("an Outside Lands widget whose page was captured two months before", m => { deCap(m).embeddedBy.captureTimestamp = "20230614134823"; }, osl23);
+    mustFail("an Outside Lands widget whose page was captured two months after", m => { deCap(m).embeddedBy.captureTimestamp = "20231014134830"; }, osl23);
+  }
+  const osl19 = editions["outside-lands-2019"];
+  if (osl19) {
+    const viaCap = m => m.provenance.captures.find(c => c.format === "dostuff-embed" && c.day === 1);
+    mustFail("an Outside Lands widget loaded through another site's script", m => { viaCap(m).embeddedBy.via.url = "https://www.oslfans.com/assets/js/dist/main.js"; }, osl19);
+    mustFail("an Outside Lands widget loaded through a site script captured two days after its page", m => { viaCap(m).embeddedBy.via.captureTimestamp = "20190826062646"; }, osl19);
+    mustFail("an Outside Lands widget loaded through a site page, not a script", m => { viaCap(m).embeddedBy.via.url = "https://www.sfoutsidelands.com/lineup/"; }, osl19);
   }
   const lib18 = editions["lightning-in-a-bottle-2018"];
   if (lib18) {
@@ -891,10 +899,22 @@ if (base && edc) {
     const dePage = `<div id="ds-fest"></div>\n<script src="https://lib2019.dostff.co/embeds/lineup.js"></script>`;
     ok(pageLoadsScript(dePage, "https://lib2019.dostff.co/embeds/lineup.js") && !pageLoadsScript(dePage, "https://lib2018.dostff.co/embeds/lineup.js")
       && !pageLoadsScript(`<a href="https://lib2019.dostff.co/embeds/lineup.js">`, "https://lib2019.dostff.co/embeds/lineup.js"), "a lineup page must load the widget's own script, by its <script src>");
+    const shell = `<script src="https://web.archive.org/assets/js/dist/main.js?v=9"></script><script src="https://web.archive.org/web/2019/https://x.example/a.js"></script>`;
+    ok(pageLoadsScript(shell, "https://www.sfoutsidelands.com/assets/js/dist/main.js?v=9", "https://www.sfoutsidelands.com/lineup/")
+      && !pageLoadsScript(shell, "https://www.sfoutsidelands.com/assets/js/dist/main.js?v=8", "https://www.sfoutsidelands.com/lineup/")
+      && !pageLoadsScript(shell, "https://x.example/a.js", "https://www.sfoutsidelands.com/lineup/"),
+      "a page read as rendered from the archive loads its site-relative script on its own host, never an archive capture link");
+    const mainJs = `e.setAttribute("id","dostuff-js"),e.setAttribute("src","https://sfosl19.dostff.co/embeds/lineup.js")`;
+    ok(scriptSetsSrc(mainJs, "https://sfosl19.dostff.co/embeds/lineup.js") && !scriptSetsSrc(mainJs, "https://sfosl.dostff.co/embeds/lineup.js")
+      && !scriptSetsSrc(`// see "https://sfosl19.dostff.co/embeds/lineup.js"`, "https://sfosl19.dostff.co/embeds/lineup.js")
+      && !scriptSetsSrc(mainJs.replace("lineup.js", "lineup.js?v=2"), "https://sfosl19.dostff.co/embeds/lineup.js"),
+      "a site script must set a <script>'s src to the widget's own address, whole");
     ok(embedPageOk("lightning-in-a-bottle", "20181121121544", { url: "https://lightninginabottle.org/lineup/", captureTimestamp: "20181104142540" })
       && !embedPageOk("lightning-in-a-bottle", "20181121121544", { url: "https://lightninginabottle.org/lineup/", captureTimestamp: "20180904142540" })
       && !embedPageOk("lightning-in-a-bottle", "20181121121544", { url: "https://sfoutsidelands.com/lineup/", captureTimestamp: "20181121121540" })
-      && !embedPageOk("outside-lands", "20230814134825", { url: "https://sfoutsidelands.com/lineup/", captureTimestamp: "20230813134825" })
+      && !embedPageOk("outside-lands", "20230814134825", { url: "https://sfoutsidelands.com/lineup/", captureTimestamp: "20230613134825" })
+      && embedPageOk("outside-lands", "20190820205437", { url: "https://www.sfoutsidelands.com/lineup/", captureTimestamp: "20190824062635", via: { url: "https://www.sfoutsidelands.com/assets/js/dist/main.js?v=1", captureTimestamp: "20190824062646" } })
+      && !embedPageOk("outside-lands", "20190820205437", { url: "https://www.sfoutsidelands.com/lineup/", captureTimestamp: "20190824062635", via: { url: "https://cdn.example.com/assets/main.js", captureTimestamp: "20190824062646" } })
       && !embedPageOk("coachella", "20230814134825", { url: "https://www.coachella.com/lineup/", captureTimestamp: "20230814134820" }),
       "a widget's lineup page must be its own festival's, captured within that festival's window of the script");
     // EDC Las Vegas's 2012 and 2013 music pages: one page prints every day by
@@ -1349,7 +1369,7 @@ for (const [id, e] of Object.entries(editions)) {
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (year from ${s.yearFrom}, Las Vegas from ${s.place}), not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
-        // The official lineup widget (Outside Lands 2022-2025, Lightning in a
+        // The official lineup widget (Outside Lands 2018-2019 and 2022-2025, Lightning in a
         // Bottle 2018-2019) prints each set's whole date, inside the run its
         // options print (a gate day at either end at most), from a dostff.co
         // script that the festival's own lineup page loaded, captured within

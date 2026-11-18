@@ -53,6 +53,10 @@ export const EDITIONS = {
   "outside-lands-2015": { festivalId: "outside-lands", name: "Outside Lands 2015", year: 2015, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2015-08-07","Friday"],["2015-08-08","Saturday"],["2015-08-09","Sunday"]] },
   "outside-lands-2016": { festivalId: "outside-lands", name: "Outside Lands 2016", year: 2016, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2016-08-05","Friday"],["2016-08-06","Saturday"],["2016-08-07","Sunday"]] },
   "outside-lands-2017": { festivalId: "outside-lands", name: "Outside Lands 2017", year: 2017, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2017-08-11","Friday"],["2017-08-12","Saturday"],["2017-08-13","Sunday"]] },
+  // Outside Lands 2018 and 2019, from the official lineup widget
+  // (sfosl.dostff.co, sfosl19.dostff.co), Golden Gate Park as every year.
+  "outside-lands-2018": { festivalId: "outside-lands", name: "Outside Lands 2018", year: 2018, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2018-08-10","Friday"],["2018-08-11","Saturday"],["2018-08-12","Sunday"]] },
+  "outside-lands-2019": { festivalId: "outside-lands", name: "Outside Lands 2019", year: 2019, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2019-08-09","Friday"],["2019-08-10","Saturday"],["2019-08-11","Sunday"]] },
   // Outside Lands 2022-2025: the official lineup page (sfoutsidelands.com/
   // lineup/) loads a DoStuff widget whose embed script carries every set
   // with its start, end and stage (format "dostuff-embed",

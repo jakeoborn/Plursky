@@ -4446,6 +4446,21 @@
   "links": []
  },
  {
+  "key": "ajna",
+  "name": "AJNA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d3:lands-end:1200:ajna"
+  ],
+  "firstSeen": "2018-08-12",
+  "lastSeen": "2018-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ajr",
   "name": "AJR",
   "aliases": [],
@@ -5591,10 +5606,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2018:d2:grant-park:untimed:alex-lahey"
+   "lollapalooza-2018:d2:grant-park:untimed:alex-lahey",
+   "outside-lands-2019:d3:panhandle:1320:alex-lahey"
   ],
   "firstSeen": "2018-08-03",
-  "lastSeen": "2018-08-03",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -6252,10 +6268,11 @@
   "projects": [],
   "billings": [
    "lollapalooza-2016:d3:pepsi:1600:alina-baraz",
-   "lollapalooza-2018:d2:lake-shore:untimed:alina-baraz"
+   "lollapalooza-2018:d2:lake-shore:untimed:alina-baraz",
+   "outside-lands-2019:d2:lands-end:1655:alina-baraz"
   ],
   "firstSeen": "2016-07-30",
-  "lastSeen": "2018-08-03",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -6528,6 +6545,21 @@
   ],
   "firstSeen": "2017-08-04",
   "lastSeen": "2017-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "allblack",
+  "name": "ALLBLACK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:twin-peaks:1240:allblack"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -7138,6 +7170,21 @@
   ],
   "firstSeen": "2012-10-14",
   "lastSeen": "2017-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "alt-n-gun",
+  "name": "Altın Gün",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:panhandle:1500:alt-n-gun"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -8086,9 +8133,10 @@
   "billings": [
    "acl-2018:d3:miller-lite:1300:amen-dunes",
    "acl-2018:d6:miller-lite:1300:amen-dunes",
+   "outside-lands-2018:d2:sutro:1305:amen-dunes",
    "outside-lands-2024:d3:sutro:1515:amen-dunes"
   ],
-  "firstSeen": "2018-10-07",
+  "firstSeen": "2018-08-11",
   "lastSeen": "2024-08-11",
   "photo": null,
   "links": []
@@ -8267,6 +8315,21 @@
   ],
   "firstSeen": "2024-10-13",
   "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "amo-amo",
+  "name": "Amo Amo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:sutro:1200:amo-amo"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -8992,6 +9055,7 @@
    "coachella-2016:d6:mojave:2025:anderson-paak-and-the-free-nationals",
    "lightning-in-a-bottle-2018:d3:lightning:0045:anderson-paak-and-the-free-nationals",
    "outside-lands-2016:d2:panhandle:1955:anderson-paak-and-the-free-nationals",
+   "outside-lands-2019:d3:sutro:1930:anderson-paak-and-the-free-nationals",
    "outside-lands-2025:d3:twin-peaks:2040:anderson-paak-and-the-free-nationals"
   ],
   "firstSeen": "2016-04-17",
@@ -9058,7 +9122,8 @@
   "projects": [],
   "billings": [
    "coachella-2017:d1:sahara:1225:andre-power",
-   "edc-las-vegas-2025:d3:ubuntu:2030:andre-power"
+   "edc-las-vegas-2025:d3:ubuntu:2030:andre-power",
+   "outside-lands-2019:d3:the-house-by-heineken:1700:andre-power-soulection"
   ],
   "firstSeen": "2017-04-14",
   "lastSeen": "2025-05-18",
@@ -9576,6 +9641,21 @@
   "billings": [],
   "firstSeen": null,
   "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "andy-p",
+  "name": "Andy P",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d1:the-house-by-heineken:1400:andy-p"
+  ],
+  "firstSeen": "2019-08-09",
+  "lastSeen": "2019-08-09",
   "photo": null,
   "links": []
  },
@@ -11006,6 +11086,21 @@
   "links": []
  },
  {
+  "key": "aquilo",
+  "name": "AQUILO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d3:panhandle:1445:aquilo"
+  ],
+  "firstSeen": "2018-08-12",
+  "lastSeen": "2018-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "aqutie",
   "name": "AQUTIE",
   "aliases": [],
@@ -12254,6 +12349,21 @@
   ],
   "firstSeen": "2023-10-07",
   "lastSeen": "2023-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "as-you-like-it-ft-mossmoss-and-rich-korach",
+  "name": "As You Like It Ft. MossMoss & Rich Korach",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:the-house-by-heineken:1345:as-you-like-it-ft-mossmoss-and-rich-korach"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -13599,17 +13709,20 @@
  },
  {
   "key": "aurora",
-  "name": "AURORA",
-  "aliases": [],
+  "name": "Aurora",
+  "aliases": [
+   "AURORA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "governors-ball-2018:d2:gov-ball-nyc-stage:1330:aurora",
-   "lollapalooza-2016:d4:pepsi:1715:aurora"
+   "lollapalooza-2016:d4:pepsi:1715:aurora",
+   "outside-lands-2019:d1:twin-peaks:1540:aurora"
   ],
   "firstSeen": "2016-07-31",
-  "lastSeen": "2018-06-02",
+  "lastSeen": "2019-08-09",
   "photo": null,
   "links": []
  },
@@ -15246,9 +15359,10 @@
   "projects": [],
   "billings": [
    "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:1600:bad-girl-bailey",
-   "edc-orlando-2025:d3:stereobloom:1300:bad-girl-bailey"
+   "edc-orlando-2025:d3:stereobloom:1300:bad-girl-bailey",
+   "outside-lands-2018:d1:the-house-by-heineken:1200:ypr-b2b-fangirl-b2b-bad-girl-bailey"
   ],
-  "firstSeen": "2025-11-09",
+  "firstSeen": "2018-08-10",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -15578,9 +15692,10 @@
   "projects": [],
   "billings": [
    "acl-2018:d3:miller-lite:1500:bahamas",
-   "acl-2018:d6:miller-lite:1500:bahamas"
+   "acl-2018:d6:miller-lite:1500:bahamas",
+   "outside-lands-2018:d3:sutro:1425:bahamas"
   ],
-  "firstSeen": "2018-10-07",
+  "firstSeen": "2018-08-12",
   "lastSeen": "2018-10-14",
   "photo": null,
   "links": []
@@ -17524,7 +17639,8 @@
    "coachella-2027:coa27-bea-miller",
    "acl-2019:d3:miller-lite:1500:bea-miller",
    "acl-2019:d6:miller-lite:1500:bea-miller",
-   "lollapalooza-2019:d3:american-eagle:untimed:bea-miller"
+   "lollapalooza-2019:d3:american-eagle:untimed:bea-miller",
+   "outside-lands-2019:d2:panhandle:1635:bea-miller"
   ],
   "firstSeen": "2019-08-03",
   "lastSeen": "2027-04-09",
@@ -18071,10 +18187,11 @@
   "billings": [
    "lollapalooza-2014:d1:bmi:1630:bebe-rexha",
    "lollapalooza-2018:d2:lake-shore:untimed:bebe-rexha",
+   "outside-lands-2019:d3:twin-peaks:1840:bebe-rexha",
    "tomorrowland-2019:d1:lotus:2215:bebe-rexha"
   ],
   "firstSeen": "2014-08-01",
-  "lastSeen": "2019-07-19",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -18122,6 +18239,7 @@
    "coachella-2014:d6:coachella:2050:beck",
    "governors-ball-2012:d2:honda-stage:2145:beck",
    "outside-lands-2012:d1:lands-end-polo-field:1630:beck",
+   "outside-lands-2018:d1:twin-peaks:2040:beck",
    "outside-lands-2025:d1:sutro:2035:beck-with-symphony"
   ],
   "firstSeen": "2012-06-24",
@@ -19436,6 +19554,21 @@
   "links": []
  },
  {
+  "key": "berner",
+  "name": "Berner",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d2:panhandle:1950:berner"
+  ],
+  "firstSeen": "2018-08-11",
+  "lastSeen": "2018-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bernhard-fleischmann",
   "name": "Bernhard Fleischmann",
   "aliases": [],
@@ -19605,6 +19738,21 @@
   ],
   "firstSeen": "2014-07-27",
   "lastSeen": "2014-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "better-oblivion-community-center",
+  "name": "Better Oblivion Community Center",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:sutro:1815:better-oblivion-community-center"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -20129,6 +20277,7 @@
    "lollapalooza-2012:d3:perry-s:1745:big-gigantic",
    "lollapalooza-2016:d3:perry-s:1900:big-gigantic",
    "outside-lands-2012:d3:twin-peaks-hellman-hollow:1405:big-gigantic",
+   "outside-lands-2018:d2:sutro:1645:big-gigantic",
    "shambhala-2013:d3:pagoda:0000:big-gigantic",
    "shambhala-2015:d4:village:2300:big-gigantic",
    "shambhala-2025:d2:fractal-forest:0000:big-gigantic-dj-set"
@@ -20317,6 +20466,7 @@
    "acl-2022:d6:miller-lite:1700:big-wild",
    "coachella-2016:d2:do-lab:1730:big-wild",
    "lollapalooza-2018:d2:american-eagle:untimed:big-wild",
+   "outside-lands-2019:d2:twin-peaks:1720:big-wild",
    "shambhala-2015:d3:grove:2315:big-wild"
   ],
   "firstSeen": "2015-08-08",
@@ -20502,7 +20652,8 @@
    "acl-2021:d2:lady-bird:2030:billie-eilish",
    "acl-2021:d5:lady-bird:2030:billie-eilish",
    "governors-ball-2018:d3:american-eagle-stage:1415:billie-eilish",
-   "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:billie-eilish"
+   "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:billie-eilish",
+   "outside-lands-2018:d1:lands-end:1535:billie-eilish"
   ],
   "firstSeen": "2018-06-03",
   "lastSeen": "2021-10-09",
@@ -22161,7 +22312,8 @@
   "key": "blink-182",
   "name": "Blink-182",
   "aliases": [
-   "BLINK-182"
+   "BLINK-182",
+   "blink-182"
   ],
   "kind": "performer",
   "parents": [],
@@ -22169,7 +22321,8 @@
   "billings": [
    "acl-2024:d1:honda:2010:blink-182",
    "acl-2024:d4:honda:2010:blink-182",
-   "lollapalooza-2017:d2:bud-light:2045:blink-182"
+   "lollapalooza-2017:d2:bud-light:2045:blink-182",
+   "outside-lands-2019:d1:lands-end:1825:blink-182"
   ],
   "firstSeen": "2017-08-04",
   "lastSeen": "2024-10-11",
@@ -22911,6 +23064,7 @@
    "escape-halloween-2022:d2:sanitarium:2300:bob-moses-club-set",
    "governors-ball-2019:d3:american-eagle-stage:1950:bob-moses",
    "lollapalooza-2016:d1:pepsi:1450:bob-moses",
+   "outside-lands-2019:d3:sutro:1655:bob-moses",
    "shambhala-2025:d3:living-room:0015:bob-moses-club-set",
    "tomorrowland-2015:d3:forma-t-invites-mk:2230:bob-moses"
   ],
@@ -23480,10 +23634,11 @@
    "coachella-2012:d5:main-stage:2130:bon-iver",
    "coachella-2017:d2:coachella:2100:bon-iver",
    "coachella-2017:d5:coachella:2100:bon-iver",
+   "outside-lands-2018:d2:lands-end:1825:bon-iver",
    "primavera-sound-2017:d2:heineken:2220:bon-iver"
   ],
   "firstSeen": "2012-04-14",
-  "lastSeen": "2017-06-01",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -24158,7 +24313,8 @@
    "coachella-2016:d1:mojave:1915:b-rns",
    "coachella-2016:d4:mojave:1915:b-rns",
    "lollapalooza-2015:d1:bmi:1740:b-rns",
-   "lollapalooza-2018:d2:lake-shore:untimed:b-rns"
+   "lollapalooza-2018:d2:lake-shore:untimed:b-rns",
+   "outside-lands-2018:d3:lands-end:1520:b-rns"
   ],
   "firstSeen": "2015-07-31",
   "lastSeen": "2026-06-27",
@@ -24582,6 +24738,21 @@
   ],
   "firstSeen": "2019-06-01",
   "lastSeen": "2019-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "boyfriend",
+  "name": "Boyfriend",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d1:panhandle:1320:boyfriend"
+  ],
+  "firstSeen": "2019-08-09",
+  "lastSeen": "2019-08-09",
   "photo": null,
   "links": []
  },
@@ -25048,6 +25219,21 @@
   ],
   "firstSeen": "2023-11-10",
   "lastSeen": "2023-11-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "brasstracks",
+  "name": "Brasstracks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d1:panhandle:1805:brasstracks"
+  ],
+  "firstSeen": "2019-08-09",
+  "lastSeen": "2019-08-09",
   "photo": null,
   "links": []
  },
@@ -26169,10 +26355,11 @@
   "projects": [],
   "billings": [
    "acl-2011:d3:bud-light:1630:broken-social-scene",
+   "outside-lands-2018:d2:lands-end:1535:broken-social-scene",
    "primavera-sound-2017:d2:ray-ban:2030:broken-social-scene"
   ],
   "firstSeen": "2011-09-18",
-  "lastSeen": "2017-06-01",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -27723,9 +27910,10 @@
   "projects": [],
   "billings": [
    "acl-2019:d3:vrbo:1700:caamp",
-   "acl-2019:d6:vrbo:1700:caamp"
+   "acl-2019:d6:vrbo:1700:caamp",
+   "outside-lands-2019:d2:sutro:1425:caamp"
   ],
-  "firstSeen": "2019-10-06",
+  "firstSeen": "2019-08-10",
   "lastSeen": "2019-10-13",
   "photo": null,
   "links": []
@@ -28066,6 +28254,21 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "caleborate",
+  "name": "Caleborate",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d1:panhandle:1630:caleborate"
+  ],
+  "firstSeen": "2018-08-10",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -29537,6 +29740,7 @@
   "billings": [
    "acl-2022:d1:barton-springs:1900:carly-rae-jepsen",
    "lollapalooza-2018:d3:lake-shore:untimed:carly-rae-jepsen",
+   "outside-lands-2018:d1:twin-peaks:1715:carly-rae-jepsen",
    "primavera-sound-2019:d3:seat:2030:carly-rae-jepsen"
   ],
   "firstSeen": "2018-08-04",
@@ -30474,7 +30678,8 @@
    "acl-2021:d6:miller-lite:1530:cautious-clay",
    "governors-ball-2019:d1:bacardi-stage:1415:cautious-clay",
    "lightning-in-a-bottle-2019:d3:lightning:2000:cautious-clay",
-   "lollapalooza-2019:d1:american-eagle:untimed:cautious-clay"
+   "lollapalooza-2019:d1:american-eagle:untimed:cautious-clay",
+   "outside-lands-2019:d1:sutro:1405:cautious-clay"
   ],
   "firstSeen": "2019-05-10",
   "lastSeen": "2021-10-10",
@@ -32436,9 +32641,10 @@
   "projects": [],
   "billings": [
    "acl-2019:d1:vrbo:1445:cherry-glazerr",
-   "acl-2019:d4:vrbo:1445:cherry-glazerr"
+   "acl-2019:d4:vrbo:1445:cherry-glazerr",
+   "outside-lands-2019:d3:sutro:1310:cherry-glazerr"
   ],
-  "firstSeen": "2019-10-04",
+  "firstSeen": "2019-08-11",
   "lastSeen": "2019-10-11",
   "photo": null,
   "links": []
@@ -32739,10 +32945,11 @@
    "coachella-2015:d3:outdoor:1300:chicano-batman",
    "coachella-2015:d6:outdoor:1245:chicano-batman",
    "coachella-2017:d2:outdoor:1630:chicano-batman",
-   "coachella-2017:d5:outdoor:1630:chicano-batman"
+   "coachella-2017:d5:outdoor:1630:chicano-batman",
+   "outside-lands-2018:d1:sutro:1720:chicano-batman"
   ],
   "firstSeen": "2015-04-12",
-  "lastSeen": "2017-04-22",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -32918,7 +33125,8 @@
    "governors-ball-2017:d2:honda:2115:childish-gambino",
    "lollapalooza-2012:d3:google-play:2045:childish-gambino",
    "lollapalooza-2014:d3:bud-light:1845:childish-gambino",
-   "lollapalooza-2019:d2:t-mobile:untimed:childish-gambino"
+   "lollapalooza-2019:d2:t-mobile:untimed:childish-gambino",
+   "outside-lands-2019:d2:lands-end:2025:childish-gambino"
   ],
   "firstSeen": "2012-04-14",
   "lastSeen": "2019-10-12",
@@ -33985,6 +34193,7 @@
    "lollapalooza-2018:d4:lake-shore:untimed:chromeo",
    "outside-lands-2010:d2:twin-peaks:1715:chromeo",
    "outside-lands-2014:d1:lands-end:1705:chromeo",
+   "outside-lands-2018:d3:twin-peaks:1840:chromeo",
    "primavera-sound-2018:d3:bacardi-live:0235:chromeo",
    "shambhala-2024:d2:fractal-forest:2300:chromeo-dj-set"
   ],
@@ -34217,6 +34426,7 @@
    "lollapalooza-2014:d1:lake-shore:1730:chvrches",
    "lollapalooza-2018:d1:grant-park:untimed:chvrches",
    "outside-lands-2014:d3:lands-end:1510:chvrches",
+   "outside-lands-2018:d2:lands-end:1655:chvrches",
    "primavera-sound-2018:d2:seat:0125:chvrches"
   ],
   "firstSeen": "2014-04-12",
@@ -34782,6 +34992,7 @@
    "escape-halloween-2019:d2:psycho-circus:1930:claptone",
    "nocturnal-wonderland-2017:d1:sunken-garden:0045:claptone",
    "nocturnal-wonderland-2021:d1:sunken-garden:2300:claptone",
+   "outside-lands-2018:d3:panhandle:1935:claptone",
    "outside-lands-2025:d3:soma:1645:claptone",
    "tomorrowland-2017:d3:claptone:2030:claptone",
    "tomorrowland-2018:d3:core:2030:claptone",
@@ -37550,6 +37761,21 @@
   "links": []
  },
  {
+  "key": "counting-crows",
+  "name": "Counting Crows",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d1:twin-peaks:1850:counting-crows"
+  ],
+  "firstSeen": "2019-08-09",
+  "lastSeen": "2019-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "country-night",
   "name": "Country Night",
   "aliases": [],
@@ -38762,6 +38988,7 @@
    "acl-2018:d1:homeaway:1245:cuco",
    "governors-ball-2018:d2:american-eagle-stage:1245:cuco",
    "lollapalooza-2018:d1:bud-light:untimed:cuco",
+   "outside-lands-2018:d2:sutro:1420:cuco",
    "outside-lands-2023:d1:lands-end:1605:cuco",
    "primavera-sound-2019:d1:primavera:2030:cuco"
   ],
@@ -38861,16 +39088,19 @@
  },
  {
   "key": "cupcakke",
-  "name": "CUPCAKKE",
-  "aliases": [],
+  "name": "CupCakKe",
+  "aliases": [
+   "CUPCAKKE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "outside-lands-2019:d2:panhandle:1810:cupcakke",
    "primavera-sound-2019:d4:pitchfork:0045:cupcakke"
   ],
   "firstSeen": "2019-06-01",
-  "lastSeen": "2019-06-01",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -40881,6 +41111,7 @@
   "projects": [],
   "billings": [
    "lollapalooza-2018:d3:american-eagle:untimed:daniel-caesar",
+   "outside-lands-2018:d2:twin-peaks:1545:daniel-caesar",
    "outside-lands-2024:d1:sutro:2040:daniel-caesar"
   ],
   "firstSeen": "2018-08-04",
@@ -43727,10 +43958,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2019:d4:bud-light:untimed:dean-lewis"
+   "lollapalooza-2019:d4:bud-light:untimed:dean-lewis",
+   "outside-lands-2019:d3:sutro:1425:dean-lewis"
   ],
   "firstSeen": "2019-08-04",
-  "lastSeen": "2019-08-04",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -44682,9 +44914,10 @@
   "projects": [],
   "billings": [
    "acl-2019:d3:tito-s-handmade-vodka:1345:delacey",
-   "acl-2023:d1:bmi:1340:delacey"
+   "acl-2023:d1:bmi:1340:delacey",
+   "outside-lands-2019:d2:panhandle:1325:delacey"
   ],
-  "firstSeen": "2019-10-06",
+  "firstSeen": "2019-08-10",
   "lastSeen": "2023-10-06",
   "photo": null,
   "links": []
@@ -45319,7 +45552,8 @@
    "coachella-2017:d1:gobi:2300:denzel-curry",
    "coachella-2017:d4:gobi:2300:denzel-curry",
    "governors-ball-2019:d2:honda-stage:1500:denzel-curry",
-   "lollapalooza-2019:d4:american-eagle:untimed:denzel-curry"
+   "lollapalooza-2019:d4:american-eagle:untimed:denzel-curry",
+   "outside-lands-2019:d3:twin-peaks:1530:denzel-curry"
   ],
   "firstSeen": "2017-04-14",
   "lastSeen": "2019-10-12",
@@ -45469,7 +45703,8 @@
   "billings": [
    "acl-2021:d1:vrbo:1900:dermot-kennedy",
    "acl-2021:d4:vrbo:1900:dermot-kennedy",
-   "lollapalooza-2018:d2:grant-park:untimed:dermot-kennedy"
+   "lollapalooza-2018:d2:grant-park:untimed:dermot-kennedy",
+   "outside-lands-2018:d1:sutro:1330:dermot-kennedy"
   ],
   "firstSeen": "2018-08-03",
   "lastSeen": "2021-10-08",
@@ -45983,7 +46218,9 @@
  {
   "key": "devault",
   "name": "Devault",
-  "aliases": [],
+  "aliases": [
+   "DEVAULT"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -45994,9 +46231,10 @@
    "lights-all-night-2026:lan-devault",
    "edc-las-vegas-2024:d1:cosmic-meadow:0300:devault",
    "edc-orlando-2021:d1:circuit-grounds:1500:devault",
+   "outside-lands-2019:d1:the-house-by-heineken:1530:devault",
    "outside-lands-2024:d1:panhandle:1810:devault"
   ],
-  "firstSeen": "2021-11-12",
+  "firstSeen": "2019-08-09",
   "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
@@ -46294,6 +46532,21 @@
   ],
   "firstSeen": "2010-07-24",
   "lastSeen": "2010-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dick-stusso",
+  "name": "Dick Stusso",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d3:panhandle:1200:dick-stusso"
+  ],
+  "firstSeen": "2018-08-12",
+  "lastSeen": "2018-08-12",
   "photo": null,
   "links": []
  },
@@ -50283,13 +50536,14 @@
    "coachella-2016:d2:yuma:1815:dj-koze",
    "coachella-2016:d5:yuma:2000:dj-koze",
    "lightning-in-a-bottle-2019:d3:woogie:0000:dj-koze",
+   "outside-lands-2019:d3:sutro:1540:dj-koze",
    "primavera-sound-2016:d3:bowers-and-wilkins-sound-system:2000:dj-koze",
    "primavera-sound-2016:d3:pitchfork:0400:dj-koze",
    "primavera-sound-2018:d2:ray-ban:0400:dj-koze",
    "tomorrowland-2017:d6:cda-presents-mosaic:1830:dj-koze"
   ],
   "firstSeen": "2016-04-16",
-  "lastSeen": "2019-05-10",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -50369,6 +50623,21 @@
   ],
   "firstSeen": "2016-08-06",
   "lastSeen": "2019-05-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-lazyboy",
+  "name": "DJ Lazyboy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d3:the-house-by-heineken:1445:dj-lazyboy"
+  ],
+  "firstSeen": "2019-08-11",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -51632,6 +51901,7 @@
    "lollapalooza-2015:d1:perry-s:1745:dj-snake",
    "lollapalooza-2017:d2:perry-s:2030:dj-snake",
    "nocturnal-wonderland-2019:d2:wolves-den:2245:dj-snake",
+   "outside-lands-2018:d3:twin-peaks:2020:dj-snake",
    "tomorrowland-2014:d1:mad-decent:2030:dj-snake",
    "tomorrowland-2014:d4:mad-decent:2230:dj-snake",
    "tomorrowland-2017:d4:mainstage:0000:dj-snake",
@@ -56054,7 +56324,8 @@
    "acl-2018:d2:miller-lite:1330:durand-jones-and-the-indications",
    "acl-2018:d5:miller-lite:1330:durand-jones-and-the-indications",
    "acl-2021:d4:t-mobile:1515:durand-jones-and-the-indications",
-   "lollapalooza-2018:d4:lake-shore:untimed:durand-jones-and-the-indications"
+   "lollapalooza-2018:d4:lake-shore:untimed:durand-jones-and-the-indications",
+   "outside-lands-2018:d3:lands-end:1245:durand-jones-and-the-indications"
   ],
   "firstSeen": "2018-08-05",
   "lastSeen": "2021-10-08",
@@ -57504,6 +57775,21 @@
   ],
   "firstSeen": "2026-07-03",
   "lastSeen": "2026-07-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "edie-brickell-and-new-bohemians",
+  "name": "Edie Brickell & New Bohemians",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:sutro:1540:edie-brickell-and-new-bohemians"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -59086,9 +59372,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "summerfest-2026:su295"
+   "summerfest-2026:su295",
+   "outside-lands-2019:d2:twin-peaks:1850:ella-mai"
   ],
-  "firstSeen": "2026-07-02",
+  "firstSeen": "2019-08-10",
   "lastSeen": "2026-07-02",
   "photo": null,
   "links": []
@@ -59256,7 +59543,8 @@
    "coachella-2017:d3:do-lab:1730:elohim",
    "governors-ball-2019:d2:american-eagle-stage:1415:elohim",
    "lightning-in-a-bottle-2019:d3:lightning:2115:elohim",
-   "lollapalooza-2017:d1:pepsi:1250:elohim"
+   "lollapalooza-2017:d1:pepsi:1250:elohim",
+   "outside-lands-2018:d1:panhandle:1950:elohim"
   ],
   "firstSeen": "2017-04-16",
   "lastSeen": "2019-06-01",
@@ -59696,10 +59984,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lightning-in-a-bottle-2018:d4:lightning:1625:emmit-fenn"
+   "lightning-in-a-bottle-2018:d4:lightning:1625:emmit-fenn",
+   "outside-lands-2018:d2:lands-end:1200:emmit-fenn"
   ],
   "firstSeen": "2018-05-27",
-  "lastSeen": "2018-05-27",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -62344,6 +62633,21 @@
   "links": []
  },
  {
+  "key": "fangirl",
+  "name": "fangirl",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d1:the-house-by-heineken:1200:ypr-b2b-fangirl-b2b-bad-girl-bailey"
+  ],
+  "firstSeen": "2018-08-10",
+  "lastSeen": "2018-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fanna-fi-allah",
   "name": "Fanna-Fi-Allah",
   "aliases": [],
@@ -62656,10 +62960,11 @@
   "projects": [],
   "billings": [
    "acl-2018:d1:tito-s-handmade-vodka:1215:fatai",
-   "acl-2018:d4:tito-s-handmade-vodka:1215:fatai"
+   "acl-2018:d4:tito-s-handmade-vodka:1215:fatai",
+   "outside-lands-2019:d2:panhandle:1200:fatai"
   ],
   "firstSeen": "2018-10-05",
-  "lastSeen": "2018-10-12",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -62759,6 +63064,7 @@
    "lollapalooza-2013:d1:lake-shore:1515:father-john-misty",
    "lollapalooza-2015:d1:palladia:1530:father-john-misty",
    "outside-lands-2012:d2:panhandle-hellman-hollow:1455:father-john-misty",
+   "outside-lands-2018:d1:twin-peaks:1850:father-john-misty",
    "outside-lands-2023:d2:lands-end:1700:father-john-misty",
    "primavera-sound-2012:d3:auditori-rockdelux:1600:father-john-misty",
    "primavera-sound-2018:d3:seat:2020:father-john-misty"
@@ -63340,6 +63646,21 @@
   ],
   "firstSeen": "2026-07-03",
   "lastSeen": "2026-07-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "felly",
+  "name": "Felly",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:lands-end:1200:felly"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -65180,9 +65501,9 @@
  },
  {
   "key": "florence-the-machine",
-  "name": "Florence + The Machine",
+  "name": "Florence + the Machine",
   "aliases": [
-   "Florence + the Machine",
+   "Florence + The Machine",
    "FLORENCE + THE MACHINE"
   ],
   "kind": "performer",
@@ -65196,7 +65517,8 @@
    "governors-ball-2015:d1:govballnyc-stage:1930:florence-the-machine",
    "governors-ball-2019:d2:govballnyc-stage:2115:florence-the-machine",
    "lollapalooza-2012:d3:bud-light:1815:florence-the-machine",
-   "lollapalooza-2015:d3:samsung-galaxy:2100:florence-the-machine"
+   "lollapalooza-2015:d3:samsung-galaxy:2100:florence-the-machine",
+   "outside-lands-2018:d2:lands-end:2025:florence-the-machine"
   ],
   "firstSeen": "2012-08-05",
   "lastSeen": "2019-06-01",
@@ -65436,7 +65758,8 @@
    "lollapalooza-2014:d3:the-grove:1915:flume",
    "lollapalooza-2016:d4:samsung:1825:flume",
    "lollapalooza-2019:d4:bud-light:untimed:flume",
-   "outside-lands-2014:d3:twin-peaks:1530:flume"
+   "outside-lands-2014:d3:twin-peaks:1530:flume",
+   "outside-lands-2019:d2:lands-end:1825:flume"
   ],
   "firstSeen": "2014-04-11",
   "lastSeen": "2022-10-15",
@@ -65583,6 +65906,7 @@
    "governors-ball-2015:d3:gotham-tent:2000:flying-lotus",
    "lightning-in-a-bottle-2019:d3:lightning:0045:flying-lotus-3d",
    "lollapalooza-2015:d1:pepsi:2100:flying-lotus",
+   "outside-lands-2019:d1:sutro:2040:flying-lotus-3d",
    "primavera-sound-2017:d3:ray-ban:0255:flying-lotus",
    "shambhala-2025:d3:grove:0100:flying-lotus"
   ],
@@ -67491,10 +67815,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2018:d4:lake-shore:untimed:freya-ridings"
+   "lollapalooza-2018:d4:lake-shore:untimed:freya-ridings",
+   "outside-lands-2018:d2:panhandle:1325:freya-ridings"
   ],
   "firstSeen": "2018-08-05",
-  "lastSeen": "2018-08-05",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -68487,6 +68812,7 @@
    "coachella-2017:d5:coachella:1930:future",
    "governors-ball-2015:d1:govballnyc-stage:1500:future",
    "lollapalooza-2016:d2:bud-light:1845:future",
+   "outside-lands-2018:d2:twin-peaks:2040:future",
    "primavera-sound-2019:d2:seat:0205:future"
   ],
   "firstSeen": "2015-06-05",
@@ -69798,9 +70124,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "outside-lands-2018:d2:the-house-by-heineken:1530:gavin-hardkiss",
    "shambhala-2025:d1:living-room:0030:gavin-hardkiss"
   ],
-  "firstSeen": "2025-07-24",
+  "firstSeen": "2018-08-11",
   "lastSeen": "2025-07-24",
   "photo": null,
   "links": []
@@ -72224,7 +72551,9 @@
  {
   "key": "gogo-penguin",
   "name": "GoGo Penguin",
-  "aliases": [],
+  "aliases": [
+   "Gogo Penguin"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -72232,7 +72561,8 @@
    "acl-2019:d3:tito-s-handmade-vodka:1600:gogo-penguin",
    "acl-2019:d6:tito-s-handmade-vodka:1600:gogo-penguin",
    "coachella-2016:d2:gobi:1305:gogo-penguin",
-   "coachella-2016:d5:gobi:1305:gogo-penguin"
+   "coachella-2016:d5:gobi:1305:gogo-penguin",
+   "outside-lands-2018:d2:panhandle:1635:gogo-penguin"
   ],
   "firstSeen": "2016-04-16",
   "lastSeen": "2019-10-13",
@@ -72487,6 +72817,21 @@
   ],
   "firstSeen": "2017-07-29",
   "lastSeen": "2017-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "goldfish-live",
+  "name": "GoldFish Live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:the-house-by-heineken:1830:goldfish-live"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -73674,6 +74019,21 @@
   "links": []
  },
  {
+  "key": "grateful-shred",
+  "name": "Grateful Shred",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d1:twin-peaks:1240:grateful-shred"
+  ],
+  "firstSeen": "2019-08-09",
+  "lastSeen": "2019-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "gravagerz",
   "name": "Gravagerz",
   "aliases": [
@@ -74565,6 +74925,21 @@
   "links": []
  },
  {
+  "key": "groove-well-ft-soulfunky-j-key-and-ledet",
+  "name": "Groove Well Ft. Soulfunky J-Key & Ledet",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:the-house-by-heineken:1200:groove-well-ft-soulfunky-j-key-and-ledet"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "grooverider",
   "name": "Grooverider",
   "aliases": [],
@@ -74745,6 +75120,7 @@
    "lollapalooza-2017:d1:pepsi:1815:gryffin",
    "lollapalooza-2019:d3:perry-s:untimed:gryffin",
    "lollapalooza-2025:d4:perry-s:1900:gryffin",
+   "outside-lands-2018:d3:twin-peaks:1530:gryffin",
    "outside-lands-2024:d1:twin-peaks:2035:gryffin"
   ],
   "firstSeen": "2017-04-15",
@@ -75677,6 +76053,21 @@
   "links": []
  },
  {
+  "key": "haley-heynderickx",
+  "name": "Haley Heynderickx",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:sutro:1310:haley-heynderickx"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "haley-johnsen",
   "name": "Haley Johnsen",
   "aliases": [],
@@ -75708,9 +76099,9 @@
  },
  {
   "key": "half-alive",
-  "name": "HALF.ALIVE",
+  "name": "half•alive",
   "aliases": [
-   "half•alive",
+   "HALF.ALIVE",
    "HALF•ALIVE"
   ],
   "kind": "performer",
@@ -75719,7 +76110,8 @@
   "billings": [
    "acl-2023:d1:t-mobile:1510:half-alive",
    "lollapalooza-2019:d1:american-eagle:untimed:half-alive",
-   "lollapalooza-2025:d1:tito-s-handmade-vodka:1545:half-alive"
+   "lollapalooza-2025:d1:tito-s-handmade-vodka:1545:half-alive",
+   "outside-lands-2019:d1:lands-end:1305:half-alive"
   ],
   "firstSeen": "2019-08-01",
   "lastSeen": "2025-07-31",
@@ -78619,15 +79011,18 @@
  },
  {
   "key": "hobo-johnson-and-the-lovemakers",
-  "name": "Hobo Johnson & The Lovemakers",
-  "aliases": [],
+  "name": "Hobo Johnson & the LoveMakers",
+  "aliases": [
+   "Hobo Johnson & The Lovemakers"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2019:d1:tito-s-handmade-vodka:untimed:hobo-johnson-and-the-lovemakers"
+   "lollapalooza-2019:d1:tito-s-handmade-vodka:untimed:hobo-johnson-and-the-lovemakers",
+   "outside-lands-2018:d3:sutro:1310:hobo-johnson-and-the-lovemakers"
   ],
-  "firstSeen": "2019-08-01",
+  "firstSeen": "2018-08-12",
   "lastSeen": "2019-08-01",
   "photo": null,
   "links": []
@@ -79442,6 +79837,21 @@
   "links": []
  },
  {
+  "key": "hot-flash-heat-wave",
+  "name": "Hot Flash Heat Wave",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d3:panhandle:1320:hot-flash-heat-wave"
+  ],
+  "firstSeen": "2018-08-12",
+  "lastSeen": "2018-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hot-goth-freak-show",
   "name": "Hot Goth Freak Show",
   "aliases": [],
@@ -79759,6 +80169,7 @@
    "governors-ball-2025:d3:govballnyc:2030:hozier",
    "lollapalooza-2014:d1:palladia:1545:hozier",
    "lollapalooza-2019:d1:t-mobile:untimed:hozier",
+   "outside-lands-2019:d2:sutro:1935:hozier",
    "outside-lands-2025:d3:lands-end:2015:hozier"
   ],
   "firstSeen": "2014-08-01",
@@ -81631,6 +82042,7 @@
    "lollapalooza-2018:d3:perry-s:untimed:illenium",
    "nocturnal-wonderland-2018:d1:wolves-den:0030:illenium",
    "nocturnal-wonderland-2022:d1:wolves-den:2300:illenium",
+   "outside-lands-2018:d2:twin-peaks:1850:illenium",
    "outside-lands-2022:d3:twin-peaks:2020:illenium",
    "shambhala-2025:d4:the-village:0030:illenium"
   ],
@@ -83845,6 +84257,7 @@
    "escape-halloween-2022:d2:sanitarium:1830:j-worra",
    "escape-halloween-2025:d2:feeding-grounds:2045:j-worra",
    "lightning-in-a-bottle-2018:d2:woogie:1230:j-worra",
+   "outside-lands-2019:d2:the-house-by-heineken:1700:j-worra",
    "outside-lands-2022:d2:soma-tent:1715:j-worra"
   ],
   "firstSeen": "2018-05-25",
@@ -83996,9 +84409,10 @@
   "billings": [
    "acl-2021:d2:miller-lite:1920:jack-harlow",
    "acl-2021:d5:miller-lite:1920:jack-harlow",
+   "outside-lands-2018:d2:panhandle:1200:jack-harlow",
    "outside-lands-2022:d2:lands-end:1840:jack-harlow"
   ],
-  "firstSeen": "2021-10-02",
+  "firstSeen": "2018-08-11",
   "lastSeen": "2022-08-06",
   "photo": null,
   "links": []
@@ -85067,6 +85481,7 @@
    "acl-2022:d6:honda:1800:james-blake",
    "governors-ball-2014:d3:honda-stage:1845:james-blake",
    "governors-ball-2018:d1:honda-stage:2115:james-blake",
+   "outside-lands-2018:d3:sutro:1935:james-blake",
    "primavera-sound-2015:d2:heineken:0130:james-blake",
    "primavera-sound-2019:d4:seat:0125:james-blake",
    "tomorrowland-2010:d1:release:2000:james-blake"
@@ -85462,6 +85877,7 @@
   "key": "jamie-xx",
   "name": "Jamie xx",
   "aliases": [
+   "Jamie XX",
    "JAMIE XX"
   ],
   "kind": "performer",
@@ -85470,6 +85886,7 @@
   "billings": [
    "coachella-2015:d3:gobi:2020:jamie-xx",
    "coachella-2015:d6:gobi:2020:jamie-xx",
+   "outside-lands-2018:d2:sutro:1935:jamie-xx",
    "outside-lands-2025:d3:sutro:2020:jamie-xx",
    "primavera-sound-2012:d3:escenario-vice:0215:jamie-xx",
    "primavera-sound-2017:d3:heineken:0200:jamie-xx"
@@ -85790,6 +86207,7 @@
    "governors-ball-2014:d1:govballnyc-stage:1500:janelle-monae",
    "lollapalooza-2019:d2:t-mobile:untimed:janelle-monae",
    "outside-lands-2010:d2:sutro:1505:janelle-monae",
+   "outside-lands-2018:d3:lands-end:1640:janelle-monae",
    "outside-lands-2023:d1:lands-end:1855:janelle-monae",
    "primavera-sound-2019:d3:pull-and-bear:2135:janelle-monae"
   ],
@@ -85810,6 +86228,21 @@
   ],
   "firstSeen": "2026-09-05",
   "lastSeen": "2026-09-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "janet-jackson",
+  "name": "Janet Jackson",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d3:lands-end:2005:janet-jackson"
+  ],
+  "firstSeen": "2018-08-12",
+  "lastSeen": "2018-08-12",
   "photo": null,
   "links": []
  },
@@ -88098,7 +88531,8 @@
   "billings": [
    "governors-ball-2017:d2:honda:1215:jessie-reyez",
    "governors-ball-2019:d1:bacardi-stage:1545:jessie-reyez",
-   "lollapalooza-2018:d4:american-eagle:untimed:jessie-reyez"
+   "lollapalooza-2018:d4:american-eagle:untimed:jessie-reyez",
+   "outside-lands-2018:d2:twin-peaks:1240:jessie-reyez"
   ],
   "firstSeen": "2017-06-03",
   "lastSeen": "2019-05-31",
@@ -92171,7 +92605,9 @@
  {
   "key": "judah-and-the-lion",
   "name": "Judah & the Lion",
-  "aliases": [],
+  "aliases": [
+   "Judah & The Lion"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -92179,7 +92615,8 @@
    "acl-2019:d2:t-mobile:1700:judah-and-the-lion",
    "acl-2019:d5:t-mobile:1700:judah-and-the-lion",
    "governors-ball-2017:d1:big-apple:1415:judah-and-the-lion",
-   "lollapalooza-2019:d3:lake-shore:untimed:judah-and-the-lion"
+   "lollapalooza-2019:d3:lake-shore:untimed:judah-and-the-lion",
+   "outside-lands-2019:d3:lands-end:1450:judah-and-the-lion"
   ],
   "firstSeen": "2017-06-02",
   "lastSeen": "2019-10-12",
@@ -93118,6 +93555,21 @@
   "links": []
  },
  {
+  "key": "jupiter-and-okwess",
+  "name": "Jupiter & Okwess",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d3:panhandle:1445:jupiter-and-okwess"
+  ],
+  "firstSeen": "2019-08-11",
+  "lastSeen": "2019-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jurassic-5",
   "name": "Jurassic 5",
   "aliases": [],
@@ -93418,6 +93870,7 @@
    "electric-forest-2014:d1:tripolee:2200:justin-martin",
    "hard-summer-2012:d2:rbma-discotheque:2120:justin-martin",
    "outside-lands-2012:d1:the-dome-by-heineken:1800:justin-martin",
+   "outside-lands-2019:d2:panhandle:1950:justin-martin",
    "shambhala-2011:d2:pagoda:0230:justin-martin",
    "shambhala-2013:d4:pagoda:2230:justin-martin",
    "shambhala-2014:d4:pagoda:0000:justin-martin",
@@ -93528,6 +93981,21 @@
   ],
   "firstSeen": "2015-10-02",
   "lastSeen": "2025-08-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "justin-waves",
+  "name": "Justin Waves",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d3:the-house-by-heineken:1200:justin-waves"
+  ],
+  "firstSeen": "2019-08-11",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -93856,7 +94324,8 @@
    "acl-2022:d6:honda:2015:kacey-musgraves",
    "governors-ball-2019:d2:govballnyc-stage:1645:kacey-musgraves",
    "lollapalooza-2019:d4:t-mobile:untimed:kacey-musgraves",
-   "outside-lands-2014:d1:sutro:1730:kacey-musgraves"
+   "outside-lands-2014:d1:sutro:1730:kacey-musgraves",
+   "outside-lands-2019:d3:lands-end:1610:kacey-musgraves"
   ],
   "firstSeen": "2014-08-08",
   "lastSeen": "2022-10-16",
@@ -93977,6 +94446,21 @@
   ],
   "firstSeen": "2025-08-03",
   "lastSeen": "2025-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kailee-morgue",
+  "name": "Kailee Morgue",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d3:twin-peaks:1240:kailee-morgue"
+  ],
+  "firstSeen": "2018-08-12",
+  "lastSeen": "2018-08-12",
   "photo": null,
   "links": []
  },
@@ -95791,6 +96275,7 @@
    "portola-2026:pt2-kelela",
    "coachella-2027:coa27-kelela",
    "governors-ball-2018:d2:american-eagle-stage:1545:kelela",
+   "outside-lands-2018:d3:twin-peaks:1400:kelela",
    "primavera-sound-2015:d2:adidas-originals:2145:kelela",
    "primavera-sound-2018:d2:ray-ban:2035:kelela"
   ],
@@ -97250,6 +97735,21 @@
   ],
   "firstSeen": "2017-07-22",
   "lastSeen": "2018-07-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kikagaku-moyo",
+  "name": "Kikagaku Moyo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d2:sutro:1200:kikagaku-moyo"
+  ],
+  "firstSeen": "2018-08-11",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -98723,10 +99223,11 @@
   "billings": [
    "governors-ball-2018:d3:american-eagle-stage:1245:knox-fortune",
    "lollapalooza-2018:d4:american-eagle:untimed:knox-fortune",
+   "outside-lands-2018:d2:panhandle:1500:knox-fortune",
    "primavera-sound-2018:d3:bacardi-live:2025:knox-fortune"
   ],
   "firstSeen": "2018-06-01",
-  "lastSeen": "2018-08-05",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -100657,6 +101158,7 @@
    "edc-orlando-2021:d3:kinetic-field:1728:kygo-sunset",
    "electric-forest-2014:d4:forest-stage:1745:kygo",
    "lollapalooza-2015:d3:pepsi:2130:kygo",
+   "outside-lands-2019:d3:twin-peaks:2020:kygo",
    "shambhala-2015:d4:pagoda:0100:kygo",
    "tomorrowland-2014:d4:blueflame:1500:kygo"
   ],
@@ -102691,7 +103193,8 @@
   "billings": [
    "acl-2019:d2:american-express:1600:lauren-daigle",
    "acl-2019:d5:american-express:1600:lauren-daigle",
-   "lollapalooza-2019:d1:tito-s-handmade-vodka:untimed:lauren-daigle"
+   "lollapalooza-2019:d1:tito-s-handmade-vodka:untimed:lauren-daigle",
+   "outside-lands-2019:d1:twin-peaks:1715:lauren-daigle"
   ],
   "firstSeen": "2019-08-01",
   "lastSeen": "2019-10-12",
@@ -102869,15 +103372,18 @@
  {
   "key": "lauv",
   "name": "Lauv",
-  "aliases": [],
+  "aliases": [
+   "LAUV"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2018:d2:american-eagle:untimed:lauv"
+   "lollapalooza-2018:d2:american-eagle:untimed:lauv",
+   "outside-lands-2018:d1:lands-end:1420:lauv"
   ],
   "firstSeen": "2018-08-03",
-  "lastSeen": "2018-08-03",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -104138,7 +104644,8 @@
    "acl-2024:d1:american-express:1830:leon-bridges",
    "acl-2024:d4:american-express:1830:leon-bridges",
    "lollapalooza-2016:d3:bud-light:1645:leon-bridges",
-   "outside-lands-2015:d1:sutro:1425:leon-bridges"
+   "outside-lands-2015:d1:sutro:1425:leon-bridges",
+   "outside-lands-2019:d3:lands-end:1740:leon-bridges"
   ],
   "firstSeen": "2015-08-07",
   "lastSeen": "2027-04-10",
@@ -104546,6 +105053,21 @@
   "links": []
  },
  {
+  "key": "leven-kali",
+  "name": "Leven Kali",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d3:twin-peaks:1240:leven-kali"
+  ],
+  "firstSeen": "2019-08-11",
+  "lastSeen": "2019-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "levenkhan",
   "name": "Levenkhan",
   "aliases": [],
@@ -104852,6 +105374,21 @@
   ],
   "firstSeen": "2019-10-13",
   "lastSeen": "2019-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "leyl-master-black",
+  "name": "Leyl Master Black",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d3:the-house-by-heineken:1200:leyl-master-black"
+  ],
+  "firstSeen": "2018-08-12",
+  "lastSeen": "2018-08-12",
   "photo": null,
   "links": []
  },
@@ -105504,10 +106041,11 @@
   "billings": [
    "acl-2018:d5:homeaway:1900:lil-wayne",
    "governors-ball-2019:d1:bacardi-stage:2000:lil-wayne",
-   "lollapalooza-2019:d3:t-mobile:untimed:lil-wayne"
+   "lollapalooza-2019:d3:t-mobile:untimed:lil-wayne",
+   "outside-lands-2019:d1:lands-end:1655:lil-wayne"
   ],
   "firstSeen": "2018-10-13",
-  "lastSeen": "2019-08-03",
+  "lastSeen": "2019-08-09",
   "photo": null,
   "links": []
  },
@@ -106130,10 +106668,11 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2012:d1:neongarden:2125:little-boots",
-   "nocturnal-wonderland-2012:d2:queen-s-grounds:0000:little-boots"
+   "nocturnal-wonderland-2012:d2:queen-s-grounds:0000:little-boots",
+   "outside-lands-2018:d3:the-house-by-heineken:1735:little-boots"
   ],
   "firstSeen": "2012-06-08",
-  "lastSeen": "2012-09-22",
+  "lastSeen": "2018-08-12",
   "photo": null,
   "links": []
  },
@@ -106557,6 +107096,7 @@
    "acl-2019:d3:miller-lite:1900:lizzo",
    "acl-2019:d6:miller-lite:1900:lizzo",
    "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:lizzo",
+   "outside-lands-2018:d2:lands-end:1420:lizzo",
    "primavera-sound-2019:d4:lotus:2235:lizzo"
   ],
   "firstSeen": "2016-10-02",
@@ -108751,7 +109291,8 @@
   "billings": [
    "acl-2026:af40",
    "acl-2012:d1:austin-ventures:1430:lp",
-   "lollapalooza-2012:d2:bmi:1830:lp"
+   "lollapalooza-2012:d2:bmi:1830:lp",
+   "outside-lands-2018:d3:sutro:1655:lp"
   ],
   "firstSeen": "2012-08-04",
   "lastSeen": "2026-10-02",
@@ -109426,6 +109967,7 @@
    "outside-lands-2026:os53",
    "acl-2016:d2:bmi:1430:lucy-dacus",
    "lollapalooza-2016:d1:bmi:1300:lucy-dacus",
+   "outside-lands-2018:d1:panhandle:1805:lucy-dacus",
    "primavera-sound-2019:d3:ray-ban:1645:lucy-dacus"
   ],
   "firstSeen": "2016-07-28",
@@ -110202,6 +110744,7 @@
    "edc-las-vegas-2022:d3:circuit-grounds:2000:luttrell",
    "edc-las-vegas-2024:d3:quantum-valley:2100:luttrell",
    "lightning-in-a-bottle-2019:d4:woogie:2200:luttrell",
+   "outside-lands-2019:d1:panhandle:1950:luttrell",
    "tomorrowland-2018:d4:tulip:2330:luttrell"
   ],
   "firstSeen": "2018-07-27",
@@ -110277,6 +110820,21 @@
   ],
   "firstSeen": "2024-07-26",
   "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "luxxury",
+  "name": "LUXXURY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d1:the-house-by-heineken:1530:luxxury"
+  ],
+  "firstSeen": "2018-08-10",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -110903,6 +111461,7 @@
    "governors-ball-2017:d3:honda:1645:mac-demarco",
    "lollapalooza-2017:d3:pepsi:2100:mac-demarco",
    "outside-lands-2015:d2:lands-end:1420:mac-demarco",
+   "outside-lands-2018:d1:sutro:2000:mac-demarco",
    "outside-lands-2022:d2:lands-end:1710:mac-demarco",
    "primavera-sound-2015:d4:heineken:2000:mac-demarco",
    "primavera-sound-2017:d3:mango:2150:mac-demarco",
@@ -112536,10 +113095,11 @@
   "billings": [
    "coachella-2014:d2:sahara:1330:makj",
    "coachella-2014:d5:sahara:1330:makj",
+   "outside-lands-2018:d2:the-house-by-heineken:1700:makj",
    "tomorrowland-2014:d5:v-sessions-vs-doorn:0000:makj"
   ],
   "firstSeen": "2014-04-12",
-  "lastSeen": "2014-07-26",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -114267,10 +114827,11 @@
   "billings": [
    "acl-2016:d3:homeaway:1500:margo-price",
    "acl-2016:d6:homeaway:1500:margo-price",
-   "governors-ball-2018:d3:bacardi-stage:1545:margo-price"
+   "governors-ball-2018:d3:bacardi-stage:1545:margo-price",
+   "outside-lands-2018:d1:sutro:1445:margo-price"
   ],
   "firstSeen": "2016-10-02",
-  "lastSeen": "2018-06-03",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -116120,7 +116681,8 @@
    "acl-2019:d2:tito-s-handmade-vodka:1800:masego",
    "acl-2019:d5:tito-s-handmade-vodka:1800:masego",
    "lightning-in-a-bottle-2019:d4:lightning:2120:masego",
-   "lollapalooza-2019:d4:american-eagle:untimed:masego"
+   "lollapalooza-2019:d4:american-eagle:untimed:masego",
+   "outside-lands-2019:d1:sutro:1640:masego"
   ],
   "firstSeen": "2019-05-11",
   "lastSeen": "2019-10-12",
@@ -117570,10 +118132,11 @@
    "acl-2011:d1:vista-equity:1930:mavis-staples",
    "coachella-2016:d1:gobi:1410:mavis-staples",
    "coachella-2016:d4:gobi:1410:mavis-staples",
-   "outside-lands-2011:d3:lands-end:1345:mavis-staples"
+   "outside-lands-2011:d3:lands-end:1345:mavis-staples",
+   "outside-lands-2019:d3:lands-end:1330:mavis-staples"
   ],
   "firstSeen": "2011-08-14",
-  "lastSeen": "2016-04-22",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -122005,7 +122568,8 @@
   "billings": [
    "acl-2018:d1:bmi:1445:mikky-ekko",
    "governors-ball-2018:d2:gov-ball-nyc-stage:1215:mikky-ekko",
-   "lollapalooza-2018:d4:bmi:untimed:mikky-ekko"
+   "lollapalooza-2018:d4:bmi:untimed:mikky-ekko",
+   "outside-lands-2018:d1:lands-end:1200:mikky-ekko"
   ],
   "firstSeen": "2018-06-02",
   "lastSeen": "2018-10-05",
@@ -123310,13 +123874,16 @@
  },
  {
   "key": "miya-folick",
-  "name": "MIYA FOLICK",
-  "aliases": [],
+  "name": "Miya Folick",
+  "aliases": [
+   "MIYA FOLICK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2023:d5:miller-lite:1145:miya-folick",
+   "outside-lands-2019:d1:panhandle:1455:miya-folick",
    "primavera-sound-2019:d4:ocb-paper-sessions:1900:miya-folick"
   ],
   "firstSeen": "2019-06-01",
@@ -124408,6 +124975,21 @@
   "links": []
  },
  {
+  "key": "monophonics",
+  "name": "Monophonics",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d3:panhandle:1620:monophonics"
+  ],
+  "firstSeen": "2018-08-12",
+  "lastSeen": "2018-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "monoverse",
   "name": "Monoverse",
   "aliases": [],
@@ -125229,6 +125811,21 @@
   "links": []
  },
  {
+  "key": "mormor",
+  "name": "MorMor",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d3:panhandle:1755:mormor"
+  ],
+  "firstSeen": "2019-08-11",
+  "lastSeen": "2019-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "morning-teleportation",
   "name": "Morning Teleportation",
   "aliases": [],
@@ -125527,10 +126124,12 @@
    "outside-lands-2014:d1:the-house-by-heineken:1500:motion-potion",
    "outside-lands-2015:d2:the-house-by-heineken:1500:floorwax-feat-motion-potion-and-dj-zeph",
    "outside-lands-2016:d2:the-house-by-heineken:1200:motion-potion",
-   "outside-lands-2017:d2:the-house-by-heineken:1330:motion-potion-metallica-set"
+   "outside-lands-2017:d2:the-house-by-heineken:1330:motion-potion-metallica-set",
+   "outside-lands-2018:d1:the-house-by-heineken:1330:motion-potion",
+   "outside-lands-2019:d3:the-house-by-heineken:1315:motion-potion-1969-in-remix-set"
   ],
   "firstSeen": "2010-08-14",
-  "lastSeen": "2017-08-12",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -127968,10 +128567,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "governors-ball-2018:d3:honda-stage:1845:n-e-r-d"
+   "governors-ball-2018:d3:honda-stage:1845:n-e-r-d",
+   "outside-lands-2018:d1:lands-end:1655:n-e-r-d"
   ],
   "firstSeen": "2018-06-03",
-  "lastSeen": "2018-06-03",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -128214,10 +128814,11 @@
   "billings": [
    "electric-forest-2013:d3:sherwood-court:1800:nahko-and-medicine-for-the-people",
    "electric-forest-2014:d1:sherwood-court:1915:nahko-and-medicine-for-the-people",
-   "outside-lands-2014:d1:panhandle:1455:nahko-and-medicine-for-the-people"
+   "outside-lands-2014:d1:panhandle:1455:nahko-and-medicine-for-the-people",
+   "outside-lands-2019:d3:twin-peaks:1400:nahko-and-medicine-for-the-people"
   ],
   "firstSeen": "2013-06-29",
-  "lastSeen": "2014-08-08",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -130844,6 +131445,21 @@
   "links": []
  },
  {
+  "key": "nick-monaco",
+  "name": "Nick Monaco",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:the-house-by-heineken:1530:nick-monaco"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nick-mulvey",
   "name": "Nick Mulvey",
   "aliases": [],
@@ -130851,10 +131467,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:nick-mulvey"
+   "lollapalooza-2018:d1:tito-s-handmade-vodka:untimed:nick-mulvey",
+   "outside-lands-2018:d1:sutro:1215:nick-mulvey"
   ],
   "firstSeen": "2018-08-02",
-  "lastSeen": "2018-08-02",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -133168,6 +133785,21 @@
   "links": []
  },
  {
+  "key": "nombe",
+  "name": "NoMBe",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d2:lands-end:1305:nombe"
+  ],
+  "firstSeen": "2019-08-10",
+  "lastSeen": "2019-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nome",
   "name": "NOME.",
   "aliases": [],
@@ -134941,6 +135573,7 @@
    "lollapalooza-2015:d3:bud-light:1730:odesza",
    "lollapalooza-2018:d4:bud-light:untimed:odesza",
    "outside-lands-2015:d3:twin-peaks:1705:odesza",
+   "outside-lands-2018:d1:lands-end:1825:odesza",
    "outside-lands-2023:d3:lands-end:2005:odesza",
    "shambhala-2014:d4:grove:2330:odesza"
   ],
@@ -135727,6 +136360,21 @@
   ],
   "firstSeen": "2025-06-08",
   "lastSeen": "2025-06-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "olivia-o-brien",
+  "name": "Olivia O’Brien",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d1:panhandle:1455:olivia-o-brien"
+  ],
+  "firstSeen": "2018-08-10",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -136549,6 +137197,7 @@
    "coachella-2016:d6:do-lab:1330:oona-dahl",
    "lightning-in-a-bottle-2018:d4:woogie:1700:oona-dahl",
    "nocturnal-wonderland-2018:d1:sunken-garden:2000:oona-dahl",
+   "outside-lands-2018:d3:the-house-by-heineken:1545:oona-dahl",
    "tomorrowland-2018:d4:leaf-by-jbl:1430:oona-dahl"
   ],
   "firstSeen": "2016-04-24",
@@ -137915,6 +138564,21 @@
   "links": []
  },
  {
+  "key": "p-lo",
+  "name": "P-Lo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d1:lands-end:1420:p-lo"
+  ],
+  "firstSeen": "2019-08-09",
+  "lastSeen": "2019-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "p-nk",
   "name": "P!NK",
   "aliases": [],
@@ -138213,10 +138877,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2018:d3:american-eagle:untimed:pale-waves"
+   "lollapalooza-2018:d3:american-eagle:untimed:pale-waves",
+   "outside-lands-2018:d2:lands-end:1305:pale-waves"
   ],
   "firstSeen": "2018-08-04",
-  "lastSeen": "2018-08-04",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -139991,6 +140656,21 @@
   "links": []
  },
  {
+  "key": "paul-simon",
+  "name": "Paul Simon",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d3:lands-end:1935:paul-simon"
+  ],
+  "firstSeen": "2019-08-11",
+  "lastSeen": "2019-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "paul-spencer-band",
   "name": "Paul Spencer Band",
   "aliases": [],
@@ -140931,10 +141611,11 @@
   "billings": [
    "coachella-2015:d2:outdoor:1355:perfume-genius",
    "coachella-2015:d5:outdoor:1355:perfume-genius",
+   "outside-lands-2018:d1:twin-peaks:1540:perfume-genius",
    "primavera-sound-2015:d3:pitchfork:2130:perfume-genius"
   ],
   "firstSeen": "2015-04-11",
-  "lastSeen": "2015-05-29",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -142200,10 +142881,11 @@
    "acl-2011:d2:austin-ventures:1400:phosphorescent",
    "acl-2013:d3:austin-ventures:1815:phosphorescent",
    "lollapalooza-2014:d2:samsung-galaxy:1415:phosphorescent",
-   "outside-lands-2014:d1:sutro:1430:phosphorescent"
+   "outside-lands-2014:d1:sutro:1430:phosphorescent",
+   "outside-lands-2019:d2:sutro:1655:phosphorescent"
   ],
   "firstSeen": "2011-09-17",
-  "lastSeen": "2014-08-08",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -143079,6 +143761,21 @@
   "links": []
  },
  {
+  "key": "pj-morton",
+  "name": "PJ Morton",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d3:lands-end:1210:pj-morton"
+  ],
+  "firstSeen": "2019-08-11",
+  "lastSeen": "2019-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pkcz",
   "name": "PKCZ",
   "aliases": [
@@ -143836,6 +144533,7 @@
    "coachella-2014:d3:mojave:1430:poolside",
    "coachella-2014:d6:mojave:1430:poolside",
    "electric-forest-2014:d1:forest-stage:0030:poolside",
+   "outside-lands-2018:d2:sutro:1535:poolside",
    "outside-lands-2023:d3:lands-end:1540:poolside"
   ],
   "firstSeen": "2014-04-13",
@@ -144056,7 +144754,8 @@
    "lollapalooza-2014:d1:kidzapalooza:1405:portugal-the-man",
    "lollapalooza-2014:d1:samsung-galaxy:1630:portugal-the-man",
    "lollapalooza-2018:d4:grant-park:untimed:portugal-the-man",
-   "outside-lands-2012:d2:lands-end-polo-field:1510:portugal-the-man"
+   "outside-lands-2012:d2:lands-end-polo-field:1510:portugal-the-man",
+   "outside-lands-2018:d3:lands-end:1810:portugal-the-man"
   ],
   "firstSeen": "2011-08-07",
   "lastSeen": "2023-10-13",
@@ -146496,10 +147195,11 @@
   "projects": [],
   "billings": [
    "governors-ball-2018:d3:bacardi-stage:1415:quinn-xcii",
-   "lollapalooza-2018:d4:american-eagle:untimed:quinn-xcii"
+   "lollapalooza-2018:d4:american-eagle:untimed:quinn-xcii",
+   "outside-lands-2018:d1:lands-end:1305:quinn-xcii"
   ],
   "firstSeen": "2018-06-03",
-  "lastSeen": "2018-08-05",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -146955,9 +147655,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lightning-in-a-bottle-2019:d5:woogie:1200:rachel-torro"
+   "lightning-in-a-bottle-2019:d5:woogie:1200:rachel-torro",
+   "outside-lands-2018:d3:the-house-by-heineken:1400:rachel-torro"
   ],
-  "firstSeen": "2019-05-12",
+  "firstSeen": "2018-08-12",
   "lastSeen": "2019-05-12",
   "photo": null,
   "links": []
@@ -147431,6 +148132,21 @@
   "links": []
  },
  {
+  "key": "rainbow-girls",
+  "name": "Rainbow Girls",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d1:panhandle:1200:rainbow-girls"
+  ],
+  "firstSeen": "2019-08-09",
+  "lastSeen": "2019-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rainbow-kitten-surprise",
   "name": "Rainbow Kitten Surprise",
   "aliases": [
@@ -147444,7 +148160,8 @@
    "acl-2017:d6:american-express:untimed:rainbow-kitten-surprise",
    "acl-2025:d3:t-mobile:1615:rainbow-kitten-surprise",
    "acl-2025:d6:t-mobile:1615:rainbow-kitten-surprise",
-   "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:rainbow-kitten-surprise"
+   "lollapalooza-2018:d4:tito-s-handmade-vodka:untimed:rainbow-kitten-surprise",
+   "outside-lands-2018:d3:lands-end:1400:rainbow-kitten-surprise"
   ],
   "firstSeen": "2017-10-08",
   "lastSeen": "2025-10-12",
@@ -150502,10 +151219,11 @@
   "projects": [],
   "billings": [
    "lollapalooza-2018:d4:american-eagle:untimed:rex-orange-county",
+   "outside-lands-2018:d1:sutro:1600:rex-orange-county",
    "primavera-sound-2018:d4:pitchfork:1915:rex-orange-county"
   ],
   "firstSeen": "2018-06-02",
-  "lastSeen": "2018-08-05",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -151891,7 +152609,8 @@
    "escape-halloween-2025:d2:sewer-district:0045:rl-grime",
    "lollapalooza-2015:d2:perry-s:1630:rl-grime",
    "lollapalooza-2019:d3:perry-s:untimed:rl-grime",
-   "outside-lands-2015:d1:twin-peaks:1715:rl-grime"
+   "outside-lands-2015:d1:twin-peaks:1715:rl-grime",
+   "outside-lands-2019:d2:twin-peaks:2040:rl-grime"
   ],
   "firstSeen": "2013-06-27",
   "lastSeen": "2026-08-02",
@@ -153438,6 +154157,21 @@
   ],
   "firstSeen": "2011-08-06",
   "lastSeen": "2011-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rooz",
+  "name": "Rooz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d2:the-house-by-heineken:1330:rooz"
+  ],
+  "firstSeen": "2018-08-11",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -155345,7 +156079,8 @@
   "billings": [
    "governors-ball-2019:d2:american-eagle-stage:1545:saba",
    "lollapalooza-2016:d2:pepsi:1250:saba",
-   "lollapalooza-2019:d1:american-eagle:untimed:saba"
+   "lollapalooza-2019:d1:american-eagle:untimed:saba",
+   "outside-lands-2018:d3:panhandle:1755:saba"
   ],
   "firstSeen": "2016-07-29",
   "lastSeen": "2019-08-01",
@@ -155437,7 +156172,8 @@
   "projects": [],
   "billings": [
    "acl-2022:d5:barton-springs:1715:sabrina-claudio",
-   "lollapalooza-2018:d4:american-eagle:untimed:sabrina-claudio"
+   "lollapalooza-2018:d4:american-eagle:untimed:sabrina-claudio",
+   "outside-lands-2018:d3:sutro:1540:sabrina-claudio"
   ],
   "firstSeen": "2018-08-05",
   "lastSeen": "2022-10-15",
@@ -155946,6 +156682,21 @@
   ],
   "firstSeen": "2024-08-09",
   "lastSeen": "2025-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "salt-n-pepa",
+  "name": "Salt-N-Pepa",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d3:the-house-by-heineken:1925:salt-n-pepa"
+  ],
+  "firstSeen": "2018-08-12",
+  "lastSeen": "2018-08-12",
   "photo": null,
   "links": []
  },
@@ -156671,6 +157422,7 @@
    "escape-halloween-2025:d2:sewer-district:2000:san-holo-wholesome-riddim-set",
    "lollapalooza-2017:d2:perry-s:1315:san-holo",
    "lollapalooza-2019:d4:perry-s:untimed:san-holo",
+   "outside-lands-2019:d1:sutro:1920:san-holo",
    "shambhala-2024:d4:amp:0000:san-holo",
    "tomorrowland-2015:d3:barong-family:1400:san-holo",
    "tomorrowland-2016:d3:barong-family:1400:san-holo",
@@ -156887,6 +157639,21 @@
   "links": []
  },
  {
+  "key": "sandy-s",
+  "name": "Sandy's",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d3:panhandle:1200:sandy-s"
+  ],
+  "firstSeen": "2019-08-11",
+  "lastSeen": "2019-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sandy-warez",
   "name": "Sandy Warez",
   "aliases": [],
@@ -157009,6 +157776,22 @@
   "links": []
  },
  {
+  "key": "sante",
+  "name": "Santé",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d3:the-house-by-heineken:1745:sante",
+   "outside-lands-2019:d3:the-house-by-heineken:1920:sante"
+  ],
+  "firstSeen": "2019-08-11",
+  "lastSeen": "2019-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "santigold",
   "name": "Santigold",
   "aliases": [
@@ -157026,7 +157809,8 @@
    "governors-ball-2012:d1:hype-machine-stage:1500:santigold",
    "lightning-in-a-bottle-2019:d4:lightning:2315:santigold",
    "lollapalooza-2012:d2:perry-s:2145:santigold",
-   "outside-lands-2012:d3:twin-peaks-hellman-hollow:1710:santigold"
+   "outside-lands-2012:d3:twin-peaks-hellman-hollow:1710:santigold",
+   "outside-lands-2019:d2:lands-end:1535:santigold"
   ],
   "firstSeen": "2011-09-16",
   "lastSeen": "2024-10-11",
@@ -157380,6 +158164,21 @@
   "links": []
  },
  {
+  "key": "sasha-marie",
+  "name": "Sasha Marie",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d3:the-house-by-heineken:1615:sasha-marie-soulection"
+  ],
+  "firstSeen": "2019-08-11",
+  "lastSeen": "2019-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sasha-rose",
   "name": "Sasha Rose",
   "aliases": [],
@@ -157403,7 +158202,8 @@
   "projects": [],
   "billings": [
    "acl-2018:d4:bmi:1445:sasha-sloan",
-   "lollapalooza-2018:d4:american-eagle:untimed:sasha-sloan"
+   "lollapalooza-2018:d4:american-eagle:untimed:sasha-sloan",
+   "outside-lands-2018:d1:panhandle:1320:sasha-sloan"
   ],
   "firstSeen": "2018-08-05",
   "lastSeen": "2018-10-12",
@@ -160093,10 +160893,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2019:d1:american-eagle:untimed:shallou"
+   "lollapalooza-2019:d1:american-eagle:untimed:shallou",
+   "outside-lands-2019:d2:twin-peaks:1410:shallou"
   ],
   "firstSeen": "2019-08-01",
-  "lastSeen": "2019-08-01",
+  "lastSeen": "2019-08-10",
   "photo": null,
   "links": []
  },
@@ -160301,19 +161102,20 @@
  },
  {
   "key": "shannon-and-the-clams",
-  "name": "Shannon & the Clams",
+  "name": "Shannon and the Clams",
   "aliases": [
-   "Shannon and the Clams"
+   "Shannon & the Clams"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2017:d1:sonora:1800:shannon-and-the-clams",
-   "coachella-2017:d4:sonora:1800:shannon-and-the-clams"
+   "coachella-2017:d4:sonora:1800:shannon-and-the-clams",
+   "outside-lands-2018:d1:twin-peaks:1240:shannon-and-the-clams"
   ],
   "firstSeen": "2017-04-14",
-  "lastSeen": "2017-04-21",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -160730,10 +161532,11 @@
   "projects": [],
   "billings": [
    "governors-ball-2019:d3:honda-stage:1910:sheck-wes",
-   "lollapalooza-2019:d4:perry-s:untimed:sheck-wes"
+   "lollapalooza-2019:d4:perry-s:untimed:sheck-wes",
+   "outside-lands-2019:d3:twin-peaks:1705:sheck-wes"
   ],
   "firstSeen": "2019-06-02",
-  "lastSeen": "2019-08-04",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -165080,6 +165883,21 @@
   "links": []
  },
  {
+  "key": "smokepurpp",
+  "name": "Smokepurpp",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d2:twin-peaks:1410:smokepurpp"
+  ],
+  "firstSeen": "2018-08-11",
+  "lastSeen": "2018-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "smokestacks",
   "name": "SmokeStacks",
   "aliases": [],
@@ -165299,10 +166117,11 @@
    "electric-forest-2015:d3:forest-stage:1600:snbrn",
    "electric-forest-2015:d4:forest-stage:1830:snbrn",
    "lollapalooza-2015:d2:perry-s:1300:snbrn",
+   "outside-lands-2019:d1:the-house-by-heineken:1830:snbrn",
    "shambhala-2016:d2:pagoda:2100:snbrn"
   ],
   "firstSeen": "2015-06-27",
-  "lastSeen": "2017-04-21",
+  "lastSeen": "2019-08-09",
   "photo": null,
   "links": []
  },
@@ -165432,6 +166251,21 @@
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2022-05-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sob-x-rbe",
+  "name": "SOB x RBE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d2:twin-peaks:1720:sob-x-rbe"
+  ],
+  "firstSeen": "2018-08-11",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -167044,6 +167878,21 @@
   ],
   "firstSeen": "2012-07-29",
   "lastSeen": "2012-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sound-it-out",
+  "name": "Sound it Out!",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d2:the-house-by-heineken:1200:sound-it-out"
+  ],
+  "firstSeen": "2018-08-11",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -168757,6 +169606,21 @@
   "links": []
  },
  {
+  "key": "starfari",
+  "name": "Starfari",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d1:the-house-by-heineken:1200:starfari"
+  ],
+  "firstSeen": "2019-08-09",
+  "lastSeen": "2019-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "starjunk95",
   "name": "Starjunk95",
   "aliases": [],
@@ -170000,6 +170864,7 @@
    "governors-ball-2019:d1:american-eagle-stage:1245:still-woozy",
    "lollapalooza-2019:d4:tito-s-handmade-vodka:untimed:still-woozy",
    "lollapalooza-2025:d4:lakeshore:1945:still-woozy",
+   "outside-lands-2019:d1:sutro:1520:still-woozy",
    "outside-lands-2025:d1:lands-end:1730:still-woozy"
   ],
   "firstSeen": "2019-05-31",
@@ -173002,8 +173867,10 @@
  },
  {
   "key": "sweet-plot",
-  "name": "SWEET PLOT",
-  "aliases": [],
+  "name": "Sweet Plot",
+  "aliases": [
+   "SWEET PLOT"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -173011,10 +173878,11 @@
    "outside-lands-2017:d2:presidio:1200:sweet-plot",
    "outside-lands-2017:d2:presidio:1315:sweet-plot",
    "outside-lands-2017:d3:presidio:1750:sweet-plot",
-   "outside-lands-2017:d3:presidio:1845:sweet-plot"
+   "outside-lands-2017:d3:presidio:1845:sweet-plot",
+   "outside-lands-2018:d1:panhandle:1200:sweet-plot"
   ],
   "firstSeen": "2017-08-12",
-  "lastSeen": "2017-08-13",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -173323,6 +174191,21 @@
   ],
   "firstSeen": "2022-08-06",
   "lastSeen": "2022-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "syml",
+  "name": "SYML",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d3:panhandle:1620:syml"
+  ],
+  "firstSeen": "2019-08-11",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -173674,6 +174557,21 @@
   ],
   "firstSeen": "2017-04-16",
   "lastSeen": "2017-04-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "t-sisters",
+  "name": "T Sisters",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d3:sutro:1200:t-sisters"
+  ],
+  "firstSeen": "2018-08-12",
+  "lastSeen": "2018-08-12",
   "photo": null,
   "links": []
  },
@@ -174647,7 +175545,8 @@
    "acl-2017:d5:barton-springs:untimed:tash-sultana",
    "acl-2023:d3:honda:1615:tash-sultana",
    "governors-ball-2018:d1:bacardi-stage:1745:tash-sultana",
-   "lollapalooza-2018:d3:american-eagle:untimed:tash-sultana"
+   "lollapalooza-2018:d3:american-eagle:untimed:tash-sultana",
+   "outside-lands-2018:d3:sutro:1815:tash-sultana"
   ],
   "firstSeen": "2017-10-14",
   "lastSeen": "2026-06-18",
@@ -174852,7 +175751,8 @@
    "acl-2014:d6:retailmenot:1300:taylor-bennett",
    "acl-2019:d2:t-mobile:1315:taylor-bennett",
    "acl-2019:d5:t-mobile:1315:taylor-bennett",
-   "lollapalooza-2018:d2:perry-s:untimed:taylor-bennett"
+   "lollapalooza-2018:d2:perry-s:untimed:taylor-bennett",
+   "outside-lands-2019:d1:lands-end:1200:taylor-bennett"
   ],
   "firstSeen": "2014-10-12",
   "lastSeen": "2019-10-12",
@@ -177477,10 +178377,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lightning-in-a-bottle-2018:d4:grand-artique:1845:the-california-honeydrops"
+   "lightning-in-a-bottle-2018:d4:grand-artique:1845:the-california-honeydrops",
+   "outside-lands-2019:d1:twin-peaks:1405:the-california-honeydrops"
   ],
   "firstSeen": "2018-05-27",
-  "lastSeen": "2018-05-27",
+  "lastSeen": "2019-08-09",
   "photo": null,
   "links": []
  },
@@ -178688,6 +179589,7 @@
    "electric-forest-2015:d2:the-observatory:0115:the-funk-hunters",
    "electric-forest-2015:d3:jubilee:2145:the-funk-hunters-feat-chali-2na",
    "lightning-in-a-bottle-2018:d4:lightning:1845:the-funk-hunters",
+   "outside-lands-2019:d3:panhandle:1935:the-funk-hunters",
    "shambhala-2011:d1:rock-pit:1400:the-funk-hunters",
    "shambhala-2011:d3:fractal-forest:1730:the-funk-hunters",
    "shambhala-2012:d2:fractal-forest:2200:the-funk-hunters-a-v-set",
@@ -179073,10 +179975,11 @@
    "coachella-2012:d6:outdoor:1620:the-growlers",
    "lollapalooza-2012:d1:red-bull-soundstage:1245:the-growlers",
    "outside-lands-2013:d2:sutro:1525:the-growlers",
+   "outside-lands-2018:d1:sutro:1840:the-growlers",
    "primavera-sound-2017:d3:heineken:2045:the-growlers"
   ],
   "firstSeen": "2012-04-15",
-  "lastSeen": "2017-10-15",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -179449,6 +180352,7 @@
    "coachella-2014:d5:gobi:1330:the-internet",
    "governors-ball-2014:d2:gotham-tent:1245:the-internet",
    "governors-ball-2019:d1:govballnyc-stage:1645:the-internet",
+   "outside-lands-2018:d3:twin-peaks:1705:the-internet",
    "primavera-sound-2018:d3:pitchfork:0020:the-internet"
   ],
   "firstSeen": "2014-04-12",
@@ -180242,7 +181146,8 @@
    "acl-2023:d1:honda:2010:the-lumineers",
    "acl-2023:d4:honda:2010:the-lumineers",
    "governors-ball-2013:d3:hondastage:1845:the-lumineers",
-   "lollapalooza-2013:d2:lake-shore:untimed:the-lumineers"
+   "lollapalooza-2013:d2:lake-shore:untimed:the-lumineers",
+   "outside-lands-2019:d1:twin-peaks:2040:the-lumineers"
   ],
   "firstSeen": "2012-10-14",
   "lastSeen": "2023-10-13",
@@ -180482,9 +181387,10 @@
    "acl-2024:d1:t-mobile:1930:the-marias",
    "acl-2024:d4:t-mobile:1930:the-marias",
    "lollapalooza-2025:d4:bud-light:1900:the-marias",
+   "outside-lands-2019:d1:panhandle:1630:the-marias",
    "outside-lands-2022:d1:twin-peaks:1855:the-marias"
   ],
-  "firstSeen": "2022-08-05",
+  "firstSeen": "2019-08-09",
   "lastSeen": "2025-08-03",
   "photo": null,
   "links": []
@@ -180828,7 +181734,8 @@
   "projects": [],
   "billings": [
    "summerfest-2026:su171",
-   "lollapalooza-2011:d1:playstation:1730:the-mountain-goats"
+   "lollapalooza-2011:d1:playstation:1730:the-mountain-goats",
+   "outside-lands-2018:d1:twin-peaks:1405:the-mountain-goats"
   ],
   "firstSeen": "2011-08-05",
   "lastSeen": "2026-06-25",
@@ -181011,7 +181918,8 @@
    "lollapalooza-2026:lo108",
    "coachella-2027:coa27-the-neighbourhood",
    "lollapalooza-2013:d1:petrillo:1200:the-neighbourhood",
-   "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:the-neighbourhood"
+   "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:the-neighbourhood",
+   "outside-lands-2019:d1:lands-end:1535:the-neighbourhood"
   ],
   "firstSeen": "2013-08-02",
   "lastSeen": "2027-04-11",
@@ -182407,6 +183315,21 @@
   "links": []
  },
  {
+  "key": "the-seshen",
+  "name": "The Seshen",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2019:d1:sutro:1250:the-seshen"
+  ],
+  "firstSeen": "2019-08-09",
+  "lastSeen": "2019-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-shadowboxers",
   "name": "The Shadowboxers",
   "aliases": [],
@@ -183592,10 +184515,11 @@
    "lollapalooza-2012:d2:red-bull-soundstage:1915:the-weeknd",
    "lollapalooza-2015:d1:bud-light:2030:the-weeknd",
    "lollapalooza-2018:d3:grant-park:untimed:the-weeknd",
+   "outside-lands-2018:d1:lands-end:2025:the-weeknd",
    "primavera-sound-2012:d3:escenario-pitchfork:0030:the-weeknd"
   ],
   "firstSeen": "2012-04-15",
-  "lastSeen": "2018-08-04",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -184836,6 +185760,7 @@
    "acl-2021:d3:vrbo:1930:tierra-whack",
    "acl-2021:d6:vrbo:1930:tierra-whack",
    "lollapalooza-2019:d2:american-eagle:untimed:tierra-whack",
+   "outside-lands-2019:d2:twin-peaks:1545:tierra-whack",
    "primavera-sound-2019:d4:lotus:0000:tierra-whack"
   ],
   "firstSeen": "2019-06-01",
@@ -186141,6 +187066,21 @@
   ],
   "firstSeen": "2024-08-09",
   "lastSeen": "2024-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "todd-edwards",
+  "name": "Todd Edwards",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d1:the-house-by-heineken:1700:todd-edwards"
+  ],
+  "firstSeen": "2018-08-10",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },
@@ -187570,10 +188510,11 @@
    "lollapalooza-2012:d3:sony:1700:toro-y-moi",
    "lollapalooza-2015:d2:palladia:1545:toro-y-moi",
    "outside-lands-2011:d1:twin-peaks:1550:toro-y-moi",
-   "outside-lands-2015:d2:twin-peaks:1715:toro-y-moi"
+   "outside-lands-2015:d2:twin-peaks:1715:toro-y-moi",
+   "outside-lands-2019:d3:sutro:1810:toro-y-moi"
   ],
   "firstSeen": "2011-08-12",
-  "lastSeen": "2019-05-12",
+  "lastSeen": "2019-08-11",
   "photo": null,
   "links": []
  },
@@ -189659,7 +190600,8 @@
    "lollapalooza-2013:d1:the-grove:1415:twenty-one-pilots",
    "lollapalooza-2015:d3:samsung-galaxy:1730:twenty-one-pilots",
    "lollapalooza-2019:d3:t-mobile:untimed:twenty-ne-pil-ts",
-   "outside-lands-2013:d1:twin-peaks:1550:twenty-one-pilots"
+   "outside-lands-2013:d1:twin-peaks:1550:twenty-one-pilots",
+   "outside-lands-2019:d1:lands-end:2025:twenty-one-pilots"
   ],
   "firstSeen": "2013-08-02",
   "lastSeen": "2026-10-04",
@@ -190164,10 +191106,11 @@
    "electric-forest-2014:d4:sherwood-court:2245:tycho",
    "lollapalooza-2018:d1:american-eagle:untimed:tycho",
    "outside-lands-2014:d2:twin-peaks:1540:tycho",
+   "outside-lands-2018:d2:sutro:1815:tycho",
    "primavera-sound-2017:d2:ray-ban:0300:tycho"
   ],
   "firstSeen": "2014-06-29",
-  "lastSeen": "2018-08-02",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -192882,6 +193825,21 @@
   "links": []
  },
  {
+  "key": "viceroy",
+  "name": "VICEROY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d1:the-house-by-heineken:1830:viceroy"
+  ],
+  "firstSeen": "2018-08-10",
+  "lastSeen": "2018-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vicetone",
   "name": "Vicetone",
   "aliases": [],
@@ -194898,6 +195856,7 @@
    "governors-ball-2025:d2:govballnyc:1815:wallows",
    "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:wallows",
    "lollapalooza-2025:d2:lakeshore:1940:wallows",
+   "outside-lands-2019:d2:lands-end:1420:wallows",
    "outside-lands-2025:d2:twin-peaks:1720:wallows"
   ],
   "firstSeen": "2018-08-04",
@@ -195737,6 +196696,7 @@
    "edc-orlando-2023:d2:kinetic-field:1727:malaa-b2b-wax-motif-sunset-set",
    "escape-halloween-2022:d1:the-grimm:2045:wax-motif",
    "lollapalooza-2017:d4:perry-s:1415:wax-motif",
+   "outside-lands-2019:d1:the-house-by-heineken:1700:wax-motif",
    "shambhala-2024:d4:fractal-forest:2300:wax-motif",
    "tomorrowland-2023:d1:the-library:1800:wax-motif"
   ],
@@ -196474,6 +197434,7 @@
   "projects": [],
   "billings": [
    "acl-2019:d1:bmi:1700:weyes-blood",
+   "outside-lands-2019:d3:sutro:1200:weyes-blood",
    "primavera-sound-2017:d3:mango-house:1930:weyes-blood",
    "primavera-sound-2017:d4:primavera:1740:weyes-blood"
   ],
@@ -196611,7 +197572,8 @@
    "edc-orlando-2022:d3:circuit-grounds:1940:whethan",
    "escape-halloween-2025:d2:the-warehouse:0100:whethan",
    "lollapalooza-2017:d4:tito-s-handmade-vodka:2000:whethan",
-   "lollapalooza-2019:d2:american-eagle:untimed:whethan"
+   "lollapalooza-2019:d2:american-eagle:untimed:whethan",
+   "outside-lands-2018:d2:panhandle:1810:whethan"
   ],
   "firstSeen": "2017-04-16",
   "lastSeen": "2026-11-06",
@@ -198278,7 +199240,9 @@
  {
   "key": "wolfgang-gartner",
   "name": "Wolfgang Gartner",
-  "aliases": [],
+  "aliases": [
+   "WOLFGANG GARTNER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -198286,11 +199250,12 @@
    "edc-las-vegas-2013:d2:circuitgrounds:0130:wolfgang-gartner",
    "electric-forest-2012:d1:ranch-arena:2215:wolfgang-gartner",
    "outside-lands-2012:d3:panhandle-hellman-hollow:1945:wolfgang-gartner",
+   "outside-lands-2018:d2:the-house-by-heineken:1830:wolfgang-gartner",
    "tomorrowland-2010:d2:forma-t:2100:wolfgang-gartner",
    "tomorrowland-2011:d3:mainstage:1600:wolfgang-gartner"
   ],
   "firstSeen": "2010-07-25",
-  "lastSeen": "2013-06-22",
+  "lastSeen": "2018-08-11",
   "photo": null,
   "links": []
  },
@@ -199648,10 +200613,11 @@
   "projects": [],
   "billings": [
    "lollapalooza-2019:d3:american-eagle:untimed:yaeji",
+   "outside-lands-2019:d1:sutro:1800:yaeji",
    "primavera-sound-2019:d2:lotus:0225:yaeji"
   ],
   "firstSeen": "2019-05-30",
-  "lastSeen": "2019-08-03",
+  "lastSeen": "2019-08-09",
   "photo": null,
   "links": []
  },
@@ -201024,6 +201990,21 @@
   ],
   "firstSeen": "2013-08-10",
   "lastSeen": "2013-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ypr",
+  "name": "YPR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2018:d1:the-house-by-heineken:1200:ypr-b2b-fangirl-b2b-bad-girl-bailey"
+  ],
+  "firstSeen": "2018-08-10",
+  "lastSeen": "2018-08-10",
   "photo": null,
   "links": []
  },

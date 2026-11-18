@@ -403010,6 +403010,4506 @@
   "mainStage": null
  },
  {
+  "id": "outside-lands-2018:d1:lands-end:1200:mikky-ekko",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Mikky Ekko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mikky-ekko",
+    "role": "performer"
+   }
+  ],
+  "act": "mikky-ekko",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:lands-end:1305:quinn-xcii",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "13:05",
+  "end": "13:50",
+  "printed": "Quinn XCII",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quinn-xcii",
+    "role": "performer"
+   }
+  ],
+  "act": "quinn-xcii",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:lands-end:1420:lauv",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "14:20",
+  "end": "15:05",
+  "printed": "LAUV",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lauv",
+    "role": "performer"
+   }
+  ],
+  "act": "lauv",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:lands-end:1535:billie-eilish",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "15:35",
+  "end": "16:25",
+  "printed": "Billie Eilish",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billie-eilish",
+    "role": "performer"
+   }
+  ],
+  "act": "billie-eilish",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:lands-end:1655:n-e-r-d",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "16:55",
+  "end": "17:55",
+  "printed": "N.E.R.D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "n-e-r-d",
+    "role": "performer"
+   }
+  ],
+  "act": "n-e-r-d",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:lands-end:1825:odesza",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "18:25",
+  "end": "19:40",
+  "printed": "ODESZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odesza",
+    "role": "performer"
+   }
+  ],
+  "act": "odesza",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:lands-end:2025:the-weeknd",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "20:25",
+  "end": "21:55",
+  "printed": "The Weeknd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-weeknd",
+    "role": "performer"
+   }
+  ],
+  "act": "the-weeknd",
+  "closing": true,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:panhandle:1200:sweet-plot",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Sweet Plot",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sweet-plot",
+    "role": "performer"
+   }
+  ],
+  "act": "sweet-plot",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:panhandle:1320:sasha-sloan",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "13:20",
+  "end": "14:00",
+  "printed": "Sasha Sloan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sasha-sloan",
+    "role": "performer"
+   }
+  ],
+  "act": "sasha-sloan",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:panhandle:1455:olivia-o-brien",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "14:55",
+  "end": "15:35",
+  "printed": "Olivia O’Brien",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "olivia-o-brien",
+    "role": "performer"
+   }
+  ],
+  "act": "olivia-o-brien",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:panhandle:1630:caleborate",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "16:30",
+  "end": "17:10",
+  "printed": "Caleborate",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "caleborate",
+    "role": "performer"
+   }
+  ],
+  "act": "caleborate",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:panhandle:1805:lucy-dacus",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "18:05",
+  "end": "18:45",
+  "printed": "Lucy Dacus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucy-dacus",
+    "role": "performer"
+   }
+  ],
+  "act": "lucy-dacus",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:panhandle:1950:elohim",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "19:50",
+  "end": "20:35",
+  "printed": "ELOHIM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elohim",
+    "role": "performer"
+   }
+  ],
+  "act": "elohim",
+  "closing": true,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:sutro:1215:nick-mulvey",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "12:15",
+  "end": "13:00",
+  "printed": "Nick Mulvey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nick-mulvey",
+    "role": "performer"
+   }
+  ],
+  "act": "nick-mulvey",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:sutro:1330:dermot-kennedy",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "Dermot Kennedy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dermot-kennedy",
+    "role": "performer"
+   }
+  ],
+  "act": "dermot-kennedy",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:sutro:1445:margo-price",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "Margo Price",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "margo-price",
+    "role": "performer"
+   }
+  ],
+  "act": "margo-price",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:sutro:1600:rex-orange-county",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "16:00",
+  "end": "16:50",
+  "printed": "Rex Orange County",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rex-orange-county",
+    "role": "performer"
+   }
+  ],
+  "act": "rex-orange-county",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:sutro:1720:chicano-batman",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "17:20",
+  "end": "18:10",
+  "printed": "Chicano Batman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chicano-batman",
+    "role": "performer"
+   }
+  ],
+  "act": "chicano-batman",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:sutro:1840:the-growlers",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "18:40",
+  "end": "19:30",
+  "printed": "THE GROWLERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-growlers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-growlers",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:sutro:2000:mac-demarco",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "20:00",
+  "end": "21:10",
+  "printed": "Mac Demarco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mac-demarco",
+    "role": "performer"
+   }
+  ],
+  "act": "mac-demarco",
+  "closing": true,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:the-house-by-heineken:1200:ypr-b2b-fangirl-b2b-bad-girl-bailey",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "The House By Heineken",
+  "start": "12:00",
+  "end": "13:30",
+  "printed": "YPR b2b fangirl b2b Bad Girl Bailey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ypr",
+    "role": "b2b"
+   },
+   {
+    "key": "fangirl",
+    "role": "b2b"
+   },
+   {
+    "key": "bad-girl-bailey",
+    "role": "b2b"
+   }
+  ],
+  "act": "ypr-b2b-fangirl-b2b-bad-girl-bailey",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:the-house-by-heineken:1330:motion-potion",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "The House By Heineken",
+  "start": "13:30",
+  "end": "15:00",
+  "printed": "Motion Potion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "motion-potion",
+    "role": "performer"
+   }
+  ],
+  "act": "motion-potion",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:the-house-by-heineken:1530:luxxury",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "The House By Heineken",
+  "start": "15:30",
+  "end": "17:00",
+  "printed": "LUXXURY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luxxury",
+    "role": "performer"
+   }
+  ],
+  "act": "luxxury",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:the-house-by-heineken:1700:todd-edwards",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "The House By Heineken",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Todd Edwards",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "todd-edwards",
+    "role": "performer"
+   }
+  ],
+  "act": "todd-edwards",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:the-house-by-heineken:1830:viceroy",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "The House By Heineken",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "VICEROY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "viceroy",
+    "role": "performer"
+   }
+  ],
+  "act": "viceroy",
+  "closing": true,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:twin-peaks:1240:shannon-and-the-clams",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "12:40",
+  "end": "13:20",
+  "printed": "Shannon and the Clams",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shannon-and-the-clams",
+    "role": "performer"
+   }
+  ],
+  "act": "shannon-and-the-clams",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:twin-peaks:1405:the-mountain-goats",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "14:05",
+  "end": "14:55",
+  "printed": "The Mountain Goats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-mountain-goats",
+    "role": "performer"
+   }
+  ],
+  "act": "the-mountain-goats",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:twin-peaks:1540:perfume-genius",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "15:40",
+  "end": "16:30",
+  "printed": "Perfume Genius",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "perfume-genius",
+    "role": "performer"
+   }
+  ],
+  "act": "perfume-genius",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:twin-peaks:1715:carly-rae-jepsen",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "17:15",
+  "end": "18:05",
+  "printed": "Carly Rae Jepsen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carly-rae-jepsen",
+    "role": "performer"
+   }
+  ],
+  "act": "carly-rae-jepsen",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:twin-peaks:1850:father-john-misty",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "18:50",
+  "end": "19:50",
+  "printed": "Father John Misty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "father-john-misty",
+    "role": "performer"
+   }
+  ],
+  "act": "father-john-misty",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d1:twin-peaks:2040:beck",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-10",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "20:40",
+  "end": "21:55",
+  "printed": "Beck",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beck",
+    "role": "performer"
+   }
+  ],
+  "act": "beck",
+  "closing": true,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:lands-end:1200:emmit-fenn",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Emmit Fenn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emmit-fenn",
+    "role": "performer"
+   }
+  ],
+  "act": "emmit-fenn",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:lands-end:1305:pale-waves",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "13:05",
+  "end": "13:50",
+  "printed": "Pale Waves",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pale-waves",
+    "role": "performer"
+   }
+  ],
+  "act": "pale-waves",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:lands-end:1420:lizzo",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "14:20",
+  "end": "15:05",
+  "printed": "Lizzo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lizzo",
+    "role": "performer"
+   }
+  ],
+  "act": "lizzo",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:lands-end:1535:broken-social-scene",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "15:35",
+  "end": "16:25",
+  "printed": "Broken Social Scene",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "broken-social-scene",
+    "role": "performer"
+   }
+  ],
+  "act": "broken-social-scene",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:lands-end:1655:chvrches",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "16:55",
+  "end": "17:55",
+  "printed": "CHVRCHES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chvrches",
+    "role": "performer"
+   }
+  ],
+  "act": "chvrches",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:lands-end:1825:bon-iver",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "18:25",
+  "end": "19:40",
+  "printed": "Bon Iver",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bon-iver",
+    "role": "performer"
+   }
+  ],
+  "act": "bon-iver",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:lands-end:2025:florence-the-machine",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "20:25",
+  "end": "21:55",
+  "printed": "Florence + the Machine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "florence-the-machine",
+    "role": "act"
+   }
+  ],
+  "act": "florence-the-machine",
+  "closing": true,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "outside-lands-2018:d2:panhandle:1200:jack-harlow",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Jack Harlow",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-harlow",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-harlow",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:panhandle:1325:freya-ridings",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "13:25",
+  "end": "14:05",
+  "printed": "Freya Ridings",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freya-ridings",
+    "role": "performer"
+   }
+  ],
+  "act": "freya-ridings",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:panhandle:1500:knox-fortune",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "15:00",
+  "end": "15:40",
+  "printed": "Knox Fortune",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "knox-fortune",
+    "role": "performer"
+   }
+  ],
+  "act": "knox-fortune",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:panhandle:1635:gogo-penguin",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "16:35",
+  "end": "17:15",
+  "printed": "Gogo Penguin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gogo-penguin",
+    "role": "performer"
+   }
+  ],
+  "act": "gogo-penguin",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:panhandle:1810:whethan",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "18:10",
+  "end": "18:50",
+  "printed": "Whethan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whethan",
+    "role": "performer"
+   }
+  ],
+  "act": "whethan",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:panhandle:1950:berner",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "19:50",
+  "end": "20:35",
+  "printed": "Berner",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "berner",
+    "role": "performer"
+   }
+  ],
+  "act": "berner",
+  "closing": true,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:sutro:1200:kikagaku-moyo",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Kikagaku Moyo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kikagaku-moyo",
+    "role": "performer"
+   }
+  ],
+  "act": "kikagaku-moyo",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:sutro:1305:amen-dunes",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "13:05",
+  "end": "13:50",
+  "printed": "Amen Dunes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amen-dunes",
+    "role": "performer"
+   }
+  ],
+  "act": "amen-dunes",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:sutro:1420:cuco",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "14:20",
+  "end": "15:05",
+  "printed": "Cuco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cuco",
+    "role": "performer"
+   }
+  ],
+  "act": "cuco",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:sutro:1535:poolside",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "15:35",
+  "end": "16:20",
+  "printed": "Poolside",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "poolside",
+    "role": "performer"
+   }
+  ],
+  "act": "poolside",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:sutro:1645:big-gigantic",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "BIG GIGANTIC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-gigantic",
+    "role": "performer"
+   }
+  ],
+  "act": "big-gigantic",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:sutro:1815:tycho",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "18:15",
+  "end": "19:05",
+  "printed": "TYCHO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tycho",
+    "role": "performer"
+   }
+  ],
+  "act": "tycho",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:sutro:1935:jamie-xx",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "19:35",
+  "end": "20:50",
+  "printed": "Jamie XX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamie-xx",
+    "role": "performer"
+   }
+  ],
+  "act": "jamie-xx",
+  "closing": true,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:the-house-by-heineken:1200:sound-it-out",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "The House By Heineken",
+  "start": "12:00",
+  "end": "13:30",
+  "printed": "Sound it Out!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sound-it-out",
+    "role": "performer"
+   }
+  ],
+  "act": "sound-it-out",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:the-house-by-heineken:1330:rooz",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "The House By Heineken",
+  "start": "13:30",
+  "end": "15:00",
+  "printed": "Rooz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rooz",
+    "role": "performer"
+   }
+  ],
+  "act": "rooz",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:the-house-by-heineken:1530:gavin-hardkiss",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "The House By Heineken",
+  "start": "15:30",
+  "end": "17:00",
+  "printed": "Gavin Hardkiss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gavin-hardkiss",
+    "role": "performer"
+   }
+  ],
+  "act": "gavin-hardkiss",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:the-house-by-heineken:1700:makj",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "The House By Heineken",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "MAKJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "makj",
+    "role": "performer"
+   }
+  ],
+  "act": "makj",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:the-house-by-heineken:1830:wolfgang-gartner",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "The House By Heineken",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "WOLFGANG GARTNER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wolfgang-gartner",
+    "role": "performer"
+   }
+  ],
+  "act": "wolfgang-gartner",
+  "closing": true,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:twin-peaks:1240:jessie-reyez",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "12:40",
+  "end": "13:25",
+  "printed": "Jessie Reyez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-reyez",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-reyez",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:twin-peaks:1410:smokepurpp",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "14:10",
+  "end": "15:00",
+  "printed": "Smokepurpp",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "smokepurpp",
+    "role": "performer"
+   }
+  ],
+  "act": "smokepurpp",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:twin-peaks:1545:daniel-caesar",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "15:45",
+  "end": "16:35",
+  "printed": "Daniel Caesar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-caesar",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-caesar",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:twin-peaks:1720:sob-x-rbe",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "17:20",
+  "end": "18:10",
+  "printed": "SOB x RBE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sob-x-rbe",
+    "role": "act"
+   }
+  ],
+  "act": "sob-x-rbe",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "outside-lands-2018:d2:twin-peaks:1850:illenium",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "18:50",
+  "end": "19:50",
+  "printed": "Illenium",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "illenium",
+    "role": "performer"
+   }
+  ],
+  "act": "illenium",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d2:twin-peaks:2040:future",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-11",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "20:40",
+  "end": "21:55",
+  "printed": "Future",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future",
+    "role": "performer"
+   }
+  ],
+  "act": "future",
+  "closing": true,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:lands-end:1200:ajna",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "12:00",
+  "end": "12:25",
+  "printed": "AJNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ajna",
+    "role": "performer"
+   }
+  ],
+  "act": "ajna",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:lands-end:1245:durand-jones-and-the-indications",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "Durand Jones & The Indications",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "durand-jones-and-the-indications",
+    "role": "performer"
+   }
+  ],
+  "act": "durand-jones-and-the-indications",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:lands-end:1400:rainbow-kitten-surprise",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "14:00",
+  "end": "14:50",
+  "printed": "RAINBOW KITTEN SURPRISE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rainbow-kitten-surprise",
+    "role": "performer"
+   }
+  ],
+  "act": "rainbow-kitten-surprise",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:lands-end:1520:b-rns",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "15:20",
+  "end": "16:10",
+  "printed": "BØRNS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "borns",
+    "role": "performer"
+   }
+  ],
+  "act": "borns",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:lands-end:1640:janelle-monae",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "16:40",
+  "end": "17:40",
+  "printed": "Janelle Monáe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "janelle-monae",
+    "role": "performer"
+   }
+  ],
+  "act": "janelle-monae",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:lands-end:1810:portugal-the-man",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "18:10",
+  "end": "19:20",
+  "printed": "Portugal. The Man",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "portugal-the-man",
+    "role": "performer"
+   }
+  ],
+  "act": "portugal-the-man",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:lands-end:2005:janet-jackson",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "20:05",
+  "end": "21:35",
+  "printed": "Janet Jackson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "janet-jackson",
+    "role": "performer"
+   }
+  ],
+  "act": "janet-jackson",
+  "closing": true,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:panhandle:1200:dick-stusso",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Dick Stusso",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dick-stusso",
+    "role": "performer"
+   }
+  ],
+  "act": "dick-stusso",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:panhandle:1320:hot-flash-heat-wave",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "13:20",
+  "end": "14:00",
+  "printed": "Hot Flash Heat Wave",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hot-flash-heat-wave",
+    "role": "performer"
+   }
+  ],
+  "act": "hot-flash-heat-wave",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:panhandle:1445:aquilo",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "14:45",
+  "end": "15:25",
+  "printed": "AQUILO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aquilo",
+    "role": "performer"
+   }
+  ],
+  "act": "aquilo",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:panhandle:1620:monophonics",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "16:20",
+  "end": "17:00",
+  "printed": "Monophonics",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "monophonics",
+    "role": "performer"
+   }
+  ],
+  "act": "monophonics",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:panhandle:1755:saba",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "17:55",
+  "end": "18:35",
+  "printed": "Saba",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saba",
+    "role": "performer"
+   }
+  ],
+  "act": "saba",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:panhandle:1935:claptone",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "19:35",
+  "end": "20:20",
+  "printed": "Claptone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "claptone",
+    "role": "performer"
+   }
+  ],
+  "act": "claptone",
+  "closing": true,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:sutro:1200:t-sisters",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "T Sisters",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "t-sisters",
+    "role": "performer"
+   }
+  ],
+  "act": "t-sisters",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:sutro:1310:hobo-johnson-and-the-lovemakers",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "13:10",
+  "end": "13:55",
+  "printed": "Hobo Johnson & the LoveMakers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hobo-johnson-and-the-lovemakers",
+    "role": "performer"
+   }
+  ],
+  "act": "hobo-johnson-and-the-lovemakers",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:sutro:1425:bahamas",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "Bahamas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bahamas",
+    "role": "performer"
+   }
+  ],
+  "act": "bahamas",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:sutro:1540:sabrina-claudio",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "15:40",
+  "end": "16:25",
+  "printed": "Sabrina Claudio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sabrina-claudio",
+    "role": "performer"
+   }
+  ],
+  "act": "sabrina-claudio",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:sutro:1655:lp",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "16:55",
+  "end": "17:45",
+  "printed": "LP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lp",
+    "role": "performer"
+   }
+  ],
+  "act": "lp",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:sutro:1815:tash-sultana",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "18:15",
+  "end": "19:05",
+  "printed": "Tash Sultana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tash-sultana",
+    "role": "performer"
+   }
+  ],
+  "act": "tash-sultana",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:sutro:1935:james-blake",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "19:35",
+  "end": "20:45",
+  "printed": "James Blake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-blake",
+    "role": "performer"
+   }
+  ],
+  "act": "james-blake",
+  "closing": true,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:the-house-by-heineken:1200:leyl-master-black",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "The House By Heineken",
+  "start": "12:00",
+  "end": "14:00",
+  "printed": "Leyl Master Black",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leyl-master-black",
+    "role": "performer"
+   }
+  ],
+  "act": "leyl-master-black",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:the-house-by-heineken:1400:rachel-torro",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "The House By Heineken",
+  "start": "14:00",
+  "end": "15:45",
+  "printed": "Rachel Torro",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rachel-torro",
+    "role": "performer"
+   }
+  ],
+  "act": "rachel-torro",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:the-house-by-heineken:1545:oona-dahl",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "The House By Heineken",
+  "start": "15:45",
+  "end": "17:35",
+  "printed": "Öona Dahl",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oona-dahl",
+    "role": "performer"
+   }
+  ],
+  "act": "oona-dahl",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:the-house-by-heineken:1735:little-boots",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "The House By Heineken",
+  "start": "17:35",
+  "end": "19:25",
+  "printed": "Little Boots",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-boots",
+    "role": "performer"
+   }
+  ],
+  "act": "little-boots",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:the-house-by-heineken:1925:salt-n-pepa",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "The House By Heineken",
+  "start": "19:25",
+  "end": "19:55",
+  "printed": "Salt-N-Pepa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "salt-n-pepa",
+    "role": "performer"
+   }
+  ],
+  "act": "salt-n-pepa",
+  "closing": true,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:twin-peaks:1240:kailee-morgue",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "12:40",
+  "end": "13:20",
+  "printed": "Kailee Morgue",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kailee-morgue",
+    "role": "performer"
+   }
+  ],
+  "act": "kailee-morgue",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:twin-peaks:1400:kelela",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "Kelela",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kelela",
+    "role": "performer"
+   }
+  ],
+  "act": "kelela",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:twin-peaks:1530:gryffin",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "15:30",
+  "end": "16:20",
+  "printed": "Gryffin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gryffin",
+    "role": "performer"
+   }
+  ],
+  "act": "gryffin",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:twin-peaks:1705:the-internet",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "17:05",
+  "end": "17:55",
+  "printed": "THE INTERNET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-internet",
+    "role": "performer"
+   }
+  ],
+  "act": "the-internet",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:twin-peaks:1840:chromeo",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "18:40",
+  "end": "19:35",
+  "printed": "Chromeo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chromeo",
+    "role": "performer"
+   }
+  ],
+  "act": "chromeo",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2018:d3:twin-peaks:2020:dj-snake",
+  "source": "edition",
+  "festivalId": "outside-lands-2018",
+  "festivalBrand": "outside-lands",
+  "year": 2018,
+  "date": "2018-08-12",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "20:20",
+  "end": "21:35",
+  "printed": "DJ Snake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-snake",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-snake",
+  "closing": true,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:lands-end:1200:taylor-bennett",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Taylor Bennett",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taylor-bennett",
+    "role": "performer"
+   }
+  ],
+  "act": "taylor-bennett",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:lands-end:1305:half-alive",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "13:05",
+  "end": "13:50",
+  "printed": "half•alive",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "half-alive",
+    "role": "performer"
+   }
+  ],
+  "act": "half-alive",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:lands-end:1420:p-lo",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "14:20",
+  "end": "15:05",
+  "printed": "P-Lo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "p-lo",
+    "role": "performer"
+   }
+  ],
+  "act": "p-lo",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:lands-end:1535:the-neighbourhood",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "15:35",
+  "end": "16:25",
+  "printed": "The Neighbourhood",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-neighbourhood",
+    "role": "performer"
+   }
+  ],
+  "act": "the-neighbourhood",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:lands-end:1655:lil-wayne",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "16:55",
+  "end": "17:55",
+  "printed": "Lil Wayne",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-wayne",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-wayne",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:lands-end:1825:blink-182",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "18:25",
+  "end": "19:40",
+  "printed": "blink-182",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blink-182",
+    "role": "performer"
+   }
+  ],
+  "act": "blink-182",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:lands-end:2025:twenty-one-pilots",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Lands End",
+  "start": "20:25",
+  "end": "21:55",
+  "printed": "Twenty One Pilots",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "twenty-one-pilots",
+    "role": "performer"
+   }
+  ],
+  "act": "twenty-one-pilots",
+  "closing": true,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:panhandle:1200:rainbow-girls",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Rainbow Girls",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rainbow-girls",
+    "role": "performer"
+   }
+  ],
+  "act": "rainbow-girls",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:panhandle:1320:boyfriend",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "13:20",
+  "end": "14:00",
+  "printed": "Boyfriend",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boyfriend",
+    "role": "performer"
+   }
+  ],
+  "act": "boyfriend",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:panhandle:1455:miya-folick",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "14:55",
+  "end": "15:35",
+  "printed": "Miya Folick",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miya-folick",
+    "role": "performer"
+   }
+  ],
+  "act": "miya-folick",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:panhandle:1630:the-marias",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "16:30",
+  "end": "17:10",
+  "printed": "The Marías",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-marias",
+    "role": "performer"
+   }
+  ],
+  "act": "the-marias",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:panhandle:1805:brasstracks",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "18:05",
+  "end": "18:45",
+  "printed": "Brasstracks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brasstracks",
+    "role": "performer"
+   }
+  ],
+  "act": "brasstracks",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:panhandle:1950:luttrell",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Panhandle",
+  "start": "19:50",
+  "end": "20:35",
+  "printed": "Luttrell",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luttrell",
+    "role": "performer"
+   }
+  ],
+  "act": "luttrell",
+  "closing": true,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:sutro:1250:the-seshen",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "12:50",
+  "end": "13:35",
+  "printed": "The Seshen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-seshen",
+    "role": "performer"
+   }
+  ],
+  "act": "the-seshen",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:sutro:1405:cautious-clay",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "14:05",
+  "end": "14:50",
+  "printed": "Cautious Clay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cautious-clay",
+    "role": "performer"
+   }
+  ],
+  "act": "cautious-clay",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:sutro:1520:still-woozy",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "15:20",
+  "end": "16:10",
+  "printed": "Still Woozy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "still-woozy",
+    "role": "performer"
+   }
+  ],
+  "act": "still-woozy",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:sutro:1640:masego",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "16:40",
+  "end": "17:30",
+  "printed": "Masego",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "masego",
+    "role": "performer"
+   }
+  ],
+  "act": "masego",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:sutro:1800:yaeji",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "18:00",
+  "end": "18:50",
+  "printed": "Yaeji",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yaeji",
+    "role": "performer"
+   }
+  ],
+  "act": "yaeji",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:sutro:1920:san-holo",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "19:20",
+  "end": "20:10",
+  "printed": "San Holo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "san-holo",
+    "role": "performer"
+   }
+  ],
+  "act": "san-holo",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:sutro:2040:flying-lotus-3d",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Sutro",
+  "start": "20:40",
+  "end": "21:40",
+  "printed": "Flying Lotus 3D",
+  "setTag": "3D",
+  "performers": [
+   {
+    "key": "flying-lotus",
+    "role": "performer"
+   }
+  ],
+  "act": "flying-lotus-3d",
+  "closing": true,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:the-house-by-heineken:1200:starfari",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "The House by Heineken",
+  "start": "12:00",
+  "end": "14:00",
+  "printed": "Starfari",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "starfari",
+    "role": "performer"
+   }
+  ],
+  "act": "starfari",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:the-house-by-heineken:1400:andy-p",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "The House by Heineken",
+  "start": "14:00",
+  "end": "15:30",
+  "printed": "Andy P",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andy-p",
+    "role": "performer"
+   }
+  ],
+  "act": "andy-p",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:the-house-by-heineken:1530:devault",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "The House by Heineken",
+  "start": "15:30",
+  "end": "17:00",
+  "printed": "DEVAULT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "devault",
+    "role": "performer"
+   }
+  ],
+  "act": "devault",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:the-house-by-heineken:1700:wax-motif",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "The House by Heineken",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Wax Motif",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wax-motif",
+    "role": "performer"
+   }
+  ],
+  "act": "wax-motif",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:the-house-by-heineken:1830:snbrn",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "The House by Heineken",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "SNBRN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snbrn",
+    "role": "performer"
+   }
+  ],
+  "act": "snbrn",
+  "closing": true,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:twin-peaks:1240:grateful-shred",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "12:40",
+  "end": "13:20",
+  "printed": "Grateful Shred",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grateful-shred",
+    "role": "performer"
+   }
+  ],
+  "act": "grateful-shred",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:twin-peaks:1405:the-california-honeydrops",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "14:05",
+  "end": "14:55",
+  "printed": "The California Honeydrops",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-california-honeydrops",
+    "role": "performer"
+   }
+  ],
+  "act": "the-california-honeydrops",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:twin-peaks:1540:aurora",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "15:40",
+  "end": "16:30",
+  "printed": "Aurora",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aurora",
+    "role": "performer"
+   }
+  ],
+  "act": "aurora",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:twin-peaks:1715:lauren-daigle",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "17:15",
+  "end": "18:05",
+  "printed": "Lauren Daigle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lauren-daigle",
+    "role": "performer"
+   }
+  ],
+  "act": "lauren-daigle",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:twin-peaks:1850:counting-crows",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "18:50",
+  "end": "19:50",
+  "printed": "Counting Crows",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "counting-crows",
+    "role": "performer"
+   }
+  ],
+  "act": "counting-crows",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d1:twin-peaks:2040:the-lumineers",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-09",
+  "day": 1,
+  "stage": "Twin Peaks",
+  "start": "20:40",
+  "end": "21:55",
+  "printed": "The Lumineers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-lumineers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-lumineers",
+  "closing": true,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:lands-end:1200:felly",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Felly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "felly",
+    "role": "performer"
+   }
+  ],
+  "act": "felly",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:lands-end:1305:nombe",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "13:05",
+  "end": "13:50",
+  "printed": "NoMBe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nombe",
+    "role": "performer"
+   }
+  ],
+  "act": "nombe",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:lands-end:1420:wallows",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "14:20",
+  "end": "15:05",
+  "printed": "Wallows",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wallows",
+    "role": "performer"
+   }
+  ],
+  "act": "wallows",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:lands-end:1535:santigold",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "15:35",
+  "end": "16:25",
+  "printed": "Santigold",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "santigold",
+    "role": "performer"
+   }
+  ],
+  "act": "santigold",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:lands-end:1655:alina-baraz",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "16:55",
+  "end": "17:55",
+  "printed": "Alina Baraz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alina-baraz",
+    "role": "performer"
+   }
+  ],
+  "act": "alina-baraz",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:lands-end:1825:flume",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "18:25",
+  "end": "19:40",
+  "printed": "Flume",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flume",
+    "role": "performer"
+   }
+  ],
+  "act": "flume",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:lands-end:2025:childish-gambino",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Lands End",
+  "start": "20:25",
+  "end": "21:55",
+  "printed": "Childish Gambino",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "childish-gambino",
+    "role": "performer"
+   }
+  ],
+  "act": "childish-gambino",
+  "closing": true,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:panhandle:1200:fatai",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Fatai",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fatai",
+    "role": "performer"
+   }
+  ],
+  "act": "fatai",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:panhandle:1325:delacey",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "13:25",
+  "end": "14:05",
+  "printed": "Delacey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "delacey",
+    "role": "performer"
+   }
+  ],
+  "act": "delacey",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:panhandle:1500:alt-n-gun",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "15:00",
+  "end": "15:40",
+  "printed": "Altın Gün",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alt-n-gun",
+    "role": "performer"
+   }
+  ],
+  "act": "alt-n-gun",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:panhandle:1635:bea-miller",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "16:35",
+  "end": "17:15",
+  "printed": "Bea Miller",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bea-miller",
+    "role": "performer"
+   }
+  ],
+  "act": "bea-miller",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:panhandle:1810:cupcakke",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "18:10",
+  "end": "18:50",
+  "printed": "CupCakKe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cupcakke",
+    "role": "performer"
+   }
+  ],
+  "act": "cupcakke",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:panhandle:1950:justin-martin",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Panhandle",
+  "start": "19:50",
+  "end": "20:35",
+  "printed": "Justin Martin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-martin",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-martin",
+  "closing": true,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:sutro:1200:amo-amo",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Amo Amo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amo-amo",
+    "role": "performer"
+   }
+  ],
+  "act": "amo-amo",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:sutro:1310:haley-heynderickx",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "13:10",
+  "end": "13:55",
+  "printed": "Haley Heynderickx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "haley-heynderickx",
+    "role": "performer"
+   }
+  ],
+  "act": "haley-heynderickx",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:sutro:1425:caamp",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "Caamp",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "caamp",
+    "role": "performer"
+   }
+  ],
+  "act": "caamp",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:sutro:1540:edie-brickell-and-new-bohemians",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "15:40",
+  "end": "16:25",
+  "printed": "Edie Brickell & New Bohemians",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "edie-brickell-and-new-bohemians",
+    "role": "performer"
+   }
+  ],
+  "act": "edie-brickell-and-new-bohemians",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:sutro:1655:phosphorescent",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "16:55",
+  "end": "17:45",
+  "printed": "Phosphorescent",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phosphorescent",
+    "role": "performer"
+   }
+  ],
+  "act": "phosphorescent",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:sutro:1815:better-oblivion-community-center",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "18:15",
+  "end": "19:05",
+  "printed": "Better Oblivion Community Center",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "better-oblivion-community-center",
+    "role": "performer"
+   }
+  ],
+  "act": "better-oblivion-community-center",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:sutro:1935:hozier",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Sutro",
+  "start": "19:35",
+  "end": "20:50",
+  "printed": "Hozier",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hozier",
+    "role": "performer"
+   }
+  ],
+  "act": "hozier",
+  "closing": true,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:the-house-by-heineken:1200:groove-well-ft-soulfunky-j-key-and-ledet",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "The House by Heineken",
+  "start": "12:00",
+  "end": "13:45",
+  "printed": "Groove Well Ft. Soulfunky J-Key & Ledet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "groove-well-ft-soulfunky-j-key-and-ledet",
+    "role": "act"
+   }
+  ],
+  "act": "groove-well-ft-soulfunky-j-key-and-ledet",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null,
+  "review": "feat / with billing"
+ },
+ {
+  "id": "outside-lands-2019:d2:the-house-by-heineken:1345:as-you-like-it-ft-mossmoss-and-rich-korach",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "The House by Heineken",
+  "start": "13:45",
+  "end": "15:30",
+  "printed": "As You Like It Ft. MossMoss & Rich Korach",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "as-you-like-it-ft-mossmoss-and-rich-korach",
+    "role": "act"
+   }
+  ],
+  "act": "as-you-like-it-ft-mossmoss-and-rich-korach",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null,
+  "review": "feat / with billing"
+ },
+ {
+  "id": "outside-lands-2019:d2:the-house-by-heineken:1530:nick-monaco",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "The House by Heineken",
+  "start": "15:30",
+  "end": "17:00",
+  "printed": "Nick Monaco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nick-monaco",
+    "role": "performer"
+   }
+  ],
+  "act": "nick-monaco",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:the-house-by-heineken:1700:j-worra",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "The House by Heineken",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "J. Worra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "j-worra",
+    "role": "performer"
+   }
+  ],
+  "act": "j-worra",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:the-house-by-heineken:1830:goldfish-live",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "The House by Heineken",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "GoldFish Live",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldfish-live",
+    "role": "performer"
+   }
+  ],
+  "act": "goldfish-live",
+  "closing": true,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:twin-peaks:1240:allblack",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "12:40",
+  "end": "13:25",
+  "printed": "ALLBLACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "allblack",
+    "role": "performer"
+   }
+  ],
+  "act": "allblack",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:twin-peaks:1410:shallou",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "14:10",
+  "end": "15:00",
+  "printed": "shallou",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shallou",
+    "role": "performer"
+   }
+  ],
+  "act": "shallou",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:twin-peaks:1545:tierra-whack",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "15:45",
+  "end": "16:35",
+  "printed": "Tierra Whack",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tierra-whack",
+    "role": "performer"
+   }
+  ],
+  "act": "tierra-whack",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:twin-peaks:1720:big-wild",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "17:20",
+  "end": "18:10",
+  "printed": "Big Wild",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-wild",
+    "role": "performer"
+   }
+  ],
+  "act": "big-wild",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:twin-peaks:1850:ella-mai",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "18:50",
+  "end": "19:50",
+  "printed": "Ella Mai",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ella-mai",
+    "role": "performer"
+   }
+  ],
+  "act": "ella-mai",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d2:twin-peaks:2040:rl-grime",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-10",
+  "day": 2,
+  "stage": "Twin Peaks",
+  "start": "20:40",
+  "end": "21:55",
+  "printed": "RL Grime",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rl-grime",
+    "role": "performer"
+   }
+  ],
+  "act": "rl-grime",
+  "closing": true,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:lands-end:1210:pj-morton",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "12:10",
+  "end": "13:00",
+  "printed": "PJ Morton",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pj-morton",
+    "role": "performer"
+   }
+  ],
+  "act": "pj-morton",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:lands-end:1330:mavis-staples",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "13:30",
+  "end": "14:20",
+  "printed": "Mavis Staples",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mavis-staples",
+    "role": "performer"
+   }
+  ],
+  "act": "mavis-staples",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:lands-end:1450:judah-and-the-lion",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "14:50",
+  "end": "15:40",
+  "printed": "Judah & The Lion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "judah-and-the-lion",
+    "role": "performer"
+   }
+  ],
+  "act": "judah-and-the-lion",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:lands-end:1610:kacey-musgraves",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "Kacey Musgraves",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kacey-musgraves",
+    "role": "performer"
+   }
+  ],
+  "act": "kacey-musgraves",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:lands-end:1740:leon-bridges",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "17:40",
+  "end": "18:50",
+  "printed": "Leon Bridges",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leon-bridges",
+    "role": "performer"
+   }
+  ],
+  "act": "leon-bridges",
+  "closing": false,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:lands-end:1935:paul-simon",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Lands End",
+  "start": "19:35",
+  "end": "21:35",
+  "printed": "Paul Simon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paul-simon",
+    "role": "performer"
+   }
+  ],
+  "act": "paul-simon",
+  "closing": true,
+  "stageLineage": "outside-lands:lands-end",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:panhandle:1200:sandy-s",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "12:00",
+  "end": "12:40",
+  "printed": "Sandy's",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sandy-s",
+    "role": "performer"
+   }
+  ],
+  "act": "sandy-s",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:panhandle:1320:alex-lahey",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "13:20",
+  "end": "14:00",
+  "printed": "Alex Lahey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-lahey",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-lahey",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:panhandle:1445:jupiter-and-okwess",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "14:45",
+  "end": "15:25",
+  "printed": "Jupiter & Okwess",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jupiter-and-okwess",
+    "role": "performer"
+   }
+  ],
+  "act": "jupiter-and-okwess",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:panhandle:1620:syml",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "16:20",
+  "end": "17:00",
+  "printed": "SYML",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "syml",
+    "role": "performer"
+   }
+  ],
+  "act": "syml",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:panhandle:1755:mormor",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "17:55",
+  "end": "18:35",
+  "printed": "MorMor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mormor",
+    "role": "performer"
+   }
+  ],
+  "act": "mormor",
+  "closing": false,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:panhandle:1935:the-funk-hunters",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Panhandle",
+  "start": "19:35",
+  "end": "20:20",
+  "printed": "The Funk Hunters",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-funk-hunters",
+    "role": "performer"
+   }
+  ],
+  "act": "the-funk-hunters",
+  "closing": true,
+  "stageLineage": "outside-lands:panhandle",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:sutro:1200:weyes-blood",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "Weyes Blood",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "weyes-blood",
+    "role": "performer"
+   }
+  ],
+  "act": "weyes-blood",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:sutro:1310:cherry-glazerr",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "13:10",
+  "end": "13:55",
+  "printed": "Cherry Glazerr",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cherry-glazerr",
+    "role": "performer"
+   }
+  ],
+  "act": "cherry-glazerr",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:sutro:1425:dean-lewis",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "Dean Lewis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dean-lewis",
+    "role": "performer"
+   }
+  ],
+  "act": "dean-lewis",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:sutro:1540:dj-koze",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "15:40",
+  "end": "16:25",
+  "printed": "DJ Koze",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-koze",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-koze",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:sutro:1655:bob-moses",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "16:55",
+  "end": "17:40",
+  "printed": "Bob Moses",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-moses",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-moses",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:sutro:1810:toro-y-moi",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "18:10",
+  "end": "19:00",
+  "printed": "Toro y Moi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "toro-y-moi",
+    "role": "performer"
+   }
+  ],
+  "act": "toro-y-moi",
+  "closing": false,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:sutro:1930:anderson-paak-and-the-free-nationals",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Sutro",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Anderson .Paak & The Free Nationals",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anderson-paak-and-the-free-nationals",
+    "role": "performer"
+   }
+  ],
+  "act": "anderson-paak-and-the-free-nationals",
+  "closing": true,
+  "stageLineage": "outside-lands:sutro",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:the-house-by-heineken:1200:justin-waves",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "The House by Heineken",
+  "start": "12:00",
+  "end": "13:15",
+  "printed": "Justin Waves",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-waves",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-waves",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:the-house-by-heineken:1315:motion-potion-1969-in-remix-set",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "The House by Heineken",
+  "start": "13:15",
+  "end": "14:45",
+  "printed": "Motion Potion 1969 In Remix Set",
+  "setTag": "1969 In Remix Set",
+  "performers": [
+   {
+    "key": "motion-potion",
+    "role": "performer"
+   }
+  ],
+  "act": "motion-potion-1969-in-remix-set",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:the-house-by-heineken:1445:dj-lazyboy",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "The House by Heineken",
+  "start": "14:45",
+  "end": "16:15",
+  "printed": "DJ Lazyboy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-lazyboy",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-lazyboy",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:the-house-by-heineken:1615:sasha-marie-soulection",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "The House by Heineken",
+  "start": "16:15",
+  "end": "17:00",
+  "printed": "Sasha Marie (Soulection)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sasha-marie",
+    "role": "performer"
+   }
+  ],
+  "act": "sasha-marie-soulection",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:the-house-by-heineken:1700:andre-power-soulection",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "The House by Heineken",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "Andre Power (Soulection)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andre-power",
+    "role": "performer"
+   }
+  ],
+  "act": "andre-power-soulection",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:the-house-by-heineken:1745:sante",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "The House by Heineken",
+  "start": "17:45",
+  "end": "18:55",
+  "printed": "Santé",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sante",
+    "role": "performer"
+   }
+  ],
+  "act": "sante",
+  "closing": false,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:the-house-by-heineken:1920:sante",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "The House by Heineken",
+  "start": "19:20",
+  "end": "20:00",
+  "printed": "Santé",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sante",
+    "role": "performer"
+   }
+  ],
+  "act": "sante",
+  "closing": true,
+  "stageLineage": "outside-lands:the-house-by-heineken",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:twin-peaks:1240:leven-kali",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "12:40",
+  "end": "13:20",
+  "printed": "Leven Kali",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leven-kali",
+    "role": "performer"
+   }
+  ],
+  "act": "leven-kali",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:twin-peaks:1400:nahko-and-medicine-for-the-people",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "Nahko and Medicine for the People",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nahko-and-medicine-for-the-people",
+    "role": "performer"
+   }
+  ],
+  "act": "nahko-and-medicine-for-the-people",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:twin-peaks:1530:denzel-curry",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "15:30",
+  "end": "16:20",
+  "printed": "Denzel Curry",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "denzel-curry",
+    "role": "performer"
+   }
+  ],
+  "act": "denzel-curry",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:twin-peaks:1705:sheck-wes",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "17:05",
+  "end": "17:55",
+  "printed": "Sheck Wes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sheck-wes",
+    "role": "performer"
+   }
+  ],
+  "act": "sheck-wes",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:twin-peaks:1840:bebe-rexha",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "18:40",
+  "end": "19:35",
+  "printed": "Bebe Rexha",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bebe-rexha",
+    "role": "performer"
+   }
+  ],
+  "act": "bebe-rexha",
+  "closing": false,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
+  "id": "outside-lands-2019:d3:twin-peaks:2020:kygo",
+  "source": "edition",
+  "festivalId": "outside-lands-2019",
+  "festivalBrand": "outside-lands",
+  "year": 2019,
+  "date": "2019-08-11",
+  "day": 3,
+  "stage": "Twin Peaks",
+  "start": "20:20",
+  "end": "21:35",
+  "printed": "Kygo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kygo",
+    "role": "performer"
+   }
+  ],
+  "act": "kygo",
+  "closing": true,
+  "stageLineage": "outside-lands:twin-peaks",
+  "mainStage": null
+ },
+ {
   "id": "outside-lands-2022:d1:lands-end:1210:cory-henry",
   "source": "edition",
   "festivalId": "outside-lands-2022",

@@ -157,8 +157,12 @@ const out = build();
   // an "x" billing (Carlo x Ofier), a feat. list whose "&" may be one act or
   // two (SOULECTION ft ...), Andres (SOULECTION) (a short name the crew tag
   // cannot settle), and three short names billed at other brands (B3K, LUM,
-  // Tor): 183 rows. Past 183, stop and report.
-  check(review.length <= 183, `review queue is ${review.length} rows (> 183 means stop and report)`);
+  // Tor): 183 rows. Outside Lands 2018-2019 adds four: Florence + the
+  // Machine (the "+" rule, already pending at ACL 2012), SOB x RBE (an "x"
+  // billing) and two feat. lists whose "&" may be one act or two (Groove
+  // Well Ft. ..., As You Like It Ft. ...): 187 rows. Past 187, stop and
+  // report.
+  check(review.length <= 187, `review queue is ${review.length} rows (> 187 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

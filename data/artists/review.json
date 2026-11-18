@@ -567,6 +567,34 @@
   "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
  },
  {
+  "id": "outside-lands-2018:d2:lands-end:2025:florence-the-machine",
+  "printed": "Florence + the Machine",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "outside-lands-2018:d2:twin-peaks:1720:sob-x-rbe",
+  "printed": "SOB x RBE",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"x\" is not sourced (it can be one name: never split on \"x\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "outside-lands-2019:d2:the-house-by-heineken:1200:groove-well-ft-soulfunky-j-key-and-ledet",
+  "printed": "Groove Well Ft. Soulfunky J-Key & Ledet",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split (the A Family Affair rule). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "outside-lands-2019:d2:the-house-by-heineken:1345:as-you-like-it-ft-mossmoss-and-rich-korach",
+  "printed": "As You Like It Ft. MossMoss & Rich Korach",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split (the A Family Affair rule). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "outside-lands-2023:d1:twin-peaks:1720:diesel-shaquille-o-neal",
   "printed": "Diesel (Shaquille O'Neal)",
   "reason": "parenthetical is not a known set tag",

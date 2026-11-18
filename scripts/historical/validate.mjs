@@ -52,7 +52,7 @@ export const OFFICIAL_HOSTS = {
   // its widget from one DoStuff host per year (<script src=
   // "https://<host>/embeds/lineup.js">), each seen on the archived page
   // captured seconds before the script. "=" matches that host alone.
-  "outside-lands": ["sfoutsidelands.com", "lineup.sfoutsidelands.com", "=22-osl.dostff.co", "=osl23fest.dostff.co", "=fest24outsidelands.dostff.co", "=ds25festlands.dostff.co"],
+  "outside-lands": ["sfoutsidelands.com", "lineup.sfoutsidelands.com", "=sfosl.dostff.co", "=sfosl19.dostff.co", "=22-osl.dostff.co", "=osl23fest.dostff.co", "=fest24outsidelands.dostff.co", "=ds25festlands.dostff.co"],
   // Lightning in a Bottle's site (libfestival.org today); its 2018-2019
   // lineup page loads its widget from one DoStuff host per year.
   "lightning-in-a-bottle": ["lightninginabottle.org", "libfestival.org", "=lib2018.dostff.co", "=lib2019.dostff.co"],
@@ -434,7 +434,7 @@ function officialSources(e, meta, p) {
         // ("Friday, August 3rd & Saturday, August 4th, 2012").
         if (hardRun(c.dateFrom, e.year)?.[c.printed] !== date) p.push(`${tag}: the page's day "${c.printed}" (run "${c.dateFrom}") does not print ${date}`);
       } else if (c.format === "dostuff-embed") {
-        // The official lineup widget (Outside Lands 2022-2025, Lightning in a
+        // The official lineup widget (Outside Lands 2018-2019 and 2022-2025, Lightning in a
         // Bottle 2018-2019) prints each set's start as a full date with its
         // offset; the day is that date, inside the run of days the widget's
         // own options print (which may add a gate day at either end, never

@@ -4290,6 +4290,52 @@
    ],
    "why": "The parenthetical names the people behind the billed name, joined by \"+\" (Walker & Royce is one duo's name): the billed name is a project with them as parents, and it never counts as either billed alone.",
    "source": "https://lightninginabottle.org/lineup/"
+  },
+  {
+   "printed": "Sasha Marie (Soulection)",
+   "performers": [
+    {
+     "name": "Sasha Marie",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the collective the DJ is known from, not a second act on the set (the band-parenthetical rule, as The Far Side (formerly of The Pharcyde)); the set is billed to the DJ, as Outside Lands 2019 prints it.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "Andre Power (Soulection)",
+   "performers": [
+    {
+     "name": "Andre Power",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical names the collective the DJ is known from, not a second act on the set (the band-parenthetical rule, as The Far Side (formerly of The Pharcyde)); the set is billed to the DJ, as Outside Lands 2019 prints it.",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "Flying Lotus 3D",
+   "performers": [
+    {
+     "name": "Flying Lotus",
+     "role": "performer"
+    }
+   ],
+   "setTag": "3D",
+   "why": "\"3D\" names the set's format (the act's 3D live show), not a second act or part of the name: it is the set tag, and the billing counts on Flying Lotus (as Lightning in a Bottle 2019 prints Flying Lotus (3D)).",
+   "source": "https://sfoutsidelands.com/lineup/"
+  },
+  {
+   "printed": "Motion Potion 1969 In Remix Set",
+   "performers": [
+    {
+     "name": "Motion Potion",
+     "role": "performer"
+    }
+   ],
+   "setTag": "1969 In Remix Set",
+   "why": "\"1969 In Remix Set\" names the set's theme, not a second act: it is the set tag, and the billing counts on Motion Potion, billed at Outside Lands 2018 and 2019 under that name.",
+   "source": "https://sfoutsidelands.com/lineup/"
   }
  ],
  "pending": [
@@ -4940,6 +4986,18 @@
   {
    "key": "tor",
    "why": "Short name billed at Lightning in a Bottle 2018 and Shambhala 2014 and 2024 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+  },
+  {
+   "printed": "SOB x RBE",
+   "why": "Left as printed, one act: who is behind the \"x\" is not sourced (it can be one name: never split on \"x\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Groove Well Ft. Soulfunky J-Key & Ledet",
+   "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split (the A Family Affair rule). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "As You Like It Ft. MossMoss & Rich Korach",
+   "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split (the A Family Affair rule). Renders as its own billing until a first-party page rules it."
   }
  ]
 }

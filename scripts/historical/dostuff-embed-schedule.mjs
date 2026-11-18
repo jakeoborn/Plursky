@@ -1,7 +1,7 @@
 // dostuff-embed-schedule.mjs — read an official festival lineup widget's
 // embed script (format "dostuff-embed"): https://<site>.dostff.co/embeds/lineup.js,
 // the script the festival's own lineup page loads into its <div id="ds-fest">
-// (Outside Lands 2022-2025, sfoutsidelands.com/lineup/; Lightning in a
+// (Outside Lands 2018-2019 and 2022-2025, sfoutsidelands.com/lineup/; Lightning in a
 // Bottle 2018-2019, lightninginabottle.org/lineup/).
 //
 // The script sets `window._fest_options = {…}` on one line: the festival's
@@ -17,7 +17,7 @@
 // each of them with the same id; it is one set, billed as its own `name`.
 // When the options print `"show_performance_titles": false` (Lightning in a
 // Bottle 2019), the widget draws each set under its act's name and never its
-// title, so the set is billed as that act (Outside Lands 2022-2025 and
+// title, so the set is billed as that act (Outside Lands 2018-2019 and 2022-2025 and
 // Lightning in a Bottle 2019); a set drawn under several acts is billed as
 // its title, the festival's one name for the shared set. Two performances
 // with the same stage, start, end and billing are one set drawn twice.
@@ -33,25 +33,54 @@
 
 // The official lineup page that loads each festival's widget, and how far
 // apart the page's capture and the script's may be (seconds, script minus
-// page). Outside Lands' pages were captured seconds before their scripts.
-// Lightning in a Bottle's script hosts are one per year (lib2018.dostff.co),
-// and its archived pages and scripts are days apart, so the page must have
-// been captured within a month of the script and load that very script.
+// page). The script hosts are one per year (sfosl19.dostff.co,
+// lib2018.dostff.co), and the archived pages and scripts are often days
+// apart, so the page must have been captured within a month of the script
+// and must load that very script: by its own <script src> (pageLoadsScript),
+// or through the site's own script (`via`, Outside Lands 2019, whose lineup
+// page is an app shell: its main.js adds the widget's <script> on the lineup
+// route), captured within a day of the page on the page's own host
+// (scriptSetsSrc).
+const MONTH = 31 * 86400;
 export const EMBED_PAGES = {
-  "outside-lands": { page: /^https?:\/\/(www\.)?sfoutsidelands\.com\/lineup\/$/, minGap: 0, maxGap: 120, label: "captured seconds before the script" },
-  "lightning-in-a-bottle": { page: /^https?:\/\/(www\.)?lightninginabottle\.org\/lineup\/$/, minGap: -31 * 86400, maxGap: 31 * 86400, label: "captured within a month of the script" },
+  "outside-lands": { page: /^https?:\/\/(www\.)?sfoutsidelands\.com\/lineup\/$/, minGap: -MONTH, maxGap: MONTH, label: "captured within a month of the script" },
+  "lightning-in-a-bottle": { page: /^https?:\/\/(www\.)?lightninginabottle\.org\/lineup\/$/, minGap: -MONTH, maxGap: MONTH, label: "captured within a month of the script" },
 };
 const tsSec = ts => /^\d{14}$/.test(ts || "") ? Date.parse(ts.replace(/(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)/, "$1-$2-$3T$4:$5:$6Z")) / 1000 : NaN;
-// Whether `embeddedBy` (an archived page) is the festival's official lineup
-// page captured close enough to the script's capture `ts`.
+const hostOf = u => { try { return new URL(u).host.replace(/^www\./, ""); } catch { return null; } };
+// Whether `embeddedBy` (an archived page, and the site script it loads the
+// widget through, if any) is the festival's official lineup page captured
+// close enough to the script's capture `ts`.
 export function embedPageOk(festivalId, ts, embeddedBy) {
   const rule = EMBED_PAGES[festivalId], eb = embeddedBy || {}, gap = tsSec(ts) - tsSec(eb.captureTimestamp);
-  return !!rule && rule.page.test(eb.url || "") && gap >= rule.minGap && gap <= rule.maxGap;
+  if (!rule || !rule.page.test(eb.url || "") || !(gap >= rule.minGap && gap <= rule.maxGap)) return false;
+  if (!eb.via) return true;
+  const v = eb.via, vgap = Math.abs(tsSec(v.captureTimestamp) - tsSec(eb.captureTimestamp));
+  return hostOf(v.url) === hostOf(eb.url) && /^https?:\/\/[^/]+\/[^?#]+\.js(\?[^#]*)?$/.test(v.url || "") && vgap <= 86400;
+}
+// The page's <script src> values, each as the address it loads. A page read
+// as rendered from the archive resolves a site-relative src ("/assets/…")
+// against the archive's own host, so a web.archive.org address that is not a
+// /web/ capture link is that path on the page's own host.
+function scriptSrcs(html, pageUrl) {
+  return [...String(html).matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)].map(m => {
+    let src = m[1].replace(/&amp;/g, "&");
+    const arch = /^(?:https?:)?\/\/web\.archive\.org(\/(?!web\/).*)$/.exec(src);
+    if (arch && pageUrl) src = new URL(arch[1], pageUrl).href;
+    else if (pageUrl && !/^(https?:)?\/\//.test(src)) src = new URL(src, pageUrl).href;
+    return src.replace(/^https?:/, "");
+  });
 }
 // Whether a page's HTML loads the script at `scriptUrl` (its own <script src>).
-export function pageLoadsScript(html, scriptUrl) {
+export function pageLoadsScript(html, scriptUrl, pageUrl) {
   const bare = String(scriptUrl).replace(/^https?:/, "");
-  return [...String(html).matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)].some(m => m[1].replace(/^https?:/, "") === bare);
+  return scriptSrcs(html, pageUrl).some(src => src === bare);
+}
+// Whether a site script sets a <script>'s src to `scriptUrl`: it must hold the
+// address whole as a string literal, as main.js's setAttribute("src", "…").
+export function scriptSetsSrc(js, scriptUrl) {
+  const u = String(scriptUrl);
+  return [`"${u}"`, `'${u}'`].some(q => String(js).includes(q)) && /\bsetAttribute\(\s*["']src["']\s*,\s*["']/.test(String(js));
 }
 
 const ISO = /^(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2}):00(?:\.000)?([+-]\d{2}:\d{2})$/;
