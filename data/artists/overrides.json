@@ -3933,6 +3933,18 @@
    "setTag": "Dj set",
    "why": "The parenthetical names the band the DJ is known from, not a second act on the set: the DJ is the performer, and the band is never credited as playing. \"Dj set\" is the set tag.",
    "source": "https://www.tomorrowland.com/"
+  },
+  {
+   "printed": "Pat Mahoney DJ Set (DFA / LCD SOUNDSYSTEM )",
+   "performers": [
+    {
+     "name": "Pat Mahoney",
+     "role": "performer"
+    }
+   ],
+   "setTag": "DJ Set",
+   "why": "The parenthetical names the label and the band the DJ is known from, not a second act on the set: the DJ is the performer, and neither is credited as playing. \"DJ Set\" is the set tag.",
+   "source": "https://governorsballmusicfestival.com/"
   }
  ],
  "pending": [

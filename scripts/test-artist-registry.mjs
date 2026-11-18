@@ -114,8 +114,11 @@ const out = build();
   // printed: five parentheticals naming the people or crew behind a billing
   // (Airscape, Club Cheval, Frequency 7 and Killa Productions, NGA, Fiocco)
   // and the short name NU: 161 rows, raised here and reported in that pull
-  // request. Past 161, stop and report.
-  check(review.length <= 161, `review queue is ${review.length} rows (> 161 means stop and report)`);
+  // request. Governors Ball 2015 ruled Pat Mahoney's DJ set under the existing
+  // band-parenthetical rule and left one "+" billing as printed (Florence +
+  // The Machine): 162 rows, raised here and reported in that pull request.
+  // Past 162, stop and report.
+  check(review.length <= 162, `review queue is ${review.length} rows (> 162 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
