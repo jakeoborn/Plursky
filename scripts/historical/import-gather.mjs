@@ -48,6 +48,7 @@ import { parseEfScheduler } from "./ef-scheduler-schedule.mjs";
 import { parseGovBallWp } from "./govball-wp-schedule.mjs";
 import { parseInsomniacMusic } from "./insomniac-music-schedule.mjs";
 import { parseTmlCms } from "./tml-cms-schedule.mjs";
+import { parseHardWp } from "./hard-wp-schedule.mjs";
 import { parseTmlDrupal } from "./tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, readDatesPost } from "./shambhala-webflow-schedule.mjs";
 
@@ -527,6 +528,30 @@ export async function importGather(id, dir) {
             times: "each range printed with its own am or pm; a time before noon is the night of the day above",
             ...(d.hosts.length && { hosts: d.hosts }), ...(d.repeats && { drawnTwice: d.repeats }),
             ...(page.blank.length && { stagesWithNoSets: page.blank }),
+            ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
+        }
+      } else if (s.format === "hard-wp") {
+        // One page draws both days (HARD Summer 2012, hard-wp-schedule.mjs):
+        // each day's heading prints its weekday, the date is the run the
+        // page's essential info prints, and every block's height and place on
+        // its column agree with its printed range. Every day it prints is the
+        // edition's and is cited. A block the drawing cannot confirm must be
+        // the sheet's excluded misprint row of that day, one for one.
+        const page = parseHardWp(cap.text, { year: ed.year });
+        if (page.run !== s.dateFrom) throw new Error(`${s.url} @${s.captureTimestamp}: prints its run as "${page.run}", the receipt says "${s.dateFrom}"`);
+        const dayOf = date => ed.dates.findIndex(([d]) => d === date) + 1;
+        const printedDays = page.days.map(d => dayOf(d.date));
+        if (printedDays.some(d => d < 1)) throw new Error(`${s.url} @${s.captureTimestamp}: prints a day that is not the edition's (${page.days.map(d => d.date).join(", ")})`);
+        if (printedDays.join() !== days.join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints days ${printedDays.join(",")}, the sheet cites it for ${days.join(",")}`);
+        for (const d of page.days) {
+          const day = dayOf(d.date);
+          if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is printed as "${d.label}", the receipt says "${s.printed[day]}"`);
+          const k = x => [x.stage, x.artist ?? x.billing].join("|");
+          const pg = d.misprints.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x.misprint).map(k).sort().join("\n");
+          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${d.misprints.length} misprint(s), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+          agree(day, d.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { dateFrom: page.run, stages: d.stages.length, axis: d.axis, pxPerMinute: d.pxPerMinute, columnTops: d.columnTops,
+            times: "ranges print no am or pm: each is the one reading inside the day's own hour grid, and each block's height and place on its column agree with it",
             ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
         }
       } else if (s.format === "tml-cms") {
