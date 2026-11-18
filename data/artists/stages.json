@@ -4155,6 +4155,153 @@
     }
    ]
   },
+  "primavera-sound": {
+   "lineages": [
+    {
+     "id": "primavera-sound:atp",
+     "names": [
+      {
+       "printed": "ATP",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:auditori-rockdelux",
+     "names": [
+      {
+       "printed": "Auditori Rockdelux",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ray-ban",
+     "names": [
+      {
+       "printed": "Ray-Ban",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:h-and-m-pro",
+     "names": [
+      {
+       "printed": "H&M PRO",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:pitchfork",
+     "names": [
+      {
+       "printed": "Pitchfork",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ray-ban-unplugged",
+     "names": [
+      {
+       "printed": "Ray-Ban Unplugged",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:heineken-hidden-stage",
+     "names": [
+      {
+       "printed": "Heineken Hidden Stage",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:heineken",
+     "names": [
+      {
+       "printed": "Heineken",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:adidas-originals",
+     "names": [
+      {
+       "printed": "adidas Originals",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:primavera",
+     "names": [
+      {
+       "printed": "Primavera",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:bowers-and-wilkins-sound-system",
+     "names": [
+      {
+       "printed": "Bowers & Wilkins Sound System",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "shambhala": {
    "lineages": [
     {

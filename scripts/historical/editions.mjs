@@ -92,6 +92,17 @@ export const EDITIONS = {
   "governors-ball-2015": { festivalId: "governors-ball", name: "Governors Ball 2015", year: 2015,
     timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
     dates: [["2015-06-05", "Friday"], ["2015-06-06", "Saturday"], ["2015-06-07", "Sunday"]] },
+  // Primavera Sound 2015: the official primaverasound.es timetable for Parc
+  // del Fòrum (/horarios?d=N&l=forum, format "primavera-horarios",
+  // primavera-horarios-schedule.mjs), one archived page per day, each
+  // captured after the festival. The page's day tabs print Wednesday 27 May
+  // (an opening night on the ATP stage alone) and the three main days, with
+  // no year; every set prints its range on the 24-hour clock. The city shows
+  // (Primavera a la Ciutat) are on other pages and are not loaded. The night
+  // runs to 5:30 AM.
+  "primavera-sound-2015": { festivalId: "primavera-sound", name: "Primavera Sound 2015", year: 2015,
+    timezone: "Europe/Madrid", rolloverHour: 6, method: "official_sources",
+    dates: [["2015-05-27", "Wednesday"], ["2015-05-28", "Thursday"], ["2015-05-29", "Friday"], ["2015-05-30", "Saturday"]] },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.

@@ -3597,6 +3597,42 @@
    }
   },
   {
+   "id": "primavera-sound-2015",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2015",
+   "year": 2015,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-05-27",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2015-05-28",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2015-05-29",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2015-05-30",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 183,
+    "sets": 196
+   }
+  },
+  {
    "id": "shambhala-2025",
    "festivalId": "shambhala",
    "festivalName": "Shambhala",

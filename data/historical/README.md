@@ -96,6 +96,30 @@ backwards or more than six hours, or starts off the axis by over an hour, is a
 misprint and an excluded row, never read another way (2012's Turf War, printed
 "11:45 pm - 12:10 pm"). Sets in a column must run in order with no overlap.
 
+Archived Primavera Sound timetable (2015, format `primavera-horarios`):
+
+    node scripts/historical/gather-primavera-horarios.mjs <edition-id> <gather-dir> <official-url> <ts> <day-url> [ … one pair per day ]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+primaverasound.es/horarios?d=N&l=forum was the festival's own Parc del Fòrum
+timetable, one page a day. The page prints a row of day tabs, its own day the
+one not linked, in whichever language it was served (Catalan "dimecres 27 de
+maig", Spanish "jueves 28 de mayo", English "Friday May 29"), with no year:
+each tab's weekday must fall on its date in the edition's year, and the tabs
+must be the edition's days in order. The heading must name Parc del Fòrum, so
+the city shows (Primavera a la Ciutat, `l=ciutat`) are never read. The grid
+has a column per stage (repeated in a footer row) and a row every 15 minutes
+that opens and closes with its own time, carrying on past midnight to 6:30.
+Each set is a block in its stage's cell that prints its range on the 24-hour
+clock ("(23:45 - 01:15)"); its start must be the row's time plus the block's
+own offset (`KKaddMinutes-N`, under 15), and the block must be drawn two
+pixels a minute tall. A block that prints its start alone ("(03:00)", 2015's
+Zamilska) is an open end. Sets on a stage must run in order with no overlap;
+anything else stops the read. The 2015 day pages were captured after the
+festival (Wednesday's on May 31, the rest in September). Wednesday 27 May is
+the ATP stage alone; the three main days have 11 stages each. Other years'
+timetables (2012, 2013, 2016 to 2019) are archived too and are not read yet.
+
 Archived Lollapalooza lineup cards (2018, format `lolla-cards`):
 
     node scripts/historical/gather-lolla-cards.mjs <edition-id> <gather-dir> <official-url> <ts> <url>

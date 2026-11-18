@@ -1,0 +1,3188 @@
+{
+ "id": "primavera-sound-2015",
+ "festivalId": "primavera-sound",
+ "name": "Primavera Sound 2015",
+ "year": 2015,
+ "timezone": "Europe/Madrid",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-05-27",
+   "label": "Wednesday"
+  },
+  {
+   "day": 2,
+   "date": "2015-05-28",
+   "label": "Thursday"
+  },
+  {
+   "day": 3,
+   "date": "2015-05-29",
+   "label": "Friday"
+  },
+  {
+   "day": 4,
+   "date": "2015-05-30",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "primavera-sound-2015:atp",
+   "name": "ATP"
+  },
+  {
+   "id": "primavera-sound-2015:auditori-rockdelux",
+   "name": "Auditori Rockdelux"
+  },
+  {
+   "id": "primavera-sound-2015:ray-ban",
+   "name": "Ray-Ban"
+  },
+  {
+   "id": "primavera-sound-2015:h-and-m-pro",
+   "name": "H&M PRO"
+  },
+  {
+   "id": "primavera-sound-2015:pitchfork",
+   "name": "Pitchfork"
+  },
+  {
+   "id": "primavera-sound-2015:ray-ban-unplugged",
+   "name": "Ray-Ban Unplugged"
+  },
+  {
+   "id": "primavera-sound-2015:heineken-hidden-stage",
+   "name": "Heineken Hidden Stage"
+  },
+  {
+   "id": "primavera-sound-2015:heineken",
+   "name": "Heineken"
+  },
+  {
+   "id": "primavera-sound-2015:adidas-originals",
+   "name": "adidas Originals"
+  },
+  {
+   "id": "primavera-sound-2015:primavera",
+   "name": "Primavera"
+  },
+  {
+   "id": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "name": "Bowers & Wilkins Sound System"
+  }
+ ],
+ "artists": [
+  {
+   "id": "primavera-sound-2015:las-ruinas",
+   "name": "Las Ruinas",
+   "key": "las-ruinas",
+   "performers": [
+    "las-ruinas"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:panama",
+   "name": "Panama",
+   "key": "panama",
+   "performers": [
+    "panama"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:christina-rosenvinge",
+   "name": "Christina Rosenvinge",
+   "key": "christina-rosenvinge",
+   "performers": [
+    "christina-rosenvinge"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:cinerama",
+   "name": "Cinerama",
+   "key": "cinerama",
+   "performers": [
+    "cinerama"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:albert-hammond-jr",
+   "name": "Albert Hammond, Jr.",
+   "key": "albert-hammond-jr",
+   "performers": [
+    "albert-hammond-jr"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:omd",
+   "name": "OMD",
+   "key": "omd",
+   "performers": [
+    "omd"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:yasmine-hamdan",
+   "name": "Yasmine Hamdan",
+   "key": "yasmine-hamdan",
+   "performers": [
+    "yasmine-hamdan"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-thurston-moore-band",
+   "name": "The Thurston Moore Band",
+   "key": "the-thurston-moore-band",
+   "performers": [
+    "the-thurston-moore-band"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:spiritualized",
+   "name": "Spiritualized",
+   "key": "spiritualized",
+   "performers": [
+    "spiritualized"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:sunn-o",
+   "name": "Sunn O)))",
+   "key": "sunn-o",
+   "performers": [
+    "sunn-o"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:arthur-russell-s-instrumentals-directed-by-peter-gordon",
+   "name": "Arthur Russell's Instrumentals directed by Peter Gordon",
+   "key": "arthur-russell-s-instrumentals-directed-by-peter-gordon",
+   "performers": [
+    "arthur-russell-s-instrumentals-directed-by-peter-gordon"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:panda-bear",
+   "name": "Panda Bear",
+   "key": "panda-bear",
+   "performers": [
+    "panda-bear"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:hans-joachim-roedelius",
+   "name": "Hans-Joachim Roedelius",
+   "key": "hans-joachim-roedelius",
+   "performers": [
+    "hans-joachim-roedelius"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:sun-kil-moon",
+   "name": "Sun Kil Moon",
+   "key": "sun-kil-moon",
+   "performers": [
+    "sun-kil-moon"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:perro",
+   "name": "Perro",
+   "key": "perro",
+   "performers": [
+    "perro"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:hiss-golden-messenger",
+   "name": "Hiss Golden Messenger",
+   "key": "hiss-golden-messenger",
+   "performers": [
+    "hiss-golden-messenger"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:giant-sand",
+   "name": "Giant Sand",
+   "key": "giant-sand",
+   "performers": [
+    "giant-sand"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:mikal-cronin",
+   "name": "Mikal Cronin",
+   "key": "mikal-cronin",
+   "performers": [
+    "mikal-cronin"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:chet-faker",
+   "name": "Chet Faker",
+   "key": "chet-faker",
+   "performers": [
+    "chet-faker"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:jungle",
+   "name": "JUNGLE",
+   "key": "jungle",
+   "performers": [
+    "jungle"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:andrew-weatherall",
+   "name": "Andrew Weatherall",
+   "key": "andrew-weatherall",
+   "performers": [
+    "andrew-weatherall"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:camarones-orquesta-guitarristica",
+   "name": "Camarones Orquesta Guitarrística",
+   "key": "camarones-orquesta-guitarristica",
+   "performers": [
+    "camarones-orquesta-guitarristica"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:fakuta",
+   "name": "Fakuta",
+   "key": "fakuta",
+   "performers": [
+    "fakuta"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:siberian-wolves",
+   "name": "Siberian Wolves",
+   "key": "siberian-wolves",
+   "performers": [
+    "siberian-wolves"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:garden-city-movement",
+   "name": "Garden City Movement",
+   "key": "garden-city-movement",
+   "performers": [
+    "garden-city-movement"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:theangelcy",
+   "name": "theAngelcy",
+   "key": "theangelcy",
+   "performers": [
+    "theangelcy"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:acollective",
+   "name": "Acollective",
+   "key": "acollective",
+   "performers": [
+    "acollective"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:rebeka",
+   "name": "Rebeka",
+   "key": "rebeka",
+   "performers": [
+    "rebeka"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:magaly-fields",
+   "name": "Magaly Fields",
+   "key": "magaly-fields",
+   "performers": [
+    "magaly-fields"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:denis-the-night-and-the-panic-party",
+   "name": "Denis The Night & The Panic Party",
+   "key": "denis-the-night-and-the-panic-party",
+   "performers": [
+    "denis-the-night-and-the-panic-party"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:foex",
+   "name": "Foex",
+   "key": "foex",
+   "performers": [
+    "foex"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:zamilska",
+   "name": "Zamilska",
+   "key": "zamilska",
+   "performers": [
+    "zamilska"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:ocellot",
+   "name": "Ocellot",
+   "key": "ocellot",
+   "performers": [
+    "ocellot"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:twerps",
+   "name": "Twerps",
+   "key": "twerps",
+   "performers": [
+    "twerps"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:viet-cong",
+   "name": "Viet Cong",
+   "key": "viet-cong",
+   "performers": [
+    "viet-cong"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:ought",
+   "name": "Ought",
+   "key": "ought",
+   "performers": [
+    "ought"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:mineral",
+   "name": "Mineral",
+   "key": "mineral",
+   "performers": [
+    "mineral"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:tyler-the-creator",
+   "name": "Tyler, The Creator",
+   "key": "tyler-the-creator",
+   "performers": [
+    "tyler-the-creator"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:simian-mobile-disco",
+   "name": "Simian Mobile Disco",
+   "key": "simian-mobile-disco",
+   "performers": [
+    "simian-mobile-disco"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:gui-boratto",
+   "name": "Gui Boratto",
+   "key": "gui-boratto",
+   "performers": [
+    "gui-boratto"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:roman-flugel",
+   "name": "Roman Flügel",
+   "key": "roman-flugel",
+   "performers": [
+    "roman-flugel"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-shalalalas",
+   "name": "The Shalalalas",
+   "key": "the-shalalalas",
+   "performers": [
+    "the-shalalalas"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:wry",
+   "name": "WRY",
+   "key": "wry",
+   "performers": [
+    "wry"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:mutiny-on-the-bounty",
+   "name": "Mutiny on the Bounty",
+   "key": "mutiny-on-the-bounty",
+   "performers": [
+    "mutiny-on-the-bounty"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:sierra-leone-s-refugee-all-stars",
+   "name": "Sierra Leone's Refugee All Stars",
+   "key": "sierra-leone-s-refugee-all-stars",
+   "performers": [
+    "sierra-leone-s-refugee-all-stars"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:battles",
+   "name": "Battles",
+   "key": "battles",
+   "performers": [
+    "battles"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:childhood",
+   "name": "Childhood",
+   "key": "childhood",
+   "performers": [
+    "childhood"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:benjamin-booker",
+   "name": "Benjamin Booker",
+   "key": "benjamin-booker",
+   "performers": [
+    "benjamin-booker"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:antony-and-the-johnsons",
+   "name": "Antony and the Johnsons",
+   "key": "antony-and-the-johnsons",
+   "performers": [
+    "antony-and-the-johnsons"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:james-blake",
+   "name": "James Blake",
+   "key": "james-blake",
+   "performers": [
+    "james-blake"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:exxasens",
+   "name": "Exxasens",
+   "key": "exxasens",
+   "performers": [
+    "exxasens"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:cheatahs",
+   "name": "Cheatahs",
+   "key": "cheatahs",
+   "performers": [
+    "cheatahs"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:mdou-moctar",
+   "name": "Mdou Moctar",
+   "key": "mdou-moctar",
+   "performers": [
+    "mdou-moctar"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:kelela",
+   "name": "Kelela",
+   "key": "kelela",
+   "performers": [
+    "kelela"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:brand-new",
+   "name": "Brand New",
+   "key": "brand-new",
+   "performers": [
+    "brand-new"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:los-punsetes",
+   "name": "Los Punsetes",
+   "key": "los-punsetes",
+   "performers": [
+    "los-punsetes"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:electric-wizard",
+   "name": "Electric Wizard",
+   "key": "electric-wizard",
+   "performers": [
+    "electric-wizard"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-suicide-of-western-culture",
+   "name": "The Suicide Of Western Culture",
+   "key": "the-suicide-of-western-culture",
+   "performers": [
+    "the-suicide-of-western-culture"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:baxter-dury",
+   "name": "Baxter Dury",
+   "key": "baxter-dury",
+   "performers": [
+    "baxter-dury"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-replacements",
+   "name": "The Replacements",
+   "key": "the-replacements",
+   "performers": [
+    "the-replacements"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-black-keys",
+   "name": "The Black Keys",
+   "key": "the-black-keys",
+   "performers": [
+    "the-black-keys"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:chelis",
+   "name": "Chelis",
+   "key": "chelis",
+   "performers": [
+    "chelis"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:rory-phillips",
+   "name": "Rory Phillips",
+   "key": "rory-phillips",
+   "performers": [
+    "rory-phillips"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:maceo-plex",
+   "name": "Maceo Plex",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:tale-of-us",
+   "name": "Tale Of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:tuff-city-kids",
+   "name": "Tuff City Kids",
+   "key": "tuff-city-kids",
+   "performers": [
+    "tuff-city-kids"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-kvb",
+   "name": "The KVB",
+   "key": "the-kvb",
+   "performers": [
+    "the-kvb"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-new-pornographers",
+   "name": "The New Pornographers",
+   "key": "the-new-pornographers",
+   "performers": [
+    "the-new-pornographers"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:belle-and-sebastian",
+   "name": "Belle & Sebastian",
+   "key": "belle-and-sebastian",
+   "performers": [
+    "belle-and-sebastian"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:run-the-jewels",
+   "name": "Run The Jewels",
+   "key": "run-the-jewels",
+   "performers": [
+    "run-the-jewels"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:jon-hopkins",
+   "name": "Jon Hopkins",
+   "key": "jon-hopkins",
+   "performers": [
+    "jon-hopkins"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:rocio-marquez",
+   "name": "Rocío Márquez",
+   "key": "rocio-marquez",
+   "performers": [
+    "rocio-marquez"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:jose-gonzalez",
+   "name": "José González",
+   "key": "jose-gonzalez",
+   "performers": [
+    "jose-gonzalez"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:tony-allen",
+   "name": "Tony Allen",
+   "key": "tony-allen",
+   "performers": [
+    "tony-allen"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:marc-ribot-s-ceramic-dog",
+   "name": "Marc Ribot's Ceramic Dog",
+   "key": "marc-ribot-s-ceramic-dog",
+   "performers": [
+    "marc-ribot-s-ceramic-dog"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:disappears",
+   "name": "Disappears",
+   "key": "disappears",
+   "performers": [
+    "disappears"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:sr-chinarro",
+   "name": "Sr. Chinarro",
+   "key": "sr-chinarro",
+   "performers": [
+    "sr-chinarro"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-julie-ruin",
+   "name": "The Julie Ruin",
+   "key": "the-julie-ruin",
+   "performers": [
+    "the-julie-ruin"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-church",
+   "name": "The Church",
+   "key": "the-church",
+   "performers": [
+    "the-church"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:death-from-above-1979",
+   "name": "Death From Above 1979",
+   "key": "death-from-above-1979",
+   "performers": [
+    "death-from-above-1979"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:ratatat",
+   "name": "Ratatat",
+   "key": "ratatat",
+   "performers": [
+    "ratatat"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:dixon",
+   "name": "Dixon",
+   "key": "dixon",
+   "performers": [
+    "dixon"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:do-amor",
+   "name": "Do Amor",
+   "key": "do-amor",
+   "performers": [
+    "do-amor"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:doctor-lobo",
+   "name": "Doctor Lobo",
+   "key": "doctor-lobo",
+   "performers": [
+    "doctor-lobo"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:terno-rei",
+   "name": "Terno Rei",
+   "key": "terno-rei",
+   "performers": [
+    "terno-rei"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:fabryka",
+   "name": "Fabryka",
+   "key": "fabryka",
+   "performers": [
+    "fabryka"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:japan-and-i",
+   "name": "Japan and I",
+   "key": "japan-and-i",
+   "performers": [
+    "japan-and-i"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:beatenberg",
+   "name": "Beatenberg",
+   "key": "beatenberg",
+   "performers": [
+    "beatenberg"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:thaw",
+   "name": "THAW",
+   "key": "thaw",
+   "performers": [
+    "thaw"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:camera",
+   "name": "Câmera",
+   "key": "camera",
+   "performers": [
+    "camera"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:miza",
+   "name": "Miza",
+   "key": "miza",
+   "performers": [
+    "miza"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:nuria-graham",
+   "name": "Núria Graham",
+   "key": "nuria-graham",
+   "performers": [
+    "nuria-graham"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:ex-hex",
+   "name": "Ex Hex",
+   "key": "ex-hex",
+   "performers": [
+    "ex-hex"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:tobias-jesso-jr",
+   "name": "Tobias Jesso Jr.",
+   "key": "tobias-jesso-jr",
+   "performers": [
+    "tobias-jesso-jr"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:perfume-genius",
+   "name": "Perfume Genius",
+   "key": "perfume-genius",
+   "performers": [
+    "perfume-genius"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:shabazz-palaces",
+   "name": "Shabazz Palaces",
+   "key": "shabazz-palaces",
+   "performers": [
+    "shabazz-palaces"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:ariel-pink",
+   "name": "Ariel Pink",
+   "key": "ariel-pink",
+   "performers": [
+    "ariel-pink"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-juan-maclean-live",
+   "name": "The Juan MacLean (live)",
+   "key": "the-juan-maclean-live",
+   "performers": [
+    "the-juan-maclean-live"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:movement",
+   "name": "Movement",
+   "key": "movement",
+   "performers": [
+    "movement"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:marc-pinol",
+   "name": "Marc Piñol",
+   "key": "marc-pinol",
+   "performers": [
+    "marc-pinol"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:opatov",
+   "name": "Opatov",
+   "key": "opatov",
+   "performers": [
+    "opatov"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-pastels",
+   "name": "The Pastels",
+   "key": "the-pastels",
+   "performers": [
+    "the-pastels"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:mercromina",
+   "name": "Mercromina",
+   "key": "mercromina",
+   "performers": [
+    "mercromina"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:sylvan-esso",
+   "name": "Sylvan Esso",
+   "key": "sylvan-esso",
+   "performers": [
+    "sylvan-esso"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:patti-smith-and-band-perform-horses",
+   "name": "Patti Smith & Band perform Horses",
+   "key": "patti-smith-and-band-perform-horses",
+   "performers": [
+    "patti-smith-and-band-perform-horses"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:sleater-kinney",
+   "name": "Sleater-Kinney",
+   "key": "sleater-kinney",
+   "performers": [
+    "sleater-kinney"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:alt-j",
+   "name": "alt-J",
+   "key": "alt-j",
+   "performers": [
+    "alt-j"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:fumaca-preta",
+   "name": "Fumaça Preta",
+   "key": "fumaca-preta",
+   "performers": [
+    "fumaca-preta"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:miquel-serra",
+   "name": "Miquel Serra",
+   "key": "miquel-serra",
+   "performers": [
+    "miquel-serra"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:white-hills",
+   "name": "White Hills",
+   "key": "white-hills",
+   "performers": [
+    "white-hills"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-hotelier",
+   "name": "The Hotelier",
+   "key": "the-hotelier",
+   "performers": [
+    "the-hotelier"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:pharmakon",
+   "name": "Pharmakon",
+   "key": "pharmakon",
+   "performers": [
+    "pharmakon"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:voivod",
+   "name": "Voivod",
+   "key": "voivod",
+   "performers": [
+    "voivod"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:earth",
+   "name": "Earth",
+   "key": "earth",
+   "performers": [
+    "earth"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:pallbearer",
+   "name": "Pallbearer",
+   "key": "pallbearer",
+   "performers": [
+    "pallbearer"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-soft-moon",
+   "name": "The Soft Moon",
+   "key": "the-soft-moon",
+   "performers": [
+    "the-soft-moon"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:julian-casablancas-the-voidz",
+   "name": "Julian Casablancas+The Voidz",
+   "key": "julian-casablancas-the-voidz",
+   "performers": [
+    "julian-casablancas-the-voidz"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:damien-rice",
+   "name": "Damien Rice",
+   "key": "damien-rice",
+   "performers": [
+    "damien-rice"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:ride",
+   "name": "Ride",
+   "key": "ride",
+   "performers": [
+    "ride"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:bruna",
+   "name": "bRUNA",
+   "key": "bruna",
+   "performers": [
+    "bruna"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:sunny-graves",
+   "name": "Sunny Graves",
+   "key": "sunny-graves",
+   "performers": [
+    "sunny-graves"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:veronica-vasicka",
+   "name": "Veronica Vasicka",
+   "key": "veronica-vasicka",
+   "performers": [
+    "veronica-vasicka"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:raime-dj-set",
+   "name": "Raime (dj set)",
+   "key": "raime-dj-set",
+   "performers": [
+    "raime-dj-set"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:exoteric-continent",
+   "name": "Exoteric Continent",
+   "key": "exoteric-continent",
+   "performers": [
+    "exoteric-continent"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:objekt",
+   "name": "Objekt",
+   "key": "objekt",
+   "performers": [
+    "objekt"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:younghusband",
+   "name": "Younghusband",
+   "key": "younghusband",
+   "performers": [
+    "younghusband"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:fucked-up",
+   "name": "Fucked Up",
+   "key": "fucked-up",
+   "performers": [
+    "fucked-up"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:einsturzende-neubauten",
+   "name": "Einstürzende Neubauten",
+   "key": "einsturzende-neubauten",
+   "performers": [
+    "einsturzende-neubauten"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:babes-in-toyland",
+   "name": "Babes In Toyland",
+   "key": "babes-in-toyland",
+   "performers": [
+    "babes-in-toyland"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:thee-oh-sees",
+   "name": "Thee Oh Sees",
+   "key": "thee-oh-sees",
+   "performers": [
+    "thee-oh-sees"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:patti-smith-acoustic-spoken",
+   "name": "Patti Smith acoustic / spoken",
+   "key": "patti-smith-acoustic-spoken",
+   "performers": [
+    "patti-smith-acoustic-spoken"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:swans",
+   "name": "Swans",
+   "key": "swans",
+   "performers": [
+    "swans"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:joan-miquel-oliver",
+   "name": "Joan Miquel Oliver",
+   "key": "joan-miquel-oliver",
+   "performers": [
+    "joan-miquel-oliver"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:nueva-vulcano",
+   "name": "Nueva Vulcano",
+   "key": "nueva-vulcano",
+   "performers": [
+    "nueva-vulcano"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:tori-amos",
+   "name": "Tori Amos",
+   "key": "tori-amos",
+   "performers": [
+    "tori-amos"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:les-ambassadeurs",
+   "name": "Les Ambassadeurs",
+   "key": "les-ambassadeurs",
+   "performers": [
+    "les-ambassadeurs"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:dan-deacon",
+   "name": "Dan Deacon",
+   "key": "dan-deacon",
+   "performers": [
+    "dan-deacon"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:caribou",
+   "name": "Caribou",
+   "key": "caribou",
+   "performers": [
+    "caribou"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:dj-coco",
+   "name": "Dj Coco",
+   "key": "dj-coco",
+   "performers": [
+    "dj-coco"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:holy-paul",
+   "name": "Holy Paul",
+   "key": "holy-paul",
+   "performers": [
+    "holy-paul"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:we-used-to-pray",
+   "name": "We Used To Pray",
+   "key": "we-used-to-pray",
+   "performers": [
+    "we-used-to-pray"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:holy-holy",
+   "name": "Holy Holy",
+   "key": "holy-holy",
+   "performers": [
+    "holy-holy"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:klo",
+   "name": "KLO",
+   "key": "klo",
+   "performers": [
+    "klo"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:millions",
+   "name": "Millions",
+   "key": "millions",
+   "performers": [
+    "millions"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:flyying-colours",
+   "name": "Flyying Colours",
+   "key": "flyying-colours",
+   "performers": [
+    "flyying-colours"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:jaloo",
+   "name": "Jaloo",
+   "key": "jaloo",
+   "performers": [
+    "jaloo"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:sun-god-replica",
+   "name": "Sun God Replica",
+   "key": "sun-god-replica",
+   "performers": [
+    "sun-god-replica"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:safia",
+   "name": "Safia",
+   "key": "safia",
+   "performers": [
+    "safia"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:kevin-morby",
+   "name": "Kevin Morby",
+   "key": "kevin-morby",
+   "performers": [
+    "kevin-morby"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:diiv",
+   "name": "DIIV",
+   "key": "diiv",
+   "performers": [
+    "diiv"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:american-football",
+   "name": "American Football",
+   "key": "american-football",
+   "performers": [
+    "american-football"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:torres",
+   "name": "Torres",
+   "key": "torres",
+   "performers": [
+    "torres"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:mourn",
+   "name": "MOURN",
+   "key": "mourn",
+   "performers": [
+    "mourn"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:tune-yards",
+   "name": "tUnE-yArDs",
+   "key": "tune-yards",
+   "performers": [
+    "tune-yards"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:health",
+   "name": "HEALTH",
+   "key": "health",
+   "performers": [
+    "health"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:single-mothers",
+   "name": "Single Mothers",
+   "key": "single-mothers",
+   "performers": [
+    "single-mothers"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:mike-simonetti",
+   "name": "Mike Simonetti",
+   "key": "mike-simonetti",
+   "performers": [
+    "mike-simonetti"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:sleaford-mods",
+   "name": "Sleaford Mods",
+   "key": "sleaford-mods",
+   "performers": [
+    "sleaford-mods"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:dulce-pajara-de-juventud",
+   "name": "Dulce Pájara De Juventud",
+   "key": "dulce-pajara-de-juventud",
+   "performers": [
+    "dulce-pajara-de-juventud"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-bohicas",
+   "name": "The Bohicas",
+   "key": "the-bohicas",
+   "performers": [
+    "the-bohicas"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:mujeres",
+   "name": "Mujeres",
+   "key": "mujeres",
+   "performers": [
+    "mujeres"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-vaselines",
+   "name": "The Vaselines",
+   "key": "the-vaselines",
+   "performers": [
+    "the-vaselines"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:strand-of-oaks",
+   "name": "Strand Of Oaks",
+   "key": "strand-of-oaks",
+   "performers": [
+    "strand-of-oaks"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:mac-demarco",
+   "name": "Mac DeMarco",
+   "key": "mac-demarco",
+   "performers": [
+    "mac-demarco"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:interpol",
+   "name": "Interpol",
+   "key": "interpol",
+   "performers": [
+    "interpol"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:underworld",
+   "name": "Underworld",
+   "key": "underworld",
+   "performers": [
+    "underworld"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:neleonard",
+   "name": "Neleonard",
+   "key": "neleonard",
+   "performers": [
+    "neleonard"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:unknown-mortal-orchestra",
+   "name": "Unknown Mortal Orchestra",
+   "key": "unknown-mortal-orchestra",
+   "performers": [
+    "unknown-mortal-orchestra"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:earthless",
+   "name": "Earthless",
+   "key": "earthless",
+   "performers": [
+    "earthless"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:shellac",
+   "name": "Shellac",
+   "key": "shellac",
+   "performers": [
+    "shellac"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:hookworms",
+   "name": "Hookworms",
+   "key": "hookworms",
+   "performers": [
+    "hookworms"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:der-panther",
+   "name": "Der Panther",
+   "key": "der-panther",
+   "performers": [
+    "der-panther"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-ghost-of-a-saber-tooth-tiger",
+   "name": "The Ghost of a Saber Tooth Tiger",
+   "key": "the-ghost-of-a-saber-tooth-tiger",
+   "performers": [
+    "the-ghost-of-a-saber-tooth-tiger"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:foxygen",
+   "name": "Foxygen",
+   "key": "foxygen",
+   "performers": [
+    "foxygen"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:the-strokes",
+   "name": "The Strokes",
+   "key": "the-strokes",
+   "performers": [
+    "the-strokes"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:daphni",
+   "name": "Daphni",
+   "key": "daphni",
+   "performers": [
+    "daphni"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:christian-s",
+   "name": "Christian S",
+   "key": "christian-s",
+   "performers": [
+    "christian-s"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:red-axes",
+   "name": "Red Axes",
+   "key": "red-axes",
+   "performers": [
+    "red-axes"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:john-talabot",
+   "name": "John Talabot",
+   "key": "john-talabot",
+   "performers": [
+    "john-talabot"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:jmii-live",
+   "name": "JMII (live)",
+   "key": "jmii-live",
+   "performers": [
+    "jmii-live"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:c-p-i",
+   "name": "C.P.I.",
+   "key": "c-p-i",
+   "performers": [
+    "c-p-i"
+   ]
+  },
+  {
+   "id": "primavera-sound-2015:hivern-all-stars-djs",
+   "name": "Hivern All Stars Djs",
+   "key": "hivern-all-stars-djs",
+   "performers": [
+    "hivern-all-stars-djs"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "primavera-sound-2015:d1:atp:1700:las-ruinas",
+   "artistId": "primavera-sound-2015:las-ruinas",
+   "day": 1,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "17:00",
+   "end": "17:35"
+  },
+  {
+   "id": "primavera-sound-2015:d1:atp:1755:panama",
+   "artistId": "primavera-sound-2015:panama",
+   "day": 1,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "17:55",
+   "end": "18:35"
+  },
+  {
+   "id": "primavera-sound-2015:d1:atp:1900:christina-rosenvinge",
+   "artistId": "primavera-sound-2015:christina-rosenvinge",
+   "day": 1,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "primavera-sound-2015:d1:atp:2010:cinerama",
+   "artistId": "primavera-sound-2015:cinerama",
+   "day": 1,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "20:10",
+   "end": "20:55"
+  },
+  {
+   "id": "primavera-sound-2015:d1:atp:2115:albert-hammond-jr",
+   "artistId": "primavera-sound-2015:albert-hammond-jr",
+   "day": 1,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "21:15",
+   "end": "22:00"
+  },
+  {
+   "id": "primavera-sound-2015:d1:atp:2225:omd",
+   "artistId": "primavera-sound-2015:omd",
+   "day": 1,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "22:25",
+   "end": "23:25"
+  },
+  {
+   "id": "primavera-sound-2015:d2:atp:1900:yasmine-hamdan",
+   "artistId": "primavera-sound-2015:yasmine-hamdan",
+   "day": 2,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "primavera-sound-2015:d2:atp:2050:the-thurston-moore-band",
+   "artistId": "primavera-sound-2015:the-thurston-moore-band",
+   "day": 2,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "20:50",
+   "end": "21:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:atp:2250:spiritualized",
+   "artistId": "primavera-sound-2015:spiritualized",
+   "day": 2,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "22:50",
+   "end": "23:50"
+  },
+  {
+   "id": "primavera-sound-2015:d2:atp:0100:sunn-o",
+   "artistId": "primavera-sound-2015:sunn-o",
+   "day": 2,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "01:00",
+   "end": "01:50"
+  },
+  {
+   "id": "primavera-sound-2015:d2:atp:0420:richie-hawtin",
+   "artistId": "primavera-sound-2015:richie-hawtin",
+   "day": 2,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "04:20",
+   "end": "05:30"
+  },
+  {
+   "id": "primavera-sound-2015:d2:auditori-rockdelux:1600:arthur-russell-s-instrumentals-directed-by-peter-gordon",
+   "artistId": "primavera-sound-2015:arthur-russell-s-instrumentals-directed-by-peter-gordon",
+   "day": 2,
+   "stageId": "primavera-sound-2015:auditori-rockdelux",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "primavera-sound-2015:d2:auditori-rockdelux:1730:panda-bear",
+   "artistId": "primavera-sound-2015:panda-bear",
+   "day": 2,
+   "stageId": "primavera-sound-2015:auditori-rockdelux",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "primavera-sound-2015:d2:auditori-rockdelux:1915:hans-joachim-roedelius",
+   "artistId": "primavera-sound-2015:hans-joachim-roedelius",
+   "day": 2,
+   "stageId": "primavera-sound-2015:auditori-rockdelux",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "primavera-sound-2015:d2:auditori-rockdelux:2045:sun-kil-moon",
+   "artistId": "primavera-sound-2015:sun-kil-moon",
+   "day": 2,
+   "stageId": "primavera-sound-2015:auditori-rockdelux",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "primavera-sound-2015:d2:ray-ban:1700:perro",
+   "artistId": "primavera-sound-2015:perro",
+   "day": 2,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "primavera-sound-2015:d2:ray-ban:1805:hiss-golden-messenger",
+   "artistId": "primavera-sound-2015:hiss-golden-messenger",
+   "day": 2,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "18:05",
+   "end": "18:55"
+  },
+  {
+   "id": "primavera-sound-2015:d2:ray-ban:1950:giant-sand",
+   "artistId": "primavera-sound-2015:giant-sand",
+   "day": 2,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "19:50",
+   "end": "20:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:ray-ban:2150:mikal-cronin",
+   "artistId": "primavera-sound-2015:mikal-cronin",
+   "day": 2,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "21:50",
+   "end": "22:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:ray-ban:2355:chet-faker",
+   "artistId": "primavera-sound-2015:chet-faker",
+   "day": 2,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "23:55",
+   "end": "00:50"
+  },
+  {
+   "id": "primavera-sound-2015:d2:ray-ban:0155:jungle",
+   "artistId": "primavera-sound-2015:jungle",
+   "day": 2,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "01:55",
+   "end": "02:45"
+  },
+  {
+   "id": "primavera-sound-2015:d2:ray-ban:0250:andrew-weatherall",
+   "artistId": "primavera-sound-2015:andrew-weatherall",
+   "day": 2,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "02:50",
+   "end": "04:10"
+  },
+  {
+   "id": "primavera-sound-2015:d2:h-and-m-pro:1700:camarones-orquesta-guitarristica",
+   "artistId": "primavera-sound-2015:camarones-orquesta-guitarristica",
+   "day": 2,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "17:00",
+   "end": "17:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:h-and-m-pro:1800:fakuta",
+   "artistId": "primavera-sound-2015:fakuta",
+   "day": 2,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "18:00",
+   "end": "18:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:h-and-m-pro:1900:siberian-wolves",
+   "artistId": "primavera-sound-2015:siberian-wolves",
+   "day": 2,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "19:00",
+   "end": "19:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:h-and-m-pro:2000:garden-city-movement",
+   "artistId": "primavera-sound-2015:garden-city-movement",
+   "day": 2,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "20:00",
+   "end": "20:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:h-and-m-pro:2100:theangelcy",
+   "artistId": "primavera-sound-2015:theangelcy",
+   "day": 2,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "21:00",
+   "end": "21:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:h-and-m-pro:2200:acollective",
+   "artistId": "primavera-sound-2015:acollective",
+   "day": 2,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "22:00",
+   "end": "22:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:h-and-m-pro:2300:rebeka",
+   "artistId": "primavera-sound-2015:rebeka",
+   "day": 2,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "23:00",
+   "end": "23:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:h-and-m-pro:0000:magaly-fields",
+   "artistId": "primavera-sound-2015:magaly-fields",
+   "day": 2,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "00:00",
+   "end": "00:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:h-and-m-pro:0100:denis-the-night-and-the-panic-party",
+   "artistId": "primavera-sound-2015:denis-the-night-and-the-panic-party",
+   "day": 2,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "01:00",
+   "end": "01:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:h-and-m-pro:0200:foex",
+   "artistId": "primavera-sound-2015:foex",
+   "day": 2,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "02:00",
+   "end": "02:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:h-and-m-pro:0300:zamilska",
+   "artistId": "primavera-sound-2015:zamilska",
+   "day": 2,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "03:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "primavera-sound-2015:d2:pitchfork:1730:ocellot",
+   "artistId": "primavera-sound-2015:ocellot",
+   "day": 2,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "17:30",
+   "end": "18:10"
+  },
+  {
+   "id": "primavera-sound-2015:d2:pitchfork:1835:twerps",
+   "artistId": "primavera-sound-2015:twerps",
+   "day": 2,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "18:35",
+   "end": "19:20"
+  },
+  {
+   "id": "primavera-sound-2015:d2:pitchfork:1945:viet-cong",
+   "artistId": "primavera-sound-2015:viet-cong",
+   "day": 2,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "primavera-sound-2015:d2:pitchfork:2055:ought",
+   "artistId": "primavera-sound-2015:ought",
+   "day": 2,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "20:55",
+   "end": "21:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:pitchfork:2205:mineral",
+   "artistId": "primavera-sound-2015:mineral",
+   "day": 2,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "22:05",
+   "end": "22:55"
+  },
+  {
+   "id": "primavera-sound-2015:d2:pitchfork:2320:tyler-the-creator",
+   "artistId": "primavera-sound-2015:tyler-the-creator",
+   "day": 2,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "23:20",
+   "end": "00:15"
+  },
+  {
+   "id": "primavera-sound-2015:d2:pitchfork:0040:simian-mobile-disco",
+   "artistId": "primavera-sound-2015:simian-mobile-disco",
+   "day": 2,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "00:40",
+   "end": "01:40"
+  },
+  {
+   "id": "primavera-sound-2015:d2:pitchfork:0210:gui-boratto",
+   "artistId": "primavera-sound-2015:gui-boratto",
+   "day": 2,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "02:10",
+   "end": "03:10"
+  },
+  {
+   "id": "primavera-sound-2015:d2:pitchfork:0315:roman-flugel",
+   "artistId": "primavera-sound-2015:roman-flugel",
+   "day": 2,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "03:15",
+   "end": "05:15"
+  },
+  {
+   "id": "primavera-sound-2015:d2:ray-ban-unplugged:1800:the-shalalalas",
+   "artistId": "primavera-sound-2015:the-shalalalas",
+   "day": 2,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "18:00",
+   "end": "18:20"
+  },
+  {
+   "id": "primavera-sound-2015:d2:ray-ban-unplugged:1930:wry",
+   "artistId": "primavera-sound-2015:wry",
+   "day": 2,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "19:30",
+   "end": "19:50"
+  },
+  {
+   "id": "primavera-sound-2015:d2:ray-ban-unplugged:2100:denis-the-night-and-the-panic-party",
+   "artistId": "primavera-sound-2015:denis-the-night-and-the-panic-party",
+   "day": 2,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "21:00",
+   "end": "21:20"
+  },
+  {
+   "id": "primavera-sound-2015:d2:ray-ban-unplugged:2230:mutiny-on-the-bounty",
+   "artistId": "primavera-sound-2015:mutiny-on-the-bounty",
+   "day": 2,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "22:30",
+   "end": "22:50"
+  },
+  {
+   "id": "primavera-sound-2015:d2:heineken-hidden-stage:1800:sierra-leone-s-refugee-all-stars",
+   "artistId": "primavera-sound-2015:sierra-leone-s-refugee-all-stars",
+   "day": 2,
+   "stageId": "primavera-sound-2015:heineken-hidden-stage",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "primavera-sound-2015:d2:heineken-hidden-stage:2030:battles",
+   "artistId": "primavera-sound-2015:battles",
+   "day": 2,
+   "stageId": "primavera-sound-2015:heineken-hidden-stage",
+   "start": "20:30",
+   "end": "21:15"
+  },
+  {
+   "id": "primavera-sound-2015:d2:heineken:1800:childhood",
+   "artistId": "primavera-sound-2015:childhood",
+   "day": 2,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "primavera-sound-2015:d2:heineken:2000:benjamin-booker",
+   "artistId": "primavera-sound-2015:benjamin-booker",
+   "day": 2,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "primavera-sound-2015:d2:heineken:2220:antony-and-the-johnsons",
+   "artistId": "primavera-sound-2015:antony-and-the-johnsons",
+   "day": 2,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "22:20",
+   "end": "23:35"
+  },
+  {
+   "id": "primavera-sound-2015:d2:heineken:0130:james-blake",
+   "artistId": "primavera-sound-2015:james-blake",
+   "day": 2,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "01:30",
+   "end": "02:45"
+  },
+  {
+   "id": "primavera-sound-2015:d2:adidas-originals:1825:exxasens",
+   "artistId": "primavera-sound-2015:exxasens",
+   "day": 2,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "18:25",
+   "end": "19:00"
+  },
+  {
+   "id": "primavera-sound-2015:d2:adidas-originals:1925:cheatahs",
+   "artistId": "primavera-sound-2015:cheatahs",
+   "day": 2,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "19:25",
+   "end": "20:10"
+  },
+  {
+   "id": "primavera-sound-2015:d2:adidas-originals:2035:mdou-moctar",
+   "artistId": "primavera-sound-2015:mdou-moctar",
+   "day": 2,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "20:35",
+   "end": "21:20"
+  },
+  {
+   "id": "primavera-sound-2015:d2:adidas-originals:2145:kelela",
+   "artistId": "primavera-sound-2015:kelela",
+   "day": 2,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "21:45",
+   "end": "22:30"
+  },
+  {
+   "id": "primavera-sound-2015:d2:adidas-originals:2255:brand-new",
+   "artistId": "primavera-sound-2015:brand-new",
+   "day": 2,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "22:55",
+   "end": "23:50"
+  },
+  {
+   "id": "primavera-sound-2015:d2:adidas-originals:0020:los-punsetes",
+   "artistId": "primavera-sound-2015:los-punsetes",
+   "day": 2,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "00:20",
+   "end": "01:20"
+  },
+  {
+   "id": "primavera-sound-2015:d2:adidas-originals:0150:electric-wizard",
+   "artistId": "primavera-sound-2015:electric-wizard",
+   "day": 2,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "01:50",
+   "end": "02:45"
+  },
+  {
+   "id": "primavera-sound-2015:d2:adidas-originals:0315:the-suicide-of-western-culture",
+   "artistId": "primavera-sound-2015:the-suicide-of-western-culture",
+   "day": 2,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "03:15",
+   "end": "04:00"
+  },
+  {
+   "id": "primavera-sound-2015:d2:primavera:1855:baxter-dury",
+   "artistId": "primavera-sound-2015:baxter-dury",
+   "day": 2,
+   "stageId": "primavera-sound-2015:primavera",
+   "start": "18:55",
+   "end": "19:55"
+  },
+  {
+   "id": "primavera-sound-2015:d2:primavera:2110:the-replacements",
+   "artistId": "primavera-sound-2015:the-replacements",
+   "day": 2,
+   "stageId": "primavera-sound-2015:primavera",
+   "start": "21:10",
+   "end": "22:10"
+  },
+  {
+   "id": "primavera-sound-2015:d2:primavera:2345:the-black-keys",
+   "artistId": "primavera-sound-2015:the-black-keys",
+   "day": 2,
+   "stageId": "primavera-sound-2015:primavera",
+   "start": "23:45",
+   "end": "01:15"
+  },
+  {
+   "id": "primavera-sound-2015:d2:bowers-and-wilkins-sound-system:2100:roman-flugel",
+   "artistId": "primavera-sound-2015:roman-flugel",
+   "day": 2,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "primavera-sound-2015:d2:bowers-and-wilkins-sound-system:2200:chelis",
+   "artistId": "primavera-sound-2015:chelis",
+   "day": 2,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "primavera-sound-2015:d2:bowers-and-wilkins-sound-system:2315:rory-phillips",
+   "artistId": "primavera-sound-2015:rory-phillips",
+   "day": 2,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "primavera-sound-2015:d2:bowers-and-wilkins-sound-system:0030:maceo-plex",
+   "artistId": "primavera-sound-2015:maceo-plex",
+   "day": 2,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "00:30",
+   "end": "02:15"
+  },
+  {
+   "id": "primavera-sound-2015:d2:bowers-and-wilkins-sound-system:0215:tale-of-us",
+   "artistId": "primavera-sound-2015:tale-of-us",
+   "day": 2,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "02:15",
+   "end": "04:00"
+  },
+  {
+   "id": "primavera-sound-2015:d2:bowers-and-wilkins-sound-system:0400:tuff-city-kids",
+   "artistId": "primavera-sound-2015:tuff-city-kids",
+   "day": 2,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "primavera-sound-2015:d3:atp:1745:the-kvb",
+   "artistId": "primavera-sound-2015:the-kvb",
+   "day": 3,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "17:45",
+   "end": "18:30"
+  },
+  {
+   "id": "primavera-sound-2015:d3:atp:1930:the-new-pornographers",
+   "artistId": "primavera-sound-2015:the-new-pornographers",
+   "day": 3,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "19:30",
+   "end": "20:25"
+  },
+  {
+   "id": "primavera-sound-2015:d3:atp:2130:belle-and-sebastian",
+   "artistId": "primavera-sound-2015:belle-and-sebastian",
+   "day": 3,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "primavera-sound-2015:d3:atp:2345:run-the-jewels",
+   "artistId": "primavera-sound-2015:run-the-jewels",
+   "day": 3,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "23:45",
+   "end": "00:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:atp:0200:jon-hopkins",
+   "artistId": "primavera-sound-2015:jon-hopkins",
+   "day": 3,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "02:00",
+   "end": "02:55"
+  },
+  {
+   "id": "primavera-sound-2015:d3:auditori-rockdelux:1600:rocio-marquez",
+   "artistId": "primavera-sound-2015:rocio-marquez",
+   "day": 3,
+   "stageId": "primavera-sound-2015:auditori-rockdelux",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "primavera-sound-2015:d3:auditori-rockdelux:1730:jose-gonzalez",
+   "artistId": "primavera-sound-2015:jose-gonzalez",
+   "day": 3,
+   "stageId": "primavera-sound-2015:auditori-rockdelux",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "primavera-sound-2015:d3:auditori-rockdelux:1915:tony-allen",
+   "artistId": "primavera-sound-2015:tony-allen",
+   "day": 3,
+   "stageId": "primavera-sound-2015:auditori-rockdelux",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "primavera-sound-2015:d3:auditori-rockdelux:2045:marc-ribot-s-ceramic-dog",
+   "artistId": "primavera-sound-2015:marc-ribot-s-ceramic-dog",
+   "day": 3,
+   "stageId": "primavera-sound-2015:auditori-rockdelux",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "primavera-sound-2015:d3:ray-ban:1700:disappears",
+   "artistId": "primavera-sound-2015:disappears",
+   "day": 3,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "17:00",
+   "end": "17:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:ray-ban:1840:sr-chinarro",
+   "artistId": "primavera-sound-2015:sr-chinarro",
+   "day": 3,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "18:40",
+   "end": "19:25"
+  },
+  {
+   "id": "primavera-sound-2015:d3:ray-ban:2035:the-julie-ruin",
+   "artistId": "primavera-sound-2015:the-julie-ruin",
+   "day": 3,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "20:35",
+   "end": "21:25"
+  },
+  {
+   "id": "primavera-sound-2015:d3:ray-ban:2240:the-church",
+   "artistId": "primavera-sound-2015:the-church",
+   "day": 3,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "22:40",
+   "end": "23:35"
+  },
+  {
+   "id": "primavera-sound-2015:d3:ray-ban:0050:death-from-above-1979",
+   "artistId": "primavera-sound-2015:death-from-above-1979",
+   "day": 3,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "00:50",
+   "end": "01:50"
+  },
+  {
+   "id": "primavera-sound-2015:d3:ray-ban:0300:ratatat",
+   "artistId": "primavera-sound-2015:ratatat",
+   "day": 3,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "03:00",
+   "end": "03:55"
+  },
+  {
+   "id": "primavera-sound-2015:d3:ray-ban:0400:dixon",
+   "artistId": "primavera-sound-2015:dixon",
+   "day": 3,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "primavera-sound-2015:d3:h-and-m-pro:1700:do-amor",
+   "artistId": "primavera-sound-2015:do-amor",
+   "day": 3,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "17:00",
+   "end": "17:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:h-and-m-pro:1800:doctor-lobo",
+   "artistId": "primavera-sound-2015:doctor-lobo",
+   "day": 3,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "18:00",
+   "end": "18:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:h-and-m-pro:1900:terno-rei",
+   "artistId": "primavera-sound-2015:terno-rei",
+   "day": 3,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "19:00",
+   "end": "19:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:h-and-m-pro:2000:wry",
+   "artistId": "primavera-sound-2015:wry",
+   "day": 3,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "20:00",
+   "end": "20:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:h-and-m-pro:2100:fabryka",
+   "artistId": "primavera-sound-2015:fabryka",
+   "day": 3,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "21:00",
+   "end": "21:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:h-and-m-pro:2200:japan-and-i",
+   "artistId": "primavera-sound-2015:japan-and-i",
+   "day": 3,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "22:00",
+   "end": "22:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:h-and-m-pro:2300:beatenberg",
+   "artistId": "primavera-sound-2015:beatenberg",
+   "day": 3,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "23:00",
+   "end": "23:30"
+  },
+  {
+   "id": "primavera-sound-2015:d3:h-and-m-pro:0000:mutiny-on-the-bounty",
+   "artistId": "primavera-sound-2015:mutiny-on-the-bounty",
+   "day": 3,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "00:00",
+   "end": "00:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:h-and-m-pro:0100:thaw",
+   "artistId": "primavera-sound-2015:thaw",
+   "day": 3,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "01:00",
+   "end": "01:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:h-and-m-pro:0200:camera",
+   "artistId": "primavera-sound-2015:camera",
+   "day": 3,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "02:00",
+   "end": "02:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:h-and-m-pro:0400:miza",
+   "artistId": "primavera-sound-2015:miza",
+   "day": 3,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "04:00",
+   "end": "04:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:pitchfork:1800:nuria-graham",
+   "artistId": "primavera-sound-2015:nuria-graham",
+   "day": 3,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "18:00",
+   "end": "18:40"
+  },
+  {
+   "id": "primavera-sound-2015:d3:pitchfork:1900:ex-hex",
+   "artistId": "primavera-sound-2015:ex-hex",
+   "day": 3,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "primavera-sound-2015:d3:pitchfork:2010:tobias-jesso-jr",
+   "artistId": "primavera-sound-2015:tobias-jesso-jr",
+   "day": 3,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "20:10",
+   "end": "21:00"
+  },
+  {
+   "id": "primavera-sound-2015:d3:pitchfork:2130:perfume-genius",
+   "artistId": "primavera-sound-2015:perfume-genius",
+   "day": 3,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "21:30",
+   "end": "22:20"
+  },
+  {
+   "id": "primavera-sound-2015:d3:pitchfork:2245:shabazz-palaces",
+   "artistId": "primavera-sound-2015:shabazz-palaces",
+   "day": 3,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "22:45",
+   "end": "23:35"
+  },
+  {
+   "id": "primavera-sound-2015:d3:pitchfork:0010:ariel-pink",
+   "artistId": "primavera-sound-2015:ariel-pink",
+   "day": 3,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "00:10",
+   "end": "01:10"
+  },
+  {
+   "id": "primavera-sound-2015:d3:pitchfork:0140:the-juan-maclean-live",
+   "artistId": "primavera-sound-2015:the-juan-maclean-live",
+   "day": 3,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "01:40",
+   "end": "02:35"
+  },
+  {
+   "id": "primavera-sound-2015:d3:pitchfork:0300:movement",
+   "artistId": "primavera-sound-2015:movement",
+   "day": 3,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "03:00",
+   "end": "03:55"
+  },
+  {
+   "id": "primavera-sound-2015:d3:pitchfork:0400:marc-pinol",
+   "artistId": "primavera-sound-2015:marc-pinol",
+   "day": 3,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "primavera-sound-2015:d3:ray-ban-unplugged:1800:opatov",
+   "artistId": "primavera-sound-2015:opatov",
+   "day": 3,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "18:00",
+   "end": "18:20"
+  },
+  {
+   "id": "primavera-sound-2015:d3:ray-ban-unplugged:1930:cheatahs",
+   "artistId": "primavera-sound-2015:cheatahs",
+   "day": 3,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "19:30",
+   "end": "19:50"
+  },
+  {
+   "id": "primavera-sound-2015:d3:ray-ban-unplugged:2100:ocellot",
+   "artistId": "primavera-sound-2015:ocellot",
+   "day": 3,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "21:00",
+   "end": "21:20"
+  },
+  {
+   "id": "primavera-sound-2015:d3:ray-ban-unplugged:2230:garden-city-movement",
+   "artistId": "primavera-sound-2015:garden-city-movement",
+   "day": 3,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "22:30",
+   "end": "22:50"
+  },
+  {
+   "id": "primavera-sound-2015:d3:heineken-hidden-stage:1700:the-pastels",
+   "artistId": "primavera-sound-2015:the-pastels",
+   "day": 3,
+   "stageId": "primavera-sound-2015:heineken-hidden-stage",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "primavera-sound-2015:d3:heineken-hidden-stage:1930:mercromina",
+   "artistId": "primavera-sound-2015:mercromina",
+   "day": 3,
+   "stageId": "primavera-sound-2015:heineken-hidden-stage",
+   "start": "19:30",
+   "end": "20:15"
+  },
+  {
+   "id": "primavera-sound-2015:d3:heineken:1800:sylvan-esso",
+   "artistId": "primavera-sound-2015:sylvan-esso",
+   "day": 3,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "primavera-sound-2015:d3:heineken:2000:patti-smith-and-band-perform-horses",
+   "artistId": "primavera-sound-2015:patti-smith-and-band-perform-horses",
+   "day": 3,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "primavera-sound-2015:d3:heineken:2220:sleater-kinney",
+   "artistId": "primavera-sound-2015:sleater-kinney",
+   "day": 3,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "22:20",
+   "end": "23:35"
+  },
+  {
+   "id": "primavera-sound-2015:d3:heineken:0130:alt-j",
+   "artistId": "primavera-sound-2015:alt-j",
+   "day": 3,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "01:30",
+   "end": "02:45"
+  },
+  {
+   "id": "primavera-sound-2015:d3:adidas-originals:1810:fumaca-preta",
+   "artistId": "primavera-sound-2015:fumaca-preta",
+   "day": 3,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "18:10",
+   "end": "18:55"
+  },
+  {
+   "id": "primavera-sound-2015:d3:adidas-originals:1920:miquel-serra",
+   "artistId": "primavera-sound-2015:miquel-serra",
+   "day": 3,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "19:20",
+   "end": "20:00"
+  },
+  {
+   "id": "primavera-sound-2015:d3:adidas-originals:2030:white-hills",
+   "artistId": "primavera-sound-2015:white-hills",
+   "day": 3,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "20:30",
+   "end": "21:25"
+  },
+  {
+   "id": "primavera-sound-2015:d3:adidas-originals:2150:the-hotelier",
+   "artistId": "primavera-sound-2015:the-hotelier",
+   "day": 3,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "21:50",
+   "end": "22:35"
+  },
+  {
+   "id": "primavera-sound-2015:d3:adidas-originals:2300:pharmakon",
+   "artistId": "primavera-sound-2015:pharmakon",
+   "day": 3,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "23:00",
+   "end": "23:35"
+  },
+  {
+   "id": "primavera-sound-2015:d3:adidas-originals:2355:voivod",
+   "artistId": "primavera-sound-2015:voivod",
+   "day": 3,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "23:55",
+   "end": "00:50"
+  },
+  {
+   "id": "primavera-sound-2015:d3:adidas-originals:0115:earth",
+   "artistId": "primavera-sound-2015:earth",
+   "day": 3,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "01:15",
+   "end": "02:15"
+  },
+  {
+   "id": "primavera-sound-2015:d3:adidas-originals:0240:pallbearer",
+   "artistId": "primavera-sound-2015:pallbearer",
+   "day": 3,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "02:40",
+   "end": "03:30"
+  },
+  {
+   "id": "primavera-sound-2015:d3:adidas-originals:0400:the-soft-moon",
+   "artistId": "primavera-sound-2015:the-soft-moon",
+   "day": 3,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "04:00",
+   "end": "05:00"
+  },
+  {
+   "id": "primavera-sound-2015:d3:primavera:1855:julian-casablancas-the-voidz",
+   "artistId": "primavera-sound-2015:julian-casablancas-the-voidz",
+   "day": 3,
+   "stageId": "primavera-sound-2015:primavera",
+   "start": "18:55",
+   "end": "19:50"
+  },
+  {
+   "id": "primavera-sound-2015:d3:primavera:2110:damien-rice",
+   "artistId": "primavera-sound-2015:damien-rice",
+   "day": 3,
+   "stageId": "primavera-sound-2015:primavera",
+   "start": "21:10",
+   "end": "22:10"
+  },
+  {
+   "id": "primavera-sound-2015:d3:primavera:2345:ride",
+   "artistId": "primavera-sound-2015:ride",
+   "day": 3,
+   "stageId": "primavera-sound-2015:primavera",
+   "start": "23:45",
+   "end": "01:15"
+  },
+  {
+   "id": "primavera-sound-2015:d3:bowers-and-wilkins-sound-system:2100:dixon",
+   "artistId": "primavera-sound-2015:dixon",
+   "day": 3,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "primavera-sound-2015:d3:bowers-and-wilkins-sound-system:2200:bruna",
+   "artistId": "primavera-sound-2015:bruna",
+   "day": 3,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "22:00",
+   "end": "23:25"
+  },
+  {
+   "id": "primavera-sound-2015:d3:bowers-and-wilkins-sound-system:2325:sunny-graves",
+   "artistId": "primavera-sound-2015:sunny-graves",
+   "day": 3,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "23:25",
+   "end": "00:15"
+  },
+  {
+   "id": "primavera-sound-2015:d3:bowers-and-wilkins-sound-system:0015:veronica-vasicka",
+   "artistId": "primavera-sound-2015:veronica-vasicka",
+   "day": 3,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "00:15",
+   "end": "01:45"
+  },
+  {
+   "id": "primavera-sound-2015:d3:bowers-and-wilkins-sound-system:0145:raime-dj-set",
+   "artistId": "primavera-sound-2015:raime-dj-set",
+   "day": 3,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "01:45",
+   "end": "03:15"
+  },
+  {
+   "id": "primavera-sound-2015:d3:bowers-and-wilkins-sound-system:0315:exoteric-continent",
+   "artistId": "primavera-sound-2015:exoteric-continent",
+   "day": 3,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "03:15",
+   "end": "04:00"
+  },
+  {
+   "id": "primavera-sound-2015:d3:bowers-and-wilkins-sound-system:0400:objekt",
+   "artistId": "primavera-sound-2015:objekt",
+   "day": 3,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "primavera-sound-2015:d4:atp:1745:younghusband",
+   "artistId": "primavera-sound-2015:younghusband",
+   "day": 4,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "17:45",
+   "end": "18:30"
+  },
+  {
+   "id": "primavera-sound-2015:d4:atp:1930:fucked-up",
+   "artistId": "primavera-sound-2015:fucked-up",
+   "day": 4,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "19:30",
+   "end": "20:20"
+  },
+  {
+   "id": "primavera-sound-2015:d4:atp:2140:einsturzende-neubauten",
+   "artistId": "primavera-sound-2015:einsturzende-neubauten",
+   "day": 4,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "21:40",
+   "end": "22:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:atp:2345:babes-in-toyland",
+   "artistId": "primavera-sound-2015:babes-in-toyland",
+   "day": 4,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "23:45",
+   "end": "00:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:atp:0155:thee-oh-sees",
+   "artistId": "primavera-sound-2015:thee-oh-sees",
+   "day": 4,
+   "stageId": "primavera-sound-2015:atp",
+   "start": "01:55",
+   "end": "02:55"
+  },
+  {
+   "id": "primavera-sound-2015:d4:auditori-rockdelux:1600:patti-smith-acoustic-spoken",
+   "artistId": "primavera-sound-2015:patti-smith-acoustic-spoken",
+   "day": 4,
+   "stageId": "primavera-sound-2015:auditori-rockdelux",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "primavera-sound-2015:d4:auditori-rockdelux:1745:swans",
+   "artistId": "primavera-sound-2015:swans",
+   "day": 4,
+   "stageId": "primavera-sound-2015:auditori-rockdelux",
+   "start": "17:45",
+   "end": "20:45"
+  },
+  {
+   "id": "primavera-sound-2015:d4:ray-ban:1700:joan-miquel-oliver",
+   "artistId": "primavera-sound-2015:joan-miquel-oliver",
+   "day": 4,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "17:00",
+   "end": "17:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:ray-ban:1840:nueva-vulcano",
+   "artistId": "primavera-sound-2015:nueva-vulcano",
+   "day": 4,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "18:40",
+   "end": "19:25"
+  },
+  {
+   "id": "primavera-sound-2015:d4:ray-ban:2030:tori-amos",
+   "artistId": "primavera-sound-2015:tori-amos",
+   "day": 4,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "primavera-sound-2015:d4:ray-ban:2250:les-ambassadeurs",
+   "artistId": "primavera-sound-2015:les-ambassadeurs",
+   "day": 4,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "22:50",
+   "end": "23:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:ray-ban:0050:dan-deacon",
+   "artistId": "primavera-sound-2015:dan-deacon",
+   "day": 4,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "00:50",
+   "end": "01:50"
+  },
+  {
+   "id": "primavera-sound-2015:d4:ray-ban:0300:caribou",
+   "artistId": "primavera-sound-2015:caribou",
+   "day": 4,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "03:00",
+   "end": "03:55"
+  },
+  {
+   "id": "primavera-sound-2015:d4:ray-ban:0410:dj-coco",
+   "artistId": "primavera-sound-2015:dj-coco",
+   "day": 4,
+   "stageId": "primavera-sound-2015:ray-ban",
+   "start": "04:10",
+   "end": "05:30"
+  },
+  {
+   "id": "primavera-sound-2015:d4:h-and-m-pro:1700:opatov",
+   "artistId": "primavera-sound-2015:opatov",
+   "day": 4,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "17:00",
+   "end": "17:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:h-and-m-pro:1800:holy-paul",
+   "artistId": "primavera-sound-2015:holy-paul",
+   "day": 4,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "18:00",
+   "end": "18:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:h-and-m-pro:1900:we-used-to-pray",
+   "artistId": "primavera-sound-2015:we-used-to-pray",
+   "day": 4,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "19:00",
+   "end": "19:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:h-and-m-pro:2000:holy-holy",
+   "artistId": "primavera-sound-2015:holy-holy",
+   "day": 4,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "20:00",
+   "end": "20:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:h-and-m-pro:2100:klo",
+   "artistId": "primavera-sound-2015:klo",
+   "day": 4,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "21:00",
+   "end": "21:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:h-and-m-pro:2200:millions",
+   "artistId": "primavera-sound-2015:millions",
+   "day": 4,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "22:00",
+   "end": "22:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:h-and-m-pro:2300:flyying-colours",
+   "artistId": "primavera-sound-2015:flyying-colours",
+   "day": 4,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "23:00",
+   "end": "23:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:h-and-m-pro:0000:jaloo",
+   "artistId": "primavera-sound-2015:jaloo",
+   "day": 4,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "00:00",
+   "end": "00:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:h-and-m-pro:0100:the-shalalalas",
+   "artistId": "primavera-sound-2015:the-shalalalas",
+   "day": 4,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "01:00",
+   "end": "01:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:h-and-m-pro:0200:sun-god-replica",
+   "artistId": "primavera-sound-2015:sun-god-replica",
+   "day": 4,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "02:00",
+   "end": "02:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:h-and-m-pro:0300:safia",
+   "artistId": "primavera-sound-2015:safia",
+   "day": 4,
+   "stageId": "primavera-sound-2015:h-and-m-pro",
+   "start": "03:00",
+   "end": "03:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:pitchfork:1730:kevin-morby",
+   "artistId": "primavera-sound-2015:kevin-morby",
+   "day": 4,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "17:30",
+   "end": "18:10"
+  },
+  {
+   "id": "primavera-sound-2015:d4:pitchfork:1830:diiv",
+   "artistId": "primavera-sound-2015:diiv",
+   "day": 4,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "primavera-sound-2015:d4:pitchfork:1935:american-football",
+   "artistId": "primavera-sound-2015:american-football",
+   "day": 4,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "19:35",
+   "end": "20:25"
+  },
+  {
+   "id": "primavera-sound-2015:d4:pitchfork:2140:torres",
+   "artistId": "primavera-sound-2015:torres",
+   "day": 4,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "21:40",
+   "end": "22:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:pitchfork:2310:mourn",
+   "artistId": "primavera-sound-2015:mourn",
+   "day": 4,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "23:10",
+   "end": "00:00"
+  },
+  {
+   "id": "primavera-sound-2015:d4:pitchfork:0030:tune-yards",
+   "artistId": "primavera-sound-2015:tune-yards",
+   "day": 4,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "00:30",
+   "end": "01:25"
+  },
+  {
+   "id": "primavera-sound-2015:d4:pitchfork:0150:health",
+   "artistId": "primavera-sound-2015:health",
+   "day": 4,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "01:50",
+   "end": "02:45"
+  },
+  {
+   "id": "primavera-sound-2015:d4:pitchfork:0310:single-mothers",
+   "artistId": "primavera-sound-2015:single-mothers",
+   "day": 4,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "03:10",
+   "end": "03:55"
+  },
+  {
+   "id": "primavera-sound-2015:d4:pitchfork:0400:mike-simonetti",
+   "artistId": "primavera-sound-2015:mike-simonetti",
+   "day": 4,
+   "stageId": "primavera-sound-2015:pitchfork",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "primavera-sound-2015:d4:ray-ban-unplugged:1800:sleaford-mods",
+   "artistId": "primavera-sound-2015:sleaford-mods",
+   "day": 4,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "18:00",
+   "end": "18:20"
+  },
+  {
+   "id": "primavera-sound-2015:d4:ray-ban-unplugged:1930:dulce-pajara-de-juventud",
+   "artistId": "primavera-sound-2015:dulce-pajara-de-juventud",
+   "day": 4,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "19:30",
+   "end": "19:50"
+  },
+  {
+   "id": "primavera-sound-2015:d4:ray-ban-unplugged:2100:single-mothers",
+   "artistId": "primavera-sound-2015:single-mothers",
+   "day": 4,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "21:00",
+   "end": "21:20"
+  },
+  {
+   "id": "primavera-sound-2015:d4:ray-ban-unplugged:2230:the-bohicas",
+   "artistId": "primavera-sound-2015:the-bohicas",
+   "day": 4,
+   "stageId": "primavera-sound-2015:ray-ban-unplugged",
+   "start": "22:30",
+   "end": "22:50"
+  },
+  {
+   "id": "primavera-sound-2015:d4:heineken-hidden-stage:1700:mujeres",
+   "artistId": "primavera-sound-2015:mujeres",
+   "day": 4,
+   "stageId": "primavera-sound-2015:heineken-hidden-stage",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "primavera-sound-2015:d4:heineken-hidden-stage:1930:the-vaselines",
+   "artistId": "primavera-sound-2015:the-vaselines",
+   "day": 4,
+   "stageId": "primavera-sound-2015:heineken-hidden-stage",
+   "start": "19:30",
+   "end": "20:15"
+  },
+  {
+   "id": "primavera-sound-2015:d4:heineken:1800:strand-of-oaks",
+   "artistId": "primavera-sound-2015:strand-of-oaks",
+   "day": 4,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "primavera-sound-2015:d4:heineken:2000:mac-demarco",
+   "artistId": "primavera-sound-2015:mac-demarco",
+   "day": 4,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "primavera-sound-2015:d4:heineken:2220:interpol",
+   "artistId": "primavera-sound-2015:interpol",
+   "day": 4,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "22:20",
+   "end": "23:35"
+  },
+  {
+   "id": "primavera-sound-2015:d4:heineken:0130:underworld",
+   "artistId": "primavera-sound-2015:underworld",
+   "day": 4,
+   "stageId": "primavera-sound-2015:heineken",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "primavera-sound-2015:d4:adidas-originals:1845:neleonard",
+   "artistId": "primavera-sound-2015:neleonard",
+   "day": 4,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "18:45",
+   "end": "19:30"
+  },
+  {
+   "id": "primavera-sound-2015:d4:adidas-originals:2000:the-bohicas",
+   "artistId": "primavera-sound-2015:the-bohicas",
+   "day": 4,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "20:00",
+   "end": "20:45"
+  },
+  {
+   "id": "primavera-sound-2015:d4:adidas-originals:2110:sleaford-mods",
+   "artistId": "primavera-sound-2015:sleaford-mods",
+   "day": 4,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "21:10",
+   "end": "22:00"
+  },
+  {
+   "id": "primavera-sound-2015:d4:adidas-originals:2235:unknown-mortal-orchestra",
+   "artistId": "primavera-sound-2015:unknown-mortal-orchestra",
+   "day": 4,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "22:35",
+   "end": "23:35"
+  },
+  {
+   "id": "primavera-sound-2015:d4:adidas-originals:0005:earthless",
+   "artistId": "primavera-sound-2015:earthless",
+   "day": 4,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "00:05",
+   "end": "01:00"
+  },
+  {
+   "id": "primavera-sound-2015:d4:adidas-originals:0130:shellac",
+   "artistId": "primavera-sound-2015:shellac",
+   "day": 4,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "01:30",
+   "end": "02:20"
+  },
+  {
+   "id": "primavera-sound-2015:d4:adidas-originals:0250:hookworms",
+   "artistId": "primavera-sound-2015:hookworms",
+   "day": 4,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "02:50",
+   "end": "03:40"
+  },
+  {
+   "id": "primavera-sound-2015:d4:adidas-originals:0400:der-panther",
+   "artistId": "primavera-sound-2015:der-panther",
+   "day": 4,
+   "stageId": "primavera-sound-2015:adidas-originals",
+   "start": "04:00",
+   "end": "04:50"
+  },
+  {
+   "id": "primavera-sound-2015:d4:primavera:1855:the-ghost-of-a-saber-tooth-tiger",
+   "artistId": "primavera-sound-2015:the-ghost-of-a-saber-tooth-tiger",
+   "day": 4,
+   "stageId": "primavera-sound-2015:primavera",
+   "start": "18:55",
+   "end": "19:50"
+  },
+  {
+   "id": "primavera-sound-2015:d4:primavera:2110:foxygen",
+   "artistId": "primavera-sound-2015:foxygen",
+   "day": 4,
+   "stageId": "primavera-sound-2015:primavera",
+   "start": "21:10",
+   "end": "22:10"
+  },
+  {
+   "id": "primavera-sound-2015:d4:primavera:2345:the-strokes",
+   "artistId": "primavera-sound-2015:the-strokes",
+   "day": 4,
+   "stageId": "primavera-sound-2015:primavera",
+   "start": "23:45",
+   "end": "01:15"
+  },
+  {
+   "id": "primavera-sound-2015:d4:bowers-and-wilkins-sound-system:2100:daphni",
+   "artistId": "primavera-sound-2015:daphni",
+   "day": 4,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "primavera-sound-2015:d4:bowers-and-wilkins-sound-system:2200:christian-s",
+   "artistId": "primavera-sound-2015:christian-s",
+   "day": 4,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "primavera-sound-2015:d4:bowers-and-wilkins-sound-system:2330:red-axes",
+   "artistId": "primavera-sound-2015:red-axes",
+   "day": 4,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "primavera-sound-2015:d4:bowers-and-wilkins-sound-system:0030:john-talabot",
+   "artistId": "primavera-sound-2015:john-talabot",
+   "day": 4,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "primavera-sound-2015:d4:bowers-and-wilkins-sound-system:0200:jmii-live",
+   "artistId": "primavera-sound-2015:jmii-live",
+   "day": 4,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "primavera-sound-2015:d4:bowers-and-wilkins-sound-system:0300:c-p-i",
+   "artistId": "primavera-sound-2015:c-p-i",
+   "day": 4,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "03:00",
+   "end": "05:00"
+  },
+  {
+   "id": "primavera-sound-2015:d4:bowers-and-wilkins-sound-system:0500:hivern-all-stars-djs",
+   "artistId": "primavera-sound-2015:hivern-all-stars-djs",
+   "day": 4,
+   "stageId": "primavera-sound-2015:bowers-and-wilkins-sound-system",
+   "start": "05:00",
+   "end": "05:30"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.primaverasound.es/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150531064415/https://www.primaverasound.es/horarios",
+    "captureTimestamp": "20150531064415",
+    "printed": "dimecres 27 de maig",
+    "sha256": "8e8df7775cca05edbcbd7fd14a5dce10779771ce55607e47779ac700e103b654",
+    "rows": 6,
+    "format": "primavera-horarios",
+    "heading": "Horaris Parc del Fòrum",
+    "tabs": [
+     "dimecres 27 de maig",
+     "dijous 28 de maig",
+     "divendres 29 de maig",
+     "dissabte 30 de maig"
+    ]
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150920055041/http://www.primaverasound.es/horarios?d=2&l=forum",
+    "captureTimestamp": "20150920055041",
+    "printed": "jueves 28 de mayo",
+    "sha256": "3f50691bae89295763af1d4e893ec75624ed0c10da4c01b01bb3727d261a9d60",
+    "rows": 63,
+    "format": "primavera-horarios",
+    "heading": "Horarios Parc del Fòrum",
+    "tabs": [
+     "miércoles 27 de mayo",
+     "jueves 28 de mayo",
+     "viernes 29 de mayo",
+     "sábado 30 de mayo"
+    ]
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150920060147/http://www.primaverasound.es/horarios?d=3&l=forum",
+    "captureTimestamp": "20150920060147",
+    "printed": "Friday May 29",
+    "sha256": "d4b18a2899d946d8704ef900045fa0679f8b38c54c807ea1cdc6dadf885bcfe3",
+    "rows": 65,
+    "format": "primavera-horarios",
+    "heading": "Timetable: Parc del Fòrum",
+    "tabs": [
+     "Wednesday May 27",
+     "Thursday May 28",
+     "Friday May 29",
+     "Saturday May 30"
+    ]
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20150920075156/http://www.primaverasound.es/horarios?d=4&l=forum",
+    "captureTimestamp": "20150920075156",
+    "printed": "dissabte 30 de maig",
+    "sha256": "9d279b99891aaa184b864b14b24f658ea6d4b80bf531199bbe8054ac78a8a69b",
+    "rows": 62,
+    "format": "primavera-horarios",
+    "heading": "Horaris Parc del Fòrum",
+    "tabs": [
+     "dimecres 27 de maig",
+     "dijous 28 de maig",
+     "divendres 29 de maig",
+     "dissabte 30 de maig"
+    ]
+   }
+  ]
+ }
+}
