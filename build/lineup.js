@@ -1035,7 +1035,7 @@ function LineupHeadliners({
     licenseUrl: rec.licenseUrl,
     changes: rec.changes
   } : null;
-  var word = billed ? "Top billed" : acts.length === 1 ? "Headliner" : "Headliners";
+  var word = billed ? topTierLabel(acts.length > 1) : "Closing the night";
   return React.createElement("section", {
     "data-lineup-headliners": true,
     "aria-label": `${dayLabel} ${word.toLowerCase()}`,

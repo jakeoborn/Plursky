@@ -652,7 +652,9 @@ function LineupHeadliners({ acts, billed, dayLabel, onOpen }) {
   const credit = photo && rec.author && rec.licenseId && rec.licenseUrl
     ? { author: rec.author, sourceUrl: rec.sourcePage, license: rec.licenseId, licenseUrl: rec.licenseUrl, changes: rec.changes }
     : null;
-  const word = billed ? "Top billed" : (acts.length === 1 ? "Headliner" : "Headliners");
+  // Top of the poster when it bills one; else these are just the last sets
+  // on each stage, so the card says so rather than calling them headliners.
+  const word = billed ? topTierLabel(acts.length > 1) : "Closing the night";
   return (
     <section data-lineup-headliners aria-label={`${dayLabel} ${word.toLowerCase()}`} style={{ margin: "8px 0 12px" }}>
       <div className={`lh-card${photo ? "" : " plain"}`}>
