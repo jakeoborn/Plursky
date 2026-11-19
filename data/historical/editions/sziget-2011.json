@@ -1,0 +1,2014 @@
+{
+ "id": "sziget-2011",
+ "festivalId": "sziget",
+ "name": "Sziget 2011",
+ "year": 2011,
+ "timezone": "Europe/Budapest",
+ "rolloverHour": 8,
+ "completeness": "selected_stages",
+ "coverage": {
+  "asOf": "2026-11-18",
+  "missing": [
+   {
+    "stage": "26 other stages and 6 venues",
+    "days": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "when": "listed in the programme, days not read"
+   }
+  ]
+ },
+ "days": [
+  {
+   "day": 1,
+   "date": "2011-08-08",
+   "label": "Monday"
+  },
+  {
+   "day": 2,
+   "date": "2011-08-09",
+   "label": "Tuesday"
+  },
+  {
+   "day": 3,
+   "date": "2011-08-10",
+   "label": "Wednesday"
+  },
+  {
+   "day": 4,
+   "date": "2011-08-11",
+   "label": "Thursday"
+  },
+  {
+   "day": 5,
+   "date": "2011-08-12",
+   "label": "Friday"
+  },
+  {
+   "day": 6,
+   "date": "2011-08-13",
+   "label": "Saturday"
+  },
+  {
+   "day": 7,
+   "date": "2011-08-14",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "sziget-2011:pop-rock-main-stage",
+   "name": "Pop-Rock Main Stage"
+  },
+  {
+   "id": "sziget-2011:rock-metal-main-stage",
+   "name": "Rock-Metal Main Stage"
+  },
+  {
+   "id": "sziget-2011:pesti-est-world-music-main-stage",
+   "name": "Pesti Est World Music Main Stage"
+  },
+  {
+   "id": "sziget-2011:a38-wan2-stage",
+   "name": "A38-WAN2 Stage"
+  },
+  {
+   "id": "sziget-2011:burn-party-arena",
+   "name": "Burn Party Arena"
+  }
+ ],
+ "artists": [
+  {
+   "id": "sziget-2011:gesztival",
+   "name": "Gesztivál",
+   "key": "gesztival",
+   "performers": [
+    "gesztival"
+   ]
+  },
+  {
+   "id": "sziget-2011:prince-usa",
+   "name": "Prince (USA)",
+   "key": "prince-usa",
+   "performers": [
+    "prince-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:the-klezmatics-usa",
+   "name": "The Klezmatics (USA)",
+   "key": "the-klezmatics-usa",
+   "performers": [
+    "the-klezmatics-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:boban-markovic-orkestar-srb",
+   "name": "Boban Markovic Orkestar (SRB)",
+   "key": "boban-markovic-orkestar-srb",
+   "performers": [
+    "boban-markovic-orkestar-srb"
+   ]
+  },
+  {
+   "id": "sziget-2011:leningrad-ru",
+   "name": "Leningrad (RU)",
+   "key": "leningrad-ru",
+   "performers": [
+    "leningrad-ru"
+   ]
+  },
+  {
+   "id": "sziget-2011:magyar-radio-szimfonik-live",
+   "name": "Magyar Rádió Szimfonik Live",
+   "key": "magyar-radio-szimfonik-live",
+   "performers": [
+    "magyar-radio-szimfonik-live"
+   ]
+  },
+  {
+   "id": "sziget-2011:roots-and-routes-art-n-go",
+   "name": "Roots & Routes - Art'N'Go",
+   "key": "roots-and-routes-art-n-go",
+   "performers": [
+    "roots-and-routes-art-n-go"
+   ]
+  },
+  {
+   "id": "sziget-2011:the-maccabees-uk",
+   "name": "The Maccabees (UK)",
+   "key": "the-maccabees-uk",
+   "performers": [
+    "the-maccabees-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:flogging-molly-usa",
+   "name": "Flogging Molly (USA)",
+   "key": "flogging-molly-usa",
+   "performers": [
+    "flogging-molly-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:rise-against-usa",
+   "name": "Rise Against (USA)",
+   "key": "rise-against-usa",
+   "performers": [
+    "rise-against-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:interpol-usa",
+   "name": "Interpol (USA)",
+   "key": "interpol-usa",
+   "performers": [
+    "interpol-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:pulp-uk",
+   "name": "Pulp (UK)",
+   "key": "pulp-uk",
+   "performers": [
+    "pulp-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:omen",
+   "name": "Omen",
+   "key": "omen",
+   "performers": [
+    "omen"
+   ]
+  },
+  {
+   "id": "sziget-2011:road",
+   "name": "Road",
+   "key": "road",
+   "performers": [
+    "road"
+   ]
+  },
+  {
+   "id": "sziget-2011:within-temptation-nl",
+   "name": "Within Temptation (NL)",
+   "key": "within-temptation-nl",
+   "performers": [
+    "within-temptation-nl"
+   ]
+  },
+  {
+   "id": "sziget-2011:motorhead-uk",
+   "name": "Motörhead (UK)",
+   "key": "motorhead-uk",
+   "performers": [
+    "motorhead-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:labrassbanda-d",
+   "name": "LaBrassBanda (D)",
+   "key": "labrassbanda-d",
+   "performers": [
+    "labrassbanda-d"
+   ]
+  },
+  {
+   "id": "sziget-2011:les-hurlements-d-leo-f",
+   "name": "Les Hurlements d'Leo (F)",
+   "key": "les-hurlements-d-leo-f",
+   "performers": [
+    "les-hurlements-d-leo-f"
+   ]
+  },
+  {
+   "id": "sziget-2011:ojos-de-brujo-es",
+   "name": "Ojos de Brujo (ES)",
+   "key": "ojos-de-brujo-es",
+   "performers": [
+    "ojos-de-brujo-es"
+   ]
+  },
+  {
+   "id": "sziget-2011:afrocubism-cu-ml",
+   "name": "AfroCubism (CU/ML)",
+   "key": "afrocubism-cu-ml",
+   "performers": [
+    "afrocubism-cu-ml"
+   ]
+  },
+  {
+   "id": "sziget-2011:terry-poison-isr",
+   "name": "Terry Poison (ISR)",
+   "key": "terry-poison-isr",
+   "performers": [
+    "terry-poison-isr"
+   ]
+  },
+  {
+   "id": "sziget-2011:soerii-and-poolek",
+   "name": "Soerii & Poolek",
+   "key": "soerii-and-poolek",
+   "performers": [
+    "soerii-and-poolek"
+   ]
+  },
+  {
+   "id": "sziget-2011:the-bloody-beetroots-death-crew-77-i",
+   "name": "The Bloody Beetroots Death Crew 77 (I)",
+   "key": "the-bloody-beetroots-death-crew-77-i",
+   "performers": [
+    "the-bloody-beetroots-death-crew-77-i"
+   ]
+  },
+  {
+   "id": "sziget-2011:suicidal-tendencies-usa",
+   "name": "Suicidal Tendencies (USA)",
+   "key": "suicidal-tendencies-usa",
+   "performers": [
+    "suicidal-tendencies-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:hurts-uk",
+   "name": "Hurts (UK)",
+   "key": "hurts-uk",
+   "performers": [
+    "hurts-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:dorian-concept-a",
+   "name": "Dorian Concept (A)",
+   "key": "dorian-concept-a",
+   "performers": [
+    "dorian-concept-a"
+   ]
+  },
+  {
+   "id": "sziget-2011:empire-of-the-sun-aus",
+   "name": "Empire of The Sun (AUS)",
+   "key": "empire-of-the-sun-aus",
+   "performers": [
+    "empire-of-the-sun-aus"
+   ]
+  },
+  {
+   "id": "sziget-2011:ben-l-oncle-soul-f",
+   "name": "Ben L’oncle Soul (F)",
+   "key": "ben-l-oncle-soul-f",
+   "performers": [
+    "ben-l-oncle-soul-f"
+   ]
+  },
+  {
+   "id": "sziget-2011:la-roux-uk",
+   "name": "La Roux (UK)",
+   "key": "la-roux-uk",
+   "performers": [
+    "la-roux-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:good-charlotte-usa",
+   "name": "Good Charlotte (USA)",
+   "key": "good-charlotte-usa",
+   "performers": [
+    "good-charlotte-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:kasabian-uk",
+   "name": "Kasabian (UK)",
+   "key": "kasabian-uk",
+   "performers": [
+    "kasabian-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:the-chemical-brothers-uk",
+   "name": "The Chemical Brothers (UK)",
+   "key": "the-chemical-brothers-uk",
+   "performers": [
+    "the-chemical-brothers-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:3-feet-smaller-a",
+   "name": "3 Feet Smaller (A)",
+   "key": "3-feet-smaller-a",
+   "performers": [
+    "3-feet-smaller-a"
+   ]
+  },
+  {
+   "id": "sziget-2011:lord",
+   "name": "Lord",
+   "key": "lord",
+   "performers": [
+    "lord"
+   ]
+  },
+  {
+   "id": "sziget-2011:helloween-d",
+   "name": "Helloween (D)",
+   "key": "helloween-d",
+   "performers": [
+    "helloween-d"
+   ]
+  },
+  {
+   "id": "sziget-2011:judas-priest-uk",
+   "name": "Judas Priest (UK)",
+   "key": "judas-priest-uk",
+   "performers": [
+    "judas-priest-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:shtetl-superstars-uk-featl-laszlo-kollar-klemencz",
+   "name": "Shtetl Superstars (UK) featl. Laszlo Kollar-Klemencz",
+   "key": "shtetl-superstars-uk-featl-laszlo-kollar-klemencz",
+   "performers": [
+    "shtetl-superstars-uk-featl-laszlo-kollar-klemencz"
+   ]
+  },
+  {
+   "id": "sziget-2011:felix-lajko-and-his-band-feat-bea-palya",
+   "name": "Felix Lajko and his Band, feat. Bea Palya",
+   "key": "felix-lajko-and-his-band-feat-bea-palya",
+   "performers": [
+    "felix-lajko-and-his-band-feat-bea-palya"
+   ]
+  },
+  {
+   "id": "sziget-2011:rotfront-d",
+   "name": "Rotfront (D)",
+   "key": "rotfront-d",
+   "performers": [
+    "rotfront-d"
+   ]
+  },
+  {
+   "id": "sziget-2011:gotan-project-f",
+   "name": "Gotan Project (F)",
+   "key": "gotan-project-f",
+   "performers": [
+    "gotan-project-f"
+   ]
+  },
+  {
+   "id": "sziget-2011:xiu-xiu-usa",
+   "name": "Xiu Xiu (USA)",
+   "key": "xiu-xiu-usa",
+   "performers": [
+    "xiu-xiu-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:colorstar",
+   "name": "ColorStar",
+   "key": "colorstar",
+   "performers": [
+    "colorstar"
+   ]
+  },
+  {
+   "id": "sziget-2011:crystal-castles-can",
+   "name": "Crystal Castles (CAN)",
+   "key": "crystal-castles-can",
+   "performers": [
+    "crystal-castles-can"
+   ]
+  },
+  {
+   "id": "sziget-2011:de-jeugd-van-tegenwoordig-nl",
+   "name": "De Jeugd van Tegenwoordig (NL)",
+   "key": "de-jeugd-van-tegenwoordig-nl",
+   "performers": [
+    "de-jeugd-van-tegenwoordig-nl"
+   ]
+  },
+  {
+   "id": "sziget-2011:bomb-the-bass-uk",
+   "name": "Bomb The Bass (UK)",
+   "key": "bomb-the-bass-uk",
+   "performers": [
+    "bomb-the-bass-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:hudson-mohawke-uk",
+   "name": "Hudson Mohawke (UK)",
+   "key": "hudson-mohawke-uk",
+   "performers": [
+    "hudson-mohawke-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:goose-b",
+   "name": "Goose (B)",
+   "key": "goose-b",
+   "performers": [
+    "goose-b"
+   ]
+  },
+  {
+   "id": "sziget-2011:batucada-sound-machine-nz",
+   "name": "Batucada Sound Machine (NZ)",
+   "key": "batucada-sound-machine-nz",
+   "performers": [
+    "batucada-sound-machine-nz"
+   ]
+  },
+  {
+   "id": "sziget-2011:british-sea-power-uk",
+   "name": "British Sea Power (UK)",
+   "key": "british-sea-power-uk",
+   "performers": [
+    "british-sea-power-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:skunk-anansie-uk",
+   "name": "Skunk Anansie (UK)",
+   "key": "skunk-anansie-uk",
+   "performers": [
+    "skunk-anansie-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:dizzee-rascal-uk",
+   "name": "Dizzee Rascal (UK)",
+   "key": "dizzee-rascal-uk",
+   "performers": [
+    "dizzee-rascal-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:the-prodigy-uk",
+   "name": "The Prodigy (UK)",
+   "key": "the-prodigy-uk",
+   "performers": [
+    "the-prodigy-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:subscribe",
+   "name": "Subscribe",
+   "key": "subscribe",
+   "performers": [
+    "subscribe"
+   ]
+  },
+  {
+   "id": "sziget-2011:depresszio",
+   "name": "Depresszió",
+   "key": "depresszio",
+   "performers": [
+    "depresszio"
+   ]
+  },
+  {
+   "id": "sziget-2011:the-haunted-s",
+   "name": "The Haunted (S)",
+   "key": "the-haunted-s",
+   "performers": [
+    "the-haunted-s"
+   ]
+  },
+  {
+   "id": "sziget-2011:deftones-usa",
+   "name": "Deftones (USA)",
+   "key": "deftones-usa",
+   "performers": [
+    "deftones-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:magnifico-slo",
+   "name": "Magnifico (SLO)",
+   "key": "magnifico-slo",
+   "performers": [
+    "magnifico-slo"
+   ]
+  },
+  {
+   "id": "sziget-2011:muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu",
+   "name": "Muzsikas feat. Ildiko Toth \"Fecske\" and Zoltan Farkas \"Batyu\"",
+   "key": "muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu",
+   "performers": [
+    "muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu"
+   ]
+  },
+  {
+   "id": "sziget-2011:sly-and-robbie-feat-jr-reid-jam",
+   "name": "Sly & Robbie feat. Jr. Reid (JAM)",
+   "key": "sly-and-robbie-feat-jr-reid-jam",
+   "performers": [
+    "sly-and-robbie-feat-jr-reid-jam"
+   ]
+  },
+  {
+   "id": "sziget-2011:oi-va-voi-uk",
+   "name": "Oi Va Voi (UK)",
+   "key": "oi-va-voi-uk",
+   "performers": [
+    "oi-va-voi-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:dewolff-nl",
+   "name": "DeWolff (NL)",
+   "key": "dewolff-nl",
+   "performers": [
+    "dewolff-nl"
+   ]
+  },
+  {
+   "id": "sziget-2011:zagar",
+   "name": "Žagar",
+   "key": "zagar",
+   "performers": [
+    "zagar"
+   ]
+  },
+  {
+   "id": "sziget-2011:peter-bjorn-and-john-s",
+   "name": "Peter Bjorn & John (S)",
+   "key": "peter-bjorn-and-john-s",
+   "performers": [
+    "peter-bjorn-and-john-s"
+   ]
+  },
+  {
+   "id": "sziget-2011:turbostaat-d",
+   "name": "Turbostaat (D)",
+   "key": "turbostaat-d",
+   "performers": [
+    "turbostaat-d"
+   ]
+  },
+  {
+   "id": "sziget-2011:kode9-uk",
+   "name": "Kode9 (UK)",
+   "key": "kode9-uk",
+   "performers": [
+    "kode9-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:trentemoller-dk",
+   "name": "Trentemoller (DK)",
+   "key": "trentemoller-dk",
+   "performers": [
+    "trentemoller-dk"
+   ]
+  },
+  {
+   "id": "sziget-2011:overflow-hr",
+   "name": "Overflow (HR)",
+   "key": "overflow-hr",
+   "performers": [
+    "overflow-hr"
+   ]
+  },
+  {
+   "id": "sziget-2011:hadouken-uk",
+   "name": "Hadouken! (UK)",
+   "key": "hadouken-uk",
+   "performers": [
+    "hadouken-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:kate-nash-uk",
+   "name": "Kate Nash (UK)",
+   "key": "kate-nash-uk",
+   "performers": [
+    "kate-nash-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:kaiser-chiefs-uk",
+   "name": "Kaiser Chiefs (UK)",
+   "key": "kaiser-chiefs-uk",
+   "performers": [
+    "kaiser-chiefs-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:thirty-seconds-to-mars-usa",
+   "name": "Thirty Seconds To Mars (USA)",
+   "key": "thirty-seconds-to-mars-usa",
+   "performers": [
+    "thirty-seconds-to-mars-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:the-sorrow-a",
+   "name": "The Sorrow (A)",
+   "key": "the-sorrow-a",
+   "performers": [
+    "the-sorrow-a"
+   ]
+  },
+  {
+   "id": "sziget-2011:superbutt",
+   "name": "Superbutt",
+   "key": "superbutt",
+   "performers": [
+    "superbutt"
+   ]
+  },
+  {
+   "id": "sziget-2011:ektomorf",
+   "name": "Ektomorf",
+   "key": "ektomorf",
+   "performers": [
+    "ektomorf"
+   ]
+  },
+  {
+   "id": "sziget-2011:lostprophets-uk",
+   "name": "Lostprophets (UK)",
+   "key": "lostprophets-uk",
+   "performers": [
+    "lostprophets-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:ska-cubano-uk",
+   "name": "Ska Cubano (UK)",
+   "key": "ska-cubano-uk",
+   "performers": [
+    "ska-cubano-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:debout-sur-le-zinc-f",
+   "name": "Debout Sur Le Zinc (F)",
+   "key": "debout-sur-le-zinc-f",
+   "performers": [
+    "debout-sur-le-zinc-f"
+   ]
+  },
+  {
+   "id": "sziget-2011:csik-band-feat-tibor-kiss",
+   "name": "Csík band feat. Tibor Kiss",
+   "key": "csik-band-feat-tibor-kiss",
+   "performers": [
+    "csik-band-feat-tibor-kiss"
+   ]
+  },
+  {
+   "id": "sziget-2011:goran-bregovic-wedding-and-funeral-band-bih",
+   "name": "Goran Bregovic Wedding And Funeral Band (BIH)",
+   "key": "goran-bregovic-wedding-and-funeral-band-bih",
+   "performers": [
+    "goran-bregovic-wedding-and-funeral-band-bih"
+   ]
+  },
+  {
+   "id": "sziget-2011:hindi-zahra-f",
+   "name": "Hindi Zahra (F)",
+   "key": "hindi-zahra-f",
+   "performers": [
+    "hindi-zahra-f"
+   ]
+  },
+  {
+   "id": "sziget-2011:kowalsky-meg-a-vega",
+   "name": "Kowalsky meg a Vega",
+   "key": "kowalsky-meg-a-vega",
+   "performers": [
+    "kowalsky-meg-a-vega"
+   ]
+  },
+  {
+   "id": "sziget-2011:watcha-clan-f",
+   "name": "Watcha Clan (F)",
+   "key": "watcha-clan-f",
+   "performers": [
+    "watcha-clan-f"
+   ]
+  },
+  {
+   "id": "sziget-2011:buraka-som-sistema-p",
+   "name": "Buraka Som Sistema (P)",
+   "key": "buraka-som-sistema-p",
+   "performers": [
+    "buraka-som-sistema-p"
+   ]
+  },
+  {
+   "id": "sziget-2011:digital-mystikz-featuring-mc-sgt-pokes",
+   "name": "Digital Mystikz featuring MC Sgt Pokes",
+   "key": "digital-mystikz-featuring-mc-sgt-pokes",
+   "performers": [
+    "digital-mystikz-featuring-mc-sgt-pokes"
+   ]
+  },
+  {
+   "id": "sziget-2011:gaslamp-killer-uk",
+   "name": "Gaslamp Killer (UK)",
+   "key": "gaslamp-killer-uk",
+   "performers": [
+    "gaslamp-killer-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:zombie-nation-d",
+   "name": "Zombie Nation (D)",
+   "key": "zombie-nation-d",
+   "performers": [
+    "zombie-nation-d"
+   ]
+  },
+  {
+   "id": "sziget-2011:mariachi-el-bronx-usa",
+   "name": "Mariachi El Bronx (USA)",
+   "key": "mariachi-el-bronx-usa",
+   "performers": [
+    "mariachi-el-bronx-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:gogol-bordello-usa",
+   "name": "Gogol Bordello (USA)",
+   "key": "gogol-bordello-usa",
+   "performers": [
+    "gogol-bordello-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:the-national-usa",
+   "name": "The National (USA)",
+   "key": "the-national-usa",
+   "performers": [
+    "the-national-usa"
+   ]
+  },
+  {
+   "id": "sziget-2011:manic-street-preachers-uk",
+   "name": "Manic Street Preachers (UK)",
+   "key": "manic-street-preachers-uk",
+   "performers": [
+    "manic-street-preachers-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:white-lies-uk",
+   "name": "White Lies (UK)",
+   "key": "white-lies-uk",
+   "performers": [
+    "white-lies-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:nevergreen",
+   "name": "Nevergreen",
+   "key": "nevergreen",
+   "performers": [
+    "nevergreen"
+   ]
+  },
+  {
+   "id": "sziget-2011:dalriada",
+   "name": "Dalriada",
+   "key": "dalriada",
+   "performers": [
+    "dalriada"
+   ]
+  },
+  {
+   "id": "sziget-2011:sonata-arctica-fin",
+   "name": "Sonata Arctica (FIN)",
+   "key": "sonata-arctica-fin",
+   "performers": [
+    "sonata-arctica-fin"
+   ]
+  },
+  {
+   "id": "sziget-2011:tankcsapda",
+   "name": "Tankcsapda",
+   "key": "tankcsapda",
+   "performers": [
+    "tankcsapda"
+   ]
+  },
+  {
+   "id": "sziget-2011:socalled-can",
+   "name": "Socalled (CAN)",
+   "key": "socalled-can",
+   "performers": [
+    "socalled-can"
+   ]
+  },
+  {
+   "id": "sziget-2011:choc-quib-town-co",
+   "name": "Choc Quib Town (CO)",
+   "key": "choc-quib-town-co",
+   "performers": [
+    "choc-quib-town-co"
+   ]
+  },
+  {
+   "id": "sziget-2011:cheikh-lo-sn",
+   "name": "Cheikh Lô (SN)",
+   "key": "cheikh-lo-sn",
+   "performers": [
+    "cheikh-lo-sn"
+   ]
+  },
+  {
+   "id": "sziget-2011:cowboy-junkies-can",
+   "name": "Cowboy Junkies (CAN)",
+   "key": "cowboy-junkies-can",
+   "performers": [
+    "cowboy-junkies-can"
+   ]
+  },
+  {
+   "id": "sziget-2011:baskerville-live-nl",
+   "name": "Baskerville LIVE (NL)",
+   "key": "baskerville-live-nl",
+   "performers": [
+    "baskerville-live-nl"
+   ]
+  },
+  {
+   "id": "sziget-2011:kerekes-band",
+   "name": "Kerekes Band",
+   "key": "kerekes-band",
+   "performers": [
+    "kerekes-band"
+   ]
+  },
+  {
+   "id": "sziget-2011:marina-and-the-diamonds-uk",
+   "name": "Marina & The Diamonds (UK)",
+   "key": "marina-and-the-diamonds-uk",
+   "performers": [
+    "marina-and-the-diamonds-uk"
+   ]
+  },
+  {
+   "id": "sziget-2011:selah-sue-b",
+   "name": "Selah Sue (B)",
+   "key": "selah-sue-b",
+   "performers": [
+    "selah-sue-b"
+   ]
+  },
+  {
+   "id": "sziget-2011:kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+   "name": "Kees van Hondt & friends (NL) Feest / Mulatsag / Fest",
+   "key": "kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+   "performers": [
+    "kees-van-hondt-and-friends-nl-feest-mulatsag-fest"
+   ]
+  },
+  {
+   "id": "sziget-2011:kid-cudi-usa",
+   "name": "Kid Cudi (USA)",
+   "key": "kid-cudi-usa",
+   "performers": [
+    "kid-cudi-usa"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "sziget-2011:d1:pop-rock-main-stage:2030:gesztival",
+   "artistId": "sziget-2011:gesztival",
+   "day": 1,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d2:pop-rock-main-stage:1900:prince-usa",
+   "artistId": "sziget-2011:prince-usa",
+   "day": 2,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d2:rock-metal-main-stage:1700:the-klezmatics-usa",
+   "artistId": "sziget-2011:the-klezmatics-usa",
+   "day": 2,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d2:rock-metal-main-stage:1900:boban-markovic-orkestar-srb",
+   "artistId": "sziget-2011:boban-markovic-orkestar-srb",
+   "day": 2,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d2:rock-metal-main-stage:2100:leningrad-ru",
+   "artistId": "sziget-2011:leningrad-ru",
+   "day": 2,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d2:pesti-est-world-music-main-stage:2000:magyar-radio-szimfonik-live",
+   "artistId": "sziget-2011:magyar-radio-szimfonik-live",
+   "day": 2,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d2:a38-wan2-stage:2315:roots-and-routes-art-n-go",
+   "artistId": "sziget-2011:roots-and-routes-art-n-go",
+   "day": 2,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "23:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:pop-rock-main-stage:1500:the-maccabees-uk",
+   "artistId": "sziget-2011:the-maccabees-uk",
+   "day": 3,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:pop-rock-main-stage:1630:flogging-molly-usa",
+   "artistId": "sziget-2011:flogging-molly-usa",
+   "day": 3,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:pop-rock-main-stage:1800:rise-against-usa",
+   "artistId": "sziget-2011:rise-against-usa",
+   "day": 3,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:pop-rock-main-stage:1945:interpol-usa",
+   "artistId": "sziget-2011:interpol-usa",
+   "day": 3,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:pop-rock-main-stage:2130:pulp-uk",
+   "artistId": "sziget-2011:pulp-uk",
+   "day": 3,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:rock-metal-main-stage:1600:omen",
+   "artistId": "sziget-2011:omen",
+   "day": 3,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:rock-metal-main-stage:1730:road",
+   "artistId": "sziget-2011:road",
+   "day": 3,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:rock-metal-main-stage:1900:within-temptation-nl",
+   "artistId": "sziget-2011:within-temptation-nl",
+   "day": 3,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:rock-metal-main-stage:2030:motorhead-uk",
+   "artistId": "sziget-2011:motorhead-uk",
+   "day": 3,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:pesti-est-world-music-main-stage:1700:labrassbanda-d",
+   "artistId": "sziget-2011:labrassbanda-d",
+   "day": 3,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:pesti-est-world-music-main-stage:1815:les-hurlements-d-leo-f",
+   "artistId": "sziget-2011:les-hurlements-d-leo-f",
+   "day": 3,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:pesti-est-world-music-main-stage:1945:ojos-de-brujo-es",
+   "artistId": "sziget-2011:ojos-de-brujo-es",
+   "day": 3,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:pesti-est-world-music-main-stage:2130:afrocubism-cu-ml",
+   "artistId": "sziget-2011:afrocubism-cu-ml",
+   "day": 3,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:a38-wan2-stage:1700:terry-poison-isr",
+   "artistId": "sziget-2011:terry-poison-isr",
+   "day": 3,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:a38-wan2-stage:1840:soerii-and-poolek",
+   "artistId": "sziget-2011:soerii-and-poolek",
+   "day": 3,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:a38-wan2-stage:2010:the-bloody-beetroots-death-crew-77-i",
+   "artistId": "sziget-2011:the-bloody-beetroots-death-crew-77-i",
+   "day": 3,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "20:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:a38-wan2-stage:2150:suicidal-tendencies-usa",
+   "artistId": "sziget-2011:suicidal-tendencies-usa",
+   "day": 3,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "21:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:a38-wan2-stage:2330:hurts-uk",
+   "artistId": "sziget-2011:hurts-uk",
+   "day": 3,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:a38-wan2-stage:0100:dorian-concept-a",
+   "artistId": "sziget-2011:dorian-concept-a",
+   "day": 3,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "01:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d3:burn-party-arena:1930:empire-of-the-sun-aus",
+   "artistId": "sziget-2011:empire-of-the-sun-aus",
+   "day": 3,
+   "stageId": "sziget-2011:burn-party-arena",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:pop-rock-main-stage:1500:ben-l-oncle-soul-f",
+   "artistId": "sziget-2011:ben-l-oncle-soul-f",
+   "day": 4,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:pop-rock-main-stage:1630:la-roux-uk",
+   "artistId": "sziget-2011:la-roux-uk",
+   "day": 4,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:pop-rock-main-stage:1800:good-charlotte-usa",
+   "artistId": "sziget-2011:good-charlotte-usa",
+   "day": 4,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:pop-rock-main-stage:1945:kasabian-uk",
+   "artistId": "sziget-2011:kasabian-uk",
+   "day": 4,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:pop-rock-main-stage:2130:the-chemical-brothers-uk",
+   "artistId": "sziget-2011:the-chemical-brothers-uk",
+   "day": 4,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:rock-metal-main-stage:1600:3-feet-smaller-a",
+   "artistId": "sziget-2011:3-feet-smaller-a",
+   "day": 4,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:rock-metal-main-stage:1730:lord",
+   "artistId": "sziget-2011:lord",
+   "day": 4,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:rock-metal-main-stage:1900:helloween-d",
+   "artistId": "sziget-2011:helloween-d",
+   "day": 4,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:rock-metal-main-stage:2030:judas-priest-uk",
+   "artistId": "sziget-2011:judas-priest-uk",
+   "day": 4,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:pesti-est-world-music-main-stage:1700:shtetl-superstars-uk-featl-laszlo-kollar-klemencz",
+   "artistId": "sziget-2011:shtetl-superstars-uk-featl-laszlo-kollar-klemencz",
+   "day": 4,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:pesti-est-world-music-main-stage:1815:felix-lajko-and-his-band-feat-bea-palya",
+   "artistId": "sziget-2011:felix-lajko-and-his-band-feat-bea-palya",
+   "day": 4,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:pesti-est-world-music-main-stage:1945:rotfront-d",
+   "artistId": "sziget-2011:rotfront-d",
+   "day": 4,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:pesti-est-world-music-main-stage:2130:gotan-project-f",
+   "artistId": "sziget-2011:gotan-project-f",
+   "day": 4,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:a38-wan2-stage:1700:xiu-xiu-usa",
+   "artistId": "sziget-2011:xiu-xiu-usa",
+   "day": 4,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:a38-wan2-stage:1840:colorstar",
+   "artistId": "sziget-2011:colorstar",
+   "day": 4,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:a38-wan2-stage:2010:crystal-castles-can",
+   "artistId": "sziget-2011:crystal-castles-can",
+   "day": 4,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "20:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:a38-wan2-stage:2150:de-jeugd-van-tegenwoordig-nl",
+   "artistId": "sziget-2011:de-jeugd-van-tegenwoordig-nl",
+   "day": 4,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "21:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:a38-wan2-stage:2330:bomb-the-bass-uk",
+   "artistId": "sziget-2011:bomb-the-bass-uk",
+   "day": 4,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:a38-wan2-stage:0100:hudson-mohawke-uk",
+   "artistId": "sziget-2011:hudson-mohawke-uk",
+   "day": 4,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "01:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d4:burn-party-arena:1930:goose-b",
+   "artistId": "sziget-2011:goose-b",
+   "day": 4,
+   "stageId": "sziget-2011:burn-party-arena",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:pop-rock-main-stage:1500:batucada-sound-machine-nz",
+   "artistId": "sziget-2011:batucada-sound-machine-nz",
+   "day": 5,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:pop-rock-main-stage:1630:british-sea-power-uk",
+   "artistId": "sziget-2011:british-sea-power-uk",
+   "day": 5,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:pop-rock-main-stage:1800:skunk-anansie-uk",
+   "artistId": "sziget-2011:skunk-anansie-uk",
+   "day": 5,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:pop-rock-main-stage:1945:dizzee-rascal-uk",
+   "artistId": "sziget-2011:dizzee-rascal-uk",
+   "day": 5,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:pop-rock-main-stage:2130:the-prodigy-uk",
+   "artistId": "sziget-2011:the-prodigy-uk",
+   "day": 5,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:rock-metal-main-stage:1600:subscribe",
+   "artistId": "sziget-2011:subscribe",
+   "day": 5,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:rock-metal-main-stage:1730:depresszio",
+   "artistId": "sziget-2011:depresszio",
+   "day": 5,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:rock-metal-main-stage:1900:the-haunted-s",
+   "artistId": "sziget-2011:the-haunted-s",
+   "day": 5,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:rock-metal-main-stage:2030:deftones-usa",
+   "artistId": "sziget-2011:deftones-usa",
+   "day": 5,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:pesti-est-world-music-main-stage:1700:magnifico-slo",
+   "artistId": "sziget-2011:magnifico-slo",
+   "day": 5,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:pesti-est-world-music-main-stage:1815:muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu",
+   "artistId": "sziget-2011:muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu",
+   "day": 5,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:pesti-est-world-music-main-stage:1945:sly-and-robbie-feat-jr-reid-jam",
+   "artistId": "sziget-2011:sly-and-robbie-feat-jr-reid-jam",
+   "day": 5,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:pesti-est-world-music-main-stage:2130:oi-va-voi-uk",
+   "artistId": "sziget-2011:oi-va-voi-uk",
+   "day": 5,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:a38-wan2-stage:1700:dewolff-nl",
+   "artistId": "sziget-2011:dewolff-nl",
+   "day": 5,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:a38-wan2-stage:1840:zagar",
+   "artistId": "sziget-2011:zagar",
+   "day": 5,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:a38-wan2-stage:2010:peter-bjorn-and-john-s",
+   "artistId": "sziget-2011:peter-bjorn-and-john-s",
+   "day": 5,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "20:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:a38-wan2-stage:2150:turbostaat-d",
+   "artistId": "sziget-2011:turbostaat-d",
+   "day": 5,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "21:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:a38-wan2-stage:0100:kode9-uk",
+   "artistId": "sziget-2011:kode9-uk",
+   "day": 5,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "01:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d5:burn-party-arena:1930:trentemoller-dk",
+   "artistId": "sziget-2011:trentemoller-dk",
+   "day": 5,
+   "stageId": "sziget-2011:burn-party-arena",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:pop-rock-main-stage:1500:overflow-hr",
+   "artistId": "sziget-2011:overflow-hr",
+   "day": 6,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:pop-rock-main-stage:1630:hadouken-uk",
+   "artistId": "sziget-2011:hadouken-uk",
+   "day": 6,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:pop-rock-main-stage:1800:kate-nash-uk",
+   "artistId": "sziget-2011:kate-nash-uk",
+   "day": 6,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:pop-rock-main-stage:1945:kaiser-chiefs-uk",
+   "artistId": "sziget-2011:kaiser-chiefs-uk",
+   "day": 6,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:pop-rock-main-stage:2130:thirty-seconds-to-mars-usa",
+   "artistId": "sziget-2011:thirty-seconds-to-mars-usa",
+   "day": 6,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:rock-metal-main-stage:1600:the-sorrow-a",
+   "artistId": "sziget-2011:the-sorrow-a",
+   "day": 6,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:rock-metal-main-stage:1730:superbutt",
+   "artistId": "sziget-2011:superbutt",
+   "day": 6,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:rock-metal-main-stage:1900:ektomorf",
+   "artistId": "sziget-2011:ektomorf",
+   "day": 6,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:rock-metal-main-stage:2030:lostprophets-uk",
+   "artistId": "sziget-2011:lostprophets-uk",
+   "day": 6,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:pesti-est-world-music-main-stage:1700:ska-cubano-uk",
+   "artistId": "sziget-2011:ska-cubano-uk",
+   "day": 6,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:pesti-est-world-music-main-stage:1815:debout-sur-le-zinc-f",
+   "artistId": "sziget-2011:debout-sur-le-zinc-f",
+   "day": 6,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:pesti-est-world-music-main-stage:1945:csik-band-feat-tibor-kiss",
+   "artistId": "sziget-2011:csik-band-feat-tibor-kiss",
+   "day": 6,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:pesti-est-world-music-main-stage:2130:goran-bregovic-wedding-and-funeral-band-bih",
+   "artistId": "sziget-2011:goran-bregovic-wedding-and-funeral-band-bih",
+   "day": 6,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:a38-wan2-stage:1700:hindi-zahra-f",
+   "artistId": "sziget-2011:hindi-zahra-f",
+   "day": 6,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:a38-wan2-stage:1840:kowalsky-meg-a-vega",
+   "artistId": "sziget-2011:kowalsky-meg-a-vega",
+   "day": 6,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:a38-wan2-stage:2010:watcha-clan-f",
+   "artistId": "sziget-2011:watcha-clan-f",
+   "day": 6,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "20:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:a38-wan2-stage:2150:buraka-som-sistema-p",
+   "artistId": "sziget-2011:buraka-som-sistema-p",
+   "day": 6,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "21:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:a38-wan2-stage:2330:digital-mystikz-featuring-mc-sgt-pokes",
+   "artistId": "sziget-2011:digital-mystikz-featuring-mc-sgt-pokes",
+   "day": 6,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:a38-wan2-stage:0100:gaslamp-killer-uk",
+   "artistId": "sziget-2011:gaslamp-killer-uk",
+   "day": 6,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "01:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d6:burn-party-arena:1930:zombie-nation-d",
+   "artistId": "sziget-2011:zombie-nation-d",
+   "day": 6,
+   "stageId": "sziget-2011:burn-party-arena",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:pop-rock-main-stage:1500:mariachi-el-bronx-usa",
+   "artistId": "sziget-2011:mariachi-el-bronx-usa",
+   "day": 7,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:pop-rock-main-stage:1630:gogol-bordello-usa",
+   "artistId": "sziget-2011:gogol-bordello-usa",
+   "day": 7,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:pop-rock-main-stage:1800:the-national-usa",
+   "artistId": "sziget-2011:the-national-usa",
+   "day": 7,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:pop-rock-main-stage:1945:manic-street-preachers-uk",
+   "artistId": "sziget-2011:manic-street-preachers-uk",
+   "day": 7,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:pop-rock-main-stage:2130:white-lies-uk",
+   "artistId": "sziget-2011:white-lies-uk",
+   "day": 7,
+   "stageId": "sziget-2011:pop-rock-main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:rock-metal-main-stage:1600:nevergreen",
+   "artistId": "sziget-2011:nevergreen",
+   "day": 7,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:rock-metal-main-stage:1730:dalriada",
+   "artistId": "sziget-2011:dalriada",
+   "day": 7,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:rock-metal-main-stage:1900:sonata-arctica-fin",
+   "artistId": "sziget-2011:sonata-arctica-fin",
+   "day": 7,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:rock-metal-main-stage:2030:tankcsapda",
+   "artistId": "sziget-2011:tankcsapda",
+   "day": 7,
+   "stageId": "sziget-2011:rock-metal-main-stage",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:pesti-est-world-music-main-stage:1700:socalled-can",
+   "artistId": "sziget-2011:socalled-can",
+   "day": 7,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:pesti-est-world-music-main-stage:1815:choc-quib-town-co",
+   "artistId": "sziget-2011:choc-quib-town-co",
+   "day": 7,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:pesti-est-world-music-main-stage:1945:cheikh-lo-sn",
+   "artistId": "sziget-2011:cheikh-lo-sn",
+   "day": 7,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:pesti-est-world-music-main-stage:2130:cowboy-junkies-can",
+   "artistId": "sziget-2011:cowboy-junkies-can",
+   "day": 7,
+   "stageId": "sziget-2011:pesti-est-world-music-main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:a38-wan2-stage:1700:baskerville-live-nl",
+   "artistId": "sziget-2011:baskerville-live-nl",
+   "day": 7,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:a38-wan2-stage:1840:kerekes-band",
+   "artistId": "sziget-2011:kerekes-band",
+   "day": 7,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:a38-wan2-stage:2010:marina-and-the-diamonds-uk",
+   "artistId": "sziget-2011:marina-and-the-diamonds-uk",
+   "day": 7,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "20:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:a38-wan2-stage:2150:selah-sue-b",
+   "artistId": "sziget-2011:selah-sue-b",
+   "day": 7,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "21:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:a38-wan2-stage:2330:kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+   "artistId": "sziget-2011:kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+   "day": 7,
+   "stageId": "sziget-2011:a38-wan2-stage",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2011:d7:burn-party-arena:1930:kid-cudi-usa",
+   "artistId": "sziget-2011:kid-cudi-usa",
+   "day": 7,
+   "stageId": "sziget-2011:burn-party-arena",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.sziget.hu/festival_english/programs",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110917221145/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-08&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+    "captureTimestamp": "20110917221145",
+    "printed": "August 08. Monday",
+    "sha256": "af00bc68ec9fa5f628c0e37fa9b0444d3a7169863e82b7215cc3cdbe226b3a78",
+    "rows": 1,
+    "format": "sziget-days",
+    "tabs": [
+     "August 08. Monday",
+     "August 09. Tuesday",
+     "August 10. Wednesday",
+     "August 11. Thursday",
+     "August 12. Friday",
+     "August 13. Saturday",
+     "August 14. Sunday"
+    ]
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110917221150/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-09&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+    "captureTimestamp": "20110917221150",
+    "printed": "August 09. Tuesday",
+    "sha256": "8631e8f75c0b028796851963b93b0c13dfe916afed0ab107627178855bfb82b1",
+    "rows": 6,
+    "format": "sziget-days",
+    "tabs": [
+     "August 08. Monday",
+     "August 09. Tuesday",
+     "August 10. Wednesday",
+     "August 11. Thursday",
+     "August 12. Friday",
+     "August 13. Saturday",
+     "August 14. Sunday"
+    ]
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110902065024/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-10&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+    "captureTimestamp": "20110902065024",
+    "printed": "August 10. Wednesday",
+    "sha256": "232dca1aee03c0cae4b1cd91192370bd34542b3fc7b1528c99e77ef20a82a170",
+    "rows": 20,
+    "format": "sziget-days",
+    "tabs": [
+     "August 08. Monday",
+     "August 09. Tuesday",
+     "August 10. Wednesday",
+     "August 11. Thursday",
+     "August 12. Friday",
+     "August 13. Saturday",
+     "August 14. Sunday"
+    ]
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110902065053/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-11&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+    "captureTimestamp": "20110902065053",
+    "printed": "August 11. Thursday",
+    "sha256": "69d7296fbb9f0879b07989add71b6f599951f2f995c49b243a906f89d589e57a",
+    "rows": 20,
+    "format": "sziget-days",
+    "tabs": [
+     "August 08. Monday",
+     "August 09. Tuesday",
+     "August 10. Wednesday",
+     "August 11. Thursday",
+     "August 12. Friday",
+     "August 13. Saturday",
+     "August 14. Sunday"
+    ]
+   },
+   {
+    "day": 5,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110902065057/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-12&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+    "captureTimestamp": "20110902065057",
+    "printed": "August 12. Friday",
+    "sha256": "caad6a59b44a82b095074d3e622f2fc8a3350009245566d99a5fb7b3d99dc0f1",
+    "rows": 19,
+    "format": "sziget-days",
+    "tabs": [
+     "August 08. Monday",
+     "August 09. Tuesday",
+     "August 10. Wednesday",
+     "August 11. Thursday",
+     "August 12. Friday",
+     "August 13. Saturday",
+     "August 14. Sunday"
+    ]
+   },
+   {
+    "day": 6,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110902065123/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-13&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+    "captureTimestamp": "20110902065123",
+    "printed": "August 13. Saturday",
+    "sha256": "6c09004ca045a865505289019e38a2bc65c1f2a4f8033815b8ac334ea36182cb",
+    "rows": 20,
+    "format": "sziget-days",
+    "tabs": [
+     "August 08. Monday",
+     "August 09. Tuesday",
+     "August 10. Wednesday",
+     "August 11. Thursday",
+     "August 12. Friday",
+     "August 13. Saturday",
+     "August 14. Sunday"
+    ]
+   },
+   {
+    "day": 7,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20110902065102/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-14&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+    "captureTimestamp": "20110902065102",
+    "printed": "August 14. Sunday",
+    "sha256": "392efe0c072bcadff415e2b66c8b3904bff775c2c0ee5ca85cf14dcff29450cf",
+    "rows": 19,
+    "format": "sziget-days",
+    "tabs": [
+     "August 08. Monday",
+     "August 09. Tuesday",
+     "August 10. Wednesday",
+     "August 11. Thursday",
+     "August 12. Friday",
+     "August 13. Saturday",
+     "August 14. Sunday"
+    ]
+   }
+  ]
+ }
+}

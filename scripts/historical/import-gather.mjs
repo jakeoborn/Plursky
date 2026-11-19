@@ -56,6 +56,7 @@ import { parseLollaLineup } from "./lolla-lineup.mjs";
 import { parseTmlDrupal } from "./tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, readDatesPost } from "./shambhala-webflow-schedule.mjs";
 import { parseSonarSchedule } from "./sonar-schedule.mjs";
+import { parseSzigetDays } from "./sziget-days-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
@@ -63,8 +64,9 @@ const sha256 = buf => createHash("sha256").update(buf).digest("hex");
 // ("2:15am - Close"), Coachella's lineup cards and 2012 overlays (no end
 // times at all), Coachella 2017's lineup data (a few sets without an end) and
 // Shambhala's schedule tables (a start under each block, no end), Governors
-// Ball 2011's "???" and Primavera Sound's start-only blocks ("(03:00)").
-const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards", "coachella-data", "coachella-overlays", "shambhala-table", "govball-wp", "primavera-horarios", "primavera-completos"]);
+// Ball 2011's "???", Primavera Sound's start-only blocks ("(03:00)") and
+// Sziget's day programme (a start on each set, no end).
+const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards", "coachella-data", "coachella-overlays", "shambhala-table", "govball-wp", "primavera-horarios", "primavera-completos", "sziget-days"]);
 
 const rowKey = r => [r.day, r.stage, r.start, r.end, r.artist].join("|");
 
@@ -617,6 +619,38 @@ export async function importGather(id, dir) {
             : "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall",
           ...(page.sets.some(x => x.openEnd) && { openEnded: page.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }),
           ...(page.blanks.length && { emptySlots: page.blanks.map(x => `${x.stage}: ${x.printed}, no act named`) }) });
+      } else if (s.format === "sziget-days") {
+        // One page per day: Sziget's own English day programme
+        // (sziget.hu/festival_english/programs/-/days?day=<date>,
+        // sziget-days-schedule.mjs), drawing the stages its address selects.
+        // Its day tabs must be the edition's days, in order, each weekday
+        // falling on its date in the edition's year; the page's own tab is the
+        // day it prints, and its address asks for that day. The page must be
+        // captured after the night it prints was over: a day already played
+        // can no longer change (2010's Monday survives only in a capture from
+        // the festival's last weekend). Every set prints its start alone, in
+        // its stage's own column, and every set links to the stage it sits
+        // under, or the parser throws. An entry billing several acts under one
+        // start must be the sheet's excluded untimed row of that day, one for
+        // one.
+        const page = parseSzigetDays(cap.text, { year: ed.year });
+        if (page.tabDates.join() !== ed.dates.map(([d]) => d).join()) throw new Error(`${s.url} @${s.captureTimestamp}: its day tabs print ${page.tabDates.join(", ")}, not the edition's days`);
+        const day = ed.dates.findIndex(([d]) => d === page.date) + 1;
+        if (days.join() !== String(day)) throw new Error(`${s.url} @${s.captureTimestamp}: prints day ${day}, the sheet cites it for ${days.join(",")}`);
+        if (!s.url.includes(`day=${page.date}&`)) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${page.date}, not the day its address asks for`);
+        if (page.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is printed as "${page.label}", the receipt says "${s.printed[day]}"`);
+        // Over: the next morning's rollover hour, read as UTC (Budapest is
+        // ahead of UTC, so this is the stricter reading).
+        const over = new Date(Date.parse(page.date + "T00:00:00Z") + 864e5 + ed.rolloverHour * 36e5).toISOString().replace(/\D/g, "").slice(0, 14);
+        if (s.captureTimestamp < over) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the night of ${page.date} was over`);
+        const k = x => [x.stage, x.artist ?? x.billing].join("|");
+        const pg = page.bills.map(b => k({ stage: b.stage, artist: b.lines.join(" / ") })).sort().join("\n"), sh = excluded.filter(x => x.day === day && x.untimed).map(k).sort().join("\n");
+        if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${page.bills.length} bill(s), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+        agree(day, page.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+        Object.assign(ledgerDays[day - 1].sources.at(-1), { template: page.template, tabs: page.tabs, stages: page.stages.length,
+          otherStages: page.unshown.length, otherVenues: page.venues.length,
+          times: "each set prints its start alone on the 24-hour clock, in its stage's column; no set prints an end, and a set after midnight is that night's",
+          ...(page.bills.length && { bills: page.bills.map(b => `${b.stage} from ${b.start}: ${b.lines.join(" / ")}`) }) });
       } else if (s.format === "sonar-calendar") {
         // One page prints the whole edition: Sónar Barcelona's own timetable
         // (sonar.es/en/<year>/schedules, sonar-schedule.mjs), one calendar per

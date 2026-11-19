@@ -153,5 +153,7 @@
  "sonar-2017": { "stages": 10, "setsPerDay": [1, 31, 54, 54, 1], "droppedPerDay": [0, 0, 0, 0, 0] },
  "sonar-2018": { "stages": 13, "setsPerDay": [33, 52, 52, 1], "droppedPerDay": [0, 0, 0, 0] },
  "sonar-2019": { "stages": 11, "setsPerDay": [30, 52, 50, 1], "droppedPerDay": [0, 0, 0, 0] },
- "sonar-2022": { "stages": 8, "setsPerDay": [24, 46, 45], "droppedPerDay": [0, 0, 0] }
+ "sonar-2022": { "stages": 8, "setsPerDay": [24, 46, 45], "droppedPerDay": [0, 0, 0] },
+ "sziget-2010": { "stages": 5, "setsPerDay": [2, 6, 28, 27, 28, 28, 27], "droppedPerDay": [0, 0, 0, 0, 0, 0, 0] },
+ "sziget-2011": { "stages": 5, "setsPerDay": [1, 6, 20, 20, 19, 20, 19], "droppedPerDay": [0, 0, 0, 0, 0, 0, 0] }
 }

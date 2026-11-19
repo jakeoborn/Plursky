@@ -515502,6 +515502,6071 @@
   "mainStage": null
  },
  {
+  "id": "sziget-2010:d1:main-stage:1900:esti-kornel",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-09",
+  "day": 1,
+  "stage": "Main Stage",
+  "start": "19:00",
+  "end": null,
+  "printed": "Esti Kornél",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "esti-kornel",
+    "role": "performer"
+   }
+  ],
+  "act": "esti-kornel",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d1:main-stage:2000:kispal-es-a-borz",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-09",
+  "day": 1,
+  "stage": "Main Stage",
+  "start": "20:00",
+  "end": null,
+  "printed": "Kispál és a Borz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kispal-es-a-borz",
+    "role": "performer"
+   }
+  ],
+  "act": "kispal-es-a-borz",
+  "closing": true,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d2:main-stage:1500:ladanybene-27",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-10",
+  "day": 2,
+  "stage": "Main Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "Ladánybene 27",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ladanybene-27",
+    "role": "performer"
+   }
+  ],
+  "act": "ladanybene-27",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d2:main-stage:1630:the-aggrolites",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-10",
+  "day": 2,
+  "stage": "Main Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "The Aggrolites",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-aggrolites",
+    "role": "performer"
+   }
+  ],
+  "act": "the-aggrolites",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d2:main-stage:1800:toots-and-the-maytals",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-10",
+  "day": 2,
+  "stage": "Main Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Toots & the Maytals",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "toots-and-the-maytals",
+    "role": "performer"
+   }
+  ],
+  "act": "toots-and-the-maytals",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d2:main-stage:1945:the-wailers",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-10",
+  "day": 2,
+  "stage": "Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "The Wailers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-wailers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-wailers",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d2:main-stage:2130:ub40",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-10",
+  "day": 2,
+  "stage": "Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "UB40",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ub40",
+    "role": "performer"
+   }
+  ],
+  "act": "ub40",
+  "closing": true,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d2:world-music-stage:1800:in-memoriam-tamas-cseh",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-10",
+  "day": 2,
+  "stage": "World Music Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "In Memoriam: Tamás Cseh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "in-memoriam-tamas-cseh",
+    "role": "performer"
+   }
+  ],
+  "act": "in-memoriam-tamas-cseh",
+  "closing": true,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:main-stage:1500:gwar-us",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "Main Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "Gwar (US)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gwar",
+    "role": "performer"
+   }
+  ],
+  "act": "gwar-us",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:main-stage:1630:the-toy-dolls-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "Main Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "The Toy Dolls (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-toy-dolls",
+    "role": "performer"
+   }
+  ],
+  "act": "the-toy-dolls-uk",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:main-stage:1800:ska-p-es",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "Main Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Ska-P (ES)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ska-p",
+    "role": "performer"
+   }
+  ],
+  "act": "ska-p-es",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:main-stage:1945:the-hives-s",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "The Hives (S)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-hives",
+    "role": "performer"
+   }
+  ],
+  "act": "the-hives-s",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:main-stage:2130:madness-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Madness (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madness",
+    "role": "performer"
+   }
+  ],
+  "act": "madness-uk",
+  "closing": true,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:world-music-stage:1700:cankisou-cz",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "World Music Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Cankisou (CZ)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cankisou",
+    "role": "performer"
+   }
+  ],
+  "act": "cankisou-cz",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:world-music-stage:1815:csik-zenekar-h",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "World Music Stage",
+  "start": "18:15",
+  "end": null,
+  "printed": "Csík Zenekar (H)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "csik-zenekar",
+    "role": "performer"
+   }
+  ],
+  "act": "csik-zenekar-h",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:world-music-stage:1945:amparo-sanchez-e",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "World Music Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Amparo Sanchez (E)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amparo-sanchez",
+    "role": "performer"
+   }
+  ],
+  "act": "amparo-sanchez-e",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:world-music-stage:2130:orquesta-buena-vista-social-club-es-omara-portuondo-cub",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "World Music Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Orquesta Buena Vista Social Club® és Omara Portuondo (CUB)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orquesta-buena-vista-social-club",
+    "role": "cobilled"
+   },
+   {
+    "key": "omara-portuondo",
+    "role": "cobilled"
+   }
+  ],
+  "act": "orquesta-buena-vista-social-club-es-omara-portuondo-cub",
+  "closing": true,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:mtv-headbangers-ball-stage:1500:the-grenma",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "The Grenma",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-grenma",
+    "role": "performer"
+   }
+  ],
+  "act": "the-grenma",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:mtv-headbangers-ball-stage:1630:mangod-inc",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "ManGod.Inc",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mangod-inc",
+    "role": "performer"
+   }
+  ],
+  "act": "mangod-inc",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:mtv-headbangers-ball-stage:1800:cadaveres",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Cadaveres",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cadaveres",
+    "role": "performer"
+   }
+  ],
+  "act": "cadaveres",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:mtv-headbangers-ball-stage:1930:ill-nino-usa",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "19:30",
+  "end": null,
+  "printed": "Ill Niño (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ill-nino",
+    "role": "performer"
+   }
+  ],
+  "act": "ill-nino-usa",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:mtv-headbangers-ball-stage:2110:children-of-bodom-fin",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "21:10",
+  "end": null,
+  "printed": "Children of Bodom (FIN)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "children-of-bodom",
+    "role": "performer"
+   }
+  ],
+  "act": "children-of-bodom-fin",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:mtv-headbangers-ball-stage:2310:road",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "23:10",
+  "end": null,
+  "printed": "Road",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "road",
+    "role": "performer"
+   }
+  ],
+  "act": "road",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:mtv-headbangers-ball-stage:0040:insane",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "00:40",
+  "end": null,
+  "printed": "Insane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "insane",
+    "role": "performer"
+   }
+  ],
+  "act": "insane",
+  "closing": true,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:a38-wan2-stage:1700:the-picturebooks-d",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "A38-wan2 stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "The Picturebooks (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-picturebooks",
+    "role": "performer"
+   }
+  ],
+  "act": "the-picturebooks-d",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:a38-wan2-stage:1840:inspector-cluzo-fr",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "A38-wan2 stage",
+  "start": "18:40",
+  "end": null,
+  "printed": "Inspector Cluzo (FR)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "inspector-cluzo",
+    "role": "performer"
+   }
+  ],
+  "act": "inspector-cluzo-fr",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:a38-wan2-stage:2020:orias",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "A38-wan2 stage",
+  "start": "20:20",
+  "end": null,
+  "printed": "Óriás",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orias",
+    "role": "performer"
+   }
+  ],
+  "act": "orias",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:a38-wan2-stage:2150:peaches-d",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "A38-wan2 stage",
+  "start": "21:50",
+  "end": null,
+  "printed": "Peaches (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peaches",
+    "role": "performer"
+   }
+  ],
+  "act": "peaches-d",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:a38-wan2-stage:2330:bad-religion-usa",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "A38-wan2 stage",
+  "start": "23:30",
+  "end": null,
+  "printed": "Bad Religion (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bad-religion",
+    "role": "performer"
+   }
+  ],
+  "act": "bad-religion-usa",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:a38-wan2-stage:0130:alvin-es-a-mokusok",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "A38-wan2 stage",
+  "start": "01:30",
+  "end": null,
+  "printed": "Alvin és a mókusok",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alvin-es-a-mokusok",
+    "role": "performer"
+   }
+  ],
+  "act": "alvin-es-a-mokusok",
+  "closing": true,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:party-arena:1930:dj-shadow-usa",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "Party Arena",
+  "start": "19:30",
+  "end": null,
+  "printed": "DJ Shadow (USA )",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-shadow",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-shadow-usa",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:party-arena:2200:pole-position",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "Party Arena",
+  "start": "22:00",
+  "end": null,
+  "printed": "Pole Position",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pole-position",
+    "role": "performer"
+   }
+  ],
+  "act": "pole-position",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:party-arena:2300:szeifert",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "Party Arena",
+  "start": "23:00",
+  "end": null,
+  "printed": "Szeifert",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "szeifert",
+    "role": "performer"
+   }
+  ],
+  "act": "szeifert",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:party-arena:0000:andy-moor-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "Party Arena",
+  "start": "00:00",
+  "end": null,
+  "printed": "Andy Moor (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andy-moor",
+    "role": "performer"
+   }
+  ],
+  "act": "andy-moor-uk",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:party-arena:0130:sander-van-doorn-nl",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "Party Arena",
+  "start": "01:30",
+  "end": null,
+  "printed": "Sander van Doorn (NL)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sander-van-doorn",
+    "role": "performer"
+   }
+  ],
+  "act": "sander-van-doorn-nl",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d3:party-arena:0330:kuhl",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-11",
+  "day": 3,
+  "stage": "Party Arena",
+  "start": "03:30",
+  "end": null,
+  "printed": "Kühl",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kuhl",
+    "role": "performer"
+   }
+  ],
+  "act": "kuhl",
+  "closing": true,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:main-stage:1500:k-i-z-d",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "Main Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "K.I.Z. (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "k-i-z",
+    "role": "performer"
+   }
+  ],
+  "act": "k-i-z-d",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:main-stage:1630:young-punx-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "Main Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "Young Punx (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "young-punx",
+    "role": "performer"
+   }
+  ],
+  "act": "young-punx-uk",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:main-stage:1800:public-image-ltd-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "Main Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Public Image Ltd. (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "public-image-ltd",
+    "role": "performer"
+   }
+  ],
+  "act": "public-image-ltd-uk",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:main-stage:1945:the-specials-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "The Specials (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-specials",
+    "role": "performer"
+   }
+  ],
+  "act": "the-specials-uk",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:main-stage:2130:faithless-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Faithless (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "faithless",
+    "role": "performer"
+   }
+  ],
+  "act": "faithless-uk",
+  "closing": true,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:world-music-stage:1700:kries-cro",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "World Music Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Kries (CRO)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kries",
+    "role": "performer"
+   }
+  ],
+  "act": "kries-cro",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:world-music-stage:1815:besh-o-drom-h",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "World Music Stage",
+  "start": "18:15",
+  "end": null,
+  "printed": "Besh o droM (H)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "besh-o-drom",
+    "role": "performer"
+   }
+  ],
+  "act": "besh-o-drom-h",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:world-music-stage:1945:dirtmusic-es-tamikrest-mali-usa-aus",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "World Music Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Dirtmusic és Tamikrest (Mali, USA, AUS)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dirtmusic",
+    "role": "cobilled"
+   },
+   {
+    "key": "tamikrest",
+    "role": "cobilled"
+   }
+  ],
+  "act": "dirtmusic-es-tamikrest-mali-usa-aus",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:world-music-stage:2130:tony-allen-nig",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "World Music Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Tony Allen (NIG)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tony-allen",
+    "role": "performer"
+   }
+  ],
+  "act": "tony-allen-nig",
+  "closing": true,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:mtv-headbangers-ball-stage:1500:aws",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "AWS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aws",
+    "role": "performer"
+   }
+  ],
+  "act": "aws",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:mtv-headbangers-ball-stage:1630:drums-are-for-parades-b",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "Drums are for Parades (B)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "drums-are-for-parades",
+    "role": "performer"
+   }
+  ],
+  "act": "drums-are-for-parades-b",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:mtv-headbangers-ball-stage:1800:subscribe",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Subscribe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subscribe",
+    "role": "performer"
+   }
+  ],
+  "act": "subscribe",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:mtv-headbangers-ball-stage:1930:skindred-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "19:30",
+  "end": null,
+  "printed": "Skindred (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skindred",
+    "role": "performer"
+   }
+  ],
+  "act": "skindred-uk",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:mtv-headbangers-ball-stage:2110:the-69-eyes-fin",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "21:10",
+  "end": null,
+  "printed": "The 69 Eyes (FIN)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-69-eyes",
+    "role": "performer"
+   }
+  ],
+  "act": "the-69-eyes-fin",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:mtv-headbangers-ball-stage:2310:nevergreen",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "23:10",
+  "end": null,
+  "printed": "Nevergreen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nevergreen",
+    "role": "performer"
+   }
+  ],
+  "act": "nevergreen",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:mtv-headbangers-ball-stage:0040:romeo-verzik",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "00:40",
+  "end": null,
+  "printed": "Rómeó Vérzik",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "romeo-verzik",
+    "role": "performer"
+   }
+  ],
+  "act": "romeo-verzik",
+  "closing": true,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:a38-wan2-stage:1700:foreign-beggars-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "A38-wan2 stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Foreign Beggars (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "foreign-beggars",
+    "role": "performer"
+   }
+  ],
+  "act": "foreign-beggars-uk",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:a38-wan2-stage:1840:black-box-revelation-b",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "A38-wan2 stage",
+  "start": "18:40",
+  "end": null,
+  "printed": "Black Box Revelation (B)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-box-revelation",
+    "role": "performer"
+   }
+  ],
+  "act": "black-box-revelation-b",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:a38-wan2-stage:2020:qualitons-feat-kovacs-kati",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "A38-wan2 stage",
+  "start": "20:20",
+  "end": null,
+  "printed": "Qualitons feat Kovács Kati",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "qualitons",
+    "role": "performer"
+   },
+   {
+    "key": "kovacs-kati",
+    "role": "guest"
+   }
+  ],
+  "act": "qualitons-feat-kovacs-kati",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:a38-wan2-stage:2150:c-mon-and-kypski-nl",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "A38-wan2 stage",
+  "start": "21:50",
+  "end": null,
+  "printed": "C-Mon & Kypski (NL)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "c-mon-and-kypski",
+    "role": "performer"
+   }
+  ],
+  "act": "c-mon-and-kypski-nl",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:a38-wan2-stage:2330:gorillaz-sound-system-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "A38-wan2 stage",
+  "start": "23:30",
+  "end": null,
+  "printed": "Gorillaz Sound System (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gorillaz-sound-system",
+    "role": "performer"
+   }
+  ],
+  "act": "gorillaz-sound-system-uk",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:a38-wan2-stage:0130:zagar",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "A38-wan2 stage",
+  "start": "01:30",
+  "end": null,
+  "printed": "Zagar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zagar",
+    "role": "performer"
+   }
+  ],
+  "act": "zagar",
+  "closing": true,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:party-arena:1930:simian-mobile-disco-live-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "Party Arena",
+  "start": "19:30",
+  "end": null,
+  "printed": "Simian Mobile Disco Live (UK)",
+  "setTag": "Live",
+  "performers": [
+   {
+    "key": "simian-mobile-disco",
+    "role": "performer"
+   }
+  ],
+  "act": "simian-mobile-disco-live",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:party-arena:2200:junkie-and-hawky",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "Party Arena",
+  "start": "22:00",
+  "end": null,
+  "printed": "Junkie & Hawky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "junkie-and-hawky",
+    "role": "performer"
+   }
+  ],
+  "act": "junkie-and-hawky",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:party-arena:2330:bergi-and-svindler",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "Party Arena",
+  "start": "23:30",
+  "end": null,
+  "printed": "Bergi & Svindler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bergi-and-svindler",
+    "role": "performer"
+   }
+  ],
+  "act": "bergi-and-svindler",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:party-arena:0030:boys-noize-vs-erol-alkan-d",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "Party Arena",
+  "start": "00:30",
+  "end": null,
+  "printed": "Boys Noize vs. Erol Alkan (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boys-noize",
+    "role": "cobilled"
+   },
+   {
+    "key": "erol-alkan",
+    "role": "cobilled"
+   }
+  ],
+  "act": "boys-noize-vs-erol-alkan-d",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d4:party-arena:0330:coyote",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-12",
+  "day": 4,
+  "stage": "Party Arena",
+  "start": "03:30",
+  "end": null,
+  "printed": "Coyote",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coyote",
+    "role": "performer"
+   }
+  ],
+  "act": "coyote",
+  "closing": true,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:main-stage:1500:lyapis-trubetskoy-by",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "Main Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "Lyapis Trubetskoy (BY)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lyapis-trubetskoy",
+    "role": "performer"
+   }
+  ],
+  "act": "lyapis-trubetskoy-by",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:main-stage:1630:papa-roach-usa",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "Main Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "Papa Roach (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "papa-roach",
+    "role": "performer"
+   }
+  ],
+  "act": "papa-roach-usa",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:main-stage:1800:gentleman-and-the-evolution-d",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "Main Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Gentleman and the Evolution (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gentleman-and-the-evolution",
+    "role": "performer"
+   }
+  ],
+  "act": "gentleman-and-the-evolution-d",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:main-stage:1945:mika-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Mika (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mika",
+    "role": "performer"
+   }
+  ],
+  "act": "mika-uk",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:main-stage:2130:thirty-seconds-to-mars-usa",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Thirty Seconds to Mars (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thirty-seconds-to-mars",
+    "role": "performer"
+   }
+  ],
+  "act": "thirty-seconds-to-mars-usa",
+  "closing": true,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:world-music-stage:1700:daniel-kahn-and-the-painted-bird-usa",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "World Music Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Daniel Kahn & The Painted Bird (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-kahn-and-the-painted-bird",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-kahn-and-the-painted-bird-usa",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:world-music-stage:1815:sondorgo-ferus-mustafov-h-mac",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "World Music Stage",
+  "start": "18:15",
+  "end": null,
+  "printed": "Söndörgő + Ferus Mustafov (H, MAC)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sondorgo",
+    "role": "cobilled"
+   },
+   {
+    "key": "ferus-mustafov",
+    "role": "cobilled"
+   }
+  ],
+  "act": "sondorgo-ferus-mustafov-h-mac",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:world-music-stage:1945:rotfront-d-h-ukr",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "World Music Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Rotfront (D, H, UKR)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rotfront",
+    "role": "performer"
+   }
+  ],
+  "act": "rotfront-d-h-ukr",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:world-music-stage:2130:oi-va-voi-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "World Music Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Oi Va Voi (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oi-va-voi",
+    "role": "performer"
+   }
+  ],
+  "act": "oi-va-voi-uk",
+  "closing": true,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:mtv-headbangers-ball-stage:1500:room-of-the-mad-robots",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "Room Of The Mad Robots",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "room-of-the-mad-robots",
+    "role": "performer"
+   }
+  ],
+  "act": "room-of-the-mad-robots",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:mtv-headbangers-ball-stage:1630:overdrive-srb",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "Overdrive (SRB)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "overdrive",
+    "role": "performer"
+   }
+  ],
+  "act": "overdrive-srb",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:mtv-headbangers-ball-stage:1800:blind-myself",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Blind Myself",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blind-myself",
+    "role": "performer"
+   }
+  ],
+  "act": "blind-myself",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:mtv-headbangers-ball-stage:1930:enter-shikari-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "19:30",
+  "end": null,
+  "printed": "Enter Shikari (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "enter-shikari",
+    "role": "performer"
+   }
+  ],
+  "act": "enter-shikari-uk",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:mtv-headbangers-ball-stage:2110:paradise-lost-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "21:10",
+  "end": null,
+  "printed": "Paradise Lost (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paradise-lost",
+    "role": "performer"
+   }
+  ],
+  "act": "paradise-lost-uk",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:mtv-headbangers-ball-stage:2310:dalriada",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "23:10",
+  "end": null,
+  "printed": "Dalriada",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dalriada",
+    "role": "performer"
+   }
+  ],
+  "act": "dalriada",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:mtv-headbangers-ball-stage:0040:antitela-ukr",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "00:40",
+  "end": null,
+  "printed": "Antitela (UKR)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "antitela",
+    "role": "performer"
+   }
+  ],
+  "act": "antitela-ukr",
+  "closing": true,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:a38-wan2-stage:1700:deja-vu-revue",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "A38-wan2 stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Déja vu Revue",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deja-vu-revue",
+    "role": "performer"
+   }
+  ],
+  "act": "deja-vu-revue",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:a38-wan2-stage:1840:zzz-nl",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "A38-wan2 stage",
+  "start": "18:40",
+  "end": null,
+  "printed": "zZz (NL)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zzz",
+    "role": "performer"
+   }
+  ],
+  "act": "zzz-nl",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:a38-wan2-stage:2020:isolated",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "A38-wan2 stage",
+  "start": "20:20",
+  "end": null,
+  "printed": "Isolated",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isolated",
+    "role": "performer"
+   }
+  ],
+  "act": "isolated",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:a38-wan2-stage:2150:vive-la-fete-b",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "A38-wan2 stage",
+  "start": "21:50",
+  "end": null,
+  "printed": "Vive la Féte (B)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vive-la-fete",
+    "role": "performer"
+   }
+  ],
+  "act": "vive-la-fete-b",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:a38-wan2-stage:2330:charlie-winston-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "A38-wan2 stage",
+  "start": "23:30",
+  "end": null,
+  "printed": "Charlie Winston (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charlie-winston",
+    "role": "performer"
+   }
+  ],
+  "act": "charlie-winston-uk",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:a38-wan2-stage:0130:erik-sumo-band-feat-kiss-erzsi",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "A38-wan2 stage",
+  "start": "01:30",
+  "end": null,
+  "printed": "Erik Sumo Band feat. Kiss Erzsi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "erik-sumo-band",
+    "role": "performer"
+   },
+   {
+    "key": "kiss-erzsi",
+    "role": "guest"
+   }
+  ],
+  "act": "erik-sumo-band-feat-kiss-erzsi",
+  "closing": true,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:party-arena:1930:gotan-project-f",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "Party Arena",
+  "start": "19:30",
+  "end": null,
+  "printed": "Gotan Project (F)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gotan-project",
+    "role": "performer"
+   }
+  ],
+  "act": "gotan-project-f",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:party-arena:2200:collins-and-behnam",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "Party Arena",
+  "start": "22:00",
+  "end": null,
+  "printed": "Collins & Behnam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "collins-and-behnam",
+    "role": "performer"
+   }
+  ],
+  "act": "collins-and-behnam",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:party-arena:2300:igor-do-urden",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "Party Arena",
+  "start": "23:00",
+  "end": null,
+  "printed": "Igor Do'urden",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "igor-do-urden",
+    "role": "performer"
+   }
+  ],
+  "act": "igor-do-urden",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:party-arena:0130:adam-beyer-s",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "Party Arena",
+  "start": "01:30",
+  "end": null,
+  "printed": "Adam Beyer (S)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-beyer",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-beyer-s",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:party-arena:0300:joel-mull-s",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "Party Arena",
+  "start": "03:00",
+  "end": null,
+  "printed": "Joel Mull (S)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joel-mull",
+    "role": "performer"
+   }
+  ],
+  "act": "joel-mull-s",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d5:party-arena:0430:hot-x",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-13",
+  "day": 5,
+  "stage": "Party Arena",
+  "start": "04:30",
+  "end": null,
+  "printed": "Hot X",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hot-x",
+    "role": "performer"
+   }
+  ],
+  "act": "hot-x",
+  "closing": true,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:main-stage:1500:vodafone-havervagy-tanc",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "Main Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "Vodafone Havervagy Tánc",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vodafone-havervagy-tanc",
+    "role": "performer"
+   }
+  ],
+  "act": "vodafone-havervagy-tanc",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:main-stage:1530:subsonica-i",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "Main Stage",
+  "start": "15:30",
+  "end": null,
+  "printed": "Subsonica (I)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subsonica",
+    "role": "performer"
+   }
+  ],
+  "act": "subsonica-i",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:main-stage:1700:the-cribs-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "Main Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "The Cribs (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-cribs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-cribs-uk",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:main-stage:1845:tankcsapda-h",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "Main Stage",
+  "start": "18:45",
+  "end": null,
+  "printed": "Tankcsapda (H)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tankcsapda",
+    "role": "performer"
+   }
+  ],
+  "act": "tankcsapda-h",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:main-stage:2100:iron-maiden-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "Main Stage",
+  "start": "21:00",
+  "end": null,
+  "printed": "Iron Maiden (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "iron-maiden",
+    "role": "performer"
+   }
+  ],
+  "act": "iron-maiden-uk",
+  "closing": true,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:world-music-stage:1700:jaune-toujours-b",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "World Music Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Jaune Toujours (B)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jaune-toujours",
+    "role": "performer"
+   }
+  ],
+  "act": "jaune-toujours-b",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:world-music-stage:1815:gyorgy-ferenczi-and-rackajam-and-guests",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "World Music Stage",
+  "start": "18:15",
+  "end": null,
+  "printed": "György Ferenczi & Rackajam & Guests",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gyorgy-ferenczi-and-rackajam-and-guests",
+    "role": "performer"
+   }
+  ],
+  "act": "gyorgy-ferenczi-and-rackajam-and-guests",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:world-music-stage:1945:rupa-and-the-april-fishes-usa",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "World Music Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Rupa & the April Fishes (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rupa-and-the-april-fishes",
+    "role": "performer"
+   }
+  ],
+  "act": "rupa-and-the-april-fishes-usa",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:world-music-stage:2130:los-de-abajo-mex",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "World Music Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Los De Abajo (MEX)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-de-abajo",
+    "role": "performer"
+   }
+  ],
+  "act": "los-de-abajo-mex",
+  "closing": true,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:mtv-headbangers-ball-stage:1500:holtido",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "Holtidő",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holtido",
+    "role": "performer"
+   }
+  ],
+  "act": "holtido",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:mtv-headbangers-ball-stage:1615:zorall",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "16:15",
+  "end": null,
+  "printed": "Zorall",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zorall",
+    "role": "performer"
+   }
+  ],
+  "act": "zorall",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:mtv-headbangers-ball-stage:1745:depresszio",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "17:45",
+  "end": null,
+  "printed": "Depresszió",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "depresszio",
+    "role": "performer"
+   }
+  ],
+  "act": "depresszio",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:mtv-headbangers-ball-stage:1930:deak-bill-gyula",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "19:30",
+  "end": null,
+  "printed": "Deák Bill Gyula",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deak-bill-gyula",
+    "role": "performer"
+   }
+  ],
+  "act": "deak-bill-gyula",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:mtv-headbangers-ball-stage:2110:kowalsky-meg-a-vega",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "21:10",
+  "end": null,
+  "printed": "Kowalsky meg a Vega",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kowalsky-meg-a-vega",
+    "role": "performer"
+   }
+  ],
+  "act": "kowalsky-meg-a-vega",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:mtv-headbangers-ball-stage:2310:kamelot-usa",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "23:10",
+  "end": null,
+  "printed": "Kamelot (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kamelot",
+    "role": "performer"
+   }
+  ],
+  "act": "kamelot-usa",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:mtv-headbangers-ball-stage:0040:kalapacs",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "00:40",
+  "end": null,
+  "printed": "Kalapács",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kalapacs",
+    "role": "performer"
+   }
+  ],
+  "act": "kalapacs",
+  "closing": true,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:a38-wan2-stage:1700:carbovaris",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "A38-wan2 stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Carbovaris",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carbovaris",
+    "role": "performer"
+   }
+  ],
+  "act": "carbovaris",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:a38-wan2-stage:1840:wildbirds-and-peacedrums-s",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "A38-wan2 stage",
+  "start": "18:40",
+  "end": null,
+  "printed": "Wildbirds & Peacedrums (S)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wildbirds-and-peacedrums",
+    "role": "performer"
+   }
+  ],
+  "act": "wildbirds-and-peacedrums-s",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:a38-wan2-stage:2020:bin-jip",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "A38-wan2 stage",
+  "start": "20:20",
+  "end": null,
+  "printed": "Bin Jip",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bin-jip",
+    "role": "performer"
+   }
+  ],
+  "act": "bin-jip",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:a38-wan2-stage:2150:ez3kiel-f",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "A38-wan2 stage",
+  "start": "21:50",
+  "end": null,
+  "printed": "Ez3kiel (F)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ez3kiel",
+    "role": "performer"
+   }
+  ],
+  "act": "ez3kiel-f",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:a38-wan2-stage:2330:nina-hagen-d",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "A38-wan2 stage",
+  "start": "23:30",
+  "end": null,
+  "printed": "Nina Hagen (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nina-hagen",
+    "role": "performer"
+   }
+  ],
+  "act": "nina-hagen-d",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:a38-wan2-stage:0130:vhk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "A38-wan2 stage",
+  "start": "01:30",
+  "end": null,
+  "printed": "VHK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vhk",
+    "role": "performer"
+   }
+  ],
+  "act": "vhk",
+  "closing": true,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:party-arena:1930:calvin-harris-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "Party Arena",
+  "start": "19:30",
+  "end": null,
+  "printed": "Calvin Harris (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "calvin-harris",
+    "role": "performer"
+   }
+  ],
+  "act": "calvin-harris-uk",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:party-arena:2200:karanyi",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "Party Arena",
+  "start": "22:00",
+  "end": null,
+  "printed": "Karányi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "karanyi",
+    "role": "performer"
+   }
+  ],
+  "act": "karanyi",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:party-arena:2330:tsubi",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "Party Arena",
+  "start": "23:30",
+  "end": null,
+  "printed": "Tsubi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tsubi",
+    "role": "performer"
+   }
+  ],
+  "act": "tsubi",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:party-arena:0100:infected-mushroom-isr",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "Party Arena",
+  "start": "01:00",
+  "end": null,
+  "printed": "Infected Mushroom (ISR)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "infected-mushroom",
+    "role": "performer"
+   }
+  ],
+  "act": "infected-mushroom-isr",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:party-arena:0230:danger",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "Party Arena",
+  "start": "02:30",
+  "end": null,
+  "printed": "Danger",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danger",
+    "role": "performer"
+   }
+  ],
+  "act": "danger",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d6:party-arena:0400:sikztah",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-14",
+  "day": 6,
+  "stage": "Party Arena",
+  "start": "04:00",
+  "end": null,
+  "printed": "Sikztah",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sikztah",
+    "role": "performer"
+   }
+  ],
+  "act": "sikztah",
+  "closing": true,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:main-stage:1630:danko-jones-can",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "Main Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "Danko Jones (CAN)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danko-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "danko-jones-can",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:main-stage:1800:billy-talent-can",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "Main Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Billy Talent (CAN)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billy-talent",
+    "role": "performer"
+   }
+  ],
+  "act": "billy-talent-can",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:main-stage:1945:kasabian-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Kasabian (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kasabian",
+    "role": "performer"
+   }
+  ],
+  "act": "kasabian-uk",
+  "closing": false,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:main-stage:2130:muse-uk",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Muse (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muse",
+    "role": "performer"
+   }
+  ],
+  "act": "muse-uk",
+  "closing": true,
+  "stageLineage": "sziget:main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:world-music-stage:1700:mahala-rai-banda-rom",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "World Music Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Mahala Rai Banda (ROM)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mahala-rai-banda",
+    "role": "performer"
+   }
+  ],
+  "act": "mahala-rai-banda-rom",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:world-music-stage:1815:parno-graszt-h",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "World Music Stage",
+  "start": "18:15",
+  "end": null,
+  "printed": "Parno Graszt (H)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "parno-graszt",
+    "role": "performer"
+   }
+  ],
+  "act": "parno-graszt-h",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:world-music-stage:1945:o8oo1-e",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "World Music Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "O8OO1 (E)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "o8oo1",
+    "role": "performer"
+   }
+  ],
+  "act": "o8oo1-e",
+  "closing": false,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:world-music-stage:2130:shantel-and-bucovina-club-orkestar-d",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "World Music Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Shantel & Bucovina Club Orkestar (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shantel-and-bucovina-club-orkestar",
+    "role": "performer"
+   }
+  ],
+  "act": "shantel-and-bucovina-club-orkestar-d",
+  "closing": true,
+  "stageLineage": "sziget:world-music-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:mtv-headbangers-ball-stage:1500:green-path",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "Green Path",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "green-path",
+    "role": "performer"
+   }
+  ],
+  "act": "green-path",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:mtv-headbangers-ball-stage:1630:neck-sprain",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "Neck Sprain",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neck-sprain",
+    "role": "performer"
+   }
+  ],
+  "act": "neck-sprain",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:mtv-headbangers-ball-stage:1800:isten-hata-mogott",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Isten Háta Mögött",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isten-hata-mogott",
+    "role": "performer"
+   }
+  ],
+  "act": "isten-hata-mogott",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:mtv-headbangers-ball-stage:1930:monster-magnet-usa",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "19:30",
+  "end": null,
+  "printed": "Monster Magnet (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "monster-magnet",
+    "role": "performer"
+   }
+  ],
+  "act": "monster-magnet-usa",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:mtv-headbangers-ball-stage:2110:fear-factory-usa",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "21:10",
+  "end": null,
+  "printed": "Fear Factory (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fear-factory",
+    "role": "performer"
+   }
+  ],
+  "act": "fear-factory-usa",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:mtv-headbangers-ball-stage:2310:superbutt",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "23:10",
+  "end": null,
+  "printed": "Superbutt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "superbutt",
+    "role": "performer"
+   }
+  ],
+  "act": "superbutt",
+  "closing": false,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:mtv-headbangers-ball-stage:0040:watch-my-dying",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "MTV Headbangers Ball Stage",
+  "start": "00:40",
+  "end": null,
+  "printed": "Watch My Dying",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "watch-my-dying",
+    "role": "performer"
+   }
+  ],
+  "act": "watch-my-dying",
+  "closing": true,
+  "stageLineage": "sziget:mtv-headbangers-ball-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:a38-wan2-stage:1700:skip-the-use-f",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "A38-wan2 stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Skip The Use (F)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skip-the-use",
+    "role": "performer"
+   }
+  ],
+  "act": "skip-the-use-f",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:a38-wan2-stage:1840:madensuyu-b",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "A38-wan2 stage",
+  "start": "18:40",
+  "end": null,
+  "printed": "Madensuyu (B)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madensuyu",
+    "role": "performer"
+   }
+  ],
+  "act": "madensuyu-b",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:a38-wan2-stage:2020:turbo",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "A38-wan2 stage",
+  "start": "20:20",
+  "end": null,
+  "printed": "Turbo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "turbo",
+    "role": "performer"
+   }
+  ],
+  "act": "turbo",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:a38-wan2-stage:2150:yeasayer-usa",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "A38-wan2 stage",
+  "start": "21:50",
+  "end": null,
+  "printed": "Yeasayer (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yeasayer",
+    "role": "performer"
+   }
+  ],
+  "act": "yeasayer-usa",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:a38-wan2-stage:2330:major-lazer-jam",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "A38-wan2 stage",
+  "start": "23:30",
+  "end": null,
+  "printed": "Major Lazer (JAM)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "major-lazer",
+    "role": "performer"
+   }
+  ],
+  "act": "major-lazer-jam",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:a38-wan2-stage:0130:kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "A38-wan2 stage",
+  "start": "01:30",
+  "end": null,
+  "printed": "Kees van Hondt & friends (NL) Feest / Mulatsag / Fest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kees-van-hondt-and-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+  "closing": true,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:party-arena:1930:die-antwoord-za",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "Party Arena",
+  "start": "19:30",
+  "end": null,
+  "printed": "Die Antwoord (ZA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "die-antwoord",
+    "role": "performer"
+   }
+  ],
+  "act": "die-antwoord-za",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:party-arena:2200:soneec",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "Party Arena",
+  "start": "22:00",
+  "end": null,
+  "printed": "Soneec",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soneec",
+    "role": "performer"
+   }
+  ],
+  "act": "soneec",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:party-arena:2300:poli-vs-nora-naughty",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "Party Arena",
+  "start": "23:00",
+  "end": null,
+  "printed": "Poli vs. Nora Naughty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "poli-vs-nora-naughty",
+    "role": "performer"
+   }
+  ],
+  "act": "poli-vs-nora-naughty",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:party-arena:0015:chriss",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "Party Arena",
+  "start": "00:15",
+  "end": null,
+  "printed": "Chriss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chriss",
+    "role": "performer"
+   }
+  ],
+  "act": "chriss",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:party-arena:0130:timo-maas",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "Party Arena",
+  "start": "01:30",
+  "end": null,
+  "printed": "Timo Maas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "timo-maas",
+    "role": "performer"
+   }
+  ],
+  "act": "timo-maas",
+  "closing": false,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2010:d7:party-arena:0330:slam-jr",
+  "source": "edition",
+  "festivalId": "sziget-2010",
+  "festivalBrand": "sziget",
+  "year": 2010,
+  "date": "2010-08-15",
+  "day": 7,
+  "stage": "Party Arena",
+  "start": "03:30",
+  "end": null,
+  "printed": "Slam Jr.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slam-jr",
+    "role": "performer"
+   }
+  ],
+  "act": "slam-jr",
+  "closing": true,
+  "stageLineage": "sziget:party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d1:pop-rock-main-stage:2030:gesztival",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-08",
+  "day": 1,
+  "stage": "Pop-Rock Main Stage",
+  "start": "20:30",
+  "end": null,
+  "printed": "Gesztivál",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gesztival",
+    "role": "performer"
+   }
+  ],
+  "act": "gesztival",
+  "closing": true,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d2:pop-rock-main-stage:1900:prince-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-09",
+  "day": 2,
+  "stage": "Pop-Rock Main Stage",
+  "start": "19:00",
+  "end": null,
+  "printed": "Prince (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "prince",
+    "role": "performer"
+   }
+  ],
+  "act": "prince-usa",
+  "closing": true,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d2:rock-metal-main-stage:1700:the-klezmatics-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-09",
+  "day": 2,
+  "stage": "Rock-Metal Main Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "The Klezmatics (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-klezmatics",
+    "role": "performer"
+   }
+  ],
+  "act": "the-klezmatics-usa",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d2:rock-metal-main-stage:1900:boban-markovic-orkestar-srb",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-09",
+  "day": 2,
+  "stage": "Rock-Metal Main Stage",
+  "start": "19:00",
+  "end": null,
+  "printed": "Boban Markovic Orkestar (SRB)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boban-markovic-orkestar",
+    "role": "performer"
+   }
+  ],
+  "act": "boban-markovic-orkestar-srb",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d2:rock-metal-main-stage:2100:leningrad-ru",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-09",
+  "day": 2,
+  "stage": "Rock-Metal Main Stage",
+  "start": "21:00",
+  "end": null,
+  "printed": "Leningrad (RU)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leningrad",
+    "role": "performer"
+   }
+  ],
+  "act": "leningrad-ru",
+  "closing": true,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d2:pesti-est-world-music-main-stage:2000:magyar-radio-szimfonik-live",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-09",
+  "day": 2,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "20:00",
+  "end": null,
+  "printed": "Magyar Rádió Szimfonik Live",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "magyar-radio-szimfonik-live",
+    "role": "performer"
+   }
+  ],
+  "act": "magyar-radio-szimfonik-live",
+  "closing": true,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d2:a38-wan2-stage:2315:roots-and-routes-art-n-go",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-09",
+  "day": 2,
+  "stage": "A38-WAN2 Stage",
+  "start": "23:15",
+  "end": null,
+  "printed": "Roots & Routes - Art'N'Go",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roots-and-routes-art-n-go",
+    "role": "performer"
+   }
+  ],
+  "act": "roots-and-routes-art-n-go",
+  "closing": true,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:pop-rock-main-stage:1500:the-maccabees-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Pop-Rock Main Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "The Maccabees (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-maccabees",
+    "role": "performer"
+   }
+  ],
+  "act": "the-maccabees-uk",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:pop-rock-main-stage:1630:flogging-molly-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Pop-Rock Main Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "Flogging Molly (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flogging-molly",
+    "role": "performer"
+   }
+  ],
+  "act": "flogging-molly-usa",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:pop-rock-main-stage:1800:rise-against-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Pop-Rock Main Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Rise Against (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rise-against",
+    "role": "performer"
+   }
+  ],
+  "act": "rise-against-usa",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:pop-rock-main-stage:1945:interpol-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Pop-Rock Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Interpol (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "interpol",
+    "role": "performer"
+   }
+  ],
+  "act": "interpol-usa",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:pop-rock-main-stage:2130:pulp-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Pop-Rock Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Pulp (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pulp",
+    "role": "performer"
+   }
+  ],
+  "act": "pulp-uk",
+  "closing": true,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:rock-metal-main-stage:1600:omen",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Rock-Metal Main Stage",
+  "start": "16:00",
+  "end": null,
+  "printed": "Omen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omen",
+    "role": "performer"
+   }
+  ],
+  "act": "omen",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:rock-metal-main-stage:1730:road",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Rock-Metal Main Stage",
+  "start": "17:30",
+  "end": null,
+  "printed": "Road",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "road",
+    "role": "performer"
+   }
+  ],
+  "act": "road",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:rock-metal-main-stage:1900:within-temptation-nl",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Rock-Metal Main Stage",
+  "start": "19:00",
+  "end": null,
+  "printed": "Within Temptation (NL)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "within-temptation",
+    "role": "performer"
+   }
+  ],
+  "act": "within-temptation-nl",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:rock-metal-main-stage:2030:motorhead-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Rock-Metal Main Stage",
+  "start": "20:30",
+  "end": null,
+  "printed": "Motörhead (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "motorhead",
+    "role": "performer"
+   }
+  ],
+  "act": "motorhead-uk",
+  "closing": true,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:pesti-est-world-music-main-stage:1700:labrassbanda-d",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "LaBrassBanda (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "labrassbanda",
+    "role": "performer"
+   }
+  ],
+  "act": "labrassbanda-d",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:pesti-est-world-music-main-stage:1815:les-hurlements-d-leo-f",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "18:15",
+  "end": null,
+  "printed": "Les Hurlements d'Leo (F)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "les-hurlements-d-leo",
+    "role": "performer"
+   }
+  ],
+  "act": "les-hurlements-d-leo-f",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:pesti-est-world-music-main-stage:1945:ojos-de-brujo-es",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Ojos de Brujo (ES)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ojos-de-brujo",
+    "role": "performer"
+   }
+  ],
+  "act": "ojos-de-brujo-es",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:pesti-est-world-music-main-stage:2130:afrocubism-cu-ml",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "AfroCubism (CU/ML)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "afrocubism",
+    "role": "performer"
+   }
+  ],
+  "act": "afrocubism-cu-ml",
+  "closing": true,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:a38-wan2-stage:1700:terry-poison-isr",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "A38-WAN2 Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Terry Poison (ISR)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "terry-poison",
+    "role": "performer"
+   }
+  ],
+  "act": "terry-poison-isr",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:a38-wan2-stage:1840:soerii-and-poolek",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "A38-WAN2 Stage",
+  "start": "18:40",
+  "end": null,
+  "printed": "Soerii & Poolek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soerii-and-poolek",
+    "role": "performer"
+   }
+  ],
+  "act": "soerii-and-poolek",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:a38-wan2-stage:2010:the-bloody-beetroots-death-crew-77-i",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "A38-WAN2 Stage",
+  "start": "20:10",
+  "end": null,
+  "printed": "The Bloody Beetroots Death Crew 77 (I)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-bloody-beetroots-death-crew-77",
+    "role": "performer"
+   }
+  ],
+  "act": "the-bloody-beetroots-death-crew-77-i",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:a38-wan2-stage:2150:suicidal-tendencies-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "A38-WAN2 Stage",
+  "start": "21:50",
+  "end": null,
+  "printed": "Suicidal Tendencies (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suicidal-tendencies",
+    "role": "performer"
+   }
+  ],
+  "act": "suicidal-tendencies-usa",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:a38-wan2-stage:2330:hurts-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "A38-WAN2 Stage",
+  "start": "23:30",
+  "end": null,
+  "printed": "Hurts (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hurts",
+    "role": "performer"
+   }
+  ],
+  "act": "hurts-uk",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:a38-wan2-stage:0100:dorian-concept-a",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "A38-WAN2 Stage",
+  "start": "01:00",
+  "end": null,
+  "printed": "Dorian Concept (A)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dorian-concept",
+    "role": "performer"
+   }
+  ],
+  "act": "dorian-concept-a",
+  "closing": true,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d3:burn-party-arena:1930:empire-of-the-sun-aus",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-10",
+  "day": 3,
+  "stage": "Burn Party Arena",
+  "start": "19:30",
+  "end": null,
+  "printed": "Empire of The Sun (AUS)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "empire-of-the-sun",
+    "role": "performer"
+   }
+  ],
+  "act": "empire-of-the-sun-aus",
+  "closing": true,
+  "stageLineage": "sziget:burn-party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:pop-rock-main-stage:1500:ben-l-oncle-soul-f",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Pop-Rock Main Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "Ben L’oncle Soul (F)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-l-oncle-soul",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-l-oncle-soul-f",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:pop-rock-main-stage:1630:la-roux-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Pop-Rock Main Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "La Roux (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-roux",
+    "role": "performer"
+   }
+  ],
+  "act": "la-roux-uk",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:pop-rock-main-stage:1800:good-charlotte-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Pop-Rock Main Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Good Charlotte (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "good-charlotte",
+    "role": "performer"
+   }
+  ],
+  "act": "good-charlotte-usa",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:pop-rock-main-stage:1945:kasabian-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Pop-Rock Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Kasabian (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kasabian",
+    "role": "performer"
+   }
+  ],
+  "act": "kasabian-uk",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:pop-rock-main-stage:2130:the-chemical-brothers-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Pop-Rock Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "The Chemical Brothers (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-chemical-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-chemical-brothers-uk",
+  "closing": true,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:rock-metal-main-stage:1600:3-feet-smaller-a",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Rock-Metal Main Stage",
+  "start": "16:00",
+  "end": null,
+  "printed": "3 Feet Smaller (A)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "3-feet-smaller",
+    "role": "performer"
+   }
+  ],
+  "act": "3-feet-smaller-a",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:rock-metal-main-stage:1730:lord",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Rock-Metal Main Stage",
+  "start": "17:30",
+  "end": null,
+  "printed": "Lord",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lord",
+    "role": "performer"
+   }
+  ],
+  "act": "lord",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:rock-metal-main-stage:1900:helloween-d",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Rock-Metal Main Stage",
+  "start": "19:00",
+  "end": null,
+  "printed": "Helloween (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "helloween",
+    "role": "performer"
+   }
+  ],
+  "act": "helloween-d",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:rock-metal-main-stage:2030:judas-priest-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Rock-Metal Main Stage",
+  "start": "20:30",
+  "end": null,
+  "printed": "Judas Priest (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "judas-priest",
+    "role": "performer"
+   }
+  ],
+  "act": "judas-priest-uk",
+  "closing": true,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:pesti-est-world-music-main-stage:1700:shtetl-superstars-uk-featl-laszlo-kollar-klemencz",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Shtetl Superstars (UK) featl. Laszlo Kollar-Klemencz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shtetl-superstars",
+    "role": "performer"
+   },
+   {
+    "key": "laszlo-kollar-klemencz",
+    "role": "guest"
+   }
+  ],
+  "act": "shtetl-superstars-uk-featl-laszlo-kollar-klemencz",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:pesti-est-world-music-main-stage:1815:felix-lajko-and-his-band-feat-bea-palya",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "18:15",
+  "end": null,
+  "printed": "Felix Lajko and his Band, feat. Bea Palya",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "felix-lajko-and-his-band",
+    "role": "performer"
+   },
+   {
+    "key": "bea-palya",
+    "role": "guest"
+   }
+  ],
+  "act": "felix-lajko-and-his-band-feat-bea-palya",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:pesti-est-world-music-main-stage:1945:rotfront-d",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Rotfront (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rotfront",
+    "role": "performer"
+   }
+  ],
+  "act": "rotfront-d",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:pesti-est-world-music-main-stage:2130:gotan-project-f",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Gotan Project (F)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gotan-project",
+    "role": "performer"
+   }
+  ],
+  "act": "gotan-project-f",
+  "closing": true,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:a38-wan2-stage:1700:xiu-xiu-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "A38-WAN2 Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Xiu Xiu (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xiu-xiu",
+    "role": "performer"
+   }
+  ],
+  "act": "xiu-xiu-usa",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:a38-wan2-stage:1840:colorstar",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "A38-WAN2 Stage",
+  "start": "18:40",
+  "end": null,
+  "printed": "ColorStar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "colorstar",
+    "role": "performer"
+   }
+  ],
+  "act": "colorstar",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:a38-wan2-stage:2010:crystal-castles-can",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "A38-WAN2 Stage",
+  "start": "20:10",
+  "end": null,
+  "printed": "Crystal Castles (CAN)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crystal-castles",
+    "role": "performer"
+   }
+  ],
+  "act": "crystal-castles-can",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:a38-wan2-stage:2150:de-jeugd-van-tegenwoordig-nl",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "A38-WAN2 Stage",
+  "start": "21:50",
+  "end": null,
+  "printed": "De Jeugd van Tegenwoordig (NL)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "de-jeugd-van-tegenwoordig",
+    "role": "performer"
+   }
+  ],
+  "act": "de-jeugd-van-tegenwoordig-nl",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:a38-wan2-stage:2330:bomb-the-bass-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "A38-WAN2 Stage",
+  "start": "23:30",
+  "end": null,
+  "printed": "Bomb The Bass (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bomb-the-bass",
+    "role": "performer"
+   }
+  ],
+  "act": "bomb-the-bass-uk",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:a38-wan2-stage:0100:hudson-mohawke-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "A38-WAN2 Stage",
+  "start": "01:00",
+  "end": null,
+  "printed": "Hudson Mohawke (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hudson-mohawke",
+    "role": "performer"
+   }
+  ],
+  "act": "hudson-mohawke-uk",
+  "closing": true,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d4:burn-party-arena:1930:goose-b",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-11",
+  "day": 4,
+  "stage": "Burn Party Arena",
+  "start": "19:30",
+  "end": null,
+  "printed": "Goose (B)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goose",
+    "role": "performer"
+   }
+  ],
+  "act": "goose-b",
+  "closing": true,
+  "stageLineage": "sziget:burn-party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:pop-rock-main-stage:1500:batucada-sound-machine-nz",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Pop-Rock Main Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "Batucada Sound Machine (NZ)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "batucada-sound-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "batucada-sound-machine-nz",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:pop-rock-main-stage:1630:british-sea-power-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Pop-Rock Main Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "British Sea Power (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "british-sea-power",
+    "role": "performer"
+   }
+  ],
+  "act": "british-sea-power-uk",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:pop-rock-main-stage:1800:skunk-anansie-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Pop-Rock Main Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Skunk Anansie (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skunk-anansie",
+    "role": "performer"
+   }
+  ],
+  "act": "skunk-anansie-uk",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:pop-rock-main-stage:1945:dizzee-rascal-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Pop-Rock Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Dizzee Rascal (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dizzee-rascal",
+    "role": "performer"
+   }
+  ],
+  "act": "dizzee-rascal-uk",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:pop-rock-main-stage:2130:the-prodigy-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Pop-Rock Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "The Prodigy (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-prodigy",
+    "role": "performer"
+   }
+  ],
+  "act": "the-prodigy-uk",
+  "closing": true,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:rock-metal-main-stage:1600:subscribe",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Rock-Metal Main Stage",
+  "start": "16:00",
+  "end": null,
+  "printed": "Subscribe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subscribe",
+    "role": "performer"
+   }
+  ],
+  "act": "subscribe",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:rock-metal-main-stage:1730:depresszio",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Rock-Metal Main Stage",
+  "start": "17:30",
+  "end": null,
+  "printed": "Depresszió",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "depresszio",
+    "role": "performer"
+   }
+  ],
+  "act": "depresszio",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:rock-metal-main-stage:1900:the-haunted-s",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Rock-Metal Main Stage",
+  "start": "19:00",
+  "end": null,
+  "printed": "The Haunted (S)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-haunted",
+    "role": "performer"
+   }
+  ],
+  "act": "the-haunted-s",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:rock-metal-main-stage:2030:deftones-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Rock-Metal Main Stage",
+  "start": "20:30",
+  "end": null,
+  "printed": "Deftones (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deftones",
+    "role": "performer"
+   }
+  ],
+  "act": "deftones-usa",
+  "closing": true,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:pesti-est-world-music-main-stage:1700:magnifico-slo",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Magnifico (SLO)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "magnifico",
+    "role": "performer"
+   }
+  ],
+  "act": "magnifico-slo",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:pesti-est-world-music-main-stage:1815:muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "18:15",
+  "end": null,
+  "printed": "Muzsikas feat. Ildiko Toth \"Fecske\" and Zoltan Farkas \"Batyu\"",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu",
+    "role": "act"
+   }
+  ],
+  "act": "muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null,
+  "review": "feat / with billing"
+ },
+ {
+  "id": "sziget-2011:d5:pesti-est-world-music-main-stage:1945:sly-and-robbie-feat-jr-reid-jam",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Sly & Robbie feat. Jr. Reid (JAM)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sly-and-robbie",
+    "role": "performer"
+   },
+   {
+    "key": "jr-reid",
+    "role": "guest"
+   }
+  ],
+  "act": "sly-and-robbie-feat-jr-reid-jam",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:pesti-est-world-music-main-stage:2130:oi-va-voi-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Oi Va Voi (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oi-va-voi",
+    "role": "performer"
+   }
+  ],
+  "act": "oi-va-voi-uk",
+  "closing": true,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:a38-wan2-stage:1700:dewolff-nl",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "A38-WAN2 Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "DeWolff (NL)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dewolff",
+    "role": "performer"
+   }
+  ],
+  "act": "dewolff-nl",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:a38-wan2-stage:1840:zagar",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "A38-WAN2 Stage",
+  "start": "18:40",
+  "end": null,
+  "printed": "Žagar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zagar",
+    "role": "performer"
+   }
+  ],
+  "act": "zagar",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:a38-wan2-stage:2010:peter-bjorn-and-john-s",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "A38-WAN2 Stage",
+  "start": "20:10",
+  "end": null,
+  "printed": "Peter Bjorn & John (S)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peter-bjorn-and-john",
+    "role": "performer"
+   }
+  ],
+  "act": "peter-bjorn-and-john-s",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:a38-wan2-stage:2150:turbostaat-d",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "A38-WAN2 Stage",
+  "start": "21:50",
+  "end": null,
+  "printed": "Turbostaat (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "turbostaat",
+    "role": "performer"
+   }
+  ],
+  "act": "turbostaat-d",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:a38-wan2-stage:0100:kode9-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "A38-WAN2 Stage",
+  "start": "01:00",
+  "end": null,
+  "printed": "Kode9 (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kode9",
+    "role": "performer"
+   }
+  ],
+  "act": "kode9-uk",
+  "closing": true,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d5:burn-party-arena:1930:trentemoller-dk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-12",
+  "day": 5,
+  "stage": "Burn Party Arena",
+  "start": "19:30",
+  "end": null,
+  "printed": "Trentemoller (DK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trentemoller",
+    "role": "performer"
+   }
+  ],
+  "act": "trentemoller-dk",
+  "closing": true,
+  "stageLineage": "sziget:burn-party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:pop-rock-main-stage:1500:overflow-hr",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Pop-Rock Main Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "Overflow (HR)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "overflow",
+    "role": "performer"
+   }
+  ],
+  "act": "overflow-hr",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:pop-rock-main-stage:1630:hadouken-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Pop-Rock Main Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "Hadouken! (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hadouken",
+    "role": "performer"
+   }
+  ],
+  "act": "hadouken-uk",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:pop-rock-main-stage:1800:kate-nash-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Pop-Rock Main Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "Kate Nash (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kate-nash",
+    "role": "performer"
+   }
+  ],
+  "act": "kate-nash-uk",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:pop-rock-main-stage:1945:kaiser-chiefs-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Pop-Rock Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Kaiser Chiefs (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaiser-chiefs",
+    "role": "performer"
+   }
+  ],
+  "act": "kaiser-chiefs-uk",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:pop-rock-main-stage:2130:thirty-seconds-to-mars-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Pop-Rock Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Thirty Seconds To Mars (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thirty-seconds-to-mars",
+    "role": "performer"
+   }
+  ],
+  "act": "thirty-seconds-to-mars-usa",
+  "closing": true,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:rock-metal-main-stage:1600:the-sorrow-a",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Rock-Metal Main Stage",
+  "start": "16:00",
+  "end": null,
+  "printed": "The Sorrow (A)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-sorrow",
+    "role": "performer"
+   }
+  ],
+  "act": "the-sorrow-a",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:rock-metal-main-stage:1730:superbutt",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Rock-Metal Main Stage",
+  "start": "17:30",
+  "end": null,
+  "printed": "Superbutt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "superbutt",
+    "role": "performer"
+   }
+  ],
+  "act": "superbutt",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:rock-metal-main-stage:1900:ektomorf",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Rock-Metal Main Stage",
+  "start": "19:00",
+  "end": null,
+  "printed": "Ektomorf",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ektomorf",
+    "role": "performer"
+   }
+  ],
+  "act": "ektomorf",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:rock-metal-main-stage:2030:lostprophets-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Rock-Metal Main Stage",
+  "start": "20:30",
+  "end": null,
+  "printed": "Lostprophets (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lostprophets",
+    "role": "performer"
+   }
+  ],
+  "act": "lostprophets-uk",
+  "closing": true,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:pesti-est-world-music-main-stage:1700:ska-cubano-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Ska Cubano (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ska-cubano",
+    "role": "performer"
+   }
+  ],
+  "act": "ska-cubano-uk",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:pesti-est-world-music-main-stage:1815:debout-sur-le-zinc-f",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "18:15",
+  "end": null,
+  "printed": "Debout Sur Le Zinc (F)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "debout-sur-le-zinc",
+    "role": "performer"
+   }
+  ],
+  "act": "debout-sur-le-zinc-f",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:pesti-est-world-music-main-stage:1945:csik-band-feat-tibor-kiss",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Csík band feat. Tibor Kiss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "csik-band",
+    "role": "performer"
+   },
+   {
+    "key": "tibor-kiss",
+    "role": "guest"
+   }
+  ],
+  "act": "csik-band-feat-tibor-kiss",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:pesti-est-world-music-main-stage:2130:goran-bregovic-wedding-and-funeral-band-bih",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Goran Bregovic Wedding And Funeral Band (BIH)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goran-bregovic-wedding-and-funeral-band",
+    "role": "performer"
+   }
+  ],
+  "act": "goran-bregovic-wedding-and-funeral-band-bih",
+  "closing": true,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:a38-wan2-stage:1700:hindi-zahra-f",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "A38-WAN2 Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Hindi Zahra (F)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hindi-zahra",
+    "role": "performer"
+   }
+  ],
+  "act": "hindi-zahra-f",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:a38-wan2-stage:1840:kowalsky-meg-a-vega",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "A38-WAN2 Stage",
+  "start": "18:40",
+  "end": null,
+  "printed": "Kowalsky meg a Vega",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kowalsky-meg-a-vega",
+    "role": "performer"
+   }
+  ],
+  "act": "kowalsky-meg-a-vega",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:a38-wan2-stage:2010:watcha-clan-f",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "A38-WAN2 Stage",
+  "start": "20:10",
+  "end": null,
+  "printed": "Watcha Clan (F)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "watcha-clan",
+    "role": "performer"
+   }
+  ],
+  "act": "watcha-clan-f",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:a38-wan2-stage:2150:buraka-som-sistema-p",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "A38-WAN2 Stage",
+  "start": "21:50",
+  "end": null,
+  "printed": "Buraka Som Sistema (P)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "buraka-som-sistema",
+    "role": "performer"
+   }
+  ],
+  "act": "buraka-som-sistema-p",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:a38-wan2-stage:2330:digital-mystikz-featuring-mc-sgt-pokes",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "A38-WAN2 Stage",
+  "start": "23:30",
+  "end": null,
+  "printed": "Digital Mystikz featuring MC Sgt Pokes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "digital-mystikz-featuring-mc-sgt-pokes",
+    "role": "performer"
+   }
+  ],
+  "act": "digital-mystikz-featuring-mc-sgt-pokes",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:a38-wan2-stage:0100:gaslamp-killer-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "A38-WAN2 Stage",
+  "start": "01:00",
+  "end": null,
+  "printed": "Gaslamp Killer (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gaslamp-killer",
+    "role": "performer"
+   }
+  ],
+  "act": "gaslamp-killer-uk",
+  "closing": true,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d6:burn-party-arena:1930:zombie-nation-d",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-13",
+  "day": 6,
+  "stage": "Burn Party Arena",
+  "start": "19:30",
+  "end": null,
+  "printed": "Zombie Nation (D)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zombie-nation",
+    "role": "performer"
+   }
+  ],
+  "act": "zombie-nation-d",
+  "closing": true,
+  "stageLineage": "sziget:burn-party-arena",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:pop-rock-main-stage:1500:mariachi-el-bronx-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Pop-Rock Main Stage",
+  "start": "15:00",
+  "end": null,
+  "printed": "Mariachi El Bronx (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mariachi-el-bronx",
+    "role": "performer"
+   }
+  ],
+  "act": "mariachi-el-bronx-usa",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:pop-rock-main-stage:1630:gogol-bordello-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Pop-Rock Main Stage",
+  "start": "16:30",
+  "end": null,
+  "printed": "Gogol Bordello (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gogol-bordello",
+    "role": "performer"
+   }
+  ],
+  "act": "gogol-bordello-usa",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:pop-rock-main-stage:1800:the-national-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Pop-Rock Main Stage",
+  "start": "18:00",
+  "end": null,
+  "printed": "The National (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-national",
+    "role": "performer"
+   }
+  ],
+  "act": "the-national-usa",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:pop-rock-main-stage:1945:manic-street-preachers-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Pop-Rock Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Manic Street Preachers (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "manic-street-preachers",
+    "role": "performer"
+   }
+  ],
+  "act": "manic-street-preachers-uk",
+  "closing": false,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:pop-rock-main-stage:2130:white-lies-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Pop-Rock Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "White Lies (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "white-lies",
+    "role": "performer"
+   }
+  ],
+  "act": "white-lies-uk",
+  "closing": true,
+  "stageLineage": "sziget:pop-rock-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:rock-metal-main-stage:1600:nevergreen",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Rock-Metal Main Stage",
+  "start": "16:00",
+  "end": null,
+  "printed": "Nevergreen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nevergreen",
+    "role": "performer"
+   }
+  ],
+  "act": "nevergreen",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:rock-metal-main-stage:1730:dalriada",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Rock-Metal Main Stage",
+  "start": "17:30",
+  "end": null,
+  "printed": "Dalriada",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dalriada",
+    "role": "performer"
+   }
+  ],
+  "act": "dalriada",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:rock-metal-main-stage:1900:sonata-arctica-fin",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Rock-Metal Main Stage",
+  "start": "19:00",
+  "end": null,
+  "printed": "Sonata Arctica (FIN)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sonata-arctica",
+    "role": "performer"
+   }
+  ],
+  "act": "sonata-arctica-fin",
+  "closing": false,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:rock-metal-main-stage:2030:tankcsapda",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Rock-Metal Main Stage",
+  "start": "20:30",
+  "end": null,
+  "printed": "Tankcsapda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tankcsapda",
+    "role": "performer"
+   }
+  ],
+  "act": "tankcsapda",
+  "closing": true,
+  "stageLineage": "sziget:rock-metal-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:pesti-est-world-music-main-stage:1700:socalled-can",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Socalled (CAN)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "socalled",
+    "role": "performer"
+   }
+  ],
+  "act": "socalled-can",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:pesti-est-world-music-main-stage:1815:choc-quib-town-co",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "18:15",
+  "end": null,
+  "printed": "Choc Quib Town (CO)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "choc-quib-town",
+    "role": "performer"
+   }
+  ],
+  "act": "choc-quib-town-co",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:pesti-est-world-music-main-stage:1945:cheikh-lo-sn",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "19:45",
+  "end": null,
+  "printed": "Cheikh Lô (SN)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cheikh-lo",
+    "role": "performer"
+   }
+  ],
+  "act": "cheikh-lo-sn",
+  "closing": false,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:pesti-est-world-music-main-stage:2130:cowboy-junkies-can",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Pesti Est World Music Main Stage",
+  "start": "21:30",
+  "end": null,
+  "printed": "Cowboy Junkies (CAN)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cowboy-junkies",
+    "role": "performer"
+   }
+  ],
+  "act": "cowboy-junkies-can",
+  "closing": true,
+  "stageLineage": "sziget:pesti-est-world-music-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:a38-wan2-stage:1700:baskerville-live-nl",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "A38-WAN2 Stage",
+  "start": "17:00",
+  "end": null,
+  "printed": "Baskerville LIVE (NL)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "baskerville",
+    "role": "performer"
+   }
+  ],
+  "act": "baskerville-live",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:a38-wan2-stage:1840:kerekes-band",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "A38-WAN2 Stage",
+  "start": "18:40",
+  "end": null,
+  "printed": "Kerekes Band",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kerekes-band",
+    "role": "performer"
+   }
+  ],
+  "act": "kerekes-band",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:a38-wan2-stage:2010:marina-and-the-diamonds-uk",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "A38-WAN2 Stage",
+  "start": "20:10",
+  "end": null,
+  "printed": "Marina & The Diamonds (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marina-and-the-diamonds",
+    "role": "performer"
+   }
+  ],
+  "act": "marina-and-the-diamonds-uk",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:a38-wan2-stage:2150:selah-sue-b",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "A38-WAN2 Stage",
+  "start": "21:50",
+  "end": null,
+  "printed": "Selah Sue (B)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "selah-sue",
+    "role": "performer"
+   }
+  ],
+  "act": "selah-sue-b",
+  "closing": false,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:a38-wan2-stage:2330:kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "A38-WAN2 Stage",
+  "start": "23:30",
+  "end": null,
+  "printed": "Kees van Hondt & friends (NL) Feest / Mulatsag / Fest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kees-van-hondt-and-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+  "closing": true,
+  "stageLineage": "sziget:a38-wan2-stage",
+  "mainStage": null
+ },
+ {
+  "id": "sziget-2011:d7:burn-party-arena:1930:kid-cudi-usa",
+  "source": "edition",
+  "festivalId": "sziget-2011",
+  "festivalBrand": "sziget",
+  "year": 2011,
+  "date": "2011-08-14",
+  "day": 7,
+  "stage": "Burn Party Arena",
+  "start": "19:30",
+  "end": null,
+  "printed": "Kid Cudi (USA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kid-cudi",
+    "role": "performer"
+   }
+  ],
+  "act": "kid-cudi-usa",
+  "closing": true,
+  "stageLineage": "sziget:burn-party-arena",
+  "mainStage": null
+ },
+ {
   "id": "tomorrowland-2010:d1:mainstage:1230:the-oddword",
   "source": "edition",
   "festivalId": "tomorrowland-2010",

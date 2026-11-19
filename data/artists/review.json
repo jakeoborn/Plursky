@@ -763,6 +763,13 @@
   "why": "Left as printed: the printing does not settle whether the \"&\" joins two acts or names one, so the billing is not split. Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "sziget-2011:d5:pesti-est-world-music-main-stage:1815:muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu",
+  "printed": "Muzsikas feat. Ildiko Toth \"Fecske\" and Zoltan Farkas \"Batyu\"",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: the guests are printed with nicknames in quotes and joined by \"and\", and no first-party page settles how each guest is named, so the guests are not split. Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "tomorrowland-2010:d1:i-love-the-90-s:2330:johan-gielen-and-cor-fijneman-back2back-airscape",
   "printed": "Johan Gielen & Cor Fijneman back2back (Airscape)",
   "reason": "parenthetical is not a known set tag",
