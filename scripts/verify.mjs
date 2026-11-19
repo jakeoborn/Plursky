@@ -4119,6 +4119,19 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
     fail(`set attendance failed${detail ? ` — ${detail}` : ""}`);
   }
 
+  // SPEC-212 W6: a camera roll through the shipped tagger and verdict. The
+  // synthetic EDC corpus must give exactly 13/15, and five broken fixtures
+  // (moved photos, no time, wrong truth both ways, a shifted clock) must move it.
+  console.log("▸ Photo-album replay gate: EDC reference corpus 13/15, broken fixtures caught");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/replay-photo-albums.mjs", "--self-test"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`photo-album replay failed${detail ? ` — ${detail}` : ""}`);
+  }
+
   console.log("▸ Set evidence gate: check-ins, GPS-placed photos, Still here taps, stage calibration, corrections that say so, No record");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-set-evidence.mjs"],
