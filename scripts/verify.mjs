@@ -2726,6 +2726,21 @@ for (const [script, label] of [
   }
 }
 
+// SPEC-212 W2: the daily set-times watch (settimes-watch.yml). Its self-test
+// serves the real fetcher a local site: 404 stays green, while published
+// times, a site error and an unparsable page each turn it red. No network.
+{
+  console.log("▸ Set-times watch gate — pending stays green, published or broken turns red");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/watch-settimes.mjs", "--self-test"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 300000 });
+    process.stdout.write("  " + out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set-times watch self-test failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b3. Offline festival packs ─────────────────────────────────────────
 // The saved area covers the radius, footprint and pan bounds; the style
 // rewrite leaves nothing remote; the downloader and the pack:// protocol agree
@@ -3485,6 +3500,24 @@ for (const [label, file] of [
   }
 }
 
+// ── 1z-b5c1b. Festival truth audit self-test (offline, under a second) ──
+// The audit itself fetches official pages, so it runs by hand, not here. Its
+// --self-test does not fetch: it plants a defect for every check (dates,
+// empty days, waivers, and a venue page that names only the city) and fails
+// if any check misses it. Without this line, a broken audit stays green until
+// someone runs it before a festival.
+{
+  console.log("▸ Festival truth audit self-test — every check fires on a planted defect");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/audit-festival-truth.mjs", "--self-test"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival truth audit self-test failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5c2. Spotify artist images: attributed, temporary, never exported ──
 // Spotify's Developer Terms allow only temporary caching of Spotify cover art
 // and the Design Guidelines forbid cropping or overlaying it and require the
@@ -3950,6 +3983,22 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// MusicKit token renewal (SPEC-212 W5): sign-musickit-token.mjs --write on
+// throwaway keys and a temp copy of spotify-api.jsx. Keeps the live kid,
+// verifies its own signature, stays in Apple's 6-month cap, and refuses a
+// key file naming another KEY_ID, a non-P-256 key, or a file with no token line.
+{
+  console.log("▸ MusicKit renew gate — sign + write in one command, self-verified, throwaway keys only");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-musickit-renew.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`MusicKit renew failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // TestFlight uploads stay internal-only: the export plist sets
 // testFlightInternalTestingOnly, and an external beta group or public link
 // stops build-upload-testflight.mjs before anything uploads.
@@ -4084,6 +4133,19 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`set attendance failed${detail ? ` — ${detail}` : ""}`);
+  }
+
+  // SPEC-212 W6: a camera roll through the shipped tagger and verdict. The
+  // synthetic EDC corpus must give exactly 13/15, and five broken fixtures
+  // (moved photos, no time, wrong truth both ways, a shifted clock) must move it.
+  console.log("▸ Photo-album replay gate: EDC reference corpus 13/15, broken fixtures caught");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/replay-photo-albums.mjs", "--self-test"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`photo-album replay failed${detail ? ` — ${detail}` : ""}`);
   }
 
   console.log("▸ Set evidence gate: check-ins, GPS-placed photos, Still here taps, stage calibration, corrections that say so, No record");

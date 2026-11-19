@@ -1,0 +1,162 @@
+{
+  "id": "defqon1-2015",
+  "method": "official_sources",
+  "official": "https://www.defqon1.nl/en/timetable/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2015-06-19",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.defqon1.nl/en/timetable/",
+          "archivedUrl": "https://web.archive.org/web/20150623065733/http://www.defqon1.nl/en/timetable/",
+          "captureTimestamp": "20150623065733",
+          "printed": "Friday • 19 June 2015 • 20:00 - 01:00",
+          "sha256": "385c099aeea785b2435c502d23351fad66ab8ceb1a00301fd4c89269961f502d",
+          "bytes": 69326,
+          "rows": 11,
+          "format": "defqon-areas",
+          "named": "Timetable - Defqon.1 2015",
+          "stages": 2,
+          "areas": [
+            "Blue: Hardstyle",
+            "Black: Hardcore"
+          ],
+          "times": "each set prints its range on the 24-hour clock under its area; an area's host prints no time and is not a set",
+          "hosts": [
+            "Blue: Hosted by Villain",
+            "Black: Hosted by Ruffian"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2015-06-20",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.defqon1.nl/en/timetable/",
+          "archivedUrl": "https://web.archive.org/web/20150623065733/http://www.defqon1.nl/en/timetable/",
+          "captureTimestamp": "20150623065733",
+          "printed": "Saturday • 20 June 2015 • 11:00 – 23:00",
+          "sha256": "385c099aeea785b2435c502d23351fad66ab8ceb1a00301fd4c89269961f502d",
+          "bytes": 69326,
+          "rows": 133,
+          "format": "defqon-areas",
+          "named": "Timetable - Defqon.1 2015",
+          "stages": 14,
+          "areas": [
+            "Red: All Harder Styles",
+            "Blue: Raw Hardstyle",
+            "Black: Hardcore",
+            "Brown: Freestyle",
+            "UV: Hardstyle",
+            "Gold: Early Rave",
+            "Magenta: Early Hardstyle (2001 - 2005)",
+            "Silver: Industrial",
+            "Indigo: Xtra Raw",
+            "Yellow: Terror & Frenchcore",
+            "White: Qult Fest",
+            "Purple: Up & Coming",
+            "Afterparty: Afterparty (Afterparty • 23:00 – 04:00)",
+            "Orange: Afterparty (Afterparty • 23:00 – 04:00)"
+          ],
+          "times": "each set prints its range on the 24-hour clock under its area; an area's host prints no time and is not a set",
+          "hosts": [
+            "Red: Hosted by Villain",
+            "Blue: Hosted by DV8",
+            "Black: Hosted by Jeff",
+            "Brown: Hosted by Chucky",
+            "UV: Hosted by DL!",
+            "Gold: Hosted by Da Mouth of Madness",
+            "Magenta: Hosted by Renegade",
+            "Silver: Hosted by No-iD",
+            "Indigo: Hosted by Livid",
+            "Yellow: Hosted by Furious",
+            "White: Hosted by MC D",
+            "Purple: Hosted by Axys",
+            "Afterparty: Hosted by Ruffian"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2015-06-21",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.defqon1.nl/en/timetable/",
+          "archivedUrl": "https://web.archive.org/web/20150623065733/http://www.defqon1.nl/en/timetable/",
+          "captureTimestamp": "20150623065733",
+          "printed": "Sunday • 21 June 2015 • 11:00 – 23:00",
+          "sha256": "385c099aeea785b2435c502d23351fad66ab8ceb1a00301fd4c89269961f502d",
+          "bytes": 69326,
+          "rows": 77,
+          "format": "defqon-areas",
+          "named": "Timetable - Defqon.1 2015",
+          "stages": 10,
+          "areas": [
+            "Blue: Raw Hardstyle",
+            "Black: Hardcore",
+            "Brown: Freestyle",
+            "UV: Hardstyle",
+            "Gold: Millennium Hardcore",
+            "Magenta: Early Hardstyle (2005 - 2010)",
+            "Silver: Industrial",
+            "Indigo: Xtra Raw",
+            "Yellow: Hard techno",
+            "White: Qult Fest"
+          ],
+          "times": "each set prints its range on the 24-hour clock under its area; an area's host prints no time and is not a set",
+          "hosts": [
+            "Blue: Hosted by DV8",
+            "Black: Hosted by Jeff",
+            "Brown: Hosted by Chucky",
+            "UV: Hosted by DL!",
+            "Gold: Hosted by Da Mouth of Madness",
+            "Magenta: Hosted by Renegade",
+            "Silver: Hosted by No-iD",
+            "Indigo: Hosted by Livid",
+            "White: Hosted by MC D"
+          ],
+          "blocks": [
+            "Closing: \"Sunday from 20.00 till 23.00 at the Red\": Defqon.1 Legends, Bass Modulators, Adaro"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 3,
+      "stage": "Closing",
+      "start": "",
+      "end": "",
+      "billing": "Defqon.1 Legends",
+      "reason": "The area prints one range in its heading over several acts that print no time of their own: none of them is placed as a set.",
+      "untimed": true
+    },
+    {
+      "day": 3,
+      "stage": "Closing",
+      "start": "",
+      "end": "",
+      "billing": "Bass Modulators",
+      "reason": "The area prints one range in its heading over several acts that print no time of their own: none of them is placed as a set.",
+      "untimed": true
+    },
+    {
+      "day": 3,
+      "stage": "Closing",
+      "start": "",
+      "end": "",
+      "billing": "Adaro",
+      "reason": "The area prints one range in its heading over several acts that print no time of their own: none of them is placed as a set.",
+      "untimed": true
+    }
+  ],
+  "dropped": []
+}

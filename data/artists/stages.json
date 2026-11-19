@@ -915,6 +915,192 @@
     }
    ]
   },
+  "defqon1": {
+   "lineages": [
+    {
+     "id": "defqon1:blue",
+     "names": [
+      {
+       "printed": "Blue",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:black",
+     "names": [
+      {
+       "printed": "Black",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:red",
+     "names": [
+      {
+       "printed": "Red",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:brown",
+     "names": [
+      {
+       "printed": "Brown",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:uv",
+     "names": [
+      {
+       "printed": "UV",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:gold",
+     "names": [
+      {
+       "printed": "Gold",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:magenta",
+     "names": [
+      {
+       "printed": "Magenta",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:silver",
+     "names": [
+      {
+       "printed": "Silver",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:indigo",
+     "names": [
+      {
+       "printed": "Indigo",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:yellow",
+     "names": [
+      {
+       "printed": "Yellow",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:white",
+     "names": [
+      {
+       "printed": "White",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:purple",
+     "names": [
+      {
+       "printed": "Purple",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:afterparty",
+     "names": [
+      {
+       "printed": "Afterparty",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:orange",
+     "names": [
+      {
+       "printed": "Orange",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "dreamstate-socal": {
    "lineages": [
     {

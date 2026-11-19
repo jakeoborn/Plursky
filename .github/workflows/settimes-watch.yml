@@ -1,0 +1,46 @@
+# The change-watcher for festivals whose official set times are not out yet
+# (SPEC-212 W2, first armed for Countdown NYE 2026).
+#
+# A festival with `registry.scheduleTBA: true` shows "set times pending". The
+# moment its official /lineup/set-times/day-1/ page goes up, nothing in this
+# repo changes, so no pull request runs and nobody notices. This job is the
+# clock: daily, it asks the official page.
+#
+#   green  the page is still 404, so "pending" stays (the honest state)
+#   red    the official set times are LIVE: the log prints the import commands
+#   red    the page exists but did not read: look at it before trusting it
+#
+# It reports rather than imports. Importing writes festival data that ships to
+# a public site; a person runs scripts/import-set-times.mjs (it validates every
+# row against the lineup) and opens a PR. That PR turns scheduleTBA off, and
+# the watch goes quiet by itself.
+name: set-times watch
+
+on:
+  schedule:
+    # 06:45 UTC daily, off the hour (the top of the hour is the most contended
+    # slot for scheduled workflows, which is where skipped runs come from).
+    - cron: '45 6 * * *'
+  # So a person can re-check on demand, e.g. on the day times are expected.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Prove the watch can still tell pending from live before trusting its
+      # answer about the real site.
+      - name: Watch self-test (local site, no network)
+        run: node scripts/watch-settimes.mjs --self-test
+
+      - name: Official set times still pending
+        run: node scripts/watch-settimes.mjs
