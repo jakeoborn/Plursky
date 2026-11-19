@@ -42,6 +42,8 @@ import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./histor
 import { parseDoStuffEmbed, embedPageOk, pageLoadsScript, scriptSetsSrc } from "./historical/dostuff-embed-schedule.mjs";
 import { parseSonarSchedule } from "./historical/sonar-schedule.mjs";
 import { parseSzigetDays, tabDate as szigetDate } from "./historical/sziget-days-schedule.mjs";
+import { parseDefqonAreas, headerDate as defqonDate } from "./historical/defqon-schedule.mjs";
+import { parseTomorrowlandLineup } from "./historical/tomorrowland-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -921,6 +923,59 @@ if (base && edc) {
     szMust("Sziget rows out of time order", szPage({ rows: [szRows[0], szRow("18:00", [szCell(1, 2, "Kode9 (UK)")], 1), ...szRows.slice(2)] }));
     szMust("a Sziget night wrapping past midnight twice", szPage({ rows: [...szRows, szRow("00:30", [szE, szE], 4)] }));
     szMust("a Sziget set naming no act", szPage({ rows: [szRow("19:30", [szCell(2, 1, " "), szE], 0), ...szRows.slice(1)] }));
+    // Defqon.1 2015's timetable: one page for the weekend, a section per day
+    // and an undated afterparty, an article per area naming its weekday.
+    const dqSet = (start, end, name) => `<li><time><span class="start">${start}</span> - <span class="end">${end}</span></time><h3 class="name">${name}</h3></li>`;
+    const dqArt = (cls, h2, lis) => `<article class="area ${cls}"><header><h2>${h2}</h2></header><ul>${lis.join("")}</ul></article>`;
+    const dqSec = (head, arts) => `<section class="d"><header class="x day"><div class="inn"><h2>${head}</h2></div></header>${arts.join("")}</section>`;
+    const dqFri = [dqArt("red friday", "Hardstyle", [dqSet("20:00", "21:00", "Max Enforcer"), dqSet("21:00", "22:00", "B &amp; C"), "<li><h3 class=\"name\">Hosted by Villain</h3></li>"])];
+    const dqSun = [dqArt("red sunday", "Hardcore", [dqSet("12:00", "13:00", "Day Act")]), dqArt("cafe sunday", "Café", ["<li><p>Coffee all day</p></li>"]),
+      dqArt("closing sunday", "Sunday from 20.00 till 23.00 at the Red", ["<li><h3 class=\"name\">Closer One</h3></li>", "<li><h3 class=\"name\">Closer Two</h3></li>"])];
+    const dqAfter = [dqArt("red friday", "Afterparty", [dqSet("23:00", "00:30", "Night Act"), dqSet("00:30", "02:00", "Late Act")])];
+    const dqPage = ({ title = "Timetable - Defqon.1 2015", fri = dqFri, sun = dqSun, after = dqAfter, friHead = "Friday • 19 June 2015 • 20:00 - 01:00" } = {}) =>
+      `<title>${title}</title>` + ["friday", "sunday", "red", "closing"].map(k => `<input type="checkbox" value=".${k}" id="${k}">`).join("")
+      + dqSec(friHead, fri) + dqSec("Afterparty • 23:00 – 04:00", after) + dqSec("Sunday • 21 June 2015 • 11:00 - 23:00", sun);
+    const dqp = parseDefqonAreas(dqPage(), { year: 2015 });
+    ok(JSON.stringify([dqp.stages, dqp.days.map(d => [d.date, d.sets.map(x => [x.stage, x.start, x.end, x.artist])]), dqp.hosts.map(h => h.host), dqp.noSets.map(n => n.heading), dqp.bills.map(b => [b.date, b.stage, b.start, b.end, b.acts])])
+      === JSON.stringify([["Red"], [["2015-06-19", [["Red", "20:00", "21:00", "Max Enforcer"], ["Red", "21:00", "22:00", "B & C"], ["Red", "23:00", "00:30", "Night Act"], ["Red", "00:30", "02:00", "Late Act"]]],
+        ["2015-06-21", [["Red", "12:00", "13:00", "Day Act"]]]], ["Hosted by Villain"], ["Café"], [["2015-06-21", "Closing", "20:00", "23:00", ["Closer One", "Closer Two"]]]]),
+      `a Defqon.1 page must come back as its dated days, the afterparty on the night its areas name, the host and the café as no sets and the closing as a block: ${JSON.stringify(dqp)}`);
+    ok(defqonDate("Friday • 19 June 2015 • 20:00 - 01:00", 2015) === "2015-06-19" && defqonDate("Saturday • 19 June 2015 • 20:00 - 01:00", 2015) === null, "a Defqon.1 heading must be dated by its weekday in the year");
+    const dqMust = (what, html, year = 2015) => { let bad = false; try { parseDefqonAreas(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    dqMust("a Defqon.1 2015 page read as another year's", dqPage(), 2016);
+    dqMust("a page that is not Defqon.1's timetable", dqPage({ title: "Line-up - Defqon.1 2015" }));
+    dqMust("a Defqon.1 heading whose weekday is not its date's", dqPage({ friHead: "Saturday • 19 June 2015 • 20:00 - 01:00" }));
+    dqMust("a Defqon.1 area under another day's section", dqPage({ fri: [dqArt("red sunday", "Hardstyle", [dqSet("20:00", "21:00", "Max Enforcer")])] }));
+    dqMust("a Defqon.1 area the filter bar does not offer", dqPage({ fri: [dqArt("blue friday", "Hardstyle", [dqSet("20:00", "21:00", "Max Enforcer")])] }));
+    dqMust("Defqon.1 sets overlapping on one area", dqPage({ fri: [dqArt("red friday", "Hardstyle", [dqSet("20:00", "21:30", "Max Enforcer"), dqSet("21:00", "22:00", "B")])] }));
+    dqMust("a Defqon.1 set printed with no time range", dqPage({ fri: [dqArt("red friday", "Hardstyle", ["<li><time><span class=\"start\">20</span> - <span class=\"end\">21:00</span></time><h3 class=\"name\">X</h3></li>"])] }));
+    dqMust("a Defqon.1 line that is neither a set nor a host", dqPage({ fri: [dqArt("red friday", "Hardstyle", [dqSet("20:00", "21:00", "Max Enforcer"), "<li><h3 class=\"name\">Surprise</h3></li>"])] }));
+    dqMust("a Defqon.1 area with no set that is neither a description nor a block", dqPage({ sun: [dqArt("closing sunday", "Closing", ["<li><h3 class=\"name\">Closer One</h3></li>"])] }));
+    // Tomorrowland's lineup page: a Stages tab (a day per eventday, a stage per
+    // block, an optional host) checked against its A-Z Artists tab.
+    const tlA = (slug, name) => `<li><a class="noTracking" data-artist="${slug}"> ${name} </a></li>`;
+    const tlStage = (name, acts, host = "") => `<div class="stage"><div class="stage__heading"><h4>${name}</h4></div><div class="stage__content">${host ? `<div class="stage__title"><p class="stage__location">${host}</p></div>` : ""}<ul>${acts.join("")}</ul></div></div>`;
+    const tlDay = (label, stages) => `<div class="eventday" data-eventday-id="1" style="display:none;" data-eventday="${label}"><div class="stage-sizer"></div>${stages.join("")}</div>`;
+    const tlDays = [tlDay("Friday 19 July 2024", [tlStage("Mainstage", [tlA("armin", "Armin van Buuren"), tlA("k-ouml-lsch", "K&ouml;lsch")]), tlStage("Elixir", [tlA("mc", "Mc Stretch")], "Mangrove")]),
+      tlDay("Saturday 20 July 2024", [tlStage("Mainstage", [tlA("armin", "Armin van Buuren")])])];
+    const tlPage = ({ days = tlDays, az = [tlA("armin", "Armin van Buuren"), tlA("k-ouml-lsch", "K&ouml;lsch"), tlA("mc", "Mc Stretch")] } = {}) =>
+      `<title>Line-up - Festival -  Tomorrowland</title><div class="eventdays">${days.join("")}</div><div class="lineup__page lineup__page--artists" style="display: none;"><ul>${az.join("")}</ul></div>`;
+    const tlp = parseTomorrowlandLineup(tlPage(), { year: 2024 });
+    ok(JSON.stringify([tlp.title, tlp.days.map(d => [d.date, d.stages.map(x => [x.stage, x.host || "", x.acts.map(a => a.name)])]), tlp.findings])
+      === JSON.stringify(["Line-up - Festival - Tomorrowland", [["2024-07-19", [["Mainstage", "", ["Armin van Buuren", "Kölsch"]], ["Elixir", "Mangrove", ["Mc Stretch"]]]], ["2024-07-20", [["Mainstage", "", ["Armin van Buuren"]]]]], []]),
+      `a Tomorrowland lineup page must come back as its dated days, each stage with its host apart from its acts: ${JSON.stringify(tlp)}`);
+    const tlf = parseTomorrowlandLineup(tlPage({ az: [tlA("armin", "Armin Van Buuren"), tlA("k-ouml-lsch", "K&ouml;lsch"), tlA("ghost", "Ghost")] }), { year: 2024 });
+    ok(tlf.findings.length === 3 && tlf.findings.some(f => /Mc Stretch: on the Stages tab, not on the Artists tab/.test(f)) && tlf.findings.some(f => /Ghost: on the Artists tab, on no stage/.test(f)) && tlf.findings.some(f => /the Artists tab prints "Armin Van Buuren"/.test(f)),
+      `the two Tomorrowland tabs must be checked against each other (got ${tlf.findings.join("; ")})`);
+    const tlMust = (what, html, year = 2024) => { let bad = false; try { parseTomorrowlandLineup(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    tlMust("a Tomorrowland 2024 page read as another year's", tlPage(), 2025);
+    tlMust("a Tomorrowland day whose weekday is not its date's", tlPage({ days: [tlDay("Saturday 19 July 2024", [tlStage("Mainstage", [tlA("armin", "Armin van Buuren")])])] }));
+    tlMust("a Tomorrowland day printed twice", tlPage({ days: [tlDays[0], tlDays[0]] }));
+    tlMust("a Tomorrowland stage with no name", tlPage({ days: [tlDay("Friday 19 July 2024", [tlStage(" ", [tlA("armin", "Armin van Buuren")])])] }));
+    tlMust("a Tomorrowland stage naming no act", tlPage({ days: [tlDay("Friday 19 July 2024", [tlStage("Mainstage", [])])] }));
+    tlMust("a Tomorrowland act with no name", tlPage({ days: [tlDay("Friday 19 July 2024", [tlStage("Mainstage", [tlA("x", " ")])])] }));
+    tlMust("a Tomorrowland page with no Artists tab", tlPage().replace('lineup__page--artists', 'lineup__page--other'));
+    tlMust("a Tomorrowland page with no Stages tab", tlPage().replace('<div class="eventdays">', '<div class="days">'));
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.
@@ -1504,6 +1559,14 @@ for (const [id, e] of Object.entries(editions)) {
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (tabs ${(s.tabs || []).join(", ")}) at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
+        // Defqon.1's 2015 timetable heads each day with its weekday, date and
+        // year, on the festival's own site, titled as that year's timetable.
+        if (s.format === "defqon-areas") {
+          ok(defqonDate(s.printed, e.year) === d.date && s.named === `Timetable - Defqon.1 ${e.year}`
+            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?defqon1\.nl(:80)?\//.test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
         // Governors Ball's 2011-2012 schedule prints each day's heading
         // ("SATURDAY 6/23"); 2011's one day is the one its description prints.
         if (s.format === "govball-wp") {
@@ -1610,9 +1673,10 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
 
   // selected_stages: an edition whose official schedule had stages that are
   // not imported names them (review of merged #440, 2026-11-12). Exactly these
-  // carry the label, and it cannot drift from the rows: Coachella's three, and
-  // Sziget 2010 and 2011, whose day pages were archived for five stages only.
-  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016", "sziget-2010", "sziget-2011"];
+  // carry the label, and it cannot drift from the rows: Coachella's three,
+  // Sziget 2010 and 2011, whose day pages were archived for five stages only,
+  // and Defqon.1 2015, whose Sunday closing prints one block over untimed acts.
+  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016", "defqon1-2015", "sziget-2010", "sziget-2011"];
   const selected = Object.values(editions).filter(e => e.completeness === "selected_stages").map(e => e.id).sort();
   ok(JSON.stringify(selected) === JSON.stringify(SELECTED), `selected_stages editions are ${selected.join(", ") || "none"}, want ${SELECTED.join(", ")}`);
   const c14 = editions["coachella-2014"];

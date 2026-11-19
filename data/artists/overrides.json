@@ -7641,6 +7641,22 @@
   {
    "printed": "Muzsikas feat. Ildiko Toth \"Fecske\" and Zoltan Farkas \"Batyu\"",
    "why": "Left as printed: the guests are printed with nicknames in quotes and joined by \"and\", and no first-party page settles how each guest is named, so the guests are not split. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Mad Dog ft. Jeff",
+   "why": "Left as printed, one act: who is behind the \"ft.\" is not sourced (Defqon.1 2015's timetable prints \"Jeff\" alone), so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Elkabass (a.k.a. The Prophet)",
+   "why": "Left as printed: the parenthetical says \"a.k.a.\", but no first-party page rules whether Elkabass is billed here as The Prophet's other name, so the billing is neither merged with The Prophet nor reduced to Elkabass. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Qlubtempo Parade with Pavo, Pila, Trilok & Chiren",
+   "why": "Left as printed, one act: a parade billed \"with\" four names, and no first-party page says whether the parade is an act of its own or only those four DJs, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Kasparov & System Shock ft Diesel",
+   "why": "Left as printed, one act: the \"&\" may join one act or two, and who is behind the \"ft\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
   }
  ]
 }
