@@ -1,0 +1,3726 @@
+{
+ "id": "lightning-in-a-bottle-2019",
+ "festivalId": "lightning-in-a-bottle",
+ "name": "Lightning in a Bottle 2019",
+ "year": 2019,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-05-08",
+   "label": "Wednesday"
+  },
+  {
+   "day": 2,
+   "date": "2019-05-09",
+   "label": "Thursday"
+  },
+  {
+   "day": 3,
+   "date": "2019-05-10",
+   "label": "Friday"
+  },
+  {
+   "day": 4,
+   "date": "2019-05-11",
+   "label": "Saturday"
+  },
+  {
+   "day": 5,
+   "date": "2019-05-12",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "lightning-in-a-bottle-2019:beacon",
+   "name": "Beacon"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:crossroads",
+   "name": "Crossroads"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:favela",
+   "name": "Favela"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:grand-artique",
+   "name": "Grand Artique"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:the-stacks",
+   "name": "The Stacks"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:lightning",
+   "name": "Lightning"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:thunder",
+   "name": "Thunder"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:woogie",
+   "name": "Woogie"
+  }
+ ],
+ "artists": [
+  {
+   "id": "lightning-in-a-bottle-2019:yohm",
+   "name": "YoHm",
+   "key": "yohm",
+   "performers": [
+    "yohm"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:ginger-and-the-ghost",
+   "name": "Ginger & The Ghost",
+   "key": "ginger-and-the-ghost",
+   "performers": [
+    "ginger-and-the-ghost"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:nadi",
+   "name": "Nadi",
+   "key": "nadi",
+   "performers": [
+    "nadi"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:monolink-live",
+   "name": "Monolink (Live)",
+   "key": "monolink-live",
+   "performers": [
+    "monolink-live"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:her-story",
+   "name": "Her Story",
+   "key": "her-story",
+   "performers": [
+    "her-story"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:karavan-sarai",
+   "name": "Karavan Sarai",
+   "key": "karavan-sarai",
+   "performers": [
+    "karavan-sarai"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:robin-tala",
+   "name": "Robin Tala",
+   "key": "robin-tala",
+   "performers": [
+    "robin-tala"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:marjo-lak",
+   "name": "Marjo Lak",
+   "key": "marjo-lak",
+   "performers": [
+    "marjo-lak"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:moarice",
+   "name": "Moarice",
+   "key": "moarice",
+   "performers": [
+    "moarice"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:bret-wallace",
+   "name": "Bret Wallace",
+   "key": "bret-wallace",
+   "performers": [
+    "bret-wallace"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:armando-kroma",
+   "name": "Armando Kroma",
+   "key": "armando-kroma",
+   "performers": [
+    "armando-kroma"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:tal-ohana",
+   "name": "Tal Ohana",
+   "key": "tal-ohana",
+   "performers": [
+    "tal-ohana"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:ramona-wouters",
+   "name": "Ramona Wouters",
+   "key": "ramona-wouters",
+   "performers": [
+    "ramona-wouters"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:nukreative",
+   "name": "Nukreative",
+   "key": "nukreative",
+   "performers": [
+    "nukreative"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:md",
+   "name": "MD",
+   "key": "md",
+   "performers": [
+    "md"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:cody-lee",
+   "name": "Cody Lee",
+   "key": "cody-lee",
+   "performers": [
+    "cody-lee"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:divadanielle-feat-annie-dolly",
+   "name": "divaDanielle feat. Annie Dolly",
+   "key": "divadanielle-feat-annie-dolly",
+   "performers": [
+    "divadanielle-feat-annie-dolly"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:siavash",
+   "name": "Siavash",
+   "key": "siavash",
+   "performers": [
+    "siavash"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:dragontree",
+   "name": "Dragontree",
+   "key": "dragontree",
+   "performers": [
+    "dragontree"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:papa-bear-and-the-easy-love",
+   "name": "Papa Bear And The Easy Love",
+   "key": "papa-bear-and-the-easy-love",
+   "performers": [
+    "papa-bear-and-the-easy-love"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:b3k",
+   "name": "B3K",
+   "key": "b3k",
+   "performers": [
+    "b3k"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:proxima-parada",
+   "name": "Proxima Parada",
+   "key": "proxima-parada",
+   "performers": [
+    "proxima-parada"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:boostive",
+   "name": "Boostive",
+   "key": "boostive",
+   "performers": [
+    "boostive"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:smoked-out-soul",
+   "name": "Smoked Out Soul",
+   "key": "smoked-out-soul",
+   "performers": [
+    "smoked-out-soul"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:light-the-sky",
+   "name": "Light The Sky",
+   "key": "light-the-sky",
+   "performers": [
+    "light-the-sky"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:jaron",
+   "name": "Jaron",
+   "key": "jaron",
+   "performers": [
+    "jaron"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:cozway",
+   "name": "Cozway",
+   "key": "cozway",
+   "performers": [
+    "cozway"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:tvboo",
+   "name": "TVBOO",
+   "key": "tvboo",
+   "performers": [
+    "tvboo"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:secret-recipe",
+   "name": "Secret Recipe",
+   "key": "secret-recipe",
+   "performers": [
+    "secret-recipe"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:stylust",
+   "name": "Stylust",
+   "key": "stylust",
+   "performers": [
+    "stylust"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:ahee",
+   "name": "Ahee",
+   "key": "ahee",
+   "performers": [
+    "ahee"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:mihkal",
+   "name": "MiHKAL",
+   "key": "mihkal",
+   "performers": [
+    "mihkal"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:andreasone",
+   "name": "AndreasOne",
+   "key": "andreasone",
+   "performers": [
+    "andreasone"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:malik-lovesyall",
+   "name": "Malik LovesYall",
+   "key": "malik-lovesyall",
+   "performers": [
+    "malik-lovesyall"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:kitty-pak",
+   "name": "Kitty Pak",
+   "key": "kitty-pak",
+   "performers": [
+    "kitty-pak"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:ultimate-fantastic",
+   "name": "Ultimate Fantastic",
+   "key": "ultimate-fantastic",
+   "performers": [
+    "ultimate-fantastic"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:alvaro-z",
+   "name": "Alvaro Z",
+   "key": "alvaro-z",
+   "performers": [
+    "alvaro-z"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:manatee-commune",
+   "name": "MANATEE COMMUNE",
+   "key": "manatee-commune",
+   "performers": [
+    "manatee-commune"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:little-dinosaur",
+   "name": "Little Dinosaur",
+   "key": "little-dinosaur",
+   "performers": [
+    "little-dinosaur"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:neptune",
+   "name": "Neptune",
+   "key": "neptune",
+   "performers": [
+    "neptune"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:elijah-sage",
+   "name": "Elijah Sage",
+   "key": "elijah-sage",
+   "performers": [
+    "elijah-sage"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:2melo",
+   "name": "2Melo",
+   "key": "2melo",
+   "performers": [
+    "2melo"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:lum",
+   "name": "LUM",
+   "key": "lum",
+   "performers": [
+    "lum"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:oceanvs-orientalis",
+   "name": "Oceanvs Orientalis",
+   "key": "oceanvs-orientalis",
+   "performers": [
+    "oceanvs-orientalis"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:marcos",
+   "name": "Marcos",
+   "key": "marcos",
+   "performers": [
+    "marcos"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:naranja",
+   "name": "Naranja",
+   "key": "naranja",
+   "performers": [
+    "naranja"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:antoinette",
+   "name": "Antoinette",
+   "key": "antoinette",
+   "performers": [
+    "antoinette"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:naomi",
+   "name": "Naomi",
+   "key": "naomi",
+   "performers": [
+    "naomi"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:shane-one",
+   "name": "Shane One",
+   "key": "shane-one",
+   "performers": [
+    "shane-one"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:amhain",
+   "name": "amháin",
+   "key": "amhain",
+   "performers": [
+    "amhain"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:rachel-spalding",
+   "name": "Rachel Spalding",
+   "key": "rachel-spalding",
+   "performers": [
+    "rachel-spalding"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:dj-kramer",
+   "name": "DJ Kramer",
+   "key": "dj-kramer",
+   "performers": [
+    "dj-kramer"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:ben-seagren",
+   "name": "Ben Seagren",
+   "key": "ben-seagren",
+   "performers": [
+    "ben-seagren"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:shawni",
+   "name": "Shawni",
+   "key": "shawni",
+   "performers": [
+    "shawni"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:lovestruckk",
+   "name": "Lovestruckk",
+   "key": "lovestruckk",
+   "performers": [
+    "lovestruckk"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:miss-federoff",
+   "name": "Miss Federoff",
+   "key": "miss-federoff",
+   "performers": [
+    "miss-federoff"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:moodlite",
+   "name": "Moodlite",
+   "key": "moodlite",
+   "performers": [
+    "moodlite"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:foxtrails",
+   "name": "Foxtrails",
+   "key": "foxtrails",
+   "performers": [
+    "foxtrails"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:herbert-bail-orchestra",
+   "name": "Herbert Bail Orchestra",
+   "key": "herbert-bail-orchestra",
+   "performers": [
+    "herbert-bail-orchestra"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:pivot-to-presence",
+   "name": "Pivot to Presence",
+   "key": "pivot-to-presence",
+   "performers": [
+    "pivot-to-presence"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:rising-appalachia",
+   "name": "Rising Appalachia",
+   "key": "rising-appalachia",
+   "performers": [
+    "rising-appalachia"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:the-fungineers",
+   "name": "The Fungineers",
+   "key": "the-fungineers",
+   "performers": [
+    "the-fungineers"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:goldiii",
+   "name": "GOLDiii",
+   "key": "goldiii",
+   "performers": [
+    "goldiii"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:vokab-kompany",
+   "name": "Vokab Kompany",
+   "key": "vokab-kompany",
+   "performers": [
+    "vokab-kompany"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:carlo-x-ofier",
+   "name": "Carlo x Ofier",
+   "key": "carlo-x-ofier",
+   "performers": [
+    "carlo-x-ofier"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:sur",
+   "name": "SuR",
+   "key": "sur",
+   "performers": [
+    "sur"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:asteroids-and-earthquakes-b2b-kimothy-leary",
+   "name": "Asteroids & Earthquakes B2B Kimothy Leary",
+   "key": "asteroids-and-earthquakes-b2b-kimothy-leary",
+   "performers": [
+    "asteroids-and-earthquakes",
+    "kimothy-leary"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:spectacle",
+   "name": "Spectacle",
+   "key": "spectacle",
+   "performers": [
+    "spectacle"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:kontakt",
+   "name": "Kontakt",
+   "key": "kontakt",
+   "performers": [
+    "kontakt"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:oscure",
+   "name": "Oscure",
+   "key": "oscure",
+   "performers": [
+    "oscure"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:diss-lv",
+   "name": "Dissølv",
+   "key": "diss-lv",
+   "performers": [
+    "diss-lv"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:def3-x-bryx",
+   "name": "Def3 x BRYX",
+   "key": "def3-x-bryx",
+   "performers": [
+    "def3-x-bryx"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:thelem",
+   "name": "Thelem",
+   "key": "thelem",
+   "performers": [
+    "thelem"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:labrat",
+   "name": "Labrat",
+   "key": "labrat",
+   "performers": [
+    "labrat"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:ooah",
+   "name": "OOAH",
+   "key": "ooah",
+   "performers": [
+    "ooah"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:edamame",
+   "name": "Edamame",
+   "key": "edamame",
+   "performers": [
+    "edamame"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:pigeon-hole",
+   "name": "Pigeon Hole",
+   "key": "pigeon-hole",
+   "performers": [
+    "pigeon-hole"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:chee",
+   "name": "Chee",
+   "key": "chee",
+   "performers": [
+    "chee"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:mobley",
+   "name": "Mobley",
+   "key": "mobley",
+   "performers": [
+    "mobley"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:slenderbodies",
+   "name": "slenderbodies",
+   "key": "slenderbodies",
+   "performers": [
+    "slenderbodies"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:frameworks-live-band",
+   "name": "Frameworks (Live Band)",
+   "key": "frameworks-live-band",
+   "performers": [
+    "frameworks-live-band"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:cautious-clay",
+   "name": "Cautious Clay",
+   "key": "cautious-clay",
+   "performers": [
+    "cautious-clay"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:elohim",
+   "name": "ELOHIM",
+   "key": "elohim",
+   "performers": [
+    "elohim"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:gramatik",
+   "name": "Gramatik",
+   "key": "gramatik",
+   "performers": [
+    "gramatik"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:flying-lotus-3d",
+   "name": "Flying Lotus (3D)",
+   "key": "flying-lotus-3d",
+   "performers": [
+    "flying-lotus-3d"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:red-giant-project",
+   "name": "Red Giant Project",
+   "key": "red-giant-project",
+   "performers": [
+    "red-giant-project"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:mat-the-alien",
+   "name": "Mat The Alien",
+   "key": "mat-the-alien",
+   "performers": [
+    "mat-the-alien"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:soulection-ft-joe-kay-sasha-marie-and-andres",
+   "name": "SOULECTION ft Joe Kay, Sasha Marie & Andres",
+   "key": "soulection-ft-joe-kay-sasha-marie-and-andres",
+   "performers": [
+    "soulection-ft-joe-kay-sasha-marie-and-andres"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:charlesthefirst",
+   "name": "Charlesthefirst",
+   "key": "charlesthefirst",
+   "performers": [
+    "charlesthefirst"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:dimond-saints",
+   "name": "Dimond Saints",
+   "key": "dimond-saints",
+   "performers": [
+    "dimond-saints"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:the-polish-ambassador",
+   "name": "The Polish Ambassador",
+   "key": "the-polish-ambassador",
+   "performers": [
+    "the-polish-ambassador"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:ben-annand",
+   "name": "Ben Annand",
+   "key": "ben-annand",
+   "performers": [
+    "ben-annand"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:vnssa",
+   "name": "VnssA",
+   "key": "vnssa",
+   "performers": [
+    "vnssa"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:omnom",
+   "name": "Omnom",
+   "key": "omnom",
+   "performers": [
+    "omnom"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:escapade-walker-and-royce-ardalan",
+   "name": "Escapade (Walker & Royce + Ardalan)",
+   "key": "escapade-walker-and-royce-ardalan",
+   "performers": [
+    "escapade-walker-and-royce-ardalan"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:shiba-san",
+   "name": "Shiba San",
+   "key": "shiba-san",
+   "performers": [
+    "shiba-san"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:osunlade",
+   "name": "Osunlade",
+   "key": "osunlade",
+   "performers": [
+    "osunlade"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:dj-koze",
+   "name": "DJ Koze",
+   "key": "dj-koze",
+   "performers": [
+    "dj-koze"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:bboy-supreme",
+   "name": "Bboy Supreme",
+   "key": "bboy-supreme",
+   "performers": [
+    "bboy-supreme"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:climbing-poetree",
+   "name": "Climbing PoeTree",
+   "key": "climbing-poetree",
+   "performers": [
+    "climbing-poetree"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:rites-of-lightning-ritual-theater",
+   "name": "Rites of Lightning Ritual Theater",
+   "key": "rites-of-lightning-ritual-theater",
+   "performers": [
+    "rites-of-lightning-ritual-theater"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:prsn",
+   "name": "PRSN",
+   "key": "prsn",
+   "performers": [
+    "prsn"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:aabo",
+   "name": "Aabo",
+   "key": "aabo",
+   "performers": [
+    "aabo"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:andres-soulection",
+   "name": "Andres (SOULECTION)",
+   "key": "andres-soulection",
+   "performers": [
+    "andres-soulection"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:aximal",
+   "name": "Aximal",
+   "key": "aximal",
+   "performers": [
+    "aximal"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:showpony",
+   "name": "Showpony",
+   "key": "showpony",
+   "performers": [
+    "showpony"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:sweet-anomaly",
+   "name": "sweet anomaly",
+   "key": "sweet-anomaly",
+   "performers": [
+    "sweet-anomaly"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:brian-hartman",
+   "name": "Brian Hartman",
+   "key": "brian-hartman",
+   "performers": [
+    "brian-hartman"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:nico-stojan",
+   "name": "Nico Stojan",
+   "key": "nico-stojan",
+   "performers": [
+    "nico-stojan"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:groovewell",
+   "name": "groovewell",
+   "key": "groovewell",
+   "performers": [
+    "groovewell"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:mlndz",
+   "name": "MLNDZ",
+   "key": "mlndz",
+   "performers": [
+    "mlndz"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:roxy-venus",
+   "name": "Roxy Venus",
+   "key": "roxy-venus",
+   "performers": [
+    "roxy-venus"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:big-cee",
+   "name": "Big Cee",
+   "key": "big-cee",
+   "performers": [
+    "big-cee"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:joplin",
+   "name": "Joplin",
+   "key": "joplin",
+   "performers": [
+    "joplin"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:g-dubbs",
+   "name": "G-Dubbs",
+   "key": "g-dubbs",
+   "performers": [
+    "g-dubbs"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:doc-martin-marques-wyatt-dj-dan-patricio",
+   "name": "Doc Martin, Marques Wyatt, DJ Dan, PATRICIO",
+   "key": "doc-martin-marques-wyatt-dj-dan-patricio",
+   "performers": [
+    "doc-martin-marques-wyatt-dj-dan-patricio"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:mylk-and-and-honey",
+   "name": "Mylk && Honey",
+   "key": "mylk-and-and-honey",
+   "performers": [
+    "mylk-and-and-honey"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:sepiatonic",
+   "name": "Sepiatonic",
+   "key": "sepiatonic",
+   "performers": [
+    "sepiatonic"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:w-c-thornbush-and-the-great-american-show",
+   "name": "W.C. Thornbush & The Great American Show",
+   "key": "w-c-thornbush-and-the-great-american-show",
+   "performers": [
+    "w-c-thornbush-and-the-great-american-show"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:shane-hall",
+   "name": "Shane Hall",
+   "key": "shane-hall",
+   "performers": [
+    "shane-hall"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:the-legend-of-mulan-by-brittany-quidang",
+   "name": "The Legend of Mulan by Brittany Quidang",
+   "key": "the-legend-of-mulan-by-brittany-quidang",
+   "performers": [
+    "the-legend-of-mulan-by-brittany-quidang"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:tropo",
+   "name": "Tropo",
+   "key": "tropo",
+   "performers": [
+    "tropo"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:house-of-hamsa",
+   "name": "HOUSE OF HAMSA",
+   "key": "house-of-hamsa",
+   "performers": [
+    "house-of-hamsa"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:balkan-bump",
+   "name": "Balkan Bump",
+   "key": "balkan-bump",
+   "performers": [
+    "balkan-bump"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:my-baby",
+   "name": "My Baby",
+   "key": "my-baby",
+   "performers": [
+    "my-baby"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:scott-nice",
+   "name": "Scott Nice",
+   "key": "scott-nice",
+   "performers": [
+    "scott-nice"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:o-snap",
+   "name": "O'Snap",
+   "key": "o-snap",
+   "performers": [
+    "o-snap"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:spekt1",
+   "name": "Spekt1",
+   "key": "spekt1",
+   "performers": [
+    "spekt1"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:frq-ncy",
+   "name": "FRQ NCY",
+   "key": "frq-ncy",
+   "performers": [
+    "frq-ncy"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:oakk",
+   "name": "OAKK",
+   "key": "oakk",
+   "performers": [
+    "oakk"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:greazus",
+   "name": "Greazus",
+   "key": "greazus",
+   "performers": [
+    "greazus"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:spacegeisha",
+   "name": "spacegeishA",
+   "key": "spacegeisha",
+   "performers": [
+    "spacegeisha"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:tribone",
+   "name": "TRIBONE",
+   "key": "tribone",
+   "performers": [
+    "tribone"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:khromata",
+   "name": "KHROMATA",
+   "key": "khromata",
+   "performers": [
+    "khromata"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:barakuda",
+   "name": "Barakuda",
+   "key": "barakuda",
+   "performers": [
+    "barakuda"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:dela-moon",
+   "name": "Dela Moon",
+   "key": "dela-moon",
+   "performers": [
+    "dela-moon"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:left-right",
+   "name": "Left/Right",
+   "key": "left-right",
+   "performers": [
+    "left-right"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:dj-laura-low",
+   "name": "DJ LAURA LOW",
+   "key": "dj-laura-low",
+   "performers": [
+    "dj-laura-low"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:ife",
+   "name": "ÌFÉ",
+   "key": "ife",
+   "performers": [
+    "ife"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:masego",
+   "name": "Masego",
+   "key": "masego",
+   "performers": [
+    "masego"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:santigold",
+   "name": "Santigold",
+   "key": "santigold",
+   "performers": [
+    "santigold"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:big-gigantic",
+   "name": "BIG GIGANTIC",
+   "key": "big-gigantic",
+   "performers": [
+    "big-gigantic"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:megan-hamilton",
+   "name": "Megan Hamilton",
+   "key": "megan-hamilton",
+   "performers": [
+    "megan-hamilton"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:axel-thesleff",
+   "name": "Axel Thesleff",
+   "key": "axel-thesleff",
+   "performers": [
+    "axel-thesleff"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:kll-smth",
+   "name": "Kll Smth",
+   "key": "kll-smth",
+   "performers": [
+    "kll-smth"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:anna-morgan",
+   "name": "Anna Morgan",
+   "key": "anna-morgan",
+   "performers": [
+    "anna-morgan"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:1788-l",
+   "name": "1788-L",
+   "key": "1788-l",
+   "performers": [
+    "1788-l"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:shades",
+   "name": "SHADES",
+   "key": "shades",
+   "performers": [
+    "shades"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:g-jones",
+   "name": "G JONES",
+   "key": "g-jones",
+   "performers": [
+    "g-jones"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:duchess",
+   "name": "Duchess",
+   "key": "duchess",
+   "performers": [
+    "duchess"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:anton-tumas",
+   "name": "Anton Tumas",
+   "key": "anton-tumas",
+   "performers": [
+    "anton-tumas"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:doc-martin",
+   "name": "Doc Martin",
+   "key": "doc-martin",
+   "performers": [
+    "doc-martin"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:holmar",
+   "name": "Holmar",
+   "key": "holmar",
+   "performers": [
+    "holmar"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:luttrell",
+   "name": "Luttrell",
+   "key": "luttrell",
+   "performers": [
+    "luttrell"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:lane-8",
+   "name": "Lane 8",
+   "key": "lane-8",
+   "performers": [
+    "lane-8"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:rob-noble",
+   "name": "Rob Noble",
+   "key": "rob-noble",
+   "performers": [
+    "rob-noble"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:kurt-kain",
+   "name": "Kurt Kain",
+   "key": "kurt-kain",
+   "performers": [
+    "kurt-kain"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:fanna-fi-allah",
+   "name": "Fanna-Fi-Allah",
+   "key": "fanna-fi-allah",
+   "performers": [
+    "fanna-fi-allah"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:yemanjo",
+   "name": "Yemanjo",
+   "key": "yemanjo",
+   "performers": [
+    "yemanjo"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:akae-beka",
+   "name": "Akae Beka",
+   "key": "akae-beka",
+   "performers": [
+    "akae-beka"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:thrive-choir",
+   "name": "Thrive Choir",
+   "key": "thrive-choir",
+   "performers": [
+    "thrive-choir"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:berel",
+   "name": "Berel",
+   "key": "berel",
+   "performers": [
+    "berel"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:black-belt-academy",
+   "name": "Black Belt Academy",
+   "key": "black-belt-academy",
+   "performers": [
+    "black-belt-academy"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:kerala-dust",
+   "name": "Kerala Dust",
+   "key": "kerala-dust",
+   "performers": [
+    "kerala-dust"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:chief-jesta",
+   "name": "Chief Jesta",
+   "key": "chief-jesta",
+   "performers": [
+    "chief-jesta"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:cameron-angeli",
+   "name": "Cameron Angeli",
+   "key": "cameron-angeli",
+   "performers": [
+    "cameron-angeli"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:maximus-c",
+   "name": "Maximus C",
+   "key": "maximus-c",
+   "performers": [
+    "maximus-c"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:massio",
+   "name": "Massio",
+   "key": "massio",
+   "performers": [
+    "massio"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:beau-sebastian",
+   "name": "Beau Sebastian",
+   "key": "beau-sebastian",
+   "performers": [
+    "beau-sebastian"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:facundo-mohrr",
+   "name": "Facundo Mohrr",
+   "key": "facundo-mohrr",
+   "performers": [
+    "facundo-mohrr"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:mko",
+   "name": "MKO",
+   "key": "mko",
+   "performers": [
+    "mko"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:patrik-khach",
+   "name": "Patrik Khach",
+   "key": "patrik-khach",
+   "performers": [
+    "patrik-khach"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:benjamin-k",
+   "name": "Benjamin K",
+   "key": "benjamin-k",
+   "performers": [
+    "benjamin-k"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:saand",
+   "name": "SAAND",
+   "key": "saand",
+   "performers": [
+    "saand"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:dead-tones",
+   "name": "Dead-Tones",
+   "key": "dead-tones",
+   "performers": [
+    "dead-tones"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:the-wandering-menstruals",
+   "name": "The Wandering Menstruals",
+   "key": "the-wandering-menstruals",
+   "performers": [
+    "the-wandering-menstruals"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:datura",
+   "name": "Datura",
+   "key": "datura",
+   "performers": [
+    "datura"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:ozomatli",
+   "name": "Ozomatli",
+   "key": "ozomatli",
+   "performers": [
+    "ozomatli"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:atom-smith-and-his-bass-age-big-band",
+   "name": "Atom Smith & His Bass Age Big Band",
+   "key": "atom-smith-and-his-bass-age-big-band",
+   "performers": [
+    "atom-smith-and-his-bass-age-big-band"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:swingrowers",
+   "name": "SWINGROWERS",
+   "key": "swingrowers",
+   "performers": [
+    "swingrowers"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:danni-g",
+   "name": "Danni G",
+   "key": "danni-g",
+   "performers": [
+    "danni-g"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:moontricks",
+   "name": "Moontricks",
+   "key": "moontricks",
+   "performers": [
+    "moontricks"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:shiny-things",
+   "name": "SHINY THINGS",
+   "key": "shiny-things",
+   "performers": [
+    "shiny-things"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:vide",
+   "name": "VIDE",
+   "key": "vide",
+   "performers": [
+    "vide"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:untitld",
+   "name": "Untitld",
+   "key": "untitld",
+   "performers": [
+    "untitld"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:milano",
+   "name": "Milano",
+   "key": "milano",
+   "performers": [
+    "milano"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:abelation",
+   "name": "Abelation",
+   "key": "abelation",
+   "performers": [
+    "abelation"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:eazybaked",
+   "name": "Eazybaked",
+   "key": "eazybaked",
+   "performers": [
+    "eazybaked"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:lost-dogz",
+   "name": "Lost DogZ",
+   "key": "lost-dogz",
+   "performers": [
+    "lost-dogz"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:lasu",
+   "name": "Lasu",
+   "key": "lasu",
+   "performers": [
+    "lasu"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:mt-doyle",
+   "name": "Mt. Doyle",
+   "key": "mt-doyle",
+   "performers": [
+    "mt-doyle"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:reflektor",
+   "name": "Reflektor",
+   "key": "reflektor",
+   "performers": [
+    "reflektor"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:levrige",
+   "name": "LEVRIGE",
+   "key": "levrige",
+   "performers": [
+    "levrige"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:fixate",
+   "name": "Fixate",
+   "key": "fixate",
+   "performers": [
+    "fixate"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:jamal",
+   "name": "Jamal",
+   "key": "jamal",
+   "performers": [
+    "jamal"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:zebbler-encanti-experience",
+   "name": "Zebbler Encanti Experience",
+   "key": "zebbler-encanti-experience",
+   "performers": [
+    "zebbler-encanti-experience"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:subsuelo-sundays",
+   "name": "Subsuelo Sundays",
+   "key": "subsuelo-sundays",
+   "performers": [
+    "subsuelo-sundays"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:channel-tres",
+   "name": "Channel Tres",
+   "key": "channel-tres",
+   "performers": [
+    "channel-tres"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:jan-blomqvist-and-band",
+   "name": "Jan Blomqvist & Band",
+   "key": "jan-blomqvist-and-band",
+   "performers": [
+    "jan-blomqvist-and-band"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:khruangbin",
+   "name": "Khruangbin",
+   "key": "khruangbin",
+   "performers": [
+    "khruangbin"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:toro-y-moi",
+   "name": "Toro y Moi",
+   "key": "toro-y-moi",
+   "performers": [
+    "toro-y-moi"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:disclosure-dj-set",
+   "name": "Disclosure (DJ set)",
+   "key": "disclosure-dj-set",
+   "performers": [
+    "disclosure-dj-set"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:ill-esha",
+   "name": "ill-ēsha",
+   "key": "ill-esha",
+   "performers": [
+    "ill-esha"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:dorfex-bos",
+   "name": "Dorfex Bos",
+   "key": "dorfex-bos",
+   "performers": [
+    "dorfex-bos"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:soohan",
+   "name": "Soohan",
+   "key": "soohan",
+   "performers": [
+    "soohan"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:desert-dwellers",
+   "name": "Desert Dwellers",
+   "key": "desert-dwellers",
+   "performers": [
+    "desert-dwellers"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:spectrasoul",
+   "name": "Spectrasoul",
+   "key": "spectrasoul",
+   "performers": [
+    "spectrasoul"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:opiuo",
+   "name": "Opiuo",
+   "key": "opiuo",
+   "performers": [
+    "opiuo"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:clozee",
+   "name": "CloZee",
+   "key": "clozee",
+   "performers": [
+    "clozee"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:rachel-torro",
+   "name": "Rachel Torro",
+   "key": "rachel-torro",
+   "performers": [
+    "rachel-torro"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:zach-walker",
+   "name": "Zach Walker",
+   "key": "zach-walker",
+   "performers": [
+    "zach-walker"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:gorje-hewek-and-izhevski",
+   "name": "Gorje Hewek & Izhevski",
+   "key": "gorje-hewek-and-izhevski",
+   "performers": [
+    "gorje-hewek-and-izhevski"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:damian-lazarus",
+   "name": "Damian Lazarus",
+   "key": "damian-lazarus",
+   "performers": [
+    "damian-lazarus"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:rampue",
+   "name": "Rampue",
+   "key": "rampue",
+   "performers": [
+    "rampue"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:bedouin",
+   "name": "BEDOUIN",
+   "key": "bedouin",
+   "performers": [
+    "bedouin"
+   ]
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:recondite-live",
+   "name": "Recondite (Live)",
+   "key": "recondite-live",
+   "performers": [
+    "recondite-live"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "lightning-in-a-bottle-2019:d1:beacon:2300:yohm",
+   "artistId": "lightning-in-a-bottle-2019:yohm",
+   "day": 1,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:beacon:2015:ginger-and-the-ghost",
+   "artistId": "lightning-in-a-bottle-2019:ginger-and-the-ghost",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:beacon:0000:nadi",
+   "artistId": "lightning-in-a-bottle-2019:nadi",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:beacon:0130:monolink-live",
+   "artistId": "lightning-in-a-bottle-2019:monolink-live",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "01:30",
+   "end": "03:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:crossroads:2000:her-story",
+   "artistId": "lightning-in-a-bottle-2019:her-story",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:crossroads:2115:karavan-sarai",
+   "artistId": "lightning-in-a-bottle-2019:karavan-sarai",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:crossroads:2215:robin-tala",
+   "artistId": "lightning-in-a-bottle-2019:robin-tala",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:crossroads:2330:yohm",
+   "artistId": "lightning-in-a-bottle-2019:yohm",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:favela:1200:marjo-lak",
+   "artistId": "lightning-in-a-bottle-2019:marjo-lak",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:favela:1330:moarice",
+   "artistId": "lightning-in-a-bottle-2019:moarice",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:favela:1415:bret-wallace",
+   "artistId": "lightning-in-a-bottle-2019:bret-wallace",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "14:15",
+   "end": "15:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:favela:1530:armando-kroma",
+   "artistId": "lightning-in-a-bottle-2019:armando-kroma",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "15:30",
+   "end": "17:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:favela:1700:tal-ohana",
+   "artistId": "lightning-in-a-bottle-2019:tal-ohana",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:favela:1830:ramona-wouters",
+   "artistId": "lightning-in-a-bottle-2019:ramona-wouters",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:favela:2000:nukreative",
+   "artistId": "lightning-in-a-bottle-2019:nukreative",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:favela:2130:md",
+   "artistId": "lightning-in-a-bottle-2019:md",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:favela:2300:cody-lee",
+   "artistId": "lightning-in-a-bottle-2019:cody-lee",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:favela:0100:divadanielle-feat-annie-dolly",
+   "artistId": "lightning-in-a-bottle-2019:divadanielle-feat-annie-dolly",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:favela:0230:siavash",
+   "artistId": "lightning-in-a-bottle-2019:siavash",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:grand-artique:1600:dragontree",
+   "artistId": "lightning-in-a-bottle-2019:dragontree",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "16:00",
+   "end": "17:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:grand-artique:1745:papa-bear-and-the-easy-love",
+   "artistId": "lightning-in-a-bottle-2019:papa-bear-and-the-easy-love",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "17:45",
+   "end": "19:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:grand-artique:1930:b3k",
+   "artistId": "lightning-in-a-bottle-2019:b3k",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:grand-artique:2100:proxima-parada",
+   "artistId": "lightning-in-a-bottle-2019:proxima-parada",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:grand-artique:2245:boostive",
+   "artistId": "lightning-in-a-bottle-2019:boostive",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:grand-artique:0030:smoked-out-soul",
+   "artistId": "lightning-in-a-bottle-2019:smoked-out-soul",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:the-stacks:1400:light-the-sky",
+   "artistId": "lightning-in-a-bottle-2019:light-the-sky",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "14:00",
+   "end": "15:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:the-stacks:1515:jaron",
+   "artistId": "lightning-in-a-bottle-2019:jaron",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "15:15",
+   "end": "16:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:the-stacks:1630:cozway",
+   "artistId": "lightning-in-a-bottle-2019:cozway",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "16:30",
+   "end": "17:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:the-stacks:1745:tvboo",
+   "artistId": "lightning-in-a-bottle-2019:tvboo",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "17:45",
+   "end": "19:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:the-stacks:1900:secret-recipe",
+   "artistId": "lightning-in-a-bottle-2019:secret-recipe",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:the-stacks:2015:stylust",
+   "artistId": "lightning-in-a-bottle-2019:stylust",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:the-stacks:2130:ahee",
+   "artistId": "lightning-in-a-bottle-2019:ahee",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d2:the-stacks:2245:mihkal",
+   "artistId": "lightning-in-a-bottle-2019:mihkal",
+   "day": 2,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:beacon:1915:andreasone",
+   "artistId": "lightning-in-a-bottle-2019:andreasone",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:beacon:2130:malik-lovesyall",
+   "artistId": "lightning-in-a-bottle-2019:malik-lovesyall",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:beacon:2245:kitty-pak",
+   "artistId": "lightning-in-a-bottle-2019:kitty-pak",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:beacon:0000:ultimate-fantastic",
+   "artistId": "lightning-in-a-bottle-2019:ultimate-fantastic",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "00:00",
+   "end": "01:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:beacon:0115:alvaro-z",
+   "artistId": "lightning-in-a-bottle-2019:alvaro-z",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "01:15",
+   "end": "02:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:beacon:0245:manatee-commune",
+   "artistId": "lightning-in-a-bottle-2019:manatee-commune",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "02:45",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:crossroads:1845:little-dinosaur",
+   "artistId": "lightning-in-a-bottle-2019:little-dinosaur",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "18:45",
+   "end": "20:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:crossroads:2015:neptune",
+   "artistId": "lightning-in-a-bottle-2019:neptune",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:crossroads:2130:elijah-sage",
+   "artistId": "lightning-in-a-bottle-2019:elijah-sage",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:crossroads:2245:2melo",
+   "artistId": "lightning-in-a-bottle-2019:2melo",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:crossroads:0000:lum",
+   "artistId": "lightning-in-a-bottle-2019:lum",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "00:00",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:crossroads:0200:oceanvs-orientalis",
+   "artistId": "lightning-in-a-bottle-2019:oceanvs-orientalis",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "02:00",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:favela:1200:marcos",
+   "artistId": "lightning-in-a-bottle-2019:marcos",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "12:00",
+   "end": "14:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:favela:1400:naranja",
+   "artistId": "lightning-in-a-bottle-2019:naranja",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "14:00",
+   "end": "15:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:favela:1515:antoinette",
+   "artistId": "lightning-in-a-bottle-2019:antoinette",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "15:15",
+   "end": "16:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:favela:1630:naomi",
+   "artistId": "lightning-in-a-bottle-2019:naomi",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "16:30",
+   "end": "17:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:favela:1745:shane-one",
+   "artistId": "lightning-in-a-bottle-2019:shane-one",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "17:45",
+   "end": "19:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:favela:1900:amhain",
+   "artistId": "lightning-in-a-bottle-2019:amhain",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:favela:2015:rachel-spalding",
+   "artistId": "lightning-in-a-bottle-2019:rachel-spalding",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:favela:2130:dj-kramer",
+   "artistId": "lightning-in-a-bottle-2019:dj-kramer",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:favela:2300:ben-seagren",
+   "artistId": "lightning-in-a-bottle-2019:ben-seagren",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:favela:0030:shawni",
+   "artistId": "lightning-in-a-bottle-2019:shawni",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:favela:0200:lovestruckk",
+   "artistId": "lightning-in-a-bottle-2019:lovestruckk",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "02:00",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:grand-artique:1200:miss-federoff",
+   "artistId": "lightning-in-a-bottle-2019:miss-federoff",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:grand-artique:1330:moodlite",
+   "artistId": "lightning-in-a-bottle-2019:moodlite",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:grand-artique:1500:foxtrails",
+   "artistId": "lightning-in-a-bottle-2019:foxtrails",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "15:00",
+   "end": "16:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:grand-artique:1700:herbert-bail-orchestra",
+   "artistId": "lightning-in-a-bottle-2019:herbert-bail-orchestra",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:grand-artique:1820:pivot-to-presence",
+   "artistId": "lightning-in-a-bottle-2019:pivot-to-presence",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "18:20",
+   "end": "18:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:grand-artique:1900:rising-appalachia",
+   "artistId": "lightning-in-a-bottle-2019:rising-appalachia",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:grand-artique:2100:the-fungineers",
+   "artistId": "lightning-in-a-bottle-2019:the-fungineers",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:grand-artique:2215:goldiii",
+   "artistId": "lightning-in-a-bottle-2019:goldiii",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "22:15",
+   "end": "22:35"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:grand-artique:2245:vokab-kompany",
+   "artistId": "lightning-in-a-bottle-2019:vokab-kompany",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:grand-artique:0115:carlo-x-ofier",
+   "artistId": "lightning-in-a-bottle-2019:carlo-x-ofier",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "01:15",
+   "end": "02:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:grand-artique:0300:sur",
+   "artistId": "lightning-in-a-bottle-2019:sur",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:1200:asteroids-and-earthquakes-b2b-kimothy-leary",
+   "artistId": "lightning-in-a-bottle-2019:asteroids-and-earthquakes-b2b-kimothy-leary",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "12:00",
+   "end": "13:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:1315:spectacle",
+   "artistId": "lightning-in-a-bottle-2019:spectacle",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "13:15",
+   "end": "14:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:1430:kontakt",
+   "artistId": "lightning-in-a-bottle-2019:kontakt",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "14:30",
+   "end": "15:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:1545:oscure",
+   "artistId": "lightning-in-a-bottle-2019:oscure",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "15:45",
+   "end": "17:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:1700:diss-lv",
+   "artistId": "lightning-in-a-bottle-2019:diss-lv",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:1815:def3-x-bryx",
+   "artistId": "lightning-in-a-bottle-2019:def3-x-bryx",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:1930:thelem",
+   "artistId": "lightning-in-a-bottle-2019:thelem",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "19:30",
+   "end": "20:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:2045:labrat",
+   "artistId": "lightning-in-a-bottle-2019:labrat",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:2315:ooah",
+   "artistId": "lightning-in-a-bottle-2019:ooah",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:0030:edamame",
+   "artistId": "lightning-in-a-bottle-2019:edamame",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "00:30",
+   "end": "01:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:0145:pigeon-hole",
+   "artistId": "lightning-in-a-bottle-2019:pigeon-hole",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "01:45",
+   "end": "03:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:the-stacks:0300:chee",
+   "artistId": "lightning-in-a-bottle-2019:chee",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:lightning:1550:mobley",
+   "artistId": "lightning-in-a-bottle-2019:mobley",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "15:50",
+   "end": "16:50"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:lightning:1705:slenderbodies",
+   "artistId": "lightning-in-a-bottle-2019:slenderbodies",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "17:05",
+   "end": "18:05"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:lightning:1825:frameworks-live-band",
+   "artistId": "lightning-in-a-bottle-2019:frameworks-live-band",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "18:25",
+   "end": "19:40"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:lightning:2000:cautious-clay",
+   "artistId": "lightning-in-a-bottle-2019:cautious-clay",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:lightning:2115:elohim",
+   "artistId": "lightning-in-a-bottle-2019:elohim",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "21:15",
+   "end": "22:05"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:lightning:2245:gramatik",
+   "artistId": "lightning-in-a-bottle-2019:gramatik",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "22:45",
+   "end": "00:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:lightning:0045:flying-lotus-3d",
+   "artistId": "lightning-in-a-bottle-2019:flying-lotus-3d",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:thunder:1450:red-giant-project",
+   "artistId": "lightning-in-a-bottle-2019:red-giant-project",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "14:50",
+   "end": "15:50"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:thunder:1555:mat-the-alien",
+   "artistId": "lightning-in-a-bottle-2019:mat-the-alien",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "15:55",
+   "end": "17:25"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:thunder:1725:pigeon-hole",
+   "artistId": "lightning-in-a-bottle-2019:pigeon-hole",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "17:25",
+   "end": "18:55"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:thunder:1855:manatee-commune",
+   "artistId": "lightning-in-a-bottle-2019:manatee-commune",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "18:55",
+   "end": "20:25"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:thunder:2025:soulection-ft-joe-kay-sasha-marie-and-andres",
+   "artistId": "lightning-in-a-bottle-2019:soulection-ft-joe-kay-sasha-marie-and-andres",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "20:25",
+   "end": "21:55"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:thunder:2155:charlesthefirst",
+   "artistId": "lightning-in-a-bottle-2019:charlesthefirst",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "21:55",
+   "end": "23:10"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:thunder:2320:dimond-saints",
+   "artistId": "lightning-in-a-bottle-2019:dimond-saints",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "23:20",
+   "end": "00:40"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:thunder:0045:the-polish-ambassador",
+   "artistId": "lightning-in-a-bottle-2019:the-polish-ambassador",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:woogie:1200:ben-annand",
+   "artistId": "lightning-in-a-bottle-2019:ben-annand",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "12:00",
+   "end": "14:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:woogie:1400:vnssa",
+   "artistId": "lightning-in-a-bottle-2019:vnssa",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "14:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:woogie:1600:omnom",
+   "artistId": "lightning-in-a-bottle-2019:omnom",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:woogie:1800:escapade-walker-and-royce-ardalan",
+   "artistId": "lightning-in-a-bottle-2019:escapade-walker-and-royce-ardalan",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:woogie:2000:shiba-san",
+   "artistId": "lightning-in-a-bottle-2019:shiba-san",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:woogie:2200:osunlade",
+   "artistId": "lightning-in-a-bottle-2019:osunlade",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d3:woogie:0000:dj-koze",
+   "artistId": "lightning-in-a-bottle-2019:dj-koze",
+   "day": 3,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "00:00",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:beacon:1900:bboy-supreme",
+   "artistId": "lightning-in-a-bottle-2019:bboy-supreme",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:beacon:2200:climbing-poetree",
+   "artistId": "lightning-in-a-bottle-2019:climbing-poetree",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:beacon:2310:rites-of-lightning-ritual-theater",
+   "artistId": "lightning-in-a-bottle-2019:rites-of-lightning-ritual-theater",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "23:10",
+   "end": "00:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:beacon:0015:prsn",
+   "artistId": "lightning-in-a-bottle-2019:prsn",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "00:15",
+   "end": "01:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:beacon:0130:aabo",
+   "artistId": "lightning-in-a-bottle-2019:aabo",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "01:30",
+   "end": "02:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:beacon:0245:andres-soulection",
+   "artistId": "lightning-in-a-bottle-2019:andres-soulection",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "02:45",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:crossroads:1130:aximal",
+   "artistId": "lightning-in-a-bottle-2019:aximal",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "11:30",
+   "end": "12:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:crossroads:2030:showpony",
+   "artistId": "lightning-in-a-bottle-2019:showpony",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:crossroads:2200:little-dinosaur",
+   "artistId": "lightning-in-a-bottle-2019:little-dinosaur",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:crossroads:2330:sweet-anomaly",
+   "artistId": "lightning-in-a-bottle-2019:sweet-anomaly",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:crossroads:0100:brian-hartman",
+   "artistId": "lightning-in-a-bottle-2019:brian-hartman",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:crossroads:0230:nico-stojan",
+   "artistId": "lightning-in-a-bottle-2019:nico-stojan",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:favela:1200:groovewell",
+   "artistId": "lightning-in-a-bottle-2019:groovewell",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "12:00",
+   "end": "14:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:favela:1430:mlndz",
+   "artistId": "lightning-in-a-bottle-2019:mlndz",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "14:30",
+   "end": "16:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:favela:1600:roxy-venus",
+   "artistId": "lightning-in-a-bottle-2019:roxy-venus",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:favela:1730:big-cee",
+   "artistId": "lightning-in-a-bottle-2019:big-cee",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:favela:1900:joplin",
+   "artistId": "lightning-in-a-bottle-2019:joplin",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:favela:2030:g-dubbs",
+   "artistId": "lightning-in-a-bottle-2019:g-dubbs",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:favela:2200:doc-martin-marques-wyatt-dj-dan-patricio",
+   "artistId": "lightning-in-a-bottle-2019:doc-martin-marques-wyatt-dj-dan-patricio",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "22:00",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:grand-artique:1300:mylk-and-and-honey",
+   "artistId": "lightning-in-a-bottle-2019:mylk-and-and-honey",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:grand-artique:1430:sepiatonic",
+   "artistId": "lightning-in-a-bottle-2019:sepiatonic",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "14:30",
+   "end": "15:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:grand-artique:1630:w-c-thornbush-and-the-great-american-show",
+   "artistId": "lightning-in-a-bottle-2019:w-c-thornbush-and-the-great-american-show",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:grand-artique:1845:shane-hall",
+   "artistId": "lightning-in-a-bottle-2019:shane-hall",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:grand-artique:2030:frameworks-live-band",
+   "artistId": "lightning-in-a-bottle-2019:frameworks-live-band",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:grand-artique:2145:the-legend-of-mulan-by-brittany-quidang",
+   "artistId": "lightning-in-a-bottle-2019:the-legend-of-mulan-by-brittany-quidang",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "21:45",
+   "end": "22:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:grand-artique:2215:tropo",
+   "artistId": "lightning-in-a-bottle-2019:tropo",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "22:15",
+   "end": "23:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:grand-artique:2345:house-of-hamsa",
+   "artistId": "lightning-in-a-bottle-2019:house-of-hamsa",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "23:45",
+   "end": "00:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:grand-artique:0130:balkan-bump",
+   "artistId": "lightning-in-a-bottle-2019:balkan-bump",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:grand-artique:0245:my-baby",
+   "artistId": "lightning-in-a-bottle-2019:my-baby",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "02:45",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:1200:scott-nice",
+   "artistId": "lightning-in-a-bottle-2019:scott-nice",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "12:00",
+   "end": "13:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:1315:o-snap",
+   "artistId": "lightning-in-a-bottle-2019:o-snap",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "13:15",
+   "end": "14:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:1430:spekt1",
+   "artistId": "lightning-in-a-bottle-2019:spekt1",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "14:30",
+   "end": "15:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:1545:frq-ncy",
+   "artistId": "lightning-in-a-bottle-2019:frq-ncy",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "15:45",
+   "end": "17:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:1700:oakk",
+   "artistId": "lightning-in-a-bottle-2019:oakk",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:1815:greazus",
+   "artistId": "lightning-in-a-bottle-2019:greazus",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:1930:spacegeisha",
+   "artistId": "lightning-in-a-bottle-2019:spacegeisha",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "19:30",
+   "end": "20:50"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:2050:tribone",
+   "artistId": "lightning-in-a-bottle-2019:tribone",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "20:50",
+   "end": "22:10"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:2210:khromata",
+   "artistId": "lightning-in-a-bottle-2019:khromata",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "22:10",
+   "end": "23:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:2330:barakuda",
+   "artistId": "lightning-in-a-bottle-2019:barakuda",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:0100:dela-moon",
+   "artistId": "lightning-in-a-bottle-2019:dela-moon",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:0200:left-right",
+   "artistId": "lightning-in-a-bottle-2019:left-right",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:the-stacks:0300:dj-laura-low",
+   "artistId": "lightning-in-a-bottle-2019:dj-laura-low",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:lightning:1600:lum",
+   "artistId": "lightning-in-a-bottle-2019:lum",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:lightning:1810:ife",
+   "artistId": "lightning-in-a-bottle-2019:ife",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "18:10",
+   "end": "19:25"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:lightning:1945:rising-appalachia",
+   "artistId": "lightning-in-a-bottle-2019:rising-appalachia",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "19:45",
+   "end": "21:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:lightning:2120:masego",
+   "artistId": "lightning-in-a-bottle-2019:masego",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "21:20",
+   "end": "22:35"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:lightning:2315:santigold",
+   "artistId": "lightning-in-a-bottle-2019:santigold",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "23:15",
+   "end": "00:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:lightning:0045:big-gigantic",
+   "artistId": "lightning-in-a-bottle-2019:big-gigantic",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:thunder:1455:prsn",
+   "artistId": "lightning-in-a-bottle-2019:prsn",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "14:55",
+   "end": "16:25"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:thunder:1625:megan-hamilton",
+   "artistId": "lightning-in-a-bottle-2019:megan-hamilton",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "16:25",
+   "end": "17:55"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:thunder:1755:axel-thesleff",
+   "artistId": "lightning-in-a-bottle-2019:axel-thesleff",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "17:55",
+   "end": "19:10"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:thunder:1910:kll-smth",
+   "artistId": "lightning-in-a-bottle-2019:kll-smth",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "19:10",
+   "end": "20:40"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:thunder:2040:anna-morgan",
+   "artistId": "lightning-in-a-bottle-2019:anna-morgan",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "20:40",
+   "end": "22:10"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:thunder:2210:1788-l",
+   "artistId": "lightning-in-a-bottle-2019:1788-l",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "22:10",
+   "end": "23:25"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:thunder:2325:shades",
+   "artistId": "lightning-in-a-bottle-2019:shades",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "23:25",
+   "end": "00:40"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:thunder:0045:g-jones",
+   "artistId": "lightning-in-a-bottle-2019:g-jones",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:woogie:1200:duchess",
+   "artistId": "lightning-in-a-bottle-2019:duchess",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "12:00",
+   "end": "14:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:woogie:1400:anton-tumas",
+   "artistId": "lightning-in-a-bottle-2019:anton-tumas",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "14:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:woogie:1600:doc-martin",
+   "artistId": "lightning-in-a-bottle-2019:doc-martin",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:woogie:1800:nico-stojan",
+   "artistId": "lightning-in-a-bottle-2019:nico-stojan",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:woogie:2000:holmar",
+   "artistId": "lightning-in-a-bottle-2019:holmar",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:woogie:2200:luttrell",
+   "artistId": "lightning-in-a-bottle-2019:luttrell",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d4:woogie:0000:lane-8",
+   "artistId": "lightning-in-a-bottle-2019:lane-8",
+   "day": 4,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "00:00",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:beacon:1900:rob-noble",
+   "artistId": "lightning-in-a-bottle-2019:rob-noble",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:beacon:2115:kurt-kain",
+   "artistId": "lightning-in-a-bottle-2019:kurt-kain",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "21:15",
+   "end": "21:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:beacon:2230:fanna-fi-allah",
+   "artistId": "lightning-in-a-bottle-2019:fanna-fi-allah",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:beacon:0000:yemanjo",
+   "artistId": "lightning-in-a-bottle-2019:yemanjo",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:beacon:0145:akae-beka",
+   "artistId": "lightning-in-a-bottle-2019:akae-beka",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:beacon",
+   "start": "01:45",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:crossroads:1130:thrive-choir",
+   "artistId": "lightning-in-a-bottle-2019:thrive-choir",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "11:30",
+   "end": "12:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:crossroads:1900:berel",
+   "artistId": "lightning-in-a-bottle-2019:berel",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:crossroads:2000:alvaro-z",
+   "artistId": "lightning-in-a-bottle-2019:alvaro-z",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:crossroads:2130:black-belt-academy",
+   "artistId": "lightning-in-a-bottle-2019:black-belt-academy",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "21:30",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:crossroads:0215:kerala-dust",
+   "artistId": "lightning-in-a-bottle-2019:kerala-dust",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:crossroads",
+   "start": "02:15",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:favela:1200:chief-jesta",
+   "artistId": "lightning-in-a-bottle-2019:chief-jesta",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "12:00",
+   "end": "13:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:favela:1315:cameron-angeli",
+   "artistId": "lightning-in-a-bottle-2019:cameron-angeli",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "13:15",
+   "end": "14:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:favela:1430:maximus-c",
+   "artistId": "lightning-in-a-bottle-2019:maximus-c",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "14:30",
+   "end": "15:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:favela:1545:massio",
+   "artistId": "lightning-in-a-bottle-2019:massio",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "15:45",
+   "end": "17:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:favela:1700:beau-sebastian",
+   "artistId": "lightning-in-a-bottle-2019:beau-sebastian",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:favela:1830:facundo-mohrr",
+   "artistId": "lightning-in-a-bottle-2019:facundo-mohrr",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "18:30",
+   "end": "20:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:favela:2030:mko",
+   "artistId": "lightning-in-a-bottle-2019:mko",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:favela:2200:patrik-khach",
+   "artistId": "lightning-in-a-bottle-2019:patrik-khach",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:favela:2330:benjamin-k",
+   "artistId": "lightning-in-a-bottle-2019:benjamin-k",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:favela:0100:saand",
+   "artistId": "lightning-in-a-bottle-2019:saand",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:favela:0230:dead-tones",
+   "artistId": "lightning-in-a-bottle-2019:dead-tones",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:favela",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:grand-artique:1300:the-wandering-menstruals",
+   "artistId": "lightning-in-a-bottle-2019:the-wandering-menstruals",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:grand-artique:1500:datura",
+   "artistId": "lightning-in-a-bottle-2019:datura",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:grand-artique:1830:ozomatli",
+   "artistId": "lightning-in-a-bottle-2019:ozomatli",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "18:30",
+   "end": "19:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:grand-artique:1955:goldiii",
+   "artistId": "lightning-in-a-bottle-2019:goldiii",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "19:55",
+   "end": "20:10"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:grand-artique:2030:atom-smith-and-his-bass-age-big-band",
+   "artistId": "lightning-in-a-bottle-2019:atom-smith-and-his-bass-age-big-band",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:grand-artique:2200:swingrowers",
+   "artistId": "lightning-in-a-bottle-2019:swingrowers",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:grand-artique:0000:danni-g",
+   "artistId": "lightning-in-a-bottle-2019:danni-g",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "00:00",
+   "end": "01:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:grand-artique:0130:moontricks",
+   "artistId": "lightning-in-a-bottle-2019:moontricks",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "01:30",
+   "end": "02:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:grand-artique:0300:red-giant-project",
+   "artistId": "lightning-in-a-bottle-2019:red-giant-project",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:grand-artique",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:1200:shiny-things",
+   "artistId": "lightning-in-a-bottle-2019:shiny-things",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:1300:vide",
+   "artistId": "lightning-in-a-bottle-2019:vide",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:1400:untitld",
+   "artistId": "lightning-in-a-bottle-2019:untitld",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:1500:milano",
+   "artistId": "lightning-in-a-bottle-2019:milano",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:1600:abelation",
+   "artistId": "lightning-in-a-bottle-2019:abelation",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:1700:eazybaked",
+   "artistId": "lightning-in-a-bottle-2019:eazybaked",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:1800:lost-dogz",
+   "artistId": "lightning-in-a-bottle-2019:lost-dogz",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:1845:lasu",
+   "artistId": "lightning-in-a-bottle-2019:lasu",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:2000:mt-doyle",
+   "artistId": "lightning-in-a-bottle-2019:mt-doyle",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:2115:reflektor",
+   "artistId": "lightning-in-a-bottle-2019:reflektor",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:2230:levrige",
+   "artistId": "lightning-in-a-bottle-2019:levrige",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "22:30",
+   "end": "23:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:2345:fixate",
+   "artistId": "lightning-in-a-bottle-2019:fixate",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "23:45",
+   "end": "01:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:0115:jamal",
+   "artistId": "lightning-in-a-bottle-2019:jamal",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "01:15",
+   "end": "02:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:the-stacks:0230:zebbler-encanti-experience",
+   "artistId": "lightning-in-a-bottle-2019:zebbler-encanti-experience",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:the-stacks",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:lightning:1415:subsuelo-sundays",
+   "artistId": "lightning-in-a-bottle-2019:subsuelo-sundays",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "14:15",
+   "end": "17:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:lightning:1730:channel-tres",
+   "artistId": "lightning-in-a-bottle-2019:channel-tres",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:lightning:1845:jan-blomqvist-and-band",
+   "artistId": "lightning-in-a-bottle-2019:jan-blomqvist-and-band",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "18:45",
+   "end": "20:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:lightning:2100:khruangbin",
+   "artistId": "lightning-in-a-bottle-2019:khruangbin",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:lightning:2300:toro-y-moi",
+   "artistId": "lightning-in-a-bottle-2019:toro-y-moi",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:lightning:0030:disclosure-dj-set",
+   "artistId": "lightning-in-a-bottle-2019:disclosure-dj-set",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:lightning",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:thunder:1415:aabo",
+   "artistId": "lightning-in-a-bottle-2019:aabo",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "14:15",
+   "end": "15:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:thunder:1545:ill-esha",
+   "artistId": "lightning-in-a-bottle-2019:ill-esha",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "15:45",
+   "end": "17:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:thunder:1715:dorfex-bos",
+   "artistId": "lightning-in-a-bottle-2019:dorfex-bos",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "17:15",
+   "end": "18:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:thunder:1845:soohan",
+   "artistId": "lightning-in-a-bottle-2019:soohan",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "18:45",
+   "end": "20:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:thunder:2015:desert-dwellers",
+   "artistId": "lightning-in-a-bottle-2019:desert-dwellers",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "20:15",
+   "end": "21:45"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:thunder:2145:spectrasoul",
+   "artistId": "lightning-in-a-bottle-2019:spectrasoul",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "21:45",
+   "end": "23:15"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:thunder:2315:opiuo",
+   "artistId": "lightning-in-a-bottle-2019:opiuo",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:thunder:0030:clozee",
+   "artistId": "lightning-in-a-bottle-2019:clozee",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:thunder",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:woogie:1200:rachel-torro",
+   "artistId": "lightning-in-a-bottle-2019:rachel-torro",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "12:00",
+   "end": "14:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:woogie:1400:zach-walker",
+   "artistId": "lightning-in-a-bottle-2019:zach-walker",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "14:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:woogie:1600:gorje-hewek-and-izhevski",
+   "artistId": "lightning-in-a-bottle-2019:gorje-hewek-and-izhevski",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:woogie:1800:damian-lazarus",
+   "artistId": "lightning-in-a-bottle-2019:damian-lazarus",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "18:00",
+   "end": "21:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:woogie:2100:rampue",
+   "artistId": "lightning-in-a-bottle-2019:rampue",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:woogie:2300:bedouin",
+   "artistId": "lightning-in-a-bottle-2019:bedouin",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "lightning-in-a-bottle-2019:d5:woogie:0100:recondite-live",
+   "artistId": "lightning-in-a-bottle-2019:recondite-live",
+   "day": 5,
+   "stageId": "lightning-in-a-bottle-2019:woogie",
+   "start": "01:00",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://lightninginabottle.org/lineup/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190528194756/https://lib2019.dostff.co/embeds/lineup.js",
+    "captureTimestamp": "20190528194756",
+    "printed": "2019-05-08",
+    "sha256": "b3f0484467673fb06453fd7ae37dc041673bd2f129c04265333aa45a7377516f",
+    "rows": 1,
+    "format": "dostuff-embed",
+    "run": "2019-05-08 to 2019-05-13",
+    "embeddedBy": {
+     "url": "https://lightninginabottle.org/lineup/",
+     "archivedUrl": "https://web.archive.org/web/20190528183058/https://lightninginabottle.org/lineup/",
+     "captureTimestamp": "20190528183058",
+     "loads": "https://lib2019.dostff.co/embeds/lineup.js"
+    }
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190528194756/https://lib2019.dostff.co/embeds/lineup.js",
+    "captureTimestamp": "20190528194756",
+    "printed": "2019-05-09",
+    "sha256": "b3f0484467673fb06453fd7ae37dc041673bd2f129c04265333aa45a7377516f",
+    "rows": 32,
+    "format": "dostuff-embed",
+    "run": "2019-05-08 to 2019-05-13",
+    "embeddedBy": {
+     "url": "https://lightninginabottle.org/lineup/",
+     "archivedUrl": "https://web.archive.org/web/20190528183058/https://lightninginabottle.org/lineup/",
+     "captureTimestamp": "20190528183058",
+     "loads": "https://lib2019.dostff.co/embeds/lineup.js"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190528194756/https://lib2019.dostff.co/embeds/lineup.js",
+    "captureTimestamp": "20190528194756",
+    "printed": "2019-05-10",
+    "sha256": "b3f0484467673fb06453fd7ae37dc041673bd2f129c04265333aa45a7377516f",
+    "rows": 68,
+    "format": "dostuff-embed",
+    "run": "2019-05-08 to 2019-05-13",
+    "embeddedBy": {
+     "url": "https://lightninginabottle.org/lineup/",
+     "archivedUrl": "https://web.archive.org/web/20190528183058/https://lightninginabottle.org/lineup/",
+     "captureTimestamp": "20190528183058",
+     "loads": "https://lib2019.dostff.co/embeds/lineup.js"
+    }
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190528194756/https://lib2019.dostff.co/embeds/lineup.js",
+    "captureTimestamp": "20190528194756",
+    "printed": "2019-05-11",
+    "sha256": "b3f0484467673fb06453fd7ae37dc041673bd2f129c04265333aa45a7377516f",
+    "rows": 63,
+    "format": "dostuff-embed",
+    "run": "2019-05-08 to 2019-05-13",
+    "embeddedBy": {
+     "url": "https://lightninginabottle.org/lineup/",
+     "archivedUrl": "https://web.archive.org/web/20190528183058/https://lightninginabottle.org/lineup/",
+     "captureTimestamp": "20190528183058",
+     "loads": "https://lib2019.dostff.co/embeds/lineup.js"
+    }
+   },
+   {
+    "day": 5,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190528194756/https://lib2019.dostff.co/embeds/lineup.js",
+    "captureTimestamp": "20190528194756",
+    "printed": "2019-05-12",
+    "sha256": "b3f0484467673fb06453fd7ae37dc041673bd2f129c04265333aa45a7377516f",
+    "rows": 65,
+    "format": "dostuff-embed",
+    "run": "2019-05-08 to 2019-05-13",
+    "embeddedBy": {
+     "url": "https://lightninginabottle.org/lineup/",
+     "archivedUrl": "https://web.archive.org/web/20190528183058/https://lightninginabottle.org/lineup/",
+     "captureTimestamp": "20190528183058",
+     "loads": "https://lib2019.dostff.co/embeds/lineup.js"
+    }
+   }
+  ]
+ }
+}

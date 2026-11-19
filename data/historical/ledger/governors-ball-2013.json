@@ -1,0 +1,109 @@
+{
+  "id": "governors-ball-2013",
+  "method": "official_sources",
+  "official": "https://governorsballmusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2013-06-07",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lineup.governorsballmusicfestival.com/events/2013/06/07/",
+          "archivedUrl": "https://web.archive.org/web/20130610205502/https://lineup.governorsballmusicfestival.com/events/2013/06/07/",
+          "captureTimestamp": "20130610205502",
+          "printed": "Friday, June 7",
+          "sha256": "77a5c67af2d3c37f68d30ae6151ea34451b3e10374ee3d3be76fa463881b6164",
+          "bytes": 47782,
+          "rows": 21,
+          "format": "dostuff-grid",
+          "stages": 4,
+          "axis": "12:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "https://lineup.governorsballmusicfestival.com/band/pretty-lights",
+            "archivedUrl": "https://web.archive.org/web/20130610105834/https://lineup.governorsballmusicfestival.com/band/pretty-lights",
+            "captureTimestamp": "20130610105834",
+            "sha256": "82304045f8594b5d7418d54b3fd5d5a8e1be6893d1dc5b61e7e9d6967ba225b6",
+            "bytes": 39106,
+            "printed": "Friday Jun 7 9:30 PM on HondaSTAGE"
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2013-06-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lineup.governorsballmusicfestival.com/events/2013/06/08/",
+          "archivedUrl": "https://web.archive.org/web/20130701100529/https://lineup.governorsballmusicfestival.com/events/2013/06/08/",
+          "captureTimestamp": "20130701100529",
+          "printed": "Saturday, June 8",
+          "sha256": "aff6b9077a70ae4e2fb85b64d5a673beb426a6420e2930f0e5ec26b7338ab206",
+          "bytes": 48571,
+          "rows": 23,
+          "format": "dostuff-grid",
+          "stages": 4,
+          "axis": "12:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "https://lineup.governorsballmusicfestival.com/band/guns-n-roses",
+            "archivedUrl": "https://web.archive.org/web/20130703183601/https://lineup.governorsballmusicfestival.com/band/guns-n-roses",
+            "captureTimestamp": "20130703183601",
+            "sha256": "d76dbcfa2c7755540dbc1a4e1606c016f6ac5ce9da9b96dd7d5c2fdb5a6190b3",
+            "bytes": 41477,
+            "printed": "Saturday Jun 8 9:30 PM on GOV BALL NYC STAGE"
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2013-06-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lineup.governorsballmusicfestival.com/events/2013/06/09/",
+          "archivedUrl": "https://web.archive.org/web/20130703142521/https://lineup.governorsballmusicfestival.com/events/2013/06/09/",
+          "captureTimestamp": "20130703142521",
+          "printed": "Sunday, June 9",
+          "sha256": "78c21730ac77803de2b8b5dbd97b0f3c648863dced0caebdee49cd5f56789a2f",
+          "bytes": 47888,
+          "rows": 22,
+          "format": "dostuff-grid",
+          "stages": 4,
+          "axis": "12:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "https://lineup.governorsballmusicfestival.com/band/kanye-west",
+            "archivedUrl": "https://web.archive.org/web/20130530102844/https://lineup.governorsballmusicfestival.com/band/kanye-west",
+            "captureTimestamp": "20130530102844",
+            "sha256": "e7287e11f45d5b16ae4efdd1eeda07acaacc7a59a0d2aac267630cc84046ee58",
+            "bytes": 39591,
+            "printed": "Sunday Jun 9 9:30 PM on GOV BALL NYC STAGE"
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "GOV BALL NYC STAGE",
+      "start": "21:30",
+      "end": "23:00",
+      "billing": "KINGS OF LEON",
+      "reason": "the festival moved this set to another slot after the grid was printed, and its own post says so (the edition's movedSets); it is listed where it was played",
+      "moved": true
+    }
+  ],
+  "dropped": []
+}

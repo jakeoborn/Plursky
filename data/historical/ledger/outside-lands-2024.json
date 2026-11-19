@@ -1,0 +1,113 @@
+{
+  "id": "outside-lands-2024",
+  "method": "official_sources",
+  "official": "https://sfoutsidelands.com/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2024-08-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://fest24outsidelands.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20240827141206/https://fest24outsidelands.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20240827141206",
+          "printed": "2024-08-09",
+          "sha256": "cddb6d9ac16e2d133685446757c84c599917c3a941f13a636223a7295aeb68db",
+          "bytes": 417052,
+          "rows": 48,
+          "format": "dostuff-embed",
+          "run": "2024-08-09 to 2024-08-11",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 7,
+          "embeddedBy": {
+            "url": "https://sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20240827141201/https://sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20240827141201",
+            "loads": "https://fest24outsidelands.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "sharedSets": [
+            "Joe Kay b2b Jared Jackson (under Jared Jackson, Joe Kay)",
+            "Shiba San b2b CID (under CID, Shiba San)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-08-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://fest24outsidelands.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20240827141206/https://fest24outsidelands.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20240827141206",
+          "printed": "2024-08-10",
+          "sha256": "cddb6d9ac16e2d133685446757c84c599917c3a941f13a636223a7295aeb68db",
+          "bytes": 417052,
+          "rows": 46,
+          "format": "dostuff-embed",
+          "run": "2024-08-09 to 2024-08-11",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 7,
+          "embeddedBy": {
+            "url": "https://sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20240827141201/https://sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20240827141201",
+            "loads": "https://fest24outsidelands.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "sharedSets": [
+            "BALONEY DJ SET: Pumpkin Spice (under BALONEY, DJ Pumpkin Spice)",
+            "REPARATIONS DJ SET: Star Amerasu (under DJ Star Amerasu, REPARATIONS)",
+            "REPARATIONS FEAT. Yvie Oddly (under REPARATIONS, Yvie Oddly)",
+            "PRINCESS DJ SET: Ion The Prize (under DJ Ion The Prize, PRINCESS)",
+            "PRINCESS FEAT. Willow Pill (under PRINCESS, Willow Pill)",
+            "PRINCESS DJ SET: Ion The Prize (under DJ Ion The Prize, PRINCESS)",
+            "OASIS DJ SET: Pumpkin Spice (under DJ Pumpkin Spice, OASIS)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-08-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://fest24outsidelands.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20240827141206/https://fest24outsidelands.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20240827141206",
+          "printed": "2024-08-11",
+          "sha256": "cddb6d9ac16e2d133685446757c84c599917c3a941f13a636223a7295aeb68db",
+          "bytes": 417052,
+          "rows": 45,
+          "format": "dostuff-embed",
+          "run": "2024-08-09 to 2024-08-11",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 7,
+          "embeddedBy": {
+            "url": "https://sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20240827141201/https://sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20240827141201",
+            "loads": "https://fest24outsidelands.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "sharedSets": [
+            "Brown Angel / Vin Sol (under Brown Angel, Vin Sol)",
+            "Honeyluv b2b Jaden Thompson (under Honeyluv, Jaden Thompson)"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

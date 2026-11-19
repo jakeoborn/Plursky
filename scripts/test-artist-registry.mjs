@@ -118,8 +118,58 @@ const out = build();
   // country-code and feat. rules (Slaves (UK), BONES (UK), LL COOL J FEAT. DJ
   // Z-TRIP) and left the short name NAV as printed (Coachella 2017 and
   // Lollapalooza 2018): 162 rows, raised here and reported in that pull
-  // request. Past 162, stop and report.
-  check(review.length <= 162, `review queue is ${review.length} rows (> 162 means stop and report)`);
+  // request. Governors Ball 2015 ruled Pat Mahoney's DJ set under the existing
+  // band-parenthetical rule and left one "+" billing as printed (Florence +
+  // The Machine): 163 rows, raised here and reported in that pull request.
+  // Primavera Sound 2016 ruled three billings under the existing feat., set
+  // tag and band-parenthetical rules (BEN WATT BAND FEAT. BERNARD BUTLER, BOB
+  // MOULD (SOLO ELECTRIC), FARIS BADWAN (THE HORRORS)) and left one
+  // parenthetical as printed (OPTIMO (ESPACIO)): 164 rows, raised here and
+  // reported in that pull request. Primavera Sound 2017 ruled three more under
+  // the same band-parenthetical and set tag rules and a new one for a name
+  // printed with how it is said (PATRICK CODENYS (FRONT 242), !!! (CHK CHK
+  // CHK) and its DJ SET), leaving the queue at 164. Primavera Sound 2019
+  // ruled one billing under the existing feat. rule (HURRICANE G FEAT TONY
+  // TOUCH) and left six as printed: two parentheticals naming the people
+  // behind an act (SHAKTI ALLIANCE (IVY, MODET, VIR), TONY TOUCH & FRIENDS
+  // (DON CHEZINA + SONI WITHANEYE)), three feat. billings whose guests the
+  // printing does not settle (a show title, a one-letter guest, a "&" that
+  // may be one act or two) and the short name IDK: 170 rows, raised here and
+  // reported in that pull request. Primavera Sound 2018 ruled LIMINAL
+  // SOUNDBATH WITH JÓNSI, ALEX SOMERS AND PAUL CORLEY under the feat. rule
+  // and left two curated days as printed (FOUR TET PRESENTS and DEKMANTEL
+  // PRESENTS, names joined by "/" in one all-day block, as Crew Love): 172
+  // rows, raised here and reported in that pull request. Primavera Sound
+  // 2012 ruled Barry Hogan DJ (ATP) and Jeff Mangum (Neutral Milk Hotel) and
+  // left the short name OFF! (Primavera Sound 2012 and Coachella 2015) to a
+  // first-party link: 173 rows, raised here and reported in that pull
+  // request. Outside Lands 2022 to 2025 ruled nine billings under the
+  // existing feat./with, band-parenthetical and project rules (the Dolores'
+  // drag shows' guests, The Far Side (formerly of The Pharcyde), Beck with an
+  // unnamed symphony, Girl Math (VNSSA b2b Nala)) and left four as printed:
+  // Diesel (Shaquille O'Neal) (no "aka"), an "x" billing with an unsettled
+  // guest list, a feat. list whose "&" may be one act or two, and the short
+  // name J.I.D (Lollapalooza 2019 and Outside Lands 2023): 177 rows, raised
+  // here and reported in that pull request. Outside Lands' widget hides set
+  // titles, so its feat. list is now billed as the act's own name ("A Family
+  // Affair featuring ...", no longer a review row, 176), and Lightning in a
+  // Bottle 2018-2019 adds seven pending rows: a crew takeover listing its DJs,
+  // an "x" billing (Carlo x Ofier), a feat. list whose "&" may be one act or
+  // two (SOULECTION ft ...), Andres (SOULECTION) (a short name the crew tag
+  // cannot settle), and three short names billed at other brands (B3K, LUM,
+  // Tor): 183 rows. Outside Lands 2018-2019 adds four: Florence + the
+  // Machine (the "+" rule, already pending at ACL 2012), SOB x RBE (an "x"
+  // billing) and two feat. lists whose "&" may be one act or two (Groove
+  // Well Ft. ..., As You Like It Ft. ...): 187 rows. Sónar Barcelona
+  // 2016-2019 and 2022 add six: four billings whose "&" may join one act or
+  // two (Congo Natty feat. ... Nãnci & Phoebe, bRUNA & Wooky + Alba G.
+  // Corral, Ratkje & Barruk, LAO & Wasted Fates) and two short names also
+  // billed at Primavera Sound (MOW, Za!): 193 rows. Sziget 2010-2011 adds
+  // one: a feat. list whose guests are printed with nicknames in quotes
+  // (Muzsikas feat. Ildiko Toth "Fecske" and Zoltan Farkas "Batyu"); its
+  // country-tagged billings ("The Cribs (UK)") are ruled under its house
+  // style: 194 rows. Past 194, stop and report.
+  check(review.length <= 194, `review queue is ${review.length} rows (> 194 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

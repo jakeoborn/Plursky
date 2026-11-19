@@ -1,0 +1,126 @@
+{
+  "id": "sonar-2017",
+  "method": "official_sources",
+  "official": "https://sonar.es/en",
+  "days": [
+    {
+      "day": 1,
+      "date": "2017-06-14",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2017/schedules",
+          "archivedUrl": "https://web.archive.org/web/20180615215543/https://sonar.es/en/2017/schedules",
+          "captureTimestamp": "20180615215543",
+          "printed": "Wednesday 14 | Sónar by Night",
+          "sha256": "23ad44675ca27ab8a1fbda6f9de663fe34f37f3b57c8588965354dc9bc8c2245",
+          "bytes": 421651,
+          "rows": 1,
+          "format": "sonar-calendar",
+          "named": "Concerts Timetable - Sónar Barcelona 2017",
+          "sessions": [
+            "Wednesday 14 | Sónar by Night: 20:00 to 07:00"
+          ],
+          "stages": 1,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2017-06-15",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2017/schedules",
+          "archivedUrl": "https://web.archive.org/web/20180615215543/https://sonar.es/en/2017/schedules",
+          "captureTimestamp": "20180615215543",
+          "printed": "Thursday 15 | Sónar by Day",
+          "sha256": "23ad44675ca27ab8a1fbda6f9de663fe34f37f3b57c8588965354dc9bc8c2245",
+          "bytes": 421651,
+          "rows": 31,
+          "format": "sonar-calendar",
+          "named": "Concerts Timetable - Sónar Barcelona 2017",
+          "sessions": [
+            "Thursday 15 | Sónar by Day: 13:00 to 00:00"
+          ],
+          "stages": 5,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2017-06-16",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2017/schedules",
+          "archivedUrl": "https://web.archive.org/web/20180615215543/https://sonar.es/en/2017/schedules",
+          "captureTimestamp": "20180615215543",
+          "printed": "Friday 16 | Sónar by Day · Friday 16 | Sónar by Night",
+          "sha256": "23ad44675ca27ab8a1fbda6f9de663fe34f37f3b57c8588965354dc9bc8c2245",
+          "bytes": 421651,
+          "rows": 54,
+          "format": "sonar-calendar",
+          "named": "Concerts Timetable - Sónar Barcelona 2017",
+          "sessions": [
+            "Friday 16 | Sónar by Day: 13:00 to 00:00",
+            "Friday 16 | Sónar by Night: 20:00 to 07:00"
+          ],
+          "stages": 9,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2017-06-17",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2017/schedules",
+          "archivedUrl": "https://web.archive.org/web/20180615215543/https://sonar.es/en/2017/schedules",
+          "captureTimestamp": "20180615215543",
+          "printed": "Saturday 17 | Sónar by Day · Saturday 17 | Sónar by Night",
+          "sha256": "23ad44675ca27ab8a1fbda6f9de663fe34f37f3b57c8588965354dc9bc8c2245",
+          "bytes": 421651,
+          "rows": 54,
+          "format": "sonar-calendar",
+          "named": "Concerts Timetable - Sónar Barcelona 2017",
+          "sessions": [
+            "Saturday 17 | Sónar by Day: 13:00 to 00:00",
+            "Saturday 17 | Sónar by Night: 20:00 to 07:00"
+          ],
+          "stages": 9,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2017-06-18",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2017/schedules",
+          "archivedUrl": "https://web.archive.org/web/20180615215543/https://sonar.es/en/2017/schedules",
+          "captureTimestamp": "20180615215543",
+          "printed": "Sunday 18 | Sónar by Night",
+          "sha256": "23ad44675ca27ab8a1fbda6f9de663fe34f37f3b57c8588965354dc9bc8c2245",
+          "bytes": 421651,
+          "rows": 1,
+          "format": "sonar-calendar",
+          "named": "Concerts Timetable - Sónar Barcelona 2017",
+          "sessions": [
+            "Sunday 18 | Sónar by Night: 20:00 to 07:00"
+          ],
+          "stages": 1,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

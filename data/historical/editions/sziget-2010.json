@@ -1,0 +1,2711 @@
+{
+ "id": "sziget-2010",
+ "festivalId": "sziget",
+ "name": "Sziget 2010",
+ "year": 2010,
+ "timezone": "Europe/Budapest",
+ "rolloverHour": 8,
+ "completeness": "selected_stages",
+ "coverage": {
+  "asOf": "2026-11-18",
+  "missing": [
+   {
+    "stage": "13 other stages and 6 venues",
+    "days": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "when": "listed in the programme, days not read"
+   }
+  ]
+ },
+ "days": [
+  {
+   "day": 1,
+   "date": "2010-08-09",
+   "label": "Monday"
+  },
+  {
+   "day": 2,
+   "date": "2010-08-10",
+   "label": "Tuesday"
+  },
+  {
+   "day": 3,
+   "date": "2010-08-11",
+   "label": "Wednesday"
+  },
+  {
+   "day": 4,
+   "date": "2010-08-12",
+   "label": "Thursday"
+  },
+  {
+   "day": 5,
+   "date": "2010-08-13",
+   "label": "Friday"
+  },
+  {
+   "day": 6,
+   "date": "2010-08-14",
+   "label": "Saturday"
+  },
+  {
+   "day": 7,
+   "date": "2010-08-15",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "sziget-2010:main-stage",
+   "name": "Main Stage"
+  },
+  {
+   "id": "sziget-2010:world-music-stage",
+   "name": "World Music Stage"
+  },
+  {
+   "id": "sziget-2010:mtv-headbangers-ball-stage",
+   "name": "MTV Headbangers Ball Stage"
+  },
+  {
+   "id": "sziget-2010:a38-wan2-stage",
+   "name": "A38-wan2 stage"
+  },
+  {
+   "id": "sziget-2010:party-arena",
+   "name": "Party Arena"
+  }
+ ],
+ "artists": [
+  {
+   "id": "sziget-2010:esti-kornel",
+   "name": "Esti Kornél",
+   "key": "esti-kornel",
+   "performers": [
+    "esti-kornel"
+   ]
+  },
+  {
+   "id": "sziget-2010:kispal-es-a-borz",
+   "name": "Kispál és a Borz",
+   "key": "kispal-es-a-borz",
+   "performers": [
+    "kispal-es-a-borz"
+   ]
+  },
+  {
+   "id": "sziget-2010:ladanybene-27",
+   "name": "Ladánybene 27",
+   "key": "ladanybene-27",
+   "performers": [
+    "ladanybene-27"
+   ]
+  },
+  {
+   "id": "sziget-2010:the-aggrolites",
+   "name": "The Aggrolites",
+   "key": "the-aggrolites",
+   "performers": [
+    "the-aggrolites"
+   ]
+  },
+  {
+   "id": "sziget-2010:toots-and-the-maytals",
+   "name": "Toots & the Maytals",
+   "key": "toots-and-the-maytals",
+   "performers": [
+    "toots-and-the-maytals"
+   ]
+  },
+  {
+   "id": "sziget-2010:the-wailers",
+   "name": "The Wailers",
+   "key": "the-wailers",
+   "performers": [
+    "the-wailers"
+   ]
+  },
+  {
+   "id": "sziget-2010:ub40",
+   "name": "UB40",
+   "key": "ub40",
+   "performers": [
+    "ub40"
+   ]
+  },
+  {
+   "id": "sziget-2010:in-memoriam-tamas-cseh",
+   "name": "In Memoriam: Tamás Cseh",
+   "key": "in-memoriam-tamas-cseh",
+   "performers": [
+    "in-memoriam-tamas-cseh"
+   ]
+  },
+  {
+   "id": "sziget-2010:gwar-us",
+   "name": "Gwar (US)",
+   "key": "gwar-us",
+   "performers": [
+    "gwar-us"
+   ]
+  },
+  {
+   "id": "sziget-2010:the-toy-dolls-uk",
+   "name": "The Toy Dolls (UK)",
+   "key": "the-toy-dolls-uk",
+   "performers": [
+    "the-toy-dolls-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:ska-p-es",
+   "name": "Ska-P (ES)",
+   "key": "ska-p-es",
+   "performers": [
+    "ska-p-es"
+   ]
+  },
+  {
+   "id": "sziget-2010:the-hives-s",
+   "name": "The Hives (S)",
+   "key": "the-hives-s",
+   "performers": [
+    "the-hives-s"
+   ]
+  },
+  {
+   "id": "sziget-2010:madness-uk",
+   "name": "Madness (UK)",
+   "key": "madness-uk",
+   "performers": [
+    "madness-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:cankisou-cz",
+   "name": "Cankisou (CZ)",
+   "key": "cankisou-cz",
+   "performers": [
+    "cankisou-cz"
+   ]
+  },
+  {
+   "id": "sziget-2010:csik-zenekar-h",
+   "name": "Csík Zenekar (H)",
+   "key": "csik-zenekar-h",
+   "performers": [
+    "csik-zenekar-h"
+   ]
+  },
+  {
+   "id": "sziget-2010:amparo-sanchez-e",
+   "name": "Amparo Sanchez (E)",
+   "key": "amparo-sanchez-e",
+   "performers": [
+    "amparo-sanchez-e"
+   ]
+  },
+  {
+   "id": "sziget-2010:orquesta-buena-vista-social-club-es-omara-portuondo-cub",
+   "name": "Orquesta Buena Vista Social Club® és Omara Portuondo (CUB)",
+   "key": "orquesta-buena-vista-social-club-es-omara-portuondo-cub",
+   "performers": [
+    "orquesta-buena-vista-social-club-es-omara-portuondo-cub"
+   ]
+  },
+  {
+   "id": "sziget-2010:the-grenma",
+   "name": "The Grenma",
+   "key": "the-grenma",
+   "performers": [
+    "the-grenma"
+   ]
+  },
+  {
+   "id": "sziget-2010:mangod-inc",
+   "name": "ManGod.Inc",
+   "key": "mangod-inc",
+   "performers": [
+    "mangod-inc"
+   ]
+  },
+  {
+   "id": "sziget-2010:cadaveres",
+   "name": "Cadaveres",
+   "key": "cadaveres",
+   "performers": [
+    "cadaveres"
+   ]
+  },
+  {
+   "id": "sziget-2010:ill-nino-usa",
+   "name": "Ill Niño (USA)",
+   "key": "ill-nino-usa",
+   "performers": [
+    "ill-nino-usa"
+   ]
+  },
+  {
+   "id": "sziget-2010:children-of-bodom-fin",
+   "name": "Children of Bodom (FIN)",
+   "key": "children-of-bodom-fin",
+   "performers": [
+    "children-of-bodom-fin"
+   ]
+  },
+  {
+   "id": "sziget-2010:road",
+   "name": "Road",
+   "key": "road",
+   "performers": [
+    "road"
+   ]
+  },
+  {
+   "id": "sziget-2010:insane",
+   "name": "Insane",
+   "key": "insane",
+   "performers": [
+    "insane"
+   ]
+  },
+  {
+   "id": "sziget-2010:the-picturebooks-d",
+   "name": "The Picturebooks (D)",
+   "key": "the-picturebooks-d",
+   "performers": [
+    "the-picturebooks-d"
+   ]
+  },
+  {
+   "id": "sziget-2010:inspector-cluzo-fr",
+   "name": "Inspector Cluzo (FR)",
+   "key": "inspector-cluzo-fr",
+   "performers": [
+    "inspector-cluzo-fr"
+   ]
+  },
+  {
+   "id": "sziget-2010:orias",
+   "name": "Óriás",
+   "key": "orias",
+   "performers": [
+    "orias"
+   ]
+  },
+  {
+   "id": "sziget-2010:peaches-d",
+   "name": "Peaches (D)",
+   "key": "peaches-d",
+   "performers": [
+    "peaches-d"
+   ]
+  },
+  {
+   "id": "sziget-2010:bad-religion-usa",
+   "name": "Bad Religion (USA)",
+   "key": "bad-religion-usa",
+   "performers": [
+    "bad-religion-usa"
+   ]
+  },
+  {
+   "id": "sziget-2010:alvin-es-a-mokusok",
+   "name": "Alvin és a mókusok",
+   "key": "alvin-es-a-mokusok",
+   "performers": [
+    "alvin-es-a-mokusok"
+   ]
+  },
+  {
+   "id": "sziget-2010:dj-shadow-usa",
+   "name": "DJ Shadow (USA )",
+   "key": "dj-shadow-usa",
+   "performers": [
+    "dj-shadow-usa"
+   ]
+  },
+  {
+   "id": "sziget-2010:pole-position",
+   "name": "Pole Position",
+   "key": "pole-position",
+   "performers": [
+    "pole-position"
+   ]
+  },
+  {
+   "id": "sziget-2010:szeifert",
+   "name": "Szeifert",
+   "key": "szeifert",
+   "performers": [
+    "szeifert"
+   ]
+  },
+  {
+   "id": "sziget-2010:andy-moor-uk",
+   "name": "Andy Moor (UK)",
+   "key": "andy-moor-uk",
+   "performers": [
+    "andy-moor-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:sander-van-doorn-nl",
+   "name": "Sander van Doorn (NL)",
+   "key": "sander-van-doorn-nl",
+   "performers": [
+    "sander-van-doorn-nl"
+   ]
+  },
+  {
+   "id": "sziget-2010:kuhl",
+   "name": "Kühl",
+   "key": "kuhl",
+   "performers": [
+    "kuhl"
+   ]
+  },
+  {
+   "id": "sziget-2010:k-i-z-d",
+   "name": "K.I.Z. (D)",
+   "key": "k-i-z-d",
+   "performers": [
+    "k-i-z-d"
+   ]
+  },
+  {
+   "id": "sziget-2010:young-punx-uk",
+   "name": "Young Punx (UK)",
+   "key": "young-punx-uk",
+   "performers": [
+    "young-punx-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:public-image-ltd-uk",
+   "name": "Public Image Ltd. (UK)",
+   "key": "public-image-ltd-uk",
+   "performers": [
+    "public-image-ltd-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:the-specials-uk",
+   "name": "The Specials (UK)",
+   "key": "the-specials-uk",
+   "performers": [
+    "the-specials-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:faithless-uk",
+   "name": "Faithless (UK)",
+   "key": "faithless-uk",
+   "performers": [
+    "faithless-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:kries-cro",
+   "name": "Kries (CRO)",
+   "key": "kries-cro",
+   "performers": [
+    "kries-cro"
+   ]
+  },
+  {
+   "id": "sziget-2010:besh-o-drom-h",
+   "name": "Besh o droM (H)",
+   "key": "besh-o-drom-h",
+   "performers": [
+    "besh-o-drom-h"
+   ]
+  },
+  {
+   "id": "sziget-2010:dirtmusic-es-tamikrest-mali-usa-aus",
+   "name": "Dirtmusic és Tamikrest (Mali, USA, AUS)",
+   "key": "dirtmusic-es-tamikrest-mali-usa-aus",
+   "performers": [
+    "dirtmusic-es-tamikrest-mali-usa-aus"
+   ]
+  },
+  {
+   "id": "sziget-2010:tony-allen-nig",
+   "name": "Tony Allen (NIG)",
+   "key": "tony-allen-nig",
+   "performers": [
+    "tony-allen-nig"
+   ]
+  },
+  {
+   "id": "sziget-2010:aws",
+   "name": "AWS",
+   "key": "aws",
+   "performers": [
+    "aws"
+   ]
+  },
+  {
+   "id": "sziget-2010:drums-are-for-parades-b",
+   "name": "Drums are for Parades (B)",
+   "key": "drums-are-for-parades-b",
+   "performers": [
+    "drums-are-for-parades-b"
+   ]
+  },
+  {
+   "id": "sziget-2010:subscribe",
+   "name": "Subscribe",
+   "key": "subscribe",
+   "performers": [
+    "subscribe"
+   ]
+  },
+  {
+   "id": "sziget-2010:skindred-uk",
+   "name": "Skindred (UK)",
+   "key": "skindred-uk",
+   "performers": [
+    "skindred-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:the-69-eyes-fin",
+   "name": "The 69 Eyes (FIN)",
+   "key": "the-69-eyes-fin",
+   "performers": [
+    "the-69-eyes-fin"
+   ]
+  },
+  {
+   "id": "sziget-2010:nevergreen",
+   "name": "Nevergreen",
+   "key": "nevergreen",
+   "performers": [
+    "nevergreen"
+   ]
+  },
+  {
+   "id": "sziget-2010:romeo-verzik",
+   "name": "Rómeó Vérzik",
+   "key": "romeo-verzik",
+   "performers": [
+    "romeo-verzik"
+   ]
+  },
+  {
+   "id": "sziget-2010:foreign-beggars-uk",
+   "name": "Foreign Beggars (UK)",
+   "key": "foreign-beggars-uk",
+   "performers": [
+    "foreign-beggars-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:black-box-revelation-b",
+   "name": "Black Box Revelation (B)",
+   "key": "black-box-revelation-b",
+   "performers": [
+    "black-box-revelation-b"
+   ]
+  },
+  {
+   "id": "sziget-2010:qualitons-feat-kovacs-kati",
+   "name": "Qualitons feat Kovács Kati",
+   "key": "qualitons-feat-kovacs-kati",
+   "performers": [
+    "qualitons-feat-kovacs-kati"
+   ]
+  },
+  {
+   "id": "sziget-2010:c-mon-and-kypski-nl",
+   "name": "C-Mon & Kypski (NL)",
+   "key": "c-mon-and-kypski-nl",
+   "performers": [
+    "c-mon-and-kypski-nl"
+   ]
+  },
+  {
+   "id": "sziget-2010:gorillaz-sound-system-uk",
+   "name": "Gorillaz Sound System (UK)",
+   "key": "gorillaz-sound-system-uk",
+   "performers": [
+    "gorillaz-sound-system-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:zagar",
+   "name": "Zagar",
+   "key": "zagar",
+   "performers": [
+    "zagar"
+   ]
+  },
+  {
+   "id": "sziget-2010:simian-mobile-disco-live-uk",
+   "name": "Simian Mobile Disco Live (UK)",
+   "key": "simian-mobile-disco-live-uk",
+   "performers": [
+    "simian-mobile-disco-live-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:junkie-and-hawky",
+   "name": "Junkie & Hawky",
+   "key": "junkie-and-hawky",
+   "performers": [
+    "junkie-and-hawky"
+   ]
+  },
+  {
+   "id": "sziget-2010:bergi-and-svindler",
+   "name": "Bergi & Svindler",
+   "key": "bergi-and-svindler",
+   "performers": [
+    "bergi-and-svindler"
+   ]
+  },
+  {
+   "id": "sziget-2010:boys-noize-vs-erol-alkan-d",
+   "name": "Boys Noize vs. Erol Alkan (D)",
+   "key": "boys-noize-vs-erol-alkan-d",
+   "performers": [
+    "boys-noize-vs-erol-alkan-d"
+   ]
+  },
+  {
+   "id": "sziget-2010:coyote",
+   "name": "Coyote",
+   "key": "coyote",
+   "performers": [
+    "coyote"
+   ]
+  },
+  {
+   "id": "sziget-2010:lyapis-trubetskoy-by",
+   "name": "Lyapis Trubetskoy (BY)",
+   "key": "lyapis-trubetskoy-by",
+   "performers": [
+    "lyapis-trubetskoy-by"
+   ]
+  },
+  {
+   "id": "sziget-2010:papa-roach-usa",
+   "name": "Papa Roach (USA)",
+   "key": "papa-roach-usa",
+   "performers": [
+    "papa-roach-usa"
+   ]
+  },
+  {
+   "id": "sziget-2010:gentleman-and-the-evolution-d",
+   "name": "Gentleman and the Evolution (D)",
+   "key": "gentleman-and-the-evolution-d",
+   "performers": [
+    "gentleman-and-the-evolution-d"
+   ]
+  },
+  {
+   "id": "sziget-2010:mika-uk",
+   "name": "Mika (UK)",
+   "key": "mika-uk",
+   "performers": [
+    "mika-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:thirty-seconds-to-mars-usa",
+   "name": "Thirty Seconds to Mars (USA)",
+   "key": "thirty-seconds-to-mars-usa",
+   "performers": [
+    "thirty-seconds-to-mars-usa"
+   ]
+  },
+  {
+   "id": "sziget-2010:daniel-kahn-and-the-painted-bird-usa",
+   "name": "Daniel Kahn & The Painted Bird (USA)",
+   "key": "daniel-kahn-and-the-painted-bird-usa",
+   "performers": [
+    "daniel-kahn-and-the-painted-bird-usa"
+   ]
+  },
+  {
+   "id": "sziget-2010:sondorgo-ferus-mustafov-h-mac",
+   "name": "Söndörgő + Ferus Mustafov (H, MAC)",
+   "key": "sondorgo-ferus-mustafov-h-mac",
+   "performers": [
+    "sondorgo-ferus-mustafov-h-mac"
+   ]
+  },
+  {
+   "id": "sziget-2010:rotfront-d-h-ukr",
+   "name": "Rotfront (D, H, UKR)",
+   "key": "rotfront-d-h-ukr",
+   "performers": [
+    "rotfront-d-h-ukr"
+   ]
+  },
+  {
+   "id": "sziget-2010:oi-va-voi-uk",
+   "name": "Oi Va Voi (UK)",
+   "key": "oi-va-voi-uk",
+   "performers": [
+    "oi-va-voi-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:room-of-the-mad-robots",
+   "name": "Room Of The Mad Robots",
+   "key": "room-of-the-mad-robots",
+   "performers": [
+    "room-of-the-mad-robots"
+   ]
+  },
+  {
+   "id": "sziget-2010:overdrive-srb",
+   "name": "Overdrive (SRB)",
+   "key": "overdrive-srb",
+   "performers": [
+    "overdrive-srb"
+   ]
+  },
+  {
+   "id": "sziget-2010:blind-myself",
+   "name": "Blind Myself",
+   "key": "blind-myself",
+   "performers": [
+    "blind-myself"
+   ]
+  },
+  {
+   "id": "sziget-2010:enter-shikari-uk",
+   "name": "Enter Shikari (UK)",
+   "key": "enter-shikari-uk",
+   "performers": [
+    "enter-shikari-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:paradise-lost-uk",
+   "name": "Paradise Lost (UK)",
+   "key": "paradise-lost-uk",
+   "performers": [
+    "paradise-lost-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:dalriada",
+   "name": "Dalriada",
+   "key": "dalriada",
+   "performers": [
+    "dalriada"
+   ]
+  },
+  {
+   "id": "sziget-2010:antitela-ukr",
+   "name": "Antitela (UKR)",
+   "key": "antitela-ukr",
+   "performers": [
+    "antitela-ukr"
+   ]
+  },
+  {
+   "id": "sziget-2010:deja-vu-revue",
+   "name": "Déja vu Revue",
+   "key": "deja-vu-revue",
+   "performers": [
+    "deja-vu-revue"
+   ]
+  },
+  {
+   "id": "sziget-2010:zzz-nl",
+   "name": "zZz (NL)",
+   "key": "zzz-nl",
+   "performers": [
+    "zzz-nl"
+   ]
+  },
+  {
+   "id": "sziget-2010:isolated",
+   "name": "Isolated",
+   "key": "isolated",
+   "performers": [
+    "isolated"
+   ]
+  },
+  {
+   "id": "sziget-2010:vive-la-fete-b",
+   "name": "Vive la Féte (B)",
+   "key": "vive-la-fete-b",
+   "performers": [
+    "vive-la-fete-b"
+   ]
+  },
+  {
+   "id": "sziget-2010:charlie-winston-uk",
+   "name": "Charlie Winston (UK)",
+   "key": "charlie-winston-uk",
+   "performers": [
+    "charlie-winston-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:erik-sumo-band-feat-kiss-erzsi",
+   "name": "Erik Sumo Band feat. Kiss Erzsi",
+   "key": "erik-sumo-band-feat-kiss-erzsi",
+   "performers": [
+    "erik-sumo-band-feat-kiss-erzsi"
+   ]
+  },
+  {
+   "id": "sziget-2010:gotan-project-f",
+   "name": "Gotan Project (F)",
+   "key": "gotan-project-f",
+   "performers": [
+    "gotan-project-f"
+   ]
+  },
+  {
+   "id": "sziget-2010:collins-and-behnam",
+   "name": "Collins & Behnam",
+   "key": "collins-and-behnam",
+   "performers": [
+    "collins-and-behnam"
+   ]
+  },
+  {
+   "id": "sziget-2010:igor-do-urden",
+   "name": "Igor Do'urden",
+   "key": "igor-do-urden",
+   "performers": [
+    "igor-do-urden"
+   ]
+  },
+  {
+   "id": "sziget-2010:adam-beyer-s",
+   "name": "Adam Beyer (S)",
+   "key": "adam-beyer-s",
+   "performers": [
+    "adam-beyer-s"
+   ]
+  },
+  {
+   "id": "sziget-2010:joel-mull-s",
+   "name": "Joel Mull (S)",
+   "key": "joel-mull-s",
+   "performers": [
+    "joel-mull-s"
+   ]
+  },
+  {
+   "id": "sziget-2010:hot-x",
+   "name": "Hot X",
+   "key": "hot-x",
+   "performers": [
+    "hot-x"
+   ]
+  },
+  {
+   "id": "sziget-2010:vodafone-havervagy-tanc",
+   "name": "Vodafone Havervagy Tánc",
+   "key": "vodafone-havervagy-tanc",
+   "performers": [
+    "vodafone-havervagy-tanc"
+   ]
+  },
+  {
+   "id": "sziget-2010:subsonica-i",
+   "name": "Subsonica (I)",
+   "key": "subsonica-i",
+   "performers": [
+    "subsonica-i"
+   ]
+  },
+  {
+   "id": "sziget-2010:the-cribs-uk",
+   "name": "The Cribs (UK)",
+   "key": "the-cribs-uk",
+   "performers": [
+    "the-cribs-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:tankcsapda-h",
+   "name": "Tankcsapda (H)",
+   "key": "tankcsapda-h",
+   "performers": [
+    "tankcsapda-h"
+   ]
+  },
+  {
+   "id": "sziget-2010:iron-maiden-uk",
+   "name": "Iron Maiden (UK)",
+   "key": "iron-maiden-uk",
+   "performers": [
+    "iron-maiden-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:jaune-toujours-b",
+   "name": "Jaune Toujours (B)",
+   "key": "jaune-toujours-b",
+   "performers": [
+    "jaune-toujours-b"
+   ]
+  },
+  {
+   "id": "sziget-2010:gyorgy-ferenczi-and-rackajam-and-guests",
+   "name": "György Ferenczi & Rackajam & Guests",
+   "key": "gyorgy-ferenczi-and-rackajam-and-guests",
+   "performers": [
+    "gyorgy-ferenczi-and-rackajam-and-guests"
+   ]
+  },
+  {
+   "id": "sziget-2010:rupa-and-the-april-fishes-usa",
+   "name": "Rupa & the April Fishes (USA)",
+   "key": "rupa-and-the-april-fishes-usa",
+   "performers": [
+    "rupa-and-the-april-fishes-usa"
+   ]
+  },
+  {
+   "id": "sziget-2010:los-de-abajo-mex",
+   "name": "Los De Abajo (MEX)",
+   "key": "los-de-abajo-mex",
+   "performers": [
+    "los-de-abajo-mex"
+   ]
+  },
+  {
+   "id": "sziget-2010:holtido",
+   "name": "Holtidő",
+   "key": "holtido",
+   "performers": [
+    "holtido"
+   ]
+  },
+  {
+   "id": "sziget-2010:zorall",
+   "name": "Zorall",
+   "key": "zorall",
+   "performers": [
+    "zorall"
+   ]
+  },
+  {
+   "id": "sziget-2010:depresszio",
+   "name": "Depresszió",
+   "key": "depresszio",
+   "performers": [
+    "depresszio"
+   ]
+  },
+  {
+   "id": "sziget-2010:deak-bill-gyula",
+   "name": "Deák Bill Gyula",
+   "key": "deak-bill-gyula",
+   "performers": [
+    "deak-bill-gyula"
+   ]
+  },
+  {
+   "id": "sziget-2010:kowalsky-meg-a-vega",
+   "name": "Kowalsky meg a Vega",
+   "key": "kowalsky-meg-a-vega",
+   "performers": [
+    "kowalsky-meg-a-vega"
+   ]
+  },
+  {
+   "id": "sziget-2010:kamelot-usa",
+   "name": "Kamelot (USA)",
+   "key": "kamelot-usa",
+   "performers": [
+    "kamelot-usa"
+   ]
+  },
+  {
+   "id": "sziget-2010:kalapacs",
+   "name": "Kalapács",
+   "key": "kalapacs",
+   "performers": [
+    "kalapacs"
+   ]
+  },
+  {
+   "id": "sziget-2010:carbovaris",
+   "name": "Carbovaris",
+   "key": "carbovaris",
+   "performers": [
+    "carbovaris"
+   ]
+  },
+  {
+   "id": "sziget-2010:wildbirds-and-peacedrums-s",
+   "name": "Wildbirds & Peacedrums (S)",
+   "key": "wildbirds-and-peacedrums-s",
+   "performers": [
+    "wildbirds-and-peacedrums-s"
+   ]
+  },
+  {
+   "id": "sziget-2010:bin-jip",
+   "name": "Bin Jip",
+   "key": "bin-jip",
+   "performers": [
+    "bin-jip"
+   ]
+  },
+  {
+   "id": "sziget-2010:ez3kiel-f",
+   "name": "Ez3kiel (F)",
+   "key": "ez3kiel-f",
+   "performers": [
+    "ez3kiel-f"
+   ]
+  },
+  {
+   "id": "sziget-2010:nina-hagen-d",
+   "name": "Nina Hagen (D)",
+   "key": "nina-hagen-d",
+   "performers": [
+    "nina-hagen-d"
+   ]
+  },
+  {
+   "id": "sziget-2010:vhk",
+   "name": "VHK",
+   "key": "vhk",
+   "performers": [
+    "vhk"
+   ]
+  },
+  {
+   "id": "sziget-2010:calvin-harris-uk",
+   "name": "Calvin Harris (UK)",
+   "key": "calvin-harris-uk",
+   "performers": [
+    "calvin-harris-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:karanyi",
+   "name": "Karányi",
+   "key": "karanyi",
+   "performers": [
+    "karanyi"
+   ]
+  },
+  {
+   "id": "sziget-2010:tsubi",
+   "name": "Tsubi",
+   "key": "tsubi",
+   "performers": [
+    "tsubi"
+   ]
+  },
+  {
+   "id": "sziget-2010:infected-mushroom-isr",
+   "name": "Infected Mushroom (ISR)",
+   "key": "infected-mushroom-isr",
+   "performers": [
+    "infected-mushroom-isr"
+   ]
+  },
+  {
+   "id": "sziget-2010:danger",
+   "name": "Danger",
+   "key": "danger",
+   "performers": [
+    "danger"
+   ]
+  },
+  {
+   "id": "sziget-2010:sikztah",
+   "name": "Sikztah",
+   "key": "sikztah",
+   "performers": [
+    "sikztah"
+   ]
+  },
+  {
+   "id": "sziget-2010:danko-jones-can",
+   "name": "Danko Jones (CAN)",
+   "key": "danko-jones-can",
+   "performers": [
+    "danko-jones-can"
+   ]
+  },
+  {
+   "id": "sziget-2010:billy-talent-can",
+   "name": "Billy Talent (CAN)",
+   "key": "billy-talent-can",
+   "performers": [
+    "billy-talent-can"
+   ]
+  },
+  {
+   "id": "sziget-2010:kasabian-uk",
+   "name": "Kasabian (UK)",
+   "key": "kasabian-uk",
+   "performers": [
+    "kasabian-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:muse-uk",
+   "name": "Muse (UK)",
+   "key": "muse-uk",
+   "performers": [
+    "muse-uk"
+   ]
+  },
+  {
+   "id": "sziget-2010:mahala-rai-banda-rom",
+   "name": "Mahala Rai Banda (ROM)",
+   "key": "mahala-rai-banda-rom",
+   "performers": [
+    "mahala-rai-banda-rom"
+   ]
+  },
+  {
+   "id": "sziget-2010:parno-graszt-h",
+   "name": "Parno Graszt (H)",
+   "key": "parno-graszt-h",
+   "performers": [
+    "parno-graszt-h"
+   ]
+  },
+  {
+   "id": "sziget-2010:o8oo1-e",
+   "name": "O8OO1 (E)",
+   "key": "o8oo1-e",
+   "performers": [
+    "o8oo1-e"
+   ]
+  },
+  {
+   "id": "sziget-2010:shantel-and-bucovina-club-orkestar-d",
+   "name": "Shantel & Bucovina Club Orkestar (D)",
+   "key": "shantel-and-bucovina-club-orkestar-d",
+   "performers": [
+    "shantel-and-bucovina-club-orkestar-d"
+   ]
+  },
+  {
+   "id": "sziget-2010:green-path",
+   "name": "Green Path",
+   "key": "green-path",
+   "performers": [
+    "green-path"
+   ]
+  },
+  {
+   "id": "sziget-2010:neck-sprain",
+   "name": "Neck Sprain",
+   "key": "neck-sprain",
+   "performers": [
+    "neck-sprain"
+   ]
+  },
+  {
+   "id": "sziget-2010:isten-hata-mogott",
+   "name": "Isten Háta Mögött",
+   "key": "isten-hata-mogott",
+   "performers": [
+    "isten-hata-mogott"
+   ]
+  },
+  {
+   "id": "sziget-2010:monster-magnet-usa",
+   "name": "Monster Magnet (USA)",
+   "key": "monster-magnet-usa",
+   "performers": [
+    "monster-magnet-usa"
+   ]
+  },
+  {
+   "id": "sziget-2010:fear-factory-usa",
+   "name": "Fear Factory (USA)",
+   "key": "fear-factory-usa",
+   "performers": [
+    "fear-factory-usa"
+   ]
+  },
+  {
+   "id": "sziget-2010:superbutt",
+   "name": "Superbutt",
+   "key": "superbutt",
+   "performers": [
+    "superbutt"
+   ]
+  },
+  {
+   "id": "sziget-2010:watch-my-dying",
+   "name": "Watch My Dying",
+   "key": "watch-my-dying",
+   "performers": [
+    "watch-my-dying"
+   ]
+  },
+  {
+   "id": "sziget-2010:skip-the-use-f",
+   "name": "Skip The Use (F)",
+   "key": "skip-the-use-f",
+   "performers": [
+    "skip-the-use-f"
+   ]
+  },
+  {
+   "id": "sziget-2010:madensuyu-b",
+   "name": "Madensuyu (B)",
+   "key": "madensuyu-b",
+   "performers": [
+    "madensuyu-b"
+   ]
+  },
+  {
+   "id": "sziget-2010:turbo",
+   "name": "Turbo",
+   "key": "turbo",
+   "performers": [
+    "turbo"
+   ]
+  },
+  {
+   "id": "sziget-2010:yeasayer-usa",
+   "name": "Yeasayer (USA)",
+   "key": "yeasayer-usa",
+   "performers": [
+    "yeasayer-usa"
+   ]
+  },
+  {
+   "id": "sziget-2010:major-lazer-jam",
+   "name": "Major Lazer (JAM)",
+   "key": "major-lazer-jam",
+   "performers": [
+    "major-lazer-jam"
+   ]
+  },
+  {
+   "id": "sziget-2010:kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+   "name": "Kees van Hondt & friends (NL) Feest / Mulatsag / Fest",
+   "key": "kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+   "performers": [
+    "kees-van-hondt-and-friends-nl-feest-mulatsag-fest"
+   ]
+  },
+  {
+   "id": "sziget-2010:die-antwoord-za",
+   "name": "Die Antwoord (ZA)",
+   "key": "die-antwoord-za",
+   "performers": [
+    "die-antwoord-za"
+   ]
+  },
+  {
+   "id": "sziget-2010:soneec",
+   "name": "Soneec",
+   "key": "soneec",
+   "performers": [
+    "soneec"
+   ]
+  },
+  {
+   "id": "sziget-2010:poli-vs-nora-naughty",
+   "name": "Poli vs. Nora Naughty",
+   "key": "poli-vs-nora-naughty",
+   "performers": [
+    "poli-vs-nora-naughty"
+   ]
+  },
+  {
+   "id": "sziget-2010:chriss",
+   "name": "Chriss",
+   "key": "chriss",
+   "performers": [
+    "chriss"
+   ]
+  },
+  {
+   "id": "sziget-2010:timo-maas",
+   "name": "Timo Maas",
+   "key": "timo-maas",
+   "performers": [
+    "timo-maas"
+   ]
+  },
+  {
+   "id": "sziget-2010:slam-jr",
+   "name": "Slam Jr.",
+   "key": "slam-jr",
+   "performers": [
+    "slam-jr"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "sziget-2010:d1:main-stage:1900:esti-kornel",
+   "artistId": "sziget-2010:esti-kornel",
+   "day": 1,
+   "stageId": "sziget-2010:main-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d1:main-stage:2000:kispal-es-a-borz",
+   "artistId": "sziget-2010:kispal-es-a-borz",
+   "day": 1,
+   "stageId": "sziget-2010:main-stage",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d2:main-stage:1500:ladanybene-27",
+   "artistId": "sziget-2010:ladanybene-27",
+   "day": 2,
+   "stageId": "sziget-2010:main-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d2:main-stage:1630:the-aggrolites",
+   "artistId": "sziget-2010:the-aggrolites",
+   "day": 2,
+   "stageId": "sziget-2010:main-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d2:main-stage:1800:toots-and-the-maytals",
+   "artistId": "sziget-2010:toots-and-the-maytals",
+   "day": 2,
+   "stageId": "sziget-2010:main-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d2:main-stage:1945:the-wailers",
+   "artistId": "sziget-2010:the-wailers",
+   "day": 2,
+   "stageId": "sziget-2010:main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d2:main-stage:2130:ub40",
+   "artistId": "sziget-2010:ub40",
+   "day": 2,
+   "stageId": "sziget-2010:main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d2:world-music-stage:1800:in-memoriam-tamas-cseh",
+   "artistId": "sziget-2010:in-memoriam-tamas-cseh",
+   "day": 2,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:main-stage:1500:gwar-us",
+   "artistId": "sziget-2010:gwar-us",
+   "day": 3,
+   "stageId": "sziget-2010:main-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:main-stage:1630:the-toy-dolls-uk",
+   "artistId": "sziget-2010:the-toy-dolls-uk",
+   "day": 3,
+   "stageId": "sziget-2010:main-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:main-stage:1800:ska-p-es",
+   "artistId": "sziget-2010:ska-p-es",
+   "day": 3,
+   "stageId": "sziget-2010:main-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:main-stage:1945:the-hives-s",
+   "artistId": "sziget-2010:the-hives-s",
+   "day": 3,
+   "stageId": "sziget-2010:main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:main-stage:2130:madness-uk",
+   "artistId": "sziget-2010:madness-uk",
+   "day": 3,
+   "stageId": "sziget-2010:main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:world-music-stage:1700:cankisou-cz",
+   "artistId": "sziget-2010:cankisou-cz",
+   "day": 3,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:world-music-stage:1815:csik-zenekar-h",
+   "artistId": "sziget-2010:csik-zenekar-h",
+   "day": 3,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:world-music-stage:1945:amparo-sanchez-e",
+   "artistId": "sziget-2010:amparo-sanchez-e",
+   "day": 3,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:world-music-stage:2130:orquesta-buena-vista-social-club-es-omara-portuondo-cub",
+   "artistId": "sziget-2010:orquesta-buena-vista-social-club-es-omara-portuondo-cub",
+   "day": 3,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:mtv-headbangers-ball-stage:1500:the-grenma",
+   "artistId": "sziget-2010:the-grenma",
+   "day": 3,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:mtv-headbangers-ball-stage:1630:mangod-inc",
+   "artistId": "sziget-2010:mangod-inc",
+   "day": 3,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:mtv-headbangers-ball-stage:1800:cadaveres",
+   "artistId": "sziget-2010:cadaveres",
+   "day": 3,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:mtv-headbangers-ball-stage:1930:ill-nino-usa",
+   "artistId": "sziget-2010:ill-nino-usa",
+   "day": 3,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:mtv-headbangers-ball-stage:2110:children-of-bodom-fin",
+   "artistId": "sziget-2010:children-of-bodom-fin",
+   "day": 3,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "21:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:mtv-headbangers-ball-stage:2310:road",
+   "artistId": "sziget-2010:road",
+   "day": 3,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "23:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:mtv-headbangers-ball-stage:0040:insane",
+   "artistId": "sziget-2010:insane",
+   "day": 3,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "00:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:a38-wan2-stage:1700:the-picturebooks-d",
+   "artistId": "sziget-2010:the-picturebooks-d",
+   "day": 3,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:a38-wan2-stage:1840:inspector-cluzo-fr",
+   "artistId": "sziget-2010:inspector-cluzo-fr",
+   "day": 3,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:a38-wan2-stage:2020:orias",
+   "artistId": "sziget-2010:orias",
+   "day": 3,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "20:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:a38-wan2-stage:2150:peaches-d",
+   "artistId": "sziget-2010:peaches-d",
+   "day": 3,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "21:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:a38-wan2-stage:2330:bad-religion-usa",
+   "artistId": "sziget-2010:bad-religion-usa",
+   "day": 3,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:a38-wan2-stage:0130:alvin-es-a-mokusok",
+   "artistId": "sziget-2010:alvin-es-a-mokusok",
+   "day": 3,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "01:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:party-arena:1930:dj-shadow-usa",
+   "artistId": "sziget-2010:dj-shadow-usa",
+   "day": 3,
+   "stageId": "sziget-2010:party-arena",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:party-arena:2200:pole-position",
+   "artistId": "sziget-2010:pole-position",
+   "day": 3,
+   "stageId": "sziget-2010:party-arena",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:party-arena:2300:szeifert",
+   "artistId": "sziget-2010:szeifert",
+   "day": 3,
+   "stageId": "sziget-2010:party-arena",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:party-arena:0000:andy-moor-uk",
+   "artistId": "sziget-2010:andy-moor-uk",
+   "day": 3,
+   "stageId": "sziget-2010:party-arena",
+   "start": "00:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:party-arena:0130:sander-van-doorn-nl",
+   "artistId": "sziget-2010:sander-van-doorn-nl",
+   "day": 3,
+   "stageId": "sziget-2010:party-arena",
+   "start": "01:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d3:party-arena:0330:kuhl",
+   "artistId": "sziget-2010:kuhl",
+   "day": 3,
+   "stageId": "sziget-2010:party-arena",
+   "start": "03:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:main-stage:1500:k-i-z-d",
+   "artistId": "sziget-2010:k-i-z-d",
+   "day": 4,
+   "stageId": "sziget-2010:main-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:main-stage:1630:young-punx-uk",
+   "artistId": "sziget-2010:young-punx-uk",
+   "day": 4,
+   "stageId": "sziget-2010:main-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:main-stage:1800:public-image-ltd-uk",
+   "artistId": "sziget-2010:public-image-ltd-uk",
+   "day": 4,
+   "stageId": "sziget-2010:main-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:main-stage:1945:the-specials-uk",
+   "artistId": "sziget-2010:the-specials-uk",
+   "day": 4,
+   "stageId": "sziget-2010:main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:main-stage:2130:faithless-uk",
+   "artistId": "sziget-2010:faithless-uk",
+   "day": 4,
+   "stageId": "sziget-2010:main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:world-music-stage:1700:kries-cro",
+   "artistId": "sziget-2010:kries-cro",
+   "day": 4,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:world-music-stage:1815:besh-o-drom-h",
+   "artistId": "sziget-2010:besh-o-drom-h",
+   "day": 4,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:world-music-stage:1945:dirtmusic-es-tamikrest-mali-usa-aus",
+   "artistId": "sziget-2010:dirtmusic-es-tamikrest-mali-usa-aus",
+   "day": 4,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:world-music-stage:2130:tony-allen-nig",
+   "artistId": "sziget-2010:tony-allen-nig",
+   "day": 4,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:mtv-headbangers-ball-stage:1500:aws",
+   "artistId": "sziget-2010:aws",
+   "day": 4,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:mtv-headbangers-ball-stage:1630:drums-are-for-parades-b",
+   "artistId": "sziget-2010:drums-are-for-parades-b",
+   "day": 4,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:mtv-headbangers-ball-stage:1800:subscribe",
+   "artistId": "sziget-2010:subscribe",
+   "day": 4,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:mtv-headbangers-ball-stage:1930:skindred-uk",
+   "artistId": "sziget-2010:skindred-uk",
+   "day": 4,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:mtv-headbangers-ball-stage:2110:the-69-eyes-fin",
+   "artistId": "sziget-2010:the-69-eyes-fin",
+   "day": 4,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "21:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:mtv-headbangers-ball-stage:2310:nevergreen",
+   "artistId": "sziget-2010:nevergreen",
+   "day": 4,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "23:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:mtv-headbangers-ball-stage:0040:romeo-verzik",
+   "artistId": "sziget-2010:romeo-verzik",
+   "day": 4,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "00:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:a38-wan2-stage:1700:foreign-beggars-uk",
+   "artistId": "sziget-2010:foreign-beggars-uk",
+   "day": 4,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:a38-wan2-stage:1840:black-box-revelation-b",
+   "artistId": "sziget-2010:black-box-revelation-b",
+   "day": 4,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:a38-wan2-stage:2020:qualitons-feat-kovacs-kati",
+   "artistId": "sziget-2010:qualitons-feat-kovacs-kati",
+   "day": 4,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "20:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:a38-wan2-stage:2150:c-mon-and-kypski-nl",
+   "artistId": "sziget-2010:c-mon-and-kypski-nl",
+   "day": 4,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "21:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:a38-wan2-stage:2330:gorillaz-sound-system-uk",
+   "artistId": "sziget-2010:gorillaz-sound-system-uk",
+   "day": 4,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:a38-wan2-stage:0130:zagar",
+   "artistId": "sziget-2010:zagar",
+   "day": 4,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "01:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:party-arena:1930:simian-mobile-disco-live-uk",
+   "artistId": "sziget-2010:simian-mobile-disco-live-uk",
+   "day": 4,
+   "stageId": "sziget-2010:party-arena",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:party-arena:2200:junkie-and-hawky",
+   "artistId": "sziget-2010:junkie-and-hawky",
+   "day": 4,
+   "stageId": "sziget-2010:party-arena",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:party-arena:2330:bergi-and-svindler",
+   "artistId": "sziget-2010:bergi-and-svindler",
+   "day": 4,
+   "stageId": "sziget-2010:party-arena",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:party-arena:0030:boys-noize-vs-erol-alkan-d",
+   "artistId": "sziget-2010:boys-noize-vs-erol-alkan-d",
+   "day": 4,
+   "stageId": "sziget-2010:party-arena",
+   "start": "00:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d4:party-arena:0330:coyote",
+   "artistId": "sziget-2010:coyote",
+   "day": 4,
+   "stageId": "sziget-2010:party-arena",
+   "start": "03:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:main-stage:1500:lyapis-trubetskoy-by",
+   "artistId": "sziget-2010:lyapis-trubetskoy-by",
+   "day": 5,
+   "stageId": "sziget-2010:main-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:main-stage:1630:papa-roach-usa",
+   "artistId": "sziget-2010:papa-roach-usa",
+   "day": 5,
+   "stageId": "sziget-2010:main-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:main-stage:1800:gentleman-and-the-evolution-d",
+   "artistId": "sziget-2010:gentleman-and-the-evolution-d",
+   "day": 5,
+   "stageId": "sziget-2010:main-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:main-stage:1945:mika-uk",
+   "artistId": "sziget-2010:mika-uk",
+   "day": 5,
+   "stageId": "sziget-2010:main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:main-stage:2130:thirty-seconds-to-mars-usa",
+   "artistId": "sziget-2010:thirty-seconds-to-mars-usa",
+   "day": 5,
+   "stageId": "sziget-2010:main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:world-music-stage:1700:daniel-kahn-and-the-painted-bird-usa",
+   "artistId": "sziget-2010:daniel-kahn-and-the-painted-bird-usa",
+   "day": 5,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:world-music-stage:1815:sondorgo-ferus-mustafov-h-mac",
+   "artistId": "sziget-2010:sondorgo-ferus-mustafov-h-mac",
+   "day": 5,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:world-music-stage:1945:rotfront-d-h-ukr",
+   "artistId": "sziget-2010:rotfront-d-h-ukr",
+   "day": 5,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:world-music-stage:2130:oi-va-voi-uk",
+   "artistId": "sziget-2010:oi-va-voi-uk",
+   "day": 5,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:mtv-headbangers-ball-stage:1500:room-of-the-mad-robots",
+   "artistId": "sziget-2010:room-of-the-mad-robots",
+   "day": 5,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:mtv-headbangers-ball-stage:1630:overdrive-srb",
+   "artistId": "sziget-2010:overdrive-srb",
+   "day": 5,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:mtv-headbangers-ball-stage:1800:blind-myself",
+   "artistId": "sziget-2010:blind-myself",
+   "day": 5,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:mtv-headbangers-ball-stage:1930:enter-shikari-uk",
+   "artistId": "sziget-2010:enter-shikari-uk",
+   "day": 5,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:mtv-headbangers-ball-stage:2110:paradise-lost-uk",
+   "artistId": "sziget-2010:paradise-lost-uk",
+   "day": 5,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "21:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:mtv-headbangers-ball-stage:2310:dalriada",
+   "artistId": "sziget-2010:dalriada",
+   "day": 5,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "23:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:mtv-headbangers-ball-stage:0040:antitela-ukr",
+   "artistId": "sziget-2010:antitela-ukr",
+   "day": 5,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "00:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:a38-wan2-stage:1700:deja-vu-revue",
+   "artistId": "sziget-2010:deja-vu-revue",
+   "day": 5,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:a38-wan2-stage:1840:zzz-nl",
+   "artistId": "sziget-2010:zzz-nl",
+   "day": 5,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:a38-wan2-stage:2020:isolated",
+   "artistId": "sziget-2010:isolated",
+   "day": 5,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "20:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:a38-wan2-stage:2150:vive-la-fete-b",
+   "artistId": "sziget-2010:vive-la-fete-b",
+   "day": 5,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "21:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:a38-wan2-stage:2330:charlie-winston-uk",
+   "artistId": "sziget-2010:charlie-winston-uk",
+   "day": 5,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:a38-wan2-stage:0130:erik-sumo-band-feat-kiss-erzsi",
+   "artistId": "sziget-2010:erik-sumo-band-feat-kiss-erzsi",
+   "day": 5,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "01:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:party-arena:1930:gotan-project-f",
+   "artistId": "sziget-2010:gotan-project-f",
+   "day": 5,
+   "stageId": "sziget-2010:party-arena",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:party-arena:2200:collins-and-behnam",
+   "artistId": "sziget-2010:collins-and-behnam",
+   "day": 5,
+   "stageId": "sziget-2010:party-arena",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:party-arena:2300:igor-do-urden",
+   "artistId": "sziget-2010:igor-do-urden",
+   "day": 5,
+   "stageId": "sziget-2010:party-arena",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:party-arena:0130:adam-beyer-s",
+   "artistId": "sziget-2010:adam-beyer-s",
+   "day": 5,
+   "stageId": "sziget-2010:party-arena",
+   "start": "01:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:party-arena:0300:joel-mull-s",
+   "artistId": "sziget-2010:joel-mull-s",
+   "day": 5,
+   "stageId": "sziget-2010:party-arena",
+   "start": "03:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d5:party-arena:0430:hot-x",
+   "artistId": "sziget-2010:hot-x",
+   "day": 5,
+   "stageId": "sziget-2010:party-arena",
+   "start": "04:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:main-stage:1500:vodafone-havervagy-tanc",
+   "artistId": "sziget-2010:vodafone-havervagy-tanc",
+   "day": 6,
+   "stageId": "sziget-2010:main-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:main-stage:1530:subsonica-i",
+   "artistId": "sziget-2010:subsonica-i",
+   "day": 6,
+   "stageId": "sziget-2010:main-stage",
+   "start": "15:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:main-stage:1700:the-cribs-uk",
+   "artistId": "sziget-2010:the-cribs-uk",
+   "day": 6,
+   "stageId": "sziget-2010:main-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:main-stage:1845:tankcsapda-h",
+   "artistId": "sziget-2010:tankcsapda-h",
+   "day": 6,
+   "stageId": "sziget-2010:main-stage",
+   "start": "18:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:main-stage:2100:iron-maiden-uk",
+   "artistId": "sziget-2010:iron-maiden-uk",
+   "day": 6,
+   "stageId": "sziget-2010:main-stage",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:world-music-stage:1700:jaune-toujours-b",
+   "artistId": "sziget-2010:jaune-toujours-b",
+   "day": 6,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:world-music-stage:1815:gyorgy-ferenczi-and-rackajam-and-guests",
+   "artistId": "sziget-2010:gyorgy-ferenczi-and-rackajam-and-guests",
+   "day": 6,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:world-music-stage:1945:rupa-and-the-april-fishes-usa",
+   "artistId": "sziget-2010:rupa-and-the-april-fishes-usa",
+   "day": 6,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:world-music-stage:2130:los-de-abajo-mex",
+   "artistId": "sziget-2010:los-de-abajo-mex",
+   "day": 6,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:mtv-headbangers-ball-stage:1500:holtido",
+   "artistId": "sziget-2010:holtido",
+   "day": 6,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:mtv-headbangers-ball-stage:1615:zorall",
+   "artistId": "sziget-2010:zorall",
+   "day": 6,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "16:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:mtv-headbangers-ball-stage:1745:depresszio",
+   "artistId": "sziget-2010:depresszio",
+   "day": 6,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "17:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:mtv-headbangers-ball-stage:1930:deak-bill-gyula",
+   "artistId": "sziget-2010:deak-bill-gyula",
+   "day": 6,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:mtv-headbangers-ball-stage:2110:kowalsky-meg-a-vega",
+   "artistId": "sziget-2010:kowalsky-meg-a-vega",
+   "day": 6,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "21:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:mtv-headbangers-ball-stage:2310:kamelot-usa",
+   "artistId": "sziget-2010:kamelot-usa",
+   "day": 6,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "23:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:mtv-headbangers-ball-stage:0040:kalapacs",
+   "artistId": "sziget-2010:kalapacs",
+   "day": 6,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "00:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:a38-wan2-stage:1700:carbovaris",
+   "artistId": "sziget-2010:carbovaris",
+   "day": 6,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:a38-wan2-stage:1840:wildbirds-and-peacedrums-s",
+   "artistId": "sziget-2010:wildbirds-and-peacedrums-s",
+   "day": 6,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:a38-wan2-stage:2020:bin-jip",
+   "artistId": "sziget-2010:bin-jip",
+   "day": 6,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "20:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:a38-wan2-stage:2150:ez3kiel-f",
+   "artistId": "sziget-2010:ez3kiel-f",
+   "day": 6,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "21:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:a38-wan2-stage:2330:nina-hagen-d",
+   "artistId": "sziget-2010:nina-hagen-d",
+   "day": 6,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:a38-wan2-stage:0130:vhk",
+   "artistId": "sziget-2010:vhk",
+   "day": 6,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "01:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:party-arena:1930:calvin-harris-uk",
+   "artistId": "sziget-2010:calvin-harris-uk",
+   "day": 6,
+   "stageId": "sziget-2010:party-arena",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:party-arena:2200:karanyi",
+   "artistId": "sziget-2010:karanyi",
+   "day": 6,
+   "stageId": "sziget-2010:party-arena",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:party-arena:2330:tsubi",
+   "artistId": "sziget-2010:tsubi",
+   "day": 6,
+   "stageId": "sziget-2010:party-arena",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:party-arena:0100:infected-mushroom-isr",
+   "artistId": "sziget-2010:infected-mushroom-isr",
+   "day": 6,
+   "stageId": "sziget-2010:party-arena",
+   "start": "01:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:party-arena:0230:danger",
+   "artistId": "sziget-2010:danger",
+   "day": 6,
+   "stageId": "sziget-2010:party-arena",
+   "start": "02:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d6:party-arena:0400:sikztah",
+   "artistId": "sziget-2010:sikztah",
+   "day": 6,
+   "stageId": "sziget-2010:party-arena",
+   "start": "04:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:main-stage:1630:danko-jones-can",
+   "artistId": "sziget-2010:danko-jones-can",
+   "day": 7,
+   "stageId": "sziget-2010:main-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:main-stage:1800:billy-talent-can",
+   "artistId": "sziget-2010:billy-talent-can",
+   "day": 7,
+   "stageId": "sziget-2010:main-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:main-stage:1945:kasabian-uk",
+   "artistId": "sziget-2010:kasabian-uk",
+   "day": 7,
+   "stageId": "sziget-2010:main-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:main-stage:2130:muse-uk",
+   "artistId": "sziget-2010:muse-uk",
+   "day": 7,
+   "stageId": "sziget-2010:main-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:world-music-stage:1700:mahala-rai-banda-rom",
+   "artistId": "sziget-2010:mahala-rai-banda-rom",
+   "day": 7,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:world-music-stage:1815:parno-graszt-h",
+   "artistId": "sziget-2010:parno-graszt-h",
+   "day": 7,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:world-music-stage:1945:o8oo1-e",
+   "artistId": "sziget-2010:o8oo1-e",
+   "day": 7,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:world-music-stage:2130:shantel-and-bucovina-club-orkestar-d",
+   "artistId": "sziget-2010:shantel-and-bucovina-club-orkestar-d",
+   "day": 7,
+   "stageId": "sziget-2010:world-music-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:mtv-headbangers-ball-stage:1500:green-path",
+   "artistId": "sziget-2010:green-path",
+   "day": 7,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:mtv-headbangers-ball-stage:1630:neck-sprain",
+   "artistId": "sziget-2010:neck-sprain",
+   "day": 7,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:mtv-headbangers-ball-stage:1800:isten-hata-mogott",
+   "artistId": "sziget-2010:isten-hata-mogott",
+   "day": 7,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:mtv-headbangers-ball-stage:1930:monster-magnet-usa",
+   "artistId": "sziget-2010:monster-magnet-usa",
+   "day": 7,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:mtv-headbangers-ball-stage:2110:fear-factory-usa",
+   "artistId": "sziget-2010:fear-factory-usa",
+   "day": 7,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "21:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:mtv-headbangers-ball-stage:2310:superbutt",
+   "artistId": "sziget-2010:superbutt",
+   "day": 7,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "23:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:mtv-headbangers-ball-stage:0040:watch-my-dying",
+   "artistId": "sziget-2010:watch-my-dying",
+   "day": 7,
+   "stageId": "sziget-2010:mtv-headbangers-ball-stage",
+   "start": "00:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:a38-wan2-stage:1700:skip-the-use-f",
+   "artistId": "sziget-2010:skip-the-use-f",
+   "day": 7,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:a38-wan2-stage:1840:madensuyu-b",
+   "artistId": "sziget-2010:madensuyu-b",
+   "day": 7,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "18:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:a38-wan2-stage:2020:turbo",
+   "artistId": "sziget-2010:turbo",
+   "day": 7,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "20:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:a38-wan2-stage:2150:yeasayer-usa",
+   "artistId": "sziget-2010:yeasayer-usa",
+   "day": 7,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "21:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:a38-wan2-stage:2330:major-lazer-jam",
+   "artistId": "sziget-2010:major-lazer-jam",
+   "day": 7,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:a38-wan2-stage:0130:kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+   "artistId": "sziget-2010:kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+   "day": 7,
+   "stageId": "sziget-2010:a38-wan2-stage",
+   "start": "01:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:party-arena:1930:die-antwoord-za",
+   "artistId": "sziget-2010:die-antwoord-za",
+   "day": 7,
+   "stageId": "sziget-2010:party-arena",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:party-arena:2200:soneec",
+   "artistId": "sziget-2010:soneec",
+   "day": 7,
+   "stageId": "sziget-2010:party-arena",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:party-arena:2300:poli-vs-nora-naughty",
+   "artistId": "sziget-2010:poli-vs-nora-naughty",
+   "day": 7,
+   "stageId": "sziget-2010:party-arena",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:party-arena:0015:chriss",
+   "artistId": "sziget-2010:chriss",
+   "day": 7,
+   "stageId": "sziget-2010:party-arena",
+   "start": "00:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:party-arena:0130:timo-maas",
+   "artistId": "sziget-2010:timo-maas",
+   "day": 7,
+   "stageId": "sziget-2010:party-arena",
+   "start": "01:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "sziget-2010:d7:party-arena:0330:slam-jr",
+   "artistId": "sziget-2010:slam-jr",
+   "day": 7,
+   "stageId": "sziget-2010:party-arena",
+   "start": "03:30",
+   "end": null,
+   "openEnd": true
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.sziget.hu/festival_english/programs",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20100815003911/http://www.sziget.hu/festival_english/programs/-/days?day=2010-08-09&stages[]=1441&stages[]=1371&stages[]=1281&stages[]=1411&stages[]=1401",
+    "captureTimestamp": "20100815003911",
+    "printed": "August 09. Monday",
+    "sha256": "ecf10d52321944131c146620c4365884c15033b70851d38074fd98e9529c8fc5",
+    "rows": 2,
+    "format": "sziget-days",
+    "tabs": [
+     "August 09. Monday",
+     "August 10. Tuesday",
+     "August 11. Wednesday",
+     "August 12. Thursday",
+     "August 13. Friday",
+     "August 14. Saturday",
+     "August 15. Sunday"
+    ]
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20100817142657/http://www.sziget.hu/festival_english/programs/-/days?day=2010-08-10&stages%5B%5D=1441&stages%5B%5D=1371&stages%5B%5D=1281&stages%5B%5D=1411&stages%5B%5D=1401",
+    "captureTimestamp": "20100817142657",
+    "printed": "August 10. Tuesday",
+    "sha256": "c9208adf13e0c8105c2c025f12782bd8066647a4c47da2f222ee1fa49805257f",
+    "rows": 6,
+    "format": "sziget-days",
+    "tabs": [
+     "August 09. Monday",
+     "August 10. Tuesday",
+     "August 11. Wednesday",
+     "August 12. Thursday",
+     "August 13. Friday",
+     "August 14. Saturday",
+     "August 15. Sunday"
+    ]
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20100817142106/http://www.sziget.hu/festival_english/programs/-/days?day=2010-08-11&stages%5B%5D=1441&stages%5B%5D=1371&stages%5B%5D=1281&stages%5B%5D=1411&stages%5B%5D=1401",
+    "captureTimestamp": "20100817142106",
+    "printed": "August 11. Wednesday",
+    "sha256": "328225861e501a4b5303751501244bf777709fb05cf315b107aca88de3585c63",
+    "rows": 28,
+    "format": "sziget-days",
+    "tabs": [
+     "August 09. Monday",
+     "August 10. Tuesday",
+     "August 11. Wednesday",
+     "August 12. Thursday",
+     "August 13. Friday",
+     "August 14. Saturday",
+     "August 15. Sunday"
+    ]
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20100817142702/http://www.sziget.hu/festival_english/programs/-/days?day=2010-08-12&stages%5B%5D=1441&stages%5B%5D=1371&stages%5B%5D=1281&stages%5B%5D=1411&stages%5B%5D=1401",
+    "captureTimestamp": "20100817142702",
+    "printed": "August 12. Thursday",
+    "sha256": "0c43e199241b24a15b47bc3887782488572ce70f94aee11a90ea64d520c616c5",
+    "rows": 27,
+    "format": "sziget-days",
+    "tabs": [
+     "August 09. Monday",
+     "August 10. Tuesday",
+     "August 11. Wednesday",
+     "August 12. Thursday",
+     "August 13. Friday",
+     "August 14. Saturday",
+     "August 15. Sunday"
+    ]
+   },
+   {
+    "day": 5,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20100817142111/http://www.sziget.hu/festival_english/programs/-/days?day=2010-08-13&stages%5B%5D=1441&stages%5B%5D=1371&stages%5B%5D=1281&stages%5B%5D=1411&stages%5B%5D=1401",
+    "captureTimestamp": "20100817142111",
+    "printed": "August 13. Friday",
+    "sha256": "63c625e23f9fe8b3a1bbfa73b6cf467fa18e687ac5234bf75ebf75eeda7db324",
+    "rows": 28,
+    "format": "sziget-days",
+    "tabs": [
+     "August 09. Monday",
+     "August 10. Tuesday",
+     "August 11. Wednesday",
+     "August 12. Thursday",
+     "August 13. Friday",
+     "August 14. Saturday",
+     "August 15. Sunday"
+    ]
+   },
+   {
+    "day": 6,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20100817142126/http://www.sziget.hu/festival_english/programs/-/days?day=2010-08-14&stages%5B%5D=1441&stages%5B%5D=1371&stages%5B%5D=1281&stages%5B%5D=1411&stages%5B%5D=1401",
+    "captureTimestamp": "20100817142126",
+    "printed": "August 14. Saturday",
+    "sha256": "834e1a200f6fb76dcf31ef59619f66c10cab9da444bbe03dd93246e2dd40e430",
+    "rows": 28,
+    "format": "sziget-days",
+    "tabs": [
+     "August 09. Monday",
+     "August 10. Tuesday",
+     "August 11. Wednesday",
+     "August 12. Thursday",
+     "August 13. Friday",
+     "August 14. Saturday",
+     "August 15. Sunday"
+    ]
+   },
+   {
+    "day": 7,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20100816150445/http://www.sziget.hu/festival_english/programs/-/days?day=2010-08-15&stages%5B%5D=1441&stages%5B%5D=1371&stages%5B%5D=1281&stages%5B%5D=1411&stages%5B%5D=1401",
+    "captureTimestamp": "20100816150445",
+    "printed": "August 15. Sunday",
+    "sha256": "f2e2972025e7db96131d2b017f190b66f160e4a5d8286a5a42b318f9afa3a6ad",
+    "rows": 27,
+    "format": "sziget-days",
+    "tabs": [
+     "August 09. Monday",
+     "August 10. Tuesday",
+     "August 11. Wednesday",
+     "August 12. Thursday",
+     "August 13. Friday",
+     "August 14. Saturday",
+     "August 15. Sunday"
+    ]
+   }
+  ]
+ }
+}

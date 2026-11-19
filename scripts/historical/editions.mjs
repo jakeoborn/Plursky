@@ -53,6 +53,34 @@ export const EDITIONS = {
   "outside-lands-2015": { festivalId: "outside-lands", name: "Outside Lands 2015", year: 2015, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2015-08-07","Friday"],["2015-08-08","Saturday"],["2015-08-09","Sunday"]] },
   "outside-lands-2016": { festivalId: "outside-lands", name: "Outside Lands 2016", year: 2016, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2016-08-05","Friday"],["2016-08-06","Saturday"],["2016-08-07","Sunday"]] },
   "outside-lands-2017": { festivalId: "outside-lands", name: "Outside Lands 2017", year: 2017, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2017-08-11","Friday"],["2017-08-12","Saturday"],["2017-08-13","Sunday"]] },
+  // Outside Lands 2018 and 2019, from the official lineup widget
+  // (sfosl.dostff.co, sfosl19.dostff.co), Golden Gate Park as every year.
+  "outside-lands-2018": { festivalId: "outside-lands", name: "Outside Lands 2018", year: 2018, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2018-08-10","Friday"],["2018-08-11","Saturday"],["2018-08-12","Sunday"]] },
+  "outside-lands-2019": { festivalId: "outside-lands", name: "Outside Lands 2019", year: 2019, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2019-08-09","Friday"],["2019-08-10","Saturday"],["2019-08-11","Sunday"]] },
+  // Outside Lands 2022-2025: the official lineup page (sfoutsidelands.com/
+  // lineup/) loads a DoStuff widget whose embed script carries every set
+  // with its start, end and stage (format "dostuff-embed",
+  // dostuff-embed-schedule.mjs). One post-festival capture per year, each
+  // taken seconds after the official page that loads it. Cocktail Magic,
+  // the food-and-drink stage (2022-2023), is excluded as GastroMagic is.
+  "outside-lands-2022": { festivalId: "outside-lands", name: "Outside Lands 2022", year: 2022, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2022-08-05","Friday"],["2022-08-06","Saturday"],["2022-08-07","Sunday"]] },
+  "outside-lands-2023": { festivalId: "outside-lands", name: "Outside Lands 2023", year: 2023, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2023-08-11","Friday"],["2023-08-12","Saturday"],["2023-08-13","Sunday"]] },
+  "outside-lands-2024": { festivalId: "outside-lands", name: "Outside Lands 2024", year: 2024, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2024-08-09","Friday"],["2024-08-10","Saturday"],["2024-08-11","Sunday"]] },
+  "outside-lands-2025": { festivalId: "outside-lands", name: "Outside Lands 2025", year: 2025, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources", dates: [["2025-08-08","Friday"],["2025-08-09","Saturday"],["2025-08-10","Sunday"]] },
+  // Lightning in a Bottle 2018 (Lake San Antonio) and 2019 (Buena Vista
+  // Lake, the festival's own homepage for each year): the official lineup
+  // page (lightninginabottle.org/lineup/) loads the same DoStuff widget
+  // (format "dostuff-embed"), one script host per year (lib2018.dostff.co,
+  // lib2019.dostff.co), each captured after the festival. The widget's run
+  // includes gate days with no music (2018's Wednesday arrival day), so the
+  // edition's days are the run's days it prints sets on. 2019's Wednesday
+  // carries one late set (YoHm at Beacon). Its options hide set titles, so
+  // each 2019 set is billed as the act it is drawn under. The yoga and
+  // meditation stages hold classes and are excluded rows.
+  "lightning-in-a-bottle-2018": { festivalId: "lightning-in-a-bottle", name: "Lightning in a Bottle 2018", year: 2018, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2018-05-24", "Thursday"], ["2018-05-25", "Friday"], ["2018-05-26", "Saturday"], ["2018-05-27", "Sunday"]] },
+  "lightning-in-a-bottle-2019": { festivalId: "lightning-in-a-bottle", name: "Lightning in a Bottle 2019", year: 2019, timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2019-05-08", "Wednesday"], ["2019-05-09", "Thursday"], ["2019-05-10", "Friday"], ["2019-05-11", "Saturday"], ["2019-05-12", "Sunday"]] },
   // Governors Ball 2011-2012: the official governorsballmusicfestival.com
   // schedule page (/lineup/schedule/, a WordPress template, format
   // "govball-wp", govball-wp-schedule.mjs), one archived page per year, each
@@ -66,6 +94,132 @@ export const EDITIONS = {
   "governors-ball-2012": { festivalId: "governors-ball", name: "Governors Ball 2012", year: 2012,
     timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
     dates: [["2012-06-23", "Saturday"], ["2012-06-24", "Sunday"]] },
+  // Governors Ball 2013: the official lineup.governorsballmusicfestival.com
+  // day grids (format "dostuff-grid", dostuff-schedule.mjs, the same DoStuff
+  // site as Outside Lands' and Lollapalooza 2012's), one page per day, each
+  // captured after the festival. Friday was cut short by rain: the grid still
+  // prints Kings of Leon closing Friday, but the festival's own homepage posts
+  // moved them to Saturday at 6:45 PM, the slot the Saturday grid prints, so
+  // Friday's block is excluded as moved (movedSets, checked against that page).
+  "governors-ball-2013": { festivalId: "governors-ball", name: "Governors Ball 2013", year: 2013,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2013-06-07", "Friday"], ["2013-06-08", "Saturday"], ["2013-06-09", "Sunday"]],
+    movedSets: [{ date: "2013-06-07", stage: "GOV BALL NYC STAGE", start: "21:30", artist: "KINGS OF LEON",
+      to: { date: "2013-06-08", stage: "GOV BALL NYC STAGE", start: "18:45" },
+      source: { url: "https://governorsballmusicfestival.com/", captureTimestamp: "20130721210049" },
+      quotes: ["Kings of Leon will be performing today at the Gov Ball NYC Stage at 6:45pm", "coming back on Saturday"] }],
+    notes: [{ asOf: "2026-11-18", days: [1, 2], text: "Friday was cut short by rain. Kings of Leon, printed as Friday's closer, played Saturday at 6:45 PM instead, as the festival's own posts said, so they are listed on Saturday only.",
+      source: "https://web.archive.org/web/20130721210049/https://governorsballmusicfestival.com/" }] },
+  // Governors Ball 2014-2015: the same lineup site and format, each day's grid
+  // captured after the festival. 2015's Saturday anchor is Marina And The
+  // Diamonds: Deadmau5's page, captured before the festival, prints 9:15 PM,
+  // which the final grid moved to 9:30.
+  "governors-ball-2014": { festivalId: "governors-ball", name: "Governors Ball 2014", year: 2014,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2014-06-06", "Friday"], ["2014-06-07", "Saturday"], ["2014-06-08", "Sunday"]] },
+  "governors-ball-2015": { festivalId: "governors-ball", name: "Governors Ball 2015", year: 2015,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2015-06-05", "Friday"], ["2015-06-06", "Saturday"], ["2015-06-07", "Sunday"]] },
+  // Primavera Sound 2012: the official primaverasound.es timetable for Parc
+  // del Fòrum on its older template (format "primavera-horarios", template
+  // "2012"), one archived page per day in Spanish, each captured in July
+  // 2012. The tabs print Thursday 31 May to Saturday 2 June with no year.
+  // Every block prints its start alone, so every set is open-ended; the
+  // night runs to 6:30 AM. The city shows are on other pages and are not
+  // loaded. 2013's pages survive after the festival for two of its four
+  // days only, so 2013 is not loaded.
+  "primavera-sound-2012": { festivalId: "primavera-sound", name: "Primavera Sound 2012", year: 2012,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2012-05-31", "Thursday"], ["2012-06-01", "Friday"], ["2012-06-02", "Saturday"]] },
+  // Primavera Sound 2015: the official primaverasound.es timetable for Parc
+  // del Fòrum (/horarios?d=N&l=forum, format "primavera-horarios",
+  // primavera-horarios-schedule.mjs), one archived page per day, each
+  // captured after the festival. The page's day tabs print Wednesday 27 May
+  // (an opening night on the ATP stage alone) and the three main days, with
+  // no year; every set prints its range on the 24-hour clock. The city shows
+  // (Primavera a la Ciutat) are on other pages and are not loaded. The night
+  // runs to 5:30 AM.
+  "primavera-sound-2015": { festivalId: "primavera-sound", name: "Primavera Sound 2015", year: 2015,
+    timezone: "Europe/Madrid", rolloverHour: 6, method: "official_sources",
+    dates: [["2015-05-27", "Wednesday"], ["2015-05-28", "Thursday"], ["2015-05-29", "Friday"], ["2015-05-30", "Saturday"]] },
+  // Primavera Sound 2016: the official full timetable ("Horarios completos",
+  // format "primavera-completos", primavera-completos-schedule.mjs), one
+  // archived page per day, each captured after the festival. The page prints
+  // the whole week, Parc del Fòrum beside the city venues; only the Fòrum's
+  // stages are this edition's. Wednesday 1 June is one free concert on the
+  // Fòrum's Primavera stage, printed "Primavera (concierto gratuito)". The
+  // last sets of a night run to 06:00 and the first of the next start at
+  // 12:00, so the day runs from 10 AM.
+  "primavera-sound-2016": { festivalId: "primavera-sound", name: "Primavera Sound 2016", year: 2016,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2016-06-01", "Wednesday"], ["2016-06-02", "Thursday"], ["2016-06-03", "Friday"], ["2016-06-04", "Saturday"]] },
+  // Primavera Sound 2017: the same full timetable, its tabs printed "MIÉ-31"
+  // and listing only the season's days with shows. Wednesday 31 May is the
+  // Fòrum's free opening (the Heineken Hidden Stage and the Primavera stage,
+  // printed "Primavera (concierto gratuito)"); the day runs from 10 AM.
+  "primavera-sound-2017": { festivalId: "primavera-sound", name: "Primavera Sound 2017", year: 2017,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2017-05-31", "Wednesday"], ["2017-06-01", "Thursday"], ["2017-06-02", "Friday"], ["2017-06-03", "Saturday"]] },
+  // Primavera Sound 2018: the same full timetable, its tabs printing whole
+  // dates (Monday 28 May to Sunday 3 June), captured in October 2018.
+  // Wednesday 30 May is the Fòrum's opening on three stages; the day runs
+  // from 10 AM.
+  "primavera-sound-2018": { festivalId: "primavera-sound", name: "Primavera Sound 2018", year: 2018,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2018-05-30", "Wednesday"], ["2018-05-31", "Thursday"], ["2018-06-01", "Friday"], ["2018-06-02", "Saturday"]] },
+  // Primavera Sound 2019: the same full timetable, headed "Set times", its
+  // tabs printing whole dates (Monday 27 May to Sunday 2 June). Wednesday 29
+  // May is the Fòrum's opening night on the Primavera and Night Pro stages;
+  // Sunday 2 June is the city's alone. The day runs from 10 AM.
+  "primavera-sound-2019": { festivalId: "primavera-sound", name: "Primavera Sound 2019", year: 2019,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2019-05-29", "Wednesday"], ["2019-05-30", "Thursday"], ["2019-05-31", "Friday"], ["2019-06-01", "Saturday"]] },
+  // Sónar Barcelona 2016-2019 and 2022: the festival's own timetable page
+  // (sonar.es/en/<year>/schedules, format "sonar-calendar",
+  // sonar-schedule.mjs), one archived page per year, captured after the
+  // festival. It prints every session as a dated calendar: Sónar by Day
+  // (from 1 PM at Fira Montjuïc) and Sónar by Night (8 PM to 7 or 8 AM at
+  // Fira Gran Via), plus the concerts the festival programmes in the city
+  // on its opening and closing nights (L'Auditori, Teatre Grec, Capella
+  // MACBA, 2017's Björk opening night). A night set after midnight is that
+  // night's: the day runs from 10 AM. 2022's Sónar+D stages (talks,
+  // masterclasses, installations) are printed on the same page and excluded.
+  "sonar-2016": { festivalId: "sonar", name: "Sónar Barcelona 2016", year: 2016,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2016-06-16", "Thursday"], ["2016-06-17", "Friday"], ["2016-06-18", "Saturday"]] },
+  "sonar-2017": { festivalId: "sonar", name: "Sónar Barcelona 2017", year: 2017,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2017-06-14", "Wednesday"], ["2017-06-15", "Thursday"], ["2017-06-16", "Friday"], ["2017-06-17", "Saturday"], ["2017-06-18", "Sunday"]] },
+  "sonar-2018": { festivalId: "sonar", name: "Sónar Barcelona 2018", year: 2018,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2018-06-14", "Thursday"], ["2018-06-15", "Friday"], ["2018-06-16", "Saturday"], ["2018-06-17", "Sunday"]] },
+  "sonar-2019": { festivalId: "sonar", name: "Sónar Barcelona 2019", year: 2019,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2019-07-18", "Thursday"], ["2019-07-19", "Friday"], ["2019-07-20", "Saturday"], ["2019-07-21", "Sunday"]] },
+  "sonar-2022": { festivalId: "sonar", name: "Sónar Barcelona 2022", year: 2022,
+    timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
+    dates: [["2022-06-16", "Thursday"], ["2022-06-17", "Friday"], ["2022-06-18", "Saturday"]] },
+  // Sziget 2010-2011: the festival's own day-by-day programme
+  // (sziget.hu/festival_english/programs/-/days?day=<date>, format
+  // "sziget-days", sziget-days-schedule.mjs), one archived page per day, each
+  // drawing the five big stages its address selects (Main Stage, World Music,
+  // A38-WAN2, the rock-metal stage and the Party Arena). The week's tabs are
+  // the edition's days, the two warm-up days before the main five included.
+  // Each set prints its start alone, so every set is an open end; a set
+  // after midnight is that night's. The programme's own stage picker lists
+  // the festival's other stages and venues (13 and 6 in 2010, 26 and 6 in
+  // 2011: smaller music stages beside theatre, circus and arts sites); they
+  // are counted in coverage, their days not read. 2012's and 2013's day pages
+  // survive only after the programme was taken down ("Soon!") or as a
+  // redirect, so those years are not built.
+  "sziget-2010": { festivalId: "sziget", name: "Sziget 2010", year: 2010,
+    timezone: "Europe/Budapest", rolloverHour: 8, method: "official_sources",
+    dates: [["2010-08-09", "Monday"], ["2010-08-10", "Tuesday"], ["2010-08-11", "Wednesday"], ["2010-08-12", "Thursday"], ["2010-08-13", "Friday"], ["2010-08-14", "Saturday"], ["2010-08-15", "Sunday"]],
+    coverage: { asOf: "2026-11-18", missing: [{ stage: "13 other stages and 6 venues", days: [1, 2, 3, 4, 5, 6, 7], when: "listed in the programme, days not read" }] } },
+  "sziget-2011": { festivalId: "sziget", name: "Sziget 2011", year: 2011,
+    timezone: "Europe/Budapest", rolloverHour: 8, method: "official_sources",
+    dates: [["2011-08-08", "Monday"], ["2011-08-09", "Tuesday"], ["2011-08-10", "Wednesday"], ["2011-08-11", "Thursday"], ["2011-08-12", "Friday"], ["2011-08-13", "Saturday"], ["2011-08-14", "Sunday"]],
+    coverage: { asOf: "2026-11-18", missing: [{ stage: "26 other stages and 6 venues", days: [1, 2, 3, 4, 5, 6, 7], when: "listed in the programme, days not read" }] } },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.
@@ -638,8 +792,12 @@ export const PRINTED_NON_LATIN = {
   // The same lambda on Tomorrowland's own day timetables.
   "tomorrowland-2015": ["Axwell Λ Ingrosso"],
   "tomorrowland-2016": ["Axwell Λ Ingrosso"],
+  // The same lambda on Governors Ball's own 2014 lineup-site grid.
+  "governors-ball-2014": ["Axwell Λ Ingrosso"],
   // The trio's own Greek lambda, as Coachella's 2012 lineup page prints it.
   "coachella-2012": ["NOISIΛ"],
+  // The act's own kanji, in the JSON of Sónar's 2018 timetable page.
+  "sonar-2018": ["DITC 音"],
 };
 
 const ACTIVITY_REASON = "non-music Bonus Tracks activity";

@@ -46,20 +46,27 @@ import { parseDoStuff, parseDoStuffBand, timeDay } from "./dostuff-schedule.mjs"
 import { parseMyScheduler, restoreSets } from "./myscheduler-schedule.mjs";
 import { parseEfScheduler } from "./ef-scheduler-schedule.mjs";
 import { parseGovBallWp } from "./govball-wp-schedule.mjs";
+import { parsePrimaveraHorarios } from "./primavera-horarios-schedule.mjs";
+import { parsePrimaveraCompletos } from "./primavera-completos-schedule.mjs";
 import { parseInsomniacMusic } from "./insomniac-music-schedule.mjs";
 import { parseTmlCms } from "./tml-cms-schedule.mjs";
+import { parseDoStuffEmbed, embedPageOk, pageLoadsScript, scriptSetsSrc, EMBED_PAGES } from "./dostuff-embed-schedule.mjs";
 import { parseHardWp } from "./hard-wp-schedule.mjs";
 import { parseLollaLineup } from "./lolla-lineup.mjs";
 import { parseTmlDrupal } from "./tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, readDatesPost } from "./shambhala-webflow-schedule.mjs";
+import { parseSonarSchedule } from "./sonar-schedule.mjs";
+import { parseSzigetDays } from "./sziget-days-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
 // Pages that print a set with a start and no end: Electric Forest's grid
 // ("2:15am - Close"), Coachella's lineup cards and 2012 overlays (no end
 // times at all), Coachella 2017's lineup data (a few sets without an end) and
-// Shambhala's schedule tables (a start under each block, no end).
-const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards", "coachella-data", "coachella-overlays", "shambhala-table", "govball-wp"]);
+// Shambhala's schedule tables (a start under each block, no end), Governors
+// Ball 2011's "???", Primavera Sound's start-only blocks ("(03:00)") and
+// Sziget's day programme (a start on each set, no end).
+const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards", "coachella-data", "coachella-overlays", "shambhala-table", "govball-wp", "primavera-horarios", "primavera-completos", "sziget-days"]);
 
 const rowKey = r => [r.day, r.stage, r.start, r.end, r.artist].join("|");
 
@@ -168,7 +175,7 @@ export async function importGather(id, dir) {
     }
     const date = ed.dates[+r.day - 1]?.[0];
     if (r.date !== date) throw new Error(`row ${r.artist}: day ${r.day} is ${r.date}, the edition says ${date}`);
-    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }), ...(ex.incomplete && { incomplete: true }), ...(ex.comedy && { comedy: true }), ...(ex.food && { food: true }), ...(ex.programme && { programme: true }), ...(ex.overlay && { overlay: true }) }); continue; }
+    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }), ...(ex.repeat && { repeat: true }), ...(ex.untimed && { untimed: true }), ...(ex.misprint && { misprint: true }), ...(ex.incomplete && { incomplete: true }), ...(ex.comedy && { comedy: true }), ...(ex.food && { food: true }), ...(ex.programme && { programme: true }), ...(ex.overlay && { overlay: true }), ...(ex.moved && { moved: true }) }); continue; }
     const hits = rc.sources.map((s, i) => [s, i]).filter(([s]) => (r.source_ref || "").includes(s.match)
       && (!s.when?.stage || new RegExp(s.when.stage).test(r.stage)) && (!s.when?.stageNot || !new RegExp(s.when.stageNot).test(r.stage)));
     if (hits.length !== 1) throw new Error(`row d${r.day} ${r.stage} ${r.start} ${r.artist}: ${hits.length} sources match its source_ref`);
@@ -414,7 +421,12 @@ export async function importGather(id, dir) {
         const fed = t.sets.filter(x => s.foodStage && x.stage === s.foodStage);
         const pgF = fed.map(k).sort().join("\n"), shF = excluded.filter(x => x.day === day && x.food).map(k).sort().join("\n");
         if (pgF !== shF) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${fed.length} show(s) on ${s.foodStage || "no food stage"}, the sheet excludes others`);
-        agree(day, t.sets.filter(x => !funny.includes(x) && !fed.includes(x)).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+        // A set the edition's movedSets says the festival moved is an excluded
+        // row of the day it was printed on, one for one; it counts where it was played.
+        const mv = t.sets.filter(x => (ed.movedSets || []).some(m => m.date === page.date && m.stage === x.stage && m.start === x.start && m.artist === x.artist));
+        const pgV = mv.map(k).sort().join("\n"), shV = excluded.filter(x => x.day === day && x.moved).map(k).sort().join("\n");
+        if (pgV !== shV) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${mv.length} moved set(s), the sheet excludes others`);
+        agree(day, t.sets.filter(x => !funny.includes(x) && !fed.includes(x) && !mv.includes(x)).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
         Object.assign(ledgerDays[day - 1].sources.at(-1), { stages: page.stages.length, axis: `${page.axis.first} … ${page.axis.last}`, pxPerMinute: page.scale,
           axisStart: t.axisStart, meridiem: "read off the anchor act's own page on the lineup site",
           anchor: { url: s.anchor.url, archivedUrl: acap.archivedUrl, captureTimestamp: acap.captureTimestamp, sha256: acap.sha256, bytes: acap.bytes, printed: t.anchor.text },
@@ -484,6 +496,59 @@ export async function importGather(id, dir) {
             ...(d.repeats.length && { drawnTwice: d.repeats.map(x => `${x.artist} (${x.stage} ${x.printed})`) }),
             ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
         }
+      } else if (s.format === "dostuff-embed") {
+        // The official lineup widget's embed script (Outside Lands 2018-2019 and 2022-2025,
+        // Lightning in a Bottle 2018-2019, dostuff-embed-schedule.mjs): one
+        // capture holds every day. Its own name and time zone must be the
+        // edition's, every set's offset the zone's, the edition's days the
+        // run's days it prints sets on, and the capture must postdate the
+        // festival. The official lineup page that loads it (embeddedBy) was
+        // captured on the festival's own site close to it (EMBED_PAGES), and
+        // its HTML loads this very script, itself or through the site's own
+        // script (via). Shows in the comedy tent, on the food-and-drink stages
+        // and on programme stages must be the sheet's excluded rows of each
+        // day, one for one.
+        const w = parseDoStuffEmbed(cap.text, { rolloverHour: ed.rolloverHour });
+        if (w.name !== ed.name && !ed.name.startsWith(w.name + " ")) throw new Error(`${s.url} @${s.captureTimestamp}: the widget is "${w.name}", not ${ed.name}`);
+        if (w.setDays.join() !== ed.dates.map(([d]) => d).join() || s.run !== `${w.startDate} to ${w.endDate}`) throw new Error(`${s.url} @${s.captureTimestamp}: the widget's run is ${w.startDate} to ${w.endDate} with sets on ${w.setDays.join(", ")}, the edition's days ${ed.dates.map(([d]) => d).join(", ")}, the receipt says "${s.run}"`);
+        if (w.timezone !== ed.timezone) throw new Error(`${s.url} @${s.captureTimestamp}: the widget's time zone is ${w.timezone}, not ${ed.timezone}`);
+        if (s.captureTimestamp.slice(0, 8) <= ed.dates.at(-1)[0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the festival ended`);
+        const eb = s.embeddedBy || {};
+        if (!embedPageOk(ed.festivalId, s.captureTimestamp, eb)) throw new Error(`${s.url} @${s.captureTimestamp}: embeddedBy ${eb.url} @${eb.captureTimestamp} is not the official lineup page ${EMBED_PAGES[ed.festivalId]?.label || "(no rule for this festival)"}`);
+        const pcap = await fetchCapture(eb.captureTimestamp, eb.url);
+        if (pcap.captureTimestamp !== eb.captureTimestamp) throw new Error(`${eb.url}: Wayback served ${pcap.captureTimestamp}, not ${eb.captureTimestamp}`);
+        if (eb.via) {
+          // The page is an app shell: it loads the site's own script, which
+          // adds the widget's <script> on the lineup route.
+          const vcap = await fetchCapture(eb.via.captureTimestamp, eb.via.url);
+          if (vcap.captureTimestamp !== eb.via.captureTimestamp || !pageLoadsScript(pcap.text, eb.via.url, eb.url) || !scriptSetsSrc(vcap.text, s.url))
+            throw new Error(`${eb.url} @${eb.captureTimestamp}: the page does not load ${s.url} through ${eb.via.url} @${eb.via.captureTimestamp}`);
+        } else if (!pageLoadsScript(pcap.text, s.url, eb.url)) throw new Error(`${eb.url} @${eb.captureTimestamp}: the page does not load ${s.url}`);
+        const progStages = s.programmeStages || [], foodStages = s.foodStages || (s.foodStage ? [s.foodStage] : []);
+        for (const st of [...foodStages, s.comedyStage, ...progStages].filter(Boolean)) if (!w.stages.includes(st)) throw new Error(`${s.url} @${s.captureTimestamp}: no stage "${st}"`);
+        for (const [i, [date]] of ed.dates.entries()) {
+          const day = i + 1, d = w.days.find(x => x.date === date);
+          if (!days.includes(day)) throw new Error(`${s.url} @${s.captureTimestamp}: prints day ${day}, the sheet does not cite it`);
+          if (d.date !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is ${d.date}, the receipt says "${s.printed[day]}"`);
+          const k = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
+          const fed = d.sets.filter(x => foodStages.includes(x.stage)), prog = d.sets.filter(x => progStages.includes(x.stage)), funny = d.sets.filter(x => x.stage === s.comedyStage);
+          for (const [flag, list, what] of [["food", fed, foodStages.join(", ") || "no food stage"], ["comedy", funny, s.comedyStage || "no comedy tent"], ["programme", prog, progStages.join(", ") || "no programme stage"]]) {
+            const pg = list.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x[flag]).map(k).sort().join("\n");
+            if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${list.length} show(s) on ${what}, the sheet excludes others`);
+          }
+          agree(day, d.sets.filter(x => !fed.includes(x) && !funny.includes(x) && !prog.includes(x)).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          const twice = w.drawnTwice.filter(x => x.date === date);
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { run: s.run, timezone: w.timezone, grouping: w.grouping, stages: new Set(d.sets.map(x => x.stage)).size,
+            embeddedBy: { url: eb.url, archivedUrl: `https://web.archive.org/web/${eb.captureTimestamp}/${eb.url}`, captureTimestamp: eb.captureTimestamp, loads: s.url,
+              ...(eb.via && { via: { url: eb.via.url, archivedUrl: `https://web.archive.org/web/${eb.via.captureTimestamp}/${eb.via.url}`, captureTimestamp: eb.via.captureTimestamp, setsSrc: s.url } }) },
+            times: "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+            ...(w.byAct && { billing: "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set" }),
+            ...(d.sets.some(x => x.billedUnder.length > 1) && { sharedSets: d.sets.filter(x => x.billedUnder.length > 1).map(x => `${x.artist} (under ${x.billedUnder.join(", ")})`) }),
+            ...(twice.length && { drawnTwice: twice.map(x => `${x.artist} (${x.stage} ${x.start}-${x.end}${x.title ? `, titled "${x.title}"` : ""})`) }),
+            ...(fed.length && (foodStages.length > 1 ? { foodShows: fed.length, foodStages: foodStages.filter(x => d.sets.some(y => y.stage === x)) } : { foodShows: fed.length, foodStage: foodStages[0] })),
+            ...(funny.length && { comedyShows: funny.length, comedyStage: s.comedyStage }),
+            ...(prog.length && { programmeShows: prog.length, programmeStages: progStages.filter(x => d.sets.some(y => y.stage === x)) }) });
+        }
       } else if (s.format === "lolla-cards") {
         // One page lists every act's sets, each with its printed day, start
         // and stage, and no end (Lollapalooza 2018's lineup cards,
@@ -532,6 +597,111 @@ export async function importGather(id, dir) {
             ...(d.sets.some(x => x.openEnd) && { openEnded: d.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }),
             ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
         }
+      } else if (s.format === "primavera-horarios") {
+        // One page per day: Primavera Sound's Parc del Fòrum timetable
+        // (primavera-horarios-schedule.mjs). Its day tabs must be the
+        // edition's days, in order, each weekday falling on its date in the
+        // edition's year; the page's own tab is the day it prints. Every
+        // block's start sits on its row plus its offset, and every printed
+        // range is drawn two pixels a minute, or the parser throws.
+        const page = parsePrimaveraHorarios(cap.text, { year: ed.year });
+        if (page.tabDates.join() !== ed.dates.map(([d]) => d).join()) throw new Error(`${s.url} @${s.captureTimestamp}: its day tabs print ${page.tabDates.join(", ")}, not the edition's days`);
+        const day = ed.dates.findIndex(([d]) => d === page.date) + 1;
+        if (days.join() !== String(day)) throw new Error(`${s.url} @${s.captureTimestamp}: prints day ${day}, the sheet cites it for ${days.join(",")}`);
+        if (page.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is printed as "${page.label}", the receipt says "${s.printed[day]}"`);
+        if (s.captureTimestamp.slice(0, 8) <= ed.dates.at(-1)[0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the festival ended`);
+        agree(day, page.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+        // The 2012 template prints each start alone, on its own 15-minute
+        // row, and can draw an empty slot that names no act: that slot is
+        // listed, never read as a set.
+        Object.assign(ledgerDays[day - 1].sources.at(-1), { heading: page.heading, tabs: page.tabs, stages: page.stages.length, axis: page.axis, template: page.template,
+          times: page.template === "2012" ? "each block prints its start alone on the 24-hour clock, inside its own 15-minute row; no block prints an end"
+            : "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall",
+          ...(page.sets.some(x => x.openEnd) && { openEnded: page.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }),
+          ...(page.blanks.length && { emptySlots: page.blanks.map(x => `${x.stage}: ${x.printed}, no act named`) }) });
+      } else if (s.format === "sziget-days") {
+        // One page per day: Sziget's own English day programme
+        // (sziget.hu/festival_english/programs/-/days?day=<date>,
+        // sziget-days-schedule.mjs), drawing the stages its address selects.
+        // Its day tabs must be the edition's days, in order, each weekday
+        // falling on its date in the edition's year; the page's own tab is the
+        // day it prints, and its address asks for that day. The page must be
+        // captured after the night it prints was over: a day already played
+        // can no longer change (2010's Monday survives only in a capture from
+        // the festival's last weekend). Every set prints its start alone, in
+        // its stage's own column, and every set links to the stage it sits
+        // under, or the parser throws. An entry billing several acts under one
+        // start must be the sheet's excluded untimed row of that day, one for
+        // one.
+        const page = parseSzigetDays(cap.text, { year: ed.year });
+        if (page.tabDates.join() !== ed.dates.map(([d]) => d).join()) throw new Error(`${s.url} @${s.captureTimestamp}: its day tabs print ${page.tabDates.join(", ")}, not the edition's days`);
+        const day = ed.dates.findIndex(([d]) => d === page.date) + 1;
+        if (days.join() !== String(day)) throw new Error(`${s.url} @${s.captureTimestamp}: prints day ${day}, the sheet cites it for ${days.join(",")}`);
+        if (!s.url.includes(`day=${page.date}&`)) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${page.date}, not the day its address asks for`);
+        if (page.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is printed as "${page.label}", the receipt says "${s.printed[day]}"`);
+        // Over: the next morning's rollover hour, read as UTC (Budapest is
+        // ahead of UTC, so this is the stricter reading).
+        const over = new Date(Date.parse(page.date + "T00:00:00Z") + 864e5 + ed.rolloverHour * 36e5).toISOString().replace(/\D/g, "").slice(0, 14);
+        if (s.captureTimestamp < over) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the night of ${page.date} was over`);
+        const k = x => [x.stage, x.artist ?? x.billing].join("|");
+        const pg = page.bills.map(b => k({ stage: b.stage, artist: b.lines.join(" / ") })).sort().join("\n"), sh = excluded.filter(x => x.day === day && x.untimed).map(k).sort().join("\n");
+        if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${page.bills.length} bill(s), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+        agree(day, page.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+        Object.assign(ledgerDays[day - 1].sources.at(-1), { template: page.template, tabs: page.tabs, stages: page.stages.length,
+          otherStages: page.unshown.length, otherVenues: page.venues.length,
+          times: "each set prints its start alone on the 24-hour clock, in its stage's column; no set prints an end, and a set after midnight is that night's",
+          ...(page.bills.length && { bills: page.bills.map(b => `${b.stage} from ${b.start}: ${b.lines.join(" / ")}`) }) });
+      } else if (s.format === "sonar-calendar") {
+        // One page prints the whole edition: Sónar Barcelona's own timetable
+        // (sonar.es/en/<year>/schedules, sonar-schedule.mjs), one calendar per
+        // session (Sónar by Day, Sónar by Night), each dated by the page and
+        // headed with its weekday and day of the month. The page must name the
+        // edition's year, print exactly the edition's days, and be captured
+        // after the festival ended (a capture during the festival can hold a
+        // draft: 2018's of 15 June draws two SonarDôme sets at once). Every
+        // day it prints is cited. Rows on Sónar+D's programme stages (talks,
+        // masterclasses, installations) must be the sheet's excluded rows of
+        // that day, one for one.
+        const progStages = s.programmeStages || [];
+        const page = parseSonarSchedule(cap.text, { year: ed.year, programme: progStages });
+        if (page.days.map(d => d.date).join() !== ed.dates.map(([d]) => d).join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${page.days.map(d => d.date).join(", ")}, not the edition's days`);
+        if (s.captureTimestamp.slice(0, 8) <= ed.dates.at(-1)[0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the festival ended`);
+        if (days.join() !== ed.dates.map((_, i) => i + 1).join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints every day, the sheet cites it for ${days.join(",")}`);
+        for (const st of progStages) if (!page.stages.includes(st)) throw new Error(`${s.url} @${s.captureTimestamp}: no stage "${st}"`);
+        const named = [page.title, page.logo].find(x => new RegExp(`Sónar Barcelona ${ed.year}\\b`).test(x));
+        const k = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
+        for (const [i, d] of page.days.entries()) {
+          const day = i + 1;
+          if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is headed "${d.label}", the receipt says "${s.printed[day]}"`);
+          const prog = d.sets.filter(x => x.programme);
+          const pg = prog.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x.programme).map(k).sort().join("\n");
+          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${prog.length} programme entr(ies), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+          agree(day, d.sets.filter(x => !x.programme).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          const ss = page.sessions.filter(x => x.date === d.date);
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { named, sessions: ss.map(x => `${x.label}: ${x.hours}`), stages: new Set(d.sets.filter(x => !x.programme).map(x => x.stage)).size,
+            times: "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's",
+            ...(prog.length && { programmeShows: prog.length, programmeStages: progStages.filter(x => prog.some(y => y.stage === x)) }) });
+        }
+      } else if (s.format === "primavera-completos") {
+        // One page per day: Primavera Sound's full timetable, Parc del Fòrum
+        // beside the city venues (primavera-completos-schedule.mjs). Its day
+        // tabs must name one run of days in the edition's year that holds the
+        // edition's days in a row; the page's own tab is the day it prints.
+        // Only the Fòrum's stages are read as sets; every block's start sits
+        // on its row plus its offset and every printed range is drawn two
+        // pixels a minute, in the city's columns too, or the parser throws.
+        const page = parsePrimaveraCompletos(cap.text, { year: ed.year });
+        if (!`,${page.tabDates.join()},`.includes(`,${ed.dates.map(([d]) => d).join()},`)) throw new Error(`${s.url} @${s.captureTimestamp}: its day tabs print ${page.tabDates.join(", ")}, which do not hold the edition's days in a row`);
+        const day = ed.dates.findIndex(([d]) => d === page.date) + 1;
+        if (day < 1) throw new Error(`${s.url} @${s.captureTimestamp}: prints ${page.date}, not one of the edition's days`);
+        if (days.join() !== String(day)) throw new Error(`${s.url} @${s.captureTimestamp}: prints day ${day}, the sheet cites it for ${days.join(",")}`);
+        if (page.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is printed as "${page.label}", the receipt says "${s.printed[day]}"`);
+        if (s.captureTimestamp.slice(0, 8) <= ed.dates.at(-1)[0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the festival ended`);
+        agree(day, page.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+        Object.assign(ledgerDays[day - 1].sources.at(-1), { heading: page.heading, active: page.active, tabs: page.tabs, stages: page.stages.length, axis: page.axis,
+          cityStages: page.cityStages, citySets: page.citySets,
+          times: "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets",
+          ...(page.sets.some(x => x.openEnd) && { openEnded: page.sets.filter(x => x.openEnd).map(x => `${x.artist}: ${x.printed}`) }) });
       } else if (s.format === "insomniac-music") {
         // One page prints every day by stage (EDC Las Vegas 2012-2013,
         // insomniac-music-schedule.mjs): each day's heading prints its weekday
@@ -709,6 +879,20 @@ export async function importGather(id, dir) {
   if (unused.length) throw new Error(`set-times graphics no source uses and none excludes:\n  ${unused.map(u => `${u.cites} (${u.page})`).join("\n  ")}`);
   if (stale.length) throw new Error(`notUsedGraphics entries that are used, on no receipt page, or have no reason: ${stale.map(n => n.cites).join(", ")}`);
   for (const c of ed.cancelledDays || []) if (!cancelledLedger.some(x => x.date === c.date)) throw new Error(`no source prints cancelled day ${c.date} with its banner`);
+  // Each moved set: excluded where it was printed, listed where it was
+  // played, and the festival's own archived page says so in the quoted words.
+  const movedRows = excluded.filter(x => x.moved);
+  if (movedRows.length !== (ed.movedSets || []).length) throw new Error(`${movedRows.length} row(s) excluded as moved, the edition's movedSets has ${(ed.movedSets || []).length}`);
+  for (const m of ed.movedSets || []) {
+    const from = ed.dates.findIndex(([d]) => d === m.date) + 1, to = ed.dates.findIndex(([d]) => d === m.to.date) + 1;
+    if (!movedRows.some(x => x.day === from && x.stage === m.stage && x.start === m.start && x.billing === m.artist)) throw new Error(`moved set ${m.artist} ${m.date} ${m.start}: not an excluded moved row of that day`);
+    if (!out.some(r => r.day === to && r.stage === m.to.stage && r.start === m.to.start && r.artist === m.artist)) throw new Error(`moved set ${m.artist}: no set on ${m.to.date} ${m.to.start} at ${m.to.stage}`);
+    const cap = await fetchCapture(m.source.captureTimestamp, m.source.url);
+    if (cap.captureTimestamp !== m.source.captureTimestamp) throw new Error(`${m.source.url}: Wayback served ${cap.captureTimestamp}, not ${m.source.captureTimestamp}`);
+    const text = cap.text.replace(/<[^>]+>/g, " ").replace(/&#8217;|&rsquo;/g, "'").replace(/&nbsp;|\s+/g, " ");
+    for (const q of m.quotes || []) if (!text.includes(q)) throw new Error(`moved set ${m.artist}: ${m.source.url} @${m.source.captureTimestamp} does not print "${q}"`);
+    if (!(m.quotes || []).length) throw new Error(`moved set ${m.artist}: no quote from the official page`);
+  }
   const ledger = { id, method: "official_sources", official: rc.official, days: ledgerDays, excluded,
     ...(cancelledLedger.length && { cancelledDays: cancelledLedger }), ...(offDayLedger.length && { offDays: offDayLedger }), ...(unscheduledLedger.length && { unscheduledActs: unscheduledLedger }), ...(notUsedGraphics.length && { notUsedGraphics }) };
   writeFileSync(join(ROOT, `data/historical/ledger/${id}.json`), JSON.stringify(ledger, null, 2) + "\n");
