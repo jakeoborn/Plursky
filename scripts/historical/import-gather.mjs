@@ -57,6 +57,9 @@ import { parseTmlDrupal } from "./tml-drupal-schedule.mjs";
 import { parseShambhalaWebflow, readDatesPost } from "./shambhala-webflow-schedule.mjs";
 import { parseSonarSchedule } from "./sonar-schedule.mjs";
 import { parseSzigetDays } from "./sziget-days-schedule.mjs";
+import { parseDefqonAreas } from "./defqon-schedule.mjs";
+
+const WEEKDAY_OF = date => ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"][new Date(date + "T12:00:00Z").getUTCDay()];
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
@@ -826,6 +829,33 @@ export async function importGather(id, dir) {
           ...(d.repeats.length && { drawnTwice: d.repeats.map(x => `${x.artist} (${x.stage} ${x.printed})`) }),
           ...(d.unnamed.length && { unnamedSlots: d.unnamed.map(x => `${x.stage} ${x.printed}: "${x.artist}"`) }),
           ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.printed} (${x.misprint})`) }) });
+      } else if (s.format === "defqon-areas") {
+        // One page prints the whole weekend: Defqon.1's own timetable
+        // (defqon1.nl/en/timetable/, defqon-schedule.mjs). Its title must
+        // name the edition's year, its dated headings must be exactly the
+        // edition's days, and it must be captured after the festival ended.
+        // Every set prints its range on the 24-hour clock; an area's host is
+        // its MC, never a set; an area printed as a block (one range over
+        // acts with no time of their own) must be the sheet's excluded
+        // untimed rows of that day, one for one.
+        const page = parseDefqonAreas(cap.text, { year: ed.year, rolloverHour: ed.rolloverHour });
+        if (page.days.map(d => d.date).join() !== ed.dates.map(([d]) => d).join()) throw new Error(`${s.url} @${s.captureTimestamp}: its headings print ${page.days.map(d => d.date).join(", ")}, not the edition's days`);
+        if (s.captureTimestamp.slice(0, 8) <= ed.dates.at(-1)[0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the festival ended`);
+        const k = x => [x.stage, x.artist ?? x.billing].join("|");
+        for (const [i, d] of page.days.entries()) {
+          const day = i + 1;
+          if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is headed "${d.label}", the receipt says "${s.printed[day]}"`);
+          const pg = page.bills.filter(b => b.date === d.date).flatMap(b => b.acts.map(a => k({ stage: b.stage, artist: a }))).sort().join("\n");
+          const sh = excluded.filter(x => x.day === day && x.untimed).map(k).sort().join("\n");
+          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${pg ? pg.split("\n").length : 0} act(s) in a block, the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+          if (!days.includes(day)) throw new Error(`${s.url} @${s.captureTimestamp}: prints day ${day}, which the sheet does not cite it for`);
+          agree(day, d.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { named: page.title, stages: [...new Set(d.sets.map(x => x.stage))].length,
+            areas: page.areas.filter(a => d.sets.some(x => x.stage === a.stage) && a.weekday === WEEKDAY_OF(d.date)).map(a => `${a.stage}: ${a.heading}${a.section === d.label ? "" : ` (${a.section})`}`),
+            times: "each set prints its range on the 24-hour clock under its area; an area's host prints no time and is not a set",
+            ...(page.hosts.some(h => h.weekday === WEEKDAY_OF(d.date)) && { hosts: page.hosts.filter(h => h.weekday === WEEKDAY_OF(d.date)).map(h => `${h.stage}: ${h.host}`) }),
+            ...(page.bills.some(b => b.date === d.date) && { blocks: page.bills.filter(b => b.date === d.date).map(b => `${b.stage}: "${b.heading}": ${b.acts.join(", ")}`) }) });
+        }
       } else if (s.format === "day-tabs") {
         // Every day is on the page; each day's rows must equal its own pane.
         const panes = parseDayTabs(cap.text);

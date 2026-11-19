@@ -7,6 +7,7 @@ import { printedDate as govBallDate } from "./govball-wp-schedule.mjs";
 import { tabDate as primaveraDate } from "./primavera-horarios-schedule.mjs";
 import { tabRun as primaveraRun } from "./primavera-completos-schedule.mjs";
 import { tabDate as szigetDate } from "./sziget-days-schedule.mjs";
+import { headerDate as defqonDate } from "./defqon-schedule.mjs";
 import { cardDate as lollaCardDate } from "./lolla-lineup.mjs";
 import { printedDate as insomniacDate } from "./insomniac-music-schedule.mjs";
 import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
@@ -66,6 +67,8 @@ export const OFFICIAL_HOSTS = {
   // sziget.hu: the festival's own site through 2013 (its English programme
   // lived at /festival_english/programs); szigetfestival.com is its site today.
   "sziget": ["sziget.hu", "szigetfestival.com"],
+  // defqon1.nl: Defqon.1's own site, where each year's timetable lived.
+  "defqon1": ["defqon1.nl"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -484,6 +487,12 @@ function officialSources(e, meta, p) {
         if (szigetDate(c.printed, e.year) !== date || !(c.tabs || []).includes(c.printed)
           || !new RegExp(`/festival_english/programs/-/days\\?day=${date}&`).test(c.archivedUrl || ""))
           p.push(`${tag}: the page's day tab "${c.printed}" at ${c.archivedUrl} does not print ${date}`);
+      } else if (c.format === "defqon-areas") {
+        // Defqon.1's 2015 timetable heads each part of the weekend with its
+        // weekday, date, year and hours ("Friday • 19 June 2015 • 20:00 -
+        // 01:00"), and the page's own title names the edition's timetable.
+        if (defqonDate(c.printed, e.year) !== date || c.named !== `Timetable - Defqon.1 ${e.year}`)
+          p.push(`${tag}: the page's heading "${c.printed}" (titled "${c.named}") does not print ${date}`);
       } else if (c.format === "sonar-calendar") {
         // Sónar's timetable heads each of a day's sessions with the weekday
         // and the day of the month ("Friday 19 | Sónar by Day"), no year; the
