@@ -7129,6 +7129,123 @@
    ],
    "why": "The parenthetical names the artists behind the billed project: LSZEE is a project with LSDREAM and CLOZEE as parents (the Tchami x Malaa (No Redemption) rule, printed the other way round).",
    "source": "https://ultramusicfestival.com/lineup/set-times/"
+  },
+  {
+   "printed": "GARETH EMERY (ANALOG)",
+   "performers": [
+    {
+     "name": "GARETH EMERY",
+     "role": "performer"
+    }
+   ],
+   "setTag": "ANALOG",
+   "why": "\"ANALOG\" names the show the act played, not a person: it is the set tag, and the billing counts on GARETH EMERY (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "CARL COX (HYBRID LIVE)",
+   "performers": [
+    {
+     "name": "CARL COX",
+     "role": "performer"
+    }
+   ],
+   "setTag": "HYBRID LIVE",
+   "why": "\"HYBRID LIVE\" says how the act played the set, not a person: it is the set tag, and the billing counts on CARL COX (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "COONE (PRESENTS 15 YRS DWX)",
+   "performers": [
+    {
+     "name": "COONE",
+     "role": "performer"
+    }
+   ],
+   "setTag": "PRESENTS 15 YRS DWX",
+   "why": "\"PRESENTS 15 YRS DWX\" names the show the act played, not a person: it is the set tag, and the billing counts on COONE (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "BEN NICKY (PRESENTS EXTREME)",
+   "performers": [
+    {
+     "name": "BEN NICKY",
+     "role": "performer"
+    }
+   ],
+   "setTag": "PRESENTS EXTREME",
+   "why": "\"PRESENTS EXTREME\" names the show the act played, not a person: it is the set tag, and the billing counts on BEN NICKY (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "ERIC PRYDZ (PRESENTS HOLO)",
+   "performers": [
+    {
+     "name": "ERIC PRYDZ",
+     "role": "performer"
+    }
+   ],
+   "setTag": "PRESENTS HOLO",
+   "why": "\"PRESENTS HOLO\" names the show the act played, not a person: it is the set tag, and the billing counts on ERIC PRYDZ (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "BLACK TIGER SEX MACHINE (PRESENTS PORTALS)",
+   "performers": [
+    {
+     "name": "BLACK TIGER SEX MACHINE",
+     "role": "performer"
+    }
+   ],
+   "setTag": "PRESENTS PORTALS",
+   "why": "\"PRESENTS PORTALS\" names the show the act played, not a person: it is the set tag, and the billing counts on BLACK TIGER SEX MACHINE (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "POPOF B2B SPACE 92 (PRESENT TURBULENCES)",
+   "performers": [
+    {
+     "name": "POPOF",
+     "role": "b2b"
+    },
+    {
+     "name": "SPACE 92",
+     "role": "b2b"
+    }
+   ],
+   "setTag": "PRESENT TURBULENCES",
+   "why": "The billing names two artists playing b2b and the show they present: each artist is credited b2b, and \"PRESENT TURBULENCES\" names the show, not a person, so it is the set tag (the POPOF X SPACE 92 (PRESENT TURBULENCES) ruling, Ultra 2025).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "SVDDEN DEATH (PRESENTS VOYD)",
+   "performers": [
+    {
+     "name": "VOYD",
+     "role": "project",
+     "parents": [
+      "SVDDEN DEATH"
+     ]
+    }
+   ],
+   "why": "The printing names the act and the project it presents (\"A presents C\"), here with the presents line printed small under the name: VOYD is a project with SVDDEN DEATH as parent (the Levity presents Lasership rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "ENDLESS SUMMER (SAM FELDT B2B JONAS BLUE)",
+   "performers": [
+    {
+     "name": "ENDLESS SUMMER",
+     "role": "project",
+     "parents": [
+      "SAM FELDT",
+      "JONAS BLUE"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the artists behind the billed project: ENDLESS SUMMER is a project with SAM FELDT and JONAS BLUE as parents (the Tchami x Malaa (No Redemption) rule, printed the other way round).",
+   "source": "https://ultramusicfestival.com/set-times/"
   }
  ],
  "pending": [
@@ -7843,6 +7960,18 @@
   {
    "key": "flo",
    "why": "Short name billed at more than one festival brand (ACL 2024, Governors Ball 2024, Lollapalooza 2024): no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "KVSH X PONTIFEXX",
+   "why": "Left as printed (Ultra Miami 2022 Friday grid): an \"x\" billing whose sides are not both known acts, which no standing rule settles, so it is neither split nor credited to either name."
+  },
+  {
+   "printed": "ASH TRÉS + MOSES JAZZ",
+   "why": "Left as printed (Ultra Miami 2023 Sunday grid): a \"+\" billing, which no standing rule settles (the Florence + the Machine case), so it is neither split nor credited to either name."
+  },
+  {
+   "key": "kx5",
+   "why": "Short name billed at more than one festival brand (EDC Las Vegas 2022, Ultra Miami 2023). EDC prints it as \"Kaskade & deadmau5 present Kx5\" and Ultra as Kx5 alone; both read as one act, so the key stays one, and no claim is made about the act behind the Ultra billing."
   }
  ]
 }

@@ -1,0 +1,101 @@
+{
+ "id": "ultra-miami-2022",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-03-25",
+   "sha256": "27d5717f778514313f3e8a331c02d7ecb4f594f335e776f420eb26cfdb595b49",
+   "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_FRI-1600x1000.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20230105164430/https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_FRI-1600x1000.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T21:33:05.820Z",
+   "rowsConfirmed": 47,
+   "note": "Header read off the graphic: SET TIMES · MIAMI BAYFRONT PARK · MARCH 2022 FRI 25 · FRIDAY · FROM 4:00 PM TO 12:00 AM. Seven stage columns: ULTRA MAIN STAGE, LIVE STAGE, MEGASTRUCTURE and WORLDWIDE STAGE on the left panel, THE COVE, UMF RADIO and OASIS on the right; stage names are the column logos, uppercased (RESISTANCE prints over MEGASTRUCTURE and THE COVE). Every block prints a start only (\"• 9:40 PM\"), so every row is open-ended. A smaller coloured word beside or under a name (LIVE, ANALOG, HYBRID LIVE, THE LIVE EXPERIENCE, a presents line) is kept in parentheses after it, as printed; a coloured B2B, B3B or X joins the names. This is the site's own 1600x1000 copy, which is legible. THE COVE prints the FCKNG SERIOUS logo beside it and UMF RADIO the STMPD RCRDS logo this day; the stages are THE COVE and UMF RADIO.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 47,
+   "corrections": [
+    "SVDDEN DEATH (PRESENTS VOYD): artist \"SVDDEN DEATH PRESENTS VOYD\" → \"SVDDEN DEATH (PRESENTS VOYD)\"",
+    "ANFISA LETYAGO: artist \"ANFISA LETYAGC\" → \"ANFISA LETYAGO\"",
+    "ARMIN VAN BUUREN B2B REINIER ZONNEVELD (LIVE): artist \"ARMIN VAN BUUREN BEB REINIER ZONNEVELD LIVE\" → \"ARMIN VAN BUUREN B2B REINIER ZONNEVELD (LIVE)\"",
+    "METAPHYSICAL B2B KNOWLTON WALSH: artist \"METAPHYSICAL вав KNOWLTON WALSH\" → \"METAPHYSICAL B2B KNOWLTON WALSH\"",
+    "DJ IDEAL B2B REDUX SAINTS: artist \"DJ IDEAL Bав REDUX SAINTS\" → \"DJ IDEAL B2B REDUX SAINTS\""
+   ],
+   "ocrMissed": [],
+   "ocrExtra": []
+  },
+  {
+   "day": 2,
+   "date": "2022-03-26",
+   "sha256": "27b6466943ce6bdcd757ae701ac10373936671b168e670fc508c91569fb36e76",
+   "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_SAT-1-1600x1000.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20220320145000/https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_SAT-1-1600x1000.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T21:33:05.823Z",
+   "rowsConfirmed": 64,
+   "note": "Header read off the graphic: SET TIMES · MIAMI BAYFRONT PARK · MARCH 2022 SAT 26 · SATURDAY · FROM 12:00 PM TO 12:00 AM. Seven stage columns: ULTRA MAIN STAGE, LIVE STAGE, MEGASTRUCTURE and WORLDWIDE STAGE on the left panel, THE COVE, UMF RADIO and OASIS on the right; stage names are the column logos, uppercased (RESISTANCE prints over MEGASTRUCTURE and THE COVE). Every block prints a start only (\"• 9:40 PM\"), so every row is open-ended. A smaller coloured word beside or under a name (LIVE, ANALOG, HYBRID LIVE, THE LIVE EXPERIENCE, a presents line) is kept in parentheses after it, as printed; a coloured B2B, B3B or X joins the names. This is the site's own 1600x1000 copy, which is legible. UMF RADIO prints the GUD Vibrations logo this day; the stage is UMF RADIO. The UMF RADIO block at 6:40 PM prints two names covered by white bars with a B2B between them: an unannounced set whose names the graphic does not give, so it is not listed.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 63,
+   "corrections": [
+    "TCHAMI: artist \"OLIVER HELDENS • 6:25 рМ TCHAMI\" → \"TCHAMI\"",
+    "KSHMR (THE LIVE EXPERIENCE): artist \"KSHMR IXPENENCE\" → \"KSHMR (THE LIVE EXPERIENCE)\"",
+    "GARETH EMERY (ANALOG): artist \"GARETH EMERY ANALOG\" → \"GARETH EMERY (ANALOG)\"",
+    "CARL COX (HYBRID LIVE): artist \"CARL COX HYBRID UND\" → \"CARL COX (HYBRID LIVE)\"",
+    "SASHA | JOHN DIGWEED: artist \"SASHA I JOHN DIGWEED\" → \"SASHA | JOHN DIGWEED\"",
+    "GIORGIA ANGIULI (LIVE): artist \"GIORGIA ANGIULI LIVE\" → \"GIORGIA ANGIULI (LIVE)\"",
+    "4B B2B SAYMYNAME: artist \"4Bв2в SAYMYNAME\" → \"4B B2B SAYMYNAME\"",
+    "MIJA B2B GG MAGREE: artist \"MIJA вгв GG MAGREE\" → \"MIJA B2B GG MAGREE\"",
+    "CHRISTIAN SMITH B2B CRISTIAN VARELA: artist \"CHRISTIAN SMITH B2в CRISTIAN VARELA\" → \"CHRISTIAN SMITH B2B CRISTIAN VARELA\"",
+    "NALA: artist \"SAKA\" → \"NALA\"; stage \"UMF RADIO\" → \"THE COVE\"",
+    "RIOT: artist \"JOSE ESCO\" → \"RIOT\"; stage \"OASIS\" → \"UMF RADIO\"",
+    "KRAYSH: artist \"RIOT -2:00PM KRAYSH\" → \"KRAYSH\"",
+    "SAKA: artist \"RODRIGO VIEIRA\" → \"SAKA\"; stage \"OASIS\" → \"UMF RADIO\""
+   ],
+   "ocrMissed": [
+    "ULTRA MAIN STAGE 18:25 OLIVER HELDENS",
+    "OASIS 14:00 JOSE ESCO",
+    "OASIS 12:00 RODRIGO VIEIRA"
+   ],
+   "ocrExtra": [
+    "#LEFTOVER THE COVE  NALA | -• 12:00PM",
+    "UMF RADIO 18:40 B2B"
+   ]
+  },
+  {
+   "day": 3,
+   "date": "2022-03-27",
+   "sha256": "69ef8152cf197322c295b18ec22c541150ba5f5400a005408390c40f67a4dc85",
+   "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_SUN-4-1600x1000.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20230105164508/https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_SUN-4-1600x1000.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T21:33:05.824Z",
+   "rowsConfirmed": 52,
+   "note": "Header read off the graphic: SET TIMES · MIAMI BAYFRONT PARK · MARCH 2022 SUN 27 · SUNDAY · FROM 12:00 PM TO 10:00 PM. Seven stage columns: ULTRA MAIN STAGE, LIVE STAGE, MEGASTRUCTURE and WORLDWIDE STAGE on the left panel, THE COVE, UMF RADIO and OASIS on the right; stage names are the column logos, uppercased (RESISTANCE prints over MEGASTRUCTURE and THE COVE). Every block prints a start only (\"• 9:40 PM\"), so every row is open-ended. A smaller coloured word beside or under a name (LIVE, ANALOG, HYBRID LIVE, THE LIVE EXPERIENCE, a presents line) is kept in parentheses after it, as printed; a coloured B2B, B3B or X joins the names. This is the site's own 1600x1000 copy, which is legible. UMF RADIO prints the DIRTY WORKZ logo this day; the stage is UMF RADIO. The ULTRA MAIN STAGE block at 9:00 PM prints its name covered by a white bar: an unannounced headliner the graphic does not name, so it is not listed.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 51,
+   "corrections": [
+    "ELOHIM: artist \"SUB ZERO PROJECT\" → \"ELOHIM\"; stage \"UMF RADIO\" → \"LIVE STAGE\"",
+    "FORESTER: artist \"ELOHIM - • 6:00 PM FORESTER\" → \"FORESTER\"",
+    "CARL COX: artist \"SEVEN LIONS\" → \"CARL COX\"; stage \"WORLDWIDE STAGE\" → \"MEGASTRUCTURE\"",
+    "ADAM BEYER: artist \"CARL COX -• 8:00 PM ADAM BEYER\" → \"ADAM BEYER\"",
+    "REINIER ZONNEVELD (LIVE): artist \"REINIER ZONNEVELD LIVE\" → \"REINIER ZONNEVELD (LIVE)\"",
+    "HANNES BIEGER (LIVE): artist \"HANNES BIEGER LIVE\" → \"HANNES BIEGER (LIVE)\"",
+    "CHRISTOPHER COE (LIVE): artist \"CHRISTOPHER COE LIVE\" → \"CHRISTOPHER COE (LIVE)\"",
+    "SEVEN LIONS: artist \"DA TWEEKAZ\" → \"SEVEN LIONS\"; stage \"UMF RADIO\" → \"WORLDWIDE STAGE\"",
+    "TECHNASIA B3B HECTOR B3B CARLO LIO: artist \"TECHNASIA B3B HECTOR взв CARLO LIO\" → \"TECHNASIA B3B HECTOR B3B CARLO LIO\"",
+    "ANDY PATE B2B ROD B: artist \"ANDY PATE Bев ROD B\" → \"ANDY PATE B2B ROD B\"",
+    "DA TWEEKAZ: artist \"JEAN MARIE\" → \"DA TWEEKAZ\"; stage \"OASIS\" → \"UMF RADIO\"",
+    "COONE (PRESENTS 15 YRS DWX): artist \"COONE PRESENTS 15 YRS DWX\" → \"COONE (PRESENTS 15 YRS DWX)\"",
+    "SUB ZERO PROJECT: artist \"OMAR DEAZ\" → \"SUB ZERO PROJECT\"; stage \"OASIS\" → \"UMF RADIO\"",
+    "BEN NICKY (PRESENTS EXTREME): artist \"BEN NICKY PRESENTS EXTREME\" → \"BEN NICKY (PRESENTS EXTREME)\"",
+    "PROXXY B2B BRADLEY DROP: artist \"PROXXY в2в BRADLEY DROP\" → \"PROXXY B2B BRADLEY DROP\""
+   ],
+   "ocrMissed": [
+    "OASIS 20:00 JEAN MARIE",
+    "OASIS 18:00 OMAR DEAZ"
+   ],
+   "ocrExtra": [
+    "ULTRA MAIN STAGE 21:00 "
+   ]
+  }
+ ]
+}

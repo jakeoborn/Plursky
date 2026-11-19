@@ -32,6 +32,15 @@ export const GRAPHIC_EDITIONS = {
   // resized copies; the 1600x1000 copy is the largest and is legible. The
   // Saturday and Sunday grids were re-issued as "Sat-Complete-1" and
   // "Sun-Complete-2" during the festival.
+  // Ultra 2022: "UltraMiami_2022_Set_Times_FRI-1600x1000.png", "…_SAT-1-…", "…_SUN-4-…".
+  "ultra-miami-2022": { year: 2022, page: "https://ultramusicfestival.com/set-times/", window: ["20220301", "20220331"],
+    image: /UltraMiami_2022_Set_Times_[^"'\s/]+?-1600x1000\.png/i,
+    days: [{ day: 1, date: "2022-03-25", token: /_FRI-/i }, { day: 2, date: "2022-03-26", token: /_SAT-/i }, { day: 3, date: "2022-03-27", token: /_SUN-/i }] },
+  // Ultra 2023 re-issued Sunday on the day ("…_SUNDAY-web-2-…"); the window
+  // ends on Sunday so the last capture carrying it is the one read.
+  "ultra-miami-2023": { year: 2023, page: "https://ultramusicfestival.com/set-times/", window: ["20230301", "20230326"],
+    image: /ULTRA2023_SET-TIMES_[^"'\s/]+?-1600x1000\.jpe?g/i,
+    days: [{ day: 1, date: "2023-03-24", token: /_FRIDAY-/i }, { day: 2, date: "2023-03-25", token: /_SATURDAY-/i }, { day: 3, date: "2023-03-26", token: /_SUNDAY-/i }] },
   "ultra-miami-2024": { year: 2024, page: "https://ultramusicfestival.com/set-times/", window: ["20240301", "20240331"],
     image: /ULTRA2024_SET-TIMES_[^"'\s/]+?-1600x1000\.jpe?g/i,
     days: [{ day: 1, date: "2024-03-22", token: /_22-/i }, { day: 2, date: "2024-03-23", token: /_(?:23|Sat)-/i }, { day: 3, date: "2024-03-24", token: /_(?:24|Sun)-/i }] },

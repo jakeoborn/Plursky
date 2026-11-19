@@ -1,0 +1,110 @@
+{
+  "id": "ultra-miami-2022",
+  "method": "official_image_transcription",
+  "official": "https://ultramusicfestival.com/set-times/",
+  "window": [
+    "20220301",
+    "20220331"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20220325051803",
+      "archivedUrl": "https://web.archive.org/web/20220325051803/https://ultramusicfestival.com/set-times/",
+      "sha256": "1b0aae02b999cf1679ae43cdf821666071965fff4fd439d26880f2a93f004fe2",
+      "images": [
+        "UltraMiami_2022_Set_Times_FRI-1600x1000.png",
+        "UltraMiami_2022_Set_Times_SAT-1-1600x1000.png",
+        "UltraMiami_2022_Set_Times_SUN-4-1600x1000.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220326102446",
+      "archivedUrl": "https://web.archive.org/web/20220326102446/https://ultramusicfestival.com/set-times/",
+      "sha256": "bc6f147376790f52b5289684e85ef97151fa57fe6333e4607537e3ffc62f8bc3",
+      "images": [
+        "UltraMiami_2022_Set_Times_FRI-1600x1000.png",
+        "UltraMiami_2022_Set_Times_SAT-1-1600x1000.png",
+        "UltraMiami_2022_Set_Times_SUN-4-1600x1000.png"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2022-03-25",
+      "pageCapture": "20220326102446",
+      "pageArchivedUrl": "https://web.archive.org/web/20220326102446/https://ultramusicfestival.com/set-times/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_FRI-1600x1000.png",
+      "imageCapture": "20230105164430",
+      "imageArchivedUrl": "https://web.archive.org/web/20230105164430/https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_FRI-1600x1000.png",
+      "sha256": "27d5717f778514313f3e8a331c02d7ecb4f594f335e776f420eb26cfdb595b49",
+      "bytes": 352401,
+      "contentType": "image/png",
+      "cacheFile": "41cab9aefb36f36ba280e7bb.bin",
+      "revisions": [
+        {
+          "file": "UltraMiami_2022_Set_Times_FRI-1600x1000.png",
+          "firstSeen": "20220325051803"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2022-03-26",
+      "pageCapture": "20220326102446",
+      "pageArchivedUrl": "https://web.archive.org/web/20220326102446/https://ultramusicfestival.com/set-times/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_SAT-1-1600x1000.png",
+      "imageCapture": "20220320145000",
+      "imageArchivedUrl": "https://web.archive.org/web/20220320145000/https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_SAT-1-1600x1000.png",
+      "sha256": "27b6466943ce6bdcd757ae701ac10373936671b168e670fc508c91569fb36e76",
+      "bytes": 363034,
+      "contentType": "image/png",
+      "cacheFile": "d4735beeaa06ccdf5de92f10.bin",
+      "revisions": [
+        {
+          "file": "UltraMiami_2022_Set_Times_SAT-1-1600x1000.png",
+          "firstSeen": "20220325051803"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2022-03-27",
+      "pageCapture": "20220326102446",
+      "pageArchivedUrl": "https://web.archive.org/web/20220326102446/https://ultramusicfestival.com/set-times/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_SUN-4-1600x1000.png",
+      "imageCapture": "20230105164508",
+      "imageArchivedUrl": "https://web.archive.org/web/20230105164508/https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_SUN-4-1600x1000.png",
+      "sha256": "69ef8152cf197322c295b18ec22c541150ba5f5400a005408390c40f67a4dc85",
+      "bytes": 351185,
+      "contentType": "image/png",
+      "cacheFile": "09c926a256a8fa95f85255b8.bin",
+      "revisions": [
+        {
+          "file": "UltraMiami_2022_Set_Times_SUN-4-1600x1000.png",
+          "firstSeen": "20220325051803"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "UMF RADIO",
+      "start": "23:15",
+      "end": null,
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "WORLDWIDE STAGE",
+      "start": "13:00",
+      "end": null,
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}
