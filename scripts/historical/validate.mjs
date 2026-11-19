@@ -111,7 +111,9 @@ const WAYBACK = /^https:\/\/web\.archive\.org\/web\/(\d{14})\/(https?:\/\/[^/]+)
 
 function officialArchive(url, festivalId, year, p, label) {
   const m = WAYBACK.exec(url || "");
-  if (!m) return p.push(`${label}: "${url}" is not a Wayback archive URL`);
+  // Report and return nothing: returning p.push() handed callers a number,
+  // and a note citing a non-Wayback URL crashed on ts.startsWith.
+  if (!m) { p.push(`${label}: "${url}" is not a Wayback archive URL`); return null; }
   const host = new URL(m[2]).hostname.replace(/^www\./, "");
   if (!hostIn(OFFICIAL_HOSTS[festivalId], host))
     p.push(`${label}: ${host} is not an official ${festivalId} property`);
