@@ -1,0 +1,39 @@
+{
+  "id": "time-warp-2022",
+  "method": "official_lineup_html",
+  "official": "https://www.time-warp.de/22/lineup",
+  "chosen": "20230205011620",
+  "archivedUrl": "https://web.archive.org/web/20230205011620/https://www.time-warp.de/22/lineup",
+  "sha256": "988265a30777e5ce8cf624cf594237de35470787753cf603c220b50caebb6ec9",
+  "title": "Lineup 2022",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20230205011620",
+      "archivedUrl": "https://web.archive.org/web/20230205011620/https://www.time-warp.de/22/lineup",
+      "sha256": "988265a30777e5ce8cf624cf594237de35470787753cf603c220b50caebb6ec9",
+      "bytes": 55643,
+      "via": "firecrawl",
+      "title": "Lineup 2022",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Friday 28 October 2022",
+        "Saturday 29 October 2022"
+      ],
+      "printed": {
+        "edition": "Germany 22",
+        "dates": "28. + 29. October 2022",
+        "city": "Mannheim",
+        "lists": [
+          "Friday A-Z",
+          "Saturday A-Z"
+        ]
+      },
+      "billings": 23
+    }
+  ],
+  "dropped": []
+}
